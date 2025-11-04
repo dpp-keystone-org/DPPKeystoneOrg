@@ -1,0 +1,83 @@
+// non-strict mode - this file would not parse with browser JSON.parse
+ {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/validation/v1/json-schema/dpp-minimal-header.schema.json",
+  "title": "Digital Product Passport (Minimalist Normative Header Schema)",
+  "description": "A minimalist, normative schema for the DPP that validates core headers and allows for flexible, user-defined properties in the payload.",
+  "type": "object",
+
+  "properties": {
+    // JSON-LD keywords
+    "@context": {
+      "description": "JSON-LD Context definition.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "array" },
+        { "type": "object" }
+      ]
+    },
+    "@type": {
+      "description": "JSON-LD Type definition.",
+       "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ]
+    },
+
+    // Normative DPP Header Fields
+    "ProductID": { 
+      "description": "Unique Product Identifier (UPI). (dppk:ProductID)",
+      "type": "string", 
+      "format": "uri-reference" 
+    },
+    "DPPID": { 
+      "description": "DPP Identifier. (dppk:DPPID)",
+      "type": "string", 
+      "format": "uri-reference" 
+    },
+    "EconomicOperatorID": { 
+      "description": "Economic Operator Identifier (EOI). (dppk:EconomicOperatorID)",
+      "type": "string", 
+      "format": "uri-reference" 
+    },
+    "FacilityID": { 
+      "description": "Optional Facility Identifier. (dppk:FacilityID)",
+      "type": "string", 
+      "format": "uri-reference" 
+    },
+    "Granularity": { 
+      "description": "The level of detail the DPP applies to. (dppk:Granularity)",
+      "enum": ["model", "batch", "item"] 
+    },
+    "BaseDppSchemaVersion": { 
+      "description": "Version of the horizontal DPP schema used. (dppk:BaseDppSchemaVersion)",
+      "type": "string" 
+    },
+    "SectorDataModelVersion": { 
+      "description": "Version of the sector-specific data model used. (dppk:SectorDataModelVersion)",
+      "type": "string" 
+    },
+    "StatusOfTheDPP": { 
+      "description": "The current lifecycle status of the DPP instance. (dppk:StatusOfTheDPP)",
+      "enum": ["active", "inactive"] 
+    },
+    "LastUpdated": { 
+      "description": "The date and time when the DPP instance was last modified (ISO 8601). (dppk:LastUpdated)",
+      "type": "string", 
+      "format": "date-time" 
+    }
+  },
+  
+  "required": [
+    "ProductID",
+    "DPPID",
+    "Granularity",
+    "BaseDppSchemaVersion",
+    "StatusOfTheDPP",
+    "LastUpdated",
+    "EconomicOperatorID"
+  ],
+
+  // CRITICAL: Allow any other properties (the payload) without validation by this base schema.
+  "additionalProperties": true
+}

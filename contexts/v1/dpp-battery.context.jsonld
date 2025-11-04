@@ -1,0 +1,49 @@
+{
+    "@context": [
+        // Import the Core DPP Context definitions.
+        // Assumes this file will be hosted at the defined persistent URI.
+        "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld",
+        
+        // Define Battery-specific terms.
+        {
+            // ==================================================================
+            // Battery Classes (for use in @type)
+            // ==================================================================
+            "Battery": "dppk:Battery",
+            "BatteryCarbonFootprint": "dppk:BatteryCarbonFootprint",
+
+            // ==================================================================
+            // Battery Properties (General)
+            // ==================================================================
+            "batteryCategory": "dppk:batteryCategory",
+            "batteryChemistry": "dppk:batteryChemistry",
+            "dateOfManufacture": {
+                "@id": "dppk:dateOfManufacture",
+                "@type": "xsd:date"
+            },
+
+            // ==================================================================
+            // Battery Properties (Performance and Durability)
+            // ==================================================================
+            // Note: These properties link to QuantitativeValue (defined in Core).
+            "ratedCapacity": "dppk:ratedCapacity",
+            "nominalVoltage": "dppk:nominalVoltage",
+            "expectedLifetime": "dppk:expectedLifetime",
+            
+            "stateOfHealth": "dppk:stateOfHealth",
+
+            // ==================================================================
+            // Battery Properties (Carbon Footprint)
+            // ==================================================================
+            "batteryCarbonFootprint": "dppk:batteryCarbonFootprint",
+            "bcfTotal": "dppk:bcfTotal",
+            "bcfPerformanceClass": "dppk:bcfPerformanceClass",
+            "bcfDeclarationWebLink": {
+                "@id": "dppk:bcfDeclarationWebLink",
+                "@type": "@id"
+            }
+            
+            // Note: Material composition (CRMs) utilizes the core properties (hasPart, weightPercentage, recycledContentPercentage).
+        }
+    ]
+}

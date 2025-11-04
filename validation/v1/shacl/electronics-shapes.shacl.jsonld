@@ -1,0 +1,45 @@
+{
+    "@context": {
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "sh": "http://www.w3.org/ns/shacl#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "dppk": "https://dpp-keystone.org/v1/terms#",
+      "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+    },
+    "@id": "dppkval:ElectronicsShapes",
+    "@type": "sh:ShapesGraph",
+    
+    "@graph": [
+      // ==================================================================
+      // Shape: Electronic Device (EEE)
+      // ==================================================================
+      {
+        "@id": "dppkval:ElectronicDeviceShape",
+        "@type": "sh:NodeShape",
+        "sh:targetClass": { "@id": "dppk:ElectronicDevice" },
+        "sh:property": [
+          {
+            // Voltage, if provided, must conform to QuantitativeValue.
+            "sh:path": { "@id": "dppk:voltage" },
+            "sh:node": { "@id": "dppkval:QuantitativeValueShape" }
+          },
+          {
+            // Rated Power, if provided, must conform to QuantitativeValue.
+            "sh:path": { "@id": "dppk:ratedPower" },
+            "sh:node": { "@id": "dppkval:QuantitativeValueShape" }
+          },
+          {
+            // Spare Parts Availability must be a boolean.
+            "sh:path": { "@id": "dppk:sparePartsAvailable" },
+            "sh:datatype": { "@id": "xsd:boolean" }
+          },
+          {
+            // Service Manual Availability must be a boolean.
+            "sh:path": { "@id": "dppk:serviceManualAvailable" },
+            "sh:datatype": { "@id": "xsd:boolean" }
+          }
+        ]
+      }
+    ]
+  }

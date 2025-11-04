@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+  },
+  "@id": "dppkval:BatteryShapes",
+  "@type": "sh:ShapesGraph",
+  
+  "@graph": [
+    // ==================================================================
+    // Shape: Battery
+    // Validates sector-specific requirements for Battery Passports.
+    // ==================================================================
+    {
+      "@id": "dppkval:BatteryShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": { "@id": "dppk:Battery" },
+      "sh:property": [
+        {
+          // Must have a battery category.
+          "sh:path": { "@id": "dppk:batteryCategory" },
+          "sh:minCount": 1,
+          "sh:severity": { "@id": "sh:Violation" },
+          "sh:message": "Battery must have a category (dppk:batteryCategory)."
+        },
+        {
+            // Must have battery chemistry.
+            "sh:path": { "@id": "dppk:batteryChemistry" },
+            "sh:minCount": 1,
+            "sh:severity": { "@id": "sh:Violation" },
+            "sh:message": "Battery must declare its chemistry (dppk:batteryChemistry)."
+        },
+        {
+            // Must have a date of manufacture.
+            "sh:path": { "@id": "dppk:dateOfManufacture" },
+            "sh:minCount": 1,
+            "sh:datatype": { "@id": "xsd:date" },
+            "sh:severity": { "@id": "sh:Violation" },
+            "sh:message": "Battery must have a date of manufacture (dppk:dateOfManufacture)."
+        },
+        {
+            // Must have rated capacity.
+            "sh:path": { "@id": "dppk:ratedCapacity" },
+            "sh:minCount": 1,
+            // Ensure the capacity conforms to the Core QuantitativeValueShape.
+            // Note: This requires the validation engine to load both shape graphs (Core and Battery).
+            "sh:node": { "@id": "dppkval:QuantitativeValueShape" },
+            "sh:severity": { "@id": "sh:Violation" },
+            "sh:message": "Battery must have a rated capacity (dppk:ratedCapacity) conforming to QuantitativeValue."
+        },
+        {
+            // Must have nominal voltage.
+            "sh:path": { "@id": "dppk:nominalVoltage" },
+            "sh:minCount": 1,
+            "sh:node": { "@id": "dppkval:QuantitativeValueShape" },
+            "sh:severity": { "@id": "sh:Violation" },
+            "sh:message": "Battery must have a nominal voltage (dppk:nominalVoltage) conforming to QuantitativeValue."
+        }
+      ]
+    }
+  ]
+}

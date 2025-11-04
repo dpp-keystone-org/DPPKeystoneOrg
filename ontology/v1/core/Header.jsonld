@@ -1,0 +1,157 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/v1/terms"
+  },
+  "@id": "https://dpp-keystone.org/ontology/v1/core/Header",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Header Definitions (v1)",
+  "dcterms:description": "Defines the normative header fields required for the Digital Product Passport envelope.",
+  "owl:versionInfo": "1.0.0",
+
+  "@graph": [
+    // ==================================================================
+    // Classes
+    // ==================================================================
+    {
+      "@id": "dppk:DigitalProductPassport",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Digital Product Passport (DPP)",
+      "rdfs:comment": "A structured collection of product-related data defining the characteristics, provenance, and lifecycle information of a product, as mandated by the Ecodesign for Sustainable Products Regulation (ESPR).",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Proposal for Ecodesign for Sustainable Products Regulation (ESPR)"
+      },
+      // Aligning the DPP concept with the product it describes.
+      "rdfs:subClassOf": [
+        { "@id": "schema:Product" },
+        { "@id": "schema:Certification" },
+        { "@id": "unece:Document" }
+      ] 
+    },
+
+    // ==================================================================
+    // Properties (DPP Envelope/Header)
+    // ==================================================================
+    
+    // --- DPPID ---
+    {
+      "@id": "dppk:DPPID",
+      // Using ObjectProperty as the range is anyURI (a resource identifier)
+      "@type": "owl:ObjectProperty", 
+      "rdfs:label": "DPP Identifier",
+      "rdfs:comment": "The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI).",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:anyURI" }
+    },
+
+    // --- ProductID (UPI) ---
+    {
+      "@id": "dppk:ProductID",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Unique Product Identifier (UPI)",
+      "rdfs:comment": "The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI.",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "ESPR - Article 9 (Unique product identifier)"
+      },
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:anyURI" },
+      "owl:equivalentProperty": [
+        { "@id": "gs1:productID" },
+        { "@id": "schema:productID" }
+      ]
+    },
+
+    // --- EconomicOperatorID (EOI) ---
+    {
+      "@id": "dppk:EconomicOperatorID",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Economic Operator Identifier (EOI)",
+      "rdfs:comment": "The unique identifier for the Economic Operator responsible for placing the product on the market.",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:anyURI" }
+    },
+
+    // --- FacilityID ---
+    {
+      "@id": "dppk:FacilityID",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Facility Identifier",
+      "rdfs:comment": "Optional. The unique identifier for the manufacturing or processing facility associated with the product.",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:anyURI" }
+    },
+
+    // --- Granularity ---
+    {
+      "@id": "dppk:Granularity",
+      // Using DatatypeProperty as the range is a string literal
+      "@type": "owl:DatatypeProperty", 
+      "rdfs:label": "Granularity Level",
+      "rdfs:comment": "Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:string" }
+    },
+
+    // --- StatusOfTheDPP ---
+    {
+      "@id": "dppk:StatusOfTheDPP",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "DPP Status",
+      "rdfs:comment": "The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:string" }
+    },
+
+    // --- LastUpdated ---
+    {
+      "@id": "dppk:LastUpdated",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Last Updated Timestamp",
+      "rdfs:comment": "The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:dateTime" }
+    },
+
+    // --- Versioning ---
+    {
+      "@id": "dppk:BaseDppSchemaVersion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Base DPP Schema Version",
+      "rdfs:comment": "The version of the horizontal (cross-sector) DPP schema used for this instance.",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:string" }
+    },
+    {
+      "@id": "dppk:SectorDataModelVersion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Sector Data Model Version",
+      "rdfs:comment": "The version of the sector-specific data model (e.g., Battery Regulation, Textile Strategy) used for this instance.",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:string" }
+    },
+
+    // --- hsCode (Often considered part of the header/identification) ---
+    {
+        "@id": "dppk:hsCode",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Harmonized System Code (HS Code) or TARIC",
+        "rdfs:comment": "The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.",
+        "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "gs1:customsClassification" },
+            { "@id": "schema:hscode" }
+        ]
+    }
+  ]
+}

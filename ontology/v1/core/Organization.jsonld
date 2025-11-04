@@ -1,0 +1,319 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/v1/terms"
+  },
+  "@id": "https://dpp-keystone.org/ontology/v1/core/Organization",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Organization and Roles Definitions (v1)",
+  "dcterms:description": "Defines concepts related to organizations, roles (Economic Operator, Manufacturer, Facility), identifiers, and contact information within the DPP ecosystem.",
+  "owl:versionInfo": "1.0.0",
+  // Import the Header ontology as it defines the DPP class used in the domain of properties here.
+  "owl:imports": { "@id": "https://dpp-keystone.org/ontology/v1/core/Header.jsonld" },
+
+  "@graph": [
+    // ==================================================================
+    // Classes
+    // ==================================================================
+    {
+      "@id": "dppk:Organization",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Organization",
+      "rdfs:comment": "A general concept for any organization or legal entity involved in the product lifecycle.",
+      "owl:equivalentClass": [
+        { "@id": "schema:Organization" },
+        { "@id": "gs1:Organization" },
+        { "@id": "unece:TradeParty" }
+      ]
+    },
+    {
+      "@id": "dppk:PostalAddress",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Postal Address",
+      "rdfs:comment": "The physical mailing address of an organization or location.",
+      "owl:equivalentClass": [
+        { "@id": "schema:PostalAddress" },
+        { "@id": "gs1:Address" },
+        { "@id": "unece:TradeAddress" }
+      ]
+    },
+
+    // --- Defining Roles as Classes for Co-typing ---
+    // This allows an entity to be both a schema:Organization AND a dppk:EconomicOperatorRole.
+    {
+      "@id": "dppk:EconomicOperatorRole",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Economic Operator Role",
+      "rdfs:comment": "The role of an entity responsible for placing the product on the market, as defined by ESPR.",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "ESPR - Article 2 (Definitions)"
+      }
+    },
+    {
+      "@id": "dppk:ManufacturerRole",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Manufacturer Role",
+      "rdfs:comment": "The role of an entity responsible for the production of the finished goods."
+    },
+    {
+        "@id": "dppk:FacilityRole",
+        "@type": "rdfs:Class",
+        "rdfs:label": "Facility Role",
+        "rdfs:comment": "A specific location or site where manufacturing or processing activities occur."
+    },
+    {
+        "@id": "dppk:ConformityAssessmentBodyRole",
+        "@type": "rdfs:Class",
+        "rdfs:label": "Conformity Assessment Body Role",
+        "rdfs:comment": "The role of an entity (e.g., Notified Body) that performs conformity assessment activities."
+    },
+    {
+        "@id": "dppk:ISO6523",
+        "@type": "rdfs:Class",
+        "rdfs:label": "ISO 6523 Identifier",
+        "rdfs:comment": "An organization identifier structured according to ISO 6523-1."
+    },
+
+    // ==================================================================
+    // Properties (Relationships between DPP and Organizations)
+    // ==================================================================
+
+    // --- economicOperator (The Relationship Property) ---
+    {
+      "@id": "dppk:economicOperator",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Economic Operator",
+      "rdfs:comment": "Relates the DPP to the Economic Operator responsible for it.",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "dppk:Organization" }
+    },
+
+    // --- manufacturer (The Relationship Property) ---
+    {
+        "@id": "dppk:manufacturer",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Manufacturer",
+        "rdfs:comment": "Relates the DPP to the Manufacturer of the product.",
+        "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+        "rdfs:range": { "@id": "dppk:Organization" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:manufacturer" },
+            { "@id": "gs1:manufacturer" }
+        ]
+    },
+
+    // --- manufacturingFacility (The Relationship Property) ---
+    {
+        "@id": "dppk:manufacturingFacility",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Manufacturing Facility",
+        "rdfs:comment": "Relates the DPP to the specific facility where the product (or a step) was manufactured.",
+        "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+        "rdfs:range": { "@id": "dppk:Organization" }
+    },
+
+    // ==================================================================
+    // Properties (Organizational Details)
+    // ==================================================================
+
+    // --- Organization Name ---
+    {
+        "@id": "dppk:organizationName",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Organization Name",
+        "rdfs:comment": "The official legal name of the organization.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:name" },
+            { "@id": "gs1:organizationName" },
+            { "@id": "unece:name" }
+        ]
+    },
+
+    // --- Trading Name ---
+    {
+        "@id": "dppk:tradingName",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Trading Name",
+        "rdfs:comment": "The name under which the organization conducts business, if different from the legal name.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "gs1:organizationTradingName" },
+            { "@id": "unece:tradingBusinessName" }
+        ]
+    },
+    
+    // ==================================================================
+    // Properties (Identifiers)
+    // ==================================================================
+
+    // --- GLN (Global Location Number) ---
+    {
+        "@id": "dppk:gln",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Global Location Number (GLN)",
+        "rdfs:comment": "A GS1 standard identifier for legal entities, functional departments, or physical locations.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "gs1:globalLocationNumber" },
+            { "@id": "schema:globalLocationNumber" },
+            { "@id": "unece:gLNId" }
+        ]
+    },
+
+    // --- LEI (Legal Entity Identifier) ---
+    {
+        "@id": "dppk:leiCode",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Legal Entity Identifier (LEI)",
+        "rdfs:comment": "A standardized global identifier for legal entities.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:leiCode" }
+        ]
+    },
+
+    // --- Additional Identifiers (EORI, VAT, etc.) ---
+    // These utilize the GS1 pattern for extensible identification.
+    {
+        "@id": "dppk:additionalOrganizationID",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Additional Organization ID",
+        "rdfs:comment": "An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIDType.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "gs1:additionalOrganizationIdentification" }
+        ]
+    },
+    {
+        "@id": "dppk:additionalOrganizationIDType",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Additional Organization ID Type",
+        "rdfs:comment": "The type of the identifier provided in additionalOrganizationID (e.g., 'EORI', 'VAT').",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "gs1:additionalOrganizationIdentificationType" }
+        ]
+    },
+    {
+        "@id": "dppk:iso6523",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "ISO 6523 Identifier",
+        "rdfs:comment": "Relates an organization to one of its ISO 6523 identifiers.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "dppk:ISO6523" }
+    },
+    {
+        "@id": "dppk:icd",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "ISO 6523 ICD",
+        "rdfs:comment": "The 4-digit International Code Designator (ICD) from ISO 6523-1.",
+        "rdfs:domain": { "@id": "dppk:ISO6523" },
+        "rdfs:range": { "@id": "xsd:string" }
+    },
+    {
+        "@id": "dppk:iso6523Value",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "ISO 6523 Value",
+        "rdfs:comment": "The value of the identifier within the scheme defined by the ICD.",
+        "rdfs:domain": { "@id": "dppk:ISO6523" },
+        "rdfs:range": { "@id": "xsd:string" }
+    },
+
+    // ==================================================================
+    // Properties (Contact and Address)
+    // ==================================================================
+
+     // --- Address Relationship ---
+    {
+        "@id": "dppk:address",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Address",
+        "rdfs:comment": "Relates an organization to its physical address.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "dppk:PostalAddress" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:address" },
+            { "@id": "gs1:address" },
+            { "@id": "unece:postalAddress" }
+        ]
+    },
+    {
+        "@id": "dppk:streetAddress",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Street Address",
+        "rdfs:comment": "Includes street name and number.",
+        "rdfs:domain": { "@id": "dppk:PostalAddress" },
+        "owl:equivalentProperty": [
+             { "@id": "schema:streetAddress" },
+             { "@id": "gs1:streetAddress" }
+        ]
+    },
+    {
+        "@id": "dppk:postalCode",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Postal Code",
+        "rdfs:domain": { "@id": "dppk:PostalAddress" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:postalCode" },
+            { "@id": "gs1:postalCode" }
+        ]
+    },
+    {
+        "@id": "dppk:addressLocality",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "City/Locality",
+        "rdfs:domain": { "@id": "dppk:PostalAddress" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:addressLocality" },
+            { "@id": "gs1:addressLocality" }
+        ]
+    },
+    {
+        "@id": "dppk:addressCountry",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Country",
+        "rdfs:domain": { "@id": "dppk:PostalAddress" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:addressCountry" },
+            { "@id": "gs1:addressCountry" },
+            { "@id": "unece:countryName" }
+        ]
+    },
+    {
+        "@id": "dppk:email",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Email Address",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:email" },
+            { "@id": "gs1:email" }
+        ]
+    },
+    {
+        "@id": "dppk:telephone",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Telephone Number",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:telephone" },
+            { "@id": "gs1:telephone" }
+        ]
+    }
+  ]
+}

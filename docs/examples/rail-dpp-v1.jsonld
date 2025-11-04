@@ -1,0 +1,101 @@
+{
+  // The context points to the external sector-specific definition.
+  "@context": "https://dpp-keystone.org/contexts/v1/dpp-construction.context.jsonld",
+
+  // Utilizing the Classes defined in the ontology.
+  "@type": ["Product", "DigitalProductPassport", "ConstructionProduct"],
+
+  // --- DPP Headers (Aligned with Core Ontology) ---
+  "ProductID": "https://id.gs1.org/01/07649997749703/10/4711",
+  "DPPID": "https://www.example.org/API/RAIL/4711",
+  "EconomicOperatorID": "https://id.gs1.org/417/9010788000001",
+  "FacilityID": "https://id.gs1.org/417/9010788000001",
+  "Granularity": "batch",
+  "BaseDppSchemaVersion": "1.0.0",
+  "SectorDataModelVersion": "Keystone_Construction_v1.0.0",
+  "StatusOfTheDPP": "active",
+  "LastUpdated": "2025-09-05T14:30:00+02:00",
+  "hsCode": "7302.1000",
+
+  // --- Core Product Information ---
+  "productName": "Vignole railway rails 46 kg/m",
+
+  // --- Economic Operator & Manufacturer (Aligned with Core Ontology) ---
+  "economicOperator": {
+    "@id": "https://id.gs1.org/417/9010788000001",
+    // Co-typing the organization with its roles.
+    "@type": ["Organization", "EconomicOperatorRole"],
+    "organizationName": "Voestalpine Rail Technology GmbH",
+    "url": "https://www.voestalpine.com/railway-systems/",
+    "additionalOrganizationID": "AT12345678",
+    "additionalOrganizationIDType": "EORI",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Loeben, Austria",
+      "postalCode": "AT-8700",
+      "streetAddress": "Kerpelystraße 199"
+    }
+  },
+  // Linking back to the same entity for the manufacturer role.
+  "manufacturer": {
+    "@id": "https://id.gs1.org/417/9010788000001"
+  },
+
+  // --- Sector Specific Properties (Aligned with Construction Ontology) ---
+  "railProfile": "46E1",
+  "steelGrade": "R260",
+
+  // --- Measurements (Aligned with Core Ontology) ---
+  "netWeight": {
+    "@type": "QuantitativeValue",
+    "value": 4968,
+    "unitCode": "KGM",
+    "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Weight"
+  },
+  // Note: 'length' was not defined as a specific property in the core ontology, 
+  // but we can include it using the generic QuantitativeValue structure.
+  "length": {
+    "@type": "QuantitativeValue",
+    "value": 108,
+    "unitCode": "MTR",
+    "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Length"
+  },
+
+  // --- CPR Compliance (Aligned with Construction Ontology) ---
+  "notifiedBodyID": "NB0123",
+  "hasDoP": {
+     "@type": "DeclarationOfPerformance",
+     "dopIdentifier": "EXAMPLE_VALUE_DOPC_ID",
+      "documentURL": "https://www.voestalpine.com/dop/4711.pdf"
+  },
+
+  "harmonisedStandardReference": "https://ec.europa.eu/docsroom/documents/56934",
+
+  // --- Environmental Data (Aligned with Core Ontology - EcoDesignProperty) ---
+  "ecoDesignProperties": [
+    {
+      "@type": "EcoDesignProperty",
+      "ecoDesignPropertyType": "GWP_A1-A3 (EN 15804)",
+      "description": "Climate Change Effects Total Production (A1-A3)",
+      "value": 2.1,
+      "unitText": "Kg CO2-Eq."
+    },
+    {
+      "@type": "EcoDesignProperty",
+      "ecoDesignPropertyType": "GWP_A4 (EN 15804)",
+      "description": "Transport climate change effects (A4)",
+      "value": 0.2,
+      "unitText": "Kg CO2-Eq."
+    }
+  ],
+  
+  // --- Documents (Aligned with Core Ontology) ---
+  "documents": [
+      {
+        "@type": "DigitalDocument",
+        "name": "IBU EPD Listing",
+        "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
+        "documentType": "Environmental Product Declaration"
+      }
+  ]
+}

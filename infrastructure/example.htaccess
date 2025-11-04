@@ -1,0 +1,15 @@
+# Example .htaccess configuration for Apache servers.
+# This enables content negotiation for the DPP Harmonizing Data Dictionary.
+
+# Ensure the RewriteEngine is on
+RewriteEngine On
+
+# Redirect the base term URI (the identifier) to the ontology file location (the resource).
+# Match the request for the base terms URI (v1).
+# Note: We match the URI path relative to where the .htaccess file is located.
+RewriteCond %{REQUEST_URI} ^/v1/terms$
+# Redirect (303 See Other) to the actual ontology entry file.
+RewriteRule "^v1/terms$" "/ontology/v1/dpp-ontology.jsonld" [R=303,L]
+
+# Ensure JSON-LD files are served with the correct MIME type
+AddType application/ld+json .jsonld

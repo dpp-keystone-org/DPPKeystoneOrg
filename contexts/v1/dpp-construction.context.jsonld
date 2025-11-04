@@ -1,0 +1,49 @@
+{
+    "@context": [
+        // Import the Core DPP Context definitions.
+        // Assumes this file will be hosted at the defined persistent URI.
+        "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld",
+        
+        // Define Construction and Heavy Industry specific terms.
+        {
+            // Add CEN namespace for URN support (Strategy 2)
+            "cencpr": "urn:cen:cpr:",
+            // ==================================================================
+            // Construction Classes (for use in @type)
+            // ==================================================================
+            "ConstructionProduct": "dppk:ConstructionProduct",
+            "DeclarationOfPerformance": "dppk:DeclarationOfPerformance",
+
+            // ==================================================================
+            // Properties (CPR Compliance and Documentation)
+            // ==================================================================
+            "hasDoP": {
+                "@id": "dppk:hasDoP",
+                "@type": "@id"
+            },
+            "dopIdentifier": "dppk:dopIdentifier",
+            
+            "harmonisedStandardReference": {
+                "@id": "dppk:harmonisedStandardReference",
+                "@type": "@id"
+            },
+            
+            "notifiedBodyID": "dppk:notifiedBodyID",
+            "avsSystem": "dppk:avsSystem",
+
+            // ==================================================================
+            // Properties (Essential Characteristics Examples)
+            // ==================================================================
+            "reactionToFire": "dppk:reactionToFire",
+            // Note: These properties link to QuantitativeValue (defined in Core).
+            "thermalConductivity": "dppk:thermalConductivity",
+            "compressiveStrength": "dppk:compressiveStrength",
+
+            // ==================================================================
+            // Properties (Heavy Industry/Steel/Rail Examples)
+            // ==================================================================
+            "steelGrade": "dppk:steelGrade",
+            "railProfile": "dppk:railProfile"
+        }
+    ]
+}

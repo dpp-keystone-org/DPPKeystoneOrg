@@ -1,0 +1,58 @@
+{
+    "@context": {
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "sh": "http://www.w3.org/ns/shacl#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "dppk": "https://dpp-keystone.org/v1/terms#",
+      "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+    },
+    "@id": "dppkval:ConstructionShapes",
+    "@type": "sh:ShapesGraph",
+    
+    "@graph": [
+      // ==================================================================
+      // Shape: Construction Product
+      // ==================================================================
+      {
+        "@id": "dppkval:ConstructionProductShape",
+        "@type": "sh:NodeShape",
+        "sh:targetClass": { "@id": "dppk:ConstructionProduct" },
+        "sh:property": [
+          // A construction product under CPR must reference a Harmonised Standard (hEN) OR have a DoP.
+          // We model this using sh:or.
+          {
+            "sh:or": [
+                {
+                    "sh:path": { "@id": "dppk:harmonisedStandardReference" },
+                    "sh:minCount": 1
+                },
+                {
+                    "sh:path": { "@id": "dppk:hasDoP" },
+                    "sh:minCount": 1
+                }
+            ],
+            // Severity set to Info as specific regulations might dictate the exact requirement.
+            "sh:severity": { "@id": "sh:Info" }, 
+            "sh:message": "Construction product should typically reference a Harmonised Standard (hEN) or a Declaration of Performance (DoP)."
+          }
+        ]
+      },
+      // ==================================================================
+      // Shape: Declaration of Performance (DoP)
+      // ==================================================================
+      {
+        "@id": "dppkval:DeclarationOfPerformanceShape",
+        "@type": "sh:NodeShape",
+        "sh:targetClass": { "@id": "dppk:DeclarationOfPerformance" },
+        "sh:property": [
+            {
+                "sh:path": { "@id": "dppk:dopIdentifier" },
+                "sh:minCount": 1,
+                "sh:message": "Declaration of Performance must have a unique identifier (dppk:dopIdentifier)."
+            }
+        ]
+      }
+
+    ]
+  }

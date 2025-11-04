@@ -1,0 +1,162 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/v1/terms#",
+    // Example CEN namespace for URN demonstration (Strategy 2)
+    "cencpr": "urn:cen:cpr:",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/v1/terms"
+  },
+  "@id": "https://dpp-keystone.org/ontology/v1/sectors/Construction",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Sector Ontology - Construction and Heavy Industry Definitions (v1)",
+  "dcterms:description": "Defines concepts for Construction Products (aligning with CPR) and related heavy industries such as steel and rail.",
+  "owl:versionInfo": "1.0.0",
+  // Import Core ontologies.
+  "owl:imports": [
+    { "@id": "https://dpp-keystone.org/ontology/v1/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/ontology/v1/core/Compliance.jsonld" },
+    { "@id": "https://dpp-keystone.org/ontology/v1/core/Organization.jsonld" }
+  ],
+
+  "@graph": [
+    // ==================================================================
+    // Classes
+    // ==================================================================
+
+    {
+      "@id": "dppk:ConstructionProduct",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Construction Product",
+      "rdfs:comment": "Any product or kit which is produced and placed on the market for incorporation in a permanent manner in construction works or parts thereof, as defined by the Construction Products Regulation (CPR).",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
+        "rdfs:label": "Regulation (EU) No 305/2011 (Construction Products Regulation - CPR)"
+      },
+      "rdfs:subClassOf": { "@id": "dppk:Product" }
+    },
+    {
+        "@id": "dppk:DeclarationOfPerformance",
+        "@type": "rdfs:Class",
+        "rdfs:label": "Declaration of Performance (DoP)",
+        "rdfs:comment": "A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product.",
+        "rdfs:subClassOf": { "@id": "dppk:DigitalDocument" }
+    },
+
+    // ==================================================================
+    // Properties (CPR Compliance and Documentation)
+    // ==================================================================
+
+    // --- Declaration of Performance (DoP) Relationship ---
+    {
+        "@id": "dppk:hasDoP",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Has Declaration of Performance",
+        "rdfs:comment": "Relates the construction product to its Declaration of Performance.",
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+        "rdfs:range": { "@id": "dppk:DeclarationOfPerformance" }
+    },
+
+    // --- DoP Identifier ---
+    {
+        "@id": "dppk:dopIdentifier",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "DoP Identifier",
+        "rdfs:comment": "The unique identification code of the Declaration of Performance.",
+        "rdfs:domain": { "@id": "dppk:DeclarationOfPerformance" },
+        "rdfs:range": { "@id": "xsd:string" }
+    },
+
+    // --- Harmonised European Standard (hEN) Reference ---
+    {
+        "@id": "dppk:harmonisedStandardReference",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Harmonised Standard Reference (hEN)",
+        "rdfs:comment": "A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product.",
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+        "rdfs:range": { "@id": "xsd:anyURI" }
+    },
+
+    // --- Notified Body ID ---
+    {
+        "@id": "dppk:notifiedBodyID",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Notified Body Identifier",
+        "rdfs:comment": "The identification number of the Notified Body involved in the assessment and verification of constancy of performance (e.g., NB1234).",
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+        "rdfs:range": { "@id": "xsd:string" }
+        // Note: Can also be modeled as a relationship to an Organization with the role ConformityAssessmentBodyRole.
+    },
+
+    // --- AVCP System ---
+    {
+        "@id": "dppk:avsSystem",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "AVCP System",
+        "rdfs:comment": "The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4).",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
+        "rdfs:label": "CPR - Annex V"
+      },
+      "owl:equivalentProperty": { "@id": "cencpr:avs_system" },
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+        "rdfs:range": { "@id": "xsd:string" }
+    },
+
+    // ==================================================================
+    // Properties (Essential Characteristics Examples)
+    // ==================================================================
+    
+    // These are examples of common essential characteristics. Specific standards define the exact required properties.
+
+    {
+        "@id": "dppk:reactionToFire",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Reaction to Fire",
+        "rdfs:comment": "The classification of the product's contribution to fire (Euroclass).",
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+        "rdfs:range": { "@id": "xsd:string" }
+    },
+    {
+        "@id": "dppk:thermalConductivity",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Thermal Conductivity (Lambda)",
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+    },
+    {
+        "@id": "dppk:compressiveStrength",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Compressive Strength",
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+    },
+
+    // ==================================================================
+    // Properties (Heavy Industry/Steel/Rail Examples)
+    // ==================================================================
+
+    {
+        "@id": "dppk:steelGrade",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Steel Grade",
+        "rdfs:comment": "The classification of the steel based on its composition and physical properties (e.g., R260, S355).",
+        "rdfs:domain": { "@id": "dppk:Product" }, // Applicable broadly to steel products
+        "rdfs:range": { "@id": "xsd:string" }
+    },
+    {
+        "@id": "dppk:railProfile",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Rail Profile",
+        "rdfs:comment": "The standardized cross-section design of a railway rail (e.g., 46E1).",
+        "rdfs:domain": { "@id": "dppk:Product" }, // Applicable specifically to rails
+        "rdfs:range": { "@id": "xsd:string" }
+    }
+  ]
+}

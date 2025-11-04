@@ -1,0 +1,51 @@
+{
+    "@context": [
+        // Import the Core DPP Context definitions.
+        // Assumes this file will be hosted at the defined persistent URI.
+        "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld",
+        
+        // Define Textile-specific terms.
+        {
+            // ==================================================================
+            // Textile Classes (for use in @type)
+            // ==================================================================
+            "TextileProduct": "dppk:TextileProduct",
+            "FibreComposition": "dppk:FibreComposition",
+
+            // ==================================================================
+            // Properties (Fibre Composition)
+            // ==================================================================
+            "fibreComposition": {
+                "@id": "dppk:fibreComposition",
+                // Use @set as a product typically has a collection of different fibres.
+                "@container": "@set"
+            },
+            "fibreType": "dppk:fibreType",
+            "fibrePercentage": "dppk:fibrePercentage",
+
+            // ==================================================================
+            // Properties (Circularity and Sustainability)
+            // ==================================================================
+            
+            // Note: Recycled Content uses the core property 'recycledContentPercentage'.
+
+            "animalOriginNonTextile": {
+                "@id": "dppk:animalOriginNonTextile",
+                // Explicitly type as boolean for data integrity.
+                "@type": "xsd:boolean"
+            },
+
+            // Durability Indicators (Link to QuantitativeValue)
+            "tearStrength": "dppk:tearStrength",
+            "abrasionResistance": "dppk:abrasionResistance",
+
+            "microplasticReleasePotential": "dppk:microplasticReleasePotential",
+
+            // ==================================================================
+            // Properties (Care and Repair)
+            // ==================================================================
+            "careInstructions": "dppk:careInstructions",
+            "repairabilityInformation": "dppk:repairabilityInformation"
+        }
+    ]
+}

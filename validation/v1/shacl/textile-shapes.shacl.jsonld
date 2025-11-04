@@ -1,0 +1,66 @@
+{
+    "@context": {
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "sh": "http://www.w3.org/ns/shacl#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "dppk": "https://dpp-keystone.org/v1/terms#",
+      "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+    },
+    "@id": "dppkval:TextileShapes",
+    "@type": "sh:ShapesGraph",
+    
+    "@graph": [
+      // ==================================================================
+      // Shape: Textile Product
+      // ==================================================================
+      {
+        "@id": "dppkval:TextileProductShape",
+        "@type": "sh:NodeShape",
+        "sh:targetClass": { "@id": "dppk:TextileProduct" },
+        "sh:property": [
+          {
+            // Must have fibre composition details.
+            "sh:path": { "@id": "dppk:fibreComposition" },
+            "sh:minCount": 1,
+            // Ensure the composition conforms to the FibreCompositionShape.
+            "sh:node": { "@id": "dppkval:FibreCompositionShape" },
+            "sh:severity": { "@id": "sh:Violation" },
+            "sh:message": "Textile product must detail its fibre composition (dppk:fibreComposition)."
+          },
+          {
+            // Must declare presence/absence of non-textile animal origin parts.
+            "sh:path": { "@id": "dppk:animalOriginNonTextile" },
+            "sh:minCount": 1,
+            "sh:datatype": { "@id": "xsd:boolean" },
+            "sh:severity": { "@id": "sh:Violation" },
+            "sh:message": "Textile product must declare the presence or absence of non-textile parts of animal origin (dppk:animalOriginNonTextile)."
+          }
+        ]
+      },
+
+      // ==================================================================
+      // Shape: Fibre Composition
+      // ==================================================================
+      {
+        "@id": "dppkval:FibreCompositionShape",
+        "@type": "sh:NodeShape",
+        "sh:targetClass": { "@id": "dppk:FibreComposition" },
+        "sh:property": [
+            {
+                "sh:path": { "@id": "dppk:fibreType" },
+                "sh:minCount": 1,
+                "sh:message": "Fibre composition must specify the fibre type (dppk:fibreType)."
+            },
+            {
+                "sh:path": { "@id": "dppk:fibrePercentage" },
+                "sh:minCount": 1,
+                "sh:datatype": { "@id": "xsd:decimal" },
+                "sh:minInclusive": 0,
+                "sh:maxInclusive": 100,
+                "sh:message": "Fibre composition must specify the percentage (dppk:fibrePercentage) between 0 and 100."
+            }
+        ]
+      }
+    ]
+  }

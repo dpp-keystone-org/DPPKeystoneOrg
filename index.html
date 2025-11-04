@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Harmonizing Data Dictionary (Keystone)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        header {
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 1.5em;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DPP Harmonizing Data Dictionary (Keystone)</h1>
+        <p>An open-source library of JSON-LD definitions for the EU Digital Product Passport (DPP).</p>
+        <p><strong>GitHub Repository:</strong> <a href="https://github.com/YOUR_ORG/keystone-dpp-dictionary">[Link to your GitHub Repository]</a></p>
+    </header>
+
+    <main>
+        <section>
+            <h2>About This Project</h2>
+            <p>This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies between various standards (ISO, GS1, etc.) required for the DPP. Our goal is to ensure interoperability and lower the barrier for implementation, especially for SMEs.</p>
+            <p>For more details on the approach, please read the <a href="docs/methodology.md">Methodology documentation</a>.</p>
+        </section>
+
+        <section>
+            <h2>Version 1 (V1) Resources</h2>
+            <p>The stable namespace for Version 1 terms is: <code>https://dpp-keystone.org/v1/terms#</code></p>
+            <p>The recommended prefix is: <code>dppk:</code></p>
+
+            <h3>Ontology (Definitions)</h3>
+            <ul>
+                <li><a href="ontology/v1/dpp-ontology.jsonld">V1 Ontology Entry Point (JSON-LD)</a></li>
+                <li><a href="ontology/v1/core/">Browse Core Modules</a></li>
+                <li><a href="ontology/v1/sectors/">Browse Sector Modules</a></li>
+            </ul>
+
+            <h3>Contexts (Implementation Vocabularies)</h3>
+            <p>These JSON-LD context files provide developer-friendly mappings for implementation.</p>
+            <ul>
+                <li><a href="contexts/v1/dpp-core.context.jsonld">Core Context</a></li>
+                <li><a href="contexts/v1/dpp-battery.context.jsonld">Battery Context</a></li>
+                <li><a href="contexts/v1/dpp-textile.context.jsonld">Textile Context</a></li>
+                <li><a href="contexts/v1/dpp-construction.context.jsonld">Construction Context</a></li>
+                <li><a href="contexts/v1/dpp-electronics.context.jsonld">Electronics Context</a></li>
+            </ul>
+
+            <h3>Validation Artifacts</h3>
+            <ul>
+                <li><a href="validation/v1/json-schema/dpp-minimal-header.schema.json">Minimalist Header JSON Schema</a></li>
+                <li><a href="validation/v1/shacl/">Browse SHACL Shapes</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contributing and Governance</h2>
+            <p>Contributions are welcome. Please review the <a href="CONTRIBUTING.md">Contribution Guidelines</a> and the <a href="docs/governance.md">Governance Model</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><small>Licensed under the <a href="LICENSE">CC0 1.0 Universal</a>.</small></p>
+    </footer>
+</body>
+</html>

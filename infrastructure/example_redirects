@@ -1,0 +1,5 @@
+# Example Netlify _redirects file.
+# This file should be placed in the root of the deployment directory (e.g., the 'public' folder).
+
+# Redirect the base term URI (the identifier) to the ontology file location (the resource).
+/v1/terms   /ontology/v1/dpp-ontology.jsonld   303
