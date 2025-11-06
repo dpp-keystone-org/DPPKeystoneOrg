@@ -1,0 +1,239 @@
+{
+  // The context points to the external sector definition, layered with extensions.
+  "@context": [
+    "https://dpp-keystone.org/contexts/v1/dpp-electronics.context.jsonld",
+    {
+        // Extensions for terms not yet formalized in the Keystone V1 ontology.
+        "dpp_ext": "https://example.com/dpp/extension#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+        // Missing Product Attributes
+        "gpcCode": "dpp_ext:gpcCode",
+        "itemCondition": "dpp_ext:itemCondition",
+        "targetMarket": "dpp_ext:targetMarket",
+        "dimensions": "dpp_ext:dimensions",
+        "maximumDrillingDiameter": "dpp_ext:maximumDrillingDiameter",
+        "numberOfGears": "dpp_ext:numberOfGears",
+        "batteryType": "dpp_ext:batteryType",
+        "chargingTime": "dpp_ext:chargingTime",
+        "warranty": "dpp_ext:warranty",
+
+        // Missing Textual Descriptions
+        "materialComposition": "dpp_ext:materialComposition",
+        "hazardousSubstances": "dpp_ext:hazardousSubstances",
+        "recyclingInstructions": "dpp_ext:recyclingInstructions",
+        "safetyInstructions": "dpp_ext:safetyInstructions",
+
+        // Missing Lifecycle Events
+        "lifecycleEvents": { "@id": "dpp_ext:lifecycleEvents", "@container": "@list" },
+        "RepairEvent": "dpp_ext:RepairEvent",
+        "RefurbishmentEvent": "dpp_ext:RefurbishmentEvent",
+        "RecyclingEvent": "dpp_ext:RecyclingEvent",
+        "eventDate": { "@id": "dpp_ext:eventDate", "@type": "xsd:dateTime" },
+        "actionTaken": "dpp_ext:actionTaken",
+        "materialsUsed": "dpp_ext:materialsUsed",
+        "reason": "dpp_ext:reason"
+    }
+  ],
+
+  // Utilizing the Classes defined in the ontology (Core and Electronics).
+  "@type": ["DigitalProductPassport", "PowerTool"],
+
+  // --- DPP Headers (Aligned with Core Ontology) ---
+  "ProductID": "https://id.gs1.org/01/05012345101095/21/22334455",
+  "DPPID": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
+  "EconomicOperatorID": "urn:lei:ABCDE123456789012345",
+  "FacilityID": "urn:lei:ABCDE123456789012345", // Included in private version
+  "Granularity": "item",
+  "BaseDppSchemaVersion": "1.0.0",
+  "SectorDataModelVersion": "Keystone_Electronics_v1.0.0",
+  "StatusOfTheDPP": "active",
+  "LastUpdated": "2025-08-20T23:53:06Z",
+  "hsCode": "84672100",
+
+  // --- Core Product Information (Aligned with Core Ontology) ---
+  "productName": {
+    "en-UK": "Drills 4 U Cordless drill GSB 451"
+  },
+  "description": {
+    "en-UK": "GSB 451, 18V."
+  },
+  "brand": "Drills 4 U",
+  "model": "GSB 451",
+  "gtin": "5012345101064",
+  "image": "https://dpp.eecc.de/api/management/files/05410000111128_cordless_drill_be1",
+  "color": "blue",
+  "countryOfOrigin": ["China", "United Kingdom"],
+
+  // --- Extensions (Product Info) ---
+  "gpcCode": "10003653",
+  "itemCondition": "https://schema.org/RefurbishedCondition",
+  "targetMarket": ["United Kingdom"],
+
+  // --- Manufacturer Details (Aligned with Core Ontology) ---
+  "manufacturer": {
+    "@id": "urn:lei:ABCDE123456789012345",
+    "@type": ["Organization", "ManufacturerRole"],
+    "organizationName": "Drills R Us SE",
+    "leiCode": "ABCDE123456789012345",
+    "gln": "5012345100036",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4 Black Street",
+      "postalCode": "12345",
+      "addressLocality": "London",
+      "addressCountry": "UK"
+    }
+  },
+
+  // --- Technical Specifications (Core/Electronics Ontology) ---
+  "netWeight": {
+    "@type": "QuantitativeValue",
+    "value": 1.8,
+    "unitCode": "KGM",
+      "methodologyReference": "Standardized weighing procedure XYZ-123"
+  },
+  "torque": {
+    "@type": "QuantitativeValue",
+    "value": 20,
+    "unitText": "Nm",
+      "methodologyReference": "ISO 5393:2017 (Rotary tools for threaded fasteners)",
+    "unitCode": "NU"
+  },
+  "maximumRatedSpeed": {
+    "@type": "QuantitativeValue",
+    "value": 1000,
+    "unitCode": "RPM"
+  },
+
+  // --- Extensions (Technical Specs) ---
+  "dimensions": "250x80x220 mm",
+  "maximumDrillingDiameter": {
+    "@type": "QuantitativeValue",
+    "value": 10,
+    "unitCode": "MMT"
+  },
+  "numberOfGears": 6,
+
+  // --- Power (Aligned with Electronics Ontology) ---
+  "ratedPower": {
+    "@type": "QuantitativeValue",
+    "value": 100,
+    "unitCode": "WTT"
+  },
+  "voltage": {
+    "@type": "QuantitativeValue",
+    "value": 12,
+    "unitCode": "VLT"
+  },
+
+  // --- Extensions (Power) ---
+  "batteryType": "Lithium-ion (Li-ion)",
+  "chargingTime": {
+    "@type": "QuantitativeValue",
+    "value": 60,
+    "unitCode": "MIN"
+  },
+
+  // --- Repairability (Aligned with Electronics Ontology) ---
+  "sparePartsAvailable": true,
+  "serviceManualAvailable": true,
+  
+  // --- Extensions (Warranty) ---
+  "warranty": {
+    "@type": "QuantitativeValue",
+    "value": 2,
+    "unitCode": "ANN",
+    "unitText": "years"
+  },
+
+  // ==================================================================
+  // PRIVATE/SENSITIVE DATA SECTIONS
+  // ==================================================================
+
+  // --- Materials and End-of-Life (Extensions) [CBI/IP] ---
+  "materialComposition": {
+    "en-UK": "The casing of the drill is made from plastic, specifically polycarbonate (PC) or acrylonitrile butadiene styrene (ABS), and features rubber for the handles and non-slip parts. The motor incorporates materials such as copper, steel, and iron, with neodymium magnets. The battery is a lithium-ion (Li-ion) type and includes components made of copper, aluminum, and steel. The electronics involve printed circuit boards (PCBs) composed of copper, tin, and gold, and use lead-free solder."
+  },
+  "hazardousSubstances": {
+    "en-UK": "1. Battery (lithium-ion) contains lithium cobalt oxide (LiCoO2) at 15-20%, graphite (carbon) at 10-15%, and lithium hexafluorophosphate (LiPF6) as the electrolyte at 5-10%. It also includes copper (Cu) at 10-20%, aluminum (Al) at 5-10%, and polyvinylidene fluoride (PVDF).\n2. Motor copper (Cu) in the windings at 30-50%, steel and iron (Fe) in the rotor and stator at 40-60%, and neodymium (Nd) in the magnets at 1-5%.\n3. Plastic parts are made of acrylonitrile butadiene styrene (ABS) at 20-30%, polycarbonate (PC) at 10-20%, and polyamide (nylon) at 5-10%.\n4. Electronic circuit boards contain lead (Pb) in the solder at 2-5%, gold (Au) in connectors and contacts at less than 0.1%, and copper (Cu) in traces and wiring at 10-20%.\n5. Gearbox and mechanical parts are composed of steel (Fe) and other alloys at 60-80%."
+  },
+  "recyclingInstructions": {
+    "en-UK": "1. The battery: Drop off the battery at a recognised collection point for lithium-ion batteries.\n2. Plastic parts: Sort the different types of plastics (ABS, polycarbonate etc). Recycle the plastics according to local guidelines for plastic waste.\n3. Metal parts: Remove all screws, shanks, and other metal parts. Sort the metals (steel, aluminum, copper etc) and drop off at a metal recycling plant.\n4. Electronic components: Sort the PCBs, switches and cables. Deliver these components to a specialised electronic waste center."
+  },
+  "safetyInstructions": {
+    "en-UK": "Inspect the drill, chuck and any attachments for damage or defects before use. Secure the workpiece with a clamp or vise. Always operate the drill with both hands. Do not wear loose clothing, gloves, rings, or other jewellery, and keep hair tied back."
+  },
+
+  // --- Components (BOM) (Aligned with Core Ontology) [CBI/Supply Chain] ---
+  "hasPart": [
+    {
+      "@type": "Product",
+      "description": "Cordless drill (base unit)",
+      "gtin": "5012345101071",
+      "dppLink": "https://freedpp.eu/01/05012345101071"
+    },
+    {
+      "@type": "Product",
+      "gtin": "5012345101095"
+    },
+    {
+      "@type": "Product",
+      "description": "Battery",
+      "gtin": "5012345101088",
+      "dppLink": "https://freedpp.eu/01/05012345101088"
+    }
+  ],
+  
+  // --- Lifecycle Events (Extensions) [CBI/Operations] ---
+  "lifecycleEvents": [
+    {
+      "@type": "RepairEvent",
+      "eventDate": "2024-08-14T12:49:00Z",
+      "reason": "Defective start/stop switch.",
+      "actionTaken": "Cleaning and replacement of defective start/stop switch.",
+      "materialsUsed": "Lubricating oil, Cleaning agent, New start/stop switch (492290-00)"
+    },
+    {
+      "@type": "RefurbishmentEvent",
+      "eventDate": "2024-09-17T08:09:00Z",
+      "actionTaken": "Cleaning, Replacement of used drill chuck, Check proper functioning of the device and accessories (battery and charger)",
+      "materialsUsed": "Lubricating oil Cleaning agent New drill chuck (492291-10)"
+    },
+    {
+      "@type": "RecyclingEvent",
+      "eventDate": "2024-10-30T00:00:00Z",
+      "actionTaken": "Device inspection: Repair is not possible. Disassembly: Removal of casing, battery, motor, and other components. The battery will be further recycled by BEBAT. Material separation: Plastic, metal, and electronic components. Metal parts: Melted down and reused. Plastic: Plastic parts are processed into new products. Electronic components: Recycled to recover valuable metals such as copper and gold."
+    }
+  ],
+
+  // ==================================================================
+  // END OF PRIVATE/SENSITIVE DATA SECTIONS
+  // ==================================================================
+  
+  // --- Compliance (Aligned with Core Ontology) ---
+  "certifications": [
+    {
+      "@type": "Certification",
+      "certificationStandard": "Ecocert Zertifikat",
+      "certificationIdentification": "ECOCERT-ID-MOCK-98765", 
+      "certifyingBodyName": "ECOCERT"
+    }
+  ],
+  
+  // --- Eco-Design (Aligned with Core Ontology) ---
+  "ecoDesignProperties": [
+    {
+      "@type": "EcoDesignProperty",
+      "ecoDesignPropertyType": "CO2e Emissions (per unit)",
+      "value": 34,
+      "unitText": "kg CO2e"
+    },
+    {
+      "@type": "EcoDesignProperty",
+      "ecoDesignPropertyType": "Energy Consumption (per unit)",
+      "value": 66,
+      "unitCode": "KWH"
+    }
+  ]
+}

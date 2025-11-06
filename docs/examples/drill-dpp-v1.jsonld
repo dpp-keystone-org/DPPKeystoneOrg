@@ -1,0 +1,138 @@
+{
+  // The context points to the external sector-specific definition, which imports the core.
+  "@context": "https://dpp-keystone.org/contexts/v1/dpp-electronics.context.jsonld",
+
+  // Utilizing the Classes defined in the ontology (Core and Electronics).
+  "@type": ["DigitalProductPassport", "PowerTool"],
+
+  // --- DPP Headers (Aligned with Core Ontology) ---
+  "ProductID": "https://id.gs1.org/01/05012345101095/21/22334455",
+  "DPPID": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
+  "EconomicOperatorID": "urn:lei:ABCDE123456789012345",
+  "FacilityID": "urn:lei:ABCDE123456789012345",
+  "Granularity": "item",
+  "BaseDppSchemaVersion": "1.0.0",
+  "SectorDataModelVersion": "Keystone_Electronics_v1.0.0",
+  "StatusOfTheDPP": "active",
+  "LastUpdated": "2025-08-20T23:53:06Z",
+  "hsCode": "84672100",
+
+  // --- Core Product Information (Aligned with Core Ontology) ---
+  // Using 'productName' as defined in the core context.
+  "productName": {
+    "en-UK": "Drills 4 U Cordless drill GSB 451"
+  },
+  "description": {
+    "en-UK": "GSB 451, 18V."
+  },
+  "brand": "Drills 4 U",
+  "model": "GSB 451",
+  "gtin": "5012345101064",
+  "image": "https://dpp.eecc.de/api/management/files/05410000111128_cordless_drill_be1",
+  "color": "blue",
+  "countryOfOrigin": ["China", "United Kingdom"],
+
+  // --- Manufacturer Details (Aligned with Core Ontology) ---
+  "manufacturer": {
+    "@id": "urn:lei:ABCDE123456789012345",
+    // Co-typing the organization with its role.
+    "@type": ["Organization", "ManufacturerRole"],
+    "organizationName": "Drills R Us SE",
+    "leiCode": "ABCDE123456789012345",
+    "gln": "5012345100036",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4 Black Street",
+      "postalCode": "12345",
+      "addressLocality": "London",
+      "addressCountry": "UK"
+    }
+  },
+
+  // --- Technical Specifications (Aligned with Core/Electronics Ontology) ---
+  "netWeight": {
+    "@type": "QuantitativeValue",
+    "value": 1.8,
+    "unitCode": "KGM",
+      "methodologyReference": "Standardized weighing procedure XYZ-123"
+  },
+  
+  // Properties defined in the Electronics/PowerTool ontology.
+  "torque": {
+    "@type": "QuantitativeValue",
+    "value": 20,
+    "unitText": "Nm",
+      "methodologyReference": "ISO 5393:2017 (Rotary tools for threaded fasteners)",
+    "unitCode": "NU" // UN/CEFACT code for Newton-meter
+  },
+  "maximumRatedSpeed": {
+    "@type": "QuantitativeValue",
+    "value": 1000,
+    "unitCode": "RPM"
+  },
+
+  // --- Power (Aligned with Electronics Ontology) ---
+  "ratedPower": {
+    "@type": "QuantitativeValue",
+    "value": 100,
+    "unitCode": "WTT"
+  },
+  "voltage": {
+    "@type": "QuantitativeValue",
+    "value": 12,
+    "unitCode": "VLT"
+  },
+
+  // --- Repairability (Aligned with Electronics Ontology) ---
+  "sparePartsAvailable": true,
+  "serviceManualAvailable": true,
+
+  // --- Components (BOM) (Aligned with Core Ontology) ---
+  "hasPart": [
+    {
+      "@type": "Product",
+      "description": "Cordless drill (base unit)",
+      "gtin": "5012345101071",
+      "dppLink": "https://freedpp.eu/01/05012345101071"
+    },
+    {
+      // Incomplete entry preserved
+      "@type": "Product",
+      "gtin": "5012345101095"
+    },
+    {
+      "@type": "Product",
+      "description": "Battery",
+      "gtin": "5012345101088",
+      "dppLink": "https://freedpp.eu/01/05012345101088"
+    }
+  ],
+  
+  // --- Compliance (Aligned with Core Ontology) ---
+  "certifications": [
+    {
+      "@type": "Certification",
+      "certificationStandard": "Ecocert Zertifikat",
+      // SHACL validation requires an ID for certifications.
+      "certificationIdentification": "ECOCERT-ID-98765", 
+      "certifyingBodyName": "ECOCERT"
+      // Note: The original URL/Author structure is not supported by this core ontology definition.
+    }
+  ],
+  
+  // Environmental data modeled using the EcoDesignProperty structure.
+  "ecoDesignProperties": [
+    {
+      "@type": "EcoDesignProperty",
+      "ecoDesignPropertyType": "CO2e Emissions (per unit)",
+      "value": 34,
+      "unitText": "kg CO2e"
+    },
+    {
+      "@type": "EcoDesignProperty",
+      "ecoDesignPropertyType": "Energy Consumption (per unit)",
+      "value": 66,
+      "unitCode": "KWH"
+    }
+  ]
+}
