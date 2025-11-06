@@ -1,0 +1,57 @@
+# This file is based on the standard Visual Studio template from GitHub
+
+## Ignore all .vs folder, which contains user-specific files and caches
+## This one rule handles: .vsidx, slnx.sqlite, VSWorkspaceState.json, and more!
+.vs/
+
+## User-specific files
+*.suo
+*.user
+*.wsuo
+*.pubxml.user
+
+## Build results
+[Bb]in/
+[Oo]bj/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+build/
+bld/
+
+## Visual Studio Team Services
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+.builds
+
+## NuGet Packages
+# This is for older project styles. Modern .NET doesn't need it as much, but it's safe to keep.
+*.nupkg
+packages/
+
+## Test Results
+TestResults/
+*.trx
+
+desktop.ini
+Thumbs.db
