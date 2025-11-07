@@ -6,19 +6,19 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "gs1": "https://ref.gs1.org/voc/",
-    "dppk": "https://dpp-keystone.org/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "qudt": "http://qudt.org/schema/qudt/",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/v1/terms"
+    "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/core/Product",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Product and Material Definitions (v1)",
   "dcterms:description": "Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.",
   "owl:versionInfo": "1.0.0",
   // Import the Header ontology as it defines the DPP class.
-  "owl:imports": { "@id": "https://dpp-keystone.org/ontology/v1/core/Header.jsonld" },
+  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld" },
 
   "@graph": [
     // ==================================================================

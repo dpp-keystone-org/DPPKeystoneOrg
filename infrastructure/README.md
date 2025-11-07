@@ -13,8 +13,6 @@ When the Identifier URI is requested, the server should respond with an **HTTP 3
 The most robust approach is to keep all public-facing URLs on the `dpp-keystone.org` domain. This completely abstracts the underlying hosting provider.
 
 *   **Identifier (URI):** `https://dpp-keystone.org/spec/v1/terms`
-*   **Redirects to (Location URL):** `https://dpp-keystone.org/spec/v1/ontology/dpp-ontology.jsonld`
-
 *   **Redirects to (Location URL):** `https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld`
 
 This requires a server configuration (e.g., Cloudflare Worker, Nginx reverse proxy) that can:

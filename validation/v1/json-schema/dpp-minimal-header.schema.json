@@ -1,7 +1,7 @@
 // non-strict mode - this file would not parse with browser JSON.parse
  {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dpp-keystone.org/validation/v1/json-schema/dpp-minimal-header.schema.json",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/dpp-minimal-header.schema.json",
   "title": "Digital Product Passport (Minimalist Normative Header Schema)",
   "description": "A minimalist, normative schema for the DPP that validates core headers and allows for flexible, user-defined properties in the payload.",
   "type": "object",
