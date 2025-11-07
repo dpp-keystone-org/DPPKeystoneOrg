@@ -84,7 +84,7 @@ This layer defines the rules and constraints.
 A cornerstone of the DPP methodology is the use of globally unique, persistent,
 and resolvable identifiers (URIs).
 
-*   **Term Definitions:** All terms defined in this dictionary have stable URIs in the `https://dpp-keystone.org/v1/terms#` namespace.
+*   **Term Definitions:** All terms defined in this dictionary have stable URIs in the `https://dpp-keystone.org/spec/v1/terms#` namespace.
 *   **Real-World Entities:** We strongly advocate for the use of established URI
     schemes for identifying products (e.g., GS1 Digital Link), organizations
     (e.g., URN:LEI, GLN URIs), and the DPP instances themselves.

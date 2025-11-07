@@ -53,7 +53,7 @@ guidelines:
 
 ### 3. Naming Conventions
 
-*   **Namespaces:** All core terms must use the `https://dpp-keystone.org/v1/terms#` namespace.
+*   **Namespaces:** All core terms must use the `https://dpp-keystone.org/spec/v1/terms#` namespace.
 *   **Classes:** Use `UpperCamelCase` (e.g., `dppk:DigitalProductPassport`).
 *   **Properties:** Use `lowerCamelCase` (e.g., `dppk:organizationName`),
     *except* for the normative DPP Header fields which use `PascalCase` (e.g.,

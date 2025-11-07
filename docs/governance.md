@@ -98,7 +98,7 @@ cycle for Minor Versions, while Patches may be released as needed.
 
 ## 5. Persistence and URIs
 
-The stability of the namespace (`https://dpp-keystone.org/v1/terms#`) is paramount.
+The stability of the namespace (`https://dpp-keystone.org/spec/v1/terms#`) is paramount.
 
 *   URIs are intended to be persistent identifiers.
 *   The repository infrastructure must ensure that these URIs resolve correctly to the definitions (potentially using content negotiation in the future).

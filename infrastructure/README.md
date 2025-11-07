@@ -6,10 +6,29 @@ This directory contains configuration examples for ensuring the persistent URIs 
 
 We must ensure that the base namespace URI (the Identifier) redirects to the main ontology entry file (the Location).
 
-*   **Identifier (URI):** `https://dpp-keystone.org/v1/terms`
-*   **Location (URL):** `https://dpp-keystone.org/ontology/v1/dpp-ontology.jsonld`
-
 When the Identifier URI is requested, the server should respond with an **HTTP 303 See Other** redirect to the Location URL.
+
+### Best Practice: Authoritative URLs
+
+The most robust approach is to keep all public-facing URLs on the `dpp-keystone.org` domain. This completely abstracts the underlying hosting provider.
+
+*   **Identifier (URI):** `https://dpp-keystone.org/spec/v1/terms`
+*   **Redirects to (Location URL):** `https://dpp-keystone.org/spec/v1/ontology/dpp-ontology.jsonld`
+
+*   **Redirects to (Location URL):** `https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld`
+
+This requires a server configuration (e.g., Cloudflare Worker, Nginx reverse proxy) that can:
+1.  Perform the 303 redirect from the Identifier to the Location URL.
+2.  Serve the actual file content at the Location URL by fetching it from the physical host (e.g., GitHub Pages) behind the scenes.
+
+### Simpler Alternative: Direct Redirect
+
+A simpler, yet effective, alternative is to redirect directly to the physical host.
+
+*   **Identifier (URI):** `https://dpp-keystone.org/spec/v1/terms`
+*   **Redirects to (Location URL):** `https://dpp-keystone.github.io/DPPKeystoneOrg/ontology/v1/dpp-ontology.jsonld`
+
+This is easier to implement but exposes the hosting provider in the `Location` header of the response.
 
 ## Why `owl:imports`?
 

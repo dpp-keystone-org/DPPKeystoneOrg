@@ -5,12 +5,12 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     // Note: The prefixes below assume the migration prompt has been run.
-    "dppk": "https://dpp-keystone.org/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/v1/terms"
+    "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/dpp-ontology",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Harmonizing Data Dictionary - Complete Ontology (v1)",
   "dcterms:description": "The main entry point for the DPP Harmonizing Data Dictionary (Keystone). This file imports all core modules and sector-specific definitions for Version 1.",
@@ -19,15 +19,15 @@
   "owl:imports": [
     // Core Modules
     // Note: These URIs assume the files are hosted at these locations.
-    { "@id": "https://dpp-keystone.org/ontology/v1/core/Header.jsonld" },
-    { "@id": "https://dpp-keystone.org/ontology/v1/core/Organization.jsonld" },
-    { "@id": "https://dpp-keystone.org/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/ontology/v1/core/Compliance.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
     
     // Sector Modules
-    { "@id": "https://dpp-keystone.org/ontology/v1/sectors/Battery.jsonld" },
-    { "@id": "https://dpp-keystone.org/ontology/v1/sectors/Textile.jsonld" },
-    { "@id": "https://dpp-keystone.org/ontology/v1/sectors/Construction.jsonld" },
-    { "@id": "https://dpp-keystone.org/ontology/v1/sectors/Electronics.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld" }
   ]
 }
