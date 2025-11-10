@@ -161,5 +161,23 @@
     // Using schema.org for generic identifiers (like CAS numbers) and URLs as they were not defined in the core jtc24 ontology.
     "identifier": "schema:identifier",
     "url": { "@id": "schema:url", "@type": "@id" }
+
+    // ==================================================================
+    // Classes and Properties for Certification
+    // ==================================================================
+    "Certification": "dppk:Certification",
+    "certificationStandard": "dppk:certificationStandard",
+    "certificationIdentification": "dppk:certificationIdentification",
+    "certifyingBodyName": "dppk:certifyingBodyName",
+    "certifyingBodyID": "dppk:certifyingBodyID",
+    "organizationRole": "dppk:organizationRole",
+    "certificationStartDate": {
+        "@id": "dppk:certificationStartDate",
+        "@type": "xsd:date"
+    },
+    "referencedFileURL": {
+        "@id": "dppk:referencedFileURL",
+        "@type": "@id"
+    }
   }
 }

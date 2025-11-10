@@ -48,21 +48,9 @@
   "railProfile": "46E1",
   "steelGrade": "R260",
 
-  // --- Measurements (Aligned with Core Ontology) ---
-  "netWeight": {
-    "@type": "QuantitativeValue",
-    "value": 4968,
-    "unitCode": "KGM",
-    "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Weight"
-  },
-  // Note: 'length' was not defined as a specific property in the core ontology, 
-  // but we can include it using the generic QuantitativeValue structure.
-  "length": {
-    "@type": "QuantitativeValue",
-    "value": 108,
-    "unitCode": "MTR",
-    "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Length"
-  },
+  // --- Measurements (Simplified in payload, defined in context) ---
+  "netWeight": 4968,
+  "length": 108,
 
   // --- CPR Compliance (Aligned with Construction Ontology) ---
   "notifiedBodyID": "NB0123",
@@ -102,33 +90,35 @@
       }
   ],
 
-  // --- Certifications ---
+  // --- Certifications (Harmonized to use generic Keystone model from core context) ---
   "certifications": [
       {
-          "revCPR:certificationStandard": "CE Certificate",
-          "gs1:certificationIdentification": "Number of the Certificate",
-          "gs1:certificationAgency": "TUV Sued",
-          "gs1:organizationID": "NB0123",
-          "gs1:organizationRole": "CONFORMITY_ASSESSMENT_BODY",
-          "gs1:certificationStartDate": "YYYY-MM-DD",
-          "gs1:referencedFileURL": "URI"
+          "@type": "Certification",
+          "certificationStandard": "CE Certificate of Conformity",
+          "certificationIdentification": "CERT-TUV-2024-1138",
+          "certifyingBodyName": "TUV Sued",
+          "certifyingBodyID": "NB0123",
+          "organizationRole": "ConformityAssessmentBodyRole",
+          "certificationStartDate": "2024-01-15",
+          "referencedFileURL": "https://www.tuvsud.com/certificates/1138"
       },
       {
-          "revCPR:certificationStandard": "DeclarationOfPerformance",
-          "gs1:certificationIdentification": "EXAMPLE_VALUE_DOPC_ID",
-          "gs1:certificationAgency": "Name of notified Body",
-          "gs1:organizationID": "NB0123",
-          "gs1:organizationRole": "CONFORMITY_ASSESSMENT_BODY",
-          "gs1:certificationStartDate": "YYYY-MM-DD",
-          "gs1:referencedFileURL": "https://www.voestalpine.com/dop/4711.pdf"
+          "@type": "Certification",
+          "certificationStandard": "Declaration of Performance (DoP)",
+          "certificationIdentification": "DOP-VA-RAIL-4711",
+          "certifyingBodyName": "Voestalpine Rail Technology GmbH",
+          "organizationRole": "ManufacturerRole",
+          "certificationStartDate": "2024-01-10",
+          "referencedFileURL": "https://www.voestalpine.com/dop/4711.pdf"
       },
       {
-          "revCPR:certificationStandard": "Environmental Product Declaration",
-          "gs1:certificationIdentification": "Number of the Certificate",
-          "gs1:certificationAgency": "Name of CE Certifying Body",
-          "gs1:organizationRole": "CONFORMITY_ASSESSMENT_BODY",
-          "gs1:certificationStartDate": "YYYY-MM-DD",
-          "gs1:referencedFileURL": "https://epd-online.com/EmbeddedEpdList/Download?id=20167"
+          "@type": "Certification",
+          "certificationStandard": "Environmental Product Declaration (EPD)",
+          "certificationIdentification": "EPD-IBU-20230157-V1",
+          "certifyingBodyName": "Institut Bauen und Umwelt e.V. (IBU)",
+          "organizationRole": "ConformityAssessmentBodyRole",
+          "certificationStartDate": "2023-08-22",
+          "referencedFileURL": "https://epd-online.com/EmbeddedEpdList/Download?id=20167"
       }
   ]
 }

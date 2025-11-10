@@ -44,6 +44,25 @@
             // ==================================================================
             "steelGrade": "dppk:steelGrade",
             "railProfile": "dppk:railProfile"
+        },
+        {
+            // ==================================================================
+            // Type Coercion for simple key-value measurements
+            // This allows the instance data to be "netWeight": 4968, while
+            // semantically expanding to the full QuantitativeValue object.
+            // ==================================================================
+            "netWeight": {
+                "@id": "dppk:netWeight",
+                "@type": "dppk:QuantitativeValue",
+                "unitCode": "KGM",
+                "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Weight"
+            },
+            "length": {
+                "@id": "dppk:length",
+                "@type": "dppk:QuantitativeValue",
+                "unitCode": "MTR",
+                "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Length"
+            }
         }
     ]
 }
