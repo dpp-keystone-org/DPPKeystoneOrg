@@ -20,6 +20,9 @@
   // --- Core Product Information ---
   "productName": "Vignole railway rails 46 kg/m",
 
+  // Placeholder for verifiable credential data.
+  "verifiableCredential": "what value do you want to put in? SHA-256 PKI",
+
   // --- Economic Operator & Manufacturer (Aligned with Core Ontology) ---
   "economicOperator": {
     "@id": "https://id.gs1.org/417/9010788000001",
@@ -96,6 +99,36 @@
         "name": "IBU EPD Listing",
         "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
         "documentType": "Environmental Product Declaration"
+      }
+  ],
+
+  // --- Certifications ---
+  "certifications": [
+      {
+          "revCPR:certificationStandard": "CE Certificate",
+          "gs1:certificationIdentification": "Number of the Certificate",
+          "gs1:certificationAgency": "TUV Sued",
+          "gs1:organizationID": "NB0123",
+          "gs1:organizationRole": "CONFORMITY_ASSESSMENT_BODY",
+          "gs1:certificationStartDate": "YYYY-MM-DD",
+          "gs1:referencedFileURL": "URI"
+      },
+      {
+          "revCPR:certificationStandard": "DeclarationOfPerformance",
+          "gs1:certificationIdentification": "EXAMPLE_VALUE_DOPC_ID",
+          "gs1:certificationAgency": "Name of notified Body",
+          "gs1:organizationID": "NB0123",
+          "gs1:organizationRole": "CONFORMITY_ASSESSMENT_BODY",
+          "gs1:certificationStartDate": "YYYY-MM-DD",
+          "gs1:referencedFileURL": "https://www.voestalpine.com/dop/4711.pdf"
+      },
+      {
+          "revCPR:certificationStandard": "Environmental Product Declaration",
+          "gs1:certificationIdentification": "Number of the Certificate",
+          "gs1:certificationAgency": "Name of CE Certifying Body",
+          "gs1:organizationRole": "CONFORMITY_ASSESSMENT_BODY",
+          "gs1:certificationStartDate": "YYYY-MM-DD",
+          "gs1:referencedFileURL": "https://epd-online.com/EmbeddedEpdList/Download?id=20167"
       }
   ]
 }
