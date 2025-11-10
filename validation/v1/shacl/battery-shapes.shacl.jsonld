@@ -19,6 +19,9 @@
       "@id": "dppkval:BatteryShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": { "@id": "dppk:Battery" },
+      "sh:and": [
+        { "sh:node": "dppkval:DigitalProductPassportShape" }
+      ],
       "sh:property": [
         {
           // Must have a battery category.

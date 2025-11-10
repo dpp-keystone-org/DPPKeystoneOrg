@@ -18,6 +18,9 @@
         "@id": "dppkval:TextileProductShape",
         "@type": "sh:NodeShape",
         "sh:targetClass": { "@id": "dppk:TextileProduct" },
+        "sh:and": [
+          { "sh:node": "dppkval:DigitalProductPassportShape" }
+        ],
         "sh:property": [
           {
             // Must have fibre composition details.

@@ -18,6 +18,9 @@
         "@id": "dppkval:ElectronicDeviceShape",
         "@type": "sh:NodeShape",
         "sh:targetClass": { "@id": "dppk:ElectronicDevice" },
+        "sh:and": [
+          { "sh:node": "dppkval:DigitalProductPassportShape" }
+        ],
         "sh:property": [
           {
             // Voltage, if provided, must conform to QuantitativeValue.
