@@ -51,6 +51,7 @@
             // This allows the instance data to be "netWeight": 4968, while
             // semantically expanding to the full QuantitativeValue object.
             // ==================================================================
+            // Override the core 'netWeight' to add a construction-specific methodology.
             "netWeight": {
                 "@id": "dppk:netWeight",
                 "@type": "dppk:QuantitativeValue",

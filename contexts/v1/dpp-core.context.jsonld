@@ -100,7 +100,12 @@
     "recycledContentPercentage": "dppk:recycledContentPercentage",
 
     // Quantitative Values
-    "netWeight": "dppk:netWeight",
+    // Type Coercion for netWeight to simplify payloads.
+    "netWeight": {
+        "@id": "dppk:netWeight",
+        "@type": "dppk:QuantitativeValue",
+        "unitCode": "KGM"
+    },
     "grossWeight": "dppk:grossWeight",
     "methodologyReference": "dppk:methodologyReference",
     "value": "dppk:value",

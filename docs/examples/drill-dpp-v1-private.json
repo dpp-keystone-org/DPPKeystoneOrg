@@ -12,11 +12,8 @@
         "itemCondition": "dpp_ext:itemCondition",
         "targetMarket": "dpp_ext:targetMarket",
         "dimensions": "dpp_ext:dimensions",
-        "maximumDrillingDiameter": "dpp_ext:maximumDrillingDiameter",
         "numberOfGears": "dpp_ext:numberOfGears",
         "batteryType": "dpp_ext:batteryType",
-        "chargingTime": "dpp_ext:chargingTime",
-        "warranty": "dpp_ext:warranty",
 
         // Missing Textual Descriptions
         "materialComposition": "dpp_ext:materialComposition",
@@ -87,65 +84,28 @@
   },
 
   // --- Technical Specifications (Core/Electronics Ontology) ---
-  "netWeight": {
-    "@type": "QuantitativeValue",
-    "value": 1.8,
-    "unitCode": "KGM",
-      "methodologyReference": "Standardized weighing procedure XYZ-123"
-  },
-  "torque": {
-    "@type": "QuantitativeValue",
-    "value": 20,
-    "unitText": "Nm",
-      "methodologyReference": "ISO 5393:2017 (Rotary tools for threaded fasteners)",
-    "unitCode": "NU"
-  },
-  "maximumRatedSpeed": {
-    "@type": "QuantitativeValue",
-    "value": 1000,
-    "unitCode": "RPM"
-  },
+  "netWeight": 1.8,
+  "torque": 20,
+  "maximumRatedSpeed": 1000,
 
   // --- Extensions (Technical Specs) ---
   "dimensions": "250x80x220 mm",
-  "maximumDrillingDiameter": {
-    "@type": "QuantitativeValue",
-    "value": 10,
-    "unitCode": "MMT"
-  },
+  "maximumDrillingDiameter": 10,
   "numberOfGears": 6,
 
   // --- Power (Aligned with Electronics Ontology) ---
-  "ratedPower": {
-    "@type": "QuantitativeValue",
-    "value": 100,
-    "unitCode": "WTT"
-  },
-  "voltage": {
-    "@type": "QuantitativeValue",
-    "value": 12,
-    "unitCode": "VLT"
-  },
-
+  "ratedPower": 100,
+  "voltage": 12,
   // --- Extensions (Power) ---
   "batteryType": "Lithium-ion (Li-ion)",
-  "chargingTime": {
-    "@type": "QuantitativeValue",
-    "value": 60,
-    "unitCode": "MIN"
-  },
+  "chargingTime": 60,
 
   // --- Repairability (Aligned with Electronics Ontology) ---
   "sparePartsAvailable": true,
   "serviceManualAvailable": true,
   
   // --- Extensions (Warranty) ---
-  "warranty": {
-    "@type": "QuantitativeValue",
-    "value": 2,
-    "unitCode": "ANN",
-    "unitText": "years"
-  },
+  "warranty": 2,
 
   // ==================================================================
   // PRIVATE/SENSITIVE DATA SECTIONS
@@ -215,9 +175,12 @@
   "certifications": [
     {
       "@type": "Certification",
-      "certificationStandard": "Ecocert Zertifikat",
-      "certificationIdentification": "ECOCERT-ID-MOCK-98765", 
-      "certifyingBodyName": "ECOCERT"
+      "certificationStandard": "CE Mark",
+      "certificationIdentification": "CE-2024-98765",
+      "certifyingBodyName": "Self-declared",
+      "organizationRole": "ManufacturerRole",
+      "certificationStartDate": "2024-01-01",
+      "referencedFileURL": "https://example.com/dop/GSB451"
     }
   ],
   
