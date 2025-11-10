@@ -15,9 +15,6 @@
             // ==================================================================
             // Properties (Power and Energy)
             // ==================================================================
-            // Note: These properties link to QuantitativeValue (defined in Core).
-            "voltage": "dppk:voltage",
-            "ratedPower": "dppk:ratedPower",
             "energyEfficiencyClass": "dppk:energyEfficiencyClass",
 
             // ==================================================================
@@ -25,7 +22,6 @@
             // ==================================================================
             "ipRating": "dppk:ipRating",
 
-            "warranty": "dppk:warranty",
             // Explicitly type booleans for data integrity.
             "sparePartsAvailable": {
                 "@id": "dppk:sparePartsAvailable",
@@ -49,54 +45,20 @@
             // ==================================================================
             // Properties (Specialized: Power Tools)
             // ==================================================================
-            "torque": "dppk:torque",
-            "maximumRatedSpeed": "dppk:maximumRatedSpeed",
-            "maximumDrillingDiameter": "dppk:maximumDrillingDiameter",
-            "chargingTime": "dppk:chargingTime"
-        }
-        ,
-        {
             // ==================================================================
             // Type Coercion for simple key-value measurements
             // This allows the instance data to be "torque": 20, while
             // semantically expanding to the full QuantitativeValue object.
             // ==================================================================
             "torque": {
-                "@id": "dppk:torque",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "NU",
-                "methodologyReference": "ISO 5393:2017 (Rotary tools for threaded fasteners)"
+                "@id": "dppk:torque", "@type": "dppk:QuantitativeValue"
             },
-            "maximumRatedSpeed": {
-                "@id": "dppk:maximumRatedSpeed",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "RPM"
-            },
-            "ratedPower": {
-                "@id": "dppk:ratedPower",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "WTT"
-            },
-            "voltage": {
-                "@id": "dppk:voltage",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "VLT"
-            },
-            "maximumDrillingDiameter": {
-                "@id": "dppk:maximumDrillingDiameter",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "MMT"
-            },
-            "chargingTime": {
-                "@id": "dppk:chargingTime",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "MIN"
-            },
-            "warranty": {
-                "@id": "dppk:warranty",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "ANN"
-            }
+            "maximumRatedSpeed": { "@id": "dppk:maximumRatedSpeed", "@type": "dppk:QuantitativeValue" },
+            "ratedPower": { "@id": "dppk:ratedPower", "@type": "dppk:QuantitativeValue" },
+            "voltage": { "@id": "dppk:voltage", "@type": "dppk:QuantitativeValue" },
+            "maximumDrillingDiameter": { "@id": "dppk:maximumDrillingDiameter", "@type": "dppk:QuantitativeValue" },
+            "chargingTime": { "@id": "dppk:chargingTime", "@type": "dppk:QuantitativeValue" },
+            "warranty": { "@id": "dppk:warranty", "@type": "dppk:QuantitativeValue" }
         }
     ]
 }

@@ -52,17 +52,10 @@
             // semantically expanding to the full QuantitativeValue object.
             // ==================================================================
             // Override the core 'netWeight' to add a construction-specific methodology.
-            "netWeight": {
-                "@id": "dppk:netWeight",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "KGM",
-                "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Weight"
-            },
+            "netWeight": { "@id": "dppk:netWeight", "@type": "dppk:QuantitativeValue" },
             "length": {
                 "@id": "dppk:length",
-                "@type": "dppk:QuantitativeValue",
-                "unitCode": "MTR",
-                "methodologyReference": "https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Length"
+                "@type": "dppk:QuantitativeValue"
             }
         }
     ]

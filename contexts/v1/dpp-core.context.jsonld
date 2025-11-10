@@ -18,7 +18,15 @@
     "Organization": "dppk:Organization",
     "PostalAddress": "dppk:PostalAddress",
     "Product": "dppk:Product",
-    "QuantitativeValue": "dppk:QuantitativeValue",
+    "QuantitativeValue": {
+      "@id": "dppk:QuantitativeValue",
+      "@context": {
+        "value": { "@id": "dppk:value", "@type": "xsd:decimal" },
+        "unitCode": { "@id": "dppk:unitCode" },
+        "unitText": { "@id": "dppk:unitText" },
+        "methodologyReference": { "@id": "dppk:methodologyReference", "@type": "@id" }
+      }
+    },
     "DigitalDocument": "dppk:DigitalDocument",
     "Certification": "dppk:Certification",
     "SubstanceOfConcern": "dppk:SubstanceOfConcern",
@@ -101,16 +109,9 @@
 
     // Quantitative Values
     // Type Coercion for netWeight to simplify payloads.
-    "netWeight": {
-        "@id": "dppk:netWeight",
-        "@type": "dppk:QuantitativeValue",
-        "unitCode": "KGM"
-    },
-    "grossWeight": "dppk:grossWeight",
-    "methodologyReference": "dppk:methodologyReference",
-    "value": "dppk:value",
-    "unitCode": "dppk:unitCode",
-    "unitText": "dppk:unitText",
+    "netWeight": { "@id": "dppk:netWeight", "@type": "dppk:QuantitativeValue" },
+    "grossWeight": { "@id": "dppk:grossWeight", "@type": "dppk:QuantitativeValue" },
+    // "value", "unitCode", etc. are now defined within the QuantitativeValue scoped context.
 
     // ==================================================================
     // Properties: Compliance and Regulatory
