@@ -27,21 +27,44 @@ describe('DPP SHACL Validation', () => {
         coreShapes = await loadRdfFile(coreShapesPath, { factory });
     });
 
-    test('drill-dpp-v1.json should conform to core and construction shapes', async () => {
-        // --- 1. Load Data and Shapes ---
-        const exampleFileName = 'drill-dpp-v1.json';
-        const exampleFilePath = path.join(PROJECT_ROOT, 'docs', 'examples', exampleFileName);
+    // --- Test Cases ---
+    // This array defines all the validation tests to be run.
+    // Each entry specifies an example data file and the sector-specific
+    // SHACL shape files that should be applied in addition to the core shapes.
+    const testCases = [ // TODO: Add tests for battery, textile, and rail examples when they are available.
+        {
+            name: 'Electronics DPP - Public (drill-dpp-v1.json)',
+            exampleFile: 'drill-dpp-v1.json',
+            shapeFiles: ['electronics-shapes.shacl.jsonld']
+        },
+        {
+            name: 'Electronics DPP - Private (drill-dpp-v1-private.json)',
+            exampleFile: 'drill-dpp-v1-private.json',
+            shapeFiles: ['electronics-shapes.shacl.jsonld']
+        },
+        {
+            name: 'Construction DPP (rail-dpp-v1.json)',
+            exampleFile: 'rail-dpp-v1.json',
+            shapeFiles: ['construction-shapes.shacl.jsonld']
+        },
+    ];
+
+    // Use test.each to run the same validation logic for each test case.
+    test.each(testCases)('$name should conform to its SHACL shapes', async ({ exampleFile, shapeFiles }) => {
+        // --- 1. Load Data and Sector-Specific Shapes ---
+        const exampleFilePath = path.join(PROJECT_ROOT, 'docs', 'examples', exampleFile);
         const dataDataset = await loadRdfFile(exampleFilePath, { factory });
-        
-        const constructionShapesPath = path.join(PROJECT_ROOT, 'validation', 'v1', 'shacl', 'construction-shapes.shacl.jsonld');
-        const constructionShapes = await loadRdfFile(constructionShapesPath, { factory });
+
+        const sectorShapes = await Promise.all(
+            shapeFiles.map(file => loadRdfFile(path.join(PROJECT_ROOT, 'validation', 'v1', 'shacl', file), { factory }))
+        );
 
         // --- 2. Combine Shapes and Validate ---
-        const allShapes = combineDatasets([coreShapes, constructionShapes], { factory });
+        const allShapes = combineDatasets([coreShapes, ...sectorShapes], { factory });
         const validator = new SHACLValidator(allShapes, { factory });
         const report = await validator.validate(dataDataset);
 
-        // --- 5. Assert Conformance ---
+        // --- 3. Assert Conformance ---
         // For debugging, you can log the report results
         if (!report.conforms) {
             console.log('Validation Report Results:');

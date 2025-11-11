@@ -1,4 +1,5 @@
 import path from 'path';
+import { promises as fs } from 'fs';
 import SHACLValidator from 'rdf-validate-shacl';
 
 import Environment from '@rdfjs/environment';
@@ -19,14 +20,17 @@ const factory = new Environment([DataFactory, DatasetFactory, N3Parser, Clownfac
 async function main() {
     console.log('Starting SHACL validation...');
 
-    // --- 1. Load Core and Sector-Specific Shapes ---
-    const coreShapesPath = path.join(PROJECT_ROOT, 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld');
-    const coreShapes = await loadRdfFile(coreShapesPath, { factory });
+    // --- 1. Dynamically Load All SHACL Shapes ---
+    const shapesDir = path.join(PROJECT_ROOT, 'validation', 'v1', 'shacl');
+    const shapeFiles = await fs.readdir(shapesDir);
 
-    const constructionShapesPath = path.join(PROJECT_ROOT, 'validation', 'v1', 'shacl', 'construction-shapes.shacl.jsonld');
-    const constructionShapes = await loadRdfFile(constructionShapesPath, { factory });
+    const shapeDatasets = await Promise.all(
+        shapeFiles
+            .filter(file => file.endsWith('.shacl.jsonld'))
+            .map(file => loadRdfFile(path.join(shapesDir, file), { factory }))
+    );
 
-    const allShapes = combineDatasets([coreShapes, constructionShapes], { factory });
+    const allShapes = combineDatasets(shapeDatasets, { factory });
 
     // --- 2. Load and Prepare Data ---
     const exampleFileName = 'drill-dpp-v1.json';
