@@ -1,15 +1,22 @@
-import { promises as fs } from 'fs';
 import path from 'path';
-import { parse as jsoncParse } from 'jsonc-parser';
 import SHACLValidator from 'rdf-validate-shacl';
-import factory from 'rdf-ext';
+
+import Environment from '@rdfjs/environment';
+import N3Parser from '@rdfjs/parser-n3';
+import DatasetFactory from '@rdfjs/dataset/Factory.js';
+import DataFactory from '@rdfjs/data-model/Factory.js';
+import ClownfaceFactory from 'clownface/Factory.js';
+import NamespaceFactory from '@rdfjs/namespace/Factory.js';
+
 import {
     PROJECT_ROOT,
     loadRdfFile,
     combineDatasets
 } from './shacl-helpers.mjs';
 
-// --- Test Suite ---
+// Create a pre-configured RDF/JS environment, identical to the one in the standalone script.
+// This bundles a factory, dataset, parser, and clownface support.
+const factory = new Environment([DataFactory, DatasetFactory, N3Parser, ClownfaceFactory, NamespaceFactory]);
 
 describe('DPP SHACL Validation', () => {
     let coreShapes;
