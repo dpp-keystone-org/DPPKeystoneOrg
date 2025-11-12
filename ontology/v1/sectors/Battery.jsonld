@@ -6,10 +6,10 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "gs1": "https://ref.gs1.org/voc/",
-    "dppk": "https://dpp-keystone.org/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/v1/terms"
+    "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
   "@id": "https://dpp-keystone.org/ontology/v1/sectors/Battery",
   "@type": "owl:Ontology",
