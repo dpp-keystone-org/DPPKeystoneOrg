@@ -14,15 +14,15 @@ const PROJECT_ROOT = path.join(__dirname, '..', '..');
 // This mapping is the core of the override mechanism, allowing for offline testing.
 const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
     "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld":
-        path.join(PROJECT_ROOT, 'contexts', 'v1', 'dpp-core.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-core.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-construction.context.jsonld":
-        path.join(PROJECT_ROOT, 'contexts', 'v1', 'dpp-construction.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-construction.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-electronics.context.jsonld":
-        path.join(PROJECT_ROOT, 'contexts', 'v1', 'dpp-electronics.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-electronics.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-battery.context.jsonld":
-        path.join(PROJECT_ROOT, 'contexts', 'v1', 'dpp-battery.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld":
-        path.join(PROJECT_ROOT, 'contexts', 'v1', 'dpp-textile.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
 };
 
 /**
@@ -51,7 +51,7 @@ const localFileDocumentLoader = async (url) => {
 describe('Simple DPP Expansion', () => {
     test('should correctly expand rail-dpp-v1.json using local contexts', async () => {
         const exampleFileName = 'rail-dpp-v1.json';
-        const exampleFilePath = path.join(PROJECT_ROOT, 'docs', 'examples', exampleFileName);
+        const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFileName);
         const fileContent = await fs.readFile(exampleFilePath, 'utf-8');
         const dppJson = jsoncParse(fileContent, [], { allowTrailingComma: true });
 

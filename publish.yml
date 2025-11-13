@@ -32,9 +32,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # 4. Run the build script to clean JSON/JSON-LD and copy all assets to the 'dist' directory
-      - name: Run build script
-        run: npm run build
+      # 4. Run tests against the generated files. This command now also handles cleaning and building.
+      - name: Run validation tests
+        run: npm test
 
       # 5. Deploy the complete 'dist' directory to the 'gh-pages' branch
       - name: Deploy to GitHub Pages
@@ -42,3 +42,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          # This allows the CNAME file to be preserved in the gh-pages branch
+          # which is required for the custom domain to work.
+          cname: dpp-keystone.org

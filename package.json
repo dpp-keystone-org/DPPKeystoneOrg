@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "node scripts/build-and-clean.mjs",
-    "test": "cd testing && npm test",
+    "test": "npm run clean && npm run build && cd testing && npm test",
     "clean": "node scripts/clean.mjs"
   },
   "repository": {
