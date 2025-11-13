@@ -13,6 +13,8 @@
     "strip-json-comments": "^5.0.3"
   },
   "devDependencies": {
+    "fs-extra": "^11.3.2",
+    "jsonc-parser": "^3.3.1",
     "strip-json-comments-cli": "^3.0.0"
   },
   "scripts": {
