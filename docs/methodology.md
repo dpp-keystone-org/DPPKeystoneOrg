@@ -62,6 +62,7 @@ scalable system:
 
 This is the semantic source of truth. It defines *what* the terms mean and how
 they relate to each other and external standards.
+(Note for developers: The source files for the ontology are located in the `src/ontology/` directory of the repository.)
 
 *   **Audience:** Data modelers, standardization experts, ontology engineers.
 
@@ -69,12 +70,14 @@ they relate to each other and external standards.
 
 This layer provides the implementation mapping (the Vocabulary). It maps the
 formal Ontology URIs to developer-friendly JSON keys.
+(Note for developers: The source files for the contexts are located in the `src/contexts/` directory of the repository.)
 
 *   **Audience:** Developers, implementation teams, SMEs. This layer shields implementers from the complexity of the underlying ontology while preserving semantic rigor.
 
 ### Layer 3: Validation Artifacts (`validation/`)
 
 This layer defines the rules and constraints.
+(Note for developers: The source files for validation are located in the `src/validation/` directory of the repository.)
 
 *   **JSON Schema:** Used for structural validation (ensuring the mandatory DPP header fields are present).
 *   **SHACL (Shapes Constraint Language):** Used for semantic validation (ensuring the data claims and relationships within the payload are correct and logical).
