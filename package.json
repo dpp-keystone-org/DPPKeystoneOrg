@@ -6,12 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {
-    "clownface": "^2.0.3",
-    "get-stdin": "^9.0.0",
-    "meow": "^12.1.1",
-    "strip-json-comments": "^5.0.3"
-  },
   "devDependencies": {
     "fs-extra": "^11.3.2",
     "jsonc-parser": "^3.3.1"
