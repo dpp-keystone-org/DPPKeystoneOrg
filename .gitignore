@@ -3,6 +3,11 @@
 ## Ignore all .vs folder, which contains user-specific files and caches
 ## This one rule handles: .vsidx, slnx.sqlite, VSWorkspaceState.json, and more!
 .vs/
+# Build artifacts
+/dist/
+/contexts/
+/ontology/
+/validation/
 
 ## User-specific files
 *.suo

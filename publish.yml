@@ -1,0 +1,44 @@
+name: Build and Deploy Cleaned Files to GitHub Pages
+
+# Controls when the action will run
+on:
+  # Triggers the workflow on push events for the main branch
+  push:
+    branches:
+      - main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-and-deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # 1. Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Sets up the Node.js environment to run our script
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Installs the tools listed in package.json (i.e., strip-json-comments-cli)
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. Run the build script to clean JSON/JSON-LD and copy all assets to the 'dist' directory
+      - name: Run build script
+        run: npm run build
+
+      # 5. Deploy the complete 'dist' directory to the 'gh-pages' branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

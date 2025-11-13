@@ -1,0 +1,33 @@
+{
+  "name": "dppkeystoneorg",
+  "version": "1.0.0",
+  "description": "This repository contains definitions for the Keystone DPP project.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "clownface": "^2.0.3",
+    "get-stdin": "^9.0.0",
+    "meow": "^12.1.1",
+    "strip-json-comments": "^5.0.3"
+  },
+  "devDependencies": {
+    "strip-json-comments-cli": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpp-keystone-org/DPPKeystoneOrg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dpp-keystone-org/DPPKeystoneOrg/issues"
+  },
+  "homepage": "https://github.com/dpp-keystone-org/DPPKeystoneOrg#readme"
+}
