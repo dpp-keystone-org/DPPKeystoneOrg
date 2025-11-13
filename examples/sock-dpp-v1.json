@@ -1,0 +1,38 @@
+{
+  "@context": "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld",
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:TextileProduct"
+  ],
+  "ProductID": "urn:gtin:54321098765432",
+  "DPPID": "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
+  "EconomicOperatorID": "urn:gln:1122334455667",
+  "Granularity": "model",
+  "BaseDppSchemaVersion": "1.0",
+  "SectorDataModelVersion": "1.0",
+  "StatusOfTheDPP": "active",
+  "LastUpdated": "2024-05-22T11:30:00Z",
+  "productName": "Everyday Comfort Crew Socks (3-Pack)",
+  "fibreComposition": [
+    {
+      "@type": "dppk:FibreComposition",
+      "fibreType": "Cotton",
+      "fibrePercentage": 85
+    },
+    {
+      "@type": "dppk:FibreComposition",
+      "fibreType": "Polyamide",
+      "fibrePercentage": 13
+    },
+    {
+      "@type": "dppk:FibreComposition",
+      "fibreType": "Elastane",
+      "fibrePercentage": 2
+    }
+  ],
+  "color": "Black",
+  "sizeCode": "EU 42-45",
+  "careInstructions": "Machine wash cold, tumble dry low. Do not bleach.",
+  "recycledContentPercentage": 20,
+  "animalOriginNonTextile": false
+}

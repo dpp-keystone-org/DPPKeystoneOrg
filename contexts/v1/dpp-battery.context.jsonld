@@ -6,10 +6,6 @@
       "BatteryCarbonFootprint": "dppk:BatteryCarbonFootprint",
       "batteryCategory": "dppk:batteryCategory",
       "batteryChemistry": "dppk:batteryChemistry",
-      "dateOfManufacture": {
-        "@id": "dppk:dateOfManufacture",
-        "@type": "xsd:date"
-      },
       "ratedCapacity": "dppk:ratedCapacity",
       "nominalVoltage": "dppk:nominalVoltage",
       "expectedLifetime": "dppk:expectedLifetime",

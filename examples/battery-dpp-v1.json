@@ -1,6 +1,9 @@
 {
   "@context": "https://dpp-keystone.org/contexts/v1/dpp-battery.context.jsonld",
-  "@type": "dppk:DigitalProductPassport",
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:Battery"
+  ],
   "ProductID": "urn:gtin:01234567890123",
   "DPPID": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
   "EconomicOperatorID": "urn:gln:9876543210987",
@@ -11,17 +14,26 @@
   "StatusOfTheDPP": "active",
   "LastUpdated": "2024-05-21T10:00:00Z",
   "productName": "Industrial Lithium-Ion Battery Module",
-  "BatteryCategory": "IndustrialBattery",
-  "Chemistry": "LFP",
-  "NominalVoltage": "48V",
-  "NominalCapacity": "100Ah",
-  "RecycledContentRatio": 0.15,
-  "CarbonFootprint": {
+  "batteryCategory": "IndustrialBattery",
+  "batteryChemistry": "LFP",
+  "dateOfManufacture": "2024-01-15",
+  "nominalVoltage": {
+    "@type": "QuantitativeValue",
+    "value": 48,
+    "unitCode": "VLT"
+  },
+  "ratedCapacity": {
+    "@type": "QuantitativeValue",
+    "value": 100,
+    "unitCode": "AMH"
+  },
+  "recycledContentRatio": 0.15,
+  "carbonFootprint": {
     "@type": "dppk:CarbonFootprint",
     "value": 120.5,
     "unit": "kgCO2e"
   },
-  "StateOfHealth": {
+  "stateOfHealth": {
     "@type": "dppk:StateOfHealth",
     "value": 98.5,
     "unit": "percent"

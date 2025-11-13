@@ -177,6 +177,10 @@
     "packagingRecyclingProcessType": "dppk:packagingRecyclingProcessType",
     "packagingRecycledContent": "dppk:packagingRecycledContent",
     "packagingSubstanceOfConcern": "dppk:packagingSubstanceOfConcern",
+    "dateOfManufacture": {
+      "@id": "dppk:dateOfManufacture",
+      "@type": "xsd:date"
+    },
     "productionStepType": "dppk:productionStepType",
     "productionLocationCountry": "dppk:productionLocationCountry",
     "name": "dppk:productName",

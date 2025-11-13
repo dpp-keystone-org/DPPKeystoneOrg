@@ -9,7 +9,10 @@
         "@container": "@set"
       },
       "fibreType": "dppk:fibreType",
-      "fibrePercentage": "dppk:fibrePercentage",
+      "fibrePercentage": {
+        "@id": "dppk:fibrePercentage",
+        "@type": "xsd:decimal"
+      },
       "animalOriginNonTextile": {
         "@id": "dppk:animalOriginNonTextile",
         "@type": "xsd:boolean"
