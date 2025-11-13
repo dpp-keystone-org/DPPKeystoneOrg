@@ -1,0 +1,40 @@
+name: Build, Test, and Deploy to GitHub Pages
+
+on:
+  # Triggers the workflow on push events for the main branch
+  push:
+    branches:
+      - main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install testing dependencies
+        run: cd testing && npm install
+
+      - name: Run build and validation tests
+        run: npm test
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          # This ensures your custom domain configuration is preserved on the gh-pages branch
+          cname: dpp-keystone.org
