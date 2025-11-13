@@ -17,16 +17,17 @@
     "jsonc-parser": "^3.3.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node scripts/build-and-clean.mjs",
+    "test": "cd testing && npm test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dpp-keystone-org/DPPKeystoneOrg.git"
+    "url": "git+https://github.com/dpp-keystone-org/DPPKeystoneOrg"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/dpp-keystone-org/DPPKeystoneOrg/issues"
   },
