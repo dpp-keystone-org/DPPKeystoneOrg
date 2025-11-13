@@ -52,6 +52,32 @@ async function processDirectory(sourceDir, targetDir) {
     }
 }
 
+async function createRedirects(targetDir) {
+    console.log('Generating client-side redirects...');
+
+    const redirectPath = path.join(targetDir, 'spec', 'v1', 'terms', 'index.html');
+    // The target URL should be a relative path to work correctly on the deployed site.
+    const redirectTarget = '/ontology/v1/dpp-ontology.jsonld';
+    
+    // This HTML file uses a meta refresh tag to immediately redirect the user.
+    const redirectContent = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <link rel="canonical" href="${redirectTarget}"/>
+  <meta http-equiv="refresh" content="0; url=${redirectTarget}">
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, follow this <a href="${redirectTarget}">link</a>.</p>
+</body>
+</html>`;
+
+    await fse.outputFile(redirectPath, redirectContent);
+    console.log(`Created redirect: /spec/v1/terms/index.html -> ${redirectTarget}`);
+}
+
 async function build() {
     console.log('Starting build process: Cleaning and copying files...');
     await fse.emptyDir(BUILD_DIR); // Clear previous build artifacts
@@ -67,6 +93,9 @@ async function build() {
         await fse.copy(sourcePath, targetPath);
         console.log(`Copied root asset: ${sourcePath} -> ${targetPath}`);
     }
+
+    // Call the new redirect function
+    await createRedirects(BUILD_DIR);
 
     console.log('Build process completed.');
 }

@@ -35,12 +35,6 @@ jobs:
       - name: Run build and validation tests
         run: npm test
 
-      - name: Generate redirects
-        uses: n0-computer/action-redirect-pages@v3.0.1
-        with:
-          source: redirects.json
-          destination: dist
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
