@@ -2,7 +2,6 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import jsonld from 'jsonld';
-import { parse as jsoncParse } from 'jsonc-parser';
 
 // Recreate __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -34,7 +33,7 @@ const localFileDocumentLoader = async (url) => {
         const localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
         try {
             const fileContent = await fs.readFile(localPath, 'utf-8');
-            const parsedDocument = jsoncParse(fileContent, [], { allowTrailingComma: true });
+            const parsedDocument = JSON.parse(fileContent);
             return {
                 contextUrl: null,
                 documentUrl: url,
@@ -53,7 +52,7 @@ describe('Simple DPP Expansion', () => {
         const exampleFileName = 'rail-dpp-v1.json';
         const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFileName);
         const fileContent = await fs.readFile(exampleFilePath, 'utf-8');
-        const dppJson = jsoncParse(fileContent, [], { allowTrailingComma: true });
+        const dppJson = JSON.parse(fileContent);
 
         // The core test: ensure contexts are wired correctly for expansion.
         const expanded = await jsonld.expand(dppJson, { documentLoader: localFileDocumentLoader });

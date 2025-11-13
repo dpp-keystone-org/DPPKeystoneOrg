@@ -3,7 +3,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { Readable } from 'stream';
 import jsonld from 'jsonld';
-import { parse as jsoncParse } from 'jsonc-parser';
 import N3Parser from '@rdfjs/parser-n3';
 
 // --- Pathing and Constants ---
@@ -28,7 +27,7 @@ export const localFileDocumentLoader = async (url) => {
     if (url in CONTEXT_URL_TO_LOCAL_PATH_MAP) {
         const localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
         const fileContent = await fs.readFile(localPath, 'utf-8');
-        const parsedDocument = jsoncParse(fileContent, [], { allowTrailingComma: true });
+        const parsedDocument = JSON.parse(fileContent);
         return { contextUrl: null, documentUrl: url, document: parsedDocument };
     }
     return jsonld.documentLoaders.node()(url);
@@ -65,7 +64,7 @@ export async function toRdfDataset(expanded, { factory }) {
  */
 export async function loadRdfFile(filePath, { factory }) {
     const fileContent = await fs.readFile(filePath, 'utf-8');
-    const json = jsoncParse(fileContent, [], { allowTrailingComma: true });
+    const json = JSON.parse(fileContent);
     const expanded = await jsonld.expand(json, { documentLoader: localFileDocumentLoader });
     return toRdfDataset(expanded, { factory });
 }

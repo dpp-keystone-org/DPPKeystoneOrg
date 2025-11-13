@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
-import { parse as jsoncParse } from 'jsonc-parser';
 import { PROJECT_ROOT } from './shacl-helpers.mjs';
 
 // --- Setup ---
@@ -22,7 +21,7 @@ describe('DPP JSON Schema Validation', () => {
     beforeAll(async () => {
         const schemaPath = path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'json-schema', 'dpp-header.schema.json');
         const schemaContent = await fs.promises.readFile(schemaPath, 'utf-8');
-        const schema = jsoncParse(schemaContent);
+        const schema = JSON.parse(schemaContent);
         validate = ajv.compile(schema);
     });
 
@@ -38,7 +37,7 @@ describe('DPP JSON Schema Validation', () => {
     test.each(testCases)('%s should be valid against the DPP Header JSON Schema', async (exampleFile) => {
         const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFile);
         const exampleContent = await fs.promises.readFile(exampleFilePath, 'utf-8');
-        const data = jsoncParse(exampleContent);
+        const data = JSON.parse(exampleContent);
 
         const isValid = validate(data);
 
