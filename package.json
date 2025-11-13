@@ -14,8 +14,7 @@
   },
   "devDependencies": {
     "fs-extra": "^11.3.2",
-    "jsonc-parser": "^3.3.1",
-    "strip-json-comments-cli": "^3.0.0"
+    "jsonc-parser": "^3.3.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
