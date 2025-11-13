@@ -1,0 +1,139 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+  },
+  "@id": "dppkval:CoreShapes",
+  "@type": "sh:ShapesGraph",
+  "@graph": [
+    {
+      "@id": "dppkval:OrganizationShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": {
+        "@id": "dppk:Organization"
+      },
+      "sh:property": [
+        {
+          "sh:path": {
+            "@id": "dppk:organizationName"
+          },
+          "sh:minCount": 1,
+          "sh:severity": {
+            "@id": "sh:Violation"
+          },
+          "sh:message": "Organization must have a name (dppk:organizationName)."
+        },
+        {
+          "sh:path": {
+            "@id": "dppk:gln"
+          },
+          "sh:pattern": "^[0-9]{13}$",
+          "sh:message": "GLN (dppk:gln) must be a 13-digit number."
+        },
+        {
+          "sh:path": {
+            "@id": "dppk:leiCode"
+          },
+          "sh:pattern": "^[A-Z0-9]{20}$",
+          "sh:message": "LEI Code (dppk:leiCode) must be a 20-character alphanumeric string."
+        }
+      ]
+    },
+    {
+      "@id": "dppkval:QuantitativeValueShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": {
+        "@id": "dppk:QuantitativeValue"
+      },
+      "sh:property": [
+        {
+          "sh:path": {
+            "@id": "dppk:value"
+          },
+          "sh:minCount": 1,
+          "sh:datatype": {
+            "@id": "xsd:decimal"
+          },
+          "sh:severity": {
+            "@id": "sh:Violation"
+          },
+          "sh:message": "QuantitativeValue must have a numeric value (dppk:value)."
+        },
+        {
+          "sh:path": {
+            "@id": "dppk:unitCode"
+          },
+          "sh:minCount": 1,
+          "sh:severity": {
+            "@id": "sh:Violation"
+          },
+          "sh:message": "QuantitativeValue must specify a unitCode (dppk:unitCode), preferably UN/CEFACT."
+        }
+      ]
+    },
+    {
+      "@id": "dppkval:DigitalProductPassportShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": {
+        "@id": "dppk:DigitalProductPassport"
+      },
+      "sh:property": [
+        {
+          "sh:path": {
+            "@id": "dppk:productName"
+          },
+          "sh:minCount": 1,
+          "sh:severity": {
+            "@id": "sh:Violation"
+          },
+          "sh:message": "DPP must have a product name (dppk:productName)."
+        },
+        {
+          "sh:path": {
+            "@id": "dppk:manufacturer"
+          },
+          "sh:node": {
+            "@id": "dppkval:OrganizationShape"
+          },
+          "sh:message": "The manufacturer must conform to the Organization shape."
+        },
+        {
+          "sh:path": {
+            "@id": "dppk:economicOperator"
+          },
+          "sh:node": {
+            "@id": "dppkval:OrganizationShape"
+          },
+          "sh:message": "The economicOperator must conform to the Organization shape."
+        }
+      ]
+    },
+    {
+      "@id": "dppkval:CertificationShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": {
+        "@id": "dppk:Certification"
+      },
+      "sh:property": [
+        {
+          "sh:path": {
+            "@id": "dppk:certificationStandard"
+          },
+          "sh:minCount": 1,
+          "sh:message": "Certification must specify the standard or name (dppk:certificationStandard)."
+        },
+        {
+          "sh:path": {
+            "@id": "dppk:certificationIdentification"
+          },
+          "sh:minCount": 1,
+          "sh:message": "Certification must have an identifier or number (dppk:certificationIdentification)."
+        }
+      ]
+    }
+  ]
+}

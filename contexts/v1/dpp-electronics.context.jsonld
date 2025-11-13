@@ -1,0 +1,50 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld",
+    {
+      "ElectronicDevice": "dppk:ElectronicDevice",
+      "PowerTool": "dppk:PowerTool",
+      "energyEfficiencyClass": "dppk:energyEfficiencyClass",
+      "ipRating": "dppk:ipRating",
+      "sparePartsAvailable": {
+        "@id": "dppk:sparePartsAvailable",
+        "@type": "xsd:boolean"
+      },
+      "serviceManualAvailable": {
+        "@id": "dppk:serviceManualAvailable",
+        "@type": "xsd:boolean"
+      },
+      "softwareUpdatePolicy": "dppk:softwareUpdatePolicy",
+      "weeeCategory": "dppk:weeeCategory",
+      "disassemblyInstructions": "dppk:disassemblyInstructions",
+      "torque": {
+        "@id": "dppk:torque",
+        "@type": "dppk:QuantitativeValue"
+      },
+      "maximumRatedSpeed": {
+        "@id": "dppk:maximumRatedSpeed",
+        "@type": "dppk:QuantitativeValue"
+      },
+      "ratedPower": {
+        "@id": "dppk:ratedPower",
+        "@type": "dppk:QuantitativeValue"
+      },
+      "voltage": {
+        "@id": "dppk:voltage",
+        "@type": "dppk:QuantitativeValue"
+      },
+      "maximumDrillingDiameter": {
+        "@id": "dppk:maximumDrillingDiameter",
+        "@type": "dppk:QuantitativeValue"
+      },
+      "chargingTime": {
+        "@id": "dppk:chargingTime",
+        "@type": "dppk:QuantitativeValue"
+      },
+      "warranty": {
+        "@id": "dppk:warranty",
+        "@type": "dppk:QuantitativeValue"
+      }
+    }
+  ]
+}

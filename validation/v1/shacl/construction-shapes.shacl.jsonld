@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+  },
+  "@graph": [
+    {
+      "@id": "dppkval:ConstructionProductShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "dppk:ConstructionProduct",
+      "sh:and": [
+        {
+          "sh:node": "dppkval:DigitalProductPassportShape"
+        }
+      ],
+      "sh:property": [
+        {
+          "sh:path": "dppk:documents",
+          "sh:name": "Documents",
+          "sh:node": "dppkval:DigitalDocumentShape",
+          "sh:minCount": 0
+        },
+        {
+          "sh:path": "dppk:railProfile",
+          "sh:name": "Rail Profile",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "dppk:steelGrade",
+          "sh:name": "Steel Grade",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "dppk:hasDoP",
+          "sh:name": "Declaration of Performance",
+          "sh:node": "dppkval:DoPShape",
+          "sh:minCount": 1
+        }
+      ]
+    },
+    {
+      "@id": "dppkval:DigitalDocumentShape",
+      "@type": "sh:NodeShape",
+      "sh:property": [
+        {
+          "sh:path": "dppk:name",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "dppk:documentURL",
+          "sh:nodeKind": "sh:IRI",
+          "sh:minCount": 1
+        }
+      ]
+    },
+    {
+      "@id": "dppkval:DoPShape",
+      "@type": "sh:NodeShape",
+      "sh:property": [
+        {
+          "sh:path": "dppk:dopIdentifier",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "dppk:documentURL",
+          "sh:nodeKind": "sh:IRI",
+          "sh:minCount": 1
+        }
+      ]
+    }
+  ]
+}

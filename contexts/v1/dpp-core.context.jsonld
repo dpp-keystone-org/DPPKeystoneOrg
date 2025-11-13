@@ -1,0 +1,195 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gs1": "https://ref.gs1.org/voc/",
+    "schema": "https://schema.org/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "DigitalProductPassport": "dppk:DigitalProductPassport",
+    "Organization": "dppk:Organization",
+    "PostalAddress": "dppk:PostalAddress",
+    "Product": "dppk:Product",
+    "QuantitativeValue": {
+      "@id": "dppk:QuantitativeValue",
+      "@context": {
+        "value": {
+          "@id": "dppk:value",
+          "@type": "xsd:decimal"
+        },
+        "unitCode": {
+          "@id": "dppk:unitCode"
+        },
+        "unitText": {
+          "@id": "dppk:unitText"
+        },
+        "methodologyReference": {
+          "@id": "dppk:methodologyReference",
+          "@type": "@id"
+        }
+      }
+    },
+    "DigitalDocument": "dppk:DigitalDocument",
+    "Certification": "dppk:Certification",
+    "SubstanceOfConcern": "dppk:SubstanceOfConcern",
+    "EcoDesignProperty": "dppk:EcoDesignProperty",
+    "ComplianceTopic": "dppk:ComplianceTopic",
+    "Packaging": "dppk:Packaging",
+    "ProductionStep": "dppk:ProductionStep",
+    "EconomicOperatorRole": "dppk:EconomicOperatorRole",
+    "ManufacturerRole": "dppk:ManufacturerRole",
+    "FacilityRole": "dppk:FacilityRole",
+    "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
+    "ISO6523": "dppk:ISO6523",
+    "DPPID": {
+      "@id": "dppk:DPPID",
+      "@type": "@id"
+    },
+    "ProductID": {
+      "@id": "dppk:ProductID",
+      "@type": "@id"
+    },
+    "EconomicOperatorID": {
+      "@id": "dppk:EconomicOperatorID",
+      "@type": "@id"
+    },
+    "FacilityID": {
+      "@id": "dppk:FacilityID",
+      "@type": "@id"
+    },
+    "Granularity": "dppk:Granularity",
+    "StatusOfTheDPP": "dppk:StatusOfTheDPP",
+    "LastUpdated": {
+      "@id": "dppk:LastUpdated",
+      "@type": "xsd:dateTime"
+    },
+    "BaseDppSchemaVersion": "dppk:BaseDppSchemaVersion",
+    "SectorDataModelVersion": "dppk:SectorDataModelVersion",
+    "hsCode": "dppk:hsCode",
+    "economicOperator": {
+      "@id": "dppk:economicOperator",
+      "@type": "@id"
+    },
+    "manufacturer": {
+      "@id": "dppk:manufacturer",
+      "@type": "@id"
+    },
+    "manufacturingFacility": {
+      "@id": "dppk:manufacturingFacility",
+      "@type": "@id"
+    },
+    "organizationName": "dppk:organizationName",
+    "tradingName": "dppk:tradingName",
+    "gln": "dppk:gln",
+    "leiCode": "dppk:leiCode",
+    "additionalOrganizationID": "dppk:additionalOrganizationID",
+    "additionalOrganizationIDType": "dppk:additionalOrganizationIDType",
+    "iso6523": "dppk:iso6523",
+    "icd": "dppk:icd",
+    "iso6523Value": "dppk:iso6523Value",
+    "address": "dppk:address",
+    "streetAddress": "dppk:streetAddress",
+    "postalCode": "dppk:postalCode",
+    "addressLocality": "dppk:addressLocality",
+    "addressCountry": "dppk:addressCountry",
+    "email": "dppk:email",
+    "telephone": "dppk:telephone",
+    "productName": "dppk:productName",
+    "description": "dppk:description",
+    "gtin": "dppk:gtin",
+    "brand": "dppk:brand",
+    "model": "dppk:model",
+    "image": {
+      "@id": "dppk:image",
+      "@type": "@id"
+    },
+    "color": "dppk:color",
+    "sizeCode": "dppk:sizeCode",
+    "sizeSystemCode": "dppk:sizeSystemCode",
+    "hasPart": {
+      "@id": "dppk:hasPart",
+      "@container": "@list"
+    },
+    "dppLink": {
+      "@id": "dppk:dppLink",
+      "@type": "@id"
+    },
+    "materialClassification": "dppk:materialClassification",
+    "countryOfOrigin": "dppk:countryOfOrigin",
+    "weightPercentage": "dppk:weightPercentage",
+    "recycledContentPercentage": "dppk:recycledContentPercentage",
+    "netWeight": {
+      "@id": "dppk:netWeight",
+      "@type": "dppk:QuantitativeValue"
+    },
+    "grossWeight": {
+      "@id": "dppk:grossWeight",
+      "@type": "dppk:QuantitativeValue"
+    },
+    "documents": {
+      "@id": "dppk:documents",
+      "@container": "@set"
+    },
+    "certifications": {
+      "@id": "dppk:certifications",
+      "@container": "@set"
+    },
+    "substancesOfConcern": {
+      "@id": "dppk:substancesOfConcern",
+      "@container": "@set"
+    },
+    "ecoDesignProperties": {
+      "@id": "dppk:ecoDesignProperties",
+      "@container": "@set"
+    },
+    "complianceTopics": {
+      "@id": "dppk:complianceTopics",
+      "@container": "@set"
+    },
+    "packaging": {
+      "@id": "dppk:packaging",
+      "@container": "@set"
+    },
+    "productionSteps": {
+      "@id": "dppk:productionSteps",
+      "@container": "@list"
+    },
+    "documentType": "dppk:documentType",
+    "languageCode": "dppk:languageCode",
+    "documentURL": {
+      "@id": "dppk:documentURL",
+      "@type": "@id"
+    },
+    "certificationStandard": "dppk:certificationStandard",
+    "certificationIdentification": "dppk:certificationIdentification",
+    "certifyingBodyName": "dppk:certifyingBodyName",
+    "certificationStartDate": {
+      "@id": "dppk:certificationStartDate",
+      "@type": "xsd:date"
+    },
+    "minValue": "dppk:minValue",
+    "maxValue": "dppk:maxValue",
+    "ecoDesignPropertyType": "dppk:ecoDesignPropertyType",
+    "complianceType": "dppk:complianceType",
+    "complianceValue": "dppk:complianceValue",
+    "complianceText": "dppk:complianceText",
+    "packagingMaterialType": "dppk:packagingMaterialType",
+    "packagingMaterialCompositionQuantity": "dppk:packagingMaterialCompositionQuantity",
+    "packagingRecyclingProcessType": "dppk:packagingRecyclingProcessType",
+    "packagingRecycledContent": "dppk:packagingRecycledContent",
+    "packagingSubstanceOfConcern": "dppk:packagingSubstanceOfConcern",
+    "productionStepType": "dppk:productionStepType",
+    "productionLocationCountry": "dppk:productionLocationCountry",
+    "name": "dppk:productName",
+    "identifier": "schema:identifier",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "certifyingBodyID": "dppk:certifyingBodyID",
+    "organizationRole": "dppk:organizationRole",
+    "referencedFileURL": {
+      "@id": "dppk:referencedFileURL",
+      "@type": "@id"
+    }
+  }
+}

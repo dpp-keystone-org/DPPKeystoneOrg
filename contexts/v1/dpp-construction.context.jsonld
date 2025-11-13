@@ -1,0 +1,36 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld",
+    {
+      "cencpr": "urn:cen:cpr:",
+      "ConstructionProduct": "dppk:ConstructionProduct",
+      "DeclarationOfPerformance": "dppk:DeclarationOfPerformance",
+      "hasDoP": {
+        "@id": "dppk:hasDoP",
+        "@type": "@id"
+      },
+      "dopIdentifier": "dppk:dopIdentifier",
+      "harmonisedStandardReference": {
+        "@id": "dppk:harmonisedStandardReference",
+        "@type": "@id"
+      },
+      "notifiedBodyID": "dppk:notifiedBodyID",
+      "avsSystem": "dppk:avsSystem",
+      "reactionToFire": "dppk:reactionToFire",
+      "thermalConductivity": "dppk:thermalConductivity",
+      "compressiveStrength": "dppk:compressiveStrength",
+      "steelGrade": "dppk:steelGrade",
+      "railProfile": "dppk:railProfile"
+    },
+    {
+      "netWeight": {
+        "@id": "dppk:netWeight",
+        "@type": "dppk:QuantitativeValue"
+      },
+      "length": {
+        "@id": "dppk:length",
+        "@type": "dppk:QuantitativeValue"
+      }
+    }
+  ]
+}

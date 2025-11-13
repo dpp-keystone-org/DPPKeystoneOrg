@@ -1,0 +1,183 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/spec/v1/terms"
+  },
+  "@id": "https://dpp-keystone.org/ontology/v1/sectors/Electronics",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Sector Ontology - Electronics and Electrical Equipment Definitions (v1)",
+  "dcterms:description": "Defines concepts for Electronics and Electrical Equipment (EEE), aligning with regulations such as RoHS, WEEE, and Eco-Design requirements.",
+  "owl:versionInfo": "1.0.0",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/ontology/v1/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/ontology/v1/core/Compliance.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:ElectronicDevice",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Electronic Device (EEE)",
+      "rdfs:comment": "Equipment which is dependent on electric currents or electromagnetic fields in order to work properly.",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0019",
+        "rdfs:label": "Directive 2012/19/EU (WEEE Directive)"
+      },
+      "rdfs:subClassOf": {
+        "@id": "dppk:Product"
+      }
+    },
+    {
+      "@id": "dppk:PowerTool",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Power Tool",
+      "rdfs:comment": "A tool that is actuated by an additional power source and mechanism other than the solely manual labor used with hand tools.",
+      "rdfs:subClassOf": {
+        "@id": "dppk:ElectronicDevice"
+      }
+    },
+    {
+      "@id": "dppk:voltage",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Voltage",
+      "rdfs:comment": "The electric potential difference, typically measured in Volts (V).",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      }
+    },
+    {
+      "@id": "dppk:ratedPower",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Rated Power (Wattage)",
+      "rdfs:comment": "The power consumption of the device under normal operating conditions, typically measured in Watts (W).",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      }
+    },
+    {
+      "@id": "dppk:energyEfficiencyClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Energy Efficiency Class",
+      "rdfs:comment": "The energy efficiency rating as defined by the EU Energy Labelling framework (e.g., A, B, C).",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:ipRating",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Ingress Protection (IP) Rating",
+      "rdfs:comment": "Defines levels of sealing effectiveness against intrusion from foreign bodies (tools, dirt) and moisture (e.g., IP54).",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:sparePartsAvailable",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Spare Parts Availability",
+      "rdfs:comment": "Indicates whether spare parts are available for the product.",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "dppk:serviceManualAvailable",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Service Manual Availability",
+      "rdfs:comment": "Indicates whether a service or repair manual is available.",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "dppk:softwareUpdatePolicy",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Software Update Policy",
+      "rdfs:comment": "Information on the duration and type of software/firmware updates provided by the manufacturer.",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      }
+    },
+    {
+      "@id": "dppk:weeeCategory",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "WEEE Category",
+      "rdfs:comment": "The category under the Waste Electrical and Electronic Equipment (WEEE) Directive.",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:disassemblyInstructions",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Disassembly Instructions",
+      "rdfs:comment": "Instructions for safely disassembling the product for repair or recycling.",
+      "rdfs:domain": {
+        "@id": "dppk:ElectronicDevice"
+      },
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      }
+    },
+    {
+      "@id": "dppk:torque",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Torque",
+      "rdfs:comment": "The rotational force generated by the tool, typically measured in Newton-meters (Nm).",
+      "rdfs:domain": {
+        "@id": "dppk:PowerTool"
+      },
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      }
+    },
+    {
+      "@id": "dppk:maximumRatedSpeed",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Maximum Rated Speed",
+      "rdfs:comment": "The maximum operating speed of the tool, typically measured in Revolutions Per Minute (RPM).",
+      "rdfs:domain": {
+        "@id": "dppk:PowerTool"
+      },
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      }
+    }
+  ]
+}
