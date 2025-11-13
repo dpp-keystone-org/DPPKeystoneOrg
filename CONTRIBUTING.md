@@ -41,9 +41,12 @@ guidelines:
 
 ### 1. Directory Structure
 
-*   **Core Definitions (`ontology/v1/core/`):** Only for horizontal (cross-sector) terms mandated by the ESPR or universally applicable concepts.
-*   **Sector Definitions (`ontology/v1/sectors/`):** For terms specific to a regulated sector (e.g., Battery, Textile).
-*   **Context Files (`contexts/v1/`):** Must accurately reflect the mappings defined in the ontology files. If you add a term to the ontology, you must update the corresponding context file.
+All source files are located in the `src/` directory. **Please make all edits here.** The build process will automatically clean these files and place them in the correct location for deployment.
+
+*   **Ontology Definitions (`src/ontology/`):** The semantic source of truth. Contains core and sector-specific definitions.
+*   **Context Files (`src/contexts/`):** The implementation vocabularies that map ontology terms to developer-friendly JSON keys.
+*   **Validation Artifacts (`src/validation/`):** Contains the JSON Schema and SHACL shape files for data validation.
+*   **Examples (`src/examples/`):** Example DPP JSON-LD documents.
 
 ### 2. JSON-LD and Ontology Standards
 
