@@ -1,0 +1,29 @@
+{
+  "@context": "https://dpp-keystone.org/contexts/v1/dpp-battery.context.jsonld",
+  "@type": "dppk:DigitalProductPassport",
+  "ProductID": "urn:gtin:01234567890123",
+  "DPPID": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+  "EconomicOperatorID": "urn:gln:9876543210987",
+  "FacilityID": "urn:gln:9876543210988",
+  "Granularity": "item",
+  "BaseDppSchemaVersion": "1.0",
+  "SectorDataModelVersion": "1.0",
+  "StatusOfTheDPP": "active",
+  "LastUpdated": "2024-05-21T10:00:00Z",
+  "productName": "Industrial Lithium-Ion Battery Module",
+  "BatteryCategory": "IndustrialBattery",
+  "Chemistry": "LFP",
+  "NominalVoltage": "48V",
+  "NominalCapacity": "100Ah",
+  "RecycledContentRatio": 0.15,
+  "CarbonFootprint": {
+    "@type": "dppk:CarbonFootprint",
+    "value": 120.5,
+    "unit": "kgCO2e"
+  },
+  "StateOfHealth": {
+    "@type": "dppk:StateOfHealth",
+    "value": 98.5,
+    "unit": "percent"
+  }
+}
