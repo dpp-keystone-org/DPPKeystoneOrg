@@ -17,10 +17,6 @@
             // ==================================================================
             "batteryCategory": "dppk:batteryCategory",
             "batteryChemistry": "dppk:batteryChemistry",
-            "dateOfManufacture": {
-                "@id": "dppk:dateOfManufacture",
-                "@type": "xsd:date"
-            },
 
             // ==================================================================
             // Battery Properties (Performance and Durability)

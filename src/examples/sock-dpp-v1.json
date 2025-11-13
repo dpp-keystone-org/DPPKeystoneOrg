@@ -1,0 +1,48 @@
+// This is a source file. Do not edit the file in the `dist` directory.
+// This example represents a Digital Product Passport for a pack of socks.
+// It includes the mandatory core header fields and a payload with textile-specific data points,
+// adhering strictly to the vocabulary defined in the dpp-textile.context.jsonld.
+{
+  "@context": "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld",
+  "@type": ["dppk:DigitalProductPassport", "dppk:TextileProduct"],
+
+  // --- Normative DPP Header ---
+  "ProductID": "urn:gtin:54321098765432",
+  "DPPID": "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
+  "EconomicOperatorID": "urn:gln:1122334455667",
+  "Granularity": "model",
+  "BaseDppSchemaVersion": "1.0",
+  "SectorDataModelVersion": "1.0",
+  "StatusOfTheDPP": "active",
+  "LastUpdated": "2024-05-22T11:30:00Z",
+
+  // --- Core Product Information ---
+  "productName": "Everyday Comfort Crew Socks (3-Pack)",
+
+  // --- Textile-Specific Payload ---
+  // This section uses terms defined in the dpp-textile.context.jsonld.
+  "fibreComposition": [
+    {
+      "@type": "dppk:FibreComposition",
+      "fibreType": "Cotton",
+      "fibrePercentage": 85
+    },
+    {
+      "@type": "dppk:FibreComposition",
+      "fibreType": "Polyamide",
+      "fibrePercentage": 13
+    },
+    {
+      "@type": "dppk:FibreComposition",
+      "fibreType": "Elastane",
+      "fibrePercentage": 2
+    }
+  ],
+  "color": "Black",
+  "sizeCode": "EU 42-45",
+  "careInstructions": "Machine wash cold, tumble dry low. Do not bleach.",
+  "recycledContentPercentage": 20,
+
+  // This boolean is required by the textile SHACL shape.
+  "animalOriginNonTextile": false
+}

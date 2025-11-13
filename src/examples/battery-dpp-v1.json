@@ -3,7 +3,7 @@
 // It includes the mandatory core header fields and a payload with battery-specific data points.
 {
   "@context": "https://dpp-keystone.org/contexts/v1/dpp-battery.context.jsonld",
-  "@type": "dppk:DigitalProductPassport",
+  "@type": ["dppk:DigitalProductPassport", "dppk:Battery"],
 
   // --- Normative DPP Header ---
   // These fields are required for all DPPs, regardless of sector.
@@ -22,18 +22,27 @@
 
   // --- Battery-Specific Payload ---
   // This section contains data points relevant to the battery sector.
-  // The vocabulary for these terms is defined in the battery-specific context and ontology.
-  "BatteryCategory": "IndustrialBattery",
-  "Chemistry": "LFP",
-  "NominalVoltage": "48V",
-  "NominalCapacity": "100Ah",
-  "RecycledContentRatio": 0.15,
-  "CarbonFootprint": {
+  // The vocabulary for these terms is defined in the battery-specific context and ontology.  
+  "batteryCategory": "IndustrialBattery",
+  "batteryChemistry": "LFP",
+  "dateOfManufacture": "2024-01-15",
+  "nominalVoltage": {
+    "@type": "QuantitativeValue",
+    "value": 48,
+    "unitCode": "VLT"
+  },
+  "ratedCapacity": {
+    "@type": "QuantitativeValue",
+    "value": 100,
+    "unitCode": "AMH"
+  },
+  "recycledContentRatio": 0.15,
+  "carbonFootprint": {
     "@type": "dppk:CarbonFootprint",
     "value": 120.5,
     "unit": "kgCO2e"
   },
-  "StateOfHealth": {
+  "stateOfHealth": {
     "@type": "dppk:StateOfHealth",
     "value": 98.5,
     "unit": "percent"

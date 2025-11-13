@@ -48,6 +48,11 @@ describe('DPP SHACL Validation', () => {
             shapeFiles: ['battery-shapes.shacl.jsonld']
         },
         {
+            name: 'Textile DPP (sock-dpp-v1.json)',
+            exampleFile: 'sock-dpp-v1.json',
+            shapeFiles: ['textile-shapes.shacl.jsonld']
+        },
+        {
             name: 'Construction DPP (rail-dpp-v1.json)',
             exampleFile: 'rail-dpp-v1.json',
             shapeFiles: ['construction-shapes.shacl.jsonld']

@@ -21,7 +21,10 @@
                 "@container": "@set"
             },
             "fibreType": "dppk:fibreType",
-            "fibrePercentage": "dppk:fibrePercentage",
+            "fibrePercentage": {
+                "@id": "dppk:fibrePercentage",
+                "@type": "xsd:decimal"
+            },
 
             // ==================================================================
             // Properties (Circularity and Sustainability)
