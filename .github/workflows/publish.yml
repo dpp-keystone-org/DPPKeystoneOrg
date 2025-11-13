@@ -11,6 +11,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # These permissions are required to allow the peaceiris/actions-gh-pages action
+    # to push the built files to the gh-pages branch.
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
