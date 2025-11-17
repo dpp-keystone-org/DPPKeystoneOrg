@@ -36,7 +36,8 @@
         {
           "@id": "unece:TradeProduct"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:QuantitativeValue",
@@ -53,7 +54,8 @@
         {
           "@id": "unece:QuantityType"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:productName",
@@ -76,7 +78,8 @@
         {
           "@id": "unece:name"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:description",
@@ -99,7 +102,8 @@
         {
           "@id": "unece:description"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:gtin",
@@ -122,7 +126,8 @@
         {
           "@id": "unece:gTINId"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:brand",
@@ -144,7 +149,8 @@
         {
           "@id": "unece:brandName"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:model",
@@ -163,7 +169,8 @@
         {
           "@id": "unece:modelId"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:image",
@@ -186,7 +193,8 @@
         {
           "@id": "unece:specifiedPicture"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:color",
@@ -208,7 +216,8 @@
         {
           "@id": "unece:colourDescription"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:sizeCode",
@@ -222,7 +231,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:sizeCode"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:sizeSystemCode",
@@ -237,7 +247,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:sizeSystemCode"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:hasPart",
@@ -254,7 +265,8 @@
         {
           "@id": "schema:hasPart"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:dppLink",
@@ -266,7 +278,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:materialClassification",
@@ -281,7 +294,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:additionalProductClassificationCode"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:countryOfOrigin",
@@ -304,7 +318,8 @@
         {
           "@id": "unece:originCountry"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:weightPercentage",
@@ -316,7 +331,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:recycledContentPercentage",
@@ -328,7 +344,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:weight",
@@ -346,6 +363,7 @@
           "@id": "schema:weight"
         }
       ],
+      "rdfs:term_status": "unstable",
       "owl:deprecated": true
     },
     {
@@ -366,7 +384,8 @@
         {
           "@id": "unece:netWeightMeasure"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:grossWeight",
@@ -386,7 +405,8 @@
         {
           "@id": "unece:grossWeightMeasure"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:value",
@@ -409,7 +429,8 @@
         {
           "@id": "unece:unitQuantity"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:unitCode",
@@ -432,7 +453,8 @@
         {
           "@id": "unece:QuantityTypeCode"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:methodologyReference",
@@ -444,7 +466,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:unitText",
@@ -461,7 +484,8 @@
         {
           "@id": "schema:unitText"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     }
   ]
 }

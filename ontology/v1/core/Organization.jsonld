@@ -35,7 +35,8 @@
         {
           "@id": "unece:TradeParty"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:PostalAddress",
@@ -52,7 +53,8 @@
         {
           "@id": "unece:TradeAddress"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:EconomicOperatorRole",
@@ -62,31 +64,36 @@
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "ESPR - Article 2 (Definitions)"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ManufacturerRole",
       "@type": "rdfs:Class",
       "rdfs:label": "Manufacturer Role",
-      "rdfs:comment": "The role of an entity responsible for the production of the finished goods."
+      "rdfs:comment": "The role of an entity responsible for the production of the finished goods.",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:FacilityRole",
       "@type": "rdfs:Class",
       "rdfs:label": "Facility Role",
-      "rdfs:comment": "A specific location or site where manufacturing or processing activities occur."
+      "rdfs:comment": "A specific location or site where manufacturing or processing activities occur.",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ConformityAssessmentBodyRole",
       "@type": "rdfs:Class",
       "rdfs:label": "Conformity Assessment Body Role",
-      "rdfs:comment": "The role of an entity (e.g., Notified Body) that performs conformity assessment activities."
+      "rdfs:comment": "The role of an entity (e.g., Notified Body) that performs conformity assessment activities.",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ISO6523",
       "@type": "rdfs:Class",
       "rdfs:label": "ISO 6523 Identifier",
-      "rdfs:comment": "An organization identifier structured according to ISO 6523-1."
+      "rdfs:comment": "An organization identifier structured according to ISO 6523-1.",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:economicOperator",
@@ -98,7 +105,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:manufacturer",
@@ -118,7 +126,8 @@
         {
           "@id": "gs1:manufacturer"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:manufacturingFacility",
@@ -130,7 +139,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:organizationName",
@@ -153,7 +163,8 @@
         {
           "@id": "unece:name"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:tradingName",
@@ -173,7 +184,8 @@
         {
           "@id": "unece:tradingBusinessName"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:gln",
@@ -196,7 +208,8 @@
         {
           "@id": "unece:gLNId"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:leiCode",
@@ -213,7 +226,8 @@
         {
           "@id": "schema:leiCode"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:additionalOrganizationID",
@@ -230,7 +244,8 @@
         {
           "@id": "gs1:additionalOrganizationIdentification"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:additionalOrganizationIDType",
@@ -247,7 +262,8 @@
         {
           "@id": "gs1:additionalOrganizationIdentificationType"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:iso6523",
@@ -259,7 +275,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:ISO6523"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:icd",
@@ -271,7 +288,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:iso6523Value",
@@ -283,7 +301,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:address",
@@ -306,7 +325,8 @@
         {
           "@id": "unece:postalAddress"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:streetAddress",
@@ -323,7 +343,8 @@
         {
           "@id": "gs1:streetAddress"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:postalCode",
@@ -339,7 +360,8 @@
         {
           "@id": "gs1:postalCode"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:addressLocality",
@@ -355,7 +377,8 @@
         {
           "@id": "gs1:addressLocality"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:addressCountry",
@@ -374,7 +397,8 @@
         {
           "@id": "unece:countryName"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:email",
@@ -390,7 +414,8 @@
         {
           "@id": "gs1:email"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:telephone",
@@ -406,7 +431,8 @@
         {
           "@id": "gs1:telephone"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     }
   ]
 }

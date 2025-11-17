@@ -40,7 +40,8 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:DeclarationOfPerformance",
@@ -49,7 +50,8 @@
       "rdfs:comment": "A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product.",
       "rdfs:subClassOf": {
         "@id": "dppk:DigitalDocument"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:hasDoP",
@@ -61,7 +63,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:DeclarationOfPerformance"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:dopIdentifier",
@@ -73,7 +76,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:harmonisedStandardReference",
@@ -85,7 +89,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:notifiedBodyID",
@@ -97,7 +102,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:avsSystem",
@@ -116,7 +122,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:reactionToFire",
@@ -128,7 +135,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:thermalConductivity",
@@ -139,7 +147,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:compressiveStrength",
@@ -150,7 +159,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:steelGrade",
@@ -162,7 +172,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:railProfile",
@@ -174,7 +185,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     }
   ]
 }

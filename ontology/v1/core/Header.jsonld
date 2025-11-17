@@ -36,7 +36,8 @@
         {
           "@id": "unece:Document"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:DPPID",
@@ -48,7 +49,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ProductID",
@@ -72,7 +74,8 @@
         {
           "@id": "schema:productID"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:EconomicOperatorID",
@@ -84,7 +87,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:FacilityID",
@@ -96,7 +100,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:Granularity",
@@ -108,7 +113,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:StatusOfTheDPP",
@@ -120,7 +126,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:LastUpdated",
@@ -132,7 +139,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:dateTime"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:BaseDppSchemaVersion",
@@ -144,7 +152,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:SectorDataModelVersion",
@@ -156,7 +165,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:hsCode",
@@ -176,7 +186,8 @@
         {
           "@id": "schema:hscode"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     }
   ]
 }

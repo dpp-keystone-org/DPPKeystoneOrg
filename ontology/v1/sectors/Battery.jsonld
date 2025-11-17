@@ -36,7 +36,8 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:BatteryCarbonFootprint",
@@ -49,7 +50,8 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:EcoDesignProperty"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:batteryCategory",
@@ -61,7 +63,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:batteryChemistry",
@@ -73,7 +76,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:dateOfManufacture",
@@ -89,7 +93,8 @@
         {
           "@id": "unece:manufactureDateTime"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ratedCapacity",
@@ -101,7 +106,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:nominalVoltage",
@@ -112,7 +118,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:expectedLifetime",
@@ -124,7 +131,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:stateOfHealth",
@@ -136,7 +144,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:batteryCarbonFootprint",
@@ -148,7 +157,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:BatteryCarbonFootprint"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:bcfTotal",
@@ -160,7 +170,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:bcfPerformanceClass",
@@ -171,7 +182,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:bcfDeclarationWebLink",
@@ -183,7 +195,8 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "rdfs:term_status": "unstable"
     }
   ]
 }

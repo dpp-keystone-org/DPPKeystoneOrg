@@ -40,7 +40,8 @@
         {
           "@id": "unece:Document"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:Certification",
@@ -57,13 +58,15 @@
         {
           "@id": "unece:certificationEvidenceDocument"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:SubstanceOfConcern",
       "@type": "rdfs:Class",
       "rdfs:label": "Substance of Concern",
-      "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product."
+      "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product.",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:EcoDesignProperty",
@@ -76,13 +79,15 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ComplianceTopic",
       "@type": "rdfs:Class",
       "rdfs:label": "Compliance Topic",
-      "rdfs:comment": "A declaration of compliance status regarding specific regulations (e.g., REACH, RoHS, Lacey Act)."
+      "rdfs:comment": "A declaration of compliance status regarding specific regulations (e.g., REACH, RoHS, Lacey Act).",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:Packaging",
@@ -93,13 +98,15 @@
         {
           "@id": "gs1:PackagingMaterialDetails"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ProductionStep",
       "@type": "rdfs:Class",
       "rdfs:label": "Production Step",
-      "rdfs:comment": "A significant step in the manufacturing or processing chain of the product, including its location."
+      "rdfs:comment": "A significant step in the manufacturing or processing chain of the product, including its location.",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:documents",
@@ -114,7 +121,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:referencedFile"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:certifications",
@@ -134,7 +142,8 @@
         {
           "@id": "gs1:certification"
         }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:substancesOfConcern",
@@ -145,7 +154,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:SubstanceOfConcern"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ecoDesignProperties",
@@ -156,7 +166,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:EcoDesignProperty"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:complianceTopics",
@@ -167,7 +178,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:ComplianceTopic"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:packaging",
@@ -181,7 +193,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packaging"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:productionSteps",
@@ -192,7 +205,8 @@
       },
       "rdfs:range": {
         "@id": "dppk:ProductionStep"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:documentType",
@@ -203,7 +217,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:referencedFileTypeCode"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:languageCode",
@@ -214,7 +229,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:fileLanguageCode"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:documentURL",
@@ -228,7 +244,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:referencedFileURL"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:certificationStandard",
@@ -239,7 +256,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:certificationStandard"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:certificationIdentification",
@@ -250,7 +268,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:certificationIdentification"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:certifyingBodyName",
@@ -261,7 +280,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:certificationAgency"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:certificationStartDate",
@@ -275,7 +295,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:certificationStartDate"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:minValue",
@@ -287,7 +308,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:minValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:maxValue",
@@ -299,7 +321,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:maxValue"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ecoDesignPropertyType",
@@ -308,7 +331,8 @@
       "rdfs:comment": "The specific type of Eco-Design property being reported (e.g., EnergyEfficiency, GWP_A1-A3).",
       "rdfs:domain": {
         "@id": "dppk:EcoDesignProperty"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:complianceType",
@@ -317,7 +341,8 @@
       "rdfs:comment": "The specific regulation or standard being addressed (e.g., REACH, RoHS).",
       "rdfs:domain": {
         "@id": "dppk:ComplianceTopic"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:complianceValue",
@@ -326,7 +351,8 @@
       "rdfs:comment": "The status of compliance (e.g., YES, NO, Compliant, Non-Compliant).",
       "rdfs:domain": {
         "@id": "dppk:ComplianceTopic"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:complianceText",
@@ -337,7 +363,8 @@
       },
       "rdfs:range": {
         "@id": "rdf:langString"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:packagingMaterialType",
@@ -348,7 +375,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packagingMaterialType"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:packagingMaterialCompositionQuantity",
@@ -359,7 +387,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packagingMaterialCompositionQuantity"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:packagingRecyclingProcessType",
@@ -371,7 +400,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packagingRecyclingProcessType"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:packagingRecycledContent",
@@ -379,7 +409,8 @@
       "rdfs:label": "Packaging Recycled Content",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:packagingSubstanceOfConcern",
@@ -387,7 +418,8 @@
       "rdfs:label": "Packaging Substance of Concern Present",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:productionStepType",
@@ -396,7 +428,8 @@
       "rdfs:comment": "The name or description of the production step (e.g., Assembly, Weaving, Smelting).",
       "rdfs:domain": {
         "@id": "dppk:ProductionStep"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:productionLocationCountry",
@@ -408,7 +441,8 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:countryCode"
-      }
+      },
+      "rdfs:term_status": "unstable"
     }
   ]
 }

@@ -72,6 +72,7 @@ When proposing a new term (Property or Class):
     *   A clear `rdfs:label` (human-readable name).
     *   A precise `rdfs:comment` (definition).
     *   Appropriate `rdfs:domain` (which Class the property applies to) and `rdfs:range` (the expected value type, e.g., `xsd:string`, `xsd:dateTime`, or another Class).
+    *   An `rdfs:term_status` of `"unstable"` for all new terms. The status will be updated to `"stable"` through the governance process.
 4.  **Specify Property Type:** Define whether it is an `owl:DatatypeProperty` (links to a literal value) or an `owl:ObjectProperty` (links to another resource/object).
 
 ## Getting Help
