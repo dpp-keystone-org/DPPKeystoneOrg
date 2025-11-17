@@ -36,14 +36,16 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
         "rdfs:label": "Regulation (EU) No 1007/2011 (Textile Fibre Names)"
       },
-      "rdfs:subClassOf": { "@id": "dppk:Product" }
+      "rdfs:subClassOf": { "@id": "dppk:Product" },
+      "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:FibreComposition",
         "@type": "rdfs:Class",
         "rdfs:label": "Fibre Composition",
         "rdfs:comment": "Details the specific type and percentage of textile fibres making up the product.",
-        "rdfs:subClassOf": { "@id": "dppk:Product" } // Fibre is treated as a material/product
+        "rdfs:subClassOf": { "@id": "dppk:Product" }, // Fibre is treated as a material/product
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -57,7 +59,8 @@
         "rdfs:label": "Fibre Composition",
         "rdfs:comment": "Relates the textile product to its constituent fibres and their proportions.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:FibreComposition" }
+        "rdfs:range": { "@id": "dppk:FibreComposition" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Fibre Type ---
@@ -67,7 +70,8 @@
         "rdfs:label": "Fibre Type",
         "rdfs:comment": "The specific type of fibre (e.g., Cotton, Polyester, Wool, Elastane).",
         "rdfs:domain": { "@id": "dppk:FibreComposition" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Fibre Percentage ---
@@ -77,7 +81,8 @@
         "rdfs:label": "Fibre Percentage",
         "rdfs:comment": "The percentage of the total product weight constituted by this fibre.",
         "rdfs:domain": { "@id": "dppk:FibreComposition" },
-        "rdfs:range": { "@id": "xsd:decimal" }
+        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:term_status": "unstable"
     },
     
     // ==================================================================
@@ -93,7 +98,8 @@
         "rdfs:label": "Presence of Non-Textile Parts of Animal Origin",
         "rdfs:comment": "Indicates the presence of materials such as leather, bone, or shell.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "xsd:boolean" }
+        "rdfs:range": { "@id": "xsd:boolean" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Durability Indicators ---
@@ -103,7 +109,8 @@
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Tear Strength",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:abrasionResistance",
@@ -111,7 +118,8 @@
         "rdfs:label": "Abrasion Resistance",
         "rdfs:comment": "Resistance to wear, often measured in Martindale cycles.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Microplastic Release ---
@@ -121,7 +129,8 @@
         "rdfs:label": "Microplastic Release Potential",
         "rdfs:comment": "Information regarding the propensity of the textile to release microplastics during washing or use.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
     
     // ==================================================================
@@ -139,7 +148,8 @@
         "owl:equivalentProperty": [
           { "@id": "gs1:careLabel" },
           { "@id": "unece:textileCareInstructionCode" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Repairability Score/Information ---
@@ -149,7 +159,8 @@
         "rdfs:label": "Repairability Information",
         "rdfs:comment": "Instructions or scores related to the ease of repairing the textile product.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "rdf:langString" }
+        "rdfs:range": { "@id": "rdf:langString" },
+        "rdfs:term_status": "unstable"
     }
   ]
 }

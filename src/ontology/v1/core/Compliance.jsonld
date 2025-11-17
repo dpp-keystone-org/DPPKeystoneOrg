@@ -36,7 +36,8 @@
         { "@id": "schema:DigitalDocument" },
         { "@id": "gs1:ReferencedFile" },
         { "@id": "unece:Document" }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:Certification",
@@ -47,13 +48,15 @@
           { "@id": "schema:Certification" },
           { "@id": "gs1:CertificationDetails" },
           { "@id": "unece:certificationEvidenceDocument" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:SubstanceOfConcern",
         "@type": "rdfs:Class",
         "rdfs:label": "Substance of Concern",
-        "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product."
+        "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product.",
+        "rdfs:term_status": "unstable"
         // No direct equivalent in GS1/Schema.org.
     },
     {
@@ -66,13 +69,15 @@
         "rdfs:label": "Directive 2009/125/EC (Ecodesign Directive)"
       },
         // Often expressed as a QuantitativeValue or PropertyValue.
-        "rdfs:subClassOf": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:subClassOf": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:ComplianceTopic",
         "@type": "rdfs:Class",
         "rdfs:label": "Compliance Topic",
-        "rdfs:comment": "A declaration of compliance status regarding specific regulations (e.g., REACH, RoHS, Lacey Act)."
+        "rdfs:comment": "A declaration of compliance status regarding specific regulations (e.g., REACH, RoHS, Lacey Act).",
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:Packaging",
@@ -81,13 +86,15 @@
         "rdfs:comment": "Information about the materials and properties of the product's packaging.",
         "owl:equivalentClass": [
             { "@id": "gs1:PackagingMaterialDetails" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:ProductionStep",
         "@type": "rdfs:Class",
         "rdfs:label": "Production Step",
-        "rdfs:comment": "A significant step in the manufacturing or processing chain of the product, including its location."
+        "rdfs:comment": "A significant step in the manufacturing or processing chain of the product, including its location.",
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -101,7 +108,8 @@
         "rdfs:comment": "Relates the product to associated digital documents.",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "dppk:DigitalDocument" },
-        "owl:equivalentProperty": { "@id": "gs1:referencedFile" }
+        "owl:equivalentProperty": { "@id": "gs1:referencedFile" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:certifications",
@@ -113,28 +121,32 @@
         "owl:equivalentProperty": [
             { "@id": "schema:hasCertification" },
             { "@id": "gs1:certification" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:substancesOfConcern",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Substances of Concern",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:SubstanceOfConcern" }
+        "rdfs:range": { "@id": "dppk:SubstanceOfConcern" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:ecoDesignProperties",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Eco-Design Properties",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:EcoDesignProperty" }
+        "rdfs:range": { "@id": "dppk:EcoDesignProperty" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:complianceTopics",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Compliance Topics",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:ComplianceTopic" }
+        "rdfs:range": { "@id": "dppk:ComplianceTopic" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:packaging",
@@ -142,14 +154,16 @@
         "rdfs:label": "Packaging",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "dppk:Packaging" },
-        "owl:equivalentProperty": { "@id": "gs1:packaging" }
+        "owl:equivalentProperty": { "@id": "gs1:packaging" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:productionSteps",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Production Steps",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:ProductionStep" }
+        "rdfs:range": { "@id": "dppk:ProductionStep" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -162,14 +176,16 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Document Type",
         "rdfs:domain": { "@id": "dppk:DigitalDocument" },
-        "owl:equivalentProperty": { "@id": "gs1:referencedFileTypeCode" }
+        "owl:equivalentProperty": { "@id": "gs1:referencedFileTypeCode" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:languageCode",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Language Code",
         "rdfs:domain": { "@id": "dppk:DigitalDocument" },
-        "owl:equivalentProperty": { "@id": "gs1:fileLanguageCode" }
+        "owl:equivalentProperty": { "@id": "gs1:fileLanguageCode" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:documentURL",
@@ -177,7 +193,8 @@
         "rdfs:label": "Document URL",
         "rdfs:domain": { "@id": "dppk:DigitalDocument" },
         "rdfs:range": { "@id": "xsd:anyURI" },
-        "owl:equivalentProperty": { "@id": "gs1:referencedFileURL" }
+        "owl:equivalentProperty": { "@id": "gs1:referencedFileURL" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Certification Details ---
@@ -186,21 +203,24 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Certification Standard/Name",
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "owl:equivalentProperty": { "@id": "gs1:certificationStandard" }
+        "owl:equivalentProperty": { "@id": "gs1:certificationStandard" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:certificationIdentification",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Certificate Number/ID",
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "owl:equivalentProperty": { "@id": "gs1:certificationIdentification" }
+        "owl:equivalentProperty": { "@id": "gs1:certificationIdentification" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:certifyingBodyName",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Certifying Body Name",
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "owl:equivalentProperty": { "@id": "gs1:certificationAgency" }
+        "owl:equivalentProperty": { "@id": "gs1:certificationAgency" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:certificationStartDate",
@@ -208,7 +228,8 @@
         "rdfs:label": "Start of Certificate Validity",
         "rdfs:domain": { "@id": "dppk:Certification" },
         "rdfs:range": { "@id": "xsd:date" },
-        "owl:equivalentProperty": { "@id": "gs1:certificationStartDate" }
+        "owl:equivalentProperty": { "@id": "gs1:certificationStartDate" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Substances of Concern Details ---
@@ -219,7 +240,8 @@
         "rdfs:label": "Minimum Value",
         "rdfs:comment": "The minimum concentration or amount of the substance present.",
         "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "owl:equivalentProperty": { "@id": "schema:minValue" }
+        "owl:equivalentProperty": { "@id": "schema:minValue" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:maxValue",
@@ -227,7 +249,8 @@
         "rdfs:label": "Maximum Value",
         "rdfs:comment": "The maximum concentration or amount of the substance present.",
         "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "owl:equivalentProperty": { "@id": "schema:maxValue" }
+        "owl:equivalentProperty": { "@id": "schema:maxValue" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Eco-Design Details (TBDs in spreadsheet) ---
@@ -236,7 +259,8 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Eco-Design Property Type",
         "rdfs:comment": "The specific type of Eco-Design property being reported (e.g., EnergyEfficiency, GWP_A1-A3).",
-        "rdfs:domain": { "@id": "dppk:EcoDesignProperty" }
+        "rdfs:domain": { "@id": "dppk:EcoDesignProperty" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Compliance Topics Details (TBDs in spreadsheet) ---
@@ -245,21 +269,24 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Compliance Type",
         "rdfs:comment": "The specific regulation or standard being addressed (e.g., REACH, RoHS).",
-        "rdfs:domain": { "@id": "dppk:ComplianceTopic" }
+        "rdfs:domain": { "@id": "dppk:ComplianceTopic" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:complianceValue",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Compliance Value",
         "rdfs:comment": "The status of compliance (e.g., YES, NO, Compliant, Non-Compliant).",
-        "rdfs:domain": { "@id": "dppk:ComplianceTopic" }
+        "rdfs:domain": { "@id": "dppk:ComplianceTopic" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:complianceText",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Explaining Text",
         "rdfs:domain": { "@id": "dppk:ComplianceTopic" },
-        "rdfs:range": { "@id": "rdf:langString" }
+        "rdfs:range": { "@id": "rdf:langString" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Packaging Details ---
@@ -268,14 +295,16 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Packaging Material Type",
         "rdfs:domain": { "@id": "dppk:Packaging" },
-        "owl:equivalentProperty": { "@id": "gs1:packagingMaterialType" }
+        "owl:equivalentProperty": { "@id": "gs1:packagingMaterialType" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:packagingMaterialCompositionQuantity",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Packaging Material Composition Quantity",
         "rdfs:domain": { "@id": "dppk:Packaging" },
-        "owl:equivalentProperty": { "@id": "gs1:packagingMaterialCompositionQuantity" }
+        "owl:equivalentProperty": { "@id": "gs1:packagingMaterialCompositionQuantity" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:packagingRecyclingProcessType",
@@ -283,20 +312,23 @@
         "rdfs:label": "Packaging Recycling Process Type",
         "rdfs:comment": "Indicates if the packaging is RECYCLABLE, REUSABLE, or COMPOSTABLE.",
         "rdfs:domain": { "@id": "dppk:Packaging" },
-        "owl:equivalentProperty": { "@id": "gs1:packagingRecyclingProcessType" }
+        "owl:equivalentProperty": { "@id": "gs1:packagingRecyclingProcessType" },
+        "rdfs:term_status": "unstable"
     },
     // (TBDs in spreadsheet)
     {
         "@id": "dppk:packagingRecycledContent",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Packaging Recycled Content",
-        "rdfs:domain": { "@id": "dppk:Packaging" }
+        "rdfs:domain": { "@id": "dppk:Packaging" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:packagingSubstanceOfConcern",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Packaging Substance of Concern Present",
-        "rdfs:domain": { "@id": "dppk:Packaging" }
+        "rdfs:domain": { "@id": "dppk:Packaging" },
+        "rdfs:term_status": "unstable"
     },
 
 
@@ -306,7 +338,8 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Production Step Type",
         "rdfs:comment": "The name or description of the production step (e.g., Assembly, Weaving, Smelting).",
-        "rdfs:domain": { "@id": "dppk:ProductionStep" }
+        "rdfs:domain": { "@id": "dppk:ProductionStep" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:productionLocationCountry",
@@ -314,7 +347,8 @@
         "rdfs:label": "Production Location Country",
         "rdfs:comment": "The country where the production step took place. Recommended to use ISO 3166-1 alpha-3 codes.",
         "rdfs:domain": { "@id": "dppk:ProductionStep" },
-        "owl:equivalentProperty": { "@id": "gs1:countryCode" }
+        "owl:equivalentProperty": { "@id": "gs1:countryCode" },
+        "rdfs:term_status": "unstable"
     }
   ]
 }

@@ -39,14 +39,16 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
         "rdfs:label": "Regulation (EU) No 305/2011 (Construction Products Regulation - CPR)"
       },
-      "rdfs:subClassOf": { "@id": "dppk:Product" }
+      "rdfs:subClassOf": { "@id": "dppk:Product" },
+      "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:DeclarationOfPerformance",
         "@type": "rdfs:Class",
         "rdfs:label": "Declaration of Performance (DoP)",
         "rdfs:comment": "A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product.",
-        "rdfs:subClassOf": { "@id": "dppk:DigitalDocument" }
+        "rdfs:subClassOf": { "@id": "dppk:DigitalDocument" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -60,7 +62,8 @@
         "rdfs:label": "Has Declaration of Performance",
         "rdfs:comment": "Relates the construction product to its Declaration of Performance.",
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:DeclarationOfPerformance" }
+        "rdfs:range": { "@id": "dppk:DeclarationOfPerformance" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- DoP Identifier ---
@@ -70,7 +73,8 @@
         "rdfs:label": "DoP Identifier",
         "rdfs:comment": "The unique identification code of the Declaration of Performance.",
         "rdfs:domain": { "@id": "dppk:DeclarationOfPerformance" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Harmonised European Standard (hEN) Reference ---
@@ -80,7 +84,8 @@
         "rdfs:label": "Harmonised Standard Reference (hEN)",
         "rdfs:comment": "A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product.",
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:anyURI" }
+        "rdfs:range": { "@id": "xsd:anyURI" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Notified Body ID ---
@@ -90,7 +95,8 @@
         "rdfs:label": "Notified Body Identifier",
         "rdfs:comment": "The identification number of the Notified Body involved in the assessment and verification of constancy of performance (e.g., NB1234).",
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
         // Note: Can also be modeled as a relationship to an Organization with the role ConformityAssessmentBodyRole.
     },
 
@@ -106,7 +112,8 @@
       },
       "owl:equivalentProperty": { "@id": "cencpr:avs_system" },
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -121,21 +128,24 @@
         "rdfs:label": "Reaction to Fire",
         "rdfs:comment": "The classification of the product's contribution to fire (Euroclass).",
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:thermalConductivity",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Thermal Conductivity (Lambda)",
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:compressiveStrength",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Compressive Strength",
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -148,7 +158,8 @@
         "rdfs:label": "Steel Grade",
         "rdfs:comment": "The classification of the steel based on its composition and physical properties (e.g., R260, S355).",
         "rdfs:domain": { "@id": "dppk:Product" }, // Applicable broadly to steel products
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:railProfile",
@@ -156,7 +167,8 @@
         "rdfs:label": "Rail Profile",
         "rdfs:comment": "The standardized cross-section design of a railway rail (e.g., 46E1).",
         "rdfs:domain": { "@id": "dppk:Product" }, // Applicable specifically to rails
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     }
   ]
 }

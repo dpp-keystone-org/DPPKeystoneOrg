@@ -36,7 +36,8 @@
         "@id": "https://eur-lex.europa.eu/eli/reg/2023/1542/oj",
         "rdfs:label": "Regulation (EU) 2023/1542 (Battery Regulation)"
       },
-      "rdfs:subClassOf": { "@id": "dppk:Product" }
+      "rdfs:subClassOf": { "@id": "dppk:Product" },
+      "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:BatteryCarbonFootprint",
@@ -47,7 +48,8 @@
         "@id": "https://eur-lex.europa.eu/eli/reg/2023/1542/oj",
         "rdfs:label": "Battery Regulation - Article 7 (Carbon footprint)"
       },
-        "rdfs:subClassOf": { "@id": "dppk:EcoDesignProperty" }
+        "rdfs:subClassOf": { "@id": "dppk:EcoDesignProperty" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -61,7 +63,8 @@
         "rdfs:label": "Battery Category",
         "rdfs:comment": "The category of the battery (e.g., Portable, LMT, EV, Industrial, SLI).",
         "rdfs:domain": { "@id": "dppk:Battery" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Battery Chemistry ---
@@ -71,7 +74,8 @@
         "rdfs:label": "Battery Chemistry",
         "rdfs:comment": "The chemical composition of the battery (e.g., Lithium-ion, Nickel-metal hydride, Lead-acid).",
         "rdfs:domain": { "@id": "dppk:Battery" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Place/Date of Manufacture ---
@@ -83,7 +87,8 @@
         "rdfs:range": { "@id": "xsd:date" },
         "owl:equivalentProperty": [
             {"@id": "unece:manufactureDateTime"}
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     
     // ==================================================================
@@ -97,7 +102,8 @@
         "rdfs:label": "Rated Capacity",
         "rdfs:comment": "The total electric charge the battery can deliver under specific conditions. Usually measured in Ampere-hours (Ah) or Watt-hours (Wh).",
         "rdfs:domain": { "@id": "dppk:Battery" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Nominal Voltage ---
@@ -106,7 +112,8 @@
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Nominal Voltage",
         "rdfs:domain": { "@id": "dppk:Battery" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Expected Lifetime ---
@@ -116,7 +123,8 @@
         "rdfs:label": "Expected Lifetime",
         "rdfs:comment": "The anticipated service life of the battery, often expressed in charge/discharge cycles or years.",
         "rdfs:domain": { "@id": "dppk:Battery" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- State of Health (SoH) ---
@@ -126,7 +134,8 @@
         "rdfs:label": "State of Health (SoH)",
         "rdfs:comment": "A measure of the battery's condition relative to its ideal new condition. Applicable to EV, LMT, and Industrial batteries.",
         "rdfs:domain": { "@id": "dppk:Battery" },
-        "rdfs:range": { "@id": "xsd:decimal" } // Expressed as a percentage (0.0 to 1.0)
+        "rdfs:range": { "@id": "xsd:decimal" }, // Expressed as a percentage (0.0 to 1.0)
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -148,7 +157,8 @@
         "rdfs:label": "Battery Carbon Footprint",
         "rdfs:comment": "Relates the battery to its declared carbon footprint information.",
         "rdfs:domain": { "@id": "dppk:Battery" },
-        "rdfs:range": { "@id": "dppk:BatteryCarbonFootprint" }
+        "rdfs:range": { "@id": "dppk:BatteryCarbonFootprint" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:bcfTotal",
@@ -156,14 +166,16 @@
         "rdfs:label": "Total Carbon Footprint",
         "rdfs:comment": "The total declared carbon footprint of the battery, expressed in kg CO2 equivalent per functional unit.",
         "rdfs:domain": { "@id": "dppk:BatteryCarbonFootprint" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:bcfPerformanceClass",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Carbon Footprint Performance Class",
         "rdfs:domain": { "@id": "dppk:BatteryCarbonFootprint" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:bcfDeclarationWebLink",
@@ -171,7 +183,8 @@
         "rdfs:label": "Carbon Footprint Declaration Web Link",
         "rdfs:comment": "A web link to a public version of the study supporting the carbon footprint declaration.",
         "rdfs:domain": { "@id": "dppk:BatteryCarbonFootprint" },
-        "rdfs:range": { "@id": "xsd:anyURI" }
+        "rdfs:range": { "@id": "xsd:anyURI" },
+        "rdfs:term_status": "unstable"
     }
   ]
 }

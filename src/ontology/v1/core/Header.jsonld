@@ -35,7 +35,8 @@
         { "@id": "schema:Product" },
         { "@id": "schema:Certification" },
         { "@id": "unece:Document" }
-      ] 
+      ],
+      "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -50,7 +51,8 @@
       "rdfs:label": "DPP Identifier",
       "rdfs:comment": "The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI).",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" }
+      "rdfs:range": { "@id": "xsd:anyURI" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- ProductID (UPI) ---
@@ -68,7 +70,8 @@
       "owl:equivalentProperty": [
         { "@id": "gs1:productID" },
         { "@id": "schema:productID" }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
 
     // --- EconomicOperatorID (EOI) ---
@@ -78,7 +81,8 @@
       "rdfs:label": "Economic Operator Identifier (EOI)",
       "rdfs:comment": "The unique identifier for the Economic Operator responsible for placing the product on the market.",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" }
+      "rdfs:range": { "@id": "xsd:anyURI" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- FacilityID ---
@@ -88,7 +92,8 @@
       "rdfs:label": "Facility Identifier",
       "rdfs:comment": "Optional. The unique identifier for the manufacturing or processing facility associated with the product.",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" }
+      "rdfs:range": { "@id": "xsd:anyURI" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- Granularity ---
@@ -99,7 +104,8 @@
       "rdfs:label": "Granularity Level",
       "rdfs:comment": "Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- StatusOfTheDPP ---
@@ -109,7 +115,8 @@
       "rdfs:label": "DPP Status",
       "rdfs:comment": "The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- LastUpdated ---
@@ -119,7 +126,8 @@
       "rdfs:label": "Last Updated Timestamp",
       "rdfs:comment": "The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:dateTime" }
+      "rdfs:range": { "@id": "xsd:dateTime" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- Versioning ---
@@ -129,7 +137,8 @@
       "rdfs:label": "Base DPP Schema Version",
       "rdfs:comment": "The version of the horizontal (cross-sector) DPP schema used for this instance.",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:SectorDataModelVersion",
@@ -137,7 +146,8 @@
       "rdfs:label": "Sector Data Model Version",
       "rdfs:comment": "The version of the sector-specific data model (e.g., Battery Regulation, Textile Strategy) used for this instance.",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- hsCode (Often considered part of the header/identification) ---
@@ -151,7 +161,9 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:customsClassification" },
             { "@id": "schema:hscode" }
-        ]
+        ],
+        "rdfs:term_status": "unstable
+"
     }
   ]
 }

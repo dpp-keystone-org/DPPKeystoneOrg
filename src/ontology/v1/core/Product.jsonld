@@ -35,7 +35,8 @@
           { "@id": "schema:Product" },
           { "@id": "gs1:Product" },
           { "@id": "unece:TradeProduct" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     {
@@ -48,7 +49,8 @@
             { "@id": "qudt:QuantityValue" },
             { "@id": "unece:QuantityType" }
             // Note: GS1 does not have a direct equivalent class; it uses properties directly on the product.
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -67,7 +69,8 @@
             { "@id": "schema:name" },
             { "@id": "gs1:productName" },
             { "@id": "unece:name" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Product Description ---
@@ -82,7 +85,8 @@
             { "@id": "schema:description" },
             { "@id": "gs1:productDescription" },
             { "@id": "unece:description" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- GTIN ---
@@ -97,7 +101,8 @@
             { "@id": "schema:gtin" },
             { "@id": "gs1:gtin" },
             { "@id": "unece:gTINId" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     
     // --- Brand ---
@@ -111,7 +116,8 @@
             { "@id": "schema:brand" },
             { "@id": "gs1:brandName" },
             { "@id": "unece:brandName" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Model Number ---
@@ -124,7 +130,8 @@
         "owl:equivalentProperty": [
             { "@id": "schema:model" },
             { "@id": "unece:modelId" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Image ---
@@ -139,7 +146,8 @@
             { "@id": "schema:image" },
             { "@id": "gs1:productImage" },
             { "@id": "unece:specifiedPicture" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Color (Mapped based on spreadsheet) ---
@@ -153,7 +161,8 @@
             { "@id": "schema:color" },
             { "@id": "gs1:colourDescription" },
             { "@id": "unece:colourDescription" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Size (Mapped based on spreadsheet) ---
@@ -163,7 +172,8 @@
         "rdfs:label": "Size Code",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:sizeCode" }
+        "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:sizeSystemCode",
@@ -172,7 +182,8 @@
         "rdfs:comment": "The system used for the size code (e.g., EUROPE, US).",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:sizeSystemCode" }
+        "owl:equivalentProperty": { "@id": "gs1:sizeSystemCode" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -189,7 +200,8 @@
         "rdfs:range": { "@id": "dppk:Product" },
         "owl:equivalentProperty": [
             { "@id": "schema:hasPart" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- DPP Link (for referred DPPs) ---
@@ -199,7 +211,8 @@
         "rdfs:label": "DPP Link",
         "rdfs:comment": "A URI pointing to the Digital Product Passport of a component, if one exists.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:anyURI" }
+        "rdfs:range": { "@id": "xsd:anyURI" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Material Classification (e.g., Steel Grade) ---
@@ -210,7 +223,8 @@
         "rdfs:comment": "A code or standard classifying the material (e.g., steel grade, plastic type).",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:additionalProductClassificationCode" }
+        "owl:equivalentProperty": { "@id": "gs1:additionalProductClassificationCode" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Country of Origin ---
@@ -225,7 +239,8 @@
             { "@id": "schema:countryOfOrigin" },
             { "@id": "gs1:countryOfOrigin" },
             { "@id": "unece:originCountry" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Weight Percentage (TBD in spreadsheet) ---
@@ -235,7 +250,8 @@
         "rdfs:label": "Weight Percentage",
         "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:decimal" }
+        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Recycled Content Percentage (TBD in spreadsheet) ---
@@ -245,7 +261,8 @@
         "rdfs:label": "Recycled Content Percentage",
         "rdfs:comment": "The percentage of the material that is derived from recycled sources.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:decimal" }
+        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -264,6 +281,7 @@
             { "@id": "schema:weight" }
             // GS1 uses specific properties like gs1:netWeight, not a generic 'weight' relationship.
         ],
+        "rdfs:term_status": "unstable",
         "owl:deprecated": true
     },
     {
@@ -276,7 +294,8 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:netWeight" },
             { "@id": "unece:netWeightMeasure" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:grossWeight",
@@ -288,7 +307,8 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:grossWeight" },
             { "@id": "unece:grossWeightMeasure" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Value (Numeric) ---
@@ -304,7 +324,8 @@
             { "@id": "schema:value" },
             { "@id": "gs1:value" },
             { "@id": "unece:unitQuantity" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Unit Code (Standardized) ---
@@ -319,7 +340,8 @@
             { "@id": "schema:unitCode" },
             { "@id": "gs1:unitCode" },
             { "@id": "unece:QuantityTypeCode" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Methodology/Dictionary Reference (Strategy 4) ---
@@ -329,7 +351,8 @@
         "rdfs:label": "Methodology or Dictionary Reference",
         "rdfs:comment": "A reference to the standard, methodology, or data dictionary used to define or measure this specific value (e.g., ISO standard number, specific PEFCR rule).",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
 
     // --- Unit Text (Human-readable) ---
@@ -342,7 +365,8 @@
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
             { "@id": "schema:unitText" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     }
   ]
 }

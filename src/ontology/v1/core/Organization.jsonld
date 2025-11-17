@@ -32,7 +32,8 @@
         { "@id": "schema:Organization" },
         { "@id": "gs1:Organization" },
         { "@id": "unece:TradeParty" }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:PostalAddress",
@@ -43,7 +44,8 @@
         { "@id": "schema:PostalAddress" },
         { "@id": "gs1:Address" },
         { "@id": "unece:TradeAddress" }
-      ]
+      ],
+      "rdfs:term_status": "unstable"
     },
 
     // --- Defining Roles as Classes for Co-typing ---
@@ -56,31 +58,36 @@
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "ESPR - Article 2 (Definitions)"
-      }
+      },
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:ManufacturerRole",
       "@type": "rdfs:Class",
       "rdfs:label": "Manufacturer Role",
-      "rdfs:comment": "The role of an entity responsible for the production of the finished goods."
+      "rdfs:comment": "The role of an entity responsible for the production of the finished goods.",
+      "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:FacilityRole",
         "@type": "rdfs:Class",
         "rdfs:label": "Facility Role",
-        "rdfs:comment": "A specific location or site where manufacturing or processing activities occur."
+        "rdfs:comment": "A specific location or site where manufacturing or processing activities occur.",
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:ConformityAssessmentBodyRole",
         "@type": "rdfs:Class",
         "rdfs:label": "Conformity Assessment Body Role",
-        "rdfs:comment": "The role of an entity (e.g., Notified Body) that performs conformity assessment activities."
+        "rdfs:comment": "The role of an entity (e.g., Notified Body) that performs conformity assessment activities.",
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:ISO6523",
         "@type": "rdfs:Class",
         "rdfs:label": "ISO 6523 Identifier",
-        "rdfs:comment": "An organization identifier structured according to ISO 6523-1."
+        "rdfs:comment": "An organization identifier structured according to ISO 6523-1.",
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -94,7 +101,8 @@
       "rdfs:label": "Economic Operator",
       "rdfs:comment": "Relates the DPP to the Economic Operator responsible for it.",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "dppk:Organization" }
+      "rdfs:range": { "@id": "dppk:Organization" },
+      "rdfs:term_status": "unstable"
     },
 
     // --- manufacturer (The Relationship Property) ---
@@ -108,7 +116,8 @@
         "owl:equivalentProperty": [
             { "@id": "schema:manufacturer" },
             { "@id": "gs1:manufacturer" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- manufacturingFacility (The Relationship Property) ---
@@ -118,7 +127,8 @@
         "rdfs:label": "Manufacturing Facility",
         "rdfs:comment": "Relates the DPP to the specific facility where the product (or a step) was manufactured.",
         "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-        "rdfs:range": { "@id": "dppk:Organization" }
+        "rdfs:range": { "@id": "dppk:Organization" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -137,7 +147,8 @@
             { "@id": "schema:name" },
             { "@id": "gs1:organizationName" },
             { "@id": "unece:name" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Trading Name ---
@@ -151,7 +162,8 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:organizationTradingName" },
             { "@id": "unece:tradingBusinessName" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     
     // ==================================================================
@@ -170,7 +182,8 @@
             { "@id": "gs1:globalLocationNumber" },
             { "@id": "schema:globalLocationNumber" },
             { "@id": "unece:gLNId" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- LEI (Legal Entity Identifier) ---
@@ -183,7 +196,8 @@
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
             { "@id": "schema:leiCode" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
 
     // --- Additional Identifiers (EORI, VAT, etc.) ---
@@ -197,7 +211,8 @@
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
             { "@id": "gs1:additionalOrganizationIdentification" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:additionalOrganizationIDType",
@@ -208,7 +223,8 @@
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
             { "@id": "gs1:additionalOrganizationIdentificationType" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:iso6523",
@@ -216,7 +232,8 @@
         "rdfs:label": "ISO 6523 Identifier",
         "rdfs:comment": "Relates an organization to one of its ISO 6523 identifiers.",
         "rdfs:domain": { "@id": "dppk:Organization" },
-        "rdfs:range": { "@id": "dppk:ISO6523" }
+        "rdfs:range": { "@id": "dppk:ISO6523" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:icd",
@@ -224,7 +241,8 @@
         "rdfs:label": "ISO 6523 ICD",
         "rdfs:comment": "The 4-digit International Code Designator (ICD) from ISO 6523-1.",
         "rdfs:domain": { "@id": "dppk:ISO6523" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:iso6523Value",
@@ -232,7 +250,8 @@
         "rdfs:label": "ISO 6523 Value",
         "rdfs:comment": "The value of the identifier within the scheme defined by the ICD.",
         "rdfs:domain": { "@id": "dppk:ISO6523" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
     },
 
     // ==================================================================
@@ -251,7 +270,8 @@
             { "@id": "schema:address" },
             { "@id": "gs1:address" },
             { "@id": "unece:postalAddress" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:streetAddress",
@@ -262,7 +282,8 @@
         "owl:equivalentProperty": [
              { "@id": "schema:streetAddress" },
              { "@id": "gs1:streetAddress" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:postalCode",
@@ -272,7 +293,8 @@
         "owl:equivalentProperty": [
             { "@id": "schema:postalCode" },
             { "@id": "gs1:postalCode" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:addressLocality",
@@ -282,7 +304,8 @@
         "owl:equivalentProperty": [
             { "@id": "schema:addressLocality" },
             { "@id": "gs1:addressLocality" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:addressCountry",
@@ -293,7 +316,8 @@
             { "@id": "schema:addressCountry" },
             { "@id": "gs1:addressCountry" },
             { "@id": "unece:countryName" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:email",
@@ -303,7 +327,8 @@
         "owl:equivalentProperty": [
             { "@id": "schema:email" },
             { "@id": "gs1:email" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:telephone",
@@ -313,7 +338,8 @@
         "owl:equivalentProperty": [
             { "@id": "schema:telephone" },
             { "@id": "gs1:telephone" }
-        ]
+        ],
+        "rdfs:term_status": "unstable"
     }
   ]
 }
