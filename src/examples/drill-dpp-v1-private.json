@@ -37,15 +37,17 @@
   "@type": ["DigitalProductPassport", "PowerTool"],
 
   // --- DPP Headers (Aligned with Core Ontology) ---
-  "ProductID": "https://id.gs1.org/01/05012345101095/21/22334455",
-  "DPPID": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
-  "EconomicOperatorID": "urn:lei:ABCDE123456789012345",
-  "FacilityID": "urn:lei:ABCDE123456789012345", // Included in private version
-  "Granularity": "item",
-  "BaseDppSchemaVersion": "1.0.0",
-  "SectorDataModelVersion": "Keystone_Electronics_v1.0.0",
-  "StatusOfTheDPP": "active",
-  "LastUpdated": "2025-08-20T23:53:06Z",
+  "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
+  "productId": "https://id.gs1.org/01/05012345101095/21/22334455",
+  "granularity": "Item",
+  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppStatus": "Active",
+  "lastUpdated": "2025-08-20T23:53:06Z",
+  "economicOperatorId": "urn:lei:ABCDE123456789012345",
+  "facilityId": "urn:lei:ABCDE123456789012345",
+  "delegatedActIds": [
+    "prEN_EcodesignForSustainableProducts_2024"
+  ],
   "hsCode": "84672100",
 
   // --- Core Product Information (Aligned with Core Ontology) ---

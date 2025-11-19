@@ -18,15 +18,7 @@
     "Organization": "dppk:Organization",
     "PostalAddress": "dppk:PostalAddress",
     "Product": "dppk:Product",
-    "QuantitativeValue": {
-      "@id": "dppk:QuantitativeValue",
-      "@context": {
-        "value": { "@id": "dppk:value", "@type": "xsd:decimal" },
-        "unitCode": { "@id": "dppk:unitCode" },
-        "unitText": { "@id": "dppk:unitText" },
-        "methodologyReference": { "@id": "dppk:methodologyReference", "@type": "@id" }
-      }
-    },
+    "QuantitativeValue": "dppk:QuantitativeValue",
     "DigitalDocument": "dppk:DigitalDocument",
     "Certification": "dppk:Certification",
     "SubstanceOfConcern": "dppk:SubstanceOfConcern",
@@ -43,17 +35,20 @@
     "ISO6523": "dppk:ISO6523",
 
     // ==================================================================
-    // Properties: DPP Header (PascalCase)
+    // Properties: DPP Header (camelCase)
     // ==================================================================
-    "DPPID": { "@id": "dppk:DPPID", "@type": "@id" },
-    "ProductID": { "@id": "dppk:ProductID", "@type": "@id" },
-    "EconomicOperatorID": { "@id": "dppk:EconomicOperatorID", "@type": "@id" },
-    "FacilityID": { "@id": "dppk:FacilityID", "@type": "@id" },
-    "Granularity": "dppk:Granularity",
-    "StatusOfTheDPP": "dppk:StatusOfTheDPP",
-    "LastUpdated": { "@id": "dppk:LastUpdated", "@type": "xsd:dateTime" },
-    "BaseDppSchemaVersion": "dppk:BaseDppSchemaVersion",
-    "SectorDataModelVersion": "dppk:SectorDataModelVersion",
+    "digitalProductPassportId": { "@id": "dppk:DPPID", "@type": "@id" },
+    "productId": { "@id": "dppk:ProductID", "@type": "@id" },
+    "economicOperatorId": { "@id": "dppk:EconomicOperatorID", "@type": "@id" },
+    "facilityId": { "@id": "dppk:FacilityID", "@type": "@id" },
+    "granularity": "dppk:Granularity",
+    "dppStatus": "dppk:StatusOfTheDPP",
+    "lastUpdated": { "@id": "dppk:lastUpdated", "@type": "xsd:dateTime" },
+    "dppSchemaVersion": "dppk:dppSchemaVersion",
+    "delegatedActIds": {
+      "@id": "dppk:delegatedActIds",
+      "@container": "@set"
+    },
     "hsCode": "dppk:hsCode",
 
     // ==================================================================
@@ -108,10 +103,12 @@
     "recycledContentPercentage": "dppk:recycledContentPercentage",
 
     // Quantitative Values
-    // Type Coercion for netWeight to simplify payloads.
-    "netWeight": { "@id": "dppk:netWeight", "@type": "dppk:QuantitativeValue" },
-    "grossWeight": { "@id": "dppk:grossWeight", "@type": "dppk:QuantitativeValue" },
-    // "value", "unitCode", etc. are now defined within the QuantitativeValue scoped context.
+    // These are now defined globally to avoid ambiguity from scoped contexts.
+    "netWeight": "dppk:netWeight", // Sector contexts will override this for coercion.
+    "grossWeight": "dppk:grossWeight", // Sector contexts can override this.
+    "value": { "@id": "dppk:value", "@type": "xsd:decimal" },
+    "unitCode": "dppk:unitCode",
+    "unitText": "dppk:unitText",
 
     // ==================================================================
     // Properties: Compliance and Regulatory

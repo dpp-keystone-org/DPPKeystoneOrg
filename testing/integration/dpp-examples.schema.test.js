@@ -9,7 +9,11 @@ import { PROJECT_ROOT } from './shacl-helpers.mjs';
 // Initialize AJV using the specialized Ajv2020 constructor.
 // This pre-configures the instance with all necessary Draft 2020-12 meta-schemas,
 // completely avoiding the complex manual loading process.
-const ajv = new Ajv2020({ allErrors: true });
+const ajv = new Ajv2020({ 
+    allErrors: true,
+    allowMatchingProperties: true,
+    allowUnionTypes: true
+});
 
 // Add formats like "date-time" and "uri-reference" to the validator immediately.
 addFormats(ajv);
@@ -30,6 +34,8 @@ describe('DPP JSON Schema Validation', () => {
     const testCases = [
         'drill-dpp-v1.json',
         'drill-dpp-v1-private.json',
+        'battery-dpp-v1.json',
+        'sock-dpp-v1.json',
         'rail-dpp-v1.json',
     ];
 

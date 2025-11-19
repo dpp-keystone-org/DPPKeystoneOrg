@@ -86,6 +86,10 @@ describe('DPP SHACL Validation', () => {
             }
         }
 
+        // CRITICAL: Add a check to ensure that validation actually happened.
+        // If report.results is empty, it means no shapes were applied, which is an error.
+        expect(report.results.length).toBeGreaterThan(0);
+
         expect(report.conforms).toBe(true);
     });
 });

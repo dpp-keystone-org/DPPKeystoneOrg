@@ -1,12 +1,4 @@
 {
-  "@context": {
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "sh": "http://www.w3.org/ns/shacl#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
-  },
   "@id": "dppkval:CoreShapes",
   "@type": "sh:ShapesGraph",
   
@@ -16,6 +8,11 @@
     // Validates basic requirements for organizational data.
     // ==================================================================
     {
+      "@context": {
+        "sh": "http://www.w3.org/ns/shacl#",
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+      },
       "@id": "dppkval:OrganizationShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": { "@id": "dppk:Organization" },
@@ -47,6 +44,12 @@
     // Ensures measurements are complete.
     // ==================================================================
     {
+        "@context": {
+            "sh": "http://www.w3.org/ns/shacl#",
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
+            "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+            "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+        },
         "@id": "dppkval:QuantitativeValueShape",
         "@type": "sh:NodeShape",
         "sh:targetClass": { "@id": "dppk:QuantitativeValue" },
@@ -74,6 +77,11 @@
     // Validates the core relationships within the DPP payload.
     // ==================================================================
     {
+        "@context": {
+            "sh": "http://www.w3.org/ns/shacl#",
+            "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+            "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+        },
         "@id": "dppkval:DigitalProductPassportShape",
         "@type": "sh:NodeShape",
         "sh:targetClass": { "@id": "dppk:DigitalProductPassport" },
@@ -105,6 +113,11 @@
     // Shape: Certification
     // ==================================================================
     {
+        "@context": {
+            "sh": "http://www.w3.org/ns/shacl#",
+            "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+            "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+        },
         "@id": "dppkval:CertificationShape",
         "@type": "sh:NodeShape",
         "sh:targetClass": { "@id": "dppk:Certification" },

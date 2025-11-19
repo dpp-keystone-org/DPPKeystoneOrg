@@ -6,15 +6,17 @@
   "@type": ["Product", "DigitalProductPassport", "ConstructionProduct"],
 
   // --- DPP Headers (Aligned with Core Ontology) ---
-  "ProductID": "https://id.gs1.org/01/07649997749703/10/4711",
-  "DPPID": "https://www.example.org/API/RAIL/4711",
-  "EconomicOperatorID": "https://id.gs1.org/417/9010788000001",
-  "FacilityID": "https://id.gs1.org/417/9010788000001",
-  "Granularity": "batch",
-  "BaseDppSchemaVersion": "1.0.0",
-  "SectorDataModelVersion": "Keystone_Construction_v1.0.0",
-  "StatusOfTheDPP": "active",
-  "LastUpdated": "2025-09-05T14:30:00+02:00",
+  "digitalProductPassportId": "https://www.example.org/API/RAIL/4711",
+  "productId": "https://id.gs1.org/01/07649997749703/10/4711",
+  "granularity": "Batch",
+  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppStatus": "Active",
+  "lastUpdated": "2025-09-05T14:30:00+02:00",
+  "economicOperatorId": "https://id.gs1.org/417/9010788000001",
+  "facilityId": "https://id.gs1.org/417/9010788000001",
+  "delegatedActIds": [
+    "prEN_ConstructionProductsRegulation_2024"
+  ],
   "hsCode": "7302.1000",
 
   // --- Core Product Information ---
@@ -84,7 +86,7 @@
   "documents": [
       {
         "@type": "DigitalDocument",
-        "name": "IBU EPD Listing",
+        "productName": "IBU EPD Listing",
         "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
         "documentType": "Environmental Product Declaration"
       }

@@ -1,12 +1,4 @@
 {
-  "@context": {
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "sh": "http://www.w3.org/ns/shacl#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
-  },
   "@id": "dppkval:BatteryShapes",
   "@type": "sh:ShapesGraph",
   
@@ -16,6 +8,12 @@
     // Validates sector-specific requirements for Battery Passports.
     // ==================================================================
     {
+      "@context": {
+        "sh": "http://www.w3.org/ns/shacl#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+      },
       "@id": "dppkval:BatteryShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": { "@id": "dppk:Battery" },

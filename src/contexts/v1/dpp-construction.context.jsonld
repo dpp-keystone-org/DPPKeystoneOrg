@@ -17,10 +17,7 @@
             // ==================================================================
             // Properties (CPR Compliance and Documentation)
             // ==================================================================
-            "hasDoP": {
-                "@id": "dppk:hasDoP",
-                "@type": "@id"
-            },
+            "hasDoP": "dppk:hasDoP",
             "dopIdentifier": "dppk:dopIdentifier",
             
             "harmonisedStandardReference": {
@@ -49,13 +46,23 @@
             // ==================================================================
             // Type Coercion for simple key-value measurements
             // This allows the instance data to be "netWeight": 4968, while
-            // semantically expanding to the full QuantitativeValue object.
+            // semantically expanding to a full QuantitativeValue object with a default unit.
             // ==================================================================
-            // Override the core 'netWeight' to add a construction-specific methodology.
-            "netWeight": { "@id": "dppk:netWeight", "@type": "dppk:QuantitativeValue" },
+            "netWeight": {
+                "@id": "dppk:netWeight",
+                "@type": "@nest",
+                "@nest": {
+                    "@type": "dppk:QuantitativeValue",
+                    "unitCode": { "@id": "dppk:unitCode", "@default": "KGM" }
+                }
+            },
             "length": {
                 "@id": "dppk:length",
-                "@type": "dppk:QuantitativeValue"
+                "@type": "@nest",
+                "@nest": {
+                    "@type": "dppk:QuantitativeValue",
+                    "unitCode": { "@id": "dppk:unitCode", "@default": "MTR" }
+                }
             }
         }
     ]

@@ -65,7 +65,14 @@ export async function toRdfDataset(expanded, { factory }) {
 export async function loadRdfFile(filePath, { factory }) {
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const json = JSON.parse(fileContent);
+
+    // --- DEBUGGING: Log the expanded document ---
+    // This will show us what the JSON-LD processor produces after applying the context.
+    // If this is an empty array [], it's the source of our problem.
+    console.log(`--- Expanding ${path.basename(filePath)} ---`);
     const expanded = await jsonld.expand(json, { documentLoader: localFileDocumentLoader });
+    console.log(JSON.stringify(expanded, null, 2));
+    console.log(`--- End Expansion for ${path.basename(filePath)} ---`);
     return toRdfDataset(expanded, { factory });
 }
 

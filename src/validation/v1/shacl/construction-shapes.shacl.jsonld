@@ -5,37 +5,40 @@
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
   },
+  "@id": "dppkval:ConstructionShapes",
+  "@type": "sh:ShapesGraph",
+  
   "@graph": [
     {
       "@id": "dppkval:ConstructionProductShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": "dppk:ConstructionProduct",
+      "sh:targetClass": { "@id": "dppk:ConstructionProduct" },
       "sh:and": [
-        { "sh:node": "dppkval:DigitalProductPassportShape" }
+        { "sh:node": { "@id": "dppkval:DigitalProductPassportShape" } }
       ],
       "sh:property": [
         {
-          "sh:path": "dppk:documents",
+          "sh:path": { "@id": "dppk:documents" },
           "sh:name": "Documents",
-          "sh:node": "dppkval:DigitalDocumentShape",
+          "sh:node": { "@id": "dppkval:DigitalDocumentShape" },
           "sh:minCount": 0
         },
         {
-          "sh:path": "dppk:railProfile",
+          "sh:path": { "@id": "dppk:railProfile" },
           "sh:name": "Rail Profile",
-          "sh:datatype": "xsd:string",
+          "sh:nodeKind": "sh:Literal",
           "sh:minCount": 1
         },
         {
-          "sh:path": "dppk:steelGrade",
+          "sh:path": { "@id": "dppk:steelGrade" },
           "sh:name": "Steel Grade",
-          "sh:datatype": "xsd:string",
+          "sh:nodeKind": "sh:Literal",
           "sh:minCount": 1
         },
         {
-          "sh:path": "dppk:hasDoP",
+          "sh:path": { "@id": "dppk:hasDoP" },
           "sh:name": "Declaration of Performance",
-          "sh:node": "dppkval:DoPShape",
+          "sh:node": { "@id": "dppkval:DoPShape" },
           "sh:minCount": 1
         }
       ]
@@ -45,12 +48,12 @@
       "@type": "sh:NodeShape",
       "sh:property": [
         {
-          "sh:path": "dppk:name",
-          "sh:datatype": "xsd:string",
+          "sh:path": { "@id": "dppk:productName" }, // Correcting to use the aliased 'productName'
+          "sh:nodeKind": "sh:Literal",
           "sh:minCount": 1
         },
         {
-          "sh:path": "dppk:documentURL",
+          "sh:path": { "@id": "dppk:documentURL" },
           "sh:nodeKind": "sh:IRI",
           "sh:minCount": 1
         }
@@ -59,14 +62,15 @@
     {
       "@id": "dppkval:DoPShape",
       "@type": "sh:NodeShape",
+      "sh:targetClass": { "@id": "dppk:DeclarationOfPerformance" },
       "sh:property": [
         {
-          "sh:path": "dppk:dopIdentifier",
-          "sh:datatype": "xsd:string",
+          "sh:path": { "@id": "dppk:dopIdentifier" },
+          "sh:nodeKind": "sh:Literal",
           "sh:minCount": 1
         },
         {
-          "sh:path": "dppk:documentURL",
+          "sh:path": { "@id": "dppk:documentURL" },
           "sh:nodeKind": "sh:IRI",
           "sh:minCount": 1
         }
