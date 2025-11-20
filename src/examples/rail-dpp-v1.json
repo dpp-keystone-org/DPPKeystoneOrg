@@ -49,7 +49,7 @@
   },
 
   // --- Sector Specific Properties (Aligned with Construction Ontology) ---
-  "railProfile": "46E1",
+  "railProfile": "46E1", // Temporarily commented out to test SHACL minCount violation.
   "steelGrade": "R260",
 
   // --- Measurements 

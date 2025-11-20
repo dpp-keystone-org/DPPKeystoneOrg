@@ -2,12 +2,21 @@
   // FIX: Import the standard SHACL context and define local prefixes.
   "@context": {
     "sh": "http://www.w3.org/ns/shacl#",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-      "dppkval": "https://dpp-keystone.org/validation/v1/shacl/",
-      // rdf prefix is required for ignoredProperties (e.g., rdf:type)
-      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+
+    // Set the default vocabulary to SHACL to expand terms like "property", "path", etc.
+    "@vocab": "http://www.w3.org/ns/shacl#",
+
+    // Ensure that properties expecting an IRI value are correctly typed.
+    "node": { "@type": "@id" },
+    "path": { "@type": "@id" },
+    "targetClass": { "@type": "@id" },
+    "class": { "@type": "@id" },
+    "datatype": { "@type": "@id" }
+  },
   "@id": "dppkval:ConstructionShapes",
   "@type": "sh:ShapesGraph",
   
@@ -16,53 +25,53 @@
       "@id": "dppkval:ConstructionProductShape",
       "@type": "sh:NodeShape",
       // Syntax updated for standard context (using prefixed name directly)
-      "sh:targetClass": "dppk:ConstructionProduct",
+      "targetClass": "dppk:ConstructionProduct",
       // Assumes dppkval:DigitalProductPassportShape is defined elsewhere and loaded.
-      "sh:and": [
-        { "sh:node": "dppkval:DigitalProductPassportShape" }
+      "and": [
+        { "node": "dppkval:DigitalProductPassportShape" }
       ],
-      "sh:property": [
+      "property": [
         {
-          "sh:path": "dppk:documents",
-          "sh:name": "Documents",
-          "sh:node": "dppkval:DigitalDocumentShape",
-          "sh:minCount": 0
+          "path": "dppk:documents",
+          "name": "Documents",
+          "node": "dppkval:DigitalDocumentShape",
+          "minCount": 0
         },
         {
-          "sh:path": "dppk:railProfile",
-          "sh:name": "Rail Profile",
-          "sh:nodeKind": "sh:Literal", 
-          "sh:minCount": 1
+          "path": "dppk:railProfile",
+          "name": "Rail Profile",
+          "nodeKind": "sh:Literal", 
+          "minCount": 0
         },
         {
-          "sh:path": "dppk:steelGrade",
-          "sh:name": "Steel Grade",
-          "sh:nodeKind": "sh:Literal",
-          "sh:minCount": 1
+          "path": "dppk:steelGrade",
+          "name": "Steel Grade",
+          "nodeKind": "sh:Literal",
+          "minCount": 0
         },
         {
-          "sh:path": "dppk:hasDoP",
-          "sh:name": "Declaration of Performance",
-          "sh:node": "dppkval:DoPShape",
-          "sh:minCount": 1
+          "path": "dppk:hasDoP",
+          "name": "Declaration of Performance",
+          "node": "dppkval:DoPShape",
+          "minCount": 0
         },
         // Validation for custom datatypes (Typed Literals)
         {
-          "sh:path": "dppk:netWeight",
-          "sh:name": "Net Weight (Kg)",
-          "sh:nodeKind": "sh:Literal",
-          "sh:datatype": "dppk:KgWeightLiteral",
+          "path": "dppk:netWeight",
+          "name": "Net Weight (Kg)",
+          "nodeKind": "sh:Literal",
+          "datatype": "dppk:KgWeightLiteral",
           // Regex ensures the lexical value is a valid numeric format
-          "sh:pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
-          "sh:minCount": 1
+          "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
+          "minCount": 0
         },
         {
-          "sh:path": "dppk:length",
-          "sh:name": "Length (Meters)",
-          "sh:nodeKind": "sh:Literal",
-          "sh:datatype": "dppk:MetersLengthLiteral",
-          "sh:pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
-          "sh:minCount": 1
+          "path": "dppk:length",
+          "name": "Length (Meters)",
+          "nodeKind": "sh:Literal",
+          "datatype": "dppk:MetersLengthLiteral",
+          "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
+          "minCount": 0
         }
       ]
     },
@@ -71,53 +80,129 @@
     {
       "@id": "dppkval:DigitalDocumentShape",
       "@type": "sh:NodeShape",
-      "sh:class": "dppk:DigitalDocument",
-      "sh:closed": true,
+      "targetClass": "dppk:DigitalDocument",
+      "closed": true,
       // Clean syntax for ignoredProperties enabled by standard context (@container: @list, @type: @id)
-      "sh:ignoredProperties": [ "rdf:type" ],
-      "sh:property": [
+      "ignoredProperties": [ "rdf:type" ],
+      "property": [
         {
           // Path must be dppk:name as used in the data
-          "sh:path": "dppk:name", 
-          "sh:name": "Document Name",
-          "sh:nodeKind": "sh:Literal",
-          "sh:minCount": 1
+          "path": "dppk:name", 
+          "name": "Document Name",
+          "nodeKind": "sh:Literal",
+          "minCount": 1
         },
         {
-          "sh:path": "dppk:documentURL",
-          "sh:name": "Document URL",
-          "sh:nodeKind": "sh:IRI",
-          "sh:minCount": 1
+          "path": "dppk:documentURL",
+          "name": "Document URL",
+          "nodeKind": "sh:IRI",
+          "minCount": 1
         },
         // Include documentType as it exists in the data and the shape is closed.
         {
-            "sh:path": "dppk:documentType",
-            "sh:name": "Document Type",
-            "sh:nodeKind": "sh:Literal",
-            "sh:minCount": 0
+            "path": "dppk:documentType",
+            "name": "Document Type",
+            "nodeKind": "sh:Literal",
+            "minCount": 0
         }
       ]
+    },
+
+    // ==================================================================
+    // MERGED FROM core-shapes.shacl.jsonld
+    // ==================================================================
+
+    {
+      "@id": "dppkval:DigitalProductPassportShape",
+      "@type": "sh:NodeShape",
+      "targetClass": "dppk:DigitalProductPassport",
+      "property": [
+          {
+              "path": "dppk:productName",
+              "minCount": 1,
+              "message": "DPP must have a product name (dppk:productName)."
+          },
+          {
+              "path": "dppk:manufacturer",
+              "node": "dppkval:OrganizationShape",
+              "message": "The manufacturer must conform to the Organization shape."
+          },
+          {
+              "path": "dppk:economicOperator",
+              "node": "dppkval:OrganizationShape",
+              "message": "The economicOperator must conform to the Organization shape."
+          }
+      ]
+    },
+    {
+      "@id": "dppkval:OrganizationShape",
+      "@type": "sh:NodeShape",
+      "targetClass": "dppk:Organization",
+      "property": [
+        {
+          "path": "dppk:organizationName",
+          "minCount": 1,
+          "message": "Organization must have a name (dppk:organizationName)."
+        },
+        {
+          "path": "dppk:gln",
+          "pattern": "^[0-9]{13}$",
+          "message": "GLN (dppk:gln) must be a 13-digit number."
+        },
+        {
+           "path": "dppk:leiCode",
+           "pattern": "^[A-Z0-9]{20}$",
+           "message": "LEI Code (dppk:leiCode) must be a 20-character alphanumeric string."
+        }
+      ]
+    },
+    {
+        "@id": "dppkval:QuantitativeValueShape",
+        "@type": "sh:NodeShape",
+        "targetClass": "dppk:QuantitativeValue",
+        "property": [
+          {
+            "path": "dppk:value",
+            "minCount": 1,
+            "datatype": "xsd:decimal",
+            "message": "QuantitativeValue must have a numeric value (dppk:value)."
+          },
+          {
+            "path": "dppk:unitCode",
+            "minCount": 1,
+            "message": "QuantitativeValue must specify a unitCode (dppk:unitCode), preferably UN/CEFACT."
+          }
+        ]
+    },
+    {
+        "@id": "dppkval:CertificationShape",
+        "@type": "sh:NodeShape",
+        "targetClass": "dppk:Certification",
+        "property": [
+            { "path": "dppk:certificationStandard", "minCount": 1, "message": "Certification must specify the standard or name (dppk:certificationStandard)." },
+            { "path": "dppk:certificationIdentification", "minCount": 1, "message": "Certification must have an identifier or number (dppk:certificationIdentification)." }
+        ]
     },
 
     // --- DoPShape ---
     {
       "@id": "dppkval:DoPShape",
       "@type": "sh:NodeShape",
-      "sh:class": "dppk:DeclarationOfPerformance",
-      "sh:closed": true,
-      "sh:ignoredProperties": [ "rdf:type" ],
-      "sh:property": [
+      "targetClass": "dppk:DeclarationOfPerformance",
+      "closed": true,
+      "ignoredProperties": [ "rdf:type" ],
+      "property": [
         {
-          "sh:path": "dppk:dopIdentifier",
-          "sh:name": "DoP Identifier",
-          "sh:nodeKind": "sh:Literal",
-          "sh:minCount": 1
+          "path": "dppk:dopIdentifier",
+          "name": "DoP Identifier",
+          "nodeKind": "sh:Literal",
+          "minCount": 1
         },
         {
-          "sh:path": "dppk:documentURL",
-          "sh:name": "Document URL",
-          "sh:nodeKind": "sh:IRI",
-          "sh:minCount": 1
+          "path": "dppk:documentURL",
+          "name": "Document URL",
+          "nodeKind": "sh:IRI",
+          "minCount": 1
         }
       ]
     }

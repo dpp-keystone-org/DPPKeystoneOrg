@@ -6,6 +6,9 @@
         
         // Define Construction and Heavy Industry specific terms.
         {
+            // Define the dppk namespace locally to ensure terms are correctly expanded.
+            "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+
             // Add CEN namespace for URN support (Strategy 2)
             "cencpr": "urn:cen:cpr:",
             // ==================================================================

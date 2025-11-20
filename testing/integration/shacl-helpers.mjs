@@ -72,11 +72,15 @@ export const localFileDocumentLoader = async (url) => {
  * RDF/JS environments (e.g., rdf-ext vs. a minimal one).
  */
 export async function toRdfDataset(expanded, { factory }) {
+export async function toRdfDataset(expanded) {
     const nquads = await jsonld.toRDF(expanded, { format: 'application/n-quads' });
     const inputStream = Readable.from([nquads]);
     const parser = new N3Parser({ factory });
     const quadStream = parser.import(inputStream);
     const dataset = factory.dataset();
+    const parser = new N3Parser(); // Use default factory
+    const quadStream = parser.import(inputStream); 
+    const dataset = []; // Use a simple array to collect quads
 
     // The minimal @rdfjs/dataset doesn't have a .import() stream method,
     // so we handle the stream manually.
@@ -93,6 +97,7 @@ export async function toRdfDataset(expanded, { factory }) {
  * Loads a SHACL or data file (which are JSON-LD documents) and converts it to an RDF dataset.
  */
 export async function loadRdfFile(filePath, { factory }) {
+export async function loadRdfFile(filePath) {
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const json = JSON.parse(fileContent);
 
@@ -107,6 +112,7 @@ export async function loadRdfFile(filePath, { factory }) {
     console.log(JSON.stringify(expanded, null, 2));
     console.log(`--- End Expansion for ${path.basename(filePath)} ---`);
     return toRdfDataset(expanded, { factory });
+    return toRdfDataset(expanded);
 }
 
 /**
@@ -114,8 +120,11 @@ export async function loadRdfFile(filePath, { factory }) {
  */
 export function combineDatasets(datasets, { factory }) {
     const combined = factory.dataset();
+export function combineDatasets(datasets) {
+    const combined = [];
     for (const dataset of datasets) {
         for (const quad of dataset) { combined.add(quad); }
+        combined.push(...dataset);
     }
     return combined;
 }
