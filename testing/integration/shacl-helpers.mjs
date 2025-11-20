@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { Readable } from 'stream';
 import jsonld from 'jsonld';
 import N3Parser from '@rdfjs/parser-n3';
+import datasetFactory from '@rdfjs/dataset';
 
 // --- Pathing and Constants ---
 const __filename = fileURLToPath(import.meta.url);
@@ -71,22 +72,18 @@ export const localFileDocumentLoader = async (url) => {
  * This function is passed the `factory` so it can be used with different
  * RDF/JS environments (e.g., rdf-ext vs. a minimal one).
  */
-export async function toRdfDataset(expanded, { factory }) {
 export async function toRdfDataset(expanded) {
     const nquads = await jsonld.toRDF(expanded, { format: 'application/n-quads' });
     const inputStream = Readable.from([nquads]);
-    const parser = new N3Parser({ factory });
-    const quadStream = parser.import(inputStream);
-    const dataset = factory.dataset();
     const parser = new N3Parser(); // Use default factory
-    const quadStream = parser.import(inputStream); 
-    const dataset = []; // Use a simple array to collect quads
+    const quadStream = parser.import(inputStream);
+    const dataset = datasetFactory.dataset(); // Create a proper RDF/JS dataset
 
     // The minimal @rdfjs/dataset doesn't have a .import() stream method,
     // so we handle the stream manually.
     return new Promise((resolve, reject) => {
         quadStream.on('data', (quad) => {
-            dataset.add(quad);
+            dataset.add(quad); // Use the .add() method for datasets
         }).on('end', () => {
             resolve(dataset);
         }).on('error', reject);
@@ -96,7 +93,6 @@ export async function toRdfDataset(expanded) {
 /**
  * Loads a SHACL or data file (which are JSON-LD documents) and converts it to an RDF dataset.
  */
-export async function loadRdfFile(filePath, { factory }) {
 export async function loadRdfFile(filePath) {
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const json = JSON.parse(fileContent);
@@ -111,20 +107,18 @@ export async function loadRdfFile(filePath) {
     });
     console.log(JSON.stringify(expanded, null, 2));
     console.log(`--- End Expansion for ${path.basename(filePath)} ---`);
-    return toRdfDataset(expanded, { factory });
     return toRdfDataset(expanded);
 }
 
 /**
  * Combines multiple datasets into one.
  */
-export function combineDatasets(datasets, { factory }) {
-    const combined = factory.dataset();
 export function combineDatasets(datasets) {
-    const combined = [];
+    const combined = datasetFactory.dataset();
     for (const dataset of datasets) {
-        for (const quad of dataset) { combined.add(quad); }
-        combined.push(...dataset);
+        for (const quad of dataset) {
+            combined.add(quad);
+        }
     }
     return combined;
 }

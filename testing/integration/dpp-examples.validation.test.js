@@ -1,22 +1,11 @@
 import path from 'path';
 import SHACLValidator from 'rdf-validate-shacl';
 
-import Environment from '@rdfjs/environment';
-import N3Parser from '@rdfjs/parser-n3';
-import DatasetFactory from '@rdfjs/dataset/Factory.js';
-import DataFactory from '@rdfjs/data-model/Factory.js';
-import ClownfaceFactory from 'clownface/Factory.js';
-import NamespaceFactory from '@rdfjs/namespace/Factory.js';
-
 import {
     PROJECT_ROOT,
     loadRdfFile,
     combineDatasets
 } from './shacl-helpers.mjs';
-
-// Create a pre-configured RDF/JS environment, identical to the one in the standalone script.
-// This bundles a factory, dataset, parser, and clownface support.
-const factory = new Environment([DataFactory, DatasetFactory, N3Parser, ClownfaceFactory, NamespaceFactory]);
 
 /**
  * A helper function to find a human-readable name for a given node in a graph.
@@ -30,7 +19,6 @@ function findHumanName(node, dataGraph) {
 
     // A list of common properties that serve as good human-readable names.
     const nameProperties = [
-        'https://dpp-keystone.org/spec/v1/terms#productName',
         'https://dpp-keystone.org/spec/v1/terms#productName', // Using full IRIs for clarity
         'https://schema.org/name',
         'https://dpp-keystone.org/spec/v1/terms#organizationName',
@@ -39,7 +27,6 @@ function findHumanName(node, dataGraph) {
 
     for (const prop of nameProperties) {
         // .match() finds all quads (statements) that match the pattern.
-        const quads = dataGraph.match(node, factory.namedNode(prop));
         // We can create named nodes directly without a factory in many RDF/JS libraries.
         const quads = dataGraph.match(node, { termType: 'NamedNode', value: prop });
         for (const quad of quads) {
@@ -113,17 +100,13 @@ describe('DPP SHACL Validation', () => {
 
         // --- 1. Load Data and Sector-Specific Shapes ---
         const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFile);
-        const dataDataset = await loadRdfFile(exampleFilePath, { factory });
         const dataDataset = await loadRdfFile(exampleFilePath);
 
         const shapeDatasets = await Promise.all(
-            shapeFiles.map(file => loadRdfFile(path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'shacl', file), { factory }))
             shapeFiles.map(file => loadRdfFile(path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'shacl', file)))
         );
 
         // --- 2. Combine Shapes and Validate ---
-        const allShapes = combineDatasets(shapeDatasets, { factory });
-        const validator = new SHACLValidator(allShapes, { factory });
         const allShapes = combineDatasets(shapeDatasets);
         const validator = new SHACLValidator(allShapes);
         const report = await validator.validate(dataDataset);

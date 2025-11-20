@@ -40,26 +40,23 @@
         {
           "path": "dppk:railProfile",
           "name": "Rail Profile",
-          "nodeKind": "sh:Literal", 
           "minCount": 0
         },
         {
           "path": "dppk:steelGrade",
           "name": "Steel Grade",
-          "nodeKind": "sh:Literal",
           "minCount": 0
         },
         {
           "path": "dppk:hasDoP",
           "name": "Declaration of Performance",
           "node": "dppkval:DoPShape",
-          "minCount": 0
+          "minCount": 0 // Optional
         },
         // Validation for custom datatypes (Typed Literals)
         {
           "path": "dppk:netWeight",
           "name": "Net Weight (Kg)",
-          "nodeKind": "sh:Literal",
           "datatype": "dppk:KgWeightLiteral",
           // Regex ensures the lexical value is a valid numeric format
           "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
@@ -68,7 +65,6 @@
         {
           "path": "dppk:length",
           "name": "Length (Meters)",
-          "nodeKind": "sh:Literal",
           "datatype": "dppk:MetersLengthLiteral",
           "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
           "minCount": 0
@@ -81,28 +77,23 @@
       "@id": "dppkval:DigitalDocumentShape",
       "@type": "sh:NodeShape",
       "targetClass": "dppk:DigitalDocument",
-      "closed": true,
-      // Clean syntax for ignoredProperties enabled by standard context (@container: @list, @type: @id)
-      "ignoredProperties": [ "rdf:type" ],
+      // "closed": true, // Temporarily disabled for flexibility
       "property": [
         {
           // Path must be dppk:name as used in the data
           "path": "dppk:name", 
           "name": "Document Name",
-          "nodeKind": "sh:Literal",
           "minCount": 1
         },
         {
           "path": "dppk:documentURL",
           "name": "Document URL",
-          "nodeKind": "sh:IRI",
           "minCount": 1
         },
         // Include documentType as it exists in the data and the shape is closed.
         {
             "path": "dppk:documentType",
             "name": "Document Type",
-            "nodeKind": "sh:Literal",
             "minCount": 0
         }
       ]
@@ -189,19 +180,16 @@
       "@id": "dppkval:DoPShape",
       "@type": "sh:NodeShape",
       "targetClass": "dppk:DeclarationOfPerformance",
-      "closed": true,
-      "ignoredProperties": [ "rdf:type" ],
+      // "closed": true, // Temporarily disabled for flexibility
       "property": [
         {
           "path": "dppk:dopIdentifier",
           "name": "DoP Identifier",
-          "nodeKind": "sh:Literal",
           "minCount": 1
         },
         {
           "path": "dppk:documentURL",
           "name": "Document URL",
-          "nodeKind": "sh:IRI",
           "minCount": 1
         }
       ]
