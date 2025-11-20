@@ -40,6 +40,18 @@
           "sh:name": "Declaration of Performance",
           "sh:node": { "@id": "dppkval:DoPShape" },
           "sh:minCount": 1
+        },
+        {
+          "sh:path": { "@id": "dppk:netWeight" },
+          "sh:name": "Net Weight",
+          "sh:datatype": { "@id": "dppk:KgWeightLiteral" },
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": { "@id": "dppk:length" },
+          "sh:name": "Length",
+          "sh:datatype": { "@id": "dppk:MetersLengthLiteral" },
+          "sh:minCount": 1
         }
       ]
     },
@@ -48,7 +60,7 @@
       "@type": "sh:NodeShape",
       "sh:property": [
         {
-          "sh:path": { "@id": "dppk:name" }, 
+          "sh:path": { "@id": "dppk:productName" }, 
           "sh:nodeKind": "sh:Literal",
           "sh:minCount": 1
         },

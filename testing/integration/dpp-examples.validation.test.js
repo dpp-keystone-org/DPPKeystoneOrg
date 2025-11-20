@@ -18,6 +18,57 @@ import {
 // This bundles a factory, dataset, parser, and clownface support.
 const factory = new Environment([DataFactory, DatasetFactory, N3Parser, ClownfaceFactory, NamespaceFactory]);
 
+/**
+ * A helper function to find a human-readable name for a given node in a graph.
+ * It checks a list of common "name" properties.
+ * @param {import('@rdfjs/types').NamedNode | import('@rdfjs/types').BlankNode} node The node to find a name for.
+ * @param {import('@rdfjs/types').DatasetCore} dataGraph The dataset containing the data.
+ * @returns {string | null} The human-readable name or null if not found.
+ */
+function findHumanName(node, dataGraph) {
+    if (!node) return null;
+
+    // A list of common properties that serve as good human-readable names.
+    const nameProperties = [
+        'https://dpp-keystone.org/spec/v1/terms#productName',
+        'https://schema.org/name',
+        'https://dpp-keystone.org/spec/v1/terms#organizationName',
+        'https://dpp-keystone.org/spec/v1/terms#name' // For DigitalDocument, etc.
+    ];
+
+    for (const prop of nameProperties) {
+        // .match() finds all quads (statements) that match the pattern.
+        const quads = dataGraph.match(node, factory.namedNode(prop));
+        for (const quad of quads) {
+            // Return the value of the first matching name property we find.
+            return quad.object.value;
+        }
+    }
+    return null; // No name found
+}
+
+/**
+ * Logs a detailed, human-readable SHACL validation report.
+ * @param {any} report The validation report from the SHACL validator.
+ * @param {import('@rdfjs/types').DatasetCore} dataGraph The dataset that was validated.
+ */
+function logValidationReport(report, dataGraph) {
+    console.log('--- SHACL Validation Report ---');
+    console.log(`Violations Found: ${report.results.length}\n`);
+
+    for (const result of report.results) {
+        const message = result.message[0]?.value || 'No message';
+        const path = result.path ? result.path.value : 'N/A';
+        const focusNode = result.focusNode ? result.focusNode.value : 'N/A';
+        const severity = result.severity ? result.severity.value.split('#')[1] : 'N/A';
+
+        const humanName = findHumanName(result.focusNode, dataGraph);
+        const focusNodeDisplay = humanName ? `${humanName} (${focusNode})` : focusNode;
+
+        console.log(`Severity: ${severity}\n  Message: ${message}\n  Focus Node: ${focusNodeDisplay}\n  Result Path: ${path}\n---------------------------------`);
+    }
+}
+
 describe('DPP SHACL Validation', () => {
     let coreShapes;
 
@@ -80,13 +131,7 @@ describe('DPP SHACL Validation', () => {
         // --- 3. Assert Conformance ---
         // For debugging, you can log the report results
         if (!report.conforms) {
-            console.log('Validation Report Results:');
-            for (const result of report.results) {
-                console.log(`- Path: ${result.path?.value}`);
-                console.log(`  Message: ${result.message[0]?.value}`);
-                console.log(`  Focus Node: ${result.focusNode?.value}`);
-                console.log(`  Severity: ${result.severity?.value}`);
-            }
+            logValidationReport(report, dataDataset);
         }
 
         // CRITICAL: Add a check to ensure that validation actually happened.
