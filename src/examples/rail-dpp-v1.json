@@ -57,9 +57,9 @@
   // --- CPR Compliance (Aligned with Construction Ontology) ---
   "notifiedBodyID": "NB0123",
   "hasDoP": {
-     "@type": "DeclarationOfPerformance",
-     "dopIdentifier": "EXAMPLE_VALUE_DOPC_ID",
-      "documentURL": "https://www.voestalpine.com/dop/4711.pdf"
+    "@type": "DeclarationOfPerformance",
+    "dopIdentifier": "DOP-VA-RAIL-4711",
+    "documentURL": "https://www.voestalpine.com/dop/4711.pdf"
   },
 
   "harmonisedStandardReference": "https://ec.europa.eu/docsroom/documents/56934",
@@ -86,7 +86,7 @@
   "documents": [
       {
         "@type": "DigitalDocument",
-        "productName": "IBU EPD Listing",
+        "name": "IBU EPD Listing",
         "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
         "documentType": "Environmental Product Declaration"
       }
@@ -103,15 +103,6 @@
           "organizationRole": "ConformityAssessmentBodyRole",
           "certificationStartDate": "2024-01-15",
           "referencedFileURL": "https://www.tuvsud.com/certificates/1138"
-      },
-      {
-          "@type": "Certification",
-          "certificationStandard": "Declaration of Performance (DoP)",
-          "certificationIdentification": "DOP-VA-RAIL-4711",
-          "certifyingBodyName": "Voestalpine Rail Technology GmbH",
-          "organizationRole": "ManufacturerRole",
-          "certificationStartDate": "2024-01-10",
-          "referencedFileURL": "https://www.voestalpine.com/dop/4711.pdf"
       },
       {
           "@type": "Certification",

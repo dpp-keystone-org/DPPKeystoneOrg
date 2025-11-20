@@ -41,29 +41,6 @@
             // ==================================================================
             "steelGrade": "dppk:steelGrade",
             "railProfile": "dppk:railProfile"
-        },
-        {
-            // ==================================================================
-            // Type Coercion for simple key-value measurements
-            // This allows the instance data to be "netWeight": 4968, while
-            // semantically expanding to a full QuantitativeValue object with a default unit.
-            // ==================================================================
-            "netWeight": {
-                "@id": "dppk:netWeight",
-                "@type": "@nest",
-                "@nest": {
-                    "@type": "dppk:QuantitativeValue",
-                    "unitCode": { "@id": "dppk:unitCode", "@default": "KGM" }
-                }
-            },
-            "length": {
-                "@id": "dppk:length",
-                "@type": "@nest",
-                "@nest": {
-                    "@type": "dppk:QuantitativeValue",
-                    "unitCode": { "@id": "dppk:unitCode", "@default": "MTR" }
-                }
-            }
         }
     ]
 }

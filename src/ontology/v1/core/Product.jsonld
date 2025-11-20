@@ -53,9 +53,41 @@
         "rdfs:term_status": "unstable"
     },
 
+    // --- Custom Datatypes for simple measurements ---
+    {
+        "@id": "dppk:KgWeightLiteral",
+        "@type": "rdfs:Datatype",
+        "rdfs:label": "Kilogram Weight Literal",
+        "rdfs:comment": "A literal value representing a weight in kilograms. A reasoner can expand this into a full dppk:QuantitativeValue.",
+        "rdfs:subClassOf": { "@id": "xsd:decimal" }
+    },
+    {
+        "@id": "dppk:MetersLengthLiteral",
+        "@type": "rdfs:Datatype",
+        "rdfs:label": "Meters Length Literal",
+        "rdfs:comment": "A literal value representing a length in meters. A reasoner can expand this into a full dppk:QuantitativeValue.",
+        "rdfs:subClassOf": { "@id": "xsd:decimal" }
+    },
+
+
     // ==================================================================
     // Properties (General Product Description)
     // ==================================================================
+
+    // --- Generic Name ---
+    {
+        "@id": "dppk:name",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Name",
+        "rdfs:comment": "A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.",
+        // No domain is specified to allow this property to be used on any resource.
+        "rdfs:range": { "@id": "rdf:langString" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:name" },
+            { "@id": "unece:name" }
+        ],
+        "rdfs:term_status": "unstable"
+    },
 
     // --- Product Name ---
     {
@@ -307,6 +339,18 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:grossWeight" },
             { "@id": "unece:grossWeightMeasure" }
+        ],
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:length",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Length",
+        "rdfs:comment": "The length of the product or material, expressed as a QuantitativeValue.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:length" }
         ],
         "rdfs:term_status": "unstable"
     },

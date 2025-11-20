@@ -48,7 +48,7 @@
       "@type": "sh:NodeShape",
       "sh:property": [
         {
-          "sh:path": { "@id": "dppk:productName" }, // Correcting to use the aliased 'productName'
+          "sh:path": { "@id": "dppk:name" }, 
           "sh:nodeKind": "sh:Literal",
           "sh:minCount": 1
         },

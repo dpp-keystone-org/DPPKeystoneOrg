@@ -61,6 +61,9 @@ describe('DPP SHACL Validation', () => {
 
     // Use test.each to run the same validation logic for each test case.
     test.each(testCases)('$name should conform to its SHACL shapes', async ({ exampleFile, shapeFiles }) => {
+        // Add a log to clearly indicate which test is running.
+        console.log(`\n--- Running SHACL Test for: ${exampleFile} ---`);
+
         // --- 1. Load Data and Sector-Specific Shapes ---
         const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFile);
         const dataDataset = await loadRdfFile(exampleFilePath, { factory });

@@ -49,6 +49,7 @@
       "@id": "dppk:delegatedActIds",
       "@container": "@set"
     },
+    "verifiableCredential": "dppk:verifiableCredential",
     "hsCode": "dppk:hsCode",
 
     // ==================================================================
@@ -65,6 +66,7 @@
     "tradingName": "dppk:tradingName",
     "gln": "dppk:gln",
     "leiCode": "dppk:leiCode",
+    "organizationRole": "dppk:organizationRole", // Moved from redundant block
     "additionalOrganizationID": "dppk:additionalOrganizationID",
     "additionalOrganizationIDType": "dppk:additionalOrganizationIDType",
     "iso6523": "dppk:iso6523",
@@ -103,9 +105,21 @@
     "recycledContentPercentage": "dppk:recycledContentPercentage",
 
     // Quantitative Values
-    // These are now defined globally to avoid ambiguity from scoped contexts.
-    "netWeight": "dppk:netWeight", // Sector contexts will override this for coercion.
-    "grossWeight": "dppk:grossWeight", // Sector contexts can override this.
+    // Define custom datatypes (typed literals) for measurements with implicit units.
+    // This allows simple values in JSON (e.g., "netWeight": 4968) to be semantically tagged.
+    "KgWeightLiteral": {
+      "@id": "dppk:KgWeightLiteral",
+      "@type": "@id"
+    },
+    "MetersLengthLiteral": {
+      "@id": "dppk:MetersLengthLiteral",
+      "@type": "@id"
+    },
+
+    // Coerce properties to use these custom datatypes.
+    "netWeight": { "@id": "dppk:netWeight", "@type": "KgWeightLiteral" },
+    "length": { "@id": "dppk:length", "@type": "MetersLengthLiteral" },
+    "grossWeight": "dppk:grossWeight", // No default unit coercion for grossWeight.
     "value": { "@id": "dppk:value", "@type": "xsd:decimal" },
     "unitCode": "dppk:unitCode",
     "unitText": "dppk:unitText",
@@ -126,6 +140,7 @@
     // Document Details
     "documentType": "dppk:documentType",
     "languageCode": "dppk:languageCode",
+    "referencedFileURL": { "@id": "dppk:referencedFileURL", "@type": "@id" }, // Moved from redundant block
     "documentURL": { "@id": "dppk:documentURL", "@type": "@id" },
 
     // Certification Details
@@ -133,6 +148,7 @@
     "certificationIdentification": "dppk:certificationIdentification",
     "certifyingBodyName": "dppk:certifyingBodyName",
     "certificationStartDate": { "@id": "dppk:certificationStartDate", "@type": "xsd:date" },
+    "certifyingBodyID": "dppk:certifyingBodyID",
 
     // Substance Details
     "minValue": "dppk:minValue",
@@ -164,27 +180,10 @@
     // ==================================================================
     // General Purpose Aliases (Used across multiple classes)
     // ==================================================================
-    "name": "dppk:productName", // Aliasing 'name' for broad compatibility
+    "name": "dppk:name", // A generic name/title for non-product entities.
     // Using schema.org for generic identifiers (like CAS numbers) and URLs as they were not defined in the core jtc24 ontology.
     "identifier": "schema:identifier",
     "url": { "@id": "schema:url", "@type": "@id" }
 
-    // ==================================================================
-    // Classes and Properties for Certification
-    // ==================================================================
-    "Certification": "dppk:Certification",
-    "certificationStandard": "dppk:certificationStandard",
-    "certificationIdentification": "dppk:certificationIdentification",
-    "certifyingBodyName": "dppk:certifyingBodyName",
-    "certifyingBodyID": "dppk:certifyingBodyID",
-    "organizationRole": "dppk:organizationRole",
-    "certificationStartDate": {
-        "@id": "dppk:certificationStartDate",
-        "@type": "xsd:date"
-    },
-    "referencedFileURL": {
-        "@id": "dppk:referencedFileURL",
-        "@type": "@id"
-    }
   }
 }

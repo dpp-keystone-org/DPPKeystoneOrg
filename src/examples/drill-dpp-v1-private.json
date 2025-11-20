@@ -34,7 +34,7 @@
   ],
 
   // Utilizing the Classes defined in the ontology (Core and Electronics).
-  "@type": ["DigitalProductPassport", "PowerTool"],
+  "@type": ["dppk:DigitalProductPassport", "dppk:PowerTool"],
 
   // --- DPP Headers (Aligned with Core Ontology) ---
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
