@@ -86,7 +86,10 @@
     // Properties: Product Description and Materials
     // ==================================================================
     
-    "productName": "dppk:productName",
+    "productName": {
+      "@id": "dppk:productName",
+      "@container": "@language"
+    },
     "description": "dppk:description",
     "gtin": "dppk:gtin",
     "brand": "dppk:brand",
@@ -107,14 +110,9 @@
     // Quantitative Values
     // Define custom datatypes (typed literals) for measurements with implicit units.
     // This allows simple values in JSON (e.g., "netWeight": 4968) to be semantically tagged.
-    "KgWeightLiteral": {
-      "@id": "dppk:KgWeightLiteral",
-      "@type": "@id"
-    },
-    "MetersLengthLiteral": {
-      "@id": "dppk:MetersLengthLiteral",
-      "@type": "@id"
-    },
+
+    "KgWeightLiteral": "dppk:KgWeightLiteral",
+    "MetersLengthLiteral": "dppk:MetersLengthLiteral",
 
     // Coerce properties to use these custom datatypes.
     "netWeight": { "@id": "dppk:netWeight", "@type": "KgWeightLiteral" },
@@ -140,7 +138,6 @@
     // Document Details
     "documentType": "dppk:documentType",
     "languageCode": "dppk:languageCode",
-    "referencedFileURL": { "@id": "dppk:referencedFileURL", "@type": "@id" }, // Moved from redundant block
     "documentURL": { "@id": "dppk:documentURL", "@type": "@id" },
 
     // Certification Details
@@ -149,6 +146,7 @@
     "certifyingBodyName": "dppk:certifyingBodyName",
     "certificationStartDate": { "@id": "dppk:certificationStartDate", "@type": "xsd:date" },
     "certifyingBodyID": "dppk:certifyingBodyID",
+    "referencedFileURL": { "@id": "dppk:referencedFileURL", "@type": "@id" },
 
     // Substance Details
     "minValue": "dppk:minValue",
@@ -180,7 +178,10 @@
     // ==================================================================
     // General Purpose Aliases (Used across multiple classes)
     // ==================================================================
-    "name": "dppk:name", // A generic name/title for non-product entities.
+    "name": {
+      "@id": "dppk:name",
+      "@container": "@language"
+    },
     // Using schema.org for generic identifiers (like CAS numbers) and URLs as they were not defined in the core jtc24 ontology.
     "identifier": "schema:identifier",
     "url": { "@id": "schema:url", "@type": "@id" }

@@ -20,7 +20,9 @@
   "hsCode": "7302.1000",
 
   // --- Core Product Information ---
-  "productName": "Vignole railway rails 46 kg/m",
+  "productName": {
+    "en": "Vignole railway rails 46 kg/m"
+  },
 
   // Placeholder for verifiable credential data.
   "verifiableCredential": "what value do you want to put in? SHA-256 PKI",
@@ -86,7 +88,9 @@
   "documents": [
       {
         "@type": "DigitalDocument",
-        "name": "IBU EPD Listing",
+        "name": {
+          "en": "IBU EPD Listing"
+        },
         "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
         "documentType": "Environmental Product Declaration"
       }

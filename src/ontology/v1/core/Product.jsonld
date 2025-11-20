@@ -98,7 +98,6 @@
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "rdf:langString" }, // Supports multilingual strings
         "owl:equivalentProperty": [
-            { "@id": "schema:name" },
             { "@id": "gs1:productName" },
             { "@id": "unece:name" }
         ],
@@ -318,11 +317,11 @@
     },
     {
         "@id": "dppk:netWeight",
-        "@type": "owl:ObjectProperty",
+        "@type": "owl:DatatypeProperty",
         "rdfs:label": "Net Weight",
-        "rdfs:comment": "The weight of the product or material, excluding packaging, expressed as a QuantitativeValue.",
+        "rdfs:comment": "The weight of the product or material, excluding packaging. Recommended to use specific datatypes like dppk:KgWeightLiteral.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:range": { "@id": "dppk:KgWeightLiteral" },
         "owl:equivalentProperty": [
             { "@id": "gs1:netWeight" },
             { "@id": "unece:netWeightMeasure" }
@@ -331,12 +330,12 @@
     },
     {
         "@id": "dppk:grossWeight",
-        "@type": "owl:ObjectProperty",
+        "@type": "owl:DatatypeProperty",
         "rdfs:label": "Gross Weight",
         "rdfs:comment": "The weight of the product or material, including packaging, expressed as a QuantitativeValue.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "owl:equivalentProperty": [
+        "rdfs:range": { "@id": "rdfs:Literal" },
+                "owl:equivalentProperty": [
             { "@id": "gs1:grossWeight" },
             { "@id": "unece:grossWeightMeasure" }
         ],
@@ -344,11 +343,11 @@
     },
     {
         "@id": "dppk:length",
-        "@type": "owl:ObjectProperty",
+        "@type": "owl:DatatypeProperty",
         "rdfs:label": "Length",
-        "rdfs:comment": "The length of the product or material, expressed as a QuantitativeValue.",
+        "rdfs:comment": "The length of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
         "owl:equivalentProperty": [
             { "@id": "schema:length" }
         ],
