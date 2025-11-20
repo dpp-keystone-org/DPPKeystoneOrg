@@ -1,18 +1,20 @@
 {
   "@context": "https://dpp-keystone.org/contexts/v1/dpp-electronics.context.jsonld",
   "@type": [
-    "DigitalProductPassport",
-    "PowerTool"
+    "dppk:DigitalProductPassport",
+    "dppk:PowerTool"
   ],
-  "ProductID": "https://id.gs1.org/01/05012345101095/21/22334455",
-  "DPPID": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
-  "EconomicOperatorID": "urn:lei:ABCDE123456789012345",
-  "FacilityID": "urn:lei:ABCDE123456789012345",
-  "Granularity": "item",
-  "BaseDppSchemaVersion": "1.0.0",
-  "SectorDataModelVersion": "Keystone_Electronics_v1.0.0",
-  "StatusOfTheDPP": "active",
-  "LastUpdated": "2025-08-20T23:53:06Z",
+  "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
+  "productId": "https://id.gs1.org/01/05012345101095/21/22334455",
+  "granularity": "Item",
+  "facilityID": "urn:lei:ABCDE123456789012345",
+  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppStatus": "Active",
+  "lastUpdated": "2025-08-20T23:53:06Z",
+  "economicOperatorId": "urn:lei:ABCDE123456789012345",
+  "delegatedActIds": [
+    "prEN_EcodesignForSustainableProducts_2024"
+  ],
   "hsCode": "84672100",
   "productName": {
     "en-UK": "Drills 4 U Cordless drill GSB 451"
@@ -46,6 +48,16 @@
       "addressCountry": "UK"
     }
   },
+  "documents": [
+    {
+      "@type": "DigitalDocument",
+      "name": {
+        "en": "IBU EPD Listing"
+      },
+      "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
+      "documentType": "Environmental Product Declaration"
+    }
+  ],
   "netWeight": 1.8,
   "torque": 20,
   "maximumRatedSpeed": 1000,

@@ -4,19 +4,31 @@
     "dppk:DigitalProductPassport",
     "dppk:Battery"
   ],
-  "ProductID": "urn:gtin:01234567890123",
-  "DPPID": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
-  "EconomicOperatorID": "urn:gln:9876543210987",
-  "FacilityID": "urn:gln:9876543210988",
-  "Granularity": "item",
-  "BaseDppSchemaVersion": "1.0",
-  "SectorDataModelVersion": "1.0",
-  "StatusOfTheDPP": "active",
-  "LastUpdated": "2024-05-21T10:00:00Z",
+  "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+  "productId": "urn:gtin:01234567890123",
+  "granularity": "Item",
+  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppStatus": "Active",
+  "lastUpdated": "2024-05-21T10:00:00Z",
+  "economicOperatorId": "urn:gln:9876543210987",
+  "facilityId": "urn:gln:9876543210988",
+  "delegatedActIds": [
+    "prEN_BatteryRegulation_2023"
+  ],
   "productName": "Industrial Lithium-Ion Battery Module",
   "batteryCategory": "IndustrialBattery",
   "batteryChemistry": "LFP",
   "dateOfManufacture": "2024-01-15",
+  "documents": [
+    {
+      "@type": "DigitalDocument",
+      "name": {
+        "en": "IBU EPD Listing"
+      },
+      "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
+      "documentType": "Environmental Product Declaration"
+    }
+  ],
   "nominalVoltage": {
     "@type": "QuantitativeValue",
     "value": 48,

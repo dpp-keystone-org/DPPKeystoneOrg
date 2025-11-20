@@ -1,58 +1,51 @@
 {
   "@context": {
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
   },
   "@id": "dppkval:ElectronicsShapes",
-  "@type": "sh:ShapesGraph",
+  "@type": "ShapesGraph",
   "@graph": [
     {
       "@id": "dppkval:ElectronicDeviceShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": {
-        "@id": "dppk:ElectronicDevice"
-      },
-      "sh:and": [
+      "@type": "NodeShape",
+      "targetClass": "dppk:ElectronicDevice",
+      "and": [
         {
-          "sh:node": "dppkval:DigitalProductPassportShape"
+          "node": "dppkval:DigitalProductPassportShape"
         }
       ],
-      "sh:property": [
+      "property": [
         {
-          "sh:path": {
-            "@id": "dppk:voltage"
-          },
-          "sh:node": {
-            "@id": "dppkval:QuantitativeValueShape"
-          }
+          "path": "dppk:voltage",
+          "node": "dppkval:QuantitativeValueShape"
         },
         {
-          "sh:path": {
-            "@id": "dppk:ratedPower"
-          },
-          "sh:node": {
-            "@id": "dppkval:QuantitativeValueShape"
-          }
+          "path": "dppk:ratedPower",
+          "node": "dppkval:QuantitativeValueShape"
         },
         {
-          "sh:path": {
-            "@id": "dppk:sparePartsAvailable"
-          },
-          "sh:datatype": {
-            "@id": "xsd:boolean"
-          }
-        },
-        {
-          "sh:path": {
-            "@id": "dppk:serviceManualAvailable"
-          },
-          "sh:datatype": {
-            "@id": "xsd:boolean"
-          }
+          "path": "dppk:sparePartsAvailable",
+          "datatype": "xsd:boolean"
         }
       ]
     }

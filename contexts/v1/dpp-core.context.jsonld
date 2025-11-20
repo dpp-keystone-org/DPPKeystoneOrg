@@ -9,25 +9,7 @@
     "Organization": "dppk:Organization",
     "PostalAddress": "dppk:PostalAddress",
     "Product": "dppk:Product",
-    "QuantitativeValue": {
-      "@id": "dppk:QuantitativeValue",
-      "@context": {
-        "value": {
-          "@id": "dppk:value",
-          "@type": "xsd:decimal"
-        },
-        "unitCode": {
-          "@id": "dppk:unitCode"
-        },
-        "unitText": {
-          "@id": "dppk:unitText"
-        },
-        "methodologyReference": {
-          "@id": "dppk:methodologyReference",
-          "@type": "@id"
-        }
-      }
-    },
+    "QuantitativeValue": "dppk:QuantitativeValue",
     "DigitalDocument": "dppk:DigitalDocument",
     "Certification": "dppk:Certification",
     "SubstanceOfConcern": "dppk:SubstanceOfConcern",
@@ -40,30 +22,34 @@
     "FacilityRole": "dppk:FacilityRole",
     "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
     "ISO6523": "dppk:ISO6523",
-    "DPPID": {
+    "digitalProductPassportId": {
       "@id": "dppk:DPPID",
       "@type": "@id"
     },
-    "ProductID": {
+    "productId": {
       "@id": "dppk:ProductID",
       "@type": "@id"
     },
-    "EconomicOperatorID": {
+    "economicOperatorId": {
       "@id": "dppk:EconomicOperatorID",
       "@type": "@id"
     },
-    "FacilityID": {
+    "facilityId": {
       "@id": "dppk:FacilityID",
       "@type": "@id"
     },
-    "Granularity": "dppk:Granularity",
-    "StatusOfTheDPP": "dppk:StatusOfTheDPP",
-    "LastUpdated": {
-      "@id": "dppk:LastUpdated",
+    "granularity": "dppk:Granularity",
+    "dppStatus": "dppk:StatusOfTheDPP",
+    "lastUpdated": {
+      "@id": "dppk:lastUpdated",
       "@type": "xsd:dateTime"
     },
-    "BaseDppSchemaVersion": "dppk:BaseDppSchemaVersion",
-    "SectorDataModelVersion": "dppk:SectorDataModelVersion",
+    "dppSchemaVersion": "dppk:dppSchemaVersion",
+    "delegatedActIds": {
+      "@id": "dppk:delegatedActIds",
+      "@container": "@set"
+    },
+    "verifiableCredential": "dppk:verifiableCredential",
     "hsCode": "dppk:hsCode",
     "economicOperator": {
       "@id": "dppk:economicOperator",
@@ -81,6 +67,7 @@
     "tradingName": "dppk:tradingName",
     "gln": "dppk:gln",
     "leiCode": "dppk:leiCode",
+    "organizationRole": "dppk:organizationRole",
     "additionalOrganizationID": "dppk:additionalOrganizationID",
     "additionalOrganizationIDType": "dppk:additionalOrganizationIDType",
     "iso6523": "dppk:iso6523",
@@ -93,7 +80,10 @@
     "addressCountry": "dppk:addressCountry",
     "email": "dppk:email",
     "telephone": "dppk:telephone",
-    "productName": "dppk:productName",
+    "productName": {
+      "@id": "dppk:productName",
+      "@container": "@language"
+    },
     "description": "dppk:description",
     "gtin": "dppk:gtin",
     "brand": "dppk:brand",
@@ -117,14 +107,23 @@
     "countryOfOrigin": "dppk:countryOfOrigin",
     "weightPercentage": "dppk:weightPercentage",
     "recycledContentPercentage": "dppk:recycledContentPercentage",
+    "KgWeightLiteral": "dppk:KgWeightLiteral",
+    "MetersLengthLiteral": "dppk:MetersLengthLiteral",
     "netWeight": {
       "@id": "dppk:netWeight",
-      "@type": "dppk:QuantitativeValue"
+      "@type": "KgWeightLiteral"
     },
-    "grossWeight": {
-      "@id": "dppk:grossWeight",
-      "@type": "dppk:QuantitativeValue"
+    "length": {
+      "@id": "dppk:length",
+      "@type": "MetersLengthLiteral"
     },
+    "grossWeight": "dppk:grossWeight",
+    "value": {
+      "@id": "dppk:value",
+      "@type": "xsd:decimal"
+    },
+    "unitCode": "dppk:unitCode",
+    "unitText": "dppk:unitText",
     "documents": {
       "@id": "dppk:documents",
       "@container": "@set"
@@ -166,6 +165,11 @@
       "@id": "dppk:certificationStartDate",
       "@type": "xsd:date"
     },
+    "certifyingBodyID": "dppk:certifyingBodyID",
+    "referencedFileURL": {
+      "@id": "dppk:referencedFileURL",
+      "@type": "@id"
+    },
     "minValue": "dppk:minValue",
     "maxValue": "dppk:maxValue",
     "ecoDesignPropertyType": "dppk:ecoDesignPropertyType",
@@ -183,16 +187,13 @@
     },
     "productionStepType": "dppk:productionStepType",
     "productionLocationCountry": "dppk:productionLocationCountry",
-    "name": "dppk:productName",
+    "name": {
+      "@id": "dppk:name",
+      "@container": "@language"
+    },
     "identifier": "schema:identifier",
     "url": {
       "@id": "schema:url",
-      "@type": "@id"
-    },
-    "certifyingBodyID": "dppk:certifyingBodyID",
-    "organizationRole": "dppk:organizationRole",
-    "referencedFileURL": {
-      "@id": "dppk:referencedFileURL",
       "@type": "@id"
     }
   }

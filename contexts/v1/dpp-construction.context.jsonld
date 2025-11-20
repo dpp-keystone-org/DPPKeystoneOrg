@@ -2,13 +2,11 @@
   "@context": [
     "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld",
     {
+      "dppk": "https://dpp-keystone.org/spec/v1/terms#",
       "cencpr": "urn:cen:cpr:",
       "ConstructionProduct": "dppk:ConstructionProduct",
       "DeclarationOfPerformance": "dppk:DeclarationOfPerformance",
-      "hasDoP": {
-        "@id": "dppk:hasDoP",
-        "@type": "@id"
-      },
+      "hasDoP": "dppk:hasDoP",
       "dopIdentifier": "dppk:dopIdentifier",
       "harmonisedStandardReference": {
         "@id": "dppk:harmonisedStandardReference",
@@ -21,16 +19,6 @@
       "compressiveStrength": "dppk:compressiveStrength",
       "steelGrade": "dppk:steelGrade",
       "railProfile": "dppk:railProfile"
-    },
-    {
-      "netWeight": {
-        "@id": "dppk:netWeight",
-        "@type": "dppk:QuantitativeValue"
-      },
-      "length": {
-        "@id": "dppk:length",
-        "@type": "dppk:QuantitativeValue"
-      }
     }
   ]
 }

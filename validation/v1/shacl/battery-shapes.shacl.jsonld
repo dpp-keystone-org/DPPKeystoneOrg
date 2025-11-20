@@ -1,85 +1,67 @@
 {
   "@context": {
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
+    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
   },
   "@id": "dppkval:BatteryShapes",
-  "@type": "sh:ShapesGraph",
+  "@type": "ShapesGraph",
   "@graph": [
     {
       "@id": "dppkval:BatteryShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": {
-        "@id": "dppk:Battery"
-      },
-      "sh:and": [
+      "@type": "NodeShape",
+      "targetClass": "dppk:Battery",
+      "and": [
         {
-          "sh:node": "dppkval:DigitalProductPassportShape"
+          "node": "dppkval:DigitalProductPassportShape"
         }
       ],
-      "sh:property": [
+      "property": [
         {
-          "sh:path": {
-            "@id": "dppk:batteryCategory"
-          },
-          "sh:minCount": 1,
-          "sh:severity": {
-            "@id": "sh:Violation"
-          },
-          "sh:message": "Battery must have a category (dppk:batteryCategory)."
+          "path": "dppk:batteryCategory",
+          "minCount": 1,
+          "message": "Battery must have a category (dppk:batteryCategory)."
         },
         {
-          "sh:path": {
-            "@id": "dppk:batteryChemistry"
-          },
-          "sh:minCount": 1,
-          "sh:severity": {
-            "@id": "sh:Violation"
-          },
-          "sh:message": "Battery must declare its chemistry (dppk:batteryChemistry)."
+          "path": "dppk:batteryChemistry",
+          "minCount": 1,
+          "message": "Battery must declare its chemistry (dppk:batteryChemistry)."
         },
         {
-          "sh:path": {
-            "@id": "dppk:dateOfManufacture"
-          },
-          "sh:minCount": 1,
-          "sh:datatype": {
-            "@id": "xsd:date"
-          },
-          "sh:severity": {
-            "@id": "sh:Violation"
-          },
-          "sh:message": "Battery must have a date of manufacture (dppk:dateOfManufacture)."
+          "path": "dppk:dateOfManufacture",
+          "minCount": 1,
+          "datatype": "xsd:date",
+          "message": "Battery must have a date of manufacture (dppk:dateOfManufacture)."
         },
         {
-          "sh:path": {
-            "@id": "dppk:ratedCapacity"
-          },
-          "sh:minCount": 1,
-          "sh:node": {
-            "@id": "dppkval:QuantitativeValueShape"
-          },
-          "sh:severity": {
-            "@id": "sh:Violation"
-          },
-          "sh:message": "Battery must have a rated capacity (dppk:ratedCapacity) conforming to QuantitativeValue."
+          "path": "dppk:ratedCapacity",
+          "minCount": 1,
+          "node": "dppkval:QuantitativeValueShape",
+          "message": "Battery must have a rated capacity (dppk:ratedCapacity) conforming to QuantitativeValue."
         },
         {
-          "sh:path": {
-            "@id": "dppk:nominalVoltage"
-          },
-          "sh:minCount": 1,
-          "sh:node": {
-            "@id": "dppkval:QuantitativeValueShape"
-          },
-          "sh:severity": {
-            "@id": "sh:Violation"
-          },
-          "sh:message": "Battery must have a nominal voltage (dppk:nominalVoltage) conforming to QuantitativeValue."
+          "path": "dppk:nominalVoltage",
+          "minCount": 1,
+          "node": "dppkval:QuantitativeValueShape",
+          "message": "Battery must have a nominal voltage (dppk:nominalVoltage) conforming to QuantitativeValue."
         }
       ]
     }

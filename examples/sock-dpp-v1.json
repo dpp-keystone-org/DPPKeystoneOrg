@@ -4,15 +4,27 @@
     "dppk:DigitalProductPassport",
     "dppk:TextileProduct"
   ],
-  "ProductID": "urn:gtin:54321098765432",
-  "DPPID": "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
-  "EconomicOperatorID": "urn:gln:1122334455667",
-  "Granularity": "model",
-  "BaseDppSchemaVersion": "1.0",
-  "SectorDataModelVersion": "1.0",
-  "StatusOfTheDPP": "active",
-  "LastUpdated": "2024-05-22T11:30:00Z",
+  "digitalProductPassportId": "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
+  "productId": "urn:gtin:54321098765432",
+  "granularity": "Model",
+  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppStatus": "Active",
+  "lastUpdated": "2024-05-22T11:30:00Z",
+  "economicOperatorId": "urn:gln:1122334455667",
+  "delegatedActIds": [
+    "prEN_TextileRegulation_2024"
+  ],
   "productName": "Everyday Comfort Crew Socks (3-Pack)",
+  "documents": [
+    {
+      "@type": "DigitalDocument",
+      "name": {
+        "en": "IBU EPD Listing"
+      },
+      "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
+      "documentType": "Environmental Product Declaration"
+    }
+  ],
   "fibreComposition": [
     {
       "@type": "dppk:FibreComposition",
