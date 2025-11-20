@@ -65,27 +65,27 @@ describe('DPP SHACL Validation', () => {
     // This array defines all the validation tests to be run.
     // Each entry specifies an example data file and the sector-specific
     // SHACL shape files that should be applied in addition to the core shapes.
-    const testCases = [ // TODO: Add tests for battery, textile, and rail examples when they are available.
-//        {
-//            name: 'Electronics DPP - Public (drill-dpp-v1.json)',
-//            exampleFile: 'drill-dpp-v1.json',
-//            shapeFiles: ['electronics-shapes.shacl.jsonld']
-//        },
-//        {
-//            name: 'Electronics DPP - Private (drill-dpp-v1-private.json)',
-//            exampleFile: 'drill-dpp-v1-private.json',
-//            shapeFiles: ['electronics-shapes.shacl.jsonld']
-//        },
-//        {
-//            name: 'Battery DPP (battery-dpp-v1.json)',
-//            exampleFile: 'battery-dpp-v1.json',
-//            shapeFiles: ['battery-shapes.shacl.jsonld']
-//        },
-//        {
-//            name: 'Textile DPP (sock-dpp-v1.json)',
-//            exampleFile: 'sock-dpp-v1.json',
-//            shapeFiles: ['textile-shapes.shacl.jsonld']
-//        },
+    const testCases = [
+       {
+           name: 'Electronics DPP - Public (drill-dpp-v1.json)',
+           exampleFile: 'drill-dpp-v1.json',
+           shapeFiles: ['electronics-shapes.shacl.jsonld']
+       },
+       {
+           name: 'Electronics DPP - Private (drill-dpp-v1-private.json)',
+           exampleFile: 'drill-dpp-v1-private.json',
+          shapeFiles: ['electronics-shapes.shacl.jsonld']
+       },
+        {
+            name: 'Battery DPP (battery-dpp-v1.json)',
+            exampleFile: 'battery-dpp-v1.json',
+            shapeFiles: ['battery-shapes.shacl.jsonld']
+        },
+        {
+            name: 'Textile DPP (sock-dpp-v1.json)',
+            exampleFile: 'sock-dpp-v1.json',
+            shapeFiles: ['textile-shapes.shacl.jsonld']
+        },
         {
             name: 'Construction DPP (rail-dpp-v1.json)',
             exampleFile: 'rail-dpp-v1.json',
@@ -102,12 +102,16 @@ describe('DPP SHACL Validation', () => {
         const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFile);
         const dataDataset = await loadRdfFile(exampleFilePath);
 
+        // Always load the core shapes file.
+        const coreShapesPath = path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld');
+        const coreShapesDataset = await loadRdfFile(coreShapesPath);
+
         const shapeDatasets = await Promise.all(
             shapeFiles.map(file => loadRdfFile(path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'shacl', file)))
         );
 
         // --- 2. Combine Shapes and Validate ---
-        const allShapes = combineDatasets(shapeDatasets);
+        const allShapes = combineDatasets([coreShapesDataset, ...shapeDatasets]);
         const validator = new SHACLValidator(allShapes);
         const report = await validator.validate(dataDataset);
 

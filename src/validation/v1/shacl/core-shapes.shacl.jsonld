@@ -1,138 +1,123 @@
 {
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+
+    "@vocab": "http://www.w3.org/ns/shacl#",
+
+    "node": { "@type": "@id" },
+    "path": { "@type": "@id" },
+    "targetClass": { "@type": "@id" },
+    "class": { "@type": "@id" },
+    "datatype": { "@type": "@id" }
+  },
   "@id": "dppkval:CoreShapes",
-  "@type": "sh:ShapesGraph",
+  "@type": "ShapesGraph",
   
   "@graph": [
-    // ==================================================================
-    // Shape: Organization
-    // Validates basic requirements for organizational data.
-    // ==================================================================
     {
-      "@context": {
-        "sh": "http://www.w3.org/ns/shacl#",
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-        "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
-      },
       "@id": "dppkval:OrganizationShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": { "@id": "dppk:Organization" },
-      "sh:property": [
+      "@type": "NodeShape",
+      "targetClass": "dppk:Organization",
+      "property": [
         {
-          // Must have an organization name.
-          "sh:path": { "@id": "dppk:organizationName" },
-          "sh:minCount": 1,
-          "sh:severity": { "@id": "sh:Violation" },
-          "sh:message": "Organization must have a name (dppk:organizationName)."
+          "path": "dppk:organizationName",
+          "minCount": 1,
+          "message": "Organization must have a name (dppk:organizationName)."
         },
         {
-          // If GLN is present, it must be a 13-digit number (simple validation).
-          "sh:path": { "@id": "dppk:gln" },
-          "sh:pattern": "^[0-9]{13}$",
-          "sh:message": "GLN (dppk:gln) must be a 13-digit number."
+          "path": "dppk:gln",
+          "pattern": "^[0-9]{13}$",
+          "message": "GLN (dppk:gln) must be a 13-digit number."
         },
         {
-           // If LEI is present, it must be a 20-character alphanumeric string.
-           "sh:path": { "@id": "dppk:leiCode" },
-           "sh:pattern": "^[A-Z0-9]{20}$",
-           "sh:message": "LEI Code (dppk:leiCode) must be a 20-character alphanumeric string."
+           "path": "dppk:leiCode",
+           "pattern": "^[A-Z0-9]{20}$",
+           "message": "LEI Code (dppk:leiCode) must be a 20-character alphanumeric string."
         }
       ]
     },
-
-    // ==================================================================
-    // Shape: QuantitativeValue
-    // Ensures measurements are complete.
-    // ==================================================================
     {
-        "@context": {
-            "sh": "http://www.w3.org/ns/shacl#",
-            "xsd": "http://www.w3.org/2001/XMLSchema#",
-            "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-            "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
-        },
         "@id": "dppkval:QuantitativeValueShape",
-        "@type": "sh:NodeShape",
-        "sh:targetClass": { "@id": "dppk:QuantitativeValue" },
-        "sh:property": [
+        "@type": "NodeShape",
+        "targetClass": "dppk:QuantitativeValue",
+        "property": [
           {
-            // Must have a numeric value.
-            "sh:path": { "@id": "dppk:value" },
-            "sh:minCount": 1,
-            "sh:datatype": { "@id": "xsd:decimal" },
-            "sh:severity": { "@id": "sh:Violation" },
-            "sh:message": "QuantitativeValue must have a numeric value (dppk:value)."
+            "path": "dppk:value",
+            "minCount": 1,
+            "datatype": "xsd:decimal",
+            "message": "QuantitativeValue must have a numeric value (dppk:value)."
           },
           {
-            // Must have a unit code.
-            "sh:path": { "@id": "dppk:unitCode" },
-            "sh:minCount": 1,
-            "sh:severity": { "@id": "sh:Violation" },
-            "sh:message": "QuantitativeValue must specify a unitCode (dppk:unitCode), preferably UN/CEFACT."
+            "path": "dppk:unitCode",
+            "minCount": 1,
+            "message": "QuantitativeValue must specify a unitCode (dppk:unitCode), preferably UN/CEFACT."
           }
         ]
     },
-
-    // ==================================================================
-    // Shape: DigitalProductPassport (Payload Validation)
-    // Validates the core relationships within the DPP payload.
-    // ==================================================================
     {
-        "@context": {
-            "sh": "http://www.w3.org/ns/shacl#",
-            "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-            "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
-        },
         "@id": "dppkval:DigitalProductPassportShape",
-        "@type": "sh:NodeShape",
-        "sh:targetClass": { "@id": "dppk:DigitalProductPassport" },
-        "sh:property": [
+        "@type": "NodeShape",
+        "targetClass": "dppk:DigitalProductPassport",
+        "property": [
             {
-                // Must have a product name.
-                "sh:path": { "@id": "dppk:productName" },
-                "sh:minCount": 1,
-                "sh:severity": { "@id": "sh:Violation" },
-                "sh:message": "DPP must have a product name (dppk:productName)."
+                "path": "dppk:productName",
+                "minCount": 1,
+                "message": "DPP must have a product name (dppk:productName)."
             },
             {
-                // Manufacturer relationship must point to a valid Organization shape.
-                "sh:path": { "@id": "dppk:manufacturer" },
-                // Ensure the object linked via manufacturer conforms to the OrganizationShape.
-                "sh:node": { "@id": "dppkval:OrganizationShape" },
-                "sh:message": "The manufacturer must conform to the Organization shape."
+                "path": "dppk:manufacturer",
+                "node": "dppkval:OrganizationShape",
+                "message": "The manufacturer must conform to the Organization shape."
             },
             {
-                // Economic Operator relationship must point to a valid Organization shape.
-                "sh:path": { "@id": "dppk:economicOperator" },
-                "sh:node": { "@id": "dppkval:OrganizationShape" },
-                "sh:message": "The economicOperator must conform to the Organization shape."
+                "path": "dppk:economicOperator",
+                "node": "dppkval:OrganizationShape",
+                "message": "The economicOperator must conform to the Organization shape."
             }
         ]
     },
-
-    // ==================================================================
-    // Shape: Certification
-    // ==================================================================
     {
-        "@context": {
-            "sh": "http://www.w3.org/ns/shacl#",
-            "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-            "dppkval": "https://dpp-keystone.org/validation/v1/shacl/"
-        },
         "@id": "dppkval:CertificationShape",
-        "@type": "sh:NodeShape",
-        "sh:targetClass": { "@id": "dppk:Certification" },
-        "sh:property": [
+        "@type": "NodeShape",
+        "targetClass": "dppk:Certification",
+        "property": [
             {
-                "sh:path": { "@id": "dppk:certificationStandard" },
-                "sh:minCount": 1,
-                "sh:message": "Certification must specify the standard or name (dppk:certificationStandard)."
+                "path": "dppk:certificationStandard",
+                "minCount": 1,
+                "message": "Certification must specify the standard or name (dppk:certificationStandard)."
             },
             {
-                "sh:path": { "@id": "dppk:certificationIdentification" },
-                "sh:minCount": 1,
-                "sh:message": "Certification must have an identifier or number (dppk:certificationIdentification)."
+                "path": "dppk:certificationIdentification",
+                "minCount": 1,
+                "message": "Certification must have an identifier or number (dppk:certificationIdentification)."
             }
         ]
+    },
+    {
+      "@id": "dppkval:DigitalDocumentShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:DigitalDocument",
+      "property": [
+        {
+          "path": "dppk:name", 
+          "name": "Document Name",
+          "minCount": 1
+        },
+        {
+          "path": "dppk:documentURL",
+          "name": "Document URL",
+          "minCount": 1
+        },
+        {
+            "path": "dppk:documentType",
+            "name": "Document Type",
+            "minCount": 0
+        }
+      ]
     }
   ]
 }

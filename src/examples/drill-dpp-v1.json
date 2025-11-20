@@ -49,6 +49,18 @@
       "addressCountry": "UK"
     }
   },
+  
+  // --- Documents (Aligned with Core Ontology) ---
+  "documents": [
+      {
+        "@type": "DigitalDocument",
+        "name": {
+          "en": "IBU EPD Listing"
+        },
+        "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
+        "documentType": "Environmental Product Declaration"
+      }
+  ],
 
   // --- Technical Specifications (Aligned with Core/Electronics Ontology) ---
   "netWeight": 1.8,

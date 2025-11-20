@@ -28,6 +28,19 @@
   "batteryCategory": "IndustrialBattery",
   "batteryChemistry": "LFP",
   "dateOfManufacture": "2024-01-15",
+
+    // --- Documents (Aligned with Core Ontology) ---
+  "documents": [
+      {
+        "@type": "DigitalDocument",
+        "name": {
+          "en": "IBU EPD Listing"
+        },
+        "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
+        "documentType": "Environmental Product Declaration"
+      }
+  ],
+
   "nominalVoltage": {
     "@type": "QuantitativeValue",
     "value": 48,

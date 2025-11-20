@@ -21,6 +21,18 @@
   // --- Core Product Information ---
   "productName": "Everyday Comfort Crew Socks (3-Pack)",
 
+    // --- Documents (Aligned with Core Ontology) ---
+  "documents": [
+      {
+        "@type": "DigitalDocument",
+        "name": {
+          "en": "IBU EPD Listing"
+        },
+        "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
+        "documentType": "Environmental Product Declaration"
+      }
+  ],
+
   // --- Textile-Specific Payload ---
   // This section uses terms defined in the dpp-textile.context.jsonld.
   "fibreComposition": [
