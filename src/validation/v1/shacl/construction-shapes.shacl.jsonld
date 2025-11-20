@@ -60,7 +60,7 @@
       "@type": "sh:NodeShape",
       "sh:property": [
         {
-          "sh:path": { "@id": "dppk:productName" }, 
+          "sh:path": { "@id": "dppk:name" }, 
           "sh:nodeKind": "sh:Literal",
           "sh:minCount": 1
         },
