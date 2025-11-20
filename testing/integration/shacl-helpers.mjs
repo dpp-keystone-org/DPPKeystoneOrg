@@ -10,6 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 export const PROJECT_ROOT = path.join(__dirname, '..', '..');
 
+// This map redirects requests for production URLs to local files in the 'dist' directory.
 const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
     "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-core.context.jsonld'),
@@ -21,15 +22,44 @@ const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
+
+    // --- Ontology Files ---
+    "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'dpp-ontology.jsonld'),
+    // Core
+    "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Header.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Organization.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Product.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
+    // Sectors
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Battery.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Textile.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Construction.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Electronics.jsonld'),
 };
 
 export const localFileDocumentLoader = async (url) => {
+    // --- DIAGNOSTIC LOGGING ---
+    console.log(`[Document Loader] Intercepted request for URL: ${url}`);
+
     if (url in CONTEXT_URL_TO_LOCAL_PATH_MAP) {
+        console.log(`[Document Loader] SUCCESS: Found local mapping for ${url}`);
         const localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
+        console.log(`[Document Loader] Attempting to read local file: ${localPath}`);
         const fileContent = await fs.readFile(localPath, 'utf-8');
         const parsedDocument = JSON.parse(fileContent);
         return { contextUrl: null, documentUrl: url, document: parsedDocument };
     }
+
+    console.error(`[Document Loader] FAILURE: No local mapping for ${url}. Falling back to network request.`);
     return jsonld.documentLoaders.node()(url);
 };
 
@@ -70,7 +100,10 @@ export async function loadRdfFile(filePath, { factory }) {
     // This will show us what the JSON-LD processor produces after applying the context.
     // If this is an empty array [], it's the source of our problem.
     console.log(`--- Expanding ${path.basename(filePath)} ---`);
-    const expanded = await jsonld.expand(json, { documentLoader: localFileDocumentLoader });
+    const expanded = await jsonld.expand(json, {
+        documentLoader: localFileDocumentLoader,
+        processingMode: 'json-ld-1.1' // Explicitly use JSON-LD 1.1
+    });
     console.log(JSON.stringify(expanded, null, 2));
     console.log(`--- End Expansion for ${path.basename(filePath)} ---`);
     return toRdfDataset(expanded, { factory });
