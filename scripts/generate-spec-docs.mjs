@@ -52,46 +52,31 @@ async function getOntologyMetadata(filePath) {
     return { title, description, classes, properties };
 }
 
-async function processContext(contextValue, basePath) {
-    if (Array.isArray(contextValue)) {
-        let combinedContext = {};
-        for (const item of contextValue) {
-            const resolvedContext = await processContext(item, basePath);
-            Object.assign(combinedContext, resolvedContext);
-        }
-        return combinedContext;
-    }
-
-    if (typeof contextValue === 'string') {
-        // It's a URL, resolve and fetch it.
-        if (contextValue.startsWith('https://dpp-keystone.org/')) {
-            // Note: process.cwd() is the root of the project where npm script is run
-            const localPath = contextValue.replace('https://dpp-keystone.org/', join(process.cwd(), 'dist/'));
-            const resolvedPath = resolve(localPath);
-            const newBasePath = dirname(resolvedPath);
-            try {
-                const content = await readFile(resolvedPath, 'utf-8');
-                const json = JSON.parse(content);
-                // Recursively process the context from the loaded file
-                return await processContext(json['@context'], newBasePath);
-            } catch (error) {
-                console.error(`Error reading or parsing context URL ${contextValue} at ${resolvedPath}:`, error);
-                return {}; // Return empty if file not found or invalid
-            }
-        }
-        // For external contexts we can't resolve locally, return empty.
-        return {};
-    }
-
-    return contextValue || {}; // It's an object or null/undefined
-}
-
-async function getContextMetadata(filePath, basePath) {
+async function getContextMetadata(filePath) {
     const content = await readFile(filePath, 'utf-8');
     const data = JSON.parse(content);
     const contextValue = data['@context'];
-    const fullContext = await processContext(contextValue, basePath);
-    return { terms: Object.keys(fullContext) };
+
+    let imports = [];
+    let localTerms = {};
+
+    if (Array.isArray(contextValue)) {
+        for (const item of contextValue) {
+            if (typeof item === 'string') {
+                imports.push(item);
+            } else if (typeof item === 'object' && item !== null) {
+                Object.assign(localTerms, item);
+            }
+        }
+    } else if (typeof contextValue === 'object' && contextValue !== null) {
+        Object.assign(localTerms, contextValue);
+    } else if (typeof contextValue === 'string') {
+        imports.push(contextValue);
+    }
+    
+    // For now, we're just listing the term keys.
+    // A future improvement could be to show their URI values.
+    return { imports, localTerms: Object.keys(localTerms) };
 }
 
 function generateOntologyHtml(directoryName, files) {
@@ -135,13 +120,22 @@ function generateOntologyHtml(directoryName, files) {
 }
 
 function generateContextHtml(directoryName, files) {
-    const listItems = files.map(file => `
+    const listItems = files.map(file => {
+        const importsList = file.imports.length > 0
+            ? `<h4>Imports</h4><ul>\n${file.imports.map(i => `                <li>${i}</li>`).join('\n')}\n            </ul>`
+            : '';
+
+        const termsList = file.localTerms.length > 0
+            ? `<h4>Locally Defined Terms</h4><ul>\n${file.localTerms.map(t => `                <li>${t}</li>`).join('\n')}\n            </ul>`
+            : '';
+
+        return `
         <li>
             <h3><a href="./${file.name}">${file.name}</a></h3>
-            <h4>Terms</h4>
-            <ul>\n${file.terms.map(t => `                <li>${t}</li>`).join('\n')}\n            </ul>
+            ${importsList}
+            ${termsList}
         </li>
-    `).join('\n');
+    `}).join('\n');
 
     return `
 <!DOCTYPE html>
@@ -210,10 +204,11 @@ async function main() {
         }
 
         const fileMetadata = await Promise.all(files.map(async (file) => {
-            const { terms } = await getContextMetadata(file, fullPath);
+            const { imports, localTerms } = await getContextMetadata(file);
             return {
                 name: basename(file),
-                terms
+                imports,
+                localTerms
             };
         }));
         
