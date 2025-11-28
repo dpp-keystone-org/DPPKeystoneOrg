@@ -1,5 +1,5 @@
 {
-  "@context": "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld",
   "@type": [
     "dppk:DigitalProductPassport",
     "dppk:TextileProduct"

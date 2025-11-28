@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Explorer: ontology/v1/core</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; margin: 2em; }
+        h1, h2, h3, h4 { color: #333; }
+        ul { list-style-type: none; padding-left: 0; }
+        li { border: 1px solid #ddd; border-radius: 5px; padding: 1em; margin-bottom: 1em; }
+        a { text-decoration: none; color: #007BFF; }
+        a:hover { text-decoration: underline; }
+        p { margin: 0.5em 0; }
+        ul ul { padding-left: 1em; }
+        ul ul li { border: none; padding: 0.2em 0; margin-bottom: 0;}
+    </style>
+</head>
+<body>
+    <h1>Ontology Explorer</h1>
+    <h2>ontology/v1/core</h2>
+    <ul>
+        
+        <li>
+            <h3><a href="./Compliance.jsonld">Compliance.jsonld</a></h3>
+            <p><strong>DPP Core Ontology - Compliance and Regulatory Definitions (v1)</strong></p>
+            <p>Defines horizontal concepts related to Documents, Certifications, Substances of Concern, Eco-Design, Packaging, and Production Steps.</p>
+            
+            <h4>Properties</h4><ul>
+                <li>dppk:documents - <em>Relates the product to associated digital documents.</em></li>
+                <li>dppk:certifications - <em>Relates the product to its certifications.</em></li>
+                <li>dppk:substancesOfConcern</li>
+                <li>dppk:ecoDesignProperties</li>
+                <li>dppk:complianceTopics</li>
+                <li>dppk:packaging</li>
+                <li>dppk:productionSteps</li>
+                <li>dppk:documentType</li>
+                <li>dppk:languageCode</li>
+                <li>dppk:documentURL</li>
+                <li>dppk:certificationStandard</li>
+                <li>dppk:certificationIdentification</li>
+                <li>dppk:certifyingBodyName</li>
+                <li>dppk:certificationStartDate</li>
+                <li>dppk:minValue - <em>The minimum concentration or amount of the substance present.</em></li>
+                <li>dppk:maxValue - <em>The maximum concentration or amount of the substance present.</em></li>
+                <li>dppk:ecoDesignPropertyType - <em>The specific type of Eco-Design property being reported (e.g., EnergyEfficiency, GWP_A1-A3).</em></li>
+                <li>dppk:complianceType - <em>The specific regulation or standard being addressed (e.g., REACH, RoHS).</em></li>
+                <li>dppk:complianceValue - <em>The status of compliance (e.g., YES, NO, Compliant, Non-Compliant).</em></li>
+                <li>dppk:complianceText</li>
+                <li>dppk:packagingMaterialType</li>
+                <li>dppk:packagingMaterialCompositionQuantity</li>
+                <li>dppk:packagingRecyclingProcessType - <em>Indicates if the packaging is RECYCLABLE, REUSABLE, or COMPOSTABLE.</em></li>
+                <li>dppk:packagingRecycledContent</li>
+                <li>dppk:packagingSubstanceOfConcern</li>
+                <li>dppk:productionStepType - <em>The name or description of the production step (e.g., Assembly, Weaving, Smelting).</em></li>
+                <li>dppk:productionLocationCountry - <em>The country where the production step took place. Recommended to use ISO 3166-1 alpha-3 codes.</em></li>
+            </ul>
+        </li>
+    
+
+        <li>
+            <h3><a href="./Header.jsonld">Header.jsonld</a></h3>
+            <p><strong>DPP Core Ontology - Header Definitions (v1)</strong></p>
+            <p>Defines the normative header fields required for the Digital Product Passport envelope.</p>
+            
+            <h4>Properties</h4><ul>
+                <li>dppk:DPPID - <em>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI).</em></li>
+                <li>dppk:uniqueProductIdentifier - <em>The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI.</em></li>
+                <li>dppk:EconomicOperatorID - <em>The unique identifier for the Economic Operator responsible for placing the product on the market.</em></li>
+                <li>dppk:FacilityID - <em>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</em></li>
+                <li>dppk:Granularity - <em>Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).</em></li>
+                <li>dppk:StatusOfTheDPP - <em>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</em></li>
+                <li>dppk:LastUpdated - <em>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</em></li>
+                <li>dppk:BaseDppSchemaVersion - <em>The version of the horizontal (cross-sector) DPP schema used for this instance.</em></li>
+                <li>dppk:SectorDataModelVersion - <em>The version of the sector-specific data model (e.g., Battery Regulation, Textile Strategy) used for this instance.</em></li>
+                <li>dppk:hsCode - <em>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</em></li>
+            </ul>
+        </li>
+    
+
+        <li>
+            <h3><a href="./Organization.jsonld">Organization.jsonld</a></h3>
+            <p><strong>DPP Core Ontology - Organization and Roles Definitions (v1)</strong></p>
+            <p>Defines concepts related to organizations, roles (Economic Operator, Manufacturer, Facility), identifiers, and contact information within the DPP ecosystem.</p>
+            
+            <h4>Properties</h4><ul>
+                <li>dppk:economicOperator - <em>Relates the DPP to the Economic Operator responsible for it.</em></li>
+                <li>dppk:manufacturer - <em>Relates the DPP to the Manufacturer of the product.</em></li>
+                <li>dppk:manufacturingFacility - <em>Relates the DPP to the specific facility where the product (or a step) was manufactured.</em></li>
+                <li>dppk:organizationName - <em>The official legal name of the organization.</em></li>
+                <li>dppk:tradingName - <em>The name under which the organization conducts business, if different from the legal name.</em></li>
+                <li>dppk:gln - <em>A GS1 standard identifier for legal entities, functional departments, or physical locations.</em></li>
+                <li>dppk:leiCode - <em>A standardized global identifier for legal entities.</em></li>
+                <li>dppk:additionalOrganizationID - <em>An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIDType.</em></li>
+                <li>dppk:additionalOrganizationIDType - <em>The type of the identifier provided in additionalOrganizationID (e.g., 'EORI', 'VAT').</em></li>
+                <li>dppk:iso6523 - <em>Relates an organization to one of its ISO 6523 identifiers.</em></li>
+                <li>dppk:icd - <em>The 4-digit International Code Designator (ICD) from ISO 6523-1.</em></li>
+                <li>dppk:iso6523Value - <em>The value of the identifier within the scheme defined by the ICD.</em></li>
+                <li>dppk:address - <em>Relates an organization to its physical address.</em></li>
+                <li>dppk:streetAddress - <em>Includes street name and number.</em></li>
+                <li>dppk:postalCode</li>
+                <li>dppk:addressLocality</li>
+                <li>dppk:addressCountry</li>
+                <li>dppk:email</li>
+                <li>dppk:telephone</li>
+            </ul>
+        </li>
+    
+
+        <li>
+            <h3><a href="./Product.jsonld">Product.jsonld</a></h3>
+            <p><strong>DPP Core Ontology - Product and Material Definitions (v1)</strong></p>
+            <p>Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.</p>
+            
+            <h4>Properties</h4><ul>
+                <li>dppk:name - <em>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</em></li>
+                <li>dppk:productName - <em>The common name of the product.</em></li>
+                <li>dppk:description - <em>A detailed description of the product.</em></li>
+                <li>dppk:gtin - <em>The GS1 identifier for the trade item.</em></li>
+                <li>dppk:brand</li>
+                <li>dppk:model</li>
+                <li>dppk:image - <em>A URI pointing to an image of the product.</em></li>
+                <li>dppk:color</li>
+                <li>dppk:sizeCode</li>
+                <li>dppk:sizeSystemCode - <em>The system used for the size code (e.g., EUROPE, US).</em></li>
+                <li>dppk:hasPart - <em>Relates the main product to its constituent components or materials. This forms the Bill of Materials (BOM).</em></li>
+                <li>dppk:dppLink - <em>A URI pointing to the Digital Product Passport of a component, if one exists.</em></li>
+                <li>dppk:materialClassification - <em>A code or standard classifying the material (e.g., steel grade, plastic type).</em></li>
+                <li>dppk:countryOfOrigin - <em>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</em></li>
+                <li>dppk:weightPercentage - <em>The percentage of the total weight of the main product that this component or material constitutes.</em></li>
+                <li>dppk:recycledContentPercentage - <em>The percentage of the material that is derived from recycled sources.</em></li>
+                <li>dppk:weight - <em>DEPRECATED. Use dppk:netWeight or dppk:grossWeight instead. The weight of the product or material, expressed as a QuantitativeValue.</em></li>
+                <li>dppk:netWeight - <em>The weight of the product or material, excluding packaging. Recommended to use specific datatypes like dppk:KgWeightLiteral.</em></li>
+                <li>dppk:grossWeight - <em>The weight of the product or material, including packaging, expressed as a QuantitativeValue.</em></li>
+                <li>dppk:length - <em>The length of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</em></li>
+                <li>dppk:value - <em>The numeric value of the measurement.</em></li>
+                <li>dppk:unitCode - <em>The unit of measurement, preferably using UN/CEFACT codes (e.g., KGM, MTR, LTR).</em></li>
+                <li>dppk:methodologyReference - <em>A reference to the standard, methodology, or data dictionary used to define or measure this specific value (e.g., ISO standard number, specific PEFCR rule).</em></li>
+                <li>dppk:unitText - <em>A human-readable representation of the unit (e.g., kg CO2e, Nm).</em></li>
+            </ul>
+        </li>
+    
+    </ul>
+</body>
+</html>
