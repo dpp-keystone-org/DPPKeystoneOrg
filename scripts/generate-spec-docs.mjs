@@ -1,5 +1,6 @@
 import { readdir, readFile, writeFile } from 'fs/promises';
 import { join, basename, dirname, resolve } from 'path';
+import { parse as jsoncParse } from 'jsonc-parser';
 
 const distDir = join(process.cwd(), 'dist', 'spec');
 const ontologyDir = join(distDir, 'ontology', 'v1');
@@ -52,31 +53,41 @@ async function getOntologyMetadata(filePath) {
     return { title, description, classes, properties };
 }
 
-async function getContextMetadata(filePath) {
+async function getContextMetadata(filePath, termDictionary) {
     const content = await readFile(filePath, 'utf-8');
     const data = JSON.parse(content);
     const contextValue = data['@context'];
 
     let imports = [];
-    let localTerms = {};
+    let localTermMap = {};
 
     if (Array.isArray(contextValue)) {
         for (const item of contextValue) {
             if (typeof item === 'string') {
                 imports.push(item);
             } else if (typeof item === 'object' && item !== null) {
-                Object.assign(localTerms, item);
+                Object.assign(localTermMap, item);
             }
         }
     } else if (typeof contextValue === 'object' && contextValue !== null) {
-        Object.assign(localTerms, contextValue);
+        Object.assign(localTermMap, contextValue);
     } else if (typeof contextValue === 'string') {
         imports.push(contextValue);
     }
+
+    const localTerms = Object.entries(localTermMap).map(([term, uri]) => {
+        // The URI can be an object with @id, so handle that case
+        const termUri = (typeof uri === 'object' && uri !== null) ? uri['@id'] : uri;
+        const definition = termDictionary[termUri] || {};
+        return {
+            term,
+            uri: termUri,
+            description: definition.description || '',
+            module: definition.module || ''
+        };
+    });
     
-    // For now, we're just listing the term keys.
-    // A future improvement could be to show their URI values.
-    return { imports, localTerms: Object.keys(localTerms) };
+    return { imports, localTerms };
 }
 
 function generateOntologyHtml(directoryName, files) {
@@ -85,8 +96,8 @@ function generateOntologyHtml(directoryName, files) {
             <h3><a href="./${file.name}">${file.name}</a></h3>
             <p><strong>${file.title}</strong></p>
             <p>${file.description}</p>
-            ${file.classes.length > 0 ? `<h4>Classes</h4><ul>\n${file.classes.map(c => `                <li>${c}</li>`).join('\n')}\n            </ul>` : ''}
-            ${file.properties.length > 0 ? `<h4>Properties</h4><ul>\n${file.properties.map(p => `                <li>${p.id}${p.comment ? ` - <em>${p.comment}</em>` : ''}</li>`).join('\n')}\n            </ul>` : ''}
+            ${file.classes.length > 0 ? `<h4>Classes</h4><ul>\n${file.classes.map(c => `                <li id="${c}">${c}</li>`).join('\n')}\n            </ul>` : ''}
+            ${file.properties.length > 0 ? `<h4>Properties</h4><ul>\n${file.properties.map(p => `                <li id="${p.id}">${p.id}${p.comment ? ` - <em>${p.comment}</em>` : ''}</li>`).join('\n')}\n            </ul>` : ''}
         </li>
     `).join('\n');
 
@@ -126,7 +137,16 @@ function generateContextHtml(directoryName, files) {
             : '';
 
         const termsList = file.localTerms.length > 0
-            ? `<h4>Locally Defined Terms</h4><ul>\n${file.localTerms.map(t => `                <li>${t}</li>`).join('\n')}\n            </ul>`
+            ? `<h4>Locally Defined Terms</h4><ul>\n${file.localTerms.map(t => {
+                const termName = `<strong>${t.term}</strong>`;
+                const description = t.description ? ` - <em>${t.description}</em>` : '';
+                if (t.module && t.uri) {
+                    // Path from dist/spec/contexts/v1/ to dist/spec/ontology/v1/
+                    const link = `../../ontology/v1/${t.module}/index.html#${t.uri}`;
+                    return `                <li><a href="${link}">${termName}</a>${description}</li>`;
+                }
+                return `                <li>${termName}${description}</li>`;
+            }).join('\n')}\n            </ul>`
             : '';
 
         return `
@@ -166,8 +186,50 @@ function generateContextHtml(directoryName, files) {
 </html>`;
 }
 
+async function buildTermDictionary() {
+    const termMap = {};
+    const sourceOntologyDir = join(process.cwd(), 'src', 'ontology', 'v1');
+    const sourceOntologyDirs = ['core', 'sectors'];
+
+    for (const dirSuffix of sourceOntologyDirs) {
+        const fullPath = join(sourceOntologyDir, dirSuffix);
+        // Using a modified getJsonLdFiles that reads from src, not dist
+        try {
+            const dirents = await readdir(fullPath, { withFileTypes: true });
+            const files = dirents
+                .filter(dirent => dirent.isFile() && dirent.name.endsWith('.jsonld'))
+                .map(dirent => join(fullPath, dirent.name));
+
+            for (const file of files) {
+                const content = await readFile(file, 'utf-8');
+                const data = jsoncParse(content);
+                const graph = data['@graph'] || [];
+                
+                for (const node of graph) {
+                    if (node['@id'] && node['rdfs:comment']) {
+                        termMap[node['@id']] = {
+                            description: node['rdfs:comment'],
+                            module: dirSuffix // 'core' or 'sectors'
+                        };
+                    }
+                }
+            }
+        } catch (error) {
+            if (error.code === 'ENOENT') {
+                console.warn(`Directory not found during dictionary build: ${fullPath}. Skipping.`);
+                continue;
+            }
+            throw error;
+        }
+    }
+    return termMap;
+}
+
 async function main() {
-    // Process Ontologies
+    // 1. Build a dictionary of all term URIs and their descriptions from the ontology source.
+    const termDictionary = await buildTermDictionary();
+
+    // 2. Process Ontologies for HTML documentation
     for (const dirSuffix of ontologyDirsToProcess) {
         const fullPath = join(ontologyDir, dirSuffix);
         const directoryName = `ontology/v1/${dirSuffix}`;
@@ -193,7 +255,7 @@ async function main() {
         console.log(`Generated ontology index.html for ${fullPath}`);
     }
 
-    // Process Contexts
+    // 3. Process Contexts for HTML documentation
     for (const dirSuffix of contextDirsToProcess) {
         const fullPath = join(contextDir, dirSuffix);
         const directoryName = `contexts/v1${dirSuffix === '.' ? '' : '/' + dirSuffix}`;
@@ -204,7 +266,8 @@ async function main() {
         }
 
         const fileMetadata = await Promise.all(files.map(async (file) => {
-            const { imports, localTerms } = await getContextMetadata(file);
+            // Pass the dictionary to the metadata function
+            const { imports, localTerms } = await getContextMetadata(file, termDictionary);
             return {
                 name: basename(file),
                 imports,
