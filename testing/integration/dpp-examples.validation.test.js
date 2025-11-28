@@ -99,15 +99,15 @@ describe('DPP SHACL Validation', () => {
         console.log(`\n--- Running SHACL Test for: ${exampleFile} ---`);
 
         // --- 1. Load Data and Sector-Specific Shapes ---
-        const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFile);
+        const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'spec', 'examples', exampleFile);
         const dataDataset = await loadRdfFile(exampleFilePath);
 
         // Always load the core shapes file.
-        const coreShapesPath = path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld');
+        const coreShapesPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld');
         const coreShapesDataset = await loadRdfFile(coreShapesPath);
 
         const shapeDatasets = await Promise.all(
-            shapeFiles.map(file => loadRdfFile(path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'shacl', file)))
+            shapeFiles.map(file => loadRdfFile(path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', file)))
         );
 
         // --- 2. Combine Shapes and Validate ---

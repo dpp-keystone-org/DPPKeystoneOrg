@@ -23,7 +23,7 @@ describe('DPP JSON Schema Validation', () => {
 
     // Before running any tests, load and compile the main DPP header schema.
     beforeAll(async () => {
-        const schemaPath = path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'json-schema', 'dpp-header.schema.json');
+        const schemaPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'json-schema', 'dpp.schema.json');
         const schemaContent = await fs.promises.readFile(schemaPath, 'utf-8');
         const schema = JSON.parse(schemaContent);
         validate = ajv.compile(schema);
@@ -40,8 +40,8 @@ describe('DPP JSON Schema Validation', () => {
     ];
 
     // Use test.each to run the same validation logic for each example file.
-    test.each(testCases)('%s should be valid against the DPP Header JSON Schema', async (exampleFile) => {
-        const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFile);
+    test.each(testCases)('%s should be valid against the DPP Core Schema', async (exampleFile) => {
+        const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'spec', 'examples', exampleFile);
         const exampleContent = await fs.promises.readFile(exampleFilePath, 'utf-8');
         const data = JSON.parse(exampleContent);
 

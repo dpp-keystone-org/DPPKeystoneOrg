@@ -8,16 +8,14 @@
   // --- Normative DPP Header ---
   // These fields are required for all DPPs, regardless of sector.
   "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
-  "productId": "urn:gtin:01234567890123",
+  "uniqueProductIdentifier": "urn:gtin:01234567890123",
   "granularity": "Item",
   "dppSchemaVersion": "ENXXX:v1.0",
   "dppStatus": "Active",
-  "lastUpdated": "2024-05-21T10:00:00Z",
+  "lastUpdate": "2024-05-21T10:00:00Z",
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
-  "delegatedActIds": [
-    "prEN_BatteryRegulation_2023"
-  ],
+  "contentSpecificationIds": ["prEN_BatteryRegulation_2023"],
 
   // --- Core Product Information ---
   "productName": "Industrial Lithium-Ion Battery Module",

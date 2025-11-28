@@ -78,6 +78,12 @@
                 "node": "dppkval:OrganizationShape",
                 "message": "The economicOperator must conform to the Organization shape."
             }
+            ,
+            {
+                "path": "dppk:contentSpecificationIds",
+                "minCount": 1,
+                "message": "DPP must have at least one contentSpecificationId."
+            }
         ]
     },
     {

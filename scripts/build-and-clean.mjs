@@ -82,8 +82,9 @@ async function build() {
     console.log('Starting build process: Cleaning and copying files...');
     await fse.emptyDir(BUILD_DIR); // Clear previous build artifacts
 
-    // Process source directories
-    await processDirectory(SOURCE_DIR, BUILD_DIR);
+    // Process source directories into the 'dist/spec' subdirectory
+    const specDir = path.join(BUILD_DIR, 'spec');
+    await processDirectory(SOURCE_DIR, specDir);
     
     // Copy root-level static assets
     const rootStaticAssets = ['index.html', 'docs', 'CONTRIBUTING.md', 'LICENSE', 'README.md'];

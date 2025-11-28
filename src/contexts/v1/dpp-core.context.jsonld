@@ -38,15 +38,15 @@
     // Properties: DPP Header (camelCase)
     // ==================================================================
     "digitalProductPassportId": { "@id": "dppk:DPPID", "@type": "@id" },
-    "productId": { "@id": "dppk:ProductID", "@type": "@id" },
+    "uniqueProductIdentifier": { "@id": "dppk:uniqueProductIdentifier", "@type": "@id" },
     "economicOperatorId": { "@id": "dppk:EconomicOperatorID", "@type": "@id" },
     "facilityId": { "@id": "dppk:FacilityID", "@type": "@id" },
     "granularity": "dppk:Granularity",
     "dppStatus": "dppk:StatusOfTheDPP",
     "lastUpdated": { "@id": "dppk:lastUpdated", "@type": "xsd:dateTime" },
     "dppSchemaVersion": "dppk:dppSchemaVersion",
-    "delegatedActIds": {
-      "@id": "dppk:delegatedActIds",
+    "contentSpecificationIds": {
+      "@id": "dppk:contentSpecificationIds",
       "@container": "@set"
     },
     "verifiableCredential": "dppk:verifiableCredential",

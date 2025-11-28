@@ -14,37 +14,37 @@ export const PROJECT_ROOT = path.join(__dirname, '..', '..');
 // This map redirects requests for production URLs to local files in the 'dist' directory.
 const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
     "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-core.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-core.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-construction.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-construction.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-construction.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-electronics.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-electronics.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-electronics.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-battery.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
     "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
 
     // --- Ontology Files ---
     "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'dpp-ontology.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'dpp-ontology.jsonld'),
     // Core
     "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Header.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Header.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Organization.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Organization.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Product.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Product.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
     // Sectors
     "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Battery.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Battery.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Textile.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Textile.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Construction.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Construction.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'ontology', 'v1', 'sectors', 'Electronics.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Electronics.jsonld'),
 };
 
 export const localFileDocumentLoader = async (url) => {

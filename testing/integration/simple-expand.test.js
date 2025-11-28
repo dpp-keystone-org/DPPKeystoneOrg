@@ -9,7 +9,7 @@ import {
 describe('Simple DPP Expansion', () => {
     test('should correctly expand rail-dpp-v1.json using local contexts', async () => {
         const exampleFileName = 'rail-dpp-v1.json';
-        const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFileName);
+        const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'spec', 'examples', exampleFileName);
         const fileContent = await fs.readFile(exampleFilePath, 'utf-8');
         const dppJson = JSON.parse(fileContent);
 

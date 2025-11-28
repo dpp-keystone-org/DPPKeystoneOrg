@@ -145,10 +145,6 @@
         "rdfs:comment": "Standardized care symbols (e.g., GINETEX codes).",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
         "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-          { "@id": "gs1:careLabel" },
-          { "@id": "unece:textileCareInstructionCode" }
-        ],
         "rdfs:term_status": "unstable"
     },
 
