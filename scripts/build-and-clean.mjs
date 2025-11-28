@@ -57,7 +57,7 @@ async function createRedirects(targetDir) {
 
     const redirectPath = path.join(targetDir, 'spec', 'v1', 'terms', 'index.html');
     // The target URL should be a relative path to work correctly on the deployed site.
-    const redirectTarget = '/ontology/v1/dpp-ontology.jsonld';
+    const redirectTarget = '/spec/ontology/v1/dpp-ontology.jsonld';
     
     // This HTML file uses a meta refresh tag to immediately redirect the user.
     const redirectContent = `<!DOCTYPE html>
