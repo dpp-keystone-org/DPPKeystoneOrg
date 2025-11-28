@@ -5,13 +5,13 @@
     "dppk:TextileProduct"
   ],
   "digitalProductPassportId": "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
-  "productId": "urn:gtin:54321098765432",
+  "uniqueProductIdentifier": "urn:gtin:54321098765432",
   "granularity": "Model",
   "dppSchemaVersion": "ENXXX:v1.0",
   "dppStatus": "Active",
-  "lastUpdated": "2024-05-22T11:30:00Z",
+  "lastUpdate": "2024-05-22T11:30:00Z",
   "economicOperatorId": "urn:gln:1122334455667",
-  "delegatedActIds": [
+  "contentSpecificationIds": [
     "prEN_TextileRegulation_2024"
   ],
   "productName": "Everyday Comfort Crew Socks (3-Pack)",

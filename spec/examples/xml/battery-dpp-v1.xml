@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This is a placeholder for an XML-based Digital Product Passport example.
+  You can define the structure for a battery DPP here, aligning with the
+  data points from the JSON example where applicable.
+-->
+<DigitalProductPassport></DigitalProductPassport>
+
+
+
+
+
+
+<dpp:DigitalProductPassport
+    xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema"
+    xmlns:specB="https://ec.europa.eu/schemas/prEN5678_abc/v1.0/schema">
+
+    <dpp:digitalProductPassportId>
+       https://www.example.org/dpp/1234545
+    </dpp:digitalProductPassportId>
+    <dpp:uniqueProductIdentifier>https://www.example.org/1234545</dpp:uniqueProductIdentifier>
+    <dpp:granularity>Model</dpp:granularity>
+
+    <dpp:dppSchemaVersion>prEN18223:v1.0</dpp:dppSchemaVersion>
+
+    <dpp:dppStatus>Active</dpp:dppStatus>
+    <dpp:lastUpdated>2025-08-22T03:12:00Z</dpp:lastUpdated>
+    <dpp:economicOperatorId>gxx:ppp456789</dpp:economicOperatorId>
+    <dpp:facilityId>gxx:xxx987654</dpp:facilityId>
+
+    <dpp:contentSpecificationIds>
+        <dpp:item>prEN1234_xyz</dpp:item>
+        <dpp:item>prEN5678_abc</dpp:item>
+    </dpp:contentSpecificationIds>
+
+    <specA:sustainabilityMetrics>
+        <specA:recycledContent>25%</specA:recycledContent>
+        <specA:carbonFootprint>150 kgCO2e</specA:carbonFootprint>
+    </specA:sustainabilityMetrics>
+
+    <specB:batteryInformation>
+        <specB:batteryChemistry>Li-ion</specB:batteryChemistry>
+        <specB:capacity>5000 mAh</specB:capacity>
+    </specB:batteryInformation>
+
+</dpp:DigitalProductPassport>
+
+
+
+
+
+
+
+<dpp:DigitalProductPassport 
+    xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <!--... DPP Header ...-->
+    <specA:performanceMetrics>
+        <specA:maxPressure>750.0</specA:maxPressure>
+        <specA:isFireResistant>true</specA:isFireResistant>
+        <specA:efficiencyRatings>
+            <specA:item>0.95</specA:item>
+            <specA:item>0.92</specA:item>
+            <specA:item>0.88</specA:item>
+        </specA:efficiencyRatings>
+        <specA:complexTraits>
+            <specA:item>
+                <specA:fieldOne>1.0</specA:fieldOne>
+                <specA:fieldTwo>stringValueOne</specA:fieldTwo>
+            </specA:item>
+            <specA:item>
+                <specA:fieldOne>2.0</specA:fieldOne>
+                <specA:fieldTwo>stringValueTwo</specA:fieldTwo>
+            </specA:item>
+        </specA:complexTraits>
+    </specA:performanceMetrics>
+</dpp:DigitalProductPassport>
+
+
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <dpp:manufacturerName>ExampleCorp</dpp:manufacturerName>
+    <specA:recycledContentPercentage>25.5</specA:recycledContentPercentage>
+</dpp:DigitalProductPassport>
+
+
+
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:performanceMetrics>
+        <specA:maxPressure>750.0</specA:maxPressure>
+        <specA:isFireResistant>true</specA:isFireResistant>
+        <specA:efficiencyRatings>
+            <specA:item>0.95</specA:item>
+            <specA:item>0.92</specA:item>
+            <specA:item>0.88</specA:item>
+        </specA:efficiencyRatings>
+    </specA:performanceMetrics>
+</dpp:DigitalProductPassport>
+
+
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:supportedVoltages>
+        <specA:item>110</specA:item>
+        <specA:item>220</specA:item>
+        <specA:item>240</specA:item>
+    </specA:supportedVoltages>
+</dpp:DigitalProductPassport>
+
+
+
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:componentParts>
+        <specA:item>
+            <specA:partID>A-101</specA:partID>
+            <specA:material>Steel</specA:material>
+        </specA:item>
+        <specA:item>
+            <specA:partID>B-202</specA:partID>
+            <specA:material>Recycled Plastic</specA:material>
+        </specA:item>
+    </specA:componentParts>
+</specA:DigitalProductPassport>
+
+
+
+
+<dpp:RelatedResource xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:name>User Manual for the Smart Thermostat Pro</specA:name>
+    <specA:contentType>application/pdf</specA:contentType>
+    <specA:url>https://data.example.com/manuals/thermostat-pro_v2.1.pdf</specA:url>
+    <specA:language>en-GB</specA:language>
+</dpp:RelatedResource>
+
+
+
+
+
+Here is the complete, updated version of the informative document, incorporating all feedback and the detailed discussion on namespaces and array conventions.
+
+Informative XML Examples for prEN 18223
+This document provides informative XML examples that are exact corollaries to the optimized JSON serialization examples found in prEN 18223, Chapter 5.
+
+XML Serialization Conventions
+These examples demonstrate the application of the conceptual model (Clause 4) and the optimized serialization rules (Clause 5) to an XML format. The serialization follows the naming conventions defined in prEN 18223, Clause 5.2.1: PascalCase for UML Classes and camelCase for attributes and elementIds.
+
+The primary considerations when converting the optimized JSON format to XML involve the serialization of arrays (JSON arrays) and the management of namespaces.
+
+Element Naming (Optimized Format): In the optimized representation, the elementId (the JSON object key) is used directly as the XML element tag name (e.g., <digitalProductPassportId>).
+
+Root Elements: When an example serializes a complete class instance, the root element uses the Class name in PascalCase (e.g., <DigitalProductPassport> or <RelatedResource>).
+
+Generic Arrays (MultiValuedDataElement): For MultiValuedDataElements where the items are generic (e.g., primitive types like numbers/strings, or anonymous DataElementCollection objects), the standardized tag name <item> shall be used for the repeating elements. This maintains simplicity and consistency.
+
+Specific Arrays: When the array items correspond to a specific class defined in the conceptual model, the Class name (PascalCase) is used as the tag for the repeating elements. This applies specifically to the MultiLanguageDataElement, which uses the <MultiLanguageValue> tag for its items (Section 4.1.2.8.1).
+
+Namespaces (xmlns): Real-world XML implementations must use XML namespaces (defined via the xmlns attribute). This is essential for uniquely identifying elements and preventing naming conflicts, especially when combining data defined by the horizontal standard and different Content Specifications (Delegated Acts), as identified in the contentSpecificationIds field. The XML Namespace URI (which must be a valid URI) serves as the technical identifier for the specific vocabulary (XSD implementation). Namespace prefixes (e.g., specA:) are used to distinguish elements belonging to different schemas.
+
+Serialization Examples
+Serialization of the DigitalProductPassport class (Ref: 5.2.3)
+This example demonstrates the use of namespace prefixes to distinguish between the horizontal standard (prefix dpp) and multiple sector-specific standards (prefixes specA and specB). This corresponds to the multiple entries in the contentSpecificationIds field.
+
+XML
+
+<dpp:DigitalProductPassport
+    xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema"
+    xmlns:specB="https://ec.europa.eu/schemas/prEN5678_abc/v1.0/schema">
+
+    <dpp:digitalProductPassportId>
+       https://www.example.org/dpp/1234545
+    </dpp:digitalProductPassportId>
+    <dpp:uniqueProductIdentifier>https://www.example.org/1234545</dpp:uniqueProductIdentifier>
+    <dpp:granularity>Model</dpp:granularity>
+
+    <dpp:dppSchemaVersion>prEN18223:v1.0</dpp:dppSchemaVersion>
+
+    <dpp:dppStatus>Active</dpp:dppStatus>
+    <dpp:lastUpdated>2025-08-22T03:12:00Z</dpp:lastUpdated>
+    <dpp:economicOperatorId>gxx:ppp456789</dpp:economicOperatorId>
+    <dpp:facilityId>gxx:xxx987654</dpp:facilityId>
+
+    <dpp:contentSpecificationIds>
+        <dpp:item>prEN1234_xyz</dpp:item>
+        <dpp:item>prEN5678_abc</dpp:item>
+    </dpp:contentSpecificationIds>
+
+    <!-- Additional Data Elements as per specA or specB here -->
+</dpp:DigitalProductPassport>
+Serialization of a DataElementCollection (Ref: 5.2.4)
+The following examples use the dpp: or specA prefix for consistency, demonstrating elements belonging to the horizontal standard's namespace.
+
+XML
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:performanceMetrics>
+        <specA:maxPressure>750.0</specA:maxPressure>
+        <specA:isFireResistant>true</specA:isFireResistant>
+        <specA:efficiencyRatings>
+            <specA:item>0.95</specA:item>
+            <specA:item>0.92</specA:item>
+            <specA:item>0.88</specA:item>
+        </specA:efficiencyRatings>
+        <specA:complexTraits>
+            <specA:item>
+                <specA:fieldOne>1.0</specA:fieldOne>
+                <specA:fieldTwo>stringValueOne</specA:fieldTwo>
+            </specA:item>
+            <specA:item>
+                <specA:fieldOne>2.0</specA:fieldOne>
+                <specA:fieldTwo>stringValueTwo</specA:fieldTwo>
+            </specA:item>
+        </specA:complexTraits>
+    </specA:performanceMetrics>
+</dpp:DigitalProductPassport>
+Serialization of a SingleValuedDataElement (Ref: 5.2.5)
+Example 1 (standalone SingleValueDataElements)
+
+XML
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <dpp:manufacturerName>ExampleCorp</dpp:manufacturerName>
+    <specA:recycledContentPercentage>25.5</specA:recycledContentPercentage>
+</dpp:DigitalProductPassport>
+Example 2 (SingleValueDataElements inside a complex data type)
+
+This example demonstrates how SingleValuedDataElements (SVDEs) are represented both as direct children of a collection (using their elementId as the tag name) and as optimized native values within an array (using the <item> tag).
+
+XML
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:performanceMetrics>
+        <specA:maxPressure>750.0</specA:maxPressure>
+        <specA:isFireResistant>true</specA:isFireResistant>
+        <specA:efficiencyRatings>
+            <specA:item>0.95</specA:item>
+            <specA:item>0.92</specA:item>
+            <specA:item>0.88</specA:item>
+        </specA:efficiencyRatings>
+    </specA:performanceMetrics>
+</dpp:DigitalProductPassport>
+Serialization of a MultiValuedDataElement (Ref: 5.2.6)
+A MultiValuedDataElement is serialized as an XML element containing a list of repeating elements. According to the optimized XML serialization conventions, the standardized tag name <item> shall be used for these repeating elements when the content is generic (native types or anonymous DataElementCollections).
+
+Example 1 (Array of native types)
+
+XML
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:supportedVoltages>
+        <specA:item>110</specA:item>
+        <specA:item>220</specA:item>
+        <specA:item>240</specA:item>
+    </specA:supportedVoltages>
+</dpp:DigitalProductPassport>
+Example 2 (Array of Objects)
+
+XML
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:componentParts>
+        <specA:item>
+            <specA:partID>A-101</specA:partID>
+            <specA:material>Steel</specA:material>
+        </specA:item>
+        <specA:item>
+            <specA:partID>B-202</specA:partID>
+            <specA:material>Recycled Plastic</specA:material>
+        </specA:item>
+    </specA:componentParts>
+</dpp:DigitalProductPassport>
+Serialization of a RelatedResource (Ref: 5.2.7)
+Note: The corresponding JSON example in the standard demonstrates the serialization of the class itself, not embedded within a DPP. The XML reflects this by using the Class name as the root element.
+
+XML
+
+<dpp:RelatedResource xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:resourceTitle>User Manual for the Smart Thermostat Pro</specA:resourceTitle>
+    <specA:contentType>application/pdf</specA:contentType>
+    <specA:url>https://data.example.com/manuals/thermostat-pro_v2.1.pdf</specA:url>
+    <specA:language>en-GB</specA:language>
+</dpp:RelatedResource>
+
+
+Serialization of a MultiLanguageDataElement (Ref: 5.2.8)
+This uses the specific convention for arrays containing named classes. The repeating element uses the class name <MultiLanguageValue> rather than the generic <item>.
+
+XML
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <specA:productDescription>
+        <specA:MultiLanguageValue>
+            <specA:value>One Thing</specA:value>
+            <specA:language>en-IE</specA:language>
+        </specA:MultiLanguageValue>
+        <specA:MultiLanguageValue>
+            <specA:value>Una Cosa</specA:value>
+            <specA:language>es-ES</specA:language>
+        </specA:MultiLanguageValue>
+        <specA:MultiLanguageValue>
+            <specA:value>Une Chose</specA:value>
+            <specA:language>fr-CH</specA:language>
+        </specA:MultiLanguageValue>
+    </specA:productDescription>
+</dpp:DigitalProductPassport>
+
+
+
+
+
+
+<dpp:DigitalProductPassport xmlns:dpp="https://standards.cen.eu/dpp/18223/v1.0/schema"
+    xmlns:specA="https://ec.europa.eu/schemas/prEN1234_xyz/v1.0/schema">
+    <!-- Begin DPP Header Elements -->
+    <!-- ... End DPP Header Elements -->
+    <specA:userManual>
+        <specA:resourceTitle>User Manual for the Smart Thermostat Pro</specA:resourceTitle>
+        <specA:contentType>application/pdf</specA:contentType>
+        <specA:url>https://data.example.com/manuals/thermostat-pro_v2.1.pdf</specA:url>
+        <specA:language>en-GB</specA:language>
+    </specA:userManual>
+</dpp:DigitalProductPassport>

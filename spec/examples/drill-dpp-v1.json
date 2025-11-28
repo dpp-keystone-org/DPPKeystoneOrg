@@ -5,14 +5,14 @@
     "dppk:PowerTool"
   ],
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
-  "productId": "https://id.gs1.org/01/05012345101095/21/22334455",
+  "uniqueProductIdentifier": "https://id.gs1.org/01/05012345101095/21/22334455",
   "granularity": "Item",
   "facilityID": "urn:lei:ABCDE123456789012345",
   "dppSchemaVersion": "ENXXX:v1.0",
   "dppStatus": "Active",
-  "lastUpdated": "2025-08-20T23:53:06Z",
+  "lastUpdate": "2025-08-20T23:53:06Z",
   "economicOperatorId": "urn:lei:ABCDE123456789012345",
-  "delegatedActIds": [
+  "contentSpecificationIds": [
     "prEN_EcodesignForSustainableProducts_2024"
   ],
   "hsCode": "84672100",

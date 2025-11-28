@@ -26,8 +26,8 @@
       "@id": "dppk:DPPID",
       "@type": "@id"
     },
-    "productId": {
-      "@id": "dppk:ProductID",
+    "uniqueProductIdentifier": {
+      "@id": "dppk:uniqueProductIdentifier",
       "@type": "@id"
     },
     "economicOperatorId": {
@@ -45,8 +45,8 @@
       "@type": "xsd:dateTime"
     },
     "dppSchemaVersion": "dppk:dppSchemaVersion",
-    "delegatedActIds": {
-      "@id": "dppk:delegatedActIds",
+    "contentSpecificationIds": {
+      "@id": "dppk:contentSpecificationIds",
       "@container": "@set"
     },
     "verifiableCredential": "dppk:verifiableCredential",

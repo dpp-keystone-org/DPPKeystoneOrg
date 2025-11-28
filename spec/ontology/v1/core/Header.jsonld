@@ -53,7 +53,7 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:ProductID",
+      "@id": "dppk:uniqueProductIdentifier",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Unique Product Identifier (UPI)",
       "rdfs:comment": "The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI.",

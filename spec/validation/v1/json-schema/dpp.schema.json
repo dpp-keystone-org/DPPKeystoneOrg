@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Digital Product Passport",
+  "description": "Schema for the DPP that validates core headers.",
+  "type": "object",
+  "properties": {
+    "digitalProductPassportId": {
+      "description": "The unique identifier of an instance of the digital product passport.",
+      "type": "string",
+      "format": "uri"
+    },
+    "uniqueProductIdentifier": {
+      "description": "A unique string of characters for the identification of a product. Formatted according to EN18219.",
+      "type": "string",
+      "format": "uri"
+    },
+    "granularity": {
+      "description": "The level of granularity of the ProductID as per ESPR.",
+      "enum": [
+        "Model",
+        "Batch",
+        "Item"
+      ]
+    },
+    "dppSchemaVersion": {
+      "description": "The reference standard the DPP instance schema refers to.",
+      "type": "string"
+    },
+    "dppStatus": {
+      "description": "The status of the DPP instance as digital resource.",
+      "type": "string"
+    },
+    "lastUpdate": {
+      "description": "The date and time of the latest update to the DPP instance. ISO 8601-1:2019/Amd 1:2022",
+      "type": "string",
+      "format": "date-time"
+    },
+    "economicOperatorId": {
+      "description": "Formatted according to EN18219.",
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "facilityId": {
+      "description": "Formatted according to EN18219.",
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "contentSpecificationIds": {
+      "description": "Formatted according to EN18219.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "digitalProductPassportId",
+    "uniqueProductIdentifier",
+    "granularity",
+    "dppSchemaVersion",
+    "dppStatus",
+    "lastUpdate",
+    "economicOperatorId",
+    "contentSpecificationIds"
+  ],
+  "patternProperties": {
+    "^.+": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "object",
+        "array"
+      ]
+    }
+  }
+}
