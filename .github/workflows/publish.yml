@@ -15,6 +15,7 @@ jobs:
     # to push the built files to the gh-pages branch.
     permissions:
       contents: write
+      id-token: write
 
     steps:
       - name: Checkout repository
