@@ -1,7 +1,7 @@
 {
   // The context points to the external sector definition, layered with extensions.
   "@context": [
-    "https://dpp-keystone.org/contexts/v1/dpp-electronics.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld",
     {
         // Extensions for terms not yet formalized in the Keystone V1 ontology.
         "dpp_ext": "https://example.com/dpp/extension#",

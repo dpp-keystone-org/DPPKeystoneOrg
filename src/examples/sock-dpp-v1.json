@@ -3,7 +3,7 @@
 // It includes the mandatory core header fields and a payload with textile-specific data points,
 // adhering strictly to the vocabulary defined in the dpp-textile.context.jsonld.
 {
-  "@context": "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld",
   "@type": ["dppk:DigitalProductPassport", "dppk:TextileProduct"],
 
   // --- Normative DPP Header ---

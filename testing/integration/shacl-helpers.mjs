@@ -13,15 +13,15 @@ export const PROJECT_ROOT = path.join(__dirname, '..', '..');
 
 // This map redirects requests for production URLs to local files in the 'dist' directory.
 const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
-    "https://dpp-keystone.org/contexts/v1/dpp-core.context.jsonld":
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-core.context.jsonld'),
-    "https://dpp-keystone.org/contexts/v1/dpp-construction.context.jsonld":
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-construction.context.jsonld'),
-    "https://dpp-keystone.org/contexts/v1/dpp-electronics.context.jsonld":
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-electronics.context.jsonld'),
-    "https://dpp-keystone.org/contexts/v1/dpp-battery.context.jsonld":
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
-    "https://dpp-keystone.org/contexts/v1/dpp-textile.context.jsonld":
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
 
     // --- Ontology Files ---

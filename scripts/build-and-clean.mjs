@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import fse from 'fs-extra'; // For copy and ensureDir
 import { parse as jsoncParse, printParseErrorCode } from 'jsonc-parser';
+import { execSync } from 'child_process';
 
 const PROJECT_ROOT = process.cwd();
 const SOURCE_DIR = path.join(PROJECT_ROOT, 'src');
@@ -37,6 +38,9 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
+        if (entry.name === 'desktop.ini') {
+            continue;
+        }
         const sourcePath = path.join(sourceDir, entry.name);
         const targetPath = path.join(targetDir, entry.name);
 
@@ -97,6 +101,9 @@ async function build() {
 
     // Call the new redirect function
     await createRedirects(BUILD_DIR);
+
+    console.log('Generating ontology documentation...');
+    execSync('node scripts/generate-spec-docs.mjs', { stdio: 'inherit' });
 
     console.log('Build process completed.');
 }
