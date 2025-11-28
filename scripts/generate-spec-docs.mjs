@@ -83,7 +83,8 @@ async function getContextMetadata(filePath, termDictionary) {
             term,
             uri: termUri,
             description: definition.description || '',
-            module: definition.module || ''
+            module: definition.module || '',
+            fileName: definition.fileName || ''
         };
     });
     
@@ -140,9 +141,9 @@ function generateContextHtml(directoryName, files) {
             ? `<h4>Locally Defined Terms</h4><ul>\n${file.localTerms.map(t => {
                 const termName = `<strong>${t.term}</strong>`;
                 const description = t.description ? ` - <em>${t.description}</em>` : '';
-                if (t.module && t.uri) {
+                if (t.module && t.uri && t.fileName) {
                     // Path from dist/spec/contexts/v1/ to dist/spec/ontology/v1/
-                    const link = `../../ontology/v1/${t.module}/index.html#${t.uri}`;
+                    const link = `../../ontology/v1/${t.module}/${t.fileName}`;
                     return `                <li><a href="${link}">${termName}</a>${description}</li>`;
                 }
                 return `                <li>${termName}${description}</li>`;
@@ -209,7 +210,8 @@ async function buildTermDictionary() {
                     if (node['@id'] && node['rdfs:comment']) {
                         termMap[node['@id']] = {
                             description: node['rdfs:comment'],
-                            module: dirSuffix // 'core' or 'sectors'
+                            module: dirSuffix, // 'core' or 'sectors'
+                            fileName: basename(file)
                         };
                     }
                 }
