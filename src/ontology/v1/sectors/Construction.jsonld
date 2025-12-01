@@ -216,6 +216,49 @@
         "rdfs:comment": "The life cycle stage(s) to which the value applies (e.g., A1-A3, C4).",
         "rdfs:domain": { "@id": "dppk:EnvironmentalProductDeclaration" },
         "rdfs:term_status": "unstable"
+    },
+
+    {
+      "@id": "dppk:EnvironmentalProductDeclaration2",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Environmental Product Declaration 2",
+      "rdfs:comment": "A structured set of data detailing the environmental impact of a product, based on a verified Life Cycle Assessment (LCA). This version uses a 'wide' format with nested values.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:environmentalProductDeclarations2",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Environmental Product Declarations 2",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:EnvironmentalProductDeclaration2" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:indicatorName",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Indicator Name",
+        "rdfs:comment": "The name of the environmental indicator, as a translatable string.",
+        "rdfs:domain": { "@id": "dppk:EnvironmentalProductDeclaration2" },
+        "rdfs:range": { "@id": "rdf:langString" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:unit",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Unit",
+        "rdfs:comment": "The unit of measurement for the indicator.",
+        "rdfs:domain": { "@id": "dppk:EnvironmentalProductDeclaration2" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:values",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Values",
+        "rdfs:comment": "An object containing the life cycle stage values for the indicator.",
+        "rdfs:domain": { "@id": "dppk:EnvironmentalProductDeclaration2" },
+        "rdfs:range": { "@id": "rdf:JSONLiteral" },
+        "rdfs:term_status": "unstable"
     }
   ]
 }
