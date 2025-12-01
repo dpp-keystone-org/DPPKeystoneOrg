@@ -17,6 +17,7 @@
     "ComplianceTopic": "dppk:ComplianceTopic",
     "Packaging": "dppk:Packaging",
     "ProductionStep": "dppk:ProductionStep",
+    "ProductCharacteristic": "dppk:ProductCharacteristic",
     "EconomicOperatorRole": "dppk:EconomicOperatorRole",
     "ManufacturerRole": "dppk:ManufacturerRole",
     "FacilityRole": "dppk:FacilityRole",
@@ -107,6 +108,13 @@
     "countryOfOrigin": "dppk:countryOfOrigin",
     "weightPercentage": "dppk:weightPercentage",
     "recycledContentPercentage": "dppk:recycledContentPercentage",
+    "productCharacteristics": {
+      "@id": "dppk:productCharacteristics",
+      "@container": "@set"
+    },
+    "characteristicName": "dppk:characteristicName",
+    "characteristicValue": "dppk:characteristicValue",
+    "testMethod": "dppk:testMethod",
     "KgWeightLiteral": "dppk:KgWeightLiteral",
     "MetersLengthLiteral": "dppk:MetersLengthLiteral",
     "netWeight": {

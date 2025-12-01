@@ -59,6 +59,16 @@
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>reactionToFire</strong></a> - <em>The classification of the product's contribution to fire (Euroclass).</em></li>
                 <li><strong>thermalConductivity</strong></li>
                 <li><strong>compressiveStrength</strong></li>
+                <li><strong>environmentalProductDeclarations</strong></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>EnvironmentalProductDeclaration</strong></a> - <em>A structured set of data detailing the environmental impact of a product, based on a verified Life Cycle Assessment (LCA).</em></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>indicator</strong></a> - <em>The environmental indicator being reported (e.g., Global Warming Potential).</em></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>standard</strong></a> - <em>The standard under which the declaration is made (e.g., EN 15804).</em></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>lifeCycleStage</strong></a> - <em>The life cycle stage(s) to which the value applies (e.g., A1-A3, C4).</em></li>
+                <li><strong>environmentalProductDeclarations2</strong></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>EnvironmentalProductDeclaration2</strong></a> - <em>A structured set of data detailing the environmental impact of a product, based on a verified Life Cycle Assessment (LCA). This version uses a 'wide' format with nested values.</em></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>indicatorName</strong></a> - <em>The name of the environmental indicator, as a translatable string.</em></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>unit</strong></a> - <em>The unit of measurement for the indicator.</em></li>
+                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>values</strong></a> - <em>An object containing the life cycle stage values for the indicator.</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>steelGrade</strong></a> - <em>The classification of the steel based on its composition and physical properties (e.g., R260, S355).</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>railProfile</strong></a> - <em>The standardized cross-section design of a railway rail (e.g., 46E1).</em></li>
             </ul>
@@ -86,6 +96,7 @@
                 <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>ComplianceTopic</strong></a> - <em>A declaration of compliance status regarding specific regulations (e.g., REACH, RoHS, Lacey Act).</em></li>
                 <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>Packaging</strong></a> - <em>Information about the materials and properties of the product's packaging.</em></li>
                 <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>ProductionStep</strong></a> - <em>A significant step in the manufacturing or processing chain of the product, including its location.</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>ProductCharacteristic</strong></a> - <em>A specific, measurable or declared property of a product, such as its technical performance against a standard test.</em></li>
                 <li><a href="../../ontology/v1/core/Organization.jsonld"><strong>EconomicOperatorRole</strong></a> - <em>The role of an entity responsible for placing the product on the market, as defined by ESPR.</em></li>
                 <li><a href="../../ontology/v1/core/Organization.jsonld"><strong>ManufacturerRole</strong></a> - <em>The role of an entity responsible for the production of the finished goods.</em></li>
                 <li><a href="../../ontology/v1/core/Organization.jsonld"><strong>FacilityRole</strong></a> - <em>A specific location or site where manufacturing or processing activities occur.</em></li>
@@ -137,6 +148,10 @@
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>countryOfOrigin</strong></a> - <em>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>weightPercentage</strong></a> - <em>The percentage of the total weight of the main product that this component or material constitutes.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>recycledContentPercentage</strong></a> - <em>The percentage of the material that is derived from recycled sources.</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>productCharacteristics</strong></a> - <em>Relates a product to its specific characteristics or performance properties.</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>characteristicName</strong></a> - <em>The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>characteristicValue</strong></a> - <em>The measured or declared value of the characteristic (e.g., '≥ 2.0 MPa', 'Class A1').</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>testMethod</strong></a> - <em>A reference to the standard or methodology used to determine the characteristic's value.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>KgWeightLiteral</strong></a> - <em>A literal value representing a weight in kilograms. A reasoner can expand this into a full dppk:QuantitativeValue.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>MetersLengthLiteral</strong></a> - <em>A literal value representing a length in meters. A reasoner can expand this into a full dppk:QuantitativeValue.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>netWeight</strong></a> - <em>The weight of the product or material, excluding packaging. Recommended to use specific datatypes like dppk:KgWeightLiteral.</em></li>

@@ -76,6 +76,21 @@
       }
     },
     {
+      "@id": "dppk:ProductCharacteristic",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Product Characteristic",
+      "rdfs:comment": "A specific, measurable or declared property of a product, such as its technical performance against a standard test.",
+      "owl:equivalentClass": [
+        {
+          "@id": "gs1:ProductCharacteristic"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
       "@id": "dppk:name",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Name",
@@ -534,6 +549,82 @@
       "owl:equivalentProperty": [
         {
           "@id": "schema:unitText"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:productCharacteristics",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Product Characteristics",
+      "rdfs:comment": "Relates a product to its specific characteristics or performance properties.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ProductCharacteristic"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:characteristicName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Characteristic Name",
+      "rdfs:comment": "The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').",
+      "rdfs:domain": {
+        "@id": "dppk:ProductCharacteristic"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:characteristicName"
+        },
+        {
+          "@id": "schema:name"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:characteristicValue",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Characteristic Value",
+      "rdfs:comment": "The measured or declared value of the characteristic (e.g., '≥ 2.0 MPa', 'Class A1').",
+      "rdfs:domain": {
+        "@id": "dppk:ProductCharacteristic"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:characteristicValue"
+        },
+        {
+          "@id": "schema:value"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:testMethod",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Test Method",
+      "rdfs:comment": "A reference to the standard or methodology used to determine the characteristic's value.",
+      "rdfs:domain": {
+        "@id": "dppk:ProductCharacteristic"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:measurementMethod"
+        },
+        {
+          "@id": "schema:measurementMethod"
         }
       ],
       "rdfs:term_status": "unstable"
