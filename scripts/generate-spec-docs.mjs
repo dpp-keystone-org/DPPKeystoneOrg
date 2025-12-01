@@ -109,24 +109,26 @@ function generateOntologyHtml(directoryName, files) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Explorer: ${directoryName}</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; margin: 2em; }
-        h1, h2, h3, h4 { color: #333; }
-        ul { list-style-type: none; padding-left: 0; }
-        li { border: 1px solid #ddd; border-radius: 5px; padding: 1em; margin-bottom: 1em; }
-        a { text-decoration: none; color: #007BFF; }
-        a:hover { text-decoration: underline; }
-        p { margin: 0.5em 0; }
-        ul ul { padding-left: 1em; }
-        ul ul li { border: none; padding: 0.2em 0; margin-bottom: 0;}
-    </style>
+    <link rel="stylesheet" href="../../../branding/css/keystone-style.css">
 </head>
 <body>
-    <h1>Ontology Explorer</h1>
-    <h2>${directoryName}</h2>
-    <ul>
-        ${listItems}
-    </ul>
+    <div class="container">
+        <header>
+            <img src="../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;">
+            <div>
+                <h1>Ontology Explorer</h1>
+                <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
+            </div>
+        </header>
+        <main>
+            <ul>
+                ${listItems}
+            </ul>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="/">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
 </body>
 </html>`;
 }
@@ -165,24 +167,26 @@ function generateContextHtml(directoryName, files) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Context Explorer: ${directoryName}</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; margin: 2em; }
-        h1, h2, h3, h4 { color: #333; }
-        ul { list-style-type: none; padding-left: 0; }
-        li { border: 1px solid #ddd; border-radius: 5px; padding: 1em; margin-bottom: 1em; }
-        a { text-decoration: none; color: #007BFF; }
-        a:hover { text-decoration: underline; }
-        p { margin: 0.5em 0; }
-        ul ul { padding-left: 1em; }
-        ul ul li { border: none; padding: 0.2em 0; margin-bottom: 0;}
-    </style>
+    <link rel="stylesheet" href="../../branding/css/keystone-style.css">
 </head>
 <body>
-    <h1>Context Explorer</h1>
-    <h2>${directoryName}</h2>
-    <ul>
-        ${listItems}
-    </ul>
+    <div class="container">
+        <header>
+            <img src="../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;">
+            <div>
+                <h1>Context Explorer</h1>
+                <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
+            </div>
+        </header>
+        <main>
+            <ul>
+                ${listItems}
+            </ul>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="/">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
 </body>
 </html>`;
 }
