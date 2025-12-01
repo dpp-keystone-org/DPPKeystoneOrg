@@ -45,6 +45,18 @@ const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Construction.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Electronics.jsonld'),
+
+    // --- SHACL Shape Files ---
+    "https://dpp-keystone.org/spec/validation/v1/shacl/core-shapes.shacl.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld'),
+    "https://dpp-keystone.org/spec/validation/v1/shacl/battery-shapes.shacl.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'battery-shapes.shacl.jsonld'),
+    "https://dpp-keystone.org/spec/validation/v1/shacl/construction-shapes.shacl.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'construction-shapes.shacl.jsonld'),
+    "https://dpp-keystone.org/spec/validation/v1/shacl/electronics-shapes.shacl.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'electronics-shapes.shacl.jsonld'),
+    "https://dpp-keystone.org/spec/validation/v1/shacl/textile-shapes.shacl.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'textile-shapes.shacl.jsonld'),
 };
 
 export const localFileDocumentLoader = async (url) => {
