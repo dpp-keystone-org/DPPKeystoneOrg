@@ -36,7 +36,7 @@
       ],
       "property": [
         {
-          "path": "dppk:fibreComposition",
+          "path": "https://dpp-keystone.org/spec/v1/terms#fibreComposition",
           "minCount": 1,
           "node": "dppkval:FibreCompositionShape",
           "message": "Textile product must detail its fibre composition (dppk:fibreComposition)."
