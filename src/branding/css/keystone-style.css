@@ -3,9 +3,10 @@
 :root {
     --keystone-blue: #0d6efd;   /* A vibrant blue, close to the logo's keystone */
     --keystone-yellow: #ffc107; /* A bright yellow, for the key */
-    --text-dark: #212529;      /* A dark gray for primary text */
+    --text-dark: #343a40;      /* A dark gray for primary text */
     --text-light: #6c757d;     /* A lighter gray for secondary text */
-    --background-light: #f8f9fa;/* A very light gray for the page background */
+    --background-light: #e9ecef;/* A very light gray for the page background */
+    --background-blue: #e7f1ff; /* A very light blue for the page background */
     --border-color: #dee2e6;     /* A light gray for borders */
     --white: #ffffff;
 }
@@ -14,7 +15,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--background-light);
+    background-color: var(--background-blue);
     margin: 0;
     padding: 0;
 }
@@ -24,7 +25,7 @@ body {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: var(--white);
+    background-color: var(--background-light);
     border: 1px solid var(--border-color);
     border-radius: 8px;
 }
@@ -39,7 +40,7 @@ header {
 }
 
 h1, h2, h3, h4 {
-    color: var(--keystone-blue);
+    color: var(--text-dark);
 }
 
 h1 {
