@@ -48,13 +48,6 @@
             "standard": "dppk:standard",
             "lifeCycleStage": "dppk:lifeCycleStage",
 
-            "environmentalProductDeclarations2": { "@id": "dppk:environmentalProductDeclarations2", "@container": "@set", "@type": "@id" },
-            "EnvironmentalProductDeclaration2": "dppk:EnvironmentalProductDeclaration2",
-            "indicatorName": { "@id": "dppk:indicatorName", "@type": "@id" },
-            "unit": "dppk:unit",
-            "values": { "@id": "dppk:values", "@type": "rdf:JSONLiteral" },
-            "LifeCycleValues": "dppk:LifeCycleValues",
-
             // ==================================================================
             // Properties (Heavy Industry/Steel/Rail Examples)
             // ==================================================================
