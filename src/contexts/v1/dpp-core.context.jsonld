@@ -27,6 +27,7 @@
     "Packaging": "dppk:Packaging",
     "ProductionStep": "dppk:ProductionStep",
     "ProductCharacteristic": "dppk:ProductCharacteristic",
+    "TranslatedString": "dppk:TranslatedString",
 
     // Roles (for co-typing)
     "EconomicOperatorRole": "dppk:EconomicOperatorRole",
@@ -115,6 +116,12 @@
     "characteristicName": "dppk:characteristicName",
     "characteristicValue": "dppk:characteristicValue",
     "testMethod": "dppk:testMethod",
+
+    // ==================================================================
+    // Properties: Translated String
+    // ==================================================================
+    "language": "dppk:language",
+    "translatedValue": "dppk:translatedValue",
 
     // Quantitative Values
     // Define custom datatypes (typed literals) for measurements with implicit units.

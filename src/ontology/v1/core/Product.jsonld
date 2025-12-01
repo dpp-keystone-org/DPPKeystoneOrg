@@ -81,6 +81,33 @@
         "rdfs:term_status": "unstable"
     },
 
+    {
+        "@id": "dppk:TranslatedString",
+        "@type": "rdfs:Class",
+        "rdfs:label": "Translated String",
+        "rdfs:comment": "A lightweight object to hold a string value in a specific language.",
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:language",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Language",
+        "rdfs:comment": "The language of a string, using IETF BCP 47 language tags.",
+        "rdfs:domain": { "@id": "dppk:TranslatedString" },
+        "rdfs:range": { "@id": "xsd:language" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:translatedValue",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Translated Value",
+        "rdfs:comment": "The string value in the specified language.",
+        "rdfs:domain": { "@id": "dppk:TranslatedString" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
+    },
+
+
 
     // ==================================================================
     // Properties (General Product Description)
