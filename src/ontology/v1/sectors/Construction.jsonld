@@ -169,6 +169,53 @@
         "rdfs:domain": { "@id": "dppk:Product" }, // Applicable specifically to rails
         "rdfs:range": { "@id": "xsd:string" },
         "rdfs:term_status": "unstable"
+    },
+
+    // ==================================================================
+    // Environmental Product Declaration (EPD)
+    // ==================================================================
+    {
+      "@id": "dppk:EnvironmentalProductDeclaration",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Environmental Product Declaration",
+      "rdfs:comment": "A structured set of data detailing the environmental impact of a product, based on a verified Life Cycle Assessment (LCA).",
+      "dcterms:source": {
+        "@id": "https://www.iso.org/standard/72068.html",
+        "rdfs:label": "ISO 14025:2022"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:environmentalProductDeclarations",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Environmental Product Declarations",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:EnvironmentalProductDeclaration" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:indicator",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Indicator",
+        "rdfs:comment": "The environmental indicator being reported (e.g., Global Warming Potential).",
+        "rdfs:domain": { "@id": "dppk:EnvironmentalProductDeclaration" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:standard",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Standard",
+        "rdfs:comment": "The standard under which the declaration is made (e.g., EN 15804).",
+        "rdfs:domain": { "@id": "dppk:EnvironmentalProductDeclaration" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:lifeCycleStage",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Life Cycle Stage",
+        "rdfs:comment": "The life cycle stage(s) to which the value applies (e.g., A1-A3, C4).",
+        "rdfs:domain": { "@id": "dppk:EnvironmentalProductDeclaration" },
+        "rdfs:term_status": "unstable"
     }
   ]
 }

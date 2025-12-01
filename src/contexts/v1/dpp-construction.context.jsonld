@@ -40,6 +40,15 @@
             "compressiveStrength": "dppk:compressiveStrength",
 
             // ==================================================================
+            // Properties (Environmental Product Declaration)
+            // ==================================================================
+            "environmentalProductDeclarations": { "@id": "dppk:environmentalProductDeclarations", "@container": "@set", "@type": "@id" },
+            "EnvironmentalProductDeclaration": "dppk:EnvironmentalProductDeclaration",
+            "indicator": "dppk:indicator",
+            "standard": "dppk:standard",
+            "lifeCycleStage": "dppk:lifeCycleStage",
+
+            // ==================================================================
             // Properties (Heavy Industry/Steel/Rail Examples)
             // ==================================================================
             "steelGrade": "dppk:steelGrade",

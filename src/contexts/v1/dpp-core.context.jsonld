@@ -26,6 +26,7 @@
     "ComplianceTopic": "dppk:ComplianceTopic",
     "Packaging": "dppk:Packaging",
     "ProductionStep": "dppk:ProductionStep",
+    "ProductCharacteristic": "dppk:ProductCharacteristic",
 
     // Roles (for co-typing)
     "EconomicOperatorRole": "dppk:EconomicOperatorRole",
@@ -106,6 +107,14 @@
     "countryOfOrigin": "dppk:countryOfOrigin",
     "weightPercentage": "dppk:weightPercentage",
     "recycledContentPercentage": "dppk:recycledContentPercentage",
+
+    // ==================================================================
+    // Properties: Product Characteristics
+    // ==================================================================
+    "productCharacteristics": { "@id": "dppk:productCharacteristics", "@container": "@set" },
+    "characteristicName": "dppk:characteristicName",
+    "characteristicValue": "dppk:characteristicValue",
+    "testMethod": "dppk:testMethod",
 
     // Quantitative Values
     // Define custom datatypes (typed literals) for measurements with implicit units.
