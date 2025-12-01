@@ -4,7 +4,7 @@
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "dppkval": "https://dpp-keystone.org/validation/v1/shacl/",
+    "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
 
     // Set the default vocabulary to SHACL to expand terms like "property", "path", etc.
