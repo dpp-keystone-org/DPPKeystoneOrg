@@ -2,25 +2,51 @@
     "@context": {
         "dppk": "https://dpp-keystone.org/spec/v1/terms#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-        "environmentalProductDeclarations": { "@id": "dppk:environmentalProductDeclarations", "@container": "@set", "@type": "@id" },
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+        // Class Definitions
         "EnvironmentalProductDeclaration": "dppk:EnvironmentalProductDeclaration",
-        "indicator": "dppk:indicator",
+        "EnvironmentalProductDeclaration2": "dppk:EnvironmentalProductDeclaration2",
+        "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
+        "ImpactValues": "dppk:ImpactValues",
+
+        // V1 Terms (Flexible 'long' format)
+        "environmentalProductDeclarations": {
+            "@id": "dppk:environmentalProductDeclarations",
+            "@container": "@set"
+        },
         "standard": "dppk:standard",
         "lifeCycleStage": "dppk:lifeCycleStage",
-        "environmentalProductDeclarations2": { "@id": "dppk:environmentalProductDeclarations2", "@container": "@set" },
-        "EnvironmentalProductDeclaration2": "dppk:EnvironmentalProductDeclaration2",
+        "value": "dppk:value",
+
+        // V2 Terms (Structured 'wide' format)
+        "environmentalProductDeclarations2": {
+            "@id": "dppk:environmentalProductDeclarations2",
+            "@container": "@set"
+        },
         "indicatorName": {
             "@id": "dppk:indicatorName",
+            // Scoped context for the array of language objects structure
             "@context": {
                 "language": "@language",
                 "value": "@value"
             }
         },
         "unit": "dppk:unit",
-        "values": { "@id": "dppk:values", "@type": "rdf:JSONLiteral" },
-        "environmentalProductDeclarations3": { "@id": "dppk:environmentalProductDeclarations3", "@type": "@id" },
-        "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
-        "ImpactValues": "dppk:ImpactValues",
+        "values": {
+            "@id": "dppk:values",
+            "@type": "rdf:JSONLiteral"
+        },
+
+        // Common Term (Used in V1 and V2)
+        "indicator": "dppk:indicator",
+
+        // V3 Terms (Semantically rich dictionary format)
+        "environmentalProductDeclarations3": {
+            "@id": "dppk:environmentalProductDeclarations3"
+        },
+
+        // V3 Indicators
         "GWP": "dppk:GWP",
         "GWPf": "dppk:GWPf",
         "GWP_b": "dppk:GWP_b",
@@ -35,15 +61,17 @@
         "ADPE": "dppk:ADPE",
         "ADPF": "dppk:ADPF",
         "WDP": "dppk:WDP",
-        "A1": "dppk:A1",
-        "A2": "dppk:A2",
-        "A3": "dppk:A3",
-        "A4": "dppk:A4",
-        "C1": "dppk:C1",
-        "C2": "dppk:C2",
-        "C3": "dppk:C3",
-        "C4": "dppk:C4",
-        "D": "dppk:D",
-        "Total": "dppk:Total"
+
+        // V3 Life Cycle Stages with Type Coercion
+        "A1": { "@id": "dppk:A1", "@type": "xsd:decimal" },
+        "A2": { "@id": "dppk:A2", "@type": "xsd:decimal" },
+        "A3": { "@id": "dppk:A3", "@type": "xsd:decimal" },
+        "A4": { "@id": "dppk:A4", "@type": "xsd:decimal" },
+        "C1": { "@id": "dppk:C1", "@type": "xsd:decimal" },
+        "C2": { "@id": "dppk:C2", "@type": "xsd:decimal" },
+        "C3": { "@id": "dppk:C3", "@type": "xsd:decimal" },
+        "C4": { "@id": "dppk:C4", "@type": "xsd:decimal" },
+        "D": { "@id": "dppk:D", "@type": "xsd:decimal" },
+        "Total": { "@id": "dppk:Total", "@type": "xsd:decimal" }
     }
 }
