@@ -147,6 +147,20 @@
         ],
         "rdfs:term_status": "unstable"
     },
+
+    // --- HS Code ---
+    {
+        "@id": "dppk:hsCode",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Harmonized System Code (HS Code)",
+        "rdfs:comment": "A code from the Harmonized System used to classify traded products.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:hsCode" }
+        ],
+        "rdfs:term_status": "unstable"
+    },
     
     // --- Brand ---
     {

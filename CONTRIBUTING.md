@@ -7,7 +7,7 @@ its success.
 
 ## Code of Conduct
 
-This project adheres to a standard [Code of Conduct](LINK_TO_CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. (Note: A separate Code of Conduct file should be added, e.g., Contributor Covenant).
+This project adheres to a standard [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. (Note: A separate Code of Conduct file should be added, e.g., Contributor Covenant).
 
 ## How You Can Contribute
 
@@ -68,7 +68,7 @@ When proposing a new term (Property or Class):
 
 1.  **Check for Existing Terms:** First, verify if the concept already exists in the core dictionary or in widely adopted external standards (Schema.org, GS1 Web Vocabulary).
 2.  **Prefer Reuse and Mapping:** If the concept exists externally, prioritize mapping it using `owl:equivalentProperty` or `owl:equivalentClass`.
-3.  **Provide Clear Definitions:** If a new `jtc24` term is necessary, provide:
+3.  **Provide Clear Definitions:** If a new `dppk` term is necessary, provide:
     *   A clear `rdfs:label` (human-readable name).
     *   A precise `rdfs:comment` (definition).
     *   Appropriate `rdfs:domain` (which Class the property applies to) and `rdfs:range` (the expected value type, e.g., `xsd:string`, `xsd:dateTime`, or another Class).
