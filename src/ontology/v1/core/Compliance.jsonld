@@ -165,6 +165,15 @@
         "rdfs:range": { "@id": "dppk:ProductionStep" },
         "rdfs:term_status": "unstable"
     },
+    {
+        "@id": "dppk:unionDatabaseRegistrations",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Union Database Registrations",
+        "rdfs:comment": "Registration numbers or identifiers from Union-level databases (e.g., EPREL).",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
+    },
 
     // ==================================================================
     // Properties (Details within the Classes)

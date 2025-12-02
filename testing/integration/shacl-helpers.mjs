@@ -23,6 +23,8 @@ const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
     "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-product-details.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-product-details.context.jsonld'),
 
     // --- Ontology Files ---
     "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld":
@@ -36,6 +38,10 @@ const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Product.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/core/ProductDetails.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'ProductDetails.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/core/LinkedResource.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'LinkedResource.jsonld'),
     // Sectors
     "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Battery.jsonld'),

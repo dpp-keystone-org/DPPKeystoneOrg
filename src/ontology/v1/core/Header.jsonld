@@ -119,11 +119,11 @@
       "rdfs:term_status": "unstable"
     },
 
-    // --- LastUpdated ---
+    // --- lastUpdate ---
     {
-      "@id": "dppk:LastUpdated",
+      "@id": "dppk:lastUpdate",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Last Updated Timestamp",
+      "rdfs:label": "Last Update Timestamp",
       "rdfs:comment": "The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).",
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:dateTime" },
@@ -131,6 +131,24 @@
     },
 
     // --- Versioning ---
+    {
+      "@id": "dppk:versionNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Version Number",
+      "rdfs:comment": "The version number of the DPP instance.",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:versionDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Version Date",
+      "rdfs:comment": "The date of the version of the DPP instance.",
+      "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+      "rdfs:range": { "@id": "xsd:date" },
+      "rdfs:term_status": "unstable"
+    },
     {
       "@id": "dppk:BaseDppSchemaVersion",
       "@type": "owl:DatatypeProperty",

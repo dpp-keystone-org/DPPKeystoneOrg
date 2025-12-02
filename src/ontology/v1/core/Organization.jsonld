@@ -340,6 +340,16 @@
             { "@id": "gs1:telephone" }
         ],
         "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:website",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Website",
+        "rdfs:comment": "The URL of the organization's website.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:anyURI" },
+        "owl:equivalentProperty": { "@id": "schema:url" },
+        "rdfs:term_status": "unstable"
     }
   ]
 }

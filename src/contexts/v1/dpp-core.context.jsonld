@@ -20,6 +20,7 @@
     "Product": "dppk:Product",
     "QuantitativeValue": "dppk:QuantitativeValue",
     "DigitalDocument": "dppk:DigitalDocument",
+    "LinkedResource": "dppk:LinkedResource",
     "Certification": "dppk:Certification",
     "SubstanceOfConcern": "dppk:SubstanceOfConcern",
     "EcoDesignProperty": "dppk:EcoDesignProperty",
@@ -44,14 +45,17 @@
     "facilityId": { "@id": "dppk:FacilityID", "@type": "@id" },
     "granularity": "dppk:Granularity",
     "dppStatus": "dppk:StatusOfTheDPP",
-    "lastUpdated": { "@id": "dppk:lastUpdated", "@type": "xsd:dateTime" },
+    "lastUpdate": { "@id": "dppk:lastUpdate", "@type": "xsd:dateTime" },
     "dppSchemaVersion": "dppk:dppSchemaVersion",
+    "versionNumber": "dppk:versionNumber",
+    "versionDate": { "@id": "dppk:versionDate", "@type": "xsd:date" },
     "contentSpecificationIds": {
       "@id": "dppk:contentSpecificationIds",
       "@container": "@set"
     },
     "verifiableCredential": "dppk:verifiableCredential",
     "hsCode": "dppk:hsCode",
+    "unionDatabaseRegistrations": "dppk:unionDatabaseRegistrations",
 
     // ==================================================================
     // Properties: Organization and Roles (camelCase)
@@ -82,6 +86,7 @@
     "addressCountry": "dppk:addressCountry",
     "email": "dppk:email",
     "telephone": "dppk:telephone",
+    "website": { "@id": "dppk:website", "@type": "@id" },
 
     // ==================================================================
     // Properties: Product Description and Materials
@@ -91,6 +96,7 @@
       "@id": "dppk:productName",
       "@container": "@language"
     },
+    "productCategory": "dppk:productCategory",
     "description": "dppk:description",
     "gtin": "dppk:gtin",
     "brand": "dppk:brand",
@@ -143,6 +149,16 @@
     "complianceTopics": { "@id": "dppk:complianceTopics", "@container": "@set" },
     "packaging": { "@id": "dppk:packaging", "@container": "@set" },
     "productionSteps": { "@id": "dppk:productionSteps", "@container": "@list" },
+
+    // ==================================================================
+    // Properties: Linked Resources
+    // ==================================================================
+    "generalProductInformation": { "@id": "dppk:generalProductInformation", "@type": "@id" },
+    "instructionsForUse": { "@id": "dppk:instructionsForUse", "@type": "@id" },
+    "safetyDataSheet": { "@id": "dppk:safetyDataSheet", "@type": "@id" },
+    "resourceTitle": "dppk:resourceTitle",
+    "contentType": "dppk:contentType",
+    "language": "dppk:language",
 
     // Document Details
     "documentType": "dppk:documentType",

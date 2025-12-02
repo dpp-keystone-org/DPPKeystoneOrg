@@ -118,6 +118,19 @@
 
     // --- Product Description ---
     {
+        "@id": "dppk:productCategory",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Product Category",
+        "rdfs:comment": "A category for the product.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:category" },
+            { "@id": "gs1:productCategory" }
+        ],
+        "rdfs:term_status": "unstable"
+    },
+    {
         "@id": "dppk:description",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Product Description",
