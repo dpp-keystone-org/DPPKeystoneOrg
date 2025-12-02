@@ -8,15 +8,15 @@
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/LinkedResource",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Linked Resource",
+  "dcterms:title": "DPP Core Ontology - Related Resource",
   "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
   "@graph": [
     {
-      "@id": "dppk:LinkedResource",
+      "@id": "dppk:RelatedResource",
       "@type": "rdfs:Class",
-      "rdfs:label": "Linked Resource",
+      "rdfs:label": "Related Resource",
       "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language.",
       "rdfs:term_status": "unstable"
     },
@@ -24,7 +24,7 @@
       "@id": "dppk:resourceTitle",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Resource Title",
-      "rdfs:domain": { "@id": "dppk:LinkedResource" },
+      "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:string" },
       "rdfs:term_status": "unstable"
     },
@@ -32,7 +32,7 @@
       "@id": "dppk:contentType",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Content Type",
-      "rdfs:domain": { "@id": "dppk:LinkedResource" },
+      "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:string" },
       "rdfs:term_status": "unstable"
     },
@@ -40,7 +40,7 @@
       "@id": "dppk:language",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Language",
-      "rdfs:domain": { "@id": "dppk:LinkedResource" },
+      "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:string" },
       "rdfs:term_status": "unstable"
     },
@@ -48,7 +48,7 @@
       "@id": "dppk:url",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "URL",
-      "rdfs:domain": { "@id": "dppk:LinkedResource" },
+      "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:anyURI" },
       "owl:equivalentProperty": { "@id": "schema:url" },
       "rdfs:term_status": "unstable"
@@ -58,7 +58,7 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": "General Product Information",
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "dppk:LinkedResource" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "rdfs:term_status": "unstable"
     },
     {
@@ -66,7 +66,7 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Instructions for Use",
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "dppk:LinkedResource" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "rdfs:term_status": "unstable"
     },
     {
@@ -74,7 +74,7 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Safety Data Sheet",
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "dppk:LinkedResource" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "rdfs:term_status": "unstable"
     }
   ]

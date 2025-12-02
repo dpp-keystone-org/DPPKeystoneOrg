@@ -42,8 +42,8 @@ const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/ProductDetails.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'ProductDetails.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/LinkedResource.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'LinkedResource.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld":
+    path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'RelatedResource.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'EPD.jsonld'),
     // Sectors
