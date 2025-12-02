@@ -105,6 +105,9 @@ async function build() {
     console.log('Generating ontology documentation...');
     execSync('node scripts/generate-spec-docs.mjs', { stdio: 'inherit' });
 
+    console.log('Updating index.html...');
+    execSync('node scripts/update-index-html.mjs', { stdio: 'inherit' });
+
     console.log('Build process completed.');
 }
 
