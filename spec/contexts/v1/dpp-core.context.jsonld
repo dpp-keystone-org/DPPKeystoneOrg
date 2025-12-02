@@ -11,6 +11,7 @@
     "Product": "dppk:Product",
     "QuantitativeValue": "dppk:QuantitativeValue",
     "DigitalDocument": "dppk:DigitalDocument",
+    "RelatedResource": "dppk:RelatedResource",
     "Certification": "dppk:Certification",
     "SubstanceOfConcern": "dppk:SubstanceOfConcern",
     "EcoDesignProperty": "dppk:EcoDesignProperty",
@@ -41,17 +42,23 @@
     },
     "granularity": "dppk:Granularity",
     "dppStatus": "dppk:StatusOfTheDPP",
-    "lastUpdated": {
-      "@id": "dppk:lastUpdated",
+    "lastUpdate": {
+      "@id": "dppk:lastUpdate",
       "@type": "xsd:dateTime"
     },
     "dppSchemaVersion": "dppk:dppSchemaVersion",
+    "versionNumber": "dppk:versionNumber",
+    "versionDate": {
+      "@id": "dppk:versionDate",
+      "@type": "xsd:date"
+    },
     "contentSpecificationIds": {
       "@id": "dppk:contentSpecificationIds",
       "@container": "@set"
     },
     "verifiableCredential": "dppk:verifiableCredential",
     "hsCode": "dppk:hsCode",
+    "unionDatabaseRegistrations": "dppk:unionDatabaseRegistrations",
     "economicOperator": {
       "@id": "dppk:economicOperator",
       "@type": "@id"
@@ -81,10 +88,15 @@
     "addressCountry": "dppk:addressCountry",
     "email": "dppk:email",
     "telephone": "dppk:telephone",
+    "website": {
+      "@id": "dppk:website",
+      "@type": "@id"
+    },
     "productName": {
       "@id": "dppk:productName",
       "@container": "@language"
     },
+    "productCategory": "dppk:productCategory",
     "description": "dppk:description",
     "gtin": "dppk:gtin",
     "brand": "dppk:brand",
@@ -160,6 +172,21 @@
       "@id": "dppk:productionSteps",
       "@container": "@list"
     },
+    "generalProductInformation": {
+      "@id": "dppk:generalProductInformation",
+      "@type": "@id"
+    },
+    "instructionsForUse": {
+      "@id": "dppk:instructionsForUse",
+      "@type": "@id"
+    },
+    "safetyDataSheet": {
+      "@id": "dppk:safetyDataSheet",
+      "@type": "@id"
+    },
+    "resourceTitle": "dppk:resourceTitle",
+    "contentType": "dppk:contentType",
+    "language": "dppk:language",
     "documentType": "dppk:documentType",
     "languageCode": "dppk:languageCode",
     "documentURL": {

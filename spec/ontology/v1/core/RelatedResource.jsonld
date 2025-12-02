@@ -1,0 +1,113 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Related Resource",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:RelatedResource",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Related Resource",
+      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:resourceTitle",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Resource Title",
+      "rdfs:domain": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:contentType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Content Type",
+      "rdfs:domain": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:language",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Language",
+      "rdfs:domain": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:url",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "URL",
+      "rdfs:domain": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:url"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:generalProductInformation",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "General Product Information",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:instructionsForUse",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Instructions for Use",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:safetyDataSheet",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Safety Data Sheet",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:term_status": "unstable"
+    }
+  ]
+}

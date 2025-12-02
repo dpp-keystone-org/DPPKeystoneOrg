@@ -32,6 +32,7 @@
                 <li id="dppk:complianceTopics">dppk:complianceTopics</li>
                 <li id="dppk:packaging">dppk:packaging</li>
                 <li id="dppk:productionSteps">dppk:productionSteps</li>
+                <li id="dppk:unionDatabaseRegistrations">dppk:unionDatabaseRegistrations - <em>Registration numbers or identifiers from Union-level databases (e.g., EPREL).</em></li>
                 <li id="dppk:documentType">dppk:documentType</li>
                 <li id="dppk:languageCode">dppk:languageCode</li>
                 <li id="dppk:documentURL">dppk:documentURL</li>
@@ -57,6 +58,49 @@
     
 
         <li>
+            <h3><a href="./EPD.jsonld">EPD.jsonld</a></h3>
+            <p><strong>DPP Core Ontology - Environmental Product Declaration (EPD)</strong></p>
+            <p>No description found.</p>
+            
+            <h4>Properties</h4><ul>
+                <li id="dppk:environmentalProductDeclarations">dppk:environmentalProductDeclarations</li>
+                <li id="dppk:indicator">dppk:indicator - <em>The environmental indicator being reported (e.g., Global Warming Potential or its acronym).</em></li>
+                <li id="dppk:standard">dppk:standard - <em>The standard under which the declaration is made (e.g., EN 15804).</em></li>
+                <li id="dppk:lifeCycleStage">dppk:lifeCycleStage - <em>The life cycle stage(s) to which the value applies (e.g., A1, C4).</em></li>
+                <li id="dppk:value">dppk:value - <em>The measured value of the indicator.</em></li>
+                <li id="dppk:environmentalProductDeclarations2">dppk:environmentalProductDeclarations2</li>
+                <li id="dppk:indicatorName">dppk:indicatorName - <em>The name of the environmental indicator, as a translatable string.</em></li>
+                <li id="dppk:values">dppk:values - <em>An object containing the life cycle stage values for the indicator.</em></li>
+                <li id="dppk:environmentalProductDeclarations3">dppk:environmentalProductDeclarations3 - <em>A dictionary of environmental impact indicators and their values across different life cycle stages. (V3 - Semantically rich dictionary format).</em></li>
+                <li id="dppk:GWP">dppk:GWP</li>
+                <li id="dppk:GWPf">dppk:GWPf</li>
+                <li id="dppk:GWP_b">dppk:GWP_b</li>
+                <li id="dppk:GWPluluc">dppk:GWPluluc</li>
+                <li id="dppk:GWPghg">dppk:GWPghg</li>
+                <li id="dppk:ODP">dppk:ODP - <em>Spanish translation for ODP is a placeholder. Could not be verified.</em></li>
+                <li id="dppk:AP">dppk:AP</li>
+                <li id="dppk:EPf">dppk:EPf</li>
+                <li id="dppk:EPm">dppk:EPm</li>
+                <li id="dppk:EPt">dppk:EPt</li>
+                <li id="dppk:POCP">dppk:POCP</li>
+                <li id="dppk:ADPE">dppk:ADPE - <em>Translations for ADPE are missing.</em></li>
+                <li id="dppk:ADPF">dppk:ADPF - <em>Translations for ADPF are missing.</em></li>
+                <li id="dppk:WDP">dppk:WDP - <em>Translations for WDP are missing.</em></li>
+                <li id="dppk:A1">dppk:A1</li>
+                <li id="dppk:A2">dppk:A2</li>
+                <li id="dppk:A3">dppk:A3</li>
+                <li id="dppk:A4">dppk:A4</li>
+                <li id="dppk:C1">dppk:C1</li>
+                <li id="dppk:C2">dppk:C2</li>
+                <li id="dppk:C3">dppk:C3</li>
+                <li id="dppk:C4">dppk:C4</li>
+                <li id="dppk:D">dppk:D</li>
+                <li id="dppk:Total">dppk:Total</li>
+            </ul>
+        </li>
+    
+
+        <li>
             <h3><a href="./Header.jsonld">Header.jsonld</a></h3>
             <p><strong>DPP Core Ontology - Header Definitions (v1)</strong></p>
             <p>Defines the normative header fields required for the Digital Product Passport envelope.</p>
@@ -68,7 +112,9 @@
                 <li id="dppk:FacilityID">dppk:FacilityID - <em>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</em></li>
                 <li id="dppk:Granularity">dppk:Granularity - <em>Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).</em></li>
                 <li id="dppk:StatusOfTheDPP">dppk:StatusOfTheDPP - <em>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</em></li>
-                <li id="dppk:LastUpdated">dppk:LastUpdated - <em>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</em></li>
+                <li id="dppk:lastUpdate">dppk:lastUpdate - <em>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</em></li>
+                <li id="dppk:versionNumber">dppk:versionNumber - <em>The version number of the DPP instance.</em></li>
+                <li id="dppk:versionDate">dppk:versionDate - <em>The date of the version of the DPP instance.</em></li>
                 <li id="dppk:BaseDppSchemaVersion">dppk:BaseDppSchemaVersion - <em>The version of the horizontal (cross-sector) DPP schema used for this instance.</em></li>
                 <li id="dppk:SectorDataModelVersion">dppk:SectorDataModelVersion - <em>The version of the sector-specific data model (e.g., Battery Regulation, Textile Strategy) used for this instance.</em></li>
                 <li id="dppk:hsCode">dppk:hsCode - <em>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</em></li>
@@ -101,6 +147,7 @@
                 <li id="dppk:addressCountry">dppk:addressCountry</li>
                 <li id="dppk:email">dppk:email</li>
                 <li id="dppk:telephone">dppk:telephone</li>
+                <li id="dppk:website">dppk:website - <em>The URL of the organization's website.</em></li>
             </ul>
         </li>
     
@@ -113,8 +160,10 @@
             <h4>Properties</h4><ul>
                 <li id="dppk:name">dppk:name - <em>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</em></li>
                 <li id="dppk:productName">dppk:productName - <em>The common name of the product.</em></li>
+                <li id="dppk:productCategory">dppk:productCategory - <em>A category for the product.</em></li>
                 <li id="dppk:description">dppk:description - <em>A detailed description of the product.</em></li>
                 <li id="dppk:gtin">dppk:gtin - <em>The GS1 identifier for the trade item.</em></li>
+                <li id="dppk:hsCode">dppk:hsCode - <em>A code from the Harmonized System used to classify traded products.</em></li>
                 <li id="dppk:brand">dppk:brand</li>
                 <li id="dppk:model">dppk:model</li>
                 <li id="dppk:image">dppk:image - <em>A URI pointing to an image of the product.</em></li>
@@ -139,6 +188,37 @@
                 <li id="dppk:characteristicName">dppk:characteristicName - <em>The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').</em></li>
                 <li id="dppk:characteristicValue">dppk:characteristicValue - <em>The measured or declared value of the characteristic (e.g., '≥ 2.0 MPa', 'Class A1').</em></li>
                 <li id="dppk:testMethod">dppk:testMethod - <em>A reference to the standard or methodology used to determine the characteristic's value.</em></li>
+            </ul>
+        </li>
+    
+
+        <li>
+            <h3><a href="./ProductDetails.jsonld">ProductDetails.jsonld</a></h3>
+            <p><strong>DPP Core Ontology - Reusable Product Details</strong></p>
+            <p>No description found.</p>
+            
+            <h4>Properties</h4><ul>
+                <li id="dppk:nominalDimensions">dppk:nominalDimensions</li>
+                <li id="dppk:keyParts">dppk:keyParts</li>
+                <li id="dppk:estimatedServiceLife">dppk:estimatedServiceLife</li>
+                <li id="dppk:variants">dppk:variants</li>
+            </ul>
+        </li>
+    
+
+        <li>
+            <h3><a href="./RelatedResource.jsonld">RelatedResource.jsonld</a></h3>
+            <p><strong>DPP Core Ontology - Related Resource</strong></p>
+            <p>No description found.</p>
+            
+            <h4>Properties</h4><ul>
+                <li id="dppk:resourceTitle">dppk:resourceTitle</li>
+                <li id="dppk:contentType">dppk:contentType</li>
+                <li id="dppk:language">dppk:language</li>
+                <li id="dppk:url">dppk:url</li>
+                <li id="dppk:generalProductInformation">dppk:generalProductInformation</li>
+                <li id="dppk:instructionsForUse">dppk:instructionsForUse</li>
+                <li id="dppk:safetyDataSheet">dppk:safetyDataSheet</li>
             </ul>
         </li>
     

@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/ProductDetails",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Reusable Product Details",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:nominalDimensions",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Nominal Dimensions",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:keyParts",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Key Parts",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:estimatedServiceLife",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Estimated Service Life",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:variants",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Variants",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    }
+  ]
+}

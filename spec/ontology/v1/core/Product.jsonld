@@ -130,6 +130,27 @@
       "rdfs:term_status": "unstable"
     },
     {
+      "@id": "dppk:productCategory",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Product Category",
+      "rdfs:comment": "A category for the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:category"
+        },
+        {
+          "@id": "gs1:productCategory"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
       "@id": "dppk:description",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Product Description",
@@ -173,6 +194,24 @@
         },
         {
           "@id": "unece:gTINId"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:hsCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Harmonized System Code (HS Code)",
+      "rdfs:comment": "A code from the Harmonized System used to classify traded products.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:hsCode"
         }
       ],
       "rdfs:term_status": "unstable"

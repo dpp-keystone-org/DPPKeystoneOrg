@@ -1,0 +1,597 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "https://dpp-keystone.org/ontology/v1/core/EPD",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Environmental Product Declaration (EPD)",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:EnvironmentalProductDeclaration",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Environmental Product Declaration (V1)",
+      "rdfs:comment": "A structured set of data detailing the environmental impact of a product. (V1 - Flexible 'long' format).",
+      "dcterms:source": {
+        "@id": "https://www.iso.org/standard/72068.html",
+        "rdfs:label": "ISO 14025:2022"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:environmentalProductDeclarations",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Environmental Product Declarations (V1)",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:EnvironmentalProductDeclaration"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:indicator",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Indicator",
+      "rdfs:comment": "The environmental indicator being reported (e.g., Global Warming Potential or its acronym).",
+      "rdfs:domain": [
+        {
+          "@id": "dppk:EnvironmentalProductDeclaration"
+        },
+        {
+          "@id": "dppk:EnvironmentalProductDeclaration2"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:standard",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Standard",
+      "rdfs:comment": "The standard under which the declaration is made (e.g., EN 15804).",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalProductDeclaration"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:lifeCycleStage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Life Cycle Stage",
+      "rdfs:comment": "The life cycle stage(s) to which the value applies (e.g., A1, C4).",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalProductDeclaration"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:value",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Value",
+      "rdfs:comment": "The measured value of the indicator.",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalProductDeclaration"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:EnvironmentalProductDeclaration2",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Environmental Product Declaration (V2)",
+      "rdfs:comment": "A structured set of data detailing the environmental impact of a product. (V2 - Structured 'wide' format with nested values).",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:environmentalProductDeclarations2",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Environmental Product Declarations (V2)",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:EnvironmentalProductDeclaration2"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:indicatorName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Indicator Name",
+      "rdfs:comment": "The name of the environmental indicator, as a translatable string.",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalProductDeclaration2"
+      },
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:unit",
+      "@type": [
+        "owl:DatatypeProperty",
+        "owl:AnnotationProperty"
+      ],
+      "rdfs:label": "Unit",
+      "rdfs:comment": "The unit of measurement for the indicator. Can be used as an annotation on a property definition (V3) or as a property on an instance (V2).",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalProductDeclaration2"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:values",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Values",
+      "rdfs:comment": "An object containing the life cycle stage values for the indicator.",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalProductDeclaration2"
+      },
+      "rdfs:range": {
+        "@id": "rdf:JSONLiteral"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:environmentalProductDeclarations3",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Environmental Product Declarations (V3)",
+      "rdfs:comment": "A dictionary of environmental impact indicators and their values across different life cycle stages. (V3 - Semantically rich dictionary format).",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:EnvironmentalImpacts",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Environmental Impacts",
+      "rdfs:comment": "A class to hold all environmental impact categories.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:ImpactValues",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Impact Values",
+      "rdfs:comment": "A class to hold the values for a single environmental impact indicator across different life cycle stages.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:GWP",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Global Warming Potential"
+        },
+        {
+          "@language": "de",
+          "@value": "Treibhauspotenzial"
+        },
+        {
+          "@language": "fr",
+          "@value": "potentiel de réchauffement global"
+        },
+        {
+          "@language": "es",
+          "@value": "potencial de calentamiento global"
+        },
+        {
+          "@language": "it",
+          "@value": "potenziale di riscaldamento globale"
+        }
+      ],
+      "dppk:unit": "kg CO₂ eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:GWPf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Global Warming Potential, fossil"
+        }
+      ],
+      "dppk:unit": "kg CO₂ eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:GWP_b",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Global Warming Potential, biogenic"
+        }
+      ],
+      "dppk:unit": "kg CO₂ eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:GWPluluc",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Global Warming Potential, land use and land use change"
+        }
+      ],
+      "dppk:unit": "kg CO₂ eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:GWPghg",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Global Warming Potential, greenhouse gases"
+        }
+      ],
+      "dppk:unit": "kg CO₂ eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:ODP",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Ozone Depletion Potential"
+        },
+        {
+          "@language": "de",
+          "@value": "Ozonabbaupotenzial"
+        },
+        {
+          "@language": "fr",
+          "@value": "Potentiel de déplétion ozonique"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de Agotamiento de la Capa de Ozono"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di eliminazione dell'ozono"
+        }
+      ],
+      "dppk:unit": "kg CFC11 eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable",
+      "rdfs:comment": "Spanish translation for ODP is a placeholder. Could not be verified."
+    },
+    {
+      "@id": "dppk:AP",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Acidification Potential"
+        },
+        {
+          "@language": "de",
+          "@value": "Versauerungspotenzial"
+        },
+        {
+          "@language": "fr",
+          "@value": "Potentiel d'acidification"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de Acidificación"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di acidificazione"
+        }
+      ],
+      "dppk:unit": "mol H+ eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:EPf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Eutrophication Potential, freshwater"
+        }
+      ],
+      "dppk:unit": "kg P eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:EPm",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Eutrophication Potential, marine"
+        }
+      ],
+      "dppk:unit": "kg N eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:EPt",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Eutrophication Potential, terrestrial"
+        }
+      ],
+      "dppk:unit": "mol N eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:POCP",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Photochemical Ozone Creation Potential"
+        },
+        {
+          "@language": "de",
+          "@value": "Photochemisches Ozonbildungspotenzial"
+        },
+        {
+          "@language": "fr",
+          "@value": "Potentiel de Création d'Ozone Photochimique"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de Creación de Ozono Fotoquímico"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di Creazione di Ozono Fotochimico"
+        }
+      ],
+      "dppk:unit": "kg NMVOC eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:ADPE",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Abiotic Depletion Potential for non-fossil resources"
+        }
+      ],
+      "dppk:unit": "kg Sb eq",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable",
+      "rdfs:comment": "Translations for ADPE are missing."
+    },
+    {
+      "@id": "dppk:ADPF",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Abiotic Depletion Potential for fossil resources"
+        }
+      ],
+      "dppk:unit": "MJ",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable",
+      "rdfs:comment": "Translations for ADPF are missing."
+    },
+    {
+      "@id": "dppk:WDP",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Water Deprivation Potential"
+        }
+      ],
+      "dppk:unit": "m³",
+      "rdfs:domain": {
+        "@id": "dppk:EnvironmentalImpacts"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:term_status": "unstable",
+      "rdfs:comment": "Translations for WDP are missing."
+    },
+    {
+      "@id": "dppk:A1",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Upstream A1",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:A2",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Core Process A2",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:A3",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Core Process A3",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:A4",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Downstream A4",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:C1",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Downstream C1",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:C2",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Downstream C2",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:C3",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Downstream C3",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:C4",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Downstream C4",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:D",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "D",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:Total",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Total",
+      "rdfs:domain": {
+        "@id": "dppk:ImpactValues"
+      },
+      "rdfs:range": "xsd:decimal",
+      "rdfs:term_status": "unstable"
+    }
+  ]
+}

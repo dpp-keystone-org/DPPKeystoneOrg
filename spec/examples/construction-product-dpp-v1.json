@@ -1,0 +1,1502 @@
+{
+  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
+  "digitalProductPassportId": "https://www.example.org/dpp/1234545",
+  "uniqueProductIdentifier": "https://www.example.org/1234545",
+  "granularity": "Model",
+  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2025-08-22T03:12:00Z",
+  "economicOperatorId": "gxx:ppp456789",
+  "facilityId": "gxx:xxx987654",
+  "contentSpecificationIds": [
+    "urn:ec:example_construction_spec_id"
+  ],
+  "productName": {
+    "en-IE": "One Thing",
+    "es-ES": "Una Cosa",
+    "fr-CH": "Une Chose"
+  },
+  "model": "70210534",
+  "manufacturer": {
+    "type": "Organization",
+    "organizationName": "ExampleCorp",
+    "tradingName": "ExampleCorp Services AG",
+    "address": {
+      "type": "PostalAddress",
+      "streetAddress": "123 Example Street",
+      "postalCode": "12345",
+      "addressLocality": "Anytown",
+      "addressCountry": "Nowhereland"
+    },
+    "telephone": "+41411234567",
+    "email": "info@example.com",
+    "website": "www.example.com"
+  },
+  "declarationCode": "DC-12345",
+  "versionNumber": "2.1",
+  "versionDate": "2024-01-15",
+  "productCategory": "Repair Mortar",
+  "declaredUses": [
+    "For uses in buildings and civil engineering works",
+    "Structural and non structural repairproducts for concrete, used by applying mortar by hand, by recasting with concrete, byspraying concrete or mortar, by increasing cover to reinforcement with additionalcementitious mortar or concrete and structural strengthening by adding mortar orconcreteFor uses subject to reaction to fire regulations",
+    "Structural and non structural repairproducts for concrete, used by applying mortar by hand, by recasting with concrete, byspraying concrete or mortar, by increasing cover to reinforcement with additionalcementitious mortar or concrete and structural strengthening by adding mortar orconcrete"
+  ],
+  "nominalDimensions": "Not applicable",
+  "keyParts": "Cement, Polymers, Additives",
+  "estimatedServiceLife": "50 years",
+  "variants": "None",
+  "latestDeinstallation": "Not applicable",
+  "unionDatabaseRegistrations": "EPREL registration number XYZ123",
+  "generalProductInformation": {
+    "resourceTitle": "User Manual for the Smart Thermostat Pro",
+    "contentType": "application/pdf",
+    "url": "https://example.com/docs/user-manual-123.pdf",
+    "language": "en-GB"
+  },
+  "instructionsForUse": {
+    "resourceTitle": "User Manual for the Smart Thermostat Pro",
+    "contentType": "application/pdf",
+    "url": "https://example.com/docs/user-manual-123.pdf",
+    "language": "en-GB"
+  },
+  "safetyDataSheet": {
+    "resourceTitle": "User Manual for the Smart Thermostat Pro",
+    "contentType": "application/pdf",
+    "url": "https://example.com/docs/safety-data-sheet-456.pdf",
+    "language": "en-GB"
+  },
+  "notifiedBody": {
+    "type": [
+      "Organization",
+      "ConformityAssessmentBodyRole"
+    ],
+    "organizationName": "Example Inspection Body",
+    "notifiedBodyID": "1234",
+    "tradingName": "EIB",
+    "address": {
+      "type": "PostalAddress",
+      "streetAddress": "456 Inspection Avenue",
+      "postalCode": "54321",
+      "addressLocality": "Testville",
+      "addressCountry": "Stateland"
+    },
+    "telephone": "+431795148039",
+    "email": "post@example-body.com",
+    "website": "www.example-body.com"
+  },
+  "technicalAssessmentBody": {
+    "type": "Organization",
+    "organizationName": "Example Assessment Body",
+    "identifier": "EAB-987",
+    "tradingName": "EAB",
+    "address": {
+      "type": "PostalAddress",
+      "streetAddress": "Rue de la Loi 123",
+      "postalCode": "1000",
+      "addressLocality": "Brussels",
+      "addressCountry": "Belgium"
+    },
+    "telephone": "+3221234567",
+    "email": "info@eab.example.com",
+    "website": "www.eab.example.com"
+  },
+  "validationReports": "Not applicable",
+  "harmonisedStandardReference": "EN 1504-3:2005",
+  "europeanAssessmentDocument": "EAD-12345-678-910",
+  "softwareAndVersion": "Not applicable",
+  "productCharacteristics": [
+    {
+      "characteristicName": "Adhesion by tensile bond strength",
+      "testMethod": "EN 12618-2:2004",
+      "characteristicValue": "Class R4"
+    },
+    {
+      "characteristicName": "Chloride content",
+      "testMethod": "EN 1015-17",
+      "characteristicValue": " 0.05 %"
+    },
+    {
+      "characteristicName": "Bond strength",
+      "testMethod": "EN 1542:1999",
+      "characteristicValue": " 2.0 MPa"
+    },
+    {
+      "characteristicName": "Shrinkage and expansion",
+      "testMethod": "EN 12617-4 : 2002",
+      "characteristicValue": "NPD"
+    },
+    {
+      "characteristicName": "Resistance to carbonation",
+      "testMethod": "EN 13295 : 2004",
+      "characteristicValue": "Pass"
+    },
+    {
+      "characteristicName": "modulus of elasticity in compression",
+      "testMethod": "EN 13412:2006",
+      "characteristicValue": " 20 GPa"
+    },
+    {
+      "characteristicName": "Thermal compatibility",
+      "testMethod": "EN 13687-1:2002",
+      "characteristicValue": " 2.0 MPa"
+    },
+    {
+      "characteristicName": "Slip/skid resistance",
+      "testMethod": "EN 13036-4:2011",
+      "characteristicValue": "NPD"
+    },
+    {
+      "characteristicName": "Thermal expansion",
+      "testMethod": "EN 1770:1998",
+      "characteristicValue": "NPD"
+    },
+    {
+      "characteristicName": "Capillary absorption",
+      "testMethod": "EN 13057:2002",
+      "characteristicValue": "w < 0.5kg/h^(0.5)*m^2"
+    },
+    {
+      "characteristicName": "Reaction to fire",
+      "testMethod": "EN 13501-1:2019",
+      "characteristicValue": "Class A1"
+    },
+    {
+      "characteristicName": "Dangerous substances",
+      "characteristicValue": "NPD"
+    },
+    {
+      "characteristicName": "Declared unit",
+      "characteristicValue": "1 kg"
+    },
+    {
+      "characteristicName": "Functional unit",
+      "characteristicValue": "1 kg"
+    },
+    {
+      "characteristicName": "Reference service life",
+      "characteristicValue": "50 years"
+    }
+  ],
+  "environmentalProductDeclarations": [
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "3.48E+02"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "1.19E+02"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "1.20E+02"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "6.72E+01"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "3.82E+01"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "2.44E+01"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "1.93E+00"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "7.32E-01"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "7.19E+02"
+    },
+    {
+      "indicator": "GWP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "4.58E+02"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "3.48E+02"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "1.19E+02"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "1.20E+02"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "6.72E+01"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "3.82E+01"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "2.44E+01"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "1.92E+00"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "7.32E-01"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "7.18E+02"
+    },
+    {
+      "indicator": "GWPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "4.58E+02"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "1.84E-01"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "8.02E-02"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "2.07E-01"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "8.98E-03"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "2.69E-03"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "1.44E-03"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "5.78E-03"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "9.87E-05"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "4.90E-01"
+    },
+    {
+      "indicator": "GWP_b",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "7.49E-02"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "7.77E-02"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "1.31E-03"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "5.91E-02"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "2.63E-03"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "9.43E-04"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "1.99E-04"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "3.98E-03"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "2.49E-05"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "1.46E-01"
+    },
+    {
+      "indicator": "GWPluluc",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "1.93E-02"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "3.48E+02"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "1.19E+02"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "1.20E+02"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "6.72E+01"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "3.82E+01"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "2.44E+01"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "1.93E+00"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "7.32E-01"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "7.19E+02"
+    },
+    {
+      "indicator": "GWPghg",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "4.58E+02"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "5.80E-05"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "2.80E-05"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "3.02E-06"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "1.58E-05"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "8.56E-06"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "5.84E-06"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "7.18E-08"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "1.52E-07"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "1.19E-04"
+    },
+    {
+      "indicator": "ODP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "1.35E-05"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "1.38E+00"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "6.91E-01"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "2.92E-01"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "4.68E-01"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "4.12E-01"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "1.36E-01"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "9.62E-03"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "7.54E-03"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "3.40E+00"
+    },
+    {
+      "indicator": "AP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "1.72E+00"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "6.35E-03"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "1.88E-04"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "3.09E-03"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "1.30E-04"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "2.69E-05"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "1.26E-05"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "9.79E-05"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "2.60E-06"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "9.90E-03"
+    },
+    {
+      "indicator": "EPf",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "1.88E-02"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "2.63E-01"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "2.72E-01"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "8.97E-02"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "1.68E-01"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "1.85E-01"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "5.39E-02"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "1.77E-03"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "3.28E-03"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "1.04E+00"
+    },
+    {
+      "indicator": "EPm",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "3.33E-01"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "2.96E+00"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "2.99E+00"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "9.93E-01"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "1.84E+00"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "2.03E+00"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "5.91E-01"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "1.96E-02"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "3.59E-02"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "1.15E+01"
+    },
+    {
+      "indicator": "EPt",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "3.87E+00"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "8.54E-01"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "7.79E-01"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "2.54E-01"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "4.79E-01"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "5.54E-01"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "1.54E-01"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "5.31E-03"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "1.00E-02"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "3.09E+00"
+    },
+    {
+      "indicator": "POCP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "2.05E+00"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "5.53E-05"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "5.05E-06"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "7.86E-05"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "2.85E-06"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "1.97E-06"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "1.07E-06"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "5.75E-08"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "3.53E-08"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "1.45E-04"
+    },
+    {
+      "indicator": "ADPE",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "7.31E-03"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "6.92E+03"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "1.68E+03"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "8.77E+02"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "9.43E+02"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "5.17E+02"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "3.40E+02"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "3.27E+01"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "9.73E+00"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "1.13E+04"
+    },
+    {
+      "indicator": "ADPF",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "5.62E+03"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A1",
+      "value": "4.11E+01"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A2",
+      "value": "3.10E+00"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A3",
+      "value": "1.42E+02"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "A4",
+      "value": "4.55E-02"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C1",
+      "value": "1.36E-01"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C2",
+      "value": "-5.83E-02"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C3",
+      "value": "2.93E-01"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "C4",
+      "value": "3.94E-03"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "Total",
+      "value": "1.87E+02"
+    },
+    {
+      "indicator": "WDP",
+      "standard": "EN 15804:2012+A2:2019",
+      "lifeCycleStage": "D",
+      "value": "6.34E+01"
+    }
+  ],
+  "environmentalProductDeclarations2": [
+    {
+      "indicator": "GWP",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Global Warming Potential"
+        }
+      ],
+      "unit": "kg CO₂ eq",
+      "values": {
+        "A1": "3.48E+02",
+        "A2": "1.19E+02",
+        "A3": "1.20E+02",
+        "A4": "6.72E+01",
+        "C1": "3.82E+01",
+        "C2": "2.44E+01",
+        "C3": "1.93E+00",
+        "C4": "7.32E-01",
+        "Total": "7.19E+02",
+        "D": "4.58E+02"
+      }
+    },
+    {
+      "indicator": "GWPf",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Global Warming Potential, fossil"
+        }
+      ],
+      "unit": "kg CO₂ eq",
+      "values": {
+        "A1": "3.48E+02",
+        "A2": "1.19E+02",
+        "A3": "1.20E+02",
+        "A4": "6.72E+01",
+        "C1": "3.82E+01",
+        "C2": "2.44E+01",
+        "C3": "1.92E+00",
+        "C4": "7.32E-01",
+        "Total": "7.18E+02",
+        "D": "4.58E+02"
+      }
+    },
+    {
+      "indicator": "GWP_b",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Global Warming Potential, biogenic"
+        }
+      ],
+      "unit": "kg CO₂ eq",
+      "values": {
+        "A1": "1.84E-01",
+        "A2": "8.02E-02",
+        "A3": "2.07E-01",
+        "A4": "8.98E-03",
+        "C1": "2.69E-03",
+        "C2": "1.44E-03",
+        "C3": "5.78E-03",
+        "C4": "9.87E-05",
+        "Total": "4.90E-01",
+        "D": "7.49E-02"
+      }
+    },
+    {
+      "indicator": "GWPluluc",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Global Warming Potential, land use and land use change"
+        }
+      ],
+      "unit": "kg CO₂ eq",
+      "values": {
+        "A1": "7.77E-02",
+        "A2": "1.31E-03",
+        "A3": "5.91E-02",
+        "A4": "2.63E-03",
+        "C1": "9.43E-04",
+        "C2": "1.99E-04",
+        "C3": "3.98E-03",
+        "C4": "2.49E-05",
+        "Total": "1.46E-01",
+        "D": "1.93E-02"
+      }
+    },
+    {
+      "indicator": "GWPghg",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Global Warming Potential, greenhouse gases"
+        }
+      ],
+      "unit": "kg CO₂ eq",
+      "values": {
+        "A1": "3.48E+02",
+        "A2": "1.19E+02",
+        "A3": "1.20E+02",
+        "A4": "6.72E+01",
+        "C1": "3.82E+01",
+        "C2": "2.44E+01",
+        "C3": "1.93E+00",
+        "C4": "7.32E-01",
+        "Total": "7.19E+02",
+        "D": "4.58E+02"
+      }
+    },
+    {
+      "indicator": "ODP",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Ozone Depletion Potential"
+        }
+      ],
+      "unit": "kg CFC11 eq",
+      "values": {
+        "A1": "5.80E-05",
+        "A2": "2.80E-05",
+        "A3": "3.02E-06",
+        "A4": "1.58E-05",
+        "C1": "8.56E-06",
+        "C2": "5.84E-06",
+        "C3": "7.18E-08",
+        "C4": "1.52E-07",
+        "Total": "1.19E-04",
+        "D": "1.35E-05"
+      }
+    },
+    {
+      "indicator": "AP",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Acidification Potential"
+        }
+      ],
+      "unit": "mol H+ eq",
+      "values": {
+        "A1": "1.38E+00",
+        "A2": "6.91E-01",
+        "A3": "2.92E-01",
+        "A4": "4.68E-01",
+        "C1": "4.12E-01",
+        "C2": "1.36E-01",
+        "C3": "9.62E-03",
+        "C4": "7.54E-03",
+        "Total": "3.40E+00",
+        "D": "1.72E+00"
+      }
+    },
+    {
+      "indicator": "EPf",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Eutrophication Potential, freshwater"
+        }
+      ],
+      "unit": "kg P eq",
+      "values": {
+        "A1": "6.35E-03",
+        "A2": "1.88E-04",
+        "A3": "3.09E-03",
+        "A4": "1.30E-04",
+        "C1": "2.69E-05",
+        "C2": "1.26E-05",
+        "C3": "9.79E-05",
+        "C4": "2.60E-06",
+        "Total": "9.90E-03",
+        "D": "1.88E-02"
+      }
+    },
+    {
+      "indicator": "EPm",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Eutrophication Potential, marine"
+        }
+      ],
+      "unit": "kg N eq",
+      "values": {
+        "A1": "2.63E-01",
+        "A2": "2.72E-01",
+        "A3": "8.97E-02",
+        "A4": "1.68E-01",
+        "C1": "1.85E-01",
+        "C2": "5.39E-02",
+        "C3": "1.77E-03",
+        "C4": "3.28E-03",
+        "Total": "1.04E+00",
+        "D": "3.33E-01"
+      }
+    },
+    {
+      "indicator": "EPt",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Eutrophication Potential, terrestrial"
+        }
+      ],
+      "unit": "mol N eq",
+      "values": {
+        "A1": "2.96E+00",
+        "A2": "2.99E+00",
+        "A3": "9.93E-01",
+        "A4": "1.84E+00",
+        "C1": "2.03E+00",
+        "C2": "5.91E-01",
+        "C3": "1.96E-02",
+        "C4": "3.59E-02",
+        "Total": "1.15E+01",
+        "D": "3.87E+00"
+      }
+    },
+    {
+      "indicator": "POCP",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Photochemical Ozone Creation Potential"
+        }
+      ],
+      "unit": "kg NMVOC eq",
+      "values": {
+        "A1": "8.54E-01",
+        "A2": "7.79E-01",
+        "A3": "2.54E-01",
+        "A4": "4.79E-01",
+        "C1": "5.54E-01",
+        "C2": "1.54E-01",
+        "C3": "5.31E-03",
+        "C4": "1.00E-02",
+        "Total": "3.09E+00",
+        "D": "2.05E+00"
+      }
+    },
+    {
+      "indicator": "ADPE",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Abiotic Depletion Potential for non-fossil resources"
+        }
+      ],
+      "unit": "kg Sb eq",
+      "values": {
+        "A1": "5.53E-05",
+        "A2": "5.05E-06",
+        "A3": "7.86E-05",
+        "A4": "2.85E-06",
+        "C1": "1.97E-06",
+        "C2": "1.07E-06",
+        "C3": "5.75E-08",
+        "C4": "3.53E-08",
+        "Total": "1.45E-04",
+        "D": "7.31E-03"
+      }
+    },
+    {
+      "indicator": "ADPF",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Abiotic Depletion Potential for fossil resources"
+        }
+      ],
+      "unit": "MJ",
+      "values": {
+        "A1": "6.92E+03",
+        "A2": "1.68E+03",
+        "A3": "8.77E+02",
+        "A4": "9.43E+02",
+        "C1": "5.17E+02",
+        "C2": "3.40E+02",
+        "C3": "3.27E+01",
+        "C4": "9.73E+00",
+        "Total": "1.13E+04",
+        "D": "5.62E+03"
+      }
+    },
+    {
+      "indicator": "WDP",
+      "indicatorName": [
+        {
+          "language": "en",
+          "value": "Water Deprivation Potential"
+        }
+      ],
+      "unit": "m³",
+      "values": {
+        "A1": "4.11E+01",
+        "A2": "3.10E+00",
+        "A3": "1.42E+02",
+        "A4": "4.55E-02",
+        "C1": "1.36E-01",
+        "C2": "-5.83E-02",
+        "C3": "2.93E-01",
+        "C4": "3.94E-03",
+        "Total": "1.87E+02",
+        "D": "6.34E+01"
+      }
+    }
+  ],
+  "environmentalProductDeclarations3": {
+    "GWP": {
+      "A1": "3.48E+02",
+      "A2": "1.19E+02",
+      "A3": "1.20E+02",
+      "A4": "6.72E+01",
+      "C1": "3.82E+01",
+      "C2": "2.44E+01",
+      "C3": "1.93E+00",
+      "C4": "7.32E-01",
+      "Total": "7.19E+02",
+      "D": "4.58E+02"
+    },
+    "GWPf": {
+      "A1": "3.48E+02",
+      "A2": "1.19E+02",
+      "A3": "1.20E+02",
+      "A4": "6.72E+01",
+      "C1": "3.82E+01",
+      "C2": "2.44E+01",
+      "C3": "1.92E+00",
+      "C4": "7.32E-01",
+      "Total": "7.18E+02",
+      "D": "4.58E+02"
+    },
+    "GWP_b": {
+      "A1": "1.84E-01",
+      "A2": "8.02E-02",
+      "A3": "2.07E-01",
+      "A4": "8.98E-03",
+      "C1": "2.69E-03",
+      "C2": "1.44E-03",
+      "C3": "5.78E-03",
+      "C4": "9.87E-05",
+      "Total": "4.90E-01",
+      "D": "7.49E-02"
+    },
+    "GWPluluc": {
+      "A1": "7.77E-02",
+      "A2": "1.31E-03",
+      "A3": "5.91E-02",
+      "A4": "2.63E-03",
+      "C1": "9.43E-04",
+      "C2": "1.99E-04",
+      "C3": "3.98E-03",
+      "C4": "2.49E-05",
+      "Total": "1.46E-01",
+      "D": "1.93E-02"
+    },
+    "GWPghg": {
+      "A1": "3.48E+02",
+      "A2": "1.19E+02",
+      "A3": "1.20E+02",
+      "A4": "6.72E+01",
+      "C1": "3.82E+01",
+      "C2": "2.44E+01",
+      "C3": "1.93E+00",
+      "C4": "7.32E-01",
+      "Total": "7.19E+02",
+      "D": "4.58E+02"
+    },
+    "ODP": {
+      "A1": "5.80E-05",
+      "A2": "2.80E-05",
+      "A3": "3.02E-06",
+      "A4": "1.58E-05",
+      "C1": "8.56E-06",
+      "C2": "5.84E-06",
+      "C3": "7.18E-08",
+      "C4": "1.52E-07",
+      "Total": "1.19E-04",
+      "D": "1.35E-05"
+    },
+    "AP": {
+      "A1": "1.38E+00",
+      "A2": "6.91E-01",
+      "A3": "2.92E-01",
+      "A4": "4.68E-01",
+      "C1": "4.12E-01",
+      "C2": "1.36E-01",
+      "C3": "9.62E-03",
+      "C4": "7.54E-03",
+      "Total": "3.40E+00",
+      "D": "1.72E+00"
+    },
+    "EPf": {
+      "A1": "6.35E-03",
+      "A2": "1.88E-04",
+      "A3": "3.09E-03",
+      "A4": "1.30E-04",
+      "C1": "2.69E-05",
+      "C2": "1.26E-05",
+      "C3": "9.79E-05",
+      "C4": "2.60E-06",
+      "Total": "9.90E-03",
+      "D": "1.88E-02"
+    },
+    "EPm": {
+      "A1": "2.63E-01",
+      "A2": "2.72E-01",
+      "A3": "8.97E-02",
+      "A4": "1.68E-01",
+      "C1": "1.85E-01",
+      "C2": "5.39E-02",
+      "C3": "1.77E-03",
+      "C4": "3.28E-03",
+      "Total": "1.04E+00",
+      "D": "3.33E-01"
+    },
+    "EPt": {
+      "A1": "2.96E+00",
+      "A2": "2.99E+00",
+      "A3": "9.93E-01",
+      "A4": "1.84E+00",
+      "C1": "2.03E+00",
+      "C2": "5.91E-01",
+      "C3": "1.96E-02",
+      "C4": "3.59E-02",
+      "Total": "1.15E+01",
+      "D": "3.87E+00"
+    },
+    "POCP": {
+      "A1": "8.54E-01",
+      "A2": "7.79E-01",
+      "A3": "2.54E-01",
+      "A4": "4.79E-01",
+      "C1": "5.54E-01",
+      "C2": "1.54E-01",
+      "C3": "5.31E-03",
+      "C4": "1.00E-02",
+      "Total": "3.09E+00",
+      "D": "2.05E+00"
+    },
+    "ADPE": {
+      "A1": "5.53E-05",
+      "A2": "5.05E-06",
+      "A3": "7.86E-05",
+      "A4": "2.85E-06",
+      "C1": "1.97E-06",
+      "C2": "1.07E-06",
+      "C3": "5.75E-08",
+      "C4": "3.53E-08",
+      "Total": "1.45E-04",
+      "D": "7.31E-03"
+    },
+    "ADPF": {
+      "A1": "6.92E+03",
+      "A2": "1.68E+03",
+      "A3": "8.77E+02",
+      "A4": "9.43E+02",
+      "C1": "5.17E+02",
+      "C2": "3.40E+02",
+      "C3": "3.27E+01",
+      "C4": "9.73E+00",
+      "Total": "1.13E+04",
+      "D": "5.62E+03"
+    },
+    "WDP": {
+      "A1": "4.11E+01",
+      "A2": "3.10E+00",
+      "A3": "1.42E+02",
+      "A4": "4.55E-02",
+      "C1": "1.36E-01",
+      "C2": "-5.83E-02",
+      "C3": "2.93E-01",
+      "C4": "3.94E-03",
+      "Total": "1.87E+02",
+      "D": "6.34E+01"
+    }
+  }
+}

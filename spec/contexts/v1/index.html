@@ -45,6 +45,8 @@
             <h3><a href="./dpp-construction.context.jsonld">dpp-construction.context.jsonld</a></h3>
             <h4>Imports</h4><ul>
                 <li>https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld</li>
+                <li>https://dpp-keystone.org/spec/contexts/v1/dpp-product-details.context.jsonld</li>
+                <li>https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld</li>
             </ul>
             <h4>Locally Defined Terms</h4><ul>
                 <li><strong>dppk</strong></li>
@@ -53,22 +55,19 @@
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>DeclarationOfPerformance</strong></a> - <em>A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product.</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>hasDoP</strong></a> - <em>Relates the construction product to its Declaration of Performance.</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>dopIdentifier</strong></a> - <em>The unique identification code of the Declaration of Performance.</em></li>
+                <li><strong>declarationCode</strong></li>
+                <li><strong>declaredUses</strong></li>
+                <li><strong>latestDeinstallation</strong></li>
+                <li><strong>notifiedBody</strong></li>
+                <li><strong>technicalAssessmentBody</strong></li>
+                <li><strong>validationReports</strong></li>
+                <li><strong>europeanAssessmentDocument</strong></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>harmonisedStandardReference</strong></a> - <em>A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product.</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>notifiedBodyID</strong></a> - <em>The identification number of the Notified Body involved in the assessment and verification of constancy of performance (e.g., NB1234).</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>avsSystem</strong></a> - <em>The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4).</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>reactionToFire</strong></a> - <em>The classification of the product's contribution to fire (Euroclass).</em></li>
                 <li><strong>thermalConductivity</strong></li>
                 <li><strong>compressiveStrength</strong></li>
-                <li><strong>environmentalProductDeclarations</strong></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>EnvironmentalProductDeclaration</strong></a> - <em>A structured set of data detailing the environmental impact of a product, based on a verified Life Cycle Assessment (LCA).</em></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>indicator</strong></a> - <em>The environmental indicator being reported (e.g., Global Warming Potential).</em></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>standard</strong></a> - <em>The standard under which the declaration is made (e.g., EN 15804).</em></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>lifeCycleStage</strong></a> - <em>The life cycle stage(s) to which the value applies (e.g., A1-A3, C4).</em></li>
-                <li><strong>environmentalProductDeclarations2</strong></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>EnvironmentalProductDeclaration2</strong></a> - <em>A structured set of data detailing the environmental impact of a product, based on a verified Life Cycle Assessment (LCA). This version uses a 'wide' format with nested values.</em></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>indicatorName</strong></a> - <em>The name of the environmental indicator, as a translatable string.</em></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>unit</strong></a> - <em>The unit of measurement for the indicator.</em></li>
-                <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>values</strong></a> - <em>An object containing the life cycle stage values for the indicator.</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>steelGrade</strong></a> - <em>The classification of the steel based on its composition and physical properties (e.g., R260, S355).</em></li>
                 <li><a href="../../ontology/v1/sectors/Construction.jsonld"><strong>railProfile</strong></a> - <em>The standardized cross-section design of a railway rail (e.g., 46E1).</em></li>
             </ul>
@@ -90,6 +89,7 @@
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>Product</strong></a> - <em>A general concept covering finished goods, components, or raw materials.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>QuantitativeValue</strong></a> - <em>A structured value representing a measurement, including the numeric value and the unit of measure.</em></li>
                 <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>DigitalDocument</strong></a> - <em>A reference to an external digital file related to the product (e.g., manuals, reports, declarations).</em></li>
+                <li><a href="../../ontology/v1/core/RelatedResource.jsonld"><strong>RelatedResource</strong></a> - <em>A resource identified by a URL, with additional metadata such as title, content type, and language.</em></li>
                 <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>Certification</strong></a> - <em>A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD).</em></li>
                 <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>SubstanceOfConcern</strong></a> - <em>Details regarding dangerous substances or substances of very high concern (SVHC) present in the product.</em></li>
                 <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>EcoDesignProperty</strong></a> - <em>A specific property related to the environmental performance or sustainability of the product, as required by Eco-Design regulations (e.g., Energy Efficiency, GWP).</em></li>
@@ -108,11 +108,14 @@
                 <li><a href="../../ontology/v1/core/Header.jsonld"><strong>facilityId</strong></a> - <em>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</em></li>
                 <li><a href="../../ontology/v1/core/Header.jsonld"><strong>granularity</strong></a> - <em>Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).</em></li>
                 <li><a href="../../ontology/v1/core/Header.jsonld"><strong>dppStatus</strong></a> - <em>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</em></li>
-                <li><strong>lastUpdated</strong></li>
+                <li><a href="../../ontology/v1/core/Header.jsonld"><strong>lastUpdate</strong></a> - <em>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</em></li>
                 <li><strong>dppSchemaVersion</strong></li>
+                <li><a href="../../ontology/v1/core/Header.jsonld"><strong>versionNumber</strong></a> - <em>The version number of the DPP instance.</em></li>
+                <li><a href="../../ontology/v1/core/Header.jsonld"><strong>versionDate</strong></a> - <em>The date of the version of the DPP instance.</em></li>
                 <li><strong>contentSpecificationIds</strong></li>
                 <li><strong>verifiableCredential</strong></li>
-                <li><a href="../../ontology/v1/core/Header.jsonld"><strong>hsCode</strong></a> - <em>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>hsCode</strong></a> - <em>A code from the Harmonized System used to classify traded products.</em></li>
+                <li><a href="../../ontology/v1/core/Compliance.jsonld"><strong>unionDatabaseRegistrations</strong></a> - <em>Registration numbers or identifiers from Union-level databases (e.g., EPREL).</em></li>
                 <li><a href="../../ontology/v1/core/Organization.jsonld"><strong>economicOperator</strong></a> - <em>Relates the DPP to the Economic Operator responsible for it.</em></li>
                 <li><a href="../../ontology/v1/core/Organization.jsonld"><strong>manufacturer</strong></a> - <em>Relates the DPP to the Manufacturer of the product.</em></li>
                 <li><a href="../../ontology/v1/core/Organization.jsonld"><strong>manufacturingFacility</strong></a> - <em>Relates the DPP to the specific facility where the product (or a step) was manufactured.</em></li>
@@ -133,7 +136,9 @@
                 <li><strong>addressCountry</strong></li>
                 <li><strong>email</strong></li>
                 <li><strong>telephone</strong></li>
+                <li><a href="../../ontology/v1/core/Organization.jsonld"><strong>website</strong></a> - <em>The URL of the organization's website.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>productName</strong></a> - <em>The common name of the product.</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>productCategory</strong></a> - <em>A category for the product.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>description</strong></a> - <em>A detailed description of the product.</em></li>
                 <li><a href="../../ontology/v1/core/Product.jsonld"><strong>gtin</strong></a> - <em>The GS1 identifier for the trade item.</em></li>
                 <li><strong>brand</strong></li>
@@ -167,6 +172,12 @@
                 <li><strong>complianceTopics</strong></li>
                 <li><strong>packaging</strong></li>
                 <li><strong>productionSteps</strong></li>
+                <li><strong>generalProductInformation</strong></li>
+                <li><strong>instructionsForUse</strong></li>
+                <li><strong>safetyDataSheet</strong></li>
+                <li><strong>resourceTitle</strong></li>
+                <li><strong>contentType</strong></li>
+                <li><strong>language</strong></li>
                 <li><strong>documentType</strong></li>
                 <li><strong>languageCode</strong></li>
                 <li><strong>documentURL</strong></li>
@@ -219,6 +230,68 @@
                 <li><strong>maximumDrillingDiameter</strong></li>
                 <li><strong>chargingTime</strong></li>
                 <li><strong>warranty</strong></li>
+            </ul>
+        </li>
+    
+
+        <li>
+            <h3><a href="./dpp-epd.context.jsonld">dpp-epd.context.jsonld</a></h3>
+            
+            <h4>Locally Defined Terms</h4><ul>
+                <li><strong>dppk</strong></li>
+                <li><strong>rdf</strong></li>
+                <li><strong>xsd</strong></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>EnvironmentalProductDeclaration</strong></a> - <em>A structured set of data detailing the environmental impact of a product. (V1 - Flexible 'long' format).</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>EnvironmentalProductDeclaration2</strong></a> - <em>A structured set of data detailing the environmental impact of a product. (V2 - Structured 'wide' format with nested values).</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>EnvironmentalImpacts</strong></a> - <em>A class to hold all environmental impact categories.</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>ImpactValues</strong></a> - <em>A class to hold the values for a single environmental impact indicator across different life cycle stages.</em></li>
+                <li><strong>environmentalProductDeclarations</strong></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>standard</strong></a> - <em>The standard under which the declaration is made (e.g., EN 15804).</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>lifeCycleStage</strong></a> - <em>The life cycle stage(s) to which the value applies (e.g., A1, C4).</em></li>
+                <li><a href="../../ontology/v1/core/Product.jsonld"><strong>value</strong></a> - <em>The numeric value of the measurement.</em></li>
+                <li><strong>environmentalProductDeclarations2</strong></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>indicatorName</strong></a> - <em>The name of the environmental indicator, as a translatable string.</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>unit</strong></a> - <em>The unit of measurement for the indicator. Can be used as an annotation on a property definition (V3) or as a property on an instance (V2).</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>values</strong></a> - <em>An object containing the life cycle stage values for the indicator.</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>indicator</strong></a> - <em>The environmental indicator being reported (e.g., Global Warming Potential or its acronym).</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>environmentalProductDeclarations3</strong></a> - <em>A dictionary of environmental impact indicators and their values across different life cycle stages. (V3 - Semantically rich dictionary format).</em></li>
+                <li><strong>GWP</strong></li>
+                <li><strong>GWPf</strong></li>
+                <li><strong>GWP_b</strong></li>
+                <li><strong>GWPluluc</strong></li>
+                <li><strong>GWPghg</strong></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>ODP</strong></a> - <em>Spanish translation for ODP is a placeholder. Could not be verified.</em></li>
+                <li><strong>AP</strong></li>
+                <li><strong>EPf</strong></li>
+                <li><strong>EPm</strong></li>
+                <li><strong>EPt</strong></li>
+                <li><strong>POCP</strong></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>ADPE</strong></a> - <em>Translations for ADPE are missing.</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>ADPF</strong></a> - <em>Translations for ADPF are missing.</em></li>
+                <li><a href="../../ontology/v1/core/EPD.jsonld"><strong>WDP</strong></a> - <em>Translations for WDP are missing.</em></li>
+                <li><strong>A1</strong></li>
+                <li><strong>A2</strong></li>
+                <li><strong>A3</strong></li>
+                <li><strong>A4</strong></li>
+                <li><strong>C1</strong></li>
+                <li><strong>C2</strong></li>
+                <li><strong>C3</strong></li>
+                <li><strong>C4</strong></li>
+                <li><strong>D</strong></li>
+                <li><strong>Total</strong></li>
+            </ul>
+        </li>
+    
+
+        <li>
+            <h3><a href="./dpp-product-details.context.jsonld">dpp-product-details.context.jsonld</a></h3>
+            
+            <h4>Locally Defined Terms</h4><ul>
+                <li><strong>dppk</strong></li>
+                <li><strong>nominalDimensions</strong></li>
+                <li><strong>keyParts</strong></li>
+                <li><strong>estimatedServiceLife</strong></li>
+                <li><strong>variants</strong></li>
             </ul>
         </li>
     

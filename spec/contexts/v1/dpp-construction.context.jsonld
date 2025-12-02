@@ -1,6 +1,8 @@
 {
   "@context": [
     "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-product-details.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld",
     {
       "dppk": "https://dpp-keystone.org/spec/v1/terms#",
       "cencpr": "urn:cen:cpr:",
@@ -8,6 +10,19 @@
       "DeclarationOfPerformance": "dppk:DeclarationOfPerformance",
       "hasDoP": "dppk:hasDoP",
       "dopIdentifier": "dppk:dopIdentifier",
+      "declarationCode": "dppk:declarationCode",
+      "declaredUses": "dppk:declaredUses",
+      "latestDeinstallation": "dppk:latestDeinstallation",
+      "notifiedBody": {
+        "@id": "dppk:notifiedBody",
+        "@type": "@id"
+      },
+      "technicalAssessmentBody": {
+        "@id": "dppk:technicalAssessmentBody",
+        "@type": "@id"
+      },
+      "validationReports": "dppk:validationReports",
+      "europeanAssessmentDocument": "dppk:europeanAssessmentDocument",
       "harmonisedStandardReference": {
         "@id": "dppk:harmonisedStandardReference",
         "@type": "@id"
@@ -17,29 +32,6 @@
       "reactionToFire": "dppk:reactionToFire",
       "thermalConductivity": "dppk:thermalConductivity",
       "compressiveStrength": "dppk:compressiveStrength",
-      "environmentalProductDeclarations": {
-        "@id": "dppk:environmentalProductDeclarations",
-        "@container": "@set",
-        "@type": "@id"
-      },
-      "EnvironmentalProductDeclaration": "dppk:EnvironmentalProductDeclaration",
-      "indicator": "dppk:indicator",
-      "standard": "dppk:standard",
-      "lifeCycleStage": "dppk:lifeCycleStage",
-      "environmentalProductDeclarations2": {
-        "@id": "dppk:environmentalProductDeclarations2",
-        "@container": "@set"
-      },
-      "EnvironmentalProductDeclaration2": "dppk:EnvironmentalProductDeclaration2",
-      "indicatorName": {
-        "@id": "dppk:indicatorName",
-        "@container": "@language"
-      },
-      "unit": "dppk:unit",
-      "values": {
-        "@id": "dppk:values",
-        "@type": "rdf:JSONLiteral"
-      },
       "steelGrade": "dppk:steelGrade",
       "railProfile": "dppk:railProfile"
     }
