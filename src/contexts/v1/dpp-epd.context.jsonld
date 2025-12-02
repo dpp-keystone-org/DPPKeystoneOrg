@@ -1,6 +1,7 @@
 {
     "@context": {
         "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "environmentalProductDeclarations": { "@id": "dppk:environmentalProductDeclarations", "@container": "@set", "@type": "@id" },
         "EnvironmentalProductDeclaration": "dppk:EnvironmentalProductDeclaration",
         "indicator": "dppk:indicator",
@@ -17,6 +18,32 @@
         },
         "unit": "dppk:unit",
         "values": { "@id": "dppk:values", "@type": "rdf:JSONLiteral" },
-        "environmentalProductDeclarations3": { "@id": "dppk:environmentalProductDeclarations3", "@type": "rdf:JSONLiteral" }
+        "environmentalProductDeclarations3": { "@id": "dppk:environmentalProductDeclarations3", "@type": "@id" },
+        "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
+        "ImpactValues": "dppk:ImpactValues",
+        "GWP": "dppk:GWP",
+        "GWPf": "dppk:GWPf",
+        "GWP_b": "dppk:GWP_b",
+        "GWPluluc": "dppk:GWPluluc",
+        "GWPghg": "dppk:GWPghg",
+        "ODP": "dppk:ODP",
+        "AP": "dppk:AP",
+        "EPf": "dppk:EPf",
+        "EPm": "dppk:EPm",
+        "EPt": "dppk:EPt",
+        "POCP": "dppk:POCP",
+        "ADPE": "dppk:ADPE",
+        "ADPF": "dppk:ADPF",
+        "WDP": "dppk:WDP",
+        "A1": "dppk:A1",
+        "A2": "dppk:A2",
+        "A3": "dppk:A3",
+        "A4": "dppk:A4",
+        "C1": "dppk:C1",
+        "C2": "dppk:C2",
+        "C3": "dppk:C3",
+        "C4": "dppk:C4",
+        "D": "dppk:D",
+        "Total": "dppk:Total"
     }
 }
