@@ -37,6 +37,7 @@ describe('DPP JSON Schema Validation', () => {
         'battery-dpp-v1.json',
         'sock-dpp-v1.json',
         'rail-dpp-v1.json',
+        'construction-product-dpp-v1.json',
     ];
 
     // Use test.each to run the same validation logic for each example file.
