@@ -1,0 +1,1387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Explorer: ontology/v1/core</title>
+    <link rel="stylesheet" href="../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .class-section { margin-top: 2em; border-top: 2px solid #ccc; padding-top: 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;">
+            <div>
+                <h1>Ontology Explorer</h1>
+                <h2 style="margin: 0; color: var(--text-light);">ontology/v1/core</h2>
+            </div>
+        </header>
+        <main>
+            
+        <section>
+            <h2><a href="./Compliance.jsonld">Compliance.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+                <div class="class-section">
+                    <h3>Class: Digital Document (dppk:DigitalDocument)</h3>
+                    <p>A reference to an external digital file related to the product (e.g., manuals, reports, declarations).</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Document Type (dppk:documentType)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Language Code (dppk:languageCode)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Document URL (dppk:documentURL)</td>
+                                        <td></td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Certification (dppk:Certification)</h3>
+                    <p>A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD).</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Certification Standard/Name (dppk:certificationStandard)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Certificate Number/ID (dppk:certificationIdentification)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Certifying Body Name (dppk:certifyingBodyName)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Start of Certificate Validity (dppk:certificationStartDate)</td>
+                                        <td></td>
+                                        <td>xsd:date</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Substance of Concern (dppk:SubstanceOfConcern)</h3>
+                    <p>Details regarding dangerous substances or substances of very high concern (SVHC) present in the product.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Minimum Value (dppk:minValue)</td>
+                                        <td>The minimum concentration or amount of the substance present.</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Maximum Value (dppk:maxValue)</td>
+                                        <td>The maximum concentration or amount of the substance present.</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Eco-Design Property (dppk:EcoDesignProperty)</h3>
+                    <p>A specific property related to the environmental performance or sustainability of the product, as required by Eco-Design regulations (e.g., Energy Efficiency, GWP).</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Eco-Design Property Type (dppk:ecoDesignPropertyType)</td>
+                                        <td>The specific type of Eco-Design property being reported (e.g., EnergyEfficiency, GWP_A1-A3).</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Compliance Topic (dppk:ComplianceTopic)</h3>
+                    <p>A declaration of compliance status regarding specific regulations (e.g., REACH, RoHS, Lacey Act).</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Compliance Type (dppk:complianceType)</td>
+                                        <td>The specific regulation or standard being addressed (e.g., REACH, RoHS).</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Compliance Value (dppk:complianceValue)</td>
+                                        <td>The status of compliance (e.g., YES, NO, Compliant, Non-Compliant).</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Explaining Text (dppk:complianceText)</td>
+                                        <td></td>
+                                        <td>rdf:langString</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Packaging (dppk:Packaging)</h3>
+                    <p>Information about the materials and properties of the product's packaging.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Packaging Material Type (dppk:packagingMaterialType)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Packaging Material Composition Quantity (dppk:packagingMaterialCompositionQuantity)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Packaging Recycling Process Type (dppk:packagingRecyclingProcessType)</td>
+                                        <td>Indicates if the packaging is RECYCLABLE, REUSABLE, or COMPOSTABLE.</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Packaging Recycled Content (dppk:packagingRecycledContent)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Packaging Substance of Concern Present (dppk:packagingSubstanceOfConcern)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Production Step (dppk:ProductionStep)</h3>
+                    <p>A significant step in the manufacturing or processing chain of the product, including its location.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Production Step Type (dppk:productionStepType)</td>
+                                        <td>The name or description of the production step (e.g., Assembly, Weaving, Smelting).</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Production Location Country (dppk:productionLocationCountry)</td>
+                                        <td>The country where the production step took place. Recommended to use ISO 3166-1 alpha-3 codes.</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+        </section>
+    
+        <section>
+            <h2><a href="./DoPC.jsonld">DoPC.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+                <div class="class-section">
+                    <h3>Class: Declaration of Performance Characteristics (Compact) (dppk:DoPCDeclarationCompact)</h3>
+                    <p>A compact dictionary of performance characteristics and their values.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>governedBy</th><th>testMethod</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Adhesion by tensile bond strength (dppk:tensileStrengthAdhesion)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>N 12618-2:2004</td><td>n.a</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Chloride content (dppk:chlorideContent21DegC)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 1015-17</td><td>21 degC</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Bond strength (dppk:bondStrength28days)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 1542:1999</td><td>28 days</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Shrinkage and expansion (dppk:shrinkageAndExpansion)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 12617-4 : 2002</td><td>n.a</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Resistance to carbonation (dppk:resistanceToCarbonation21degC)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 13295 : 2004</td><td>21 degC</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>modulus of elasticity in compression (dppk:modulusOfElasticityInCompression)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 13412:2006</td><td>Method 1</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Thermal compatibility (dppk:thermalCompatibilityWetSurface)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 13687-1:2002</td><td>Wet surface - water immersion - EN 1542</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Slip/skid resistance (dppk:slipSkidResistance)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 13036-4:2011</td><td>Measurements in the laboratory</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Thermal expansion (dppk:thermalExpansion)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 1770:1998</td><td>Chapter 3.3.4.b</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Capillary absorption (dppk:capillaryAbsorption)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 13057:2002</td><td>kg/(m^2*h^0.5)</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Reaction to fire (dppk:reactionToFire)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>EN 13501-1:2019</td><td>n.a</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Dangerous substances (dppk:dangerousSubstances)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>n.a</td><td>n.a</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Declared unit (dppk:declaredUnit)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>n.a</td><td>n.a</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Functional unit (dppk:functionalUnit)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>n.a</td><td>n.a</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Reference service life (dppk:referenceServiceLife)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        <td>n.a</td><td>n.a</td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+        </section>
+    
+        <section>
+            <h2><a href="./EPD.jsonld">EPD.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+                <div class="class-section">
+                    <h3>Class: Environmental Product Declaration (V1) (dppk:EnvironmentalProductDeclaration1)</h3>
+                    <p>A structured set of data detailing the environmental impact of a product. (V1 - Structured 'wide' format with nested values).</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Indicator (dppk:indicator)</td>
+                                        <td>The environmental indicator being reported (e.g., Global Warming Potential or its acronym).</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Indicator Name (dppk:indicatorName)</td>
+                                        <td>The name of the environmental indicator, as a translatable string.</td>
+                                        <td>rdf:langString</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Unit (dppk:unit)</td>
+                                        <td>The unit of measurement for the indicator. Can be used as an annotation on a property definition (V3) or as a property on an instance (V1).</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Values (dppk:values)</td>
+                                        <td>An object containing the life cycle stage values for the indicator.</td>
+                                        <td>rdf:JSONLiteral</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Environmental Declaration (Compact) (dppk:EnvironmentalDeclarationCompact)</h3>
+                    <p>A class to hold all environmental impact categories in a compact dictionary format.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Global Warming Potential (dppk:GWP)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg CO₂ eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Global Warming Potential, fossil (dppk:GWPf)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg CO₂ eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Global Warming Potential, biogenic (dppk:GWPb)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg CO₂ eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Global Warming Potential, land use and land use change (dppk:GWPluluc)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg CO₂ eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Global Warming Potential, greenhouse gases (dppk:GWPghg)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg CO₂ eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Ozone Depletion Potential (dppk:ODP)</td>
+                                        <td>Spanish translation for ODP is a placeholder. Could not be verified.</td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg CFC11 eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Acidification Potential (dppk:AP)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>mol H+ eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Eutrophication Potential, freshwater (dppk:EPf)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg P eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Eutrophication Potential, marine (dppk:EPm)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg N eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Eutrophication Potential, terrestrial (dppk:EPt)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>mol N eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Photochemical Ozone Creation Potential (dppk:POCP)</td>
+                                        <td></td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg NMVOC eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Abiotic Depletion Potential for non-fossil resources (dppk:ADPE)</td>
+                                        <td>Translations for ADPE are missing.</td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>kg Sb eq</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Abiotic Depletion Potential for fossil resources (dppk:ADPF)</td>
+                                        <td>Translations for ADPF are missing.</td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>MJ</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Water Deprivation Potential (dppk:WDP)</td>
+                                        <td>Translations for WDP are missing.</td>
+                                        <td>dppk:ImpactValues</td>
+                                        <td>m³</td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Impact Values (dppk:ImpactValues)</h3>
+                    <p>A class to hold the values for a single environmental impact indicator across different life cycle stages.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Upstream A1 (dppk:A1)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Core Process A2 (dppk:A2)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Core Process A3 (dppk:A3)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Downstream A4 (dppk:A4)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Downstream C1 (dppk:C1)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Downstream C2 (dppk:C2)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Downstream C3 (dppk:C3)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Downstream C4 (dppk:C4)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>D (dppk:D)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Total (dppk:Total)</td>
+                                        <td></td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+        </section>
+    
+        <section>
+            <h2><a href="./Header.jsonld">Header.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+                <div class="class-section">
+                    <h3>Class: Digital Product Passport (DPP) (dppk:DigitalProductPassport)</h3>
+                    <p>A structured collection of product-related data defining the characteristics, provenance, and lifecycle information of a product, as mandated by the Ecodesign for Sustainable Products Regulation (ESPR).</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>DPP Identifier (dppk:DPPID)</td>
+                                        <td>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI).</td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Unique Product Identifier (UPI) (dppk:uniqueProductIdentifier)</td>
+                                        <td>The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI.</td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Economic Operator Identifier (EOI) (dppk:EconomicOperatorID)</td>
+                                        <td>The unique identifier for the Economic Operator responsible for placing the product on the market.</td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Facility Identifier (dppk:FacilityID)</td>
+                                        <td>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Granularity Level (dppk:Granularity)</td>
+                                        <td>Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>DPP Status (dppk:StatusOfTheDPP)</td>
+                                        <td>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Last Update Timestamp (dppk:lastUpdate)</td>
+                                        <td>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</td>
+                                        <td>xsd:dateTime</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Version Number (dppk:versionNumber)</td>
+                                        <td>The version number of the DPP instance.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Version Date (dppk:versionDate)</td>
+                                        <td>The date of the version of the DPP instance.</td>
+                                        <td>xsd:date</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Base DPP Schema Version (dppk:BaseDppSchemaVersion)</td>
+                                        <td>The version of the horizontal (cross-sector) DPP schema used for this instance.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Sector Data Model Version (dppk:SectorDataModelVersion)</td>
+                                        <td>The version of the sector-specific data model (e.g., Battery Regulation, Textile Strategy) used for this instance.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Harmonized System Code (HS Code) or TARIC (dppk:hsCode)</td>
+                                        <td>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+        </section>
+    
+        <section>
+            <h2><a href="./Organization.jsonld">Organization.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+                <div class="class-section">
+                    <h3>Class: Organization (dppk:Organization)</h3>
+                    <p>A general concept for any organization or legal entity involved in the product lifecycle.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Organization Name (dppk:organizationName)</td>
+                                        <td>The official legal name of the organization.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Trading Name (dppk:tradingName)</td>
+                                        <td>The name under which the organization conducts business, if different from the legal name.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Global Location Number (GLN) (dppk:gln)</td>
+                                        <td>A GS1 standard identifier for legal entities, functional departments, or physical locations.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Legal Entity Identifier (LEI) (dppk:leiCode)</td>
+                                        <td>A standardized global identifier for legal entities.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Additional Organization ID (dppk:additionalOrganizationID)</td>
+                                        <td>An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIDType.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Additional Organization ID Type (dppk:additionalOrganizationIDType)</td>
+                                        <td>The type of the identifier provided in additionalOrganizationID (e.g., 'EORI', 'VAT').</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>ISO 6523 Identifier (dppk:iso6523)</td>
+                                        <td>Relates an organization to one of its ISO 6523 identifiers.</td>
+                                        <td>dppk:ISO6523</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Address (dppk:address)</td>
+                                        <td>Relates an organization to its physical address.</td>
+                                        <td>dppk:PostalAddress</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Email Address (dppk:email)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Telephone Number (dppk:telephone)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Website (dppk:website)</td>
+                                        <td>The URL of the organization's website.</td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Postal Address (dppk:PostalAddress)</h3>
+                    <p>The physical mailing address of an organization or location.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Street Address (dppk:streetAddress)</td>
+                                        <td>Includes street name and number.</td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Postal Code (dppk:postalCode)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>City/Locality (dppk:addressLocality)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Country (dppk:addressCountry)</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Economic Operator Role (dppk:EconomicOperatorRole)</h3>
+                    <p>The role of an entity responsible for placing the product on the market, as defined by ESPR.</p>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Manufacturer Role (dppk:ManufacturerRole)</h3>
+                    <p>The role of an entity responsible for the production of the finished goods.</p>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Facility Role (dppk:FacilityRole)</h3>
+                    <p>A specific location or site where manufacturing or processing activities occur.</p>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Conformity Assessment Body Role (dppk:ConformityAssessmentBodyRole)</h3>
+                    <p>The role of an entity (e.g., Notified Body) that performs conformity assessment activities.</p>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: ISO 6523 Identifier (dppk:ISO6523)</h3>
+                    <p>An organization identifier structured according to ISO 6523-1.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>ISO 6523 ICD (dppk:icd)</td>
+                                        <td>The 4-digit International Code Designator (ICD) from ISO 6523-1.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>ISO 6523 Value (dppk:iso6523Value)</td>
+                                        <td>The value of the identifier within the scheme defined by the ICD.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+        </section>
+    
+        <section>
+            <h2><a href="./Product.jsonld">Product.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+                <div class="class-section">
+                    <h3>Class: Product or Material (dppk:Product)</h3>
+                    <p>A general concept covering finished goods, components, or raw materials.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Product Name (dppk:productName)</td>
+                                        <td>The common name of the product.</td>
+                                        <td>rdf:langString</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Product Category (dppk:productCategory)</td>
+                                        <td>A category for the product.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Product Description (dppk:description)</td>
+                                        <td>A detailed description of the product.</td>
+                                        <td>rdf:langString</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Global Trade Item Number (GTIN) (dppk:gtin)</td>
+                                        <td>The GS1 identifier for the trade item.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Harmonized System Code (HS Code) (dppk:hsCode)</td>
+                                        <td>A code from the Harmonized System used to classify traded products.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Brand Name (dppk:brand)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Model Number (dppk:model)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Product Image (dppk:image)</td>
+                                        <td>A URI pointing to an image of the product.</td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Color Description (dppk:color)</td>
+                                        <td></td>
+                                        <td>rdf:langString</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Size Code (dppk:sizeCode)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Size System Code (dppk:sizeSystemCode)</td>
+                                        <td>The system used for the size code (e.g., EUROPE, US).</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Has Part (Component/Material) (dppk:hasPart)</td>
+                                        <td>Relates the main product to its constituent components or materials. This forms the Bill of Materials (BOM).</td>
+                                        <td>dppk:Product</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>DPP Link (dppk:dppLink)</td>
+                                        <td>A URI pointing to the Digital Product Passport of a component, if one exists.</td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Material Classification (dppk:materialClassification)</td>
+                                        <td>A code or standard classifying the material (e.g., steel grade, plastic type).</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Country of Origin (dppk:countryOfOrigin)</td>
+                                        <td>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Weight Percentage (dppk:weightPercentage)</td>
+                                        <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Recycled Content Percentage (dppk:recycledContentPercentage)</td>
+                                        <td>The percentage of the material that is derived from recycled sources.</td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Weight (Deprecated) (dppk:weight)</td>
+                                        <td>DEPRECATED. Use dppk:netWeight or dppk:grossWeight instead. The weight of the product or material, expressed as a QuantitativeValue.</td>
+                                        <td>dppk:QuantitativeValue</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Net Weight (dppk:netWeight)</td>
+                                        <td>The weight of the product or material, excluding packaging. Recommended to use specific datatypes like dppk:KgWeightLiteral.</td>
+                                        <td>dppk:KgWeightLiteral</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Gross Weight (dppk:grossWeight)</td>
+                                        <td>The weight of the product or material, including packaging, expressed as a QuantitativeValue.</td>
+                                        <td>rdfs:Literal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Length (dppk:length)</td>
+                                        <td>The length of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                                        <td>dppk:MetersLengthLiteral</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Product Characteristics (dppk:productCharacteristics)</td>
+                                        <td>Relates a product to its specific characteristics or performance properties.</td>
+                                        <td>dppk:ProductCharacteristic</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Quantitative Value (dppk:QuantitativeValue)</h3>
+                    <p>A structured value representing a measurement, including the numeric value and the unit of measure.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Value (dppk:value)</td>
+                                        <td>The numeric value of the measurement.</td>
+                                        <td>xsd:decimal</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Unit Code (dppk:unitCode)</td>
+                                        <td>The unit of measurement, preferably using UN/CEFACT codes (e.g., KGM, MTR, LTR).</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Methodology or Dictionary Reference (dppk:methodologyReference)</td>
+                                        <td>A reference to the standard, methodology, or data dictionary used to define or measure this specific value (e.g., ISO standard number, specific PEFCR rule).</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Unit Text (dppk:unitText)</td>
+                                        <td>A human-readable representation of the unit (e.g., kg CO2e, Nm).</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+                <div class="class-section">
+                    <h3>Class: Product Characteristic (dppk:ProductCharacteristic)</h3>
+                    <p>A specific, measurable or declared property of a product, such as its technical performance against a standard test.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Characteristic Name (dppk:characteristicName)</td>
+                                        <td>The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Characteristic Value (dppk:characteristicValue)</td>
+                                        <td>The measured or declared value of the characteristic (e.g., '≥ 2.0 MPa', 'Class A1').</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Test Method (dppk:testMethod)</td>
+                                        <td>A reference to the standard or methodology used to determine the characteristic's value.</td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+        </section>
+    
+        <section>
+            <h2><a href="./ProductDetails.jsonld">ProductDetails.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+        </section>
+    
+        <section>
+            <h2><a href="./RelatedResource.jsonld">RelatedResource.jsonld</a></h2>
+            <p><strong>No title found</strong></p>
+            <p>No description found.</p>
+            
+                <div class="class-section">
+                    <h3>Class: Related Resource (dppk:RelatedResource)</h3>
+                    <p>A resource identified by a URL, with additional metadata such as title, content type, and language.</p>
+                    
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>Resource Title (dppk:resourceTitle)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Content Type (dppk:contentType)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>Language (dppk:language)</td>
+                                        <td></td>
+                                        <td>xsd:string</td>
+                                        
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>URL (dppk:url)</td>
+                                        <td></td>
+                                        <td>xsd:anyURI</td>
+                                        
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+        </section>
+    
+        </main>
+        <footer>
+            <p><small>Part of the <a href="/">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+</body>
+</html>
