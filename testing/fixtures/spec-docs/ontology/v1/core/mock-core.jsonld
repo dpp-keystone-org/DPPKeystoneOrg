@@ -1,0 +1,28 @@
+{
+    "@graph": [
+        {
+            "@id": "https://dpp-keystone.org/spec/v1/terms/MockCoreOntology",
+            "@type": "owl:Ontology",
+            "dcterms:title": "Mock Core Ontology",
+            "dcterms:description": "A mock ontology for testing purposes."
+        },
+        {
+            "@id": "https://dpp-keystone.org/spec/v1/terms#MockProduct",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Product",
+            "rdfs:comment": "Represents a generic product for testing."
+        },
+        {
+            "@id": "https://dpp-keystone.org/spec/v1/terms#mockProperty",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": "Mock Property",
+            "rdfs:comment": "A test property for the Mock Product.",
+            "rdfs:domain": {
+                "@id": "https://dpp-keystone.org/spec/v1/terms#MockProduct"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        }
+    ]
+}

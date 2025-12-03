@@ -2,22 +2,16 @@ import { readdir, readFile, writeFile } from 'fs/promises';
 import { join, basename, dirname, resolve } from 'path';
 import { parse as jsoncParse } from 'jsonc-parser';
 
-const distDir = join(process.cwd(), 'dist', 'spec');
-const ontologyDir = join(distDir, 'ontology', 'v1');
-const contextDir = join(distDir, 'contexts', 'v1');
-
-const ontologyDirsToProcess = ['core', 'sectors'];
-const contextDirsToProcess = ['.']; // The root of the contexts/v1 dir
-
 async function getJsonLdFiles(dir) {
     try {
         const dirents = await readdir(dir, { withFileTypes: true });
-        return dirents
+        const files = dirents
             .filter(dirent => dirent.isFile() && dirent.name.endsWith('.jsonld'))
             .map(dirent => join(dir, dirent.name));
+        return files;
     } catch (error) {
         if (error.code === 'ENOENT') {
-            console.warn(`Directory not found: ${dir}. Skipping.`);
+            console.warn(`[getJsonLdFiles] Directory not found: ${dir}. Skipping.`);
             return [];
         }
         throw error;
@@ -121,7 +115,6 @@ export function parseContextMetadata(content, termDictionary) {
     
     return { imports, localTerms };
 }
-
 
 async function getContextMetadata(filePath, termDictionary) {
     const content = await readFile(filePath, 'utf-8');
@@ -262,9 +255,8 @@ export function generateContextHtml(directoryName, files) {
 </html>`;
 }
 
-async function buildTermDictionary() {
+async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src', 'ontology', 'v1')) {
     const termMap = {};
-    const sourceOntologyDir = join(process.cwd(), 'src', 'ontology', 'v1');
     const sourceOntologyDirs = ['core', 'sectors'];
 
     for (const dirSuffix of sourceOntologyDirs) {
@@ -302,9 +294,19 @@ async function buildTermDictionary() {
     return termMap;
 }
 
-export async function generateSpecDocs() {
+export async function generateSpecDocs({
+    srcDir = join(process.cwd(), 'src'),
+    distDir = join(process.cwd(), 'dist', 'spec')
+} = {}) {
+    const ontologyDir = join(distDir, 'ontology', 'v1');
+    const contextDir = join(distDir, 'contexts', 'v1');
+    const sourceOntologyDir = join(srcDir, 'ontology', 'v1');
+    
+    const ontologyDirsToProcess = ['core', 'sectors'];
+    const contextDirsToProcess = ['.']; // The root of the contexts/v1 dir
+
     // 1. Build a dictionary of all term URIs and their descriptions from the ontology source.
-    const termDictionary = await buildTermDictionary();
+    const termDictionary = await buildTermDictionary(sourceOntologyDir);
 
     // 2. Process Ontologies for HTML documentation
     for (const dirSuffix of ontologyDirsToProcess) {
@@ -328,8 +330,8 @@ export async function generateSpecDocs() {
         }));
         
         const htmlContent = generateOntologyHtml(directoryName, fileMetadata);
-        await writeFile(join(fullPath, 'index.html'), htmlContent);
-        console.log(`Generated ontology index.html for ${fullPath}`);
+        const outputPath = join(fullPath, 'index.html');
+        await writeFile(outputPath, htmlContent);
     }
 
     // 3. Process Contexts for HTML documentation
@@ -343,7 +345,6 @@ export async function generateSpecDocs() {
         }
 
         const fileMetadata = await Promise.all(files.map(async (file) => {
-            // Pass the dictionary to the metadata function
             const { imports, localTerms } = await getContextMetadata(file, termDictionary);
             return {
                 name: basename(file),
@@ -353,7 +354,7 @@ export async function generateSpecDocs() {
         }));
         
         const htmlContent = generateContextHtml(directoryName, fileMetadata);
-        await writeFile(join(fullPath, 'index.html'), htmlContent);
-        console.log(`Generated context index.html for ${fullPath}`);
+        const outputPath = join(fullPath, 'index.html');
+        await writeFile(outputPath, htmlContent);
     }
 }

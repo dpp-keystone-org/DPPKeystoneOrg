@@ -3,6 +3,7 @@ import path from 'path';
 import fse from 'fs-extra'; // For copy and ensureDir
 import { parse as jsoncParse, printParseErrorCode } from 'jsonc-parser';
 import { execSync } from 'child_process';
+import { generateSpecDocs } from './generate-spec-docs.mjs';
 
 const PROJECT_ROOT = process.cwd();
 const SOURCE_DIR = path.join(PROJECT_ROOT, 'src');
@@ -103,7 +104,7 @@ async function build() {
     await createRedirects(BUILD_DIR);
 
     console.log('Generating ontology documentation...');
-    execSync('node scripts/generate-spec-docs.mjs', { stdio: 'inherit' });
+    await generateSpecDocs(); // Call the function directly
 
     console.log('Updating index.html...');
     execSync('node scripts/update-index-html.mjs', { stdio: 'inherit' });
