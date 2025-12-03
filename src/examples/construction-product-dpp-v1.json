@@ -116,7 +116,9 @@
       "thermalExpansion": "NPD",
       "capillaryAbsorption": "w < 0.5kg/h^(0.5)*m^2",
       "reactionToFire": "Class A1",
-      "dangerousSubstances": "NPD",
+      "dangerousSubstances": [
+        "NPD"
+      ],
       "declaredUnit": "1 kg",
       "functionalUnit": "1 kg",
       "referenceServiceLife": "50 years"

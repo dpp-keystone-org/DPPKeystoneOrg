@@ -13,7 +13,10 @@
     "thermalExpansion": "dppk:thermalExpansion",
     "capillaryAbsorption": "dppk:capillaryAbsorption",
     "reactionToFire": "dppk:reactionToFire",
-    "dangerousSubstances": "dppk:dangerousSubstances",
+    "dangerousSubstances": {
+      "@id": "dppk:dangerousSubstances",
+      "@container": "@list"
+    },
     "declaredUnit": "dppk:declaredUnit",
     "functionalUnit": "dppk:functionalUnit",
     "referenceServiceLife": "dppk:referenceServiceLife"
