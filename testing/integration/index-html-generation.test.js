@@ -7,13 +7,6 @@ const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 
 describe('index.html generation', () => {
-  beforeAll(() => {
-    // Run the build script to generate the dist directory and update index.html
-    // The main test script already runs clean and build, so this might be redundant,
-    // but it ensures the test is self-contained.
-    execSync('npm run build', { cwd: PROJECT_ROOT, stdio: 'inherit' });
-  });
-
   it('should populate the file lists in index.html', async () => {
     const indexContent = await fs.readFile(INDEX_HTML_PATH, 'utf-8');
 
