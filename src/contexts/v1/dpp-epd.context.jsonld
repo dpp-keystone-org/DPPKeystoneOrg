@@ -5,25 +5,16 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
 
         // Class Definitions
-        "EnvironmentalProductDeclaration": "dppk:EnvironmentalProductDeclaration",
-        "EnvironmentalProductDeclaration2": "dppk:EnvironmentalProductDeclaration2",
+        "EnvironmentalProductDeclaration1": "dppk:EnvironmentalProductDeclaration1",
         "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
         "ImpactValues": "dppk:ImpactValues",
 
-        // V1 Terms (Flexible 'long' format)
-        "environmentalProductDeclarations": {
-            "@id": "dppk:environmentalProductDeclarations",
+        // Terms (Structured 'wide' format)
+        "environmentalProductDeclarations1": {
+            "@id": "dppk:environmentalProductDeclarations1",
             "@container": "@set"
         },
         "standard": "dppk:standard",
-        "lifeCycleStage": "dppk:lifeCycleStage",
-        "value": "dppk:value",
-
-        // V2 Terms (Structured 'wide' format)
-        "environmentalProductDeclarations2": {
-            "@id": "dppk:environmentalProductDeclarations2",
-            "@container": "@set"
-        },
         "indicatorName": {
             "@id": "dppk:indicatorName",
             // Scoped context for the array of language objects structure
@@ -38,7 +29,6 @@
             "@type": "rdf:JSONLiteral"
         },
 
-        // Common Term (Used in V1 and V2)
         "indicator": "dppk:indicator",
 
         // V3 Terms (Semantically rich dictionary format)
