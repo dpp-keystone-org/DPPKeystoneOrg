@@ -109,24 +109,24 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:environmentalProductDeclarations3",
+      "@id": "dppk:environmentalProductDeclarationsCompact",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Environmental Product Declarations (V3)",
+      "rdfs:label": "Environmental Product Declarations (Compact)",
       "rdfs:comment": "A dictionary of environmental impact indicators and their values across different life cycle stages. (V3 - Semantically rich dictionary format).",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:EnvironmentalImpacts",
+      "@id": "dppk:EnvironmentalDeclarationCompact",
       "@type": "rdfs:Class",
-      "rdfs:label": "Environmental Impacts",
-      "rdfs:comment": "A class to hold all environmental impact categories.",
+      "rdfs:label": "Environmental Declaration (Compact)",
+      "rdfs:comment": "A class to hold all environmental impact categories in a compact dictionary format.",
       "rdfs:term_status": "unstable"
     },
     {
@@ -163,7 +163,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -181,7 +181,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -199,7 +199,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -217,7 +217,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -235,7 +235,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -269,7 +269,7 @@
       ],
       "dppk:unit": "kg CFC11 eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -304,7 +304,7 @@
       ],
       "dppk:unit": "mol H+ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -322,7 +322,7 @@
       ],
       "dppk:unit": "kg P eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -340,7 +340,7 @@
       ],
       "dppk:unit": "kg N eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -358,7 +358,7 @@
       ],
       "dppk:unit": "mol N eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -392,7 +392,7 @@
       ],
       "dppk:unit": "kg NMVOC eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -410,7 +410,7 @@
       ],
       "dppk:unit": "kg Sb eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -429,7 +429,7 @@
       ],
       "dppk:unit": "MJ",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -448,7 +448,7 @@
       ],
       "dppk:unit": "m³",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"

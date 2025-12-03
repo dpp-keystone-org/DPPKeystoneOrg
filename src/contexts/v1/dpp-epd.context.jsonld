@@ -32,10 +32,9 @@
         "indicator": "dppk:indicator",
 
         // V3 Terms (Semantically rich dictionary format)
-        "environmentalProductDeclarations3": {
-            "@id": "dppk:environmentalProductDeclarations3"
-        },
-
+            "environmentalProductDeclarationsCompact": {
+              "@id": "dppk:environmentalProductDeclarationsCompact"
+            },
         // V3 Indicators
         "GWP": "dppk:GWP",
         "GWPf": "dppk:GWPf",
