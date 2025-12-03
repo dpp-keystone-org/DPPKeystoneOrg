@@ -3,21 +3,14 @@
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "EnvironmentalProductDeclaration": "dppk:EnvironmentalProductDeclaration",
-    "EnvironmentalProductDeclaration2": "dppk:EnvironmentalProductDeclaration2",
+    "EnvironmentalProductDeclaration1": "dppk:EnvironmentalProductDeclaration1",
     "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
     "ImpactValues": "dppk:ImpactValues",
-    "environmentalProductDeclarations": {
-      "@id": "dppk:environmentalProductDeclarations",
+    "environmentalProductDeclarations1": {
+      "@id": "dppk:environmentalProductDeclarations1",
       "@container": "@set"
     },
     "standard": "dppk:standard",
-    "lifeCycleStage": "dppk:lifeCycleStage",
-    "value": "dppk:value",
-    "environmentalProductDeclarations2": {
-      "@id": "dppk:environmentalProductDeclarations2",
-      "@container": "@set"
-    },
     "indicatorName": {
       "@id": "dppk:indicatorName",
       "@context": {
@@ -31,8 +24,8 @@
       "@type": "rdf:JSONLiteral"
     },
     "indicator": "dppk:indicator",
-    "environmentalProductDeclarations3": {
-      "@id": "dppk:environmentalProductDeclarations3"
+    "environmentalProductDeclarationsCompact": {
+      "@id": "dppk:environmentalProductDeclarationsCompact"
     },
     "GWP": "dppk:GWP",
     "GWPf": "dppk:GWPf",

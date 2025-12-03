@@ -15,26 +15,30 @@
   },
   "@graph": [
     {
-      "@id": "dppk:EnvironmentalProductDeclaration",
+      "@id": "dppk:EnvironmentalProductDeclaration1",
       "@type": "rdfs:Class",
       "rdfs:label": "Environmental Product Declaration (V1)",
-      "rdfs:comment": "A structured set of data detailing the environmental impact of a product. (V1 - Flexible 'long' format).",
-      "dcterms:source": {
-        "@id": "https://www.iso.org/standard/72068.html",
-        "rdfs:label": "ISO 14025:2022"
-      },
+      "rdfs:comment": "A structured set of data detailing the environmental impact of a product. (V1 - Structured 'wide' format with nested values).",
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:environmentalProductDeclarations",
+      "@id": "dppk:environmentalProductDeclarations1",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Environmental Product Declarations (V1)",
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "dppk:EnvironmentalProductDeclaration"
+        "@id": "dppk:EnvironmentalProductDeclaration1"
       },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:governedBy",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "Governed By",
+      "rdfs:comment": "An annotation property to indicate the standard or regulation that governs the associated data.",
       "rdfs:term_status": "unstable"
     },
     {
@@ -47,7 +51,7 @@
           "@id": "dppk:EnvironmentalProductDeclaration"
         },
         {
-          "@id": "dppk:EnvironmentalProductDeclaration2"
+          "@id": "dppk:EnvironmentalProductDeclaration1"
         }
       ],
       "rdfs:term_status": "unstable"
@@ -63,54 +67,12 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:lifeCycleStage",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Life Cycle Stage",
-      "rdfs:comment": "The life cycle stage(s) to which the value applies (e.g., A1, C4).",
-      "rdfs:domain": {
-        "@id": "dppk:EnvironmentalProductDeclaration"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:value",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Value",
-      "rdfs:comment": "The measured value of the indicator.",
-      "rdfs:domain": {
-        "@id": "dppk:EnvironmentalProductDeclaration"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:EnvironmentalProductDeclaration2",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Environmental Product Declaration (V2)",
-      "rdfs:comment": "A structured set of data detailing the environmental impact of a product. (V2 - Structured 'wide' format with nested values).",
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:environmentalProductDeclarations2",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "Environmental Product Declarations (V2)",
-      "rdfs:domain": {
-        "@id": "dppk:Product"
-      },
-      "rdfs:range": {
-        "@id": "dppk:EnvironmentalProductDeclaration2"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
       "@id": "dppk:indicatorName",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Indicator Name",
       "rdfs:comment": "The name of the environmental indicator, as a translatable string.",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalProductDeclaration2"
+        "@id": "dppk:EnvironmentalProductDeclaration1"
       },
       "rdfs:range": {
         "@id": "rdf:langString"
@@ -124,9 +86,9 @@
         "owl:AnnotationProperty"
       ],
       "rdfs:label": "Unit",
-      "rdfs:comment": "The unit of measurement for the indicator. Can be used as an annotation on a property definition (V3) or as a property on an instance (V2).",
+      "rdfs:comment": "The unit of measurement for the indicator. Can be used as an annotation on a property definition (V3) or as a property on an instance (V1).",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalProductDeclaration2"
+        "@id": "dppk:EnvironmentalProductDeclaration1"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -139,7 +101,7 @@
       "rdfs:label": "Values",
       "rdfs:comment": "An object containing the life cycle stage values for the indicator.",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalProductDeclaration2"
+        "@id": "dppk:EnvironmentalProductDeclaration1"
       },
       "rdfs:range": {
         "@id": "rdf:JSONLiteral"
@@ -147,23 +109,24 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:environmentalProductDeclarations3",
+      "@id": "dppk:environmentalProductDeclarationsCompact",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Environmental Product Declarations (V3)",
+      "rdfs:label": "Environmental Product Declarations (Compact)",
       "rdfs:comment": "A dictionary of environmental impact indicators and their values across different life cycle stages. (V3 - Semantically rich dictionary format).",
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:EnvironmentalImpacts",
+      "@id": "dppk:EnvironmentalDeclarationCompact",
       "@type": "rdfs:Class",
-      "rdfs:label": "Environmental Impacts",
-      "rdfs:comment": "A class to hold all environmental impact categories.",
+      "rdfs:label": "Environmental Declaration (Compact)",
+      "rdfs:comment": "A class to hold all environmental impact categories in a compact dictionary format.",
       "rdfs:term_status": "unstable"
     },
     {
@@ -200,7 +163,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -218,7 +181,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -236,7 +199,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -254,7 +217,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -272,7 +235,7 @@
       ],
       "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -306,7 +269,7 @@
       ],
       "dppk:unit": "kg CFC11 eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -341,7 +304,7 @@
       ],
       "dppk:unit": "mol H+ eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -359,7 +322,7 @@
       ],
       "dppk:unit": "kg P eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -377,7 +340,7 @@
       ],
       "dppk:unit": "kg N eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -395,7 +358,7 @@
       ],
       "dppk:unit": "mol N eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -429,7 +392,7 @@
       ],
       "dppk:unit": "kg NMVOC eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -447,7 +410,7 @@
       ],
       "dppk:unit": "kg Sb eq",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -466,7 +429,7 @@
       ],
       "dppk:unit": "MJ",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -485,7 +448,7 @@
       ],
       "dppk:unit": "m³",
       "rdfs:domain": {
-        "@id": "dppk:EnvironmentalImpacts"
+        "@id": "dppk:EnvironmentalDeclarationCompact"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
