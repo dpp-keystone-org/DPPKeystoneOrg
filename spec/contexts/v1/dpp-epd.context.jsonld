@@ -3,29 +3,11 @@
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "EnvironmentalProductDeclaration1": "dppk:EnvironmentalProductDeclaration1",
     "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
     "ImpactValues": "dppk:ImpactValues",
-    "environmentalProductDeclarations1": {
-      "@id": "dppk:environmentalProductDeclarations1",
-      "@container": "@set"
-    },
-    "standard": "dppk:standard",
-    "indicatorName": {
-      "@id": "dppk:indicatorName",
-      "@context": {
-        "language": "@language",
-        "value": "@value"
-      }
-    },
-    "unit": "dppk:unit",
-    "values": {
-      "@id": "dppk:values",
-      "@type": "rdf:JSONLiteral"
-    },
     "indicator": "dppk:indicator",
-    "environmentalProductDeclarationsCompact": {
-      "@id": "dppk:environmentalProductDeclarationsCompact"
+    "epds": {
+      "@id": "dppk:epds"
     },
     "GWP": "dppk:GWP",
     "GWPf": "dppk:GWPf",

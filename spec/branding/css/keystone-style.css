@@ -22,7 +22,7 @@ body {
 
 /* Add a container to center the content */
 .container {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 40px auto;
     padding: 20px;
     background-color: var(--background-light);
