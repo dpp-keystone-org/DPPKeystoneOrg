@@ -5,37 +5,16 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
 
         // Class Definitions
-        "EnvironmentalProductDeclaration1": "dppk:EnvironmentalProductDeclaration1",
         "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
         "ImpactValues": "dppk:ImpactValues",
 
-        // Terms (Structured 'wide' format)
-        "environmentalProductDeclarations1": {
-            "@id": "dppk:environmentalProductDeclarations1",
-            "@container": "@set"
-        },
-        "standard": "dppk:standard",
-        "indicatorName": {
-            "@id": "dppk:indicatorName",
-            // Scoped context for the array of language objects structure
-            "@context": {
-                "language": "@language",
-                "value": "@value"
-            }
-        },
-        "unit": "dppk:unit",
-        "values": {
-            "@id": "dppk:values",
-            "@type": "rdf:JSONLiteral"
-        },
-
         "indicator": "dppk:indicator",
 
-        // V3 Terms (Semantically rich dictionary format)
-            "environmentalProductDeclarationsCompact": {
-              "@id": "dppk:environmentalProductDeclarationsCompact"
+        // EPD Terms
+            "epds": {
+              "@id": "dppk:epds"
             },
-        // V3 Indicators
+        // EPD Indicators
         "GWP": "dppk:GWP",
         "GWPf": "dppk:GWPf",
         "GWP_b": "dppk:GWPb",
@@ -51,7 +30,7 @@
         "ADPF": "dppk:ADPF",
         "WDP": "dppk:WDP",
 
-        // V3 Life Cycle Stages with Type Coercion
+        // EPD Life Cycle Stages with Type Coercion
         "A1": { "@id": "dppk:A1", "@type": "xsd:decimal" },
         "A2": { "@id": "dppk:A2", "@type": "xsd:decimal" },
         "A3": { "@id": "dppk:A3", "@type": "xsd:decimal" },

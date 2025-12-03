@@ -8,7 +8,8 @@
   },
   "devDependencies": {
     "fs-extra": "^11.3.2",
-    "jsonc-parser": "^3.3.1"
+    "jsonc-parser": "^3.3.1",
+    "mermaid": "^11.12.2"
   },
   "scripts": {
     "build": "node scripts/build-and-clean.mjs",
