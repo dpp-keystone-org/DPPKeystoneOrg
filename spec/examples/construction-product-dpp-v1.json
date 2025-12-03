@@ -104,79 +104,25 @@
   "harmonisedStandardReference": "EN 1504-3:2005",
   "europeanAssessmentDocument": "EAD-12345-678-910",
   "softwareAndVersion": "Not applicable",
-  "productCharacteristics": [
-    {
-      "characteristicName": "Adhesion by tensile bond strength",
-      "testMethod": "EN 12618-2:2004",
-      "characteristicValue": "Class R4"
-    },
-    {
-      "characteristicName": "Chloride content",
-      "testMethod": "EN 1015-17",
-      "characteristicValue": " 0.05 %"
-    },
-    {
-      "characteristicName": "Bond strength",
-      "testMethod": "EN 1542:1999",
-      "characteristicValue": " 2.0 MPa"
-    },
-    {
-      "characteristicName": "Shrinkage and expansion",
-      "testMethod": "EN 12617-4 : 2002",
-      "characteristicValue": "NPD"
-    },
-    {
-      "characteristicName": "Resistance to carbonation",
-      "testMethod": "EN 13295 : 2004",
-      "characteristicValue": "Pass"
-    },
-    {
-      "characteristicName": "modulus of elasticity in compression",
-      "testMethod": "EN 13412:2006",
-      "characteristicValue": " 20 GPa"
-    },
-    {
-      "characteristicName": "Thermal compatibility",
-      "testMethod": "EN 13687-1:2002",
-      "characteristicValue": " 2.0 MPa"
-    },
-    {
-      "characteristicName": "Slip/skid resistance",
-      "testMethod": "EN 13036-4:2011",
-      "characteristicValue": "NPD"
-    },
-    {
-      "characteristicName": "Thermal expansion",
-      "testMethod": "EN 1770:1998",
-      "characteristicValue": "NPD"
-    },
-    {
-      "characteristicName": "Capillary absorption",
-      "testMethod": "EN 13057:2002",
-      "characteristicValue": "w < 0.5kg/h^(0.5)*m^2"
-    },
-    {
-      "characteristicName": "Reaction to fire",
-      "testMethod": "EN 13501-1:2019",
-      "characteristicValue": "Class A1"
-    },
-    {
-      "characteristicName": "Dangerous substances",
-      "characteristicValue": "NPD"
-    },
-    {
-      "characteristicName": "Declared unit",
-      "characteristicValue": "1 kg"
-    },
-    {
-      "characteristicName": "Functional unit",
-      "characteristicValue": "1 kg"
-    },
-    {
-      "characteristicName": "Reference service life",
-      "characteristicValue": "50 years"
-    }
-  ],
+  "dopcDeclarations": {
+    "tensileStrengthAdhesion": "Class R4",
+    "chlorideContent21DegC": "≤ 0.05 %",
+    "bondStrength28days": "≥ 2.0 MPa",
+    "shrinkageAndExpansion": "NPD",
+    "resistanceToCarbonation21degC": "Pass",
+    "modulusOfElasticityInCompression": "≥ 20 GPa",
+    "thermalCompatibilityWetSurface": "≥ 2.0 MPa",
+    "slipSkidResistance": "NPD",
+    "thermalExpansion": "NPD",
+    "capillaryAbsorption": "w < 0.5kg/h^(0.5)*m^2",
+    "reactionToFire": "Class A1",
+    "dangerousSubstances": [
+      "NPD"
+    ],
+    "declaredUnit": "1 kg",
+    "functionalUnit": "1 kg",
+    "referenceServiceLife": "50 years"
+  },
   "environmentalProductDeclarations1": [
     {
       "indicator": "GWP",
