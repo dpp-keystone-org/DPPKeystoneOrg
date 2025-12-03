@@ -108,17 +108,15 @@
     "tensileStrengthAdhesion": "Class R4",
     "chlorideContent21DegC": "≤ 0.05 %",
     "bondStrength28days": "≥ 2.0 MPa",
-    "shrinkageAndExpansion": "NPD",
+    "shrinkageAndExpansion": "N/A",
     "resistanceToCarbonation21degC": "Pass",
     "modulusOfElasticityInCompression": "≥ 20 GPa",
     "thermalCompatibilityWetSurface": "≥ 2.0 MPa",
-    "slipSkidResistance": "NPD",
-    "thermalExpansion": "NPD",
+    "slipSkidResistance": "N/A",
+    "thermalExpansion": "N/A",
     "capillaryAbsorption": "w < 0.5kg/h^(0.5)*m^2",
     "reactionToFire": "Class A1",
-    "dangerousSubstances": [
-      "NPD"
-    ],
+    "dangerousSubstances": [],
     "declaredUnit": "1 kg",
     "functionalUnit": "1 kg",
     "referenceServiceLife": "50 years"
