@@ -73,6 +73,9 @@ export async function updateIndexHtml() {
     console.log('Successfully updated index.html.');
   } catch (error) {
     console.error('Failed to update index.html:', error);
-    process.exit(1);
-  }
-}
+        process.exit(1);
+      }
+    }
+    
+    updateIndexHtml();
+    
