@@ -75,12 +75,12 @@ const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
 
 export const localFileDocumentLoader = async (url) => {
     // --- DIAGNOSTIC LOGGING ---
-    console.log(`[Document Loader] Intercepted request for URL: ${url}`);
+    // console.log(`[Document Loader] Intercepted request for URL: ${url}`);
 
     if (url in CONTEXT_URL_TO_LOCAL_PATH_MAP) {
-        console.log(`[Document Loader] SUCCESS: Found local mapping for ${url}`);
+        // console.log(`[Document Loader] SUCCESS: Found local mapping for ${url}`);
         const localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
-        console.log(`[Document Loader] Attempting to read local file: ${localPath}`);
+        // console.log(`[Document Loader] Attempting to read local file: ${localPath}`);
         const fileContent = await fs.readFile(localPath, 'utf-8');
         const parsedDocument = JSON.parse(fileContent);
         return { contextUrl: null, documentUrl: url, document: parsedDocument };
@@ -126,13 +126,13 @@ export async function loadRdfFile(filePath) {
     // --- DEBUGGING: Log the expanded document ---
     // This will show us what the JSON-LD processor produces after applying the context.
     // If this is an empty array [], it's the source of our problem.
-    console.log(`--- Expanding ${path.basename(filePath)} ---`);
+    // console.log(`--- Expanding ${path.basename(filePath)} ---`);
     const expanded = await jsonld.expand(json, {
         documentLoader: localFileDocumentLoader,
         processingMode: 'json-ld-1.1' // Explicitly use JSON-LD 1.1
     });
-    console.log(JSON.stringify(expanded, null, 2));
-    console.log(`--- End Expansion for ${path.basename(filePath)} ---`);
+    // console.log(JSON.stringify(expanded, null, 2));
+    // console.log(`--- End Expansion for ${path.basename(filePath)} ---`);
     return toRdfDataset(expanded);
 }
 
