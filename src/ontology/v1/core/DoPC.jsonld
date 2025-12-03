@@ -1,0 +1,224 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "https://dpp-keystone.org/ontology/v1/core/DoPC",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Declaration of Performance Characteristics (DoPC)",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:DoPCDeclarationCompact",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Declaration of Performance Characteristics (Compact)",
+      "rdfs:comment": "A compact dictionary of performance characteristics and their values.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:dopcDeclarations",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "DoPC Declarations",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:testMethod",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "Test Method",
+      "rdfs:comment": "The test method used to determine the characteristic value.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:tensileStrengthAdhesion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Adhesion by tensile bond strength",
+      "dppk:governedBy": "N 12618-2:2004",
+      "dppk:testMethod": "n.a",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:chlorideContent21DegC",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Chloride content",
+      "dppk:governedBy": "EN 1015-17",
+      "dppk:testMethod": "21 degC",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:bondStrength28days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Bond strength",
+      "dppk:governedBy": "EN 1542:1999",
+      "dppk:testMethod": "28 days",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:shrinkageAndExpansion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Shrinkage and expansion",
+      "dppk:governedBy": "EN 12617-4 : 2002",
+      "dppk:testMethod": "n.a",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:resistanceToCarbonation21degC",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Resistance to carbonation",
+      "dppk:governedBy": "EN 13295 : 2004",
+      "dppk:testMethod": "21 degC",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:modulusOfElasticityInCompression",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "modulus of elasticity in compression",
+      "dppk:governedBy": "EN 13412:2006",
+      "dppk:testMethod": "Method 1",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:thermalCompatibilityWetSurface",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Thermal compatibility",
+      "dppk:governedBy": "EN 13687-1:2002",
+      "dppk:testMethod": "Wet surface - water immersion - EN 1542",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:slipSkidResistance",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Slip/skid resistance",
+      "dppk:governedBy": "EN 13036-4:2011",
+      "dppk:testMethod": "Measurements in the laboratory",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:thermalExpansion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Thermal expansion",
+      "dppk:governedBy": "EN 1770:1998",
+      "dppk:testMethod": "Chapter 3.3.4.b",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:capillaryAbsorption",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Capillary absorption",
+      "dppk:governedBy": "EN 13057:2002",
+      "dppk:testMethod": "kg/(m^2*h^0.5)",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:reactionToFire",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Reaction to fire",
+      "dppk:governedBy": "EN 13501-1:2019",
+      "dppk:testMethod": "n.a",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:dangerousSubstances",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Dangerous substances",
+      "dppk:governedBy": "n.a",
+      "dppk:testMethod": "n.a",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:declaredUnit",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Declared unit",
+      "dppk:governedBy": "n.a",
+      "dppk:testMethod": "n.a",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:functionalUnit",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Functional unit",
+      "dppk:governedBy": "n.a",
+      "dppk:testMethod": "n.a",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:referenceServiceLife",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Reference service life",
+      "dppk:governedBy": "n.a",
+      "dppk:testMethod": "n.a",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCDeclarationCompact"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:term_status": "unstable"
+    }
+  ]
+}
