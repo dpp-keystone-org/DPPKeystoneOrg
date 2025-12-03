@@ -24,8 +24,7 @@ async function getJsonLdFiles(dir) {
     }
 }
 
-async function getOntologyMetadata(filePath) {
-    const content = await readFile(filePath, 'utf-8');
+export function parseOntologyMetadata(content) {
     const data = JSON.parse(content);
     const graph = data['@graph'] || [];
 
@@ -54,13 +53,19 @@ async function getOntologyMetadata(filePath) {
                         label = label['@value'] || p['@id'];
                     }
 
+                    const annotations = {};
+                    for (const key in p) {
+                        if (key.startsWith('dppk:')) {
+                            annotations[key] = p[key];
+                        }
+                    }
+
                     return {
                         id: p['@id'],
                         label: label,
                         comment: p['rdfs:comment'],
                         range: p['rdfs:range'] ? (p['rdfs:range']['@id'] || p['rdfs:range']) : '',
-                        governedBy: p['dppk:governedBy'],
-                        testMethod: p['dppk:testMethod']
+                        annotations: annotations
                     };
                 });
 
@@ -75,8 +80,12 @@ async function getOntologyMetadata(filePath) {
     return { title, description, classes };
 }
 
-async function getContextMetadata(filePath, termDictionary) {
+async function getOntologyMetadata(filePath) {
     const content = await readFile(filePath, 'utf-8');
+    return parseOntologyMetadata(content);
+}
+
+export function parseContextMetadata(content, termDictionary) {
     const data = JSON.parse(content);
     const contextValue = data['@context'];
 
@@ -113,13 +122,22 @@ async function getContextMetadata(filePath, termDictionary) {
     return { imports, localTerms };
 }
 
-function generateOntologyHtml(directoryName, files) {
+
+async function getContextMetadata(filePath, termDictionary) {
+    const content = await readFile(filePath, 'utf-8');
+    return parseContextMetadata(content, termDictionary);
+}
+
+export function generateOntologyHtml(directoryName, files) {
     const fileSections = files.map(file => `
         <section>
             <h2><a href="./${file.name}">${file.name}</a></h2>
             <p><strong>${file.title}</strong></p>
             <p>${file.description}</p>
-            ${file.classes.map(c => `
+            ${file.classes.map(c => {
+                const extraColumns = [...new Set(c.properties.flatMap(p => Object.keys(p.annotations)))];
+                
+                return `
                 <div class="class-section">
                     <h3>Class: ${c.label} (${c.id})</h3>
                     <p>${c.comment}</p>
@@ -131,8 +149,7 @@ function generateOntologyHtml(directoryName, files) {
                                     <th>Property</th>
                                     <th>Description</th>
                                     <th>Type</th>
-                                    <th>Governed By</th>
-                                    <th>Test Method</th>
+                                    ${extraColumns.map(col => `<th>${col.replace('dppk:', '')}</th>`).join('')}
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,15 +158,14 @@ function generateOntologyHtml(directoryName, files) {
                                         <td>${p.label} (${p.id})</td>
                                         <td>${p.comment || ''}</td>
                                         <td>${p.range || ''}</td>
-                                        <td>${p.governedBy || ''}</td>
-                                        <td>${p.testMethod || ''}</td>
+                                        ${extraColumns.map(col => `<td>${p.annotations[col] || ''}</td>`).join('')}
                                     </tr>
                                 `).join('')}
                             </tbody>
                         </table>
                     ` : ''}
                 </div>
-            `).join('')}
+            `}).join('')}
         </section>
     `).join('');
 
@@ -188,7 +204,7 @@ function generateOntologyHtml(directoryName, files) {
 </html>`;
 }
 
-function generateContextHtml(directoryName, files) {
+export function generateContextHtml(directoryName, files) {
     const listItems = files.map(file => {
         const importsList = file.imports.length > 0
             ? `<h4>Imports</h4><ul>\n${file.imports.map(i => `                <li>${i}</li>`).join('\n')}\n            </ul>`
@@ -286,7 +302,7 @@ async function buildTermDictionary() {
     return termMap;
 }
 
-async function main() {
+export async function generateSpecDocs() {
     // 1. Build a dictionary of all term URIs and their descriptions from the ontology source.
     const termDictionary = await buildTermDictionary();
 
@@ -341,5 +357,3 @@ async function main() {
         console.log(`Generated context index.html for ${fullPath}`);
     }
 }
-
-main().catch(console.error);

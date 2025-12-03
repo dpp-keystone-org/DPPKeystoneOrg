@@ -30,7 +30,8 @@ async function generateFileList(dirPath, baseHref, options = {}) {
     .join('\n');
 }
 
-async function updateIndexHtml() {
+
+export async function updateIndexHtml() {
   console.log('Updating index.html with the latest file lists...');
 
   try {
@@ -75,5 +76,3 @@ async function updateIndexHtml() {
     process.exit(1);
   }
 }
-
-updateIndexHtml();
