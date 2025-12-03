@@ -27,30 +27,52 @@ async function getJsonLdFiles(dir) {
 async function getOntologyMetadata(filePath) {
     const content = await readFile(filePath, 'utf-8');
     const data = JSON.parse(content);
-    
-    // The ontology info can be at the root or in the @graph
-    const nodes = [data, ...(data['@graph'] || [])];
-    const ontologyInfo = nodes.find(node => node && node['@type'] === 'owl:Ontology');
-    
-    let title = ontologyInfo?.['dcterms:title'] || ontologyInfo?.['dc:title'] || 'No title found';
-    let description = ontologyInfo?.['dcterms:description'] || ontologyInfo?.['dc:description'] || 'No description found.';
-
-    if (typeof title !== 'string') {
-        title = title['@value'] || 'No title found';
-    }
-    if (typeof description !== 'string') {
-        description = description['@value'] || 'No description found.';
-    }
-
     const graph = data['@graph'] || [];
-    const classes = graph.filter(node => node['@type'] === 'owl:Class').map(node => node['@id']);
-        const properties = graph.filter(node => node['@type'] === 'owl:ObjectProperty' || node['@type'] === 'owl:DatatypeProperty').map(node => ({
-        id: node['@id'],
-        comment: node['rdfs:comment'] || ''
-    }));
 
+    const ontologyInfo = graph.find(node => node['@type'] === 'owl:Ontology');
+    const title = ontologyInfo?.['dcterms:title'] || 'No title found';
+    const description = ontologyInfo?.['dcterms:description'] || 'No description found.';
 
-    return { title, description, classes, properties };
+    const classes = graph
+        .filter(node => node['@type'] === 'rdfs:Class')
+        .map(node => {
+            const classId = node['@id'];
+            const properties = graph
+                .filter(p => p.hasOwnProperty('rdfs:domain') && (p['rdfs:domain']['@id'] === classId || (Array.isArray(p['rdfs:domain']) && p['rdfs:domain'].some(d => d['@id'] === classId))))
+                .map(p => {
+                    let label = p['rdfs:label'];
+                    if (Array.isArray(label)) {
+                        const enLabel = label.find(l => l['@language'] === 'en');
+                        if (enLabel) {
+                            label = enLabel['@value'];
+                        } else if (label.length > 0) {
+                            label = label[0]['@value'] || p['@id'];
+                        } else {
+                            label = p['@id'];
+                        }
+                    } else if (typeof label === 'object' && label !== null) {
+                        label = label['@value'] || p['@id'];
+                    }
+
+                    return {
+                        id: p['@id'],
+                        label: label,
+                        comment: p['rdfs:comment'],
+                        range: p['rdfs:range'] ? (p['rdfs:range']['@id'] || p['rdfs:range']) : '',
+                        governedBy: p['dppk:governedBy'],
+                        testMethod: p['dppk:testMethod']
+                    };
+                });
+
+            return {
+                id: classId,
+                label: node['rdfs:label'],
+                comment: node['rdfs:comment'],
+                properties
+            };
+        });
+
+    return { title, description, classes };
 }
 
 async function getContextMetadata(filePath, termDictionary) {
@@ -92,15 +114,44 @@ async function getContextMetadata(filePath, termDictionary) {
 }
 
 function generateOntologyHtml(directoryName, files) {
-    const listItems = files.map(file => `
-        <li>
-            <h3><a href="./${file.name}">${file.name}</a></h3>
+    const fileSections = files.map(file => `
+        <section>
+            <h2><a href="./${file.name}">${file.name}</a></h2>
             <p><strong>${file.title}</strong></p>
             <p>${file.description}</p>
-            ${file.classes.length > 0 ? `<h4>Classes</h4><ul>\n${file.classes.map(c => `                <li id="${c}">${c}</li>`).join('\n')}\n            </ul>` : ''}
-            ${file.properties.length > 0 ? `<h4>Properties</h4><ul>\n${file.properties.map(p => `                <li id="${p.id}">${p.id}${p.comment ? ` - <em>${p.comment}</em>` : ''}</li>`).join('\n')}\n            </ul>` : ''}
-        </li>
-    `).join('\n');
+            ${file.classes.map(c => `
+                <div class="class-section">
+                    <h3>Class: ${c.label} (${c.id})</h3>
+                    <p>${c.comment}</p>
+                    ${c.properties.length > 0 ? `
+                        <h4>Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Governed By</th>
+                                    <th>Test Method</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${c.properties.map(p => `
+                                    <tr>
+                                        <td>${p.label} (${p.id})</td>
+                                        <td>${p.comment || ''}</td>
+                                        <td>${p.range || ''}</td>
+                                        <td>${p.governedBy || ''}</td>
+                                        <td>${p.testMethod || ''}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    ` : ''}
+                </div>
+            `).join('')}
+        </section>
+    `).join('');
 
     return `
 <!DOCTYPE html>
@@ -110,6 +161,12 @@ function generateOntologyHtml(directoryName, files) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Explorer: ${directoryName}</title>
     <link rel="stylesheet" href="../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .class-section { margin-top: 2em; border-top: 2px solid #ccc; padding-top: 1em; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -121,9 +178,7 @@ function generateOntologyHtml(directoryName, files) {
             </div>
         </header>
         <main>
-            <ul>
-                ${listItems}
-            </ul>
+            ${fileSections}
         </main>
         <footer>
             <p><small>Part of the <a href="/">DPP Keystone</a> project.</small></p>
