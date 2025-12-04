@@ -26,6 +26,9 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Indicator",
       "rdfs:comment": "A generic property representing an environmental impact indicator.",
+      "rdfs:domain": {
+        "@id": "dppk:epd"
+      },
       "rdfs:term_status": "unstable"
     },
     {
@@ -92,6 +95,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential",
       "rdfs:term_status": "unstable"
     },
     {
@@ -114,6 +118,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, fossil",
       "rdfs:term_status": "unstable"
     },
     {
@@ -136,6 +141,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, biogenic",
       "rdfs:term_status": "unstable"
     },
     {
@@ -158,6 +164,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, land use and land use change",
       "rdfs:term_status": "unstable"
     },
     {
@@ -180,6 +187,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, greenhouse gases",
       "rdfs:term_status": "unstable"
     },
     {
@@ -200,7 +208,7 @@
         },
         {
           "@language": "es",
-          "@value": "Potencial de Agotamiento de la Capa de Ozono"
+          "@value": "Potencial de agotamiento de la capa de ozono"
         },
         {
           "@language": "it",
@@ -218,8 +226,8 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
-      "rdfs:term_status": "unstable",
-      "rdfs:comment": "Spanish translation for ODP is a placeholder. Could not be verified."
+      "rdfs:comment": "Ozone Depletion Potential",
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:AP",
@@ -257,6 +265,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Acidification Potential",
       "rdfs:term_status": "unstable"
     },
     {
@@ -279,6 +288,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Eutrophication Potential, freshwater",
       "rdfs:term_status": "unstable"
     },
     {
@@ -301,6 +311,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Eutrophication Potential, marine",
       "rdfs:term_status": "unstable"
     },
     {
@@ -323,6 +334,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Eutrophication Potential, terrestrial",
       "rdfs:term_status": "unstable"
     },
     {
@@ -361,6 +373,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Photochemical Ozone Creation Potential",
       "rdfs:term_status": "unstable"
     },
     {
@@ -370,6 +383,22 @@
         {
           "@language": "en",
           "@value": "Abiotic Depletion Potential for non-fossil resources"
+        },
+        {
+          "@language": "de",
+          "@value": "Abiotisches Erschöpfungspotenzial für nicht-fossile Ressourcen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Épuisement des ressources abiotiques non fossiles"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de agotamiento abiótico de recursos no fósiles"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di esaurimento abiotico per le risorse non fossili"
         }
       ],
       "dppk:unit": "kg Sb eq",
@@ -384,7 +413,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:term_status": "unstable",
-      "rdfs:comment": "Translations for ADPE are missing."
+      "rdfs:comment": "The translation for ADPE is a placeholder and requires verification."
     },
     {
       "@id": "dppk:ADPF",
@@ -393,6 +422,22 @@
         {
           "@language": "en",
           "@value": "Abiotic Depletion Potential for fossil resources"
+        },
+        {
+          "@language": "de",
+          "@value": "Abiotisches Erschöpfungspotenzial fossiler Ressourcen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Potentiel d'épuisement abiotique des ressources fossiles"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de agotamiento abiótico de recursos fósiles"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di esaurimento abiotico per le risorse fossili"
         }
       ],
       "dppk:unit": "MJ",
@@ -407,7 +452,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:term_status": "unstable",
-      "rdfs:comment": "Translations for ADPF are missing."
+      "rdfs:comment": "The translation for ADPF is a placeholder and requires verification."
     },
     {
       "@id": "dppk:WDP",
@@ -416,6 +461,22 @@
         {
           "@language": "en",
           "@value": "Water Deprivation Potential"
+        },
+        {
+          "@language": "de",
+          "@value": "Wasserentzugspotenzial"
+        },
+        {
+          "@language": "fr",
+          "@value": "Potentiel de privation d'eau"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de privación de agua"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di privazione idrica"
         }
       ],
       "dppk:unit": "m³",
@@ -430,7 +491,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:term_status": "unstable",
-      "rdfs:comment": "Translations for WDP are missing."
+      "rdfs:comment": "The translation for WDP is a placeholder and requires verification."
     },
     {
       "@id": "dppk:A1",
@@ -440,6 +501,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Upstream A1",
       "rdfs:term_status": "unstable"
     },
     {
@@ -450,6 +512,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Core Process A2",
       "rdfs:term_status": "unstable"
     },
     {
@@ -460,6 +523,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Core Process A3",
       "rdfs:term_status": "unstable"
     },
     {
@@ -470,6 +534,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream A4",
       "rdfs:term_status": "unstable"
     },
     {
@@ -480,6 +545,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C1",
       "rdfs:term_status": "unstable"
     },
     {
@@ -490,6 +556,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C2",
       "rdfs:term_status": "unstable"
     },
     {
@@ -500,6 +567,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C3",
       "rdfs:term_status": "unstable"
     },
     {
@@ -510,6 +578,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C4",
       "rdfs:term_status": "unstable"
     },
     {
@@ -520,6 +589,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "D",
       "rdfs:term_status": "unstable"
     },
     {
@@ -530,6 +600,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Total",
       "rdfs:term_status": "unstable"
     }
   ]
