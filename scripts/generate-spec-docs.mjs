@@ -1,5 +1,5 @@
 import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
-import { join, basename, dirname, resolve } from 'path';
+import { join, basename, dirname, resolve, relative } from 'path';
 import { parse as jsoncParse } from 'jsonc-parser';
 
 export const getFragment = (id) => {
@@ -198,24 +198,29 @@ const resolvePName = (pname, context) => {
     return pname; // Return as is if prefix not in context
 };
 
-const processValue = (val, context, moduleFileName) => {
+const processValue = (val, context, currentHtmlPath, ontologyDir, allMetadata) => {
     if (typeof val === 'object' && val !== null && val['@id']) {
         const id = val['@id'];
         if (id.startsWith('http')) {
             return `<a href="${id}">${id}</a>`;
         }
+
+        // Try to resolve the link to a generated class page
+        const definingModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === id));
+        if (definingModuleMeta && currentHtmlPath && ontologyDir) {
+            const fragment = getFragment(id);
+            const targetModuleDirName = basename(definingModuleMeta.name, '.jsonld');
+            const targetPath = join(ontologyDir, definingModuleMeta.module, targetModuleDirName, `${fragment}.html`);
+            const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+            return `<a href="${relativeLink}">${id}</a>`;
+        }
+
+        // Fallback for other types of links
         if (id.includes(':')) {
             const href = resolvePName(id, context);
-            // Internal links now point to the new individual HTML files
-            if (href.startsWith('https://dpp-keystone.org')) {
-                const fragment = getFragment(id);
-                // Assume the linked class is in a different module, adjust path as needed.
-                // This is a simplification; a more robust solution might need a global class-to-module map.
-                return `<a href="../${basename(moduleFileName, '.jsonld')}/${fragment}.html">${id}</a>`;
-            }
             return `<a href="${href}">${id}</a>`;
         }
-        return `<a href="${getFragment(id)}.html">${id}</a>`;
+        return `<a href="${getFragment(id)}.html">${id}</a>`; // Fallback for same-module links
     } else if (typeof val === 'object' && val !== null) {
         return JSON.stringify(val);
     }
@@ -223,22 +228,22 @@ const processValue = (val, context, moduleFileName) => {
 };
 
 
-function generateIndividualClassPageHtml(c, fileMetadata, allMetadata) {
-    const { title: moduleTitle, name: moduleFileName, context, module: moduleDir } = fileMetadata;
+function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHtmlPath, ontologyDir) {
+    const { title: moduleTitle, name: moduleFileName, context, module: moduleDirName } = fileMetadata;
     const extraColumns = [...new Set(c.properties.flatMap(p => Object.keys(p.annotations)))];
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(ontologyDir, '..', '..')).replace(/\\/g, '/');
 
     const attributesHtml = Object.entries(c.attributes).map(([key, value]) => {
         let displayValue;
         if (Array.isArray(value)) {
-            displayValue = value.map(val => processValue(val, context, moduleFileName)).join(', ');
+            displayValue = value.map(val => processValue(val, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
         } else {
-            displayValue = processValue(value, context, moduleFileName);
+            displayValue = processValue(value, context, currentHtmlPath, ontologyDir, allMetadata);
         }
         return `<p><strong>${key.replace('dppk:', '').replace('rdfs:', '').replace('owl:', '')}:</strong> ${displayValue}</p>`;
     }).join('');
 
     const mermaidDiagram = generateMermaidDiagram(c);
-    const relativePathToRoot = `../../../../`;
 
     return `
 <!DOCTYPE html>
@@ -247,7 +252,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class: ${c.label}</title>
-    <link rel="stylesheet" href="${relativePathToRoot}branding/css/keystone-style.css">
+    <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
@@ -257,9 +262,9 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata) {
 <body>
     <div class="container">
         <header>
-            <a href="${relativePathToRoot}index.html"><img src="${relativePathToRoot}branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
-                <h1><a href="../index.html">Ontology: ${moduleDir}</a> / <a href="index.html">${moduleTitle}</a></h1>
+                <h1><a href="../index.html">Ontology: ${moduleDirName}</a> / <a href="index.html">${moduleTitle}</a></h1>
                 <h2 style="margin: 0; color: var(--text-light);">Class: ${c.label} (${c.id})</h2>
             </div>
         </header>
@@ -289,7 +294,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata) {
                             ${c.properties.map(p => {
                                 const annotationsHtml = extraColumns.map(col => {
                                     const values = Array.isArray(p.annotations[col]) ? p.annotations[col] : [p.annotations[col]];
-                                    const renderedValues = values.map(val => processValue(val, context, moduleFileName)).join(', ');
+                                    const renderedValues = values.map(val => processValue(val, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
                                     return `<td>${renderedValues || ''}</td>`;
                                 }).join('');
 
@@ -307,7 +312,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata) {
             </div>
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
     <script type="module">
@@ -318,9 +323,9 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata) {
 </html>`;
 }
 
-function generateIndividualContextPageHtml(fileMetadata) {
+function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontologyDir) {
     const { name, imports, localTerms } = fileMetadata;
-    const relativePathToRoot = `../../../`; // from dist/spec/contexts/v1/context-name/
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(ontologyDir, '..', '..')).replace(/\\/g, '/');
 
     const importsList = imports.length > 0
         ? `<h4>Imports</h4><ul>\n${imports.map(i => `                <li>${i}</li>`).join('\n')}\n            </ul>`
@@ -331,8 +336,8 @@ function generateIndividualContextPageHtml(fileMetadata) {
             const termName = `<strong>${t.term}</strong>`;
             const description = t.description ? ` - <em>${t.description}</em>` : '';
             if (t.module && t.uri && t.fileName) {
-                // Path from dist/spec/contexts/v1/context-name/ to dist/spec/ontology/v1/
-                const link = `../../../ontology/v1/${t.module}/${basename(t.fileName, '.jsonld')}/${getFragment(t.uri)}.html`;
+                const targetPath = join(ontologyDir, t.module, basename(t.fileName, '.jsonld'), `${getFragment(t.uri)}.html`);
+                const link = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
                 return `                <li><a href="${link}">${termName}</a>${description}</li>`;
             }
             return `                <li>${termName}${description}</li>`;
@@ -586,9 +591,10 @@ export async function generateSpecDocs({
 
             // Generate individual pages for each class
             for (const c of metadata.classes) {
-                const classPageHtml = generateIndividualClassPageHtml(c, metadata, allMetadata);
                 const classFileName = `${getFragment(c.id)}.html`;
-                await writeFile(join(moduleDir, classFileName), classPageHtml);
+                const currentHtmlPath = join(moduleDir, classFileName);
+                const classPageHtml = generateIndividualClassPageHtml(c, metadata, allMetadata, currentHtmlPath, ontologyDir);
+                await writeFile(currentHtmlPath, classPageHtml);
             }
         }
     }
@@ -628,8 +634,9 @@ export async function generateSpecDocs({
             const contextPageDir = join(fullPath, contextName);
             await mkdir(contextPageDir, { recursive: true });
 
-            const contextPageHtml = generateIndividualContextPageHtml(metadata);
-            await writeFile(join(contextPageDir, 'index.html'), contextPageHtml);
+            const currentHtmlPath = join(contextPageDir, 'index.html');
+            const contextPageHtml = generateIndividualContextPageHtml(metadata, currentHtmlPath, ontologyDir);
+            await writeFile(currentHtmlPath, contextPageHtml);
         }
     }
 }

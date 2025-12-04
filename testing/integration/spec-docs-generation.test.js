@@ -137,7 +137,7 @@ describe('generate-spec-docs.mjs', () => {
             const classHtml = await fs.readFile(classFilePath, 'utf-8');
             expect(classHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Class: Mock Product (dppk:MockProduct)</h2>');
             expect(classHtml).toContain('<p>Represents a generic product for testing.</p>');
-            expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="../mock-core/MockBase.html">dppk:MockBase</a>, <a href="../mock-core/MockThing.html">dppk:MockThing</a></p>')
+            expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="MockBase.html">dppk:MockBase</a>, <a href="MockThing.html">dppk:MockThing</a></p>')
             
             // Check for correct CSS path
             expect(classHtml).toContain('<link rel="stylesheet" href="../../../../branding/css/keystone-style.css">');
