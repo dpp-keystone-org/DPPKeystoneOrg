@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Textile Product</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Sector Ontology - Textile Definitions (v1)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Textile Product (dppk:TextileProduct)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="TextileProduct">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class TextileProduct
+  Product <|-- TextileProduct
+  TextileProduct : +fibreComposition
+  TextileProduct --|> FibreComposition : fibreComposition
+  TextileProduct : +animalOriginNonTextile
+  TextileProduct : +tearStrength
+  TextileProduct --|> QuantitativeValue : tearStrength
+  TextileProduct : +abrasionResistance
+  TextileProduct --|> QuantitativeValue : abrasionResistance
+  TextileProduct : +microplasticReleasePotential
+  TextileProduct --|> QuantitativeValue : microplasticReleasePotential
+  TextileProduct : +careInstructions
+  TextileProduct : +repairabilityInformation
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Any raw, semi-worked, or worked product which is exclusively composed of textile fibres, regardless of the mixing or assembly process employed.</p>
+                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Fibre Composition (dppk:fibreComposition)</td>
+                                    <td>Relates the textile product to its constituent fibres and their proportions.</td>
+                                    <td>dppk:FibreComposition</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Presence of Non-Textile Parts of Animal Origin (dppk:animalOriginNonTextile)</td>
+                                    <td>Indicates the presence of materials such as leather, bone, or shell.</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Tear Strength (dppk:tearStrength)</td>
+                                    <td></td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Abrasion Resistance (dppk:abrasionResistance)</td>
+                                    <td>Resistance to wear, often measured in Martindale cycles.</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Microplastic Release Potential (dppk:microplasticReleasePotential)</td>
+                                    <td>Information regarding the propensity of the textile to release microplastics during washing or use.</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Care Instructions (dppk:careInstructions)</td>
+                                    <td>Standardized care symbols (e.g., GINETEX codes).</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Repairability Information (dppk:repairabilityInformation)</td>
+                                    <td>Instructions or scores related to the ease of repairing the textile product.</td>
+                                    <td>rdf:langString</td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

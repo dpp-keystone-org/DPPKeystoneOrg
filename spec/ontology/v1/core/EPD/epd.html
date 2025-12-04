@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Environmental Product Declaration</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Environmental Product Declaration (EPD)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Environmental Product Declaration (dppk:epd)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="epd">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class epd
+  epd : +GWP
+  epd --|> ImpactValues : GWP
+  epd : +GWPf
+  epd --|> ImpactValues : GWPf
+  epd : +GWPb
+  epd --|> ImpactValues : GWPb
+  epd : +GWPluluc
+  epd --|> ImpactValues : GWPluluc
+  epd : +GWPghg
+  epd --|> ImpactValues : GWPghg
+  epd : +ODP
+  epd --|> ImpactValues : ODP
+  epd : +AP
+  epd --|> ImpactValues : AP
+  epd : +EPf
+  epd --|> ImpactValues : EPf
+  epd : +EPm
+  epd --|> ImpactValues : EPm
+  epd : +EPt
+  epd --|> ImpactValues : EPt
+  epd : +POCP
+  epd --|> ImpactValues : POCP
+  epd : +ADPE
+  epd --|> ImpactValues : ADPE
+  epd : +ADPF
+  epd --|> ImpactValues : ADPF
+  epd : +WDP
+  epd --|> ImpactValues : WDP
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>A class to hold all environmental impact categories in a compact dictionary format.</p>
+                <p><strong>governedBy:</strong> EN 15804:2012+A2:2019</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th><th>subPropertyOf</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Global Warming Potential (dppk:GWP)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Global Warming Potential, fossil (dppk:GWPf)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Global Warming Potential, biogenic (dppk:GWPb)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Global Warming Potential, land use and land use change (dppk:GWPluluc)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Global Warming Potential, greenhouse gases (dppk:GWPghg)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Ozone Depletion Potential (dppk:ODP)</td>
+                                    <td>Spanish translation for ODP is a placeholder. Could not be verified.</td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Acidification Potential (dppk:AP)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eutrophication Potential, freshwater (dppk:EPf)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eutrophication Potential, marine (dppk:EPm)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eutrophication Potential, terrestrial (dppk:EPt)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Photochemical Ozone Creation Potential (dppk:POCP)</td>
+                                    <td></td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Abiotic Depletion Potential for non-fossil resources (dppk:ADPE)</td>
+                                    <td>Translations for ADPE are missing.</td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Abiotic Depletion Potential for fossil resources (dppk:ADPF)</td>
+                                    <td>Translations for ADPF are missing.</td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Water Deprivation Potential (dppk:WDP)</td>
+                                    <td>Translations for WDP are missing.</td>
+                                    <td>dppk:ImpactValues</td>
+                                    <td>EN 15804:2012+A2:2019</td><td><a href="https://dpp-keystone.org/spec/v1/terms#indicator">dppk:indicator</a></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

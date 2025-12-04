@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Quantitative Value</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Product and Material Definitions (v1)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Quantitative Value (dppk:QuantitativeValue)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="QuantitativeValue">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class QuantitativeValue
+  QuantitativeValue : +value
+  QuantitativeValue : +unitCode
+  QuantitativeValue : +methodologyReference
+  QuantitativeValue : +unitText
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>A structured value representing a measurement, including the numeric value and the unit of measure.</p>
+                <p><strong>equivalentClass:</strong> <a href="https://schema.org/QuantitativeValue">schema:QuantitativeValue</a>, <a href="http://qudt.org/schema/qudt/QuantityValue">qudt:QuantityValue</a>, <a href="https://vocabulary.uncefact.org/QuantityType">unece:QuantityType</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>equivalentProperty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Value (dppk:value)</td>
+                                    <td>The numeric value of the measurement.</td>
+                                    <td>xsd:decimal</td>
+                                    <td><a href="https://schema.org/value">schema:value</a>, <a href="https://ref.gs1.org/voc/value">gs1:value</a>, <a href="https://vocabulary.uncefact.org/unitQuantity">unece:unitQuantity</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Unit Code (dppk:unitCode)</td>
+                                    <td>The unit of measurement, preferably using UN/CEFACT codes (e.g., KGM, MTR, LTR).</td>
+                                    <td>xsd:string</td>
+                                    <td><a href="https://schema.org/unitCode">schema:unitCode</a>, <a href="https://ref.gs1.org/voc/unitCode">gs1:unitCode</a>, <a href="https://vocabulary.uncefact.org/QuantityTypeCode">unece:QuantityTypeCode</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Methodology or Dictionary Reference (dppk:methodologyReference)</td>
+                                    <td>A reference to the standard, methodology, or data dictionary used to define or measure this specific value (e.g., ISO standard number, specific PEFCR rule).</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Unit Text (dppk:unitText)</td>
+                                    <td>A human-readable representation of the unit (e.g., kg CO2e, Nm).</td>
+                                    <td>xsd:string</td>
+                                    <td><a href="https://schema.org/unitText">schema:unitText</a></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

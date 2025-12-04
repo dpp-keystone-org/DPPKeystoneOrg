@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Construction Product</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Sector Ontology - Construction and Heavy Industry Definitions (v1)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Construction Product (dppk:ConstructionProduct)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="ConstructionProduct">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class ConstructionProduct
+  Product <|-- ConstructionProduct
+  ConstructionProduct : +hasDoP
+  ConstructionProduct --|> DeclarationOfPerformance : hasDoP
+  ConstructionProduct : +harmonisedStandardReference
+  ConstructionProduct : +notifiedBodyID
+  ConstructionProduct : +avsSystem
+  ConstructionProduct : +declarationCode
+  ConstructionProduct : +declaredUses
+  ConstructionProduct : +latestDeinstallation
+  ConstructionProduct : +notifiedBody
+  ConstructionProduct --|> Organization : notifiedBody
+  ConstructionProduct : +technicalAssessmentBody
+  ConstructionProduct --|> Organization : technicalAssessmentBody
+  ConstructionProduct : +validationReports
+  ConstructionProduct : +europeanAssessmentDocument
+  ConstructionProduct : +reactionToFire
+  ConstructionProduct : +thermalConductivity
+  ConstructionProduct --|> QuantitativeValue : thermalConductivity
+  ConstructionProduct : +compressiveStrength
+  ConstructionProduct --|> QuantitativeValue : compressiveStrength
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Any product or kit which is produced and placed on the market for incorporation in a permanent manner in construction works or parts thereof, as defined by the Construction Products Regulation (CPR).</p>
+                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Has Declaration of Performance (dppk:hasDoP)</td>
+                                    <td>Relates the construction product to its Declaration of Performance.</td>
+                                    <td>dppk:DeclarationOfPerformance</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Harmonised Standard Reference (hEN) (dppk:harmonisedStandardReference)</td>
+                                    <td>A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product.</td>
+                                    <td>xsd:anyURI</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Notified Body Identifier (dppk:notifiedBodyID)</td>
+                                    <td>The identification number of the Notified Body involved in the assessment and verification of constancy of performance (e.g., NB1234).</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>AVCP System (dppk:avsSystem)</td>
+                                    <td>The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4).</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Declaration Code (dppk:declarationCode)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Declared Uses (dppk:declaredUses)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Latest Deinstallation (dppk:latestDeinstallation)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Notified Body (dppk:notifiedBody)</td>
+                                    <td></td>
+                                    <td>dppk:Organization</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Technical Assessment Body (dppk:technicalAssessmentBody)</td>
+                                    <td></td>
+                                    <td>dppk:Organization</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Validation Reports (dppk:validationReports)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>European Assessment Document (dppk:europeanAssessmentDocument)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Reaction to Fire (dppk:reactionToFire)</td>
+                                    <td>The classification of the product's contribution to fire (Euroclass).</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Thermal Conductivity (Lambda) (dppk:thermalConductivity)</td>
+                                    <td></td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Compressive Strength (dppk:compressiveStrength)</td>
+                                    <td></td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
