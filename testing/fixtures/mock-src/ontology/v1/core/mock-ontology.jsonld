@@ -1,0 +1,21 @@
+{
+    "@context": {
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dcterms": "http://purl.org/dc/terms/"
+    },
+    "@graph": [
+        {
+            "@id": "dppk:MockOntology",
+            "@type": "owl:Ontology",
+            "dcterms:title": "Mock Ontology"
+        },
+        {
+            "@id": "dppk:MockClass",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Class",
+            "rdfs:comment": "A mock class for testing."
+        }
+    ]
+}
