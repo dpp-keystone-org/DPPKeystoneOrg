@@ -94,3 +94,7 @@ footer {
 li.expandable {
     list-style-type: none;
 }
+
+li.expandable details {
+    margin-left: -20px;
+}
