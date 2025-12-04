@@ -20,6 +20,7 @@ let firstBrokenLinkDetails = null;
 const pagesToCrawl = new Set([path.join(DIST_DIR, START_PAGE)]);
 const crawledPages = new Set();
 const pagesWithCssIssues = [];
+const pagesWithImageIssues = [];
 
 async function checkLink(linkInfo) {
   const { href, sourcePage, linkText, absolutePath } = linkInfo;
@@ -72,6 +73,23 @@ async function crawlPage(pagePath) {
         pagesWithCssIssues.push(`${path.relative(DIST_DIR, pagePath)} (Stylesheet link is broken)`);
       }
   }
+
+  // --- Image Link Check ---
+  const imagePromises = [];
+  $('img[src]').each((i, el) => {
+    const imgSrc = $(el).attr('src');
+    if (!imgSrc || imgSrc.startsWith('http')) {
+        return; // Skip external images
+    }
+    const absoluteImgPath = path.resolve(path.dirname(pagePath), imgSrc);
+    const imageCheck = fs.access(absoluteImgPath, fs.constants.F_OK)
+        .catch(() => {
+            pagesWithImageIssues.push(`${path.relative(DIST_DIR, pagePath)} (Image src is broken: ${imgSrc})`);
+        });
+    imagePromises.push(imageCheck);
+  });
+  await Promise.all(imagePromises);
+
 
   // --- Broken Link Check ---
   const linkPromises = [];
@@ -129,6 +147,13 @@ async function main() {
     pagesWithCssIssues.forEach(page => console.log(`  -> ${page}`));
   } else {
     console.log('\nAll pages have valid CSS links. ✨');
+  }
+
+  if (pagesWithImageIssues.length > 0) {
+    console.log('\n--- Pages Missing Images ---');
+    pagesWithImageIssues.forEach(page => console.log(`  -> ${page}`));
+  } else {
+    console.log('\nAll pages have valid image links. ✨');
   }
 
   console.log('\nCrawler finished.');
