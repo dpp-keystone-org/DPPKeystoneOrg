@@ -193,7 +193,7 @@
         },
         {
           "@language": "es",
-          "@value": "Potencial de Agotamiento de la Capa de Ozono"
+          "@value": "Potencial de agotamiento de la capa de ozono"
         },
         {
           "@language": "it",
@@ -209,8 +209,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
-      "rdfs:term_status": "unstable",
-      "rdfs:comment": "Spanish translation for ODP is a placeholder. Could not be verified."
+      "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:AP",
@@ -351,6 +350,22 @@
         {
           "@language": "en",
           "@value": "Abiotic Depletion Potential for non-fossil resources"
+        },
+		{
+          "@language": "de",
+          "@value": "Abiotisches Erschöpfungspotenzial für nicht-fossile Ressourcen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Épuisement des ressources abiotiques non fossiles"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de agotamiento abiótico de recursos no fósiles"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di esaurimento abiotico per le risorse non fossili"
         }
       ],
       "dppk:unit": "kg Sb eq",
@@ -363,7 +378,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:term_status": "unstable",
-      "rdfs:comment": "Translations for ADPE are missing."
+      "rdfs:comment": "The translation for ADPE is a placeholder and requires verification."
     },
     {
       "@id": "dppk:ADPF",
@@ -372,6 +387,22 @@
         {
           "@language": "en",
           "@value": "Abiotic Depletion Potential for fossil resources"
+        },
+		{
+          "@language": "de",
+          "@value": "Abiotisches Erschöpfungspotenzial fossiler Ressourcen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Potentiel d'épuisement abiotique des ressources fossiles"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de agotamiento abiótico de recursos fósiles"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di esaurimento abiotico per le risorse fossili"
         }
       ],
       "dppk:unit": "MJ",
@@ -384,7 +415,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:term_status": "unstable",
-      "rdfs:comment": "Translations for ADPF are missing."
+      "rdfs:comment": "The translation for ADPF is a placeholder and requires verification."
     },
     {
       "@id": "dppk:WDP",
@@ -393,6 +424,22 @@
         {
           "@language": "en",
           "@value": "Water Deprivation Potential"
+        },
+		{
+          "@language": "de",
+          "@value": "Wasserentzugspotenzial"
+        },
+        {
+          "@language": "fr",
+          "@value": "Potentiel de privation d'eau"
+        },
+        {
+          "@language": "es",
+          "@value": "Potencial de privación de agua"
+        },
+        {
+          "@language": "it",
+          "@value": "Potenziale di privazione idrica"
         }
       ],
       "dppk:unit": "m³",
@@ -405,7 +452,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:term_status": "unstable",
-      "rdfs:comment": "Translations for WDP are missing."
+      "rdfs:comment": "The translation for WDP is a placeholder and requires verification."
     },
     {
       "@id": "dppk:A1",
