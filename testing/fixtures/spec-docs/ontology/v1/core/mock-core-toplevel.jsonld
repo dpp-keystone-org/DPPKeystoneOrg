@@ -1,0 +1,18 @@
+{
+    "@context": {
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "dcterms": "http://purl.org/dc/terms/"
+    },
+    "@id": "https://dpp-keystone.org/spec/v1/terms/MockCoreToplevel",
+    "@type": "owl:Ontology",
+    "dcterms:title": "Mock Toplevel Title",
+    "dcterms:description": "Mock Toplevel Description.",
+    "@graph": [
+        {
+            "@id": "dppk:MockClass",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Class",
+            "rdfs:comment": "A class for testing."
+        }
+    ]
+}

@@ -1,5 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+// Import the parser from the other script to read ontology files
+import { parseOntologyMetadata, getFragment } from './generate-spec-docs.mjs';
 
 const PROJECT_ROOT = process.cwd();
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
@@ -14,20 +16,47 @@ const SRC_DIR = path.join(PROJECT_ROOT, 'src');
  */
 async function generateFileList(dirPath, baseHref, options = {}) {
   const files = await fs.readdir(dirPath);
-  return files
-    .filter(file => !file.startsWith('.') && (file.endsWith('.json') || file.endsWith('.jsonld')))
-    .map(file => {
-      let fileName = path.basename(file, path.extname(file));
-      if (options.removeV1) {
-        fileName = fileName.replace(/-v1$/, '');
+  const filteredFiles = files.filter(file => !file.startsWith('.') && (file.endsWith('.json') || file.endsWith('.jsonld')));
+
+  const listItems = await Promise.all(filteredFiles.map(async (file) => {
+    const fileName = path.basename(file, path.extname(file));
+    
+    let linkHref;
+    let sublist = '';
+
+    if (options.isOntology) {
+      linkHref = `${baseHref}${fileName}/index.html`;
+
+      // Read the file to get the classes
+      const filePath = path.join(dirPath, file);
+      const content = await fs.readFile(filePath, 'utf-8');
+      const { classes } = parseOntologyMetadata(content);
+
+      if (classes.length > 0) {
+        const classLinks = classes.map(c => {
+          const classLinkHref = `${baseHref}${fileName}/${getFragment(c.id)}.html`;
+          return `                                        <li><a href="${classLinkHref}">${c.label}</a></li>`;
+        }).join('\n');
+        sublist = `\n                                    <details><summary>Classes</summary><ul>\n${classLinks}\n                                    </ul></details>`;
       }
-      const linkText = fileName
-        .replace(/-/g, ' ')
-        .replace(/\.context$/, ' Context')
-        .replace(/\b\w/g, l => l.toUpperCase());
-      return `                            <li><a href="${baseHref}${file}">${linkText}</a></li>`;
-    })
-    .join('\n');
+    } else {
+      linkHref = `${baseHref}${file}`;
+    }
+
+    let linkText = fileName;
+    if (options.removeV1) {
+      linkText = linkText.replace(/-v1$/, '');
+    }
+    
+    linkText = linkText
+      .replace(/-/g, ' ')
+      .replace(/\.context$/, ' Context')
+      .replace(/\b\w/g, l => l.toUpperCase());
+      
+    return `                            <li><a href="${linkHref}">${linkText}</a>${sublist}</li>`;
+  }));
+
+  return listItems.join('\n');
 }
 
 
@@ -47,7 +76,7 @@ export async function updateIndexHtml() {
 
     // Generate and inject ontology core list
     const ontologyCorePath = path.join(SRC_DIR, 'ontology', 'v1', 'core');
-    const ontologyCoreList = await generateFileList(ontologyCorePath, 'spec/ontology/v1/core/');
+    const ontologyCoreList = await generateFileList(ontologyCorePath, 'spec/ontology/v1/core/', { isOntology: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_CORE_LIST_START -->(.|\n)*<!-- ONTOLOGY_CORE_LIST_END -->/,
       '<!-- ONTOLOGY_CORE_LIST_START -->\n' + ontologyCoreList + '\n                                    <!-- ONTOLOGY_CORE_LIST_END -->'
@@ -55,7 +84,7 @@ export async function updateIndexHtml() {
 
     // Generate and inject ontology sectors list
     const ontologySectorsPath = path.join(SRC_DIR, 'ontology', 'v1', 'sectors');
-    const ontologySectorsList = await generateFileList(ontologySectorsPath, 'spec/ontology/v1/sectors/');
+    const ontologySectorsList = await generateFileList(ontologySectorsPath, 'spec/ontology/v1/sectors/', { isOntology: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_SECTORS_LIST_START -->(.|\n)*<!-- ONTOLOGY_SECTORS_LIST_END -->/,
       '<!-- ONTOLOGY_SECTORS_LIST_START -->\n' + ontologySectorsList + '\n                                    <!-- ONTOLOGY_SECTORS_LIST_END -->'

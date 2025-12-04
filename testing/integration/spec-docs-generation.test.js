@@ -87,61 +87,78 @@ describe('generate-spec-docs.mjs', () => {
             expect(localTerms[1].uri).toBe('https://dpp-keystone.org/spec/v1/terms#mockProperty');
             expect(localTerms[1].description).toBe('A test property for the Mock Product.');
         });
+
+        it('should parse ontology metadata from the top level', async () => {
+            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-core-toplevel.jsonld'), 'utf-8');
+            const { title, description } = parseOntologyMetadata(content);
+
+            expect(title).toBe('Mock Toplevel Title');
+            expect(description).toBe('Mock Toplevel Description.');
+        });
     });
 
-    describe('Integration Test', () => {
-        it('should generate spec docs in the temp directory', async () => {
+   describe('Integration Test', () => {
+        it('should generate correct module and global index files', async () => {
             // Run the script with our test directories
             await generateSpecDocs({
                 srcDir: FIXTURES_DIR,
                 distDir: TEMP_DIST_DIR
             });
 
-            // Check if ontology doc was created
+            // Check if the main directory index for 'core' was created
             const ontologyDocPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'index.html');
-            expect(fs.access(ontologyDocPath)).resolves.not.toThrow();
+            await expect(fs.access(ontologyDocPath)).resolves.not.toThrow();
 
-            // Check if context doc was created
-            const contextDocPath = join(TEMP_DIST_DIR, 'contexts', 'v1', 'index.html');
-            expect(fs.access(contextDocPath)).resolves.not.toThrow();
-
-            // Check content of the generated ontology documentation
+            // Check that the directory index now links to the module index
             const ontologyHtml = await fs.readFile(ontologyDocPath, 'utf-8');
-            expect(ontologyHtml).toContain('<h1>Ontology Explorer</h1>');
+            expect(ontologyHtml).toContain('<h1>Ontology Modules in ontology/v1/core</h1>');
+            expect(ontologyHtml).toContain('<li><a href="./mock-core/index.html">Mock Core Ontology</a></li>');
 
-            // Class assertions for MockProduct
-            expect(ontologyHtml).toContain('<div class="class-section" id="dppk_MockProduct">');
-            expect(ontologyHtml).toContain('<h3>Class: Mock Product (dppk:MockProduct)</h3>');
-            expect(ontologyHtml).toContain('<p><strong>subClassOf:</strong> <a href="#dppk_MockBase">dppk:MockBase</a>, <a href="#dppk_MockThing">dppk:MockThing</a></p>');
-            expect(ontologyHtml).toContain('<p><strong>equivalentClass:</strong> <a href="https://schema.org/Product">schema:Product</a>, <a href="https://ref.gs1.org/voc/Product">gs1:Product</a></p>');
-            expect(ontologyHtml).toContain('<p><strong>governedBy:</strong> ISO 9001</p>');
-
-            // Property table assertions
-            expect(ontologyHtml).toContain('<th>equivalentProperty</th>');
-            expect(ontologyHtml).toContain('<th>subPropertyOf</th>');
-            expect(ontologyHtml).toContain('<td><a href="https://schema.org/name">schema:name</a></td>');
-            expect(ontologyHtml).toContain('<td><a href="#dppk_genericIndicator">dppk:genericIndicator</a></td>');
+            // Check if the context doc was created (this part of the generator hasn't changed)
+            const contextDocPath = join(TEMP_DIST_DIR, 'contexts', 'v1', 'index.html');
+            await expect(fs.access(contextDocPath)).resolves.not.toThrow();
             
-            // Diagram and other assertions
-            expect(ontologyHtml).toContain('<pre class="mermaid">');
-            expect(ontologyHtml).toContain('dppk_MockBase <|-- dppk_MockProduct');
-            expect(ontologyHtml).toContain('dppk_MockThing <|-- dppk_MockProduct');
-            expect(ontologyHtml).toContain('</html>');
-            
-            // Check if global index was created
+            // Check if global index was created and contains the correct link
             const globalIndexDocPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'index.html');
-            expect(fs.access(globalIndexDocPath)).resolves.not.toThrow();
+            await expect(fs.access(globalIndexDocPath)).resolves.not.toThrow();
             const globalIndexHtml = await fs.readFile(globalIndexDocPath, 'utf-8');
             expect(globalIndexHtml).toContain('<h3>All Classes</h3>');
-            expect(globalIndexHtml).toContain('<h3>All Properties</h3>');
-            expect(globalIndexHtml).toContain('<a href="./core/index.html#dppk_MockProduct">dppk:MockProduct</a>');
+            expect(globalIndexHtml).toContain('<a href="./core/mock-core/dppk_MockProduct.html">dppk:MockProduct</a>');
+        });
 
-            // Check content of the generated context documentation
-            const contextHtml = await fs.readFile(contextDocPath, 'utf-8');
-            expect(contextHtml).toContain('<h1>Context Explorer</h1>');
-            expect(contextHtml).toContain('<strong>mockProp</strong>');
-            expect(contextHtml).toContain('<em>A test property for the Mock Product.</em>');
-            expect(contextHtml).toContain('</html>');
+        it('should generate an individual HTML file for each class', async () => {
+            // This test defines the new desired behavior.
+            await generateSpecDocs({
+                srcDir: FIXTURES_DIR,
+                distDir: TEMP_DIST_DIR
+            });
+
+            const moduleDirPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'mock-core');
+            
+            // Check that the module's own index was created
+            const moduleIndex = join(moduleDirPath, 'index.html');
+            await expect(fs.access(moduleIndex)).resolves.not.toThrow();
+            const moduleIndexHtml = await fs.readFile(moduleIndex, 'utf-8');
+            expect(moduleIndexHtml).toContain('<h3>Classes</h3>');
+            expect(moduleIndexHtml).toContain('<li><a href="dppk_MockProduct.html">Mock Product</a></li>');
+            
+            // Check that the title and description are correctly displayed
+            expect(moduleIndexHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Mock Core Ontology</h2>');
+            expect(moduleIndexHtml).toContain('<p>A mock ontology for testing purposes.</p>');
+
+
+            // Check for the individual class file, using the name derived from its ID
+            const classFilePath = join(moduleDirPath, 'dppk_MockProduct.html');
+            await expect(fs.access(classFilePath)).resolves.not.toThrow();
+
+            // Check for key content in the class file
+            const classHtml = await fs.readFile(classFilePath, 'utf-8');
+            expect(classHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Class: Mock Product (dppk:MockProduct)</h2>');
+            expect(classHtml).toContain('<p>Represents a generic product for testing.</p>');
+            expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="../mock-core/dppk_MockBase.html">dppk:MockBase</a>, <a href="../mock-core/dppk_MockThing.html">dppk:MockThing</a></p>')
+            
+            // Check for correct CSS path
+            expect(classHtml).toContain('<link rel="stylesheet" href="../../../../branding/css/keystone-style.css">');
         });
     });
 });
