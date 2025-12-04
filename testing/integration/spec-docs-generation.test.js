@@ -105,7 +105,7 @@ describe('generate-spec-docs.mjs', () => {
             await expect(fs.access(globalIndexDocPath)).resolves.not.toThrow();
             const globalIndexHtml = await fs.readFile(globalIndexDocPath, 'utf-8');
             expect(globalIndexHtml).toContain('<h3>All Classes</h3>');
-            expect(globalIndexHtml).toContain('<a href="./core/mock-core/dppk_MockProduct.html">dppk:MockProduct</a>');
+            expect(globalIndexHtml).toContain('<a href="./core/mock-core/MockProduct.html">dppk:MockProduct</a>');
         });
 
         it('should generate an individual HTML file for each class', async () => {
@@ -122,7 +122,7 @@ describe('generate-spec-docs.mjs', () => {
             await expect(fs.access(moduleIndex)).resolves.not.toThrow();
             const moduleIndexHtml = await fs.readFile(moduleIndex, 'utf-8');
             expect(moduleIndexHtml).toContain('<h3>Classes</h3>');
-            expect(moduleIndexHtml).toContain('<li><a href="dppk_MockProduct.html">Mock Product</a></li>');
+            expect(moduleIndexHtml).toContain('<li><a href="MockProduct.html">Mock Product</a></li>');
             
             // Check that the title and description are correctly displayed
             expect(moduleIndexHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Mock Core Ontology</h2>');
@@ -130,14 +130,14 @@ describe('generate-spec-docs.mjs', () => {
 
 
             // Check for the individual class file, using the name derived from its ID
-            const classFilePath = join(moduleDirPath, 'dppk_MockProduct.html');
+            const classFilePath = join(moduleDirPath, 'MockProduct.html');
             await expect(fs.access(classFilePath)).resolves.not.toThrow();
 
             // Check for key content in the class file
             const classHtml = await fs.readFile(classFilePath, 'utf-8');
             expect(classHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Class: Mock Product (dppk:MockProduct)</h2>');
             expect(classHtml).toContain('<p>Represents a generic product for testing.</p>');
-            expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="../mock-core/dppk_MockBase.html">dppk:MockBase</a>, <a href="../mock-core/dppk_MockThing.html">dppk:MockThing</a></p>')
+            expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="../mock-core/MockBase.html">dppk:MockBase</a>, <a href="../mock-core/MockThing.html">dppk:MockThing</a></p>')
             
             // Check for correct CSS path
             expect(classHtml).toContain('<link rel="stylesheet" href="../../../../branding/css/keystone-style.css">');

@@ -44,7 +44,7 @@ describe('generateFileList for ontologies', () => {
 
         // Assert
         const expectedSummary = `<summary><a href="spec/ontology/v1/core/mock-ontology/index.html">Mock Ontology</a></summary>`;
-        const expectedClassLink = `<li><a href="spec/ontology/v1/core/mock-ontology/dppk_MockClass.html">Mock Class Label</a></li>`;
+        const expectedClassLink = `<li><a href="spec/ontology/v1/core/mock-ontology/MockClass.html">Mock Class Label</a></li>`;
         const unexpectedText = `<details><summary>Classes</summary>`;
 
         expect(htmlList).toContain(expectedSummary);

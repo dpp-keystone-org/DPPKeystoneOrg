@@ -6,6 +6,10 @@ export const getFragment = (id) => {
     if (id.includes('#')) {
         return id.substring(id.lastIndexOf('#') + 1);
     }
+    const parts = id.split(':');
+    if (parts.length > 1) {
+        return parts[parts.length - 1];
+    }
     return id.replace(/:/g, '_');
 };
 
@@ -328,7 +332,7 @@ function generateIndividualContextPageHtml(fileMetadata) {
             const description = t.description ? ` - <em>${t.description}</em>` : '';
             if (t.module && t.uri && t.fileName) {
                 // Path from dist/spec/contexts/v1/context-name/ to dist/spec/ontology/v1/
-                const link = `../../ontology/v1/${t.module}/${basename(t.fileName, '.jsonld')}/${getFragment(t.uri)}.html`;
+                const link = `../../../ontology/v1/${t.module}/${basename(t.fileName, '.jsonld')}/${getFragment(t.uri)}.html`;
                 return `                <li><a href="${link}">${termName}</a>${description}</li>`;
             }
             return `                <li>${termName}${description}</li>`;

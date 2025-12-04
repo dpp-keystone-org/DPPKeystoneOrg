@@ -26,7 +26,7 @@ describe('index.html generation', () => {
     // The ontology link should now point to the generated module index page.
     expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/index.html">Product</a>');
     // It should also contain a nested link to a class within that module.
-    expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/dppk_Product.html">Product or Material</a>');
+    expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/Product.html">Product or Material</a>');
     expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v1.json">Sock Dpp</a>');
   });
 });
