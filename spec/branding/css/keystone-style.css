@@ -90,3 +90,7 @@ footer {
     color: var(--text-light);
     text-align: center;
 }
+
+li.expandable {
+    list-style-type: none;
+}

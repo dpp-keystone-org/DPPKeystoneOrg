@@ -52,3 +52,24 @@ To validate the data models and examples, run the test command from the project 
 ```bash
 npm test
 ```
+
+## Build Process Details
+
+The `npm run build` command orchestrates a series of scripts to generate the production-ready `dist` directory. Here are the key steps:
+
+1.  **Clean and Copy:** The build process starts by deleting the existing `dist` directory. It then copies all files from the `src` directory into a `dist/spec` subdirectory.
+2.  **Sanitize JSON:** All JSON and JSON-LD files are parsed to remove comments and trailing commas, ensuring they are standard, machine-readable JSON files.
+3.  **Generate Spec Docs:** The `generate-spec-docs.mjs` script runs, creating human-readable HTML documentation for the ontologies and contexts. This includes generating Mermaid.js diagrams for class relationships and creating `index.html` files in the `dist/spec/ontology` and `dist/spec/contexts` directories.
+4.  **Update Main Index:** Finally, the `update-index-html.mjs` script dynamically populates the main `dist/index.html` file with up-to-date links to all the generated artifacts, including contexts, ontologies, and examples.
+
+This process transforms the development source files into a clean, well-documented, and deployable state.
+
+## Automated Build and Deployment
+
+This project uses GitHub Actions to automate the testing and deployment process. When changes are pushed to the `main` branch, the following steps are executed automatically:
+
+1.  **Install Dependencies:** All `npm` dependencies for the root project and the `testing` suite are installed.
+2.  **Build & Test:** The `npm test` command is run, which first builds all production files in the `dist` directory and then runs a full suite of validation tests against the data models.
+3.  **Deploy:** If the tests pass, the contents of the `dist` directory are automatically deployed to the `gh-pages` branch, which serves the live site at [dpp-keystone.org](https://dpp-keystone.org).
+
+This ensures that the production version of the data dictionary is always up-to-date and has passed all validation checks.

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Electronic Device (EEE)</title>
+    <link rel="stylesheet" href="../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../index.html"><img src="../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Sector Ontology - Electronics and Electrical Equipment Definitions (v1)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Electronic Device (EEE) (dppk:ElectronicDevice)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="dppk_ElectronicDevice">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class dppk_ElectronicDevice
+  dppk_Product <|-- dppk_ElectronicDevice
+  dppk_ElectronicDevice : +dppk_voltage
+  dppk_ElectronicDevice --|> dppk_QuantitativeValue : dppk_voltage
+  dppk_ElectronicDevice : +dppk_ratedPower
+  dppk_ElectronicDevice --|> dppk_QuantitativeValue : dppk_ratedPower
+  dppk_ElectronicDevice : +dppk_energyEfficiencyClass
+  dppk_ElectronicDevice : +dppk_ipRating
+  dppk_ElectronicDevice : +dppk_sparePartsAvailable
+  dppk_ElectronicDevice : +dppk_serviceManualAvailable
+  dppk_ElectronicDevice : +dppk_softwareUpdatePolicy
+  dppk_ElectronicDevice : +dppk_weeeCategory
+  dppk_ElectronicDevice : +dppk_disassemblyInstructions
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Equipment which is dependent on electric currents or electromagnetic fields in order to work properly.</p>
+                <p><strong>subClassOf:</strong> <a href="../Electronics/dppk_Product.html">dppk:Product</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Voltage (dppk:voltage)</td>
+                                    <td>The electric potential difference, typically measured in Volts (V).</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Rated Power (Wattage) (dppk:ratedPower)</td>
+                                    <td>The power consumption of the device under normal operating conditions, typically measured in Watts (W).</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Energy Efficiency Class (dppk:energyEfficiencyClass)</td>
+                                    <td>The energy efficiency rating as defined by the EU Energy Labelling framework (e.g., A, B, C).</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Ingress Protection (IP) Rating (dppk:ipRating)</td>
+                                    <td>Defines levels of sealing effectiveness against intrusion from foreign bodies (tools, dirt) and moisture (e.g., IP54).</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Spare Parts Availability (dppk:sparePartsAvailable)</td>
+                                    <td>Indicates whether spare parts are available for the product.</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Service Manual Availability (dppk:serviceManualAvailable)</td>
+                                    <td>Indicates whether a service or repair manual is available.</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Software Update Policy (dppk:softwareUpdatePolicy)</td>
+                                    <td>Information on the duration and type of software/firmware updates provided by the manufacturer.</td>
+                                    <td>rdf:langString</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>WEEE Category (dppk:weeeCategory)</td>
+                                    <td>The category under the Waste Electrical and Electronic Equipment (WEEE) Directive.</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Disassembly Instructions (dppk:disassemblyInstructions)</td>
+                                    <td>Instructions for safely disassembling the product for repair or recycling.</td>
+                                    <td>rdf:langString</td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

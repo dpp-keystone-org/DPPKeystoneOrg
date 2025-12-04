@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Postal Address</title>
+    <link rel="stylesheet" href="../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../index.html"><img src="../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Organization and Roles Definitions (v1)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Postal Address (dppk:PostalAddress)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="dppk_PostalAddress">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class dppk_PostalAddress
+  dppk_PostalAddress : +dppk_streetAddress
+  dppk_PostalAddress : +dppk_postalCode
+  dppk_PostalAddress : +dppk_addressLocality
+  dppk_PostalAddress : +dppk_addressCountry
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>The physical mailing address of an organization or location.</p>
+                <p><strong>equivalentClass:</strong> <a href="https://schema.org/PostalAddress">schema:PostalAddress</a>, <a href="https://ref.gs1.org/voc/Address">gs1:Address</a>, <a href="https://vocabulary.uncefact.org/TradeAddress">unece:TradeAddress</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>equivalentProperty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Street Address (dppk:streetAddress)</td>
+                                    <td>Includes street name and number.</td>
+                                    <td></td>
+                                    <td><a href="https://schema.org/streetAddress">schema:streetAddress</a>, <a href="https://ref.gs1.org/voc/streetAddress">gs1:streetAddress</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Postal Code (dppk:postalCode)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="https://schema.org/postalCode">schema:postalCode</a>, <a href="https://ref.gs1.org/voc/postalCode">gs1:postalCode</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>City/Locality (dppk:addressLocality)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="https://schema.org/addressLocality">schema:addressLocality</a>, <a href="https://ref.gs1.org/voc/addressLocality">gs1:addressLocality</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Country (dppk:addressCountry)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="https://schema.org/addressCountry">schema:addressCountry</a>, <a href="https://ref.gs1.org/voc/addressCountry">gs1:addressCountry</a>, <a href="https://vocabulary.uncefact.org/countryName">unece:countryName</a></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

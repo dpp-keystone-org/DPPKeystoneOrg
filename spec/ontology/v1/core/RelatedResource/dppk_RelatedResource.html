@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Related Resource</title>
+    <link rel="stylesheet" href="../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../index.html"><img src="../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Related Resource</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Related Resource (dppk:RelatedResource)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="dppk_RelatedResource">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class dppk_RelatedResource
+  dppk_RelatedResource : +dppk_resourceTitle
+  dppk_RelatedResource : +dppk_contentType
+  dppk_RelatedResource : +dppk_language
+  dppk_RelatedResource : +dppk_url
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>A resource identified by a URL, with additional metadata such as title, content type, and language.</p>
+                
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>equivalentProperty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Resource Title (dppk:resourceTitle)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Content Type (dppk:contentType)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Language (dppk:language)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>URL (dppk:url)</td>
+                                    <td></td>
+                                    <td>xsd:anyURI</td>
+                                    <td><a href="https://schema.org/url">schema:url</a></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
