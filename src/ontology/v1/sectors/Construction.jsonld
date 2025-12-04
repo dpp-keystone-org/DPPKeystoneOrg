@@ -110,6 +110,7 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
         "rdfs:label": "CPR - Annex V"
       },
+        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
         "rdfs:range": { "@id": "xsd:string" },
         "rdfs:term_status": "unstable"
     },

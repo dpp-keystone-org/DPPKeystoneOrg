@@ -39,7 +39,7 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
-        if (entry.name === 'desktop.ini') {
+        if (entry.name === 'desktop.ini' || entry.name === 'branding') {
             continue;
         }
         const sourcePath = path.join(sourceDir, entry.name);
@@ -90,6 +90,10 @@ async function build() {
     // Process source directories into the 'dist/spec' subdirectory
     const specDir = path.join(BUILD_DIR, 'spec');
     await processDirectory(SOURCE_DIR, specDir);
+
+    // Copy branding to the root of dist
+    await fse.copy(path.join(SOURCE_DIR, 'branding'), path.join(BUILD_DIR, 'branding'));
+    console.log(`Copied branding to dist root`);
     
     // Copy root-level static assets
     const rootStaticAssets = ['index.html', 'docs', 'CONTRIBUTING.md', 'LICENSE', 'README.md'];

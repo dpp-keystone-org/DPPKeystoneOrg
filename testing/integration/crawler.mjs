@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
 const START_PAGE = 'index.html';
+const STYLESHEET_NAME = 'keystone-style.css';
 
 const stats = {
   html: { good: 0, broken: 0 },
@@ -15,51 +16,77 @@ const stats = {
   jsonld: { good: 0, broken: 0 },
 };
 
-const brokenLinks = new Map();
+let firstBrokenLinkDetails = null;
 const pagesToCrawl = new Set([path.join(DIST_DIR, START_PAGE)]);
 const crawledPages = new Set();
+const pagesWithCssIssues = [];
 
-async function checkLink(link, sourcePage) {
-  const extension = path.extname(link).substring(1);
+async function checkLink(linkInfo) {
+  const { href, sourcePage, linkText, absolutePath } = linkInfo;
+
+  const extension = path.extname(absolutePath).substring(1);
   if (!['html', 'json', 'jsonld'].includes(extension)) {
     return;
   }
 
   try {
-    await fs.access(link, fs.constants.F_OK);
+    await fs.access(absolutePath, fs.constants.F_OK);
     stats[extension].good++;
     // If it's an HTML file and we haven't crawled it yet, add to the queue
-    if (extension === 'html' && !crawledPages.has(link) && !pagesToCrawl.has(link)) {
-        // Ensure we are only crawling pages within the dist directory
-        if(link.startsWith(DIST_DIR)) {
-            pagesToCrawl.add(link);
+    if (extension === 'html' && !crawledPages.has(absolutePath) && !pagesToCrawl.has(absolutePath)) {
+        if(absolutePath.startsWith(DIST_DIR)) {
+            pagesToCrawl.add(absolutePath);
         }
     }
   } catch (error) {
     stats[extension].broken++;
-    if (!brokenLinks.has(sourcePage)) {
-      brokenLinks.set(sourcePage, []);
+    if (!firstBrokenLinkDetails) {
+        firstBrokenLinkDetails = {
+            sourcePage: path.relative(DIST_DIR, sourcePage),
+            linkText,
+            href,
+            resolvedPath: path.relative(DIST_DIR, absolutePath),
+            error: error.message,
+        };
     }
-    brokenLinks.get(sourcePage).push(path.relative(DIST_DIR, link));
   }
 }
 
 async function crawlPage(pagePath) {
   crawledPages.add(pagePath);
   pagesToCrawl.delete(pagePath);
+
   const pageContent = await fs.readFile(pagePath, 'utf-8');
   const $ = cheerio.load(pageContent);
 
-  const linkPromises = [];
+  // --- CSS Link Check ---
+  const stylesheetLink = $(`link[rel="stylesheet"][href*="${STYLESHEET_NAME}"]`);
+  if (stylesheetLink.length === 0) {
+      pagesWithCssIssues.push(`${path.relative(DIST_DIR, pagePath)} (Stylesheet tag not found)`);
+  } else {
+      const cssHref = stylesheetLink.attr('href');
+      const absoluteCssPath = path.resolve(path.dirname(pagePath), cssHref);
+      try {
+          await fs.access(absoluteCssPath, fs.constants.F_OK);
+      } catch {
+        pagesWithCssIssues.push(`${path.relative(DIST_DIR, pagePath)} (Stylesheet link is broken)`);
+      }
+  }
 
+  // --- Broken Link Check ---
+  const linkPromises = [];
   $('a[href]').each((i, el) => {
     const href = $(el).attr('href');
     if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) {
       return; // Skip external links, mailto links, and anchors
     }
 
-    const absolutePath = path.resolve(path.dirname(pagePath), href);
-    linkPromises.push(checkLink(absolutePath, path.relative(DIST_DIR, pagePath)));
+    linkPromises.push(checkLink({
+        href,
+        sourcePage: pagePath,
+        linkText: $(el).text().trim(),
+        absolutePath: path.resolve(path.dirname(pagePath), href),
+    }));
   });
 
   await Promise.all(linkPromises);
@@ -68,7 +95,6 @@ async function crawlPage(pagePath) {
 async function main() {
   console.log('Starting crawler...');
 
-  // The build needs to have been run at least once
   try {
     await fs.access(DIST_DIR, fs.constants.F_OK);
   } catch (error) {
@@ -86,14 +112,23 @@ async function main() {
   console.log(`JSON: ${stats.json.good} good, ${stats.json.broken} broken.`);
   console.log(`JSON-LD: ${stats.jsonld.good} good, ${stats.jsonld.broken} broken.`);
 
-  if (brokenLinks.size > 0) {
-    console.log('\n--- Broken Links ---');
-    for (const [page, links] of brokenLinks.entries()) {
-      console.log(`On page: ${page}`);
-      links.forEach(link => console.log(`  -> ${link}`));
-    }
+  if (firstBrokenLinkDetails) {
+    console.log('\n--- First Broken Link Details ---');
+    console.log(`Source Page:  ${firstBrokenLinkDetails.sourcePage}`);
+    console.log(`Link Text:    "${firstBrokenLinkDetails.linkText}"`);
+    console.log(`Link Href:    "${firstBrokenLinkDetails.href}"`);
+    console.log(`Resolved Path:  "${firstBrokenLinkDetails.resolvedPath}" (Not Found)`);
+  } else if (stats.html.broken > 0 || stats.json.broken > 0 || stats.jsonld.broken > 0) {
+    console.log('\nBroken links were found, but details could not be recorded.');
   } else {
     console.log('\nNo broken links found. ✨');
+  }
+
+  if (pagesWithCssIssues.length > 0) {
+    console.log('\n--- Pages Missing CSS ---');
+    pagesWithCssIssues.forEach(page => console.log(`  -> ${page}`));
+  } else {
+    console.log('\nAll pages have valid CSS links. ✨');
   }
 
   console.log('\nCrawler finished.');

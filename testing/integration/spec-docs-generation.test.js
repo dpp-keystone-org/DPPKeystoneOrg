@@ -2,6 +2,7 @@ import {
     generateSpecDocs,
     parseOntologyMetadata,
     parseContextMetadata,
+    buildTermDictionary,
 } from '../../scripts/generate-spec-docs.mjs';
 import { join } from 'path';
 import { promises as fs } from 'fs';
@@ -77,6 +78,16 @@ describe('generate-spec-docs.mjs', () => {
             expect(title).toBe('Mock Toplevel Title');
             expect(description).toBe('Mock Toplevel Description.');
         });
+
+        it('should build a term dictionary with type and domain', async () => {
+            const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', 'v1');
+            const termDict = await buildTermDictionary(sourceOntologyDir);
+            
+            const mockProperty = termDict['https://dpp-keystone.org/spec/v1/terms#mockProperty'];
+            expect(mockProperty).toBeDefined();
+            expect(mockProperty.type).toContain('owl:DatatypeProperty');
+            expect(mockProperty.domain['@id']).toBe('dppk:MockProduct');
+        });
     });
 
    describe('Integration Test', () => {
@@ -140,7 +151,7 @@ describe('generate-spec-docs.mjs', () => {
             expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="MockBase.html">dppk:MockBase</a>, <a href="MockThing.html">dppk:MockThing</a></p>')
             
             // Check for correct CSS path
-            expect(classHtml).toContain('<link rel="stylesheet" href="../../../../branding/css/keystone-style.css">');
+            expect(classHtml).toContain('<link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">');
         });
     });
 });

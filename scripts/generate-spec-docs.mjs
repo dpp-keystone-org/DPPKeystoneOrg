@@ -120,7 +120,7 @@ async function getOntologyMetadata(filePath) {
     return parseOntologyMetadata(content);
 }
 
-export function parseContextMetadata(content, termDictionary) {
+export function parseContextMetadata(content, termDictionary, prefixMap = {}) {
     const data = JSON.parse(content);
     const contextValue = data['@context'];
 
@@ -145,23 +145,27 @@ export function parseContextMetadata(content, termDictionary) {
         .filter(([key, value]) => typeof value !== 'string' || (!value.endsWith('/') && !value.endsWith('#')))
         .map(([term, uri]) => {
             const termCurie = (typeof uri === 'object' && uri !== null) ? uri['@id'] : uri;
-            const expandedUri = expandCurie(termCurie, localTermMap);
+            const resolutionContext = { ...prefixMap, ...localTermMap };
+            const expandedUri = expandCurie(termCurie, resolutionContext);
             const definition = termDictionary[expandedUri] || {};
+            
             return {
                 term,
                 uri: expandedUri,
                 description: definition.description || '',
                 module: definition.module || '',
-                fileName: definition.fileName || ''
+                fileName: definition.fileName || '',
+                type: definition.type,
+                domain: definition.domain
             };
     });
     
     return { imports, localTerms };
 }
 
-async function getContextMetadata(filePath, termDictionary) {
+async function getContextMetadata(filePath, termDictionary, prefixMap) {
     const content = await readFile(filePath, 'utf-8');
-    return parseContextMetadata(content, termDictionary);
+    return parseContextMetadata(content, termDictionary, prefixMap);
 }
 
 function generateMermaidDiagram(c) {
@@ -228,10 +232,10 @@ const processValue = (val, context, currentHtmlPath, ontologyDir, allMetadata) =
 };
 
 
-function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHtmlPath, ontologyDir) {
+function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHtmlPath, ontologyDir, distDir) {
     const { title: moduleTitle, name: moduleFileName, context, module: moduleDirName } = fileMetadata;
     const extraColumns = [...new Set(c.properties.flatMap(p => Object.keys(p.annotations)))];
-    const relativePathToRoot = relative(dirname(currentHtmlPath), join(ontologyDir, '..', '..')).replace(/\\/g, '/');
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
 
     const attributesHtml = Object.entries(c.attributes).map(([key, value]) => {
         let displayValue;
@@ -323,9 +327,9 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
 </html>`;
 }
 
-function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontologyDir) {
+function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontologyDir, distDir, allMetadata) {
     const { name, imports, localTerms } = fileMetadata;
-    const relativePathToRoot = relative(dirname(currentHtmlPath), join(ontologyDir, '..', '..')).replace(/\\/g, '/');
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
 
     const importsList = imports.length > 0
         ? `<h4>Imports</h4><ul>\n${imports.map(i => `                <li>${i}</li>`).join('\n')}\n            </ul>`
@@ -335,12 +339,30 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
         ? `<h4>Locally Defined Terms</h4><ul>\n${localTerms.map(t => {
             const termName = `<strong>${t.term}</strong>`;
             const description = t.description ? ` - <em>${t.description}</em>` : '';
-            if (t.module && t.uri && t.fileName) {
+            let link = null;
+
+            const isClass = Array.isArray(t.type) ? t.type.includes('rdfs:Class') : t.type === 'rdfs:Class';
+            const isProperty = Array.isArray(t.type) ? t.type.some(type => type.includes('Property')) : (t.type && t.type.includes('Property'));
+
+            if (isProperty && t.domain && t.domain['@id']) {
+                // It's a property with a domain, find the parent class
+                const domainClassId = t.domain['@id'];
+                const domainModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === domainClassId));
+                if (domainModuleMeta) {
+                    const domainModuleDirName = basename(domainModuleMeta.name, '.jsonld');
+                    const targetPath = join(ontologyDir, domainModuleMeta.module, domainModuleDirName, `${getFragment(domainClassId)}.html`);
+                    link = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+                }
+            } else if (isClass) {
+                // It's a class, link to its own page.
                 const targetPath = join(ontologyDir, t.module, basename(t.fileName, '.jsonld'), `${getFragment(t.uri)}.html`);
-                const link = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+                link = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+            }
+
+            if (link) {
                 return `                <li><a href="${link}">${termName}</a>${description}</li>`;
             }
-            return `                <li>${termName}${description}</li>`;
+            return `                <li>${termName}${description}</li>`; // Fallback for terms without links
         }).join('\n')}\n            </ul>`
         : '';
 
@@ -351,12 +373,12 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Context: ${name}</title>
-    <link rel="stylesheet" href="${relativePathToRoot}branding/css/keystone-style.css">
+    <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="${relativePathToRoot}index.html"><img src="${relativePathToRoot}branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
                 <h1><a href="../index.html">Contexts</a> / ${name}</h1>
             </div>
@@ -367,16 +389,23 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
             ${termsList}
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
 </body>
 </html>`;
 }
 
-export function generateModuleIndexHtml(fileMetadata) {
-    const { title, description, classes, properties, name: fileName, module: moduleDir } = fileMetadata;
-    const relativePathToRoot = `../../../../`;
+export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir) {
+    const { title, description, classes, properties, name: fileName, module: moduleDirName } = fileMetadata;
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
+    
+    // Link to the parent directory's index.html (e.g., from /core/Compliance/index.html to /core/index.html)
+    const parentIndexLink = relative(dirname(currentHtmlPath), join(dirname(currentHtmlPath), '..', 'index.html')).replace(/\\/g, '/');
+    
+    // Link to the source file for this module (e.g., from /core/Compliance/index.html to ../Compliance.jsonld)
+    const sourceFileLink = relative(dirname(currentHtmlPath), join(dirname(currentHtmlPath), '..', fileName)).replace(/\\/g, '/');
+
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -384,20 +413,20 @@ export function generateModuleIndexHtml(fileMetadata) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: ${title}</title>
-    <link rel="stylesheet" href="${relativePathToRoot}branding/css/keystone-style.css">
+    <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="${relativePathToRoot}index.html"><img src="${relativePathToRoot}branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
-                <h1><a href="../index.html">Ontology: ${moduleDir}</a></h1>
+                <h1><a href="${parentIndexLink}">Ontology: ${moduleDirName}</a></h1>
                 <h2 style="margin: 0; color: var(--text-light);">${title}</h2>
             </div>
         </header>
         <main>
             <p>${description}</p>
-            <p><strong>Source:</strong> <a href="../${fileName}">${fileName}</a></p>
+            <p><strong>Source:</strong> <a href="${sourceFileLink}">${fileName}</a></p>
             <h3>Classes</h3>
             <ul>
                 ${classes.map(c => `<li><a href="${getFragment(c.id)}.html">${c.label}</a></li>`).join('')}
@@ -408,20 +437,22 @@ export function generateModuleIndexHtml(fileMetadata) {
             </ul>
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
 </body>
 </html>`;
 }
 
-export function generateOntologyHtml(directoryName, files) {
+export function generateOntologyHtml(directoryName, files, distDir, currentHtmlPath) {
     // This function is now effectively a directory index generator.
     // It will be replaced by more specific index generators.
     const fileLinks = files.map(file => {
         const moduleName = basename(file.name, '.jsonld');
         return `<li><a href="./${moduleName}/index.html">${file.title}</a></li>`;
     }).join('');
+
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
 
     return `
 <!DOCTYPE html>
@@ -430,7 +461,7 @@ export function generateOntologyHtml(directoryName, files) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Explorer: ${directoryName}</title>
-    <link rel="stylesheet" href="../../../branding/css/keystone-style.css">
+    <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
 </head>
 <body>
     <div class="container">
@@ -441,7 +472,7 @@ export function generateOntologyHtml(directoryName, files) {
 </html>`;
 }
 
-export function generateContextHtml(directoryName, files) {
+export function generateContextHtml(directoryName, files, distDir, currentHtmlPath) {
     const listItems = files.map(file => {
         const contextFileName = basename(file.name, '.jsonld');
         const link = `./${contextFileName}/index.html`;
@@ -452,6 +483,8 @@ export function generateContextHtml(directoryName, files) {
         </li>
     `}).join('\n');
 
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
+
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -459,12 +492,12 @@ export function generateContextHtml(directoryName, files) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Context Explorer: ${directoryName}</title>
-    <link rel="stylesheet" href="../../branding/css/keystone-style.css">
+    <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;">
+            <img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;">
             <div>
                 <h1>Context Explorer</h1>
                 <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
@@ -476,7 +509,7 @@ export function generateContextHtml(directoryName, files) {
             </ul>
         </main>
         <footer>
-            <p><small>Part of the <a href="/">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
 </body>
@@ -493,7 +526,7 @@ const expandCurie = (curie, context) => {
     return curie;
 };
 
-async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src', 'ontology', 'v1')) {
+export async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src', 'ontology', 'v1')) {
     const termMap = {};
     const sourceOntologyDirs = ['core', 'sectors'];
 
@@ -517,7 +550,9 @@ async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src'
                         termMap[expandedId] = {
                             description: node['rdfs:comment'],
                             module: dirSuffix,
-                            fileName: basename(file)
+                            fileName: basename(file),
+                            type: node['@type'],
+                            domain: node['rdfs:domain'],
                         };
                     }
                 }
@@ -533,6 +568,38 @@ async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src'
     return termMap;
 }
 
+export async function buildPrefixMap(sourceContextDir) {
+    const prefixMap = {};
+    const files = await getJsonLdFiles(sourceContextDir);
+
+    for (const file of files) {
+        const content = await readFile(file, 'utf-8');
+        const data = jsoncParse(content);
+        const contextValue = data['@context'];
+
+        let localContext = {};
+        if (Array.isArray(contextValue)) {
+            for (const item of contextValue) {
+                if (typeof item === 'object' && item !== null) {
+                    Object.assign(localContext, item);
+                }
+            }
+        } else if (typeof contextValue === 'object' && contextValue !== null) {
+            Object.assign(localContext, contextValue);
+        }
+        
+        for (const [key, value] of Object.entries(localContext)) {
+            if (typeof value === 'string' && (value.endsWith('/') || value.endsWith('#'))) {
+                if (!prefixMap[key]) {
+                    prefixMap[key] = value;
+                }
+            }
+        }
+    }
+    return prefixMap;
+}
+
+
 export async function generateSpecDocs({
     srcDir = join(process.cwd(), 'src'),
     distDir = join(process.cwd(), 'dist', 'spec')
@@ -540,12 +607,16 @@ export async function generateSpecDocs({
     const ontologyDir = join(distDir, 'ontology', 'v1');
     const contextDir = join(distDir, 'contexts', 'v1');
     const sourceOntologyDir = join(srcDir, 'ontology', 'v1');
+    const sourceContextDir = join(srcDir, 'contexts', 'v1');
     
     const ontologyDirsToProcess = ['core', 'sectors'];
     const contextDirsToProcess = ['.']; // The root of the contexts/v1 dir
 
     // 1. Build a dictionary of all term URIs and their descriptions from the ontology source.
     const termDictionary = await buildTermDictionary(sourceOntologyDir);
+
+    // 1.5 Build a map of all context prefixes
+    const prefixMap = await buildPrefixMap(sourceContextDir);
 
     const allMetadata = [];
 
@@ -575,8 +646,8 @@ export async function generateSpecDocs({
         }));
 
         // Create main index for the directory (e.g., /core/index.html)
-        const directoryIndexHtml = generateOntologyHtml(directoryName, fileMetadata);
         const directoryIndexPath = join(fullPath, 'index.html');
+        const directoryIndexHtml = generateOntologyHtml(directoryName, fileMetadata, distDir, directoryIndexPath);
         await writeFile(directoryIndexPath, directoryIndexHtml);
         
         // Loop through each file (module) and generate its own pages
@@ -586,14 +657,15 @@ export async function generateSpecDocs({
             await mkdir(moduleDir, { recursive: true }); // Ensure dir exists
 
             // Generate index for the module
-            const moduleIndexHtml = generateModuleIndexHtml(metadata);
-            await writeFile(join(moduleDir, 'index.html'), moduleIndexHtml);
+            const moduleIndexHtmlPath = join(moduleDir, 'index.html');
+            const moduleIndexHtml = generateModuleIndexHtml(metadata, moduleIndexHtmlPath, distDir);
+            await writeFile(moduleIndexHtmlPath, moduleIndexHtml);
 
             // Generate individual pages for each class
             for (const c of metadata.classes) {
                 const classFileName = `${getFragment(c.id)}.html`;
                 const currentHtmlPath = join(moduleDir, classFileName);
-                const classPageHtml = generateIndividualClassPageHtml(c, metadata, allMetadata, currentHtmlPath, ontologyDir);
+                const classPageHtml = generateIndividualClassPageHtml(c, metadata, allMetadata, currentHtmlPath, ontologyDir, distDir);
                 await writeFile(currentHtmlPath, classPageHtml);
             }
         }
@@ -616,7 +688,7 @@ export async function generateSpecDocs({
         }
 
         const fileMetadata = await Promise.all(files.map(async (file) => {
-            const { imports, localTerms } = await getContextMetadata(file, termDictionary);
+            const { imports, localTerms } = await getContextMetadata(file, termDictionary, prefixMap);
             return {
                 name: basename(file),
                 imports,
@@ -624,8 +696,8 @@ export async function generateSpecDocs({
             };
         }));
         
-        const htmlContent = generateContextHtml(directoryName, fileMetadata);
         const outputPath = join(fullPath, 'index.html');
+        const htmlContent = generateContextHtml(directoryName, fileMetadata, distDir, outputPath);
         await writeFile(outputPath, htmlContent);
 
         // Now, generate individual pages for each context
@@ -635,7 +707,7 @@ export async function generateSpecDocs({
             await mkdir(contextPageDir, { recursive: true });
 
             const currentHtmlPath = join(contextPageDir, 'index.html');
-            const contextPageHtml = generateIndividualContextPageHtml(metadata, currentHtmlPath, ontologyDir);
+            const contextPageHtml = generateIndividualContextPageHtml(metadata, currentHtmlPath, ontologyDir, distDir, allMetadata);
             await writeFile(currentHtmlPath, contextPageHtml);
         }
     }
