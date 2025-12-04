@@ -5,7 +5,7 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
 
         // Class Definitions
-        "EnvironmentalImpacts": "dppk:EnvironmentalImpacts",
+        "EPD": "dppk:epd",
         "ImpactValues": "dppk:ImpactValues",
 
         "indicator": "dppk:indicator",

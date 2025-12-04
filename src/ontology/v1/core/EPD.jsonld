@@ -93,6 +93,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential",
       "rdfs:term_status": "unstable"
     },
     {
@@ -113,6 +114,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, fossil",
       "rdfs:term_status": "unstable"
     },
     {
@@ -133,6 +135,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, biogenic",
       "rdfs:term_status": "unstable"
     },
     {
@@ -153,6 +156,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, land use and land use change",
       "rdfs:term_status": "unstable"
     },
     {
@@ -173,6 +177,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Global Warming Potential, greenhouse gases",
       "rdfs:term_status": "unstable"
     },
     {
@@ -209,6 +214,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Ozone Depletion Potential",
       "rdfs:term_status": "unstable"
     },
     {
@@ -245,6 +251,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Acidification Potential",
       "rdfs:term_status": "unstable"
     },
     {
@@ -265,6 +272,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Eutrophication Potential, freshwater",
       "rdfs:term_status": "unstable"
     },
     {
@@ -285,6 +293,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Eutrophication Potential, marine",
       "rdfs:term_status": "unstable"
     },
     {
@@ -305,6 +314,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Eutrophication Potential, terrestrial",
       "rdfs:term_status": "unstable"
     },
     {
@@ -341,6 +351,7 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
+      "rdfs:comment": "Photochemical Ozone Creation Potential",
       "rdfs:term_status": "unstable"
     },
     {
@@ -462,6 +473,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Upstream A1",
       "rdfs:term_status": "unstable"
     },
     {
@@ -472,6 +484,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Core Process A2",
       "rdfs:term_status": "unstable"
     },
     {
@@ -482,6 +495,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Core Process A3",
       "rdfs:term_status": "unstable"
     },
     {
@@ -492,6 +506,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream A4",
       "rdfs:term_status": "unstable"
     },
     {
@@ -502,6 +517,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C1",
       "rdfs:term_status": "unstable"
     },
     {
@@ -512,6 +528,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C2",
       "rdfs:term_status": "unstable"
     },
     {
@@ -522,6 +539,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C3",
       "rdfs:term_status": "unstable"
     },
     {
@@ -532,6 +550,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Downstream C4",
       "rdfs:term_status": "unstable"
     },
     {
@@ -542,6 +561,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "D",
       "rdfs:term_status": "unstable"
     },
     {
@@ -552,6 +572,7 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "rdfs:comment": "Total",
       "rdfs:term_status": "unstable"
     }
   ]
