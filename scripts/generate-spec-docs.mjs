@@ -559,7 +559,9 @@ export async function buildTermDictionary(sourceOntologyDir = join(process.cwd()
             }
         } catch (error) {
             if (error.code === 'ENOENT') {
-                console.warn(`Directory not found during dictionary build: ${fullPath}. Skipping.`);
+                if (process.env.NODE_ENV !== 'test') {
+                    console.warn(`Directory not found during dictionary build: ${fullPath}. Skipping.`);
+                }
                 continue;
             }
             throw error;

@@ -26,6 +26,9 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Indicator",
       "rdfs:comment": "A generic property representing an environmental impact indicator.",
+      "rdfs:domain": {
+        "@id": "dppk:epd"
+      },
       "rdfs:term_status": "unstable"
     },
     {
