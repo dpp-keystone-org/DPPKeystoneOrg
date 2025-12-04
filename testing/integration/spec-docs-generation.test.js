@@ -2,45 +2,26 @@ import {
     generateSpecDocs,
     parseOntologyMetadata,
     parseContextMetadata,
-    generateOntologyHtml,
-    generateContextHtml
 } from '../../scripts/generate-spec-docs.mjs';
-import { join, resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { promises as fs } from 'fs';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const FIXTURES_DIR = resolve(__dirname, '../fixtures/spec-docs');
-const TEMP_OUTPUT_DIR = resolve(__dirname, '../tmp/spec-docs-output');
-const TEMP_DIST_DIR = join(TEMP_OUTPUT_DIR, 'dist', 'spec');
-
+import { setupTestEnvironment } from './test-helpers.mjs';
 
 describe('generate-spec-docs.mjs', () => {
 
-    beforeEach(async () => {
-        // Clean up the temporary output directory before each test
-        await fs.rm(TEMP_OUTPUT_DIR, { recursive: true, force: true });
-        await fs.mkdir(TEMP_DIST_DIR, { recursive: true });
-        await fs.mkdir(join(TEMP_DIST_DIR, 'ontology', 'v1', 'core'), { recursive: true });
-        await fs.mkdir(join(TEMP_DIST_DIR, 'ontology', 'v1', 'sectors'), { recursive: true });
-        await fs.mkdir(join(TEMP_DIST_DIR, 'contexts', 'v1'), { recursive: true });
+    let FIXTURES_DIR;
+    let TEMP_DIR;
+    let TEMP_DIST_DIR;
 
-        // Copy mock files to the temp dist directory, simulating the build process
-        await fs.copyFile(
-            join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-core.jsonld'),
-            join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'mock-core.jsonld')
-        );
-        await fs.copyFile(
-            join(FIXTURES_DIR, 'contexts', 'v1', 'mock-core.context.jsonld'),
-            join(TEMP_DIST_DIR, 'contexts', 'v1', 'mock-core.context.jsonld')
-        );
+    beforeAll(async () => {
+        const { fixturesDir, tempDir, distSpecDir } = await setupTestEnvironment('spec-docs-output');
+        FIXTURES_DIR = fixturesDir;
+        TEMP_DIR = tempDir;
+        TEMP_DIST_DIR = distSpecDir;
     });
 
     afterAll(async () => {
-        // Clean up after all tests are done
-        await fs.rm(TEMP_OUTPUT_DIR, { recursive: true, force: true });
+        await fs.rm(TEMP_DIR, { recursive: true, force: true });
     });
 
     describe('Unit Tests', () => {
@@ -81,7 +62,8 @@ describe('generate-spec-docs.mjs', () => {
             };
             const { imports, localTerms } = parseContextMetadata(content, mockTermDictionary);
 
-            expect(imports).toHaveLength(0);
+            expect(imports).toHaveLength(1);
+            expect(imports[0]).toBe('https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld');
             expect(localTerms).toHaveLength(2);
             expect(localTerms[1].term).toBe('mockProp');
             expect(localTerms[1].uri).toBe('https://dpp-keystone.org/spec/v1/terms#mockProperty');

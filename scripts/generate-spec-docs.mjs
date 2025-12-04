@@ -314,6 +314,57 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata) {
 </html>`;
 }
 
+function generateIndividualContextPageHtml(fileMetadata) {
+    const { name, imports, localTerms } = fileMetadata;
+    const relativePathToRoot = `../../../`; // from dist/spec/contexts/v1/context-name/
+
+    const importsList = imports.length > 0
+        ? `<h4>Imports</h4><ul>\n${imports.map(i => `                <li>${i}</li>`).join('\n')}\n            </ul>`
+        : '';
+
+    const termsList = localTerms.length > 0
+        ? `<h4>Locally Defined Terms</h4><ul>\n${localTerms.map(t => {
+            const termName = `<strong>${t.term}</strong>`;
+            const description = t.description ? ` - <em>${t.description}</em>` : '';
+            if (t.module && t.uri && t.fileName) {
+                // Path from dist/spec/contexts/v1/context-name/ to dist/spec/ontology/v1/
+                const link = `../../ontology/v1/${t.module}/${basename(t.fileName, '.jsonld')}/${getFragment(t.uri)}.html`;
+                return `                <li><a href="${link}">${termName}</a>${description}</li>`;
+            }
+            return `                <li>${termName}${description}</li>`;
+        }).join('\n')}\n            </ul>`
+        : '';
+
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context: ${name}</title>
+    <link rel="stylesheet" href="${relativePathToRoot}branding/css/keystone-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="${relativePathToRoot}index.html"><img src="${relativePathToRoot}branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Contexts</a> / ${name}</h1>
+            </div>
+        </header>
+        <main>
+            <p><strong>Source:</strong> <a href="../${name}">${name}</a></p>
+            ${importsList}
+            ${termsList}
+        </main>
+        <footer>
+            <p><small>Part of the <a href="${relativePathToRoot}index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+</body>
+</html>`;
+}
+
 export function generateModuleIndexHtml(fileMetadata) {
     const { title, description, classes, properties, name: fileName, module: moduleDir } = fileMetadata;
     const relativePathToRoot = `../../../../`;
@@ -383,28 +434,12 @@ export function generateOntologyHtml(directoryName, files) {
 
 export function generateContextHtml(directoryName, files) {
     const listItems = files.map(file => {
-        const importsList = file.imports.length > 0
-            ? `<h4>Imports</h4><ul>\n${file.imports.map(i => `                <li>${i}</li>`).join('\n')}\n            </ul>`
-            : '';
-
-        const termsList = file.localTerms.length > 0
-            ? `<h4>Locally Defined Terms</h4><ul>\n${file.localTerms.map(t => {
-                const termName = `<strong>${t.term}</strong>`;
-                const description = t.description ? ` - <em>${t.description}</em>` : '';
-                if (t.module && t.uri && t.fileName) {
-                    // Path from dist/spec/contexts/v1/ to dist/spec/ontology/v1/
-                    const link = `../../ontology/v1/${t.module}/${t.fileName}`;
-                    return `                <li><a href="${link}">${termName}</a>${description}</li>`;
-                }
-                return `                <li>${termName}${description}</li>`;
-            }).join('\n')}\n            </ul>`
-            : '';
-
+        const contextFileName = basename(file.name, '.jsonld');
+        const link = `./${contextFileName}/index.html`;
+        
         return `
         <li>
-            <h3><a href="./${file.name}">${file.name}</a></h3>
-            ${importsList}
-            ${termsList}
+            <h3><a href="${link}">${file.name}</a></h3>
         </li>
     `}).join('\n');
 
@@ -582,6 +617,16 @@ export async function generateSpecDocs({
         const htmlContent = generateContextHtml(directoryName, fileMetadata);
         const outputPath = join(fullPath, 'index.html');
         await writeFile(outputPath, htmlContent);
+
+        // Now, generate individual pages for each context
+        for (const metadata of fileMetadata) {
+            const contextName = basename(metadata.name, '.jsonld');
+            const contextPageDir = join(fullPath, contextName);
+            await mkdir(contextPageDir, { recursive: true });
+
+            const contextPageHtml = generateIndividualContextPageHtml(metadata);
+            await writeFile(join(contextPageDir, 'index.html'), contextPageHtml);
+        }
     }
 }
 

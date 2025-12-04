@@ -49,6 +49,9 @@ ${classLinks}
       } else {
         return `                            <li><a href="${linkHref}">${linkText}</a></li>`;
       }
+    } else if (options.isContext) {
+      const linkHref = `${baseHref}${fileName}/index.html`;
+      return `                            <li><a href="${linkHref}">${linkText}</a></li>`;
     } else {
       const linkHref = `${baseHref}${file}`;
       return `                            <li><a href="${linkHref}">${linkText}</a></li>`;
@@ -70,7 +73,7 @@ export async function updateIndexHtml({
 
     // Generate and inject contexts list
     const contextsPath = path.join(srcDir, 'contexts', 'v1');
-    const contextsList = await generateFileList(contextsPath, 'spec/contexts/v1/', {}, fs);
+    const contextsList = await generateFileList(contextsPath, 'spec/contexts/v1/', { isContext: true }, fs);
     indexContent = indexContent.replace(
       /<!-- CONTEXTS_LIST_START -->(.|\n)*<!-- CONTEXTS_LIST_END -->/,
       '<!-- CONTEXTS_LIST_START -->\n' + contextsList + '\n                            <!-- CONTEXTS_LIST_END -->'

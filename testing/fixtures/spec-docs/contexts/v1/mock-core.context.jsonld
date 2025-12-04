@@ -1,10 +1,13 @@
 {
-    "@context": {
-        "mockProduct": {
-            "@id": "https://dpp-keystone.org/spec/v1/terms#MockProduct"
-        },
-        "mockProp": {
-            "@id": "https://dpp-keystone.org/spec/v1/terms#mockProperty"
+    "@context": [
+        "https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld",
+        {
+            "mockProduct": {
+                "@id": "https://dpp-keystone.org/spec/v1/terms#MockProduct"
+            },
+            "mockProp": {
+                "@id": "https://dpp-keystone.org/spec/v1/terms#mockProperty"
+            }
         }
-    }
+    ]
 }

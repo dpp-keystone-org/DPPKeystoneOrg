@@ -22,7 +22,7 @@ describe('index.html generation', () => {
     expect(indexContent).toMatch(examplesRegex);
 
     // Also check for a specific file to be reasonably sure the content is correct
-    expect(indexContent).toContain('<a href="spec/contexts/v1/dpp-core.context.jsonld">Dpp Core Context</a>');
+    expect(indexContent).toContain('<a href="spec/contexts/v1/dpp-core.context/index.html">Dpp Core Context</a>');
     // The ontology link should now point to the generated module index page.
     expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/index.html">Product</a>');
     // It should also contain a nested link to a class within that module.
