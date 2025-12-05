@@ -5,7 +5,8 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "dcterms": "http://purl.org/dc/terms/"
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
   },
   "@id": "https://dpp-keystone.org/ontology/v1/core/EPD",
   "@type": "owl:Ontology",
@@ -501,6 +502,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Upstream A1",
       "rdfs:term_status": "unstable"
     },
@@ -512,6 +516,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Core Process A2",
       "rdfs:term_status": "unstable"
     },
@@ -523,6 +530,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Core Process A3",
       "rdfs:term_status": "unstable"
     },
@@ -534,6 +544,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Downstream A4",
       "rdfs:term_status": "unstable"
     },
@@ -545,6 +558,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Downstream C1",
       "rdfs:term_status": "unstable"
     },
@@ -556,6 +572,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Downstream C2",
       "rdfs:term_status": "unstable"
     },
@@ -567,6 +586,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Downstream C3",
       "rdfs:term_status": "unstable"
     },
@@ -578,6 +600,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Downstream C4",
       "rdfs:term_status": "unstable"
     },
@@ -589,6 +614,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "D",
       "rdfs:term_status": "unstable"
     },
@@ -600,6 +628,9 @@
         "@id": "dppk:ImpactValues"
       },
       "rdfs:range": "xsd:decimal",
+      "owl:equivalentProperty": {
+        "@id": "schema:value"
+      },
       "rdfs:comment": "Total",
       "rdfs:term_status": "unstable"
     }
