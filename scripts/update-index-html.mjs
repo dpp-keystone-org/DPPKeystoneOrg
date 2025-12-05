@@ -16,7 +16,13 @@ const SRC_DIR = path.join(PROJECT_ROOT, 'src');
  */
 export async function generateFileList(dirPath, baseHref, options = {}, fs) {
   const files = await fs.readdir(dirPath);
-  const filteredFiles = files.filter(file => !file.startsWith('.') && (file.endsWith('.json') || file.endsWith('.jsonld')) && file !== 'ProductDetails.jsonld');
+  
+  let filteredFiles;
+  if (options.isUtil) {
+    filteredFiles = files.filter(file => file.endsWith('.js') && !file.endsWith('.test.js'));
+  } else {
+    filteredFiles = files.filter(file => !file.startsWith('.') && (file.endsWith('.json') || file.endsWith('.jsonld')) && file !== 'ProductDetails.jsonld');
+  }
 
   const listItems = await Promise.all(filteredFiles.map(async (file) => {
     const fileName = path.basename(file, path.extname(file));
@@ -25,11 +31,15 @@ export async function generateFileList(dirPath, baseHref, options = {}, fs) {
     if (options.removeV1) {
       linkText = linkText.replace(/-v1$/, '');
     }
-    
-    linkText = linkText
-      .replace(/-/g, ' ')
-      .replace(/\.context$/, ' Context')
-      .replace(/\b\w/g, l => l.toUpperCase());
+
+    if (options.isUtil) {
+      linkText = file; // For utils, use the full filename
+    } else {
+      linkText = linkText
+        .replace(/-/g, ' ')
+        .replace(/\.context$/, ' Context')
+        .replace(/\b\w/g, l => l.toUpperCase());
+    }
 
     if (options.isOntology) {
       const linkHref = `${baseHref}${fileName}/index.html`;
@@ -101,6 +111,14 @@ export async function updateIndexHtml({
     indexContent = indexContent.replace(
       /<!-- EXAMPLES_LIST_START -->(.|\n)*<!-- EXAMPLES_LIST_END -->/,
       '<!-- EXAMPLES_LIST_START -->\n' + examplesList + '\n                    <!-- EXAMPLES_LIST_END -->'
+    );
+
+    // Generate and inject utilities list
+    const utilsPath = path.join(srcDir, 'util', 'js');
+    const utilsList = await generateFileList(utilsPath, 'spec/util/js/', { isUtil: true }, fs);
+    indexContent = indexContent.replace(
+      /<!-- UTILITIES_LIST_START -->(.|\n)*<!-- UTILITIES_LIST_END -->/,
+      '<!-- UTILITIES_LIST_START -->\n' + utilsList + '\n                    <!-- UTILITIES_LIST_END -->'
     );
 
     await fs.writeFile(indexHtmlPath, indexContent, 'utf-8');

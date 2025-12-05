@@ -15,11 +15,13 @@ describe('index.html generation', () => {
     const ontologyCoreRegex = /<!-- ONTOLOGY_CORE_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- ONTOLOGY_CORE_LIST_END -->/;
     const ontologySectorsRegex = /<!-- ONTOLOGY_SECTORS_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- ONTOLOGY_SECTORS_LIST_END -->/;
     const examplesRegex = /<!-- EXAMPLES_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- EXAMPLES_LIST_END -->/;
+    const utilsRegex = /<!-- UTILITIES_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- UTILITIES_LIST_END -->/;
 
     expect(indexContent).toMatch(contextsRegex);
     expect(indexContent).toMatch(ontologyCoreRegex);
     expect(indexContent).toMatch(ontologySectorsRegex);
     expect(indexContent).toMatch(examplesRegex);
+    expect(indexContent).toMatch(utilsRegex);
 
     // Also check for a specific file to be reasonably sure the content is correct
     expect(indexContent).toContain('<a href="spec/contexts/v1/dpp-core.context/index.html">Dpp Core Context</a>');
@@ -28,5 +30,6 @@ describe('index.html generation', () => {
     // It should also contain a nested link to a class within that module.
     expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/Product.html">Product or Material</a>');
     expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v1.json">Sock Dpp</a>');
+    expect(indexContent).toContain('<a href="spec/util/js/dpp-adapter.js">dpp-adapter.js</a>');
   });
 });

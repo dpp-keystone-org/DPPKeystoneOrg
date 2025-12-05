@@ -64,6 +64,18 @@ The `npm run build` command orchestrates a series of scripts to generate the pro
 
 This process transforms the development source files into a clean, well-documented, and deployable state.
 
+## JavaScript Utilities
+
+This repository is beginning to include a collection of JavaScript utilities designed to help developers work with DPP Keystone data. These utilities can be found in the `dist/spec/util/js` directory of the deployed site.
+
+### EPD Adapter (`dpp-adapter.js`)
+
+The Environmental Product Declaration (EPD) Adapter is a powerful utility for transforming the rich, semantic EPD data embedded in a DPP into a more widely recognized format.
+
+-   **Purpose**: It processes a DPP JSON-LD document, expands the EPD indicators (like Global Warming Potential) using the Keystone ontologies, and converts each one into a `schema.org/Certification` object.
+-   **Benefit**: This allows search engines and other semantic data consumers that understand schema.org to immediately interpret your product's environmental impact data as a verifiable certification, increasing data interoperability.
+-   **Usage**: The library exports an `EPDAdapter` function that takes the DPP document as input and returns a promise that resolves to an array of certification objects. A corresponding test file is provided alongside the utility to demonstrate its usage.
+
 ## Automated Build and Deployment
 
 This project uses GitHub Actions to automate the testing and deployment process. When changes are pushed to the `main` branch, the following steps are executed automatically:

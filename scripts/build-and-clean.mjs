@@ -94,7 +94,7 @@ async function build() {
     // Copy branding to the root of dist
     await fse.copy(path.join(SOURCE_DIR, 'branding'), path.join(BUILD_DIR, 'branding'));
     console.log(`Copied branding to dist root`);
-    
+
     // Copy root-level static assets
     const rootStaticAssets = ['index.html', 'docs', 'CONTRIBUTING.md', 'LICENSE', 'README.md'];
     for (const asset of rootStaticAssets) {
