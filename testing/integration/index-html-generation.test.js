@@ -30,6 +30,7 @@ describe('index.html generation', () => {
     // It should also contain a nested link to a class within that module.
     expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/Product.html">Product or Material</a>');
     expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v1.json">Sock Dpp</a>');
-    expect(indexContent).toContain('<a href="spec/util/js/dpp-adapter.js">dpp-adapter.js</a>');
+    expect(indexContent).toContain('<a href="spec/util/js/client/dpp-adapter.js">client/dpp-adapter.js</a>');
+    expect(indexContent).toContain('<a href="spec/util/js/server/dpp-adapter.js">server/dpp-adapter.js</a>');
   });
 });

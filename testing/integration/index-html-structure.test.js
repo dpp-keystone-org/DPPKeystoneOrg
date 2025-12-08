@@ -1,5 +1,6 @@
 import { jest } from '@jest/globals';
 import { promises as fs } from 'fs';
+import { Dirent } from 'fs'; // Import Dirent
 import { generateFileList } from '../../scripts/update-index-html.mjs';
 import * as specDocs from '../../scripts/generate-spec-docs.mjs';
 
@@ -32,7 +33,12 @@ describe('generateFileList for ontologies', () => {
 
     test('should generate a details element wrapping the summary and list for ontologies with classes and exclude specified files', async () => {
         // Arrange
-        readdirSpy.mockResolvedValue(['mock-ontology.jsonld', 'ProductDetails.jsonld']);
+        // Mock Dirent objects
+        const mockEntries = [
+            Object.assign(new Dirent(), { name: 'mock-ontology.jsonld', isFile: () => true, isDirectory: () => false }),
+            Object.assign(new Dirent(), { name: 'ProductDetails.jsonld', isFile: () => true, isDirectory: () => false }),
+        ];
+        readdirSpy.mockResolvedValue(mockEntries);
         readFileSpy.mockResolvedValue(mockOntologyContentWithClass);
 
 
@@ -40,7 +46,7 @@ describe('generateFileList for ontologies', () => {
         const baseHref = 'spec/ontology/v1/core/';
 
         // Act
-        const htmlList = await generateFileList(dirPath, baseHref, { isOntology: true }, fs);
+        const htmlList = await generateFileList(dirPath, baseHref, { isOntology: true });
 
         // Assert
         const expectedSummary = `<summary><a href="spec/ontology/v1/core/mock-ontology/index.html">Mock Ontology</a></summary>`;

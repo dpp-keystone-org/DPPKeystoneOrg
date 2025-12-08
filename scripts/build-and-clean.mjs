@@ -39,7 +39,7 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
-        if (entry.name === 'desktop.ini' || entry.name === 'branding') {
+        if (entry.name === 'desktop.ini' || entry.name === 'branding' || entry.name === 'index.html') {
             continue;
         }
         const sourcePath = path.join(sourceDir, entry.name);

@@ -1,9 +1,14 @@
 /** @type {import('jest').Config} */
 const config = {
     // The root of your source code, allows Jest to resolve modules
-    rootDir: '.',
+    rootDir: '..',
     // Use Node.js environment for testing
     testEnvironment: 'node',
+    // Glob patterns for test files
+    testMatch: [
+        '<rootDir>/testing/integration/**/*.test.js',
+        '<rootDir>/src/util/js/**/*.test.js'
+    ],
     // Explicitly tell Jest to use babel-jest for transforming JS/MJS files.
     // This is crucial for ESM support, including `import.meta.url`.
     transform: {
