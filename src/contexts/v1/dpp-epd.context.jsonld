@@ -4,12 +4,11 @@
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
 
-        // Class Definitions
-
         // Term for EPD Data Block which holds an array of EPD Indicators
-            "epd": {
-              "@id": "dppk:epd"
-            },
+        "epd": {
+            "@id": "dppk:epd"
+        },
+
         // EPD Indicators
         "gwp": "dppk:gwp",
         "gwpF": "dppk:gwpF",

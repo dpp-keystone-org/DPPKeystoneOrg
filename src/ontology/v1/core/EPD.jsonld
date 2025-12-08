@@ -16,6 +16,20 @@
   },
   "@graph": [
     {
+      "@id": "dppk:EPDBlock",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Environmental Product Declaration",
+      "rdfs:comment": "A class to hold all environmental impact categories in a compact dictionary format.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:ImpactValues",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Impact Values",
+      "rdfs:comment": "A class to hold the values for a single environmental impact indicator across different life cycle stages.",
+      "rdfs:term_status": "unstable"
+    },
+    {
       "@id": "dppk:governedBy",
       "@type": "owl:AnnotationProperty",
       "rdfs:label": "Governed By",
@@ -44,20 +58,6 @@
       "rdfs:range": {
         "@id": "dppk:EPDBlock"
       },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:EPDBlock",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Environmental Product Declaration",
-      "rdfs:comment": "A class to hold all environmental impact categories in a compact dictionary format.",
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:ImpactValues",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Impact Values",
-      "rdfs:comment": "A class to hold the values for a single environmental impact indicator across different life cycle stages.",
       "rdfs:term_status": "unstable"
     },
     {
@@ -199,7 +199,7 @@
         },
         {
           "@language": "el",
-          "@value": "Δυναμικό Παγκόσμιας Θέρμανσης, ορυκτά καύσιμα"
+          "@value": "Δυναμικό Παγκόσμιας Θέρμανσης, ορυκτά καύσιма"
         },
         {
           "@language": "es",
@@ -1329,7 +1329,7 @@
         },
         {
           "@language": "el",
-          "@value": "Δυναμικό Εξάντλησης Αβιοτικών Στοιχείων"
+          "@value": "Δυναμικό Εξάνтλησης Αβιοτικών Στοιχείων"
         },
         {
           "@language": "es",
@@ -1555,7 +1555,7 @@
         },
         {
           "@language": "el",
-          "@value": "Δυναμικό Εξάντλησης Νερού"
+          "@value": "Δυναμικό Εξάνтλησης Νερού"
         },
         {
           "@language": "es",
