@@ -28,7 +28,7 @@
       "rdfs:label": "Indicator",
       "rdfs:comment": "A generic property representing an environmental impact indicator.",
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:term_status": "unstable"
     },
@@ -42,12 +42,12 @@
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:epd",
+      "@id": "dppk:EPDBlock",
       "@type": "rdfs:Class",
       "rdfs:label": "Environmental Product Declaration",
       "rdfs:comment": "A class to hold all environmental impact categories in a compact dictionary format.",
@@ -165,7 +165,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -278,7 +278,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -391,7 +391,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -504,7 +504,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -617,7 +617,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -730,7 +730,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -808,7 +808,7 @@
         },
         {
           "@language": "nl",
-          "@value": "Zure depositie potentieel"
+          "@value": "Verzuringspotentieel"
         },
         {
           "@language": "pl",
@@ -843,7 +843,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -956,7 +956,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -1069,7 +1069,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -1182,7 +1182,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -1295,7 +1295,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -1321,7 +1321,7 @@
         },
         {
           "@language": "da",
-          "@value": "Abiotic nedbrydningspotentiale (elementer)"
+          "@value": "Abiotisk nedbrydningspotentiale (elementer)"
         },
         {
           "@language": "de",
@@ -1373,7 +1373,7 @@
         },
         {
           "@language": "nl",
-          "@value": "Abiotic uitputtingspotentieel (elementen)"
+          "@value": "Abiotisch uitputtingspotentieel (elementen)"
         },
         {
           "@language": "pl",
@@ -1385,7 +1385,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de epuizare abiotica (elemente)"
+          "@value": "Potențial de epuizare abiotică (elemente)"
         },
         {
           "@language": "sk",
@@ -1401,14 +1401,14 @@
         },
         {
           "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Abiotic (eilimintí)"
+          "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)"
         }
       ],
       "dppk:unit": "kg Sb eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -1430,11 +1430,11 @@
         },
         {
           "@language": "cs",
-          "@value": "Potenciál vyčerpání abiotických paliv"
+          "@value": "Potenciál vyčerpania abiotických paliv"
         },
         {
           "@language": "da",
-          "@value": "Abiotic nedbrydningspotentiale (fossile brændstoffer)"
+          "@value": "Abiotisk nedbrydningspotentiale (fossile brændstoffer)"
         },
         {
           "@language": "de",
@@ -1486,7 +1486,7 @@
         },
         {
           "@language": "nl",
-          "@value": "Abiotic uitputtingspotentieel (fossiele brandstoffen)"
+          "@value": "Abiotisch uitputtingspotentieel (fossiele brandstoffen)"
         },
         {
           "@language": "pl",
@@ -1498,7 +1498,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de epuizare abiotica (combustibili fosili)"
+          "@value": "Potențial de epuizare abiotică (combustibili fosili)"
         },
         {
           "@language": "sk",
@@ -1514,14 +1514,14 @@
         },
         {
           "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Abiotic (breoslaí iontaise)"
+          "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)"
         }
       ],
       "dppk:unit": "MJ",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
@@ -1623,7 +1623,7 @@
         },
         {
           "@language": "sv",
-          "@value": "Vattenuttags‐potential"
+          "@value": "Vattenuttagspotential"
         },
         {
           "@language": "ga",
@@ -1634,7 +1634,7 @@
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": {
-        "@id": "dppk:epd"
+        "@id": "dppk:EPDBlock"
       },
       "rdfs:range": {
         "@id": "dppk:ImpactValues"

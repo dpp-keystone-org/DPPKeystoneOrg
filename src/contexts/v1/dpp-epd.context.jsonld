@@ -5,12 +5,8 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
 
         // Class Definitions
-        "EPD": "dppk:epd",
-        "ImpactValues": "dppk:ImpactValues",
 
-        "indicator": "dppk:indicator",
-
-        // EPD Terms
+        // Term for EPD Data Block which holds an array of EPD Indicators
             "epd": {
               "@id": "dppk:epd"
             },
