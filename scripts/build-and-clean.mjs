@@ -96,7 +96,7 @@ async function build() {
     console.log(`Copied branding to dist root`);
 
     // Copy root-level static assets
-    const rootStaticAssets = ['index.html', 'docs', 'CONTRIBUTING.md', 'LICENSE', 'README.md'];
+    const rootStaticAssets = ['docs', 'CONTRIBUTING.md', 'LICENSE', 'README.md'];
     for (const asset of rootStaticAssets) {
         const sourcePath = path.join(PROJECT_ROOT, asset);
         const targetPath = path.join(BUILD_DIR, asset);
