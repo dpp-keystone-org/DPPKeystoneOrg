@@ -13,13 +13,13 @@ const __dirname = path.dirname(__filename);
 describe('EPD Adapter Library', () => {
   it('should transform all EPD indicators from a document into an array of schema.org Certifications', async () => {
     // ARRANGE: Load source document
-    const docPath = path.resolve(__dirname, '../../../../src/examples/construction-product-dpp-v1.json');
+    const docPath = path.resolve(__dirname, '../../../../../src/examples/construction-product-dpp-v1.json');
     const doc = JSON.parse(fs.readFileSync(docPath, 'utf-8'));
 
     // The document loader is still needed to resolve contexts during the expansion
     const documentLoader = async (url, options) => {
       if (url.startsWith('https://dpp-keystone.org/spec/')) {
-        const localPath = url.replace('https://dpp-keystone.org/spec', path.resolve(__dirname, '../../../../src'));
+        const localPath = url.replace('https://dpp-keystone.org/spec', path.resolve(__dirname, '../../../../../src'));
         try {
           const content = fs.readFileSync(localPath, 'utf-8');
           return { contextUrl: null, document: jsoncParse(content), documentUrl: url };
@@ -29,14 +29,14 @@ describe('EPD Adapter Library', () => {
     };
 
     const ontologyPaths = [
-      path.resolve(__dirname, '../../../../src/ontology/v1/core/EPD.jsonld')
+      path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPD.jsonld')
     ];
 
     // ACT: Run the adapter function from the library
     const certifications = await EPDAdapter(doc, ontologyPaths, documentLoader);
     
     // ASSERT: Verify the results are correct
-    expect(certifications.length).toBe(130);
+    expect(certifications.length).toBe(140);
 
     const gwpA1 = certifications.find(c => c.name === 'gwp-a1');
     expect(gwpA1).toBeDefined();

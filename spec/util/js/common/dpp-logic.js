@@ -1,24 +1,20 @@
-
-import { parse as jsoncParse } from 'jsonc-parser';
 import jsonld from 'jsonld';
-import fs from 'fs';
-import path from 'path';
 
-// Using a global dictionary with memoization to avoid re-building on every call
-const dictionary = {};
+const getValue = (node, property) => node?.[property]?.[0]?.['@value'];
 
 /**
- * Parses the ontology files to build a dictionary of indicator metadata.
- * This makes the transformation logic data-driven, not hardcoded.
- * @param {string[]} ontologyPaths - An array of paths to ontology files.
+ * Parses ontology files to build a dictionary of indicator metadata.
+ * This is a generic function that accepts a loader for environment-specific data fetching.
+ * @param {string[]} ontologyPaths - An array of paths or URLs to ontology files.
+ * @param {Function} loader - An async function that takes a path and returns the JSON content.
  * @param {Function} documentLoader - The JSON-LD document loader.
+ * @param {object} dictionary - The dictionary object to populate.
  */
-async function buildDictionary(ontologyPaths, documentLoader) {
-    if (Object.keys(dictionary).length > 0) return dictionary;
+export async function buildDictionary(ontologyPaths, loader, documentLoader, dictionary) {
+    if (Object.keys(dictionary).length > 0) return;
 
     for (const ontologyPath of ontologyPaths) {
-        const content = fs.readFileSync(ontologyPath, 'utf-8');
-        const ontology = jsoncParse(content);
+        const ontology = await loader(ontologyPath);
         const expanded = await jsonld.expand(ontology, { documentLoader });
         
         const nodes = expanded[0]?.['@graph'] || expanded;
@@ -42,22 +38,16 @@ async function buildDictionary(ontologyPaths, documentLoader) {
             }
         });
     }
-    return dictionary;
 }
 
-const getValue = (node, property) => node?.[property]?.[0]?.['@value'];
-
 /**
- * The main Adapter function. It learns from the ontology and transforms the expanded graph.
- * @param {object} productDoc - The raw DPP JSON document.
- * @param {Function} documentLoader - The JSON-LD document loader.
+ * Transforms an expanded EPD graph into an array of schema.org Certifications.
+ * This is the core, environment-agnostic logic.
+ * @param {object} expanded - The expanded JSON-LD graph.
+ * @param {object} dictionary - The dictionary of indicator metadata.
  * @returns {Array} An array of schema.org certification objects.
  */
-export async function EPDAdapter(productDoc, ontologyPaths, documentLoader) {
-    const dictionary = await buildDictionary(ontologyPaths, documentLoader);
-
-    const expanded = await jsonld.expand(productDoc, { documentLoader });
-    
+export function transformEPD(expanded, dictionary) {
     const productNode = expanded.find(n => n['https://dpp-keystone.org/spec/v1/terms#DPPID']);
     if (!productNode) throw new Error("Could not find the main Product node in the expanded graph.");
 
