@@ -38,13 +38,13 @@ describe('EPD Adapter Library', () => {
     // ASSERT: Verify the results are correct
     expect(certifications.length).toBe(130);
 
-    const gwpA1 = certifications.find(c => c.name === 'GWP-A1');
+    const gwpA1 = certifications.find(c => c.name === 'gwp-a1');
     expect(gwpA1).toBeDefined();
     expect(gwpA1.hasMeasurement.value).toEqual(348);
     expect(gwpA1.hasMeasurement.unitText).toEqual('kg CO₂ eq');
     expect(gwpA1.issuedBy.name).toEqual('ExampleCorp');
 
-    const adpfD = certifications.find(c => c.name === 'ADPF-D');
+    const adpfD = certifications.find(c => c.name === 'adpf-d');
     expect(adpfD).toBeDefined();
     expect(adpfD.hasMeasurement.value).toEqual(5620);
     expect(adpfD.hasMeasurement.unitText).toEqual('MJ');
