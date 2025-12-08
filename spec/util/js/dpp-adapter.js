@@ -61,15 +61,15 @@ export async function EPDAdapter(productDoc, ontologyPaths, documentLoader) {
     const productNode = expanded.find(n => n['https://dpp-keystone.org/spec/v1/terms#DPPID']);
     if (!productNode) throw new Error("Could not find the main Product node in the expanded graph.");
 
-    const epdsNode = productNode['https://dpp-keystone.org/spec/v1/terms#epds'][0];
-    if (!epdsNode) throw new Error("No EPDs node found in the product!");
+    const epdNode = productNode['https://dpp-keystone.org/spec/v1/terms#epd'][0];
+    if (!epdNode) throw new Error("No EPD node found in the product!");
 
     const manufacturerNode = productNode['https://dpp-keystone.org/spec/v1/terms#manufacturer'][0];
     const manufacturerName = getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#organizationName') || 'Unknown';
 
     const certifications = [];
 
-    for (const [indicatorUri, stagesIdList] of Object.entries(epdsNode)) {
+    for (const [indicatorUri, stagesIdList] of Object.entries(epdNode)) {
         if (indicatorUri.startsWith('@')) continue;
 
         const definition = dictionary[indicatorUri] || { unit: "Unknown", label: indicatorUri.split('#')[1] };

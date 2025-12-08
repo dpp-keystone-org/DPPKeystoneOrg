@@ -6,61 +6,101 @@
     "EPD": "dppk:epd",
     "ImpactValues": "dppk:ImpactValues",
     "indicator": "dppk:indicator",
-    "epds": {
-      "@id": "dppk:epds"
+    "epd": {
+      "@id": "dppk:epd"
     },
-    "GWP": "dppk:GWP",
-    "GWPf": "dppk:GWPf",
-    "GWP_b": "dppk:GWPb",
-    "GWPluluc": "dppk:GWPluluc",
-    "GWPghg": "dppk:GWPghg",
-    "ODP": "dppk:ODP",
-    "AP": "dppk:AP",
-    "EPf": "dppk:EPf",
-    "EPm": "dppk:EPm",
-    "EPt": "dppk:EPt",
-    "POCP": "dppk:POCP",
-    "ADPE": "dppk:ADPE",
-    "ADPF": "dppk:ADPF",
-    "WDP": "dppk:WDP",
+    "gwp": "dppk:gwp",
+    "gwpF": "dppk:gwpF",
+    "gwpB": "dppk:gwpB",
+    "gwpLuluc": "dppk:gwpLuluc",
+    "gwpGhg": "dppk:gwpGhg",
+    "odp": "dppk:odp",
+    "ap": "dppk:ap",
+    "epF": "dppk:epF",
+    "epM": "dppk:epM",
+    "epT": "dppk:epT",
+    "pocp": "dppk:pocp",
+    "adpe": "dppk:adpe",
+    "adpf": "dppk:adpf",
+    "wdp": "dppk:wdp",
+    "a1": {
+      "@id": "dppk:a1",
+      "@type": "xsd:decimal"
+    },
     "A1": {
-      "@id": "dppk:A1",
+      "@id": "dppk:a1",
+      "@type": "xsd:decimal"
+    },
+    "a2": {
+      "@id": "dppk:a2",
       "@type": "xsd:decimal"
     },
     "A2": {
-      "@id": "dppk:A2",
+      "@id": "dppk:a2",
+      "@type": "xsd:decimal"
+    },
+    "a3": {
+      "@id": "dppk:a3",
       "@type": "xsd:decimal"
     },
     "A3": {
-      "@id": "dppk:A3",
+      "@id": "dppk:a3",
+      "@type": "xsd:decimal"
+    },
+    "a4": {
+      "@id": "dppk:a4",
       "@type": "xsd:decimal"
     },
     "A4": {
-      "@id": "dppk:A4",
+      "@id": "dppk:a4",
+      "@type": "xsd:decimal"
+    },
+    "c1": {
+      "@id": "dppk:c1",
       "@type": "xsd:decimal"
     },
     "C1": {
-      "@id": "dppk:C1",
+      "@id": "dppk:c1",
+      "@type": "xsd:decimal"
+    },
+    "c2": {
+      "@id": "dppk:c2",
       "@type": "xsd:decimal"
     },
     "C2": {
-      "@id": "dppk:C2",
+      "@id": "dppk:c2",
+      "@type": "xsd:decimal"
+    },
+    "c3": {
+      "@id": "dppk:c3",
       "@type": "xsd:decimal"
     },
     "C3": {
-      "@id": "dppk:C3",
+      "@id": "dppk:c3",
+      "@type": "xsd:decimal"
+    },
+    "c4": {
+      "@id": "dppk:c4",
       "@type": "xsd:decimal"
     },
     "C4": {
-      "@id": "dppk:C4",
+      "@id": "dppk:c4",
+      "@type": "xsd:decimal"
+    },
+    "d": {
+      "@id": "dppk:d",
       "@type": "xsd:decimal"
     },
     "D": {
-      "@id": "dppk:D",
+      "@id": "dppk:d",
+      "@type": "xsd:decimal"
+    },
+    "total": {
+      "@id": "dppk:total",
       "@type": "xsd:decimal"
     },
     "Total": {
-      "@id": "dppk:Total",
+      "@id": "dppk:total",
       "@type": "xsd:decimal"
     }
   }
