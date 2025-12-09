@@ -76,6 +76,10 @@ The Environmental Product Declaration (EPD) Adapter is a powerful utility for tr
 -   **Benefit**: This allows search engines and other semantic data consumers that understand schema.org to immediately interpret your product's environmental impact data as a verifiable certification, increasing data interoperability.
 -   **Usage**: The library exports an `EPDAdapter` function that takes the DPP document as input and returns a promise that resolves to an array of certification objects. A corresponding test file is provided alongside the utility to demonstrate its usage.
 
+## AI-Assisted Development
+
+This project uses an `AI_ROADMAP.md` file in the root directory to track development tasks and maintain context for AI-assisted engineering. This file outlines completed work, current priorities, and next steps, ensuring continuity and focus across development sessions.
+
 ## Automated Build and Deployment
 
 This project uses GitHub Actions to automate the testing and deployment process. When changes are pushed to the `main` branch, the following steps are executed automatically:
