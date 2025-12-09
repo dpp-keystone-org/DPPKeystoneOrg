@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/textile.schema.json",
+  "title": "DPP for Textiles (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the textile sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "draft_textile_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "fibreComposition": {
+        "type": "array"
+      },
+      "color": {
+        "type": "string"
+      },
+      "sizeCode": {
+        "type": "string"
+      },
+      "careInstructions": {
+        "type": "string"
+      },
+      "recycledContentPercentage": {
+        "type": "number"
+      },
+      "animalOriginNonTextile": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "fibreComposition",
+      "color",
+      "sizeCode",
+      "careInstructions",
+      "recycledContentPercentage",
+      "animalOriginNonTextile"
+    ]
+  }
+}

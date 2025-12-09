@@ -1,5 +1,4 @@
-import jsonld from 'jsonld';
-import { transformEPD, buildDictionary } from '../common/dpp-logic.js';
+import { transform, buildDictionary } from '../common/dpp-logic.js';
 
 // Using a global dictionary with memoization to avoid re-building on every call
 const dictionary = {};
@@ -15,15 +14,17 @@ async function loader(path) {
 }
 
 /**
- * The client-side EPD Adapter. It learns from the ontology and transforms the expanded graph.
+ * The client-side DPP transformer. It uses a profile-based engine to transform DPP data.
  * @param {object} productDoc - The raw DPP JSON document.
- * @param {string[]} ontologyPaths - An array of paths to ontology files.
- * @param {Function} documentLoader - The JSON-LD document loader.
- * @returns {Array} An array of schema.org certification objects.
+ * @param {object} options - The transformation options.
+ * @param {string} options.profile - The name of the target profile (e.g., 'schema.org').
+ * @param {string[]} options.ontologyPaths - An array of paths to ontology files.
+ * @param {Function} options.documentLoader - The JSON-LD document loader.
+ * @returns {Promise<Array>} A promise that resolves to an array of transformed objects.
  */
-export async function EPDAdapter(productDoc, ontologyPaths, documentLoader) {
+export async function transformDpp(productDoc, options) {
+    const { ontologyPaths, documentLoader } = options;
     await buildDictionary(ontologyPaths, loader, documentLoader, dictionary);
-    const expanded = await jsonld.expand(productDoc, { documentLoader });
     
-    return transformEPD(expanded, dictionary);
+    return transform(productDoc, options, dictionary);
 }

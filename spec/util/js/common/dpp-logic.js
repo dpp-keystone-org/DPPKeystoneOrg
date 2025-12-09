@@ -1,6 +1,9 @@
 import jsonld from 'jsonld';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js';
 
-const getValue = (node, property) => node?.[property]?.[0]?.['@value'];
+const profiles = {
+    'schema.org': schemaOrgProfile,
+};
 
 /**
  * Parses ontology files to build a dictionary of indicator metadata.
@@ -41,49 +44,69 @@ export async function buildDictionary(ontologyPaths, loader, documentLoader, dic
 }
 
 /**
- * Transforms an expanded EPD graph into an array of schema.org Certifications.
- * This is the core, environment-agnostic logic.
- * @param {object} expanded - The expanded JSON-LD graph.
+ * A generic transformation engine for DPP data.
+ * @param {object} dpp - The raw DPP JSON-LD document.
+ * @param {object} options - The transformation options.
+ * @param {string} options.profile - The name of the target profile to use (e.g., 'schema.org').
+ * @param {Function} options.documentLoader - The JSON-LD document loader.
  * @param {object} dictionary - The dictionary of indicator metadata.
- * @returns {Array} An array of schema.org certification objects.
+ * @returns {Promise<Array>} A promise that resolves to an array of transformed objects.
  */
-export function transformEPD(expanded, dictionary) {
-    const productNode = expanded.find(n => n['https://dpp-keystone.org/spec/v1/terms#DPPID']);
-    if (!productNode) throw new Error("Could not find the main Product node in the expanded graph.");
+export async function transform(dpp, options, dictionary) {
+    const { profile: profileName, documentLoader } = options;
 
-    const epdNode = productNode['https://dpp-keystone.org/spec/v1/terms#epd'][0];
-    if (!epdNode) throw new Error("No EPD node found in the product!");
+    // --- Start: Type Inference Logic ---
+    const specIdToType = {
+        'draft_construction_specification_id': 'https://dpp-keystone.org/spec/v1/terms#ConstructionProduct',
+        // Future sector-specific IDs can be added here
+    };
+    const DPP_BASE_TYPE = 'https://dpp-keystone.org/spec/v1/terms#DigitalProductPassport';
 
-    const manufacturerNode = productNode['https://dpp-keystone.org/spec/v1/terms#manufacturer'][0];
-    const manufacturerName = getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#organizationName') || 'Unknown';
-
-    const certifications = [];
-
-    for (const [indicatorUri, stagesIdList] of Object.entries(epdNode)) {
-        if (indicatorUri.startsWith('@')) continue;
-
-        const definition = dictionary[indicatorUri] || { unit: "Unknown", label: indicatorUri.split('#')[1] };
-        
-        const stagesNode = stagesIdList[0];
-        if (!stagesNode) continue;
-
-        for (const [stageUri, valueList] of Object.entries(stagesNode)) {
-            if (stageUri.startsWith('@')) continue;
-            
-            const stageKey = stageUri.split('#')[1];
-            const indicatorShortKey = indicatorUri.split('#')[1];
-            const value = valueList[0]['@value'];
-
-            certifications.push({
-                "@context": "http://schema.org", "@type": "Certification",
-                "name": `${indicatorShortKey}-${stageKey}`, "certificationStatus": "certificationActive",
-                "issuedBy": { "@type": "Organization", "name": manufacturerName },
-                "hasMeasurement": {
-                    "@type": "PropertyValue", "name": `${definition.label} (${stageKey})`,
-                    "value": Number(value), "unitText": definition.unit
-                }
-            });
+    // Ensure dpp['@type'] is an array and contains the base DPP type.
+    // This allows data providers to omit the @type property if a contentSpecificationId is present.
+    if (!dpp['@type']) {
+        dpp['@type'] = [];
+    } else if (!Array.isArray(dpp['@type'])) {
+        dpp['@type'] = [dpp['@type']];
+    }
+    if (!dpp['@type'].includes(DPP_BASE_TYPE)) {
+        dpp['@type'].push(DPP_BASE_TYPE);
+    }
+    
+    // Infer sector-specific types from contentSpecificationIds
+    if (Array.isArray(dpp.contentSpecificationIds)) {
+        for (const id of dpp.contentSpecificationIds) {
+            if (specIdToType[id] && !dpp['@type'].includes(specIdToType[id])) {
+                dpp['@type'].push(specIdToType[id]);
+            }
         }
     }
-    return certifications;
+    // --- End: Type Inference Logic ---
+
+    const profile = profiles[profileName];
+    if (!profile) {
+        throw new Error(`Transformation profile "${profileName}" not found.`);
+    }
+
+    const expanded = await jsonld.expand(dpp, { documentLoader });
+
+    const rootNode = expanded.find(n => {
+        if (!n['@type']) return false;
+        const types = Array.isArray(n['@type']) ? n['@type'] : [n['@type']];
+        return types.includes(DPP_BASE_TYPE);
+    });
+    if (!rootNode) {
+        throw new Error("Could not find the main DigitalProductPassport node in the expanded graph.");
+    }
+    
+    let results = [];
+    for (const transformation of profile.transformations) {
+        const sourceData = rootNode[transformation.source]?.[0];
+        if (sourceData) {
+            const transformedData = transformation.transformer(sourceData, dictionary, rootNode);
+            results = results.concat(transformedData);
+        }
+    }
+
+    return results;
 }

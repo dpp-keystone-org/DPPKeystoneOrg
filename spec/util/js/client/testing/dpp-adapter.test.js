@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { EPDAdapter } from '../dpp-adapter.js';
+import { transformDpp } from '../dpp-adapter.js';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { parse as jsoncParse } from 'jsonc-parser';
@@ -14,7 +14,7 @@ const readFixture = async (filePath) => {
     return jsoncParse(content);
 };
 
-describe('Client-side EPDAdapter', () => {
+describe('Client-side DPP Transformer', () => {
     let productDoc;
     let epdOntology;
     // Store all contexts in a map for easy lookup
@@ -46,38 +46,48 @@ describe('Client-side EPDAdapter', () => {
         });
     });
 
-    it('should transform a product document into schema.org certifications', async () => {
-        const ontologyPaths = ['http://mock.com/EPD.jsonld'];
-        
-        // This document loader now uses the mocked fetch, simulating a real browser
-        const documentLoader = async (url) => {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Failed to load context ${url}: ${response.statusText}`);
+    it('should transform the EPD data into a single schema.org Certification', async () => {
+        const options = {
+            profile: 'schema.org',
+            ontologyPaths: ['http://mock.com/EPD.jsonld'],
+            documentLoader: async (url) => {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to load context ${url}: ${response.statusText}`);
+                }
+                const document = await response.json();
+                return {
+                    contextUrl: null, // Let the library handle this
+                    document,
+                    documentUrl: url
+                };
             }
-            const document = await response.json();
-            return {
-                contextUrl: null, // Let the library handle this
-                document,
-                documentUrl: url
-            };
         };
         
-        const certifications = await EPDAdapter(productDoc, ontologyPaths, documentLoader);
+        const transformedData = await transformDpp(productDoc, options);
 
-        expect(certifications).toBeInstanceOf(Array);
-        // The test data is different from the server-side test, so we expect a different count.
-        // Let's check against the known data in construction-product-dpp-v1.json (14 indicators * 10 stages = 140)
-        expect(certifications.length).toBe(140);
+        const certifications = transformedData.filter(item => item['@type'] === 'Certification');
 
-        const gwpCert = certifications.find(c => c.name === 'gwp-a1');
-        expect(gwpCert).toBeDefined();
-        expect(gwpCert['@type']).toBe('Certification');
-        expect(gwpCert.name).toBe('gwp-a1');
-        expect(gwpCert.hasMeasurement).toBeDefined();
+        // There should be exactly one certification object for the EPD
+        expect(certifications).toHaveLength(1);
+
+        const epdCertification = certifications[0];
+        expect(epdCertification.name).toBe('Environmental Product Declaration');
+        expect(epdCertification['@type']).toBe('Certification');
+
+        // The certification should contain a list of measurements
+        const measurements = epdCertification.hasMeasurement;
+        expect(measurements).toBeInstanceOf(Array);
+        // The test data in construction-product-dpp-v1.json has 14 indicators * 10 stages = 140 measurements
+        expect(measurements).toHaveLength(140);
+
+        // Spot-check one of the measurements (GWP for stage A1)
+        const gwpA1 = measurements.find(m => m.propertyID === 'gwp-a1');
+        expect(gwpA1).toBeDefined();
+        expect(gwpA1['@type']).toBe('PropertyValue');
         // The value in the example file is "3.48E+02", which is 348
-        expect(gwpCert.hasMeasurement.value).toBe(348);
-        expect(gwpCert.hasMeasurement.unitText).toBe('kg CO₂ eq'); // Updated to match server test data
-        expect(gwpCert.hasMeasurement.name).toContain('Global Warming Potential');
+        expect(gwpA1.value).toBe(348);
+        expect(gwpA1.unitText).toBe('kg CO₂ eq');
+        expect(gwpA1.name).toBe('Global Warming Potential (a1)');
     });
 });
