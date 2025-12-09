@@ -20,6 +20,9 @@
       "@type": "rdfs:Class",
       "rdfs:label": "Environmental Product Declaration",
       "rdfs:comment": "A class to hold all environmental impact categories in a compact dictionary format.",
+      "owl:equivalentClass": {
+        "@id": "schema:Certification"
+      },
       "rdfs:term_status": "unstable"
     },
     {

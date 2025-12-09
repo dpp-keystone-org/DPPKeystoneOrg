@@ -1,5 +1,6 @@
 {
     "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
+
     "digitalProductPassportId": "https://www.example.org/dpp/1234545",
     "uniqueProductIdentifier": "https://www.example.org/1234545",
     "granularity": "Model",
@@ -9,7 +10,7 @@
     "economicOperatorId": "gxx:ppp456789",
     "facilityId": "gxx:xxx987654",
     "contentSpecificationIds": [
-        "urn:ec:example_construction_spec_id"
+        "draft_construction_specification_id"
     ],
     "productName": {
         "en-IE": "One Thing",

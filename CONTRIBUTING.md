@@ -34,6 +34,14 @@ We use a standard GitHub Flow for contributions:
     *   Reference any related issues (e.g., "Closes #123").
     *   Ensure all automated checks (CI/CD validation) pass.
 
+### Code Review Process
+
+To ensure the quality and consistency of the data models, all contributions from non-admin contributors require a code review.
+
+-   **Automatic Review Assignment:** The project uses a `.github/CODEOWNERS` file to automatically assign the project owner (@dullb0yj4ck) to review all pull requests.
+-   **Review Criteria:** Pull requests will be reviewed for adherence to the project's goals, style guidelines, and data modeling best practices.
+-   **Merging:** Once a pull request has been approved and all automated checks have passed, it will be merged into the `main` branch.
+
 ## Style and Definition Guidelines
 
 To maintain consistency and semantic rigor, please adhere to the following

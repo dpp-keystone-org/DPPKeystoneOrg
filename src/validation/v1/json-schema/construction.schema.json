@@ -1,0 +1,49 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/construction.schema.json",
+    "title": "DPP for Construction Products (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the construction sector.",
+
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "draft_construction_specification_id"
+                }
+            }
+        },
+        "required": ["contentSpecificationIds"]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "declarationCode": { "type": "string" },
+            "versionNumber": { "type": "string" },
+            "versionDate": { "type": "string", "format": "date" },
+            "productCategory": { "type": "string" },
+            "declaredUses": { "type": "array", "items": { "type": "string" } },
+            "nominalDimensions": { "type": "string" },
+            "keyParts": { "type": "string" },
+            "estimatedServiceLife": { "type": "string" },
+            "variants": { "type": "string" },
+            "latestDeinstallation": { "type": "string" },
+            "unionDatabaseRegistrations": { "type": "string" },
+            "generalProductInformation": { "type": "object" },
+            "instructionsForUse": { "type": "object" },
+            "safetyDataSheet": { "type": "object" },
+            "notifiedBody": { "type": "object" },
+            "technicalAssessmentBody": { "type": "object" },
+            "validationReports": { "type": "string" },
+            "harmonisedStandardReference": { "type": "string" },
+            "europeanAssessmentDocument": { "type": "string" },
+            "softwareAndVersion": { "type": "string" },
+            "dopcDeclarations": { "type": "object" },
+            "epd": { "$ref": "epd.schema.json" }
+        },
+        "required": [
+            "epd"
+        ]
+    }
+}

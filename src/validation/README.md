@@ -25,6 +25,14 @@ Our schema architecture is designed to be modular and extensible, mirroring the 
 
 2.  **Delegated Act (DA) Sub-Schemas:** Multiple, smaller schemas that apply conditionally based on the product type. Each DA corresponds to a specific product category (e.g., Batteries, Textiles) and defines the fields required for that category.
 
+### Schema Scope and Naming
+
+It is critical to understand that sub-schemas are **not** created on a one-to-one basis with example files. Instead, schemas are scoped to a **sector or conceptual domain** that is represented by one or more contexts and ontologies.
+
+-   **Scope:** A single sub-schema should cover all the data requirements for a given sector. For example, a future "Construction Products" schema would validate all relevant fields for that sector, such as EPD (Environmental Product Declaration) and DoPC (Declaration of Performance and Conformity) data.
+-   **Naming:** Sub-schemas should be named after the sector or domain they cover (e.g., `construction.schema.json`, `battery.schema.json`). These names serve as temporary, internal identifiers.
+-   **Future-Proofing:** Eventually, these temporary schema names may be replaced by official, URN-based identifiers once a formal Delegated Act is passed by the EU.
+
 ### Conditional Application of Sub-Schemas
 
 A sub-schema for a Delegated Act is applied **only if** its unique identifier is present in the DPP payload's `contentSpecificationIds` array.

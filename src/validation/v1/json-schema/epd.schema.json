@@ -1,0 +1,47 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/epd.schema.json",
+    "title": "DPP EPD (Environmental Product Declaration) Data Block",
+    "description": "A detailed schema for the EPD data block.",
+    "type": "object",
+    "properties": {
+        "gwp": { "$ref": "#/$defs/indicator" },
+        "gwpF": { "$ref": "#/$defs/indicator" },
+        "gwpB": { "$ref": "#/$defs/indicator" },
+        "gwpLuluc": { "$ref": "#/$defs/indicator" },
+        "gwpGhg": { "$ref": "#/$defs/indicator" },
+        "odp": { "$ref": "#/$defs/indicator" },
+        "ap": { "$ref": "#/$defs/indicator" },
+        "epF": { "$ref": "#/$defs/indicator" },
+        "epM": { "$ref": "#/$defs/indicator" },
+        "epT": { "$ref": "#/$defs/indicator" },
+        "pocp": { "$ref": "#/$defs/indicator" },
+        "adpe": { "$ref": "#/$defs/indicator" },
+        "adpf": { "$ref": "#/$defs/indicator" },
+        "wdp": { "$ref": "#/$defs/indicator" }
+    },
+    "required": [
+        "gwp", "gwpF", "gwpB", "gwpLuluc", "gwpGhg", "odp", "ap", "epF",
+        "epM", "epT", "pocp", "adpe", "adpf", "wdp"
+    ],
+    "$defs": {
+        "indicator": {
+            "type": "object",
+            "properties": {
+                "a1": { "type": "string" },
+                "a2": { "type": "string" },
+                "a3": { "type": "string" },
+                "a4": { "type": "string" },
+                "c1": { "type": "string" },
+                "c2": { "type": "string" },
+                "c3": { "type": "string" },
+                "c4": { "type": "string" },
+                "total": { "type": "string" },
+                "d": { "type": "string" }
+            },
+            "required": [
+                "a1", "a2", "a3", "a4", "c1", "c2", "c3", "c4", "total", "d"
+            ]
+        }
+    }
+}
