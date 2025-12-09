@@ -7,7 +7,7 @@ This document outlines the development tasks, priorities, and progress for AI-as
 ## Tier 1: Foundational Cleanup & Core Tooling (Highest Priority)
 
 - **[PENDING] 1. JSON Schema Overhaul:** Clear critical tech debt related to data validation.
-  - **1a. Document Strategy:** Create a `README.md` in `src/validation/` explaining the role of JSON Schema in the project, its connection to EU regulations, and the validation methodology. Update the main `README.md` to reference this new document.
+- **[COMPLETED] 1a. Document Strategy:** Create a `README.md` in `src/validation/` explaining the role of JSON Schema in the project, its connection to EU regulations, and the validation methodology. Update the main `README.md` to reference this new document.
   - **1b. Audit and Update:** Perform a comprehensive audit of all examples in `src/examples/`. Identify all examples that lack corresponding JSON schema validation or are using outdated schemas.
   - **1c. Implement Schemas:** Create or update the necessary JSON schemas to ensure all existing examples pass strict validation. Update the `testing/integration/dpp-examples.schema.test.js` suite to use these new, more specific schemas.
 
