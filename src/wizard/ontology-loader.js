@@ -22,9 +22,10 @@ export async function loadOntology(sector) {
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
                 if (term['@id'] && (term['rdfs:label'] || term['rdfs:comment'])) {
+                    // Correctly extract the string value from the JSON-LD structure
                     const label = term['rdfs:label'] ? term['rdfs:label']['@value'] : '';
                     const comment = term['rdfs:comment'] ? term['rdfs:comment']['@value'] : '';
-                    
+
                     ontologyMap.set(term['@id'], {
                         label: label || '',
                         comment: comment || ''

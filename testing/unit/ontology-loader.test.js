@@ -73,6 +73,9 @@ describe('DPP Wizard - Ontology Loader', () => {
     });
 
     it('should return null if the fetch fails', async () => {
+        // Suppress console.error for this specific test case
+        const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
         // Mock a failed fetch response
         fetch.mockResolvedValueOnce({
             ok: false,
@@ -86,6 +89,9 @@ describe('DPP Wizard - Ontology Loader', () => {
 
         // Verify it returns null
         expect(ontologyMap).toBeNull();
+
+        // Restore the original console.error
+        consoleErrorSpy.mockRestore();
     });
 
     it('should return an empty map for an ontology with no graph', async () => {
