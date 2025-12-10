@@ -1,114 +1,61 @@
-# Governance Model for the DPP Harmonizing Data Dictionary
+# DPP Keystone Governance Model
 
-This document outlines the governance framework for the maintenance,
-evolution, and versioning of the DPP Harmonizing Data Dictionary (the
-"Keystone" project). Our goal is to ensure stability, transparency, and
-interoperability while remaining responsive to regulatory changes and industry
-needs.
+**STATUS: DRAFT**
+
+> This document outlines the governance model for the DPP Keystone project. This process will be formalized and put into effect as the project matures, gains broader community adoption, and as the initial standardization phase concludes. Until then, decisions will be made by the project owner.
+
+---
 
 ## 1. Guiding Principles
 
-### Stability
-Data definitions used in regulatory contexts must be stable. Once published,
-definitions (URIs) must be persistent and their meaning must not change within
-a major version.
+This project adheres to a set of guiding principles to ensure it remains agile, useful, and aligned with its mission.
 
-### Interoperability
-The primary goal is to harmonize existing standards. We prioritize the reuse and
-mapping of established vocabularies (e.g., GS1, Schema.org, ISO) over creating
-new terms.
+*   **Stability:** Data definitions used in regulatory contexts must be stable. Once published, URIs must be persistent and their meaning must not change within a major version.
+*   **Interoperability:** The primary goal is to harmonize existing standards. We prioritize the reuse and mapping of established vocabularies (e.g., GS1, Schema.org, ISO) over creating new terms.
+*   **Transparency:** All changes and decision-making processes are conducted openly via the GitHub repository.
+*   **Pragmatism over Perfection:** We prioritize practical utility that helps developers implement the DPP today. An imperfect but useful mapping is often better than no mapping at all.
+*   **Standards-Driven Core:** The project's core artifacts must be demonstrably aligned with official EU regulations and standards that define the Digital Product Passport.
 
-### Transparency
-All changes and decision-making processes are conducted openly via the GitHub
-repository.
+## 2. Roles and Responsibilities
 
-### Modularity
-The dictionary is structured modularly (Core vs. Sectors) to allow
-sector-specific evolution without disrupting the horizontal foundation.
+*   **Maintainers:** A core group responsible for the day-to-day management of the repository, reviewing Pull Requests, ensuring technical soundness, and managing releases.
+*   **Contributors:** Any individual or organization submitting changes or participating in discussions (See [CONTRIBUTING.md](../CONTRIBUTING.md)).
+*   **Domain Experts:** Sector-specific experts who provide the necessary knowledge for defining and validating sector-specific ontologies.
+*   **Advisory Board (Future Consideration):** A potential oversight body composed of representatives from the European Commission, SDOs, and key industry alliances to ensure alignment with regulatory intent.
 
-## 2. Stakeholders and Roles
+## 3. The Decision-Making Process
 
-### Maintainers
-A core group responsible for the day-to-day management of the repository,
-reviewing Pull Requests, ensuring technical soundness (validation of
-JSON-LD, RDFS/OWL), and managing releases.
+To balance agility with stability, we employ a **differentiated governance model**. The process for a change depends on the type of artifact being modified.
 
-### Contributors
-Any individual or organization submitting changes, proposing new terms, or
-participating in discussions (See `CONTRIBUTING.md`).
+### 3.1 The Core DPP Header (`dpp.schema.json`)
 
-### Domain Experts / Working Groups
-Sector-specific groups (e.g., Battery experts, Textile industry representatives)
-that provide the necessary expertise for defining and validating sector-specific
-ontologies.
+*   **Policy:** This file is considered **SACROSANCT**. It defines the mandatory data structure that all DPPs must share. Changes are **only** permitted to reflect verified updates in the official EC standards or delegated acts.
+*   **Process:** A change proposal must be filed as a GitHub Issue that quotes or links to the specific section of the official source regulation. Community suggestions for new fields here will not be accepted.
 
-### Advisory Board (Future Consideration)
-A potential oversight body composed of representatives from the European
-Commission, Standardization Bodies (SDOs), and key industry alliances to ensure
-alignment with regulatory intent.
+### 3.2 Sector-Specific Artifacts (e.g., `/sectors/`, `construction.schema.json`)
 
-## 3. Decision-Making Process
+*   **Policy:** These artifacts have a two-stage lifecycle tied to the EU's legal process.
+*   **Lifecycle & Process:**
+    *   **Phase 1: `Draft` Status:** While the corresponding EU Delegated Act for a sector is in development, the artifacts are considered drafts and are open to community contribution via Pull Requests.
+    *   **Phase 2: `Stable` Status:** Once a Delegated Act is legally finalized, the corresponding artifacts become "stable." At this point, their governance model becomes as strict as the Core Header's—changes are only accepted to align with official amendments to the act.
 
-### Minor Changes (Patches/Bug Fixes)
-Fixes for typos, clarification of comments (`rdfs:comment`), or corrections to
-erroneous mappings that do not change the semantic meaning of a term.
+### 3.3 Ontological Mappings (e.g., to `schema.org`, `gs1`, `unece`)
 
-*   **Process:** Submitted via Pull Request (PR). Approved by at least one Maintainer.
-
-### Semantic Enhancements (Minor Versions)
-Addition of new terms, new classes, or new equivalency mappings. These changes
-must be backward-compatible.
-
-*   **Process:** Submitted via PR, often stemming from an Issue discussion.
-    Requires review and approval by Maintainers and relevant Domain Experts. A
-    review period of 14 days is recommended to allow community feedback.
-
-### Breaking Changes (Major Versions)
-Changes that alter the meaning of existing terms, remove terms, or significantly
-restructure the ontology. These are strongly discouraged and only undertaken
-when absolutely necessary (e.g., major regulatory overhaul).
-
-*   **Process:** Requires extensive discussion via a formal Request for
-    Comments (RFC) process (using GitHub Issues/Discussions). Requires
-    consensus among Maintainers and approval from the Advisory Board (if
-    established).
+*   **Policy:** We recognize two tiers of mappings to balance rigor with pragmatism.
+*   **Process:** A Pull Request proposing a mapping should identify it as one of the following:
+    *   **`Authoritative Mapping`:** A mapping with clear, explicit backing in public standards documentation.
+    *   **`Exploratory Mapping`:** A best-effort mapping added to fill known gaps in external standards or to support a specific, real-world use case. The PR must include a justification. These mappings can be annotated with an `rdfs:comment` to clarify their status.
 
 ## 4. Versioning and Releases
 
 We adhere to Semantic Versioning (SemVer) principles (MAJOR.MINOR.PATCH).
 
-### Major Versions (e.g., v1.0.0 -> v2.0.0)
+*   **MAJOR Versions (e.g., v1.x -> v2.0):** Indicate breaking changes. A new directory structure will be created (e.g., `/v2/`). Previous versions will be maintained indefinitely.
+*   **MINOR Versions (e.g., v1.0 -> v1.1):** Indicate backward-compatible additions of new terms or mappings.
+*   **PATCH Versions (e.g., v1.0.0 -> v1.0.1):** Indicate non-semantic fixes or documentation updates.
 
-*   Indicate breaking changes.
-*   A new directory structure will be created (e.g., `ontology/v2/`).
-*   Previous major versions will be maintained and remain accessible indefinitely.
+## 5. Deprecation Policy
 
-### Minor Versions (e.g., v1.0.0 -> v1.1.0)
-
-*   Indicate backward-compatible additions of new terms or mappings.
-*   DPPs created with v1.0.0 will remain valid under v1.1.0.
-
-### Patches (e.g., v1.0.0 -> v1.0.1)
-
-*   Indicate non-semantic fixes or documentation updates.
-
-### Release Cycle
-Releases will be tagged in the Git repository. We aim for a quarterly release
-cycle for Minor Versions, while Patches may be released as needed.
-
-## 5. Persistence and URIs
-
-The stability of the namespace (`https://dpp-keystone.org/spec/v1/terms#`) is paramount.
-
-*   URIs are intended to be persistent identifiers.
-*   The repository infrastructure must ensure that these URIs resolve correctly to the definitions (potentially using content negotiation in the future).
-
-## 6. Deprecation Policy
-
-Terms may occasionally need to be deprecated (e.g., replaced by a more precise
-term).
-
-*   Deprecated terms will be marked using `owl:deprecated true` in the ontology file.
-*   The term will remain in the ontology to ensure existing DPPs do not break.
-*   The `rdfs:comment` will indicate the reason for deprecation and point to the replacement term (if any).
-*   Deprecated terms may be removed only in a new Major Version release.
+*   Terms needing replacement will be marked using `owl:deprecated true`.
+*   The term will remain in the ontology for backward compatibility. The `rdfs:comment` will indicate the reason for deprecation and point to the replacement term.
+*   Deprecated terms may be removed only in a new MAJOR Version release.
