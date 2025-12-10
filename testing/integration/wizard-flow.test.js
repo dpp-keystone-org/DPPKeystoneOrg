@@ -59,8 +59,9 @@ describe('DPP Wizard - Full Integration Flow', () => {
             "properties": {
                 "digitalProductPassportId": { "title": "DPP ID", "type": "string" },
                 "uniqueProductIdentifier": { "title": "Unique Product ID", "type": "string" },
+                "granularity": { "title": "Granularity", "type": "string", "enum": ["Item", "Batch", "Model"] }
             },
-            "required": ["digitalProductPassportId", "uniqueProductIdentifier"]
+            "required": ["digitalProductPassportId", "uniqueProductIdentifier", "granularity"]
         };
         const mockConstructionSchema = {
             "title": "DPP for Construction Products (Test)",
@@ -94,6 +95,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 6. Programmatically fill out the forms
         coreInput.value = 'urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4';
         document.querySelector('[name="uniqueProductIdentifier"]').value = 'urn:uuid:a38f6c90-2b9a-4e6f-8524-7a42f6f3e3f4';
+        document.querySelector('[name="granularity"]').value = 'Batch'; // Select from the enum dropdown
         
         // 7. Simulate user selecting a sector
         const sectorSelect = document.getElementById('sector-select');
@@ -116,12 +118,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // Manually add the remaining required fields that are not in the form
         const finalDpp = {
             ...generatedDpp,
-            granularity: "Item",
             dppSchemaVersion: "1.0.0",
             dppStatus: "active",
             lastUpdate: "2025-12-10T12:00:00Z",
-            economicOperatorId: "urn:uuid:c4b4e72a-0b29-4877-9883-384a5a5b7b5b",
-            contentSpecificationIds: ["construction-product-dpp-v1"]
+            economicOperatorId: "urn:uuid:c4b4e72a-0b29-4877-9883-384a5a5b7b5b"
         };
         
         const validate = ajv.compile(dppSchema);
@@ -133,5 +133,8 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // Also check that the core and sector data is present
         expect(finalDpp.digitalProductPassportId).toBe('urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4');
         expect(finalDpp.productName).toBe('Test Construction Product');
+        expect(finalDpp.granularity).toBe('Batch'); // Assert the selected value is in the output
+        expect(finalDpp.contentSpecificationId).toBe('construction-product-dpp-v1');
+        expect(finalDpp.contentSpecificationIds).toEqual(['construction-product-dpp-v1']);
     });
 });

@@ -65,6 +65,54 @@ describe('DPP Wizard - Form Builder', () => {
         expect(recyclableInput).not.toBeNull();
         expect(recyclableInput.type).toBe('checkbox');
     });
+
+    it('should create a select dropdown for an enum property', () => {
+        const mockSchema = {
+            "type": "object",
+            "properties": {
+                "granularity": {
+                    "title": "Granularity",
+                    "type": "string",
+                    "enum": ["Batch", "Item", "Lot"]
+                }
+            }
+        };
+
+        const fragment = buildForm(mockSchema);
+        document.body.appendChild(fragment);
+
+        const selectElement = document.querySelector('select[name="granularity"]');
+        expect(selectElement).not.toBeNull();
+
+        const options = selectElement.querySelectorAll('option');
+        expect(options.length).toBe(3);
+        expect(options[0].value).toBe('Batch');
+        expect(options[0].textContent).toBe('Batch');
+        expect(options[1].value).toBe('Item');
+        expect(options[1].textContent).toBe('Item');
+        expect(options[2].value).toBe('Lot');
+        expect(options[2].textContent).toBe('Lot');
+    });
+
+    it('should not render the contentSpecificationIds field', () => {
+        const mockSchema = {
+            "type": "object",
+            "properties": {
+                "productName": { "title": "Product Name", "type": "string" },
+                "contentSpecificationIds": { "title": "Content IDs", "type": "array" }
+            }
+        };
+
+        const fragment = buildForm(mockSchema);
+        document.body.appendChild(fragment);
+
+        const skippedInput = document.querySelector('[name="contentSpecificationIds"]');
+        expect(skippedInput).toBeNull();
+
+        // Also ensure the other field is still rendered
+        const productNameInput = document.querySelector('[name="productName"]');
+        expect(productNameInput).not.toBeNull();
+    });
 });
 
 describe('DPP Wizard - DPP Generator', () => {
@@ -120,7 +168,7 @@ describe('DPP Wizard - DPP Generator', () => {
         `;
 
         // 3. Call the generator function
-        const dpp = generateDpp(coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        const dpp = generateDpp('construction', coreFormContainer, formContainer, voluntaryFieldsWrapper);
 
         // 4. Assert the output
         expect(dpp).toEqual({
@@ -129,7 +177,9 @@ describe('DPP Wizard - DPP Generator', () => {
             isHeavy: true,
             isLight: false,
             customColor: 'blue',
-            customMaterial: 'titanium'
+            customMaterial: 'titanium',
+            contentSpecificationId: 'construction-product-dpp-v1',
+            contentSpecificationIds: ['construction-product-dpp-v1'],
         });
     });
 });

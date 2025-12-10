@@ -68,8 +68,17 @@ This document outlines the development tasks, priorities, and progress for AI-as
     - **[COMPLETED] 5h-4. Update DPP Generator:** In `src/wizard/dpp-generator.js`, update the `generateDpp` function to scrape inputs from the new `core-form-container`.
     - **[COMPLETED] 5h-5. Update Integration Test:** In `testing/integration/wizard-flow.test.js`, add an assertion to verify that the core form is present on initial page load.
     - **[COMPLETED] 5h-6. Update Integration Test:** In `testing/integration/wizard-flow.test.js`, update the DPP generation part of the test to confirm data from the core form is included in the final output.
-  - **[PENDING] 5i. Sector-Specific Form UI:** On sector selection, display a 3-column form: (Field Path, Value Input, Ontology Metadata).
-    - **[PENDING] 5i-1. Create `ontology-loader.js`:** Create the new module to fetch and parse ontology files into a simple metadata map.
+    **[COMPLETED] 5h-7. Implement Enum Handling in Form Builder:** Modify the form builder to render a `<select>` dropdown for any schema property containing an `enum`.
+        - **[COMPLETED] 5h-7-i. Modify `form-builder.js`:** Update the `buildForm` function to detect properties with an `enum` and generate a corresponding `<select>` element populated with `<option>`s from the enum list.
+        - **[COMPLETED] 5h-7-ii. Update Unit Test:** In `testing/unit/wizard.test.js`, add a new test to verify that a schema property with an `enum` correctly generates a populated `<select>` element.
+        - **[COMPLETED] 5h-7-iii. Update Integration Test:** In `testing/integration/wizard-flow.test.js`, adjust the test to correctly select a value from the new `granularity` dropdown and assert its inclusion in the final generated object.
+    - **[COMPLETED] 5h-8. Implement Automatic `contentSpecificationIds` Handling:** Remove the `contentSpecificationIds` field from the UI and instead populate it automatically in the DPP generator based on the selected sector.
+        - **[COMPLETED] 5h-8-i. Modify `form-builder.js`:** Update the `buildForm` function to explicitly skip rendering the `contentSpecificationIds` field.
+        - **[COMPLETED] 5h-8-ii. Modify `dpp-generator.js`:** Update the `generateDpp` function to accept the selected sector, and automatically derive and add the `contentSpecificationId` and `contentSpecificationIds` properties to the final DPP object.
+        - **[COMPLETED] 5h-8-iii. Modify `wizard.js`:** Update the `generate-dpp-btn` event listener to pass the selected sector to the `generateDpp` function.
+        - **[COMPLETED] 5h-8-iv. Update Integration Test:** In `testing/integration/wizard-flow.test.js`, remove the manual addition of `contentSpecificationIds` and assert that the property is now added automatically by the generator.
+  - **[IN PROGRESS] 5i. Sector-Specific Form UI:** On sector selection, display a 3-column form: (Field Path, Value Input, Ontology Metadata).
+    - **[IN PROGRESS] 5i-1. Create `ontology-loader.js`:** Create the new module to fetch and parse ontology files into a simple metadata map.
     - **[PENDING] 5i-2. Initial `form-builder.js` Refactor:** Modify `form-builder.js` to generate a `<table>` structure instead of `<div>`s.
     - **[PENDING] 5i-3. Recursive Schema Traversal:** Enhance `form-builder.js` to recursively process nested objects in the JSON schema and display the full JSON path in the first column of the table.
     - **[PENDING] 5i-4. Integrate Ontology Metadata:** Update `wizard.js` to call the new `ontology-loader.js` and have `form-builder.js` display the metadata in the third column.

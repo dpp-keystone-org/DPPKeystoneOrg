@@ -62,7 +62,8 @@ export async function initializeWizard() {
     // Event listener for generating the DPP
     if (generateBtn && coreFormContainer && formContainer && voluntaryFieldsWrapper && jsonOutput) {
         generateBtn.addEventListener('click', () => {
-            const dppObject = generateDpp(coreFormContainer, formContainer, voluntaryFieldsWrapper);
+            const selectedSector = sectorSelect.value;
+            const dppObject = generateDpp(selectedSector, coreFormContainer, formContainer, voluntaryFieldsWrapper);
             jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
         });
     }
