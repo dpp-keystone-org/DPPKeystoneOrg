@@ -68,6 +68,7 @@ describe('DPP Wizard - Form Builder', () => {
 });
 
 describe('DPP Wizard - DPP Generator', () => {
+    let coreFormContainer;
     let formContainer;
     let voluntaryFieldsWrapper;
 
@@ -75,10 +76,12 @@ describe('DPP Wizard - DPP Generator', () => {
         // Set up the DOM for each test
         document.body.innerHTML = `
             <div>
+                <div id="core-form-container"></div>
                 <div id="form-container"></div>
                 <div id="voluntary-fields-wrapper"></div>
             </div>
         `;
+        coreFormContainer = document.getElementById('core-form-container');
         formContainer = document.getElementById('form-container');
         voluntaryFieldsWrapper = document.getElementById('voluntary-fields-wrapper');
     });
@@ -117,7 +120,7 @@ describe('DPP Wizard - DPP Generator', () => {
         `;
 
         // 3. Call the generator function
-        const dpp = generateDpp(formContainer, voluntaryFieldsWrapper);
+        const dpp = generateDpp(coreFormContainer, formContainer, voluntaryFieldsWrapper);
 
         // 4. Assert the output
         expect(dpp).toEqual({

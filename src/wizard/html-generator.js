@@ -1,7 +1,6 @@
 // src/wizard/html-generator.js
 
 import { transform } from '../util/js/common/dpp-logic.js';
-import { EPD_TRANSFORMATION_PROFILE } from '../util/js/common/profiles/schema.org.js';
 
 /**
  * Generates a standalone HTML page for a given DPP JSON object.
@@ -13,12 +12,13 @@ export async function generateDppHtml(dpp) {
     let schemaOrgJson = {};
     try {
         // Use the existing transformation engine to generate schema.org JSON-LD
-        schemaOrgJson = await transform(dpp, {
-            profile: EPD_TRANSFORMATION_PROFILE,
-            // In a real client-side scenario, you would fetch these.
-            // For this generator, we assume the logic doesn't need external context.
-            getContext: async () => ({}) 
-        });
+        schemaOrgJson = await transform(dpp,
+            {
+                profile: 'schema.org',
+                documentLoader: () => ({ document: {} }) // Provide a dummy loader for the standalone utility
+            },
+            {} // Pass an empty dictionary
+        );
     } catch (error) {
         console.error("Failed to transform DPP to Schema.org JSON-LD:", error);
         // Continue without the JSON-LD script if transformation fails

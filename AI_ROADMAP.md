@@ -53,7 +53,7 @@ This document outlines the development tasks, priorities, and progress for AI-as
     - **[PENDING] 4c-2. Implementation:** Create a new `un-cefact.js` profile and implement the transformation logic.
     - **[PENDING] 4c-3. Testing:** Create comprehensive tests to validate the output for each example.
 
-- **[COMPLETED] 5. DPP Wizard MVP:** Develop a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
+- **[IN PROGRESS] 5. DPP Wizard MVP:** Develop a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
   - **[COMPLETED] 5a. Architecture & Setup:** Create `src/wizard/` containing `index.html`, `wizard.css`, and `wizard.js`. Configure `index.html` to link to the shared branding CSS at `../../branding/css/keystone-style.css`. Ensure the build process deploys this directory to `dist/spec/wizard/`.
   - **[COMPLETED] 5b. Sector Selection:** Implement UI in `index.html` and logic in `wizard.js` to handle sector selection.
   - **[COMPLETED] 5c. Dynamic Form Generation:** Create `src/wizard/schema-loader.js` to fetch JSON schemas from the relative path `../validation/v1/json-schema/`. Create `src/wizard/form-builder.js` to dynamically generate HTML form inputs based on the loaded schema definitions.
@@ -61,8 +61,24 @@ This document outlines the development tasks, priorities, and progress for AI-as
   - **[COMPLETED] 5e. JSON Generation:** Create `src/wizard/dpp-generator.js` to scrape the generated form data from the DOM and construct the final DPP JSON object.
   - **[COMPLETED] 5f. Unit Testing:** Create `testing/unit/wizard.test.js` using Jest and JSDOM. Test `form-builder.js` by passing mock schemas and asserting HTML output. Test `dpp-generator.js` by populating a virtual DOM and asserting the resulting JSON.
   - **[COMPLETED] 5g. Integration Testing:** Create `testing/integration/wizard-flow.test.js` to simulate a full user session. Mock the schema `fetch` calls, programmatically fill the virtual form, trigger generation, and validate the output JSON against the official `dpp.schema.json` using Ajv.
-  - **[COMPLETED] 5h. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
-  - **[PENDING] 5i. Integrate HTML Preview:** Use the new HTML generation library to offer users of the wizard a way to preview or download their created DPP as a standalone HTML file.
+  - **[COMPLETED] 5h. Initial Core DPP Form:** On load, display a form for core DPP fields based on `dpp.schema.json`.
+    - **[COMPLETED] 5h-1. Update HTML:** In `src/wizard/index.html`, add a new `div` with `id="core-form-container"` to hold the initial form.
+    - **[COMPLETED] 5h-2. Update Wizard Script:** In `src/wizard/wizard.js`, modify the script to load `dpp.schema.json` on page load.
+    - **[COMPLETED] 5h-3. Generate and Inject Form:** In `src/wizard/wizard.js`, use the `buildForm()` function to generate the core form and inject it into the `core-form-container`.
+    - **[COMPLETED] 5h-4. Update DPP Generator:** In `src/wizard/dpp-generator.js`, update the `generateDpp` function to scrape inputs from the new `core-form-container`.
+    - **[COMPLETED] 5h-5. Update Integration Test:** In `testing/integration/wizard-flow.test.js`, add an assertion to verify that the core form is present on initial page load.
+    - **[COMPLETED] 5h-6. Update Integration Test:** In `testing/integration/wizard-flow.test.js`, update the DPP generation part of the test to confirm data from the core form is included in the final output.
+  - **[PENDING] 5i. Sector-Specific Form UI:** On sector selection, display a 3-column form: (Field Path, Value Input, Ontology Metadata).
+    - **[PENDING] 5i-1. Create `ontology-loader.js`:** Create the new module to fetch and parse ontology files into a simple metadata map.
+    - **[PENDING] 5i-2. Initial `form-builder.js` Refactor:** Modify `form-builder.js` to generate a `<table>` structure instead of `<div>`s.
+    - **[PENDING] 5i-3. Recursive Schema Traversal:** Enhance `form-builder.js` to recursively process nested objects in the JSON schema and display the full JSON path in the first column of the table.
+    - **[PENDING] 5i-4. Integrate Ontology Metadata:** Update `wizard.js` to call the new `ontology-loader.js` and have `form-builder.js` display the metadata in the third column.
+    - **[PENDING] 5i-5. Update Tests:** Update unit and integration tests to assert that the new 3-column table is generated correctly.
+  - **[PENDING] 5j. Custom Field Implementation:** Implement the 'Add Custom Field' button to add a row for Name, Value, and Units.
+  - **[PENDING] 5k. Custom Field Validation:** Add validation to ensure the 'Name' in custom fields is in camelCase format.
+  - **[PENDING] 5l. Form Validation & Button State:** Disable the 'Generate DPP' button until all required fields (from core and sector schemas) are filled.
+  - **[PENDING] 5m. Robust JSON Generation:** Ensure the 'Generate DPP' button correctly populates the output area with the full, valid JSON.
+  - **[COMPLETED] 5n. Fix Wizard CSS Path:** Correct the relative path to `keystone-style.css` in the wizard's `index.html`.
 
 - **[PENDING] 6. Interactive Adapter Showcase & Documentation:** Create a rich, interactive documentation page (`utils/index.html`) that not only explains the adapter but also serves as a live demonstration and a development tool.
   - **[PENDING] 6a. Build Interactive Showcase UI:** Develop a user interface with the following components:
@@ -71,7 +87,9 @@ This document outlines the development tasks, priorities, and progress for AI-as
     - A "Transform" button to trigger the process.
   - **[PENDING] 6b. Implement Live Transformation:** Hook the UI to the actual client-side `dpp-adapter.js` script. On "Transform", the script should execute the transformation live in the browser.
   - **[PENDING] 6c. Create Code Display Panes:** Add a pane to display the raw source DPP JSON of the selected example, and a second pane to display the resulting transformed JSON-LD output, both with syntax highlighting, so developers can directly compare input and output.
-  - **[PENDING] 6d. Provide "How-To" Guides and Snippets:** Below the interactive tool, write clear, developer-focused documentation explaining the adapter's API (`transform` function, parameters, profiles). Provide copy-paste-ready code snippets for common use cases, such as how to include the script and how to embed the final JSON-LD output within a `<script type="application/ld+json">` tag.
+  - **[PENDING] 6d. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
+  - **[PENDING] 6e. Integrate HTML Preview into the wizard:** Use the new HTML generation library to offer users of the wizard a way to preview or download their created DPP as a standalone HTML file.
+  - **[PENDING] 6f. Provide "How-To" Guides and Snippets:** Below the interactive tool, write clear, developer-focused documentation explaining the adapter's API (`transform` function, parameters, profiles). Provide copy-paste-ready code snippets for common use cases, such as how to include the script and how to embed the final JSON-LD output within a `<script type="application/ld+json">` tag.
 
 - **[PENDING] 7. Assign Explicit IRIs to all Ontology Terms:** Audit all ontology files in `src/ontology/` and ensure every defined Class and Property has an explicit `@id` to guarantee a stable, unique identifier.
 
