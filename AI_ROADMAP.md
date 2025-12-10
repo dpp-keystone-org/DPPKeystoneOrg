@@ -54,30 +54,32 @@ This document outlines the development tasks, priorities, and progress for AI-as
     - **[PENDING] 4c-3. Testing:** Create comprehensive tests to validate the output for each example.
 
 - **[PENDING] 5. DPP Wizard MVP:** Develop a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
-  - **5a. Architecture & Setup:** Create a single HTML page with embedded JavaScript (no API calls) capable of loading the project's JSON schemas.
-  - **5b. Sector Selection:** Implement an initial UI step asking the user to select which sectors the product falls into.
-  - **5c. Dynamic Form Generation:** Implement logic to generate form sections for each selected product category schema. The UI must clearly indicate and validate required fields.
-  - **5d. Voluntary Information:** Add an "Add Voluntary Information" button that creates a new UI section for entering custom name-value pair attributes (flat structure).
-  - **5e. JSON Generation:** Implement a "Generate DPP" button, enabled only when all required fields are filled, which populates a text window with the generated DPP JSON.
-  - **[PENDING] 5f. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
-  - **[PENDING] 5g. Integrate HTML Preview:** Use the new HTML generation library to offer users of the wizard a way to preview or download their created DPP as a standalone HTML file.
+  - **[PENDING] 5a. Architecture & Setup:** Create `src/wizard/` containing `index.html`, `wizard.css`, and `wizard.js`. Configure `index.html` to link to the shared branding CSS at `../../branding/css/keystone-style.css`. Ensure the build process deploys this directory to `dist/spec/wizard/`.
+  - **[PENDING] 5b. Sector Selection:** Implement UI in `index.html` and logic in `wizard.js` to handle sector selection.
+  - **[PENDING] 5c. Dynamic Form Generation:** Create `src/wizard/schema-loader.js` to fetch JSON schemas from the relative path `../validation/v1/json-schema/`. Create `src/wizard/form-builder.js` to dynamically generate HTML form inputs based on the loaded schema definitions.
+  - **[PENDING] 5d. Voluntary Information:** Implement logic in `wizard.js` to add dynamic name-value pair fields to the UI.
+  - **[PENDING] 5e. JSON Generation:** Create `src/wizard/dpp-generator.js` to scrape the generated form data from the DOM and construct the final DPP JSON object.
+  - **[PENDING] 5f. Unit Testing:** Create `testing/unit/wizard.test.js` using Jest and JSDOM. Test `form-builder.js` by passing mock schemas and asserting HTML output. Test `dpp-generator.js` by populating a virtual DOM and asserting the resulting JSON.
+  - **[PENDING] 5g. Integration Testing:** Create `testing/integration/wizard-flow.test.js` to simulate a full user session. Mock the schema `fetch` calls, programmatically fill the virtual form, trigger generation, and validate the output JSON against the official `dpp.schema.json` using Ajv.
+  - **[PENDING] 5h. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
+  - **[PENDING] 5i. Integrate HTML Preview:** Use the new HTML generation library to offer users of the wizard a way to preview or download their created DPP as a standalone HTML file.
 
 - **[PENDING] 6. Interactive Adapter Showcase & Documentation:** Create a rich, interactive documentation page (`utils/index.html`) that not only explains the adapter but also serves as a live demonstration and a development tool.
-  - **6a. Build Interactive Showcase UI:** Develop a user interface with the following components:
+  - **[PENDING] 6a. Build Interactive Showcase UI:** Develop a user interface with the following components:
     - An example selector: A dropdown menu to load any of our standard DPP examples (e.g., battery, textile, rail).
     - A profile selector: A dropdown to select the target transformation profile (`schema.org`, `gs1`, etc., as they are completed).
     - A "Transform" button to trigger the process.
-  - **6b. Implement Live Transformation:** Hook the UI to the actual client-side `dpp-adapter.js` script. On "Transform", the script should execute the transformation live in the browser.
-  - **6c. Create Code Display Panes:** Add a pane to display the raw source DPP JSON of the selected example, and a second pane to display the resulting transformed JSON-LD output, both with syntax highlighting, so developers can directly compare input and output.
-  - **6d. Provide "How-To" Guides and Snippets:** Below the interactive tool, write clear, developer-focused documentation explaining the adapter's API (`transform` function, parameters, profiles). Provide copy-paste-ready code snippets for common use cases, such as how to include the script and how to embed the final JSON-LD output within a `<script type="application/ld+json">` tag.
+  - **[PENDING] 6b. Implement Live Transformation:** Hook the UI to the actual client-side `dpp-adapter.js` script. On "Transform", the script should execute the transformation live in the browser.
+  - **[PENDING] 6c. Create Code Display Panes:** Add a pane to display the raw source DPP JSON of the selected example, and a second pane to display the resulting transformed JSON-LD output, both with syntax highlighting, so developers can directly compare input and output.
+  - **[PENDING] 6d. Provide "How-To" Guides and Snippets:** Below the interactive tool, write clear, developer-focused documentation explaining the adapter's API (`transform` function, parameters, profiles). Provide copy-paste-ready code snippets for common use cases, such as how to include the script and how to embed the final JSON-LD output within a `<script type="application/ld+json">` tag.
 
 - **[PENDING] 7. Assign Explicit IRIs to all Ontology Terms:** Audit all ontology files in `src/ontology/` and ensure every defined Class and Property has an explicit `@id` to guarantee a stable, unique identifier.
 
 - **[PENDING] 8. Ontology and Example Refinement:** Establish a recurring task to audit and refactor existing ontologies, contexts, and examples.
   - **[COMPLETED] 8a. Refine context hierarchy for Construction:** Ensure the construction context properly imports EPD, DoPC, and Core contexts, and simplify the corresponding example file.
-  - **8b. Identify Redundancy:** Periodically review all ontologies and contexts to identify superseded terms or files.
-  - **8c. Update Examples:** Refactor older examples to use the most current and streamlined ontologies.
-  - **8d. Remove Dead Code:** Deprecate and remove unused context and ontology files after ensuring no examples rely on them.
+  - **[PENDING] 8b. Identify Redundancy:** Periodically review all ontologies and contexts to identify superseded terms or files.
+  - **[PENDING] 8c. Update Examples:** Refactor older examples to use the most current and streamlined ontologies.
+  - **[PENDING] 8d. Remove Dead Code:** Deprecate and remove unused context and ontology files after ensuring no examples rely on them.
   - **[COMPLETED] 8e. Refine Rail Example:** Update the `rail-dpp-v1.json` example to be fully compliant with the `construction.schema.json`.
 
 ---
