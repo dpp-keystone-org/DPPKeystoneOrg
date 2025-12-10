@@ -77,9 +77,13 @@ This document outlines the development tasks, priorities, and progress for AI-as
         - **[COMPLETED] 5h-8-ii. Modify `dpp-generator.js`:** Update the `generateDpp` function to accept the selected sector, and automatically derive and add the `contentSpecificationId` and `contentSpecificationIds` properties to the final DPP object.
         - **[COMPLETED] 5h-8-iii. Modify `wizard.js`:** Update the `generate-dpp-btn` event listener to pass the selected sector to the `generateDpp` function.
         - **[COMPLETED] 5h-8-iv. Update Integration Test:** In `testing/integration/wizard-flow.test.js`, remove the manual addition of `contentSpecificationIds` and assert that the property is now added automatically by the generator.
-  - **[IN PROGRESS] 5i. Sector-Specific Form UI:** On sector selection, display a 3-column form: (Field Path, Value Input, Ontology Metadata).
-    - **[IN PROGRESS] 5i-1. Create `ontology-loader.js`:** Create the new module to fetch and parse ontology files into a simple metadata map.
-    - **[PENDING] 5i-2. Initial `form-builder.js` Refactor:** Modify `form-builder.js` to generate a `<table>` structure instead of `<div>`s.
+  - **[COMPLETED] 5i. Sector-Specific Form UI:** On sector selection, display a 3-column form: (Field Path, Value Input, Ontology Metadata).
+    - **[COMPLETED] 5i-1. Create `ontology-loader.js`:** Create the new module to fetch and parse ontology files into a simple metadata map.
+        - **[COMPLETED] 5i-1-i. Create file `src/wizard/ontology-loader.js` with initial implementation.**
+        - **[COMPLETED] 5i-1-ii. Create unit test file `testing/unit/ontology-loader.test.js` with a failing test.**
+        - **[COMPLETED] 5i-1-iii. Fix the `loadOntology` function to correctly parse JSON-LD multilingual strings (`@value`).**
+        - **[COMPLETED] 5i-1-iv. Run the unit test to confirm the fix.**
+    - **[IN PROGRESS] 5i-2. Initial `form-builder.js` Refactor:** Modify `form-builder.js` to generate a `<table>` structure instead of `<div>`s.
     - **[PENDING] 5i-3. Recursive Schema Traversal:** Enhance `form-builder.js` to recursively process nested objects in the JSON schema and display the full JSON path in the first column of the table.
     - **[PENDING] 5i-4. Integrate Ontology Metadata:** Update `wizard.js` to call the new `ontology-loader.js` and have `form-builder.js` display the metadata in the third column.
     - **[PENDING] 5i-5. Update Tests:** Update unit and integration tests to assert that the new 3-column table is generated correctly.

@@ -22,9 +22,12 @@ export async function loadOntology(sector) {
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
                 if (term['@id'] && (term['rdfs:label'] || term['rdfs:comment'])) {
+                    const label = term['rdfs:label'] ? term['rdfs:label']['@value'] : '';
+                    const comment = term['rdfs:comment'] ? term['rdfs:comment']['@value'] : '';
+                    
                     ontologyMap.set(term['@id'], {
-                        label: term['rdfs:label'] || '',
-                        comment: term['rdfs:comment'] || ''
+                        label: label || '',
+                        comment: comment || ''
                     });
                 }
             }
