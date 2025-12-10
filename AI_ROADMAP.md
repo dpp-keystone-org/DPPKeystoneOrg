@@ -53,21 +53,23 @@ This document outlines the development tasks, priorities, and progress for AI-as
     - **[PENDING] 4c-2. Implementation:** Create a new `un-cefact.js` profile and implement the transformation logic.
     - **[PENDING] 4c-3. Testing:** Create comprehensive tests to validate the output for each example.
 
-- **[PENDING] 5. Interactive Adapter Showcase & Documentation:** Create a rich, interactive documentation page (`utils/index.html`) that not only explains the adapter but also serves as a live demonstration and a development tool.
-  - **5a. Build Interactive Showcase UI:** Develop a user interface with the following components:
+- **[PENDING] 5. DPP Wizard MVP:** Develop a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
+  - **5a. Architecture & Setup:** Create a single HTML page with embedded JavaScript (no API calls) capable of loading the project's JSON schemas.
+  - **5b. Sector Selection:** Implement an initial UI step asking the user to select which sectors the product falls into.
+  - **5c. Dynamic Form Generation:** Implement logic to generate form sections for each selected product category schema. The UI must clearly indicate and validate required fields.
+  - **5d. Voluntary Information:** Add an "Add Voluntary Information" button that creates a new UI section for entering custom name-value pair attributes (flat structure).
+  - **5e. JSON Generation:** Implement a "Generate DPP" button, enabled only when all required fields are filled, which populates a text window with the generated DPP JSON.
+  - **[PENDING] 5f. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
+  - **[PENDING] 5g. Integrate HTML Preview:** Use the new HTML generation library to offer users of the wizard a way to preview or download their created DPP as a standalone HTML file.
+
+- **[PENDING] 6. Interactive Adapter Showcase & Documentation:** Create a rich, interactive documentation page (`utils/index.html`) that not only explains the adapter but also serves as a live demonstration and a development tool.
+  - **6a. Build Interactive Showcase UI:** Develop a user interface with the following components:
     - An example selector: A dropdown menu to load any of our standard DPP examples (e.g., battery, textile, rail).
     - A profile selector: A dropdown to select the target transformation profile (`schema.org`, `gs1`, etc., as they are completed).
     - A "Transform" button to trigger the process.
-  - **5b. Implement Live Transformation:** Hook the UI to the actual client-side `dpp-adapter.js` script. On "Transform", the script should execute the transformation live in the browser.
-  - **5c. Create Code Display Panes:** Add a pane to display the raw source DPP JSON of the selected example, and a second pane to display the resulting transformed JSON-LD output, both with syntax highlighting, so developers can directly compare input and output.
-  - **5d. Provide "How-To" Guides and Snippets:** Below the interactive tool, write clear, developer-focused documentation explaining the adapter's API (`transform` function, parameters, profiles). Provide copy-paste-ready code snippets for common use cases, such as how to include the script and how to embed the final JSON-LD output within a `<script type="application/ld+json">` tag.
-
-- **[PENDING] 6. DPP Wizard MVP:** Develop a simple web-based wizard to generate a valid DPP JSON file for the stable header fields, serving as a proof-of-concept for stakeholders.
-  - **6a. Setup Application:** Create a new directory and build process for a lightweight, single-page application (e.g., using vanilla JS or Preact).
-  - **6b. Build UI:** Develop a user interface that presents form fields based on the stable `dpp.schema.json` (the DPP "header").
-  - **6c. Implement Logic:** Add logic to take the user's input and generate a valid JSON object that can be copied or downloaded.
-  - **[PENDING] 6d. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
-  - **[PENDING] 6e. Integrate HTML Preview:** Use the new HTML generation library to offer users of the wizard a way to preview or download their created DPP as a standalone HTML file.
+  - **6b. Implement Live Transformation:** Hook the UI to the actual client-side `dpp-adapter.js` script. On "Transform", the script should execute the transformation live in the browser.
+  - **6c. Create Code Display Panes:** Add a pane to display the raw source DPP JSON of the selected example, and a second pane to display the resulting transformed JSON-LD output, both with syntax highlighting, so developers can directly compare input and output.
+  - **6d. Provide "How-To" Guides and Snippets:** Below the interactive tool, write clear, developer-focused documentation explaining the adapter's API (`transform` function, parameters, profiles). Provide copy-paste-ready code snippets for common use cases, such as how to include the script and how to embed the final JSON-LD output within a `<script type="application/ld+json">` tag.
 
 - **[PENDING] 7. Assign Explicit IRIs to all Ontology Terms:** Audit all ontology files in `src/ontology/` and ensure every defined Class and Property has an explicit `@id` to guarantee a stable, unique identifier.
 
@@ -87,6 +89,8 @@ This document outlines the development tasks, priorities, and progress for AI-as
 - **[PENDING] 10. New Sector Model Development:** Research and create new ontologies, contexts, schemas, and examples for new sectors (e.g., Construction DoPC) following the established project patterns.
 
 - **[PENDING] 11. Multi-language Support:** After the generic adapter is complete (Task 2), port it to other key languages, starting with Python.
+
+- **[PENDING] 12. Advanced Voluntary Attributes:** Expand the DPP Wizard's voluntary information capability (Task 5d) to support complex, nested objects and arrays, beyond simple name-value pairs.
 
 ---
 
