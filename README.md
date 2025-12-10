@@ -8,7 +8,14 @@ Our goal is to ensure interoperability and lower the barrier for implementation,
 *   **GitHub Repository:** [https://github.com/dpp-keystone-org/DPPKeystoneOrg](https://github.com/dpp-keystone-org/DPPKeystoneOrg)
 *   **License:** [CC0 1.0 Universal](LICENSE)
 
-For more details on the approach, please read the [Methodology documentation](docs/methodology.md).
+## Project Philosophy and Governance
+
+Understanding the project's goals and processes is key to effective contribution.
+
+*   **[Methodology](docs/methodology.md):** Explains the "Why" behind our technical approach (JSON-LD, Ontologies, etc.).
+*   **[Governance Model](docs/governance.md):** Details the decision-making process for changes and the project's versioning strategy.
+*   **[Contributing Guide](CONTRIBUTING.md):** Provides the "How" for submitting changes and the technical style guides.
+*   **[Validation Strategy](src/validation/README.md):** A deep dive into our dual approach to data validation using JSON Schema and SHACL.
 
 ## Project Structure
 
