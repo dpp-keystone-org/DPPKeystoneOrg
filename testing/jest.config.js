@@ -7,6 +7,7 @@ const config = {
     // Glob patterns for test files
     testMatch: [
         '<rootDir>/testing/integration/**/*.test.js',
+        '<rootDir>/testing/unit/**/*.test.js',
         '<rootDir>/src/util/js/**/*.test.js'
     ],
     // Explicitly tell Jest to use babel-jest for transforming JS/MJS files.

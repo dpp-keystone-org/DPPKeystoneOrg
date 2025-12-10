@@ -53,15 +53,15 @@ This document outlines the development tasks, priorities, and progress for AI-as
     - **[PENDING] 4c-2. Implementation:** Create a new `un-cefact.js` profile and implement the transformation logic.
     - **[PENDING] 4c-3. Testing:** Create comprehensive tests to validate the output for each example.
 
-- **[PENDING] 5. DPP Wizard MVP:** Develop a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
-  - **[PENDING] 5a. Architecture & Setup:** Create `src/wizard/` containing `index.html`, `wizard.css`, and `wizard.js`. Configure `index.html` to link to the shared branding CSS at `../../branding/css/keystone-style.css`. Ensure the build process deploys this directory to `dist/spec/wizard/`.
-  - **[PENDING] 5b. Sector Selection:** Implement UI in `index.html` and logic in `wizard.js` to handle sector selection.
-  - **[PENDING] 5c. Dynamic Form Generation:** Create `src/wizard/schema-loader.js` to fetch JSON schemas from the relative path `../validation/v1/json-schema/`. Create `src/wizard/form-builder.js` to dynamically generate HTML form inputs based on the loaded schema definitions.
-  - **[PENDING] 5d. Voluntary Information:** Implement logic in `wizard.js` to add dynamic name-value pair fields to the UI.
-  - **[PENDING] 5e. JSON Generation:** Create `src/wizard/dpp-generator.js` to scrape the generated form data from the DOM and construct the final DPP JSON object.
-  - **[PENDING] 5f. Unit Testing:** Create `testing/unit/wizard.test.js` using Jest and JSDOM. Test `form-builder.js` by passing mock schemas and asserting HTML output. Test `dpp-generator.js` by populating a virtual DOM and asserting the resulting JSON.
-  - **[PENDING] 5g. Integration Testing:** Create `testing/integration/wizard-flow.test.js` to simulate a full user session. Mock the schema `fetch` calls, programmatically fill the virtual form, trigger generation, and validate the output JSON against the official `dpp.schema.json` using Ajv.
-  - **[PENDING] 5h. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
+- **[COMPLETED] 5. DPP Wizard MVP:** Develop a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
+  - **[COMPLETED] 5a. Architecture & Setup:** Create `src/wizard/` containing `index.html`, `wizard.css`, and `wizard.js`. Configure `index.html` to link to the shared branding CSS at `../../branding/css/keystone-style.css`. Ensure the build process deploys this directory to `dist/spec/wizard/`.
+  - **[COMPLETED] 5b. Sector Selection:** Implement UI in `index.html` and logic in `wizard.js` to handle sector selection.
+  - **[COMPLETED] 5c. Dynamic Form Generation:** Create `src/wizard/schema-loader.js` to fetch JSON schemas from the relative path `../validation/v1/json-schema/`. Create `src/wizard/form-builder.js` to dynamically generate HTML form inputs based on the loaded schema definitions.
+  - **[COMPLETED] 5d. Voluntary Information:** Implement logic in `wizard.js` to add dynamic name-value pair fields to the UI.
+  - **[COMPLETED] 5e. JSON Generation:** Create `src/wizard/dpp-generator.js` to scrape the generated form data from the DOM and construct the final DPP JSON object.
+  - **[COMPLETED] 5f. Unit Testing:** Create `testing/unit/wizard.test.js` using Jest and JSDOM. Test `form-builder.js` by passing mock schemas and asserting HTML output. Test `dpp-generator.js` by populating a virtual DOM and asserting the resulting JSON.
+  - **[COMPLETED] 5g. Integration Testing:** Create `testing/integration/wizard-flow.test.js` to simulate a full user session. Mock the schema `fetch` calls, programmatically fill the virtual form, trigger generation, and validate the output JSON against the official `dpp.schema.json` using Ajv.
+  - **[COMPLETED] 5h. Create HTML Generation Library:** Develop and test a library function that takes a DPP JSON object and returns a rendered HTML string representation, including the embedded `schema.org` JSON-LD transformation.
   - **[PENDING] 5i. Integrate HTML Preview:** Use the new HTML generation library to offer users of the wizard a way to preview or download their created DPP as a standalone HTML file.
 
 - **[PENDING] 6. Interactive Adapter Showcase & Documentation:** Create a rich, interactive documentation page (`utils/index.html`) that not only explains the adapter but also serves as a live demonstration and a development tool.
