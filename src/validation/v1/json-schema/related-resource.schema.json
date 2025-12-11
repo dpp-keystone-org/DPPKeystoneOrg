@@ -1,0 +1,29 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/related-resource.schema.json",
+    "title": "Related Resource",
+    "description": "A resource identified by a URL, with additional metadata such as title, content type, and language.",
+    "type": "object",
+    "properties": {
+        "resourceTitle": {
+            "type": "string",
+            "description": "The title of the related resource."
+        },
+        "contentType": {
+            "type": "string",
+            "description": "The content type of the related resource (e.g., 'application/pdf')."
+        },
+        "language": {
+            "type": "string",
+            "description": "The language of the related resource (e.g., 'en')."
+        },
+        "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URL of the related resource."
+        }
+    },
+    "required": [
+        "url"
+    ]
+}

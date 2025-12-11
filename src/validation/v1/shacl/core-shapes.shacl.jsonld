@@ -83,6 +83,12 @@
                 "path": "dppk:contentSpecificationIds",
                 "minCount": 1,
                 "message": "DPP must have at least one contentSpecificationId."
+            },
+            {
+                "path": "dppk:granularity",
+                "minCount": 1,
+                "class": "dppk:GranularityValue",
+                "message": "DPP must have a granularity, which must be one of dppk:Model, dppk:Batch, or dppk:Item."
             }
         ]
     },
@@ -92,36 +98,32 @@
         "targetClass": "dppk:Certification",
         "property": [
             {
-                "path": "dppk:certificationStandard",
+                "path": "dppk:certificationBodyName",
                 "minCount": 1,
-                "message": "Certification must specify the standard or name (dppk:certificationStandard)."
+                "message": "Certification must have a body name (dppk:certificationBodyName)."
             },
             {
-                "path": "dppk:certificationIdentification",
-                "minCount": 1,
-                "message": "Certification must have an identifier or number (dppk:certificationIdentification)."
+                "path": "dppk:certificationStartDate",
+                "datatype": "xsd:date",
+                "message": "Certification start date must be a valid date."
             }
         ]
     },
     {
-      "@id": "dppkval:DigitalDocumentShape",
-      "@type": "NodeShape",
-      "targetClass": "dppk:DigitalDocument",
+      "@id": "dppkval:RelatedResourceShape",
+      "@type": "sh:NodeShape",
+      "targetClass": "dppk:RelatedResource",
       "property": [
         {
-          "path": "dppk:name", 
-          "name": "Document Name",
+          "path": "dppk:resourceTitle",
+          "name": "Resource Title",
           "minCount": 1
         },
         {
-          "path": "dppk:documentURL",
-          "name": "Document URL",
+          "path": "dppk:url",
+          "name": "Resource Url",
+          "datatype": "xsd:anyURI",
           "minCount": 1
-        },
-        {
-            "path": "dppk:documentType",
-            "name": "Document Type",
-            "minCount": 0
         }
       ]
     }

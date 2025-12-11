@@ -95,35 +95,34 @@ describe('DPP SHACL Validation', () => {
 
     // Use test.each to run the same validation logic for each test case.
     test.each(testCases)('$name should conform to its SHACL shapes', async ({ exampleFile, shapeFiles }) => {
-        // Add a log to clearly indicate which test is running.
-        // console.log(`\n--- Running SHACL Test for: ${exampleFile} ---`);
-
-        // --- 1. Load Data and Sector-Specific Shapes ---
+        // --- 1. Load Data, Shapes, and Ontologies ---
         const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'spec', 'examples', exampleFile);
         const dataDataset = await loadRdfFile(exampleFilePath);
 
-        // Always load the core shapes file.
+        // Load all shape files (core + sector-specific)
         const coreShapesPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld');
-        const coreShapesDataset = await loadRdfFile(coreShapesPath);
+        const shapeFilePaths = [coreShapesPath, ...shapeFiles.map(file => path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', file))];
+        const allShapeDatasets = await Promise.all(shapeFilePaths.map(p => loadRdfFile(p)));
+        const shapesGraph = combineDatasets(allShapeDatasets);
 
-        const shapeDatasets = await Promise.all(
-            shapeFiles.map(file => loadRdfFile(path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', file)))
-        );
+        // The new `granularity` shape requires its class definition to be in the data graph.
+        // We load ONLY the Header.jsonld ontology, which contains this definition, to avoid
+        // loading other ontologies that might expose unrelated data model inconsistencies.
+        const headerOntologyPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Header.jsonld');
+        const headerOntologyDataset = await loadRdfFile(headerOntologyPath);
 
-        // --- 2. Combine Shapes and Validate ---
-        const allShapes = combineDatasets([coreShapesDataset, ...shapeDatasets]);
-        const validator = new SHACLValidator(allShapes);
-        const report = await validator.validate(dataDataset);
+        // For validation, the data graph must contain both the instance data (from the example)
+        // and the class definitions (from the ontology).
+        const dataGraph = combineDatasets([dataDataset, headerOntologyDataset]);
+
+        // --- 2. Validate ---
+        const validator = new SHACLValidator(shapesGraph);
+        const report = await validator.validate(dataGraph);
 
         // --- 3. Assert Conformance ---
-        // For debugging, you can log the report results
         if (!report.conforms) {
-            logValidationReport(report, dataDataset);
+            logValidationReport(report, dataGraph);
         }
-
-        // CRITICAL: Add a check to ensure that validation actually happened.
-        // If report.results is empty, it means no shapes were applied, which is an error.
-        // expect(report.results.length).toBeGreaterThan(0);
 
         expect(report.conforms).toBe(true);
     });

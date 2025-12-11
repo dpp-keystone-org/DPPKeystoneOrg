@@ -64,22 +64,32 @@ describe('DPP Wizard - Full Integration Flow', () => {
             "required": ["digitalProductPassportId", "uniqueProductIdentifier", "granularity"]
         };
         const mockConstructionSchema = {
-            "title": "DPP for Construction Products (Test)",
+            "$id": "https://dpp.keystone.org/validation/v1/json-schema/construction.schema.json",
+            "title": "Digital Product Passport for Construction Products",
             "type": "object",
-            "properties": { "productName": { "title": "Product Name", "type": "string" } },
-            "required": ["productName"]
+            "properties": { "productName": { "title": "Product Name", "type": "string" } }
         };
 
-        // 2. Mock the schema-loader module before importing it
+        // 2. Mock the modules before importing them
         const loadSchemaMock = jest.fn();
         jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
+        }));
+        
+        const loadOntologyMock = jest.fn();
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: loadOntologyMock,
         }));
         
         // Setup the mock implementations
         loadSchemaMock
             .mockResolvedValueOnce(mockDppSchema) // First call for 'dpp'
             .mockResolvedValueOnce(mockConstructionSchema); // Second call for 'construction'
+
+        const mockOntologyMap = new Map([
+            ['productName', { label: 'Product Name', comment: 'The official name of the construction product.' }]
+        ]);
+        loadOntologyMock.mockResolvedValue(mockOntologyMap);
 
         // 3. Dynamically import the wizard's initializer function
         const { initializeWizard } = await import('../../src/wizard/wizard.js');
@@ -88,9 +98,14 @@ describe('DPP Wizard - Full Integration Flow', () => {
         await initializeWizard();
 
         // 5. Wait for the core form to be rendered and assert its presence
-        const coreInput = await waitFor(() => document.querySelector('[name="digitalProductPassportId"]'));
+        const coreInput = await waitFor(() => document.querySelector('#core-form-container input[name="digitalProductPassportId"]'));
         expect(coreInput).not.toBeNull();
-        expect(coreInput.previousElementSibling.textContent).toBe('DPP ID');
+
+        // Assert the new grid layout is used for the core form
+        const coreGrid = document.querySelector('#core-form-container .sector-form-grid');
+        expect(coreGrid).not.toBeNull();
+        const firstCoreCell = coreGrid.querySelector('.grid-cell');
+        expect(firstCoreCell.textContent).toBe('digitalProductPassportId');
         
         // 6. Programmatically fill out the forms
         coreInput.value = 'urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4';
@@ -102,10 +117,19 @@ describe('DPP Wizard - Full Integration Flow', () => {
         sectorSelect.value = 'construction';
         sectorSelect.dispatchEvent(new Event('change'));
         
-        // Wait for the sector-specific form to render
-        const sectorInput = await waitFor(() => document.querySelector('[name="productName"]'));
-        expect(sectorInput).not.toBeNull();
-        sectorInput.value = 'Test Construction Product';
+        // Wait for the sector-specific grid to render and validate it
+        const sectorGrid = await waitFor(() => document.querySelector('#form-container .sector-form-grid'));
+        expect(sectorGrid).not.toBeNull();
+
+        // With the new recursive builder, the construction schema will now be rendered dynamically
+        const productNameInput = sectorGrid.querySelector('input[name="productName"]');
+        expect(productNameInput).not.toBeNull();
+        productNameInput.value = 'Test Construction Product';
+
+        // Assert that the ontology description is now present in the third column
+        const ontologyCell = sectorGrid.querySelector('.grid-cell:nth-child(3)');
+        expect(ontologyCell).not.toBeNull();
+        expect(ontologyCell.textContent).toBe('The official name of the construction product.');
 
         // 8. Simulate clicking the "Generate DPP" button
         const generateBtn = document.getElementById('generate-dpp-btn');
@@ -133,7 +157,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // Also check that the core and sector data is present
         expect(finalDpp.digitalProductPassportId).toBe('urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4');
         expect(finalDpp.productName).toBe('Test Construction Product');
-        expect(finalDpp.granularity).toBe('Batch'); // Assert the selected value is in the output
+        expect(finalDpp.granularity).toBe('Batch');
         expect(finalDpp.contentSpecificationId).toBe('construction-product-dpp-v1');
         expect(finalDpp.contentSpecificationIds).toEqual(['construction-product-dpp-v1']);
     });

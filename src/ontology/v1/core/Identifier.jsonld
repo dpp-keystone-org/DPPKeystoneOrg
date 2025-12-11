@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "dppk": "https://keystone.digitalproductpassport.org/keystone/ontology/v1/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:identifier",
+      "@type": [
+        "owl:DatatypeProperty",
+        "rdf:Property"
+      ],
+      "rdfs:comment": "A generic identifier for a resource. It is equivalent to schema:identifier.",
+      "rdfs:label": "Identifier",
+      "owl:equivalentProperty": {
+        "@id": "schema:identifier"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    }
+  ]
+}

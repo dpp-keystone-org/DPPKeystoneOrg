@@ -98,3 +98,39 @@ hr {
 .error {
     color: #dc3545;
 }
+
+/* 3-Column Grid for Sector-Specific Forms */
+.sector-form-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2.5fr; /* Field Path, Value, Ontology */
+    gap: 10px 15px; /* Row gap, Column gap */
+    align-items: center;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.grid-header {
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 5px;
+}
+
+.grid-row {
+    display: contents; /* Allows row to be part of the parent grid layout */
+}
+
+.grid-cell {
+    padding: 5px 0;
+}
+
+.grid-cell:first-child {
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #444;
+}
+
+.grid-cell:last-child {
+    font-size: 0.9em;
+    color: #666;
+}

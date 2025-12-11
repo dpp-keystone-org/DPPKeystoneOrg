@@ -9,17 +9,13 @@ import { generateDpp } from '../../src/wizard/dpp-generator.js';
 // 'document' is available globally.
 
 describe('DPP Wizard - Form Builder', () => {
-    it('should create form elements from a simple schema', () => {
+    it('should create a 3-column grid for a simple schema', () => {
         const mockSchema = {
             "type": "object",
             "properties": {
                 "productName": {
                     "title": "Product Name",
                     "description": "The official name of the product.",
-                    "type": "string"
-                },
-                "serialNumber": {
-                    "title": "Serial Number",
                     "type": "string"
                 },
                 "warrantyInYears": {
@@ -29,47 +25,7 @@ describe('DPP Wizard - Form Builder', () => {
                 "isRecyclable": {
                     "title": "Recyclable",
                     "type": "boolean"
-                }
-            }
-        };
-
-        const fragment = buildForm(mockSchema);
-
-        // To inspect the fragment, we need to append it to the document body
-        document.body.appendChild(fragment);
-
-        // Check for productName field
-        const productNameLabel = document.querySelector('label[for="productName"]');
-        const productNameInput = document.querySelector('input#productName');
-        expect(productNameLabel).not.toBeNull();
-        expect(productNameLabel.textContent).toBe('Product Name');
-        expect(productNameInput).not.toBeNull();
-        expect(productNameInput.type).toBe('text');
-
-        // Check for serialNumber field (no description)
-        const serialNumberLabel = document.querySelector('label[for="serialNumber"]');
-        const serialNumberInput = document.querySelector('input#serialNumber');
-        expect(serialNumberLabel).not.toBeNull();
-        expect(serialNumberInput).not.toBeNull();
-        const description = serialNumberLabel.parentElement.querySelector('.description');
-        expect(description).toBeNull();
-
-
-        // Check for warranty field
-        const warrantyInput = document.querySelector('input#warrantyInYears');
-        expect(warrantyInput).not.toBeNull();
-        expect(warrantyInput.type).toBe('number');
-
-        // Check for recyclable field
-        const recyclableInput = document.querySelector('input#isRecyclable');
-        expect(recyclableInput).not.toBeNull();
-        expect(recyclableInput.type).toBe('checkbox');
-    });
-
-    it('should create a select dropdown for an enum property', () => {
-        const mockSchema = {
-            "type": "object",
-            "properties": {
+                },
                 "granularity": {
                     "title": "Granularity",
                     "type": "string",
@@ -79,19 +35,38 @@ describe('DPP Wizard - Form Builder', () => {
         };
 
         const fragment = buildForm(mockSchema);
+        document.body.innerHTML = '';
         document.body.appendChild(fragment);
 
-        const selectElement = document.querySelector('select[name="granularity"]');
-        expect(selectElement).not.toBeNull();
+        const gridContainer = document.querySelector('.sector-form-grid');
+        expect(gridContainer).not.toBeNull();
 
-        const options = selectElement.querySelectorAll('option');
-        expect(options.length).toBe(3);
-        expect(options[0].value).toBe('Batch');
-        expect(options[0].textContent).toBe('Batch');
-        expect(options[1].value).toBe('Item');
-        expect(options[1].textContent).toBe('Item');
-        expect(options[2].value).toBe('Lot');
-        expect(options[2].textContent).toBe('Lot');
+        // Check for headers
+        const headers = gridContainer.querySelectorAll('.grid-header');
+        expect(headers.length).toBe(3);
+
+        const cells = gridContainer.querySelectorAll('.grid-cell');
+        // 4 properties = 4 rows * 3 cells/row = 12 cells
+        expect(cells.length).toBe(12);
+
+        // Check productName row (cells 0, 1, 2)
+        expect(cells[0].textContent).toBe('productName');
+        expect(cells[1].querySelector('input[name="productName"]')).not.toBeNull();
+        expect(cells[2].textContent).toBe('The official name of the product.');
+        
+        // Check warranty row (cells 3, 4, 5)
+        expect(cells[3].textContent).toBe('warrantyInYears');
+        expect(cells[4].querySelector('input[type="number"]')).not.toBeNull();
+
+        // Check recyclable row (cells 6, 7, 8)
+        expect(cells[6].textContent).toBe('isRecyclable');
+        expect(cells[7].querySelector('input[type="checkbox"]')).not.toBeNull();
+
+        // Check granularity row (cells 9, 10, 11)
+        expect(cells[9].textContent).toBe('granularity');
+        const selectInput = cells[10].querySelector('select[name="granularity"]');
+        expect(selectInput).not.toBeNull();
+        expect(selectInput.options.length).toBe(3);
     });
 
     it('should not render the contentSpecificationIds field', () => {
@@ -112,6 +87,84 @@ describe('DPP Wizard - Form Builder', () => {
         // Also ensure the other field is still rendered
         const productNameInput = document.querySelector('[name="productName"]');
         expect(productNameInput).not.toBeNull();
+    });
+
+    it('should handle nested objects and generate correct field paths', () => {
+        const nestedSchema = {
+            "title": "Nested Schema Test",
+            "type": "object",
+            "properties": {
+                "topLevelField": {
+                    "title": "Top Level",
+                    "type": "string"
+                },
+                "nestedObject": {
+                    "title": "A Nested Object",
+                    "type": "object",
+                    "properties": {
+                        "innerField": {
+                            "title": "Inner Field",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        };
+
+        const fragment = buildForm(nestedSchema);
+        document.body.innerHTML = '';
+        document.body.appendChild(fragment);
+
+        const gridContainer = document.querySelector('.sector-form-grid');
+        // This will fail initially because the non-construction schema uses the old form-group layout
+        expect(gridContainer).not.toBeNull(); 
+
+        const allText = gridContainer.textContent;
+        // Check that the nested field path is correctly rendered
+        expect(allText).toContain('topLevelField');
+        expect(allText).toContain('nestedObject.innerField');
+    });
+
+    it('should handle array of strings with add/remove buttons', () => {
+        const arraySchema = {
+            "properties": {
+                "tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                }
+            }
+        };
+
+        const fragment = buildForm(arraySchema);
+        document.body.innerHTML = '';
+        document.body.appendChild(fragment);
+
+        const gridContainer = document.querySelector('.sector-form-grid');
+        const cells = gridContainer.querySelectorAll('.grid-cell');
+        
+        // Find the cell containing the array controls
+        const valueCell = cells[1];
+        const addButton = valueCell.querySelector('button.add-array-item-btn');
+        expect(addButton).not.toBeNull();
+        expect(addButton.textContent).toBe('Add Item');
+        
+        // Click once, expect one input
+        addButton.click();
+        let itemInputs = valueCell.querySelectorAll('.array-item-row input');
+        expect(itemInputs.length).toBe(1);
+        
+        // Click again, expect two inputs
+        addButton.click();
+        itemInputs = valueCell.querySelectorAll('.array-item-row input');
+        expect(itemInputs.length).toBe(2);
+
+        // Remove the first item
+        const firstRemoveButton = valueCell.querySelector('.remove-array-item-btn');
+        firstRemoveButton.click();
+        
+        // Expect only one input to remain
+        itemInputs = valueCell.querySelectorAll('.array-item-row input');
+        expect(itemInputs.length).toBe(1);
     });
 });
 

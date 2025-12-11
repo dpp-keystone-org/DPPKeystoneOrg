@@ -57,19 +57,19 @@ describe('DPP Wizard - Ontology Loader', () => {
         expect(ontologyMap.size).toBe(2);
 
         // Check for a specific property
-        const testProperty = ontologyMap.get('dpp:TestProperty');
+        const testProperty = ontologyMap.get('TestProperty');
         expect(testProperty).toBeDefined();
         expect(testProperty.label).toBe('Test Property');
         expect(testProperty.comment).toBe('A property for testing.');
         
         // Check for a property with only a label
-        const anotherProperty = ontologyMap.get('dpp:AnotherProperty');
+        const anotherProperty = ontologyMap.get('AnotherProperty');
         expect(anotherProperty).toBeDefined();
         expect(anotherProperty.label).toBe('Another Property');
         expect(anotherProperty.comment).toBe(''); // Should default to empty string
 
         // Check that a property with no label/comment is not included
-        expect(ontologyMap.has('dpp:OrphanProperty')).toBe(false);
+        expect(ontologyMap.has('OrphanProperty')).toBe(false);
     });
 
     it('should return null if the fetch fails', async () => {

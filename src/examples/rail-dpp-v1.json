@@ -34,8 +34,8 @@
     "@type": ["Organization", "EconomicOperatorRole"],
     "organizationName": "Voestalpine Rail Technology GmbH",
     "url": "https://www.voestalpine.com/railway-systems/",
-    "additionalOrganizationID": "AT12345678",
-    "additionalOrganizationIDType": "EORI",
+    "additionalOrganizationId": "AT12345678",
+    "additionalOrganizationIdType": "EORI",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Loeben, Austria",
@@ -59,7 +59,7 @@
       "ConformityAssessmentBodyRole"
     ],
     "organizationName": "TUV Sued",
-    "notifiedBodyID": "NB0123"
+    "notifiedBodyId": "NB0123"
   },
 
   "dopcDeclarations": {
@@ -263,22 +263,22 @@
   "certifications": [
       {
           "@type": "Certification",
-          "certificationStandard": "CE Certificate of Conformity",
-          "certificationIdentification": "CERT-TUV-2024-1138",
-          "certifyingBodyName": "TUV Sued",
-          "certifyingBodyID": "NB0123",
+          "resourceTitle": "CE Certificate of Conformity",
+          "identifier": "CERT-TUV-2024-1138",
+          "certificationBodyName": "TUV Sued",
+          "certificationBodyId": "NB0123",
           "organizationRole": "ConformityAssessmentBodyRole",
           "certificationStartDate": "2024-01-15",
-          "referencedFileURL": "https://www.tuvsud.com/certificates/1138"
+          "url": "https://www.tuvsud.com/certificates/1138"
       },
       {
           "@type": "Certification",
-          "certificationStandard": "Environmental Product Declaration (EPD)",
-          "certificationIdentification": "EPD-IBU-20230157-V1",
-          "certifyingBodyName": "Institut Bauen und Umwelt e.V. (IBU)",
+          "resourceTitle": "Environmental Product Declaration (EPD)",
+          "identifier": "EPD-IBU-20230157-V1",
+          "certificationBodyName": "Institut Bauen und Umwelt e.V. (IBU)",
           "organizationRole": "ConformityAssessmentBodyRole",
           "certificationStartDate": "2023-08-22",
-          "referencedFileURL": "https://epd-online.com/EmbeddedEpdList/Download?id=20167"
+          "url": "https://epd-online.com/EmbeddedEpdList/Download?id=20167"
       }
   ]
 }

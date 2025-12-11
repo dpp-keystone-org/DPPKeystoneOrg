@@ -6,6 +6,10 @@ This document serves as a historical archive of all major tasks and features com
 
 ## Completed
 
+- **[COMPLETED] 5. Case Convention Cleanup.**
+  - **Note:** This was a blocking prerequisite for the DPP Wizard.
+  - **See Design Doc:** [docs/designs/007-case-convention-cleanup.md](./docs/designs/007-case-convention-cleanup.md)
+
 - **[COMPLETED] Tier 1: Foundational Cleanup & Core Tooling (Highest Priority)**
 - **[COMPLETED] 1. JSON Schema Overhaul:** Clear critical tech debt related to data validation.
 - **[COMPLETED] 1a. Document Strategy:** Create a `README.md` in `src/validation/` explaining the role of JSON Schema in the project, its connection to EU regulations, and the validation methodology. Update the main `README.md` to reference this new document.

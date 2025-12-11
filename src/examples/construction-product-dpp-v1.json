@@ -72,7 +72,7 @@
             "ConformityAssessmentBodyRole"
         ],
         "organizationName": "Example Inspection Body",
-        "notifiedBodyID": "1234",
+        "notifiedBodyId": "1234",
         "tradingName": "EIB",
         "address": {
             "type": "PostalAddress",
@@ -83,7 +83,7 @@
         },
         "telephone": "+431795148039",
         "email": "post@example-body.com",
-        "website": "www.example-body.com"
+        "website": "https://www.example-body.com"
     },
     "technicalAssessmentBody": {
         "type": "Organization",
@@ -99,7 +99,7 @@
         },
         "telephone": "+3221234567",
         "email": "info@eab.example.com",
-        "website": "www.eab.example.com"
+        "website": "https://www.eab.example.com"
     },
     "validationReports": "Not applicable",
     "harmonisedStandardReference": "EN 1504-3:2005",
@@ -117,7 +117,7 @@
         "thermalExpansion": "N/A",
         "capillaryAbsorption": "w < 0.5kg/h^(0.5)*m^2",
         "reactionToFire": "Class A1",
-        "dangerousSubstances": [],
+        "dangerousSubstances": "None",
         "declaredUnit": "1 kg",
         "functionalUnit": "1 kg",
         "referenceServiceLife": "50 years"

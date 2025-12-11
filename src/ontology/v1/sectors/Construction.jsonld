@@ -90,7 +90,7 @@
 
     // --- Notified Body ID ---
     {
-        "@id": "dppk:notifiedBodyID",
+        "@id": "dppk:notifiedBodyId",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Notified Body Identifier",
         "rdfs:comment": "The identification number of the Notified Body involved in the assessment and verification of constancy of performance (e.g., NB1234).",

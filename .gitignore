@@ -68,3 +68,8 @@ node_modules
 .vscode
 
 sensitive/
+
+# Playwright Test Artifacts
+test-results
+testing/playwright-report
+testing/playwright-report/index.html

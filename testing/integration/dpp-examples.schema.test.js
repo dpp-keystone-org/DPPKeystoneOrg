@@ -32,11 +32,27 @@ describe('DPP JSON Schema Validation', () => {
     let ajv;
     let baseSchema;
     let epdSchema;
+    let relatedResourceSchema;
+    let organizationSchema;
+    let postalAddressSchema;
+    let dopcSchema;
 
     beforeAll(async () => {
         // Load schemas that are cross-referenced by other schemas
         const epdSchemaPath = path.join(SCHEMA_DIR, 'epd.schema.json');
         epdSchema = JSON.parse(await fs.promises.readFile(epdSchemaPath, 'utf-8'));
+
+        const relatedResourceSchemaPath = path.join(SCHEMA_DIR, 'related-resource.schema.json');
+        relatedResourceSchema = JSON.parse(await fs.promises.readFile(relatedResourceSchemaPath, 'utf-8'));
+
+        const organizationSchemaPath = path.join(SCHEMA_DIR, 'organization.schema.json');
+        organizationSchema = JSON.parse(await fs.promises.readFile(organizationSchemaPath, 'utf-8'));
+
+        const postalAddressSchemaPath = path.join(SCHEMA_DIR, 'postal-address.schema.json');
+        postalAddressSchema = JSON.parse(await fs.promises.readFile(postalAddressSchemaPath, 'utf-8'));
+
+        const dopcSchemaPath = path.join(SCHEMA_DIR, 'dopc.schema.json');
+        dopcSchema = JSON.parse(await fs.promises.readFile(dopcSchemaPath, 'utf-8'));
 
         // Load the base schema once for all tests
         const baseSchemaPath = path.join(SCHEMA_DIR, 'dpp.schema.json');
@@ -54,6 +70,10 @@ describe('DPP JSON Schema Validation', () => {
 
         // Add schemas that are referenced by others
         ajv.addSchema(epdSchema);
+        ajv.addSchema(relatedResourceSchema);
+        ajv.addSchema(organizationSchema);
+        ajv.addSchema(postalAddressSchema);
+        ajv.addSchema(dopcSchema);
     });
 
     test.each(testCases)('%s should be valid', async (exampleFile) => {

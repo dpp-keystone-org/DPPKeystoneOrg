@@ -30,12 +30,9 @@
     // --- Documents (Aligned with Core Ontology) ---
   "documents": [
       {
-        "@type": "DigitalDocument",
-        "name": {
-          "en": "IBU EPD Listing"
-        },
-        "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
-        "documentType": "Environmental Product Declaration"
+        "@type": "RelatedResource",
+        "resourceTitle": "IBU EPD Listing",
+        "url": "https://ibu-epd.com/veroeffentlichte-epds/"
       }
   ],
 
@@ -49,15 +46,20 @@
     "value": 100,
     "unitCode": "AMH"
   },
-  "recycledContentRatio": 0.15,
-  "carbonFootprint": {
-    "@type": "dppk:CarbonFootprint",
-    "value": 120.5,
-    "unit": "kgCO2e"
+  "recycledContentPercentage": 15,
+  "batteryCarbonFootprint": {
+    "@type": "dppk:BatteryCarbonFootprint",
+    "bcfTotal": {
+      "@type": "QuantitativeValue",
+      "value": "120.5",
+      "unitCode": "KGE",
+      "unitText": "kg CO2e"
+    }
   },
   "stateOfHealth": {
-    "@type": "dppk:StateOfHealth",
-    "value": 98.5,
-    "unit": "percent"
+    "@type": "QuantitativeValue",
+    "value": "98.5",
+    "unitCode": "P1",
+    "unitText": "percent"
   }
 }

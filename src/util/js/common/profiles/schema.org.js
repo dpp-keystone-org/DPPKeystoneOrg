@@ -41,8 +41,8 @@ function toSchemaOrgDigitalDocument(docNode) {
     return {
         "@type": "DigitalDocument",
         "name": getValue(docNode, 'https://dpp-keystone.org/spec/v1/terms#resourceTitle'),
-        // The context maps the DPP 'url' property directly to 'schema:url'
-        "url": getId(docNode, 'https://schema.org/url'),
+        // The context maps the DPP 'url' property to 'dppk:url', which is equivalent to 'schema:url'
+        "url": getValue(docNode, 'https://dpp-keystone.org/spec/v1/terms#url'),
         "encodingFormat": getValue(docNode, 'https://dpp-keystone.org/spec/v1/terms#contentType'),
         "inLanguage": getValue(docNode, 'https://dpp-keystone.org/spec/v1/terms#language'),
     };
@@ -170,7 +170,7 @@ export const profile = {
     // Defines which transformations to run
     transformations: [
       {
-        source: 'https://dpp-keystone.org/spec/v1/terms#DPPID',
+        source: 'https://dpp-keystone.org/spec/v1/terms#digitalProductPassportId',
         transformer: dppToSchemaOrgProduct
       },
       {

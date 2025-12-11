@@ -1,5 +1,6 @@
 // src/wizard/wizard.js
 import { loadSchema } from './schema-loader.js';
+import { loadOntology } from './ontology-loader.js';
 import { buildForm } from './form-builder.js';
 import { generateDpp } from './dpp-generator.js';
 
@@ -22,7 +23,8 @@ export async function initializeWizard() {
         console.log('Initializing core DPP form...');
         try {
             const schema = await loadSchema('dpp');
-            const formFragment = buildForm(schema);
+            const ontologyMap = await loadOntology('dpp');
+            const formFragment = buildForm(schema, ontologyMap);
             coreFormContainer.appendChild(formFragment);
             console.log('Core DPP form initialized successfully.');
         } catch (error) {
@@ -42,7 +44,8 @@ export async function initializeWizard() {
                 console.log(`Sector selected: ${selectedSector}`);
                 try {
                     const schema = await loadSchema(selectedSector);
-                    const formFragment = buildForm(schema);
+                    const ontologyMap = await loadOntology(selectedSector);
+                    const formFragment = buildForm(schema, ontologyMap);
                     formContainer.appendChild(formFragment);
                 } catch (error) {
                     formContainer.innerHTML = '<p class="error">Could not load the form for the selected sector. Please check the console for details.</p>';

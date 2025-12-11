@@ -20,14 +20,19 @@
         "type": "object",
         "properties": {
             "productName": { "type": "string" },
-            "documents": { "type": "array" },
+            "documents": {
+                "type": "array",
+                "items": {
+                    "$ref": "related-resource.schema.json"
+                }
+            },
             "batteryCategory": { "type": "string" },
             "batteryChemistry": { "type": "string" },
             "dateOfManufacture": { "type": "string", "format": "date" },
             "nominalVoltage": { "type": "object" },
             "ratedCapacity": { "type": "object" },
-            "recycledContentRatio": { "type": "number" },
-            "carbonFootprint": { "type": "object" },
+            "recycledContentPercentage": { "type": "number" },
+            "batteryCarbonFootprint": { "type": "object" },
             "stateOfHealth": { "type": "object" }
         },
         "required": [
@@ -38,8 +43,8 @@
             "dateOfManufacture",
             "nominalVoltage",
             "ratedCapacity",
-            "recycledContentRatio",
-            "carbonFootprint",
+            "recycledContentPercentage",
+            "batteryCarbonFootprint",
             "stateOfHealth"
         ]
     }
