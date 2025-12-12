@@ -58,19 +58,19 @@
         "type": "string"
       },
       "generalProductInformation": {
-        "type": "object"
+        "$ref": "related-resource.schema.json"
       },
       "instructionsForUse": {
-        "type": "object"
+        "$ref": "related-resource.schema.json"
       },
       "safetyDataSheet": {
-        "type": "object"
+        "$ref": "related-resource.schema.json"
       },
       "notifiedBody": {
-        "type": "object"
+        "$ref": "organization.schema.json"
       },
       "technicalAssessmentBody": {
-        "type": "object"
+        "$ref": "organization.schema.json"
       },
       "validationReports": {
         "type": "string"
@@ -85,7 +85,7 @@
         "type": "string"
       },
       "dopcDeclarations": {
-        "type": "object"
+        "$ref": "dopc.schema.json"
       },
       "epd": {
         "$ref": "epd.schema.json"

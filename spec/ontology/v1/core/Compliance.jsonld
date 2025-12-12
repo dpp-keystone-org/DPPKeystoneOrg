@@ -26,28 +26,13 @@
   ],
   "@graph": [
     {
-      "@id": "dppk:DigitalDocument",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Digital Document",
-      "rdfs:comment": "A reference to an external digital file related to the product (e.g., manuals, reports, declarations).",
-      "owl:equivalentClass": [
-        {
-          "@id": "schema:DigitalDocument"
-        },
-        {
-          "@id": "gs1:ReferencedFile"
-        },
-        {
-          "@id": "unece:Document"
-        }
-      ],
-      "rdfs:term_status": "unstable"
-    },
-    {
       "@id": "dppk:Certification",
       "@type": "rdfs:Class",
       "rdfs:label": "Certification",
       "rdfs:comment": "A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD).",
+      "rdfs:subClassOf": {
+        "@id": "dppk:RelatedResource"
+      },
       "owl:equivalentClass": [
         {
           "@id": "schema:Certification"
@@ -117,7 +102,7 @@
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "dppk:DigitalDocument"
+        "@id": "dppk:RelatedResource"
       },
       "owl:equivalentProperty": {
         "@id": "gs1:referencedFile"
@@ -222,70 +207,7 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:documentType",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Document Type",
-      "rdfs:domain": {
-        "@id": "dppk:DigitalDocument"
-      },
-      "owl:equivalentProperty": {
-        "@id": "gs1:referencedFileTypeCode"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:languageCode",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Language Code",
-      "rdfs:domain": {
-        "@id": "dppk:DigitalDocument"
-      },
-      "owl:equivalentProperty": {
-        "@id": "gs1:fileLanguageCode"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:documentURL",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "Document URL",
-      "rdfs:domain": {
-        "@id": "dppk:DigitalDocument"
-      },
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
-      "owl:equivalentProperty": {
-        "@id": "gs1:referencedFileURL"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:certificationStandard",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Certification Standard/Name",
-      "rdfs:domain": {
-        "@id": "dppk:Certification"
-      },
-      "owl:equivalentProperty": {
-        "@id": "gs1:certificationStandard"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:certificationIdentification",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Certificate Number/ID",
-      "rdfs:domain": {
-        "@id": "dppk:Certification"
-      },
-      "owl:equivalentProperty": {
-        "@id": "gs1:certificationIdentification"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:certifyingBodyName",
+      "@id": "dppk:certificationBodyName",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Certifying Body Name",
       "rdfs:domain": {

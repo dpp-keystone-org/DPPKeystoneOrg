@@ -245,7 +245,7 @@
               "description": "The organization that owns the standard.",
               "example": "Global Organic Textile Standard"
             },
-            "certificationID": {
+            "certificationId": {
               "type": "string",
               "description": "The number or ID of the certificate."
             },
@@ -253,7 +253,7 @@
               "type": "string",
               "description": "The specific grade or value achieved, if applicable."
             },
-            "certificationBodyID": {
+            "certificationBodyId": {
               "type": "string",
               "description": "The identifier of the Conformity Assessment Body that issued the certificate."
             },
@@ -272,9 +272,9 @@
           },
           "required": [
             "certificationName",
-            "certificationID",
+            "certificationId",
             "certificationAuthority",
-            "certificationBodyID"
+            "certificationBodyId"
           ],
           "additionalProperties": true
         }

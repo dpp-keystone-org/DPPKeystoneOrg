@@ -149,12 +149,12 @@
   "certifications": [
     {
       "@type": "Certification",
-      "certificationStandard": "CE Mark",
-      "certificationIdentification": "CE-2024-98765",
-      "certifyingBodyName": "Self-declared",
+      "resourceTitle": "CE Mark",
+      "identifier": "CE-2024-98765",
+      "certificationBodyName": "Self-declared",
       "organizationRole": "ManufacturerRole",
       "certificationStartDate": "2024-01-01",
-      "referencedFileURL": "https://example.com/dop/GSB451"
+      "url": "https://example.com/dop/GSB451"
     }
   ],
   "ecoDesignProperties": [

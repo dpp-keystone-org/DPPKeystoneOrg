@@ -8,9 +8,15 @@
  */
 export async function loadOntology(sector) {
     const ontologyMap = new Map();
-    // Assumption: a sector name like 'construction' maps to a file named 'Construction.jsonld'
-    const sectorPascalCase = sector.charAt(0).toUpperCase() + sector.slice(1);
-    const url = `../ontology/v1/sectors/${sectorPascalCase}.jsonld`;
+    let url;
+
+    if (sector === 'dpp') {
+        url = '../ontology/v1/dpp-ontology.jsonld';
+    } else {
+        // Assumption: a sector name like 'construction' maps to a file named 'Construction.jsonld'
+        const sectorPascalCase = sector.charAt(0).toUpperCase() + sector.slice(1);
+        url = `../ontology/v1/sectors/${sectorPascalCase}.jsonld`;
+    }
 
     try {
         const response = await fetch(url);
@@ -26,7 +32,12 @@ export async function loadOntology(sector) {
                     const label = term['rdfs:label'] ? term['rdfs:label']['@value'] : '';
                     const comment = term['rdfs:comment'] ? term['rdfs:comment']['@value'] : '';
 
-                    ontologyMap.set(term['@id'], {
+                    let key = term['@id'];
+                    if (key.includes(':')) {
+                        key = key.split(':')[1];
+                    }
+
+                    ontologyMap.set(key, {
                         label: label || '',
                         comment: comment || ''
                     });

@@ -40,7 +40,7 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:DPPID",
+      "@id": "dppk:digitalProductPassportId",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "DPP Identifier",
       "rdfs:comment": "The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI).",
@@ -78,7 +78,7 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:EconomicOperatorID",
+      "@id": "dppk:economicOperatorId",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Economic Operator Identifier (EOI)",
       "rdfs:comment": "The unique identifier for the Economic Operator responsible for placing the product on the market.",
@@ -91,7 +91,7 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:FacilityID",
+      "@id": "dppk:facilityId",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Facility Identifier",
       "rdfs:comment": "Optional. The unique identifier for the manufacturing or processing facility associated with the product.",
@@ -104,20 +104,52 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:Granularity",
-      "@type": "owl:DatatypeProperty",
+      "@id": "dppk:GranularityValue",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Granularity Value",
+      "rdfs:comment": "An enumeration of the allowed granularity levels for a DPP.",
+      "rdfs:subClassOf": {
+        "@id": "rdfs:Resource"
+      },
+      "owl:oneOf": [
+        {
+          "@id": "dppk:Model"
+        },
+        {
+          "@id": "dppk:Batch"
+        },
+        {
+          "@id": "dppk:Item"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:Model",
+      "@type": "dppk:GranularityValue"
+    },
+    {
+      "@id": "dppk:Batch",
+      "@type": "dppk:GranularityValue"
+    },
+    {
+      "@id": "dppk:Item",
+      "@type": "dppk:GranularityValue"
+    },
+    {
+      "@id": "dppk:granularity",
+      "@type": "owl:ObjectProperty",
       "rdfs:label": "Granularity Level",
-      "rdfs:comment": "Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).",
+      "rdfs:comment": "Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).",
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
       "rdfs:range": {
-        "@id": "xsd:string"
+        "@id": "dppk:GranularityValue"
       },
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:StatusOfTheDPP",
+      "@id": "dppk:dppStatus",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "DPP Status",
       "rdfs:comment": "The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').",
@@ -169,9 +201,9 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:BaseDppSchemaVersion",
+      "@id": "dppk:dppSchemaVersion",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Base DPP Schema Version",
+      "rdfs:label": "DPP Schema Version",
       "rdfs:comment": "The version of the horizontal (cross-sector) DPP schema used for this instance.",
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
@@ -182,10 +214,10 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:SectorDataModelVersion",
+      "@id": "dppk:contentSpecificationIds",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Sector Data Model Version",
-      "rdfs:comment": "The version of the sector-specific data model (e.g., Battery Regulation, Textile Strategy) used for this instance.",
+      "rdfs:label": "Content Specification Identifiers",
+      "rdfs:comment": "A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.",
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },

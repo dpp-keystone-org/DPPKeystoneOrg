@@ -31,10 +31,8 @@
   Organization : +tradingName
   Organization : +gln
   Organization : +leiCode
-  Organization : +additionalOrganizationID
-  Organization : +additionalOrganizationIDType
-  Organization : +iso6523
-  Organization --|> ISO6523 : iso6523
+  Organization : +additionalOrganizationId
+  Organization : +additionalOrganizationIdType
   Organization : +address
   Organization --|> PostalAddress : address
   Organization : +email
@@ -89,24 +87,17 @@
                                 </tr>
                             
                                 <tr>
-                                    <td>Additional Organization ID (dppk:additionalOrganizationID)</td>
-                                    <td>An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIDType.</td>
+                                    <td>Additional Organization ID (dppk:additionalOrganizationId)</td>
+                                    <td>An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIdType.</td>
                                     <td>xsd:string</td>
                                     <td><a href="https://ref.gs1.org/voc/additionalOrganizationIdentification">gs1:additionalOrganizationIdentification</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Additional Organization ID Type (dppk:additionalOrganizationIDType)</td>
-                                    <td>The type of the identifier provided in additionalOrganizationID (e.g., 'EORI', 'VAT').</td>
+                                    <td>Additional Organization ID Type (dppk:additionalOrganizationIdType)</td>
+                                    <td>The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT').</td>
                                     <td>xsd:string</td>
                                     <td><a href="https://ref.gs1.org/voc/additionalOrganizationIdentificationType">gs1:additionalOrganizationIdentificationType</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>ISO 6523 Identifier (dppk:iso6523)</td>
-                                    <td>Relates an organization to one of its ISO 6523 identifiers.</td>
-                                    <td>dppk:ISO6523</td>
-                                    <td></td>
                                 </tr>
                             
                                 <tr>

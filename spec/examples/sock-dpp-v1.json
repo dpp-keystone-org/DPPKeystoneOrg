@@ -17,12 +17,11 @@
   "productName": "Everyday Comfort Crew Socks (3-Pack)",
   "documents": [
     {
-      "@type": "DigitalDocument",
-      "name": {
+      "@type": "RelatedResource",
+      "resourceTitle": {
         "en": "IBU EPD Listing"
       },
-      "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
-      "documentType": "Environmental Product Declaration"
+      "url": "https://ibu-epd.com/veroeffentlichte-epds/"
     }
   ],
   "fibreComposition": [

@@ -24,7 +24,6 @@
                 <li><a href="../../../ontology/v1/core/Organization/PostalAddress.html"><strong>PostalAddress</strong></a> - <em>The physical mailing address of an organization or location.</em></li>
                 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>Product</strong></a> - <em>A general concept covering finished goods, components, or raw materials.</em></li>
                 <li><a href="../../../ontology/v1/core/Product/QuantitativeValue.html"><strong>QuantitativeValue</strong></a> - <em>A structured value representing a measurement, including the numeric value and the unit of measure.</em></li>
-                <li><a href="../../../ontology/v1/core/Compliance/DigitalDocument.html"><strong>DigitalDocument</strong></a> - <em>A reference to an external digital file related to the product (e.g., manuals, reports, declarations).</em></li>
                 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>RelatedResource</strong></a> - <em>A resource identified by a URL, with additional metadata such as title, content type, and language.</em></li>
                 <li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>Certification</strong></a> - <em>A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD).</em></li>
                 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>SubstanceOfConcern</strong></a> - <em>Details regarding dangerous substances or substances of very high concern (SVHC) present in the product.</em></li>
@@ -37,18 +36,21 @@
                 <li><a href="../../../ontology/v1/core/Organization/ManufacturerRole.html"><strong>ManufacturerRole</strong></a> - <em>The role of an entity responsible for the production of the finished goods.</em></li>
                 <li><a href="../../../ontology/v1/core/Organization/FacilityRole.html"><strong>FacilityRole</strong></a> - <em>A specific location or site where manufacturing or processing activities occur.</em></li>
                 <li><a href="../../../ontology/v1/core/Organization/ConformityAssessmentBodyRole.html"><strong>ConformityAssessmentBodyRole</strong></a> - <em>The role of an entity (e.g., Notified Body) that performs conformity assessment activities.</em></li>
-                <li><a href="../../../ontology/v1/core/Organization/ISO6523.html"><strong>ISO6523</strong></a> - <em>An organization identifier structured according to ISO 6523-1.</em></li>
+                <li><strong>ISO6523</strong></li>
+                <li><strong>Item</strong></li>
+                <li><strong>Batch</strong></li>
+                <li><strong>Model</strong></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>digitalProductPassportId</strong></a> - <em>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI).</em></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>uniqueProductIdentifier</strong></a> - <em>The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI.</em></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>economicOperatorId</strong></a> - <em>The unique identifier for the Economic Operator responsible for placing the product on the market.</em></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>facilityId</strong></a> - <em>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</em></li>
-                <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>granularity</strong></a> - <em>Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).</em></li>
+                <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>granularity</strong></a> - <em>Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).</em></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>dppStatus</strong></a> - <em>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</em></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>lastUpdate</strong></a> - <em>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</em></li>
-                <li><strong>dppSchemaVersion</strong></li>
+                <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>dppSchemaVersion</strong></a> - <em>The version of the horizontal (cross-sector) DPP schema used for this instance.</em></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>versionNumber</strong></a> - <em>The version number of the DPP instance.</em></li>
                 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>versionDate</strong></a> - <em>The date of the version of the DPP instance.</em></li>
-                <li><strong>contentSpecificationIds</strong></li>
+                <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>contentSpecificationIds</strong></a> - <em>A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.</em></li>
                 <li><strong>verifiableCredential</strong></li>
                 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>hsCode</strong></a> - <em>A code from the Harmonized System used to classify traded products.</em></li>
                 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>unionDatabaseRegistrations</strong></a> - <em>Registration numbers or identifiers from Union-level databases (e.g., EPREL).</em></li>
@@ -60,11 +62,11 @@
                 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>gln</strong></a> - <em>A GS1 standard identifier for legal entities, functional departments, or physical locations.</em></li>
                 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>leiCode</strong></a> - <em>A standardized global identifier for legal entities.</em></li>
                 <li><strong>organizationRole</strong></li>
-                <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>additionalOrganizationID</strong></a> - <em>An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIDType.</em></li>
-                <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>additionalOrganizationIDType</strong></a> - <em>The type of the identifier provided in additionalOrganizationID (e.g., 'EORI', 'VAT').</em></li>
-                <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>iso6523</strong></a> - <em>Relates an organization to one of its ISO 6523 identifiers.</em></li>
-                <li><a href="../../../ontology/v1/core/Organization/ISO6523.html"><strong>icd</strong></a> - <em>The 4-digit International Code Designator (ICD) from ISO 6523-1.</em></li>
-                <li><a href="../../../ontology/v1/core/Organization/ISO6523.html"><strong>iso6523Value</strong></a> - <em>The value of the identifier within the scheme defined by the ICD.</em></li>
+                <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>additionalOrganizationId</strong></a> - <em>An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIdType.</em></li>
+                <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>additionalOrganizationIdType</strong></a> - <em>The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT').</em></li>
+                <li><strong>iso6523</strong></li>
+                <li><strong>icd</strong></li>
+                <li><strong>iso6523Value</strong></li>
                 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>address</strong></a> - <em>Relates an organization to its physical address.</em></li>
                 <li><a href="../../../ontology/v1/core/Organization/PostalAddress.html"><strong>streetAddress</strong></a> - <em>Includes street name and number.</em></li>
                 <li><strong>postalCode</strong></li>
@@ -114,15 +116,9 @@
                 <li><strong>resourceTitle</strong></li>
                 <li><strong>contentType</strong></li>
                 <li><strong>language</strong></li>
-                <li><strong>documentType</strong></li>
-                <li><strong>languageCode</strong></li>
-                <li><strong>documentURL</strong></li>
-                <li><strong>certificationStandard</strong></li>
-                <li><strong>certificationIdentification</strong></li>
-                <li><strong>certifyingBodyName</strong></li>
+                <li><strong>certificationBodyName</strong></li>
                 <li><strong>certificationStartDate</strong></li>
-                <li><strong>certifyingBodyID</strong></li>
-                <li><strong>referencedFileURL</strong></li>
+                <li><strong>certificationBodyId</strong></li>
                 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>minValue</strong></a> - <em>The minimum concentration or amount of the substance present.</em></li>
                 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>maxValue</strong></a> - <em>The maximum concentration or amount of the substance present.</em></li>
                 <li><a href="../../../ontology/v1/core/Compliance/EcoDesignProperty.html"><strong>ecoDesignPropertyType</strong></a> - <em>The specific type of Eco-Design property being reported (e.g., EnergyEfficiency, GWP_A1-A3).</em></li>

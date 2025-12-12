@@ -24,7 +24,10 @@
         "type": "string"
       },
       "documents": {
-        "type": "array"
+        "type": "array",
+        "items": {
+          "$ref": "related-resource.schema.json"
+        }
       },
       "batteryCategory": {
         "type": "string"
@@ -42,10 +45,10 @@
       "ratedCapacity": {
         "type": "object"
       },
-      "recycledContentRatio": {
+      "recycledContentPercentage": {
         "type": "number"
       },
-      "carbonFootprint": {
+      "batteryCarbonFootprint": {
         "type": "object"
       },
       "stateOfHealth": {
@@ -60,8 +63,8 @@
       "dateOfManufacture",
       "nominalVoltage",
       "ratedCapacity",
-      "recycledContentRatio",
-      "carbonFootprint",
+      "recycledContentPercentage",
+      "batteryCarbonFootprint",
       "stateOfHealth"
     ]
   }

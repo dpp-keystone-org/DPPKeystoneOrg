@@ -27,16 +27,15 @@
                 <pre class="mermaid">
                     classDiagram
   class Certification
-  Certification : +certificationStandard
-  Certification : +certificationIdentification
-  Certification : +certifyingBodyName
+  RelatedResource <|-- Certification
+  Certification : +certificationBodyName
   Certification : +certificationStartDate
 
                 </pre>
 
                 <h4>Attributes</h4>
                 <p>A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD).</p>
-                <p><strong>equivalentClass:</strong> <a href="https://schema.org/Certification">schema:Certification</a>, <a href="https://ref.gs1.org/voc/CertificationDetails">gs1:CertificationDetails</a>, <a href="https://vocabulary.uncefact.org/certificationEvidenceDocument">unece:certificationEvidenceDocument</a></p>
+                <p><strong>subClassOf:</strong> <a href="../RelatedResource/RelatedResource.html">dppk:RelatedResource</a></p><p><strong>equivalentClass:</strong> <a href="https://schema.org/Certification">schema:Certification</a>, <a href="https://ref.gs1.org/voc/CertificationDetails">gs1:CertificationDetails</a>, <a href="https://vocabulary.uncefact.org/certificationEvidenceDocument">unece:certificationEvidenceDocument</a></p>
 
                 
                     <h4>Properties</h4>
@@ -52,21 +51,7 @@
                         <tbody>
                             
                                 <tr>
-                                    <td>Certification Standard/Name (dppk:certificationStandard)</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><a href="https://ref.gs1.org/voc/certificationStandard">gs1:certificationStandard</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Certificate Number/ID (dppk:certificationIdentification)</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><a href="https://ref.gs1.org/voc/certificationIdentification">gs1:certificationIdentification</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Certifying Body Name (dppk:certifyingBodyName)</td>
+                                    <td>Certifying Body Name (dppk:certificationBodyName)</td>
                                     <td></td>
                                     <td></td>
                                     <td><a href="https://ref.gs1.org/voc/certificationAgency">gs1:certificationAgency</a></td>

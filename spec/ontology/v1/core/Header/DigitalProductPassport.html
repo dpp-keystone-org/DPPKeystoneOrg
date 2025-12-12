@@ -30,17 +30,18 @@
   Product <|-- DigitalProductPassport
   Certification <|-- DigitalProductPassport
   Document <|-- DigitalProductPassport
-  DigitalProductPassport : +DPPID
+  DigitalProductPassport : +digitalProductPassportId
   DigitalProductPassport : +uniqueProductIdentifier
-  DigitalProductPassport : +EconomicOperatorID
-  DigitalProductPassport : +FacilityID
-  DigitalProductPassport : +Granularity
-  DigitalProductPassport : +StatusOfTheDPP
+  DigitalProductPassport : +economicOperatorId
+  DigitalProductPassport : +facilityId
+  DigitalProductPassport : +granularity
+  DigitalProductPassport --|> GranularityValue : granularity
+  DigitalProductPassport : +dppStatus
   DigitalProductPassport : +lastUpdate
   DigitalProductPassport : +versionNumber
   DigitalProductPassport : +versionDate
-  DigitalProductPassport : +BaseDppSchemaVersion
-  DigitalProductPassport : +SectorDataModelVersion
+  DigitalProductPassport : +dppSchemaVersion
+  DigitalProductPassport : +contentSpecificationIds
   DigitalProductPassport : +hsCode
 
                 </pre>
@@ -63,7 +64,7 @@
                         <tbody>
                             
                                 <tr>
-                                    <td>DPP Identifier (dppk:DPPID)</td>
+                                    <td>DPP Identifier (dppk:digitalProductPassportId)</td>
                                     <td>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI).</td>
                                     <td>xsd:anyURI</td>
                                     <td></td>
@@ -77,28 +78,28 @@
                                 </tr>
                             
                                 <tr>
-                                    <td>Economic Operator Identifier (EOI) (dppk:EconomicOperatorID)</td>
+                                    <td>Economic Operator Identifier (EOI) (dppk:economicOperatorId)</td>
                                     <td>The unique identifier for the Economic Operator responsible for placing the product on the market.</td>
                                     <td>xsd:anyURI</td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Facility Identifier (dppk:FacilityID)</td>
+                                    <td>Facility Identifier (dppk:facilityId)</td>
                                     <td>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</td>
                                     <td>xsd:anyURI</td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Granularity Level (dppk:Granularity)</td>
-                                    <td>Indicates the level of detail the DPP applies to: 'model' (product type), 'batch' (production lot), or 'item' (individual serialized unit).</td>
-                                    <td>xsd:string</td>
+                                    <td>Granularity Level (dppk:granularity)</td>
+                                    <td>Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).</td>
+                                    <td>dppk:GranularityValue</td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>DPP Status (dppk:StatusOfTheDPP)</td>
+                                    <td>DPP Status (dppk:dppStatus)</td>
                                     <td>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</td>
                                     <td>xsd:string</td>
                                     <td></td>
@@ -126,15 +127,15 @@
                                 </tr>
                             
                                 <tr>
-                                    <td>Base DPP Schema Version (dppk:BaseDppSchemaVersion)</td>
+                                    <td>DPP Schema Version (dppk:dppSchemaVersion)</td>
                                     <td>The version of the horizontal (cross-sector) DPP schema used for this instance.</td>
                                     <td>xsd:string</td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Sector Data Model Version (dppk:SectorDataModelVersion)</td>
-                                    <td>The version of the sector-specific data model (e.g., Battery Regulation, Textile Strategy) used for this instance.</td>
+                                    <td>Content Specification Identifiers (dppk:contentSpecificationIds)</td>
+                                    <td>A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.</td>
                                     <td>xsd:string</td>
                                     <td></td>
                                 </tr>

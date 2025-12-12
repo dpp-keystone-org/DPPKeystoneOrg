@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/organization.schema.json",
+  "title": "Organization",
+  "description": "A general concept for any organization or legal entity involved in the product lifecycle.",
+  "type": "object",
+  "properties": {
+    "organizationName": {
+      "type": "string",
+      "description": "The official legal name of the organization."
+    },
+    "tradingName": {
+      "type": "string",
+      "description": "The name under which the organization conducts business, if different from the legal name."
+    },
+    "gln": {
+      "type": "string",
+      "description": "A GS1 standard identifier for legal entities, functional departments, or physical locations."
+    },
+    "leiCode": {
+      "type": "string",
+      "description": "A standardized global identifier for legal entities."
+    },
+    "additionalOrganizationId": {
+      "type": "string",
+      "description": "An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID)."
+    },
+    "additionalOrganizationIdType": {
+      "type": "string",
+      "description": "The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT')."
+    },
+    "address": {
+      "$ref": "postal-address.schema.json"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "organizationName"
+  ]
+}

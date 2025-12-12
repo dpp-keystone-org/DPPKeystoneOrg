@@ -7,7 +7,7 @@
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
   "uniqueProductIdentifier": "https://id.gs1.org/01/05012345101095/21/22334455",
   "granularity": "Item",
-  "facilityID": "urn:lei:ABCDE123456789012345",
+  "facilityId": "urn:lei:ABCDE123456789012345",
   "dppSchemaVersion": "ENXXX:v1.0",
   "dppStatus": "Active",
   "lastUpdate": "2025-08-20T23:53:06Z",
@@ -50,12 +50,11 @@
   },
   "documents": [
     {
-      "@type": "DigitalDocument",
-      "name": {
+      "@type": "RelatedResource",
+      "resourceTitle": {
         "en": "IBU EPD Listing"
       },
-      "documentURL": "https://ibu-epd.com/veroeffentlichte-epds/",
-      "documentType": "Environmental Product Declaration"
+      "url": "https://ibu-epd.com/veroeffentlichte-epds/"
     }
   ],
   "netWeight": 1.8,
@@ -86,12 +85,12 @@
   "certifications": [
     {
       "@type": "Certification",
-      "certificationStandard": "CE Mark",
-      "certificationIdentification": "CE-2024-98765",
-      "certifyingBodyName": "Self-declared",
+      "resourceTitle": "CE Mark",
+      "identifier": "CE-2024-98765",
+      "certificationBodyName": "Self-declared",
       "organizationRole": "ManufacturerRole",
       "certificationStartDate": "2024-01-01",
-      "referencedFileURL": "https://example.com/dop/GSB451"
+      "url": "https://example.com/dop/GSB451"
     }
   ],
   "ecoDesignProperties": [

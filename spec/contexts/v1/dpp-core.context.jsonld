@@ -10,7 +10,6 @@
     "PostalAddress": "dppk:PostalAddress",
     "Product": "dppk:Product",
     "QuantitativeValue": "dppk:QuantitativeValue",
-    "DigitalDocument": "dppk:DigitalDocument",
     "RelatedResource": "dppk:RelatedResource",
     "Certification": "dppk:Certification",
     "SubstanceOfConcern": "dppk:SubstanceOfConcern",
@@ -24,8 +23,17 @@
     "FacilityRole": "dppk:FacilityRole",
     "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
     "ISO6523": "dppk:ISO6523",
+    "Item": {
+      "@id": "dppk:Item"
+    },
+    "Batch": {
+      "@id": "dppk:Batch"
+    },
+    "Model": {
+      "@id": "dppk:Model"
+    },
     "digitalProductPassportId": {
-      "@id": "dppk:DPPID",
+      "@id": "dppk:digitalProductPassportId",
       "@type": "@id"
     },
     "uniqueProductIdentifier": {
@@ -33,15 +41,18 @@
       "@type": "@id"
     },
     "economicOperatorId": {
-      "@id": "dppk:EconomicOperatorID",
+      "@id": "dppk:economicOperatorId",
       "@type": "@id"
     },
     "facilityId": {
-      "@id": "dppk:FacilityID",
+      "@id": "dppk:facilityId",
       "@type": "@id"
     },
-    "granularity": "dppk:Granularity",
-    "dppStatus": "dppk:StatusOfTheDPP",
+    "granularity": {
+      "@id": "dppk:granularity",
+      "@type": "@vocab"
+    },
+    "dppStatus": "dppk:dppStatus",
     "lastUpdate": {
       "@id": "dppk:lastUpdate",
       "@type": "xsd:dateTime"
@@ -76,8 +87,8 @@
     "gln": "dppk:gln",
     "leiCode": "dppk:leiCode",
     "organizationRole": "dppk:organizationRole",
-    "additionalOrganizationID": "dppk:additionalOrganizationID",
-    "additionalOrganizationIDType": "dppk:additionalOrganizationIDType",
+    "additionalOrganizationId": "dppk:additionalOrganizationId",
+    "additionalOrganizationIdType": "dppk:additionalOrganizationIdType",
     "iso6523": "dppk:iso6523",
     "icd": "dppk:icd",
     "iso6523Value": "dppk:iso6523Value",
@@ -187,24 +198,12 @@
     "resourceTitle": "dppk:resourceTitle",
     "contentType": "dppk:contentType",
     "language": "dppk:language",
-    "documentType": "dppk:documentType",
-    "languageCode": "dppk:languageCode",
-    "documentURL": {
-      "@id": "dppk:documentURL",
-      "@type": "@id"
-    },
-    "certificationStandard": "dppk:certificationStandard",
-    "certificationIdentification": "dppk:certificationIdentification",
-    "certifyingBodyName": "dppk:certifyingBodyName",
+    "certificationBodyName": "dppk:certificationBodyName",
     "certificationStartDate": {
       "@id": "dppk:certificationStartDate",
       "@type": "xsd:date"
     },
-    "certifyingBodyID": "dppk:certifyingBodyID",
-    "referencedFileURL": {
-      "@id": "dppk:referencedFileURL",
-      "@type": "@id"
-    },
+    "certificationBodyId": "dppk:certificationBodyId",
     "minValue": "dppk:minValue",
     "maxValue": "dppk:maxValue",
     "ecoDesignPropertyType": "dppk:ecoDesignPropertyType",
@@ -226,10 +225,10 @@
       "@id": "dppk:name",
       "@container": "@language"
     },
-    "identifier": "schema:identifier",
+    "identifier": "dppk:identifier",
     "url": {
-      "@id": "schema:url",
-      "@type": "@id"
+      "@id": "dppk:url",
+      "@type": "xsd:anyURI"
     }
   }
 }

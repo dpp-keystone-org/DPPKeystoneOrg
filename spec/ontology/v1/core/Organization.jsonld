@@ -89,13 +89,6 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:ISO6523",
-      "@type": "rdfs:Class",
-      "rdfs:label": "ISO 6523 Identifier",
-      "rdfs:comment": "An organization identifier structured according to ISO 6523-1.",
-      "rdfs:term_status": "unstable"
-    },
-    {
       "@id": "dppk:economicOperator",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Economic Operator",
@@ -230,10 +223,10 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:additionalOrganizationID",
+      "@id": "dppk:additionalOrganizationId",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Additional Organization ID",
-      "rdfs:comment": "An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIDType.",
+      "rdfs:comment": "An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIdType.",
       "rdfs:domain": {
         "@id": "dppk:Organization"
       },
@@ -248,10 +241,10 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:additionalOrganizationIDType",
+      "@id": "dppk:additionalOrganizationIdType",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Additional Organization ID Type",
-      "rdfs:comment": "The type of the identifier provided in additionalOrganizationID (e.g., 'EORI', 'VAT').",
+      "rdfs:comment": "The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT').",
       "rdfs:domain": {
         "@id": "dppk:Organization"
       },
@@ -263,45 +256,6 @@
           "@id": "gs1:additionalOrganizationIdentificationType"
         }
       ],
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:iso6523",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "ISO 6523 Identifier",
-      "rdfs:comment": "Relates an organization to one of its ISO 6523 identifiers.",
-      "rdfs:domain": {
-        "@id": "dppk:Organization"
-      },
-      "rdfs:range": {
-        "@id": "dppk:ISO6523"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:icd",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "ISO 6523 ICD",
-      "rdfs:comment": "The 4-digit International Code Designator (ICD) from ISO 6523-1.",
-      "rdfs:domain": {
-        "@id": "dppk:ISO6523"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:iso6523Value",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "ISO 6523 Value",
-      "rdfs:comment": "The value of the identifier within the scheme defined by the ICD.",
-      "rdfs:domain": {
-        "@id": "dppk:ISO6523"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
       "rdfs:term_status": "unstable"
     },
     {
