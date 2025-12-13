@@ -22,17 +22,17 @@
             // Battery Properties (Performance and Durability)
             // ==================================================================
             // Note: These properties link to QuantitativeValue (defined in Core).
-            "ratedCapacity": "dppk:ratedCapacity",
-            "nominalVoltage": "dppk:nominalVoltage",
+            "ratedCapacity": { "@id": "dppk:ratedCapacity", "@type": "xsd:decimal" },
+            "nominalVoltage": { "@id": "dppk:nominalVoltage", "@type": "xsd:decimal" },
             "expectedLifetime": "dppk:expectedLifetime",
             
-            "stateOfHealth": "dppk:stateOfHealth",
+            "stateOfHealth": { "@id": "dppk:stateOfHealth", "@type": "xsd:decimal" },
 
             // ==================================================================
             // Battery Properties (Carbon Footprint)
             // ==================================================================
             "batteryCarbonFootprint": "dppk:batteryCarbonFootprint",
-            "bcfTotal": "dppk:bcfTotal",
+            "bcfTotal": { "@id": "dppk:bcfTotal", "@type": "xsd:decimal" },
             "bcfPerformanceClass": "dppk:bcfPerformanceClass",
             "bcfDeclarationWebLink": {
                 "@id": "dppk:bcfDeclarationWebLink",

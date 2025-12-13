@@ -13,14 +13,6 @@ For a history of completed tasks, please see the [CHANGELOG.md](./CHANGELOG.md).
 
 - **[IN PROGRESS] 5. DPP Wizard MVP.** Pause and allow the user to test and discuss next steps.
   - **See Design Doc:** [docs/designs/005-dpp-wizard.md](./docs/designs/005-dpp-wizard.md)
-    - **[COMPLETED] 5a-h. Initial DPP Wizard Setup and Core Form.**
-    - **[IN PROGRESS] 5i. Sector-Specific Form UI.**
-      - **[COMPLETED] 5i-1 to 5i-12. Dynamic Form Generation and UI.**
-      - **[IN PROGRESS] 5i-13. Fix nested object display.**
-        - **[COMPLETED] 5i-13a. Set up Playwright.**
-        - **[IN PROGRESS] 5i-13b. Fix Construction Sector.**
-        - **[PENDING] 5i-13c. Fix Flaky Sector Loading.**
-        - **[PENDING] 5i-13d. Fix '[object]' UI Bug.**
 
 - **[PENDING] 6. Remove JSON-LD Annotations from Examples.** Pause and allow the user to test and discuss next steps.
   - **See Design Doc:** [docs/designs/008-remove-example-annotations.md](./docs/designs/008-remove-example-annotations.md)
@@ -48,6 +40,10 @@ For a history of completed tasks, please see the [CHANGELOG.md](./CHANGELOG.md).
 - **[PENDING] 12. Multi-language Support:** After the generic adapter is complete (Task 2), port it to other key languages, starting with Python. Pause and allow the user to test and discuss next steps.
 
 - **[PENDING] 13. Advanced Voluntary Attributes:** Expand the DPP Wizard's voluntary information capability (Task 5d) to support complex, nested objects and arrays, beyond simple name-value pairs. Pause and allow the user to test and discuss next steps.
+
+- **[PENDING] 14. Complete Ontology Comments and Labels.** Pause and allow the user to test and discuss next steps.
+  - **Note:** This addresses the tech debt where ontology definitions are missing `rdfs:comment` or `rdfs:label`.
+  - **See Design Doc:** [docs/designs/010-ontology-comments-and-labels.md](./docs/designs/010-ontology-comments-and-labels.md)
 
 ---
 ## Proposed High-Impact Features

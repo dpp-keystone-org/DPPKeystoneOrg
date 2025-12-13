@@ -99,10 +99,10 @@ hr {
     color: #dc3545;
 }
 
-/* 3-Column Grid for Sector-Specific Forms */
+/* 4-Column Grid for Sector-Specific Forms */
 .sector-form-grid {
     display: grid;
-    grid-template-columns: 1.5fr 2fr 2.5fr; /* Field Path, Value, Ontology */
+    grid-template-columns: 1.5fr 2fr 2.5fr 30px; /* Field Path, Value, Ontology, Tooltip */
     gap: 10px 15px; /* Row gap, Column gap */
     align-items: center;
     margin-top: 20px;
@@ -130,7 +130,21 @@ hr {
     color: #444;
 }
 
-.grid-cell:last-child {
+.grid-cell:nth-child(3) {
     font-size: 0.9em;
     color: #666;
+}
+
+.tooltip-button {
+    background-color: #eee;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    text-align: center;
+    font-weight: bold;
+    cursor: help;
 }

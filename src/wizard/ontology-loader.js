@@ -1,6 +1,19 @@
 // src/wizard/ontology-loader.js
 
 /**
+ * Robustly extracts the string value from an RDFS property, handling both
+ * simple strings and multilingual literal objects (e.g., { '@value': '...' }).
+ * @param {string|object} property - The RDFS property from the JSON-LD graph.
+ * @returns {string} The extracted string value, or an empty string if not found.
+ */
+function getRdfsValue(property) {
+    if (!property) return '';
+    if (typeof property === 'string') return property;
+    if (property['@value']) return property['@value'];
+    return '';
+}
+
+/**
  * Fetches and parses a JSON-LD ontology file to extract label and comment metadata for its terms.
  * @param {string} sector - The sector whose ontology needs to be loaded (e.g., 'construction').
  * @returns {Promise<Map<string, {label: string, comment: string}>>} A map where keys are term IDs (IRIs) 
@@ -28,9 +41,8 @@ export async function loadOntology(sector) {
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
                 if (term['@id'] && (term['rdfs:label'] || term['rdfs:comment'])) {
-                    // Correctly extract the string value from the JSON-LD structure
-                    const label = term['rdfs:label'] ? term['rdfs:label']['@value'] : '';
-                    const comment = term['rdfs:comment'] ? term['rdfs:comment']['@value'] : '';
+                    const label = getRdfsValue(term['rdfs:label']);
+                    const comment = getRdfsValue(term['rdfs:comment']);
 
                     let key = term['@id'];
                     if (key.includes(':')) {

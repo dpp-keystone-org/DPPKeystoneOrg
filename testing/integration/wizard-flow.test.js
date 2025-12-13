@@ -126,10 +126,16 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(productNameInput).not.toBeNull();
         productNameInput.value = 'Test Construction Product';
 
-        // Assert that the ontology description is now present in the third column
+        // Assert the new 4-column layout and tooltip
         const ontologyCell = sectorGrid.querySelector('.grid-cell:nth-child(3)');
+        const tooltipCell = sectorGrid.querySelector('.grid-cell:nth-child(4)');
         expect(ontologyCell).not.toBeNull();
-        expect(ontologyCell.textContent).toBe('The official name of the construction product.');
+        expect(tooltipCell).not.toBeNull();
+
+        expect(ontologyCell.textContent).toBe('Product Name'); // 3rd cell has the label
+        const tooltipButton = tooltipCell.querySelector('button.tooltip-button');
+        expect(tooltipButton).not.toBeNull();
+        expect(tooltipButton.title).toBe('The official name of the construction product.');
 
         // 8. Simulate clicking the "Generate DPP" button
         const generateBtn = document.getElementById('generate-dpp-btn');

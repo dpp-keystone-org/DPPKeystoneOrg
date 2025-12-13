@@ -29,11 +29,25 @@
             "batteryCategory": { "type": "string" },
             "batteryChemistry": { "type": "string" },
             "dateOfManufacture": { "type": "string", "format": "date" },
-            "nominalVoltage": { "type": "object" },
-            "ratedCapacity": { "type": "object" },
+            "nominalVoltage": { "type": "number" },
+            "ratedCapacity": { "type": "number" },
             "recycledContentPercentage": { "type": "number" },
-            "batteryCarbonFootprint": { "type": "object" },
-            "stateOfHealth": { "type": "object" }
+            "batteryCarbonFootprint": {
+                "type": "object",
+                "properties": {
+                    "bcfTotal": {
+                        "type": "number"
+                    },
+                    "bcfPerformanceClass": {
+                        "type": "string"
+                    },
+                    "bcfDeclarationWebLink": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                }
+            },
+            "stateOfHealth": { "type": "number" }
         },
         "required": [
             "productName",
