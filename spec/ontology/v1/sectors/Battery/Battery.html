@@ -32,9 +32,7 @@
   Battery : +batteryChemistry
   Battery : +dateOfManufacture
   Battery : +ratedCapacity
-  Battery --|> QuantitativeValue : ratedCapacity
   Battery : +nominalVoltage
-  Battery --|> QuantitativeValue : nominalVoltage
   Battery : +expectedLifetime
   Battery --|> QuantitativeValue : expectedLifetime
   Battery : +stateOfHealth
@@ -83,15 +81,15 @@
                             
                                 <tr>
                                     <td>Rated Capacity (dppk:ratedCapacity)</td>
-                                    <td>The total electric charge the battery can deliver under specific conditions. Usually measured in Ampere-hours (Ah) or Watt-hours (Wh).</td>
-                                    <td>dppk:QuantitativeValue</td>
+                                    <td>The total electric charge the battery can deliver under specific conditions. Value provided in Ampere-hours (Ah).</td>
+                                    <td>xsd:decimal</td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Nominal Voltage (dppk:nominalVoltage)</td>
-                                    <td></td>
-                                    <td>dppk:QuantitativeValue</td>
+                                    <td>The nominal voltage of the battery in Volts (V).</td>
+                                    <td>xsd:decimal</td>
                                     <td></td>
                                 </tr>
                             

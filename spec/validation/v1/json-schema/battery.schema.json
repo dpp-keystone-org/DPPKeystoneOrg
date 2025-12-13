@@ -40,19 +40,31 @@
         "format": "date"
       },
       "nominalVoltage": {
-        "type": "object"
+        "type": "number"
       },
       "ratedCapacity": {
-        "type": "object"
+        "type": "number"
       },
       "recycledContentPercentage": {
         "type": "number"
       },
       "batteryCarbonFootprint": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "bcfTotal": {
+            "type": "number"
+          },
+          "bcfPerformanceClass": {
+            "type": "string"
+          },
+          "bcfDeclarationWebLink": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
       },
       "stateOfHealth": {
-        "type": "object"
+        "type": "number"
       }
     },
     "required": [

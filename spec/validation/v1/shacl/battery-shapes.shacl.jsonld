@@ -54,14 +54,14 @@
         {
           "path": "dppk:ratedCapacity",
           "minCount": 1,
-          "node": "dppkval:QuantitativeValueShape",
-          "message": "Battery must have a rated capacity (dppk:ratedCapacity) conforming to QuantitativeValue."
+          "datatype": "xsd:decimal",
+          "message": "Battery must have a rated capacity (dppk:ratedCapacity) as a decimal value."
         },
         {
           "path": "dppk:nominalVoltage",
           "minCount": 1,
-          "node": "dppkval:QuantitativeValueShape",
-          "message": "Battery must have a nominal voltage (dppk:nominalVoltage) conforming to QuantitativeValue."
+          "datatype": "xsd:decimal",
+          "message": "Battery must have a nominal voltage (dppk:nominalVoltage) as a decimal value."
         }
       ]
     }
