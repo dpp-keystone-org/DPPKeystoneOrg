@@ -1,4 +1,25 @@
 import { test, expect } from '@playwright/test';
+import { CONTEXT_URL_TO_LOCAL_PATH_MAP } from '../test-helpers.mjs';
+import fs from 'fs';
+
+test.beforeEach(async ({ page }) => {
+  // Set up a route for each URL in the map to intercept network requests.
+  for (const [url, localPath] of Object.entries(CONTEXT_URL_TO_LOCAL_PATH_MAP)) {
+    await page.route(url, route => {
+      try {
+        const fileContent = fs.readFileSync(localPath, 'utf-8');
+        route.fulfill({
+          status: 200,
+          contentType: 'application/json+ld',
+          body: fileContent,
+        });
+      } catch (error) {
+        // Fail silently in the test log if a file can't be read, Playwright will report the 404.
+        route.abort();
+      }
+    });
+  }
+});
 
 test('has title', async ({ page }) => {
   await page.goto('/spec/wizard/index.html');
@@ -85,6 +106,11 @@ for (const sector of sectors) {
 
         // This test should now pass because the schema-loader fix also fixed EPD rendering
         await expect(page.locator('input[name="epd.gwp.a1"]')).toBeVisible();
+
+        // Check that the EPD labels are being rendered correctly for leaf nodes
+        const epdRow = page.locator('.grid-row:has-text("epd.gwp.a1")');
+        const epdOntologyCell = epdRow.locator('.grid-cell').nth(2);
+        await expect(epdOntologyCell).toHaveText('A1: Raw material supply');
         break;
       case 'electronics':
         await expect(page.locator('input[name="torque"]')).toBeVisible();
@@ -117,3 +143,41 @@ test('should handle switching between sectors', async ({ page }) => {
   await sectorSelector.selectOption('battery');
   await expect(page.locator(sectors.battery)).toBeVisible();
 });
+
+for (const sector of sectors) {
+  test(`audit ontology labels for ${sector} sector`, async ({ page }) => {
+    await page.goto('/spec/wizard/index.html');
+
+    // Select the sector
+    const sectorSelector = page.locator('#sector-select');
+    await sectorSelector.selectOption(sector);
+
+    // Wait for the form to be generated and not be empty
+    const sectorFormContainer = page.locator('#form-container');
+    await expect(sectorFormContainer).not.toBeEmpty({ timeout: 10000 });
+
+    const missingLabels = [];
+
+    // Get all rows that represent a data field
+    // This selector finds rows that have an input, select, or button in the second cell
+    const inputRows = sectorFormContainer.locator('.grid-row:has(.grid-cell:nth-child(2) > input, .grid-cell:nth-child(2) > select, .grid-cell:nth-child(2) > button)');
+    
+    for (const row of await inputRows.all()) {
+      const pathCell = row.locator('.grid-cell').nth(0);
+      const labelCell = row.locator('.grid-cell').nth(2);
+      
+      const pathText = await pathCell.textContent();
+      const labelText = await labelCell.textContent();
+
+      // We only care about rows that have a path
+      if (pathText && pathText.trim() !== '') {
+        if (!labelText || labelText.trim() === '') {
+          missingLabels.push(pathText.trim());
+        }
+      }
+    }
+
+    // The test fails if the missingLabels array is not empty, and Playwright will print the array content.
+    expect(missingLabels, `The following fields in the '${sector}' sector are missing ontology labels`).toEqual([]);
+  });
+}

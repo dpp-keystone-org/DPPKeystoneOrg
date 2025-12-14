@@ -109,4 +109,103 @@ describe('DPP Wizard - Ontology Loader', () => {
         expect(ontologyMap).toBeInstanceOf(Map);
         expect(ontologyMap.size).toBe(0);
     });
+
+    it('should correctly parse language-tagged arrays for labels', async () => {
+        const mockOntology = {
+            "@graph": [
+                {
+                    "@id": "dpp:multiLangProp",
+                    "rdfs:label": [
+                        { "@language": "de", "@value": "Deutscher Name" },
+                        { "@language": "en", "@value": "English Name" }
+                    ],
+                    "rdfs:comment": "A property with multiple languages."
+                }
+            ]
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: async () => mockOntology,
+        });
+
+        const ontologyMap = await loadOntology('multilang');
+        const prop = ontologyMap.get('multiLangProp');
+
+        expect(prop).toBeDefined();
+        expect(prop.label).toBe('English Name');
+        expect(prop.comment).toBe('A property with multiple languages.');
+    });
+
+    it('should correctly parse a simple string label', async () => {
+        const mockOntology = {
+            "@graph": [
+                {
+                    "@id": "dpp:simpleProp",
+                    "rdfs:label": "Simple Label",
+                    "rdfs:comment": "Simple Comment"
+                }
+            ]
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: async () => mockOntology,
+        });
+
+        const ontologyMap = await loadOntology('simple');
+        const prop = ontologyMap.get('simpleProp');
+
+        expect(prop).toBeDefined();
+        expect(prop.label).toBe('Simple Label');
+        expect(prop.comment).toBe('Simple Comment');
+    });
+
+    it('should recursively load imported ontologies and merge their terms', async () => {
+        const importedOntology = {
+            "@id": "https://dpp-keystone.org/ontology/v1/core/Imported.jsonld",
+            "@graph": [{
+                "@id": "dppk:importedProp",
+                "rdfs:label": "Imported Prop Label"
+            }]
+        };
+
+        const mainOntology = {
+            "@id": "https://dpp-keystone.org/ontology/v1/sectors/Main.jsonld",
+            "owl:imports": ["https://dpp-keystone.org/ontology/v1/core/Imported.jsonld"],
+            "@graph": [{
+                "@id": "dppk:mainProp",
+                "rdfs:label": "Main Prop Label"
+            }]
+        };
+
+        // Mock fetch to respond based on the URL
+        fetch.mockImplementation(url => {
+            if (url.endsWith('Main.jsonld')) {
+                return Promise.resolve({
+                    ok: true,
+                    json: async () => mainOntology,
+                });
+            }
+            if (url.endsWith('Imported.jsonld')) {
+                return Promise.resolve({
+                    ok: true,
+                    json: async () => importedOntology,
+                });
+            }
+            return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
+        });
+
+        const ontologyMap = await loadOntology('main');
+
+        // Assert that fetch was called for both ontologies
+        expect(fetch).toHaveBeenCalledWith('../ontology/v1/sectors/Main.jsonld');
+        expect(fetch).toHaveBeenCalledWith('https://dpp-keystone.org/ontology/v1/core/Imported.jsonld');
+
+        // Assert that the map contains terms from both files
+        expect(ontologyMap.size).toBe(2);
+        expect(ontologyMap.has('mainProp')).toBe(true);
+        expect(ontologyMap.has('importedProp')).toBe(true);
+        expect(ontologyMap.get('importedProp').label).toBe('Imported Prop Label');
+    });
 });

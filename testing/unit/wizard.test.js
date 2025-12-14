@@ -573,6 +573,51 @@ describe('DPP Wizard - Form Builder', () => {
         anotherFieldCells = anotherFieldRow.querySelectorAll('.grid-cell');
         expect(anotherFieldCells[0].textContent).toBe('anotherField'); // This should fail if columns shift
     });
+
+    it('should NOT display the parent ontology label for a nested property', () => {
+        const nestedSchema = {
+            "type": "object",
+            "properties": {
+                "parentObject": {
+                    "type": "object",
+                    "properties": {
+                        "childProperty": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        };
+
+        const mockOntologyMap = new Map([
+            ['parentObject', { label: 'The Parent Label', comment: 'A comment for the parent.' }]
+            // Note: No label for 'childProperty' is provided.
+        ]);
+
+        const fragment = buildForm(nestedSchema, mockOntologyMap);
+        document.body.innerHTML = '';
+        document.body.appendChild(fragment);
+
+        const gridContainer = document.querySelector('.sector-form-grid');
+        expect(gridContainer).not.toBeNull();
+
+        // Find the row for the nested property
+        const childRow = gridContainer.querySelector('input[name="parentObject.childProperty"]').closest('.grid-row');
+        expect(childRow).not.toBeNull();
+        
+        const cells = childRow.querySelectorAll('.grid-cell');
+        
+        // Assert the path is correct (Cell 0)
+        expect(cells[0].textContent).toBe('parentObject.childProperty');
+
+        // Assert the ontology label (Cell 2) should be EMPTY, not the parent's.
+        // This is the assertion that will fail with the current logic.
+        expect(cells[2].textContent).toBe('');
+        
+        // Assert the tooltip (Cell 3) is also empty
+        const tooltipButton = cells[3].querySelector('button.tooltip-button');
+        expect(tooltipButton).toBeNull();
+    });
 });
 
 describe('DPP Wizard - DPP Generator', () => {
@@ -641,5 +686,66 @@ describe('DPP Wizard - DPP Generator', () => {
             contentSpecificationId: 'construction-product-dpp-v1',
             contentSpecificationIds: ['construction-product-dpp-v1'],
         });
+    });
+
+    it('should correctly nest properties with dot notation in their names', () => {
+        // 1. Populate the virtual DOM with a form containing dot-notation names
+        formContainer.innerHTML = `
+            <input name="productName" value="Super Drill">
+            <input name="address.street" value="123 Main St">
+            <input name="address.city" value="Anytown">
+            <input name="address.location.lat" value="40.7128">
+        `;
+
+        // 2. Call the generator function
+        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+
+        // 3. Assert the output has the correct nested structure
+        expect(dpp.productName).toBe('Super Drill');
+        expect(dpp.address).toBeInstanceOf(Object);
+        expect(dpp.address.street).toBe('123 Main St');
+        expect(dpp.address.city).toBe('Anytown');
+        expect(dpp.address.location.lat).toBe("40.7128"); // The generator currently only produces strings for text inputs
+
+        // 4. Assert that the incorrect flat properties do not exist
+        expect(dpp.hasOwnProperty('address.street')).toBe(false);
+        expect(dpp.hasOwnProperty('address.city')).toBe(false);
+    });
+
+    it('should correctly reconstruct primitive arrays from dot notation', () => {
+        formContainer.innerHTML = `
+            <input name="tags.0" value="eco-friendly">
+            <input name="tags.1" value="recycled">
+        `;
+        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        expect(dpp.tags).toEqual(['eco-friendly', 'recycled']);
+        expect(dpp.hasOwnProperty('tags.0')).toBe(false);
+    });
+
+    it('should correctly reconstruct arrays of objects', () => {
+        formContainer.innerHTML = `
+            <input name="documents.0.resourceTitle" value="Safety Sheet">
+            <input name="documents.0.url" value="http://example.com/safety">
+            <input name="documents.1.resourceTitle" value="EPD">
+            <input name="documents.1.url" value="http://example.com/epd">
+        `;
+        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        expect(dpp.documents).toEqual([
+            { resourceTitle: 'Safety Sheet', url: 'http://example.com/safety' },
+            { resourceTitle: 'EPD', url: 'http://example.com/epd' }
+        ]);
+        expect(dpp.hasOwnProperty('documents.0.resourceTitle')).toBe(false);
+    });
+
+    it('should omit properties for empty text and number inputs', () => {
+        formContainer.innerHTML = `
+            <input name="productName" value="Super Drill">
+            <input name="emptyString" value="">
+            <input type="number" name="emptyNumber" value="">
+        `;
+        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        expect(dpp.productName).toBe('Super Drill');
+        expect(dpp).not.toHaveProperty('emptyString');
+        expect(dpp).not.toHaveProperty('emptyNumber');
     });
 });

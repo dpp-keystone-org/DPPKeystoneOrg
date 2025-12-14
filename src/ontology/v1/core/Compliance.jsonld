@@ -18,8 +18,8 @@
   "owl:versionInfo": "1.0.0",
   // Import Product and Organization ontologies as they are used in the domain/range of properties here.
   "owl:imports": [
-    { "@id": "https://dpp-keystone.org/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/ontology/v1/core/Organization.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld" }
   ],
 
   "@graph": [
