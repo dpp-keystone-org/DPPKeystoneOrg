@@ -18,10 +18,10 @@
   "owl:versionInfo": "1.0.0",
   "owl:imports": [
     {
-      "@id": "https://dpp-keystone.org/ontology/v1/core/Product.jsonld"
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/ontology/v1/core/Organization.jsonld"
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld"
     }
   ],
   "@graph": [

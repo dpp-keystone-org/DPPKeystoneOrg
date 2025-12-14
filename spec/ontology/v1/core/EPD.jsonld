@@ -18,7 +18,104 @@
     {
       "@id": "dppk:EPDBlock",
       "@type": "rdfs:Class",
-      "rdfs:label": "Environmental Product Declaration",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Environmental Product Declaration"
+        },
+        {
+          "@language": "bg",
+          "@value": "Екологична продуктова декларация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Environmentální prohlášení o produktu"
+        },
+        {
+          "@language": "da",
+          "@value": "Miljøvaredeklaration"
+        },
+        {
+          "@language": "de",
+          "@value": "Umweltproduktdeklaration"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιβαλλοντική Δήλωση Προϊόντος"
+        },
+        {
+          "@language": "es",
+          "@value": "Declaración Ambiental de Producto"
+        },
+        {
+          "@language": "et",
+          "@value": "Keskkonnadeklaratsioon"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ympäristöseloste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déclaration Environnementale de Produit"
+        },
+        {
+          "@language": "hr",
+          "@value": "Izjava o ekološkim svojstvima proizvoda"
+        },
+        {
+          "@language": "hu",
+          "@value": "Környezetvédelmi terméknyilatkozat"
+        },
+        {
+          "@language": "it",
+          "@value": "Dichiarazione Ambientale di Prodotto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Poveikio aplinkai deklaracija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Produkta vides deklarācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dikjarazzjoni Ambjentali tal-Prodott"
+        },
+        {
+          "@language": "nl",
+          "@value": "Milieuproductverklaring"
+        },
+        {
+          "@language": "pl",
+          "@value": "Deklaracja Środowiskowa Produktu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Declaração Ambiental do Produto"
+        },
+        {
+          "@language": "ro",
+          "@value": "Declarația de mediu a produsului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Environmentálne vyhlásenie o produkte"
+        },
+        {
+          "@language": "sl",
+          "@value": "Okoljska deklaracija proizvoda"
+        },
+        {
+          "@language": "sv",
+          "@value": "Miljövarudeklaration"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dearbhú Táirge Comhshaoil"
+        }
+      ],
       "rdfs:comment": "A class to hold all environmental impact categories in a compact dictionary format.",
       "owl:equivalentClass": {
         "@id": "schema:Certification"
@@ -52,7 +149,104 @@
     {
       "@id": "dppk:epd",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Environmental Product Declaration",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Environmental Product Declaration"
+        },
+        {
+          "@language": "bg",
+          "@value": "Екологична продуктова декларация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Environmentální prohlášení o produktu"
+        },
+        {
+          "@language": "da",
+          "@value": "Miljøvaredeklaration"
+        },
+        {
+          "@language": "de",
+          "@value": "Umweltproduktdeklaration"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιβαλλοντική Δήλωση Προϊόντος"
+        },
+        {
+          "@language": "es",
+          "@value": "Declaración Ambiental de Producto"
+        },
+        {
+          "@language": "et",
+          "@value": "Keskkonnadeklaratsioon"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ympäristöseloste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déclaration Environnementale de Produit"
+        },
+        {
+          "@language": "hr",
+          "@value": "Izjava o ekološkim svojstvima proizvoda"
+        },
+        {
+          "@language": "hu",
+          "@value": "Környezetvédelmi terméknyilatkozat"
+        },
+        {
+          "@language": "it",
+          "@value": "Dichiarazione Ambientale di Prodotto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Poveikio aplinkai deklaracija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Produkta vides deklarācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dikjarazzjoni Ambjentali tal-Prodott"
+        },
+        {
+          "@language": "nl",
+          "@value": "Milieuproductverklaring"
+        },
+        {
+          "@language": "pl",
+          "@value": "Deklaracja Środowiskowa Produktu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Declaração Ambiental do Produto"
+        },
+        {
+          "@language": "ro",
+          "@value": "Declarația de mediu a produsului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Environmentálne vyhlásenie o produkte"
+        },
+        {
+          "@language": "sl",
+          "@value": "Okoljska deklaracija proizvoda"
+        },
+        {
+          "@language": "sv",
+          "@value": "Miljövarudeklaration"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dearbhú Táirge Comhshaoil"
+        }
+      ],
       "rdfs:comment": "A dictionary of environmental impact indicators and their values across different life cycle stages.",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:domain": {
@@ -145,7 +339,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de încălzire globală"
+          "@value": "Potențial de încălzire globală"
         },
         {
           "@language": "sk",
@@ -204,7 +398,7 @@
         },
         {
           "@language": "el",
-          "@value": "Δυναμικό Παγκόσμιας Θέρμανσης, ορυκτά καύσιма"
+          "@value": "Δυναμικό Παγκόσμιας Θέρμανσης, ορυκτά καύσιμα"
         },
         {
           "@language": "es",
@@ -260,7 +454,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de încălzire globală, fosil"
+          "@value": "Potențial de încălzire globală, fosil"
         },
         {
           "@language": "sk",
@@ -375,7 +569,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de încălzire globală, biogenic"
+          "@value": "Potențial de încălzire globală, biogenic"
         },
         {
           "@language": "sk",
@@ -490,7 +684,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de încălzire globală, utilizarea și schimbarea utilizării terenurilor"
+          "@value": "Potențial de încălzire globală, utilizarea și schimbarea utilizării terenurilor"
         },
         {
           "@language": "sk",
@@ -605,7 +799,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de încălzire globală, gaze cu efect de seră"
+          "@value": "Potențial de încălzire globală, gaze cu efect de seră"
         },
         {
           "@language": "sk",
@@ -720,7 +914,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de epuizare a ozonului"
+          "@value": "Potențial de epuizare a ozonului"
         },
         {
           "@language": "sk",
@@ -835,7 +1029,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de acidifiere"
+          "@value": "Potențial de acidifiere"
         },
         {
           "@language": "sk",
@@ -950,7 +1144,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de eutrofizare, apă dulce"
+          "@value": "Potențial de eutrofizare, apă dulce"
         },
         {
           "@language": "sk",
@@ -1065,7 +1259,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de eutrofizare, apă marină"
+          "@value": "Potențial de eutrofizare, apă marină"
         },
         {
           "@language": "sk",
@@ -1180,7 +1374,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de eutrofizare, terestru"
+          "@value": "Potențial de eutrofizare, terestru"
         },
         {
           "@language": "sk",
@@ -1295,7 +1489,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de creare a ozonului fotochimic"
+          "@value": "Potențial de creare a ozonului fotochimic"
         },
         {
           "@language": "sk",
@@ -1354,7 +1548,7 @@
         },
         {
           "@language": "el",
-          "@value": "Δυναμικό Εξάνтλησης Αβιοτικών Στοιχείων"
+          "@value": "Δυναμικό Εξάντλησης Αβιοτικών Στοιχείων"
         },
         {
           "@language": "es",
@@ -1584,7 +1778,7 @@
         },
         {
           "@language": "el",
-          "@value": "Δυναμικό Εξάνтλησης Νερού"
+          "@value": "Δυναμικό Εξάντλησης Νερού"
         },
         {
           "@language": "es",
@@ -1640,7 +1834,7 @@
         },
         {
           "@language": "ro",
-          "@value": "Potențial de epuizare a apei"
+          "@value": "Potențial de epuizare a apei"
         },
         {
           "@language": "sk",
@@ -1676,7 +1870,104 @@
     {
       "@id": "dppk:a1",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Upstream A1",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "A1: Raw material supply"
+        },
+        {
+          "@language": "bg",
+          "@value": "A1: Снабдяване с суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "A1: Zásobování surovinami"
+        },
+        {
+          "@language": "da",
+          "@value": "A1: Råvareforsyning"
+        },
+        {
+          "@language": "de",
+          "@value": "A1: Rohstoffversorgung"
+        },
+        {
+          "@language": "el",
+          "@value": "A1: Προμήθεια πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "A1: Suministro de materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "A1: Toorme tootmine"
+        },
+        {
+          "@language": "fi",
+          "@value": "A1: Raaka-aineiden hankinta"
+        },
+        {
+          "@language": "fr",
+          "@value": "A1: Approvisionnement en matières premières"
+        },
+        {
+          "@language": "hr",
+          "@value": "A1: Dobava sirovina"
+        },
+        {
+          "@language": "hu",
+          "@value": "A1: Nyersanyag-ellátás"
+        },
+        {
+          "@language": "it",
+          "@value": "A1: Fornitura di materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "A1: Žaliavų tiekimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "A1: Izejvielu piegāde"
+        },
+        {
+          "@language": "mt",
+          "@value": "A1: Provvista tal-materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "A1: Grondstoffenvoorziening"
+        },
+        {
+          "@language": "pl",
+          "@value": "A1: Pozyskanie surowców"
+        },
+        {
+          "@language": "pt",
+          "@value": "A1: Fornecimento de matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "A1: Aprovizionarea cu materii prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "A1: Ťažba a úprava surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "A1: Dobava surovin"
+        },
+        {
+          "@language": "sv",
+          "@value": "A1: Råvaruförsörjning"
+        },
+        {
+          "@language": "ga",
+          "@value": "A1: Soláthar amhábhar"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1684,13 +1975,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Upstream A1",
+      "rdfs:comment": "Upstream A1 (Raw Material Supply)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:a2",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Core Process A2",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "bg",
+          "@value": "A2: Транспорт"
+        },
+        {
+          "@language": "cs",
+          "@value": "A2: Doprava"
+        },
+        {
+          "@language": "da",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "de",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "el",
+          "@value": "A2: Μεταφορά"
+        },
+        {
+          "@language": "es",
+          "@value": "A2: Transporte"
+        },
+        {
+          "@language": "et",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "fi",
+          "@value": "A2: Kuljetus"
+        },
+        {
+          "@language": "fr",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "hr",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "hu",
+          "@value": "A2: Szállítás"
+        },
+        {
+          "@language": "it",
+          "@value": "A2: Trasporto"
+        },
+        {
+          "@language": "lt",
+          "@value": "A2: Transportavimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "A2: Transportēšana"
+        },
+        {
+          "@language": "mt",
+          "@value": "A2: Trasport"
+        },
+        {
+          "@language": "nl",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "pl",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "pt",
+          "@value": "A2: Transporte"
+        },
+        {
+          "@language": "ro",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "sk",
+          "@value": "A2: Doprava"
+        },
+        {
+          "@language": "sl",
+          "@value": "A2: Prevoz"
+        },
+        {
+          "@language": "sv",
+          "@value": "A2: Transport"
+        },
+        {
+          "@language": "ga",
+          "@value": "A2: Iompar"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1698,13 +2086,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Core Process A2",
+      "rdfs:comment": "Core Process A2 (Transport to Manufacturing)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:a3",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Core Process A3",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "A3: Manufacturing"
+        },
+        {
+          "@language": "bg",
+          "@value": "A3: Производство"
+        },
+        {
+          "@language": "cs",
+          "@value": "A3: Výroba"
+        },
+        {
+          "@language": "da",
+          "@value": "A3: Fremstilling"
+        },
+        {
+          "@language": "de",
+          "@value": "A3: Herstellung"
+        },
+        {
+          "@language": "el",
+          "@value": "A3: Κατασκευή"
+        },
+        {
+          "@language": "es",
+          "@value": "A3: Fabricación"
+        },
+        {
+          "@language": "et",
+          "@value": "A3: Tootmine"
+        },
+        {
+          "@language": "fi",
+          "@value": "A3: Valmistus"
+        },
+        {
+          "@language": "fr",
+          "@value": "A3: Fabrication"
+        },
+        {
+          "@language": "hr",
+          "@value": "A3: Proizvodnja"
+        },
+        {
+          "@language": "hu",
+          "@value": "A3: Gyártás"
+        },
+        {
+          "@language": "it",
+          "@value": "A3: Produzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "A3: Gamyba"
+        },
+        {
+          "@language": "lv",
+          "@value": "A3: Ražošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "A3: Manifattura"
+        },
+        {
+          "@language": "nl",
+          "@value": "A3: Fabricage"
+        },
+        {
+          "@language": "pl",
+          "@value": "A3: Produkcja"
+        },
+        {
+          "@language": "pt",
+          "@value": "A3: Fabricação"
+        },
+        {
+          "@language": "ro",
+          "@value": "A3: Fabricație"
+        },
+        {
+          "@language": "sk",
+          "@value": "A3: Výroba"
+        },
+        {
+          "@language": "sl",
+          "@value": "A3: Proizvodnja"
+        },
+        {
+          "@language": "sv",
+          "@value": "A3: Tillverkning"
+        },
+        {
+          "@language": "ga",
+          "@value": "A3: Déantúsaíocht"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1712,13 +2197,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Core Process A3",
+      "rdfs:comment": "Core Process A3 (Manufacturing)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:a4",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Downstream A4",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "bg",
+          "@value": "A4: Транспорт"
+        },
+        {
+          "@language": "cs",
+          "@value": "A4: Doprava"
+        },
+        {
+          "@language": "da",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "de",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "el",
+          "@value": "A4: Μεταφορά"
+        },
+        {
+          "@language": "es",
+          "@value": "A4: Transporte"
+        },
+        {
+          "@language": "et",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "fi",
+          "@value": "A4: Kuljetus"
+        },
+        {
+          "@language": "fr",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "hr",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "hu",
+          "@value": "A4: Szállítás"
+        },
+        {
+          "@language": "it",
+          "@value": "A4: Trasporto"
+        },
+        {
+          "@language": "lt",
+          "@value": "A4: Transportavimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "A4: Transportēšana"
+        },
+        {
+          "@language": "mt",
+          "@value": "A4: Trasport"
+        },
+        {
+          "@language": "nl",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "pl",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "pt",
+          "@value": "A4: Transporte"
+        },
+        {
+          "@language": "ro",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "sk",
+          "@value": "A4: Doprava"
+        },
+        {
+          "@language": "sl",
+          "@value": "A4: Prevoz"
+        },
+        {
+          "@language": "sv",
+          "@value": "A4: Transport"
+        },
+        {
+          "@language": "ga",
+          "@value": "A4: Iompar"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1726,13 +2308,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Downstream A4",
+      "rdfs:comment": "Downstream A4 (Transport to Site)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:c1",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Downstream C1",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "C1: Deconstruction / Demolition"
+        },
+        {
+          "@language": "bg",
+          "@value": "C1: Разрушаване / Демонтаж"
+        },
+        {
+          "@language": "cs",
+          "@value": "C1: Demolice / Dekonstrukce"
+        },
+        {
+          "@language": "da",
+          "@value": "C1: Nedrivning"
+        },
+        {
+          "@language": "de",
+          "@value": "C1: Rückbau / Abriss"
+        },
+        {
+          "@language": "el",
+          "@value": "C1: Κατεδάφιση / Αποσυναρμολόγηση"
+        },
+        {
+          "@language": "es",
+          "@value": "C1: Deconstrucción / Demolición"
+        },
+        {
+          "@language": "et",
+          "@value": "C1: Lammutamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "C1: Purkaminen"
+        },
+        {
+          "@language": "fr",
+          "@value": "C1: Déconstruction / Démolition"
+        },
+        {
+          "@language": "hr",
+          "@value": "C1: Dekonstrukcija / Rušenje"
+        },
+        {
+          "@language": "hu",
+          "@value": "C1: Bontás"
+        },
+        {
+          "@language": "it",
+          "@value": "C1: Decostruzione / Demolizione"
+        },
+        {
+          "@language": "lt",
+          "@value": "C1: Griovimas / Išmontavimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "C1: Nojaukšana / Demontāža"
+        },
+        {
+          "@language": "mt",
+          "@value": "C1: Dekostruzzjoni / Twaqqigħ"
+        },
+        {
+          "@language": "nl",
+          "@value": "C1: Sloop / Demontage"
+        },
+        {
+          "@language": "pl",
+          "@value": "C1: Rozbiórka"
+        },
+        {
+          "@language": "pt",
+          "@value": "C1: Desconstrução / Demolição"
+        },
+        {
+          "@language": "ro",
+          "@value": "C1: Deconstrucție / Demolare"
+        },
+        {
+          "@language": "sk",
+          "@value": "C1: Demolácia / Dekonštrukcia"
+        },
+        {
+          "@language": "sl",
+          "@value": "C1: Razgradnja / Rušenje"
+        },
+        {
+          "@language": "sv",
+          "@value": "C1: Demontering / Rivning"
+        },
+        {
+          "@language": "ga",
+          "@value": "C1: Díchóimeáil / Leagadh"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1740,13 +2419,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Downstream C1",
+      "rdfs:comment": "Downstream C1 (Deconstruction)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:c2",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Downstream C2",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "bg",
+          "@value": "C2: Транспорт"
+        },
+        {
+          "@language": "cs",
+          "@value": "C2: Doprava"
+        },
+        {
+          "@language": "da",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "de",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "el",
+          "@value": "C2: Μεταφορά"
+        },
+        {
+          "@language": "es",
+          "@value": "C2: Transporte"
+        },
+        {
+          "@language": "et",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "fi",
+          "@value": "C2: Kuljetus"
+        },
+        {
+          "@language": "fr",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "hr",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "hu",
+          "@value": "C2: Szállítás"
+        },
+        {
+          "@language": "it",
+          "@value": "C2: Trasporto"
+        },
+        {
+          "@language": "lt",
+          "@value": "C2: Transportavimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "C2: Transportēšana"
+        },
+        {
+          "@language": "mt",
+          "@value": "C2: Trasport"
+        },
+        {
+          "@language": "nl",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "pl",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "pt",
+          "@value": "C2: Transporte"
+        },
+        {
+          "@language": "ro",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "sk",
+          "@value": "C2: Doprava"
+        },
+        {
+          "@language": "sl",
+          "@value": "C2: Prevoz"
+        },
+        {
+          "@language": "sv",
+          "@value": "C2: Transport"
+        },
+        {
+          "@language": "ga",
+          "@value": "C2: Iompar"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1754,13 +2530,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Downstream C2",
+      "rdfs:comment": "Downstream C2 (Transport to Waste Processing)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:c3",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Downstream C3",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "C3: Waste processing"
+        },
+        {
+          "@language": "bg",
+          "@value": "C3: Обработка на отпадъци"
+        },
+        {
+          "@language": "cs",
+          "@value": "C3: Zpracování odpadu"
+        },
+        {
+          "@language": "da",
+          "@value": "C3: Affaldsbehandling"
+        },
+        {
+          "@language": "de",
+          "@value": "C3: Abfallbehandlung"
+        },
+        {
+          "@language": "el",
+          "@value": "C3: Επεξεργασία αποβλήτων"
+        },
+        {
+          "@language": "es",
+          "@value": "C3: Tratamiento de residuos"
+        },
+        {
+          "@language": "et",
+          "@value": "C3: Jäätmetöötlus"
+        },
+        {
+          "@language": "fi",
+          "@value": "C3: Jätteenkäsittely"
+        },
+        {
+          "@language": "fr",
+          "@value": "C3: Traitement des déchets"
+        },
+        {
+          "@language": "hr",
+          "@value": "C3: Obrada otpada"
+        },
+        {
+          "@language": "hu",
+          "@value": "C3: Hulladékkezelés"
+        },
+        {
+          "@language": "it",
+          "@value": "C3: Trattamento dei rifiuti"
+        },
+        {
+          "@language": "lt",
+          "@value": "C3: Atliekų apdorojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "C3: Atkritumu pārstrāde"
+        },
+        {
+          "@language": "mt",
+          "@value": "C3: Ipproċessar tal-iskart"
+        },
+        {
+          "@language": "nl",
+          "@value": "C3: Afvalverwerking"
+        },
+        {
+          "@language": "pl",
+          "@value": "C3: Przetwarzanie odpadów"
+        },
+        {
+          "@language": "pt",
+          "@value": "C3: Tratamento de resíduos"
+        },
+        {
+          "@language": "ro",
+          "@value": "C3: Tratarea deșeurilor"
+        },
+        {
+          "@language": "sk",
+          "@value": "C3: Spracovanie odpadu"
+        },
+        {
+          "@language": "sl",
+          "@value": "C3: Obdelava odpadkov"
+        },
+        {
+          "@language": "sv",
+          "@value": "C3: Avfallsbehandling"
+        },
+        {
+          "@language": "ga",
+          "@value": "C3: Próiseáil dramhaíola"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1768,13 +2641,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Downstream C3",
+      "rdfs:comment": "Downstream C3 (Waste Processing)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:c4",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Downstream C4",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "C4: Disposal"
+        },
+        {
+          "@language": "bg",
+          "@value": "C4: Изхвърляне"
+        },
+        {
+          "@language": "cs",
+          "@value": "C4: Odstranění"
+        },
+        {
+          "@language": "da",
+          "@value": "C4: Bortskaffelse"
+        },
+        {
+          "@language": "de",
+          "@value": "C4: Beseitigung"
+        },
+        {
+          "@language": "el",
+          "@value": "C4: Διάθεση"
+        },
+        {
+          "@language": "es",
+          "@value": "C4: Eliminación"
+        },
+        {
+          "@language": "et",
+          "@value": "C4: Kõrvaldamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "C4: Loppusijoitus"
+        },
+        {
+          "@language": "fr",
+          "@value": "C4: Élimination"
+        },
+        {
+          "@language": "hr",
+          "@value": "C4: Odlaganje"
+        },
+        {
+          "@language": "hu",
+          "@value": "C4: Ártalmatlanítás"
+        },
+        {
+          "@language": "it",
+          "@value": "C4: Smaltimento"
+        },
+        {
+          "@language": "lt",
+          "@value": "C4: Šalinimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "C4: Apglabāšana"
+        },
+        {
+          "@language": "mt",
+          "@value": "C4: Rimi"
+        },
+        {
+          "@language": "nl",
+          "@value": "C4: Verwijdering"
+        },
+        {
+          "@language": "pl",
+          "@value": "C4: Składowanie"
+        },
+        {
+          "@language": "pt",
+          "@value": "C4: Eliminação"
+        },
+        {
+          "@language": "ro",
+          "@value": "C4: Eliminare"
+        },
+        {
+          "@language": "sk",
+          "@value": "C4: Zneškodnenie"
+        },
+        {
+          "@language": "sl",
+          "@value": "C4: Odlaganje"
+        },
+        {
+          "@language": "sv",
+          "@value": "C4: Deponering"
+        },
+        {
+          "@language": "ga",
+          "@value": "C4: Diúscairt"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1782,13 +2752,110 @@
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
-      "rdfs:comment": "Downstream C4",
+      "rdfs:comment": "Downstream C4 (Disposal)",
       "rdfs:term_status": "unstable"
     },
     {
       "@id": "dppk:d",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "D",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "D: Reuse, recovery, recycling potential"
+        },
+        {
+          "@language": "bg",
+          "@value": "D: Потенциал за повторна употреба, оползотворяване и рециклиране"
+        },
+        {
+          "@language": "cs",
+          "@value": "D: Potenciál opětovného použití, využití a recyklace"
+        },
+        {
+          "@language": "da",
+          "@value": "D: Potentiale for genbrug, nyttiggørelse og genanvendelse"
+        },
+        {
+          "@language": "de",
+          "@value": "D: Wiederverwendungs-, Rückgewinnungs- und Recyclingpotenzial"
+        },
+        {
+          "@language": "el",
+          "@value": "D: Δυνατότητα επαναχρησιμοποίησης, ανάκτησης και ανακύκλωσης"
+        },
+        {
+          "@language": "es",
+          "@value": "D: Potencial de reutilización, recuperación y reciclaje"
+        },
+        {
+          "@language": "et",
+          "@value": "D: Korduskasutus-, taaskasutus- ja ringlussevõtu potentsiaal"
+        },
+        {
+          "@language": "fi",
+          "@value": "D: Uudelleenkäyttö-, hyödyntämis- ja kierrätyspotentiaali"
+        },
+        {
+          "@language": "fr",
+          "@value": "D: Potentiel de réutilisation, de récupération et de recyclage"
+        },
+        {
+          "@language": "hr",
+          "@value": "D: Potencijal ponovne uporabe, oporabe i recikliranja"
+        },
+        {
+          "@language": "hu",
+          "@value": "D: Újrahasználati, visszanyerési és újrafeldolgozási potenciál"
+        },
+        {
+          "@language": "it",
+          "@value": "D: Potenziale di riutilizzo, recupero e riciclaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "D: Pakartotinio naudojimo, regeneravimo ir perdirbimo potencialas"
+        },
+        {
+          "@language": "lv",
+          "@value": "D: Atkārtotas izmantošanas, reģenerācijas un pārstrādes potenciāls"
+        },
+        {
+          "@language": "mt",
+          "@value": "D: Potenzjal ta' użu mill-ġdid, irkupru u riċiklaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "D: Potentieel voor hergebruik, terugwinning en recycling"
+        },
+        {
+          "@language": "pl",
+          "@value": "D: Potencjał ponownego użycia, odzysku i recyklingu"
+        },
+        {
+          "@language": "pt",
+          "@value": "D: Potencial de reutilização, recuperação e reciclagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "D: Potențial de reutilizare, recuperare și reciclare"
+        },
+        {
+          "@language": "sk",
+          "@value": "D: Potenciál opätovného použitia, zhodnotenia a recyklácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "D: Potencial ponovne uporabe, predelave in recikliranja"
+        },
+        {
+          "@language": "sv",
+          "@value": "D: Potential för återanvändning, återvinning och materialåtervinning"
+        },
+        {
+          "@language": "ga",
+          "@value": "D: Acmhainneacht athúsáide, aisghabhála agus athchúrsála"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },
@@ -1802,7 +2869,104 @@
     {
       "@id": "dppk:total",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Total",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Total"
+        },
+        {
+          "@language": "bg",
+          "@value": "Общо"
+        },
+        {
+          "@language": "cs",
+          "@value": "Celkem"
+        },
+        {
+          "@language": "da",
+          "@value": "Total"
+        },
+        {
+          "@language": "de",
+          "@value": "Gesamt"
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνολο"
+        },
+        {
+          "@language": "es",
+          "@value": "Total"
+        },
+        {
+          "@language": "et",
+          "@value": "Kokku"
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhteensä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Total"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ukupno"
+        },
+        {
+          "@language": "hu",
+          "@value": "Összesen"
+        },
+        {
+          "@language": "it",
+          "@value": "Totale"
+        },
+        {
+          "@language": "lt",
+          "@value": "Iš viso"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kopā"
+        },
+        {
+          "@language": "mt",
+          "@value": "Total"
+        },
+        {
+          "@language": "nl",
+          "@value": "Totaal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Razem"
+        },
+        {
+          "@language": "pt",
+          "@value": "Total"
+        },
+        {
+          "@language": "ro",
+          "@value": "Total"
+        },
+        {
+          "@language": "sk",
+          "@value": "Celkom"
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupaj"
+        },
+        {
+          "@language": "sv",
+          "@value": "Total"
+        },
+        {
+          "@language": "ga",
+          "@value": "Iomlán"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ImpactValues"
       },

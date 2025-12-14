@@ -81,9 +81,6 @@
       "europeanAssessmentDocument": {
         "type": "string"
       },
-      "softwareAndVersion": {
-        "type": "string"
-      },
       "dopcDeclarations": {
         "$ref": "dopc.schema.json"
       },
