@@ -96,4 +96,42 @@ describe('DPP Wizard - Schema Loader', () => {
 
         expect(schema.properties.level1.properties.level2).toEqual(level2Schema);
     });
+
+    it('should resolve an allOf by merging properties', async () => {
+        const rootSchema = {
+            "title": "Root",
+            "allOf": [
+                { "$ref": "base.schema.json" },
+                {
+                    "type": "object",
+                    "properties": {
+                        "rootProp": { "type": "string" }
+                    }
+                }
+            ]
+        };
+        const baseSchema = {
+            "title": "Base",
+            "type": "object",
+            "properties": {
+                "baseProp": { "type": "string" }
+            }
+        };
+
+        fetch.mockImplementation(url => {
+            if (url.endsWith('root.schema.json')) return Promise.resolve({ ok: true, json: async () => rootSchema });
+            if (url.endsWith('base.schema.json')) return Promise.resolve({ ok: true, json: async () => baseSchema });
+            return Promise.reject(new Error(`Unexpected fetch url: ${url}`));
+        });
+
+        const schema = await loadSchema('root');
+
+        // The resolved schema should have properties from both parts of the allOf
+        expect(schema.properties).toBeDefined();
+        expect(schema.properties).toHaveProperty('baseProp');
+        expect(schema.properties).toHaveProperty('rootProp');
+
+        // The allOf should be gone, as it has been processed
+        expect(schema.allOf).toBeUndefined();
+    });
 });

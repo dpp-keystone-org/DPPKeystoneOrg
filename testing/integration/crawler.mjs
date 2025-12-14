@@ -21,6 +21,7 @@ const pagesToCrawl = new Set([path.join(DIST_DIR, START_PAGE)]);
 const crawledPages = new Set();
 const pagesWithCssIssues = [];
 const pagesWithImageIssues = [];
+const pagesWithObjectObjectIssues = [];
 
 async function checkLink(linkInfo) {
   const { href, sourcePage, linkText, absolutePath } = linkInfo;
@@ -99,10 +100,19 @@ async function crawlPage(pagePath) {
       return; // Skip external links, mailto links, and anchors
     }
 
+    const linkText = $(el).text().trim();
+    if (linkText.includes('[object Object]')) {
+        pagesWithObjectObjectIssues.push({
+            sourcePage: path.relative(DIST_DIR, pagePath),
+            linkText,
+            href,
+        });
+    }
+
     linkPromises.push(checkLink({
         href,
         sourcePage: pagePath,
-        linkText: $(el).text().trim(),
+        linkText: linkText,
         absolutePath: path.resolve(path.dirname(pagePath), href),
     }));
   });
@@ -154,6 +164,17 @@ async function main() {
     pagesWithImageIssues.forEach(page => console.log(`  -> ${page}`));
   } else {
     console.log('\nAll pages have valid image links. ✨');
+  }
+
+  if (pagesWithObjectObjectIssues.length > 0) {
+    console.log('\n--- Pages with "[object Object]" Links ---');
+    pagesWithObjectObjectIssues.forEach(issue => {
+      console.log(`  -> Page: ${issue.sourcePage}`);
+      console.log(`     Link Text: "${issue.linkText}"`);
+      console.log(`     Link Href: "${issue.href}"`);
+    });
+  } else {
+    console.log('\nNo "[object Object]" links found. ✨');
   }
 
   console.log('\nCrawler finished.');

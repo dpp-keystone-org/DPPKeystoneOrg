@@ -28,6 +28,42 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/DPP Wizard/);
 });
 
+test('core DPP fields should have default values on load', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  // Wait for the core form to be initialized. We can wait for a known element.
+  const dppIdInput = page.locator('input[name="digitalProductPassportId"]');
+  await expect(dppIdInput).toBeVisible();
+
+  // Assert that the core fields have their default values
+  await expect(dppIdInput).toHaveValue('https://dpp.example.com/dpp/77b583e8-8575-4862-986c-4863a2995f68');
+  
+  const upiInput = page.locator('input[name="uniqueProductIdentifier"]');
+  await expect(upiInput).toHaveValue('https://pid.example.com/gtin/01234567890123');
+});
+
+test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/spec/wizard/index.html');
+
+  // 1. Check for color theming via CSS variables
+  const generateBtn = page.locator('#generate-dpp-btn');
+  await expect(generateBtn).toBeVisible();
+
+  // This assertion will fail until wizard.css is refactored to use CSS variables
+  // from keystone-style.css. The hard-coded #007bff resolves to rgb(0, 123, 255).
+  // The theme variable --keystone-blue (#0d6efd) resolves to rgb(13, 110, 253).
+  await expect(generateBtn).toHaveCSS('background-color', 'rgb(13, 110, 253)');
+
+  // 2. Check for layout theming via the .container class (by checking width)
+  const wizardContainer = page.locator('#wizard-container');
+  const box = await wizardContainer.boundingBox();
+  
+  // This assertion will fail until the wizard's HTML is wrapped in a <div class="container">
+  // and the 800px max-width is removed from the wizard.css body style.
+  expect(box.width).toBeGreaterThan(800);
+});
+
 const sectors = ['battery', 'construction', 'electronics', 'textile'];
 
 for (const sector of sectors) {
@@ -111,6 +147,14 @@ for (const sector of sectors) {
         const epdRow = page.locator('.grid-row:has-text("epd.gwp.a1")');
         const epdOntologyCell = epdRow.locator('.grid-cell').nth(2);
         await expect(epdOntologyCell).toHaveText('A1: Raw material supply');
+
+        // FAILING TEST FOR TASK 3b: Assert hierarchical header row for 'epd.gwp'
+        const headerRow = page.locator('.grid-row:has(.grid-cell:text-is("epd.gwp"))');
+        await expect(headerRow).toHaveClass(/grid-row-header/); // Assert header style
+        const headerValueCell = headerRow.locator('.grid-cell').nth(1);
+        await expect(headerValueCell).toBeEmpty(); // Assert non-editable
+        const headerOntologyCell = headerRow.locator('.grid-cell').nth(2);
+        await expect(headerOntologyCell).toHaveText('Global Warming Potential');
         break;
       case 'electronics':
         await expect(page.locator('input[name="torque"]')).toBeVisible();

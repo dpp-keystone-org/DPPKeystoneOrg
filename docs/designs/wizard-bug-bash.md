@@ -1,5 +1,7 @@
 # Design Doc: DPP Wizard Bug Bash
 
+The tasks in this document have been [COMPLETED]
+
 This document is referenced by Task #5o in the main [DPP Wizard MVP Design Doc](./005-dpp-wizard.md). It outlines a series of identified bugs and design gaps in the wizard's implementation. The goal of this "bug bash" is to address these issues in a structured, test-driven manner to improve the wizard's stability and correctness.
 
 ---
@@ -62,32 +64,32 @@ There are still unaddressed properties in the ontology that will cause the `[obj
 
 ### Task 3: Implement Hierarchical Labels for Nested Objects
 - **Description:** The current UI flattens nested objects (like EPD), causing a loss of context as labels on parent objects are not displayed. This task will refactor the UI to render nested objects with visual hierarchy, using non-editable "header rows" for parent objects and indented rows for their children.
-- **Status:** `[PENDING]`
+- **Status:** `[COMPLETED]`
 - **Sub-tasks:**
-    - **3a. [Data] Enhance EPD Ontology:** Add the necessary labels to the `EPD.jsonld` ontology to support the new UI.
-        - **3a-1. Add Lifecycle Stage Labels:** For each lifecycle stage (`a1`, `a2`, etc.), add a language-tagged `rdfs:label` in both English and German (e.g., "Upstream A1" / "Upstream A1").
-        - **3a-2. Add Top-Level EPD Label:** For the main `epd` property itself, add a language-tagged `rdfs:label` (e.g., "Environmental Product Declaration" / "Umweltproduktdeklaration").
-    - **3b. [Test] Add Failing UI Test:** In `testing/integration/playwright/wizard.spec.js`, modify the `construction` sector test. After selecting the sector, assert that a non-editable "header row" for `epd.gwp` exists and contains the text "Global Warming Potential". This test will fail because the header row logic does not exist yet. Pause and allow the user to test and discuss next steps.
-    - **3c. [Code] Implement Hierarchical Rendering:** In `src/wizard/form-builder.js`, refactor the `generateRows` function.
-        - When processing a nested object, it should first create and append a styled, non-editable "header" row that displays the object's path and its looked-up label.
-        - It should then recursively call itself for the object's children, passing down an increased indentation level.
-        - Child rows should have their `grid-cell`s indented based on this level to create a visual hierarchy.
-        - This should make the failing Playwright test from step 3b pass. Pause and allow the user to test and discuss next steps.
-    - **3d. [Data] Add Remaining Translations:** As a follow-up, populate the remaining translations for the new lifecycle stage labels in `EPD.jsonld`.
+    - **3a. [Data] Enhance EPD Ontology:** `[COMPLETED]` Verified that the required labels for EPD lifecycle stages and parent objects already exist in `EPD.jsonld`.
+    - **3b. [Test] Add Failing UI Test:** `[COMPLETED]` Added a failing Playwright test to assert that a non-editable "header row" is created for parent objects.
+    - **3c. [Code] Implement Hierarchical Rendering:** `[COMPLETED]` Refactored the `generateRows` function in `form-builder.js` to create header rows for nested objects and use an indentation level for child properties, making the test pass.
+    - **3d. [Data] Add Remaining Translations:** `[COMPLETED]` Verified that the EPD ontology already contains the necessary translations.
+- **Summary:** The hierarchical rendering feature was successfully implemented and verified with Playwright tests.
 
 ### Task 4: Add Support for Schema Composition (`allOf`)
-- **Status:** `[PENDING]`
+- **Status:** `[COMPLETED]`
 - **Sub-tasks:**
-  - **4a. Add Failing Unit Test:** In `testing/unit/schema-loader.test.js`, add a test that loads a mock schema containing an `allOf` keyword and asserts that the properties from all parts of the `allOf` array are present in the resolved schema's `properties` object. This test will fail. Pause and allow the user to test and discuss next steps.
-  - **4b. Implement `allOf` Logic:** In `schema-loader.js`, update the schema resolution logic to correctly merge properties from schemas inside an `allOf` array. This should make the unit test pass. Pause and allow the user to test and discuss next steps.
+  - **4a. Add Failing Unit Test:** `[COMPLETED]` Added a failing unit test to `schema-loader.test.js` to assert that properties from a schema using `allOf` are correctly merged.
+  - **4b. Implement `allOf` Logic:** `[COMPLETED]` Updated `schema-loader.js` to correctly merge properties from schemas inside an `allOf` array, making the unit test pass.
+- **Summary:** The schema loader now correctly processes the `allOf` keyword.
 
 ### Task 5: Add Support for the `default` Keyword
-- **Status:** `[PENDING]`
+- **Status:** `[COMPLETED]`
 - **Sub-tasks:**
-  - **5a. Add Failing Unit Test:** In `testing/unit/wizard.test.js`, add a test for `form-builder.js` that uses a schema with a `default` value for a property and asserts that the generated input field has that value. This test will fail. Pause and allow the user to test and discuss next steps.
-  - **5b. Implement `default` Keyword Handling:** In `form-builder.js`, update the input creation logic to check for `prop.default` and set the input's `value` accordingly. This should make the unit test pass. Pause and allow the user to test and discuss next steps.
+  - **5a. Add Failing Unit Test:** `[COMPLETED]` Added a failing unit test to `wizard.test.js` to assert that an input's value is set by the `default` keyword.
+  - **5b. Implement `default` Keyword Handling:** `[COMPLETED]` Updated `form-builder.js` to handle the `default` keyword, making the unit test pass.
+  - **5c. Add Real-World Example:** `[COMPLETED]` Added default placeholder values to the `digitalProductPassportId` and `uniqueProductIdentifier` fields in `dpp.schema.json`.
+  - **5d. Add Browser Test:** `[COMPLETED]` Added a Playwright test to verify the default values appear correctly in the browser.
+  - **5e. Improve Tooltips:** `[COMPLETED]` Updated the `rdfs:comment` for the corresponding ontology terms to clarify that the default values are placeholders.
+- **Summary:** The `default` keyword is now fully supported by the form builder, and key identifier fields have helpful placeholder values and tooltips.
 
 ### Task 6: Find All Leaf Nodes Missing Labels
-- **Status:** `[PENDING]`
+- **Status:** `[COMPLETED]`
 - **Description:** Now that the data loading infrastructure is fixed and robust, perform a comprehensive audit of all sectors to identify any leaf-node properties that still do not have an `rdfs:label` in their respective ontology files. This involves cross-referencing the generated forms for each sector against the source ontology files.
 

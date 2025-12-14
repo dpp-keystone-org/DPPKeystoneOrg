@@ -41,7 +41,7 @@ describe('Context documentation page generation', () => {
 
         // Check for imported contexts
         expect(content).toContain('<h4>Imports</h4>');
-        expect(content).toContain('<li>https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld</li>');
+        expect(content).toContain('<li><a href="https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld">https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld</a></li>');
 
         // Check for locally defined terms
         expect(content).toContain('<h4>Locally Defined Terms</h4>');

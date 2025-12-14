@@ -13,6 +13,27 @@ export const getFragment = (id) => {
     return id.replace(/:/g, '_');
 };
 
+function getDisplayLabel(label, fallback) {
+    if (typeof label === 'string') {
+        return label;
+    }
+    if (Array.isArray(label)) {
+        const enLabel = label.find(l => l['@language'] === 'en');
+        if (enLabel) {
+            return enLabel['@value'];
+        }
+        // Fallback to the first available language-tagged value
+        if (label.length > 0 && label[0]['@value']) {
+            return label[0]['@value'];
+        }
+    } else if (typeof label === 'object' && label !== null && label['@value']) {
+        // Handle single language-tagged object
+        return label['@value'];
+    }
+    // Fallback for other cases or if no suitable value is found
+    return fallback || (label && label['@id']) || JSON.stringify(label);
+}
+
 async function getJsonLdFiles(dir) {
     try {
         const dirents = await readdir(dir, { withFileTypes: true });
@@ -47,19 +68,7 @@ export function parseOntologyMetadata(content) {
     const properties = graph
         .filter(p => p['@type'] && (p['@type'].includes('owl:ObjectProperty') || p['@type'].includes('owl:DatatypeProperty')))
         .map(p => {
-            let label = p['rdfs:label'];
-            if (Array.isArray(label)) {
-                const enLabel = label.find(l => l['@language'] === 'en');
-                if (enLabel) {
-                    label = enLabel['@value'];
-                } else if (label.length > 0) {
-                    label = label[0]['@value'] || p['@id'];
-                } else {
-                    label = p['@id'];
-                }
-            } else if (typeof label === 'object' && label !== null) {
-                label = label['@value'] || p['@id'];
-            }
+            const label = getDisplayLabel(p['rdfs:label'], p['@id']);
 
             const annotations = {};
                                 const annotationKeys = ['dppk:governedBy', 'owl:equivalentProperty', 'rdfs:subPropertyOf'];            for (const key of annotationKeys) {
@@ -104,8 +113,8 @@ export function parseOntologyMetadata(content) {
 
             return {
                 id: classId,
-                label: node['rdfs:label'],
-                comment: node['rdfs:comment'],
+                label: getDisplayLabel(node['rdfs:label'], classId),
+                comment: getDisplayLabel(node['rdfs:comment'], ''),
                 // Find properties whose domain includes this class
                 properties: properties.filter(p => p.domain && (p.domain['@id'] === classId || (Array.isArray(p.domain) && p.domain.some(d => d['@id'] === classId)))),
                 attributes: classAttributes
@@ -203,31 +212,39 @@ const resolvePName = (pname, context) => {
 };
 
 const processValue = (val, context, currentHtmlPath, ontologyDir, allMetadata) => {
-    if (typeof val === 'object' && val !== null && val['@id']) {
-        const id = val['@id'];
-        if (id.startsWith('http')) {
-            return `<a href="${id}">${id}</a>`;
-        }
+    if (typeof val === 'object' && val !== null) {
+        // If it has an @id, it's a link to another entity.
+        if (val['@id']) {
+            const id = val['@id'];
+            if (id.startsWith('http')) {
+                return `<a href="${id}">${id}</a>`;
+            }
 
-        // Try to resolve the link to a generated class page
-        const definingModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === id));
-        if (definingModuleMeta && currentHtmlPath && ontologyDir) {
-            const fragment = getFragment(id);
-            const targetModuleDirName = basename(definingModuleMeta.name, '.jsonld');
-            const targetPath = join(ontologyDir, definingModuleMeta.module, targetModuleDirName, `${fragment}.html`);
-            const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
-            return `<a href="${relativeLink}">${id}</a>`;
-        }
+            // Try to resolve the link to a generated class page
+            const definingModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === id));
+            if (definingModuleMeta && currentHtmlPath && ontologyDir) {
+                const fragment = getFragment(id);
+                const targetModuleDirName = basename(definingModuleMeta.name, '.jsonld');
+                const targetPath = join(ontologyDir, definingModuleMeta.module, targetModuleDirName, `${fragment}.html`);
+                const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+                return `<a href="${relativeLink}">${id}</a>`;
+            }
 
-        // Fallback for other types of links
-        if (id.includes(':')) {
-            const href = resolvePName(id, context);
-            return `<a href="${href}">${id}</a>`;
+            // Fallback for other types of links
+            if (id.includes(':')) {
+                const href = resolvePName(id, context);
+                return `<a href="${href}">${id}</a>`;
+            }
+            return `<a href="${getFragment(id)}.html">${id}</a>`; // Fallback for same-module links
         }
-        return `<a href="${getFragment(id)}.html">${id}</a>`; // Fallback for same-module links
-    } else if (typeof val === 'object' && val !== null) {
+        // If it has a @value, it's a language-tagged string literal.
+        if (val['@value']) {
+            return val['@value'];
+        }
+        // If it's some other kind of object, stringify it.
         return JSON.stringify(val);
     }
+    // It's a primitive (string, number, etc.)
     return val;
 };
 
@@ -332,7 +349,7 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
     const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
 
     const importsList = imports.length > 0
-        ? `<h4>Imports</h4><ul>\n${imports.map(i => `                <li>${i}</li>`).join('\n')}\n            </ul>`
+        ? `<h4>Imports</h4><ul>\n${imports.map(i => `                <li><a href="${i}">${i}</a></li>`).join('\n')}\n            </ul>`
         : '';
 
     const termsList = localTerms.length > 0

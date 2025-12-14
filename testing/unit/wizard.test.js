@@ -618,6 +618,27 @@ describe('DPP Wizard - Form Builder', () => {
         const tooltipButton = cells[3].querySelector('button.tooltip-button');
         expect(tooltipButton).toBeNull();
     });
+
+    it('should use the "default" keyword to set an input value', () => {
+        const mockSchema = {
+            "type": "object",
+            "properties": {
+                "dppId": {
+                    "type": "string",
+                    "format": "uri",
+                    "default": "http://eu.example.com/dpp/12345"
+                }
+            }
+        };
+
+        const fragment = buildForm(mockSchema);
+        document.body.innerHTML = '';
+        document.body.appendChild(fragment);
+
+        const input = document.querySelector('input[name="dppId"]');
+        expect(input).not.toBeNull();
+        expect(input.value).toBe('http://eu.example.com/dpp/12345');
+    });
 });
 
 describe('DPP Wizard - DPP Generator', () => {

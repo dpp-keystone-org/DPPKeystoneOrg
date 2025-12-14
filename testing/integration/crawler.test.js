@@ -17,7 +17,7 @@ describe('Site Crawler', () => {
       stderr = e.stderr;
     }
 
-    const brokenLinksFound = stdout.includes('--- First Broken Link Details ---') || stdout.includes('--- Pages Missing CSS ---') || stdout.includes('--- Pages Missing Images ---') || !!stderr;
+    const brokenLinksFound = stdout.includes('--- First Broken Link Details ---') || stdout.includes('--- Pages Missing CSS ---') || stdout.includes('--- Pages Missing Images ---') || stdout.includes('--- Pages with "[object Object]" Links ---') || !!stderr;
 
     if (brokenLinksFound) {
       // Log the detailed output only when the test is about to fail.

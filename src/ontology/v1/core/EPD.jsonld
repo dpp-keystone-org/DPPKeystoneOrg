@@ -8,7 +8,7 @@
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/core/EPD",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Environmental Product Declaration (EPD)",
   "owl:imports": {

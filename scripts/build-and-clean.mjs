@@ -83,6 +83,21 @@ async function createRedirects(targetDir) {
     console.log(`Created redirect: /spec/v1/terms/index.html -> ${redirectTarget}`);
 }
 
+async function addCacheBusting(targetDir) {
+    console.log('Adding cache-busting to wizard...');
+    const wizardHtmlPath = path.join(targetDir, 'spec', 'wizard', 'index.html');
+    try {
+        let content = await fs.readFile(wizardHtmlPath, 'utf-8');
+        const timestamp = Date.now();
+        content = content.replace(/(href|src)="(.*?\.(css|js))"/g, `$1="$2?v=${timestamp}"`);
+        await fs.writeFile(wizardHtmlPath, content, 'utf-8');
+        console.log(`Added cache-busting to ${wizardHtmlPath}`);
+    } catch (error) {
+        // This is a non-critical step, so we just log the error and continue.
+        console.warn(`Warning: Could not add cache-busting to ${wizardHtmlPath}. Error: ${error.message}`);
+    }
+}
+
 async function build() {
     console.log('Starting build process: Cleaning and copying files...');
     await fse.emptyDir(BUILD_DIR); // Clear previous build artifacts
@@ -112,6 +127,9 @@ async function build() {
 
     console.log('Updating index.html...');
     execSync('node scripts/update-index-html.mjs', { stdio: 'inherit' });
+
+    // Add cache-busting to the wizard's HTML
+    await addCacheBusting(BUILD_DIR);
 
     console.log('Build process completed.');
 }

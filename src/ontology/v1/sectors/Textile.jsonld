@@ -11,7 +11,7 @@
     "unece": "https://vocabulary.uncefact.org/",
     "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/sectors/Textile",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Sector Ontology - Textile Definitions (v1)",
   "dcterms:description": "Defines sector-specific concepts required for the Textile DPP, based on the EU Strategy for Sustainable and Circular Textiles.",

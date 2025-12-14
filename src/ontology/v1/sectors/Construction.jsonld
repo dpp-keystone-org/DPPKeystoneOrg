@@ -13,7 +13,7 @@
     "unece": "https://vocabulary.uncefact.org/",
     "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/sectors/Construction",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Sector Ontology - Construction and Heavy Industry Definitions (v1)",
   "dcterms:description": "Defines concepts for Construction Products (aligning with CPR) and related heavy industries such as steel and rail.",
