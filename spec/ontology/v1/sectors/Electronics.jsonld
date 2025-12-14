@@ -11,7 +11,7 @@
     "unece": "https://vocabulary.uncefact.org/",
     "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/sectors/Electronics",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Sector Ontology - Electronics and Electrical Equipment Definitions (v1)",
   "dcterms:description": "Defines concepts for Electronics and Electrical Equipment (EEE), aligning with regulations such as RoHS, WEEE, and Eco-Design requirements.",

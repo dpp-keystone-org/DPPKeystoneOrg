@@ -6,9 +6,10 @@
  * @param {object} properties - The JSON schema properties object.
  * @param {Map<string, {label: string, comment: string}>} ontologyMap - A map of ontology terms.
  * @param {string} [parentPath=''] - The prefix for field names, used for nesting.
+ * @param {number} [indentationLevel=0] - The current level of nesting for UI indentation.
  */
-function generateRows(fragment, properties, ontologyMap, parentPath = '') {
-    // console.log(`[FormBuilder] generateRows called for path: '${parentPath}'`);
+function generateRows(fragment, properties, ontologyMap, parentPath = '', indentationLevel = 0) {
+    // console.log(`[FormBuilder] generateRows called for path: '${parentPath}', level: ${indentationLevel}`);
     for (const [key, prop] of Object.entries(properties)) {
         // console.log(`[FormBuilder]   Processing key: '${key}'`);
         // If the property is a placeholder for a circular ref, skip it.
@@ -22,12 +23,48 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
         }
 
         const currentPath = parentPath ? `${parentPath}.${key}` : key;
+        const ontologyInfo = ontologyMap.get(key);
 
-        // If the property is a nested object with its own properties, recurse
+        // If the property is a nested object with its own properties, create a header and recurse
         if (prop.type === 'object' && prop.properties) {
-            generateRows(fragment, prop.properties, ontologyMap, currentPath);
+            const headerRow = document.createElement('div');
+            headerRow.className = 'grid-row grid-row-header';
+            
+            // --- 1. Field Path Cell (for header) ---
+            const pathCell = document.createElement('div');
+            pathCell.className = 'grid-cell';
+            pathCell.textContent = currentPath;
+            pathCell.style.paddingLeft = `${indentationLevel * 20}px`;
+            headerRow.appendChild(pathCell);
+            
+            // --- 2. Value Input Cell (empty for header) ---
+            headerRow.appendChild(document.createElement('div')).className = 'grid-cell';
+
+            // --- 3. Ontology Cell (for header) ---
+            const ontologyCell = document.createElement('div');
+            ontologyCell.className = 'grid-cell';
+            ontologyCell.textContent = ontologyInfo?.label || '';
+            headerRow.appendChild(ontologyCell);
+
+            // --- 4. Tooltip Cell (for header) ---
+            const tooltipCell = document.createElement('div');
+            tooltipCell.className = 'grid-cell';
+            if (ontologyInfo?.comment) {
+                const tooltipButton = document.createElement('button');
+                tooltipButton.className = 'tooltip-button';
+                tooltipButton.textContent = '?';
+                tooltipButton.title = ontologyInfo.comment;
+                tooltipButton.type = 'button';
+                tooltipCell.appendChild(tooltipButton);
+            }
+            headerRow.appendChild(tooltipCell);
+
+            fragment.appendChild(headerRow);
+
+            // Recurse for the nested properties with increased indentation
+            generateRows(fragment, prop.properties, ontologyMap, currentPath, indentationLevel + 1);
         } else {
-            // Otherwise, generate a row for this simple property
+            // Otherwise, generate a regular row for this simple property
             const row = document.createElement('div');
             row.className = 'grid-row';
             
@@ -35,6 +72,7 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
             const pathCell = document.createElement('div');
             pathCell.className = 'grid-cell';
             pathCell.textContent = currentPath;
+            pathCell.style.paddingLeft = `${indentationLevel * 20}px`;
             row.appendChild(pathCell);
 
             // --- 2. Value Input Cell ---
@@ -93,7 +131,8 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
                                 const newObjectPath = `${arrayName}.${itemIndex}`;
 
                                 const newObjectFragment = document.createDocumentFragment();
-                                generateRows(newObjectFragment, prop.items.properties, ontologyMap, newObjectPath);
+                                // Start array item indentation one level deeper
+                                generateRows(newObjectFragment, prop.items.properties, ontologyMap, newObjectPath, indentationLevel + 1);
                                 
                                 const newItemRows = [...newObjectFragment.children];
 
@@ -104,7 +143,10 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
                                 controlRow.className = 'grid-row array-item-control-row';
                                 controlRow.dataset.arrayGroup = newObjectPath;
                                 
-                                controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
+                                const firstCell = document.createElement('div');
+                                firstCell.className = 'grid-cell';
+                                firstCell.style.paddingLeft = `${indentationLevel * 20}px`;
+                                controlRow.appendChild(firstCell);
                                 
                                 const removeCell = document.createElement('div');
                                 removeCell.className = 'grid-cell';
@@ -204,6 +246,7 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
                                 const pathCell = document.createElement('div');
                                 pathCell.className = 'grid-cell';
                                 pathCell.textContent = path;
+                                pathCell.style.paddingLeft = `${(indentationLevel + 1) * 20}px`;
                                 newRow.appendChild(pathCell);
 
                                 const valueCell = document.createElement('div');
@@ -221,7 +264,10 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
 
                                 const controlRow = document.createElement('div');
                                 controlRow.className = 'grid-row array-item-control-row';
-                                controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
+                                const firstCell = document.createElement('div');
+                                firstCell.className = 'grid-cell';
+                                firstCell.style.paddingLeft = `${(indentationLevel + 1) * 20}px`;
+                                controlRow.appendChild(firstCell);
                                 
                                 const removeCell = document.createElement('div');
                                 removeCell.className = 'grid-cell';
@@ -282,6 +328,15 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
             if (input) {
                 input.id = currentPath;
                 input.name = currentPath;
+
+                // Handle the 'default' keyword for pre-populating fields.
+                if (prop.default !== undefined) {
+                    if (prop.type === 'boolean') {
+                        input.checked = prop.default;
+                    } else {
+                        input.value = prop.default;
+                    }
+                }
             }
             
             row.appendChild(valueCell);
@@ -289,7 +344,6 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '') {
             // --- 3. Ontology Cell (Label) ---
             const ontologyCell = document.createElement('div');
             ontologyCell.className = 'grid-cell';
-            const ontologyInfo = ontologyMap.get(key);
             ontologyCell.textContent = ontologyInfo?.label || '';
             row.appendChild(ontologyCell);
 

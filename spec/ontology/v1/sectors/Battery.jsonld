@@ -11,7 +11,7 @@
     "unece": "https://vocabulary.uncefact.org/",
     "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/sectors/Battery",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Sector Ontology - Battery Definitions (v1)",
   "dcterms:description": "Defines sector-specific concepts required for the Battery Passport as per Regulation (EU) 2023/1542.",

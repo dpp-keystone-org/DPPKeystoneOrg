@@ -7,7 +7,7 @@
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/core/DoPC",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/DoPC",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Declaration of Performance Characteristics (DoPC)",
   "owl:imports": {

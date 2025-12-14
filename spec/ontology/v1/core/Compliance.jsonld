@@ -11,7 +11,7 @@
     "unece": "https://vocabulary.uncefact.org/",
     "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
-  "@id": "https://dpp-keystone.org/ontology/v1/core/Compliance",
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Compliance and Regulatory Definitions (v1)",
   "dcterms:description": "Defines horizontal concepts related to Documents, Certifications, Substances of Concern, Eco-Design, Packaging, and Production Steps.",

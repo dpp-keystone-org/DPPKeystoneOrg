@@ -7,12 +7,14 @@
     "digitalProductPassportId": {
       "description": "The unique identifier of an instance of the digital product passport.",
       "type": "string",
-      "format": "uri"
+      "format": "uri",
+      "default": "https://dpp.example.com/dpp/77b583e8-8575-4862-986c-4863a2995f68"
     },
     "uniqueProductIdentifier": {
       "description": "A unique string of characters for the identification of a product. Formatted according to EN18219.",
       "type": "string",
-      "format": "uri"
+      "format": "uri",
+      "default": "https://pid.example.com/gtin/01234567890123"
     },
     "granularity": {
       "description": "The level of granularity of the ProductID as per ESPR.",

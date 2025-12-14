@@ -7,6 +7,7 @@
     "schema": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Identifier",
   "@graph": [
     {
       "@id": "dppk:identifier",

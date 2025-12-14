@@ -4,46 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Wizard</title>
-    <link rel="stylesheet" href="../../branding/css/keystone-style.css">
-    <link rel="stylesheet" href="wizard.css">
+    <link rel="stylesheet" href="../../branding/css/keystone-style.css?v=1765748400011">
+    <link rel="stylesheet" href="wizard.css?v=1765748400011">
 </head>
 <body>
-    <div id="wizard-container">
-        <h1>DPP Wizard</h1>
-        <div id="core-form-container">
-            <!-- Core DPP form fields will be generated here -->
-        </div>
-        <div id="sector-selection">
-            <label for="sector-select">1. Select a Sector:</label>
-            <select id="sector-select">
-                <option value="">--Please choose a sector--</option>
-                <option value="battery">Battery</option>
-                <option value="construction">Construction</option>
-                <option value="electronics">Electronics</option>
-                <option value="textile">Textile</option>
-            </select>
-        </div>
-        <div id="form-container">
-            <!-- Form fields will be generated here -->
-        </div>
-
-        <div id="voluntary-info-container">
-            <h2>2. Add Voluntary Information</h2>
-            <div id="voluntary-fields-wrapper">
-                <!-- Dynamic name-value fields will be added here -->
+    <div class="container">
+        <header>
+            <img src="../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
+            <div>
+                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the Digital Product Passport</p>
             </div>
-            <button type="button" id="add-voluntary-field-btn">+ Add Custom Field</button>
+        </header>
+
+        <div id="wizard-container">
+            <h1>DPP Wizard</h1>
+            <div id="core-form-container">
+                <!-- Core DPP form fields will be generated here -->
+            </div>
+            <div id="sector-selection">
+                <label for="sector-select">1. Select a Sector:</label>
+                <select id="sector-select">
+                    <option value="">--Please choose a sector--</option>
+                    <option value="battery">Battery</option>
+                    <option value="construction">Construction</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="textile">Textile</option>
+                </select>
+            </div>
+            <div id="form-container">
+                <!-- Form fields will be generated here -->
+            </div>
+    
+            <div id="voluntary-info-container">
+                <h2>2. Add Voluntary Information</h2>
+                <div id="voluntary-fields-wrapper">
+                    <!-- Dynamic name-value fields will be added here -->
+                </div>
+                <button type="button" id="add-voluntary-field-btn">+ Add Custom Field</button>
+            </div>
+    
+            <hr>
+    
+            <button id="generate-dpp-btn">Generate DPP</button>
+    
+            <div id="output-container">
+                <h2>3. Generated DPP</h2>
+                <pre id="json-output"></pre>
+            </div>
         </div>
 
-        <hr>
-
-        <button id="generate-dpp-btn">Generate DPP</button>
-
-        <div id="output-container">
-            <h2>3. Generated DPP</h2>
-            <pre id="json-output"></pre>
-        </div>
+        <footer>
+            <p><small>Part of the <a href="../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
     </div>
-    <script type="module" src="wizard.js"></script>
+    <script type="module" src="wizard.js?v=1765748400011"></script>
 </body>
 </html>

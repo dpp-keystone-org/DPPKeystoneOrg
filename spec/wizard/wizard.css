@@ -1,23 +1,21 @@
 /* src/wizard/wizard.css */
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    /* Base font styles are inherited from keystone-style.css */
+    /* The main .container class now handles width, margin, and padding */
+    color: var(--text-dark);
 }
 
 #wizard-container {
-    background: #f9f9f9;
+    /* This container sits inside the main .container and provides a card-like effect */
+    background: var(--white);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 h1, h2 {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
 }
 
@@ -33,7 +31,7 @@ h1, h2 {
 
 .form-group .description {
     font-size: 0.9em;
-    color: #666;
+    color: var(--text-light);
     margin-top: -10px;
     margin-bottom: 5px;
 }
@@ -43,14 +41,14 @@ input[type="number"],
 select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 
 button {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--keystone-blue);
+    color: var(--white);
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -59,7 +57,8 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    /* A simple darken effect on hover */
+    filter: brightness(90%);
 }
 
 #voluntary-info-container {
@@ -81,6 +80,7 @@ button:hover {
     flex: 2;
 }
 
+/* Keep remove buttons red as there's no danger color variable yet */
 .voluntary-field-row button {
     background-color: #dc3545;
 }
@@ -92,11 +92,11 @@ button:hover {
 hr {
     margin: 20px 0;
     border: 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
 
 .error {
-    color: #dc3545;
+    color: #dc3545; /* No danger variable yet */
 }
 
 /* 4-Column Grid for Sector-Specific Forms */
@@ -106,13 +106,13 @@ hr {
     gap: 10px 15px; /* Row gap, Column gap */
     align-items: center;
     margin-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     padding-top: 20px;
 }
 
 .grid-header {
     font-weight: bold;
-    color: #333;
+    color: var(--text-dark);
     padding-bottom: 5px;
 }
 
@@ -127,18 +127,18 @@ hr {
 .grid-cell:first-child {
     font-family: monospace;
     font-size: 0.9em;
-    color: #444;
+    color: var(--text-dark);
 }
 
 .grid-cell:nth-child(3) {
     font-size: 0.9em;
-    color: #666;
+    color: var(--text-light);
 }
 
 .tooltip-button {
-    background-color: #eee;
-    color: #333;
-    border: 1px solid #ccc;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
     width: 20px;
     height: 20px;

@@ -70,6 +70,27 @@ async function resolveRefs(schemaNode, rootSchema, basePath, resolutionPath = ne
     for (const key in schemaNode) {
         resolvedNode[key] = await resolveRefs(schemaNode[key], rootSchema, basePath, resolutionPath);
     }
+    
+    // After resolving all children, check for and process 'allOf'.
+    if (resolvedNode.allOf) {
+        const { allOf, ...parentSchema } = resolvedNode;
+        const mergedSchema = allOf.reduce((acc, current) => {
+            // Merge properties
+            if (current.properties) {
+                acc.properties = { ...acc.properties, ...current.properties };
+            }
+            // Merge required arrays and deduplicate
+            if (current.required) {
+                acc.required = [...new Set([...(acc.required || []), ...current.required])];
+            }
+            // A more comprehensive merge could handle other keywords too.
+            // For now, properties and required are the most critical for form generation.
+            return acc;
+        }, { ...parentSchema }); // Start with the parent's own properties
+
+        return mergedSchema;
+    }
+
     return resolvedNode;
 }
 
