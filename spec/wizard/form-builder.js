@@ -1,14 +1,16 @@
 // src/wizard/form-builder.js
+import { isURI, isCountryCodeAlpha3, isNumber, isInteger } from './validator.js';
 
 /**
  * Recursively generates form rows for a given set of schema properties.
  * @param {DocumentFragment} fragment - The fragment to append generated rows to.
  * @param {object} properties - The JSON schema properties object.
- * @param {Map<string, {label: string, comment: string}>} ontologyMap - A map of ontology terms.
+ * @param {Map<string, {label: object, comment: object, unit: string}>} ontologyMap - A map of ontology terms.
  * @param {string} [parentPath=''] - The prefix for field names, used for nesting.
  * @param {number} [indentationLevel=0] - The current level of nesting for UI indentation.
+ * @param {string} [lang='en'] - The current language code.
  */
-function generateRows(fragment, properties, ontologyMap, parentPath = '', indentationLevel = 0) {
+function generateRows(fragment, properties, ontologyMap, requiredFields = [], parentPath = '', indentationLevel = 0, lang = 'en') {
     // console.log(`[FormBuilder] generateRows called for path: '${parentPath}', level: ${indentationLevel}`);
     for (const [key, prop] of Object.entries(properties)) {
         // console.log(`[FormBuilder]   Processing key: '${key}'`);
@@ -23,10 +25,11 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
         }
 
         const currentPath = parentPath ? `${parentPath}.${key}` : key;
-        const ontologyInfo = ontologyMap.get(key);
+        const isRequired = requiredFields.includes(key);
 
         // If the property is a nested object with its own properties, create a header and recurse
         if (prop.type === 'object' && prop.properties) {
+            const ontologyInfo = ontologyMap.get(key); // Simple lookup for headers
             const headerRow = document.createElement('div');
             headerRow.className = 'grid-row grid-row-header';
             
@@ -40,21 +43,87 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
             // --- 2. Value Input Cell (empty for header) ---
             headerRow.appendChild(document.createElement('div')).className = 'grid-cell';
 
-            // --- 3. Ontology Cell (for header) ---
+            // --- 3. Unit Cell (empty for header) ---
+            headerRow.appendChild(document.createElement('div')).className = 'grid-cell';
+
+            // --- 4. Ontology Cell (for header) ---
             const ontologyCell = document.createElement('div');
             ontologyCell.className = 'grid-cell';
-            ontologyCell.textContent = ontologyInfo?.label || '';
+            if (ontologyInfo?.label) {
+                if (typeof ontologyInfo.label === 'string') {
+                    ontologyCell.textContent = ontologyInfo.label;
+                } else {
+                    ontologyCell.textContent = ontologyInfo.label[lang] || ontologyInfo.label.en || '';
+                }
+            }
             headerRow.appendChild(ontologyCell);
 
-            // --- 4. Tooltip Cell (for header) ---
+            // --- 5. Tooltip Cell (for header) ---
             const tooltipCell = document.createElement('div');
             tooltipCell.className = 'grid-cell';
+            
+            let commentText = '';
             if (ontologyInfo?.comment) {
+                if (typeof ontologyInfo.comment === 'object') {
+                    commentText = ontologyInfo.comment[lang] || ontologyInfo.comment.en || '';
+                } else {
+                    commentText = ontologyInfo.comment;
+                }
+            }
+
+            if (commentText || ontologyInfo?.governedBy) {
                 const tooltipButton = document.createElement('button');
                 tooltipButton.className = 'tooltip-button';
                 tooltipButton.textContent = '?';
-                tooltipButton.title = ontologyInfo.comment;
                 tooltipButton.type = 'button';
+                tooltipButton.addEventListener('click', () => {
+                    // Function to remove any existing modal
+                    const removeExistingModal = () => {
+                        const existingOverlay = document.querySelector('.tooltip-modal-overlay');
+                        const existingModal = document.querySelector('.tooltip-modal');
+                        if (existingOverlay) existingOverlay.remove();
+                        if (existingModal) existingModal.remove();
+                    };
+                    removeExistingModal(); // Clear any previous modal
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'tooltip-modal-overlay';
+
+                    const modal = document.createElement('div');
+                    modal.className = 'tooltip-modal';
+                    
+                    const modalBody = document.createElement('div');
+
+                    if (commentText) {
+                        const descriptionPara = document.createElement('p');
+                        descriptionPara.textContent = commentText;
+                        modalBody.appendChild(descriptionPara);
+                    }
+
+                    if (ontologyInfo?.governedBy) {
+                        const standardPara = document.createElement('p');
+                        standardPara.textContent = `Standard: ${ontologyInfo.governedBy}`;
+                        modalBody.appendChild(standardPara);
+                    }
+
+                    modal.appendChild(modalBody);
+
+                    const closeButton = document.createElement('button');
+                    closeButton.className = 'modal-close-btn';
+                    closeButton.innerHTML = '&times;'; // HTML entity for 'close'
+                    
+                    const closeModal = () => {
+                        overlay.remove();
+                        modal.remove();
+                    };
+
+                    closeButton.addEventListener('click', closeModal);
+                    overlay.addEventListener('click', closeModal);
+
+                    modal.appendChild(closeButton);
+                    document.body.appendChild(overlay);
+                    document.body.appendChild(modal);
+                });
                 tooltipCell.appendChild(tooltipButton);
             }
             headerRow.appendChild(tooltipCell);
@@ -62,7 +131,7 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
             fragment.appendChild(headerRow);
 
             // Recurse for the nested properties with increased indentation
-            generateRows(fragment, prop.properties, ontologyMap, currentPath, indentationLevel + 1);
+            generateRows(fragment, prop.properties, ontologyMap, prop.required || [], currentPath, indentationLevel + 1, lang);
         } else {
             // Otherwise, generate a regular row for this simple property
             const row = document.createElement('div');
@@ -82,6 +151,14 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
 
             if (prop.enum) {
                 input = document.createElement('select');
+                if (isRequired) {
+                    const placeholder = document.createElement('option');
+                    placeholder.value = '';
+                    placeholder.textContent = 'Select...';
+                    placeholder.selected = true;
+                    placeholder.disabled = true;
+                    input.appendChild(placeholder);
+                }
                 prop.enum.forEach(enumValue => {
                     const option = document.createElement('option');
                     option.value = enumValue;
@@ -93,7 +170,13 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
                 switch (prop.type) {
                     case 'string':
                         input = document.createElement('input');
-                        input.type = 'text';
+                        if (prop.format === 'date') {
+                            input.type = 'date';
+                        } else if (prop.format === 'date-time') {
+                            input.type = 'datetime-local';
+                        } else {
+                            input.type = 'text';
+                        }
                         valueCell.appendChild(input);
                         break;
                     case 'number':
@@ -132,7 +215,7 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
 
                                 const newObjectFragment = document.createDocumentFragment();
                                 // Start array item indentation one level deeper
-                                generateRows(newObjectFragment, prop.items.properties, ontologyMap, newObjectPath, indentationLevel + 1);
+                                generateRows(newObjectFragment, prop.items.properties, ontologyMap, prop.items.required || [], newObjectPath, indentationLevel + 1, lang);
                                 
                                 const newItemRows = [...newObjectFragment.children];
 
@@ -226,6 +309,7 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
 
                                 controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
                                 controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
+                                controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
 
                                 newObjectFragment.appendChild(controlRow);
                                 
@@ -258,6 +342,7 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
                                 valueCell.appendChild(itemInput);
                                 newRow.appendChild(valueCell);
 
+                                newRow.appendChild(document.createElement('div')).className = 'grid-cell';
                                 newRow.appendChild(document.createElement('div')).className = 'grid-cell';
                                 newRow.appendChild(document.createElement('div')).className = 'grid-cell';
                                 itemFragment.appendChild(newRow);
@@ -306,6 +391,7 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
 
                                 controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
                                 controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
+                                controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
                                 itemFragment.appendChild(controlRow);
 
                                 lastElement.after(itemFragment);
@@ -339,26 +425,204 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
                 }
             }
             
+            // --- New logic to find ontology info with inheritance ---
+            const pathParts = currentPath.split('.');
+            let ontologyInfo = null;
+            let unit = '';
+            let governedBy = '';
+
+            // Find the leaf-most info object for label/comment.
+            for (let i = pathParts.length - 1; i >= 0; i--) {
+                const info = ontologyMap.get(pathParts[i]);
+                if (info) {
+                    ontologyInfo = info;
+                    break;
+                }
+            }
+
+            // Find the leaf-most unit (inheritance/override).
+            for (let i = pathParts.length - 1; i >= 0; i--) {
+                const info = ontologyMap.get(pathParts[i]);
+                if (info && info.unit) {
+                    unit = info.unit;
+                    break;
+                }
+            }
+
+            // Find the leaf-most governedBy (inheritance/override).
+            for (let i = pathParts.length - 1; i >= 0; i--) {
+                const info = ontologyMap.get(pathParts[i]);
+                if (info && info.governedBy) {
+                    governedBy = info.governedBy;
+                    break;
+                }
+            }
+
+            // --- Attach Validation Logic ---
+            if (input && input.type !== 'checkbox' && input.type !== 'button') {
+                const handleValidation = (e) => {
+                    const { target } = e;
+                    const value = target.value;
+                    let validationResult = { isValid: true };
+
+                    // First, check for browser-level invalidity, which is the most reliable way to catch
+                    // cases where a user enters text into a number field, which the browser then blanks.
+                    if ((prop.type === 'number' || prop.type === 'integer') && !target.validity.valid && value === '') {
+                        validationResult = { isValid: false, message: 'Must be a valid number' };
+                    } else if (value === '') {
+                        if (isRequired) {
+                            validationResult = { isValid: false, message: 'This field is required' };
+                        }
+                    } else {
+                        // --- Determine which validation to run for non-empty fields ---
+                        if (prop.format === 'uri') {
+                            if (!isURI(value)) {
+                                validationResult = { isValid: false, message: 'Must be a valid URI (e.g., http://example.com)' };
+                            }
+                        } else if (target.name.endsWith('countryOfOrigin') || target.name.endsWith('addressCountry') || target.name.endsWith('productionLocationCountry')) {
+                            if (!isCountryCodeAlpha3(value)) {
+                                validationResult = { isValid: false, message: 'Must be a valid 3-letter country code (ISO 3166-1 alpha-3)' };
+                            }
+                        } else if (ontologyInfo?.validation) {
+                            const { min, max } = ontologyInfo.validation;
+                            const num = parseFloat(value);
+                            if (isNaN(num) || num < min || num > max) {
+                                validationResult = { isValid: false, message: `Must be between ${min} and ${max}` };
+                            }
+                        } else {
+                            // Fallback to basic type validation
+                            if (prop.type === 'number' && !isNumber(value)) {
+                                validationResult = { isValid: false, message: 'Must be a valid number' };
+                            } else if (prop.type === 'integer' && !isInteger(value)) {
+                                validationResult = { isValid: false, message: 'Must be a whole number' };
+                            }
+                        }
+                    }
+
+                    // --- Update UI based on validation result ---
+                    const errorMsgId = `${target.id}-error`;
+                    let errorSpan = target.parentElement.querySelector(`#${errorMsgId}`);
+
+                    if (validationResult.isValid) {
+                        target.classList.remove('invalid');
+                        if (errorSpan) {
+                            errorSpan.remove();
+                        }
+                    } else {
+                        target.classList.add('invalid');
+                        if (!errorSpan) {
+                            errorSpan = document.createElement('span');
+                            errorSpan.id = errorMsgId;
+                            errorSpan.className = 'error-message';
+                            target.parentElement.appendChild(errorSpan);
+                        }
+                        errorSpan.textContent = validationResult.message;
+                    }
+
+                    // Dispatch an event so the main wizard logic can track global validity
+                    const validityEvent = new CustomEvent('fieldValidityChange', {
+                        bubbles: true,
+                        composed: true,
+                        detail: {
+                            path: target.name,
+                            isValid: validationResult.isValid
+                        }
+                    });
+                    target.dispatchEvent(validityEvent);
+                };
+                input.addEventListener('input', handleValidation);
+            }
+            
             row.appendChild(valueCell);
 
-            // --- 3. Ontology Cell (Label) ---
+            // --- 3. Unit Cell ---
+            const unitCell = document.createElement('div');
+            unitCell.className = 'grid-cell';
+            unitCell.textContent = unit || '';
+            row.appendChild(unitCell);
+
+            // --- 4. Ontology Cell (Label) ---
             const ontologyCell = document.createElement('div');
             ontologyCell.className = 'grid-cell';
-            ontologyCell.textContent = ontologyInfo?.label || '';
+            if (ontologyInfo?.label) {
+                if (typeof ontologyInfo.label === 'string') {
+                    ontologyCell.textContent = ontologyInfo.label;
+                } else {
+                    ontologyCell.textContent = ontologyInfo.label[lang] || ontologyInfo.label.en || '';
+                }
+            }
             row.appendChild(ontologyCell);
 
-            // --- 4. Tooltip Cell ---
+            // --- 5. Tooltip Cell ---
             const tooltipCell = document.createElement('div');
             tooltipCell.className = 'grid-cell';
+
+            let commentText = '';
             if (ontologyInfo?.comment) {
+                if (typeof ontologyInfo.comment === 'object') {
+                    commentText = ontologyInfo.comment[lang] || ontologyInfo.comment.en || '';
+                } else {
+                    commentText = ontologyInfo.comment;
+                }
+            }
+            
+            if (commentText || governedBy) {
                 const tooltipButton = document.createElement('button');
                 tooltipButton.className = 'tooltip-button';
                 tooltipButton.textContent = '?';
-                tooltipButton.title = ontologyInfo.comment;
                 tooltipButton.type = 'button'; // Prevent form submission
+                tooltipButton.addEventListener('click', () => {
+                    // Function to remove any existing modal
+                    const removeExistingModal = () => {
+                        const existingOverlay = document.querySelector('.tooltip-modal-overlay');
+                        const existingModal = document.querySelector('.tooltip-modal');
+                        if (existingOverlay) existingOverlay.remove();
+                        if (existingModal) existingModal.remove();
+                    };
+                    removeExistingModal(); // Clear any previous modal
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'tooltip-modal-overlay';
+
+                    const modal = document.createElement('div');
+                    modal.className = 'tooltip-modal';
+                    
+                    const modalBody = document.createElement('div');
+
+                    if (commentText) {
+                        const descriptionPara = document.createElement('p');
+                        descriptionPara.textContent = commentText;
+                        modalBody.appendChild(descriptionPara);
+                    }
+
+                    if (governedBy) {
+                        const standardPara = document.createElement('p');
+                        standardPara.textContent = `Standard: ${governedBy}`;
+                        modalBody.appendChild(standardPara);
+                    }
+
+                    modal.appendChild(modalBody);
+
+                    const closeButton = document.createElement('button');
+                    closeButton.className = 'modal-close-btn';
+                    closeButton.innerHTML = '&times;'; // HTML entity for 'close'
+                    
+                    const closeModal = () => {
+                        overlay.remove();
+                        modal.remove();
+                    };
+
+                    closeButton.addEventListener('click', closeModal);
+                    overlay.addEventListener('click', closeModal);
+
+                    modal.appendChild(closeButton);
+                    document.body.appendChild(overlay);
+                    document.body.appendChild(modal);
+                });
                 tooltipCell.appendChild(tooltipButton);
             }
             row.appendChild(tooltipCell);
+
 
             fragment.appendChild(row);
         }
@@ -370,17 +634,21 @@ function generateRows(fragment, properties, ontologyMap, parentPath = '', indent
  * Generates an HTML form from a JSON schema using a 3-column grid layout.
  * @param {object} schema - The JSON schema object.
  * @param {Map<string, {label: string, comment: string}>} [ontologyMap=new Map()] - A map of ontology terms.
+ * @param {string} [lang='en'] - The current language code.
  * @returns {DocumentFragment} A document fragment containing the generated form elements.
  */
-export function buildForm(schema, ontologyMap = new Map()) {
+export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
     // console.log('[FormBuilder] buildForm received schema:', JSON.stringify(schema, null, 2));
     const fragment = document.createDocumentFragment();
     let properties = null;
+    let requiredFields = [];
 
     if (schema?.properties) {
         properties = schema.properties;
+        requiredFields = schema.required || [];
     } else if (schema?.then?.properties) {
         properties = schema.then.properties;
+        requiredFields = schema.then.required || [];
     }
 
     // console.log('[FormBuilder] Extracted properties:', JSON.stringify(properties, null, 2));
@@ -393,13 +661,14 @@ export function buildForm(schema, ontologyMap = new Map()) {
         grid.innerHTML = `
             <div class="grid-header">Field Path</div>
             <div class="grid-header">Value</div>
+            <div class="grid-header">Unit</div>
             <div class="grid-header">Ontology</div>
             <div class="grid-header"></div>
         `;
         
         // Create a temporary fragment for rows to be appended to the grid
         const rowsFragment = document.createDocumentFragment();
-        generateRows(rowsFragment, properties, ontologyMap);
+        generateRows(rowsFragment, properties, ontologyMap, requiredFields, '', 0, lang);
         grid.appendChild(rowsFragment);
 
         fragment.appendChild(grid);

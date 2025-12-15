@@ -14,9 +14,33 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-h1, h2 {
+#global-form-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#global-form-controls .form-group {
+    margin-bottom: 0; /* Override default form-group margin */
+    display: flex;
+    align-items: center;
+}
+
+#global-form-controls label {
+    margin-bottom: 0; /* Override default label margin */
+    margin-right: 10px;
+}
+
+#wizard-container > h1, #wizard-container > h2, #voluntary-info-container > h2 {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
+}
+
+.sector-form-container {
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .form-group {
@@ -61,6 +85,25 @@ button:hover {
     filter: brightness(90%);
 }
 
+button:disabled {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    cursor: not-allowed;
+    filter: none; /* Remove hover effect when disabled */
+}
+
+.sector-btn.remove-btn-active {
+    background-color: #dc3545; /* Bootstrap's danger red */
+}
+
+#sector-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 #voluntary-info-container {
     margin-top: 30px;
 }
@@ -99,10 +142,10 @@ hr {
     color: #dc3545; /* No danger variable yet */
 }
 
-/* 4-Column Grid for Sector-Specific Forms */
+/* 5-Column Grid for Sector-Specific Forms */
 .sector-form-grid {
     display: grid;
-    grid-template-columns: 1.5fr 2fr 2.5fr 30px; /* Field Path, Value, Ontology, Tooltip */
+    grid-template-columns: 1.5fr 2fr 1fr 2.5fr 30px; /* Field Path, Value, Unit, Ontology, Tooltip */
     gap: 10px 15px; /* Row gap, Column gap */
     align-items: center;
     margin-top: 20px;
@@ -130,7 +173,7 @@ hr {
     color: var(--text-dark);
 }
 
-.grid-cell:nth-child(3) {
+.grid-cell:nth-child(4) {
     font-size: 0.9em;
     color: var(--text-light);
 }
@@ -146,5 +189,116 @@ hr {
     line-height: 20px;
     text-align: center;
     font-weight: bold;
-    cursor: help;
+        cursor: help;
+    }
+    
+    /* Tooltip Modal Styles */
+    .tooltip-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+    
+    .tooltip-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--white);
+        padding: 20px 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 1001;
+        max-width: 500px;
+        width: 80%;
+    }
+    
+    .modal-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: var(--text-light);
+    }
+
+/* Compact View Styles */
+.compact-view .grid-row .grid-cell:nth-child(4) {
+    /* Hide the Ontology (label) column by default, but keep it in the layout */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
+
+.compact-view .grid-row:hover .grid-cell:nth-child(4) {
+    /* Reveal the Ontology column on row hover */
+    opacity: 1;
+}
+
+/* --- Validation Styles --- */
+input.invalid {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+}
+
+.error-message {
+    color: #721c24;
+    font-size: 0.8em;
+    display: block;
+    margin-top: 4px;
+}
+
+/* Error Summary Modal */
+.error-summary-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1010;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-summary-modal {
+    background-color: var(--white);
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1011;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+}
+
+.error-summary-modal ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.error-summary-modal li a {
+    display: block;
+    padding: 8px 12px;
+    background-color: var(--background-light);
+    margin-bottom: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--keystone-blue);
+    font-family: monospace;
+}
+
+.error-summary-modal li a:hover {
+    background-color: var(--border-color);
+    text-decoration: underline;
+}
+    

@@ -125,3 +125,10 @@ export async function loadSchema(sector) {
         throw error;
     }
 }
+
+/**
+ * Clears the internal cache of loaded schemas. For testing purposes.
+ */
+export function clearSchemaCache() {
+    schemaCache.clear();
+}
