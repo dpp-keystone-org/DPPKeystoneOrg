@@ -1,12 +1,11 @@
 // src/wizard/ontology-loader.js
 
 /**
- * Robustly extracts the string value from an RDFS property, handling both
- * simple strings and multilingual literal objects (e.g., { '@value': '...' }).
+ * Robustly extracts a single string value from an RDFS property, preferring English.
  * @param {string|object|Array} property - The RDFS property from the JSON-LD graph.
  * @returns {string} The extracted string value, or an empty string if not found.
  */
-function getRdfsValue(property) {
+function getSingleRdfsValue(property) {
     if (!property) return '';
     if (typeof property === 'string') return property;
 
@@ -29,9 +28,37 @@ function getRdfsValue(property) {
 }
 
 /**
+ * Parses an rdfs:label or rdfs:comment property and returns a language-keyed object.
+ * @param {string|object|Array} property - The RDF property.
+ * @returns {Object<string, string>} A map of language codes to text values.
+ */
+function parseLangTaggedProperty(property) {
+    const langMap = {};
+    if (!property) return langMap;
+
+    if (typeof property === 'string') {
+        langMap.en = property; // Assume string is English
+        return langMap;
+    }
+    
+    if (Array.isArray(property)) {
+        for (const entry of property) {
+            if (entry['@language'] && entry['@value']) {
+                langMap[entry['@language']] = entry['@value'];
+            }
+        }
+    } else if (property['@value']) {
+        const lang = property['@language'] || 'en';
+        langMap[lang] = property['@value'];
+    }
+
+    return langMap;
+}
+
+/**
  * Internal recursive function to fetch, parse, and process an ontology file, including its imports.
  * @param {string} url - The URL of the ontology to load.
- * @param {Map<string, {label: string, comment: string}>} ontologyMap - The map to populate.
+ * @param {Map<string, {label: Object<string, string>, comment: Object<string, string>, unit: string, governedBy: string}>} ontologyMap - The map to populate.
  * @param {Set<string>} loadedUrls - A set to track already loaded URLs to prevent infinite loops.
  * @param {boolean} isInitialCall - Flag to indicate if this is the first call in the recursion.
  * @returns {Promise<void>}
@@ -58,19 +85,25 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
         // Process the graph of the current ontology
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
-                if (term['@id'] && (term['rdfs:label'] || term['rdfs:comment'])) {
-                    const label = getRdfsValue(term['rdfs:label']);
-                    const comment = getRdfsValue(term['rdfs:comment']);
+                // A term is worth adding if it has an ID and some metadata.
+                if (term['@id'] && (term['rdfs:label'] || term['rdfs:comment'] || term['dppk:unit'] || term['dppk:governedBy'])) {
+                    const label = parseLangTaggedProperty(term['rdfs:label']);
+                    const comment = parseLangTaggedProperty(term['rdfs:comment']);
+                    const unit = getSingleRdfsValue(term['dppk:unit']);
+                    const governedBy = getSingleRdfsValue(term['dppk:governedBy']);
 
                     let key = term['@id'];
                     if (key.includes(':')) {
                         key = key.split(':')[1];
                     }
                     
+                    // Don't overwrite existing entries from more specific ontologies
                     if (!ontologyMap.has(key)) {
                         ontologyMap.set(key, {
-                            label: label || '',
-                            comment: comment || ''
+                            label: label,
+                            comment: comment,
+                            unit: unit || '',
+                            governedBy: governedBy || '',
                         });
                     }
                 }
@@ -85,7 +118,7 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                 if (importUrl) {
                     // Browsers can resolve relative paths against the base; in Node/JSDOM we need a dummy base.
                     const DUMMY_BASE = 'http://localhost';
-                    // The base for resolution is the URL of the file that contains the import.
+                    // The base for resolution is the URL of the file that contains the import.  
                     const baseUrl = new URL(url, DUMMY_BASE).href;
                     const absoluteUrl = new URL(importUrl, baseUrl).href;
                     await loadAndParseOntology(absoluteUrl, ontologyMap, loadedUrls, false);

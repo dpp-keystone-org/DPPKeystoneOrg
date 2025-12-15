@@ -1,0 +1,32 @@
+# Design Doc 011: DPP Wizard Validation
+
+This document outlines the sub-roadmap for Task #5y, implementing real-time input validation in the DPP Wizard.
+
+---
+
+- **[IN PROGRESS] 5y. Add format validation to the wizard:** Implement real-time validation for various formats and constraints defined in the JSON schemas and ontologies.
+  - **[COMPLETED] 5y-1. [Test] Add Failing Test for URI Format:** In `testing/unit/wizard.test.js`, add a test for a field with `format: "uri"`. Programmatically set an invalid value (e.g., "not a url") and assert that the input receives an `.invalid` class and an associated error message appears. This test will fail.
+  - **[COMPLETED] 5y-2. [Implementation] Create Validator Module & URI Logic:** Create `src/wizard/validator.js`. Add an `isURI()` function. In `form-builder.js`, add an `input` event listener to URI fields that calls `isURI()`, toggles the `.invalid` class, and displays/hides the error message. This should make the test pass.
+  - **[COMPLETED] 5y-3. [Test] Add Failing Test for Date Input Type:** In `testing/unit/wizard.test.js`, add a test to assert that a schema property with `format: "date"` results in an `<input type="date">`. This test will fail.
+  - **[COMPLETED] 5y-4. [Implementation] Use Native Date Inputs:** In `form-builder.js`, modify the input creation logic to set `input.type = 'date'` for properties with `format: "date"` and `input.type = 'datetime-local'` for `format: "date-time"`. This should make the test pass.
+  - **[COMPLETED] 5y-5. [Test] Add Failing Test for Numeric Range:** In `testing/unit/wizard.test.js`, test a numeric field against a mock ontology with `min` and `max` validation properties. Set its value to an out-of-range number and assert that it becomes invalid. This test will fail.
+  - **[COMPLETED] 5y-6. [Implementation] Implement Generic Numeric Range Validation:** In `form-builder.js`, enhance the validation handler to check for `ontologyInfo.validation.min/max` and apply the range check. This makes the test pass without hard-coding paths.
+  - **[COMPLETED] 5y-7. [Test] Add Failing Test for Country Code:** In `testing/unit/wizard.test.js`, add a test for the `countryOfOrigin` field. Set its value to an invalid code and assert that the field becomes invalid. This test will fail.
+  - **[COMPLETED] 5y-8. [Implementation] Implement Country Code (alpha-3) Validation:** In `validator.js`, add an `isCountryCodeAlpha3()` function. In `form-builder.js`, update the validation handler to use this function for relevant fields. This should make the test pass.
+  - **[COMPLETED] 5y-8b. [Test & Impl] Add Basic Type Validation:** The logic to check primitive types (`isNumber`, `isInteger`) is implemented in `validator.js` and `form-builder.js`. This is now tested via a Playwright integration test that correctly simulates browser behavior.
+  - **[COMPLETED] 5y-8c. [Test & Impl] Add `required` field Validation:** The logic to check for empty required fields is implemented in `form-builder.js`. The initial state is now tested via a Playwright integration test.
+  - **[COMPLETED] 5y-9. [Test] Add Failing Test for Button State:** In `testing/integration/playwright/wizard.spec.js`, create a test that enters invalid data, asserts the "Generate DPP" button is disabled, corrects the data, and asserts the button is enabled.
+  - **[COMPLETED] 5y-10. [Implementation] Implement Global Validity & Button State:** In `wizard.js`, track the validity of all fields and update the "Generate DPP" button's `disabled` property based on this global state. This makes the integration test pass.
+  - **[SUB-TASK] Test Infrastructure for Form Population:** Before implementing more complex validation tests, we will build a schema-aware helper to automatically populate form fields. This makes tests cleaner, more resilient, and unblocks further validation work.
+    - **[COMPLETED] 5y-11. [Implementation] Expose Schema Data for Testing:** In `src/wizard/wizard.js`, expose the loaded schemas to the `window` object in a test environment to make them accessible to Playwright tests.
+    - **[COMPLETED] 5y-12. [Test] Add Failing Unit Test for Data Generator:** In a new file, `testing/unit/test-helpers.test.js`, write a failing test that calls a (not-yet-existent) `generateRequiredFieldData` function with a mock schema and asserts the output.
+    - **[COMPLETED] 5y-13. [Implementation] Create Data Generator:** In `testing/integration/test-helpers.mjs`, implement the `generateRequiredFieldData` function to recursively generate valid data for all required fields in a schema. This will make the test from `5y-12` pass.
+    - **[COMPLETED] 5y-14. [Implementation] Create Playwright Helper:** In `testing/integration/test-helpers.mjs`, create an `async` `fillRequiredFields(page, schema)` helper that uses the data generator to populate the wizard form.
+    - **[COMPLETED] 5y-15. [Test] Use Helper in Playwright Test:** In `testing/integration/playwright/wizard.spec.js`, refactor an existing test to use the new `fillRequiredFields` helper, removing manual data entry and confirming the test still passes. This serves as the integration test for the helper.
+  - **[SUB-TASK] Validation UI and Finalization**
+    - **[PENDING] 5y-16. [Test & Impl] Add Initial State Validation:** Add a Playwright test to assert that on initial load, the "Generate" button is disabled due to empty required fields. Implement logic to validate the initial state.
+    - **[PENDING] 5y-17. [Cleanup] Refactor and Consolidate:** Review the validation logic in `form-builder.js` and `validator.js` for clarity, consistency, and opportunities for consolidation.
+    - **[PENDING] 5y-18. [UX/UI] Design a Global Error Indicator:** Instead of just disabling the "Generate DPP" button, display a "Show Errors" button with a badge showing the error count.
+    - **[PENDING] 5y-19. [Test] Add Failing Test for Error Modal:** In `testing/integration/playwright/wizard.spec.js`, add a test that clicks the "Show Errors" button and asserts that a modal appears containing a link to the invalid field.
+    - **[PENDING] 5y-20. [Implementation] Implement Error Modal:** In `wizard.js`, implement the "Show Errors" modal.
+    - **[PENDING] 5y-21. [Cleanup] Finalize UI and Styling:** Add necessary CSS in `wizard.css` to style the new UI components.

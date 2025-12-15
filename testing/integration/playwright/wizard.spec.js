@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { CONTEXT_URL_TO_LOCAL_PATH_MAP } from '../test-helpers.mjs';
+import { CONTEXT_URL_TO_LOCAL_PATH_MAP, fillRequiredFields } from '../test-helpers.mjs';
 import fs from 'fs';
 
 test.beforeEach(async ({ page }) => {
@@ -42,6 +42,26 @@ test('core DPP fields should have default values on load', async ({ page }) => {
   await expect(upiInput).toHaveValue('https://pid.example.com/gtin/01234567890123');
 });
 
+test('should be invalid on load due to empty required fields', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  const generateBtn = page.locator('#generate-dpp-btn');
+  const showErrorsBtn = page.locator('#show-errors-btn');
+
+  // Wait for a core form element to ensure the wizard is initialized
+  await expect(page.locator('input[name="digitalProductPassportId"]')).toBeVisible();
+
+  // On initial load, required fields are empty, so the form should be invalid.
+  // This test will fail until the initial validation logic is added.
+  await expect(generateBtn).toBeHidden();
+  await expect(showErrorsBtn).toBeVisible();
+
+  // Check that the error count is correct.
+  // dpp.schema.json has 5 required fields without default values:
+  // granularity, dppSchemaVersion, dppStatus, lastUpdate, and economicOperatorId.
+  await expect(showErrorsBtn).toContainText('Show Errors (5)');
+});
+
 test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto('/spec/wizard/index.html');
@@ -76,12 +96,12 @@ for (const sector of sectors) {
 
     await page.goto('/spec/wizard/index.html');
 
-    // Select the sector
-    const sectorSelector = page.locator('#sector-select');
-    await sectorSelector.selectOption(sector);
+    // Add the sector form
+    const addSectorBtn = page.locator(`button[data-sector="${sector}"]`);
+    await addSectorBtn.click();
 
     // Wait for the form to be generated
-    const sectorFormContainer = page.locator('#form-container');
+    const sectorFormContainer = page.locator(`#sector-form-${sector}`);
     
     // Assert that the form container is not empty
     await expect(sectorFormContainer).not.toBeEmpty();
@@ -131,29 +151,64 @@ for (const sector of sectors) {
         
         // Check that the ontology column is being populated
         const row = page.locator('.grid-row:has(div:text-is("harmonisedStandardReference"))');
-        const ontologyCell = row.locator('.grid-cell').nth(2);
-        const tooltipCell = row.locator('.grid-cell').nth(3);
+        const unitCell = row.locator('.grid-cell').nth(2);
+        const ontologyCell = row.locator('.grid-cell').nth(3);
+        const tooltipCell = row.locator('.grid-cell').nth(4);
         
-        // Assert the new structure: label in 3rd col, tooltip button in 4th
+        // Assert the new structure: unit in 3rd, label in 4th, tooltip in 5th
+        await expect(unitCell).toBeEmpty();
         await expect(ontologyCell).toHaveText('Harmonised Standard Reference (hEN)');
         const tooltipButton = tooltipCell.locator('button.tooltip-button');
         await expect(tooltipButton).toBeVisible();
-        await expect(tooltipButton).toHaveAttribute('title', 'A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product.');
+
+        // Test the modal functionality instead of the title attribute
+        await tooltipButton.click();
+        
+        const modal = page.locator('.tooltip-modal');
+        await expect(modal).toBeVisible();
+        await expect(modal).toContainText('A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product.');
+
+        const overlay = page.locator('.tooltip-modal-overlay');
+        await expect(overlay).toBeVisible();
+
+        // Close the modal and assert it's gone
+        await modal.locator('.modal-close-btn').click();
+        await expect(modal).not.toBeVisible();
+        await expect(overlay).not.toBeVisible();
 
         // This test should now pass because the schema-loader fix also fixed EPD rendering
         await expect(page.locator('input[name="epd.gwp.a1"]')).toBeVisible();
 
         // Check that the EPD labels are being rendered correctly for leaf nodes
         const epdRow = page.locator('.grid-row:has-text("epd.gwp.a1")');
-        const epdOntologyCell = epdRow.locator('.grid-cell').nth(2);
+        const epdUnitCell = epdRow.locator('.grid-cell').nth(2);
+        const epdOntologyCell = epdRow.locator('.grid-cell').nth(3);
+        await expect(epdUnitCell).not.toBeEmpty(); // Should have a unit like kg CO2 eq.
         await expect(epdOntologyCell).toHaveText('A1: Raw material supply');
+
+        // And check for the "Governed By" standard in the tooltip
+        const epdTooltipCell = epdRow.locator('.grid-cell').nth(4);
+        const epdTooltipButton = epdTooltipCell.locator('button.tooltip-button');
+        await expect(epdTooltipButton).toBeVisible();
+
+        await epdTooltipButton.click();
+        
+        const epdModal = page.locator('.tooltip-modal');
+        await expect(epdModal).toBeVisible();
+        await expect(epdModal).toContainText('Standard: EN 15804:2012+A2:2019');
+
+        // Close the modal and assert it's gone
+        await epdModal.locator('.modal-close-btn').click();
+        await expect(epdModal).not.toBeVisible();
 
         // FAILING TEST FOR TASK 3b: Assert hierarchical header row for 'epd.gwp'
         const headerRow = page.locator('.grid-row:has(.grid-cell:text-is("epd.gwp"))');
         await expect(headerRow).toHaveClass(/grid-row-header/); // Assert header style
         const headerValueCell = headerRow.locator('.grid-cell').nth(1);
         await expect(headerValueCell).toBeEmpty(); // Assert non-editable
-        const headerOntologyCell = headerRow.locator('.grid-cell').nth(2);
+        const headerUnitCell = headerRow.locator('.grid-cell').nth(2);
+        await expect(headerUnitCell).toBeEmpty(); // No unit for a header row
+        const headerOntologyCell = headerRow.locator('.grid-cell').nth(3);
         await expect(headerOntologyCell).toHaveText('Global Warming Potential');
         break;
       case 'electronics':
@@ -167,37 +222,17 @@ for (const sector of sectors) {
   });
 }
 
-test('should handle switching between sectors', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
-  const sectorSelector = page.locator('#sector-select');
-
-  const sectors = {
-    battery: 'input[name="batteryCategory"]',
-    construction: 'input[name="declarationCode"]',
-    electronics: 'input[name="torque"]',
-    textile: 'button[data-array-name="fibreComposition"]',
-  };
-
-  for (const [sector, locator] of Object.entries(sectors)) {
-    await sectorSelector.selectOption(sector);
-    await expect(page.locator(locator)).toBeVisible();
-  }
-
-  // Also test switching back to a previously selected sector
-  await sectorSelector.selectOption('battery');
-  await expect(page.locator(sectors.battery)).toBeVisible();
-});
 
 for (const sector of sectors) {
   test(`audit ontology labels for ${sector} sector`, async ({ page }) => {
     await page.goto('/spec/wizard/index.html');
 
-    // Select the sector
-    const sectorSelector = page.locator('#sector-select');
-    await sectorSelector.selectOption(sector);
+    // Add the sector form
+    const addSectorBtn = page.locator(`button[data-sector="${sector}"]`);
+    await addSectorBtn.click();
 
     // Wait for the form to be generated and not be empty
-    const sectorFormContainer = page.locator('#form-container');
+    const sectorFormContainer = page.locator(`#sector-form-${sector}`);
     await expect(sectorFormContainer).not.toBeEmpty({ timeout: 10000 });
 
     const missingLabels = [];
@@ -208,7 +243,7 @@ for (const sector of sectors) {
     
     for (const row of await inputRows.all()) {
       const pathCell = row.locator('.grid-cell').nth(0);
-      const labelCell = row.locator('.grid-cell').nth(2);
+      const labelCell = row.locator('.grid-cell').nth(3);
       
       const pathText = await pathCell.textContent();
       const labelText = await labelCell.textContent();
@@ -225,3 +260,220 @@ for (const sector of sectors) {
     expect(missingLabels, `The following fields in the '${sector}' sector are missing ontology labels`).toEqual([]);
   });
 }
+
+test('should allow adding and removing sector forms', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  const addBatteryBtn = page.locator('button[data-sector="battery"]');
+  const batteryFormContainer = page.locator('#sector-form-battery');
+
+  // 1. Add the battery sector form
+  await addBatteryBtn.click();
+
+  // 2. Assert that the battery form container is visible
+  await expect(batteryFormContainer).toBeVisible();
+  
+  // 3. Assert that the button has transformed into a "Remove" button
+  await expect(addBatteryBtn).toHaveText('Remove Battery');
+  await expect(addBatteryBtn).toHaveClass(/remove-btn-active/);
+
+  // 4. Click the button again to remove the form
+  await addBatteryBtn.click();
+
+  // 5. Assert that the form container is no longer attached
+  await expect(batteryFormContainer).not.toBeAttached();
+
+  // 6. Assert that the button has reverted to an "Add" button
+  await expect(addBatteryBtn).toHaveText('Add Battery');
+  await expect(addBatteryBtn).not.toHaveClass(/remove-btn-active/);
+});
+
+test('should manage multiple sector forms independently', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  const addBatteryBtn = page.locator('button[data-sector="battery"]');
+  const addConstructionBtn = page.locator('button[data-sector="construction"]');
+  
+  const batteryFormContainer = page.locator('#sector-form-battery');
+  const constructionFormContainer = page.locator('#sector-form-construction');
+
+  // 1. Add Battery sector
+  await addBatteryBtn.click();
+  await expect(batteryFormContainer).toBeVisible();
+  await expect(addBatteryBtn).toHaveText('Remove Battery');
+
+  // 2. Add Construction sector
+  await addConstructionBtn.click();
+  await expect(constructionFormContainer).toBeVisible();
+  await expect(addConstructionBtn).toHaveText('Remove Construction');
+
+  // 3. Assert both forms are still visible
+  await expect(batteryFormContainer).toBeVisible();
+  await expect(constructionFormContainer).toBeVisible();
+
+  // 4. Remove Battery sector
+  await addBatteryBtn.click();
+
+  // 5. Assert Battery is gone, but Construction remains
+  await expect(batteryFormContainer).not.toBeAttached();
+  await expect(constructionFormContainer).toBeVisible();
+  await expect(addBatteryBtn).toHaveText('Add Battery');
+  await expect(addConstructionBtn).toHaveText('Remove Construction'); // Should still be a remove button
+
+  // 6. Re-add Battery sector
+  await addBatteryBtn.click();
+  await expect(batteryFormContainer).toBeVisible();
+  await expect(addBatteryBtn).toHaveText('Remove Battery');
+
+  // 7. Final check: both forms are visible again
+  await expect(batteryFormContainer).toBeVisible();
+  await expect(constructionFormContainer).toBeVisible();
+});
+
+test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  // 1. Add sectors
+  await page.locator('button[data-sector="battery"]').click();
+  await page.locator('button[data-sector="electronics"]').click();
+  
+  // Wait for forms to be visible
+  await expect(page.locator('input[name="batteryCategory"]')).toBeVisible();
+  await expect(page.locator('input[name="torque"]')).toBeVisible();
+
+  // 2. Use the helper to fill all required fields
+  await fillRequiredFields(page, 'dpp');
+  await fillRequiredFields(page, 'battery');
+  await fillRequiredFields(page, 'electronics');
+
+  // 3. Assert the form is valid and generate DPP.
+  const generateBtn = page.locator('#generate-dpp-btn');
+  await expect(generateBtn).toBeVisible();
+  await generateBtn.click();
+
+  // 4. Get and parse output JSON.
+  const output = await page.locator('#json-output').textContent();
+  const dpp = JSON.parse(output);
+
+  // 5. Assert that some data from each sector is present.
+  // The exact values are generated by our helper, so we just check for presence.
+  expect(dpp.granularity).toBeDefined(); // From core 'dpp' schema
+  expect(dpp.batteryCategory).toBeDefined(); // From Battery
+  expect(dpp.torque).toBeDefined(); // From Electronics
+  
+  // 6. Assert that contentSpecificationIds are correctly set
+  expect(dpp.contentSpecificationId).toBe('battery-product-dpp-v1');
+  expect(dpp.contentSpecificationIds).toEqual(['battery-product-dpp-v1', 'electronics-product-dpp-v1']);
+});
+
+test('language selector dropdown should be visible', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+  const languageSelector = page.locator('#language-selector');
+  await expect(languageSelector).toBeVisible();
+});
+
+test('should show and hide an error summary', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  const generateBtn = page.locator('#generate-dpp-btn');
+  const showErrorsBtn = page.locator('#show-errors-btn');
+
+  // Wait for the form to load by waiting for a known field.
+  const dppIdInput = page.locator('input[name="digitalProductPassportId"]');
+  await expect(dppIdInput).toBeVisible();
+
+  // 1. First, make the form valid by filling in the initially required fields.
+  await page.selectOption('select[name="granularity"]', 'Model');
+  await page.locator('input[name="dppSchemaVersion"]').fill('1.0.0');
+  await page.locator('input[name="dppStatus"]').fill('Active');
+  await page.locator('input[name="lastUpdate"]').fill('2025-12-15T10:00');
+  await page.locator('input[name="economicOperatorId"]').fill('https://example.com/operator/123');
+  
+  // 2. Assert that the form is now valid.
+  await expect(generateBtn).toBeVisible();
+  await expect(showErrorsBtn).toBeHidden();
+
+  // 3. Enter an invalid value into a different field.
+  await dppIdInput.fill('this is not a valid uri');
+  
+  // 4. Assert the buttons have switched visibility and the error count is 1.
+  await expect(generateBtn).toBeHidden();
+  await expect(showErrorsBtn).toBeVisible();
+  await expect(showErrorsBtn).toContainText('Show Errors (1)');
+
+  // 5. Click the "Show Errors" button and assert the modal appears with the error.
+  await showErrorsBtn.click();
+  const errorModal = page.locator('.error-summary-modal');
+  await expect(errorModal).toBeVisible();
+  await expect(errorModal).toContainText('digitalProductPassportId');
+
+  // 6. Correct the invalid value.
+  await dppIdInput.fill('https://dpp.example.com/dpp/some-valid-id');
+
+  // 7. Assert the buttons have switched back.
+  await expect(generateBtn).toBeVisible();
+  await expect(showErrorsBtn).toBeHidden();
+});
+
+test('should show an error for non-numeric text in a number field', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  const generateBtn = page.locator('#generate-dpp-btn');
+  const showErrorsBtn = page.locator('#show-errors-btn');
+
+  // 1. Make the core form valid.
+  await expect(page.locator('input[name="digitalProductPassportId"]')).toBeVisible();
+  await page.selectOption('select[name="granularity"]', 'Model');
+  await page.locator('input[name="dppSchemaVersion"]').fill('1.0.0');
+  await page.locator('input[name="dppStatus"]').fill('Active');
+  await page.locator('input[name="lastUpdate"]').fill('2025-12-15T10:00');
+  await page.locator('input[name="economicOperatorId"]').fill('https://example.com/operator/123');
+
+  // 2. Add battery sector to get a number field.
+  await page.locator('button[data-sector="battery"]').click();
+  const numberInput = page.locator('input[name="nominalVoltage"]');
+  await expect(numberInput).toBeVisible();
+  
+  // 3. Fill all other required battery fields to isolate the number field.
+  await page.locator('input[name="productName"]').fill('Test Battery');
+  await page.locator('button[data-array-name="documents"]').click();
+  await page.locator('input[name="documents.0.url"]').fill('https://example.com/doc');
+  await page.locator('input[name="batteryCategory"]').fill('Test Category');
+  await page.locator('input[name="batteryChemistry"]').fill('LFP');
+  await page.locator('input[name="dateOfManufacture"]').fill('2025-01-01');
+  await page.locator('input[name="ratedCapacity"]').fill('100');
+  await page.locator('input[name="recycledContentPercentage"]').fill('10');
+  await page.locator('input[name="stateOfHealth"]').fill('99');
+
+  // 4. At this point, only "nominalVoltage" should be invalid.
+  await expect(generateBtn).toBeHidden();
+  await expect(showErrorsBtn).toBeVisible();
+  await expect(showErrorsBtn).toContainText('Show Errors (1)');
+
+  // 5. Use page.evaluate to set the value directly and dispatch an event.
+  const numberInputName = 'nominalVoltage';
+  await page.evaluate((name) => {
+      const input = document.querySelector(`input[name="${name}"]`);
+      if (input) {
+          input.value = 'this is not a number';
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+  }, numberInputName);
+  
+  await expect(showErrorsBtn).toContainText('Show Errors (1)');
+
+  // 6. Click the "Show Errors" button and assert the modal appears with the error.
+  await showErrorsBtn.click();
+  const errorModal = page.locator('.error-summary-modal');
+  await expect(errorModal).toBeVisible();
+  await expect(errorModal).toContainText('nominalVoltage');
+  await errorModal.locator('.modal-close-btn').click(); // Close the modal
+
+  // 7. Now, enter a valid number.
+  await numberInput.fill('12.5');
+
+  // 8. Assert the form is now valid.
+  await expect(generateBtn).toBeVisible();
+  await expect(showErrorsBtn).toBeHidden();
+});
+

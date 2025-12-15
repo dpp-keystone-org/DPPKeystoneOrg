@@ -19,21 +19,51 @@
 
         <div id="wizard-container">
             <h1>DPP Wizard</h1>
+            <div id="global-form-controls">
+                <div class="form-group">
+                    <label for="language-selector">Language:</label>
+                    <select id="language-selector">
+                        <option value="bg">Български (Bulgarian)</option>
+                        <option value="hr">Hrvatski (Croatian)</option>
+                        <option value="cs">Čeština (Czech)</option>
+                        <option value="da">Dansk (Danish)</option>
+                        <option value="nl">Nederlands (Dutch)</option>
+                        <option value="en" selected>English</option>
+                        <option value="et">Eesti (Estonian)</option>
+                        <option value="fi">Suomi (Finnish)</option>
+                        <option value="fr">Français (French)</option>
+                        <option value="de">Deutsch (German)</option>
+                        <option value="el">Ελληνικά (Greek)</option>
+                        <option value="hu">Magyar (Hungarian)</option>
+                        <option value="ga">Gaeilge (Irish)</option>
+                        <option value="it">Italiano (Italian)</option>
+                        <option value="lv">Latviešu (Latvian)</option>
+                        <option value="lt">Lietuvių (Lithuanian)</option>
+                        <option value="mt">Malti (Maltese)</option>
+                        <option value="pl">Polski (Polish)</option>
+                        <option value="pt">Português (Portuguese)</option>
+                        <option value="ro">Română (Romanian)</option>
+                        <option value="sk">Slovenčina (Slovak)</option>
+                        <option value="sl">Slovenščina (Slovenian)</option>
+                        <option value="es">Español (Spanish)</option>
+                        <option value="sv">Svenska (Swedish)</option>
+                    </select>
+                </div>
+            </div>
             <div id="core-form-container">
                 <!-- Core DPP form fields will be generated here -->
             </div>
             <div id="sector-selection">
-                <label for="sector-select">1. Select a Sector:</label>
-                <select id="sector-select">
-                    <option value="">--Please choose a sector--</option>
-                    <option value="battery">Battery</option>
-                    <option value="construction">Construction</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="textile">Textile</option>
-                </select>
+                <label>1. Add a Sector:</label>
+                <div id="sector-buttons">
+                    <button class="sector-btn" data-sector="battery">Add Battery</button>
+                    <button class="sector-btn" data-sector="construction">Add Construction</button>
+                    <button class="sector-btn" data-sector="electronics">Add Electronics</button>
+                    <button class="sector-btn" data-sector="textile">Add Textile</button>
+                </div>
             </div>
-            <div id="form-container">
-                <!-- Form fields will be generated here -->
+            <div id="sectors-form-container">
+                <!-- Sector-specific form fields will be generated here -->
             </div>
     
             <div id="voluntary-info-container">
@@ -47,6 +77,7 @@
             <hr>
     
             <button id="generate-dpp-btn">Generate DPP</button>
+            <button id="show-errors-btn" class="remove-btn-active" hidden>Show Errors (<span id="error-count-badge">0</span>)</button>
     
             <div id="output-container">
                 <h2>3. Generated DPP</h2>

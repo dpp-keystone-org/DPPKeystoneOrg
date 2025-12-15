@@ -87,7 +87,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
             .mockResolvedValueOnce(mockConstructionSchema); // Second call for 'construction'
 
         const mockOntologyMap = new Map([
-            ['productName', { label: 'Product Name', comment: 'The official name of the construction product.' }]
+            ['digitalProductPassportId', { label: { en: 'DPP Identifier' }, comment: { en: 'The unique identifier for the DPP.' } }],
+            ['uniqueProductIdentifier', { label: { en: 'Unique Product ID' }, comment: { en: 'The unique identifier for the product.' } }],
+            ['granularity', { label: { en: 'Granularity' }, comment: { en: 'The granularity of the DPP.' } }],
+            ['productName', { label: { en: 'Product Name' }, comment: { en: 'The official name of the construction product.' } }]
         ]);
         loadOntologyMock.mockResolvedValue(mockOntologyMap);
 
@@ -112,13 +115,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
         document.querySelector('[name="uniqueProductIdentifier"]').value = 'urn:uuid:a38f6c90-2b9a-4e6f-8524-7a42f6f3e3f4';
         document.querySelector('[name="granularity"]').value = 'Batch'; // Select from the enum dropdown
         
-        // 7. Simulate user selecting a sector
-        const sectorSelect = document.getElementById('sector-select');
-        sectorSelect.value = 'construction';
-        sectorSelect.dispatchEvent(new Event('change'));
+        // 7. Simulate user adding a sector
+        const addConstructionBtn = document.querySelector('button[data-sector="construction"]');
+        addConstructionBtn.click();
         
         // Wait for the sector-specific grid to render and validate it
-        const sectorGrid = await waitFor(() => document.querySelector('#form-container .sector-form-grid'));
+        const sectorGrid = await waitFor(() => document.querySelector('#sector-form-construction .sector-form-grid'));
         expect(sectorGrid).not.toBeNull();
 
         // With the new recursive builder, the construction schema will now be rendered dynamically
@@ -126,16 +128,19 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(productNameInput).not.toBeNull();
         productNameInput.value = 'Test Construction Product';
 
-        // Assert the new 4-column layout and tooltip
-        const ontologyCell = sectorGrid.querySelector('.grid-cell:nth-child(3)');
-        const tooltipCell = sectorGrid.querySelector('.grid-cell:nth-child(4)');
+        // Assert the new 5-column layout and tooltip
+        const nameRow = productNameInput.closest('.grid-row');
+        const unitCell = nameRow.querySelector('.grid-cell:nth-child(3)');
+        const ontologyCell = nameRow.querySelector('.grid-cell:nth-child(4)');
+        const tooltipCell = nameRow.querySelector('.grid-cell:nth-child(5)');
+        expect(unitCell).not.toBeNull();
         expect(ontologyCell).not.toBeNull();
         expect(tooltipCell).not.toBeNull();
 
-        expect(ontologyCell.textContent).toBe('Product Name'); // 3rd cell has the label
+        expect(unitCell.textContent).toBe(''); // No unit for this property
+        expect(ontologyCell.textContent).toBe('Product Name'); // 4th cell has the label
         const tooltipButton = tooltipCell.querySelector('button.tooltip-button');
         expect(tooltipButton).not.toBeNull();
-        expect(tooltipButton.title).toBe('The official name of the construction product.');
 
         // 8. Simulate clicking the "Generate DPP" button
         const generateBtn = document.getElementById('generate-dpp-btn');
@@ -167,4 +172,68 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(finalDpp.contentSpecificationId).toBe('construction-product-dpp-v1');
         expect(finalDpp.contentSpecificationIds).toEqual(['construction-product-dpp-v1']);
     });
+
+    it('should update labels and tooltips when the language is changed', async () => {
+        // 1. Define mock schema and multi-language ontology
+        const mockDppSchema = {
+            "properties": { "multiLangProp": { "title": "Multi-Language Prop", "type": "string" } }
+        };
+        const mockOntologyMap = new Map([
+            ['multiLangProp', {
+                label: { en: 'English Label', de: 'Deutscher Label' },
+                comment: { en: 'English Comment', de: 'Deutscher Kommentar' }
+            }]
+        ]);
+
+        // 2. Mock the modules
+        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+            loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
+        }));
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
+        }));
+
+        // 3. Initialize the wizard
+        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        await initializeWizard();
+
+        const coreContainer = document.getElementById('core-form-container');
+
+        // --- Assert initial English state ---
+        const initialRow = await waitFor(() => coreContainer.querySelector('.grid-row'));
+        expect(initialRow).not.toBeNull();
+
+        const initialLabelCell = initialRow.querySelector('.grid-cell:nth-child(4)');
+        expect(initialLabelCell.textContent).toBe('English Label');
+
+        const initialTooltipButton = initialRow.querySelector('button.tooltip-button');
+        expect(initialTooltipButton).not.toBeNull();
+        initialTooltipButton.click();
+        let modal = await waitFor(() => document.querySelector('.tooltip-modal'));
+        expect(modal.textContent).toContain('English Comment');
+        modal.querySelector('.modal-close-btn').click();
+        await waitFor(() => !document.querySelector('.tooltip-modal'));
+
+        // --- Simulate language change ---
+        const languageSelector = document.getElementById('language-selector');
+        languageSelector.value = 'de';
+        languageSelector.dispatchEvent(new Event('change'));
+
+        // --- Assert updated German state ---
+        // The form re-renders, so we must wait for the new content and re-query elements.
+        await waitFor(() => coreContainer.querySelector('.grid-cell:nth-child(4)')?.textContent === 'Deutscher Label');
+        
+        const updatedRow = coreContainer.querySelector('.grid-row');
+        const updatedLabelCell = updatedRow.querySelector('.grid-cell:nth-child(4)');
+        expect(updatedLabelCell.textContent).toBe('Deutscher Label');
+
+        const updatedTooltipButton = updatedRow.querySelector('button.tooltip-button');
+        expect(updatedTooltipButton).not.toBeNull();
+        updatedTooltipButton.click();
+        modal = await waitFor(() => document.querySelector('.tooltip-modal'));
+        expect(modal.textContent).toContain('Deutscher Kommentar');
+        modal.querySelector('.modal-close-btn').click();
+        await waitFor(() => !document.querySelector('.tooltip-modal'));
+    });
 });
+

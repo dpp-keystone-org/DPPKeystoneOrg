@@ -103,3 +103,98 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
     "https://dpp-keystone.org/spec/validation/v1/shacl/textile-shapes.shacl.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'textile-shapes.shacl.jsonld'),
 };
+
+export async function fillRequiredFields(page, sector) {
+    // Wait for the testing object to be exposed on the window.
+    await page.waitForFunction(() => window.testing);
+
+    const counters = { string: 1, number: 1, uri: 1, date: 1 };
+
+    // The data generation logic MUST run inside the browser context (page.evaluate)
+    // to have access to the complete, resolved schema objects.
+    const dataToFill = await page.evaluate(({ sector, counters }) => {
+        
+        function traverse(schema, ontologyMap, counters, results, pathPrefix) {
+            let schemaToProcess = schema;
+
+            // Check if this is a conditional schema and use the 'then' block if so.
+            if (schema && schema.then && !schema.properties) {
+                schemaToProcess = schema.then;
+            }
+
+            if (!schemaToProcess || !schemaToProcess.required || !schemaToProcess.properties) {
+                return;
+            }
+
+            for (const key of schemaToProcess.required) {
+                const prop = schemaToProcess.properties[key];
+                if (!prop) continue;
+
+                const fullPath = pathPrefix ? `${pathPrefix}.${key}` : key;
+                
+                if (prop.enum && Array.isArray(prop.enum) && prop.enum.length > 0) {
+                    results[fullPath] = prop.enum[0];
+                } else if (prop.type === 'object' && prop.properties) {
+                    traverse(prop, ontologyMap, counters, results, fullPath);
+                } else if (prop.format === 'uri') {
+                    results[fullPath] = `https://example.com/${counters.uri++}`;
+                } else if (prop.format === 'date-time') {
+                    results[fullPath] = '2025-01-01T12:00';
+                } else if (prop.format === 'date') {
+                    results[fullPath] = '2025-01-01';
+                } else if (prop.type === 'string') {
+                    results[fullPath] = `Test ${counters.string++}`;
+                } else if (prop.type === 'number' || prop.type === 'integer') {
+                    results[fullPath] = counters.number++;
+                }
+            }
+        }
+        
+        function generateRequiredFieldData(schema, ontologyMap, counters) {
+            const results = {};
+            traverse(schema, ontologyMap, counters, results, '');
+            return results;
+        }
+
+        const { schema, ontologyMap } = (() => {
+            if (sector === 'dpp') {
+                const coreSchema = window.testing.getCoreSchema();
+                return { schema: coreSchema, ontologyMap: null }; 
+            }
+            const sectorData = window.testing.getSectorData().get(sector);
+            return { schema: sectorData.schema, ontologyMap: sectorData.ontologyMap };
+        })();
+
+        return generateRequiredFieldData(schema, ontologyMap, counters);
+
+    }, { sector, counters });
+
+    console.log('Data to fill for sector', sector, ':', dataToFill);
+
+    for (const [fieldName, value] of Object.entries(dataToFill)) {
+        // Handle array buttons
+        const parts = fieldName.split('.');
+        if (parts.length > 1 && !isNaN(parseInt(parts[1], 10))) {
+            const arrayName = parts[0];
+            if (parts[1] === '0') {
+                const addButton = page.locator(`button[data-array-name="${arrayName}"]`);
+                if (await addButton.isVisible()) {
+                    await addButton.click();
+                }
+            }
+        }
+
+        const input = page.locator(`[name="${fieldName}"]`);
+        const tagName = await input.evaluate(el => el.tagName.toLowerCase());
+
+        if (tagName === 'select') {
+            // The 'value' from the generator for an enum is the one we should select.
+            if (value) {
+                await input.selectOption(String(value));
+            }
+        } else {
+            // For other inputs, just fill them.
+            await input.fill(String(value));
+        }
+    }
+}

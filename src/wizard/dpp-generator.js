@@ -44,13 +44,13 @@ function setProperty(obj, path, value) {
 
 /**
  * Scrapes form data and generates a DPP JSON object.
- * @param {string} sector - The selected sector (e.g., 'construction').
+ * @param {string[]} sectors - An array of selected sectors (e.g., ['construction', 'battery']).
  * @param {HTMLElement} coreFormContainer - The container for the core DPP form.
  * @param {HTMLElement} formContainer - The container for the schema-generated sector form.
  * @param {HTMLElement} voluntaryFieldsWrapper - The container for voluntary fields.
  * @returns {object} The generated DPP JSON object.
  */
-export function generateDpp(sector, coreFormContainer, formContainer, voluntaryFieldsWrapper) {
+export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper) {
     const dpp = {};
     const containers = [coreFormContainer, formContainer];
 
@@ -98,13 +98,10 @@ export function generateDpp(sector, coreFormContainer, formContainer, voluntaryF
         }
     });
 
-    // 3. Automatically add contentSpecificationId and contentSpecificationIds based on sector
-    if (sector) {
-        // This logic assumes a consistent naming convention.
-        // E.g., the 'construction' sector maps to 'construction-product-dpp-v1'.
-        const specId = `${sector}-product-dpp-v1`;
-        dpp.contentSpecificationId = specId;
-        dpp.contentSpecificationIds = [specId];
+    // 3. Automatically add contentSpecificationId(s) based on the array of sectors
+    if (sectors && sectors.length > 0) {
+        dpp.contentSpecificationIds = sectors.map(sector => `${sector}-product-dpp-v1`);
+        dpp.contentSpecificationId = dpp.contentSpecificationIds[0];
     }
 
     return dpp;

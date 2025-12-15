@@ -59,14 +59,14 @@ describe('DPP Wizard - Ontology Loader', () => {
         // Check for a specific property
         const testProperty = ontologyMap.get('TestProperty');
         expect(testProperty).toBeDefined();
-        expect(testProperty.label).toBe('Test Property');
-        expect(testProperty.comment).toBe('A property for testing.');
+        expect(testProperty.label.en).toBe('Test Property');
+        expect(testProperty.comment).toEqual({ en: 'A property for testing.' });
         
         // Check for a property with only a label
         const anotherProperty = ontologyMap.get('AnotherProperty');
         expect(anotherProperty).toBeDefined();
-        expect(anotherProperty.label).toBe('Another Property');
-        expect(anotherProperty.comment).toBe(''); // Should default to empty string
+        expect(anotherProperty.label.en).toBe('Another Property');
+        expect(anotherProperty.comment).toEqual({}); // Should default to empty object
 
         // Check that a property with no label/comment is not included
         expect(ontologyMap.has('OrphanProperty')).toBe(false);
@@ -133,8 +133,9 @@ describe('DPP Wizard - Ontology Loader', () => {
         const prop = ontologyMap.get('multiLangProp');
 
         expect(prop).toBeDefined();
-        expect(prop.label).toBe('English Name');
-        expect(prop.comment).toBe('A property with multiple languages.');
+        expect(prop.label.en).toBe('English Name');
+        expect(prop.label.de).toBe('Deutscher Name');
+        expect(prop.comment).toEqual({ en: 'A property with multiple languages.' });
     });
 
     it('should correctly parse a simple string label', async () => {
@@ -157,8 +158,36 @@ describe('DPP Wizard - Ontology Loader', () => {
         const prop = ontologyMap.get('simpleProp');
 
         expect(prop).toBeDefined();
-        expect(prop.label).toBe('Simple Label');
-        expect(prop.comment).toBe('Simple Comment');
+        expect(prop.label).toEqual({ en: 'Simple Label' });
+        expect(prop.comment).toEqual({ en: 'Simple Comment' });
+    });
+
+    it('should parse multi-language labels into a language-keyed object', async () => {
+        const mockOntology = {
+            "@graph": [{
+                "@id": "dpp:multiLangProp",
+                "rdfs:label": [
+                    { "@language": "de", "@value": "Deutscher Name" },
+                    { "@language": "en", "@value": "English Name" }
+                ],
+                "rdfs:comment": "A comment."
+            }]
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: async () => mockOntology,
+        });
+
+        const ontologyMap = await loadOntology('multilang-object');
+        const prop = ontologyMap.get('multiLangProp');
+
+        expect(prop).toBeDefined();
+        expect(prop.label).toEqual({
+            de: 'Deutscher Name',
+            en: 'English Name'
+        });
+        expect(prop.comment).toEqual({ en: 'A comment.' });
     });
 
     it('should recursively load imported ontologies and merge their terms', async () => {
@@ -206,6 +235,6 @@ describe('DPP Wizard - Ontology Loader', () => {
         expect(ontologyMap.size).toBe(2);
         expect(ontologyMap.has('mainProp')).toBe(true);
         expect(ontologyMap.has('importedProp')).toBe(true);
-        expect(ontologyMap.get('importedProp').label).toBe('Imported Prop Label');
+        expect(ontologyMap.get('importedProp').label.en).toBe('Imported Prop Label');
     });
 });

@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadSchema } from '../../src/wizard/schema-loader.js';
+import { loadSchema, clearSchemaCache } from '../../src/wizard/schema-loader.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -11,6 +11,7 @@ global.fetch = jest.fn();
 describe('DPP Wizard - Schema Loader', () => {
     beforeEach(() => {
         fetch.mockClear();
+        clearSchemaCache();
     });
 
     it('should load a simple schema without refs', async () => {

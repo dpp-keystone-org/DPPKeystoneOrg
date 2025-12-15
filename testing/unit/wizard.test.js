@@ -9,7 +9,7 @@ import { generateDpp } from '../../src/wizard/dpp-generator.js';
 // 'document' is available globally.
 
 describe('DPP Wizard - Form Builder', () => {
-    it('should create a 4-column grid and populate the fourth column with a tooltip', () => {
+    it('should create a 5-column grid and populate the unit and tooltip columns', () => {
         const mockSchema = {
             "type": "object",
             "properties": {
@@ -21,11 +21,12 @@ describe('DPP Wizard - Form Builder', () => {
         };
 
         const mockOntologyMap = new Map([
-            ['productName', { label: 'Product Official Name', comment: 'The official name of the product.' }]
+            ['productName', { label: { en: 'Product Official Name' }, comment: { en: 'The official name of the product.' } }],
+            ['warrantyInYears', { label: { en: 'Warranty Period' }, comment: { en: 'The warranty period in years.' }, unit: 'years' }]
             // No entries for other properties to test fallback
         ]);
 
-        const fragment = buildForm(mockSchema, mockOntologyMap);
+        const fragment = buildForm(mockSchema, mockOntologyMap, 'en');
         document.body.innerHTML = '';
         document.body.appendChild(fragment);
 
@@ -34,36 +35,36 @@ describe('DPP Wizard - Form Builder', () => {
 
         // Check for headers
         const headers = gridContainer.querySelectorAll('.grid-header');
-        expect(headers.length).toBe(4);
+        expect(headers.length).toBe(5);
 
         const cells = gridContainer.querySelectorAll('.grid-cell');
-        // 4 properties = 4 rows * 4 cells/row = 16 cells
-        expect(cells.length).toBe(16);
+        // 4 properties = 4 rows * 5 cells/row = 20 cells
+        expect(cells.length).toBe(20);
 
-        // Check productName row (cells 0, 1, 2, 3)
-        expect(cells[0].textContent).toBe('productName');
-        expect(cells[1].querySelector('input[name="productName"]')).not.toBeNull();
+        // Check productName row (cells 0, 1, 2, 3, 4) - should have empty unit cell
+        expect(cells[0].textContent).toBe('productName'); // Path
+        expect(cells[1].querySelector('input[name="productName"]')).not.toBeNull(); // Value
+        expect(cells[2].textContent).toBe(''); // Unit
+        expect(cells[3].textContent).toBe('Product Official Name'); // Ontology Label
+        const tooltipButton1 = cells[4].querySelector('button.tooltip-button');
+        expect(tooltipButton1).not.toBeNull();
+        expect(tooltipButton1.textContent).toBe('?');
         
-        // Assert the new structure: label in 3rd col, tooltip button in 4th
-        expect(cells[2].textContent).toBe('Product Official Name'); 
-        const tooltipButton = cells[3].querySelector('button.tooltip-button');
-        expect(tooltipButton).not.toBeNull();
-        expect(tooltipButton.textContent).toBe('?');
-        expect(tooltipButton.title).toBe('The official name of the product.');
-        
-        // Check warranty row (cells 4, 5, 6, 7) - should have empty 3rd and 4th cells
-        expect(cells[4].textContent).toBe('warrantyInYears');
-        expect(cells[5].querySelector('input[type="number"]')).not.toBeNull();
-        expect(cells[6].textContent).toBe('');
-        expect(cells[7].innerHTML).toBe('');
+        // Check warranty row (cells 5, 6, 7, 8, 9) - should have unit and ontology info
+        expect(cells[5].textContent).toBe('warrantyInYears'); // Path
+        expect(cells[6].querySelector('input[type="number"]')).not.toBeNull(); // Value
+        expect(cells[7].textContent).toBe('years'); // Unit
+        expect(cells[8].textContent).toBe('Warranty Period'); // Ontology Label
+        const tooltipButton2 = cells[9].querySelector('button.tooltip-button');
+        expect(tooltipButton2).not.toBeNull();
 
-        // Check recyclable row (cells 8, 9, 10, 11)
-        expect(cells[8].textContent).toBe('isRecyclable');
-        expect(cells[9].querySelector('input[type="checkbox"]')).not.toBeNull();
+        // Check recyclable row (cells 10, 11, 12, 13, 14)
+        expect(cells[10].textContent).toBe('isRecyclable');
+        expect(cells[11].querySelector('input[type="checkbox"]')).not.toBeNull();
 
-        // Check granularity row (cells 12, 13, 14, 15)
-        expect(cells[12].textContent).toBe('granularity');
-        const selectInput = cells[13].querySelector('select[name="granularity"]');
+        // Check granularity row (cells 15, 16, 17, 18, 19)
+        expect(cells[15].textContent).toBe('granularity');
+        const selectInput = cells[16].querySelector('select[name="granularity"]');
         expect(selectInput).not.toBeNull();
         expect(selectInput.options.length).toBe(3);
     });
@@ -154,7 +155,7 @@ describe('DPP Wizard - Form Builder', () => {
         const newRow = gridContainer.querySelector('input[name="tags.0"]').closest('.grid-row');
         expect(newRow).not.toBeNull();
         const cells = newRow.querySelectorAll('.grid-cell');
-        expect(cells.length).toBe(4);
+        expect(cells.length).toBe(5);
         expect(cells[0].textContent).toBe('tags.0');
         expect(cells[1].querySelector('input[name="tags.0"]')).not.toBeNull();
     });
@@ -177,7 +178,7 @@ describe('DPP Wizard - Form Builder', () => {
         const removeButtonCell = removeButton.closest('.grid-cell');
         const controlRowCells = controlRow.querySelectorAll('.grid-cell');
 
-        expect(controlRowCells.length).toBe(4);
+        expect(controlRowCells.length).toBe(5);
         expect(controlRowCells[1].contains(removeButton)).toBe(true);
     });
 
@@ -412,7 +413,7 @@ describe('DPP Wizard - Form Builder', () => {
         // 2. Check the layout of the new item's row
         const newItemRow = gridContainer.querySelector('input[name="components.0.name"]').closest('.grid-row');
         const newItemCells = newItemRow.querySelectorAll('.grid-cell');
-        expect(newItemCells.length).toBe(4);
+        expect(newItemCells.length).toBe(5);
         expect(newItemCells[0].textContent).toBe('components.0.name');
         expect(newItemCells[1].querySelector('input[name="components.0.name"]')).not.toBeNull();
     
@@ -590,11 +591,11 @@ describe('DPP Wizard - Form Builder', () => {
         };
 
         const mockOntologyMap = new Map([
-            ['parentObject', { label: 'The Parent Label', comment: 'A comment for the parent.' }]
+            ['parentObject', { label: { en: 'The Parent Label' }, comment: { en: 'A comment for the parent.' } }]
             // Note: No label for 'childProperty' is provided.
         ]);
 
-        const fragment = buildForm(nestedSchema, mockOntologyMap);
+        const fragment = buildForm(nestedSchema, mockOntologyMap, 'en');
         document.body.innerHTML = '';
         document.body.appendChild(fragment);
 
@@ -638,6 +639,264 @@ describe('DPP Wizard - Form Builder', () => {
         const input = document.querySelector('input[name="dppId"]');
         expect(input).not.toBeNull();
         expect(input.value).toBe('http://eu.example.com/dpp/12345');
+    });
+
+    it('should display a custom popup modal with governedBy info', () => {
+        const mockSchema = { "properties": { "productName": { "type": "string" } } };
+        const mockOntologyMap = new Map([['productName', {
+            label: { en: 'Name' },
+            comment: { en: 'The product name.' },
+            governedBy: 'ISO-TEST-42'
+        }]]);
+        
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema, mockOntologyMap, 'en'));
+
+        // 1. Find and click the tooltip button
+        const tooltipButton = document.querySelector('button.tooltip-button');
+        expect(tooltipButton).not.toBeNull();
+        tooltipButton.click();
+
+        // 2. Assert that the modal and overlay are created and contain correct text
+        const overlay = document.querySelector('.tooltip-modal-overlay');
+        const modal = document.querySelector('.tooltip-modal');
+        expect(overlay).not.toBeNull();
+        expect(modal).not.toBeNull();
+        expect(modal.textContent).toContain('The product name.');
+        expect(modal.textContent).toContain('Standard: ISO-TEST-42'); // This will fail
+
+        // 3. Assert that a close button exists
+        const closeButton = modal.querySelector('.modal-close-btn');
+        expect(closeButton).not.toBeNull();
+
+        // 4. Click the close button and assert the modal is removed
+        closeButton.click();
+        expect(document.querySelector('.tooltip-modal-overlay')).toBeNull();
+        expect(document.querySelector('.tooltip-modal')).toBeNull();
+    });
+
+    it('should display translated tooltip text from a multi-language comment', () => {
+        const mockSchema = { "properties": { "testProp": { "type": "string" } } };
+        const mockOntologyMap = new Map([
+            ['testProp', {
+                label: { en: 'Test' },
+                comment: { en: 'English Comment', de: 'Deutscher Kommentar' }
+            }]
+        ]);
+        
+        // 1. Build the form with 'de' as the language
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema, mockOntologyMap, 'de'));
+
+        // 2. Find and click the tooltip button
+        const tooltipButton = document.querySelector('button.tooltip-button');
+        expect(tooltipButton).not.toBeNull();
+        tooltipButton.click();
+
+        // 3. Assert that the modal appears with the German text
+        const modal = document.querySelector('.tooltip-modal');
+        expect(modal).not.toBeNull();
+        expect(modal.textContent).toContain('Deutscher Kommentar');
+        expect(modal.textContent).not.toContain('English Comment');
+    });
+
+    it('should inherit governedBy from a parent property', () => {
+        const schema = {
+            "type": "object",
+            "properties": { "parent": { "type": "object", "properties": { "child": { "type": "number" } } } }
+        };
+        const ontologyMap = new Map([
+            ['parent', { governedBy: 'PARENT-STD' }],
+            ['child', { comment: { en: 'Child comment' } }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+
+        // Find the specific row for the child property
+        const childRow = document.querySelector('input[name="parent.child"]').closest('.grid-row');
+        const tooltipButton = childRow.querySelector('button.tooltip-button');
+
+        expect(tooltipButton).not.toBeNull();
+        tooltipButton.click();
+
+        const modal = document.querySelector('.tooltip-modal');
+        expect(modal).not.toBeNull();
+        expect(modal.textContent).toContain('Standard: PARENT-STD');
+    });
+
+    it('should use its own governedBy over a parent property', () => {
+        const schema = {
+            "type": "object",
+            "properties": { "parent": { "type": "object", "properties": { "child": { "type": "number" } } } }
+        };
+        const ontologyMap = new Map([
+            ['parent', { governedBy: 'PARENT-STD' }],
+            ['child', { governedBy: 'CHILD-STD' }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+        
+        // Find the specific row for the child property
+        const childRow = document.querySelector('input[name="parent.child"]').closest('.grid-row');
+        const tooltipButton = childRow.querySelector('button.tooltip-button');
+
+        expect(tooltipButton).not.toBeNull();
+        tooltipButton.click();
+        
+        const modal = document.querySelector('.tooltip-modal');
+        expect(modal).not.toBeNull();
+        expect(modal.textContent).toContain('Standard: CHILD-STD');
+        expect(modal.textContent).not.toContain('Standard: PARENT-STD');
+    });
+
+    it('should use its own unit over a parent property', () => {
+        const schema = {
+            "type": "object",
+            "properties": { "parent": { "type": "object", "properties": { "child": { "type": "number" } } } }
+        };
+        const ontologyMap = new Map([
+            ['parent', { unit: 'kg' }],
+            ['child', { unit: 'g' }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+        
+        const childRow = document.querySelector('input[name="parent.child"]').closest('.grid-row');
+        const unitCell = childRow.querySelector('.grid-cell:nth-child(3)');
+        expect(unitCell.textContent).toBe('g');
+    });
+
+    it('should show an error for an invalid URI format', () => {
+        const schema = {
+            "properties": { "website": { "type": "string", "format": "uri" } }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema));
+
+        const input = document.querySelector('input[name="website"]');
+        input.value = 'not a valid url';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+
+        expect(input.classList.contains('invalid')).toBe(true);
+        const error = input.parentElement.querySelector('.error-message');
+        expect(error).not.toBeNull();
+        expect(error.textContent).toBe('Must be a valid URI (e.g., http://example.com)');
+    });
+
+    it('should create a native date input for date format', () => {
+        const schema = {
+            "properties": { "releaseDate": { "type": "string", "format": "date" } }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema));
+
+        const input = document.querySelector('input[name="releaseDate"]');
+        expect(input).not.toBeNull();
+        expect(input.type).toBe('date');
+    });
+
+    it('should show an error for a number outside of min/max from ontology', () => {
+        const schema = {
+            "properties": { "percentage": { "type": "number" } }
+        };
+        // Simulate the structure we expect from the ontology loader in the future
+        const ontologyMap = new Map([
+            ['percentage', { 
+                label: { en: 'Percentage' },
+                validation: { min: 0, max: 100, type: 'integer' }
+            }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap));
+        
+        const input = document.querySelector('input[name="percentage"]');
+        expect(input).not.toBeNull();
+
+        // Test value greater than max
+        input.value = '101';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(input.classList.contains('invalid')).toBe(true);
+        let error = input.parentElement.querySelector('.error-message');
+        expect(error).not.toBeNull();
+        expect(error.textContent).toBe('Must be between 0 and 100');
+
+        // Test value less than min
+        input.value = '-1';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(input.classList.contains('invalid')).toBe(true);
+
+        // Test valid value
+        input.value = '50';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(input.classList.contains('invalid')).toBe(false);
+        error = input.parentElement.querySelector('.error-message');
+        expect(error).toBeNull();
+    });
+
+    it('should not crash when a validatable field is followed by an array', () => {
+        const schema = {
+            "properties": {
+                "website": { "type": "string", "format": "uri" },
+                "tags": { "type": "array", "items": { "type": "string" } }
+            }
+        };
+        // This test proves the hypothesis for the Playwright failure.
+        // The previous code would throw a TypeError because the `input` for the array
+        // is a div container, which doesn't have a `.type` property.
+        // The test simply needs to not crash and render the form.
+        document.body.innerHTML = '';
+        expect(() => {
+            document.body.appendChild(buildForm(schema));
+        }).not.toThrow();
+
+        // And as a sanity check, ensure an input was actually rendered.
+        const input = document.querySelector('input[name="website"]');
+        expect(input).not.toBeNull();
+    });
+
+    it('should show an error for an invalid country code format', () => {
+        const schema = {
+            "properties": { "countryOfOrigin": { "type": "string" } }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema));
+
+        const input = document.querySelector('input[name="countryOfOrigin"]');
+        expect(input).not.toBeNull();
+
+        // Test invalid 2-letter code
+        input.value = 'US';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+
+        expect(input.classList.contains('invalid')).toBe(true);
+        const error = input.parentElement.querySelector('.error-message');
+        expect(error).not.toBeNull();
+        expect(error.textContent).toBe('Must be a valid 3-letter country code (ISO 3166-1 alpha-3)');
+    });
+
+    it('should show an error for an empty required field', () => {
+        const schema = {
+            "required": ["productName"],
+            "properties": { "productName": { "type": "string" } }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema));
+        const input = document.querySelector('input[name="productName"]');
+
+        // Simulate user typing and then deleting
+        input.value = 'a';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.value = '';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+
+        expect(input.classList.contains('invalid')).toBe(true);
+        const error = input.parentElement.querySelector('.error-message');
+        expect(error).not.toBeNull();
+        expect(error.textContent).toBe('This field is required');
     });
 });
 
@@ -694,7 +953,7 @@ describe('DPP Wizard - DPP Generator', () => {
         `;
 
         // 3. Call the generator function
-        const dpp = generateDpp('construction', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        const dpp = generateDpp(['construction'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
 
         // 4. Assert the output
         expect(dpp).toEqual({
@@ -719,7 +978,7 @@ describe('DPP Wizard - DPP Generator', () => {
         `;
 
         // 2. Call the generator function
-        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        const dpp = generateDpp(['test-sector'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
 
         // 3. Assert the output has the correct nested structure
         expect(dpp.productName).toBe('Super Drill');
@@ -738,7 +997,7 @@ describe('DPP Wizard - DPP Generator', () => {
             <input name="tags.0" value="eco-friendly">
             <input name="tags.1" value="recycled">
         `;
-        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        const dpp = generateDpp(['test-sector'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
         expect(dpp.tags).toEqual(['eco-friendly', 'recycled']);
         expect(dpp.hasOwnProperty('tags.0')).toBe(false);
     });
@@ -750,7 +1009,7 @@ describe('DPP Wizard - DPP Generator', () => {
             <input name="documents.1.resourceTitle" value="EPD">
             <input name="documents.1.url" value="http://example.com/epd">
         `;
-        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        const dpp = generateDpp(['test-sector'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
         expect(dpp.documents).toEqual([
             { resourceTitle: 'Safety Sheet', url: 'http://example.com/safety' },
             { resourceTitle: 'EPD', url: 'http://example.com/epd' }
@@ -764,7 +1023,7 @@ describe('DPP Wizard - DPP Generator', () => {
             <input name="emptyString" value="">
             <input type="number" name="emptyNumber" value="">
         `;
-        const dpp = generateDpp('test-sector', coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        const dpp = generateDpp(['test-sector'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
         expect(dpp.productName).toBe('Super Drill');
         expect(dpp).not.toHaveProperty('emptyString');
         expect(dpp).not.toHaveProperty('emptyNumber');
