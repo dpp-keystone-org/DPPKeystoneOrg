@@ -87,9 +87,6 @@
       "epd": {
         "$ref": "epd.schema.json"
       }
-    },
-    "required": [
-      "epd"
-    ]
+    }
   }
 }

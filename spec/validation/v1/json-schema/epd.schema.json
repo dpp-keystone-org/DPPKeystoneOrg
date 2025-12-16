@@ -48,22 +48,6 @@
       "$ref": "#/$defs/indicator"
     }
   },
-  "required": [
-    "gwp",
-    "gwpF",
-    "gwpB",
-    "gwpLuluc",
-    "gwpGhg",
-    "odp",
-    "ap",
-    "epF",
-    "epM",
-    "epT",
-    "pocp",
-    "adpe",
-    "adpf",
-    "wdp"
-  ],
   "$defs": {
     "indicator": {
       "type": "object",

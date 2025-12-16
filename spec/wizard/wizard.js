@@ -134,8 +134,8 @@ export async function initializeWizard() {
         // and we don't want to trigger array validation buttons.
         const fieldsToValidate = container.querySelectorAll('input:not([type="checkbox"]), select');
         fieldsToValidate.forEach(field => {
-            // Dispatch a new 'input' event to trigger the validation handler in form-builder.js
-            field.dispatchEvent(new Event('input', {
+            // Dispatch a new 'blur' event to trigger the validation handler in form-builder.js
+            field.dispatchEvent(new Event('blur', {
                 bubbles: true,
                 cancelable: true
             }));
