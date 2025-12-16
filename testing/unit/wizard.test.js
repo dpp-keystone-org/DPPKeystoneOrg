@@ -93,6 +93,7 @@ describe('DPP Wizard - Form Builder', () => {
         const nestedSchema = {
             "title": "Nested Schema Test",
             "type": "object",
+            "required": ["nestedObject"],
             "properties": {
                 "topLevelField": {
                     "title": "Top Level",
@@ -578,6 +579,7 @@ describe('DPP Wizard - Form Builder', () => {
     it('should NOT display the parent ontology label for a nested property', () => {
         const nestedSchema = {
             "type": "object",
+            "required": ["parentObject"],
             "properties": {
                 "parentObject": {
                     "type": "object",
@@ -703,6 +705,7 @@ describe('DPP Wizard - Form Builder', () => {
     it('should inherit governedBy from a parent property', () => {
         const schema = {
             "type": "object",
+            "required": ["parent"],
             "properties": { "parent": { "type": "object", "properties": { "child": { "type": "number" } } } }
         };
         const ontologyMap = new Map([
@@ -728,6 +731,7 @@ describe('DPP Wizard - Form Builder', () => {
     it('should use its own governedBy over a parent property', () => {
         const schema = {
             "type": "object",
+            "required": ["parent"],
             "properties": { "parent": { "type": "object", "properties": { "child": { "type": "number" } } } }
         };
         const ontologyMap = new Map([
@@ -754,6 +758,7 @@ describe('DPP Wizard - Form Builder', () => {
     it('should use its own unit over a parent property', () => {
         const schema = {
             "type": "object",
+            "required": ["parent"],
             "properties": { "parent": { "type": "object", "properties": { "child": { "type": "number" } } } }
         };
         const ontologyMap = new Map([
@@ -778,7 +783,7 @@ describe('DPP Wizard - Form Builder', () => {
 
         const input = document.querySelector('input[name="website"]');
         input.value = 'not a valid url';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
 
         expect(input.classList.contains('invalid')).toBe(true);
         const error = input.parentElement.querySelector('.error-message');
@@ -818,7 +823,7 @@ describe('DPP Wizard - Form Builder', () => {
 
         // Test value greater than max
         input.value = '101';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
         expect(input.classList.contains('invalid')).toBe(true);
         let error = input.parentElement.querySelector('.error-message');
         expect(error).not.toBeNull();
@@ -826,12 +831,12 @@ describe('DPP Wizard - Form Builder', () => {
 
         // Test value less than min
         input.value = '-1';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
         expect(input.classList.contains('invalid')).toBe(true);
 
         // Test valid value
         input.value = '50';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
         expect(input.classList.contains('invalid')).toBe(false);
         error = input.parentElement.querySelector('.error-message');
         expect(error).toBeNull();
@@ -870,7 +875,7 @@ describe('DPP Wizard - Form Builder', () => {
 
         // Test invalid 2-letter code
         input.value = 'US';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
 
         expect(input.classList.contains('invalid')).toBe(true);
         const error = input.parentElement.querySelector('.error-message');
@@ -889,14 +894,369 @@ describe('DPP Wizard - Form Builder', () => {
 
         // Simulate user typing and then deleting
         input.value = 'a';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
         input.value = '';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
 
         expect(input.classList.contains('invalid')).toBe(true);
         const error = input.parentElement.querySelector('.error-message');
         expect(error).not.toBeNull();
         expect(error.textContent).toBe('This field is required');
+    });
+
+    it('should not render fields for optional objects, showing an "Add" button instead', () => {
+        const mockSchema = {
+            "type": "object",
+            "required": ["someOtherField"], // 'epd' is intentionally omitted
+            "properties": {
+                "someOtherField": { "type": "string" },
+                "epd": {
+                    "type": "object",
+                    "properties": {
+                        "gwp": { "type": "number" }
+                    }
+                }
+            }
+        };
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema));
+
+        expect(document.querySelector('input[name="epd.gwp"]')).toBeNull();
+        const addButton = document.querySelector('button[data-optional-object="epd"]');
+        expect(addButton).not.toBeNull();
+        expect(addButton.textContent).toBe('Add');
+    });
+
+    it('should render fields for an optional object when its "Add" button is clicked', () => {
+        const mockSchema = {
+            "type": "object",
+            "properties": {
+                "epd": {
+                    "type": "object",
+                    "properties": {
+                        "gwp": { "type": "number" }
+                    }
+                }
+            }
+        };
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema));
+
+        // 1. Initial state: field is not there, "Add" button is.
+        expect(document.querySelector('input[name="epd.gwp"]')).toBeNull();
+        const addButton = document.querySelector('button[data-optional-object="epd"]');
+        expect(addButton).not.toBeNull();
+
+        // 2. Click the "Add" button.
+        addButton.click();
+
+        // 3. Assert that the field is now rendered. This will fail.
+        expect(document.querySelector('input[name="epd.gwp"]')).not.toBeNull();
+
+        // 4. Assert that the "Add" button is gone and replaced by a "Remove" button. This will also fail.
+        expect(document.querySelector('button[data-optional-object="epd"]')).toBeNull();
+        const removeButton = document.querySelector('button[data-remove-optional-object="epd"]');
+        expect(removeButton).not.toBeNull();
+        expect(removeButton.textContent).toBe('Remove');
+    });
+
+    it('should remove an optional object when its "Remove" button is clicked', () => {
+        const mockSchema = {
+            "type": "object",
+            "properties": {
+                "epd": {
+                    "type": "object",
+                    "properties": {
+                        "gwp": { "type": "number" }
+                    }
+                }
+            }
+        };
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema));
+
+        // 1. Add the optional object first.
+        const addButton = document.querySelector('button[data-optional-object="epd"]');
+        expect(addButton).not.toBeNull();
+        addButton.click();
+
+        // 2. Verify it was added and find the "Remove" button.
+        const removeButton = document.querySelector('button[data-remove-optional-object="epd"]');
+        expect(removeButton).not.toBeNull();
+
+        // 3. Click the "Remove" button. This will fail as the listener is not implemented.
+        removeButton.click();
+
+        // 4. Assert that the fields are gone and the "Add" button has returned.
+        expect(document.querySelector('input[name="epd.gwp"]')).toBeNull();
+        expect(document.querySelector('button[data-remove-optional-object="epd"]')).toBeNull();
+        expect(document.querySelector('button[data-optional-object="epd"]')).not.toBeNull();
+    });
+
+    it('should preserve the root row of an optional object after it is added', () => {
+        const mockSchema = {
+            "type": "object",
+            "properties": {
+                "epd": {
+                    "type": "object",
+                    "properties": {
+                        "gwp": { "type": "number" }
+                    }
+                }
+            }
+        };
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema));
+
+        // 1. Find the placeholder row that contains the "Add" button.
+        const placeholderRow = document.querySelector('div[data-optional-object-placeholder="epd"]');
+        expect(placeholderRow).not.toBeNull();
+
+        // 2. Click the "Add" button inside it.
+        placeholderRow.querySelector('button[data-optional-object="epd"]').click();
+
+        // 3. Assert that the original placeholder row element is still part of the document.
+        // This is expected to fail because the current implementation uses `replaceWith`.
+        expect(document.body.contains(placeholderRow)).toBe(true);
+    });
+
+    it('should display the ontology label for an optional object on its placeholder row', () => {
+        const mockSchema = {
+            "properties": {
+                "epd": {
+                    "type": "object",
+                    "properties": { "gwp": { "type": "number" } }
+                }
+            }
+        };
+        const mockOntologyMap = new Map([
+            ['epd', { label: { en: 'Environmental Product Declaration' } }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema, mockOntologyMap, 'en'));
+
+        // 1. Find the placeholder row.
+        const placeholderRow = document.querySelector('div[data-optional-object-placeholder="epd"]');
+        expect(placeholderRow).not.toBeNull();
+
+        // 2. Find the ontology cell (4th cell).
+        const ontologyCell = placeholderRow.querySelector('.grid-cell:nth-child(4)');
+
+        // 3. Assert that it contains the label. This will fail.
+        expect(ontologyCell.textContent).toBe('Environmental Product Declaration');
+    });
+
+    it('should display the ontology label for an array property', () => {
+        const arraySchema = {
+            "properties": {
+                "declaredUses": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                }
+            }
+        };
+        const mockOntologyMap = new Map([
+            ['declaredUses', { label: { en: 'Declared Intended Uses' } }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(arraySchema, mockOntologyMap, 'en'));
+
+        // 1. Find the main row for the array property (the one with the "Add Item" button).
+        const arrayRow = document.querySelector('button[data-array-name="declaredUses"]').closest('.grid-row');
+        expect(arrayRow).not.toBeNull();
+
+        // 2. Find the ontology cell (4th cell).
+        const ontologyCell = arrayRow.querySelector('.grid-cell:nth-child(4)');
+
+        // 3. Assert that it contains the label. This will fail.
+        expect(ontologyCell.textContent).toBe('Declared Intended Uses');
+    });
+
+    it('should display a generic "Add" label for optional object buttons', () => {
+        const mockSchema = {
+            "properties": {
+                "notifiedBody": { "type": "object", "properties": { "id": { "type": "string" } } }
+            }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema));
+        const addButton = document.querySelector('button[data-optional-object="notifiedBody"]');
+        expect(addButton).not.toBeNull();
+        // This will fail because the current text is "Add NOTIFIEDBODY"
+        expect(addButton.textContent).toBe('Add');
+    });
+
+    it('should display a generic "Remove" label for optional object buttons', () => {
+        const mockSchema = {
+            "properties": {
+                "notifiedBody": { "type": "object", "properties": { "id": { "type": "string" } } }
+            }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(mockSchema));
+        
+        // Add the object first
+        document.querySelector('button[data-optional-object="notifiedBody"]').click();
+
+        const removeButton = document.querySelector('button[data-remove-optional-object="notifiedBody"]');
+        expect(removeButton).not.toBeNull();
+        // This will fail because the current text is "Remove NOTIFIEDBODY"
+        expect(removeButton.textContent).toBe('Remove');
+    });
+});
+
+describe('DPP Wizard - Form Builder - Optional Object Edge Cases', () => {
+    it('should handle nested optional objects correctly', () => {
+        const nestedOptionalSchema = {
+            "type": "object",
+            "properties": {
+                "parent": {
+                    "type": "object",
+                    "properties": {
+                        "child": {
+                            "type": "object",
+                            "properties": {
+                                "grandchild": { "type": "string" }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(nestedOptionalSchema));
+
+        // --- Initial State ---
+        expect(document.querySelector('button[data-optional-object="parent"]')).not.toBeNull();
+        expect(document.querySelector('button[data-optional-object="child"]')).toBeNull();
+        expect(document.querySelector('input[name="parent.child.grandchild"]')).toBeNull();
+
+        // --- Expand Parent ---
+        document.querySelector('button[data-optional-object="parent"]').click();
+        expect(document.querySelector('button[data-optional-object="parent"]')).toBeNull();
+        expect(document.querySelector('button[data-remove-optional-object="parent"]')).not.toBeNull();
+        expect(document.querySelector('button[data-optional-object="child"]')).not.toBeNull(); // Child's "Add" button appears
+        expect(document.querySelector('input[name="parent.child.grandchild"]')).toBeNull(); // Grandchild field still hidden
+
+        // --- Expand Child ---
+        document.querySelector('button[data-optional-object="child"]').click();
+        expect(document.querySelector('button[data-optional-object="child"]')).toBeNull();
+        expect(document.querySelector('button[data-remove-optional-object="child"]')).not.toBeNull();
+        expect(document.querySelector('input[name="parent.child.grandchild"]')).not.toBeNull(); // Grandchild field now visible
+
+        // --- Collapse Child ---
+        document.querySelector('button[data-remove-optional-object="child"]').click();
+        expect(document.querySelector('button[data-optional-object="child"]')).not.toBeNull(); // Child "Add" button returns
+        expect(document.querySelector('button[data-remove-optional-object="child"]')).toBeNull();
+        expect(document.querySelector('input[name="parent.child.grandchild"]')).toBeNull(); // Grandchild field is gone
+        expect(document.querySelector('button[data-remove-optional-object="parent"]')).not.toBeNull(); // Parent is still expanded
+
+        // --- Collapse Parent ---
+        document.querySelector('button[data-remove-optional-object="parent"]').click();
+        expect(document.querySelector('button[data-optional-object="parent"]')).not.toBeNull(); // Parent "Add" button returns
+        expect(document.querySelector('button[data-remove-optional-object="parent"]')).toBeNull();
+        expect(document.querySelector('button[data-optional-object="child"]')).toBeNull(); // Child "Add" button is gone
+    });
+
+    it('should ensure data is cleared when an object is removed and re-added', () => {
+        const schema = {
+            "properties": {
+                "epd": {
+                    "type": "object",
+                    "properties": { "gwp": { "type": "number" } }
+                }
+            }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema));
+
+        // 1. Add, populate, and get value
+        document.querySelector('button[data-optional-object="epd"]').click();
+        const input = document.querySelector('input[name="epd.gwp"]');
+        input.value = '123.45';
+        expect(input.value).toBe('123.45');
+
+        // 2. Remove the object
+        document.querySelector('button[data-remove-optional-object="epd"]').click();
+        expect(document.querySelector('input[name="epd.gwp"]')).toBeNull();
+
+        // 3. Re-add the object
+        document.querySelector('button[data-optional-object="epd"]').click();
+        const newInput = document.querySelector('input[name="epd.gwp"]');
+        expect(newInput).not.toBeNull();
+
+        // 4. Assert the value is the default empty state, not the old value
+        expect(newInput.value).toBe('');
+    });
+
+    it('should handle sibling optional objects independently', () => {
+        const schema = {
+            "properties": {
+                "epd": { "type": "object", "properties": { "gwp": { "type": "number" } } },
+                "notifiedBody": { "type": "object", "properties": { "id": { "type": "string" } } }
+            }
+        };
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema));
+
+        // 1. Add both objects
+        document.querySelector('button[data-optional-object="epd"]').click();
+        document.querySelector('button[data-optional-object="notifiedBody"]').click();
+        expect(document.querySelector('input[name="epd.gwp"]')).not.toBeNull();
+        expect(document.querySelector('input[name="notifiedBody.id"]')).not.toBeNull();
+
+        // 2. Remove the first object (epd)
+        document.querySelector('button[data-remove-optional-object="epd"]').click();
+
+        // 3. Assert the first object's fields are gone, but the second remains
+        expect(document.querySelector('input[name="epd.gwp"]')).toBeNull();
+        expect(document.querySelector('button[data-optional-object="epd"]')).not.toBeNull(); // Add button for epd returns
+        expect(document.querySelector('input[name="notifiedBody.id"]')).not.toBeNull(); // notifiedBody field is still there
+        expect(document.querySelector('button[data-remove-optional-object="notifiedBody"]')).not.toBeNull(); // remove button for notifiedBody is still there
+    });
+
+    it('should correctly inherit ontology for fields inside an added optional object', () => {
+        const schema = {
+            "type": "object",
+            "properties": {
+                "optionalWrapper": {
+                    "type": "object",
+                    "properties": {
+                        "parent": {
+                            "type": "object",
+                            "required": ["child"],
+                            "properties": {
+                                "child": { "type": "string" }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        const ontologyMap = new Map([
+            ['parent', { governedBy: 'PARENT-STD-IN-OPTIONAL' }],
+            ['child', { comment: { en: 'Child comment' } }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+
+        document.querySelector('button[data-optional-object="optionalWrapper"]').click();
+        document.querySelector('button[data-optional-object="parent"]').click();
+        const childRow = document.querySelector('input[name="optionalWrapper.parent.child"]').closest('.grid-row');
+        const tooltipButton = childRow.querySelector('button.tooltip-button');
+        expect(tooltipButton).not.toBeNull();
+        tooltipButton.click();
+        const modal = document.querySelector('.tooltip-modal');
+        expect(modal).not.toBeNull();
+        expect(modal.textContent).toContain('Standard: PARENT-STD-IN-OPTIONAL');
     });
 });
 
@@ -1027,5 +1387,149 @@ describe('DPP Wizard - DPP Generator', () => {
         expect(dpp.productName).toBe('Super Drill');
         expect(dpp).not.toHaveProperty('emptyString');
         expect(dpp).not.toHaveProperty('emptyNumber');
+    });
+});
+
+describe('DPP Wizard - Ontology Inheritance', () => {
+    it('should display the source annotation in the tooltip', () => {
+        const schema = {
+            "properties": { "uniqueProductIdentifier": { "type": "string" } }
+        };
+        const ontologyMap = new Map([
+            ['uniqueProductIdentifier', {
+                label: { en: 'UPI' },
+                'dcterms:source': {
+                    '@id': 'http://example.com/law',
+                    'rdfs:label': 'The Law'
+                }
+            }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+
+        const row = document.querySelector('input[name="uniqueProductIdentifier"]').closest('.grid-row');
+        const tooltipButton = row.querySelector('button.tooltip-button');
+        expect(tooltipButton).not.toBeNull();
+        tooltipButton.click();
+
+        const modal = document.querySelector('.tooltip-modal');
+        expect(modal).not.toBeNull();
+        expect(modal.textContent).toContain('Source: The Law');
+        const link = modal.querySelector('a');
+        expect(link).not.toBeNull();
+        expect(link.href).toBe('http://example.com/law');
+    });
+
+    it('should inherit source from the property domain class', () => {
+        const schema = {
+            "properties": { "batteryCategory": { "type": "string" } }
+        };
+        const ontologyMap = new Map([
+            ['batteryCategory', {
+                label: { en: 'Category' },
+                domain: 'Battery'
+            }],
+            ['Battery', {
+                'dcterms:source': {
+                    '@id': 'http://example.com/battery-reg',
+                    'rdfs:label': 'Battery Regulation'
+                }
+            }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+
+        const row = document.querySelector('input[name="batteryCategory"]').closest('.grid-row');
+        const tooltipButton = row.querySelector('button.tooltip-button');
+        tooltipButton.click();
+        const modal = document.querySelector('.tooltip-modal');
+        expect(modal.textContent).toContain('Source: Battery Regulation');
+    });
+});
+
+describe('DPP Wizard - Ontology Inheritance Precedence', () => {
+    const schema = {
+        "required": ["parent"],
+        "properties": {
+            "parent": {
+                "type": "object",
+                "properties": {
+                    "child": { "type": "string" }
+                }
+            }
+        }
+    };
+
+    const getTooltipText = (fragment) => {
+        document.body.innerHTML = '';
+        document.body.appendChild(fragment);
+        const row = document.querySelector('input[name="parent.child"]').closest('.grid-row');
+        const tooltipButton = row.querySelector('button.tooltip-button');
+        if (!tooltipButton) return null;
+        tooltipButton.click();
+        const modal = document.querySelector('.tooltip-modal');
+        return modal ? modal.textContent : null;
+    };
+
+    it('should prioritize property annotation over its domain class annotation (1 & 4)', () => {
+        const ontologyMap = new Map([
+            ['child', { 'dcterms:source': 'Child Property Source', domain: 'ChildClass' }],
+            ['ChildClass', { 'dcterms:source': 'Child Class Source' }],
+            ['parent', { 'dcterms:source': 'Parent Property Source' }]
+        ]);
+
+        const fragment = buildForm(schema, ontologyMap, 'en');
+        const text = getTooltipText(fragment);
+        expect(text).toContain('Source: Child Property Source');
+        expect(text).not.toContain('Child Class Source');
+    });
+
+    it('should prioritize child property annotation over parent property annotation (2)', () => {
+        const ontologyMap = new Map([
+            ['child', { 'dcterms:source': 'Child Property Source' }],
+            ['parent', { 'dcterms:source': 'Parent Property Source' }]
+        ]);
+
+        const fragment = buildForm(schema, ontologyMap, 'en');
+        const text = getTooltipText(fragment);
+        expect(text).toContain('Source: Child Property Source');
+        expect(text).not.toContain('Parent Property Source');
+    });
+
+    it('should prioritize child domain class annotation over parent property annotation (3)', () => {
+        // This confirms that the "Class" of the specific field is more relevant than the "Property" of the parent.
+        const ontologyMap = new Map([
+            ['child', { domain: 'ChildClass' }], // No source on property itself
+            ['ChildClass', { 'dcterms:source': 'Child Class Source' }],
+            ['parent', { 'dcterms:source': 'Parent Property Source' }]
+        ]);
+
+        const fragment = buildForm(schema, ontologyMap, 'en');
+        const text = getTooltipText(fragment);
+        expect(text).toContain('Source: Child Class Source');
+        expect(text).not.toContain('Parent Property Source');
+    });
+
+    it('should follow the full precedence chain: Child Prop > Child Class > Parent Prop > Parent Class', () => {
+        // Setup the full chain
+        const fullMap = new Map([
+            ['child', { 'dcterms:source': 'Child Property Source', domain: 'ChildClass' }],
+            ['ChildClass', { 'dcterms:source': 'Child Class Source' }],
+            ['parent', { 'dcterms:source': 'Parent Property Source', domain: 'ParentClass' }],
+            ['ParentClass', { 'dcterms:source': 'Parent Class Source' }]
+        ]);
+
+        // 1. Child Property wins
+        expect(getTooltipText(buildForm(schema, fullMap, 'en'))).toContain('Source: Child Property Source');
+
+        // 2. Remove Child Property Source -> Child Class wins
+        fullMap.get('child')['dcterms:source'] = null;
+        expect(getTooltipText(buildForm(schema, fullMap, 'en'))).toContain('Source: Child Class Source');
+
+        // 3. Remove Child Class Source -> Parent Property wins
+        fullMap.get('ChildClass')['dcterms:source'] = null;
+        expect(getTooltipText(buildForm(schema, fullMap, 'en'))).toContain('Source: Parent Property Source');
     });
 });

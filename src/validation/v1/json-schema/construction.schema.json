@@ -40,9 +40,6 @@
             "europeanAssessmentDocument": { "type": "string" },
             "dopcDeclarations": { "$ref": "dopc.schema.json" },
             "epd": { "$ref": "epd.schema.json" }
-        },
-        "required": [
-            "epd"
-        ]
+        }
     }
 }

@@ -228,8 +228,6 @@
         "rdfs:domain": { "@id": "dppk:Product" }, // Applicable specifically to rails
         "rdfs:range": { "@id": "xsd:string" },
         "rdfs:term_status": "unstable"
-    },
-
-
+    }
   ]
 }

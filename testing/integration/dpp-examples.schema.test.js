@@ -113,53 +113,6 @@ describe('DPP JSON Schema Validation', () => {
         expect(isValid).toBe(true);
     });
 
-    test('construction-product-dpp-v1.json should be INVALID if epd is missing', async () => {
-        // Load the example data
-        const exampleFile = 'construction-product-dpp-v1.json';
-        const exampleFilePath = path.join(EXAMPLES_DIR, exampleFile);
-        const exampleContent = await fs.promises.readFile(exampleFilePath, 'utf-8');
-        const data = JSON.parse(exampleContent);
-
-        // --- Intentionally invalidate the data ---
-        delete data.epd;
-        // -----------------------------------------
-
-        // Start with the base schema
-        const schemasToApply = [baseSchema];
-
-        // Check for conditional schemas to apply (which should be the construction schema)
-        if (data.contentSpecificationIds && Array.isArray(data.contentSpecificationIds)) {
-            for (const id of data.contentSpecificationIds) {
-                if (conditionalSchemaMap[id]) {
-                    const conditionalSchemaFile = conditionalSchemaMap[id];
-                    const schemaPath = path.join(SCHEMA_DIR, conditionalSchemaFile);
-                    const schemaContent = await fs.promises.readFile(schemaPath, 'utf-8');
-                    schemasToApply.push(JSON.parse(schemaContent));
-                }
-            }
-        }
-
-        // Create a composite schema using allOf
-        const compositeSchema = { allOf: schemasToApply };
-
-        // Compile and validate
-        const validate = ajv.compile(compositeSchema);
-        const isValid = validate(data);
-
-        // This test should fail validation
-        expect(isValid).toBe(false);
-
-        // Optional: Check for the specific error
-        expect(validate.errors).toEqual(
-            expect.arrayContaining([
-                expect.objectContaining({
-                    keyword: 'required',
-                    params: { missingProperty: 'epd' },
-                }),
-            ])
-        );
-    });
-
     test('battery-dpp-v1.json should be INVALID if batteryCategory is missing', async () => {
         // Load the example data
         const exampleFile = 'battery-dpp-v1.json';

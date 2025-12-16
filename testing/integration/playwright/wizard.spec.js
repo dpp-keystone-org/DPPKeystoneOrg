@@ -146,7 +146,9 @@ for (const sector of sectors) {
         break;
       case 'construction':
         await expect(page.locator('input[name="declarationCode"]')).toBeVisible();
-        // Check for a known-good nested field
+        // Check for a known-good nested field inside an optional object
+        await page.locator('button[data-optional-object="notifiedBody"]').click();
+        await page.locator('button[data-optional-object="address"]').click();
         await expect(page.locator('input[name="notifiedBody.address.streetAddress"]')).toBeVisible();
         
         // Check that the ontology column is being populated
@@ -176,7 +178,9 @@ for (const sector of sectors) {
         await expect(modal).not.toBeVisible();
         await expect(overlay).not.toBeVisible();
 
-        // This test should now pass because the schema-loader fix also fixed EPD rendering
+        // The EPD object is optional, so we need to add it first.
+        await page.locator('button[data-optional-object="epd"]').click();
+        await page.locator('button[data-optional-object="gwp"]').click();
         await expect(page.locator('input[name="epd.gwp.a1"]')).toBeVisible();
 
         // Check that the EPD labels are being rendered correctly for leaf nodes
@@ -238,8 +242,8 @@ for (const sector of sectors) {
     const missingLabels = [];
 
     // Get all rows that represent a data field
-    // This selector finds rows that have an input, select, or button in the second cell
-    const inputRows = sectorFormContainer.locator('.grid-row:has(.grid-cell:nth-child(2) > input, .grid-cell:nth-child(2) > select, .grid-cell:nth-child(2) > button)');
+    // This selector finds rows that have an input or select in the second cell, ignoring action buttons.
+    const inputRows = sectorFormContainer.locator('.grid-row:has(.grid-cell:nth-child(2) > input, .grid-cell:nth-child(2) > select)');
     
     for (const row of await inputRows.all()) {
       const pathCell = row.locator('.grid-cell').nth(0);
@@ -382,12 +386,32 @@ test('should show and hide an error summary', async ({ page }) => {
   const dppIdInput = page.locator('input[name="digitalProductPassportId"]');
   await expect(dppIdInput).toBeVisible();
 
-  // 1. First, make the form valid by filling in the initially required fields.
-  await page.selectOption('select[name="granularity"]', 'Model');
-  await page.locator('input[name="dppSchemaVersion"]').fill('1.0.0');
-  await page.locator('input[name="dppStatus"]').fill('Active');
-  await page.locator('input[name="lastUpdate"]').fill('2025-12-15T10:00');
-  await page.locator('input[name="economicOperatorId"]').fill('https://example.com/operator/123');
+  // 1. First, make the form valid by filling in the initially required fields one by one.
+  await expect(showErrorsBtn).toContainText('Show Errors (5)');
+
+  const granularityInput = page.locator('select[name="granularity"]');
+  await granularityInput.selectOption('Model');
+  await granularityInput.blur();
+  await expect(showErrorsBtn).toContainText('Show Errors (4)');
+
+  const versionInput = page.locator('input[name="dppSchemaVersion"]');
+  await versionInput.fill('1.0.0');
+  await versionInput.blur();
+  await expect(showErrorsBtn).toContainText('Show Errors (3)');
+
+  const statusInput = page.locator('input[name="dppStatus"]');
+  await statusInput.fill('Active');
+  await statusInput.blur();
+  await expect(showErrorsBtn).toContainText('Show Errors (2)');
+
+  const lastUpdateInput = page.locator('input[name="lastUpdate"]');
+  await lastUpdateInput.fill('2025-12-15T10:00');
+  await lastUpdateInput.blur();
+  await expect(showErrorsBtn).toContainText('Show Errors (1)');
+
+  const operatorInput = page.locator('input[name="economicOperatorId"]');
+  await operatorInput.fill('https://example.com/operator/123');
+  await operatorInput.blur();
   
   // 2. Assert that the form is now valid.
   await expect(generateBtn).toBeVisible();
@@ -395,6 +419,7 @@ test('should show and hide an error summary', async ({ page }) => {
 
   // 3. Enter an invalid value into a different field.
   await dppIdInput.fill('this is not a valid uri');
+  await dppIdInput.blur();
   
   // 4. Assert the buttons have switched visibility and the error count is 1.
   await expect(generateBtn).toBeHidden();
@@ -409,6 +434,7 @@ test('should show and hide an error summary', async ({ page }) => {
 
   // 6. Correct the invalid value.
   await dppIdInput.fill('https://dpp.example.com/dpp/some-valid-id');
+  await dppIdInput.blur();
 
   // 7. Assert the buttons have switched back.
   await expect(generateBtn).toBeVisible();
@@ -423,11 +449,26 @@ test('should show an error for non-numeric text in a number field', async ({ pag
 
   // 1. Make the core form valid.
   await expect(page.locator('input[name="digitalProductPassportId"]')).toBeVisible();
-  await page.selectOption('select[name="granularity"]', 'Model');
-  await page.locator('input[name="dppSchemaVersion"]').fill('1.0.0');
-  await page.locator('input[name="dppStatus"]').fill('Active');
-  await page.locator('input[name="lastUpdate"]').fill('2025-12-15T10:00');
-  await page.locator('input[name="economicOperatorId"]').fill('https://example.com/operator/123');
+  const granularityInput = page.locator('select[name="granularity"]');
+  await granularityInput.selectOption('Model');
+  await granularityInput.blur();
+
+  const versionInput = page.locator('input[name="dppSchemaVersion"]');
+  await versionInput.fill('1.0.0');
+  await versionInput.blur();
+
+  const statusInput = page.locator('input[name="dppStatus"]');
+  await statusInput.fill('Active');
+  await statusInput.blur();
+
+  const lastUpdateInput = page.locator('input[name="lastUpdate"]');
+  await lastUpdateInput.fill('2025-12-15T10:00');
+  await lastUpdateInput.blur();
+
+  const operatorInput = page.locator('input[name="economicOperatorId"]');
+  await operatorInput.fill('https://example.com/operator/123');
+  await operatorInput.blur();
+
 
   // 2. Add battery sector to get a number field.
   await page.locator('button[data-sector="battery"]').click();
@@ -435,17 +476,40 @@ test('should show an error for non-numeric text in a number field', async ({ pag
   await expect(numberInput).toBeVisible();
   
   // 3. Fill all other required battery fields to isolate the number field.
-  await page.locator('input[name="productName"]').fill('Test Battery');
-  await page.locator('button[data-array-name="documents"]').click();
-  await page.locator('input[name="documents.0.url"]').fill('https://example.com/doc');
-  await page.locator('input[name="batteryCategory"]').fill('Test Category');
-  await page.locator('input[name="batteryChemistry"]').fill('LFP');
-  await page.locator('input[name="dateOfManufacture"]').fill('2025-01-01');
-  await page.locator('input[name="ratedCapacity"]').fill('100');
-  await page.locator('input[name="recycledContentPercentage"]').fill('10');
-  await page.locator('input[name="stateOfHealth"]').fill('99');
+  const productNameInput = page.locator('input[name="productName"]');
+  await productNameInput.fill('Test Battery');
+  await productNameInput.blur();
 
-  // 4. At this point, only "nominalVoltage" should be invalid.
+  await page.locator('button[data-array-name="documents"]').click();
+  const docUrlInput = page.locator('input[name="documents.0.url"]');
+  await docUrlInput.fill('https://example.com/doc');
+  await docUrlInput.blur();
+
+  const batteryCategoryInput = page.locator('input[name="batteryCategory"]');
+  await batteryCategoryInput.fill('Test Category');
+  await batteryCategoryInput.blur();
+
+  const batteryChemistryInput = page.locator('input[name="batteryChemistry"]');
+  await batteryChemistryInput.fill('LFP');
+  await batteryChemistryInput.blur();
+
+  const dateOfManufactureInput = page.locator('input[name="dateOfManufacture"]');
+  await dateOfManufactureInput.fill('2025-01-01');
+  await dateOfManufactureInput.blur();
+
+  const ratedCapacityInput = page.locator('input[name="ratedCapacity"]');
+  await ratedCapacityInput.fill('100');
+  await ratedCapacityInput.blur();
+
+  const recycledContentPercentageInput = page.locator('input[name="recycledContentPercentage"]');
+  await recycledContentPercentageInput.fill('10');
+  await recycledContentPercentageInput.blur();
+
+  const stateOfHealthInput = page.locator('input[name="stateOfHealth"]');
+  await stateOfHealthInput.fill('99');
+  await stateOfHealthInput.blur();
+
+  // 4. At this point, only "nominalVoltage" should be invalid (because it's empty and required).
   await expect(generateBtn).toBeHidden();
   await expect(showErrorsBtn).toBeVisible();
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
@@ -456,10 +520,11 @@ test('should show an error for non-numeric text in a number field', async ({ pag
       const input = document.querySelector(`input[name="${name}"]`);
       if (input) {
           input.value = 'this is not a number';
-          input.dispatchEvent(new Event('input', { bubbles: true }));
+          input.dispatchEvent(new Event('blur', { bubbles: true }));
       }
   }, numberInputName);
   
+  // The value is invalid text, so the error count should still be 1.
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
 
   // 6. Click the "Show Errors" button and assert the modal appears with the error.
@@ -471,9 +536,224 @@ test('should show an error for non-numeric text in a number field', async ({ pag
 
   // 7. Now, enter a valid number.
   await numberInput.fill('12.5');
+  await numberInput.blur();
 
   // 8. Assert the form is now valid.
   await expect(generateBtn).toBeVisible();
   await expect(showErrorsBtn).toBeHidden();
 });
 
+test('should validate on blur, not on every keystroke', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+
+  const generateBtn = page.locator('#generate-dpp-btn');
+  const showErrorsBtn = page.locator('#show-errors-btn');
+  const dppIdInput = page.locator('input[name="digitalProductPassportId"]');
+
+  // 1. Wait for the form to be ready.
+  await expect(dppIdInput).toBeVisible();
+  
+  // 2. Clear the default value and focus the input.
+  await dppIdInput.fill('');
+  await dppIdInput.focus();
+  
+  // 3. Type an invalid value character by character.
+  await dppIdInput.press('t');
+  await dppIdInput.press('e');
+  await dppIdInput.press('s');
+  await dppIdInput.press('t');
+
+  // 4. Assert that the field is NOT invalid yet, because blur hasn't happened.
+  // The 'Generate' button should still be visible (assuming other fields are valid, which they are not,
+  // so we check that the error count has not increased).
+  // The initial error count is 5. After clearing the field, it's still 5.
+  // After typing 'test', it should still be 5, not 6.
+  await expect(showErrorsBtn).toContainText('Show Errors (5)');
+  await expect(dppIdInput).not.toHaveClass(/invalid/);
+
+  // 5. Blur the field to trigger validation.
+  await dppIdInput.blur();
+  
+  // 6. Assert that the field is NOW invalid.
+  await expect(dppIdInput).toHaveClass(/invalid/);
+  await expect(generateBtn).toBeHidden();
+  await expect(showErrorsBtn).toBeVisible();
+  await expect(showErrorsBtn).toContainText('Show Errors (6)');
+  
+  // 7. Click the error summary to confirm the field is listed.
+  await showErrorsBtn.click();
+  const errorModal = page.locator('.error-summary-modal');
+  await expect(errorModal).toBeVisible();
+  await expect(errorModal).toContainText('digitalProductPassportId');
+});
+
+test('should show an error for non-numeric text in an EPD field', async ({ page }) => {
+  await page.goto('/spec/wizard/index.html');
+  const showErrorsBtn = page.locator('#show-errors-btn');
+
+  // 1. Add the construction sector.
+  await page.locator('button[data-sector="construction"]').click();
+  
+  // The EPD object is optional, so we need to add it first.
+  await page.locator('button[data-optional-object="epd"]').click();
+  await page.locator('button[data-optional-object="gwp"]').click();
+
+  // 2. Wait for the EPD fields to be visible.
+  const epdInput = page.locator('input[name="epd.gwp.a1"]');
+  await expect(epdInput).toBeVisible();
+
+  // 3. Fill the input with invalid text.
+  await epdInput.fill('stuff');
+  await epdInput.blur();
+
+  // 4. Assert that the field is now invalid.
+  await expect(epdInput).toHaveClass(/invalid/);
+  
+  // 5. Assert that the main error button shows the error.
+  // The count should be large because the construction form has many required fields,
+  // but we only care that our new error is added.
+  const errorCountText = await showErrorsBtn.textContent();
+  const errorCount = parseInt(errorCountText.match(/\((\d+)\)/)[1], 10);
+  expect(errorCount).toBeGreaterThan(5); // 5 from core, plus many from construction.
+
+  // 6. Click the button and verify the field is listed in the modal.
+  await showErrorsBtn.click();
+  const errorModal = page.locator('.error-summary-modal');
+  await expect(errorModal).toBeVisible();
+  await expect(errorModal).toContainText('epd.gwp.a1');
+});
+
+test('validation error messages should disappear when the input is corrected', async ({ page }) => {
+    await page.goto('/spec/wizard/index.html');
+
+    const versionInput = page.locator('input[name="dppSchemaVersion"]');
+    const errorSpanLocator = page.locator('#dppSchemaVersion-error');
+
+    // 1. Trigger an error by clearing a required field.
+    await versionInput.fill('');
+    await versionInput.blur();
+    
+    // 2. Assert that the error message span is visible.
+    await expect(errorSpanLocator).toBeVisible();
+    await expect(errorSpanLocator).toHaveText('This field is required');
+
+    // 3. Correct the error.
+    await versionInput.fill('1.0.0');
+    await versionInput.blur();
+
+    // 4. Assert that the error message span is now gone. This is expected to fail.
+    await expect(errorSpanLocator).not.toBeVisible();
+});
+
+test('validation should not create duplicate error messages', async ({ page }) => {
+    await page.goto('/spec/wizard/index.html');
+    
+    // 1. Add the construction sector to get the EPD fields.
+    await page.locator('button[data-sector="construction"]').click();
+    // The EPD object is optional, so we need to add it first.
+    await page.locator('button[data-optional-object="epd"]').click();
+    await page.locator('button[data-optional-object="gwp"]').click();
+
+    const epdInput = page.locator('input[name="epd.gwp.a1"]');
+    await expect(epdInput).toBeVisible();
+
+    const errorSpanSelector = 'span#epd-gwp-a1-error';
+
+    // 2. Trigger a validation error.
+    await epdInput.fill('not a number');
+    await epdInput.blur();
+    await expect(epdInput).toHaveClass(/invalid/);
+    await expect(page.locator(errorSpanSelector)).toBeVisible();
+    await expect(page.locator(errorSpanSelector)).toHaveCount(1);
+    await expect(page.locator(errorSpanSelector)).toHaveText('Must be a valid number.');
+
+    // 3. Trigger the same validation error again.
+    await epdInput.fill('still not a number');
+    await epdInput.blur();
+    
+    // 4. Assert that there is still only ONE error message. This is the key check for the duplicate bug.
+    await expect(page.locator(errorSpanSelector)).toHaveCount(1);
+    
+    // 5. Now, correct the input.
+    await epdInput.fill('123.45');
+    await epdInput.blur();
+
+    // 6. Assert that the input is now valid and the error message is gone.
+    await expect(epdInput).not.toHaveClass(/invalid/);
+    await expect(page.locator(errorSpanSelector)).not.toBeVisible();
+});
+
+test.describe('Conditional Validation for Optional Objects', () => {
+  test('should not render optional object fields by default, showing an "Add" button instead', async ({ page }) => {
+    await page.goto('/spec/wizard/index.html');
+
+    // 1. Add the construction sector form, which contains the optional 'epd' object.
+    await page.locator('button[data-sector="construction"]').click();
+    
+    // 2. Wait for the form to be generated. A known field from the form is a good signal.
+    await expect(page.locator('input[name="declarationCode"]')).toBeVisible();
+
+    // 3. Assert that a field within the optional 'epd' object is NOT visible by default.
+    await expect(page.locator('input[name="epd.gwp.a1"]')).not.toBeVisible();
+
+    // 4. Assert that a placeholder "Add EPD" button IS visible.
+    await expect(page.locator('button[data-optional-object="epd"]')).toBeVisible();
+  });
+
+  test('should update error count when an optional object is added and removed', async ({ page }) => {
+    await page.goto('/spec/wizard/index.html');
+    const showErrorsBtn = page.locator('#show-errors-btn');
+
+    // 1. Add the construction sector.
+    await page.locator('button[data-sector="construction"]').click();
+    
+    // 2. Wait for form and get initial error count.
+    // 5 from core. The construction sector's required fields are all inside
+    // optional objects, so they don't add to the initial error count.
+    await expect(showErrorsBtn).toContainText('Show Errors (5)', { timeout: 10000 });
+    const initialErrorCount = 5;
+
+    // 3. Add the optional 'epd' object and its nested 'gwp' object.
+    await page.locator('button[data-optional-object="epd"]').click();
+    await page.locator('button[data-optional-object="gwp"]').click();
+
+    // 4. Assert that the error count has increased.
+    // The 'epd' object and its children have 10 required fields.
+    // This will fail (5z-h) because the new fields are not validated on add.
+    const errorCountAfterAdd = initialErrorCount + 10; // 5 from core + 10 from epd.gwp
+    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterAdd})`);
+
+    // 5. Now, remove the 'epd' object, which contains 'gwp'.
+    await page.locator('button[data-remove-optional-object="epd"]').click();
+
+    // 6. Assert that the error count has returned to the initial value.
+    // This will fail (5z-j) because the removal logic doesn't update validation state.
+    await expect(showErrorsBtn).toContainText(`Show Errors (${initialErrorCount})`);
+  });
+
+  test('should update error count when an array item with required fields is added and removed', async ({ page }) => {
+    await page.goto('/spec/wizard/index.html');
+    const showErrorsBtn = page.locator('#show-errors-btn');
+
+    // 1. Get initial error count from core schema.
+    await expect(showErrorsBtn).toContainText('Show Errors (5)');
+    const initialCoreErrorCount = 5;
+
+    // 2. Add the battery sector.
+    await page.locator('button[data-sector="battery"]').click();
+    
+    // 3. Wait for form and get new error count (5 from core + 8 from battery).
+    const errorCountAfterSectorAdd = initialCoreErrorCount + 8;
+    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
+
+    // 4. Add an item to the 'documents' array.
+    await page.locator('button[data-array-name="documents"]').click();
+
+    // 5. Assert that the error count has increased by 1 (for the required 'documents.0.url' field). This will fail.
+    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd + 1})`);
+
+    // 6. Now, remove the item and assert the count returns to the previous value.
+    await page.locator('.array-item-control-row[data-array-group="documents.0"] button:text-is("Remove")').click();
+    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
+  });
+});

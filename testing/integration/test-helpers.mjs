@@ -196,5 +196,6 @@ export async function fillRequiredFields(page, sector) {
             // For other inputs, just fill them.
             await input.fill(String(value));
         }
+        await input.blur();
     }
 }

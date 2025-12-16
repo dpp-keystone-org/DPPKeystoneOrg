@@ -86,11 +86,17 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
                 // A term is worth adding if it has an ID and some metadata.
-                if (term['@id'] && (term['rdfs:label'] || term['rdfs:comment'] || term['dppk:unit'] || term['dppk:governedBy'])) {
+                if (term['@id'] && (term['rdfs:label'] || term['rdfs:comment'] || term['dppk:unit'] || term['dppk:governedBy'] || term['rdfs:range'] || term['dcterms:source'] || term['rdfs:domain'])) {
                     const label = parseLangTaggedProperty(term['rdfs:label']);
                     const comment = parseLangTaggedProperty(term['rdfs:comment']);
                     const unit = getSingleRdfsValue(term['dppk:unit']);
                     const governedBy = getSingleRdfsValue(term['dppk:governedBy']);
+                    const source = term['dcterms:source'];
+                    const domain = term['rdfs:domain'];
+                    let range = getSingleRdfsValue(term['rdfs:range']);
+                    if (range.includes(':')) {
+                        range = range.split(':')[1];
+                    }
 
                     let key = term['@id'];
                     if (key.includes(':')) {
@@ -104,6 +110,9 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                             comment: comment,
                             unit: unit || '',
                             governedBy: governedBy || '',
+                            range: range || '',
+                            source: source || null,
+                            domain: domain || null,
                         });
                     }
                 }
