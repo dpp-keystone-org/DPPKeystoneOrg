@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { buildForm } from '../../src/wizard/form-builder.js';
+import { buildForm, createVoluntaryFieldRow } from '../../src/wizard/form-builder.js';
 import { generateDpp } from '../../src/wizard/dpp-generator.js';
 
 // Since we are using the 'jsdom' environment via the docblock,
@@ -1257,6 +1257,80 @@ describe('DPP Wizard - Form Builder - Optional Object Edge Cases', () => {
         const modal = document.querySelector('.tooltip-modal');
         expect(modal).not.toBeNull();
         expect(modal.textContent).toContain('Standard: PARENT-STD-IN-OPTIONAL');
+    });
+});
+
+describe('DPP Wizard - Custom Fields', () => {
+    it('should create a custom field row with a Type selector', () => {
+        const row = createVoluntaryFieldRow();
+        
+        expect(row.className).toBe('voluntary-field-row');
+        
+        const typeSelect = row.querySelector('select.voluntary-type');
+        expect(typeSelect).not.toBeNull();
+        
+        const options = Array.from(typeSelect.options).map(o => o.value);
+        expect(options).toContain('Text');
+        expect(options).toContain('Number');
+        expect(options).toContain('True/False');
+        expect(options).toContain('Group');
+    });
+
+    it('should render a numeric input and unit field when "Number" is selected', () => {
+        const row = createVoluntaryFieldRow();
+        const typeSelect = row.querySelector('select.voluntary-type');
+        
+        // Change type to Number
+        typeSelect.value = 'Number';
+        typeSelect.dispatchEvent(new Event('change'));
+
+        // Check value input type
+        const valueInput = row.querySelector('.voluntary-value');
+        expect(valueInput.type).toBe('number');
+
+        // Check for unit input
+        const unitInput = row.querySelector('.voluntary-unit');
+        expect(unitInput).not.toBeNull();
+        expect(unitInput.placeholder).toBe('Unit');
+    });
+
+    it('should render a True/False dropdown when "True/False" is selected', () => {
+        const row = createVoluntaryFieldRow();
+        const typeSelect = row.querySelector('select.voluntary-type');
+        
+        // Change type to True/False
+        typeSelect.value = 'True/False';
+        typeSelect.dispatchEvent(new Event('change'));
+
+        // Check value input is now a select
+        const valueInput = row.querySelector('.voluntary-value');
+        expect(valueInput.tagName).toBe('SELECT');
+        
+        const options = Array.from(valueInput.options).map(o => o.text);
+        expect(options).toContain('True');
+        expect(options).toContain('False');
+    });
+
+    it('should render a Group container with an Add Property button when "Group" is selected', () => {
+        const row = createVoluntaryFieldRow();
+        const typeSelect = row.querySelector('select.voluntary-type');
+        
+        // Change type to Group
+        typeSelect.value = 'Group';
+        typeSelect.dispatchEvent(new Event('change'));
+
+        // Check value input is removed
+        const valueInput = row.querySelector('.voluntary-value');
+        expect(valueInput).toBeNull();
+
+        // Check for group container
+        const groupContainer = row.querySelector('.voluntary-group-container');
+        expect(groupContainer).not.toBeNull();
+
+        // Check for Add Property button
+        const addPropBtn = groupContainer.querySelector('button.add-voluntary-prop-btn');
+        expect(addPropBtn).not.toBeNull();
+        expect(addPropBtn.textContent).toBe('Add Field');
     });
 });
 

@@ -757,3 +757,144 @@ test.describe('Conditional Validation for Optional Objects', () => {
     await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
   });
 });
+
+test.describe('DPP Wizard - Input Validation', () => {
+  test.beforeEach(async ({ page }) => {
+      await page.goto('/spec/wizard/index.html');
+  });
+
+  test('should trim whitespace from text inputs on blur', async ({ page }) => {
+      // Use a custom field for this test as it's readily available
+      await page.click('#add-voluntary-field-btn');
+      
+      const valueInput = page.locator('.voluntary-value').first();
+      await valueInput.fill('  needs trimming  ');
+      await valueInput.blur();
+      
+      // This is expected to fail until 5p-3d is implemented
+      await expect(valueInput).toHaveValue('needs trimming');
+  });
+
+  test('should show error for control characters in text inputs', async ({ page }) => {
+      await page.click('#add-voluntary-field-btn');
+      
+      const valueInput = page.locator('.voluntary-value').first();
+      
+      // Inject a control character (Bell \u0007) which should be rejected
+      await valueInput.evaluate(el => {
+          el.value = 'Bad\u0007Input';
+          el.dispatchEvent(new Event('blur', { bubbles: true }));
+      });
+      
+      // This is expected to fail until 5p-3d is implemented
+      await expect(valueInput).toHaveClass(/invalid/);
+      const errorMessage = page.locator('.voluntary-field-row .error-message');
+      await expect(errorMessage).toBeVisible();
+      await expect(errorMessage).toContainText('Invalid characters');
+  });
+
+  test('should enforce camelCase for custom field keys', async ({ page }) => {
+      await page.click('#add-voluntary-field-btn');
+      
+      const nameInput = page.locator('.voluntary-name').first();
+      await nameInput.fill('Invalid Key Name'); // Spaces and Title Case
+      await nameInput.blur();
+      
+      // This is expected to fail until 5p-3d is implemented
+      await expect(nameInput).toHaveClass(/invalid/);
+      const errorMessage = page.locator('.voluntary-field-row .error-message');
+      await expect(errorMessage).toBeVisible();
+      await expect(errorMessage).toContainText('camelCase');
+  });
+
+  test('should update error count when custom fields have validation errors', async ({ page }) => {
+      await page.goto('/spec/wizard/index.html');
+      const showErrorsBtn = page.locator('#show-errors-btn');
+
+      // 1. Get initial error count (core required fields).
+      await expect(showErrorsBtn).toContainText('Show Errors (5)');
+      const initialCount = 5;
+
+      // 2. Add a custom field.
+      await page.click('#add-voluntary-field-btn');
+      const nameInput = page.locator('.voluntary-name').first();
+      
+      // 3. Enter an invalid key (space in name).
+      await nameInput.fill('Invalid Key');
+      await nameInput.blur();
+
+      // 4. Assert error count increased.
+      await expect(showErrorsBtn).toContainText(`Show Errors (${initialCount + 1})`);
+
+      // 5. Fix the error.
+      await nameInput.fill('validKey');
+      await nameInput.blur();
+
+      // 6. Assert error count returned to initial.
+      await expect(showErrorsBtn).toContainText(`Show Errors (${initialCount})`);
+
+      // 7. Add another field and make it invalid.
+      await page.click('#add-voluntary-field-btn');
+      const secondNameInput = page.locator('.voluntary-name').nth(1);
+      await secondNameInput.fill('Another Invalid Key');
+      await secondNameInput.blur();
+      await expect(showErrorsBtn).toContainText(`Show Errors (${initialCount + 1})`);
+
+      // 8. Remove the invalid row.
+      const removeBtn = page.locator('.voluntary-field-row').nth(1).locator('button:text-is("Remove")');
+      await removeBtn.click();
+
+      // 9. Assert error count returned to initial (error cleared on remove).
+      await expect(showErrorsBtn).toContainText(`Show Errors (${initialCount})`);
+  });
+
+  test('should require values for custom fields (except units)', async ({ page }) => {
+      await page.click('#add-voluntary-field-btn');
+      
+      const nameInput = page.locator('.voluntary-name').first();
+      const valueInput = page.locator('.voluntary-value').first();
+
+      // 1. Check Value Field Required
+      await valueInput.focus();
+      await valueInput.blur();
+      await expect(valueInput).toHaveClass(/invalid/);
+      // We expect the generic "This field is required" message
+      await expect(page.locator('.voluntary-field-row .error-message').last()).toHaveText('This field is required');
+
+      // 2. Check Key Field Required
+      await nameInput.focus();
+      await nameInput.blur();
+      await expect(nameInput).toHaveClass(/invalid/);
+      await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('This field is required');
+
+      // 3. Check Unit Field Not Required
+      const typeSelect = page.locator('.voluntary-type').first();
+      await typeSelect.selectOption('Number');
+      const unitInput = page.locator('.voluntary-unit').first();
+      
+      await unitInput.focus();
+      await unitInput.blur();
+      await expect(unitInput).not.toHaveClass(/invalid/);
+  });
+
+  test('should show error when custom field key collides with existing schema fields', async ({ page }) => {
+      await page.goto('/spec/wizard/index.html');
+      
+      // 1. Add Battery sector
+      await page.locator('button[data-sector="battery"]').click();
+
+      // 2. Add custom field
+      await page.click('#add-voluntary-field-btn');
+      const nameInput = page.locator('.voluntary-name').first();
+
+      // 3. Test Core collision
+      await nameInput.fill('dppStatus'); // Core field
+      await nameInput.blur();
+      await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Core');
+
+      // 4. Test Sector collision
+      await nameInput.fill('nominalVoltage'); // Battery field
+      await nameInput.blur();
+      await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Battery');
+  });
+});

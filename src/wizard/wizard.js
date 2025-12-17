@@ -1,7 +1,7 @@
 // src/wizard/wizard.js
 import { loadSchema } from './schema-loader.js';
 import { loadOntology } from './ontology-loader.js';
-import { buildForm } from './form-builder.js';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
 import { generateDpp } from './dpp-generator.js';
 
 // --- Module-level state ---
@@ -300,27 +300,7 @@ export async function initializeWizard() {
     }
 
     function addVoluntaryField() {
-        const fieldRow = document.createElement('div');
-        fieldRow.className = 'voluntary-field-row';
-
-        const nameInput = document.createElement('input');
-        nameInput.type = 'text';
-        nameInput.placeholder = 'Property Name';
-        nameInput.className = 'voluntary-name';
-
-        const valueInput = document.createElement('input');
-        valueInput.type = 'text';
-        valueInput.placeholder = 'Property Value';
-        valueInput.className = 'voluntary-value';
-
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.textContent = 'Remove';
-        removeBtn.addEventListener('click', () => fieldRow.remove());
-
-        fieldRow.appendChild(nameInput);
-        fieldRow.appendChild(valueInput);
-        fieldRow.appendChild(removeBtn);
+        const fieldRow = createVoluntaryFieldRow();
         voluntaryFieldsWrapper.appendChild(fieldRow);
     }
     

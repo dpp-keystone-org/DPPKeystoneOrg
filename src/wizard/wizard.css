@@ -92,7 +92,7 @@ button:disabled {
     filter: none; /* Remove hover effect when disabled */
 }
 
-.sector-btn.remove-btn-active {
+.remove-btn-active {
     background-color: #dc3545; /* Bootstrap's danger red */
 }
 
@@ -115,21 +115,40 @@ button:disabled {
     margin-bottom: 10px;
 }
 
-.voluntary-field-row .voluntary-name {
+.voluntary-field-row .voluntary-name-container {
+    flex: 1.5;
+}
+
+.voluntary-field-row .voluntary-type-container {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.voluntary-field-row .voluntary-type {
+    background-color: #f8f9fa; /* Light gray to distinguish from text inputs */
+}
+
+.voluntary-field-row .voluntary-value-container {
+    flex: 3;
+}
+
+.voluntary-field-row .voluntary-unit-container {
     flex: 1;
 }
 
-.voluntary-field-row .voluntary-value {
-    flex: 2;
+.voluntary-field-row.group-mode .voluntary-name-container {
+    flex: 1;
 }
 
-/* Keep remove buttons red as there's no danger color variable yet */
-.voluntary-field-row button {
-    background-color: #dc3545;
-}
-
-.voluntary-field-row button:hover {
-    background-color: #c82333;
+.voluntary-group-container {
+    flex: 4; /* Take up the space of the value input + extra from name */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px dashed var(--border-color);
+    border-radius: 4px;
+    background-color: #fafafa;
 }
 
 hr {

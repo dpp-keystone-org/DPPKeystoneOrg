@@ -1,5 +1,5 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCodeAlpha3, isNumber, isInteger } from './validator.js';
+import { isURI, isCountryCodeAlpha3, isNumber, isInteger, validateText, validateKey } from './validator.js';
 
 /**
  * Creates and displays a tooltip modal.
@@ -164,6 +164,12 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
     const handleValidation = (e) => {
         const { target } = e;
         const { value } = target;
+
+        // Auto-trim text inputs
+        if (target.type === 'text' || target.tagName === 'TEXTAREA') {
+            target.value = target.value.trim();
+        }
+
         let validationResult = { isValid: true };
 
         if ((prop.type === 'number' || prop.type === 'integer') && !target.validity.valid && value === '') {
@@ -172,6 +178,8 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
             if (isRequired) {
                 validationResult = { isValid: false, message: 'This field is required' };
             }
+        } else if (prop.type === 'string' && !validateText(value).isValid) {
+            validationResult = validateText(value);
         } else if (prop.format === 'uri' && !isURI(value)) {
             validationResult = { isValid: false, message: 'Must be a valid URI (e.g., http://example.com)' };
         } else if ((ontologyInfo?.range === 'decimal' || ontologyInfo?.range === 'double' || ontologyInfo?.range === 'float') && !isNumber(value)) {
@@ -899,4 +907,249 @@ export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
     }
 
     return fragment;
+}
+
+/**
+ * Creates a UI row for adding a custom (voluntary) field.
+ * Includes inputs for Name, Type, Value, and a Remove button.
+ * @returns {HTMLDivElement} The generated row element.
+ */
+export function createVoluntaryFieldRow() {
+    const row = document.createElement('div');
+    row.className = 'voluntary-field-row';
+    // Generate a unique ID for this row to track validation state
+    const rowId = Math.random().toString(36).substr(2, 9);
+
+    const dispatchValidity = (name, isValid) => {
+        row.dispatchEvent(new CustomEvent('fieldValidityChange', {
+            bubbles: true,
+            composed: true,
+            detail: { path: name, isValid },
+        }));
+    };
+
+    // Helper to attach validation to custom field inputs
+    const attachCustomValidator = (input, type) => {
+        const handler = () => {
+            let result = { isValid: true };
+            const value = input.value.trim();
+            
+            // Enforce required fields (except for 'unit')
+            if (value === '' && type !== 'unit') {
+                result = { isValid: false, message: 'This field is required' };
+            }
+            
+            if (result.isValid) {
+                if (type === 'key') {
+                    input.value = value;
+                    result = validateKey(input.value);
+                } else if (type === 'value') {
+                    if (input.type === 'text') {
+                        input.value = value;
+                    }
+                    result = validateText(input.value);
+                }
+            }
+
+            let errorSpan = input.nextElementSibling;
+            if (errorSpan && !errorSpan.classList.contains('error-message')) {
+                errorSpan = null;
+            }
+
+            if (result.isValid) {
+                input.classList.remove('invalid');
+                if (errorSpan) errorSpan.remove();
+            } else {
+                input.classList.add('invalid');
+                if (!errorSpan) {
+                    errorSpan = document.createElement('span');
+                    errorSpan.className = 'error-message';
+                    input.parentNode.insertBefore(errorSpan, input.nextSibling);
+                }
+                errorSpan.textContent = result.message;
+            }
+
+            // Dispatch event for global tracking
+            if (input.name) {
+                dispatchValidity(input.name, result.isValid);
+            }
+        };
+        input.addEventListener('blur', handler);
+        // Listen for change as well (e.g. for Select inputs)
+        input.addEventListener('change', handler);
+    };
+
+    const nameContainer = document.createElement('div');
+    nameContainer.className = 'voluntary-name-container';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Property Name';
+    nameInput.className = 'voluntary-name';
+    nameInput.name = `custom-key-${rowId}`;
+    attachCustomValidator(nameInput, 'key');
+    nameContainer.appendChild(nameInput);
+
+    const typeContainer = document.createElement('div');
+    typeContainer.className = 'voluntary-type-container';
+    const typeSelect = document.createElement('select');
+    typeSelect.className = 'voluntary-type';
+    ['Text', 'Number', 'True/False', 'Group'].forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type;
+        typeSelect.appendChild(option);
+    });
+    typeContainer.appendChild(typeSelect);
+
+    const valueContainer = document.createElement('div');
+    valueContainer.className = 'voluntary-value-container';
+    const valueInput = document.createElement('input');
+    valueInput.type = 'text';
+    valueInput.placeholder = 'Property Value';
+    valueInput.className = 'voluntary-value';
+    valueInput.name = `custom-value-${rowId}`;
+    attachCustomValidator(valueInput, 'value');
+    valueContainer.appendChild(valueInput);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = 'Remove';
+    removeBtn.addEventListener('click', () => {
+        // Clear errors for all inputs in this row (including nested ones) before removing
+        const inputs = row.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            if (input.name) dispatchValidity(input.name, true);
+        });
+        row.remove();
+    });
+
+    typeSelect.addEventListener('change', () => {
+        const type = typeSelect.value;
+        let currentValueInput = row.querySelector('.voluntary-value');
+        const existingUnitContainer = row.querySelector('.voluntary-unit-container');
+        const existingGroupContainer = row.querySelector('.voluntary-group-container');
+        const existingValueContainer = row.querySelector('.voluntary-value-container');
+
+        // 1. Handle Group Type
+        if (type === 'Group') {
+            row.classList.add('group-mode');
+            if (existingValueContainer) {
+                // Clean up validation state before removing
+                if (currentValueInput.name) dispatchValidity(currentValueInput.name, true);
+                existingValueContainer.remove();
+            }
+            if (existingUnitContainer) {
+                const unitInput = existingUnitContainer.querySelector('input');
+                if (unitInput && unitInput.name) dispatchValidity(unitInput.name, true);
+                existingUnitContainer.remove();
+            }
+
+            if (!existingGroupContainer) {
+                const container = document.createElement('div');
+                container.className = 'voluntary-group-container';
+                
+                const addBtn = document.createElement('button');
+                addBtn.type = 'button';
+                addBtn.className = 'add-voluntary-prop-btn';
+                addBtn.textContent = 'Add Field';
+                addBtn.addEventListener('click', () => {
+                    const newRow = createVoluntaryFieldRow();
+                    container.insertBefore(newRow, addBtn);
+                });
+
+                container.appendChild(addBtn);
+                row.insertBefore(container, removeBtn);
+            }
+            return;
+        }
+
+        // 2. Handle Non-Group Types
+        row.classList.remove('group-mode');
+        if (existingGroupContainer) existingGroupContainer.remove();
+        
+        // Ensure value container exists
+        if (!row.querySelector('.voluntary-value-container')) {
+            // Re-create value container if it was removed (e.g. coming back from Group)
+            // We will populate it below in step 3
+            const newValContainer = document.createElement('div');
+            newValContainer.className = 'voluntary-value-container';
+            row.insertBefore(newValContainer, removeBtn);
+        }
+
+        // Remove Unit if not Number
+        if (type !== 'Number' && existingUnitContainer) {
+            const unitInput = existingUnitContainer.querySelector('input');
+            if (unitInput && unitInput.name) dispatchValidity(unitInput.name, true);
+            existingUnitContainer.remove();
+        }
+
+        // 3. Handle Value Input (Select vs Input)
+        // Note: currentValueInput might be null if we just came from Group mode
+        currentValueInput = row.querySelector('.voluntary-value');
+        const currentContainer = row.querySelector('.voluntary-value-container');
+
+        if (type === 'True/False') {
+            if (!currentValueInput || currentValueInput.tagName !== 'SELECT') {
+                const select = document.createElement('select');
+                select.className = 'voluntary-value';
+                select.name = `custom-value-${rowId}`;
+                ['True', 'False'].forEach(val => {
+                    const opt = document.createElement('option');
+                    opt.value = val.toLowerCase();
+                    opt.textContent = val;
+                    select.appendChild(opt);
+                });
+                attachCustomValidator(select, 'value');
+                
+                if (currentValueInput) {
+                    // If replacing an invalid input with a valid default select, clear the error
+                    if (currentValueInput.name) dispatchValidity(currentValueInput.name, true);
+                    currentValueInput.replaceWith(select);
+                } else {
+                    currentContainer.appendChild(select);
+                }
+            }
+        } else {
+            // Ensure it's an input element for Text/Number
+            if (!currentValueInput || currentValueInput.tagName !== 'INPUT') {
+                const input = document.createElement('input');
+                input.className = 'voluntary-value';
+                input.placeholder = 'Property Value';
+                input.name = `custom-value-${rowId}`;
+                attachCustomValidator(input, 'value');
+                
+                if (currentValueInput) {
+                    if (currentValueInput.name) dispatchValidity(currentValueInput.name, true);
+                    currentValueInput.replaceWith(input);
+                } else {
+                    currentContainer.appendChild(input);
+                }
+            }
+            
+            currentValueInput = row.querySelector('.voluntary-value');
+            currentValueInput.type = (type === 'Number') ? 'number' : 'text';
+
+            // Add Unit for Number
+            if (type === 'Number' && !row.querySelector('.voluntary-unit-container')) {
+                const unitContainer = document.createElement('div');
+                unitContainer.className = 'voluntary-unit-container';
+                
+                const unitInput = document.createElement('input');
+                unitInput.type = 'text';
+                unitInput.placeholder = 'Unit';
+                unitInput.className = 'voluntary-unit';
+                unitInput.name = `custom-unit-${rowId}`;
+                attachCustomValidator(unitInput, 'unit');
+                unitContainer.appendChild(unitInput);
+                row.insertBefore(unitContainer, removeBtn);
+            }
+        }
+    });
+
+    row.appendChild(nameContainer);
+    row.appendChild(typeContainer);
+    row.appendChild(valueContainer);
+    row.appendChild(removeBtn);
+
+    return row;
 }
