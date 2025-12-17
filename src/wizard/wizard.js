@@ -15,6 +15,7 @@ const sectorDataCache = new Map(); // sector -> { schema, ontologyMap }
 const SUPPORTED_CUSTOM_TYPES = [
     { label: 'Organization', schemaName: 'organization' }
 ];
+const STORAGE_KEY = 'dpp_wizard_state_v1';
 
 // --- DOM Element References ---
 let coreFormContainer, sectorsFormContainer, addVoluntaryFieldBtn,
@@ -230,6 +231,23 @@ export async function initializeWizard() {
         document.body.appendChild(overlay);
     });
 
+    // Synchronize fields with the same name across different forms
+    document.addEventListener('input', (e) => {
+        if (e.target.matches('input, select, textarea') && e.target.name) {
+            const matchingInputs = document.querySelectorAll(`[name="${e.target.name}"]`);
+            matchingInputs.forEach(input => {
+                if (input !== e.target) {
+                    if (input.type === 'checkbox' && e.target.type === 'checkbox') {
+                        input.checked = e.target.checked;
+                    } else {
+                        input.value = e.target.value;
+                    }
+                }
+            });
+        }
+        saveSession();
+    });
+
     languageSelector.addEventListener('change', async (event) => {
         currentLanguage = event.target.value;
         await rerenderAllForms();
@@ -252,6 +270,7 @@ export async function initializeWizard() {
                 button.textContent = `Add ${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
                 button.classList.remove('remove-btn-active');
             } else {
+                // Add Sector
                 try {
                     let data = sectorDataCache.get(sector);
                     if (!data) {
@@ -286,6 +305,7 @@ export async function initializeWizard() {
                     console.error(`Failed to build form for sector ${sector}:`, error);
                 }
             }
+            saveSession();
         });
     });
 
@@ -350,9 +370,72 @@ export async function initializeWizard() {
         const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap);
         voluntaryFieldsWrapper.appendChild(fieldRow);
     }
+
+    /**
+     * Saves the current session state (Core + Sectors) to localStorage.
+     */
+    function saveSession() {
+        const coreState = Object.fromEntries(saveFormState(coreFormContainer));
+        const activeSectors = [...sectorsFormContainer.querySelectorAll('.sector-form-container')]
+            .map(c => c.id.replace('sector-form-', ''));
+        
+        const sectorStates = {};
+        activeSectors.forEach(sector => {
+            const container = document.getElementById(`sector-form-${sector}`);
+            sectorStates[sector] = Object.fromEntries(saveFormState(container));
+        });
+
+        const session = {
+            core: coreState,
+            sectors: activeSectors,
+            sectorData: sectorStates,
+            timestamp: Date.now()
+        };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    }
+
+    /**
+     * Restores the session state from localStorage.
+     */
+    async function restoreSession() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+
+        try {
+            const session = JSON.parse(raw);
+            
+            // 1. Restore Core Form
+            if (session.core) {
+                restoreFormState(coreFormContainer, new Map(Object.entries(session.core)));
+                validateAllFields(coreFormContainer);
+            }
+
+            // 2. Restore Sectors
+            if (session.sectors && Array.isArray(session.sectors)) {
+                for (const sector of session.sectors) {
+                    // Trigger the add button click to load the sector form
+                    const btn = document.querySelector(`button[data-sector="${sector}"]`);
+                    if (btn && !btn.classList.contains('remove-btn-active')) {
+                        await btn.click(); // This is async because it fetches schemas
+                        
+                        // Restore data for this sector
+                        if (session.sectorData && session.sectorData[sector]) {
+                            const container = document.getElementById(`sector-form-${sector}`);
+                            restoreFormState(container, new Map(Object.entries(session.sectorData[sector])));
+                            validateAllFields(container);
+                        }
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn('Failed to restore session:', e);
+        }
+    }
     
     // Initial setup
     await initializeCoreForm();
+    await restoreSession();
 
     // Expose schemas for the testing environment
     window.testing = {

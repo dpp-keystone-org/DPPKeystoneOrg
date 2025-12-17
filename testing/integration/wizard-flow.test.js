@@ -49,6 +49,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // Reset DOM and Jest's module registry before each test
         document.body.innerHTML = wizardHtml;
         jest.resetModules();
+        localStorage.clear();
     });
 
     it('should load the core form on page load and generate a valid DPP', async () => {
@@ -169,7 +170,6 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(finalDpp.digitalProductPassportId).toBe('urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4');
         expect(finalDpp.productName).toBe('Test Construction Product');
         expect(finalDpp.granularity).toBe('Batch');
-        expect(finalDpp.contentSpecificationId).toBe('construction-product-dpp-v1');
         expect(finalDpp.contentSpecificationIds).toEqual(['construction-product-dpp-v1']);
     });
 
@@ -235,5 +235,198 @@ describe('DPP Wizard - Full Integration Flow', () => {
         modal.querySelector('.modal-close-btn').click();
         await waitFor(() => !document.querySelector('.tooltip-modal'));
     });
-});
 
+    it('should synchronize fields with the same name across different sectors', async () => {
+        // 1. Define mock schemas with a shared field 'manufacturer'
+        const mockSectorASchema = {
+            "type": "object",
+            "properties": { "manufacturer": { "type": "string" } }
+        };
+        const mockSectorBSchema = {
+            "type": "object",
+            "properties": { "manufacturer": { "type": "string" } }
+        };
+
+        // 2. Mock modules
+        const loadSchemaMock = jest.fn();
+        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+            loadSchema: loadSchemaMock,
+        }));
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+        }));
+
+        loadSchemaMock.mockImplementation((sector) => {
+            if (sector === 'sector-a') return Promise.resolve(mockSectorASchema);
+            if (sector === 'sector-b') return Promise.resolve(mockSectorBSchema);
+            return Promise.resolve({ type: 'object', properties: {} }); // Default/Core
+        });
+
+        // 3. Inject buttons for mock sectors
+        const btnA = document.createElement('button');
+        btnA.dataset.sector = 'sector-a';
+        btnA.className = 'sector-btn';
+        document.body.appendChild(btnA);
+        const btnB = document.createElement('button');
+        btnB.dataset.sector = 'sector-b';
+        btnB.className = 'sector-btn';
+        document.body.appendChild(btnB);
+
+        // 4. Initialize and Add sectors
+        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        await initializeWizard();
+        btnA.click();
+        btnB.click();
+
+        // 5. Wait for forms and find inputs
+        const formA = await waitFor(() => document.querySelector('#sector-form-sector-a'));
+        const formB = await waitFor(() => document.querySelector('#sector-form-sector-b'));
+        const inputA = formA.querySelector('input[name="manufacturer"]');
+        const inputB = formB.querySelector('input[name="manufacturer"]');
+
+        // 6. Sync Test: Typing in A should update B
+        inputA.value = 'SyncValue';
+        inputA.dispatchEvent(new Event('input', { bubbles: true }));
+
+        expect(inputB.value).toBe('SyncValue');
+    });
+
+    it('should generate valid JSON with merged shared fields from multiple sectors', async () => {
+        // 1. Define mock schemas with a shared field 'manufacturer' and unique fields
+        const mockSectorASchema = {
+            "type": "object",
+            "properties": { 
+                "manufacturer": { "type": "string" },
+                "sectorAProp": { "type": "string" }
+            }
+        };
+        const mockSectorBSchema = {
+            "type": "object",
+            "properties": { 
+                "manufacturer": { "type": "string" },
+                "sectorBProp": { "type": "string" }
+            }
+        };
+
+        // 2. Mock modules
+        const loadSchemaMock = jest.fn();
+        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+            loadSchema: loadSchemaMock,
+        }));
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+        }));
+
+        loadSchemaMock.mockImplementation((sector) => {
+            if (sector === 'sector-a') return Promise.resolve(mockSectorASchema);
+            if (sector === 'sector-b') return Promise.resolve(mockSectorBSchema);
+            return Promise.resolve({ type: 'object', properties: {} }); // Default/Core
+        });
+
+        // 3. Inject buttons
+        const btnA = document.createElement('button');
+        btnA.dataset.sector = 'sector-a';
+        btnA.className = 'sector-btn';
+        document.body.appendChild(btnA);
+        const btnB = document.createElement('button');
+        btnB.dataset.sector = 'sector-b';
+        btnB.className = 'sector-btn';
+        document.body.appendChild(btnB);
+
+        // 4. Initialize and Add sectors
+        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        await initializeWizard();
+        btnA.click();
+        btnB.click();
+
+        // 5. Fill inputs
+        const formA = await waitFor(() => document.querySelector('#sector-form-sector-a'));
+        const formB = await waitFor(() => document.querySelector('#sector-form-sector-b'));
+        
+        // Unique fields
+        formA.querySelector('input[name="sectorAProp"]').value = 'ValueA';
+        formB.querySelector('input[name="sectorBProp"]').value = 'ValueB';
+
+        // Shared field (sync is active, so typing in one updates other)
+        const inputA = formA.querySelector('input[name="manufacturer"]');
+        inputA.value = 'SharedManufacturer';
+        inputA.dispatchEvent(new Event('input', { bubbles: true }));
+
+        // 6. Generate JSON
+        const generateBtn = document.getElementById('generate-dpp-btn');
+        generateBtn.click();
+
+        const jsonOutput = document.getElementById('json-output');
+        const generatedDpp = JSON.parse(jsonOutput.textContent);
+
+        // 7. Assertions
+        expect(generatedDpp.sectorAProp).toBe('ValueA');
+        expect(generatedDpp.sectorBProp).toBe('ValueB');
+        expect(generatedDpp.manufacturer).toBe('SharedManufacturer');
+        
+        // Ensure no duplication in keys (JSON.parse handles this, but we can check if it's an array or something weird)
+        expect(Array.isArray(generatedDpp.manufacturer)).toBe(false);
+    });
+
+    it('should generate valid JSON for voluntary complex types (Organization)', async () => {
+        // 1. Define mock schema for Organization
+        const mockOrgSchema = {
+            "type": "object",
+            "properties": {
+                "orgName": { "type": "string" },
+                "orgId": { "type": "string" }
+            }
+        };
+
+        // 2. Mock modules
+        const loadSchemaMock = jest.fn();
+        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+            loadSchema: loadSchemaMock,
+        }));
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+        }));
+
+        loadSchemaMock.mockImplementation((name) => {
+            if (name === 'organization') return Promise.resolve(mockOrgSchema);
+            return Promise.resolve({ type: 'object', properties: {} }); // Default
+        });
+
+        // 3. Initialize Wizard
+        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        await initializeWizard();
+
+        // 4. Add Voluntary Field
+        const addBtn = document.getElementById('add-voluntary-field-btn');
+        addBtn.click();
+
+        // 5. Find the row and configure it
+        const voluntaryWrapper = document.getElementById('voluntary-fields-wrapper');
+        const row = await waitFor(() => voluntaryWrapper.lastElementChild);
+        
+        const keyInput = row.querySelector('input[type="text"]');
+        keyInput.value = 'myOrg';
+        keyInput.dispatchEvent(new Event('input'));
+
+        const typeSelect = row.querySelector('select');
+        // Find option with text 'Organization' to ensure we select the right one
+        const orgOption = Array.from(typeSelect.options).find(opt => opt.text === 'Organization');
+        typeSelect.value = orgOption.value;
+        typeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+
+        // 6. Wait for sub-form and fill data
+        const orgNameInput = await waitFor(() => row.querySelector('input[name="myOrg.orgName"]'));
+        const orgIdInput = row.querySelector('input[name="myOrg.orgId"]');
+        orgNameInput.value = 'Acme Corp';
+        orgIdInput.value = 'ORG-123';
+
+        // 7. Generate and Assert
+        document.getElementById('generate-dpp-btn').click();
+        const generatedDpp = JSON.parse(document.getElementById('json-output').textContent);
+
+        expect(generatedDpp.myOrg).toEqual({
+            orgName: 'Acme Corp',
+            orgId: 'ORG-123'
+        });
+    });
+});

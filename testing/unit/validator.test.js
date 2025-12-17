@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { validateText, validateKey } from '../../src/wizard/validator.js';
+import { validateText, validateKey, isCountryCode } from '../../src/wizard/validator.js';
 
 describe('Validator - Universal Text Validation', () => {
     it('should accept valid plain text', () => {
@@ -23,6 +23,25 @@ describe('Validator - Universal Text Validation', () => {
     it('should accept text with leading/trailing whitespace (sanitization handled by UI)', () => {
         const result = validateText('  Untrimmed  ');
         expect(result.isValid).toBe(true);
+    });
+});
+
+describe('Validator - Country Code', () => {
+    it('should accept valid 2-letter codes', () => {
+        expect(isCountryCode('US')).toBe(true);
+        expect(isCountryCode('de')).toBe(true);
+    });
+
+    it('should accept valid 3-letter codes', () => {
+        expect(isCountryCode('USA')).toBe(true);
+        expect(isCountryCode('fra')).toBe(true);
+    });
+
+    it('should reject invalid codes', () => {
+        expect(isCountryCode('U')).toBe(false);
+        expect(isCountryCode('USAA')).toBe(false);
+        expect(isCountryCode('12')).toBe(false);
+        expect(isCountryCode('')).toBe(false);
     });
 });
 

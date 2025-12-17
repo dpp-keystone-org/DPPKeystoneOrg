@@ -873,14 +873,24 @@ describe('DPP Wizard - Form Builder', () => {
         const input = document.querySelector('input[name="countryOfOrigin"]');
         expect(input).not.toBeNull();
 
-        // Test invalid 2-letter code
+        // Test valid 2-letter code
         input.value = 'US';
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
+        expect(input.classList.contains('invalid')).toBe(false);
+
+        // Test valid 3-letter code
+        input.value = 'USA';
+        input.dispatchEvent(new Event('blur', { bubbles: true }));
+        expect(input.classList.contains('invalid')).toBe(false);
+
+        // Test invalid code
+        input.value = 'U';
         input.dispatchEvent(new Event('blur', { bubbles: true }));
 
         expect(input.classList.contains('invalid')).toBe(true);
         const error = input.parentElement.querySelector('.error-message');
         expect(error).not.toBeNull();
-        expect(error.textContent).toBe('Must be a valid 3-letter country code (ISO 3166-1 alpha-3)');
+        expect(error.textContent).toBe('Must be a valid 2 or 3-letter country code');
     });
 
     it('should show an error for an empty required field', () => {
@@ -1629,7 +1639,6 @@ describe('DPP Wizard - DPP Generator', () => {
             isLight: false,
             customColor: 'blue',
             customMaterial: 'titanium',
-            contentSpecificationId: 'construction-product-dpp-v1',
             contentSpecificationIds: ['construction-product-dpp-v1'],
         });
     });

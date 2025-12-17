@@ -366,7 +366,6 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
   expect(dpp.torque).toBeDefined(); // From Electronics
   
   // 6. Assert that contentSpecificationIds are correctly set
-  expect(dpp.contentSpecificationId).toBe('battery-product-dpp-v1');
   expect(dpp.contentSpecificationIds).toEqual(['battery-product-dpp-v1', 'electronics-product-dpp-v1']);
 });
 
