@@ -709,6 +709,7 @@ function createOptionalObjectControlRow(objectKey, objectPath, indentationLevel,
     const controlRow = document.createElement('div');
     controlRow.className = 'grid-row array-item-control-row'; // Reusing array-item-control-row class for now
     controlRow.dataset.optionalObjectControl = objectKey; // Mark this as the control row for the optional object
+    controlRow.dataset.objectPath = objectPath; // Store path for updates
 
     const firstCell = document.createElement('div');
     firstCell.className = 'grid-cell';
@@ -745,7 +746,8 @@ function createOptionalObjectControlRow(objectKey, objectPath, indentationLevel,
         const parentGroups = allGroups.replace(new RegExp(`\\b${objectKey}\\b`), '').trim();
 
         // Re-create and insert the placeholder row before removing the old rows
-        const newPlaceholder = createOptionalObjectPlaceholderRow(objectKey, prop, objectPath, indentationLevel, ontologyMap, lang);
+        const dynamicPath = controlRow.dataset.objectPath;
+        const newPlaceholder = createOptionalObjectPlaceholderRow(objectKey, prop, dynamicPath, indentationLevel, ontologyMap, lang);
         
         // Assign the parent groups to the new placeholder
         if (parentGroups) {
@@ -782,6 +784,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const placeholderRow = document.createElement('div');
     placeholderRow.className = 'grid-row';
     placeholderRow.dataset.optionalObjectPlaceholder = key;
+    placeholderRow.dataset.objectPath = currentPath; // Store path for updates
 
     const pathCell = document.createElement('div');
     pathCell.className = 'grid-cell';
@@ -821,6 +824,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const parentRow = event.currentTarget.closest('.grid-row[data-optional-object-placeholder]');
         if (!parentRow) return;
 
+        const dynamicPath = parentRow.dataset.objectPath;
         // Get existing groups from the placeholder row itself.
         const existingGroups = parentRow.dataset.optionalObjectGroups || '';
 
@@ -831,11 +835,11 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         parentRow.classList.add('grid-row-header');
         parentRow.removeAttribute('data-optional-object-placeholder');
         parentRow.dataset.optionalObjectGroups = newGroup;
-        populateHeaderRow(parentRow, { currentPath, indentationLevel, ontologyMap, lang });
+        populateHeaderRow(parentRow, { currentPath: dynamicPath, indentationLevel, ontologyMap, lang });
 
         // Generate and add the child fields.
-        generateRows(newFieldsFragment, prop.properties, ontologyMap, prop.required || [], currentPath, indentationLevel + 1, lang);
-        newFieldsFragment.appendChild(createOptionalObjectControlRow(key, currentPath, indentationLevel, lang, prop, ontologyMap));
+        generateRows(newFieldsFragment, prop.properties, ontologyMap, prop.required || [], dynamicPath, indentationLevel + 1, lang);
+        newFieldsFragment.appendChild(createOptionalObjectControlRow(key, dynamicPath, indentationLevel, lang, prop, ontologyMap));
         
         // Mark all new rows as belonging to the group.
         [...newFieldsFragment.children].forEach(row => {
@@ -910,15 +914,116 @@ export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
 }
 
 /**
+ * Helper to recursively populate a group container from a JSON schema.
+ * @param {HTMLElement} container - The container to append rows to.
+ * @param {HTMLElement} insertBeforeElement - The element to insert before (usually the Add button).
+ * @param {object} schema - The JSON schema object.
+ * @param {Function} collisionChecker - Function to check for name collisions.
+ * @param {Array} customTypeRegistry - Registry of custom types.
+ * @param {Function} schemaLoader - Function to load schemas.
+ */
+function populateGroupFromSchema(container, insertBeforeElement, schema, collisionChecker, customTypeRegistry, schemaLoader) {
+    if (!schema || !schema.properties) return;
+
+    for (const [key, prop] of Object.entries(schema.properties)) {
+        const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
+
+        const nameInput = newRow.querySelector('.voluntary-name');
+        nameInput.value = key;
+
+        const typeInput = newRow.querySelector('.voluntary-type');
+        let mappedType = 'Text';
+        if (prop.type === 'number' || prop.type === 'integer') mappedType = 'Number';
+        else if (prop.type === 'boolean') mappedType = 'True/False';
+        else if (prop.type === 'object') mappedType = 'Group';
+
+        typeInput.value = mappedType;
+        // Trigger change to render the correct input type (and create group container if needed)
+        typeInput.dispatchEvent(new Event('change'));
+
+        if (mappedType === 'Group' && prop.properties) {
+            const nestedContainer = newRow.querySelector('.voluntary-group-container');
+            const nestedAddBtn = nestedContainer.querySelector('.add-voluntary-prop-btn');
+            populateGroupFromSchema(nestedContainer, nestedAddBtn, prop, collisionChecker, customTypeRegistry, schemaLoader);
+        }
+
+        container.insertBefore(newRow, insertBeforeElement);
+    }
+}
+
+/**
+ * Updates the path prefixes of nested inputs when the parent key changes.
+ * @param {HTMLElement} container - The container containing the nested inputs.
+ * @param {string} oldPrefix - The old parent key.
+ * @param {string} newPrefix - The new parent key.
+ */
+function updateNestedPaths(container, oldPrefix, newPrefix) {
+    const replacePrefix = (str) => {
+        if (oldPrefix) {
+            if (str.startsWith(`${oldPrefix}.`)) {
+                return newPrefix ? str.replace(`${oldPrefix}.`, `${newPrefix}.`) : str.replace(`${oldPrefix}.`, '');
+            }
+        } else {
+            if (newPrefix) {
+                return `${newPrefix}.${str}`;
+            }
+        }
+        return str;
+    };
+
+    // 1. Update Inputs and Error Spans
+    const inputs = container.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        const oldName = input.name;
+        const newName = replacePrefix(oldName);
+        
+        if (oldName !== newName) {
+            // Clear old error from global state
+            input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                bubbles: true, composed: true, detail: { path: oldName, isValid: true },
+            }));
+
+            // Update ID and Name
+            input.name = newName;
+            input.id = newName;
+
+            // Update Error Span ID if it exists so validation can find it later
+            const oldErrorId = `${oldName.replace(/\./g, '-')}-error`;
+            const newErrorId = `${newName.replace(/\./g, '-')}-error`;
+            const errorSpan = document.getElementById(oldErrorId);
+            if (errorSpan) {
+                errorSpan.id = newErrorId;
+            }
+            
+            // Re-trigger validation to update global state with new name
+            input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+        }
+    });
+
+    // 2. Update Path Cells
+    const pathCells = container.querySelectorAll('.grid-row .grid-cell:first-child');
+    pathCells.forEach(cell => {
+        cell.textContent = replacePrefix(cell.textContent);
+    });
+
+    // 3. Update Data Attributes for Dynamic Rows (Placeholders and Controls)
+    const dynamicRows = container.querySelectorAll('[data-object-path]');
+    dynamicRows.forEach(row => {
+        row.dataset.objectPath = replacePrefix(row.dataset.objectPath);
+    });
+}
+
+/**
  * Creates a UI row for adding a custom (voluntary) field.
  * Includes inputs for Name, Type, Value, and a Remove button.
  * @returns {HTMLDivElement} The generated row element.
  */
-export function createVoluntaryFieldRow() {
+export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [], schemaLoader = null, ontologyMap = new Map()) {
     const row = document.createElement('div');
     row.className = 'voluntary-field-row';
     // Generate a unique ID for this row to track validation state
     const rowId = Math.random().toString(36).substr(2, 9);
+    let currentKey = '';
 
     const dispatchValidity = (name, isValid) => {
         row.dispatchEvent(new CustomEvent('fieldValidityChange', {
@@ -930,7 +1035,7 @@ export function createVoluntaryFieldRow() {
 
     // Helper to attach validation to custom field inputs
     const attachCustomValidator = (input, type) => {
-        const handler = () => {
+        const handler = async () => {
             let result = { isValid: true };
             const value = input.value.trim();
             
@@ -943,6 +1048,13 @@ export function createVoluntaryFieldRow() {
                 if (type === 'key') {
                     input.value = value;
                     result = validateKey(input.value);
+
+                    if (result.isValid && collisionChecker) {
+                        const conflicts = await collisionChecker(input.value);
+                        if (conflicts && conflicts.length > 0) {
+                            result = { isValid: false, message: `Field conflicts with ${conflicts.join(', ')}` };
+                        }
+                    }
                 } else if (type === 'value') {
                     if (input.type === 'text') {
                         input.value = value;
@@ -988,6 +1100,16 @@ export function createVoluntaryFieldRow() {
     nameInput.name = `custom-key-${rowId}`;
     attachCustomValidator(nameInput, 'key');
     nameContainer.appendChild(nameInput);
+    
+    // Listen for key changes to update nested paths for complex types
+    nameInput.addEventListener('change', () => {
+        const newKey = nameInput.value.trim();
+        if (newKey !== currentKey) {
+            const groupContainer = row.querySelector('.voluntary-group-container');
+            if (groupContainer) updateNestedPaths(groupContainer, currentKey, newKey);
+        }
+        currentKey = newKey;
+    });
 
     const typeContainer = document.createElement('div');
     typeContainer.className = 'voluntary-type-container';
@@ -1000,6 +1122,19 @@ export function createVoluntaryFieldRow() {
         typeSelect.appendChild(option);
     });
     typeContainer.appendChild(typeSelect);
+    
+    if (customTypeRegistry && customTypeRegistry.length > 0) {
+        const separator = document.createElement('option');
+        separator.disabled = true;
+        separator.textContent = '──────────';
+        typeSelect.appendChild(separator);
+        customTypeRegistry.forEach(ct => {
+            const option = document.createElement('option');
+            option.value = ct.label;
+            option.textContent = ct.label;
+            typeSelect.appendChild(option);
+        });
+    }
 
     const valueContainer = document.createElement('div');
     valueContainer.className = 'voluntary-value-container';
@@ -1023,15 +1158,16 @@ export function createVoluntaryFieldRow() {
         row.remove();
     });
 
-    typeSelect.addEventListener('change', () => {
+    typeSelect.addEventListener('change', async () => {
         const type = typeSelect.value;
         let currentValueInput = row.querySelector('.voluntary-value');
         const existingUnitContainer = row.querySelector('.voluntary-unit-container');
         const existingGroupContainer = row.querySelector('.voluntary-group-container');
         const existingValueContainer = row.querySelector('.voluntary-value-container');
+        const customType = customTypeRegistry.find(ct => ct.label === type);
 
-        // 1. Handle Group Type
-        if (type === 'Group') {
+        // 1. Handle Group Type or Custom Complex Types
+        if (type === 'Group' || customType) {
             row.classList.add('group-mode');
             if (existingValueContainer) {
                 // Clean up validation state before removing
@@ -1044,7 +1180,8 @@ export function createVoluntaryFieldRow() {
                 existingUnitContainer.remove();
             }
 
-            if (!existingGroupContainer) {
+            let container = existingGroupContainer;
+            if (!container) {
                 const container = document.createElement('div');
                 container.className = 'voluntary-group-container';
                 
@@ -1053,12 +1190,50 @@ export function createVoluntaryFieldRow() {
                 addBtn.className = 'add-voluntary-prop-btn';
                 addBtn.textContent = 'Add Field';
                 addBtn.addEventListener('click', () => {
-                    const newRow = createVoluntaryFieldRow();
+                    const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
                     container.insertBefore(newRow, addBtn);
                 });
 
                 container.appendChild(addBtn);
                 row.insertBefore(container, removeBtn);
+            }
+
+            if (customType && schemaLoader) {
+                try {
+                    // Load the schema for the selected complex type
+                    const schema = await schemaLoader(customType.schemaName);
+                    
+                    if (schema && schema.properties) {
+                        const container = row.querySelector('.voluntary-group-container');
+                        // Clear the container (removing the "Add Field" button used for generic groups)
+                        container.innerHTML = '';
+                        
+                        // Create a grid layout for the complex type
+                        const grid = document.createElement('div');
+                        grid.className = 'sector-form-grid';
+                        grid.style.marginTop = '0';
+                        grid.style.borderTop = 'none';
+                        grid.style.paddingTop = '0';
+
+                        const fragment = document.createDocumentFragment();
+                        const parentPath = nameInput.value.trim();
+                        currentKey = parentPath;
+
+                        // Generate rows using the standard form generator, passing required fields from the schema
+                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, 'en');
+                        
+                        grid.appendChild(fragment);
+                        container.appendChild(grid);
+
+                        // Trigger validation for the new fields so required ones show up immediately
+                        const newInputs = grid.querySelectorAll('input:not([type="checkbox"]), select');
+                        newInputs.forEach(input => {
+                            input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+                        });
+                    }
+                } catch (error) {
+                    console.error(`Failed to load schema for ${customType.label}:`, error);
+                }
             }
             return;
         }

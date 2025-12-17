@@ -880,8 +880,8 @@ test.describe('DPP Wizard - Input Validation', () => {
   test('should show error when custom field key collides with existing schema fields', async ({ page }) => {
       await page.goto('/spec/wizard/index.html');
       
-      // 1. Add Battery sector
-      await page.locator('button[data-sector="battery"]').click();
+      // 1. Do NOT add Battery sector explicitly.
+      // We want to verify that collision detection works even for sectors not yet added to the form.
 
       // 2. Add custom field
       await page.click('#add-voluntary-field-btn');

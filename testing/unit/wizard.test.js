@@ -1332,6 +1332,238 @@ describe('DPP Wizard - Custom Fields', () => {
         expect(addPropBtn).not.toBeNull();
         expect(addPropBtn.textContent).toBe('Add Field');
     });
+
+    it('should include complex types from the registry in the Type selector', () => {
+        const mockRegistry = [
+            { label: 'Organization', schemaName: 'organization' }
+        ];
+        // Pass null for collisionChecker, and mockRegistry for the new argument
+        const row = createVoluntaryFieldRow(null, mockRegistry);
+        
+        const typeSelect = row.querySelector('select.voluntary-type');
+        const options = Array.from(typeSelect.options).map(o => o.value);
+        
+        expect(options).toContain('Organization');
+    });
+
+    it('should auto-populate fields when a complex type is selected', async () => {
+        const mockRegistry = [
+            { label: 'MockComplex', schemaName: 'mock-complex' }
+        ];
+        const mockSchema = {
+            properties: {
+                field1: { type: 'string' },
+                field2: { type: 'number' }
+            }
+        };
+        // Simple mock loader that returns the schema
+        const mockLoader = () => Promise.resolve(mockSchema);
+
+        const row = createVoluntaryFieldRow(null, mockRegistry, mockLoader);
+        const typeSelect = row.querySelector('select.voluntary-type');
+        
+        typeSelect.value = 'MockComplex';
+        typeSelect.dispatchEvent(new Event('change'));
+
+        // Wait for the async handler to complete (microtask queue)
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        const groupContainer = row.querySelector('.voluntary-group-container');
+        expect(groupContainer).not.toBeNull();
+
+        // Check if fields are populated using the grid layout (not voluntary-field-row)
+        const gridRows = groupContainer.querySelectorAll('.grid-row');
+        expect(gridRows.length).toBe(2);
+
+        // Check first field (field1)
+        const field1Path = gridRows[0].querySelector('.grid-cell:first-child').textContent;
+        expect(field1Path).toContain('field1');
+        expect(gridRows[0].querySelector('input[type="text"]')).not.toBeNull();
+
+        // Check second field (field2)
+        const field2Path = gridRows[1].querySelector('.grid-cell:first-child').textContent;
+        expect(field2Path).toContain('field2');
+        expect(gridRows[1].querySelector('input[type="number"]')).not.toBeNull();
+    });
+
+    it('should enforce required fields defined in the complex type schema', async () => {
+        const mockRegistry = [
+            { label: 'MockOrg', schemaName: 'mock-org' }
+        ];
+        const mockSchema = {
+            type: 'object',
+            required: ['orgName'],
+            properties: {
+                orgName: { type: 'string' }
+            }
+        };
+        const mockLoader = () => Promise.resolve(mockSchema);
+
+        const row = createVoluntaryFieldRow(null, mockRegistry, mockLoader);
+        
+        // Set a key name so we have a predictable path
+        const nameInput = row.querySelector('.voluntary-name');
+        nameInput.value = 'myOrg';
+
+        const typeSelect = row.querySelector('select.voluntary-type');
+        typeSelect.value = 'MockOrg';
+        typeSelect.dispatchEvent(new Event('change'));
+
+        // Wait for async schema loading and DOM updates
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        const groupContainer = row.querySelector('.voluntary-group-container');
+        const orgNameInput = groupContainer.querySelector('input[name="myOrg.orgName"]');
+        expect(orgNameInput).not.toBeNull();
+
+        // Assert that validation was triggered and the field is invalid (required but empty)
+        expect(orgNameInput.classList.contains('invalid')).toBe(true);
+        const errorMsg = orgNameInput.parentElement.querySelector('.error-message');
+        expect(errorMsg).not.toBeNull();
+        expect(errorMsg.textContent).toBe('This field is required');
+    });
+
+    it('should update paths for nested objects when the parent key is renamed (before adding)', async () => {
+        const mockRegistry = [
+            { label: 'MockOrg', schemaName: 'mock-org' }
+        ];
+        const mockSchema = {
+            type: 'object',
+            properties: {
+                nested: {
+                    type: 'object',
+                    properties: {
+                        field: { type: 'string' }
+                    }
+                }
+            }
+        };
+        const mockLoader = () => Promise.resolve(mockSchema);
+
+        const row = createVoluntaryFieldRow(null, mockRegistry, mockLoader);
+        
+        // 1. Select type without naming the field first
+        const typeSelect = row.querySelector('select.voluntary-type');
+        typeSelect.value = 'MockOrg';
+        typeSelect.dispatchEvent(new Event('change'));
+
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        const groupContainer = row.querySelector('.voluntary-group-container');
+        
+        // Check initial paths (should not have 'voluntary' prefix)
+        // Since 'nested' is optional, it renders as a placeholder row first
+        const placeholderRow = groupContainer.querySelector('.grid-row[data-optional-object-placeholder="nested"]');
+        expect(placeholderRow).not.toBeNull();
+        const pathCell = placeholderRow.querySelector('.grid-cell:first-child');
+        expect(pathCell.textContent).toBe('nested');
+
+        // 2. Rename the field
+        const nameInput = row.querySelector('.voluntary-name');
+        nameInput.value = 'myOrg';
+        nameInput.dispatchEvent(new Event('change'));
+
+        // Check updated paths
+        expect(pathCell.textContent).toBe('myOrg.nested');
+    });
+
+    it('should update paths for nested objects when the parent key is renamed (after adding)', async () => {
+        const mockRegistry = [
+            { label: 'MockOrg', schemaName: 'mock-org' }
+        ];
+        const mockSchema = {
+            type: 'object',
+            properties: {
+                nested: {
+                    type: 'object',
+                    properties: { field: { type: 'string' } }
+                }
+            }
+        };
+        const mockLoader = () => Promise.resolve(mockSchema);
+
+        const row = createVoluntaryFieldRow(null, mockRegistry, mockLoader);
+        const typeSelect = row.querySelector('select.voluntary-type');
+        typeSelect.value = 'MockOrg';
+        typeSelect.dispatchEvent(new Event('change'));
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        const groupContainer = row.querySelector('.voluntary-group-container');
+        const addButton = groupContainer.querySelector('button[data-optional-object="nested"]');
+        addButton.click();
+
+        // Rename parent
+        const nameInput = row.querySelector('.voluntary-name');
+        nameInput.value = 'myOrg';
+        nameInput.dispatchEvent(new Event('change'));
+
+        // Check input path
+        const input = groupContainer.querySelector('input[type="text"]');
+        expect(input.name).toBe('myOrg.nested.field');
+    });
+
+    it('should update paths for nested objects when the parent key is renamed (after removing)', async () => {
+        const mockRegistry = [
+            { label: 'MockOrg', schemaName: 'mock-org' }
+        ];
+        const mockSchema = {
+            type: 'object',
+            properties: {
+                nested: {
+                    type: 'object',
+                    properties: { field: { type: 'string' } }
+                }
+            }
+        };
+        const mockLoader = () => Promise.resolve(mockSchema);
+
+        const row = createVoluntaryFieldRow(null, mockRegistry, mockLoader);
+        const typeSelect = row.querySelector('select.voluntary-type');
+        typeSelect.value = 'MockOrg';
+        typeSelect.dispatchEvent(new Event('change'));
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        const groupContainer = row.querySelector('.voluntary-group-container');
+        
+        // Add then Remove
+        groupContainer.querySelector('button[data-optional-object="nested"]').click();
+        groupContainer.querySelector('button[data-remove-optional-object="nested"]').click();
+
+        // Rename parent
+        const nameInput = row.querySelector('.voluntary-name');
+        nameInput.value = 'myOrg';
+        nameInput.dispatchEvent(new Event('change'));
+
+        // Check placeholder path
+        const placeholderRow = groupContainer.querySelector('.grid-row[data-optional-object-placeholder="nested"]');
+        const pathCell = placeholderRow.querySelector('.grid-cell:first-child');
+        expect(pathCell.textContent).toBe('myOrg.nested');
+    });
+
+    it('should clear "required" error when field is populated in a complex type after rename', async () => {
+        const mockRegistry = [{ label: 'MockOrg', schemaName: 'mock-org' }];
+        const mockSchema = { type: 'object', required: ['name'], properties: { name: { type: 'string' } } };
+        const mockLoader = () => Promise.resolve(mockSchema);
+
+        const row = createVoluntaryFieldRow(null, mockRegistry, mockLoader);
+        const typeSelect = row.querySelector('select.voluntary-type');
+        typeSelect.value = 'MockOrg';
+        typeSelect.dispatchEvent(new Event('change'));
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        // Rename parent
+        const nameInput = row.querySelector('.voluntary-name');
+        nameInput.value = 'myOrg';
+        nameInput.dispatchEvent(new Event('change'));
+
+        const input = row.querySelector('input[name="myOrg.name"]');
+        // It should be invalid initially (required)
+        expect(input.classList.contains('invalid')).toBe(true);
+
+        input.value = 'Valid Name';
+        input.dispatchEvent(new Event('blur'));
+        expect(input.classList.contains('invalid')).toBe(false);
+    });
 });
 
 describe('DPP Wizard - DPP Generator', () => {
