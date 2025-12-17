@@ -253,4 +253,13 @@ describe('DPP Generator', () => {
             sharedField: "SharedValue"
         }));
     });
+
+    it('should generate an array of contexts when multiple sectors are selected', () => {
+        const dpp = generateDpp(['battery', 'construction'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
+
+        expect(dpp['@context']).toEqual([
+            'https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld',
+            'https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld'
+        ]);
+    });
 });

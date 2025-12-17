@@ -1633,6 +1633,7 @@ describe('DPP Wizard - DPP Generator', () => {
 
         // 4. Assert the output
         expect(dpp).toEqual({
+            '@context': 'https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld',
             productName: 'Super Drill',
             itemsInStock: 123,
             isHeavy: true,

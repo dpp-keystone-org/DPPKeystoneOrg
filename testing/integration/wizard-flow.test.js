@@ -171,6 +171,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(finalDpp.productName).toBe('Test Construction Product');
         expect(finalDpp.granularity).toBe('Batch');
         expect(finalDpp.contentSpecificationIds).toEqual(['construction-product-dpp-v1']);
+        expect(finalDpp['@context']).toBe('https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld');
     });
 
     it('should update labels and tooltips when the language is changed', async () => {
@@ -366,6 +367,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
         
         // Ensure no duplication in keys (JSON.parse handles this, but we can check if it's an array or something weird)
         expect(Array.isArray(generatedDpp.manufacturer)).toBe(false);
+
+        // Check context array
+        expect(generatedDpp['@context']).toEqual([
+            'https://dpp-keystone.org/spec/contexts/v1/dpp-sector-a.context.jsonld',
+            'https://dpp-keystone.org/spec/contexts/v1/dpp-sector-b.context.jsonld'
+        ]);
     });
 
     it('should generate valid JSON for voluntary complex types (Organization)', async () => {
