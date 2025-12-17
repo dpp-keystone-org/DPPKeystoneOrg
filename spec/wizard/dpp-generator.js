@@ -122,6 +122,18 @@ function scrapeVoluntaryContainer(container) {
  */
 export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper) {
     const dpp = {};
+    
+    // Add @context
+    let contexts = [];
+    const baseUrl = 'https://dpp-keystone.org/spec/contexts/v1/';
+
+    if (sectors && sectors.length > 0) {
+        contexts = sectors.map(sector => `${baseUrl}dpp-${sector}.context.jsonld`);
+    } else {
+        contexts.push(`${baseUrl}dpp-core.context.jsonld`);
+    }
+    dpp['@context'] = contexts.length === 1 ? contexts[0] : contexts;
+
     const containers = [coreFormContainer, formContainer];
 
     // 1. Scrape data from the core and sector-specific forms
