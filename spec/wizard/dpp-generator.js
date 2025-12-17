@@ -41,6 +41,76 @@ function setProperty(obj, path, value) {
     }
 }
 
+/**
+ * Recursively scrapes voluntary fields from a container, handling Groups and Types.
+ * @param {HTMLElement} container - The container element (wrapper or group container).
+ * @returns {object} The scraped data object.
+ */
+function scrapeVoluntaryContainer(container) {
+    const result = {};
+    // Iterate over direct children that are rows to preserve hierarchy
+    const rows = Array.from(container.children).filter(el => el.classList.contains('voluntary-field-row'));
+
+    rows.forEach(row => {
+        const nameInput = row.querySelector('.voluntary-name');
+        if (!nameInput || !nameInput.value) return;
+        const key = nameInput.value;
+
+        const typeSelect = row.querySelector('.voluntary-type');
+        const type = typeSelect ? typeSelect.value : 'Text';
+
+        if (type === 'Group') {
+            const groupContainer = row.querySelector('.voluntary-group-container');
+            if (groupContainer) {
+                const groupData = scrapeVoluntaryContainer(groupContainer);
+                // Only add if not empty? Or always add? 
+                // For now, we add it to allow empty groups if created explicitly.
+                result[key] = groupData;
+            }
+        } else if (row.querySelector('.voluntary-group-container .sector-form-grid')) {
+            // Handle complex custom types (rendered as a grid)
+            const groupContainer = row.querySelector('.voluntary-group-container');
+            const inputs = groupContainer.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (!input.name) return;
+                let value;
+                if (input.type === 'checkbox') {
+                    value = input.checked;
+                } else if (input.type === 'number') {
+                    value = input.valueAsNumber;
+                    if (isNaN(value)) value = null;
+                } else {
+                    value = input.value;
+                }
+                setProperty(result, input.name, value);
+            });
+        } else {
+            const valueInput = row.querySelector('.voluntary-value');
+            // If value input is missing (e.g. UI glitch), skip
+            if (!valueInput) return;
+
+            let rawVal = valueInput.value;
+            let finalVal = rawVal;
+
+            if (type === 'Number') {
+                if (rawVal === '' || rawVal === null) return; // Skip empty numbers
+                finalVal = Number(rawVal);
+
+                const unitInput = row.querySelector('.voluntary-unit');
+                if (unitInput && unitInput.value) {
+                    finalVal = { value: finalVal, unit: unitInput.value };
+                }
+            } else if (type === 'True/False') {
+                finalVal = (rawVal === 'true');
+            } else {
+                // Text
+                if (rawVal === '' || rawVal === null) return; // Skip empty text
+            }
+            result[key] = finalVal;
+        }
+    });
+    return result;
+}
 
 /**
  * Scrapes form data and generates a DPP JSON object.
@@ -82,26 +152,13 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
         });
     });
 
-    // 2. Scrape data from the voluntary fields, also handling nesting
-    const voluntaryRows = voluntaryFieldsWrapper.querySelectorAll('.voluntary-field-row');
-    voluntaryRows.forEach(row => {
-        const nameInput = row.querySelector('.voluntary-name');
-        const valueInput = row.querySelector('.voluntary-value');
-        if (nameInput && valueInput && nameInput.value) {
-            // Attempt to parse value as a number if it looks like one
-            const rawValue = valueInput.value;
-            let finalValue = rawValue;
-            if (rawValue !== '' && !isNaN(Number(rawValue))) {
-                finalValue = Number(rawValue);
-            }
-            setProperty(dpp, nameInput.value, finalValue);
-        }
-    });
+    // 2. Scrape data from the voluntary fields using recursive logic
+    const voluntaryData = scrapeVoluntaryContainer(voluntaryFieldsWrapper);
+    Object.assign(dpp, voluntaryData);
 
     // 3. Automatically add contentSpecificationId(s) based on the array of sectors
     if (sectors && sectors.length > 0) {
         dpp.contentSpecificationIds = sectors.map(sector => `${sector}-product-dpp-v1`);
-        dpp.contentSpecificationId = dpp.contentSpecificationIds[0];
     }
 
     return dpp;

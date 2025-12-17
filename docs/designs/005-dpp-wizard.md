@@ -35,10 +35,11 @@ This document outlines the sub-roadmap for Task #5, the development of a client-
     - **[COMPLETED] 5n-8. Fix Stale Remove Button Bug:** Fixed a bug where remove buttons on object array items would fail after a preceding item was removed and re-indexed, due to a stale closure in the event listener.
   - **[COMPLETED] 5o. Wizard Bug Bash:** Address a series of identified bugs and design gaps to improve wizard stability and correctness.
     - **See Design Doc:** [docs/designs/wizard-bug-bash.md](./wizard-bug-bash.md)
-  - **[IN PROGRESS] 5p. Custom Field Implementation:** Implement a robust 'Add Custom Field' feature. This includes selecting data types (String, Number, Boolean), validating input formats, creating nested objects, and ensuring no namespace collisions with existing sector fields.
+  - **[COMPLETED] 5p. Custom Field Implementation:** Implement a robust 'Add Custom Field' feature. This includes selecting data types (String, Number, Boolean), validating input formats, creating nested objects, and ensuring no namespace collisions with existing sector fields.
     - **See Design Doc:** [docs/designs/012-custom-fields.md](./012-custom-fields.md)
   - **[COMPLETED] 5r. Form Validation & Button State:** Disable the 'Generate DPP' button until all required fields (from core and sector schemas) are filled. Pause and allow the user to test and discuss next steps.
-  - **[PENDING] 5s. Robust JSON Generation:** Ensure the 'Generate DPP' button correctly populates the output area with the full, valid JSON. Pause and allow the user to test and discuss next steps.
+  - **[IN PROGRESS] 5s. Robust JSON Generation:** Ensure the 'Generate DPP' button correctly populates the output area with the full, valid JSON. This includes handling typed custom fields, nested groups, and multiple sectors.
+    - **See Design Doc:** docs/designs/013-json-generation.md
   - **[COMPLETED] 5t. Refactor Battery Sector Data Model:** Corrected the data model for several battery sector properties that were incorrectly defined as objects, causing UI and validation failures.
     - **[COMPLETED] 5t-1. Diagnose Modeling Flaw:** Identified that properties like `nominalVoltage` were incorrectly modeled as `QuantitativeValue` objects instead of primitive types, causing a mismatch between the ontology, schema, and context.
     - **[COMPLETED] 5t-2. Refactor to Primitive Types:** Updated the ontology, JSON schema, and JSON-LD context to define `nominalVoltage`, `ratedCapacity`, and `stateOfHealth` as simple `xsd:decimal` / `number` types.
@@ -67,4 +68,9 @@ This document outlines the sub-roadmap for Task #5, the development of a client-
     - **[COMPLETED] 5x-7. [Test] Add Unit Test for Translated Tooltips:** In `testing/unit/wizard.test.js`, add a new test case that provides a mock ontology with a translated comment, renders the form in that language, and asserts that the tooltip modal contains the correct translated text.
     - **[COMPLETED] 5x-8. [Test] Expand Integration Test for Translated Tooltips:** In `testing/integration/wizard-flow.test.js`, expand the existing language switching test to also assert that the tooltip modal's content is correctly translated when the language is changed.
   - **[COMPLETED] 5y. Add format validation to the wizard:** Right now, the user can type anything into any of the fields in the wizard. We need to design and add validators for the different formats found in the JSON schema and often refined or specialized further in the ontology. This is a complex change.
-    - **See Design Doc:** [docs/designs/011-wizard-validation.md](./011-wizard-validation.md)
+    - **See Design Doc:** [docs/designs/011-wizard-validation.md](./011-wizard-validation.md)    - **[COMPLETED] 5z-o. [Test] Add Comprehensive Unit Tests for Optional Object Edge Cases:** Add a suite of unit tests in `wizard.test.js` to cover complex scenarios and edge cases for the Add/Remove functionality.
+        - **[COMPLETED] 5z-o.1. [Implementation] Add Edge Case Tests:** Implement tests for nested optional objects, sibling optional objects, and data persistence/clearing upon removal and re-addition.
+  - **[COMPLETED] 5aa. Shared Field Synchronization:** When multiple sectors are loaded, fields with the same name (e.g., `manufacturer`) must stay in sync. Typing in one should update the other to ensure data consistency.
+    - **[COMPLETED] 5aa-1. [Test] Add Failing Playwright Test:** Create a test that loads two sectors with a shared field, types into one, and asserts the other updates.
+    - **[COMPLETED] 5aa-2. [Implementation] Global Sync Listener:** Implement a global `input` listener in `wizard.js` that finds all inputs with the same `name` and updates them.
+  - **[COMPLETED] 5bb. Form State Persistence:** Implement `localStorage` caching for the Core form and active Sectors so data is preserved on page refresh.

@@ -1,5 +1,5 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCodeAlpha3, isNumber, isInteger, validateText, validateKey } from './validator.js';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js';
 
 /**
  * Creates and displays a tooltip modal.
@@ -187,8 +187,8 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
         } else if (ontologyInfo?.range === 'integer' && !isInteger(value)) {
             validationResult = { isValid: false, message: 'Must be a whole number.' };
         } else if (target.name.endsWith('countryOfOrigin') || target.name.endsWith('addressCountry') || target.name.endsWith('productionLocationCountry')) {
-            if (!isCountryCodeAlpha3(value)) {
-                validationResult = { isValid: false, message: 'Must be a valid 3-letter country code (ISO 3166-1 alpha-3)' };
+            if (!isCountryCode(value)) {
+                validationResult = { isValid: false, message: 'Must be a valid 2 or 3-letter country code' };
             }
         } else if (ontologyInfo?.validation) {
             const { min, max } = ontologyInfo.validation;
