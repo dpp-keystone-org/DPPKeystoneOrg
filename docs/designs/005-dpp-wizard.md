@@ -74,3 +74,5 @@ This document outlines the sub-roadmap for Task #5, the development of a client-
     - **[COMPLETED] 5aa-1. [Test] Add Failing Playwright Test:** Create a test that loads two sectors with a shared field, types into one, and asserts the other updates.
     - **[COMPLETED] 5aa-2. [Implementation] Global Sync Listener:** Implement a global `input` listener in `wizard.js` that finds all inputs with the same `name` and updates them.
   - **[COMPLETED] 5bb. Form State Persistence:** Implement `localStorage` caching for the Core form and active Sectors so data is preserved on page refresh.
+  - **[PENDING] 5cc. Stakeholder Enhancements:** Implement educational features to demonstrate the value of Linked Data, including Knowledge Graph links, JSON/JSON-LD toggles, and mocked signatures.
+    - **See Design Doc:** docs/designs/014-stakeholder-enhancements.md
