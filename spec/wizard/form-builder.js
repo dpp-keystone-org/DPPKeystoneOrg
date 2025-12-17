@@ -1,5 +1,5 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCodeAlpha3, isNumber, isInteger } from './validator.js';
+import { isURI, isCountryCodeAlpha3, isNumber, isInteger, validateText, validateKey } from './validator.js';
 
 /**
  * Creates and displays a tooltip modal.
@@ -164,6 +164,12 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
     const handleValidation = (e) => {
         const { target } = e;
         const { value } = target;
+
+        // Auto-trim text inputs
+        if (target.type === 'text' || target.tagName === 'TEXTAREA') {
+            target.value = target.value.trim();
+        }
+
         let validationResult = { isValid: true };
 
         if ((prop.type === 'number' || prop.type === 'integer') && !target.validity.valid && value === '') {
@@ -172,6 +178,8 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
             if (isRequired) {
                 validationResult = { isValid: false, message: 'This field is required' };
             }
+        } else if (prop.type === 'string' && !validateText(value).isValid) {
+            validationResult = validateText(value);
         } else if (prop.format === 'uri' && !isURI(value)) {
             validationResult = { isValid: false, message: 'Must be a valid URI (e.g., http://example.com)' };
         } else if ((ontologyInfo?.range === 'decimal' || ontologyInfo?.range === 'double' || ontologyInfo?.range === 'float') && !isNumber(value)) {
@@ -701,6 +709,7 @@ function createOptionalObjectControlRow(objectKey, objectPath, indentationLevel,
     const controlRow = document.createElement('div');
     controlRow.className = 'grid-row array-item-control-row'; // Reusing array-item-control-row class for now
     controlRow.dataset.optionalObjectControl = objectKey; // Mark this as the control row for the optional object
+    controlRow.dataset.objectPath = objectPath; // Store path for updates
 
     const firstCell = document.createElement('div');
     firstCell.className = 'grid-cell';
@@ -737,7 +746,8 @@ function createOptionalObjectControlRow(objectKey, objectPath, indentationLevel,
         const parentGroups = allGroups.replace(new RegExp(`\\b${objectKey}\\b`), '').trim();
 
         // Re-create and insert the placeholder row before removing the old rows
-        const newPlaceholder = createOptionalObjectPlaceholderRow(objectKey, prop, objectPath, indentationLevel, ontologyMap, lang);
+        const dynamicPath = controlRow.dataset.objectPath;
+        const newPlaceholder = createOptionalObjectPlaceholderRow(objectKey, prop, dynamicPath, indentationLevel, ontologyMap, lang);
         
         // Assign the parent groups to the new placeholder
         if (parentGroups) {
@@ -774,6 +784,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const placeholderRow = document.createElement('div');
     placeholderRow.className = 'grid-row';
     placeholderRow.dataset.optionalObjectPlaceholder = key;
+    placeholderRow.dataset.objectPath = currentPath; // Store path for updates
 
     const pathCell = document.createElement('div');
     pathCell.className = 'grid-cell';
@@ -813,6 +824,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const parentRow = event.currentTarget.closest('.grid-row[data-optional-object-placeholder]');
         if (!parentRow) return;
 
+        const dynamicPath = parentRow.dataset.objectPath;
         // Get existing groups from the placeholder row itself.
         const existingGroups = parentRow.dataset.optionalObjectGroups || '';
 
@@ -823,11 +835,11 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         parentRow.classList.add('grid-row-header');
         parentRow.removeAttribute('data-optional-object-placeholder');
         parentRow.dataset.optionalObjectGroups = newGroup;
-        populateHeaderRow(parentRow, { currentPath, indentationLevel, ontologyMap, lang });
+        populateHeaderRow(parentRow, { currentPath: dynamicPath, indentationLevel, ontologyMap, lang });
 
         // Generate and add the child fields.
-        generateRows(newFieldsFragment, prop.properties, ontologyMap, prop.required || [], currentPath, indentationLevel + 1, lang);
-        newFieldsFragment.appendChild(createOptionalObjectControlRow(key, currentPath, indentationLevel, lang, prop, ontologyMap));
+        generateRows(newFieldsFragment, prop.properties, ontologyMap, prop.required || [], dynamicPath, indentationLevel + 1, lang);
+        newFieldsFragment.appendChild(createOptionalObjectControlRow(key, dynamicPath, indentationLevel, lang, prop, ontologyMap));
         
         // Mark all new rows as belonging to the group.
         [...newFieldsFragment.children].forEach(row => {
@@ -899,4 +911,420 @@ export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
     }
 
     return fragment;
+}
+
+/**
+ * Helper to recursively populate a group container from a JSON schema.
+ * @param {HTMLElement} container - The container to append rows to.
+ * @param {HTMLElement} insertBeforeElement - The element to insert before (usually the Add button).
+ * @param {object} schema - The JSON schema object.
+ * @param {Function} collisionChecker - Function to check for name collisions.
+ * @param {Array} customTypeRegistry - Registry of custom types.
+ * @param {Function} schemaLoader - Function to load schemas.
+ */
+function populateGroupFromSchema(container, insertBeforeElement, schema, collisionChecker, customTypeRegistry, schemaLoader) {
+    if (!schema || !schema.properties) return;
+
+    for (const [key, prop] of Object.entries(schema.properties)) {
+        const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
+
+        const nameInput = newRow.querySelector('.voluntary-name');
+        nameInput.value = key;
+
+        const typeInput = newRow.querySelector('.voluntary-type');
+        let mappedType = 'Text';
+        if (prop.type === 'number' || prop.type === 'integer') mappedType = 'Number';
+        else if (prop.type === 'boolean') mappedType = 'True/False';
+        else if (prop.type === 'object') mappedType = 'Group';
+
+        typeInput.value = mappedType;
+        // Trigger change to render the correct input type (and create group container if needed)
+        typeInput.dispatchEvent(new Event('change'));
+
+        if (mappedType === 'Group' && prop.properties) {
+            const nestedContainer = newRow.querySelector('.voluntary-group-container');
+            const nestedAddBtn = nestedContainer.querySelector('.add-voluntary-prop-btn');
+            populateGroupFromSchema(nestedContainer, nestedAddBtn, prop, collisionChecker, customTypeRegistry, schemaLoader);
+        }
+
+        container.insertBefore(newRow, insertBeforeElement);
+    }
+}
+
+/**
+ * Updates the path prefixes of nested inputs when the parent key changes.
+ * @param {HTMLElement} container - The container containing the nested inputs.
+ * @param {string} oldPrefix - The old parent key.
+ * @param {string} newPrefix - The new parent key.
+ */
+function updateNestedPaths(container, oldPrefix, newPrefix) {
+    const replacePrefix = (str) => {
+        if (oldPrefix) {
+            if (str.startsWith(`${oldPrefix}.`)) {
+                return newPrefix ? str.replace(`${oldPrefix}.`, `${newPrefix}.`) : str.replace(`${oldPrefix}.`, '');
+            }
+        } else {
+            if (newPrefix) {
+                return `${newPrefix}.${str}`;
+            }
+        }
+        return str;
+    };
+
+    // 1. Update Inputs and Error Spans
+    const inputs = container.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        const oldName = input.name;
+        const newName = replacePrefix(oldName);
+        
+        if (oldName !== newName) {
+            // Clear old error from global state
+            input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                bubbles: true, composed: true, detail: { path: oldName, isValid: true },
+            }));
+
+            // Update ID and Name
+            input.name = newName;
+            input.id = newName;
+
+            // Update Error Span ID if it exists so validation can find it later
+            const oldErrorId = `${oldName.replace(/\./g, '-')}-error`;
+            const newErrorId = `${newName.replace(/\./g, '-')}-error`;
+            const errorSpan = document.getElementById(oldErrorId);
+            if (errorSpan) {
+                errorSpan.id = newErrorId;
+            }
+            
+            // Re-trigger validation to update global state with new name
+            input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+        }
+    });
+
+    // 2. Update Path Cells
+    const pathCells = container.querySelectorAll('.grid-row .grid-cell:first-child');
+    pathCells.forEach(cell => {
+        cell.textContent = replacePrefix(cell.textContent);
+    });
+
+    // 3. Update Data Attributes for Dynamic Rows (Placeholders and Controls)
+    const dynamicRows = container.querySelectorAll('[data-object-path]');
+    dynamicRows.forEach(row => {
+        row.dataset.objectPath = replacePrefix(row.dataset.objectPath);
+    });
+}
+
+/**
+ * Creates a UI row for adding a custom (voluntary) field.
+ * Includes inputs for Name, Type, Value, and a Remove button.
+ * @returns {HTMLDivElement} The generated row element.
+ */
+export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [], schemaLoader = null, ontologyMap = new Map()) {
+    const row = document.createElement('div');
+    row.className = 'voluntary-field-row';
+    // Generate a unique ID for this row to track validation state
+    const rowId = Math.random().toString(36).substr(2, 9);
+    let currentKey = '';
+
+    const dispatchValidity = (name, isValid) => {
+        row.dispatchEvent(new CustomEvent('fieldValidityChange', {
+            bubbles: true,
+            composed: true,
+            detail: { path: name, isValid },
+        }));
+    };
+
+    // Helper to attach validation to custom field inputs
+    const attachCustomValidator = (input, type) => {
+        const handler = async () => {
+            let result = { isValid: true };
+            const value = input.value.trim();
+            
+            // Enforce required fields (except for 'unit')
+            if (value === '' && type !== 'unit') {
+                result = { isValid: false, message: 'This field is required' };
+            }
+            
+            if (result.isValid) {
+                if (type === 'key') {
+                    input.value = value;
+                    result = validateKey(input.value);
+
+                    if (result.isValid && collisionChecker) {
+                        const conflicts = await collisionChecker(input.value);
+                        if (conflicts && conflicts.length > 0) {
+                            result = { isValid: false, message: `Field conflicts with ${conflicts.join(', ')}` };
+                        }
+                    }
+                } else if (type === 'value') {
+                    if (input.type === 'text') {
+                        input.value = value;
+                    }
+                    result = validateText(input.value);
+                }
+            }
+
+            let errorSpan = input.nextElementSibling;
+            if (errorSpan && !errorSpan.classList.contains('error-message')) {
+                errorSpan = null;
+            }
+
+            if (result.isValid) {
+                input.classList.remove('invalid');
+                if (errorSpan) errorSpan.remove();
+            } else {
+                input.classList.add('invalid');
+                if (!errorSpan) {
+                    errorSpan = document.createElement('span');
+                    errorSpan.className = 'error-message';
+                    input.parentNode.insertBefore(errorSpan, input.nextSibling);
+                }
+                errorSpan.textContent = result.message;
+            }
+
+            // Dispatch event for global tracking
+            if (input.name) {
+                dispatchValidity(input.name, result.isValid);
+            }
+        };
+        input.addEventListener('blur', handler);
+        // Listen for change as well (e.g. for Select inputs)
+        input.addEventListener('change', handler);
+    };
+
+    const nameContainer = document.createElement('div');
+    nameContainer.className = 'voluntary-name-container';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Property Name';
+    nameInput.className = 'voluntary-name';
+    nameInput.name = `custom-key-${rowId}`;
+    attachCustomValidator(nameInput, 'key');
+    nameContainer.appendChild(nameInput);
+    
+    // Listen for key changes to update nested paths for complex types
+    nameInput.addEventListener('change', () => {
+        const newKey = nameInput.value.trim();
+        if (newKey !== currentKey) {
+            const groupContainer = row.querySelector('.voluntary-group-container');
+            if (groupContainer) updateNestedPaths(groupContainer, currentKey, newKey);
+        }
+        currentKey = newKey;
+    });
+
+    const typeContainer = document.createElement('div');
+    typeContainer.className = 'voluntary-type-container';
+    const typeSelect = document.createElement('select');
+    typeSelect.className = 'voluntary-type';
+    ['Text', 'Number', 'True/False', 'Group'].forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type;
+        typeSelect.appendChild(option);
+    });
+    typeContainer.appendChild(typeSelect);
+    
+    if (customTypeRegistry && customTypeRegistry.length > 0) {
+        const separator = document.createElement('option');
+        separator.disabled = true;
+        separator.textContent = '──────────';
+        typeSelect.appendChild(separator);
+        customTypeRegistry.forEach(ct => {
+            const option = document.createElement('option');
+            option.value = ct.label;
+            option.textContent = ct.label;
+            typeSelect.appendChild(option);
+        });
+    }
+
+    const valueContainer = document.createElement('div');
+    valueContainer.className = 'voluntary-value-container';
+    const valueInput = document.createElement('input');
+    valueInput.type = 'text';
+    valueInput.placeholder = 'Property Value';
+    valueInput.className = 'voluntary-value';
+    valueInput.name = `custom-value-${rowId}`;
+    attachCustomValidator(valueInput, 'value');
+    valueContainer.appendChild(valueInput);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = 'Remove';
+    removeBtn.addEventListener('click', () => {
+        // Clear errors for all inputs in this row (including nested ones) before removing
+        const inputs = row.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            if (input.name) dispatchValidity(input.name, true);
+        });
+        row.remove();
+    });
+
+    typeSelect.addEventListener('change', async () => {
+        const type = typeSelect.value;
+        let currentValueInput = row.querySelector('.voluntary-value');
+        const existingUnitContainer = row.querySelector('.voluntary-unit-container');
+        const existingGroupContainer = row.querySelector('.voluntary-group-container');
+        const existingValueContainer = row.querySelector('.voluntary-value-container');
+        const customType = customTypeRegistry.find(ct => ct.label === type);
+
+        // 1. Handle Group Type or Custom Complex Types
+        if (type === 'Group' || customType) {
+            row.classList.add('group-mode');
+            if (existingValueContainer) {
+                // Clean up validation state before removing
+                if (currentValueInput.name) dispatchValidity(currentValueInput.name, true);
+                existingValueContainer.remove();
+            }
+            if (existingUnitContainer) {
+                const unitInput = existingUnitContainer.querySelector('input');
+                if (unitInput && unitInput.name) dispatchValidity(unitInput.name, true);
+                existingUnitContainer.remove();
+            }
+
+            let container = existingGroupContainer;
+            if (!container) {
+                const container = document.createElement('div');
+                container.className = 'voluntary-group-container';
+                
+                const addBtn = document.createElement('button');
+                addBtn.type = 'button';
+                addBtn.className = 'add-voluntary-prop-btn';
+                addBtn.textContent = 'Add Field';
+                addBtn.addEventListener('click', () => {
+                    const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
+                    container.insertBefore(newRow, addBtn);
+                });
+
+                container.appendChild(addBtn);
+                row.insertBefore(container, removeBtn);
+            }
+
+            if (customType && schemaLoader) {
+                try {
+                    // Load the schema for the selected complex type
+                    const schema = await schemaLoader(customType.schemaName);
+                    
+                    if (schema && schema.properties) {
+                        const container = row.querySelector('.voluntary-group-container');
+                        // Clear the container (removing the "Add Field" button used for generic groups)
+                        container.innerHTML = '';
+                        
+                        // Create a grid layout for the complex type
+                        const grid = document.createElement('div');
+                        grid.className = 'sector-form-grid';
+                        grid.style.marginTop = '0';
+                        grid.style.borderTop = 'none';
+                        grid.style.paddingTop = '0';
+
+                        const fragment = document.createDocumentFragment();
+                        const parentPath = nameInput.value.trim();
+                        currentKey = parentPath;
+
+                        // Generate rows using the standard form generator, passing required fields from the schema
+                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, 'en');
+                        
+                        grid.appendChild(fragment);
+                        container.appendChild(grid);
+
+                        // Trigger validation for the new fields so required ones show up immediately
+                        const newInputs = grid.querySelectorAll('input:not([type="checkbox"]), select');
+                        newInputs.forEach(input => {
+                            input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+                        });
+                    }
+                } catch (error) {
+                    console.error(`Failed to load schema for ${customType.label}:`, error);
+                }
+            }
+            return;
+        }
+
+        // 2. Handle Non-Group Types
+        row.classList.remove('group-mode');
+        if (existingGroupContainer) existingGroupContainer.remove();
+        
+        // Ensure value container exists
+        if (!row.querySelector('.voluntary-value-container')) {
+            // Re-create value container if it was removed (e.g. coming back from Group)
+            // We will populate it below in step 3
+            const newValContainer = document.createElement('div');
+            newValContainer.className = 'voluntary-value-container';
+            row.insertBefore(newValContainer, removeBtn);
+        }
+
+        // Remove Unit if not Number
+        if (type !== 'Number' && existingUnitContainer) {
+            const unitInput = existingUnitContainer.querySelector('input');
+            if (unitInput && unitInput.name) dispatchValidity(unitInput.name, true);
+            existingUnitContainer.remove();
+        }
+
+        // 3. Handle Value Input (Select vs Input)
+        // Note: currentValueInput might be null if we just came from Group mode
+        currentValueInput = row.querySelector('.voluntary-value');
+        const currentContainer = row.querySelector('.voluntary-value-container');
+
+        if (type === 'True/False') {
+            if (!currentValueInput || currentValueInput.tagName !== 'SELECT') {
+                const select = document.createElement('select');
+                select.className = 'voluntary-value';
+                select.name = `custom-value-${rowId}`;
+                ['True', 'False'].forEach(val => {
+                    const opt = document.createElement('option');
+                    opt.value = val.toLowerCase();
+                    opt.textContent = val;
+                    select.appendChild(opt);
+                });
+                attachCustomValidator(select, 'value');
+                
+                if (currentValueInput) {
+                    // If replacing an invalid input with a valid default select, clear the error
+                    if (currentValueInput.name) dispatchValidity(currentValueInput.name, true);
+                    currentValueInput.replaceWith(select);
+                } else {
+                    currentContainer.appendChild(select);
+                }
+            }
+        } else {
+            // Ensure it's an input element for Text/Number
+            if (!currentValueInput || currentValueInput.tagName !== 'INPUT') {
+                const input = document.createElement('input');
+                input.className = 'voluntary-value';
+                input.placeholder = 'Property Value';
+                input.name = `custom-value-${rowId}`;
+                attachCustomValidator(input, 'value');
+                
+                if (currentValueInput) {
+                    if (currentValueInput.name) dispatchValidity(currentValueInput.name, true);
+                    currentValueInput.replaceWith(input);
+                } else {
+                    currentContainer.appendChild(input);
+                }
+            }
+            
+            currentValueInput = row.querySelector('.voluntary-value');
+            currentValueInput.type = (type === 'Number') ? 'number' : 'text';
+
+            // Add Unit for Number
+            if (type === 'Number' && !row.querySelector('.voluntary-unit-container')) {
+                const unitContainer = document.createElement('div');
+                unitContainer.className = 'voluntary-unit-container';
+                
+                const unitInput = document.createElement('input');
+                unitInput.type = 'text';
+                unitInput.placeholder = 'Unit';
+                unitInput.className = 'voluntary-unit';
+                unitInput.name = `custom-unit-${rowId}`;
+                attachCustomValidator(unitInput, 'unit');
+                unitContainer.appendChild(unitInput);
+                row.insertBefore(unitContainer, removeBtn);
+            }
+        }
+    });
+
+    row.appendChild(nameContainer);
+    row.appendChild(typeContainer);
+    row.appendChild(valueContainer);
+    row.appendChild(removeBtn);
+
+    return row;
 }

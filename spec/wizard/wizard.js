@@ -1,7 +1,7 @@
 // src/wizard/wizard.js
 import { loadSchema } from './schema-loader.js';
 import { loadOntology } from './ontology-loader.js';
-import { buildForm } from './form-builder.js';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
 import { generateDpp } from './dpp-generator.js';
 
 // --- Module-level state ---
@@ -11,6 +11,10 @@ let currentLanguage = 'en';
 let coreSchema = null;
 let coreOntologyMap = null;
 const sectorDataCache = new Map(); // sector -> { schema, ontologyMap }
+
+const SUPPORTED_CUSTOM_TYPES = [
+    { label: 'Organization', schemaName: 'organization' }
+];
 
 // --- DOM Element References ---
 let coreFormContainer, sectorsFormContainer, addVoluntaryFieldBtn,
@@ -299,28 +303,51 @@ export async function initializeWizard() {
         });
     }
 
+    /**
+     * Checks if a key conflicts with existing fields in Core or any available Sector.
+     * @param {string} key - The key to check.
+     * @returns {Promise<string[]>} - Array of sector names (including 'Core') where the key exists.
+     */
+    async function getConflictingSectors(key) {
+        const conflicts = [];
+        
+        const hasProperty = (schema, prop) => {
+            if (!schema) return false;
+            if (schema.properties && schema.properties[prop]) return true;
+            if (schema.then && schema.then.properties && schema.then.properties[prop]) return true;
+            return false;
+        };
+
+        if (hasProperty(coreSchema, key)) {
+            conflicts.push('Core');
+        }
+
+        const allSectors = [...sectorButtons].map(btn => btn.dataset.sector);
+        
+        for (const sector of allSectors) {
+            let data = sectorDataCache.get(sector);
+            if (!data) {
+                try {
+                    const schema = await loadSchema(sector);
+                    const ontologyMap = await loadOntology(sector);
+                    data = { schema, ontologyMap };
+                    sectorDataCache.set(sector, data);
+                } catch (error) {
+                    console.warn(`Failed to load schema for sector ${sector} during collision check`, error);
+                    continue;
+                }
+            }
+
+            if (data && hasProperty(data.schema, key)) {
+                conflicts.push(sector.charAt(0).toUpperCase() + sector.slice(1));
+            }
+        }
+
+        return conflicts;
+    }
+
     function addVoluntaryField() {
-        const fieldRow = document.createElement('div');
-        fieldRow.className = 'voluntary-field-row';
-
-        const nameInput = document.createElement('input');
-        nameInput.type = 'text';
-        nameInput.placeholder = 'Property Name';
-        nameInput.className = 'voluntary-name';
-
-        const valueInput = document.createElement('input');
-        valueInput.type = 'text';
-        valueInput.placeholder = 'Property Value';
-        valueInput.className = 'voluntary-value';
-
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.textContent = 'Remove';
-        removeBtn.addEventListener('click', () => fieldRow.remove());
-
-        fieldRow.appendChild(nameInput);
-        fieldRow.appendChild(valueInput);
-        fieldRow.appendChild(removeBtn);
+        const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap);
         voluntaryFieldsWrapper.appendChild(fieldRow);
     }
     

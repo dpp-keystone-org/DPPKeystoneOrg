@@ -78,3 +78,40 @@ export function isInteger(value) {
     if (!isNumber(value)) return false;
     return parseFloat(value) % 1 === 0;
 }
+
+/**
+ * Validates text input for control characters.
+ * @param {string} value The text to validate.
+ * @returns {{isValid: boolean, message?: string}} The validation result.
+ */
+export function validateText(value) {
+    if (typeof value !== 'string') return { isValid: true };
+    
+    // Check for control characters (excluding standard whitespace like space, tab, newline)
+    // eslint-disable-next-line no-control-regex
+    const controlChars = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/;
+    if (controlChars.test(value)) {
+        return { isValid: false, message: 'Invalid characters detected' };
+    }
+    
+    return { isValid: true };
+}
+
+/**
+ * Validates a custom field key (strict camelCase).
+ * @param {string} value The key to validate.
+ * @returns {{isValid: boolean, message?: string}} The validation result.
+ */
+export function validateKey(value) {
+    if (!value || !value.trim()) return { isValid: false, message: 'Key cannot be empty' };
+    
+    const reserved = ['__proto__', 'constructor', 'prototype'];
+    if (reserved.includes(value)) return { isValid: false, message: 'Reserved word not allowed' };
+
+    const camelCaseRegex = /^[a-z][a-zA-Z0-9]*$/;
+    if (!camelCaseRegex.test(value)) {
+        return { isValid: false, message: 'Name must be camelCase (e.g., myProperty)' };
+    }
+
+    return { isValid: true };
+}

@@ -35,10 +35,9 @@ This document outlines the sub-roadmap for Task #5, the development of a client-
     - **[COMPLETED] 5n-8. Fix Stale Remove Button Bug:** Fixed a bug where remove buttons on object array items would fail after a preceding item was removed and re-indexed, due to a stale closure in the event listener.
   - **[COMPLETED] 5o. Wizard Bug Bash:** Address a series of identified bugs and design gaps to improve wizard stability and correctness.
     - **See Design Doc:** [docs/designs/wizard-bug-bash.md](./wizard-bug-bash.md)
-  - **[PENDING] 5p. Custom Field Implementation:** Implement the 'Add Custom Field' button to add a row for Name, Value, and Units. Pause and allow the user to test and discuss next steps.
-  - **[PENDING] 5q. Custom Field Validation:** Add validation to ensure the 'Name' in custom fields is in camelCase format. Pause and allow the user to test and discuss next steps.
-     - **[PENDING] 5q-1. Name collision avoidance:** Add validation to ensure the 'Name' in custom fields is does not collide with a sector field name.
-  - **[PENDING] 5r. Form Validation & Button State:** Disable the 'Generate DPP' button until all required fields (from core and sector schemas) are filled. Pause and allow the user to test and discuss next steps.
+  - **[IN PROGRESS] 5p. Custom Field Implementation:** Implement a robust 'Add Custom Field' feature. This includes selecting data types (String, Number, Boolean), validating input formats, creating nested objects, and ensuring no namespace collisions with existing sector fields.
+    - **See Design Doc:** [docs/designs/012-custom-fields.md](./012-custom-fields.md)
+  - **[COMPLETED] 5r. Form Validation & Button State:** Disable the 'Generate DPP' button until all required fields (from core and sector schemas) are filled. Pause and allow the user to test and discuss next steps.
   - **[PENDING] 5s. Robust JSON Generation:** Ensure the 'Generate DPP' button correctly populates the output area with the full, valid JSON. Pause and allow the user to test and discuss next steps.
   - **[COMPLETED] 5t. Refactor Battery Sector Data Model:** Corrected the data model for several battery sector properties that were incorrectly defined as objects, causing UI and validation failures.
     - **[COMPLETED] 5t-1. Diagnose Modeling Flaw:** Identified that properties like `nominalVoltage` were incorrectly modeled as `QuantitativeValue` objects instead of primitive types, causing a mismatch between the ontology, schema, and context.
