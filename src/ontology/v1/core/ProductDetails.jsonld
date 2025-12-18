@@ -12,13 +12,5 @@
   "dcterms:title": "DPP Core Ontology - Reusable Product Details",
   "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
   "@graph": [
-    {
-      "@id": "dppk:estimatedServiceLife",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Estimated Service Life",
-      "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
-    }
   ]
 }
