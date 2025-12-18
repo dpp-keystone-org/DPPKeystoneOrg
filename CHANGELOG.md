@@ -6,6 +6,10 @@ This document serves as a historical archive of all major tasks and features com
 
 ## Completed
 
+- **[COMPLETED] 5. DPP Wizard MVP:** Developed a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
+  - **See Design Doc:** [docs/designs/005-dpp-wizard.md](./docs/designs/005-dpp-wizard.md)
+  - **Key Features:** Dynamic form generation from JSON schema, multi-sector support, custom field support, rich validation (schema & ontology based), automated JSON generation, and 24-language support for UI labels.
+
 - **[COMPLETED] 5. Case Convention Cleanup.**
   - **Note:** This was a blocking prerequisite for the DPP Wizard.
   - **See Design Doc:** [docs/designs/007-case-convention-cleanup.md](./docs/designs/007-case-convention-cleanup.md)
