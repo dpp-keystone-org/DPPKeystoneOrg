@@ -1064,28 +1064,28 @@ describe('DPP Wizard - Form Builder', () => {
     it('should display the ontology label for an array property', () => {
         const arraySchema = {
             "properties": {
-                "declaredUses": {
+                "tags": {
                     "type": "array",
                     "items": { "type": "string" }
                 }
             }
         };
         const mockOntologyMap = new Map([
-            ['declaredUses', { label: { en: 'Declared Intended Uses' } }]
+            ['tags', { label: { en: 'Tags' } }]
         ]);
 
         document.body.innerHTML = '';
         document.body.appendChild(buildForm(arraySchema, mockOntologyMap, 'en'));
 
         // 1. Find the main row for the array property (the one with the "Add Item" button).
-        const arrayRow = document.querySelector('button[data-array-name="declaredUses"]').closest('.grid-row');
+        const arrayRow = document.querySelector('button[data-array-name="tags"]').closest('.grid-row');
         expect(arrayRow).not.toBeNull();
 
         // 2. Find the ontology cell (4th cell).
         const ontologyCell = arrayRow.querySelector('.grid-cell:nth-child(4)');
 
         // 3. Assert that it contains the label. This will fail.
-        expect(ontologyCell.textContent).toBe('Declared Intended Uses');
+        expect(ontologyCell.textContent).toBe('Tags');
     });
 
     it('should display a generic "Add" label for optional object buttons', () => {

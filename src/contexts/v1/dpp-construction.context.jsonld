@@ -25,7 +25,6 @@
             // ==================================================================
             "hasDoP": "dppk:hasDoP",
             "dopIdentifier": "dppk:dopIdentifier",
-            "declaredUses": "dppk:declaredUses",
             "notifiedBody": { "@id": "dppk:notifiedBody", "@type": "@id" },
             "technicalAssessmentBody": { "@id": "dppk:technicalAssessmentBody", "@type": "@id" },
             "validationReports": "dppk:validationReports",

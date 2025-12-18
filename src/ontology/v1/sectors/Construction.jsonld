@@ -119,14 +119,6 @@
         "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:declaredUses",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Declared Uses",
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
-    },
-    {
         "@id": "dppk:notifiedBody",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Notified Body",
