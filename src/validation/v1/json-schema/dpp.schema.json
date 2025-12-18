@@ -46,6 +46,10 @@
       "type": "string", 
       "format": "uri-reference"
     },
+    "hsCode": { 
+      "description": "The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.",
+      "type": "string"
+    },
     "contentSpecificationIds": {
       "description": "Formatted according to EN18219.",
       "type": "array",
