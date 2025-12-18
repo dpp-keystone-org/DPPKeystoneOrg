@@ -145,7 +145,7 @@ for (const sector of sectors) {
         await expect(page.locator('input[name="documents.1.resourceTitle"]')).not.toBeVisible();
         break;
       case 'construction':
-        await expect(page.locator('input[name="declarationCode"]')).toBeVisible();
+        await expect(page.locator('input[name="harmonisedStandardReference"]')).toBeVisible();
         // Check for a known-good nested field inside an optional object
         await page.locator('button[data-optional-object="notifiedBody"]').click();
         await page.locator('button[data-optional-object="address"]').click();
@@ -680,7 +680,7 @@ test.describe('Conditional Validation for Optional Objects', () => {
     await page.locator('button[data-sector="construction"]').click();
     
     // 2. Wait for the form to be generated. A known field from the form is a good signal.
-    await expect(page.locator('input[name="declarationCode"]')).toBeVisible();
+    await expect(page.locator('input[name="harmonisedStandardReference"]')).toBeVisible();
 
     // 3. Assert that a field within the optional 'epd' object is NOT visible by default.
     await expect(page.locator('input[name="epd.gwp.a1"]')).not.toBeVisible();

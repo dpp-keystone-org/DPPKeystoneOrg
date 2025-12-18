@@ -19,7 +19,6 @@
     "then": {
         "type": "object",
         "properties": {
-            "declarationCode": { "type": "string" },
             "versionNumber": { "type": "string" },
             "versionDate": { "type": "string", "format": "date" },
             "productCategory": { "type": "string" },
