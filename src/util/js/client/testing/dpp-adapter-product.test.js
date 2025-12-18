@@ -75,7 +75,6 @@ describe('DPP to Schema.org Product Transformation', () => {
         expect(productResult['@context']).toBe('http://schema.org');
         expect(productResult.name).toBe('One Thing');
         expect(productResult.model).toBe('70210534');
-        expect(productResult.category).toBe('Repair Mortar');
         expect(productResult['@id']).toBe('https://www.example.org/1234545');
 
         // Assertions for the nested Manufacturer (Organization)

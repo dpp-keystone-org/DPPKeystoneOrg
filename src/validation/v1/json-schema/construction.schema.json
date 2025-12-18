@@ -21,7 +21,6 @@
         "properties": {
             "versionNumber": { "type": "string" },
             "versionDate": { "type": "string", "format": "date" },
-            "productCategory": { "type": "string" },
             "declaredUses": { "type": "array", "items": { "type": "string" } },
             "keyParts": { "type": "string" },
             "estimatedServiceLife": { "type": "string" },
