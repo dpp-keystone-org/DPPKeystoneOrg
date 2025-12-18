@@ -4,7 +4,7 @@ This document outlines the roadmap for Task #5s, finalizing the JSON generation 
 
 ---
 
-- **[IN PROGRESS] 5s. Robust JSON Generation:**
+- **[COMPLETD] 5s. Robust JSON Generation:**
   - **[COMPLETED] 5s-1. Test Infrastructure & Baseline:**
     - **[COMPLETED] 5s-1a. [Test] Baseline Regression:** Create a new test file `testing/unit/dpp-generator.test.js`. Extract the existing generator tests from `testing/unit/wizard.test.js` into this file. Add a baseline test case that populates a standard sector form (e.g., Battery) with known values and asserts the generated JSON matches exactly.
     - **[COMPLETED] 5s-1b. [Test] Empty & Null Handling:** Add a test case to verify that empty strings and null values are omitted from the JSON, but `0` (number) and `false` (boolean) are preserved.
@@ -20,7 +20,7 @@ This document outlines the roadmap for Task #5s, finalizing the JSON generation 
   - **[COMPLETED] 5s-5. Multiple Sectors:**
     - **[COMPLETED] 5s-5a. [Test] Multi-Sector Generation:** Add a test case that simulates adding two sectors (e.g., Battery and Construction). Populate unique fields in both, and a shared field in both. Assert the generated JSON contains the union of datasets and the shared field value is consistent (last write wins).
     - **[COMPLETED] 5s-5b. [Implementation] Multi-Form Scraping:** Verified that `dpp-generator.js` iterates over the provided container's children. As long as sector forms are children of the `formContainer`, no changes are needed.
-  - **[PENDING] 5s-6. Voluntary Complex Types (e.g., Organization):**
-    - **[PENDING] 5s-6a. [Test] Complex Voluntary Type:** Add a test case using the "Organization" complex custom type. Populate its fields. Assert the JSON structure matches the Organization schema.
+  - **[COMPLETED] 5s-6. Voluntary Complex Types (e.g., Organization):**
+    - **[COMPLETED] 5s-6a. [Test] Complex Voluntary Type:** Add a test case using the "Organization" complex custom type. Populate its fields. Assert the JSON structure matches the Organization schema.
   - **[COMPLETED] 5s-6. Voluntary Complex Types (e.g., Organization):**
     - **[COMPLETED] 5s-6a. [Test] Complex Voluntary Type:** Add a test case using the "Organization" complex custom type. Populate its fields. Assert the JSON structure matches the Organization schema.
