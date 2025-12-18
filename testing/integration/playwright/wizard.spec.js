@@ -57,9 +57,9 @@ test('should be invalid on load due to empty required fields', async ({ page }) 
   await expect(showErrorsBtn).toBeVisible();
 
   // Check that the error count is correct.
-  // dpp.schema.json has 5 required fields without default values:
-  // granularity, dppSchemaVersion, dppStatus, lastUpdate, and economicOperatorId.
-  await expect(showErrorsBtn).toContainText('Show Errors (5)');
+  // dpp.schema.json has 3 required fields without default values:
+  // granularity, lastUpdate, and economicOperatorId.
+  await expect(showErrorsBtn).toContainText('Show Errors (3)');
 });
 
 test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
@@ -386,21 +386,11 @@ test('should show and hide an error summary', async ({ page }) => {
   await expect(dppIdInput).toBeVisible();
 
   // 1. First, make the form valid by filling in the initially required fields one by one.
-  await expect(showErrorsBtn).toContainText('Show Errors (5)');
+  await expect(showErrorsBtn).toContainText('Show Errors (3)');
 
   const granularityInput = page.locator('select[name="granularity"]');
   await granularityInput.selectOption('Model');
   await granularityInput.blur();
-  await expect(showErrorsBtn).toContainText('Show Errors (4)');
-
-  const versionInput = page.locator('input[name="dppSchemaVersion"]');
-  await versionInput.fill('1.0.0');
-  await versionInput.blur();
-  await expect(showErrorsBtn).toContainText('Show Errors (3)');
-
-  const statusInput = page.locator('input[name="dppStatus"]');
-  await statusInput.fill('Active');
-  await statusInput.blur();
   await expect(showErrorsBtn).toContainText('Show Errors (2)');
 
   const lastUpdateInput = page.locator('input[name="lastUpdate"]');
@@ -565,9 +555,9 @@ test('should validate on blur, not on every keystroke', async ({ page }) => {
   // 4. Assert that the field is NOT invalid yet, because blur hasn't happened.
   // The 'Generate' button should still be visible (assuming other fields are valid, which they are not,
   // so we check that the error count has not increased).
-  // The initial error count is 5. After clearing the field, it's still 5.
-  // After typing 'test', it should still be 5, not 6.
-  await expect(showErrorsBtn).toContainText('Show Errors (5)');
+  // The initial error count is 3. After clearing the field, it's still 3.
+  // After typing 'test', it should still be 3, not 4.
+  await expect(showErrorsBtn).toContainText('Show Errors (3)');
   await expect(dppIdInput).not.toHaveClass(/invalid/);
 
   // 5. Blur the field to trigger validation.
@@ -577,7 +567,7 @@ test('should validate on blur, not on every keystroke', async ({ page }) => {
   await expect(dppIdInput).toHaveClass(/invalid/);
   await expect(generateBtn).toBeHidden();
   await expect(showErrorsBtn).toBeVisible();
-  await expect(showErrorsBtn).toContainText('Show Errors (6)');
+  await expect(showErrorsBtn).toContainText('Show Errors (4)');
   
   // 7. Click the error summary to confirm the field is listed.
   await showErrorsBtn.click();
@@ -707,10 +697,10 @@ test.describe('Conditional Validation for Optional Objects', () => {
     await page.locator('button[data-sector="construction"]').click();
     
     // 2. Wait for form and get initial error count.
-    // 5 from core. The construction sector's required fields are all inside
+    // 3 from core. The construction sector's required fields are all inside
     // optional objects, so they don't add to the initial error count.
-    await expect(showErrorsBtn).toContainText('Show Errors (5)', { timeout: 10000 });
-    const initialErrorCount = 5;
+    await expect(showErrorsBtn).toContainText('Show Errors (3)', { timeout: 10000 });
+    const initialErrorCount = 3;
 
     // 3. Add the optional 'epd' object and its nested 'gwp' object.
     await page.locator('button[data-optional-object="epd"]').click();
@@ -735,8 +725,8 @@ test.describe('Conditional Validation for Optional Objects', () => {
     const showErrorsBtn = page.locator('#show-errors-btn');
 
     // 1. Get initial error count from core schema.
-    await expect(showErrorsBtn).toContainText('Show Errors (5)');
-    const initialCoreErrorCount = 5;
+    await expect(showErrorsBtn).toContainText('Show Errors (3)');
+    const initialCoreErrorCount = 3;
 
     // 2. Add the battery sector.
     await page.locator('button[data-sector="battery"]').click();
@@ -811,8 +801,8 @@ test.describe('DPP Wizard - Input Validation', () => {
       const showErrorsBtn = page.locator('#show-errors-btn');
 
       // 1. Get initial error count (core required fields).
-      await expect(showErrorsBtn).toContainText('Show Errors (5)');
-      const initialCount = 5;
+      await expect(showErrorsBtn).toContainText('Show Errors (3)');
+      const initialCount = 3;
 
       // 2. Add a custom field.
       await page.click('#add-voluntary-field-btn');
