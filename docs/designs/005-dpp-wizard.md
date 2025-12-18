@@ -38,7 +38,7 @@ This document outlines the sub-roadmap for Task #5, the development of a client-
   - **[COMPLETED] 5p. Custom Field Implementation:** Implement a robust 'Add Custom Field' feature. This includes selecting data types (String, Number, Boolean), validating input formats, creating nested objects, and ensuring no namespace collisions with existing sector fields.
     - **See Design Doc:** [docs/designs/012-custom-fields.md](./012-custom-fields.md)
   - **[COMPLETED] 5r. Form Validation & Button State:** Disable the 'Generate DPP' button until all required fields (from core and sector schemas) are filled. Pause and allow the user to test and discuss next steps.
-  - **[IN PROGRESS] 5s. Robust JSON Generation:** Ensure the 'Generate DPP' button correctly populates the output area with the full, valid JSON. This includes handling typed custom fields, nested groups, and multiple sectors.
+  - **[COMPLETED] 5s. Robust JSON Generation:** Ensure the 'Generate DPP' button correctly populates the output area with the full, valid JSON. This includes handling typed custom fields, nested groups, and multiple sectors.
     - **See Design Doc:** docs/designs/013-json-generation.md
   - **[COMPLETED] 5t. Refactor Battery Sector Data Model:** Corrected the data model for several battery sector properties that were incorrectly defined as objects, causing UI and validation failures.
     - **[COMPLETED] 5t-1. Diagnose Modeling Flaw:** Identified that properties like `nominalVoltage` were incorrectly modeled as `QuantitativeValue` objects instead of primitive types, causing a mismatch between the ontology, schema, and context.
@@ -74,5 +74,4 @@ This document outlines the sub-roadmap for Task #5, the development of a client-
     - **[COMPLETED] 5aa-1. [Test] Add Failing Playwright Test:** Create a test that loads two sectors with a shared field, types into one, and asserts the other updates.
     - **[COMPLETED] 5aa-2. [Implementation] Global Sync Listener:** Implement a global `input` listener in `wizard.js` that finds all inputs with the same `name` and updates them.
   - **[COMPLETED] 5bb. Form State Persistence:** Implement `localStorage` caching for the Core form and active Sectors so data is preserved on page refresh.
-  - **[PENDING] 5cc. Stakeholder Enhancements:** Implement educational features to demonstrate the value of Linked Data, including Knowledge Graph links, JSON/JSON-LD toggles, and mocked signatures.
-    - **See Design Doc:** docs/designs/014-stakeholder-enhancements.md
+

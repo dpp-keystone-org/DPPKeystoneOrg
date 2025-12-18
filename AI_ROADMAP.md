@@ -48,41 +48,45 @@ For a history of completed tasks, please see the [CHANGELOG.md](./CHANGELOG.md).
 ---
 ## Proposed High-Impact Features
 
-### [ PENDING ] Feature: Interactive DPP Validator (Linter)
+### [PENDING] Feature: Interactive DPP Validator (Linter)
 - **Goal:** Create a web-based tool for users to paste their DPP JSON and receive instant validation feedback.
 - **Why:** This is the natural counterpart to the DPP Wizard. It provides a utility for auditing and debugging existing DPPs, not just creating new ones, and serves as a live demonstration of our validation rules.
 - **Sub-Tasks:**
-  - [ PENDING ] **Design:** Plan the UI/UX for the validator tool (input pane, results pane, error highlighting). Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Scaffold:** Create the basic HTML, CSS, and JS files for the validator page. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Validation Logic (Client-Side):**
-    - [ PENDING ] Integrate a JavaScript-based JSON Schema validator library (e.g., Ajv). Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Integrate a JavaScript-based SHACL validator library (e.g., shacl-engine). Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Load our core and sector-specific schemas/shapes into the tool. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **UI Implementation:**
-    - [ PENDING ] Build the editor interface for pasting JSON (e.g., using CodeMirror or Monaco Editor). Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Implement logic to trigger validation on user input. Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Develop a user-friendly display for validation errors, linking them to specific lines in the JSON. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Integration:** Add a link to the new validator tool from the main project website/index. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Design:** Plan the UI/UX for the validator tool (input pane, results pane, error highlighting). Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Scaffold:** Create the basic HTML, CSS, and JS files for the validator page. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Validation Logic (Client-Side):**
+    - [PENDING] Integrate a JavaScript-based JSON Schema validator library (e.g., Ajv). Pause and allow the user to test and discuss next steps.
+    - [PENDING] Integrate a JavaScript-based SHACL validator library (e.g., shacl-engine). Pause and allow the user to test and discuss next steps.
+    - [PENDING] Load our core and sector-specific schemas/shapes into the tool. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **UI Implementation:**
+    - [PENDING] Build the editor interface for pasting JSON (e.g., using CodeMirror or Monaco Editor). Pause and allow the user to test and discuss next steps.
+    - [PENDING] Implement logic to trigger validation on user input. Pause and allow the user to test and discuss next steps.
+    - [PENDING] Develop a user-friendly display for validation errors, linking them to specific lines in the JSON. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Integration:** Add a link to the new validator tool from the main project website/index. Pause and allow the user to test and discuss next steps.
 
-### [ PENDING ] Feature: Enhanced Adapter Showcase with Rendered Preview
+### [PENDING] Feature: Enhanced Adapter Showcase with Rendered Preview
 - **Goal:** Add a "Rendered Preview" tab to the adapter showcase to visualize how transformed data might appear in a consumer application (e.g., a search engine rich snippet).
 - **Why:** This makes the abstract benefit of schema.org transformation tangible and visually compelling, showing why interoperability matters to business stakeholders.
 - **Sub-Tasks:**
-  - [ PENDING ] **Design:** Mock up the visual representation of a "rich snippet" for a product, using data from `schema.org/Certification` objects. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Component:** Create a new UI component that takes the transformed `schema.org` data as input. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Rendering Logic:** Implement the component to render the data into the designed "rich snippet" format. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Integration:** Add a new tab to the existing showcase UI and integrate the new rendering component, passing it the output from the EPD adapter. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Design:** Mock up the visual representation of a "rich snippet" for a product, using data from `schema.org/Certification` objects. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Component:** Create a new UI component that takes the transformed `schema.org` data as input. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Rendering Logic:** Implement the component to render the data into the designed "rich snippet" format. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Integration:** Add a new tab to the existing showcase UI and integrate the new rendering component, passing it the output from the EPD adapter. Pause and allow the user to test and discuss next steps.
 
-### [ PENDING ] Feature: Adoption Accelerators (Starter Kits)
+### [PENDING] Feature: Adoption Accelerators (Starter Kits)
 - **Goal:** Create a collection of simple, boilerplate projects to help developers integrate DPP Keystone artifacts quickly.
 - **Why:** Lowers the barrier to adoption by giving developers a running start, which is a huge driver of community uptake.
 - **Sub-Tasks:**
-  - [ PENDING ] **Strategy:** Decide on the location for the starter kits (e.g., new repo `dpp-keystone-starters`, or a `/starters` directory in this repo). Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Starter Kit 1: Node.js/Express Server:** Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Create a minimal Express.js application to serve a static example DPP JSON file with the correct headers. Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Add a README explaining how to run the server and its purpose. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Starter Kit 2: React Frontend Component:** Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Create a basic React application (e.g., with Vite) that fetches a DPP. Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Use the `dpp-adapter.js` utility to process the fetched DPP and display the results. Pause and allow the user to test and discuss next steps.
-    - [ PENDING ] Add a README with setup and usage instructions. Pause and allow the user to test and discuss next steps.
-  - [ PENDING ] **Documentation:** Add a section to the main project documentation linking to the starter kits. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Strategy:** Decide on the location for the starter kits (e.g., new repo `dpp-keystone-starters`, or a `/starters` directory in this repo). Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Starter Kit 1: Node.js/Express Server:** Pause and allow the user to test and discuss next steps.
+    - [PENDING] Create a minimal Express.js application to serve a static example DPP JSON file with the correct headers. Pause and allow the user to test and discuss next steps.
+    - [PENDING] Add a README explaining how to run the server and its purpose. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Starter Kit 2: React Frontend Component:** Pause and allow the user to test and discuss next steps.
+    - [PENDING] Create a basic React application (e.g., with Vite) that fetches a DPP. Pause and allow the user to test and discuss next steps.
+    - [PENDING] Use the `dpp-adapter.js` utility to process the fetched DPP and display the results. Pause and allow the user to test and discuss next steps.
+    - [PENDING] Add a README with setup and usage instructions. Pause and allow the user to test and discuss next steps.
+  - [PENDING] **Documentation:** Add a section to the main project documentation linking to the starter kits. Pause and allow the user to test and discuss next steps.
+
+
+  - **[PENDING] Stakeholder Enhancements:** Implement educational features to demonstrate the value of Linked Data, including Knowledge Graph links, JSON/JSON-LD toggles, and mocked signatures.
+    - **See Design Doc:** docs/designs/014-stakeholder-enhancements.md
