@@ -159,18 +159,6 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:latestDeinstallation",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Latest Deinstallation",
-      "rdfs:domain": {
-        "@id": "dppk:ConstructionProduct"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
       "@id": "dppk:notifiedBody",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Notified Body",
