@@ -69,7 +69,6 @@
     },
     "verifiableCredential": "dppk:verifiableCredential",
     "hsCode": "dppk:hsCode",
-    "unionDatabaseRegistrations": "dppk:unionDatabaseRegistrations",
     "economicOperator": {
       "@id": "dppk:economicOperator",
       "@type": "@id"
@@ -107,7 +106,6 @@
       "@id": "dppk:productName",
       "@container": "@language"
     },
-    "productCategory": "dppk:productCategory",
     "description": "dppk:description",
     "gtin": "dppk:gtin",
     "brand": "dppk:brand",
@@ -182,10 +180,6 @@
     "productionSteps": {
       "@id": "dppk:productionSteps",
       "@container": "@list"
-    },
-    "generalProductInformation": {
-      "@id": "dppk:generalProductInformation",
-      "@type": "@id"
     },
     "instructionsForUse": {
       "@id": "dppk:instructionsForUse",

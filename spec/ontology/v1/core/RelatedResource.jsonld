@@ -74,18 +74,6 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:generalProductInformation",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "General Product Information",
-      "rdfs:domain": {
-        "@id": "dppk:Product"
-      },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
       "@id": "dppk:instructionsForUse",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Instructions for Use",

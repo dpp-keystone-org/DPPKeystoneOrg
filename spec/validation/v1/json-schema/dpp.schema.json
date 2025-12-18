@@ -26,11 +26,13 @@
     },
     "dppSchemaVersion": {
       "description": "The reference standard the DPP instance schema refers to.",
-      "type": "string"
+      "type": "string",
+      "default": "0.1"
     },
     "dppStatus": {
       "description": "The status of the DPP instance as digital resource.",
-      "type": "string"
+      "type": "string",
+      "default": "Active"
     },
     "lastUpdate": {
       "description": "The date and time of the latest update to the DPP instance. ISO 8601-1:2019/Amd 1:2022",

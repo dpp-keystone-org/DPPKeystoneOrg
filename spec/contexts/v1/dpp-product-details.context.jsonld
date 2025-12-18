@@ -1,8 +1,5 @@
 {
   "@context": {
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "keyParts": "dppk:keyParts",
-    "estimatedServiceLife": "dppk:estimatedServiceLife",
-    "variants": "dppk:variants"
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#"
   }
 }

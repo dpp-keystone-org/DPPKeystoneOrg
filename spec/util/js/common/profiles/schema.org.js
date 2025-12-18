@@ -68,7 +68,6 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         "name": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#productName'),
         "description": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#description'),
         "model": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#model'),
-        "category": getValues(rootNode, 'https://dpp-keystone.org/spec/v1/terms#productCategory').join(', '),
     };
 
     const manufacturerNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#manufacturer');

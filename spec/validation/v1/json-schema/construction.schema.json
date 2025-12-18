@@ -20,39 +20,12 @@
   "then": {
     "type": "object",
     "properties": {
-      "declarationCode": {
-        "type": "string"
-      },
       "versionNumber": {
         "type": "string"
       },
       "versionDate": {
         "type": "string",
         "format": "date"
-      },
-      "productCategory": {
-        "type": "string"
-      },
-      "declaredUses": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "keyParts": {
-        "type": "string"
-      },
-      "estimatedServiceLife": {
-        "type": "string"
-      },
-      "variants": {
-        "type": "string"
-      },
-      "unionDatabaseRegistrations": {
-        "type": "string"
-      },
-      "generalProductInformation": {
-        "$ref": "related-resource.schema.json"
       },
       "instructionsForUse": {
         "$ref": "related-resource.schema.json"
