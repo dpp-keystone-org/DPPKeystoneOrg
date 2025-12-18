@@ -247,6 +247,14 @@ hr {
         color: var(--text-light);
     }
 
+    .tooltip-modal a {
+        color: var(--keystone-blue);
+        text-decoration: underline;
+    }
+    .tooltip-modal a:hover {
+        color: var(--text-dark);
+    }
+
 /* Compact View Styles */
 .compact-view .grid-row .grid-cell:nth-child(4) {
     /* Hide the Ontology (label) column by default, but keep it in the layout */

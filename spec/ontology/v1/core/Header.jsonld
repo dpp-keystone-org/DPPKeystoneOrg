@@ -20,8 +20,202 @@
     {
       "@id": "dppk:DigitalProductPassport",
       "@type": "rdfs:Class",
-      "rdfs:label": "Digital Product Passport (DPP)",
-      "rdfs:comment": "A structured collection of product-related data defining the characteristics, provenance, and lifecycle information of a product, as mandated by the Ecodesign for Sustainable Products Regulation (ESPR).",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Цифров продуктов паспорт (DPP)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Digitální pas výrobku (DPP)"
+        },
+        {
+          "@language": "da",
+          "@value": "Digitalt produktpas (DPP)"
+        },
+        {
+          "@language": "de",
+          "@value": "Digitaler Produktpass (DPP)"
+        },
+        {
+          "@language": "el",
+          "@value": "Ψηφιακό διαβατήριο προϊόντος (DPP)"
+        },
+        {
+          "@language": "en",
+          "@value": "Digital Product Passport (DPP)"
+        },
+        {
+          "@language": "es",
+          "@value": "Pasaporte Digital de Producto (DPP)"
+        },
+        {
+          "@language": "et",
+          "@value": "Digitaalne tootepass (DPP)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Digitaalinen tuotepassi (DPP)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Passeport numérique du produit (DPP)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Pas Táirge Digiteach (DPP)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Digitalna putovnica proizvoda (DPP)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Digitális termékútlevél (DPP)"
+        },
+        {
+          "@language": "it",
+          "@value": "Passaporto digitale del prodotto (DPP)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Skaitmeninis gaminio pasas (DPP)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Digitālā produkta pase (DPP)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Passaport Diġitali tal-Prodott (DPP)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Digitaal productpaspoort (DPP)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Cyfrowy paszport produktu (DPP)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Passaporte Digital do Produto (DPP)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Pașaport digital al produsului (DPP)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Digitálny pas výrobku (DPP)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Digitalni potni list izdelka (DPP)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Digitalt produktpass (DPP)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Структурирана съвкупност от данни, свързани с продукти, определящи характеристиките, произхода и жизнения цикъл на продукта, както се изисква от Регламента за екодизайн за устойчиви продукти (ESPR)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Strukturovaný soubor údajů týkajících se výrobku, které definují vlastnosti, původ a informace o životním cyklu výrobku, jak to vyžaduje nařízení o ekodesignu udržitelných výrobků (ESPR)."
+        },
+        {
+          "@language": "da",
+          "@value": "En struktureret samling af produktrelaterede data, der definerer produktets karakteristika, oprindelse og livscyklusoplysninger som krævet i forordningen om miljøvenligt design for bæredygtige produkter (ESPR)."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine strukturierte Sammlung produktbezogener Daten, die die Eigenschaften, die Herkunft und Informationen zum Lebenszyklus eines Produkts definieren, wie in der Verordnung über Ökodesign für nachhaltige Produkte (ESPR) vorgeschrieben."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια δομημένη συλλογή δεδομένων που σχετίζονται με το προϊόν και καθορίζουν τα χαρακτηριστικά, την προέλευση και τις πληροφορίες του κύκλου ζωής ενός προϊόντος, όπως απαιτείται από τον κανονισμό για τον οικολογικό σχεδιασμό βιώσιμων προϊόντων (ESPR)."
+        },
+        {
+          "@language": "en",
+          "@value": "A structured collection of product-related data defining the characteristics, provenance, and lifecycle information of a product, as mandated by the Ecodesign for Sustainable Products Regulation (ESPR)."
+        },
+        {
+          "@language": "es",
+          "@value": "Una colección estructurada de datos relacionados con el producto que definen las características, la procedencia y la información del ciclo de vida de un producto, tal como exige el Reglamento de Ecodiseño para Productos Sostenibles (ESPR)."
+        },
+        {
+          "@language": "et",
+          "@value": "Tootega seotud andmete struktureeritud kogum, mis määratleb toote omadused, päritolu ja elutsükli teabe vastavalt jätkusuutlike toodete ökodisaini määrusele (ESPR)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Jäsennelty kokoelma tuotteeseen liittyviä tietoja, jotka määrittelevät tuotteen ominaisuudet, alkuperän ja elinkaaritiedot kestävien tuotteiden ekosuunnitteluasetuksen (ESPR) mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une collection structurée de données relatives au produit définissant les caractéristiques, la provenance et les informations sur le cycle de vie d'un produit, comme l'exige le règlement sur l'écoconception pour des produits durables (ESPR)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Bailiúchán struchtúrtha sonraí a bhaineann le táirgí a shainíonn tréithe, bunús agus faisnéis saolré táirge, mar atá sainordaithe ag an Rialachán maidir le hÉicidhearthóireacht do Tháirgí Inbhuanaithe (ESPR)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Strukturirana zbirka podataka povezanih s proizvodom koja definira karakteristike, podrijetlo i informacije o životnom ciklusu proizvoda, kako je propisano Uredbom o ekološkom dizajnu za održive proizvode (ESPR)."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termékkel kapcsolatos adatok strukturált gyűjteménye, amely meghatározza a termék jellemzőit, eredetét és életciklus-információit a fenntartható termékek környezettudatos tervezéséről szóló rendelet (ESPR) előírásai szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Una raccolta strutturata di dati relativi al prodotto che definiscono le caratteristiche, la provenienza e le informazioni sul ciclo di vita di un prodotto, come richiesto dal Regolamento sulla progettazione ecocompatibile per prodotti sostenibili (ESPR)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Struktūruotas su gaminiu susijusių duomenų rinkinys, apibrėžiantis gaminio savybes, kilmę ir gyvavimo ciklo informaciją, kaip reikalaujama Tvarių gaminių ekologinio projektavimo reglamente (ESPR)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Strukturēts ar produktu saistītu datu kopums, kas nosaka produkta raksturojumu, izcelsmi un informāciju par dzīves ciklu, kā to nosaka Ekodizaina regula ilgtspējīgiem produktiem (ESPR)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ġabra strutturata ta' dejta relatata mal-prodott li tiddefinixxi l-karatteristiċi, il-provenjenza, u l-informazzjoni dwar iċ-ċiklu tal-ħajja ta' prodott, kif mandatat mir-Regolament dwar l-Ekodisinn għal Prodotti Sostenibbli (ESPR)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een gestructureerde verzameling productgerelateerde gegevens die de kenmerken, herkomst en levenscyclusinformatie van een product definiëren, zoals voorgeschreven door de Verordening inzake ecologisch ontwerp voor duurzame producten (ESPR)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Uporządkowany zbiór danych dotyczących produktu, określający jego cechy, pochodzenie i informacje o cyklu życia, zgodnie z wymogami rozporządzenia w sprawie ekoprojektu dla zrównoważonych produktów (ESPR)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma coleção estruturada de dados relacionados ao produto que define as características, proveniência e informações do ciclo de vida de um produto, conforme exigido pelo Regulamento de Ecodesign para Produtos Sustentáveis (ESPR)."
+        },
+        {
+          "@language": "ro",
+          "@value": "O colecție structurată de date referitoare la produs care definește caracteristicile, proveniența și informațiile privind ciclul de viață al unui produs, conform Regulamentului privind proiectarea ecologică pentru produse sustenabile (ESPR)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Štruktúrovaný súbor údajov súvisiacich s výrobkom, ktorý definuje charakteristiky, pôvod a informácie o životnom cykle výrobku, ako to vyžaduje nariadenie o ekodizajne udržateľných výrobkov (ESPR)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Strukturirana zbirka podatkov, povezanih z izdelkom, ki opredeljuje značilnosti, poreklo in informacije o življenjskem ciklu izdelka, kot zahteva Uredba o okoljsko primerni zasnovi za trajnostne izdelke (ESPR)."
+        },
+        {
+          "@language": "sv",
+          "@value": "En strukturerad samling produktrelaterade data som definierar egenskaperna, ursprunget och livscykelinformationen för en produkt, enligt kraven i förordningen om ekodesign för hållbara produkter (ESPR)."
+        }
+      ],
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "Proposal for Ecodesign for Sustainable Products Regulation (ESPR)"
@@ -42,8 +236,202 @@
     {
       "@id": "dppk:digitalProductPassportId",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "DPP Identifier",
-      "rdfs:comment": "The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). The default value is a placeholder and should be replaced with a real identifier later.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на DPP"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor DPP"
+        },
+        {
+          "@language": "da",
+          "@value": "DPP-identifikator"
+        },
+        {
+          "@language": "de",
+          "@value": "DPP-Kennung"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό DPP"
+        },
+        {
+          "@language": "en",
+          "@value": "DPP Identifier"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador del DPP"
+        },
+        {
+          "@language": "et",
+          "@value": "DPP identifikaator"
+        },
+        {
+          "@language": "fi",
+          "@value": "DPP-tunniste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant du DPP"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir DPP"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator DPP-a"
+        },
+        {
+          "@language": "hu",
+          "@value": "DPP azonosító"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificativo DPP"
+        },
+        {
+          "@language": "lt",
+          "@value": "DPP identifikatorius"
+        },
+        {
+          "@language": "lv",
+          "@value": "DPP identifikators"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur DPP"
+        },
+        {
+          "@language": "nl",
+          "@value": "DPP-identificatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator DPP"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador do DPP"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator DPP"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor DPP"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator DPP"
+        },
+        {
+          "@language": "sv",
+          "@value": "DPP-identifierare"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Уникалният идентификатор за този конкретен екземпляр на цифровия продуктов паспорт. Трябва да бъде постоянен, глобално уникален и разрешим URI (напр. URN UUID или HTTP URI). Стойността по подразбиране е заместител и трябва да бъде заменена с реален идентификатор по-късно."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor pro tuto konkrétní instanci digitálního pasu výrobku. Měl by být trvalý, globálně jedinečný a rozlišitelný URI (např. URN UUID nebo HTTP URI). Výchozí hodnota je zástupný symbol a měla by být později nahrazena skutečným identifikátorem."
+        },
+        {
+          "@language": "da",
+          "@value": "Den unikke identifikator for denne specifikke instans af det digitale produktpas. Bør være en persistent, globalt unik og opløselig URI (f.eks. URN UUID eller HTTP URI). Standardværdien er en pladsholder og bør erstattes med en rigtig identifikator senere."
+        },
+        {
+          "@language": "de",
+          "@value": "Die eindeutige Kennung für diese spezifische Instanz des digitalen Produktpasses. Sollte eine dauerhafte, weltweit eindeutige und auflösbare URI sein (z. B. URN UUID oder HTTP URI). Der Standardwert ist ein Platzhalter und sollte später durch eine echte Kennung ersetzt werden."
+        },
+        {
+          "@language": "el",
+          "@value": "Το μοναδικό αναγνωριστικό για αυτό το συγκεκριμένο στιγμιότυπο ψηφιακού διαβατηρίου προϊόντος. Θα πρέπει να είναι ένα μόνιμο, παγκοσμίως μοναδικό και επιλύσιμο URI (π.χ. URN UUID ή HTTP URI). Η προεπιλεγμένη τιμή είναι ένα σύμβολο κράτησης θέσης και θα πρέπει να αντικατασταθεί με ένα πραγματικό αναγνωριστικό αργότερα."
+        },
+        {
+          "@language": "en",
+          "@value": "The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). The default value is a placeholder and should be replaced with a real identifier later."
+        },
+        {
+          "@language": "es",
+          "@value": "El identificador único para esta instancia específica del Pasaporte Digital de Producto. Debe ser un URI persistente, globalmente único y resoluble (por ejemplo, URN UUID o HTTP URI). El valor predeterminado es un marcador de posición y debe reemplazarse con un identificador real más tarde."
+        },
+        {
+          "@language": "et",
+          "@value": "Selle konkreetse digitaalse tootepassi eksemplari unikaalne identifikaator. Peaks olema püsiv, globaalselt unikaalne ja lahendatav URI (nt URN UUID või HTTP URI). Vaikeväärtus on kohatäide ja tuleks hiljem asendada reaalse identifikaatoriga."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tämän tietyn digitaalisen tuotepassin esiintymän yksilöllinen tunniste. Tulisi olla pysyvä, maailmanlaajuisesti yksilöllinen ja selvitettävä URI (esim. URN UUID tai HTTP URI). Oletusarvo on paikkamerkki ja se tulisi korvata oikealla tunnisteella myöhemmin."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'identifiant unique pour cette instance spécifique du passeport numérique du produit. Doit être un URI persistant, mondialement unique et résoluble (par exemple, URN UUID ou HTTP URI). La valeur par défaut est un espace réservé et doit être remplacée par un identifiant réel ultérieurement."
+        },
+        {
+          "@language": "ga",
+          "@value": "An t-aitheantóir uathúil don instance Pas Táirge Digiteach sonrach seo. Ba cheart dó a bheith ina URI marthanach, uathúil go domhanda agus inréitithe (m.sh., URN UUID nó HTTP URI). Is luach ionadach é an luach réamhshocraithe agus ba cheart aitheantóir fíor a chur ina ionad níos déanaí."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator za ovu specifičnu instancu digitalne putovnice proizvoda. Trebao bi biti trajni, globalno jedinstveni i rješivi URI (npr. URN UUID ili HTTP URI). Zadana vrijednost je rezervirano mjesto i treba je kasnije zamijeniti stvarnim identifikatorom."
+        },
+        {
+          "@language": "hu",
+          "@value": "A digitális termékútlevél ezen konkrét példányának egyedi azonosítója. Tartósnak, globálisan egyedinek és feloldhatónak kell lennie URI-ként (pl. URN UUID vagy HTTP URI). Az alapértelmezett érték helyőrző, és később valós azonosítóra kell cserélni."
+        },
+        {
+          "@language": "it",
+          "@value": "L'identificativo unico per questa specifica istanza del passaporto digitale del prodotto. Dovrebbe essere un URI persistente, globalmente unico e risolvibile (ad es. URN UUID o HTTP URI). Il valore predefinito è un segnaposto e dovrebbe essere sostituito con un identificatore reale in seguito."
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus šio konkrečiame skaitmeninio gaminio paso egzemplioriaus identifikatorius. Turėtų būti patvarus, globaliai unikalus ir išsprendžiamas URI (pvz., URN UUID arba HTTP URI). Numatytoji reikšmė yra vietos rezervavimo ženklas ir vėliau turėtų būti pakeista tikru identifikatoriumi."
+        },
+        {
+          "@language": "lv",
+          "@value": "Unikālais identifikators šai konkrētajai digitālās produkta pases instancei. Jābūt pastāvīgam, globāli unikālam un atrisināmam URI (piemēram, URN UUID vai HTTP URI). Noklusējuma vērtība ir vietturis, un tā vēlāk jāaizstāj ar reālu identifikatoru."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-identifikatur uniku għal din l-istanza speċifika tal-Passaport Diġitali tal-Prodott. Għandu jkun URI persistenti, uniku globalment u solvibbli (eż., URN UUID jew HTTP URI). Il-valur default huwa placeholder u għandu jiġi sostitwit b'identifikatur reali aktar tard."
+        },
+        {
+          "@language": "nl",
+          "@value": "De unieke identificatie voor deze specifieke instantie van het digitaal productpaspoort. Moet een persistente, wereldwijd unieke en oplosbare URI zijn (bijv. URN UUID of HTTP URI). De standaardwaarde is een tijdelijke aanduiding en moet later worden vervangen door een echte identificatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator dla tej konkretnej instancji cyfrowego paszportu produktu. Powinien to być trwały, globalnie unikalny i rozwiązywalny identyfikator URI (np. URN UUID lub HTTP URI). Wartość domyślna jest symbolem zastępczym i powinna zostać później zastąpiona prawdziwym identyfikatorem."
+        },
+        {
+          "@language": "pt",
+          "@value": "O identificador único para esta instância específica do Passaporte Digital do Produto. Deve ser um URI persistente, globalmente único e resolúvel (por exemplo, URN UUID ou HTTP URI). O valor padrão é um espaço reservado e deve ser substituído por um identificador real posteriormente."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul unic pentru această instanță specifică a pașaportului digital al produsului. Ar trebui să fie un URI persistent, unic la nivel global și rezolvabil (de exemplu, URN UUID sau HTTP URI). Valoarea implicită este un substituent și ar trebui înlocuită cu un identificator real ulterior."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor pre túto konkrétnu inštanciu digitálneho pasu výrobku. Mal by byť trvalý, globálne jedinečný a riešiteľný URI (napr. URN UUID alebo HTTP URI). Predvolená hodnota je zástupný symbol a neskôr by mala byť nahradená skutočným identifikátorom."
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstveni identifikator za ta specifičen primerek digitalnega potnega lista izdelka. Moral bi biti trajen, globalno edinstven in rešljiv URI (npr. URN UUID ali HTTP URI). Privzeta vrednost je ograda in jo je treba kasneje nadomestiti s pravim identifikatorjem."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den unika identifieraren för denna specifika instans av digitalt produktpass. Bör vara en beständig, globalt unik och upplösningsbar URI (t.ex. URN UUID eller HTTP URI). Standardvärdet är en platshållare och bör ersättas med en riktig identifierare senare."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -55,8 +443,202 @@
     {
       "@id": "dppk:uniqueProductIdentifier",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Unique Product Identifier (UPI)",
-      "rdfs:comment": "The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI. The default value is a placeholder and should be replaced with a real identifier, for example, after registering the product with a service like GS1.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Уникален продуктов идентификатор (UPI)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor výrobku (UPI)"
+        },
+        {
+          "@language": "da",
+          "@value": "Unik produktidentifikator (UPI)"
+        },
+        {
+          "@language": "de",
+          "@value": "Eindeutige Produktkennung (UPI)"
+        },
+        {
+          "@language": "el",
+          "@value": "Μοναδικό αναγνωριστικό προϊόντος (UPI)"
+        },
+        {
+          "@language": "en",
+          "@value": "Unique Product Identifier (UPI)"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador Único de Producto (UPI)"
+        },
+        {
+          "@language": "et",
+          "@value": "Unikaalne tooteidentifikaator (UPI)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Yksilöllinen tuotetunniste (UPI)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant unique du produit (IUP)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir Uathúil Táirge (UPI)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator proizvoda (UPI)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Egyedi termékazonosító (UPI)"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore unico del prodotto (UPI)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus gaminio identifikatorius (UPI)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Unikālais produkta identifikators (UPI)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur Uniku tal-Prodott (UPI)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Unieke productidentificatie (UPI)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator produktu (UPI)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador Único do Produto (IUP)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator unic al produsului (UPI)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor výrobku (UPI)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstveni identifikator izdelka (UPI)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Unik produktidentifierare (UPI)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Уникалният идентификатор за физическия продукт, свързан с този DPP. Съответства на изискването за Уникален продуктов идентификатор (UPI) в ESPR. Силно се препоръчва използването на установени стандарти като GS1 Digital Link URI. Стойността по подразбиране е заместител и трябва да бъде заменена с реален идентификатор, например след регистриране на продукта в услуга като GS1."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor fyzického výrobku spojeného s tímto DPP. Odpovídá požadavku na Jedinečný identifikátor výrobku (UPI) v ESPR. Důrazně se doporučuje používat zavedené standardy, jako je GS1 Digital Link URI. Výchozí hodnota je zástupný symbol a měla by být nahrazena skutečným identifikátorem, například po registraci výrobku u služby jako GS1."
+        },
+        {
+          "@language": "da",
+          "@value": "Den unikke identifikator for det fysiske produkt, der er knyttet til dette DPP. Stemmer overens med kravet om Unik produktidentifikator (UPI) i ESPR. Det anbefales kraftigt at bruge etablerede standarder som GS1 Digital Link URI. Standardværdien er en pladsholder og bør erstattes med en rigtig identifikator, for eksempel efter registrering af produktet hos en tjeneste som GS1."
+        },
+        {
+          "@language": "de",
+          "@value": "Die eindeutige Kennung für das physische Produkt, das diesem DPP zugeordnet ist. Entspricht der Anforderung an die eindeutige Produktkennung (UPI) in der ESPR. Es wird dringend empfohlen, etablierte Standards wie GS1 Digital Link URI zu verwenden. Der Standardwert ist ein Platzhalter und sollte beispielsweise nach der Registrierung des Produkts bei einem Dienst wie GS1 durch eine echte Kennung ersetzt werden."
+        },
+        {
+          "@language": "el",
+          "@value": "Το μοναδικό αναγνωριστικό για το φυσικό προϊόν που σχετίζεται με αυτό το DPP. Ευθυγραμμίζεται με την απαίτηση για Μοναδικό αναγνωριστικό προϊόντος (UPI) στον ESPR. Συνιστάται ανεπιφύλακτα η χρήση καθιερωμένων προτύπων όπως το GS1 Digital Link URI. Η προεπιλεγμένη τιμή είναι ένα σύμβολο κράτησης θέσης και θα πρέπει να αντικατασταθεί με ένα πραγματικό αναγνωριστικό, για παράδειγμα, μετά την εγγραφή του προϊόντος σε μια υπηρεσία όπως το GS1."
+        },
+        {
+          "@language": "en",
+          "@value": "The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI. The default value is a placeholder and should be replaced with a real identifier, for example, after registering the product with a service like GS1."
+        },
+        {
+          "@language": "es",
+          "@value": "El identificador único para el producto físico asociado con este DPP. Se alinea con el requisito de Identificador Único de Producto (UPI) en el ESPR. Se recomienda encarecidamente utilizar estándares establecidos como GS1 Digital Link URI. El valor predeterminado es un marcador de posición y debe reemplazarse con un identificador real, por ejemplo, después de registrar el producto con un servicio como GS1."
+        },
+        {
+          "@language": "et",
+          "@value": "Selle DPP-ga seotud füüsilise toote unikaalne identifikaator. Vastab ESPR-i unikaalse tooteidentifikaatori (UPI) nõudele. Tungivalt soovitatav on kasutada väljakujunenud standardeid nagu GS1 Digital Link URI. Vaikeväärtus on kohatäide ja see tuleks asendada reaalse identifikaatoriga, näiteks pärast toote registreerimist teenuses nagu GS1."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tähän DPP:hen liittyvän fyysisen tuotteen yksilöllinen tunniste. Vastaa ESPR:n yksilöllisen tuotetunnisteen (UPI) vaatimusta. Suositellaan vahvasti käyttämään vakiintuneita standardeja, kuten GS1 Digital Link URI. Oletusarvo on paikkamerkki ja se tulisi korvata oikealla tunnisteella esimerkiksi rekisteröityään tuote GS1:n kaltaiseen palveluun."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'identifiant unique du produit physique associé à ce DPP. S'aligne sur l'exigence d'identifiant unique du produit (IUP) dans l'ESPR. Il est fortement recommandé d'utiliser des normes établies telles que l'URI GS1 Digital Link. La valeur par défaut est un espace réservé et doit être remplacée par un identifiant réel, par exemple, après avoir enregistré le produit auprès d'un service comme GS1."
+        },
+        {
+          "@language": "ga",
+          "@value": "An t-aitheantóir uathúil don táirge fisiceach a bhaineann leis an DPP seo. Tagann sé leis an gceanglas maidir le hAitheantóir Uathúil Táirge (UPI) san ESPR. Moltar go láidir úsáid a bhaint as caighdeáin bhunaithe mar GS1 Digital Link URI. Is luach ionadach é an luach réamhshocraithe agus ba cheart aitheantóir fíor a chur ina ionad, mar shampla, tar éis an táirge a chlárú le seirbhís mar GS1."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator za fizički proizvod povezan s ovim DPP-om. Usklađen sa zahtjevom za Jedinstveni identifikator proizvoda (UPI) u ESPR-u. Preporučuje se korištenje utvrđenih standarda poput GS1 Digital Link URI. Zadana vrijednost je rezervirano mjesto i treba je zamijeniti stvarnim identifikatorom, na primjer, nakon registracije proizvoda kod usluge kao što je GS1."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az ehhez a DPP-hez társított fizikai termék egyedi azonosítója. Összhangban van az ESPR egyedi termékazonosító (UPI) követelményével. Erősen ajánlott bevált szabványok, például a GS1 Digital Link URI használata. Az alapértelmezett érték helyőrző, és valós azonosítóra kell cserélni, például a termék regisztrálása után egy olyan szolgáltatásnál, mint a GS1."
+        },
+        {
+          "@language": "it",
+          "@value": "L'identificatore unico per il prodotto fisico associato a questo DPP. Si allinea con il requisito dell'Identificatore unico del prodotto (UPI) nell'ESPR. Si raccomanda vivamente di utilizzare standard consolidati come GS1 Digital Link URI. Il valore predefinito è un segnaposto e dovrebbe essere sostituito con un identificatore reale, ad esempio, dopo aver registrato il prodotto presso un servizio come GS1."
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus fizinio gaminio, susieto su šiuo DPP, identifikatorius. Atitinka Tvarių gaminių ekologinio projektavimo reglamento (ESPR) reikalavimą dėl unikalaus gaminio identifikatoriaus (UPI). Griežtai rekomenduojama naudoti nustatytus standartus, tokius kaip „GS1 Digital Link“ URI. Numatytoji reikšmė yra vietos rezervavimo ženklas ir turėtų būti pakeista tikru identifikatoriumi, pavyzdžiui, užregistravus gaminį tokioje tarnyboje kaip GS1."
+        },
+        {
+          "@language": "lv",
+          "@value": "Unikālais identifikators fiziskajam produktam, kas saistīts ar šo DPP. Saskaņots ar Unikālā produkta identifikatora (UPI) prasību ESPR. Stingri ieteicams izmantot tādus vispāratzītus standartus kā GS1 Digital Link URI. Noklusējuma vērtība ir vietturis, un tā jāaizstāj ar reālu identifikatoru, piemēram, pēc produkta reģistrēšanas tādā pakalpojumā kā GS1."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-identifikatur uniku għall-prodott fiżiku assoċjat ma' dan id-DPP. Jallinja mar-rekwiżit tal-Identifikatur Uniku tal-Prodott (UPI) fl-ESPR. Huwa rrakkomandat ħafna li jintużaw standards stabbiliti bħal GS1 Digital Link URI. Il-valur default huwa placeholder u għandu jiġi sostitwit b'identifikatur reali, pereżempju, wara r-reġistrazzjoni tal-prodott b'servizz bħal GS1."
+        },
+        {
+          "@language": "nl",
+          "@value": "De unieke identificatie voor het fysieke product dat aan dit DPP is gekoppeld. Komt overeen met de vereiste voor Unieke productidentificatie (UPI) in de ESPR. Het wordt sterk aanbevolen om gevestigde standaarden zoals GS1 Digital Link URI te gebruiken. De standaardwaarde is een tijdelijke aanduiding en moet worden vervangen door een echte identificatie, bijvoorbeeld na registratie van het product bij een dienst zoals GS1."
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator fizycznego produktu powiązanego z tym DPP. Zgodny z wymogiem unikalnego identyfikatora produktu (UPI) w ESPR. Zdecydowanie zaleca się stosowanie ustalonych standardów, takich jak GS1 Digital Link URI. Wartość domyślna jest symbolem zastępczym i powinna zostać zastąpiona prawdziwym identyfikatorem, na przykład po zarejestrowaniu produktu w usłudze takiej jak GS1."
+        },
+        {
+          "@language": "pt",
+          "@value": "O identificador único para o produto físico associado a este DPP. Alinha-se com o requisito de Identificador Único do Produto (IUP) no ESPR. É fortemente recomendado usar padrões estabelecidos como o GS1 Digital Link URI. O valor padrão é um espaço reservado e deve ser substituído por um identificador real, por exemplo, após registrar o produto em um serviço como a GS1."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul unic pentru produsul fizic asociat cu acest DPP. Se aliniază la cerința privind Identificatorul unic al produsului (UPI) din ESPR. Se recomandă insistent utilizarea standardelor stabilite, cum ar fi GS1 Digital Link URI. Valoarea implicită este un substituent și ar trebui înlocuită cu un identificator real, de exemplu, după înregistrarea produsului la un serviciu precum GS1."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor pre fyzický výrobok spojený s týmto DPP. Je v súlade s požiadavkou na Jedinečný identifikátor výrobku (UPI) v nariadení ESPR. Dôrazne sa odporúča používať zavedené štandardy, ako je GS1 Digital Link URI. Predvolená hodnota je zástupný symbol a mala by byť nahradená skutočným identifikátorom, napríklad po registrácii výrobku v službe, ako je GS1."
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstveni identifikator za fizični izdelek, povezan s tem DPP. Uskklajeno z zahtevo po edinstvenem identifikatorju izdelka (UPI) v ESPR. Močno priporočamo uporabo uveljavljenih standardov, kot je URI digitalne povezave GS1. Privzeta vrednost je ograda in jo je treba nadomestiti s pravim identifikatorjem, na primer po registraciji izdelka pri storitvi, kot je GS1."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den unika identifieraren för den fysiska produkten som är kopplad till detta DPP. Överensstämmer med kravet på unik produktidentifierare (UPI) i ESPR. Det rekommenderas starkt att använda etablerade standarder som GS1 Digital Link URI. Standardvärdet är en platshållare och bör ersättas med en riktig identifierare, till exempel efter registrering av produkten hos en tjänst som GS1."
+        }
+      ],
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "ESPR - Article 9 (Unique product identifier)"
@@ -80,8 +662,202 @@
     {
       "@id": "dppk:economicOperatorId",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Economic Operator Identifier (EOI)",
-      "rdfs:comment": "The unique identifier for the Economic Operator responsible for placing the product on the market.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на икономически оператор (EOI)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor hospodářského subjektu (EOI)"
+        },
+        {
+          "@language": "da",
+          "@value": "Identifikator for økonomisk operatør (EOI)"
+        },
+        {
+          "@language": "de",
+          "@value": "Kennung des Wirtschaftsbeteiligten (EOI)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό οικονομικού φορέα (EOI)"
+        },
+        {
+          "@language": "en",
+          "@value": "Economic Operator Identifier (EOI)"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador de Operador Económico (EOI)"
+        },
+        {
+          "@language": "et",
+          "@value": "Ettevõtja identifikaator (EOI)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Taloustoimijan tunniste (EOI)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant de l'opérateur économique (EOI)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir Oibreora Eacnamaíoch (EOI)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator gospodarskog subjekta (EOI)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gazdasági szereplő azonosítója (EOI)"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificativo dell'operatore economico (EOI)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Ekonominės veiklos vykdytojo identifikatorius (EOI)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Uzņēmēja identifikators (EOI)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur tal-Operatur Ekonomiku (EOI)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Identificatie van de marktdeelnemer (EOI)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator podmiotu gospodarczego (EOI)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador do Operador Económico (EOI)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul operatorului economic (EOI)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor hospodárskeho subjektu (EOI)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator gospodarskega subjekta (EOI)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Identifierare för ekonomisk aktör (EOI)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Уникалният идентификатор за икономическия оператор, отговорен за пускането на продукта на пазара."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor hospodářského subjektu odpovědného za uvedení výrobku na trh."
+        },
+        {
+          "@language": "da",
+          "@value": "Den unikke identifikator for den økonomiske operatør, der er ansvarlig for at bringe produktet i omsætning."
+        },
+        {
+          "@language": "de",
+          "@value": "Die eindeutige Kennung für den Wirtschaftsbeteiligten, der für das Inverkehrbringen des Produkts verantwortlich ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Το μοναδικό αναγνωριστικό για τον οικονομικό φορέα που είναι υπεύθυνος για τη διάθεση του προϊόντος στην αγορά."
+        },
+        {
+          "@language": "en",
+          "@value": "The unique identifier for the Economic Operator responsible for placing the product on the market."
+        },
+        {
+          "@language": "es",
+          "@value": "El identificador único para el Operador Económico responsable de poner el producto en el mercado."
+        },
+        {
+          "@language": "et",
+          "@value": "Toote turule laskmise eest vastutava ettevõtja unikaalne identifikaator."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotteen markkinoille saattamisesta vastaavan taloustoimijan yksilöllinen tunniste."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'identifiant unique de l'opérateur économique responsable de la mise sur le marché du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "An t-aitheantóir uathúil don Oibreoir Eacnamaíoch atá freagrach as an táirge a chur ar an margadh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator gospodarskog subjekta odgovornog za stavljanje proizvoda na tržište."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termék forgalomba hozataláért felelős gazdasági szereplő egyedi azonosítója."
+        },
+        {
+          "@language": "it",
+          "@value": "L'identificativo unico per l'operatore economico responsabile dell'immissione del prodotto sul mercato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Ekonominės veiklos vykdytojo, atsakingo už gaminio pateikimą rinkai, unikalus identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Unikālais identifikators uzņēmējam, kas atbildīgs par produkta laišanu tirgū."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-identifikatur uniku għall-Operatur Ekonomiku responsabbli għat-tqegħid tal-prodott fis-suq."
+        },
+        {
+          "@language": "nl",
+          "@value": "De unieke identificatie voor de marktdeelnemer die verantwoordelijk is voor het op de markt brengen van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator podmiotu gospodarczego odpowiedzialnego za wprowadzenie produktu do obrotu."
+        },
+        {
+          "@language": "pt",
+          "@value": "O identificador único do Operador Económico responsável pela colocação do produto no mercado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul unic pentru operatorul economic responsabil cu introducerea produsului pe piață."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor hospodárskeho subjektu zodpovedného za uvedenie výrobku na trh."
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstveni identifikator gospodarskega subjekta, odgovornega za dajanje izdelka na trg."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den unika identifieraren för den ekonomiska aktör som ansvarar för att släppa ut produkten på marknaden."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -93,8 +869,202 @@
     {
       "@id": "dppk:facilityId",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Facility Identifier",
-      "rdfs:comment": "Optional. The unique identifier for the manufacturing or processing facility associated with the product.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на съоръжението"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor zařízení"
+        },
+        {
+          "@language": "da",
+          "@value": "Facilitetsidentifikator"
+        },
+        {
+          "@language": "de",
+          "@value": "Anlagenkennung"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό εγκατάστασης"
+        },
+        {
+          "@language": "en",
+          "@value": "Facility Identifier"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador de la Instalación"
+        },
+        {
+          "@language": "et",
+          "@value": "Käitise identifikaator"
+        },
+        {
+          "@language": "fi",
+          "@value": "Laitoksen tunniste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant de l'installation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir Áise"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator postrojenja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Létesítmény azonosítója"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificativo della struttura"
+        },
+        {
+          "@language": "lt",
+          "@value": "Objekto identifikatorius"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iekārtas identifikators"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur tal-Faċilità"
+        },
+        {
+          "@language": "nl",
+          "@value": "Faciliteitidentificatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator obiektu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador da Instalação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul unității"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor zariadenia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator objekta"
+        },
+        {
+          "@language": "sv",
+          "@value": "Anläggningsidentifierare"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Незадължително. Уникалният идентификатор за производственото или преработвателното съоръжение, свързано с продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Volitelné. Jedinečný identifikátor výrobního nebo zpracovatelského zařízení spojeného s výrobkem."
+        },
+        {
+          "@language": "da",
+          "@value": "Valgfrit. Den unikke identifikator for den produktions- eller forarbejdningsfacilitet, der er knyttet til produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Optional. Die eindeutige Kennung für die mit dem Produkt verbundene Herstellungs- oder Verarbeitungsanlage."
+        },
+        {
+          "@language": "el",
+          "@value": "Προαιρετικό. Το μοναδικό αναγνωριστικό για την εγκατάσταση παραγωγής ή επεξεργασίας που σχετίζεται με το προϊόν."
+        },
+        {
+          "@language": "en",
+          "@value": "Optional. The unique identifier for the manufacturing or processing facility associated with the product."
+        },
+        {
+          "@language": "es",
+          "@value": "Opcional. El identificador único para la instalación de fabricación o procesamiento asociada con el producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Valikuline. Tootega seotud tootmis- või töötlemiskäitise unikaalne identifikaator."
+        },
+        {
+          "@language": "fi",
+          "@value": "Valinnainen. Tuotteeseen liittyvän valmistus- tai käsittelylaitoksen yksilöllinen tunniste."
+        },
+        {
+          "@language": "fr",
+          "@value": "Optionnel. L'identifiant unique de l'installation de fabrication ou de traitement associée au produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Roghnach. An t-aitheantóir uathúil don áis déantúsaíochta nó próiseála a bhaineann leis an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Neobavezno. Jedinstveni identifikator za proizvodno ili prerađivačko postrojenje povezano s proizvodom."
+        },
+        {
+          "@language": "hu",
+          "@value": "Opcionális. A termékhez kapcsolódó gyártó- vagy feldolgozó létesítmény egyedi azonosítója."
+        },
+        {
+          "@language": "it",
+          "@value": "Opzionale. L'identificativo unico per la struttura di produzione o lavorazione associata al prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Neprivaloma. Unikalus gamybos ar perdirbimo objekto, susieto su gaminiu, identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Neobligāti. Unikālais identifikators ražošanas vai pārstrādes iekārtai, kas saistīta ar produktu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Mhux obbligatorju. L-identifikatur uniku għall-faċilità tal-manifattura jew l-ipproċessar assoċjata mal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Optioneel. De unieke identificatie voor de productie- of verwerkingsfaciliteit die aan het product is gekoppeld."
+        },
+        {
+          "@language": "pl",
+          "@value": "Opcjonalnie. Unikalny identyfikator zakładu produkcyjnego lub przetwórczego powiązanego z produktem."
+        },
+        {
+          "@language": "pt",
+          "@value": "Opcional. O identificador único para a instalação de fabrico ou processamento associada ao produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Opțional. Identificatorul unic pentru unitatea de producție sau prelucrare asociată cu produsul."
+        },
+        {
+          "@language": "sk",
+          "@value": "Voliteľné. Jedinečný identifikátor výrobného alebo spracovateľského zariadenia spojeného s výrobkom."
+        },
+        {
+          "@language": "sl",
+          "@value": "Izbirno. Edinstveni identifikator za proizvodni ali predelovalni obrat, povezan z izdelkom."
+        },
+        {
+          "@language": "sv",
+          "@value": "Valfritt. Den unika identifieraren för den tillverknings- eller bearbetningsanläggning som är kopplad till produkten."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -106,8 +1076,18 @@
     {
       "@id": "dppk:GranularityValue",
       "@type": "rdfs:Class",
-      "rdfs:label": "Granularity Value",
-      "rdfs:comment": "An enumeration of the allowed granularity levels for a DPP.",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Granularity Value"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "An enumeration of the allowed granularity levels for a DPP."
+        }
+      ],
       "rdfs:subClassOf": {
         "@id": "rdfs:Resource"
       },
@@ -138,8 +1118,202 @@
     {
       "@id": "dppk:granularity",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Granularity Level",
-      "rdfs:comment": "Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Ниво на детайлност"
+        },
+        {
+          "@language": "cs",
+          "@value": "Úroveň granularity"
+        },
+        {
+          "@language": "da",
+          "@value": "Granularitetsniveau"
+        },
+        {
+          "@language": "de",
+          "@value": "Granularitätsstufe"
+        },
+        {
+          "@language": "el",
+          "@value": "Επίπεδο λεπτομέρειας"
+        },
+        {
+          "@language": "en",
+          "@value": "Granularity Level"
+        },
+        {
+          "@language": "es",
+          "@value": "Nivel de Granularidad"
+        },
+        {
+          "@language": "et",
+          "@value": "Granulaarsuse tase"
+        },
+        {
+          "@language": "fi",
+          "@value": "Yksityiskohtaisuuden taso"
+        },
+        {
+          "@language": "fr",
+          "@value": "Niveau de granularité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Leibhéal Gráinneachta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Razina detaljnosti"
+        },
+        {
+          "@language": "hu",
+          "@value": "Részletezettségi szint"
+        },
+        {
+          "@language": "it",
+          "@value": "Livello di granularità"
+        },
+        {
+          "@language": "lt",
+          "@value": "Detalumo lygis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Granularitātes līmenis"
+        },
+        {
+          "@language": "mt",
+          "@value": "Livell ta' Granularità"
+        },
+        {
+          "@language": "nl",
+          "@value": "Granulariteitsniveau"
+        },
+        {
+          "@language": "pl",
+          "@value": "Poziom szczegółowości"
+        },
+        {
+          "@language": "pt",
+          "@value": "Nível de Granularidade"
+        },
+        {
+          "@language": "ro",
+          "@value": "Nivel de granularitate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Úroveň granularity"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raven zrnatosti"
+        },
+        {
+          "@language": "sv",
+          "@value": "Granularitetsnivå"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Показва нивото на детайлност, за което се отнася DPP: „Модел“ (вид продукт), „Партида“ (производствена партида) или „Елемент“ (индивидуална сериализирана единица)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Označuje úroveň podrobností, na kterou se DPP vztahuje: „Model“ (typ výrobku), „Šarže“ (výrobní šarže) nebo „Položka“ (jednotlivá sériová jednotka)."
+        },
+        {
+          "@language": "da",
+          "@value": "Angiver det detaljeringsniveau, som DPP gælder for: 'Model' (produkttype), 'Batch' (produktionsparti) eller 'Item' (individuel serialiseret enhed)."
+        },
+        {
+          "@language": "de",
+          "@value": "Gibt den Detaillierungsgrad an, für den der DPP gilt: „Modell“ (Produkttyp), „Charge“ (Produktionslos) oder „Artikel“ (einzelne serialisierte Einheit)."
+        },
+        {
+          "@language": "el",
+          "@value": "Υποδεικνύει το επίπεδο λεπτομέρειας στο οποίο αναφέρεται το DPP: «Μοντέλο» (τύπος προϊόντος), «Παρτίδα» (παρτίδα παραγωγής) ή «Αντικείμενο» (μεμονωμένη σειριοποιημένη μονάδα)."
+        },
+        {
+          "@language": "en",
+          "@value": "Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit)."
+        },
+        {
+          "@language": "es",
+          "@value": "Indica el nivel de detalle al que se aplica el DPP: 'Modelo' (tipo de producto), 'Lote' (lote de producción) o 'Artículo' (unidad serializada individual)."
+        },
+        {
+          "@language": "et",
+          "@value": "Näitab detailsuse taset, millele DPP kehtib: „Mudel“ (tootetüüp), „Partii“ (tootmispartii) või „Üksus“ (individuaalne seeriastatud üksus)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Osoittaa yksityiskohtaisuuden tason, jota DPP koskee: 'Malli' (tuotetyyppi), 'Erä' (tuotantoerä) tai 'Kohde' (yksittäinen sarjoitettu yksikkö)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Indique le niveau de détail auquel s'applique le DPP : « Modèle » (type de produit), « Lot » (lot de production) ou « Article » (unité sérialisée individuelle)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Léiríonn sé an leibhéal mionsonraí a bhaineann an DPP leis: 'Múnla' (cineál táirge), 'Baisc' (baisc táirgthe), nó 'Mír' (aonad sraitheach aonair)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Označava razinu detaljnosti na koju se DPP odnosi: 'Model' (vrsta proizvoda), 'Serija' (proizvodna serija) ili 'Stavka' (pojedinačna serijalizirana jedinica)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Jelzi a részletezettségi szintet, amelyre a DPP vonatkozik: „Modell” (terméktípus), „Tétel” (gyártási tétel) vagy „Tétel” (egyedi szerializált egység)."
+        },
+        {
+          "@language": "it",
+          "@value": "Indica il livello di dettaglio a cui si applica il DPP: 'Modello' (tipo di prodotto), 'Lotto' (lotto di produzione) o 'Articolo' (unità serializzata individuale)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nurodo detalumo lygį, kuriam taikomas DPP: „Modelis“ (gaminio tipas), „Partija“ (gamybos partija) arba „Elementas“ (individualus serijinis vienetas)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Norāda detalizācijas līmeni, uz kuru attiecas DPP: “Modelis” (produkta veids), “Partija” (ražošanas partija) vai “Vienība” (atsevišķa serializēta vienība)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jindika l-livell ta' dettall li japplika għalih id-DPP: 'Mudell' (tip ta' prodott), 'Lott' (lott ta' produzzjoni), jew 'Oġġett' (unità serjalizzata individwali)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Geeft het detailniveau aan waarop het DPP van toepassing is: 'Model' (producttype), 'Batch' (productiepartij) of 'Item' (individuele geserialiseerde eenheid)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wskazuje poziom szczegółowości, którego dotyczy DPP: „Model” (typ produktu), „Partia” (partia produkcyjna) lub „Pozycja” (pojedyncza jednostka seryjna)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Indica o nível de detalhe a que o DPP se aplica: 'Modelo' (tipo de produto), 'Lote' (lote de produção) ou 'Item' (unidade serializada individual)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Indică nivelul de detaliere la care se aplică DPP: „Model” (tip de produs), „Lot” (lot de producție) sau „Articol” (unitate serializată individual)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Označuje úroveň podrobností, na ktorú sa DPP vzťahuje: „Model“ (typ výrobku), „Šarža“ (výrobná dávka) alebo „Položka“ (jednotlivá sériová jednotka)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Označuje raven podrobnosti, za katero velja DPP: 'Model' (vrsta izdelka), 'Serija' (proizvodna serija) ali 'Postavka' (posamezna serializirana enota)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Anger den detaljnivå som DPP gäller för: 'Modell' (produkttyp), 'Batch' (produktionsparti) eller 'Artikel' (individuell serialiserad enhet)."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -151,8 +1325,202 @@
     {
       "@id": "dppk:dppStatus",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "DPP Status",
-      "rdfs:comment": "The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Статус на DPP"
+        },
+        {
+          "@language": "cs",
+          "@value": "Stav DPP"
+        },
+        {
+          "@language": "da",
+          "@value": "DPP-status"
+        },
+        {
+          "@language": "de",
+          "@value": "DPP-Status"
+        },
+        {
+          "@language": "el",
+          "@value": "Κατάσταση DPP"
+        },
+        {
+          "@language": "en",
+          "@value": "DPP Status"
+        },
+        {
+          "@language": "es",
+          "@value": "Estado del DPP"
+        },
+        {
+          "@language": "et",
+          "@value": "DPP staatus"
+        },
+        {
+          "@language": "fi",
+          "@value": "DPP:n tila"
+        },
+        {
+          "@language": "fr",
+          "@value": "Statut du DPP"
+        },
+        {
+          "@language": "ga",
+          "@value": "Stádas DPP"
+        },
+        {
+          "@language": "hr",
+          "@value": "Status DPP-a"
+        },
+        {
+          "@language": "hu",
+          "@value": "DPP állapota"
+        },
+        {
+          "@language": "it",
+          "@value": "Stato del DPP"
+        },
+        {
+          "@language": "lt",
+          "@value": "DPP būsena"
+        },
+        {
+          "@language": "lv",
+          "@value": "DPP statuss"
+        },
+        {
+          "@language": "mt",
+          "@value": "Stat tad-DPP"
+        },
+        {
+          "@language": "nl",
+          "@value": "DPP-status"
+        },
+        {
+          "@language": "pl",
+          "@value": "Status DPP"
+        },
+        {
+          "@language": "pt",
+          "@value": "Estado do DPP"
+        },
+        {
+          "@language": "ro",
+          "@value": "Starea DPP"
+        },
+        {
+          "@language": "sk",
+          "@value": "Stav DPP"
+        },
+        {
+          "@language": "sl",
+          "@value": "Status DPP"
+        },
+        {
+          "@language": "sv",
+          "@value": "DPP-status"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Текущият статус на жизнения цикъл на екземпляра на DPP (напр. „активен“, „неактивен“)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Aktuální stav životního cyklu instance DPP (např. „aktivní“, „neaktivní“)."
+        },
+        {
+          "@language": "da",
+          "@value": "Den aktuelle livscyklusstatus for DPP-instansen (f.eks. 'aktiv', 'inaktiv')."
+        },
+        {
+          "@language": "de",
+          "@value": "Der aktuelle Lebenszyklusstatus der DPP-Instanz (z. B. „aktiv“, „inaktiv“)."
+        },
+        {
+          "@language": "el",
+          "@value": "Η τρέχουσα κατάσταση κύκλου ζωής του στιγμιότυπου DPP (π.χ. «ενεργό», «ανενεργό»)."
+        },
+        {
+          "@language": "en",
+          "@value": "The current lifecycle status of the DPP instance (e.g., 'active', 'inactive')."
+        },
+        {
+          "@language": "es",
+          "@value": "El estado actual del ciclo de vida de la instancia del DPP (por ejemplo, 'activo', 'inactivo')."
+        },
+        {
+          "@language": "et",
+          "@value": "DPP eksemplari praegune elutsükli staatus (nt „aktiivne“, „mitteaktiivne“)."
+        },
+        {
+          "@language": "fi",
+          "@value": "DPP-esiintymän nykyinen elinkaaren tila (esim. 'aktiivinen', 'epäaktiivinen')."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le statut actuel du cycle de vie de l'instance du DPP (par exemple, « actif », « inactif »)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stádas saolré reatha an instance DPP (m.sh., 'gníomhach', 'neamhghníomhach')."
+        },
+        {
+          "@language": "hr",
+          "@value": "Trenutni status životnog ciklusa instance DPP-a (npr. 'aktivan', 'neaktivan')."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-példány aktuális életciklus-állapota (pl. „aktív”, „inaktív”)."
+        },
+        {
+          "@language": "it",
+          "@value": "Lo stato attuale del ciclo di vita dell'istanza DPP (ad es. 'attivo', 'inattivo')."
+        },
+        {
+          "@language": "lt",
+          "@value": "Dabartinė DPP egzemplioriaus gyvavimo ciklo būsena (pvz., „aktyvus“, „neaktyvus“)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Pašreizējais DPP instances dzīves cikla statuss (piemēram, “aktīvs”, “neaktīvs”)."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-istat attwali taċ-ċiklu tal-ħajja tal-istanza tad-DPP (eż., 'attiv', 'inattiv')."
+        },
+        {
+          "@language": "nl",
+          "@value": "De huidige levenscyclusstatus van de DPP-instantie (bijv. 'actief', 'inactief')."
+        },
+        {
+          "@language": "pl",
+          "@value": "Aktualny status cyklu życia instancji DPP (np. „aktywny”, „nieaktywny”)."
+        },
+        {
+          "@language": "pt",
+          "@value": "O estado atual do ciclo de vida da instância do DPP (por exemplo, 'ativo', 'inativo')."
+        },
+        {
+          "@language": "ro",
+          "@value": "Starea actuală a ciclului de viață a instanței DPP (de exemplu, „activ”, „inactiv”)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Aktuálny stav životného cyklu inštancie DPP (napr. „aktívny“, „neaktívny“)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Trenutni status življenjskega cikla primerka DPP (npr. 'aktiven', 'neaktiven')."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den aktuella livscykelstatusen för DPP-instansen (t.ex. 'aktiv', 'inaktiv')."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -164,8 +1532,202 @@
     {
       "@id": "dppk:lastUpdate",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Last Update Timestamp",
-      "rdfs:comment": "The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Времеви печат на последна актуализация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Časové razítko poslední aktualizace"
+        },
+        {
+          "@language": "da",
+          "@value": "Tidsstempel for sidste opdatering"
+        },
+        {
+          "@language": "de",
+          "@value": "Zeitstempel der letzten Aktualisierung"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρονική σήμανση τελευταίας ενημέρωσης"
+        },
+        {
+          "@language": "en",
+          "@value": "Last Update Timestamp"
+        },
+        {
+          "@language": "es",
+          "@value": "Marca de tiempo de la última actualización"
+        },
+        {
+          "@language": "et",
+          "@value": "Viimase värskenduse ajatempel"
+        },
+        {
+          "@language": "fi",
+          "@value": "Viimeisimmän päivityksen aikaleima"
+        },
+        {
+          "@language": "fr",
+          "@value": "Horodatage de la dernière mise à jour"
+        },
+        {
+          "@language": "ga",
+          "@value": "Stampa Ama an Nuashonraithe Deiridh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vremenska oznaka zadnjeg ažuriranja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Utolsó frissítés időbélyegzője"
+        },
+        {
+          "@language": "it",
+          "@value": "Timestamp dell'ultimo aggiornamento"
+        },
+        {
+          "@language": "lt",
+          "@value": "Paskutinio atnaujinimo laiko žyma"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pēdējā atjauninājuma laikspiedols"
+        },
+        {
+          "@language": "mt",
+          "@value": "Timestamp tal-Aħħar Aġġornament"
+        },
+        {
+          "@language": "nl",
+          "@value": "Tijdstempel laatste update"
+        },
+        {
+          "@language": "pl",
+          "@value": "Znacznik czasu ostatniej aktualizacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Carimbo de data/hora da última atualização"
+        },
+        {
+          "@language": "ro",
+          "@value": "Marcaj temporal al ultimei actualizări"
+        },
+        {
+          "@language": "sk",
+          "@value": "Časová pečiatka poslednej aktualizácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Časovni žig zadnje posodobitve"
+        },
+        {
+          "@language": "sv",
+          "@value": "Tidsstämpel för senaste uppdatering"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Датата и часът, когато екземплярът на DPP е бил последно променен. Трябва да бъде във формат ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum a čas, kdy byla instance DPP naposledy upravena. Musí být ve formátu ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "da",
+          "@value": "Dato og klokkeslæt for sidste ændring af DPP-instansen. Skal være i ISO 8601-format (xsd:dateTime)."
+        },
+        {
+          "@language": "de",
+          "@value": "Datum und Uhrzeit, zu der die DPP-Instanz zuletzt geändert wurde. Muss im ISO 8601-Format (xsd:dateTime) vorliegen."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ημερομηνία και η ώρα που τροποποιήθηκε τελευταία φορά το στιγμιότυπο DPP. Πρέπει να είναι σε μορφή ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "en",
+          "@value": "The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime)."
+        },
+        {
+          "@language": "es",
+          "@value": "La fecha y hora en que se modificó por última vez la instancia del DPP. Debe estar en formato ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "et",
+          "@value": "Kuupäev ja kellaaeg, millal DPP eksemplari viimati muudeti. Peab olema ISO 8601 vormingus (xsd:dateTime)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Päivämäärä ja kellonaika, jolloin DPP-esiintymää on viimeksi muokattu. On oltava ISO 8601 -muodossa (xsd:dateTime)."
+        },
+        {
+          "@language": "fr",
+          "@value": "La date et l'heure auxquelles l'instance du DPP a été modifiée pour la dernière fois. Doit être au format ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "ga",
+          "@value": "An dáta agus an t-am a modhnaíodh an instance DPP go deireanach. Caithfidh sé a bheith i bhformáid ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum i vrijeme kada je instanca DPP-a posljednji put izmijenjena. Mora biti u formatu ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-példány utolsó módosításának dátuma és időpontja. ISO 8601 formátumban kell lennie (xsd:dateTime)."
+        },
+        {
+          "@language": "it",
+          "@value": "La data e l'ora dell'ultima modifica dell'istanza DPP. Deve essere nel formato ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Data ir laikas, kada DPP egzempliorius buvo paskutinį kartą pakeistas. Turi būti ISO 8601 formatu (xsd:dateTime)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datums un laiks, kad DPP instance pēdējo reizi mainīta. Jābūt ISO 8601 formātā (xsd:dateTime)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-data u l-ħin meta l-istanza tad-DPP ġiet modifikata l-aħħar. Irid ikun fil-format ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "nl",
+          "@value": "De datum en tijd waarop de DPP-instantie voor het laatst is gewijzigd. Moet in ISO 8601-formaat zijn (xsd:dateTime)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Data i godzina ostatniej modyfikacji instancji DPP. Musi być w formacie ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "pt",
+          "@value": "A data e a hora em que a instância do DPP foi modificada pela última vez. Deve estar no formato ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Data și ora la care instanța DPP a fost modificată ultima dată. Trebuie să fie în format ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum a čas poslednej úpravy inštancie DPP. Musí byť vo formáte ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum in čas, ko je bil primerek DPP nazadnje spremenjen. Biti mora v formatu ISO 8601 (xsd:dateTime)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datum och tid då DPP-instansen senast ändrades. Måste vara i ISO 8601-format (xsd:dateTime)."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -177,8 +1739,202 @@
     {
       "@id": "dppk:versionNumber",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Version Number",
-      "rdfs:comment": "The version number of the DPP instance.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Номер на версия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo verze"
+        },
+        {
+          "@language": "da",
+          "@value": "Versionsnummer"
+        },
+        {
+          "@language": "de",
+          "@value": "Versionsnummer"
+        },
+        {
+          "@language": "el",
+          "@value": "Αριθμός έκδοσης"
+        },
+        {
+          "@language": "en",
+          "@value": "Version Number"
+        },
+        {
+          "@language": "es",
+          "@value": "Número de versión"
+        },
+        {
+          "@language": "et",
+          "@value": "Versiooni number"
+        },
+        {
+          "@language": "fi",
+          "@value": "Versionumero"
+        },
+        {
+          "@language": "fr",
+          "@value": "Numéro de version"
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir Leagan"
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj verzije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Verziószám"
+        },
+        {
+          "@language": "it",
+          "@value": "Numero di versione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Versijos numeris"
+        },
+        {
+          "@language": "lv",
+          "@value": "Versijas numurs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Numru tal-Verżjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Versienummer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer wersji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Número da versão"
+        },
+        {
+          "@language": "ro",
+          "@value": "Număr versiune"
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo verzie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka različice"
+        },
+        {
+          "@language": "sv",
+          "@value": "Versionsnummer"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Номерът на версията на екземпляра на DPP."
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo verze instance DPP."
+        },
+        {
+          "@language": "da",
+          "@value": "Versionsnummeret på DPP-instansen."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Versionsnummer der DPP-Instanz."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο αριθμός έκδοσης του στιγμιότυπου DPP."
+        },
+        {
+          "@language": "en",
+          "@value": "The version number of the DPP instance."
+        },
+        {
+          "@language": "es",
+          "@value": "El número de versión de la instancia del DPP."
+        },
+        {
+          "@language": "et",
+          "@value": "DPP eksemplari versiooninumber."
+        },
+        {
+          "@language": "fi",
+          "@value": "DPP-esiintymän versionumero."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le numéro de version de l'instance du DPP."
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir leagan an instance DPP."
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj verzije instance DPP-a."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-példány verziószáma."
+        },
+        {
+          "@language": "it",
+          "@value": "Il numero di versione dell'istanza DPP."
+        },
+        {
+          "@language": "lt",
+          "@value": "DPP egzemplioriaus versijos numeris."
+        },
+        {
+          "@language": "lv",
+          "@value": "DPP instances versijas numurs."
+        },
+        {
+          "@language": "mt",
+          "@value": "In-numru tal-verżjoni tal-istanza tad-DPP."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het versienummer van de DPP-instantie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer wersji instancji DPP."
+        },
+        {
+          "@language": "pt",
+          "@value": "O número da versão da instância do DPP."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul versiunii instanței DPP."
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo verzie inštancie DPP."
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka različice primerka DPP."
+        },
+        {
+          "@language": "sv",
+          "@value": "Versionsnumret för DPP-instansen."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -190,8 +1946,202 @@
     {
       "@id": "dppk:versionDate",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Version Date",
-      "rdfs:comment": "The date of the version of the DPP instance.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Дата на версия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum verze"
+        },
+        {
+          "@language": "da",
+          "@value": "Versionsdato"
+        },
+        {
+          "@language": "de",
+          "@value": "Versionsdatum"
+        },
+        {
+          "@language": "el",
+          "@value": "Ημερομηνία έκδοσης"
+        },
+        {
+          "@language": "en",
+          "@value": "Version Date"
+        },
+        {
+          "@language": "es",
+          "@value": "Fecha de la versión"
+        },
+        {
+          "@language": "et",
+          "@value": "Versiooni kuupäev"
+        },
+        {
+          "@language": "fi",
+          "@value": "Version päivämäärä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Date de la version"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dáta Leagan"
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum verzije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Verzió dátuma"
+        },
+        {
+          "@language": "it",
+          "@value": "Data della versione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Versijos data"
+        },
+        {
+          "@language": "lv",
+          "@value": "Versijas datums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Data tal-Verżjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Versiedatum"
+        },
+        {
+          "@language": "pl",
+          "@value": "Data wersji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Data da versão"
+        },
+        {
+          "@language": "ro",
+          "@value": "Data versiunii"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum verzie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum različice"
+        },
+        {
+          "@language": "sv",
+          "@value": "Versionsdatum"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Датата на версията на екземпляра на DPP."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum verze instance DPP."
+        },
+        {
+          "@language": "da",
+          "@value": "Datoen for versionen af DPP-instansen."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Datum der Version der DPP-Instanz."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ημερομηνία της έκδοσης του στιγμιότυπου DPP."
+        },
+        {
+          "@language": "en",
+          "@value": "The date of the version of the DPP instance."
+        },
+        {
+          "@language": "es",
+          "@value": "La fecha de la versión de la instancia del DPP."
+        },
+        {
+          "@language": "et",
+          "@value": "DPP eksemplari versiooni kuupäev."
+        },
+        {
+          "@language": "fi",
+          "@value": "DPP-esiintymän version päivämäärä."
+        },
+        {
+          "@language": "fr",
+          "@value": "La date de la version de l'instance du DPP."
+        },
+        {
+          "@language": "ga",
+          "@value": "Dáta leagan an instance DPP."
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum verzije instance DPP-a."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-példány verziójának dátuma."
+        },
+        {
+          "@language": "it",
+          "@value": "La data della versione dell'istanza DPP."
+        },
+        {
+          "@language": "lt",
+          "@value": "DPP egzemplioriaus versijos data."
+        },
+        {
+          "@language": "lv",
+          "@value": "DPP instances versijas datums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-data tal-verżjoni tal-istanza tad-DPP."
+        },
+        {
+          "@language": "nl",
+          "@value": "De datum van de versie van de DPP-instantie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Data wersji instancji DPP."
+        },
+        {
+          "@language": "pt",
+          "@value": "A data da versão da instância do DPP."
+        },
+        {
+          "@language": "ro",
+          "@value": "Data versiunii instanței DPP."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum verzie inštancie DPP."
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum različice primerka DPP."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datumet för versionen av DPP-instansen."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -203,8 +2153,202 @@
     {
       "@id": "dppk:dppSchemaVersion",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "DPP Schema Version",
-      "rdfs:comment": "The version of the horizontal (cross-sector) DPP schema used for this instance.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Версия на схемата на DPP"
+        },
+        {
+          "@language": "cs",
+          "@value": "Verze schématu DPP"
+        },
+        {
+          "@language": "da",
+          "@value": "DPP-skemaversion"
+        },
+        {
+          "@language": "de",
+          "@value": "DPP-Schemaversion"
+        },
+        {
+          "@language": "el",
+          "@value": "Έκδοση σχήματος DPP"
+        },
+        {
+          "@language": "en",
+          "@value": "DPP Schema Version"
+        },
+        {
+          "@language": "es",
+          "@value": "Versión del esquema del DPP"
+        },
+        {
+          "@language": "et",
+          "@value": "DPP skeemi versioon"
+        },
+        {
+          "@language": "fi",
+          "@value": "DPP-skeeman versio"
+        },
+        {
+          "@language": "fr",
+          "@value": "Version du schéma DPP"
+        },
+        {
+          "@language": "ga",
+          "@value": "Leagan Scéimre DPP"
+        },
+        {
+          "@language": "hr",
+          "@value": "Verzija sheme DPP-a"
+        },
+        {
+          "@language": "hu",
+          "@value": "DPP séma verziója"
+        },
+        {
+          "@language": "it",
+          "@value": "Versione dello schema DPP"
+        },
+        {
+          "@language": "lt",
+          "@value": "DPP schemos versija"
+        },
+        {
+          "@language": "lv",
+          "@value": "DPP shēmas versija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Verżjoni tal-Iskema DPP"
+        },
+        {
+          "@language": "nl",
+          "@value": "DPP-schemaversie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wersja schematu DPP"
+        },
+        {
+          "@language": "pt",
+          "@value": "Versão do esquema do DPP"
+        },
+        {
+          "@language": "ro",
+          "@value": "Versiunea schemei DPP"
+        },
+        {
+          "@language": "sk",
+          "@value": "Verzia schémy DPP"
+        },
+        {
+          "@language": "sl",
+          "@value": "Različica sheme DPP"
+        },
+        {
+          "@language": "sv",
+          "@value": "DPP-schemaversion"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Версията на хоризонталната (междусекторна) схема на DPP, използвана за този екземпляр."
+        },
+        {
+          "@language": "cs",
+          "@value": "Verze horizontálního (mezisektorového) schématu DPP použitého pro tuto instanci."
+        },
+        {
+          "@language": "da",
+          "@value": "Versionen af det horisontale (tværsektorielle) DPP-skema, der anvendes til denne instans."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Version des horizontalen (sektorübergreifenden) DPP-Schemas, die für diese Instanz verwendet wird."
+        },
+        {
+          "@language": "el",
+          "@value": "Η έκδοση του οριζόντιου (διατομεακού) σχήματος DPP που χρησιμοποιείται για αυτό το στιγμιότυπο."
+        },
+        {
+          "@language": "en",
+          "@value": "The version of the horizontal (cross-sector) DPP schema used for this instance."
+        },
+        {
+          "@language": "es",
+          "@value": "La versión del esquema DPP horizontal (intersectorial) utilizado para esta instancia."
+        },
+        {
+          "@language": "et",
+          "@value": "Selle eksemplari jaoks kasutatud horisontaalse (sektoriülese) DPP skeemi versioon."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tässä esiintymässä käytetyn horisontaalisen (sektoreiden välisen) DPP-skeeman versio."
+        },
+        {
+          "@language": "fr",
+          "@value": "La version du schéma DPP horizontal (intersectoriel) utilisé pour cette instance."
+        },
+        {
+          "@language": "ga",
+          "@value": "Leagan na scéimre DPP cothrománaí (tras-earnála) a úsáidtear don instance seo."
+        },
+        {
+          "@language": "hr",
+          "@value": "Verzija horizontalne (međusektorske) sheme DPP-a koja se koristi za ovu instancu."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az ehhez a példányhoz használt horizontális (szektorokon átívelő) DPP séma verziója."
+        },
+        {
+          "@language": "it",
+          "@value": "La versione dello schema DPP orizzontale (intersettoriale) utilizzato per questa istanza."
+        },
+        {
+          "@language": "lt",
+          "@value": "Šiam egzemplioriui naudojama horizontalioji (tarpsektorinė) DPP schemos versija."
+        },
+        {
+          "@language": "lv",
+          "@value": "Šai instancei izmantotā horizontālā (starpnozaru) DPP shēmas versija."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-verżjoni tal-iskema DPP orizzontali (trans-settorjali) użata għal din l-istanza."
+        },
+        {
+          "@language": "nl",
+          "@value": "De versie van het horizontale (sectoroverschrijdende) DPP-schema dat voor deze instantie wordt gebruikt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wersja horyzontalnego (międzysektorowego) schematu DPP używanego dla tej instancji."
+        },
+        {
+          "@language": "pt",
+          "@value": "A versão do esquema DPP horizontal (intersetorial) usado para esta instância."
+        },
+        {
+          "@language": "ro",
+          "@value": "Versiunea schemei DPP orizontale (intersectoriale) utilizată pentru această instanță."
+        },
+        {
+          "@language": "sk",
+          "@value": "Verzia horizontálnej (medzisektorovej) schémy DPP použitej pre túto inštanciu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Različica horizontalne (medsektorske) sheme DPP, uporabljene za ta primerek."
+        },
+        {
+          "@language": "sv",
+          "@value": "Versionen av det horisontella (tvärsektoriella) DPP-schema som används för denna instans."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -216,8 +2360,202 @@
     {
       "@id": "dppk:contentSpecificationIds",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Content Specification Identifiers",
-      "rdfs:comment": "A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Идентификатори на спецификацията на съдържанието"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátory specifikace obsahu"
+        },
+        {
+          "@language": "da",
+          "@value": "Identifikatorer for indholdsspecifikation"
+        },
+        {
+          "@language": "de",
+          "@value": "Kennungen der Inhaltsspezifikation"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικά προδιαγραφής περιεχομένου"
+        },
+        {
+          "@language": "en",
+          "@value": "Content Specification Identifiers"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificadores de especificación de contenido"
+        },
+        {
+          "@language": "et",
+          "@value": "Sisu spetsifikatsiooni identifikaatorid"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sisältömääritysten tunnisteet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiants de spécification de contenu"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóirí Sonraíochta Ábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikatori specifikacije sadržaja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tartalmi specifikáció azonosítói"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatori delle specifiche del contenuto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Turinio specifikacijos identifikatoriai"
+        },
+        {
+          "@language": "lv",
+          "@value": "Satura specifikācijas identifikatori"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikaturi tal-Ispeċifikazzjoni tal-Kontenut"
+        },
+        {
+          "@language": "nl",
+          "@value": "Identificatoren voor inhoudsspecificatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikatory specyfikacji treści"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificadores de especificação de conteúdo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatori de specificații de conținut"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátory špecifikácie obsahu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikatorji specifikacije vsebine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Identifierare för innehållsspecifikation"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Набор от идентификатори за делегираните актове или специфични за сектора модели данни, на които отговаря този DPP."
+        },
+        {
+          "@language": "cs",
+          "@value": "Sada identifikátorů pro akty v přenesené pravomoci nebo datové modely specifické pro dané odvětví, kterým tento DPP odpovídá."
+        },
+        {
+          "@language": "da",
+          "@value": "Et sæt identifikatorer for de delegerede retsakter eller sektorspecifikke datamodeller, som dette DPP er i overensstemmelse med."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Reihe von Kennungen für die delegierten Rechtsakte oder sektorspezifischen Datenmodelle, denen dieser DPP entspricht."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα σύνολο αναγνωριστικών για τις κατ' εξουσιοδότηση πράξεις ή τα ειδικά για τον τομέα μοντέλα δεδομένων στα οποία συμμορφώνεται αυτό το DPP."
+        },
+        {
+          "@language": "en",
+          "@value": "A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to."
+        },
+        {
+          "@language": "es",
+          "@value": "Un conjunto de identificadores para los actos delegados o modelos de datos específicos del sector a los que se ajusta este DPP."
+        },
+        {
+          "@language": "et",
+          "@value": "Delegeeritud õigusaktide või sektorispetsiifiliste andmemudelite identifikaatorite kogum, millele see DPP vastab."
+        },
+        {
+          "@language": "fi",
+          "@value": "Joukko tunnisteita delegoiduille säädöksille tai alakohtaisille tietomalleille, joita tämä DPP noudattaa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un ensemble d'identifiants pour les actes délégués ou les modèles de données spécifiques au secteur auxquels ce DPP est conforme."
+        },
+        {
+          "@language": "ga",
+          "@value": "Sraith aitheantóirí do na gníomhartha tarmligthe nó samhlacha sonraí a bhaineann go sonrach leis an earnáil lena gcomhlíonann an DPP seo."
+        },
+        {
+          "@language": "hr",
+          "@value": "Skup identifikatora za delegirane akte ili modele podataka specifične za sektor kojima ovaj DPP odgovara."
+        },
+        {
+          "@language": "hu",
+          "@value": "Azonosítók készlete a felhatalmazáson alapuló jogi aktusokhoz vagy ágazatspecifikus adatmodellekhez, amelyeknek ez a DPP megfelel."
+        },
+        {
+          "@language": "it",
+          "@value": "Un insieme di identificatori per gli atti delegati o i modelli di dati specifici del settore a cui questo DPP è conforme."
+        },
+        {
+          "@language": "lt",
+          "@value": "Deleguotųjų aktų arba sektoriui būdingų duomenų modelių, kuriuos atitinka šis DPP, identifikatorių rinkinys."
+        },
+        {
+          "@language": "lv",
+          "@value": "Identifikatoru kopa deleģētajiem aktiem vai nozarei specifiskiem datu modeļiem, kuriem atbilst šis DPP."
+        },
+        {
+          "@language": "mt",
+          "@value": "Sett ta' identifikaturi għall-atti delegati jew mudelli ta' dejta speċifiċi għas-settur li dan id-DPP jikkonforma magħhom."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een set identificatoren voor de gedelegeerde handelingen of sectorspecifieke gegevensmodellen waaraan dit DPP voldoet."
+        },
+        {
+          "@language": "pl",
+          "@value": "Zbiór identyfikatorów aktów delegowanych lub modeli danych specyficznych dla sektora, z którymi ten DPP jest zgodny."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um conjunto de identificadores para os atos delegados ou modelos de dados específicos do setor aos quais este DPP está em conformidade."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un set de identificatori pentru actele delegate sau modelele de date specifice sectorului la care se conformează acest DPP."
+        },
+        {
+          "@language": "sk",
+          "@value": "Súbor identifikátorov pre delegované akty alebo dátové modely špecifické pre sektor, ktorým tento DPP vyhovuje."
+        },
+        {
+          "@language": "sl",
+          "@value": "Nabor identifikatorjev za delegirane akte ali sektorsko specifične podatkovne modele, s katerimi je ta DPP skladen."
+        },
+        {
+          "@language": "sv",
+          "@value": "En uppsättning identifierare för de delegerade akter eller sektorspecifika datamodeller som detta DPP överensstämmer med."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },
@@ -229,8 +2567,202 @@
     {
       "@id": "dppk:hsCode",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Harmonized System Code (HS Code) or TARIC",
-      "rdfs:comment": "The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Код по Хармонизираната система (HS код) или TARIC"
+        },
+        {
+          "@language": "cs",
+          "@value": "Kód harmonizovaného systému (HS kód) nebo TARIC"
+        },
+        {
+          "@language": "da",
+          "@value": "Harmoniseret systemkode (HS-kode) eller TARIC"
+        },
+        {
+          "@language": "de",
+          "@value": "Code des Harmonisierten Systems (HS-Code) oder TARIC"
+        },
+        {
+          "@language": "el",
+          "@value": "Κωδικός εναρμονισμένου συστήματος (κωδικός ΕΣ) ή TARIC"
+        },
+        {
+          "@language": "en",
+          "@value": "Harmonized System Code (HS Code) or TARIC"
+        },
+        {
+          "@language": "es",
+          "@value": "Código del Sistema Armonizado (Código SA) o TARIC"
+        },
+        {
+          "@language": "et",
+          "@value": "Harmoneeritud süsteemi kood (HS-kood) või TARIC"
+        },
+        {
+          "@language": "fi",
+          "@value": "Harmonoidun järjestelmän koodi (HS-koodi) tai TARIC"
+        },
+        {
+          "@language": "fr",
+          "@value": "Code du système harmonisé (code SH) ou TARIC"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cód an Chórais Chomhchuibhithe (Cód HS) nó TARIC"
+        },
+        {
+          "@language": "hr",
+          "@value": "Kod Harmoniziranog sustava (HS kod) ili TARIC"
+        },
+        {
+          "@language": "hu",
+          "@value": "Harmonizált Rendszer kód (HS kód) vagy TARIC"
+        },
+        {
+          "@language": "it",
+          "@value": "Codice del sistema armonizzato (codice SA) o TARIC"
+        },
+        {
+          "@language": "lt",
+          "@value": "Suderintos sistemos kodas (HS kodas) arba TARIC"
+        },
+        {
+          "@language": "lv",
+          "@value": "Harmonizētās sistēmas kods (HS kods) vai TARIC"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kodiċi tas-Sistema Armonizzata (Kodiċi HS) jew TARIC"
+        },
+        {
+          "@language": "nl",
+          "@value": "Geharmoniseerd Systeemcode (HS-code) of TARIC"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kod Systemu Zharmonizowanego (kod HS) lub TARIC"
+        },
+        {
+          "@language": "pt",
+          "@value": "Código do Sistema Harmonizado (Código SH) ou TARIC"
+        },
+        {
+          "@language": "ro",
+          "@value": "Codul Sistemului Armonizat (Codul SA) sau TARIC"
+        },
+        {
+          "@language": "sk",
+          "@value": "Kód harmonizovaného systému (HS kód) alebo TARIC"
+        },
+        {
+          "@language": "sl",
+          "@value": "Oznaka harmoniziranega sistema (oznaka HS) ali TARIC"
+        },
+        {
+          "@language": "sv",
+          "@value": "Harmoniserat systemkod (HS-kod) eller TARIC"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Номерът на митническата тарифа (напр. HS код, код TARIC), използван за класификация на международната търговия."
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo celního sazebníku (např. HS kód, kód TARIC) používané pro klasifikaci mezinárodního obchodu."
+        },
+        {
+          "@language": "da",
+          "@value": "Toldtarifnummeret (f.eks. HS-kode, TARIC-kode), der anvendes til klassificering af international handel."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Zolltarifnummer (z. B. HS-Code, TARIC-Code), die für die Klassifizierung im internationalen Handel verwendet wird."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο αριθμός δασμολογίου (π.χ. κωδικός ΕΣ, κωδικός TARIC) που χρησιμοποιείται για την ταξινόμηση του διεθνούς εμπορίου."
+        },
+        {
+          "@language": "en",
+          "@value": "The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification."
+        },
+        {
+          "@language": "es",
+          "@value": "El número de arancel aduanero (por ejemplo, código HS, código TARIC) utilizado para la clasificación del comercio internacional."
+        },
+        {
+          "@language": "et",
+          "@value": "Tollitariifi number (nt HS-kood, TARIC-kood), mida kasutatakse rahvusvahelise kaubanduse klassifitseerimiseks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tullitariffinumeero (esim. HS-koodi, TARIC-koodi), jota käytetään kansainvälisen kaupan luokitteluun."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le numéro de tarif douanier (par exemple, code SH, code TARIC) utilisé pour la classification du commerce international."
+        },
+        {
+          "@language": "ga",
+          "@value": "An uimhir taraife custaim (m.sh., Cód HS, cód TARIC) a úsáidtear le haghaidh aicmiú trádála idirnáisiúnta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj carinske tarife (npr. HS kod, TARIC kod) koji se koristi za klasifikaciju međunarodne trgovine."
+        },
+        {
+          "@language": "hu",
+          "@value": "A nemzetközi kereskedelem osztályozására használt vámtarifaszám (pl. HS kód, TARIC kód)."
+        },
+        {
+          "@language": "it",
+          "@value": "Il numero della tariffa doganale (ad es. codice SA, codice TARIC) utilizzato per la classificazione del commercio internazionale."
+        },
+        {
+          "@language": "lt",
+          "@value": "Muitų tarifo numeris (pvz., HS kodas, TARIC kodas), naudojamas tarptautinės prekybos klasifikavimui."
+        },
+        {
+          "@language": "lv",
+          "@value": "Muitas tarifa numurs (piemēram, HS kods, TARIC kods), ko izmanto starptautiskās tirdzniecības klasifikācijai."
+        },
+        {
+          "@language": "mt",
+          "@value": "In-numru tat-tariffa doganali (eż., Kodiċi HS, kodiċi TARIC) użat għall-klassifikazzjoni tal-kummerċ internazzjonali."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het douanetariefnummer (bijv. HS-code, TARIC-code) dat wordt gebruikt voor de classificatie van de internationale handel."
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer taryfy celnej (np. kod HS, kod TARIC) używany do klasyfikacji handlu międzynarodowego."
+        },
+        {
+          "@language": "pt",
+          "@value": "O número da tarifa aduaneira (por exemplo, Código SH, código TARIC) usado para classificação de comércio internacional."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul tarifului vamal (de exemplu, codul SA, codul TARIC) utilizat pentru clasificarea comerțului internațional."
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo colného sadzobníka (napr. HS kód, kód TARIC) používané na klasifikáciu medzinárodného obchodu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka carinske tarife (npr. oznaka HS, koda TARIC), ki se uporablja za klasifikacijo mednarodne trgovine."
+        },
+        {
+          "@language": "sv",
+          "@value": "Tulltaxenumret (t.ex. HS-kod, TARIC-kod) som används för internationell handelsklassificering."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:DigitalProductPassport"
       },

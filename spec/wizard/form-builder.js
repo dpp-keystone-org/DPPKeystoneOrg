@@ -34,11 +34,29 @@ function createTooltipModal(commentText, governedBy, source) {
 
     if (source) {
         const sourcePara = document.createElement('p');
-        // Handle object (with @id/label) or simple string
-        let label = (typeof source === 'object') 
-            ? (source['rdfs:label'] || source.label || source['@id'] || source.id) 
-            : source;
-        const url = (typeof source === 'object') ? (source['@id'] || source.id || source.url) : null;
+        
+        let label = null;
+        let url = null;
+
+        if (typeof source === 'object') {
+            // Try to find a label (English preferred or raw string)
+            label = source['rdfs:label'] || source.label;
+            // Try to find an ID/URL
+            url = source['@id'] || source.id || source.url;
+            
+            // If we have an ID but no label, use the ID as the label
+            if (!label && url) label = url;
+            // If we have a label but no URL, check if the label itself is a URI
+            if (label && !url && isURI(label)) url = label;
+        } else if (typeof source === 'string') {
+            // If it looks like a URI, treat it as both label and URL
+            if (isURI(source)) {
+                url = source;
+                label = source;
+            } else {
+                label = source;
+            }
+        }
 
         if (url) {
             const link = document.createElement('a');
@@ -46,7 +64,6 @@ function createTooltipModal(commentText, governedBy, source) {
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
             link.textContent = `Source: ${label}`;
-            link.style.color = 'inherit';
             sourcePara.appendChild(link);
         } else {
             sourcePara.textContent = `Source: ${label}`;

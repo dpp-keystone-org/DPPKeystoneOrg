@@ -56,6 +56,20 @@ function parseLangTaggedProperty(property) {
 }
 
 /**
+ * Rewrites production URLs to local relative paths for local development/testing.
+ * @param {string} url - The URL to rewrite.
+ * @returns {string} The rewritten URL or the original if no match.
+ */
+function rewriteUrl(url) {
+    const PROD_PREFIX = 'https://dpp-keystone.org/spec/ontology/';
+    if (url.startsWith(PROD_PREFIX)) {
+        // Map to local relative path from wizard/index.html to ontology/ directory
+        return url.replace(PROD_PREFIX, '../ontology/');
+    }
+    return url;
+}
+
+/**
  * Internal recursive function to fetch, parse, and process an ontology file, including its imports.
  * @param {string} url - The URL of the ontology to load.
  * @param {Map<string, {label: Object<string, string>, comment: Object<string, string>, unit: string, governedBy: string}>} ontologyMap - The map to populate.
@@ -64,14 +78,17 @@ function parseLangTaggedProperty(property) {
  * @returns {Promise<void>}
  */
 async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall = false) {
-    if (loadedUrls.has(url)) {
+    // Resolve URL rewriting for imports
+    const fetchUrl = rewriteUrl(url);
+
+    if (loadedUrls.has(fetchUrl)) {
         return; // Avoid infinite loops and redundant fetches
     }
 
     try {
-        const response = await fetch(url);
+        const response = await fetch(fetchUrl);
         if (!response.ok) {
-            const errorMsg = `HTTP error! status: ${response.status} for URL: ${url}`;
+            const errorMsg = `HTTP error! status: ${response.status} for URL: ${fetchUrl}`;
             if (isInitialCall) {
                 throw new Error(errorMsg); // For initial call, failure is fatal.
             } else {
@@ -79,7 +96,7 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                 return;
             }
         }
-        loadedUrls.add(url);
+        loadedUrls.add(fetchUrl);
         const ontology = await response.json();
 
         // Process the graph of the current ontology
