@@ -27,7 +27,6 @@
             "dopIdentifier": "dppk:dopIdentifier",
             "declarationCode": "dppk:declarationCode",
             "declaredUses": "dppk:declaredUses",
-            "latestDeinstallation": "dppk:latestDeinstallation",
             "notifiedBody": { "@id": "dppk:notifiedBody", "@type": "@id" },
             "technicalAssessmentBody": { "@id": "dppk:technicalAssessmentBody", "@type": "@id" },
             "validationReports": "dppk:validationReports",
