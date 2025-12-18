@@ -13,14 +13,6 @@
   "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
   "@graph": [
     {
-      "@id": "dppk:keyParts",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Key Parts",
-      "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
-    },
-    {
       "@id": "dppk:estimatedServiceLife",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Estimated Service Life",

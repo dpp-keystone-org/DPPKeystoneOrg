@@ -21,7 +21,6 @@
         "properties": {
             "versionNumber": { "type": "string" },
             "versionDate": { "type": "string", "format": "date" },
-            "keyParts": { "type": "string" },
             "estimatedServiceLife": { "type": "string" },
             "generalProductInformation": { "$ref": "related-resource.schema.json" },
             "instructionsForUse": { "$ref": "related-resource.schema.json" },
