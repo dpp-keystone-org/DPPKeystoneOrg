@@ -21,7 +21,6 @@
         "properties": {
             "versionNumber": { "type": "string" },
             "versionDate": { "type": "string", "format": "date" },
-            "generalProductInformation": { "$ref": "related-resource.schema.json" },
             "instructionsForUse": { "$ref": "related-resource.schema.json" },
             "safetyDataSheet": { "$ref": "related-resource.schema.json" },
             "notifiedBody": { "$ref": "organization.schema.json" },

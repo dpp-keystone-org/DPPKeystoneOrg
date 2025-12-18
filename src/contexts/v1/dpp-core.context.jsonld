@@ -154,10 +154,8 @@
     "packaging": { "@id": "dppk:packaging", "@container": "@set" },
     "productionSteps": { "@id": "dppk:productionSteps", "@container": "@list" },
 
+    //Properties: Linked Resources
     // ==================================================================
-    // Properties: Linked Resources
-    // ==================================================================
-    "generalProductInformation": { "@id": "dppk:generalProductInformation", "@type": "@id" },
     "instructionsForUse": { "@id": "dppk:instructionsForUse", "@type": "@id" },
     "safetyDataSheet": { "@id": "dppk:safetyDataSheet", "@type": "@id" },
     "resourceTitle": "dppk:resourceTitle",
