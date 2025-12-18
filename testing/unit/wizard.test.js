@@ -1763,6 +1763,52 @@ describe('DPP Wizard - Ontology Inheritance', () => {
         const modal = document.querySelector('.tooltip-modal');
         expect(modal.textContent).toContain('Source: Battery Regulation');
     });
+
+    it('should render a clickable link when source is a simple string URI', () => {
+        const schema = { "properties": { "testField": { "type": "string" } } };
+        const ontologyMap = new Map([
+            ['testField', {
+                label: { en: 'Test Field' },
+                'dcterms:source': 'http://example.com/simple-uri'
+            }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+
+        const row = document.querySelector('input[name="testField"]').closest('.grid-row');
+        row.querySelector('button.tooltip-button').click();
+
+        const modal = document.querySelector('.tooltip-modal');
+        const link = modal.querySelector('a');
+        expect(link).not.toBeNull();
+        expect(link.href).toBe('http://example.com/simple-uri');
+        expect(link.textContent).toBe('Source: http://example.com/simple-uri');
+    });
+
+    it('should render a clickable link when source is an object with only an @id', () => {
+        const schema = { "properties": { "testField": { "type": "string" } } };
+        const ontologyMap = new Map([
+            ['testField', {
+                label: { en: 'Test Field' },
+                'dcterms:source': {
+                    '@id': 'http://example.com/id-only'
+                }
+            }]
+        ]);
+
+        document.body.innerHTML = '';
+        document.body.appendChild(buildForm(schema, ontologyMap, 'en'));
+
+        const row = document.querySelector('input[name="testField"]').closest('.grid-row');
+        row.querySelector('button.tooltip-button').click();
+
+        const modal = document.querySelector('.tooltip-modal');
+        const link = modal.querySelector('a');
+        expect(link).not.toBeNull();
+        expect(link.href).toBe('http://example.com/id-only');
+        expect(link.textContent).toBe('Source: http://example.com/id-only');
+    });
 });
 
 describe('DPP Wizard - Ontology Inheritance Precedence', () => {
