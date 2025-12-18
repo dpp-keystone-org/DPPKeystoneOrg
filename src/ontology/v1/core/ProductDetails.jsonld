@@ -27,14 +27,6 @@
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "xsd:string" },
       "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:variants",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Variants",
-      "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
     }
   ]
 }
