@@ -159,7 +159,7 @@ for (const sector of sectors) {
         
         // Assert the new structure: unit in 3rd, label in 4th, tooltip in 5th
         await expect(unitCell).toBeEmpty();
-        await expect(ontologyCell).toHaveText('Harmonised Standard Reference (hEN)');
+        await expect(ontologyCell).toHaveText('Harmonised European Standard (hEN)');
         const tooltipButton = tooltipCell.locator('button.tooltip-button');
         await expect(tooltipButton).toBeVisible();
 
