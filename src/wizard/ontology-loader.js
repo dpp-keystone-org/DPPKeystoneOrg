@@ -171,6 +171,10 @@ export async function loadOntology(sector) {
 
     if (sector === 'dpp') {
         initialUrl = '../ontology/v1/dpp-ontology.jsonld';
+    } else if (sector === 'general-product') {
+        initialUrl = '../ontology/v1/core/Product.jsonld';
+    } else if (sector === 'packaging') {
+        initialUrl = '../ontology/v1/core/Compliance.jsonld';
     } else {
         const sectorPascalCase = sector.charAt(0).toUpperCase() + sector.slice(1);
         initialUrl = `../ontology/v1/sectors/${sectorPascalCase}.jsonld`;

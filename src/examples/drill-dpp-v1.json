@@ -77,28 +77,26 @@
   "serviceManualAvailable": true,
 
   // --- Components (BOM) (Aligned with Core Ontology) ---
-  "hasPart": [
+  "components": [
     {
-      "@type": "Product",
+      "@type": "Component",
       "description": "Cordless drill (base unit)",
       "gtin": "5012345101071",
-      "dppLink": "https://freedpp.eu/01/05012345101071"
+      "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101071"
     },
     {
-      // Incomplete entry preserved
-      "@type": "Product",
+      // Incomplete entry accepted.
       "gtin": "5012345101095"
     },
     {
-      "@type": "Product",
       "description": "Battery",
       "gtin": "5012345101088",
-      "dppLink": "https://freedpp.eu/01/05012345101088"
+      "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101088"
     }
   ],
   
   // --- Compliance (Aligned with Core Ontology) ---
-  "certifications": [
+  "additionalCertifications": [
     {
       "@type": "Certification",
       "resourceTitle": "CE Mark",
@@ -110,19 +108,17 @@
     }
   ],
   
-  // Environmental data modeled using the EcoDesignProperty structure.
-  "ecoDesignProperties": [
+  // Environmental data modeled using the ProductCharacteristic structure.
+  "productCharacteristics": [
     {
-      "@type": "EcoDesignProperty",
-      "ecoDesignPropertyType": "CO2e Emissions (per unit)",
-      "value": 34,
-      "unitText": "kg CO2e"
+      "@type": "ProductCharacteristic",
+      "characteristicName": "CO2e Emissions (per unit)",
+      "characteristicValue": "34 kg CO2e"
     },
     {
-      "@type": "EcoDesignProperty",
-      "ecoDesignPropertyType": "Energy Consumption (per unit)",
-      "value": 66,
-      "unitCode": "KWH"
+      "@type": "ProductCharacteristic",
+      "characteristicName": "Energy Consumption (per unit)",
+      "characteristicValue": "66 KWH"
     }
   ]
 }

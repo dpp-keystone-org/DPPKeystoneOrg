@@ -34,10 +34,12 @@
             
             "softwareUpdatePolicy": "dppk:softwareUpdatePolicy",
 
+
+
             // ==================================================================
             // Properties (Compliance and End-of-Life)
             // ==================================================================
-            // Note: RoHS/REACH compliance uses the core 'complianceTopics'.
+
             
             "weeeCategory": "dppk:weeeCategory",
             "disassemblyInstructions": "dppk:disassemblyInstructions",

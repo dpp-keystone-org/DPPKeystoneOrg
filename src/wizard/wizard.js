@@ -13,12 +13,14 @@ let coreOntologyMap = null;
 const sectorDataCache = new Map(); // sector -> { schema, ontologyMap }
 
 const SUPPORTED_CUSTOM_TYPES = [
-    { label: 'Organization', schemaName: 'organization' }
+    { label: 'Organization', schemaName: 'organization' },
+    { label: 'Product Characteristic', schemaName: 'product-characteristic' }, // Maps to product-characteristic.schema.json (virtual or real)
+    { label: 'Related Resource', schemaName: 'related-resource' }
 ];
 const STORAGE_KEY = 'dpp_wizard_state_v1';
 
 // --- DOM Element References ---
-let coreFormContainer, sectorsFormContainer, addVoluntaryFieldBtn,
+let coreFormContainer, sectorsFormContainer, voluntaryModulesContainer, addVoluntaryFieldBtn,
     voluntaryFieldsWrapper, generateBtn, showErrorsBtn, errorCountBadge,
     jsonOutput, sectorButtons, languageSelector;
 
@@ -67,7 +69,8 @@ function restoreFormState(container, state) {
  */
 async function rerenderAllForms() {
     const coreState = saveFormState(coreFormContainer);
-    const activeSectors = [...sectorsFormContainer.querySelectorAll('.sector-form-container')].map(c => c.id.replace('sector-form-', ''));
+    // Select from document to capture sectors in both containers
+    const activeSectors = [...document.querySelectorAll('.sector-form-container')].map(c => c.id.replace('sector-form-', ''));
     const sectorStates = new Map();
     activeSectors.forEach(sector => {
         const container = document.getElementById(`sector-form-${sector}`);
@@ -82,6 +85,8 @@ async function rerenderAllForms() {
     
     // Re-render sector forms
     sectorsFormContainer.innerHTML = '';
+    voluntaryModulesContainer.innerHTML = ''; // Clear voluntary modules too
+
     for (const sector of activeSectors) {
         const data = sectorDataCache.get(sector);
         if (data) {
@@ -95,7 +100,12 @@ async function rerenderAllForms() {
             sectorHeader.textContent = `${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
             sectorContainer.appendChild(sectorHeader);
             sectorContainer.appendChild(formFragment);
-            sectorsFormContainer.appendChild(sectorContainer);
+            
+            if (sector === 'general-product' || sector === 'packaging') {
+                voluntaryModulesContainer.appendChild(sectorContainer);
+            } else {
+                sectorsFormContainer.appendChild(sectorContainer);
+            }
             
             restoreFormState(sectorContainer, sectorStates.get(sector));
         }
@@ -109,6 +119,7 @@ export async function initializeWizard() {
     // --- Get all UI elements ---
     coreFormContainer = document.getElementById('core-form-container');
     sectorsFormContainer = document.getElementById('sectors-form-container');
+    voluntaryModulesContainer = document.getElementById('voluntary-modules-container');
     addVoluntaryFieldBtn = document.getElementById('add-voluntary-field-btn');
     voluntaryFieldsWrapper = document.getElementById('voluntary-fields-wrapper');
     generateBtn = document.getElementById('generate-dpp-btn');
@@ -259,6 +270,12 @@ export async function initializeWizard() {
             const sectorContainerId = `sector-form-${sector}`;
             const existingContainer = document.getElementById(sectorContainerId);
 
+            const sectorDisplayNames = {
+                'general-product': 'General Product Information',
+                // Add other specific mappings if needed, otherwise fallback to capitalization
+            };
+            const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
+
             if (existingContainer) {
                 // Clear any invalid fields from this sector before removing it
                 existingContainer.querySelectorAll('input, select').forEach(input => {
@@ -267,7 +284,7 @@ export async function initializeWizard() {
                 updateButtonState();
 
                 existingContainer.remove();
-                button.textContent = `Add ${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
+                button.textContent = `Add ${displayName}`;
                 button.classList.remove('remove-btn-active');
             } else {
                 // Add Sector
@@ -288,20 +305,26 @@ export async function initializeWizard() {
                     sectorContainer.className = 'sector-form-container';
                     
                     const sectorHeader = document.createElement('h2');
-                    sectorHeader.textContent = `${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
+                    sectorHeader.textContent = displayName;
                     sectorContainer.appendChild(sectorHeader);
 
                     sectorContainer.appendChild(formFragment);
-                    sectorsFormContainer.appendChild(sectorContainer);
+                    
+                    if (sector === 'general-product' || sector === 'packaging') {
+                        voluntaryModulesContainer.appendChild(sectorContainer);
+                    } else {
+                        sectorsFormContainer.appendChild(sectorContainer);
+                    }
 
                     // Trigger validation for the new sector form
                     validateAllFields(sectorContainer);
 
-                    button.textContent = `Remove ${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
+                    button.textContent = `Remove ${displayName}`;
                     button.classList.add('remove-btn-active');
 
                 } catch (error) {
-                    sectorsFormContainer.innerHTML += `<p class="error">Could not load the form for the ${sector} sector.</p>`;
+                    const targetContainer = (sector === 'general-product' || sector === 'packaging') ? voluntaryModulesContainer : sectorsFormContainer;
+                    targetContainer.innerHTML += `<p class="error">Could not load the form for the ${sector} sector.</p>`;
                     console.error(`Failed to build form for sector ${sector}:`, error);
                 }
             }
@@ -315,10 +338,10 @@ export async function initializeWizard() {
 
     if (generateBtn) {
         generateBtn.addEventListener('click', () => {
-            const activeSectors = [...sectorsFormContainer.querySelectorAll('.sector-form-container')]
+            const activeSectors = [...document.querySelectorAll('.sector-form-container')]
                 .map(container => container.id.replace('sector-form-', ''));
 
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper);
+            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer);
             jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
         });
     }
@@ -376,7 +399,8 @@ export async function initializeWizard() {
      */
     function saveSession() {
         const coreState = Object.fromEntries(saveFormState(coreFormContainer));
-        const activeSectors = [...sectorsFormContainer.querySelectorAll('.sector-form-container')]
+        // Capture from both main sectors container and voluntary modules container
+        const activeSectors = [...document.querySelectorAll('.sector-form-container')]
             .map(c => c.id.replace('sector-form-', ''));
         
         const sectorStates = {};

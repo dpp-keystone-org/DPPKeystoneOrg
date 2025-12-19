@@ -1574,6 +1574,21 @@ describe('DPP Wizard - Custom Fields', () => {
         input.dispatchEvent(new Event('blur'));
         expect(input.classList.contains('invalid')).toBe(false);
     });
+
+    it('should include ProductCharacteristic and RelatedResource in the Type selector', () => {
+        const mockRegistry = [
+            { label: 'Organization', schemaName: 'organization' },
+            { label: 'Product Characteristic', schemaName: 'product-characteristic' },
+            { label: 'Related Resource', schemaName: 'related-resource' }
+        ];
+        const row = createVoluntaryFieldRow(null, mockRegistry);
+        
+        const typeSelect = row.querySelector('select.voluntary-type');
+        const options = Array.from(typeSelect.options).map(o => o.value);
+        
+        expect(options).toContain('Product Characteristic');
+        expect(options).toContain('Related Resource');
+    });
 });
 
 describe('DPP Wizard - DPP Generator', () => {

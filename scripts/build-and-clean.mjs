@@ -27,7 +27,7 @@ async function cleanAndCopyJsonFile(sourcePath, targetPath) {
 
         // Re-serialize to strip comments and ensure standard JSON format
         await fse.outputJson(targetPath, cleanedContent, { spaces: 2 });
-        console.log(`Cleaned and copied: ${sourcePath} -> ${targetPath}`);
+        //console.log(`Cleaned and copied: ${sourcePath} -> ${targetPath}`);
     } catch (error) {
         console.error(`Error processing ${sourcePath}:`, error);
         throw error;
@@ -52,7 +52,7 @@ async function processDirectory(sourceDir, targetDir) {
         } else {
             // Copy other files directly (e.g., .md, .html, .css)
             await fse.copy(sourcePath, targetPath);
-            console.log(`Copied static file: ${sourcePath} -> ${targetPath}`);
+            //console.log(`Copied static file: ${sourcePath} -> ${targetPath}`);
         }
     }
 }
@@ -116,7 +116,7 @@ async function build() {
         const sourcePath = path.join(PROJECT_ROOT, asset);
         const targetPath = path.join(BUILD_DIR, asset);
         await fse.copy(sourcePath, targetPath);
-        console.log(`Copied root asset: ${sourcePath} -> ${targetPath}`);
+        //console.log(`Copied root asset: ${sourcePath} -> ${targetPath}`);
     }
 
     // Call the new redirect function

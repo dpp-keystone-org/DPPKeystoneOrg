@@ -47,6 +47,13 @@
         "rdfs:subClassOf": { "@id": "dppk:Product" }, // Fibre is treated as a material/product
         "rdfs:term_status": "unstable"
     },
+    {
+        "@id": "dppk:ProductionStep",
+        "@type": "rdfs:Class",
+        "rdfs:label": "Production Step",
+        "rdfs:comment": "A specific stage in the manufacturing process of the product, associated with a location.",
+        "rdfs:term_status": "unstable"
+    },
 
     // ==================================================================
     // Properties (Fibre Composition)
@@ -86,6 +93,38 @@
     },
     
     // ==================================================================
+    // Properties (Production Steps)
+    // ==================================================================
+
+    {
+        "@id": "dppk:productionSteps",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Production Steps",
+        "rdfs:comment": "The sequence of major production steps that occurred for this product.",
+        "rdfs:domain": { "@id": "dppk:TextileProduct" },
+        "rdfs:range": { "@id": "dppk:ProductionStep" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:productionStepType",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Production Step Type",
+        "rdfs:comment": "The type of activity performed (e.g., Spinning, Weaving, Dyeing).",
+        "rdfs:domain": { "@id": "dppk:ProductionStep" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:productionLocationCountry",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Production Location Country",
+        "rdfs:comment": "The country code (ISO 3166-1 alpha-3) where the production step took place.",
+        "rdfs:domain": { "@id": "dppk:ProductionStep" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:term_status": "unstable"
+    },
+
+    // ==================================================================
     // Properties (Circularity and Sustainability)
     // ==================================================================
 
@@ -121,13 +160,69 @@
         "rdfs:range": { "@id": "dppk:QuantitativeValue" },
         "rdfs:term_status": "unstable"
     },
+    {
+        "@id": "dppk:cycles",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Cycles",
+        "rdfs:comment": "Number of cycles (e.g., rubs) withstanded.",
+        "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:range": { "@id": "xsd:integer" },
+        "rdfs:term_status": "unstable"
+    },
+
+    {
+        "@id": "dppk:dimensionalStability",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Dimensional Stability",
+        "rdfs:comment": "The percentage a fabric shrinks or grows after washing and drying.",
+        "rdfs:domain": { "@id": "dppk:TextileProduct" },
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:warpChange",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Warp Change",
+        "rdfs:comment": "Dimensional change in the warp (length) direction.",
+        "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:weftChange",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Weft Change",
+        "rdfs:comment": "Dimensional change in the weft (width) direction.",
+        "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:term_status": "unstable"
+    },
+
+    {
+        "@id": "dppk:colorfastnessToWashing",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Colorfastness to Washing",
+        "rdfs:comment": "The resistance of the color to domestic laundering.",
+        "rdfs:domain": { "@id": "dppk:TextileProduct" },
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:grade",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Grade",
+        "rdfs:comment": "The specific grade or value achieved (e.g. 1-5 scale).",
+        "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
+        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:term_status": "unstable"
+    },
 
     // --- Microplastic Release ---
     {
-        "@id": "dppk:microplasticReleasePotential",
+        "@id": "dppk:microplasticRelease",
         "@type": "owl:ObjectProperty",
-        "rdfs:label": "Microplastic Release Potential",
-        "rdfs:comment": "Information regarding the propensity of the textile to release microplastics during washing or use.",
+        "rdfs:label": "Microplastic Release",
+        "rdfs:comment": "Information regarding the amount of lint/particles released during washing.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
         "rdfs:range": { "@id": "dppk:QuantitativeValue" },
         "rdfs:term_status": "unstable"
@@ -156,6 +251,31 @@
         "rdfs:comment": "Instructions or scores related to the ease of repairing the textile product.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
         "rdfs:range": { "@id": "rdf:langString" },
+        "rdfs:term_status": "unstable"
+    },
+
+    // ==================================================================
+    // Properties (Size)
+    // ==================================================================
+
+    {
+        "@id": "dppk:apparelSize",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Apparel Size",
+        "rdfs:comment": "The size of the textile product (e.g., 'M', 'L', '42').",
+        "rdfs:domain": { "@id": "dppk:TextileProduct" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:apparelSizeSystem",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Apparel Size System",
+        "rdfs:comment": "The system used for the apparel size (e.g., 'EU', 'US', 'UK').",
+        "rdfs:domain": { "@id": "dppk:TextileProduct" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": { "@id": "gs1:sizeSystemCode" },
         "rdfs:term_status": "unstable"
     }
   ]

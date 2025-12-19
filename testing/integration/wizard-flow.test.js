@@ -436,4 +436,122 @@ describe('DPP Wizard - Full Integration Flow', () => {
             orgId: 'ORG-123'
         });
     });
+
+    it('should load the General Product module and generate valid JSON', async () => {
+        // 1. Load the real General Product schema
+        const generalProductSchema = await loadJson('src/validation/v1/json-schema/general-product.schema.json');
+
+        // 2. Mock modules
+        const loadSchemaMock = jest.fn();
+        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+            loadSchema: loadSchemaMock,
+        }));
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+        }));
+
+        loadSchemaMock.mockImplementation((sector) => {
+            if (sector === 'general-product') return Promise.resolve(generalProductSchema);
+            return Promise.resolve({ type: 'object', properties: {} }); // Default
+        });
+
+        // 3. Inject button for General Product
+        const btn = document.createElement('button');
+        btn.dataset.sector = 'general-product';
+        btn.className = 'sector-btn';
+        document.body.appendChild(btn);
+
+        // 4. Initialize Wizard
+        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        await initializeWizard();
+        btn.click();
+
+        // 5. Fill fields
+        const form = await waitFor(() => document.querySelector('#sector-form-general-product'));
+        expect(form).not.toBeNull();
+        
+        // Check if fields exist
+        const brandInput = form.querySelector('input[name="brand"]');
+        expect(brandInput).not.toBeNull();
+        brandInput.value = 'KeystoneBrand';
+
+        const weightInput = form.querySelector('input[name="netWeight"]');
+        if (weightInput) {
+            weightInput.value = '10.5';
+        }
+
+        // Test Components Array
+        const addComponentBtn = await waitFor(() => form.querySelector('button[data-array-name="components"]'));
+        if (addComponentBtn) {
+            addComponentBtn.click();
+            const compNameInput = await waitFor(() => form.querySelector('input[name="components.0.name"]'));
+            if (compNameInput) compNameInput.value = 'TestComponent';
+        }
+
+        // 6. Generate
+        document.getElementById('generate-dpp-btn').click();
+        const generatedDpp = JSON.parse(document.getElementById('json-output').textContent);
+
+        expect(generatedDpp.brand).toBe('KeystoneBrand');
+        if (generatedDpp.components) {
+            expect(generatedDpp.components[0].name).toBe('TestComponent');
+        }
+        // Check context
+        expect(generatedDpp['@context']).toContain('https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld');
+    }, 30000);
+
+    it('should load the Packaging module and generate valid JSON', async () => {
+        // 1. Load the real Packaging schema
+        const packagingSchema = await loadJson('src/validation/v1/json-schema/packaging.schema.json');
+
+        // 2. Mock modules
+        const loadSchemaMock = jest.fn();
+        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+            loadSchema: loadSchemaMock,
+        }));
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+        }));
+
+        loadSchemaMock.mockImplementation((sector) => {
+            if (sector === 'packaging') return Promise.resolve(packagingSchema);
+            return Promise.resolve({ type: 'object', properties: {} }); // Default
+        });
+
+        // 3. Inject button for Packaging
+        const btn = document.createElement('button');
+        btn.dataset.sector = 'packaging';
+        btn.className = 'sector-btn';
+        document.body.appendChild(btn);
+
+        // 4. Initialize Wizard
+        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        await initializeWizard();
+        btn.click();
+
+        // 5. Fill fields
+        const form = await waitFor(() => document.querySelector('#sector-form-packaging'));
+        expect(form).not.toBeNull();
+        
+        // This is a nested array "packagingMaterials" -> [ { ... } ]
+        // The wizard should render an "Add" button for the array.
+        const addPkgBtn = await waitFor(() => form.querySelector('button[data-array-name="packagingMaterials"]'));
+        expect(addPkgBtn).not.toBeNull();
+        addPkgBtn.click();
+
+        // Wait for the array items to appear
+        const materialInput = await waitFor(() => form.querySelector('input[name="packagingMaterials.0.packagingMaterialType"]'));
+        expect(materialInput).not.toBeNull();
+        
+        materialInput.value = 'Cardboard';
+
+        // 6. Generate
+        document.getElementById('generate-dpp-btn').click();
+        const generatedDpp = JSON.parse(document.getElementById('json-output').textContent);
+
+        expect(generatedDpp.packagingMaterials).toHaveLength(1);
+        expect(generatedDpp.packagingMaterials[0].packagingMaterialType).toBe('Cardboard');
+        // Check context
+        expect(generatedDpp['@context']).toContain('https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld');
+    }, 30000);
 });

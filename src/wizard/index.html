@@ -54,7 +54,7 @@
                 <!-- Core DPP form fields will be generated here -->
             </div>
             <div id="sector-selection">
-                <label>1. Add a Sector:</label>
+                <h2>1. Select Applicable Sectors</h2>
                 <div id="sector-buttons">
                     <button class="sector-btn" data-sector="battery">Add Battery</button>
                     <button class="sector-btn" data-sector="construction">Add Construction</button>
@@ -68,6 +68,13 @@
     
             <div id="voluntary-info-container">
                 <h2>2. Add Voluntary Information</h2>
+                <div style="margin-bottom: 15px;">
+                    <button class="sector-btn" data-sector="general-product">Add General Product Information</button>
+                    <button class="sector-btn" data-sector="packaging">Add Packaging</button>
+                </div>
+                <div id="voluntary-modules-container">
+                    <!-- Voluntary module forms (General Info, Packaging) will be generated here -->
+                </div>
                 <div id="voluntary-fields-wrapper">
                     <!-- Dynamic name-value fields will be added here -->
                 </div>

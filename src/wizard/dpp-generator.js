@@ -118,9 +118,10 @@ function scrapeVoluntaryContainer(container) {
  * @param {HTMLElement} coreFormContainer - The container for the core DPP form.
  * @param {HTMLElement} formContainer - The container for the schema-generated sector form.
  * @param {HTMLElement} voluntaryFieldsWrapper - The container for voluntary fields.
+ * @param {HTMLElement} [voluntaryModulesContainer] - Optional container for voluntary modules.
  * @returns {object} The generated DPP JSON object.
  */
-export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper) {
+export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper, voluntaryModulesContainer = null) {
     const dpp = {};
     
     // Add @context
@@ -135,6 +136,9 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
     dpp['@context'] = contexts.length === 1 ? contexts[0] : contexts;
 
     const containers = [coreFormContainer, formContainer];
+    if (voluntaryModulesContainer) {
+        containers.push(voluntaryModulesContainer);
+    }
 
     // 1. Scrape data from the core and sector-specific forms
     containers.forEach(container => {

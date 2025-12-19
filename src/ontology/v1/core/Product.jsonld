@@ -81,6 +81,14 @@
         "rdfs:term_status": "unstable"
     },
 
+    {
+        "@id": "dppk:Component",
+        "@type": "rdfs:Class",
+        "rdfs:label": "A part or material that is included in the main product.",
+        "rdfs:comment": "A part or material that is included in the main product.",
+        "rdfs:term_status": "unstable"
+    },
+
 
     // ==================================================================
     // Properties (General Product Description)
@@ -182,9 +190,9 @@
         "@id": "dppk:image",
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Product Image",
-        "rdfs:comment": "A URI pointing to an image of the product.",
+        "rdfs:comment": "A reference to an image resource related to the product.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:anyURI" },
+        "rdfs:range": { "@id": "dppk:RelatedResource" },
         "owl:equivalentProperty": [
             { "@id": "schema:image" },
             { "@id": "gs1:productImage" },
@@ -208,65 +216,21 @@
         "rdfs:term_status": "unstable"
     },
 
-    // --- Size (Mapped based on spreadsheet) ---
-    {
-        "@id": "dppk:sizeCode",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Size Code",
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
-        "rdfs:term_status": "unstable"
-    },
-    {
-        "@id": "dppk:sizeSystemCode",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Size System Code",
-        "rdfs:comment": "The system used for the size code (e.g., EUROPE, US).",
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:sizeSystemCode" },
-        "rdfs:term_status": "unstable"
-    },
+
+
 
     // ==================================================================
     // Properties (Bill of Materials / Components / Materials)
     // ==================================================================
 
-    // --- hasPart (BOM relationship) ---
+    // --- Component (New BOM relationship) ---
     {
-        "@id": "dppk:hasPart",
+        "@id": "dppk:components",
         "@type": "owl:ObjectProperty",
-        "rdfs:label": "Has Part (Component/Material)",
-        "rdfs:comment": "Relates the main product to its constituent components or materials. This forms the Bill of Materials (BOM).",
+        "rdfs:label": "Components",
+        "rdfs:comment": "A constituent part or material of the product.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:Product" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:hasPart" }
-        ],
-        "rdfs:term_status": "unstable"
-    },
-
-    // --- DPP Link (for referred DPPs) ---
-    {
-        "@id": "dppk:dppLink",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": "DPP Link",
-        "rdfs:comment": "A URI pointing to the Digital Product Passport of a component, if one exists.",
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:anyURI" },
-        "rdfs:term_status": "unstable"
-    },
-
-    // --- Material Classification (e.g., Steel Grade) ---
-    {
-        "@id": "dppk:materialClassification",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Material Classification",
-        "rdfs:comment": "A code or standard classifying the material (e.g., steel grade, plastic type).",
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:additionalProductClassificationCode" },
+        "rdfs:range": { "@id": "dppk:Component" },
         "rdfs:term_status": "unstable"
     },
 
@@ -286,18 +250,18 @@
         "rdfs:term_status": "unstable"
     },
 
-    // --- Weight Percentage (TBD in spreadsheet) ---
+    // --- Weight Percentage ---
     {
         "@id": "dppk:weightPercentage",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Weight Percentage",
         "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
-        "rdfs:domain": { "@id": "dppk:Product" },
+        // No strict domain to allow usage on Component or Product
         "rdfs:range": { "@id": "xsd:decimal" },
         "rdfs:term_status": "unstable"
     },
 
-    // --- Recycled Content Percentage (TBD in spreadsheet) ---
+    // --- Recycled Content Percentage ---
     {
         "@id": "dppk:recycledContentPercentage",
         "@type": "owl:DatatypeProperty",
@@ -362,6 +326,42 @@
         "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
         "owl:equivalentProperty": [
             { "@id": "schema:length" }
+        ],
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:width",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Width",
+        "rdfs:comment": "The width of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:width" }
+        ],
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:height",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Height",
+        "rdfs:comment": "The height of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:height" }
+        ],
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:depth",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Depth",
+        "rdfs:comment": "The depth of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
+        "owl:equivalentProperty": [
+            { "@id": "schema:depth" }
         ],
         "rdfs:term_status": "unstable"
     },

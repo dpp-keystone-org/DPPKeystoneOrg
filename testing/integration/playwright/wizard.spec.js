@@ -750,6 +750,8 @@ test.describe('Conditional Validation for Optional Objects', () => {
 test.describe('DPP Wizard - Input Validation', () => {
   test.beforeEach(async ({ page }) => {
       await page.goto('/spec/wizard/index.html');
+      // Wait for the wizard to initialize (core form loaded)
+      await expect(page.locator('input[name="digitalProductPassportId"]')).toBeVisible();
   });
 
   test('should trim whitespace from text inputs on blur', async ({ page }) => {
@@ -885,5 +887,148 @@ test.describe('DPP Wizard - Input Validation', () => {
       await nameInput.fill('nominalVoltage'); // Battery field
       await nameInput.blur();
       await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Battery');
+  });
+
+  test('should clear validation errors when changing voluntary field type', async ({ page }) => {
+    const showErrorsBtn = page.locator('#show-errors-btn');
+
+    // 1. Add a voluntary field
+    await page.click('#add-voluntary-field-btn');
+    const row = page.locator('.voluntary-field-row').last();
+    const nameInput = row.locator('.voluntary-name');
+    await nameInput.fill('myField');
+
+    // 2. Select "Product Characteristic" (complex type with required fields)
+    const typeSelect = row.locator('.voluntary-type');
+    await typeSelect.selectOption({ label: 'Product Characteristic' });
+
+    // 3. Wait for the required field to appear and be invalid (since it's empty)
+    const charNameInput = row.locator('input[name="myField.characteristicName"]');
+    await expect(charNameInput).toBeVisible();
+    
+    // Trigger validation by blurring the empty required field
+    await charNameInput.focus();
+    await charNameInput.blur();
+    await expect(charNameInput).toHaveClass(/invalid/);
+
+    // Assert that the error is tracked globally
+    await expect(showErrorsBtn).toBeVisible();
+    // We expect core errors (3) + 2 new errors (characteristicName, characteristicValue)
+    await expect(showErrorsBtn).toContainText('Show Errors (5)'); 
+
+    // 4. Change type to "Text" (simple type)
+    await typeSelect.selectOption('Text');
+
+    // 5. Assert that the complex fields are gone
+    await expect(charNameInput).not.toBeVisible();
+
+    // 6. Assert that the error count has decreased (bug: it stays at 4)
+    // The previous error for 'myField.characteristicName' should be cleared.
+    await expect(showErrorsBtn).toContainText('Show Errors (3)');
+  });
+});
+
+test.describe('Design 016 - Dangling Field Overhaul', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/spec/wizard/index.html');
+    // Wait for the wizard to initialize (core form loaded) to ensure ontologies are ready
+    await expect(page.locator('input[name="digitalProductPassportId"]')).toBeVisible();
+  });
+
+  test('should load General Info and Packaging modules in the Voluntary Information section', async ({ page }) => {
+    // 1. Click buttons in Section 2
+    const addGeneralBtn = page.locator('button[data-sector="general-product"]');
+    const addPackagingBtn = page.locator('button[data-sector="packaging"]');
+    
+    await expect(addGeneralBtn).toBeVisible();
+    await expect(addPackagingBtn).toBeVisible();
+
+    await addGeneralBtn.click();
+    await addPackagingBtn.click();
+
+    // 2. Assert forms are visible
+    const generalForm = page.locator('#sector-form-general-product');
+    const packagingForm = page.locator('#sector-form-packaging');
+    
+    await expect(generalForm).toBeVisible();
+    await expect(packagingForm).toBeVisible();
+
+    // 3. Assert they are inside the voluntary modules container
+    const container = page.locator('#voluntary-modules-container');
+    await expect(container).not.toBeEmpty();
+    await expect(generalForm.locator('..')).toHaveId('voluntary-modules-container');
+    await expect(packagingForm.locator('..')).toHaveId('voluntary-modules-container');
+
+    // 4. Check content
+    await expect(generalForm.locator('input[name="brand"]')).toBeVisible();
+    await expect(packagingForm.locator('button[data-array-name="packagingMaterials"]')).toBeVisible();
+  });
+
+  test('should support Product Characteristic voluntary field type', async ({ page }) => {
+    await page.click('#add-voluntary-field-btn');
+    const row = page.locator('.voluntary-field-row').last();
+    
+    // Set Name
+    const nameInput = row.locator('.voluntary-name');
+    await nameInput.fill('myCharacteristic');
+
+    // Select Type
+    const typeSelect = row.locator('.voluntary-type');
+    await typeSelect.selectOption({ label: 'Product Characteristic' });
+
+    // Assert Fields
+    const groupContainer = row.locator('.voluntary-group-container');
+    // The fields are loaded asynchronously from a schema, so we just wait for them to appear
+    await expect(groupContainer.locator('input[name="myCharacteristic.characteristicName"]')).toBeVisible();
+    // 3. We expect the value field to be an editable text input, defaulting to string handling for mixed types.
+    const valueInput = groupContainer.locator('input[name="myCharacteristic.characteristicValue"]');
+    await expect(valueInput).toBeVisible();
+    await expect(valueInput).toBeEditable();
+    await expect(groupContainer.locator('input[name="myCharacteristic.testMethod"]')).toBeVisible();
+  });
+
+  test('should support Related Resource voluntary field type', async ({ page }) => {
+    await page.click('#add-voluntary-field-btn');
+    const row = page.locator('.voluntary-field-row').last();
+    
+    // Set Name
+    const nameInput = row.locator('.voluntary-name');
+    await nameInput.fill('myResource');
+
+    // Select Type
+    const typeSelect = row.locator('.voluntary-type');
+    await typeSelect.selectOption({ label: 'Related Resource' });
+
+    // Assert Fields (RelatedResource has resourceTitle, url, etc.)
+    const groupContainer = row.locator('.voluntary-group-container');
+    await expect(groupContainer.locator('input[name="myResource.resourceTitle"]')).toBeVisible();
+    await expect(groupContainer.locator('input[name="myResource.url"]')).toBeVisible();
+  });
+
+  test('should generate valid JSON including General Info and Packaging data', async ({ page }) => {
+    // 1. Add General Info
+    await page.locator('button[data-sector="general-product"]').click();
+    await page.locator('input[name="brand"]').fill('Test Brand');
+    
+    // 2. Add Packaging
+    await page.locator('button[data-sector="packaging"]').click();
+    await page.locator('button[data-array-name="packagingMaterials"]').click();
+    await page.locator('input[name="packagingMaterials.0.packagingMaterialType"]').fill('Cardboard');
+
+    // 3. Fill Core Required (to make valid)
+    await fillRequiredFields(page, 'dpp');
+
+    // 4. Generate
+    await page.locator('#generate-dpp-btn').click();
+    const output = await page.locator('#json-output').textContent();
+    const dpp = JSON.parse(output);
+
+    // 5. Assertions
+    expect(dpp.brand).toBe('Test Brand');
+    expect(dpp.packagingMaterials).toHaveLength(1);
+    expect(dpp.packagingMaterials[0].packagingMaterialType).toBe('Cardboard');
+    // Contexts check
+    expect(JSON.stringify(dpp['@context'])).toContain('dpp-general-product.context.jsonld');
+    expect(JSON.stringify(dpp['@context'])).toContain('dpp-packaging.context.jsonld');
   });
 });

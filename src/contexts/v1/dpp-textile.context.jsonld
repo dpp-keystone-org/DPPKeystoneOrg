@@ -27,6 +27,13 @@
             },
 
             // ==================================================================
+            // Properties (Production Steps)
+            // ==================================================================
+            "productionSteps": { "@id": "dppk:productionSteps", "@container": "@list" },
+            "step": "dppk:productionStepType",
+            "countryCode": "dppk:productionLocationCountry",
+
+            // ==================================================================
             // Properties (Circularity and Sustainability)
             // ==================================================================
             
@@ -38,11 +45,24 @@
                 "@type": "xsd:boolean"
             },
 
-            // Durability Indicators (Link to QuantitativeValue)
-            "tearStrength": "dppk:tearStrength",
+            // Durability & Quality Indicators
             "abrasionResistance": "dppk:abrasionResistance",
+            "cycles": { "@id": "dppk:cycles", "@type": "xsd:integer" },
 
-            "microplasticReleasePotential": "dppk:microplasticReleasePotential",
+            "dimensionalStability": "dppk:dimensionalStability",
+            "warpChange": { "@id": "dppk:warpChange", "@type": "xsd:decimal" },
+            "weftChange": { "@id": "dppk:weftChange", "@type": "xsd:decimal" },
+
+            "colorfastnessToWashing": "dppk:colorfastnessToWashing",
+            "grade": { "@id": "dppk:grade", "@type": "xsd:decimal" },
+
+            "microplasticRelease": "dppk:microplasticRelease",
+            "value": { "@id": "dppk:value", "@type": "xsd:decimal" },
+
+            //Properties (Size)
+            // ==================================================================
+            "apparelSize": "dppk:apparelSize",
+            "apparelSizeSystem": "dppk:apparelSizeSystem",
 
             // ==================================================================
             // Properties (Care and Repair)

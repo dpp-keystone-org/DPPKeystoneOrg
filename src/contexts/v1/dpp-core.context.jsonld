@@ -1,5 +1,8 @@
 {
-  "@context": {
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld",
+    {
     // ==================================================================
     // Namespaces
     // ==================================================================
@@ -21,9 +24,9 @@
     "QuantitativeValue": "dppk:QuantitativeValue",
     "RelatedResource": "dppk:RelatedResource",
     "Certification": "dppk:Certification",
+    "Component": "dppk:Component",
     "SubstanceOfConcern": "dppk:SubstanceOfConcern",
-    "EcoDesignProperty": "dppk:EcoDesignProperty",
-    "ComplianceTopic": "dppk:ComplianceTopic",
+
     "Packaging": "dppk:Packaging",
     "ProductionStep": "dppk:ProductionStep",
     "ProductCharacteristic": "dppk:ProductCharacteristic",
@@ -103,18 +106,9 @@
     },
     "description": "dppk:description",
     "gtin": "dppk:gtin",
-    "brand": "dppk:brand",
-    "model": "dppk:model",
-    "image": { "@id": "dppk:image", "@type": "@id" },
-    "color": "dppk:color",
-    "sizeCode": "dppk:sizeCode",
-    "sizeSystemCode": "dppk:sizeSystemCode",
-    
+
     // BOM and Materials
-    "hasPart": { "@id": "dppk:hasPart", "@container": "@list" },
-    "dppLink": { "@id": "dppk:dppLink", "@type": "@id" },
-    "materialClassification": "dppk:materialClassification",
-    "countryOfOrigin": "dppk:countryOfOrigin",
+
     "weightPercentage": "dppk:weightPercentage",
     "recycledContentPercentage": "dppk:recycledContentPercentage",
 
@@ -134,9 +128,6 @@
     "MetersLengthLiteral": "dppk:MetersLengthLiteral",
 
     // Coerce properties to use these custom datatypes.
-    "netWeight": { "@id": "dppk:netWeight", "@type": "KgWeightLiteral" },
-    "length": { "@id": "dppk:length", "@type": "MetersLengthLiteral" },
-    "grossWeight": "dppk:grossWeight", // No default unit coercion for grossWeight.
     "value": { "@id": "dppk:value", "@type": "xsd:decimal" },
     "unitCode": "dppk:unitCode",
     "unitText": "dppk:unitText",
@@ -147,12 +138,7 @@
 
     // Relationships (Data Clusters)
     "documents": { "@id": "dppk:documents", "@container": "@set" },
-    "certifications": { "@id": "dppk:certifications", "@container": "@set" },
     "substancesOfConcern": { "@id": "dppk:substancesOfConcern", "@container": "@set" },
-    "ecoDesignProperties": { "@id": "dppk:ecoDesignProperties", "@container": "@set" },
-    "complianceTopics": { "@id": "dppk:complianceTopics", "@container": "@set" },
-    "packaging": { "@id": "dppk:packaging", "@container": "@set" },
-    "productionSteps": { "@id": "dppk:productionSteps", "@container": "@list" },
 
     //Properties: Linked Resources
     // ==================================================================
@@ -162,37 +148,14 @@
     "contentType": "dppk:contentType",
     "language": "dppk:language",
 
-    // Certification Details
-    "certificationBodyName": "dppk:certificationBodyName",
-    "certificationStartDate": { "@id": "dppk:certificationStartDate", "@type": "xsd:date" },
-    "certificationBodyId": "dppk:certificationBodyId",
-
     // Substance Details
     "minValue": "dppk:minValue",
     "maxValue": "dppk:maxValue",
 
-    // Eco-Design Details
-    "ecoDesignPropertyType": "dppk:ecoDesignPropertyType",
-
-    // Compliance Topic Details
-    "complianceType": "dppk:complianceType",
-    "complianceValue": "dppk:complianceValue",
-    "complianceText": "dppk:complianceText",
-
-    // Packaging Details
-    "packagingMaterialType": "dppk:packagingMaterialType",
-    "packagingMaterialCompositionQuantity": "dppk:packagingMaterialCompositionQuantity",
-    "packagingRecyclingProcessType": "dppk:packagingRecyclingProcessType",
-    "packagingRecycledContent": "dppk:packagingRecycledContent",
-    "packagingSubstanceOfConcern": "dppk:packagingSubstanceOfConcern",
-
-    // Production Step Details
     "dateOfManufacture": {
       "@id": "dppk:dateOfManufacture",
       "@type": "xsd:date"
     },
-    "productionStepType": "dppk:productionStepType",
-    "productionLocationCountry": "dppk:productionLocationCountry",
 
     // ==================================================================
     // General Purpose Aliases (Used across multiple classes)
@@ -209,4 +172,5 @@
     }
 
   }
+  ]
 }

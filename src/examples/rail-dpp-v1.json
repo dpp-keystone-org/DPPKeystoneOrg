@@ -254,7 +254,7 @@
   },
 
   // --- Certifications (Harmonized to use generic Keystone model from core context) ---
-  "certifications": [
+  "additionalCertifications": [
       {
           "@type": "Certification",
           "resourceTitle": "CE Certificate of Conformity",

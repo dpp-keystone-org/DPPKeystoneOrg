@@ -144,9 +144,9 @@
     // ==================================================================
     
     // Note: Specific Critical Raw Materials (CRMs) like Cobalt, Lithium, Nickel, Graphite 
-    // should be modeled using the core dppk:hasPart relationship, where the part is 
-    // identified as the specific material, and properties like dppk:weightPercentage 
-    // and dppk:recycledContentPercentage are applied to that part.
+    // should be modeled using the core dppk:components relationship, where the component is 
+    // identified as the specific material (an instance of dppk:Component), and properties like dppk:weightPercentage 
+    // and dppk:recycledContentPercentage are applied to that component.
 
     // ==================================================================
     // Properties (Carbon Footprint)

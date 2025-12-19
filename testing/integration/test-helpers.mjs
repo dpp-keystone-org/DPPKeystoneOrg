@@ -54,8 +54,10 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
     "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-product-details.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-product-details.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-general-product.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-packaging.context.jsonld'),
     "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-epd.context.jsonld'),
     "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld":
@@ -73,8 +75,6 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Product.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/ProductDetails.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'ProductDetails.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld":
     path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'RelatedResource.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld":
@@ -169,7 +169,7 @@ export async function fillRequiredFields(page, sector) {
 
     }, { sector, counters });
 
-    console.log('Data to fill for sector', sector, ':', dataToFill);
+    //console.log('Data to fill for sector', sector, ':', dataToFill);
 
     for (const [fieldName, value] of Object.entries(dataToFill)) {
         // Handle array buttons
