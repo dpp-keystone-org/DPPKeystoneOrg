@@ -357,7 +357,7 @@
         },
         {
           "@language": "en",
-          "@value": "The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). The default value is a placeholder and should be replaced with a real identifier later."
+          "@value": "The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). Implementation-specific identifier."
         },
         {
           "@language": "es",
@@ -564,7 +564,7 @@
         },
         {
           "@language": "en",
-          "@value": "The unique identifier for the physical product associated with this DPP. Aligns with the Unique Product Identifier (UPI) requirement in the ESPR. Strongly recommended to use established standards like GS1 Digital Link URI. The default value is a placeholder and should be replaced with a real identifier, for example, after registering the product with a service like GS1."
+          "@value": "The globally resolvable URI for the product/DPP."
         },
         {
           "@language": "es",
@@ -642,9 +642,6 @@
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "ESPR - Article 9 (Unique product identifier)"
-      },
-      "rdfs:domain": {
-        "@id": "dppk:DigitalProductPassport"
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"

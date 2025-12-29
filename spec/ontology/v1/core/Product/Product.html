@@ -33,15 +33,11 @@
   Product : +brand
   Product : +model
   Product : +image
+  Product --|> RelatedResource : image
   Product : +color
-  Product : +sizeCode
-  Product : +sizeSystemCode
-  Product : +hasPart
-  Product --|> Product : hasPart
-  Product : +dppLink
-  Product : +materialClassification
+  Product : +components
+  Product --|> Component : components
   Product : +countryOfOrigin
-  Product : +weightPercentage
   Product : +recycledContentPercentage
   Product : +weight
   Product --|> QuantitativeValue : weight
@@ -50,6 +46,12 @@
   Product : +grossWeight
   Product : +length
   Product --|> MetersLengthLiteral : length
+  Product : +width
+  Product --|> MetersLengthLiteral : width
+  Product : +height
+  Product --|> MetersLengthLiteral : height
+  Product : +depth
+  Product --|> MetersLengthLiteral : depth
   Product : +productCharacteristics
   Product --|> ProductCharacteristic : productCharacteristics
 
@@ -109,8 +111,8 @@
                             
                                 <tr>
                                     <td>Product Image (dppk:image)</td>
-                                    <td>A URI pointing to an image of the product.</td>
-                                    <td>xsd:anyURI</td>
+                                    <td>A reference to an image resource related to the product.</td>
+                                    <td>dppk:RelatedResource</td>
                                     <td><a href="https://schema.org/image">schema:image</a>, <a href="https://ref.gs1.org/voc/productImage">gs1:productImage</a>, <a href="https://vocabulary.uncefact.org/specifiedPicture">unece:specifiedPicture</a></td>
                                 </tr>
                             
@@ -122,38 +124,10 @@
                                 </tr>
                             
                                 <tr>
-                                    <td>Size Code (dppk:sizeCode)</td>
+                                    <td>Components (dppk:components)</td>
+                                    <td>A constituent part or material of the product.</td>
+                                    <td>dppk:Component</td>
                                     <td></td>
-                                    <td>xsd:string</td>
-                                    <td><a href="https://ref.gs1.org/voc/sizeCode">gs1:sizeCode</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Size System Code (dppk:sizeSystemCode)</td>
-                                    <td>The system used for the size code (e.g., EUROPE, US).</td>
-                                    <td>xsd:string</td>
-                                    <td><a href="https://ref.gs1.org/voc/sizeSystemCode">gs1:sizeSystemCode</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Has Part (Component/Material) (dppk:hasPart)</td>
-                                    <td>Relates the main product to its constituent components or materials. This forms the Bill of Materials (BOM).</td>
-                                    <td>dppk:Product</td>
-                                    <td><a href="https://schema.org/hasPart">schema:hasPart</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>DPP Link (dppk:dppLink)</td>
-                                    <td>A URI pointing to the Digital Product Passport of a component, if one exists.</td>
-                                    <td>xsd:anyURI</td>
-                                    <td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Material Classification (dppk:materialClassification)</td>
-                                    <td>A code or standard classifying the material (e.g., steel grade, plastic type).</td>
-                                    <td>xsd:string</td>
-                                    <td><a href="https://ref.gs1.org/voc/additionalProductClassificationCode">gs1:additionalProductClassificationCode</a></td>
                                 </tr>
                             
                                 <tr>
@@ -161,13 +135,6 @@
                                     <td>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</td>
                                     <td>xsd:string</td>
                                     <td><a href="https://schema.org/countryOfOrigin">schema:countryOfOrigin</a>, <a href="https://ref.gs1.org/voc/countryOfOrigin">gs1:countryOfOrigin</a>, <a href="https://vocabulary.uncefact.org/originCountry">unece:originCountry</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Weight Percentage (dppk:weightPercentage)</td>
-                                    <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td>
                                 </tr>
                             
                                 <tr>
@@ -203,6 +170,27 @@
                                     <td>The length of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
                                     <td>dppk:MetersLengthLiteral</td>
                                     <td><a href="https://schema.org/length">schema:length</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Width (dppk:width)</td>
+                                    <td>The width of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                                    <td>dppk:MetersLengthLiteral</td>
+                                    <td><a href="https://schema.org/width">schema:width</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Height (dppk:height)</td>
+                                    <td>The height of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                                    <td>dppk:MetersLengthLiteral</td>
+                                    <td><a href="https://schema.org/height">schema:height</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Depth (dppk:depth)</td>
+                                    <td>The depth of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                                    <td>dppk:MetersLengthLiteral</td>
+                                    <td><a href="https://schema.org/depth">schema:depth</a></td>
                                 </tr>
                             
                                 <tr>

@@ -293,8 +293,14 @@ function createInputForProp(prop, isRequired) {
                 input.type = 'checkbox';
                 break;
             default:
-                input = document.createElement('span');
-                input.textContent = `[${prop.type}]`; // Placeholder for other types
+                if (Array.isArray(prop.type)) {
+                    // Fallback to text input for multi-type fields (e.g., ["string", "number"])
+                    input = document.createElement('input');
+                    input.type = 'text';
+                } else {
+                    input = document.createElement('span');
+                    input.textContent = `[${prop.type}]`; // Placeholder for other types
+                }
         }
     }
     return input;
@@ -907,10 +913,10 @@ export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
 
         // Add headers
         grid.innerHTML = `
-            <div class="grid-header">Field Path</div>
+            <div class="grid-header">Field</div>
             <div class="grid-header">Value</div>
             <div class="grid-header">Unit</div>
-            <div class="grid-header">Ontology</div>
+            <div class="grid-header">Label</div>
             <div class="grid-header"></div>
         `;
         
@@ -1222,6 +1228,11 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                     
                     if (schema && schema.properties) {
                         const container = row.querySelector('.voluntary-group-container');
+                        
+                        // Clear validation for existing fields in the container before overwriting
+                        const inputs = container.querySelectorAll('input, select');
+                        inputs.forEach(input => { if (input.name) dispatchValidity(input.name, true); });
+
                         // Clear the container (removing the "Add Field" button used for generic groups)
                         container.innerHTML = '';
                         
@@ -1247,9 +1258,11 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                         newInputs.forEach(input => {
                             input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
                         });
+                    } else {
+                        console.error(`[ERROR] Schema for ${customType.schemaName} is invalid or missing properties:`, schema);
                     }
                 } catch (error) {
-                    console.error(`Failed to load schema for ${customType.label}:`, error);
+                    console.error(`[ERROR] Failed to load schema for ${customType.label}:`, error);
                 }
             }
             return;
@@ -1257,7 +1270,11 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
 
         // 2. Handle Non-Group Types
         row.classList.remove('group-mode');
-        if (existingGroupContainer) existingGroupContainer.remove();
+        if (existingGroupContainer) {
+             const inputs = existingGroupContainer.querySelectorAll('input, select');
+             inputs.forEach(input => { if (input.name) dispatchValidity(input.name, true); });
+             existingGroupContainer.remove();
+        }
         
         // Ensure value container exists
         if (!row.querySelector('.voluntary-value-container')) {

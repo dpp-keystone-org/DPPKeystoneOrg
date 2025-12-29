@@ -1,228 +1,166 @@
 {
-  "@context": {
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "gs1": "https://ref.gs1.org/voc/",
-    "schema": "https://schema.org/",
-    "unece": "https://vocabulary.uncefact.org/",
-    "DigitalProductPassport": "dppk:DigitalProductPassport",
-    "Organization": "dppk:Organization",
-    "PostalAddress": "dppk:PostalAddress",
-    "Product": "dppk:Product",
-    "QuantitativeValue": "dppk:QuantitativeValue",
-    "RelatedResource": "dppk:RelatedResource",
-    "Certification": "dppk:Certification",
-    "SubstanceOfConcern": "dppk:SubstanceOfConcern",
-    "EcoDesignProperty": "dppk:EcoDesignProperty",
-    "ComplianceTopic": "dppk:ComplianceTopic",
-    "Packaging": "dppk:Packaging",
-    "ProductionStep": "dppk:ProductionStep",
-    "ProductCharacteristic": "dppk:ProductCharacteristic",
-    "EconomicOperatorRole": "dppk:EconomicOperatorRole",
-    "ManufacturerRole": "dppk:ManufacturerRole",
-    "FacilityRole": "dppk:FacilityRole",
-    "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
-    "ISO6523": "dppk:ISO6523",
-    "Item": {
-      "@id": "dppk:Item"
-    },
-    "Batch": {
-      "@id": "dppk:Batch"
-    },
-    "Model": {
-      "@id": "dppk:Model"
-    },
-    "digitalProductPassportId": {
-      "@id": "dppk:digitalProductPassportId",
-      "@type": "@id"
-    },
-    "uniqueProductIdentifier": {
-      "@id": "dppk:uniqueProductIdentifier",
-      "@type": "@id"
-    },
-    "economicOperatorId": {
-      "@id": "dppk:economicOperatorId",
-      "@type": "@id"
-    },
-    "facilityId": {
-      "@id": "dppk:facilityId",
-      "@type": "@id"
-    },
-    "granularity": {
-      "@id": "dppk:granularity",
-      "@type": "@vocab"
-    },
-    "dppStatus": "dppk:dppStatus",
-    "lastUpdate": {
-      "@id": "dppk:lastUpdate",
-      "@type": "xsd:dateTime"
-    },
-    "dppSchemaVersion": "dppk:dppSchemaVersion",
-    "versionNumber": "dppk:versionNumber",
-    "versionDate": {
-      "@id": "dppk:versionDate",
-      "@type": "xsd:date"
-    },
-    "contentSpecificationIds": {
-      "@id": "dppk:contentSpecificationIds",
-      "@container": "@set"
-    },
-    "verifiableCredential": "dppk:verifiableCredential",
-    "hsCode": "dppk:hsCode",
-    "economicOperator": {
-      "@id": "dppk:economicOperator",
-      "@type": "@id"
-    },
-    "manufacturer": {
-      "@id": "dppk:manufacturer",
-      "@type": "@id"
-    },
-    "manufacturingFacility": {
-      "@id": "dppk:manufacturingFacility",
-      "@type": "@id"
-    },
-    "organizationName": "dppk:organizationName",
-    "tradingName": "dppk:tradingName",
-    "gln": "dppk:gln",
-    "leiCode": "dppk:leiCode",
-    "organizationRole": "dppk:organizationRole",
-    "additionalOrganizationId": "dppk:additionalOrganizationId",
-    "additionalOrganizationIdType": "dppk:additionalOrganizationIdType",
-    "iso6523": "dppk:iso6523",
-    "icd": "dppk:icd",
-    "iso6523Value": "dppk:iso6523Value",
-    "address": "dppk:address",
-    "streetAddress": "dppk:streetAddress",
-    "postalCode": "dppk:postalCode",
-    "addressLocality": "dppk:addressLocality",
-    "addressCountry": "dppk:addressCountry",
-    "email": "dppk:email",
-    "telephone": "dppk:telephone",
-    "website": {
-      "@id": "dppk:website",
-      "@type": "@id"
-    },
-    "productName": {
-      "@id": "dppk:productName",
-      "@container": "@language"
-    },
-    "description": "dppk:description",
-    "gtin": "dppk:gtin",
-    "brand": "dppk:brand",
-    "model": "dppk:model",
-    "image": {
-      "@id": "dppk:image",
-      "@type": "@id"
-    },
-    "color": "dppk:color",
-    "sizeCode": "dppk:sizeCode",
-    "sizeSystemCode": "dppk:sizeSystemCode",
-    "hasPart": {
-      "@id": "dppk:hasPart",
-      "@container": "@list"
-    },
-    "dppLink": {
-      "@id": "dppk:dppLink",
-      "@type": "@id"
-    },
-    "materialClassification": "dppk:materialClassification",
-    "countryOfOrigin": "dppk:countryOfOrigin",
-    "weightPercentage": "dppk:weightPercentage",
-    "recycledContentPercentage": "dppk:recycledContentPercentage",
-    "productCharacteristics": {
-      "@id": "dppk:productCharacteristics",
-      "@container": "@set"
-    },
-    "characteristicName": "dppk:characteristicName",
-    "characteristicValue": "dppk:characteristicValue",
-    "testMethod": "dppk:testMethod",
-    "KgWeightLiteral": "dppk:KgWeightLiteral",
-    "MetersLengthLiteral": "dppk:MetersLengthLiteral",
-    "netWeight": {
-      "@id": "dppk:netWeight",
-      "@type": "KgWeightLiteral"
-    },
-    "length": {
-      "@id": "dppk:length",
-      "@type": "MetersLengthLiteral"
-    },
-    "grossWeight": "dppk:grossWeight",
-    "value": {
-      "@id": "dppk:value",
-      "@type": "xsd:decimal"
-    },
-    "unitCode": "dppk:unitCode",
-    "unitText": "dppk:unitText",
-    "documents": {
-      "@id": "dppk:documents",
-      "@container": "@set"
-    },
-    "certifications": {
-      "@id": "dppk:certifications",
-      "@container": "@set"
-    },
-    "substancesOfConcern": {
-      "@id": "dppk:substancesOfConcern",
-      "@container": "@set"
-    },
-    "ecoDesignProperties": {
-      "@id": "dppk:ecoDesignProperties",
-      "@container": "@set"
-    },
-    "complianceTopics": {
-      "@id": "dppk:complianceTopics",
-      "@container": "@set"
-    },
-    "packaging": {
-      "@id": "dppk:packaging",
-      "@container": "@set"
-    },
-    "productionSteps": {
-      "@id": "dppk:productionSteps",
-      "@container": "@list"
-    },
-    "instructionsForUse": {
-      "@id": "dppk:instructionsForUse",
-      "@type": "@id"
-    },
-    "safetyDataSheet": {
-      "@id": "dppk:safetyDataSheet",
-      "@type": "@id"
-    },
-    "resourceTitle": "dppk:resourceTitle",
-    "contentType": "dppk:contentType",
-    "language": "dppk:language",
-    "certificationBodyName": "dppk:certificationBodyName",
-    "certificationStartDate": {
-      "@id": "dppk:certificationStartDate",
-      "@type": "xsd:date"
-    },
-    "certificationBodyId": "dppk:certificationBodyId",
-    "minValue": "dppk:minValue",
-    "maxValue": "dppk:maxValue",
-    "ecoDesignPropertyType": "dppk:ecoDesignPropertyType",
-    "complianceType": "dppk:complianceType",
-    "complianceValue": "dppk:complianceValue",
-    "complianceText": "dppk:complianceText",
-    "packagingMaterialType": "dppk:packagingMaterialType",
-    "packagingMaterialCompositionQuantity": "dppk:packagingMaterialCompositionQuantity",
-    "packagingRecyclingProcessType": "dppk:packagingRecyclingProcessType",
-    "packagingRecycledContent": "dppk:packagingRecycledContent",
-    "packagingSubstanceOfConcern": "dppk:packagingSubstanceOfConcern",
-    "dateOfManufacture": {
-      "@id": "dppk:dateOfManufacture",
-      "@type": "xsd:date"
-    },
-    "productionStepType": "dppk:productionStepType",
-    "productionLocationCountry": "dppk:productionLocationCountry",
-    "name": {
-      "@id": "dppk:name",
-      "@container": "@language"
-    },
-    "identifier": "dppk:identifier",
-    "url": {
-      "@id": "dppk:url",
-      "@type": "xsd:anyURI"
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld",
+    {
+      "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "gs1": "https://ref.gs1.org/voc/",
+      "schema": "https://schema.org/",
+      "unece": "https://vocabulary.uncefact.org/",
+      "DigitalProductPassport": "dppk:DigitalProductPassport",
+      "Organization": "dppk:Organization",
+      "PostalAddress": "dppk:PostalAddress",
+      "Product": "dppk:Product",
+      "QuantitativeValue": "dppk:QuantitativeValue",
+      "RelatedResource": "dppk:RelatedResource",
+      "Certification": "dppk:Certification",
+      "Component": "dppk:Component",
+      "SubstanceOfConcern": "dppk:SubstanceOfConcern",
+      "Packaging": "dppk:Packaging",
+      "ProductionStep": "dppk:ProductionStep",
+      "ProductCharacteristic": "dppk:ProductCharacteristic",
+      "EconomicOperatorRole": "dppk:EconomicOperatorRole",
+      "ManufacturerRole": "dppk:ManufacturerRole",
+      "FacilityRole": "dppk:FacilityRole",
+      "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
+      "ISO6523": "dppk:ISO6523",
+      "Item": {
+        "@id": "dppk:Item"
+      },
+      "Batch": {
+        "@id": "dppk:Batch"
+      },
+      "Model": {
+        "@id": "dppk:Model"
+      },
+      "digitalProductPassportId": {
+        "@id": "dppk:digitalProductPassportId",
+        "@type": "@id"
+      },
+      "uniqueProductIdentifier": {
+        "@id": "dppk:uniqueProductIdentifier",
+        "@type": "@id"
+      },
+      "economicOperatorId": {
+        "@id": "dppk:economicOperatorId",
+        "@type": "@id"
+      },
+      "facilityId": {
+        "@id": "dppk:facilityId",
+        "@type": "@id"
+      },
+      "granularity": {
+        "@id": "dppk:granularity",
+        "@type": "@vocab"
+      },
+      "dppStatus": "dppk:dppStatus",
+      "lastUpdate": {
+        "@id": "dppk:lastUpdate",
+        "@type": "xsd:dateTime"
+      },
+      "dppSchemaVersion": "dppk:dppSchemaVersion",
+      "versionNumber": "dppk:versionNumber",
+      "versionDate": {
+        "@id": "dppk:versionDate",
+        "@type": "xsd:date"
+      },
+      "contentSpecificationIds": {
+        "@id": "dppk:contentSpecificationIds",
+        "@container": "@set"
+      },
+      "verifiableCredential": "dppk:verifiableCredential",
+      "hsCode": "dppk:hsCode",
+      "economicOperator": {
+        "@id": "dppk:economicOperator",
+        "@type": "@id"
+      },
+      "manufacturer": {
+        "@id": "dppk:manufacturer",
+        "@type": "@id"
+      },
+      "manufacturingFacility": {
+        "@id": "dppk:manufacturingFacility",
+        "@type": "@id"
+      },
+      "organizationName": "dppk:organizationName",
+      "tradingName": "dppk:tradingName",
+      "gln": "dppk:gln",
+      "leiCode": "dppk:leiCode",
+      "organizationRole": "dppk:organizationRole",
+      "additionalOrganizationId": "dppk:additionalOrganizationId",
+      "additionalOrganizationIdType": "dppk:additionalOrganizationIdType",
+      "iso6523": "dppk:iso6523",
+      "icd": "dppk:icd",
+      "iso6523Value": "dppk:iso6523Value",
+      "address": "dppk:address",
+      "streetAddress": "dppk:streetAddress",
+      "postalCode": "dppk:postalCode",
+      "addressLocality": "dppk:addressLocality",
+      "addressCountry": "dppk:addressCountry",
+      "email": "dppk:email",
+      "telephone": "dppk:telephone",
+      "website": {
+        "@id": "dppk:website",
+        "@type": "@id"
+      },
+      "productName": {
+        "@id": "dppk:productName",
+        "@container": "@language"
+      },
+      "description": "dppk:description",
+      "gtin": "dppk:gtin",
+      "weightPercentage": "dppk:weightPercentage",
+      "recycledContentPercentage": "dppk:recycledContentPercentage",
+      "productCharacteristics": {
+        "@id": "dppk:productCharacteristics",
+        "@container": "@set"
+      },
+      "characteristicName": "dppk:characteristicName",
+      "characteristicValue": "dppk:characteristicValue",
+      "testMethod": "dppk:testMethod",
+      "KgWeightLiteral": "dppk:KgWeightLiteral",
+      "MetersLengthLiteral": "dppk:MetersLengthLiteral",
+      "value": {
+        "@id": "dppk:value",
+        "@type": "xsd:decimal"
+      },
+      "unitCode": "dppk:unitCode",
+      "unitText": "dppk:unitText",
+      "documents": {
+        "@id": "dppk:documents",
+        "@container": "@set"
+      },
+      "substancesOfConcern": {
+        "@id": "dppk:substancesOfConcern",
+        "@container": "@set"
+      },
+      "instructionsForUse": {
+        "@id": "dppk:instructionsForUse",
+        "@type": "@id"
+      },
+      "safetyDataSheet": {
+        "@id": "dppk:safetyDataSheet",
+        "@type": "@id"
+      },
+      "resourceTitle": "dppk:resourceTitle",
+      "contentType": "dppk:contentType",
+      "language": "dppk:language",
+      "minValue": "dppk:minValue",
+      "maxValue": "dppk:maxValue",
+      "dateOfManufacture": {
+        "@id": "dppk:dateOfManufacture",
+        "@type": "xsd:date"
+      },
+      "name": {
+        "@id": "dppk:name",
+        "@container": "@language"
+      },
+      "identifier": "dppk:identifier",
+      "url": {
+        "@id": "dppk:url",
+        "@type": "xsd:anyURI"
+      }
     }
-  }
+  ]
 }

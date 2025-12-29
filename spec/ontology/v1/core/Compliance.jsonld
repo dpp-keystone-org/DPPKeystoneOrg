@@ -54,27 +54,6 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:EcoDesignProperty",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Eco-Design Property",
-      "rdfs:comment": "A specific property related to the environmental performance or sustainability of the product, as required by Eco-Design regulations (e.g., Energy Efficiency, GWP).",
-      "dcterms:source": {
-        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32009L0125",
-        "rdfs:label": "Directive 2009/125/EC (Ecodesign Directive)"
-      },
-      "rdfs:subClassOf": {
-        "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:ComplianceTopic",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Compliance Topic",
-      "rdfs:comment": "A declaration of compliance status regarding specific regulations (e.g., REACH, RoHS, Lacey Act).",
-      "rdfs:term_status": "unstable"
-    },
-    {
       "@id": "dppk:Packaging",
       "@type": "rdfs:Class",
       "rdfs:label": "Packaging",
@@ -110,9 +89,9 @@
       "rdfs:term_status": "unstable"
     },
     {
-      "@id": "dppk:certifications",
+      "@id": "dppk:additionalCertifications",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Certifications",
+      "rdfs:label": "Additional Certifications. Please do not use this field for sector specific, mandatory certifications.",
       "rdfs:comment": "Relates the product to its certifications.",
       "rdfs:domain": {
         "@id": "dppk:Product"
@@ -139,30 +118,6 @@
       },
       "rdfs:range": {
         "@id": "dppk:SubstanceOfConcern"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:ecoDesignProperties",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "Eco-Design Properties",
-      "rdfs:domain": {
-        "@id": "dppk:Product"
-      },
-      "rdfs:range": {
-        "@id": "dppk:EcoDesignProperty"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:complianceTopics",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "Compliance Topics",
-      "rdfs:domain": {
-        "@id": "dppk:Product"
-      },
-      "rdfs:range": {
-        "@id": "dppk:ComplianceTopic"
       },
       "rdfs:term_status": "unstable"
     },
@@ -243,48 +198,6 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:maxValue"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:ecoDesignPropertyType",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Eco-Design Property Type",
-      "rdfs:comment": "The specific type of Eco-Design property being reported (e.g., EnergyEfficiency, GWP_A1-A3).",
-      "rdfs:domain": {
-        "@id": "dppk:EcoDesignProperty"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:complianceType",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Compliance Type",
-      "rdfs:comment": "The specific regulation or standard being addressed (e.g., REACH, RoHS).",
-      "rdfs:domain": {
-        "@id": "dppk:ComplianceTopic"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:complianceValue",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Compliance Value",
-      "rdfs:comment": "The status of compliance (e.g., YES, NO, Compliant, Non-Compliant).",
-      "rdfs:domain": {
-        "@id": "dppk:ComplianceTopic"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:complianceText",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Explaining Text",
-      "rdfs:domain": {
-        "@id": "dppk:ComplianceTopic"
-      },
-      "rdfs:range": {
-        "@id": "rdf:langString"
       },
       "rdfs:term_status": "unstable"
     },

@@ -42,8 +42,40 @@
     }
   ],
   "color": "Black",
-  "sizeCode": "EU 42-45",
-  "careInstructions": "Machine wash cold, tumble dry low. Do not bleach.",
+  "apparelSize": "EU 42-45",
+  "apparelSizeSystem": "EU",
+  "careInstructions": [
+    "GINETEX:30C",
+    "GINETEX:DoNotBleach",
+    "GINETEX:TumbleDryLow"
+  ],
   "recycledContentPercentage": 20,
-  "animalOriginNonTextile": false
+  "animalOriginNonTextile": false,
+  "productionSteps": [
+    {
+      "step": "Spinning",
+      "countryCode": "TUR"
+    },
+    {
+      "step": "Knitting",
+      "countryCode": "PRT"
+    }
+  ],
+  "abrasionResistance": {
+    "cycles": 20000,
+    "testMethod": "ISO 12947-2"
+  },
+  "dimensionalStability": {
+    "warpChange": -2,
+    "weftChange": -1.5,
+    "testMethod": "ISO 5077"
+  },
+  "colorfastnessToWashing": {
+    "grade": 4.5,
+    "testMethod": "ISO 105-C06"
+  },
+  "microplasticRelease": {
+    "value": 150,
+    "testMethod": "ISO 4484-1"
+  }
 }

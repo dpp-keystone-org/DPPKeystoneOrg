@@ -13,13 +13,42 @@
         "@id": "dppk:fibrePercentage",
         "@type": "xsd:decimal"
       },
+      "productionSteps": {
+        "@id": "dppk:productionSteps",
+        "@container": "@list"
+      },
+      "step": "dppk:productionStepType",
+      "countryCode": "dppk:productionLocationCountry",
       "animalOriginNonTextile": {
         "@id": "dppk:animalOriginNonTextile",
         "@type": "xsd:boolean"
       },
-      "tearStrength": "dppk:tearStrength",
       "abrasionResistance": "dppk:abrasionResistance",
-      "microplasticReleasePotential": "dppk:microplasticReleasePotential",
+      "cycles": {
+        "@id": "dppk:cycles",
+        "@type": "xsd:integer"
+      },
+      "dimensionalStability": "dppk:dimensionalStability",
+      "warpChange": {
+        "@id": "dppk:warpChange",
+        "@type": "xsd:decimal"
+      },
+      "weftChange": {
+        "@id": "dppk:weftChange",
+        "@type": "xsd:decimal"
+      },
+      "colorfastnessToWashing": "dppk:colorfastnessToWashing",
+      "grade": {
+        "@id": "dppk:grade",
+        "@type": "xsd:decimal"
+      },
+      "microplasticRelease": "dppk:microplasticRelease",
+      "value": {
+        "@id": "dppk:value",
+        "@type": "xsd:decimal"
+      },
+      "apparelSize": "dppk:apparelSize",
+      "apparelSizeSystem": "dppk:apparelSizeSystem",
       "careInstructions": "dppk:careInstructions",
       "repairabilityInformation": "dppk:repairabilityInformation"
     }

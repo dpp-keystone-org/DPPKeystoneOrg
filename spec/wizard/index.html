@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Wizard</title>
-    <link rel="stylesheet" href="../../branding/css/keystone-style.css?v=1766132721761">
-    <link rel="stylesheet" href="wizard.css?v=1766132721761">
+    <link rel="stylesheet" href="../../branding/css/keystone-style.css?v=1767038717811">
+    <link rel="stylesheet" href="wizard.css?v=1767038717811">
 </head>
 <body>
     <div class="container">
@@ -54,7 +54,7 @@
                 <!-- Core DPP form fields will be generated here -->
             </div>
             <div id="sector-selection">
-                <label>1. Add a Sector:</label>
+                <h2>1. Select Applicable Sectors</h2>
                 <div id="sector-buttons">
                     <button class="sector-btn" data-sector="battery">Add Battery</button>
                     <button class="sector-btn" data-sector="construction">Add Construction</button>
@@ -68,6 +68,13 @@
     
             <div id="voluntary-info-container">
                 <h2>2. Add Voluntary Information</h2>
+                <div style="margin-bottom: 15px;">
+                    <button class="sector-btn" data-sector="general-product">Add General Product Information</button>
+                    <button class="sector-btn" data-sector="packaging">Add Packaging</button>
+                </div>
+                <div id="voluntary-modules-container">
+                    <!-- Voluntary module forms (General Info, Packaging) will be generated here -->
+                </div>
                 <div id="voluntary-fields-wrapper">
                     <!-- Dynamic name-value fields will be added here -->
                 </div>
@@ -89,6 +96,6 @@
             <p><small>Part of the <a href="../../index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
-    <script type="module" src="wizard.js?v=1766132721761"></script>
+    <script type="module" src="wizard.js?v=1767038717811"></script>
 </body>
 </html>

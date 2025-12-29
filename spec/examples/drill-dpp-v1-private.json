@@ -108,22 +108,19 @@
   "safetyInstructions": {
     "en-UK": "Inspect the drill, chuck and any attachments for damage or defects before use. Secure the workpiece with a clamp or vise. Always operate the drill with both hands. Do not wear loose clothing, gloves, rings, or other jewellery, and keep hair tied back."
   },
-  "hasPart": [
+  "components": [
     {
-      "@type": "Product",
       "description": "Cordless drill (base unit)",
       "gtin": "5012345101071",
-      "dppLink": "https://freedpp.eu/01/05012345101071"
+      "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101071"
     },
     {
-      "@type": "Product",
       "gtin": "5012345101095"
     },
     {
-      "@type": "Product",
       "description": "Battery",
       "gtin": "5012345101088",
-      "dppLink": "https://freedpp.eu/01/05012345101088"
+      "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101088"
     }
   ],
   "lifecycleEvents": [
@@ -146,7 +143,7 @@
       "actionTaken": "Device inspection: Repair is not possible. Disassembly: Removal of casing, battery, motor, and other components. The battery will be further recycled by BEBAT. Material separation: Plastic, metal, and electronic components. Metal parts: Melted down and reused. Plastic: Plastic parts are processed into new products. Electronic components: Recycled to recover valuable metals such as copper and gold."
     }
   ],
-  "certifications": [
+  "additionalCertifications": [
     {
       "@type": "Certification",
       "resourceTitle": "CE Mark",
@@ -157,18 +154,16 @@
       "url": "https://example.com/dop/GSB451"
     }
   ],
-  "ecoDesignProperties": [
+  "productCharacteristics": [
     {
-      "@type": "EcoDesignProperty",
-      "ecoDesignPropertyType": "CO2e Emissions (per unit)",
-      "value": 34,
-      "unitText": "kg CO2e"
+      "@type": "ProductCharacteristic",
+      "characteristicName": "CO2e Emissions (per unit)",
+      "characteristicValue": "34 kg CO2e"
     },
     {
-      "@type": "EcoDesignProperty",
-      "ecoDesignPropertyType": "Energy Consumption (per unit)",
-      "value": 66,
-      "unitCode": "KWH"
+      "@type": "ProductCharacteristic",
+      "characteristicName": "Energy Consumption (per unit)",
+      "characteristicValue": "66 KWH"
     }
   ]
 }

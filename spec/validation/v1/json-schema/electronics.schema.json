@@ -37,9 +37,6 @@
       },
       "serviceManualAvailable": {
         "type": "boolean"
-      },
-      "ecoDesignProperties": {
-        "type": "array"
       }
     },
     "required": [
@@ -48,8 +45,7 @@
       "ratedPower",
       "voltage",
       "sparePartsAvailable",
-      "serviceManualAvailable",
-      "ecoDesignProperties"
+      "serviceManualAvailable"
     ]
   }
 }

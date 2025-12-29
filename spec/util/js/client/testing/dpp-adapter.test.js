@@ -28,7 +28,8 @@ describe('Client-side DPP Transformer', () => {
         // Load all the context files that might be requested
         contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld', await readFixture('src/contexts/v1/dpp-construction.context.jsonld'));
         contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld', await readFixture('src/contexts/v1/dpp-core.context.jsonld'));
-        contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-product-details.context.jsonld', await readFixture('src/contexts/v1/dpp-product-details.context.jsonld'));
+        contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld', await readFixture('src/contexts/v1/dpp-general-product.context.jsonld'));
+        contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld', await readFixture('src/contexts/v1/dpp-packaging.context.jsonld'));
         contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld', await readFixture('src/contexts/v1/dpp-epd.context.jsonld'));
         contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld', await readFixture('src/contexts/v1/dpp-dopc.context.jsonld'));
         

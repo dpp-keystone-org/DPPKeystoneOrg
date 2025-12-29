@@ -32,7 +32,7 @@ body {
     margin-right: 10px;
 }
 
-#wizard-container > h1, #wizard-container > h2, #voluntary-info-container > h2 {
+#wizard-container > h1, #wizard-container > h2, #voluntary-info-container > h2, #sector-selection > h2 {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
 }
@@ -164,7 +164,7 @@ hr {
 /* 5-Column Grid for Sector-Specific Forms */
 .sector-form-grid {
     display: grid;
-    grid-template-columns: 1.5fr 2fr 1fr 2.5fr 30px; /* Field Path, Value, Unit, Ontology, Tooltip */
+    grid-template-columns: 1.5fr 2fr 1fr 2.5fr 30px; /* Field, Value, Unit, Label, Tooltip */
     gap: 10px 15px; /* Row gap, Column gap */
     align-items: center;
     margin-top: 20px;

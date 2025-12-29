@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class: Eco-Design Property</title>
+    <title>Class: Production Step</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
@@ -17,24 +17,24 @@
         <header>
             <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
-                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Compliance and Regulatory Definitions (v1)</a></h1>
-                <h2 style="margin: 0; color: var(--text-light);">Class: Eco-Design Property (dppk:EcoDesignProperty)</h2>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Sector Ontology - Textile Definitions (v1)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Production Step (dppk:ProductionStep)</h2>
             </div>
         </header>
         <main>
-            <div class="class-section" id="EcoDesignProperty">
+            <div class="class-section" id="ProductionStep">
                 <h4>Visual Diagram</h4>
                 <pre class="mermaid">
                     classDiagram
-  class EcoDesignProperty
-  QuantitativeValue <|-- EcoDesignProperty
-  EcoDesignProperty : +ecoDesignPropertyType
+  class ProductionStep
+  ProductionStep : +productionStepType
+  ProductionStep : +productionLocationCountry
 
                 </pre>
 
                 <h4>Attributes</h4>
-                <p>A specific property related to the environmental performance or sustainability of the product, as required by Eco-Design regulations (e.g., Energy Efficiency, GWP).</p>
-                <p><strong>subClassOf:</strong> <a href="../Product/QuantitativeValue.html">dppk:QuantitativeValue</a></p>
+                <p>A specific stage in the manufacturing process of the product, associated with a location.</p>
+                
 
                 
                     <h4>Properties</h4>
@@ -50,9 +50,16 @@
                         <tbody>
                             
                                 <tr>
-                                    <td>Eco-Design Property Type (dppk:ecoDesignPropertyType)</td>
-                                    <td>The specific type of Eco-Design property being reported (e.g., EnergyEfficiency, GWP_A1-A3).</td>
-                                    <td></td>
+                                    <td>Production Step Type (dppk:productionStepType)</td>
+                                    <td>The type of activity performed (e.g., Spinning, Weaving, Dyeing).</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Production Location Country (dppk:productionLocationCountry)</td>
+                                    <td>The country code (ISO 3166-1 alpha-3) where the production step took place.</td>
+                                    <td>xsd:string</td>
                                     
                                 </tr>
                             
