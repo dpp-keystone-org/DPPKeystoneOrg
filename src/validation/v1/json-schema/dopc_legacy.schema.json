@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/dopc_legacy.schema.json",
+    "title": "Declaration of Performance Characteristics (Compact)",
+    "description": "A compact dictionary of performance characteristics and their values.",
+    "type": "object",
+    "properties": {
+        "tensileStrengthAdhesion": { "type": "string" },
+        "chlorideContent21DegC": { "type": "string" },
+        "bondStrength28days": { "type": "string" },
+        "shrinkageAndExpansion": { "type": "string" },
+        "resistanceToCarbonation21degC": { "type": "string" },
+        "modulusOfElasticityInCompression": { "type": "string" },
+        "thermalCompatibilityWetSurface": { "type": "string" },
+        "slipSkidResistance": { "type": "string" },
+        "thermalExpansion": { "type": "string" },
+        "capillaryAbsorption": { "type": "string" },
+        "reactionToFire": { "type": "string" },
+        "dangerousSubstances": { "type": "string" },
+        "declaredUnit": { "type": "string" },
+        "functionalUnit": { "type": "string" },
+        "referenceServiceLife": { "type": "string" }
+    }
+}

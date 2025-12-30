@@ -374,6 +374,7 @@ function renderSimpleInputProperty(fragment, { prop, currentPath, isRequired, in
  * Clears validation state for inputs in the provided rows.
  * @param {NodeList|Array} rows - The rows containing inputs to clear.
  */
+/*
 function clearValidationForRows(rows) {
     rows.forEach(row => {
         const input = row.querySelector('input:not([type="checkbox"]), select');
@@ -384,6 +385,7 @@ function clearValidationForRows(rows) {
         }
     });
 }
+*/
 
 /**
  * Calculates the next available index for an array item.
@@ -473,11 +475,11 @@ function createArrayItemControlRow(arrayName, itemPath) {
         const suffix = groupToRemove.slice(arrayName.length + 1);
         const indexToRemove = parseInt(suffix.split('.')[0], 10);
 
-        const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"]`);
-        clearValidationForRows(rowsToRemove);
-        rowsToRemove.forEach(r => r.remove());
+            const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"]`);
+            rowsToRemove.forEach(r => r.remove());
 
-        reindexArrayItems(arrayName, indexToRemove);
+            // Re-index remaining items
+            reindexArrayItems(arrayName, indexToRemove);
     });
     
     removeCell.appendChild(removeButton);
@@ -762,7 +764,7 @@ function createOptionalObjectControlRow(objectKey, objectPath, indentationLevel,
         const rowsToRemove = grid.querySelectorAll(`[data-optional-object-groups~="${objectKey}"]`);
         
         // 5z-j: Before removing, find all inputs and dispatch an event to clear their validation state.
-        clearValidationForRows(rowsToRemove);
+        // clearValidationForRows(rowsToRemove); // Handled by MutationObserver
 
         // Determine the parent groups by removing the current group from the list
         const allGroups = controlRowElement.dataset.optionalObjectGroups || '';

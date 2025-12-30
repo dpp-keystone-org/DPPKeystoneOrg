@@ -1,24 +1,87 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/dopc.schema.json",
-    "title": "Declaration of Performance Characteristics (Compact)",
-    "description": "A compact dictionary of performance characteristics and their values.",
+    "title": "DPP DoPC (Declaration of Performance) Data Block",
+    "description": "A dense, nested schema for Construction DoPC characteristics.",
     "type": "object",
     "properties": {
+        "declarationCode": { "type": "string" },
+        "dateOfIssue": { "type": "string", "format": "date" },
+        "elasticRecovery": { "$ref": "#/$defs/elasticRecoveryGroup" },
+        "resistanceToFlow": { "$ref": "#/$defs/resistanceToFlowGroup" },
+        "reactionToFire": { "$ref": "#/$defs/reactionToFireGroup" },
         "tensileStrengthAdhesion": { "type": "string" },
-        "chlorideContent21DegC": { "type": "string" },
-        "bondStrength28days": { "type": "string" },
-        "shrinkageAndExpansion": { "type": "string" },
-        "resistanceToCarbonation21degC": { "type": "string" },
-        "modulusOfElasticityInCompression": { "type": "string" },
-        "thermalCompatibilityWetSurface": { "type": "string" },
-        "slipSkidResistance": { "type": "string" },
-        "thermalExpansion": { "type": "string" },
-        "capillaryAbsorption": { "type": "string" },
-        "reactionToFire": { "type": "string" },
-        "dangerousSubstances": { "type": "string" },
-        "declaredUnit": { "type": "string" },
-        "functionalUnit": { "type": "string" },
-        "referenceServiceLife": { "type": "string" }
+        "chlorideContent": { "$ref": "#/$defs/chlorideContentGroup" },
+        "bondStrength": { "$ref": "#/$defs/bondStrengthGroup" },
+        "thermalCompatibility": { "$ref": "#/$defs/thermalCompatibilityGroup" }
+    },
+    "$defs": {
+        "elasticRecoveryGroup": {
+            "type": "object",
+            "description": "Elastic recovery determined by ISO 7389:2002",
+            "properties": {
+                "methodA": { "$ref": "#/$defs/elongationValues" },
+                "methodB": { "$ref": "#/$defs/elongationValues" }
+            },
+            "additionalProperties": false
+        },
+        "elongationValues": {
+            "type": "object",
+            "properties": {
+                "25Percent": { "type": "number" },
+                "60Percent": { "type": "number" },
+                "100Percent": { "type": "number" }
+            },
+            "additionalProperties": false
+        },
+        "resistanceToFlowGroup": {
+            "type": "object",
+            "description": "Resistance to flow determined by ISO 7390:2002",
+            "properties": {
+                "procedureA": { "$ref": "#/$defs/flowTempValues" },
+                "procedureB": { "$ref": "#/$defs/flowTempValues" }
+            },
+            "additionalProperties": false
+        },
+        "flowTempValues": {
+            "type": "object",
+            "properties": {
+                "5DegC": { "type": "number" },
+                "50DegC": { "type": "number" },
+                "70DegC": { "type": "number" }
+            },
+            "additionalProperties": false
+        },
+        "reactionToFireGroup": {
+             "type": "object",
+             "description": "Reaction to fire classification under EN 13501-1. Keys are the AVCP System; Values are the Class.",
+             "properties": {
+                 "avcpSystem1": { "type": "string" },
+                 "avcpSystem3": { "type": "string" },
+                 "avcpSystem4": { "type": "string" }
+             },
+             "additionalProperties": false
+        },
+        "chlorideContentGroup": {
+            "type": "object",
+            "properties": {
+                "21DegC": { "type": "number" }
+            },
+            "additionalProperties": false
+        },
+        "bondStrengthGroup": {
+            "type": "object",
+            "properties": {
+                "28Days": { "type": "number" }
+            },
+            "additionalProperties": false
+        },
+        "thermalCompatibilityGroup": {
+            "type": "object",
+            "properties": {
+                "wetSurface": { "type": "number" }
+            },
+            "additionalProperties": false
+        }
     }
 }

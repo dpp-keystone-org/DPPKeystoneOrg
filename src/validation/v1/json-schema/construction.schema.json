@@ -28,7 +28,7 @@
             "validationReports": { "type": "string" },
             "harmonisedStandardReference": { "type": "string" },
             "europeanAssessmentDocument": { "type": "string" },
-            "dopcDeclarations": { "$ref": "dopc.schema.json" },
+            "dopc": { "$ref": "dopc.schema.json" },
             "epd": { "$ref": "epd.schema.json" }
         }
     }

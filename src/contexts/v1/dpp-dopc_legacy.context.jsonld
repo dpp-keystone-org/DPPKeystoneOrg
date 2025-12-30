@@ -1,0 +1,24 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dopcDeclarations": "dppk:dopcDeclarations",
+    "tensileStrengthAdhesion": "dppk:tensileStrengthAdhesion",
+    "chlorideContent21DegC": "dppk:chlorideContent21DegC",
+    "bondStrength28days": "dppk:bondStrength28days",
+    "shrinkageAndExpansion": "dppk:shrinkageAndExpansion",
+    "resistanceToCarbonation21degC": "dppk:resistanceToCarbonation21degC",
+    "modulusOfElasticityInCompression": "dppk:modulusOfElasticityInCompression",
+    "thermalCompatibilityWetSurface": "dppk:thermalCompatibilityWetSurface",
+    "slipSkidResistance": "dppk:slipSkidResistance",
+    "thermalExpansion": "dppk:thermalExpansion",
+    "capillaryAbsorption": "dppk:capillaryAbsorption",
+    "reactionToFire": "dppk:reactionToFire",
+    "dangerousSubstances": {
+      "@id": "dppk:dangerousSubstances",
+      "@container": "@list"
+    },
+    "declaredUnit": "dppk:declaredUnit",
+    "functionalUnit": "dppk:functionalUnit",
+    "referenceServiceLife": "dppk:referenceServiceLife"
+  }
+}

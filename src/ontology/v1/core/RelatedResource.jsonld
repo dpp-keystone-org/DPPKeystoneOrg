@@ -34,6 +34,7 @@
       "rdfs:label": "Content Type",
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:encodingFormat" },
       "rdfs:term_status": "unstable"
     },
     {
@@ -42,6 +43,7 @@
       "rdfs:label": "Language",
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:inLanguage" },
       "rdfs:term_status": "unstable"
     },
     {

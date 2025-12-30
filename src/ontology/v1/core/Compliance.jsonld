@@ -19,7 +19,8 @@
   // Import Product and Organization ontologies as they are used in the domain/range of properties here.
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld" }
   ],
 
   "@graph": [
@@ -110,6 +111,15 @@
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "dppk:Packaging" },
         "owl:equivalentProperty": { "@id": "gs1:packaging" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:packagingMaterials",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Packaging Materials",
+        "rdfs:comment": "A list of packaging elements associated with the product.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:Packaging" },
         "rdfs:term_status": "unstable"
     },
     {

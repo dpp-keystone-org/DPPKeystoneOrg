@@ -75,6 +75,11 @@ async function resolveRefs(schemaNode, rootSchema, basePath, resolutionPath = ne
     if (resolvedNode.allOf) {
         const { allOf, ...parentSchema } = resolvedNode;
         const mergedSchema = allOf.reduce((acc, current) => {
+            // Merge type (simple strategy: take the first one found, or if both exist and differ, could be an issue but assuming consistency for now)
+            if (!acc.type && current.type) {
+                acc.type = current.type;
+            }
+
             // Merge properties
             if (current.properties) {
                 acc.properties = { ...acc.properties, ...current.properties };

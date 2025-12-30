@@ -18,7 +18,11 @@
   "dcterms:description": "Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.",
   "owl:versionInfo": "1.0.0",
   // Import the Header ontology as it defines the DPP class.
-  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld" },
+  "owl:imports": [
+      { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld" },
+      { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
+      { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld" }
+  ],
 
   "@graph": [
     // ==================================================================
