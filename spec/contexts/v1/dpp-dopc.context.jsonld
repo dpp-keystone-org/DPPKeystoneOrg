@@ -13,7 +13,12 @@
         "tensileStrengthAdhesion": "dppk:tensileStrengthAdhesion",
         "modulusOfElasticityInCompression": {
           "@id": "dppk:modulusOfElasticityInCompression",
-          "@type": "xsd:decimal"
+          "@context": {
+            "method1": {
+              "@id": "dppk:modulusMethod1",
+              "@type": "xsd:decimal"
+            }
+          }
         },
         "capillaryAbsorption": {
           "@id": "dppk:capillaryAbsorption",
@@ -21,7 +26,15 @@
         },
         "dangerousSubstances": "dppk:dangerousSubstances",
         "shrinkageAndExpansion": "dppk:shrinkageAndExpansion",
-        "slipSkidResistance": "dppk:slipSkidResistance",
+        "slipSkidResistance": {
+          "@id": "dppk:slipSkidResistance",
+          "@context": {
+            "laboratory": {
+              "@id": "dppk:slipSkidResistanceLab",
+              "@type": "xsd:string"
+            }
+          }
+        },
         "thermalExpansion": "dppk:thermalExpansion",
         "declaredUnit": {
           "@id": "dppk:declaredUnit",
@@ -78,6 +91,10 @@
               "@id": "dppk:reactionToFireSystem1",
               "@type": "xsd:string"
             },
+            "avcpSystem2": {
+              "@id": "dppk:reactionToFireSystem2",
+              "@type": "xsd:string"
+            },
             "avcpSystem3": {
               "@id": "dppk:reactionToFireSystem3",
               "@type": "xsd:string"
@@ -97,6 +114,31 @@
                 "25Percent": {
                   "@id": "dppk:elasticRecoveryMethodA25",
                   "@type": "xsd:decimal"
+                },
+                "60Percent": {
+                  "@id": "dppk:elasticRecoveryMethodA60",
+                  "@type": "xsd:decimal"
+                },
+                "100Percent": {
+                  "@id": "dppk:elasticRecoveryMethodA100",
+                  "@type": "xsd:decimal"
+                }
+              }
+            },
+            "methodB": {
+              "@id": "dppk:methodB",
+              "@context": {
+                "25Percent": {
+                  "@id": "dppk:elasticRecoveryMethodB25",
+                  "@type": "xsd:decimal"
+                },
+                "60Percent": {
+                  "@id": "dppk:elasticRecoveryMethodB60",
+                  "@type": "xsd:decimal"
+                },
+                "100Percent": {
+                  "@id": "dppk:elasticRecoveryMethodB100",
+                  "@type": "xsd:decimal"
                 }
               }
             }
@@ -108,8 +150,33 @@
             "procedureA": {
               "@id": "dppk:procedureA",
               "@context": {
+                "5DegC": {
+                  "@id": "dppk:flowResistanceProcedureA5",
+                  "@type": "xsd:decimal"
+                },
                 "50DegC": {
                   "@id": "dppk:flowResistanceProcedureA50",
+                  "@type": "xsd:decimal"
+                },
+                "70DegC": {
+                  "@id": "dppk:flowResistanceProcedureA70",
+                  "@type": "xsd:decimal"
+                }
+              }
+            },
+            "procedureB": {
+              "@id": "dppk:procedureB",
+              "@context": {
+                "5DegC": {
+                  "@id": "dppk:flowResistanceProcedureB5",
+                  "@type": "xsd:decimal"
+                },
+                "50DegC": {
+                  "@id": "dppk:flowResistanceProcedureB50",
+                  "@type": "xsd:decimal"
+                },
+                "70DegC": {
+                  "@id": "dppk:flowResistanceProcedureB70",
                   "@type": "xsd:decimal"
                 }
               }

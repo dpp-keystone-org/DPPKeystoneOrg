@@ -220,6 +220,19 @@
       ]
     },
     {
+      "@id": "dppk:dopc",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "The Declaration of Performance and Conformity.",
+        "@language": "en"
+      },
+      "dppk:governedBy": "CPR",
+      "rdfs:comment": {
+        "@value": "The Declaration of Performance and Conformity.",
+        "@language": "en"
+      }
+    },
+    {
       "@id": "dppk:declarationCode",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": [
@@ -524,6 +537,7 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "CPR (Regulation (EU) No 305/2011)",
       "rdfs:comment": [
         {
           "@value": "Датата, на която е издадена декларацията.",
@@ -1128,6 +1142,8 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "EN 1015-17",
+      "dppk:unit": "%",
       "rdfs:comment": [
         {
           "@value": "Група свойства относно съдържанието на хлориди.",
@@ -1226,6 +1242,19 @@
           "@language": "sv"
         }
       ]
+    },
+    {
+      "@id": "dppk:21DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "21°C",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13295:2004",
+      "rdfs:comment": {
+        "@value": "A standardized temperature for some measurments.",
+        "@language": "en"
+      }
     },
     {
       "@id": "dppk:bondStrength",
@@ -1328,6 +1357,8 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "EN 1542:1999",
+      "dppk:unit": "MPa",
       "rdfs:comment": [
         {
           "@value": "Група свойства относно якостта на сцепление.",
@@ -1426,6 +1457,19 @@
           "@language": "sv"
         }
       ]
+    },
+    {
+      "@id": "dppk:28Days",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "28 Days",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 1542:1999",
+      "rdfs:comment": {
+        "@value": "A standardized interval for long term bond strength.",
+        "@language": "en"
+      }
     },
     {
       "@id": "dppk:thermalCompatibility",
@@ -1528,6 +1572,8 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "EN 13687-1",
+      "dppk:unit": "MPa",
       "rdfs:comment": [
         {
           "@value": "Група свойства относно термичната съвместимост.",
@@ -1626,6 +1672,19 @@
           "@language": "sv"
         }
       ]
+    },
+    {
+      "@id": "dppk:wetSurface",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "Wet Surface",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13687-1",
+      "rdfs:comment": {
+        "@value": "A test condition for dry/wet comparisions.",
+        "@language": "en"
+      }
     },
     {
       "@id": "dppk:resistanceToCarbonation",
@@ -1728,6 +1787,8 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "ISO 1920-12:2015",
+      "dppk:unit": "mm",
       "rdfs:comment": [
         {
           "@value": "Група свойства относно устойчивостта на карбонизация.",
@@ -1928,6 +1989,8 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
       "rdfs:comment": [
         {
           "@value": "Група свойства относно реакцията на огън.",
@@ -2026,6 +2089,45 @@
           "@language": "sv"
         }
       ]
+    },
+    {
+      "@id": "dppk:avcpSystem1",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "AVCP System 1",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": {
+        "@value": "System 1 for measuring reaction to fire.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:avcpSystem2",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "AVCP System 2",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": {
+        "@value": "System 2 for measuring reaction to fire.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:avcpSystem3",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "AVCP System 3",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": {
+        "@value": "System 3 for measuring reaction to fire.",
+        "@language": "en"
+      }
     },
     {
       "@id": "dppk:elasticRecovery",
@@ -2128,6 +2230,8 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
       "rdfs:comment": [
         {
           "@value": "Група свойства относно еластичното възстановяване.",
@@ -2223,206 +2327,6 @@
         },
         {
           "@value": "Grupp av egenskaper gällande Elastisk återgång.",
-          "@language": "sv"
-        }
-      ]
-    },
-    {
-      "@id": "dppk:resistanceToFlow",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": [
-        {
-          "@value": "Група Устойчивост на свличане",
-          "@language": "bg"
-        },
-        {
-          "@value": "Skupina Odolnost proti stékání",
-          "@language": "cs"
-        },
-        {
-          "@value": "Modstand mod flydning gruppe",
-          "@language": "da"
-        },
-        {
-          "@value": "Standvermögen-Gruppe",
-          "@language": "de"
-        },
-        {
-          "@value": "Αντίσταση στη ροή Ομάδα",
-          "@language": "el"
-        },
-        {
-          "@value": "Resistance to Flow Group",
-          "@language": "en"
-        },
-        {
-          "@value": "Grupo Resistencia al descolgamiento",
-          "@language": "es"
-        },
-        {
-          "@value": "Voolavuskindlus Grupp",
-          "@language": "et"
-        },
-        {
-          "@value": "Valumattomuusryhmä",
-          "@language": "fi"
-        },
-        {
-          "@value": "Groupe Résistance au coulage",
-          "@language": "fr"
-        },
-        {
-          "@value": "Grúpa Friotaíocht in aghaidh Sreabhadh",
-          "@language": "ga"
-        },
-        {
-          "@value": "Otpornost na tečenje Grupa",
-          "@language": "hr"
-        },
-        {
-          "@value": "Megfolyással szembeni ellenállás csoport",
-          "@language": "hu"
-        },
-        {
-          "@value": "Gruppo Resistenza alla colatura",
-          "@language": "it"
-        },
-        {
-          "@value": "Atsparumas tekėjimui Grupė",
-          "@language": "lt"
-        },
-        {
-          "@value": "Noturība pret notecēšanu Grupa",
-          "@language": "lv"
-        },
-        {
-          "@value": "Reżistenza għall-Fluss Grupp",
-          "@language": "mt"
-        },
-        {
-          "@value": "Weerstand tegen uitzakkengroep",
-          "@language": "nl"
-        },
-        {
-          "@value": "Grupa Odporność na spływanie",
-          "@language": "pl"
-        },
-        {
-          "@value": "Grupo Resistência ao escorrimento",
-          "@language": "pt"
-        },
-        {
-          "@value": "Grup Rezistență la curgere",
-          "@language": "ro"
-        },
-        {
-          "@value": "Odolnosť proti stekaniu Skupina",
-          "@language": "sk"
-        },
-        {
-          "@value": "Odpornost proti tečenju Skupina",
-          "@language": "sl"
-        },
-        {
-          "@value": "Motstånd mot rinninggrupp",
-          "@language": "sv"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@value": "Група свойства относно устойчивостта на свличане.",
-          "@language": "bg"
-        },
-        {
-          "@value": "Skupina vlastností týkajících se odolnosti proti stékání.",
-          "@language": "cs"
-        },
-        {
-          "@value": "Gruppe af egenskaber vedrørende modstand mod flydning.",
-          "@language": "da"
-        },
-        {
-          "@value": "Eigenschaftsgruppe bezüglich Standvermögen.",
-          "@language": "de"
-        },
-        {
-          "@value": "Ομάδα ιδιοτήτων σχετικά με Αντίσταση στη ροή.",
-          "@language": "el"
-        },
-        {
-          "@value": "Group of properties regarding resistance to flow.",
-          "@language": "en"
-        },
-        {
-          "@value": "Grupo de propiedades relativas a Resistencia al descolgamiento.",
-          "@language": "es"
-        },
-        {
-          "@value": "Omaduste grupp seoses Voolavuskindlus.",
-          "@language": "et"
-        },
-        {
-          "@value": "Ominaisuusryhmä koskien Valumattomuus.",
-          "@language": "fi"
-        },
-        {
-          "@value": "Groupe de propriétés concernant Résistance au coulage.",
-          "@language": "fr"
-        },
-        {
-          "@value": "Grúpa airíonna maidir le Friotaíocht in aghaidh Sreabhadh.",
-          "@language": "ga"
-        },
-        {
-          "@value": "Grupa svojstava koja se odnose na Otpornost na tečenje.",
-          "@language": "hr"
-        },
-        {
-          "@value": "A megfolyással szembeni ellenállásra vonatkozó tulajdonságok csoportja.",
-          "@language": "hu"
-        },
-        {
-          "@value": "Gruppo di proprietà relative a Resistenza alla colatura.",
-          "@language": "it"
-        },
-        {
-          "@value": "Savybių grupė dėl Atsparumas tekėjimui.",
-          "@language": "lt"
-        },
-        {
-          "@value": "Īpašību grupa attiecībā uz Noturība pret notecēšanu.",
-          "@language": "lv"
-        },
-        {
-          "@value": "Grupp ta' proprjetajiet dwar Reżistenza għall-Fluss.",
-          "@language": "mt"
-        },
-        {
-          "@value": "Groep eigenschappen betreffende Weerstand tegen uitzakken.",
-          "@language": "nl"
-        },
-        {
-          "@value": "Grupa właściwości dotyczących odporności na spływanie.",
-          "@language": "pl"
-        },
-        {
-          "@value": "Grupo de propriedades relativas a Resistência ao escorrimento.",
-          "@language": "pt"
-        },
-        {
-          "@value": "Grup de proprietăți privind rezistența la curgere.",
-          "@language": "ro"
-        },
-        {
-          "@value": "Skupina vlastností týkajúcich sa Odolnosť proti stekaniu.",
-          "@language": "sk"
-        },
-        {
-          "@value": "Skupina lastnosti glede Odpornost proti tečenju.",
-          "@language": "sl"
-        },
-        {
-          "@value": "Grupp av egenskaper gällande Motstånd mot rinning.",
           "@language": "sv"
         }
       ]
@@ -2528,6 +2432,7 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "ISO 7389:2002",
       "rdfs:comment": [
         {
           "@value": "Препратка към Метод А.",
@@ -2728,6 +2633,7 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "ISO 7389:2002",
       "rdfs:comment": [
         {
           "@value": "Препратка към Метод Б.",
@@ -2826,6 +2732,341 @@
           "@language": "sv"
         }
       ]
+    },
+    {
+      "@id": "dppk:25Percent",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "25%",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": {
+        "@value": "A standardized expansion factor to be recovered from in elastic material testing.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:60Percent",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "60%",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": {
+        "@value": "A standardized expansion factor to be recovered from in elastic material testing.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:100Percent",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "100%",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": {
+        "@value": "A standardized expansion factor to be recovered from in elastic material testing.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:resistanceToFlow",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@value": "Група Устойчивост на свличане",
+          "@language": "bg"
+        },
+        {
+          "@value": "Skupina Odolnost proti stékání",
+          "@language": "cs"
+        },
+        {
+          "@value": "Modstand mod flydning gruppe",
+          "@language": "da"
+        },
+        {
+          "@value": "Standvermögen-Gruppe",
+          "@language": "de"
+        },
+        {
+          "@value": "Αντίσταση στη ροή Ομάδα",
+          "@language": "el"
+        },
+        {
+          "@value": "Resistance to Flow Group",
+          "@language": "en"
+        },
+        {
+          "@value": "Grupo Resistencia al descolgamiento",
+          "@language": "es"
+        },
+        {
+          "@value": "Voolavuskindlus Grupp",
+          "@language": "et"
+        },
+        {
+          "@value": "Valumattomuusryhmä",
+          "@language": "fi"
+        },
+        {
+          "@value": "Groupe Résistance au coulage",
+          "@language": "fr"
+        },
+        {
+          "@value": "Grúpa Friotaíocht in aghaidh Sreabhadh",
+          "@language": "ga"
+        },
+        {
+          "@value": "Otpornost na tečenje Grupa",
+          "@language": "hr"
+        },
+        {
+          "@value": "Megfolyással szembeni ellenállás csoport",
+          "@language": "hu"
+        },
+        {
+          "@value": "Gruppo Resistenza alla colatura",
+          "@language": "it"
+        },
+        {
+          "@value": "Atsparumas tekėjimui Grupė",
+          "@language": "lt"
+        },
+        {
+          "@value": "Noturība pret notecēšanu Grupa",
+          "@language": "lv"
+        },
+        {
+          "@value": "Reżistenza għall-Fluss Grupp",
+          "@language": "mt"
+        },
+        {
+          "@value": "Weerstand tegen uitzakkengroep",
+          "@language": "nl"
+        },
+        {
+          "@value": "Grupa Odporność na spływanie",
+          "@language": "pl"
+        },
+        {
+          "@value": "Grupo Resistência ao escorrimento",
+          "@language": "pt"
+        },
+        {
+          "@value": "Grup Rezistență la curgere",
+          "@language": "ro"
+        },
+        {
+          "@value": "Odolnosť proti stekaniu Skupina",
+          "@language": "sk"
+        },
+        {
+          "@value": "Odpornost proti tečenju Skupina",
+          "@language": "sl"
+        },
+        {
+          "@value": "Motstånd mot rinninggrupp",
+          "@language": "sv"
+        }
+      ],
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:comment": [
+        {
+          "@value": "Група свойства относно устойчивостта на свличане.",
+          "@language": "bg"
+        },
+        {
+          "@value": "Skupina vlastností týkajících se odolnosti proti stékání.",
+          "@language": "cs"
+        },
+        {
+          "@value": "Gruppe af egenskaber vedrørende modstand mod flydning.",
+          "@language": "da"
+        },
+        {
+          "@value": "Eigenschaftsgruppe bezüglich Standvermögen.",
+          "@language": "de"
+        },
+        {
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Αντίσταση στη ροή.",
+          "@language": "el"
+        },
+        {
+          "@value": "Group of properties regarding resistance to flow.",
+          "@language": "en"
+        },
+        {
+          "@value": "Grupo de propiedades relativas a Resistencia al descolgamiento.",
+          "@language": "es"
+        },
+        {
+          "@value": "Omaduste grupp seoses Voolavuskindlus.",
+          "@language": "et"
+        },
+        {
+          "@value": "Ominaisuusryhmä koskien Valumattomuus.",
+          "@language": "fi"
+        },
+        {
+          "@value": "Groupe de propriétés concernant Résistance au coulage.",
+          "@language": "fr"
+        },
+        {
+          "@value": "Grúpa airíonna maidir le Friotaíocht in aghaidh Sreabhadh.",
+          "@language": "ga"
+        },
+        {
+          "@value": "Grupa svojstava koja se odnose na Otpornost na tečenje.",
+          "@language": "hr"
+        },
+        {
+          "@value": "A megfolyással szembeni ellenállásra vonatkozó tulajdonságok csoportja.",
+          "@language": "hu"
+        },
+        {
+          "@value": "Gruppo di proprietà relative a Resistenza alla colatura.",
+          "@language": "it"
+        },
+        {
+          "@value": "Savybių grupė dėl Atsparumas tekėjimui.",
+          "@language": "lt"
+        },
+        {
+          "@value": "Īpašību grupa attiecībā uz Noturība pret notecēšanu.",
+          "@language": "lv"
+        },
+        {
+          "@value": "Grupp ta' proprjetajiet dwar Reżistenza għall-Fluss.",
+          "@language": "mt"
+        },
+        {
+          "@value": "Groep eigenschappen betreffende Weerstand tegen uitzakken.",
+          "@language": "nl"
+        },
+        {
+          "@value": "Grupa właściwości dotyczących odporności na spływanie.",
+          "@language": "pl"
+        },
+        {
+          "@value": "Grupo de propriedades relativas a Resistência ao escorrimento.",
+          "@language": "pt"
+        },
+        {
+          "@value": "Grup de proprietăți privind rezistența la curgere.",
+          "@language": "ro"
+        },
+        {
+          "@value": "Skupina vlastností týkajúcich sa Odolnosť proti stekaniu.",
+          "@language": "sk"
+        },
+        {
+          "@value": "Skupina lastnosti glede Odpornost proti tečenju.",
+          "@language": "sl"
+        },
+        {
+          "@value": "Grupp av egenskaper gällande Motstånd mot rinning.",
+          "@language": "sv"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:5DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "For measurements taken at 5°C",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": {
+        "@value": "A standardized temperature for resistance to flow testing.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:50DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "For measurements taken at 50°C",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": {
+        "@value": "A standardized temperature for resistance to flow testing.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:70DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "For measurements taken at 70°C",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": {
+        "@value": "A standardized temperature for resistance to flow testing.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureA5",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@value": "Flow Resistance (Proc A, 5°C)",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureA70",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@value": "Flow Resistance (Proc A, 70°C)",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureB5",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@value": "Flow Resistance (Proc B, 5°C)",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureB50",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@value": "Flow Resistance (Proc B, 50°C)",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureB70",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@value": "Flow Resistance (Proc B, 70°C)",
+        "@language": "en"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:decimal"
     },
     {
       "@id": "dppk:procedureA",
@@ -2928,6 +3169,7 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "ISO 7390:2002",
       "rdfs:comment": [
         {
           "@value": "Препратка към Процедура А.",
@@ -3128,6 +3370,7 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "ISO 7390:2002",
       "rdfs:comment": [
         {
           "@value": "Препратка към Процедура Б.",
@@ -3230,410 +3473,83 @@
     {
       "@id": "dppk:shrinkageAndExpansion",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@value": "Свиване и разширяване",
-          "@language": "bg"
-        },
-        {
-          "@value": "Smršťování a rozpínání",
-          "@language": "cs"
-        },
-        {
-          "@value": "Krympning og ekspansion",
-          "@language": "da"
-        },
-        {
-          "@value": "Schwinden und Quellen",
-          "@language": "de"
-        },
-        {
-          "@value": "Συρρίκνωση και διαστολή",
-          "@language": "el"
-        },
-        {
-          "@value": "Shrinkage and Expansion",
-          "@language": "en"
-        },
-        {
-          "@value": "Contracción y expansión",
-          "@language": "es"
-        },
-        {
-          "@value": "Kahanemine ja paisumine",
-          "@language": "et"
-        },
-        {
-          "@value": "Kutistuminen ja laajeneminen",
-          "@language": "fi"
-        },
-        {
-          "@value": "Retrait et expansion",
-          "@language": "fr"
-        },
-        {
-          "@value": "Crapadh agus Forbairt",
-          "@language": "ga"
-        },
-        {
-          "@value": "Skupljanje i širenje",
-          "@language": "hr"
-        },
-        {
-          "@value": "Zsugorodás és tágulás",
-          "@language": "hu"
-        },
-        {
-          "@value": "Ritiro ed espansione",
-          "@language": "it"
-        },
-        {
-          "@value": "Susitraukimas ir plėtimasis",
-          "@language": "lt"
-        },
-        {
-          "@value": "Sarukšana un izplešanās",
-          "@language": "lv"
-        },
-        {
-          "@value": "Tinqis u Espansjoni",
-          "@language": "mt"
-        },
-        {
-          "@value": "Krimp en uitzetting",
-          "@language": "nl"
-        },
-        {
-          "@value": "Skurcz i rozszerzalność",
-          "@language": "pl"
-        },
-        {
-          "@value": "Retração e expansão",
-          "@language": "pt"
-        },
-        {
-          "@value": "Contracție și expansiune",
-          "@language": "ro"
-        },
-        {
-          "@value": "Zmršťovanie a rozťahovanie",
-          "@language": "sk"
-        },
-        {
-          "@value": "Krčenje in raztezanje",
-          "@language": "sl"
-        },
-        {
-          "@value": "Krympning och expansion",
-          "@language": "sv"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@value": "Determination of shrinkage and expansion.",
-          "@language": "en"
-        },
-        {
-          "@value": "Определяне на свиването и разширяването.",
-          "@language": "bg"
-        },
-        {
-          "@value": "Stanovení smrštění a roztažnosti.",
-          "@language": "cs"
-        },
-        {
-          "@value": "Bestemmelse af krympning og ekspansion.",
-          "@language": "da"
-        },
-        {
-          "@value": "Bestimmung von Schwinden und Quellen.",
-          "@language": "de"
-        },
-        {
-          "@value": "Προσδιορισμός συρρίκνωσης και διαστολής.",
-          "@language": "el"
-        },
-        {
-          "@value": "Determinación de la contracción y expansión.",
-          "@language": "es"
-        },
-        {
-          "@value": "Kahanemise ja paisumise määramine.",
-          "@language": "et"
-        },
-        {
-          "@value": "Kutistumisen ja laajenemisen määrittäminen.",
-          "@language": "fi"
-        },
-        {
-          "@value": "Détermination du retrait et de l'expansion.",
-          "@language": "fr"
-        },
-        {
-          "@value": "Cinneadh maidir le crapadh agus forbairt.",
-          "@language": "ga"
-        },
-        {
-          "@value": "Određivanje skupljanja i širenja.",
-          "@language": "hr"
-        },
-        {
-          "@value": "Zsugorodás és tágulás meghatározása.",
-          "@language": "hu"
-        },
-        {
-          "@value": "Determinazione del ritiro e dell'espansione.",
-          "@language": "it"
-        },
-        {
-          "@value": "Susitraukimo ir plėtimosi nustatymas.",
-          "@language": "lt"
-        },
-        {
-          "@value": "Sarukšanas un izplešanās noteikšana.",
-          "@language": "lv"
-        },
-        {
-          "@value": "Determinazzjoni ta' tinqis u espansjoni.",
-          "@language": "mt"
-        },
-        {
-          "@value": "Bepaling van krimp en uitzetting.",
-          "@language": "nl"
-        },
-        {
-          "@value": "Określenie skurczu i rozszerzalności.",
-          "@language": "pl"
-        },
-        {
-          "@value": "Determinação da retração e expansão.",
-          "@language": "pt"
-        },
-        {
-          "@value": "Determinarea contracției și a expansiunii.",
-          "@language": "ro"
-        },
-        {
-          "@value": "Stanovenie zmršťovania a rozťahovania.",
-          "@language": "sk"
-        },
-        {
-          "@value": "Določanje krčenja in raztezanja.",
-          "@language": "sl"
-        },
-        {
-          "@value": "Bestämning av krympning och expansion.",
-          "@language": "sv"
-        }
-      ],
-      "rdfs:domain": {
-        "@id": "dppk:DoPCBlock"
+      "rdfs:label": {
+        "@value": "Shrinkage and Expansion",
+        "@language": "en"
       },
+      "dppk:governedBy": "EN 12617-4:2002",
       "rdfs:range": "xsd:string"
     },
     {
       "@id": "dppk:slipSkidResistance",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "Slip/Skid Resistance Group",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13036-4:2011",
+      "rdfs:comment": {
+        "@value": "Group of properties regarding slip/skid resistance.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:slipSkidResistanceLab",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@value": "Устойчивост на хлъзгане",
-          "@language": "bg"
-        },
-        {
-          "@value": "Odolnost proti skluzu",
-          "@language": "cs"
-        },
-        {
-          "@value": "Skridsikkerhed",
-          "@language": "da"
-        },
-        {
-          "@value": "Rutschfestigkeit",
-          "@language": "de"
-        },
-        {
-          "@value": "Αντίσταση στην ολίσθηση",
-          "@language": "el"
-        },
-        {
-          "@value": "Slip/Skid Resistance",
-          "@language": "en"
-        },
-        {
-          "@value": "Resistencia al deslizamiento",
-          "@language": "es"
-        },
-        {
-          "@value": "Libisemiskindlus",
-          "@language": "et"
-        },
-        {
-          "@value": "Liukastumisenesto",
-          "@language": "fi"
-        },
-        {
-          "@value": "Résistance à la glissance",
-          "@language": "fr"
-        },
-        {
-          "@value": "Friotaíocht in aghaidh Sciorrtha",
-          "@language": "ga"
-        },
-        {
-          "@value": "Otpornost na klizanje",
-          "@language": "hr"
-        },
-        {
-          "@value": "Csúszásellenállás",
-          "@language": "hu"
-        },
-        {
-          "@value": "Resistenza allo scivolamento",
-          "@language": "it"
-        },
-        {
-          "@value": "Atsparumas slydimui",
-          "@language": "lt"
-        },
-        {
-          "@value": "Slīdes pretestība",
-          "@language": "lv"
-        },
-        {
-          "@value": "Reżistenza għaż-Żlieq",
-          "@language": "mt"
-        },
-        {
-          "@value": "Slipweerstand",
-          "@language": "nl"
-        },
-        {
-          "@value": "Odporność na poślizg",
-          "@language": "pl"
-        },
-        {
-          "@value": "Resistência ao escorregamento",
-          "@language": "pt"
-        },
-        {
-          "@value": "Rezistența la alunecare",
-          "@language": "ro"
-        },
-        {
-          "@value": "Odolnosť proti šmyku",
-          "@language": "sk"
-        },
-        {
-          "@value": "Odpornost proti zdrsu",
-          "@language": "sl"
-        },
-        {
-          "@value": "Halkmotstånd",
-          "@language": "sv"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@value": "Resistance to slipping or skidding.",
-          "@language": "en"
-        },
-        {
-          "@value": "Устойчивост на хлъзгане или плъзгане.",
-          "@language": "bg"
-        },
-        {
-          "@value": "Odolnost proti uklouznutí nebo smyku.",
-          "@language": "cs"
-        },
-        {
-          "@value": "Modstand mod at glide eller skride.",
-          "@language": "da"
-        },
-        {
-          "@value": "Widerstand gegen Rutschen oder Gleiten.",
-          "@language": "de"
-        },
-        {
-          "@value": "Αντίσταση στην ολίσθηση ή το γλίστρημα.",
-          "@language": "el"
-        },
-        {
-          "@value": "Resistencia a resbalar o derrapar.",
-          "@language": "es"
-        },
-        {
-          "@value": "Vastupidavus libisemisele või kulumisele.",
-          "@language": "et"
-        },
-        {
-          "@value": "Vastustuskyky liukastumiselle tai luistamiselle.",
-          "@language": "fi"
-        },
-        {
-          "@value": "Résistance au glissement ou au dérapage.",
-          "@language": "fr"
-        },
-        {
-          "@value": "Friotaíocht in aghaidh sleamhnú nó sciorradh.",
-          "@language": "ga"
-        },
-        {
-          "@value": "Otpornost na klizanje ili proklizavanje.",
-          "@language": "hr"
-        },
-        {
-          "@value": "Csúszással vagy megcsúszással szembeni ellenállás.",
-          "@language": "hu"
-        },
-        {
-          "@value": "Resistenza allo scivolamento o allo slittamento.",
-          "@language": "it"
-        },
-        {
-          "@value": "Atsparumas paslydimui ar slydimui.",
-          "@language": "lt"
-        },
-        {
-          "@value": "Izturība pret slīdēšanu.",
-          "@language": "lv"
-        },
-        {
-          "@value": "Reżistenza għaż-żlieq jew għall-iskidjar.",
-          "@language": "mt"
-        },
-        {
-          "@value": "Weerstand tegen uitglijden of slippen.",
-          "@language": "nl"
-        },
-        {
-          "@value": "Odporność na poślizg lub poślizgnięcie.",
-          "@language": "pl"
-        },
-        {
-          "@value": "Resistência a escorregar ou derrapar.",
-          "@language": "pt"
-        },
-        {
-          "@value": "Rezistența la alunecare sau derapare.",
-          "@language": "ro"
-        },
-        {
-          "@value": "Odolnosť proti pošmyknutiu alebo šmyku.",
-          "@language": "sk"
-        },
-        {
-          "@value": "Odpornost proti zdrsu ali drsenju.",
-          "@language": "sl"
-        },
-        {
-          "@value": "Motstånd mot halka eller glidning.",
-          "@language": "sv"
-        }
-      ],
-      "rdfs:domain": {
-        "@id": "dppk:DoPCBlock"
+      "rdfs:label": {
+        "@value": "Slip/Skid Resistance (Laboratory)",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13036-4:2011",
+      "rdfs:comment": {
+        "@value": "Measurements in the laboratory.",
+        "@language": "en"
       },
       "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "dppk:laboratory",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "Laboratory Measurement",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Condition indicating measurements taken in a laboratory setting.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:modulusOfElasticityInCompression",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "Modulus of Elasticity Group",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13412:2006",
+      "rdfs:comment": {
+        "@value": "Group of properties regarding modulus of elasticity.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "dppk:modulusMethod1",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@value": "Modulus of Elasticity (Method 1)",
+        "@language": "en"
+      },
+      "dppk:governedBy": "EN 13412:2006",
+      "dppk:unit": "GPa",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "dppk:method1",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@value": "Method 1",
+        "@language": "en"
+      }
     },
     {
       "@id": "dppk:thermalExpansion",
@@ -3736,6 +3652,8 @@
           "@language": "sv"
         }
       ],
+      "dppk:governedBy": "EN 1770:1998",
+      "dppk:unit": "K-1",
       "rdfs:comment": [
         {
           "@value": "Change in volume in response to a change in temperature.",
@@ -4855,6 +4773,25 @@
       ]
     },
     {
+      "@id": "dppk:reactionToFireSystem2",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@value": "Reaction to Fire (AVCP System 2)",
+          "@language": "en"
+        }
+      ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": [
+        {
+          "@value": "Reaction to fire under AVCP System 2.",
+          "@language": "en"
+        }
+      ]
+    },
+    {
       "@id": "dppk:reactionToFireSystem3",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": [
@@ -5062,100 +4999,8 @@
       "@type": "owl:DatatypeProperty",
       "rdfs:label": [
         {
-          "@value": "Еластично възстановяване (Метод А, 25% удължение)",
-          "@language": "bg"
-        },
-        {
-          "@value": "Elastické zotavení (Metoda A, 25% prodloužení)",
-          "@language": "cs"
-        },
-        {
-          "@value": "Elastisk tilbagegang (Metode A, 25% forlængelse)",
-          "@language": "da"
-        },
-        {
-          "@value": "Rückstellvermögen (Verfahren A, 25% Dehnung)",
-          "@language": "de"
-        },
-        {
-          "@value": "Ελαστική επαναφορά (Μέθοδος A, 25% Elong.)",
-          "@language": "el"
-        },
-        {
           "@value": "Elastic Recovery (Method A, 25% Elongation)",
           "@language": "en"
-        },
-        {
-          "@value": "Recuperación elástica (Método A, 25% Alargamiento)",
-          "@language": "es"
-        },
-        {
-          "@value": "Elastne taastumine (Meetod A, 25% Elong.)",
-          "@language": "et"
-        },
-        {
-          "@value": "Kimmoisuuden palautuminen (Menetelmä A, 25% Elong.)",
-          "@language": "fi"
-        },
-        {
-          "@value": "Reprise élastique (Méthode A, 25% Allongement)",
-          "@language": "fr"
-        },
-        {
-          "@value": "Téarnamh Leaisteach (Modh A, 25% Elong.)",
-          "@language": "ga"
-        },
-        {
-          "@value": "Elastični povrat (Metoda A, 25% Izduženje)",
-          "@language": "hr"
-        },
-        {
-          "@value": "Rugalmas visszaalakulás (A módszer, 25% nyúlás)",
-          "@language": "hu"
-        },
-        {
-          "@value": "Ritorno elastico (Metodo A, 25% Allungamento)",
-          "@language": "it"
-        },
-        {
-          "@value": "Elastinis atsistatymas (Metodas A, 25% Elong.)",
-          "@language": "lt"
-        },
-        {
-          "@value": "Elastīgā atjaunošanās (Metode A, 25% Elong.)",
-          "@language": "lv"
-        },
-        {
-          "@value": "Irkupru Elastiku (Metodu A, 25% Elong.)",
-          "@language": "mt"
-        },
-        {
-          "@value": "Elastisch herstel (Methode A, 25% Rek)",
-          "@language": "nl"
-        },
-        {
-          "@value": "Powrót elastyczny (Metoda A, 25% wydłużenia)",
-          "@language": "pl"
-        },
-        {
-          "@value": "Recuperação elástica (Método A, 25% Alongamento)",
-          "@language": "pt"
-        },
-        {
-          "@value": "Revenire elastică (Metoda A, 25% alungire)",
-          "@language": "ro"
-        },
-        {
-          "@value": "Elastické zotavenie (Metóda A, 25% Elong.)",
-          "@language": "sk"
-        },
-        {
-          "@value": "Elastična povratna deformacija (Metoda A, 25% Elong.)",
-          "@language": "sl"
-        },
-        {
-          "@value": "Elastisk återgång (Metod A, 25% Elong.)",
-          "@language": "sv"
         }
       ],
       "dppk:governedBy": "ISO 7389:2002",
@@ -5163,100 +5008,103 @@
       "rdfs:range": "xsd:decimal",
       "rdfs:comment": [
         {
-          "@value": "Еластично възстановяване по Метод А при 25% удължение.",
-          "@language": "bg"
-        },
+          "@value": "Elastic recovery using Method A at 25% elongation.",
+          "@language": "en"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodA60",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
         {
-          "@value": "Elastické zotavení metodou A při 25% prodloužení.",
-          "@language": "cs"
-        },
+          "@value": "Elastic Recovery (Method A, 60% Elongation)",
+          "@language": "en"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": [
         {
-          "@value": "Elastisk tilbagegang ved brug af metode A ved 25% forlængelse.",
-          "@language": "da"
-        },
+          "@value": "Elastic recovery using Method A at 60% elongation.",
+          "@language": "en"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodA100",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
         {
-          "@value": "Rückstellvermögen unter Verwendung von Verfahren A bei 25% Dehnung.",
-          "@language": "de"
-        },
-        {
-          "@value": "Ελαστική επαναφορά χρησιμοποιώντας τη Μέθοδο Α σε επιμήκυνση 25%.",
-          "@language": "el"
-        },
+          "@value": "Elastic Recovery (Method A, 100% Elongation)",
+          "@language": "en"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": [
         {
           "@value": "Elastic recovery using Method A at 25% elongation.",
           "@language": "en"
-        },
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodB25",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
         {
-          "@value": "Recuperación elástica usando el Método A al 25% de alargamiento.",
-          "@language": "es"
-        },
+          "@value": "Elastic Recovery (Method B, 25% Elongation)",
+          "@language": "en"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": [
         {
-          "@value": "Elastne taastumine meetodiga A 25% pikenemise juures.",
-          "@language": "et"
-        },
+          "@value": "Elastic recovery using Method B at 25% elongation.",
+          "@language": "en"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodB60",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
         {
-          "@value": "Kimmoisuuden palautuminen menetelmällä A 25% venymällä.",
-          "@language": "fi"
-        },
+          "@value": "Elastic Recovery (Method B, 60% Elongation)",
+          "@language": "en"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": [
         {
-          "@value": "Reprise élastique selon la méthode A à 25% d'allongement.",
-          "@language": "fr"
-        },
+          "@value": "Elastic recovery using Method B at 60% elongation.",
+          "@language": "en"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodB100",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
         {
-          "@value": "Téarnamh leaisteach ag baint úsáide as Modh A ag fadú 25%.",
-          "@language": "ga"
-        },
+          "@value": "Elastic Recovery (Method B, 100% Elongation)",
+          "@language": "en"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": [
         {
-          "@value": "Elastični povrat korištenjem Metode A pri 25% istezanja.",
-          "@language": "hr"
-        },
-        {
-          "@value": "Rugalmas visszaalakulás A módszerrel, 25%-os nyúlásnál.",
-          "@language": "hu"
-        },
-        {
-          "@value": "Ritorno elastico utilizzando il Metodo A al 25% di allungamento.",
-          "@language": "it"
-        },
-        {
-          "@value": "Elastinis atsistatymas taikant A metodą esant 25% pailgėjimui.",
-          "@language": "lt"
-        },
-        {
-          "@value": "Elastīgā atjaunošanās, izmantojot metodi A ar 25% pagarinājumu.",
-          "@language": "lv"
-        },
-        {
-          "@value": "Irkupru elastiku bl-użu tal-Metodu A f'titwil ta' 25%.",
-          "@language": "mt"
-        },
-        {
-          "@value": "Elastisch herstel met behulp van methode A bij 25% rek.",
-          "@language": "nl"
-        },
-        {
-          "@value": "Powrót elastyczny metodą A przy 25% wydłużeniu.",
-          "@language": "pl"
-        },
-        {
-          "@value": "Recuperação elástica usando o Método A com 25% de alongamento.",
-          "@language": "pt"
-        },
-        {
-          "@value": "Revenire elastică utilizând Metoda A la 25% alungire.",
-          "@language": "ro"
-        },
-        {
-          "@value": "Elastické zotavenie pomocou metódy A pri 25% predĺžení.",
-          "@language": "sk"
-        },
-        {
-          "@value": "Elastična povratna deformacija z uporabo metode A pri 25% raztezku.",
-          "@language": "sl"
-        },
-        {
-          "@value": "Elastisk återgång med metod A vid 25% töjning.",
-          "@language": "sv"
+          "@value": "Elastic recovery using Method B at 100% elongation.",
+          "@language": "en"
         }
       ]
     },

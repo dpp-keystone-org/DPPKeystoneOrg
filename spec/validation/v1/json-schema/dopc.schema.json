@@ -32,6 +32,15 @@
     },
     "thermalCompatibility": {
       "$ref": "#/$defs/thermalCompatibilityGroup"
+    },
+    "shrinkageAndExpansion": {
+      "type": "string"
+    },
+    "slipSkidResistance": {
+      "$ref": "#/$defs/slipSkidResistanceGroup"
+    },
+    "modulusOfElasticityInCompression": {
+      "$ref": "#/$defs/modulusGroup"
     }
   },
   "$defs": {
@@ -129,6 +138,26 @@
       "type": "object",
       "properties": {
         "wetSurface": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "slipSkidResistanceGroup": {
+      "type": "object",
+      "description": "Slip/skid resistance determined by EN 13036-4:2011",
+      "properties": {
+        "laboratory": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "modulusGroup": {
+      "type": "object",
+      "description": "Modulus of elasticity determined by EN 13412:2006",
+      "properties": {
+        "method1": {
           "type": "number"
         }
       },
