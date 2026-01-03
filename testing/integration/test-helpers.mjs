@@ -33,6 +33,10 @@ export async function setupTestEnvironment(testDirName) {
         path.join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-core-toplevel.jsonld'),
         path.join(tempOntologyDir, 'core', 'mock-core-toplevel.jsonld')
     );
+    await fs.copyFile(
+        path.join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-complex-comment.jsonld'),
+        path.join(tempOntologyDir, 'core', 'mock-complex-comment.jsonld')
+    );
 
 
     return {

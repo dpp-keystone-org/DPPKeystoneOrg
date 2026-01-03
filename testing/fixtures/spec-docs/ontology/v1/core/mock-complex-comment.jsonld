@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:ComplexTerm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": [
+        {
+          "@value": "This is a complex comment.",
+          "@language": "en"
+        },
+        {
+          "@value": "Ceci est un commentaire complexe.",
+          "@language": "fr"
+        }
+      ]
+    }
+  ]
+}

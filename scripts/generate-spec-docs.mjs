@@ -80,7 +80,7 @@ export function parseOntologyMetadata(content) {
             return {
                 id: p['@id'],
                 label: label,
-                comment: p['rdfs:comment'],
+                comment: getDisplayLabel(p['rdfs:comment'], ''),
                 domain: p['rdfs:domain'],
                 range: p['rdfs:range'] ? (p['rdfs:range']['@id'] || p['rdfs:range']) : '',
                 annotations: annotations
@@ -565,7 +565,7 @@ export async function buildTermDictionary(sourceOntologyDir = join(process.cwd()
                     if (node['@id'] && node['rdfs:comment']) {
                         const expandedId = expandCurie(node['@id'], context);
                         termMap[expandedId] = {
-                            description: node['rdfs:comment'],
+                            description: getDisplayLabel(node['rdfs:comment'], ''),
                             module: dirSuffix,
                             fileName: basename(file),
                             type: node['@type'],

@@ -45,6 +45,9 @@ describe('generate-spec-docs.mjs', () => {
             expect(mockProduct.attributes['owl:equivalentClass']).toHaveLength(2);
             expect(mockProduct.attributes['dppk:governedBy']).toEqual(['ISO 9001']);
 
+            // Verify property comment is a string
+            expect(mockProduct.properties[0].comment).toBe('A test property for the Mock Product.');
+
             const mockBase = classes.find(c => c.label === 'Mock Base');
             expect(mockBase).toBeDefined();
 
@@ -87,6 +90,24 @@ describe('generate-spec-docs.mjs', () => {
             expect(mockProperty).toBeDefined();
             expect(mockProperty.type).toContain('owl:DatatypeProperty');
             expect(mockProperty.domain['@id']).toBe('dppk:MockProduct');
+        });
+
+        it('should handle complex rdfs:comment values in term dictionary', async () => {
+            const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', 'v1');
+            const termDict = await buildTermDictionary(sourceOntologyDir);
+
+            const complexTerm = termDict['https://dpp-keystone.org/spec/v1/terms#ComplexTerm'];
+            expect(complexTerm).toBeDefined();
+            expect(complexTerm.description).toBe('This is a complex comment.');
+        });
+
+        it('should handle complex rdfs:comment values in parseOntologyMetadata', async () => {
+            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-complex-comment.jsonld'), 'utf-8');
+            const { properties } = parseOntologyMetadata(content);
+
+            expect(properties).toHaveLength(1);
+            expect(properties[0].id).toBe('dppk:ComplexTerm');
+            expect(properties[0].comment).toBe('This is a complex comment.');
         });
     });
 
