@@ -50,6 +50,7 @@ async function getJsonLdFiles(dir) {
     }
 }
 
+
 export function parseOntologyMetadata(content) {
     const data = jsoncParse(content);
     const context = data['@context'] || {};
@@ -115,8 +116,11 @@ export function parseOntologyMetadata(content) {
                 id: classId,
                 label: getDisplayLabel(node['rdfs:label'], classId),
                 comment: getDisplayLabel(node['rdfs:comment'], ''),
-                // Find properties whose domain includes this class
-                properties: properties.filter(p => p.domain && (p.domain['@id'] === classId || (Array.isArray(p.domain) && p.domain.some(d => d['@id'] === classId)))),
+                // Find properties whose domain includes this class OR properties with NO domain (assumed to belong to the module/class)
+                properties: properties.filter(p => {
+                    if (!p.domain) return true;
+                    return p.domain['@id'] === classId || (Array.isArray(p.domain) && p.domain.some(d => d['@id'] === classId));
+                }),
                 attributes: classAttributes
             };
         });
@@ -136,19 +140,28 @@ export function parseContextMetadata(content, termDictionary, prefixMap = {}) {
     let imports = [];
     let localTermMap = {};
 
-    if (Array.isArray(contextValue)) {
-        for (const item of contextValue) {
-            if (typeof item === 'string') {
-                imports.push(item);
-            } else if (typeof item === 'object' && item !== null) {
-                Object.assign(localTermMap, item);
+    function processContextValue(ctx) {
+        if (Array.isArray(ctx)) {
+            for (const item of ctx) {
+                processContextValue(item);
             }
+        } else if (typeof ctx === 'object' && ctx !== null) {
+            for (const [key, value] of Object.entries(ctx)) {
+                if (key === '@import') continue;
+                
+                localTermMap[key] = value;
+
+                // Check for nested context
+                if (typeof value === 'object' && value !== null && value['@context']) {
+                    processContextValue(value['@context']);
+                }
+            }
+        } else if (typeof ctx === 'string') {
+            imports.push(ctx);
         }
-    } else if (typeof contextValue === 'object' && contextValue !== null) {
-        Object.assign(localTermMap, contextValue);
-    } else if (typeof contextValue === 'string') {
-        imports.push(contextValue);
     }
+
+    processContextValue(contextValue);
 
     const localTerms = Object.entries(localTermMap)
         .filter(([key, value]) => typeof value !== 'string' || (!value.endsWith('/') && !value.endsWith('#')))
