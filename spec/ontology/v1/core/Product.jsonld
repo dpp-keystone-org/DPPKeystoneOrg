@@ -17,9 +17,17 @@
   "dcterms:title": "DPP Core Ontology - Product and Material Definitions (v1)",
   "dcterms:description": "Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.",
   "owl:versionInfo": "1.0.0",
-  "owl:imports": {
-    "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld"
-  },
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld"
+    }
+  ],
   "@graph": [
     {
       "@id": "dppk:Product",

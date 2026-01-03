@@ -22,6 +22,9 @@
     },
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld"
     }
   ],
   "@graph": [
@@ -133,6 +136,19 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packaging"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:packagingMaterials",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Packaging Materials",
+      "rdfs:comment": "A list of packaging elements associated with the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Packaging"
       },
       "rdfs:term_status": "unstable"
     },

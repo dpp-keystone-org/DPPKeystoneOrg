@@ -1,24 +1,122 @@
 {
   "@context": {
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-    "dopcDeclarations": "dppk:dopcDeclarations",
-    "tensileStrengthAdhesion": "dppk:tensileStrengthAdhesion",
-    "chlorideContent21DegC": "dppk:chlorideContent21DegC",
-    "bondStrength28days": "dppk:bondStrength28days",
-    "shrinkageAndExpansion": "dppk:shrinkageAndExpansion",
-    "resistanceToCarbonation21degC": "dppk:resistanceToCarbonation21degC",
-    "modulusOfElasticityInCompression": "dppk:modulusOfElasticityInCompression",
-    "thermalCompatibilityWetSurface": "dppk:thermalCompatibilityWetSurface",
-    "slipSkidResistance": "dppk:slipSkidResistance",
-    "thermalExpansion": "dppk:thermalExpansion",
-    "capillaryAbsorption": "dppk:capillaryAbsorption",
-    "reactionToFire": "dppk:reactionToFire",
-    "dangerousSubstances": {
-      "@id": "dppk:dangerousSubstances",
-      "@container": "@list"
-    },
-    "declaredUnit": "dppk:declaredUnit",
-    "functionalUnit": "dppk:functionalUnit",
-    "referenceServiceLife": "dppk:referenceServiceLife"
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dopc": {
+      "@id": "dppk:DoPCBlock",
+      "@context": {
+        "declarationCode": "dppk:declarationCode",
+        "dateOfIssue": {
+          "@id": "dppk:dateOfIssue",
+          "@type": "xsd:date"
+        },
+        "tensileStrengthAdhesion": "dppk:tensileStrengthAdhesion",
+        "modulusOfElasticityInCompression": {
+          "@id": "dppk:modulusOfElasticityInCompression",
+          "@type": "xsd:decimal"
+        },
+        "capillaryAbsorption": {
+          "@id": "dppk:capillaryAbsorption",
+          "@type": "xsd:decimal"
+        },
+        "dangerousSubstances": "dppk:dangerousSubstances",
+        "shrinkageAndExpansion": "dppk:shrinkageAndExpansion",
+        "slipSkidResistance": "dppk:slipSkidResistance",
+        "thermalExpansion": "dppk:thermalExpansion",
+        "declaredUnit": {
+          "@id": "dppk:declaredUnit",
+          "@type": "xsd:decimal"
+        },
+        "functionalUnit": {
+          "@id": "dppk:functionalUnit",
+          "@type": "xsd:decimal"
+        },
+        "referenceServiceLife": {
+          "@id": "dppk:referenceServiceLife",
+          "@type": "xsd:integer"
+        },
+        "chlorideContent": {
+          "@id": "dppk:chlorideContent",
+          "@context": {
+            "21DegC": {
+              "@id": "dppk:chlorideContentAt21DegC",
+              "@type": "xsd:decimal"
+            }
+          }
+        },
+        "bondStrength": {
+          "@id": "dppk:bondStrength",
+          "@context": {
+            "28Days": {
+              "@id": "dppk:bondStrengthAt28Days",
+              "@type": "xsd:decimal"
+            }
+          }
+        },
+        "thermalCompatibility": {
+          "@id": "dppk:thermalCompatibility",
+          "@context": {
+            "wetSurface": {
+              "@id": "dppk:thermalCompatibilityWet",
+              "@type": "xsd:decimal"
+            }
+          }
+        },
+        "resistanceToCarbonation": {
+          "@id": "dppk:resistanceToCarbonation",
+          "@context": {
+            "21DegC": {
+              "@id": "dppk:carbonationResistanceAt21DegC",
+              "@type": "xsd:string"
+            }
+          }
+        },
+        "reactionToFire": {
+          "@id": "dppk:reactionToFire",
+          "@context": {
+            "avcpSystem1": {
+              "@id": "dppk:reactionToFireSystem1",
+              "@type": "xsd:string"
+            },
+            "avcpSystem3": {
+              "@id": "dppk:reactionToFireSystem3",
+              "@type": "xsd:string"
+            },
+            "avcpSystem4": {
+              "@id": "dppk:reactionToFireSystem4",
+              "@type": "xsd:string"
+            }
+          }
+        },
+        "elasticRecovery": {
+          "@id": "dppk:elasticRecovery",
+          "@context": {
+            "methodA": {
+              "@id": "dppk:methodA",
+              "@context": {
+                "25Percent": {
+                  "@id": "dppk:elasticRecoveryMethodA25",
+                  "@type": "xsd:decimal"
+                }
+              }
+            }
+          }
+        },
+        "resistanceToFlow": {
+          "@id": "dppk:resistanceToFlow",
+          "@context": {
+            "procedureA": {
+              "@id": "dppk:procedureA",
+              "@context": {
+                "50DegC": {
+                  "@id": "dppk:flowResistanceProcedureA50",
+                  "@type": "xsd:decimal"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

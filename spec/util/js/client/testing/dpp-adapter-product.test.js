@@ -19,12 +19,15 @@ const readFixture = async (filePath) => {
 
 describe('DPP to Schema.org Product Transformation', () => {
     let productDoc;
+    let epdOntology;
+    let dopcOntology;
     // Store all contexts in a map for easy lookup
     const contexts = new Map();
 
     beforeAll(async () => {
         // Load main document
         productDoc = await readFixture('src/examples/construction-product-dpp-v1.json');
+        dopcOntology = await readFixture('src/ontology/v1/core/DoPC.jsonld');
         
         // Load all the context files that might be requested during expansion
         contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld', await readFixture('src/contexts/v1/dpp-construction.context.jsonld'));
@@ -39,6 +42,9 @@ describe('DPP to Schema.org Product Transformation', () => {
             if (contexts.has(url)) {
                 return Promise.resolve(new Response(JSON.stringify(contexts.get(url))));
             }
+            if (url.includes('DoPC.jsonld')) {
+                return Promise.resolve(new Response(JSON.stringify(dopcOntology)));
+            }
             // For this test, we don't need the EPD ontology, so we can return empty
             if (url.includes('EPD.jsonld')) {
                 return Promise.resolve(new Response(JSON.stringify({})));
@@ -50,8 +56,7 @@ describe('DPP to Schema.org Product Transformation', () => {
     it('should transform the DPP root into a schema:Product object with correct properties', async () => {
         const options = {
             profile: 'schema.org',
-            // ontologyPaths are not needed for testing the core product mapping
-            ontologyPaths: [],
+            ontologyPaths: ['https://dpp-keystone.org/spec/ontology/v1/core/DoPC.jsonld'],
             documentLoader: async (url) => {
                 const response = await fetch(url);
                 if (!response.ok) {
@@ -98,13 +103,14 @@ describe('DPP to Schema.org Product Transformation', () => {
         const additionalProperties = productResult.additionalProperty;
         expect(additionalProperties).toBeDefined();
         expect(Array.isArray(additionalProperties)).toBe(true);
-        expect(additionalProperties.length).toBe(15);
+        expect(additionalProperties.length).toBe(16);
 
-        const dopcProperty = additionalProperties.find(p => p.name === 'Bond Strength28days');
+        const dopcProperty = additionalProperties.find(p => p.name === 'Bond Strength (28 Days)');
         expect(dopcProperty).toEqual({
             "@type": "PropertyValue",
-            "name": "Bond Strength28days",
-            "value": "≥ 2.0 MPa"
+            "name": "Bond Strength (28 Days)",
+            "value": 2.0, // Value in JSON is number
+            "unitText": "MPa"
         });
 
         // Assertions for Document Links

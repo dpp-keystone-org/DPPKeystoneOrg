@@ -44,6 +44,9 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
+      "owl:equivalentProperty": {
+        "@id": "schema:encodingFormat"
+      },
       "rdfs:term_status": "unstable"
     },
     {
@@ -55,6 +58,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:inLanguage"
       },
       "rdfs:term_status": "unstable"
     },

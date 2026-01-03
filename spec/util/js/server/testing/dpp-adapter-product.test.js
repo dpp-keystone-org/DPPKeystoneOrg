@@ -41,8 +41,7 @@ describe('Server-side DPP to Schema.org Product Transformation', () => {
 
         const options = {
             profile: 'schema.org',
-            // No ontology paths are needed for this test as it focuses on core product mapping
-            ontologyPaths: [],
+            ontologyPaths: [path.resolve(__dirname, '../../../../../src/ontology/v1/core/DoPC.jsonld')],
             documentLoader,
         };
         
@@ -72,12 +71,13 @@ describe('Server-side DPP to Schema.org Product Transformation', () => {
         // Assertions for dopcDeclarations (additionalProperty)
         const additionalProperties = productResult.additionalProperty;
         expect(additionalProperties).toBeDefined();
-        expect(additionalProperties.length).toBe(15);
-        const dopcProperty = additionalProperties.find(p => p.name === 'Bond Strength28days');
+        expect(additionalProperties.length).toBe(16);
+        const dopcProperty = additionalProperties.find(p => p.name === 'Bond Strength (28 Days)');
         expect(dopcProperty).toEqual({
             "@type": "PropertyValue",
-            "name": "Bond Strength28days",
-            "value": "≥ 2.0 MPa"
+            "name": "Bond Strength (28 Days)",
+            "value": 2.0,
+            "unitText": "MPa"
         });
 
         // Assertions for Document Links

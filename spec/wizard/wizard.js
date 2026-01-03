@@ -179,6 +179,38 @@ export async function initializeWizard() {
         }
     }
 
+    // --- Mutation Observer for validation cleanup ---
+    const validationObserver = new MutationObserver((mutations) => {
+        let shouldUpdate = false;
+        mutations.forEach((mutation) => {
+            if (mutation.removedNodes.length > 0) {
+                mutation.removedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        // Check if the node itself is a tracked input
+                        if ((node.matches('input, select, textarea')) && node.name && invalidFields.has(node.name)) {
+                            invalidFields.delete(node.name);
+                            shouldUpdate = true;
+                        }
+                        // Check for descendant inputs
+                        const inputs = node.querySelectorAll('input, select, textarea');
+                        inputs.forEach(input => {
+                            if (input.name && invalidFields.has(input.name)) {
+                                invalidFields.delete(input.name);
+                                shouldUpdate = true;
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        if (shouldUpdate) updateButtonState();
+    });
+
+    const wizardContainer = document.getElementById('wizard-container');
+    if (wizardContainer) {
+        validationObserver.observe(wizardContainer, { childList: true, subtree: true });
+    }
+
     // --- Event listeners ---
 
     document.addEventListener('fieldValidityChange', (e) => {
@@ -277,12 +309,7 @@ export async function initializeWizard() {
             const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
 
             if (existingContainer) {
-                // Clear any invalid fields from this sector before removing it
-                existingContainer.querySelectorAll('input, select').forEach(input => {
-                    invalidFields.delete(input.name);
-                });
-                updateButtonState();
-
+                // The MutationObserver will handle clearing validation errors when the container is removed.
                 existingContainer.remove();
                 button.textContent = `Add ${displayName}`;
                 button.classList.remove('remove-btn-active');

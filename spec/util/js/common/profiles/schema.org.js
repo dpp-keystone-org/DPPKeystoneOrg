@@ -75,21 +75,90 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         product.manufacturer = toSchemaOrgOrganization(manufacturerNode);
     }
 
-    const dopcNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#dopcDeclarations');
+    const dopcNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#dopcDeclarations') || 
+                     getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#DoPCBlock');
+
     if (dopcNode) {
         const properties = [];
-        for (const [uri, valueList] of Object.entries(dopcNode)) {
-            if (uri.startsWith('@')) continue;
+        
+        const flattenProperties = (node, parentName) => {
+            for (const [uri, valueList] of Object.entries(node)) {
+                if (uri.startsWith('@')) continue;
+                
+                // Get metadata from dictionary if available
+                const meta = dictionary[uri] || {};
+                const definedLabel = meta.label; // e.g. "Bond Strength (28 Days)"
+                const unitText = meta.unit;      // e.g. "MPa"
 
-            const name = toTitleCase(uri.split('#')[1]);
-            const value = valueList[0]['@value'];
+                // If we have a defined label from the ontology, use it directly.
+                // Otherwise, construct a name from the JSON key structure.
+                // Note: If we are deep in recursion, we might want to combine parentName, 
+                // BUT if the property URI itself is specific (e.g. bondStrengthAt28Days), the label is full.
+                // If the property URI is generic (e.g. 'value'), we rely on parentName.
+                
+                const localName = uri.split('#')[1] || uri;
+                let displayName;
+                
+                if (definedLabel && definedLabel !== localName) {
+                    // Use the official label if it seems meaningful
+                    displayName = definedLabel;
+                } else {
+                    // Fallback to title casing the URI fragment
+                    const localDisplay = toTitleCase(localName);
+                    displayName = parentName ? `${parentName} - ${localDisplay}` : localDisplay;
+                }
 
-            properties.push({
-                "@type": "PropertyValue",
-                "name": name,
-                "value": value,
-            });
+                const valueItem = valueList[0];
+                
+                if (valueItem && valueItem['@value'] !== undefined) {
+                    // It's a literal value
+                    const propertyObj = {
+                        "@type": "PropertyValue",
+                        "name": displayName,
+                        "value": valueItem['@value'],
+                    };
+                    
+                    if (unitText) {
+                        propertyObj.unitText = unitText;
+                    }
+                    
+                    properties.push(propertyObj);
+                } else if (valueItem && typeof valueItem === 'object') {
+                    // It's a nested node. Recurse.
+                    // If this node corresponds to a specific property (e.g. bondStrength), 
+                    // we pass its label as the parent name for children IF children are generic.
+                    // But in the new structure, children are often specific (e.g. bondStrengthAt28Days).
+                    // If children are specific, they will ignore the parentName in the 'if(definedLabel)' block above.
+                    
+                    // We pass the fallback name just in case.
+                    const localDisplay = toTitleCase(localName);
+                    const nextParentName = parentName ? `${parentName} - ${localDisplay}` : localDisplay;
+                    
+                    flattenProperties(valueItem, nextParentName);
+                }
+            }
+        };
+
+        // Check for 'essentialCharacteristics' array (intermediate structure)
+        const characteristics = dopcNode['https://dpp-keystone.org/spec/v1/terms#essentialCharacteristics'];
+        if (characteristics && Array.isArray(characteristics)) {
+             // Handle the "List of Characteristics" style (Intermediate)
+             for (const charNode of characteristics) {
+                const name = getValue(charNode, 'https://dpp-keystone.org/spec/v1/terms#characteristicName');
+                const value = getValue(charNode, 'https://dpp-keystone.org/spec/v1/terms#characteristicValue');
+                if (name && value) {
+                    properties.push({
+                        "@type": "PropertyValue",
+                        "name": name,
+                        "value": value,
+                    });
+                }
+            }
+        } else {
+             // Handle Recursive Structure (New & Legacy)
+             flattenProperties(dopcNode, '');
         }
+
         if (properties.length > 0) {
             product.additionalProperty = properties;
         }

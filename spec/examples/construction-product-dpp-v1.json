@@ -34,17 +34,6 @@
   },
   "versionNumber": "2.1",
   "versionDate": "2024-01-15",
-  "declaredUses": [
-    "For uses in buildings and civil engineering works",
-    "Structural and non structural repairproducts for concrete, used by applying mortar by hand, by recasting with concrete, byspraying concrete or mortar, by increasing cover to reinforcement with additionalcementitious mortar or concrete and structural strengthening by adding mortar orconcreteFor uses subject to reaction to fire regulations",
-    "Structural and non structural repairproducts for concrete, used by applying mortar by hand, by recasting with concrete, byspraying concrete or mortar, by increasing cover to reinforcement with additionalcementitious mortar or concrete and structural strengthening by adding mortar orconcrete"
-  ],
-  "userManual": {
-    "resourceTitle": "User Manual for the Smart Thermostat Pro",
-    "contentType": "application/pdf",
-    "url": "https://example.com/docs/user-manual-123.pdf",
-    "language": "en-GB"
-  },
   "instructionsForUse": {
     "resourceTitle": "User Manual for the Smart Thermostat Pro",
     "contentType": "application/pdf",
@@ -76,41 +65,41 @@
     "email": "post@example-body.com",
     "website": "https://www.example-body.com"
   },
-  "technicalAssessmentBody": {
-    "type": "Organization",
-    "organizationName": "Example Assessment Body",
-    "identifier": "EAB-987",
-    "tradingName": "EAB",
-    "address": {
-      "type": "PostalAddress",
-      "streetAddress": "Rue de la Loi 123",
-      "postalCode": "1000",
-      "addressLocality": "Brussels",
-      "addressCountry": "Belgium"
-    },
-    "telephone": "+3221234567",
-    "email": "info@eab.example.com",
-    "website": "https://www.eab.example.com"
-  },
-  "validationReports": "Not applicable",
-  "harmonisedStandardReference": "EN 1504-3:2005",
-  "europeanAssessmentDocument": "EAD-12345-678-910",
-  "dopcDeclarations": {
-    "tensileStrengthAdhesion": "Class R4",
-    "chlorideContent21DegC": "≤ 0.05 %",
-    "bondStrength28days": "≥ 2.0 MPa",
-    "shrinkageAndExpansion": "N/A",
-    "resistanceToCarbonation21degC": "Pass",
-    "modulusOfElasticityInCompression": "≥ 20 GPa",
-    "thermalCompatibilityWetSurface": "≥ 2.0 MPa",
-    "slipSkidResistance": "N/A",
-    "thermalExpansion": "N/A",
-    "capillaryAbsorption": "w < 0.5kg/h^(0.5)*m^2",
-    "reactionToFire": "Class A1",
+  "dopc": {
+    "declarationCode": "DoP-70210534-001",
+    "dateOfIssue": "2024-01-15",
+    "tensileStrengthAdhesion": "R4",
+    "modulusOfElasticityInCompression": 20,
+    "capillaryAbsorption": 0.5,
+    "declaredUnit": 1,
+    "functionalUnit": 1,
+    "referenceServiceLife": 50,
     "dangerousSubstances": "None",
-    "declaredUnit": "1 kg",
-    "functionalUnit": "1 kg",
-    "referenceServiceLife": "50 years"
+    "reactionToFire": {
+      "avcpSystem1": "A1"
+    },
+    "chlorideContent": {
+      "21DegC": 0.05
+    },
+    "bondStrength": {
+      "28Days": 2
+    },
+    "thermalCompatibility": {
+      "wetSurface": 2
+    },
+    "resistanceToCarbonation": {
+      "21DegC": "Pass"
+    },
+    "elasticRecovery": {
+      "methodA": {
+        "25Percent": 90
+      }
+    },
+    "resistanceToFlow": {
+      "procedureA": {
+        "50DegC": 1
+      }
+    }
   },
   "epd": {
     "gwp": {
