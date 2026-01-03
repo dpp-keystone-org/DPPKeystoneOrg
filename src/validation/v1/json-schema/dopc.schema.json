@@ -5,32 +5,70 @@
     "description": "A dense, nested schema for Construction DoPC characteristics.",
     "type": "object",
     "properties": {
-        "declarationCode": { "type": "string" },
-        "dateOfIssue": { "type": "string", "format": "date" },
-        "elasticRecovery": { "$ref": "#/$defs/elasticRecoveryGroup" },
-        "resistanceToFlow": { "$ref": "#/$defs/resistanceToFlowGroup" },
-        "reactionToFire": { "$ref": "#/$defs/reactionToFireGroup" },
-        "tensileStrengthAdhesion": { "type": "string" },
-        "chlorideContent": { "$ref": "#/$defs/chlorideContentGroup" },
-        "bondStrength": { "$ref": "#/$defs/bondStrengthGroup" },
-        "thermalCompatibility": { "$ref": "#/$defs/thermalCompatibilityGroup" }
+        "declarationCode": {
+            "type": "string"
+        },
+        "dateOfIssue": {
+            "type": "string",
+            "format": "date"
+        },
+        "elasticRecovery": {
+            "$ref": "#/$defs/elasticRecoveryGroup"
+        },
+        "resistanceToFlow": {
+            "$ref": "#/$defs/resistanceToFlowGroup"
+        },
+        "reactionToFire": {
+            "$ref": "#/$defs/reactionToFireGroup"
+        },
+        "tensileStrengthAdhesion": {
+            "type": "string"
+        },
+        "chlorideContent": {
+            "$ref": "#/$defs/chlorideContentGroup"
+        },
+        "bondStrength": {
+            "$ref": "#/$defs/bondStrengthGroup"
+        },
+        "thermalCompatibility": {
+            "$ref": "#/$defs/thermalCompatibilityGroup"
+        },
+        "shrinkageAndExpansion": {
+            "type": "string"
+        },
+        "slipSkidResistance": {
+            "$ref": "#/$defs/slipSkidResistanceGroup"
+        },
+        "modulusOfElasticityInCompression": {
+            "$ref": "#/$defs/modulusGroup"
+        }
     },
     "$defs": {
         "elasticRecoveryGroup": {
             "type": "object",
             "description": "Elastic recovery determined by ISO 7389:2002",
             "properties": {
-                "methodA": { "$ref": "#/$defs/elongationValues" },
-                "methodB": { "$ref": "#/$defs/elongationValues" }
+                "methodA": {
+                    "$ref": "#/$defs/elongationValues"
+                },
+                "methodB": {
+                    "$ref": "#/$defs/elongationValues"
+                }
             },
             "additionalProperties": false
         },
         "elongationValues": {
             "type": "object",
             "properties": {
-                "25Percent": { "type": "number" },
-                "60Percent": { "type": "number" },
-                "100Percent": { "type": "number" }
+                "25Percent": {
+                    "type": "number"
+                },
+                "60Percent": {
+                    "type": "number"
+                },
+                "100Percent": {
+                    "type": "number"
+                }
             },
             "additionalProperties": false
         },
@@ -38,48 +76,90 @@
             "type": "object",
             "description": "Resistance to flow determined by ISO 7390:2002",
             "properties": {
-                "procedureA": { "$ref": "#/$defs/flowTempValues" },
-                "procedureB": { "$ref": "#/$defs/flowTempValues" }
+                "procedureA": {
+                    "$ref": "#/$defs/flowTempValues"
+                },
+                "procedureB": {
+                    "$ref": "#/$defs/flowTempValues"
+                }
             },
             "additionalProperties": false
         },
         "flowTempValues": {
             "type": "object",
             "properties": {
-                "5DegC": { "type": "number" },
-                "50DegC": { "type": "number" },
-                "70DegC": { "type": "number" }
+                "5DegC": {
+                    "type": "number"
+                },
+                "50DegC": {
+                    "type": "number"
+                },
+                "70DegC": {
+                    "type": "number"
+                }
             },
             "additionalProperties": false
         },
         "reactionToFireGroup": {
-             "type": "object",
-             "description": "Reaction to fire classification under EN 13501-1. Keys are the AVCP System; Values are the Class.",
-             "properties": {
-                 "avcpSystem1": { "type": "string" },
-                 "avcpSystem3": { "type": "string" },
-                 "avcpSystem4": { "type": "string" }
-             },
-             "additionalProperties": false
+            "type": "object",
+            "description": "Reaction to fire classification under EN 13501-1. Keys are the AVCP System; Values are the Class.",
+            "properties": {
+                "avcpSystem1": {
+                    "type": "string"
+                },
+                "avcpSystem3": {
+                    "type": "string"
+                },
+                "avcpSystem4": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
         },
         "chlorideContentGroup": {
             "type": "object",
             "properties": {
-                "21DegC": { "type": "number" }
+                "21DegC": {
+                    "type": "number"
+                }
             },
             "additionalProperties": false
         },
         "bondStrengthGroup": {
             "type": "object",
             "properties": {
-                "28Days": { "type": "number" }
+                "28Days": {
+                    "type": "number"
+                }
             },
             "additionalProperties": false
         },
         "thermalCompatibilityGroup": {
             "type": "object",
             "properties": {
-                "wetSurface": { "type": "number" }
+                "wetSurface": {
+                    "type": "number"
+                }
+            },
+            "additionalProperties": false
+        },
+        "slipSkidResistanceGroup": {
+            "type": "object",
+            "description": "Slip/skid resistance determined by EN 13036-4:2011",
+            "properties": {
+                "laboratory": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "modulusGroup": {
+            "type": "object",
+            "description": "Modulus of elasticity determined by EN 13412:2006",
+            "properties": {
+                "method1": {
+                    "type": "number"
+                }
             },
             "additionalProperties": false
         }

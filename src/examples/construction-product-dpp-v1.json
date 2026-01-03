@@ -69,7 +69,9 @@
         "declarationCode": "DoP-70210534-001",
         "dateOfIssue": "2024-01-15",
         "tensileStrengthAdhesion": "R4",
-        "modulusOfElasticityInCompression": 20,
+        "modulusOfElasticityInCompression": {
+            "method1": 20
+        },
         "capillaryAbsorption": 0.5,
         "declaredUnit": 1,
         "functionalUnit": 1,
