@@ -1090,7 +1090,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:DoPCBlock" },
       "rdfs:range": "xsd:string"
-    }
+    },
     {
       "@id": "dppk:chlorideContentAt21DegC",
       "@type": "owl:DatatypeProperty",
