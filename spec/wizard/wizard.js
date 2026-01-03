@@ -188,15 +188,20 @@ export async function initializeWizard() {
                     if (node.nodeType === Node.ELEMENT_NODE) {
                         // Check if the node itself is a tracked input
                         if ((node.matches('input, select, textarea')) && node.name && invalidFields.has(node.name)) {
-                            invalidFields.delete(node.name);
-                            shouldUpdate = true;
+                            // Only remove if no other input with this name exists (handling re-indexing collisions)
+                            if (!document.querySelector(`[name="${node.name}"]`)) {
+                                invalidFields.delete(node.name);
+                                shouldUpdate = true;
+                            }
                         }
                         // Check for descendant inputs
                         const inputs = node.querySelectorAll('input, select, textarea');
                         inputs.forEach(input => {
                             if (input.name && invalidFields.has(input.name)) {
-                                invalidFields.delete(input.name);
-                                shouldUpdate = true;
+                                if (!document.querySelector(`[name="${input.name}"]`)) {
+                                    invalidFields.delete(input.name);
+                                    shouldUpdate = true;
+                                }
                             }
                         });
                     }
