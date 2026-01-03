@@ -436,8 +436,18 @@ function reindexArrayItems(arrayName, indexRemoved) {
             // Update inputs
             const input = row.querySelector('input, select');
             if (input && input.name.startsWith(oldPrefix)) {
+                const oldName = input.name;
+                
+                // Clear old error from global state
+                input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                    bubbles: true, composed: true, detail: { path: oldName, isValid: true },
+                }));
+
                 input.name = input.name.replace(oldPrefix, newPrefix);
                 input.id = input.name;
+
+                // Re-trigger validation to update global state with new name
+                input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
             }
             
             // Update path cell text
