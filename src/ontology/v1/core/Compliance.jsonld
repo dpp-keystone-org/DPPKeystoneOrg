@@ -192,6 +192,7 @@
         "rdfs:label": "Packaging Material Composition Quantity",
         "rdfs:domain": { "@id": "dppk:Packaging" },
         "owl:equivalentProperty": { "@id": "gs1:packagingMaterialCompositionQuantity" },
+        "dppk:unit": "%",
         "rdfs:term_status": "unstable"
     },
     {
