@@ -138,49 +138,93 @@ export function parseContextMetadata(content, termDictionary, prefixMap = {}) {
     const contextValue = data['@context'];
 
     let imports = [];
-    let localTermMap = {};
+    let fullContextMap = { ...prefixMap };
 
-    function processContextValue(ctx) {
+    // Pass 1: Collect imports and build a full map for resolution (flattened view)
+    function collectTerms(ctx) {
         if (Array.isArray(ctx)) {
             for (const item of ctx) {
-                processContextValue(item);
+                collectTerms(item);
             }
         } else if (typeof ctx === 'object' && ctx !== null) {
             for (const [key, value] of Object.entries(ctx)) {
                 if (key === '@import') continue;
                 
-                localTermMap[key] = value;
-
-                // Check for nested context
-                if (typeof value === 'object' && value !== null && value['@context']) {
-                    processContextValue(value['@context']);
+                if (typeof value === 'string') {
+                     fullContextMap[key] = value;
+                } else if (typeof value === 'object' && value !== null) {
+                     if (value['@id']) {
+                         fullContextMap[key] = value['@id'];
+                     }
+                     if (value['@context']) {
+                         collectTerms(value['@context']);
+                     }
                 }
             }
         } else if (typeof ctx === 'string') {
             imports.push(ctx);
         }
     }
+    
+    collectTerms(contextValue);
 
-    processContextValue(contextValue);
+    // Pass 2: Build the tree
+    function buildTree(ctx, depth = 0) {
+        let terms = [];
+        if (Array.isArray(ctx)) {
+            for (const item of ctx) {
+                if (typeof item === 'object') {
+                    terms.push(...buildTree(item, depth));
+                }
+            }
+        } else if (typeof ctx === 'object' && ctx !== null) {
+            for (const [key, value] of Object.entries(ctx)) {
+                if (key === '@import') continue;
+                
+                let isPrefix = false;
+                let uri = null;
+                let nestedContext = null;
 
-    const localTerms = Object.entries(localTermMap)
-        .filter(([key, value]) => typeof value !== 'string' || (!value.endsWith('/') && !value.endsWith('#')))
-        .map(([term, uri]) => {
-            const termCurie = (typeof uri === 'object' && uri !== null) ? uri['@id'] : uri;
-            const resolutionContext = { ...prefixMap, ...localTermMap };
-            const expandedUri = expandCurie(termCurie, resolutionContext);
-            const definition = termDictionary[expandedUri] || {};
-            
-            return {
-                term,
-                uri: expandedUri,
-                description: definition.description || '',
-                module: definition.module || '',
-                fileName: definition.fileName || '',
-                type: definition.type,
-                domain: definition.domain
-            };
-    });
+                if (typeof value === 'string') {
+                    if (value.endsWith('/') || value.endsWith('#')) isPrefix = true;
+                    uri = value;
+                } else if (typeof value === 'object' && value !== null) {
+                    if (value['@id']) {
+                        uri = value['@id'];
+                        if (uri.endsWith('/') || uri.endsWith('#')) isPrefix = true;
+                    }
+                    nestedContext = value['@context'];
+                }
+
+                if (isPrefix) continue;
+                if (!uri && !nestedContext) continue;
+
+                let termData = {
+                    term: key,
+                    uri: uri ? expandCurie(uri, fullContextMap) : null,
+                    children: []
+                };
+
+                if (termData.uri) {
+                    const definition = termDictionary[termData.uri] || {};
+                    termData.description = definition.description || '';
+                    termData.module = definition.module || '';
+                    termData.fileName = definition.fileName || '';
+                    termData.type = definition.type;
+                    termData.domain = definition.domain;
+                }
+
+                if (nestedContext) {
+                    termData.children = buildTree(nestedContext, depth + 1);
+                }
+
+                terms.push(termData);
+            }
+        }
+        return terms;
+    }
+
+    const localTerms = buildTree(contextValue);
     
     return { imports, localTerms };
 }
@@ -365,35 +409,43 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
         ? `<h4>Imports</h4><ul>\n${imports.map(i => `                <li><a href="${i}">${i}</a></li>`).join('\n')}\n            </ul>`
         : '';
 
-    const termsList = localTerms.length > 0
-        ? `<h4>Locally Defined Terms</h4><ul>\n${localTerms.map(t => {
+    function renderTerms(terms, level=0) {
+        if (!terms || terms.length === 0) return '';
+        return `<ul>\n${terms.map(t => {
             const termName = `<strong>${t.term}</strong>`;
             const description = t.description ? ` - <em>${t.description}</em>` : '';
             let link = null;
 
-            const isClass = Array.isArray(t.type) ? t.type.includes('rdfs:Class') : t.type === 'rdfs:Class';
-            const isProperty = Array.isArray(t.type) ? t.type.some(type => type.includes('Property')) : (t.type && t.type.includes('Property'));
+            if (t.uri) {
+                const isClass = Array.isArray(t.type) ? t.type.includes('rdfs:Class') : t.type === 'rdfs:Class';
+                const isProperty = Array.isArray(t.type) ? t.type.some(type => type.includes('Property')) : (t.type && t.type.includes('Property'));
 
-            if (isProperty && t.domain && t.domain['@id']) {
-                // It's a property with a domain, find the parent class
-                const domainClassId = t.domain['@id'];
-                const domainModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === domainClassId));
-                if (domainModuleMeta) {
-                    const domainModuleDirName = basename(domainModuleMeta.name, '.jsonld');
-                    const targetPath = join(ontologyDir, domainModuleMeta.module, domainModuleDirName, `${getFragment(domainClassId)}.html`);
+                if (isProperty && t.domain && t.domain['@id']) {
+                    const domainClassId = t.domain['@id'];
+                    const domainModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === domainClassId));
+                    if (domainModuleMeta) {
+                        const domainModuleDirName = basename(domainModuleMeta.name, '.jsonld');
+                        const targetPath = join(ontologyDir, domainModuleMeta.module, domainModuleDirName, `${getFragment(domainClassId)}.html`);
+                        link = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+                    }
+                } else if (isClass) {
+                    const targetPath = join(ontologyDir, t.module, basename(t.fileName, '.jsonld'), `${getFragment(t.uri)}.html`);
                     link = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
                 }
-            } else if (isClass) {
-                // It's a class, link to its own page.
-                const targetPath = join(ontologyDir, t.module, basename(t.fileName, '.jsonld'), `${getFragment(t.uri)}.html`);
-                link = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
             }
 
-            if (link) {
-                return `                <li><a href="${link}">${termName}</a>${description}</li>`;
+            let content = link ? `<a href="${link}">${termName}</a>${description}` : `${termName}${description}`;
+            
+            if (t.children && t.children.length > 0) {
+                content += renderTerms(t.children);
             }
-            return `                <li>${termName}${description}</li>`; // Fallback for terms without links
-        }).join('\n')}\n            </ul>`
+            
+            return `<li>${content}</li>`;
+        }).join('\n')}\n</ul>`;
+    }
+
+    const termsList = localTerms.length > 0
+        ? `<h4>Locally Defined Terms</h4>\n${renderTerms(localTerms)}`
         : '';
 
     return `

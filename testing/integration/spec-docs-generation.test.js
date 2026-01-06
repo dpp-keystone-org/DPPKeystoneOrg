@@ -37,22 +37,34 @@ describe('generate-spec-docs.mjs', () => {
 
             const mockProduct = classes.find(c => c.label === 'Mock Product');
             expect(mockProduct).toBeDefined();
-            expect(mockProduct.properties).toHaveLength(1);
-            expect(mockProduct.properties[0].label).toBe('Mock Property');
-            expect(mockProduct.properties[0].annotations['owl:equivalentProperty']['@id']).toBe('schema:name');
-            expect(mockProduct.properties[0].annotations['rdfs:subPropertyOf']['@id']).toBe('dppk:genericIndicator');
+            // Mock Product has 'Mock Property' (explicit domain) AND 'Generic Indicator' (no domain)
+            expect(mockProduct.properties).toHaveLength(2);
+            
+            const mockProperty = mockProduct.properties.find(p => p.label === 'Mock Property');
+            expect(mockProperty).toBeDefined();
+            expect(mockProperty.annotations['owl:equivalentProperty']['@id']).toBe('schema:name');
+            expect(mockProperty.annotations['rdfs:subPropertyOf']['@id']).toBe('dppk:genericIndicator');
+            expect(mockProperty.comment).toBe('A test property for the Mock Product.');
+
+            const genericIndicator = mockProduct.properties.find(p => p.label === 'Generic Indicator');
+            expect(genericIndicator).toBeDefined();
+            expect(genericIndicator.comment).toBe('A generic indicator for testing sub-property relationships.');
+
             expect(mockProduct.attributes['rdfs:subClassOf']).toHaveLength(2);
             expect(mockProduct.attributes['owl:equivalentClass']).toHaveLength(2);
             expect(mockProduct.attributes['dppk:governedBy']).toEqual(['ISO 9001']);
 
-            // Verify property comment is a string
-            expect(mockProduct.properties[0].comment).toBe('A test property for the Mock Product.');
-
             const mockBase = classes.find(c => c.label === 'Mock Base');
             expect(mockBase).toBeDefined();
+            // Mock Base should inherit the domain-less 'Generic Indicator'
+            expect(mockBase.properties).toHaveLength(1);
+            expect(mockBase.properties[0].label).toBe('Generic Indicator');
 
             const mockThing = classes.find(c => c.label === 'Mock Thing');
             expect(mockThing).toBeDefined();
+            // Mock Thing should inherit the domain-less 'Generic Indicator'
+            expect(mockThing.properties).toHaveLength(1);
+            expect(mockThing.properties[0].label).toBe('Generic Indicator');
         });
 
         it('should parse context metadata correctly', async () => {
@@ -171,6 +183,10 @@ describe('generate-spec-docs.mjs', () => {
             expect(classHtml).toContain('<p>Represents a generic product for testing.</p>');
             expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="MockBase.html">dppk:MockBase</a>, <a href="MockThing.html">dppk:MockThing</a></p>')
             
+            // Check for properties
+            expect(classHtml).toContain('Mock Property (dppk:mockProperty)');
+            expect(classHtml).toContain('Generic Indicator (dppk:genericIndicator)');
+
             // Check for correct CSS path
             expect(classHtml).toContain('<link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">');
         });
