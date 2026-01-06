@@ -27,6 +27,8 @@
                 <pre class="mermaid">
                     classDiagram
   class ProductCharacteristic
+  ProductCharacteristic : +name
+  ProductCharacteristic : +weightPercentage
   ProductCharacteristic : +characteristicName
   ProductCharacteristic : +characteristicValue
   ProductCharacteristic : +testMethod
@@ -49,6 +51,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                                <tr>
+                                    <td>Name (dppk:name)</td>
+                                    <td>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</td>
+                                    <td>rdf:langString</td>
+                                    <td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Weight Percentage (dppk:weightPercentage)</td>
+                                    <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
+                                    <td>xsd:decimal</td>
+                                    <td></td>
+                                </tr>
                             
                                 <tr>
                                     <td>Characteristic Name (dppk:characteristicName)</td>

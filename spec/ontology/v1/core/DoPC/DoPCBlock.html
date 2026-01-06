@@ -27,13 +27,64 @@
                 <pre class="mermaid">
                     classDiagram
   class DoPCBlock
+  DoPCBlock : +dopc
   DoPCBlock : +declarationCode
   DoPCBlock : +dateOfIssue
+  DoPCBlock : +chlorideContent
+  DoPCBlock : +21DegC
+  DoPCBlock : +bondStrength
+  DoPCBlock : +28Days
+  DoPCBlock : +thermalCompatibility
+  DoPCBlock : +wetSurface
+  DoPCBlock : +resistanceToCarbonation
+  DoPCBlock : +reactionToFire
+  DoPCBlock : +avcpSystem1
+  DoPCBlock : +avcpSystem2
+  DoPCBlock : +avcpSystem3
+  DoPCBlock : +elasticRecovery
+  DoPCBlock : +methodA
+  DoPCBlock : +methodB
+  DoPCBlock : +25Percent
+  DoPCBlock : +60Percent
+  DoPCBlock : +100Percent
+  DoPCBlock : +resistanceToFlow
+  DoPCBlock : +5DegC
+  DoPCBlock : +50DegC
+  DoPCBlock : +70DegC
+  DoPCBlock : +flowResistanceProcedureA5
+  DoPCBlock : +flowResistanceProcedureA70
+  DoPCBlock : +flowResistanceProcedureB5
+  DoPCBlock : +flowResistanceProcedureB50
+  DoPCBlock : +flowResistanceProcedureB70
+  DoPCBlock : +procedureA
+  DoPCBlock : +procedureB
+  DoPCBlock : +shrinkageAndExpansion
+  DoPCBlock : +slipSkidResistance
+  DoPCBlock : +slipSkidResistanceLab
+  DoPCBlock : +laboratory
+  DoPCBlock : +modulusOfElasticityInCompression
+  DoPCBlock : +modulusMethod1
+  DoPCBlock : +method1
   DoPCBlock : +thermalExpansion
+  DoPCBlock : +chlorideContentAt21DegC
+  DoPCBlock : +bondStrengthAt28Days
+  DoPCBlock : +thermalCompatibilityWet
+  DoPCBlock : +carbonationResistanceAt21DegC
+  DoPCBlock : +reactionToFireSystem1
+  DoPCBlock : +reactionToFireSystem2
+  DoPCBlock : +reactionToFireSystem3
+  DoPCBlock : +elasticRecoveryMethodA25
+  DoPCBlock : +elasticRecoveryMethodA60
+  DoPCBlock : +elasticRecoveryMethodA100
+  DoPCBlock : +elasticRecoveryMethodB25
+  DoPCBlock : +elasticRecoveryMethodB60
+  DoPCBlock : +elasticRecoveryMethodB100
+  DoPCBlock : +flowResistanceProcedureA50
   DoPCBlock : +tensileStrengthAdhesion
   DoPCBlock : +modulusOfElasticityInCompression
   DoPCBlock : +capillaryAbsorption
   DoPCBlock : +dangerousSubstances
+  DoPCBlock : +referenceServiceLife
 
                 </pre>
 
@@ -55,6 +106,13 @@
                         <tbody>
                             
                                 <tr>
+                                    <td>The Declaration of Performance and Conformity. (dppk:dopc)</td>
+                                    <td>The Declaration of Performance and Conformity.</td>
+                                    <td></td>
+                                    <td>CPR</td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Declaration Code (dppk:declarationCode)</td>
                                     <td>Unique identifier of the declaration.</td>
                                     <td>xsd:string</td>
@@ -69,10 +127,353 @@
                                 </tr>
                             
                                 <tr>
+                                    <td>Chloride Content Group (dppk:chlorideContent)</td>
+                                    <td>Group of properties regarding chloride content.</td>
+                                    <td></td>
+                                    <td>EN 1015-17</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>21°C (dppk:21DegC)</td>
+                                    <td>A standardized temperature for some measurments.</td>
+                                    <td></td>
+                                    <td>EN 13295:2004</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Bond Strength Group (dppk:bondStrength)</td>
+                                    <td>Group of properties regarding bond strength.</td>
+                                    <td></td>
+                                    <td>EN 1542:1999</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>28 Days (dppk:28Days)</td>
+                                    <td>A standardized interval for long term bond strength.</td>
+                                    <td></td>
+                                    <td>EN 1542:1999</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Thermal Compatibility Group (dppk:thermalCompatibility)</td>
+                                    <td>Group of properties regarding thermal compatibility.</td>
+                                    <td></td>
+                                    <td>EN 13687-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Wet Surface (dppk:wetSurface)</td>
+                                    <td>A test condition for dry/wet comparisions.</td>
+                                    <td></td>
+                                    <td>EN 13687-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Carbonation Resistance Group (dppk:resistanceToCarbonation)</td>
+                                    <td>Group of properties regarding carbonation resistance.</td>
+                                    <td></td>
+                                    <td>ISO 1920-12:2015</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Reaction to Fire Group (dppk:reactionToFire)</td>
+                                    <td>Group of properties regarding reaction to fire.</td>
+                                    <td></td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>AVCP System 1 (dppk:avcpSystem1)</td>
+                                    <td>System 1 for measuring reaction to fire.</td>
+                                    <td></td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>AVCP System 2 (dppk:avcpSystem2)</td>
+                                    <td>System 2 for measuring reaction to fire.</td>
+                                    <td></td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>AVCP System 3 (dppk:avcpSystem3)</td>
+                                    <td>System 3 for measuring reaction to fire.</td>
+                                    <td></td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elastic Recovery Group (dppk:elasticRecovery)</td>
+                                    <td>Group of properties regarding elastic recovery.</td>
+                                    <td></td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Method A (dppk:methodA)</td>
+                                    <td>Reference to Method A.</td>
+                                    <td></td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Method B (dppk:methodB)</td>
+                                    <td>Reference to Method B.</td>
+                                    <td></td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>25% (dppk:25Percent)</td>
+                                    <td>A standardized expansion factor to be recovered from in elastic material testing.</td>
+                                    <td></td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>60% (dppk:60Percent)</td>
+                                    <td>A standardized expansion factor to be recovered from in elastic material testing.</td>
+                                    <td></td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>100% (dppk:100Percent)</td>
+                                    <td>A standardized expansion factor to be recovered from in elastic material testing.</td>
+                                    <td></td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Resistance to Flow Group (dppk:resistanceToFlow)</td>
+                                    <td>Group of properties regarding resistance to flow.</td>
+                                    <td></td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>For measurements taken at 5°C (dppk:5DegC)</td>
+                                    <td>A standardized temperature for resistance to flow testing.</td>
+                                    <td></td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>For measurements taken at 50°C (dppk:50DegC)</td>
+                                    <td>A standardized temperature for resistance to flow testing.</td>
+                                    <td></td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>For measurements taken at 70°C (dppk:70DegC)</td>
+                                    <td>A standardized temperature for resistance to flow testing.</td>
+                                    <td></td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Flow Resistance (Proc A, 5°C) (dppk:flowResistanceProcedureA5)</td>
+                                    <td></td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Flow Resistance (Proc A, 70°C) (dppk:flowResistanceProcedureA70)</td>
+                                    <td></td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Flow Resistance (Proc B, 5°C) (dppk:flowResistanceProcedureB5)</td>
+                                    <td></td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Flow Resistance (Proc B, 50°C) (dppk:flowResistanceProcedureB50)</td>
+                                    <td></td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Flow Resistance (Proc B, 70°C) (dppk:flowResistanceProcedureB70)</td>
+                                    <td></td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Procedure A (dppk:procedureA)</td>
+                                    <td>Reference to Procedure A.</td>
+                                    <td></td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Procedure B (dppk:procedureB)</td>
+                                    <td>Reference to Procedure B.</td>
+                                    <td></td>
+                                    <td>ISO 7390:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Shrinkage and Expansion (dppk:shrinkageAndExpansion)</td>
+                                    <td></td>
+                                    <td>xsd:string</td>
+                                    <td>EN 12617-4:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Slip/Skid Resistance Group (dppk:slipSkidResistance)</td>
+                                    <td>Group of properties regarding slip/skid resistance.</td>
+                                    <td></td>
+                                    <td>EN 13036-4:2011</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Slip/Skid Resistance (Laboratory) (dppk:slipSkidResistanceLab)</td>
+                                    <td>Measurements in the laboratory.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 13036-4:2011</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Laboratory Measurement (dppk:laboratory)</td>
+                                    <td>Condition indicating measurements taken in a laboratory setting.</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Modulus of Elasticity Group (dppk:modulusOfElasticityInCompression)</td>
+                                    <td>Group of properties regarding modulus of elasticity.</td>
+                                    <td></td>
+                                    <td>EN 13412:2006</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Modulus of Elasticity (Method 1) (dppk:modulusMethod1)</td>
+                                    <td></td>
+                                    <td>xsd:decimal</td>
+                                    <td>EN 13412:2006</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Method 1 (dppk:method1)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Thermal Expansion (dppk:thermalExpansion)</td>
                                     <td>Change in volume in response to a change in temperature.</td>
                                     <td>xsd:string</td>
                                     <td>EN 1770:1998</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Chloride Content (21°C) (dppk:chlorideContentAt21DegC)</td>
+                                    <td>Maximum percentage by mass.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>EN 1015-17</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Bond Strength (28 Days) (dppk:bondStrengthAt28Days)</td>
+                                    <td>Bond strength measured after 28 days.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>EN 1542:1999</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Thermal Compatibility (Wet Surface) (dppk:thermalCompatibilityWet)</td>
+                                    <td>Thermal compatibility measured on wet surface.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>EN 13687-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Resistance to Carbonation (21°C) (dppk:carbonationResistanceAt21DegC)</td>
+                                    <td>Resistance to carbonation at 21 degrees Celsius.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 13295:2004</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Reaction to Fire (AVCP System 1) (dppk:reactionToFireSystem1)</td>
+                                    <td>Reaction to fire under AVCP System 1.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Reaction to Fire (AVCP System 2) (dppk:reactionToFireSystem2)</td>
+                                    <td>Reaction to fire under AVCP System 2.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Reaction to Fire (AVCP System 3) (dppk:reactionToFireSystem3)</td>
+                                    <td>Reaction to fire under AVCP System 3.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elastic Recovery (Method A, 25% Elongation) (dppk:elasticRecoveryMethodA25)</td>
+                                    <td>Elastic recovery using Method A at 25% elongation.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elastic Recovery (Method A, 60% Elongation) (dppk:elasticRecoveryMethodA60)</td>
+                                    <td>Elastic recovery using Method A at 60% elongation.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elastic Recovery (Method A, 100% Elongation) (dppk:elasticRecoveryMethodA100)</td>
+                                    <td>Elastic recovery using Method A at 25% elongation.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elastic Recovery (Method B, 25% Elongation) (dppk:elasticRecoveryMethodB25)</td>
+                                    <td>Elastic recovery using Method B at 25% elongation.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elastic Recovery (Method B, 60% Elongation) (dppk:elasticRecoveryMethodB60)</td>
+                                    <td>Elastic recovery using Method B at 60% elongation.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elastic Recovery (Method B, 100% Elongation) (dppk:elasticRecoveryMethodB100)</td>
+                                    <td>Elastic recovery using Method B at 100% elongation.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7389:2002</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Flow Resistance (Proc A, 50°C) (dppk:flowResistanceProcedureA50)</td>
+                                    <td>Resistance to flow using Procedure A at 50 degrees Celsius.</td>
+                                    <td>xsd:decimal</td>
+                                    <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
@@ -100,6 +501,13 @@
                                     <td>Dangerous Substances (dppk:dangerousSubstances)</td>
                                     <td>Statement on dangerous substances.</td>
                                     <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Reference Service Life (dppk:referenceServiceLife)</td>
+                                    <td>The reference service life in years.</td>
+                                    <td>xsd:integer</td>
                                     <td></td>
                                 </tr>
                             

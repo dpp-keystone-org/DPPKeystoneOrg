@@ -28,6 +28,7 @@
                     classDiagram
   class GranularityValue
   Resource <|-- GranularityValue
+  GranularityValue : +uniqueProductIdentifier
 
                 </pre>
 
@@ -35,6 +36,28 @@
                 <p>An enumeration of the allowed granularity levels for a DPP.</p>
                 <p><strong>subClassOf:</strong> <a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></p>
 
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>equivalentProperty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Unique Product Identifier (UPI) (dppk:uniqueProductIdentifier)</td>
+                                    <td>The globally resolvable URI for the product/DPP.</td>
+                                    <td>xsd:anyURI</td>
+                                    <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
                 
             </div>
         </main>

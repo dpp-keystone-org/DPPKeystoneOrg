@@ -27,10 +27,16 @@
                 <pre class="mermaid">
                     classDiagram
   class QuantitativeValue
+  QuantitativeValue : +name
+  QuantitativeValue : +weightPercentage
   QuantitativeValue : +value
   QuantitativeValue : +unitCode
   QuantitativeValue : +methodologyReference
   QuantitativeValue : +unitText
+  QuantitativeValue : +cycles
+  QuantitativeValue : +warpChange
+  QuantitativeValue : +weftChange
+  QuantitativeValue : +grade
 
                 </pre>
 
@@ -50,6 +56,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                                <tr>
+                                    <td>Name (dppk:name)</td>
+                                    <td>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</td>
+                                    <td>rdf:langString</td>
+                                    <td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Weight Percentage (dppk:weightPercentage)</td>
+                                    <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
+                                    <td>xsd:decimal</td>
+                                    <td></td>
+                                </tr>
                             
                                 <tr>
                                     <td>Value (dppk:value)</td>
@@ -77,6 +97,34 @@
                                     <td>A human-readable representation of the unit (e.g., kg CO2e, Nm).</td>
                                     <td>xsd:string</td>
                                     <td><a href="https://schema.org/unitText">schema:unitText</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../../sectors/Textile/index.html#cycles">Cycles</a> (dppk:cycles)</td>
+                                    <td>Number of cycles (e.g., rubs) withstanded.</td>
+                                    <td>xsd:integer</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../../sectors/Textile/index.html#warpChange">Warp Change</a> (dppk:warpChange)</td>
+                                    <td>Dimensional change in the warp (length) direction.</td>
+                                    <td>xsd:decimal</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../../sectors/Textile/index.html#weftChange">Weft Change</a> (dppk:weftChange)</td>
+                                    <td>Dimensional change in the weft (width) direction.</td>
+                                    <td>xsd:decimal</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../../sectors/Textile/index.html#grade">Grade</a> (dppk:grade)</td>
+                                    <td>The specific grade or value achieved (e.g. 1-5 scale).</td>
+                                    <td>xsd:decimal</td>
+                                    <td></td>
                                 </tr>
                             
                         </tbody>
