@@ -136,10 +136,58 @@
                     </li>
                 </ul>
 
-                <h3>Validation Artifacts</h3>
+                <h3>Digital Product Passport Schemas</h3>
+                <p>The schemas that define the structure and validation rules for the DPP.</p>
                 <ul>
-                    <li><a href="spec/validation/v1/json-schema/dpp.schema.json">JSON Schema</a></li>
-                    <li><a href="spec/validation/v1/shacl/">Browse SHACL Shapes</a></li>
+                    <li><strong>DPP Schema</strong>
+                        <ul>
+                            <!-- DPP_SCHEMA_LIST_START -->
+                            <li><a href="spec/validation/v1/json-schema/dpp.schema.json">Dpp Schema</a></li>
+                            <!-- DPP_SCHEMA_LIST_END -->
+                        </ul>
+                    </li>
+                    <li><strong>Content Specification Schemas</strong>
+                        <p>Schemas that are conditionally applied based on the <code>contentSpecificationId</code>.</p>
+                        <ul>
+                            <!-- CONTENT_SPEC_SCHEMAS_LIST_START -->
+                            <li><a href="spec/validation/v1/json-schema/battery.schema.json">Battery Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/construction.schema.json">Construction Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/electronics.schema.json">Electronics Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/textile.schema.json">Textile Schema</a></li>
+                            <!-- CONTENT_SPEC_SCHEMAS_LIST_END -->
+                        </ul>
+                    </li>
+                    <li><strong>Auxiliary Schemas</strong>
+                        <p>Reusable schema definitions referenced by other schemas.</p>
+                        <ul>
+                            <!-- AUX_SCHEMAS_LIST_START -->
+                            <li><a href="spec/validation/v1/json-schema/dopc.schema.json">Dopc Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/epd.schema.json">Epd Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/general-product.schema.json">General Product Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/organization.schema.json">Organization Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/packaging.schema.json">Packaging Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/postal-address.schema.json">Postal Address Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/product-characteristic.schema.json">Product Characteristic Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/related-resource.schema.json">Related Resource Schema</a></li>
+                            <!-- AUX_SCHEMAS_LIST_END -->
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>SHACL Shapes</h3>
+                <p>Shapes Constraint Language (SHACL) files for validation.</p>
+                <ul>
+                    <!-- SHACL_SHAPES_LIST_START -->
+                            <li><a href="spec/validation/v1/shacl/battery-shapes.shacl.jsonld">Battery Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/construction-shapes.shacl.jsonld">Construction Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/core-shapes.shacl.jsonld">Core Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/dopc-shapes.shacl.jsonld">Dopc Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/electronics-shapes.shacl.jsonld">Electronics Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/epd-shapes.shacl.jsonld">Epd Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/general-product-shapes.shacl.jsonld">General Product Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/packaging-shapes.shacl.jsonld">Packaging Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/textile-shapes.shacl.jsonld">Textile Shapes.Shacl</a></li>
+                    <!-- SHACL_SHAPES_LIST_END -->
                 </ul>
 
                 <h3>Examples (Proof of Concept)</h3>

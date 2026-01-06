@@ -111,7 +111,10 @@
       "description": "dppk:description",
       "gtin": "dppk:gtin",
       "weightPercentage": "dppk:weightPercentage",
-      "recycledContentPercentage": "dppk:recycledContentPercentage",
+      "recycledContentPercentage": {
+        "@id": "dppk:recycledContentPercentage",
+        "@type": "xsd:decimal"
+      },
       "productCharacteristics": {
         "@id": "dppk:productCharacteristics",
         "@container": "@set"

@@ -4,6 +4,7 @@
     "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld",
     "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld",
     {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
       "dppk": "https://dpp-keystone.org/spec/v1/terms#",
       "cencpr": "urn:cen:cpr:",
       "ConstructionProduct": "dppk:ConstructionProduct",
@@ -20,10 +21,7 @@
       },
       "validationReports": "dppk:validationReports",
       "europeanAssessmentDocument": "dppk:europeanAssessmentDocument",
-      "harmonisedStandardReference": {
-        "@id": "dppk:harmonisedStandardReference",
-        "@type": "@id"
-      },
+      "harmonisedStandardReference": "dppk:harmonisedStandardReference",
       "notifiedBodyId": "dppk:notifiedBodyId",
       "avsSystem": "dppk:avsSystem",
       "reactionToFire": "dppk:reactionToFire",

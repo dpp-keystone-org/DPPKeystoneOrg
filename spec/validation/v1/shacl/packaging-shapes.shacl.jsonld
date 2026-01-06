@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
+  },
+  "@id": "dppkval:PackagingShapes",
+  "@type": "ShapesGraph",
+  "@graph": [
+    {
+      "@id": "dppkval:PackagingShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:Packaging",
+      "property": [
+        {
+          "path": "dppk:packagingMaterialType",
+          "minCount": 1,
+          "datatype": "xsd:string",
+          "message": "Packaging must specify material type."
+        },
+        {
+          "path": "dppk:packagingMaterialCompositionQuantity",
+          "minCount": 0,
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "dppk:packagingRecyclingProcessType",
+          "minCount": 0,
+          "in": [
+            "Recyclable",
+            "Reusable",
+            "Compostable",
+            "None"
+          ]
+        },
+        {
+          "path": "dppk:packagingRecycledContent",
+          "minCount": 0,
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "dppk:packagingSubstanceOfConcern",
+          "minCount": 0,
+          "datatype": "xsd:boolean"
+        }
+      ]
+    }
+  ]
+}

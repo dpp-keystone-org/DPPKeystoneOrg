@@ -2,6 +2,7 @@
   "@context": [
     "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
     {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
       "ElectronicDevice": "dppk:ElectronicDevice",
       "PowerTool": "dppk:PowerTool",
       "energyEfficiencyClass": "dppk:energyEfficiencyClass",

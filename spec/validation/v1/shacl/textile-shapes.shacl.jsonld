@@ -6,6 +6,10 @@
     "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
+    "or": {
+      "@id": "sh:or",
+      "@container": "@list"
+    },
     "node": {
       "@type": "@id"
     },
@@ -28,24 +32,62 @@
     {
       "@id": "dppkval:TextileProductShape",
       "@type": "NodeShape",
-      "targetClass": "dppk:TextileProduct",
-      "and": [
+      "targetClass": "dppk:DigitalProductPassport",
+      "or": [
         {
-          "node": "dppkval:DigitalProductPassportShape"
-        }
-      ],
-      "property": [
-        {
-          "path": "https://dpp-keystone.org/spec/v1/terms#fibreComposition",
-          "minCount": 1,
-          "node": "dppkval:FibreCompositionShape",
-          "message": "Textile product must detail its fibre composition (dppk:fibreComposition)."
+          "not": {
+            "property": {
+              "path": "dppk:contentSpecificationIds",
+              "hasValue": "draft_textile_specification_id"
+            }
+          }
         },
         {
-          "path": "dppk:animalOriginNonTextile",
-          "minCount": 1,
-          "datatype": "xsd:boolean",
-          "message": "Textile product must declare the presence or absence of non-textile parts of animal origin (dppk:animalOriginNonTextile)."
+          "property": [
+            {
+              "path": "dppk:fibreComposition",
+              "minCount": 1,
+              "node": "dppkval:FibreCompositionShape",
+              "message": "Textile product must detail its fibre composition (dppk:fibreComposition)."
+            },
+            {
+              "path": "dppk:animalOriginNonTextile",
+              "minCount": 1,
+              "datatype": "xsd:boolean",
+              "message": "Textile product must declare the presence or absence of non-textile parts of animal origin (dppk:animalOriginNonTextile)."
+            },
+            {
+              "path": "dppk:color",
+              "minCount": 1,
+              "message": "Textile product must have a color."
+            },
+            {
+              "path": "dppk:apparelSize",
+              "minCount": 1,
+              "message": "Textile product must have an apparel size."
+            },
+            {
+              "path": "dppk:apparelSizeSystem",
+              "minCount": 1,
+              "message": "Textile product must have an apparel size system."
+            },
+            {
+              "path": "dppk:careInstructions",
+              "minCount": 1,
+              "message": "Textile product must have care instructions."
+            },
+            {
+              "path": "dppk:recycledContentPercentage",
+              "minCount": 1,
+              "datatype": "xsd:decimal",
+              "message": "Textile product must specify recycled content percentage."
+            },
+            {
+              "path": "dppk:productionSteps",
+              "minCount": 1,
+              "message": "Textile product must specify production steps."
+            }
+          ]
         }
       ]
     },
@@ -63,9 +105,7 @@
           "path": "dppk:fibrePercentage",
           "minCount": 1,
           "datatype": "xsd:decimal",
-          "minInclusive": 0,
-          "maxInclusive": 100,
-          "message": "Fibre composition must specify the percentage (dppk:fibrePercentage) between 0 and 100."
+          "message": "Fibre composition must specify the percentage (dppk:fibrePercentage)."
         }
       ]
     }

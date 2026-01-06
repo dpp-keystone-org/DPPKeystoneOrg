@@ -6,6 +6,10 @@
     "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
+    "or": {
+      "@id": "sh:or",
+      "@container": "@list"
+    },
     "node": {
       "@type": "@id"
     },
@@ -28,24 +32,51 @@
     {
       "@id": "dppkval:ElectronicDeviceShape",
       "@type": "NodeShape",
-      "targetClass": "dppk:ElectronicDevice",
-      "and": [
+      "targetClass": "dppk:DigitalProductPassport",
+      "or": [
         {
-          "node": "dppkval:DigitalProductPassportShape"
-        }
-      ],
-      "property": [
-        {
-          "path": "dppk:voltage",
-          "node": "dppkval:QuantitativeValueShape"
+          "not": {
+            "property": {
+              "path": "dppk:contentSpecificationIds",
+              "hasValue": "draft_electronics_specification_id"
+            }
+          }
         },
         {
-          "path": "dppk:ratedPower",
-          "node": "dppkval:QuantitativeValueShape"
-        },
-        {
-          "path": "dppk:sparePartsAvailable",
-          "datatype": "xsd:boolean"
+          "property": [
+            {
+              "path": "dppk:ratedPower",
+              "minCount": 1,
+              "message": "Electronic device must have a rated power (dppk:ratedPower) as a quantitative value."
+            },
+            {
+              "path": "dppk:voltage",
+              "minCount": 1,
+              "message": "Electronic device must have a voltage (dppk:voltage) as a quantitative value."
+            },
+            {
+              "path": "dppk:torque",
+              "minCount": 1,
+              "message": "Torque must be provided as a numeric value."
+            },
+            {
+              "path": "dppk:maximumRatedSpeed",
+              "minCount": 1,
+              "message": "Maximum Rated Speed must be provided."
+            },
+            {
+              "path": "dppk:sparePartsAvailable",
+              "datatype": "xsd:boolean",
+              "minCount": 1,
+              "message": "Spare Parts Availability must be a boolean."
+            },
+            {
+              "path": "dppk:serviceManualAvailable",
+              "datatype": "xsd:boolean",
+              "minCount": 1,
+              "message": "Service Manual Availability must be a boolean."
+            }
+          ]
         }
       ]
     }

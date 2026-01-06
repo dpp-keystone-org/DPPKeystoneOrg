@@ -6,6 +6,10 @@
     "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
+    "or": {
+      "@id": "sh:or",
+      "@container": "@list"
+    },
     "node": {
       "@type": "@id"
     },
@@ -28,40 +32,45 @@
     {
       "@id": "dppkval:BatteryShape",
       "@type": "NodeShape",
-      "targetClass": "dppk:Battery",
-      "and": [
+      "targetClass": "dppk:DigitalProductPassport",
+      "or": [
         {
-          "node": "dppkval:DigitalProductPassportShape"
-        }
-      ],
-      "property": [
-        {
-          "path": "dppk:batteryCategory",
-          "minCount": 1,
-          "message": "Battery must have a category (dppk:batteryCategory)."
+          "not": {
+            "property": {
+              "path": "dppk:contentSpecificationIds",
+              "hasValue": "draft_battery_specification_id"
+            }
+          }
         },
         {
-          "path": "dppk:batteryChemistry",
-          "minCount": 1,
-          "message": "Battery must declare its chemistry (dppk:batteryChemistry)."
-        },
-        {
-          "path": "dppk:dateOfManufacture",
-          "minCount": 1,
-          "datatype": "xsd:date",
-          "message": "Battery must have a date of manufacture (dppk:dateOfManufacture)."
-        },
-        {
-          "path": "dppk:ratedCapacity",
-          "minCount": 1,
-          "datatype": "xsd:decimal",
-          "message": "Battery must have a rated capacity (dppk:ratedCapacity) as a decimal value."
-        },
-        {
-          "path": "dppk:nominalVoltage",
-          "minCount": 1,
-          "datatype": "xsd:decimal",
-          "message": "Battery must have a nominal voltage (dppk:nominalVoltage) as a decimal value."
+          "property": [
+            {
+              "path": "dppk:batteryCategory",
+              "minCount": 1,
+              "message": "Battery must have a category (dppk:batteryCategory)."
+            },
+            {
+              "path": "dppk:batteryChemistry",
+              "minCount": 1,
+              "message": "Battery must declare its chemistry (dppk:batteryChemistry)."
+            },
+            {
+              "path": "dppk:dateOfManufacture",
+              "minCount": 1,
+              "datatype": "xsd:date",
+              "message": "Battery must have a date of manufacture (dppk:dateOfManufacture)."
+            },
+            {
+              "path": "dppk:ratedCapacity",
+              "minCount": 1,
+              "message": "Battery must have a rated capacity (dppk:ratedCapacity) as a decimal value."
+            },
+            {
+              "path": "dppk:nominalVoltage",
+              "minCount": 1,
+              "message": "Battery must have a nominal voltage (dppk:nominalVoltage) as a decimal value."
+            }
+          ]
         }
       ]
     }
