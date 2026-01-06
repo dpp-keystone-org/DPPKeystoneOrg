@@ -228,6 +228,9 @@ describe('generate-spec-docs.mjs', () => {
             await fs.writeFile(join(srcOntologyDir, 'mock-sub.jsonld'), subPropContent);
             await fs.writeFile(join(distOntologyDir, 'mock-sub.jsonld'), subPropContent);
 
+            // Ensure contexts directory exists to avoid console warning
+            await fs.mkdir(join(TEMP_DIST_DIR, '..', '..', 'src', 'contexts', 'v1'), { recursive: true });
+
             // Run generation
             await generateSpecDocs({
                 srcDir: join(TEMP_DIST_DIR, '..', '..', 'src'),
@@ -240,7 +243,9 @@ describe('generate-spec-docs.mjs', () => {
             
             const html = await fs.readFile(mainClassHtmlPath, 'utf-8');
             expect(html).toContain('Main Class');
-            expect(html).toContain('Sub Property');
+            // 'Sub Property' is defined in 'mock-sub.jsonld' but shown on 'MainClass' page.
+            // It should be linked back to the mock-sub module index.
+            expect(html).toContain('<a href="../mock-sub/index.html#subProperty">Sub Property</a>');
         });
     });
 });

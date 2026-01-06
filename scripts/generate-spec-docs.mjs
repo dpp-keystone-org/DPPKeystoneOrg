@@ -376,9 +376,19 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
                                     return `<td>${renderedValues || ''}</td>`;
                                 }).join('');
 
+                                let propLabelHtml = `${p.label} (${p.id})`;
+                                
+                                // Check if the property is defined in a different module/file
+                                if (p.definedInFile && p.definedInFile !== moduleFileName) {
+                                    const targetPath = join(ontologyDir, p.definedInModule, p.definedInDirName, 'index.html');
+                                    const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+                                    const link = `${relativeLink}#${getFragment(p.id)}`;
+                                    propLabelHtml = `<a href="${link}">${p.label}</a> (${p.id})`;
+                                }
+
                                 return `
                                 <tr>
-                                    <td>${p.label} (${p.id})</td>
+                                    <td>${propLabelHtml}</td>
                                     <td>${p.comment || ''}</td>
                                     <td>${p.range || ''}</td>
                                     ${annotationsHtml}
@@ -515,7 +525,7 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir) 
             </ul>
             <h3>Properties</h3>
             <ul>
-                ${properties.map(p => `<li>${p.label} (${p.id})</li>`).join('')}
+                ${properties.map(p => `<li id="${getFragment(p.id)}"><strong>${p.label}</strong> (${p.id})</li>`).join('')}
             </ul>
         </main>
         <footer>
@@ -712,6 +722,15 @@ export async function generateSpecDocs({
 
         await Promise.all(files.map(async (file) => {
             const { title, description, classes, properties, context } = await getOntologyMetadata(file);
+            const dirName = basename(file, '.jsonld');
+            
+            // Tag properties with their source location for cross-linking
+            properties.forEach(p => {
+                p.definedInModule = dirSuffix;
+                p.definedInDirName = dirName;
+                p.definedInFile = basename(file);
+            });
+
             const metadata = {
                 name: basename(file),
                 module: dirSuffix,
