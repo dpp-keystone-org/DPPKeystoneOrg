@@ -6,6 +6,7 @@
     "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
+    "or": { "@id": "sh:or", "@container": "@list" },
     "node": { "@type": "@id" },
     "path": { "@type": "@id" },
     "targetClass": { "@type": "@id" },
@@ -31,27 +32,23 @@
         },
         {
             "property": [
-              {
-                "path": "dppk:voltage",
-                "datatype": "dppk:QuantitativeValue",
-                "minCount": 1,
-                "message": "Voltage must be provided as a numeric value."
-              },
-              {
+            {
                 "path": "dppk:ratedPower",
-                "datatype": "dppk:QuantitativeValue",
                 "minCount": 1,
-                "message": "Rated Power must be provided as a numeric value."
-              },
+                "message": "Electronic device must have a rated power (dppk:ratedPower) as a quantitative value."
+            },
+            {
+                "path": "dppk:voltage",
+                "minCount": 1,
+                "message": "Electronic device must have a voltage (dppk:voltage) as a quantitative value."
+            },
               {
                 "path": "dppk:torque",
-                "datatype": "dppk:QuantitativeValue",
                 "minCount": 1,
                 "message": "Torque must be provided as a numeric value."
               },
               {
                   "path": "dppk:maximumRatedSpeed",
-                  "datatype": "dppk:QuantitativeValue",
                   "minCount": 1,
                   "message": "Maximum Rated Speed must be provided."
               },

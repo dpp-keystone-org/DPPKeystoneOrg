@@ -38,17 +38,17 @@
     {
       "@type": "dppk:FibreComposition",
       "fibreType": "Cotton",
-      "fibrePercentage": 85
+      "fibrePercentage": 85.0
     },
     {
       "@type": "dppk:FibreComposition",
       "fibreType": "Polyamide",
-      "fibrePercentage": 13
+      "fibrePercentage": 13.0
     },
     {
       "@type": "dppk:FibreComposition",
       "fibreType": "Elastane",
-      "fibrePercentage": 2
+      "fibrePercentage": 2.0
     }
   ],
   "color": "Black",
@@ -59,7 +59,7 @@
     "GINETEX:DoNotBleach",
     "GINETEX:TumbleDryLow"
   ],
-  "recycledContentPercentage": 20,
+  "recycledContentPercentage": 20.0,
 
   // This boolean is required by the textile SHACL shape.
   "animalOriginNonTextile": false,
@@ -89,7 +89,7 @@
       "testMethod": "ISO 105-C06"
   },
   "microplasticRelease": {
-      "value": 150,
+      "value": 150.0,
       "testMethod": "ISO 4484-1"
   }
 }

@@ -46,16 +46,34 @@ function logValidationReport(report, dataGraph) {
     console.log('--- SHACL Validation Report ---');
     console.log(`Violations Found: ${report.results.length}\n`);
 
-    for (const result of report.results) {
+    const logResult = (result, depth = 0) => {
+        const indent = '  '.repeat(depth);
         const message = result.message[0]?.value || 'No message';
         const path = result.path ? result.path.value : 'N/A';
         const focusNode = result.focusNode ? result.focusNode.value : 'N/A';
         const severity = result.severity ? result.severity.value.split('#')[1] : 'N/A';
+        const sourceShape = result.sourceShape ? result.sourceShape.value : 'N/A';
 
         const humanName = findHumanName(result.focusNode, dataGraph);
         const focusNodeDisplay = humanName ? `${humanName} (${focusNode})` : focusNode;
 
-        console.log(`Severity: ${severity}\n  Message: ${message}\n  Focus Node: ${focusNode}\n  Result Path: ${path}\n---------------------------------`);
+        console.log(`${indent}Severity: ${severity}`);
+        console.log(`${indent}Message: ${message}`);
+        console.log(`${indent}Focus Node: ${focusNodeDisplay}`);
+        console.log(`${indent}Result Path: ${path}`);
+        console.log(`${indent}Source Shape: ${sourceShape}`);
+        
+        if (result.detail && result.detail.length > 0) {
+            console.log(`${indent}Details:`);
+            for (const detail of result.detail) {
+                logResult(detail, depth + 1);
+            }
+        }
+        console.log(`${indent}---------------------------------`);
+    };
+
+    for (const result of report.results) {
+        logResult(result);
     }
 }
 

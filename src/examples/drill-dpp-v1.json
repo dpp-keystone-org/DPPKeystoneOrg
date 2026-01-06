@@ -65,12 +65,12 @@
   "netWeight": 1.8,
 
   // Properties defined in the Electronics/PowerTool ontology.
-  "torque": 20,
-  "maximumRatedSpeed": 1000,
+  "torque": 20.0,
+  "maximumRatedSpeed": 1000.0,
 
   // --- Power (Aligned with Electronics Ontology) ---
-  "ratedPower": 100,
-  "voltage": 12,
+  "ratedPower": 100.0,
+  "voltage": 12.0,
 
   // --- Repairability (Aligned with Electronics Ontology) ---
   "sparePartsAvailable": true,

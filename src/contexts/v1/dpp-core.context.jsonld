@@ -110,7 +110,10 @@
     // BOM and Materials
 
     "weightPercentage": "dppk:weightPercentage",
-    "recycledContentPercentage": "dppk:recycledContentPercentage",
+    "recycledContentPercentage": {
+      "@id": "dppk:recycledContentPercentage",
+      "@type": "xsd:decimal"
+    },
 
     // ==================================================================
     // Properties: Product Characteristics

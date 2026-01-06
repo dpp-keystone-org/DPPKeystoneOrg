@@ -8,6 +8,7 @@
         
         // Define Construction and Heavy Industry specific terms.
         {
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
             // Define the dppk namespace locally to ensure terms are correctly expanded.
             "dppk": "https://dpp-keystone.org/spec/v1/terms#",
 
@@ -29,10 +30,7 @@
             "validationReports": "dppk:validationReports",
             "europeanAssessmentDocument": "dppk:europeanAssessmentDocument",
             
-            "harmonisedStandardReference": {
-                "@id": "dppk:harmonisedStandardReference",
-                "@type": "@id"
-            },
+            "harmonisedStandardReference": "dppk:harmonisedStandardReference",
             
             "notifiedBodyId": "dppk:notifiedBodyId",
             "avsSystem": "dppk:avsSystem",

@@ -6,15 +6,28 @@
     "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
-    "node": { "@type": "@id" },
-    "path": { "@type": "@id" },
-    "targetClass": { "@type": "@id" },
-    "class": { "@type": "@id" },
-    "datatype": { "@type": "@id" }
+    "or": {
+      "@id": "sh:or",
+      "@container": "@list"
+    },
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
   },
   "@id": "dppkval:ConstructionShapes",
   "@type": "ShapesGraph",
-  
   "@graph": [
     {
       "@id": "dppkval:ConstructionProductShape",

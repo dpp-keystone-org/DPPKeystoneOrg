@@ -1,18 +1,18 @@
 {
-    "@context": {
-      "sh": "http://www.w3.org/ns/shacl#",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-      "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
-      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "@vocab": "http://www.w3.org/ns/shacl#",
-      "node": { "@type": "@id" },
-      "path": { "@type": "@id" },
-      "targetClass": { "@type": "@id" },
-      "class": { "@type": "@id" },
-      "datatype": { "@type": "@id" }
-    },
-    "@id": "dppkval:TextileShapes",
+      "@context": {
+        "sh": "http://www.w3.org/ns/shacl#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "@vocab": "http://www.w3.org/ns/shacl#",
+        "or": { "@id": "sh:or", "@container": "@list" },
+        "node": { "@type": "@id" },
+        "path": { "@type": "@id" },
+        "targetClass": { "@type": "@id" },
+        "class": { "@type": "@id" },
+        "datatype": { "@type": "@id" }
+      },    "@id": "dppkval:TextileShapes",
     "@type": "ShapesGraph",
     
     "@graph": [
@@ -92,9 +92,7 @@
                 "path": "dppk:fibrePercentage",
                 "minCount": 1,
                 "datatype": "xsd:decimal",
-                "minInclusive": 0,
-                "maxInclusive": 100,
-                "message": "Fibre composition must specify the percentage (dppk:fibrePercentage) between 0 and 100."
+                "message": "Fibre composition must specify the percentage (dppk:fibrePercentage)."
             }
         ]
       }
