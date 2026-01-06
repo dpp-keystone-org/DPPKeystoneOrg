@@ -209,7 +209,8 @@ for (const sector of sectors) {
         const headerRow = page.locator('.grid-row:has(.grid-cell:text-is("epd.gwp"))');
         await expect(headerRow).toHaveClass(/grid-row-header/); // Assert header style
         const headerValueCell = headerRow.locator('.grid-cell').nth(1);
-        await expect(headerValueCell).toBeEmpty(); // Assert non-editable
+        await expect(headerValueCell).not.toBeEmpty();
+        await expect(headerValueCell.locator('button')).toHaveText('Remove gwp');
         const headerUnitCell = headerRow.locator('.grid-cell').nth(2);
         await expect(headerUnitCell).toBeEmpty(); // No unit for a header row
         const headerOntologyCell = headerRow.locator('.grid-cell').nth(3);

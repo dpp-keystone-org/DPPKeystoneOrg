@@ -76,7 +76,7 @@
             },
             {
               "path": "dppk:validationReports",
-              "datatype": "xsd:string",
+              "node": "dppkval:RelatedResourceShape",
               "minCount": 0
             },
             {
@@ -86,7 +86,7 @@
             },
             {
               "path": "dppk:europeanAssessmentDocument",
-              "datatype": "xsd:string",
+              "node": "dppkval:RelatedResourceShape",
               "minCount": 0
             },
             {

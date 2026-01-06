@@ -145,43 +145,6 @@
     },
 
     {
-        "@id": "dppk:notifiedBodyId",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [
-            { "@language": "bg", "@value": "Идентификатор на нотифицирания орган" },
-            { "@language": "cs", "@value": "Identifikátor oznámeného subjektu" },
-            { "@language": "da", "@value": "Bemyndiget organs identifikator" },
-            { "@language": "de", "@value": "Kennung der notifizierten Stelle" },
-            { "@language": "el", "@value": "Αναγνωριστικό κοινοποιημένου οργανισμού" },
-            { "@language": "en", "@value": "Notified Body Identifier" },
-            { "@language": "es", "@value": "Identificador del Organismo Notificado" },
-            { "@language": "et", "@value": "Teavitatud asutuse identifikaator" },
-            { "@language": "fi", "@value": "Ilmoitetun laitoksen tunniste" },
-            { "@language": "fr", "@value": "Identifiant de l'organisme notifié" },
-            { "@language": "ga", "@value": "Aitheantóir an Chomhlachta a dtugtar Fógra dó" },
-            { "@language": "hr", "@value": "Identifikator prijavljenog tijela" },
-            { "@language": "hu", "@value": "Bejelentett szervezet azonosítója" },
-            { "@language": "it", "@value": "Identificativo dell'organismo notificato" },
-            { "@language": "lt", "@value": "Notifikuotosios įstaigos identifikatorius" },
-            { "@language": "lv", "@value": "Paziņotās iestādes identifikators" },
-            { "@language": "mt", "@value": "Identifikatur tal-Korp Notifikat" },
-            { "@language": "nl", "@value": "Identificatie aangemelde instantie" },
-            { "@language": "pl", "@value": "Identyfikator jednostki notyfikowanej" },
-            { "@language": "pt", "@value": "Identificador do Organismo Notificado" },
-            { "@language": "ro", "@value": "Identificatorul organismului notificat" },
-            { "@language": "sk", "@value": "Identifikátor notifikovanej osoby" },
-            { "@language": "sl", "@value": "Identifikator priglašenega organa" },
-            { "@language": "sv", "@value": "Identifierare för anmält organ" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The identification number of the Notified Body involved in the assessment and verification of constancy of performance (e.g., NB1234)." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
-    },
-
-    {
         "@id": "dppk:avsSystem",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": [
@@ -227,6 +190,13 @@
             { "@language": "sl", "@value": "Podrobnosti o priglašenem organu (NB)" },
             { "@language": "sv", "@value": "Information om anmält organ (NB)" }
         ],
+        "rdfs:comment": [
+            { "@language": "en", "@value": "The EU-recognized notified body that verifies a product's conformance to European regulations" }
+        ],
+        "dcterms:source": {
+            "@id": "https://single-market-economy.ec.europa.eu/sectors/construction/construction-products-regulation-cpr/notified-bodies_en",
+            "rdfs:label": "Notified bodies - Internal Market, Industry, Entrepreneurship and SMEs"
+        },
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
         "rdfs:range": { "@id": "dppk:Organization" },
         "rdfs:term_status": "unstable"
@@ -260,13 +230,16 @@
             { "@language": "sl", "@value": "Podrobnosti o organu za tehnično ocenjevanje (TAB)" },
             { "@language": "sv", "@value": "Information om tekniskt bedömningsorgan (TAB)" }
         ],
+        "rdfs:comment": [
+            { "@language": "en", "@value": "The technical assessment body that independently evaluates a product's technical characteristics" }
+        ],
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
         "rdfs:range": { "@id": "dppk:Organization" },
         "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:validationReports",
-        "@type": "owl:DatatypeProperty",
+        "@type": "owl:ObjectProperty",
         "rdfs:label": [
             { "@language": "bg", "@value": "Референтни доклади за валидиране" },
             { "@language": "cs", "@value": "Reference na validační zprávy" },
@@ -294,12 +267,12 @@
             { "@language": "sv", "@value": "Referens till valideringsrapporter" }
         ],
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:range": { "@id": "dppk:RelatedResource" },
         "rdfs:term_status": "unstable"
     },
     {
         "@id": "dppk:europeanAssessmentDocument",
-        "@type": "owl:DatatypeProperty",
+        "@type": "owl:ObjectProperty",
         "rdfs:label": [
             { "@language": "bg", "@value": "Референтен европейски документ за оценяване (EAD)" },
             { "@language": "cs", "@value": "Reference na evropský dokument pro posuzování (EAD)" },
@@ -327,7 +300,7 @@
             { "@language": "sv", "@value": "Referens till europeiskt bedömningsdokument (EAD)" }
         ],
         "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:range": { "@id": "dppk:RelatedResource" },
         "rdfs:term_status": "unstable"
     },
 
