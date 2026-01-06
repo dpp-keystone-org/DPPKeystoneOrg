@@ -1,16 +1,11 @@
 {
-  // FIX: Import the standard SHACL context and define local prefixes.
   "@context": {
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-
-    // Set the default vocabulary to SHACL to expand terms like "property", "path", etc.
     "@vocab": "http://www.w3.org/ns/shacl#",
-
-    // Ensure that properties expecting an IRI value are correctly typed.
     "node": { "@type": "@id" },
     "path": { "@type": "@id" },
     "targetClass": { "@type": "@id" },
@@ -18,76 +13,80 @@
     "datatype": { "@type": "@id" }
   },
   "@id": "dppkval:ConstructionShapes",
-  "@type": "sh:ShapesGraph",
+  "@type": "ShapesGraph",
   
   "@graph": [
     {
       "@id": "dppkval:ConstructionProductShape",
-      "@type": "sh:NodeShape",
-      // Syntax updated for standard context (using prefixed name directly)
-      "targetClass": "dppk:ConstructionProduct",
-      // Assumes dppkval:DigitalProductPassportShape is defined elsewhere and loaded.
-      "and": [
-        { "node": "dppkval:DigitalProductPassportShape" }
-      ],
-      "property": [
+      "@type": "NodeShape",
+      "targetClass": "dppk:DigitalProductPassport",
+      "or": [
         {
-          "path": "dppk:documents",
-          "name": "Documents",
-          "node": "dppkval:DigitalDocumentShape",
-          "minCount": 0
+          "not": {
+            "property": {
+              "path": "dppk:contentSpecificationIds",
+              "hasValue": "draft_construction_specification_id"
+            }
+          }
         },
         {
-          "path": "dppk:railProfile",
-          "name": "Rail Profile",
-          "minCount": 0
-        },
-        {
-          "path": "dppk:steelGrade",
-          "name": "Steel Grade",
-          "minCount": 0
-        },
-        {
-          "path": "dppk:hasDoP",
-          "name": "Declaration of Performance",
-          "node": "dppkval:DoPShape",
-          "minCount": 0 // Optional
-        },
-        // Validation for custom datatypes (Typed Literals)
-        {
-          "path": "dppk:netWeight",
-          "name": "Net Weight (Kg)",
-          "datatype": "dppk:KgWeightLiteral",
-          // Regex ensures the lexical value is a valid numeric format
-          "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
-          "minCount": 0
-        },
-        {
-          "path": "dppk:length",
-          "name": "Length (Meters)",
-          "datatype": "dppk:MetersLengthLiteral",
-          "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$",
-          "minCount": 0
-        }
-      ]
-    },
-
-    // --- DoPShape ---
-    {
-      "@id": "dppkval:DoPShape",
-      "@type": "sh:NodeShape",
-      "targetClass": "dppk:DeclarationOfPerformance",
-      // "closed": true, // Temporarily disabled for flexibility
-      "property": [
-        {
-          "path": "dppk:dopIdentifier",
-          "name": "DoP Identifier",
-          "minCount": 1
-        },
-        {
-          "path": "dppk:documentURL",
-          "name": "Document URL",
-          "minCount": 1
+          "property": [
+            {
+              "path": "dppk:versionNumber",
+              "minCount": 0,
+              "datatype": "xsd:string"
+            },
+            {
+              "path": "dppk:versionDate",
+              "minCount": 0,
+              "datatype": "xsd:date"
+            },
+            {
+              "path": "dppk:instructionsForUse",
+              "node": "dppkval:RelatedResourceShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:safetyDataSheet",
+              "node": "dppkval:RelatedResourceShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:notifiedBody",
+              "node": "dppkval:OrganizationShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:technicalAssessmentBody",
+              "node": "dppkval:OrganizationShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:validationReports",
+              "datatype": "xsd:string",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:harmonisedStandardReference",
+              "datatype": "xsd:string",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:europeanAssessmentDocument",
+              "datatype": "xsd:string",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:DoPCBlock",
+              "node": "dppkval:DoPCShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:epd",
+              "node": "dppkval:EPDShape",
+              "minCount": 0
+            }
+          ]
         }
       ]
     }

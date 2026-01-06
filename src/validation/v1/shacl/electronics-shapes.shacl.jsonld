@@ -1,53 +1,75 @@
 {
-  // Standardized context for consistency across shape files.
   "@context": {
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-
-    // Set the default vocabulary to SHACL.
     "@vocab": "http://www.w3.org/ns/shacl#",
-
-    // Ensure properties expecting an IRI value are correctly typed.
     "node": { "@type": "@id" },
     "path": { "@type": "@id" },
     "targetClass": { "@type": "@id" },
     "class": { "@type": "@id" },
     "datatype": { "@type": "@id" }
   },
-    "@id": "dppkval:ElectronicsShapes",
-    "@type": "ShapesGraph",
-    
-    "@graph": [
-      // ==================================================================
-      // Shape: Electronic Device (EEE)
-      // ==================================================================
-      {
-        "@id": "dppkval:ElectronicDeviceShape",
-        "@type": "NodeShape",
-        "targetClass": "dppk:ElectronicDevice",
-        "and": [
-          { "node": "dppkval:DigitalProductPassportShape" }
-        ],
-        "property": [
-          {
-            // Voltage, if provided, must conform to QuantitativeValue.
-            "path": "dppk:voltage",
-            "node": "dppkval:QuantitativeValueShape"
-          },
-          {
-            // Rated Power, if provided, must conform to QuantitativeValue.
-            "path": "dppk:ratedPower",
-            "node": "dppkval:QuantitativeValueShape"
-          },
-          {
-            // Spare Parts Availability must be a boolean.
-            "path": "dppk:sparePartsAvailable",
-            "datatype": "xsd:boolean"
-          }
-        ]
-      }
-    ]
-  }
+  "@id": "dppkval:ElectronicsShapes",
+  "@type": "ShapesGraph",
+  
+  "@graph": [
+    {
+      "@id": "dppkval:ElectronicDeviceShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:DigitalProductPassport",
+      "or": [
+        {
+            "not": {
+                "property": {
+                    "path": "dppk:contentSpecificationIds",
+                    "hasValue": "draft_electronics_specification_id"
+                }
+            }
+        },
+        {
+            "property": [
+              {
+                "path": "dppk:voltage",
+                "datatype": "dppk:QuantitativeValue",
+                "minCount": 1,
+                "message": "Voltage must be provided as a numeric value."
+              },
+              {
+                "path": "dppk:ratedPower",
+                "datatype": "dppk:QuantitativeValue",
+                "minCount": 1,
+                "message": "Rated Power must be provided as a numeric value."
+              },
+              {
+                "path": "dppk:torque",
+                "datatype": "dppk:QuantitativeValue",
+                "minCount": 1,
+                "message": "Torque must be provided as a numeric value."
+              },
+              {
+                  "path": "dppk:maximumRatedSpeed",
+                  "datatype": "dppk:QuantitativeValue",
+                  "minCount": 1,
+                  "message": "Maximum Rated Speed must be provided."
+              },
+              {
+                "path": "dppk:sparePartsAvailable",
+                "datatype": "xsd:boolean",
+                "minCount": 1,
+                "message": "Spare Parts Availability must be a boolean."
+              },
+              {
+                  "path": "dppk:serviceManualAvailable",
+                  "datatype": "xsd:boolean",
+                  "minCount": 1,
+                  "message": "Service Manual Availability must be a boolean."
+              }
+            ]
+        }
+      ]
+    }
+  ]
+}

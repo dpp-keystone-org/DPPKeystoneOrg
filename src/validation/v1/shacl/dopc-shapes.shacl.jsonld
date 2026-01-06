@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": { "@type": "@id" },
+    "path": { "@type": "@id" },
+    "targetClass": { "@type": "@id" },
+    "class": { "@type": "@id" },
+    "datatype": { "@type": "@id" }
+  },
+  "@id": "dppkval:DoPCShapes",
+  "@type": "ShapesGraph",
+  
+  "@graph": [
+    {
+      "@id": "dppkval:DoPCShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:DoPCBlock",
+      "property": [
+        {
+          "path": "dppk:declarationCode",
+          "minCount": 1,
+          "datatype": "xsd:string",
+          "message": "DoPC must have a declaration code."
+        },
+        {
+          "path": "dppk:dateOfIssue",
+          "minCount": 1,
+          "datatype": "xsd:date",
+          "message": "DoPC must have a date of issue."
+        },
+        {
+          "path": "dppk:tensileStrengthAdhesion",
+          "datatype": "xsd:string",
+          "minCount": 0
+        },
+        {
+           "path": "dppk:declaredUnit",
+           "datatype": "xsd:decimal",
+           "minCount": 0
+        }
+      ]
+    }
+  ]
+}

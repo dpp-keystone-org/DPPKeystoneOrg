@@ -81,8 +81,7 @@
             ,
             {
                 "path": "dppk:contentSpecificationIds",
-                "minCount": 1,
-                "message": "DPP must have at least one contentSpecificationId."
+                "message": "DPP contentSpecificationIds must be a valid list."
             },
             {
                 "path": "dppk:granularity",

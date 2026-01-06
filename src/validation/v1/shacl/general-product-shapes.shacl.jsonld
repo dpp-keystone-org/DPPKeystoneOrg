@@ -1,0 +1,87 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppkval": "https://dpp-keystone.org/spec/validation/v1/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": { "@type": "@id" },
+    "path": { "@type": "@id" },
+    "targetClass": { "@type": "@id" },
+    "class": { "@type": "@id" },
+    "datatype": { "@type": "@id" }
+  },
+  "@id": "dppkval:GeneralProductShapes",
+  "@type": "ShapesGraph",
+  
+  "@graph": [
+    {
+      "@id": "dppkval:GeneralProductShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:DigitalProductPassport",
+      "property": [
+        {
+          "path": "dppk:brand",
+          "minCount": 0,
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "dppk:model",
+          "minCount": 0,
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "dppk:color",
+          "minCount": 0,
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "dppk:countryOfOrigin",
+          "minCount": 0,
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "dppk:netWeight",
+          "minCount": 0,
+          "datatype": "dppk:KgWeightLiteral",
+          "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$"
+        },
+        {
+          "path": "dppk:grossWeight",
+          "minCount": 0,
+          "datatype": "xsd:decimal" 
+        },
+        {
+            "path": "dppk:length",
+            "minCount": 0,
+            "datatype": "dppk:MetersLengthLiteral",
+            "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$"
+        },
+        {
+            "path": "dppk:width",
+            "minCount": 0,
+            "datatype": "dppk:MetersLengthLiteral",
+            "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$"
+        },
+        {
+            "path": "dppk:height",
+            "minCount": 0,
+            "datatype": "dppk:MetersLengthLiteral",
+            "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$"
+        },
+        {
+            "path": "dppk:depth",
+            "minCount": 0,
+            "datatype": "dppk:MetersLengthLiteral",
+            "pattern": "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$"
+        },
+        {
+            "path": "dppk:components",
+            "minCount": 0
+            
+        }
+      ]
+    }
+  ]
+}
