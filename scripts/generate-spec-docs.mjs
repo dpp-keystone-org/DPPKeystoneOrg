@@ -704,17 +704,13 @@ export async function generateSpecDocs({
 
     const allMetadata = [];
 
-    // 2. Process Ontologies for HTML documentation
+    // Phase 1: Parse all ontology metadata
     for (const dirSuffix of ontologyDirsToProcess) {
         const fullPath = join(ontologyDir, dirSuffix);
-        const directoryName = `ontology/v1/${dirSuffix}`;
-
         const files = await getJsonLdFiles(fullPath);
-        if (files.length === 0) {
-            continue;
-        }
+        if (files.length === 0) continue;
 
-        const fileMetadata = await Promise.all(files.map(async (file) => {
+        await Promise.all(files.map(async (file) => {
             const { title, description, classes, properties, context } = await getOntologyMetadata(file);
             const metadata = {
                 name: basename(file),
@@ -726,16 +722,51 @@ export async function generateSpecDocs({
                 context
             };
             allMetadata.push(metadata);
-            return metadata;
         }));
+    }
 
+    // Phase 2: Cross-link properties to their domain classes across modules
+    for (const metadata of allMetadata) {
+        for (const property of metadata.properties) {
+            // We are looking for properties that have a domain definition
+            if (property.domain && property.domain['@id']) {
+                const domainClassId = property.domain['@id'];
+                
+                // Find the class definition in our metadata (could be in any module)
+                for (const targetModule of allMetadata) {
+                    const targetClass = targetModule.classes.find(c => c.id === domainClassId);
+                    if (targetClass) {
+                        // Found the class! Check if it already lists this property
+                        const alreadyExists = targetClass.properties.some(p => p.id === property.id);
+                        if (!alreadyExists) {
+                            targetClass.properties.push(property);
+                        }
+                        break; // Found the class, stop searching modules
+                    }
+                }
+            }
+        }
+    }
+
+    // Phase 3: Generate HTML documentation
+    // Group metadata by module/directory for index generation
+    const metadataByDir = {};
+    for (const m of allMetadata) {
+        if (!metadataByDir[m.module]) metadataByDir[m.module] = [];
+        metadataByDir[m.module].push(m);
+    }
+
+    for (const [dirSuffix, fileMetadataList] of Object.entries(metadataByDir)) {
+        const fullPath = join(ontologyDir, dirSuffix);
+        const directoryName = `ontology/v1/${dirSuffix}`;
+        
         // Create main index for the directory (e.g., /core/index.html)
         const directoryIndexPath = join(fullPath, 'index.html');
-        const directoryIndexHtml = generateOntologyHtml(directoryName, fileMetadata, distDir, directoryIndexPath);
+        const directoryIndexHtml = generateOntologyHtml(directoryName, fileMetadataList, distDir, directoryIndexPath);
         await writeFile(directoryIndexPath, directoryIndexHtml);
         
         // Loop through each file (module) and generate its own pages
-        for (const metadata of fileMetadata) {
+        for (const metadata of fileMetadataList) {
             const moduleName = basename(metadata.name, '.jsonld');
             const moduleDir = join(fullPath, moduleName);
             await mkdir(moduleDir, { recursive: true }); // Ensure dir exists

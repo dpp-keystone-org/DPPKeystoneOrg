@@ -190,5 +190,57 @@ describe('generate-spec-docs.mjs', () => {
             // Check for correct CSS path
             expect(classHtml).toContain('<link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">');
         });
+
+        it('should include properties defined in other modules in the class documentation', async () => {
+            // Setup: Create two files, one with a class, one with a property for that class
+            // generateSpecDocs reads from 'dist' for generation, and 'src' for term dictionary.
+            // We need to ensure files exist in both or are copied.
+            
+            const srcOntologyDir = join(TEMP_DIST_DIR, '..', '..', 'src', 'ontology', 'v1', 'core');
+            const distOntologyDir = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core');
+            
+            await fs.mkdir(srcOntologyDir, { recursive: true });
+            await fs.mkdir(distOntologyDir, { recursive: true });
+
+            const mainClassContent = JSON.stringify({
+                "@context": { "dppk": "https://dpp-keystone.org/spec/v1/terms#", "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
+                "@graph": [{
+                    "@id": "dppk:MainClass",
+                    "@type": "rdfs:Class",
+                    "rdfs:label": "Main Class"
+                }]
+            });
+
+            const subPropContent = JSON.stringify({
+                "@context": { "dppk": "https://dpp-keystone.org/spec/v1/terms#", "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
+                "@graph": [{
+                    "@id": "dppk:subProperty",
+                    "@type": "owl:DatatypeProperty",
+                    "rdfs:label": "Sub Property",
+                    "rdfs:domain": { "@id": "dppk:MainClass" },
+                    "rdfs:range": "xsd:string"
+                }]
+            });
+
+            await fs.writeFile(join(srcOntologyDir, 'mock-main.jsonld'), mainClassContent);
+            await fs.writeFile(join(distOntologyDir, 'mock-main.jsonld'), mainClassContent);
+
+            await fs.writeFile(join(srcOntologyDir, 'mock-sub.jsonld'), subPropContent);
+            await fs.writeFile(join(distOntologyDir, 'mock-sub.jsonld'), subPropContent);
+
+            // Run generation
+            await generateSpecDocs({
+                srcDir: join(TEMP_DIST_DIR, '..', '..', 'src'),
+                distDir: TEMP_DIST_DIR
+            });
+
+            // Verify
+            const mainClassHtmlPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'mock-main', 'MainClass.html');
+            await expect(fs.access(mainClassHtmlPath)).resolves.not.toThrow();
+            
+            const html = await fs.readFile(mainClassHtmlPath, 'utf-8');
+            expect(html).toContain('Main Class');
+            expect(html).toContain('Sub Property');
+        });
     });
 });
