@@ -16,12 +16,20 @@ describe('index.html generation', () => {
     const ontologySectorsRegex = /<!-- ONTOLOGY_SECTORS_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- ONTOLOGY_SECTORS_LIST_END -->/;
     const examplesRegex = /<!-- EXAMPLES_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- EXAMPLES_LIST_END -->/;
     const utilsRegex = /<!-- UTILITIES_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- UTILITIES_LIST_END -->/;
+    const dppSchemaRegex = /<!-- DPP_SCHEMA_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- DPP_SCHEMA_LIST_END -->/;
+    const contentSpecSchemasRegex = /<!-- CONTENT_SPEC_SCHEMAS_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- CONTENT_SPEC_SCHEMAS_LIST_END -->/;
+    const auxSchemasRegex = /<!-- AUX_SCHEMAS_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- AUX_SCHEMAS_LIST_END -->/;
+    const shaclShapesRegex = /<!-- SHACL_SHAPES_LIST_START -->[\s\S]*<li>.*<\/li>[\s\S]*<!-- SHACL_SHAPES_LIST_END -->/;
 
     expect(indexContent).toMatch(contextsRegex);
     expect(indexContent).toMatch(ontologyCoreRegex);
     expect(indexContent).toMatch(ontologySectorsRegex);
     expect(indexContent).toMatch(examplesRegex);
     expect(indexContent).toMatch(utilsRegex);
+    expect(indexContent).toMatch(dppSchemaRegex);
+    expect(indexContent).toMatch(contentSpecSchemasRegex);
+    expect(indexContent).toMatch(auxSchemasRegex);
+    expect(indexContent).toMatch(shaclShapesRegex);
 
     // Also check for a specific file to be reasonably sure the content is correct
     expect(indexContent).toContain('<a href="spec/contexts/v1/dpp-core.context/index.html">Dpp Core Context</a>');
@@ -32,5 +40,13 @@ describe('index.html generation', () => {
     expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v1.json">Sock Dpp</a>');
     expect(indexContent).toContain('<a href="spec/util/js/client/dpp-adapter.js">client/dpp-adapter.js</a>');
     expect(indexContent).toContain('<a href="spec/util/js/server/dpp-adapter.js">server/dpp-adapter.js</a>');
+
+    // Check Schemas
+    expect(indexContent).toContain('Dpp Schema</a>'); 
+    expect(indexContent).toContain('Battery Schema</a>'); 
+    expect(indexContent).toContain('Related Resource Schema</a>');
+    
+    // Check SHACL
+    expect(indexContent).toContain('Battery Shapes.Shacl</a>');
   });
 });

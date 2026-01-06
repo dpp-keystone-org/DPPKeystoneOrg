@@ -87,6 +87,61 @@ ${classLinks}
   return listItems.join('\n');
 }
 
+/**
+ * Categorizes and generates HTML lists for schemas.
+ * @param {string} dirPath The path to the directory.
+ * @param {string} baseHref The base href for the links.
+ * @returns {Promise<{dppList: string, contentSpecList: string, auxList: string}>}
+ */
+async function generateSchemaLists(dirPath, baseHref) {
+  const entries = await fs.readdir(dirPath, { withFileTypes: true });
+  const dppSchemas = [];
+  const contentSpecSchemas = [];
+  const auxSchemas = [];
+
+  for (const entry of entries) {
+    if (entry.isFile() && entry.name.endsWith('.json')) {
+      const fullPath = path.join(dirPath, entry.name);
+      try {
+        const content = await fs.readFile(fullPath, 'utf-8');
+        const json = JSON.parse(content);
+        const fileName = entry.name;
+        // Format link text: "battery.schema.json" -> "Battery Schema"
+        // But the user requested "named links". Let's format nicely.
+        // removing .schema.json and making Title Case
+        const linkText = fileName
+            .replace('.schema.json', '')
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, l => l.toUpperCase()) + ' Schema';
+            
+        const link = `<a href="${baseHref}${fileName}">${linkText}</a>`;
+        const listItem = `                            <li>${link}</li>`;
+
+        if (fileName === 'dpp.schema.json') {
+          dppSchemas.push(listItem);
+        } else if (json.if && json.if.properties && json.if.properties.contentSpecificationIds) {
+          contentSpecSchemas.push(listItem);
+        } else {
+          auxSchemas.push(listItem);
+        }
+      } catch (err) {
+        console.warn(`Skipping schema file ${entry.name} due to error: ${err.message}`);
+      }
+    }
+  }
+
+  // Sort lists alphabetically
+  dppSchemas.sort();
+  contentSpecSchemas.sort();
+  auxSchemas.sort();
+
+  return {
+    dppList: dppSchemas.join('\n'),
+    contentSpecList: contentSpecSchemas.join('\n'),
+    auxList: auxSchemas.join('\n')
+  };
+}
+
 
 export async function updateIndexHtml({
   srcDir = SRC_DIR,
@@ -121,6 +176,31 @@ export async function updateIndexHtml({
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_SECTORS_LIST_START -->[\s\S]*<!-- ONTOLOGY_SECTORS_LIST_END -->/,
       '<!-- ONTOLOGY_SECTORS_LIST_START -->\n' + ontologySectorsList + '\n                                    <!-- ONTOLOGY_SECTORS_LIST_END -->'
+    );
+
+    // Generate and inject schema lists
+    const schemasPath = path.join(srcDir, 'validation', 'v1', 'json-schema');
+    const { dppList, contentSpecList, auxList } = await generateSchemaLists(schemasPath, 'spec/validation/v1/json-schema/');
+    
+    indexContent = indexContent.replace(
+        /<!-- DPP_SCHEMA_LIST_START -->[\s\S]*<!-- DPP_SCHEMA_LIST_END -->/,
+        '<!-- DPP_SCHEMA_LIST_START -->\n' + dppList + '\n                            <!-- DPP_SCHEMA_LIST_END -->'
+    );
+    indexContent = indexContent.replace(
+        /<!-- CONTENT_SPEC_SCHEMAS_LIST_START -->[\s\S]*<!-- CONTENT_SPEC_SCHEMAS_LIST_END -->/,
+        '<!-- CONTENT_SPEC_SCHEMAS_LIST_START -->\n' + contentSpecList + '\n                            <!-- CONTENT_SPEC_SCHEMAS_LIST_END -->'
+    );
+    indexContent = indexContent.replace(
+        /<!-- AUX_SCHEMAS_LIST_START -->[\s\S]*<!-- AUX_SCHEMAS_LIST_END -->/,
+        '<!-- AUX_SCHEMAS_LIST_START -->\n' + auxList + '\n                            <!-- AUX_SCHEMAS_LIST_END -->'
+    );
+
+    // Generate and inject SHACL shapes list
+    const shaclPath = path.join(srcDir, 'validation', 'v1', 'shacl');
+    const shaclList = await generateFileList(shaclPath, 'spec/validation/v1/shacl/', { recursive: false });
+    indexContent = indexContent.replace(
+      /<!-- SHACL_SHAPES_LIST_START -->[\s\S]*<!-- SHACL_SHAPES_LIST_END -->/,
+      '<!-- SHACL_SHAPES_LIST_START -->\n' + shaclList + '\n                    <!-- SHACL_SHAPES_LIST_END -->'
     );
 
     // Generate and inject examples list (non-recursive)
