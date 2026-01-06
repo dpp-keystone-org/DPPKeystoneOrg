@@ -234,15 +234,17 @@ async function getContextMetadata(filePath, termDictionary, prefixMap) {
     return parseContextMetadata(content, termDictionary, prefixMap);
 }
 
-function generateMermaidDiagram(c) {
+export function generateMermaidDiagram(c, allMetadata, currentHtmlPath, ontologyDir) {
     const className = getFragment(c.id);
     let diagram = `classDiagram\n  class ${className}\n`;
+    const linkedClasses = new Set();
 
     if (c.attributes['rdfs:subClassOf']) {
         const subClassOf = Array.isArray(c.attributes['rdfs:subClassOf']) ? c.attributes['rdfs:subClassOf'] : [c.attributes['rdfs:subClassOf']];
         subClassOf.forEach(sc => {
             const superClassName = getFragment(sc['@id']);
             diagram += `  ${superClassName} <|-- ${className}\n`;
+            linkedClasses.add(sc['@id']);
         });
     }
 
@@ -252,8 +254,23 @@ function generateMermaidDiagram(c) {
         if (p.range && (p.range.startsWith('dppk:') || p.range.includes('#'))) {
             const rangeName = getFragment(p.range);
             diagram += `  ${className} --|> ${rangeName} : ${propName}\n`;
+            if (p.range !== c.id) {
+                linkedClasses.add(p.range);
+            }
         }
     });
+    
+    // Add interactions
+    if (allMetadata && currentHtmlPath && ontologyDir) {
+        linkedClasses.forEach(classId => {
+            const url = resolveClassUrl(classId, allMetadata, currentHtmlPath, ontologyDir);
+            if (url) {
+                const fragment = getFragment(classId);
+                diagram += `  click ${fragment} href "${url}" "${classId}"\n`;
+                diagram += `  style ${fragment} stroke:#2962ff,color:#2962ff\n`;
+            }
+        });
+    }
 
     return diagram;
 }
@@ -268,6 +285,17 @@ const resolvePName = (pname, context) => {
     return pname; // Return as is if prefix not in context
 };
 
+function resolveClassUrl(classId, allMetadata, currentHtmlPath, ontologyDir) {
+    const definingModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === classId));
+    if (definingModuleMeta && currentHtmlPath && ontologyDir) {
+        const fragment = getFragment(classId);
+        const targetModuleDirName = basename(definingModuleMeta.name, '.jsonld');
+        const targetPath = join(ontologyDir, definingModuleMeta.module, targetModuleDirName, `${fragment}.html`);
+        return relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+    }
+    return null;
+}
+
 const processValue = (val, context, currentHtmlPath, ontologyDir, allMetadata) => {
     if (typeof val === 'object' && val !== null) {
         // If it has an @id, it's a link to another entity.
@@ -278,12 +306,8 @@ const processValue = (val, context, currentHtmlPath, ontologyDir, allMetadata) =
             }
 
             // Try to resolve the link to a generated class page
-            const definingModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === id));
-            if (definingModuleMeta && currentHtmlPath && ontologyDir) {
-                const fragment = getFragment(id);
-                const targetModuleDirName = basename(definingModuleMeta.name, '.jsonld');
-                const targetPath = join(ontologyDir, definingModuleMeta.module, targetModuleDirName, `${fragment}.html`);
-                const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+            const relativeLink = resolveClassUrl(id, allMetadata, currentHtmlPath, ontologyDir);
+            if (relativeLink) {
                 return `<a href="${relativeLink}">${id}</a>`;
             }
 
@@ -321,7 +345,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
         return `<p><strong>${key.replace('dppk:', '').replace('rdfs:', '').replace('owl:', '')}:</strong> ${displayValue}</p>`;
     }).join('');
 
-    const mermaidDiagram = generateMermaidDiagram(c);
+    const mermaidDiagram = generateMermaidDiagram(c, allMetadata, currentHtmlPath, ontologyDir);
 
     return `
 <!DOCTYPE html>
