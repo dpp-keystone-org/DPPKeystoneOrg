@@ -73,12 +73,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock the modules before importing them
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
         
         const loadOntologyMock = jest.fn();
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: loadOntologyMock,
         }));
         
@@ -187,10 +187,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
         ]);
 
         // 2. Mock the modules
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
         }));
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
         }));
 
@@ -250,10 +250,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -311,10 +311,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -387,10 +387,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -443,10 +443,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -506,10 +506,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -557,10 +557,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
     it('should display user-friendly labels in the error summary for custom fields', async () => {
         // 1. Mock minimal modules
-        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
             loadSchema: jest.fn().mockResolvedValue({ type: 'object', properties: {} }),
         }));
-        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 

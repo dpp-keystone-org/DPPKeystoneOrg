@@ -109,7 +109,7 @@ export async function loadSchema(sector) {
     if (!sector) {
         throw new Error('Sector must be specified.');
     }
-    const schemaPath = `../validation/v1/json-schema/${sector}.schema.json`;
+    const schemaPath = `../spec/validation/v1/json-schema/${sector}.schema.json`;
     //console.log(`[DEBUG] Fetching schema from: ${schemaPath}`);
 
     try {

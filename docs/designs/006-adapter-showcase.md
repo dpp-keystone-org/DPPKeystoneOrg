@@ -4,8 +4,8 @@ This document outlines the sub-roadmap for Task #6, the creation of a rich, inte
 
 ---
 
-- **[PENDING] 6. Interactive Adapter Showcase & Documentation:** Create a rich, interactive documentation page (`utils/index.html`) that not only explains the adapter but also serves as a live demonstration and a development tool. Pause and allow the user to test and discuss next steps.
-  - **[PENDING] 6a. Build Interactive Showcase UI:** Develop a user interface with the following components: Pause and allow the user to test and discuss next steps.
+- **[PENDING] 6. Interactive Adapter Showcase & Documentation:** Create a rich, interactive tool (hosted within `src/toolkit/index.html`) that not only explains the adapter but also serves as a live demonstration and a development tool. (See **Design 018** for architectural context). Pause and allow the user to test and discuss next steps.
+  - **[PENDING] 6a. Build Interactive Showcase UI:** Develop a user interface within the Toolkit page with the following components: Pause and allow the user to test and discuss next steps.
     - An example selector: A dropdown menu to load any of our standard DPP examples (e.g., battery, textile, rail).
     - A profile selector: A dropdown to select the target transformation profile (`schema.org`, `gs1`, etc., as they are completed).
     - A "Transform" button to trigger the process.

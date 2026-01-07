@@ -1,8 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import Ajv2020 from 'ajv/dist/2020.js';
-import addFormats from 'ajv-formats';
 import { PROJECT_ROOT } from './shacl-helpers.mjs';
+import { validateDpp } from '../../src/util/js/common/validation/schema-validator.js';
 
 // --- Configuration ---
 
@@ -29,51 +28,42 @@ const testCases = [
 ];
 
 describe('DPP JSON Schema Validation', () => {
-    let ajv;
-    let baseSchema;
-    let epdSchema;
-    let relatedResourceSchema;
-    let organizationSchema;
-    let postalAddressSchema;
-    let dopcSchema;
+    let schemaContext = {
+        baseSchema: null,
+        sectorSchemas: {},
+        commonSchemas: []
+    };
 
     beforeAll(async () => {
-        // Load schemas that are cross-referenced by other schemas
-        const epdSchemaPath = path.join(SCHEMA_DIR, 'epd.schema.json');
-        epdSchema = JSON.parse(await fs.promises.readFile(epdSchemaPath, 'utf-8'));
+        // Load common schemas
+        const loadSchema = async (filename) => {
+            const schemaPath = path.join(SCHEMA_DIR, filename);
+            return JSON.parse(await fs.promises.readFile(schemaPath, 'utf-8'));
+        };
 
-        const relatedResourceSchemaPath = path.join(SCHEMA_DIR, 'related-resource.schema.json');
-        relatedResourceSchema = JSON.parse(await fs.promises.readFile(relatedResourceSchemaPath, 'utf-8'));
+        const epdSchema = await loadSchema('epd.schema.json');
+        const relatedResourceSchema = await loadSchema('related-resource.schema.json');
+        const organizationSchema = await loadSchema('organization.schema.json');
+        const postalAddressSchema = await loadSchema('postal-address.schema.json');
+        const dopcSchema = await loadSchema('dopc.schema.json');
+        const prodCharSchema = await loadSchema('product-characteristic.schema.json');
 
-        const organizationSchemaPath = path.join(SCHEMA_DIR, 'organization.schema.json');
-        organizationSchema = JSON.parse(await fs.promises.readFile(organizationSchemaPath, 'utf-8'));
+        schemaContext.commonSchemas = [
+            epdSchema,
+            relatedResourceSchema,
+            organizationSchema,
+            postalAddressSchema,
+            dopcSchema,
+            prodCharSchema
+        ];
 
-        const postalAddressSchemaPath = path.join(SCHEMA_DIR, 'postal-address.schema.json');
-        postalAddressSchema = JSON.parse(await fs.promises.readFile(postalAddressSchemaPath, 'utf-8'));
+        // Load the base schema
+        schemaContext.baseSchema = await loadSchema('dpp.schema.json');
 
-        const dopcSchemaPath = path.join(SCHEMA_DIR, 'dopc.schema.json');
-        dopcSchema = JSON.parse(await fs.promises.readFile(dopcSchemaPath, 'utf-8'));
-
-        // Load the base schema once for all tests
-        const baseSchemaPath = path.join(SCHEMA_DIR, 'dpp.schema.json');
-        baseSchema = JSON.parse(await fs.promises.readFile(baseSchemaPath, 'utf-8'));
-    });
-
-    beforeEach(() => {
-        // Create a fresh AJV instance for each test to avoid schema conflicts.
-        ajv = new Ajv2020({
-            allErrors: true,
-            allowMatchingProperties: true,
-            allowUnionTypes: true
-        });
-        addFormats(ajv);
-
-        // Add schemas that are referenced by others
-        ajv.addSchema(epdSchema);
-        ajv.addSchema(relatedResourceSchema);
-        ajv.addSchema(organizationSchema);
-        ajv.addSchema(postalAddressSchema);
-        ajv.addSchema(dopcSchema);
+        // Load all sector schemas
+        for (const [id, filename] of Object.entries(conditionalSchemaMap)) {
+            schemaContext.sectorSchemas[id] = await loadSchema(filename);
+        }
     });
 
     test.each(testCases)('%s should be valid', async (exampleFile) => {
@@ -82,35 +72,16 @@ describe('DPP JSON Schema Validation', () => {
         const exampleContent = await fs.promises.readFile(exampleFilePath, 'utf-8');
         const data = JSON.parse(exampleContent);
 
-        // Start with the base schema
-        const schemasToApply = [baseSchema];
-
-        // Check for conditional schemas to apply
-        if (data.contentSpecificationIds && Array.isArray(data.contentSpecificationIds)) {
-            for (const id of data.contentSpecificationIds) {
-                if (conditionalSchemaMap[id]) {
-                    const conditionalSchemaFile = conditionalSchemaMap[id];
-                    const schemaPath = path.join(SCHEMA_DIR, conditionalSchemaFile);
-                    const schemaContent = await fs.promises.readFile(schemaPath, 'utf-8');
-                    schemasToApply.push(JSON.parse(schemaContent));
-                }
-            }
-        }
-
-        // Create a composite schema using allOf
-        const compositeSchema = { allOf: schemasToApply };
-
-        // Compile and validate
-        const validate = ajv.compile(compositeSchema);
-        const isValid = validate(data);
+        // Validate using the shared library
+        const result = validateDpp(data, schemaContext);
 
         // Provide detailed error logging if validation fails
-        if (!isValid) {
+        if (!result.valid) {
             console.log(`Validation errors for ${exampleFile}:`);
-            console.log(JSON.stringify(validate.errors, null, 2));
+            console.log(JSON.stringify(result.errors, null, 2));
         }
 
-        expect(isValid).toBe(true);
+        expect(result.valid).toBe(true);
     });
 
     test('battery-dpp-v1.json should be INVALID if batteryCategory is missing', async () => {
@@ -124,33 +95,14 @@ describe('DPP JSON Schema Validation', () => {
         delete data.batteryCategory;
         // -----------------------------------------
 
-        // Start with the base schema
-        const schemasToApply = [baseSchema];
-
-        // Check for conditional schemas to apply
-        if (data.contentSpecificationIds && Array.isArray(data.contentSpecificationIds)) {
-            for (const id of data.contentSpecificationIds) {
-                if (conditionalSchemaMap[id]) {
-                    const conditionalSchemaFile = conditionalSchemaMap[id];
-                    const schemaPath = path.join(SCHEMA_DIR, conditionalSchemaFile);
-                    const schemaContent = await fs.promises.readFile(schemaPath, 'utf-8');
-                    schemasToApply.push(JSON.parse(schemaContent));
-                }
-            }
-        }
-
-        // Create a composite schema using allOf
-        const compositeSchema = { allOf: schemasToApply };
-
-        // Compile and validate
-        const validate = ajv.compile(compositeSchema);
-        const isValid = validate(data);
+        // Validate
+        const result = validateDpp(data, schemaContext);
 
         // This test should fail validation
-        expect(isValid).toBe(false);
+        expect(result.valid).toBe(false);
 
-        // Optional: Check for the specific error
-        expect(validate.errors).toEqual(
+        // Check for the specific error
+        expect(result.errors).toEqual(
             expect.arrayContaining([
                 expect.objectContaining({
                     keyword: 'required',

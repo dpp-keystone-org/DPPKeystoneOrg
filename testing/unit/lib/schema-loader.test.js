@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadSchema, clearSchemaCache } from '../../src/wizard/schema-loader.js';
+import { loadSchema, clearSchemaCache } from '../../../src/lib/schema-loader.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -29,7 +29,7 @@ describe('DPP Wizard - Schema Loader', () => {
         });
 
         const schema = await loadSchema('simple');
-        expect(fetch).toHaveBeenCalledWith('../validation/v1/json-schema/simple.schema.json');
+        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/simple.schema.json');
         expect(schema).toEqual(mockSchema);
     });
 

@@ -22,14 +22,14 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('has title', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/DPP Wizard/);
 });
 
 test('core DPP fields should have default values on load', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   // Wait for the core form to be initialized. We can wait for a known element.
   const dppIdInput = page.locator('input[name="digitalProductPassportId"]');
@@ -43,7 +43,7 @@ test('core DPP fields should have default values on load', async ({ page }) => {
 });
 
 test('should be invalid on load due to empty required fields', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   const generateBtn = page.locator('#generate-dpp-btn');
   const showErrorsBtn = page.locator('#show-errors-btn');
@@ -64,7 +64,7 @@ test('should be invalid on load due to empty required fields', async ({ page }) 
 
 test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   // 1. Check for color theming via CSS variables
   const generateBtn = page.locator('#generate-dpp-btn');
@@ -94,7 +94,7 @@ for (const sector of sectors) {
       console.log(`[BROWSER CONSOLE] ${msg.type().toUpperCase()}:`, ...logArgs);
     });
 
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
 
     // Add the sector form
     const addSectorBtn = page.locator(`button[data-sector="${sector}"]`);
@@ -230,7 +230,7 @@ for (const sector of sectors) {
 
 for (const sector of sectors) {
   test(`audit ontology labels for ${sector} sector`, async ({ page }) => {
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
 
     // Add the sector form
     const addSectorBtn = page.locator(`button[data-sector="${sector}"]`);
@@ -267,7 +267,7 @@ for (const sector of sectors) {
 }
 
 test('should allow adding and removing sector forms', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   const addBatteryBtn = page.locator('button[data-sector="battery"]');
   const batteryFormContainer = page.locator('#sector-form-battery');
@@ -294,7 +294,7 @@ test('should allow adding and removing sector forms', async ({ page }) => {
 });
 
 test('should manage multiple sector forms independently', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   const addBatteryBtn = page.locator('button[data-sector="battery"]');
   const addConstructionBtn = page.locator('button[data-sector="construction"]');
@@ -336,7 +336,7 @@ test('should manage multiple sector forms independently', async ({ page }) => {
 });
 
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   // 3. Add Battery and Electronics sectors
   await page.click('button[data-sector="battery"]');
@@ -373,13 +373,13 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
 });
 
 test('language selector dropdown should be visible', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
   const languageSelector = page.locator('#language-selector');
   await expect(languageSelector).toBeVisible();
 });
 
 test('should show and hide an error summary', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   const generateBtn = page.locator('#generate-dpp-btn');
   const showErrorsBtn = page.locator('#show-errors-btn');
@@ -434,7 +434,7 @@ test('should show and hide an error summary', async ({ page }) => {
 });
 
 test('should show an error for non-numeric text in a number field', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   const generateBtn = page.locator('#generate-dpp-btn');
   const showErrorsBtn = page.locator('#show-errors-btn');
@@ -536,7 +536,7 @@ test('should show an error for non-numeric text in a number field', async ({ pag
 });
 
 test('should validate on blur, not on every keystroke', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
 
   const generateBtn = page.locator('#generate-dpp-btn');
   const showErrorsBtn = page.locator('#show-errors-btn');
@@ -580,7 +580,7 @@ test('should validate on blur, not on every keystroke', async ({ page }) => {
 });
 
 test('should show an error for non-numeric text in an EPD field', async ({ page }) => {
-  await page.goto('/spec/wizard/index.html');
+      await page.goto('/wizard/index.html');
   const showErrorsBtn = page.locator('#show-errors-btn');
 
   // 1. Add the construction sector.
@@ -616,7 +616,7 @@ test('should show an error for non-numeric text in an EPD field', async ({ page 
 });
 
 test('validation error messages should disappear when the input is corrected', async ({ page }) => {
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
 
     const versionInput = page.locator('input[name="dppSchemaVersion"]');
     const errorSpanLocator = page.locator('#dppSchemaVersion-error');
@@ -638,7 +638,7 @@ test('validation error messages should disappear when the input is corrected', a
 });
 
 test('validation should not create duplicate error messages', async ({ page }) => {
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
     
     // 1. Add the construction sector to get the EPD fields.
     await page.locator('button[data-sector="construction"]').click();
@@ -677,7 +677,7 @@ test('validation should not create duplicate error messages', async ({ page }) =
 
 test.describe('Conditional Validation for Optional Objects', () => {
   test('should not render optional object fields by default, showing an "Add" button instead', async ({ page }) => {
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
 
     // 1. Add the construction sector form, which contains the optional 'epd' object.
     await page.locator('button[data-sector="construction"]').click();
@@ -693,7 +693,7 @@ test.describe('Conditional Validation for Optional Objects', () => {
   });
 
   test('should update error count when an optional object is added and removed', async ({ page }) => {
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
     const showErrorsBtn = page.locator('#show-errors-btn');
 
     // 1. Add the construction sector.
@@ -724,7 +724,7 @@ test.describe('Conditional Validation for Optional Objects', () => {
   });
 
   test('should update error count when an array item with required fields is added and removed', async ({ page }) => {
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
     const showErrorsBtn = page.locator('#show-errors-btn');
 
     // 1. Get initial error count from core schema.
@@ -752,7 +752,7 @@ test.describe('Conditional Validation for Optional Objects', () => {
 
 test.describe('DPP Wizard - Input Validation', () => {
   test.beforeEach(async ({ page }) => {
-      await page.goto('/spec/wizard/index.html');
+          await page.goto('/wizard/index.html');
       // Wait for the wizard to initialize (core form loaded)
       await expect(page.locator('input[name="digitalProductPassportId"]')).toBeVisible();
   });
@@ -802,7 +802,7 @@ test.describe('DPP Wizard - Input Validation', () => {
   });
 
   test('should update error count when custom fields have validation errors', async ({ page }) => {
-      await page.goto('/spec/wizard/index.html');
+          await page.goto('/wizard/index.html');
       const showErrorsBtn = page.locator('#show-errors-btn');
 
       // 1. Get initial error count (core required fields).
@@ -872,7 +872,7 @@ test.describe('DPP Wizard - Input Validation', () => {
   });
 
   test('should show error when custom field key collides with existing schema fields', async ({ page }) => {
-      await page.goto('/spec/wizard/index.html');
+          await page.goto('/wizard/index.html');
       
       // 1. Do NOT add Battery sector explicitly.
       // We want to verify that collision detection works even for sectors not yet added to the form.
@@ -933,7 +933,7 @@ test.describe('DPP Wizard - Input Validation', () => {
 
 test.describe('Design 016 - Dangling Field Overhaul', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/spec/wizard/index.html');
+        await page.goto('/wizard/index.html');
     // Wait for the wizard to initialize (core form loaded) to ensure ontologies are ready
     await expect(page.locator('input[name="digitalProductPassportId"]')).toBeVisible();
   });

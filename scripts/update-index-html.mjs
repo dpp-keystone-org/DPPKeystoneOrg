@@ -143,6 +143,54 @@ async function generateSchemaLists(dirPath, baseHref) {
 }
 
 
+/**
+ * Generates a dedicated index page for the utilities directory.
+ * @param {string} srcUtilDir The source directory for utilities.
+ * @param {string} outputHtmlPath The path to write the generated HTML file.
+ */
+async function generateUtilIndex(srcUtilDir, outputHtmlPath) {
+    console.log(`Generating utility index at ${outputHtmlPath}...`);
+    const fileListHtml = await generateFileList(srcUtilDir, '', { recursive: true, isUtil: true });
+    
+    // We assume the util index is at dist/util/index.html, so relative path to css is ../branding/css/...
+    const content = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Utilities</title>
+    <link rel="stylesheet" href="../branding/css/keystone-style.css">
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 10px 0; }
+        a { text-decoration: none; color: var(--primary-color); }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html">← Back to Main Index</a>
+            <h1>DPP Keystone Utilities</h1>
+            <p>Public-facing libraries and reference implementations.</p>
+        </header>
+        <main>
+            <ul>
+${fileListHtml}
+            </ul>
+        </main>
+        <footer>
+            <p><small>DPP Keystone Project</small></p>
+        </footer>
+    </div>
+</body>
+</html>`;
+
+    await fs.mkdir(path.dirname(outputHtmlPath), { recursive: true });
+    await fs.writeFile(outputHtmlPath, content, 'utf-8');
+}
+
 export async function updateIndexHtml({
   srcDir = SRC_DIR,
   templatePath = TEMPLATE_PATH,
@@ -212,12 +260,15 @@ export async function updateIndexHtml({
     );
 
     // Generate and inject utilities list (recursive)
-    const utilsPath = path.join(srcDir, 'util', 'js');
-    const utilsList = await generateFileList(utilsPath, 'spec/util/js/', { recursive: true, isUtil: true });
+    // We scan src/util but link to 'util/' because build-and-clean.mjs now copies src/util -> dist/util
+    const utilsPath = path.join(srcDir, 'util');
+    const utilsList = await generateFileList(utilsPath, 'util/', { recursive: true, isUtil: true });
     indexContent = indexContent.replace(
       /<!-- UTILITIES_LIST_START -->[\s\S]*<!-- UTILITIES_LIST_END -->/,
       '<!-- UTILITIES_LIST_START -->\n' + utilsList + '\n                    <!-- UTILITIES_LIST_END -->'
     );
+
+    await generateUtilIndex(utilsPath, path.join(path.dirname(outputPath), 'util', 'index.html'));
 
     // Write to the output path now
     await fs.writeFile(outputPath, indexContent, 'utf-8');

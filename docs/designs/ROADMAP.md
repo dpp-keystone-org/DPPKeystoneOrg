@@ -52,24 +52,11 @@ For a history of completed tasks, please see the [CHANGELOG.md](./CHANGELOG.md).
   - **Note:** This addresses the tech debt where ontology definitions are missing `rdfs:comment` or `rdfs:label`.
   - **See Design Doc:** [docs/designs/010-ontology-comments-and-labels.md](./docs/designs/010-ontology-comments-and-labels.md)
 
+- **[PENDING] 16. DPP Toolkit Page:** Create a centralized dashboard for developer utilities including a Validator and Ontology Explorer.
+  - **See Design Doc:** [docs/designs/018-dpp-toolkit-page.md](./docs/designs/018-dpp-toolkit-page.md)
+
 ---
 ## Proposed High-Impact Features
-
-### [PENDING] Feature: Interactive DPP Validator (Linter)
-- **Goal:** Create a web-based tool for users to paste their DPP JSON and receive instant validation feedback.
-- **Why:** This is the natural counterpart to the DPP Wizard. It provides a utility for auditing and debugging existing DPPs, not just creating new ones, and serves as a live demonstration of our validation rules.
-- **Sub-Tasks:**
-  - [PENDING] **Design:** Plan the UI/UX for the validator tool (input pane, results pane, error highlighting). Pause and allow the user to test and discuss next steps.
-  - [PENDING] **Scaffold:** Create the basic HTML, CSS, and JS files for the validator page. Pause and allow the user to test and discuss next steps.
-  - [PENDING] **Validation Logic (Client-Side):**
-    - [PENDING] Integrate a JavaScript-based JSON Schema validator library (e.g., Ajv). Pause and allow the user to test and discuss next steps.
-    - [PENDING] Integrate a JavaScript-based SHACL validator library (e.g., shacl-engine). Pause and allow the user to test and discuss next steps.
-    - [PENDING] Load our core and sector-specific schemas/shapes into the tool. Pause and allow the user to test and discuss next steps.
-  - [PENDING] **UI Implementation:**
-    - [PENDING] Build the editor interface for pasting JSON (e.g., using CodeMirror or Monaco Editor). Pause and allow the user to test and discuss next steps.
-    - [PENDING] Implement logic to trigger validation on user input. Pause and allow the user to test and discuss next steps.
-    - [PENDING] Develop a user-friendly display for validation errors, linking them to specific lines in the JSON. Pause and allow the user to test and discuss next steps.
-  - [PENDING] **Integration:** Add a link to the new validator tool from the main project website/index. Pause and allow the user to test and discuss next steps.
 
 ### [PENDING] Feature: Adoption Accelerators (Starter Kits)
 - **Goal:** Create a collection of simple, boilerplate projects to help developers integrate DPP Keystone artifacts quickly.

@@ -39,7 +39,7 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
-        if (entry.name === 'desktop.ini' || entry.name === 'branding' || (sourceDir === SOURCE_DIR && entry.name === 'index.html')) {
+        if (entry.name === 'desktop.ini' || entry.name === 'branding' || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator'))) {
             continue;
         }
         const sourcePath = path.join(sourceDir, entry.name);
@@ -84,17 +84,24 @@ async function createRedirects(targetDir) {
 }
 
 async function addCacheBusting(targetDir) {
-    console.log('Adding cache-busting to wizard...');
-    const wizardHtmlPath = path.join(targetDir, 'spec', 'wizard', 'index.html');
-    try {
-        let content = await fs.readFile(wizardHtmlPath, 'utf-8');
-        const timestamp = Date.now();
-        content = content.replace(/(href|src)="(.*?\.(css|js))"/g, `$1="$2?v=${timestamp}"`);
-        await fs.writeFile(wizardHtmlPath, content, 'utf-8');
-        console.log(`Added cache-busting to ${wizardHtmlPath}`);
-    } catch (error) {
-        // This is a non-critical step, so we just log the error and continue.
-        console.warn(`Warning: Could not add cache-busting to ${wizardHtmlPath}. Error: ${error.message}`);
+    console.log('Adding cache-busting...');
+    const pathsToProcess = [
+        path.join(targetDir, 'wizard', 'index.html'),
+        path.join(targetDir, 'validator', 'index.html')
+    ];
+
+    for (const htmlPath of pathsToProcess) {
+        try {
+            if (await fse.pathExists(htmlPath)) {
+                let content = await fs.readFile(htmlPath, 'utf-8');
+                const timestamp = Date.now();
+                content = content.replace(/(href|src)="(.*?\.(css|js))"/g, `$1="$2?v=${timestamp}"`);
+                await fs.writeFile(htmlPath, content, 'utf-8');
+                console.log(`Added cache-busting to ${htmlPath}`);
+            }
+        } catch (error) {
+            console.warn(`Warning: Could not add cache-busting to ${htmlPath}. Error: ${error.message}`);
+        }
     }
 }
 
@@ -109,6 +116,33 @@ async function build() {
     // Copy branding to the root of dist
     await fse.copy(path.join(SOURCE_DIR, 'branding'), path.join(BUILD_DIR, 'branding'));
     console.log(`Copied branding to dist root`);
+
+    // Process 'util' and 'lib' into their own root-level directories in dist
+    const utilDir = path.join(BUILD_DIR, 'util');
+    const libDir = path.join(BUILD_DIR, 'lib');
+    // We check if source exists to avoid errors if directories are empty/missing initially
+    if (await fse.pathExists(path.join(SOURCE_DIR, 'util'))) {
+        await processDirectory(path.join(SOURCE_DIR, 'util'), utilDir);
+        console.log(`Copied util to dist/util`);
+    }
+    if (await fse.pathExists(path.join(SOURCE_DIR, 'lib'))) {
+        await processDirectory(path.join(SOURCE_DIR, 'lib'), libDir);
+        console.log(`Copied lib to dist/lib`);
+    }
+    
+    // Process 'wizard' into its own root-level directory in dist
+    const wizardDir = path.join(BUILD_DIR, 'wizard');
+    if (await fse.pathExists(path.join(SOURCE_DIR, 'wizard'))) {
+        await processDirectory(path.join(SOURCE_DIR, 'wizard'), wizardDir);
+        console.log(`Copied wizard to dist/wizard`);
+    }
+
+    // Process 'validator' into its own root-level directory in dist
+    const validatorDir = path.join(BUILD_DIR, 'validator');
+    if (await fse.pathExists(path.join(SOURCE_DIR, 'validator'))) {
+        await processDirectory(path.join(SOURCE_DIR, 'validator'), validatorDir);
+        console.log(`Copied validator to dist/validator`);
+    }
 
     // Copy root-level static assets
     const rootStaticAssets = ['CONTRIBUTING.md', 'LICENSE', 'README.md'];

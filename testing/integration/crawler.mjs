@@ -61,12 +61,15 @@ async function crawlPage(pagePath) {
   const pageContent = await fs.readFile(pagePath, 'utf-8');
   const $ = cheerio.load(pageContent);
 
+  // Helper to strip query strings/hashes
+  const cleanUrl = (url) => url ? url.split('?')[0].split('#')[0] : url;
+
   // --- CSS Link Check ---
   const stylesheetLink = $(`link[rel="stylesheet"][href*="${STYLESHEET_NAME}"]`);
   if (stylesheetLink.length === 0) {
       pagesWithCssIssues.push(`${path.relative(DIST_DIR, pagePath)} (Stylesheet tag not found)`);
   } else {
-      const cssHref = stylesheetLink.attr('href');
+      const cssHref = cleanUrl(stylesheetLink.attr('href'));
       const absoluteCssPath = path.resolve(path.dirname(pagePath), cssHref);
       try {
           await fs.access(absoluteCssPath, fs.constants.F_OK);
@@ -78,7 +81,7 @@ async function crawlPage(pagePath) {
   // --- Image Link Check ---
   const imagePromises = [];
   $('img[src]').each((i, el) => {
-    const imgSrc = $(el).attr('src');
+    const imgSrc = cleanUrl($(el).attr('src'));
     if (!imgSrc || imgSrc.startsWith('http')) {
         return; // Skip external images
     }
@@ -95,11 +98,12 @@ async function crawlPage(pagePath) {
   // --- Broken Link Check ---
   const linkPromises = [];
   $('a[href]').each((i, el) => {
-    const href = $(el).attr('href');
+    let href = $(el).attr('href');
     if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) {
       return; // Skip external links, mailto links, and anchors
     }
-
+    
+    // Check for [object Object] BEFORE cleaning, as it's a text content check usually
     const linkText = $(el).text().trim();
     if (linkText.includes('[object Object]')) {
         pagesWithObjectObjectIssues.push({
@@ -108,6 +112,8 @@ async function crawlPage(pagePath) {
             href,
         });
     }
+
+    href = cleanUrl(href);
 
     linkPromises.push(checkLink({
         href,

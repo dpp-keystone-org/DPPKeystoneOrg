@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
 
 test('should maintain correct error count when removing array items shifts invalid fields', async ({ page }) => {
     page.on('console', msg => console.log(`[BROWSER]: ${msg.text()}`));
-    await page.goto('/spec/wizard/index.html');
+    await page.goto('/wizard/index.html');
     const showErrorsBtn = page.locator('#show-errors-btn');
 
     // 1. Get initial error count (core required fields).

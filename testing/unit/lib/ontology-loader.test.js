@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadOntology } from '../../src/wizard/ontology-loader.js';
+import { loadOntology } from '../../../src/lib/ontology-loader.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -50,7 +50,7 @@ describe('DPP Wizard - Ontology Loader', () => {
         const ontologyMap = await loadOntology('test');
 
         // Verify fetch was called correctly
-        expect(fetch).toHaveBeenCalledWith('../ontology/v1/sectors/Test.jsonld');
+        expect(fetch).toHaveBeenCalledWith('../spec/ontology/v1/sectors/Test.jsonld');
 
         // Verify the returned map
         expect(ontologyMap).toBeInstanceOf(Map);
@@ -85,7 +85,7 @@ describe('DPP Wizard - Ontology Loader', () => {
         const ontologyMap = await loadOntology('nonexistent');
 
         // Verify fetch was called
-        expect(fetch).toHaveBeenCalledWith('../ontology/v1/sectors/Nonexistent.jsonld');
+        expect(fetch).toHaveBeenCalledWith('../spec/ontology/v1/sectors/Nonexistent.jsonld');
 
         // Verify it returns null
         expect(ontologyMap).toBeNull();
@@ -228,7 +228,7 @@ describe('DPP Wizard - Ontology Loader', () => {
         const ontologyMap = await loadOntology('main');
 
         // Assert that fetch was called for both ontologies
-        expect(fetch).toHaveBeenCalledWith('../ontology/v1/sectors/Main.jsonld');
+        expect(fetch).toHaveBeenCalledWith('../spec/ontology/v1/sectors/Main.jsonld');
         expect(fetch).toHaveBeenCalledWith('https://dpp-keystone.org/ontology/v1/core/Imported.jsonld');
 
         // Assert that the map contains terms from both files
