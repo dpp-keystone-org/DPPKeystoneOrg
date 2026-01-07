@@ -554,4 +554,46 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // Check context
         expect(generatedDpp['@context']).toContain('https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld');
     }, 30000);
+
+    it('should display user-friendly labels in the error summary for custom fields', async () => {
+        // 1. Mock minimal modules
+        jest.unstable_mockModule('../../src/wizard/schema-loader.js', () => ({
+            loadSchema: jest.fn().mockResolvedValue({ type: 'object', properties: {} }),
+        }));
+        jest.unstable_mockModule('../../src/wizard/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+        }));
+
+        // 2. Initialize Wizard
+        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        await initializeWizard();
+
+        // 3. Add Voluntary Field
+        const addBtn = document.getElementById('add-voluntary-field-btn');
+        addBtn.click();
+
+        // 4. Find the row and enter an invalid prefixed key
+        const voluntaryWrapper = document.getElementById('voluntary-fields-wrapper');
+        const row = await waitFor(() => voluntaryWrapper.lastElementChild);
+        
+        const keyInput = row.querySelector('.voluntary-name');
+        keyInput.value = 'undefinedPrefix:test';
+        keyInput.dispatchEvent(new Event('blur')); // Trigger validation
+
+        // 5. Wait for the error count badge to update
+        const badge = document.getElementById('error-count-badge');
+        await waitFor(() => badge.textContent === '1');
+
+        // 6. Open "Show Errors" modal
+        const showErrorsBtn = document.getElementById('show-errors-btn');
+        showErrorsBtn.click();
+        
+        const modal = await waitFor(() => document.querySelector('.error-summary-modal'));
+        expect(modal).not.toBeNull();
+
+        // 7. Assert that the link text is the user's input, not the ID
+        const errorLink = modal.querySelector('li a');
+        expect(errorLink.textContent).toBe('undefinedPrefix:test');
+        expect(errorLink.textContent).not.toMatch(/custom-key-/);
+    });
 });

@@ -338,9 +338,11 @@ test('should manage multiple sector forms independently', async ({ page }) => {
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
   await page.goto('/spec/wizard/index.html');
 
-  // 1. Add sectors
-  await page.locator('button[data-sector="battery"]').click();
-  await page.locator('button[data-sector="electronics"]').click();
+  // 3. Add Battery and Electronics sectors
+  await page.click('button[data-sector="battery"]');
+  await expect(page.locator('#sector-form-battery')).toBeVisible();
+  await page.click('button[data-sector="electronics"]');
+  await expect(page.locator('#sector-form-electronics')).toBeVisible();
   
   // Wait for forms to be visible
   await expect(page.locator('input[name="batteryCategory"]')).toBeVisible();
@@ -986,6 +988,41 @@ test.describe('Design 016 - Dangling Field Overhaul', () => {
     await expect(valueInput).toBeVisible();
     await expect(valueInput).toBeEditable();
     await expect(groupContainer.locator('input[name="myCharacteristic.testMethod"]')).toBeVisible();
+  });
+
+  test('Voluntary field prefix validation error display', async ({ page }) => {
+    // 0. Fill required core fields to clear initial errors
+    await page.fill('input[name="digitalProductPassportId"]', 'urn:uuid:123e4567-e89b-12d3-a456-426614174000');
+    await page.fill('input[name="uniqueProductIdentifier"]', 'urn:uuid:123e4567-e89b-12d3-a456-426614174001');
+    await page.selectOption('select[name="granularity"]', 'Item');
+    await page.locator('input[name="digitalProductPassportId"]').blur(); // Trigger validation
+    
+    // 1. Add a voluntary field
+    await page.click('#add-voluntary-field-btn');
+    const voluntaryRow = page.locator('.voluntary-field-row').last();
+    
+    // 2. Enter a key with an undefined prefix
+    const keyInput = voluntaryRow.locator('.voluntary-name');
+    await keyInput.fill('unknown:term');
+    await keyInput.blur();
+
+    // 3. Verify inline error
+    await expect(voluntaryRow).toContainText("Undefined prefix 'unknown'");
+    const badge = page.locator('#error-count-badge');
+    await expect(badge).toBeVisible();
+    await expect(badge).not.toHaveText('0');
+
+    // 4. Open "Show Errors" modal
+    await page.click('#show-errors-btn');
+    const modal = page.locator('.error-summary-modal');
+    await expect(modal).toBeVisible();
+
+    // 5. Verify the error list text uses the user input ("unknown:term") not the ID
+    const errorLink = modal.locator('li a').filter({ hasText: 'unknown:term' });
+    await expect(errorLink).toBeVisible();
+    
+    // Close modal
+    await page.click('.modal-close-btn');
   });
 
   test('should support Related Resource voluntary field type', async ({ page }) => {
