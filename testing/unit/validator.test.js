@@ -45,10 +45,18 @@ describe('Validator - Country Code', () => {
     });
 });
 
-describe('Validator - Key Validation (Strict CamelCase)', () => {
+describe('Validator - Key Validation (CamelCase & CURIE)', () => {
     it('should accept valid camelCase keys', () => {
         const validKeys = ['myKey', 'camelCase', 'a', 'myKey123', 'nestedObject'];
         validKeys.forEach(key => {
+            const result = validateKey(key);
+            expect(result.isValid).toBe(true);
+        });
+    });
+
+    it('should accept valid CURIEs (prefix:key)', () => {
+        const validCuries = ['ex:myKey', 'schema:name', 'dpp:productID', 'a:b'];
+        validCuries.forEach(key => {
             const result = validateKey(key);
             expect(result.isValid).toBe(true);
         });
@@ -84,9 +92,17 @@ describe('Validator - Key Validation (Strict CamelCase)', () => {
         expect(result.message).toMatch(/camelCase/);
     });
 
-    it('should reject keys with special characters', () => {
+    it('should reject keys with special characters (except colon in CURIE format)', () => {
         const invalidKeys = ['my$Key', 'key!', 'key@', 'key#', 'key%'];
         invalidKeys.forEach(key => {
+            const result = validateKey(key);
+            expect(result.isValid).toBe(false);
+        });
+    });
+
+    it('should reject invalid colon usage', () => {
+        const invalidColons = [':key', 'prefix:', 'pre::key', ':'];
+        invalidColons.forEach(key => {
             const result = validateKey(key);
             expect(result.isValid).toBe(false);
         });

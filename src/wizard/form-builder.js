@@ -465,7 +465,7 @@ function reindexArrayItems(arrayName, indexRemoved) {
  * @param {string} itemPath - The full path of the item (e.g., 'tags.0').
  * @returns {HTMLDivElement} The control row element.
  */
-function createArrayItemControlRow(arrayName, itemPath) {
+function createArrayItemControlRow(arrayName, itemPath, indentationLevel) {
     const controlRow = document.createElement('div');
     controlRow.className = 'grid-row array-item-control-row';
     controlRow.dataset.arrayGroup = itemPath;
@@ -477,6 +477,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.textContent = 'Remove';
+    removeButton.style.marginLeft = `${indentationLevel * 20}px`;
     
     removeButton.addEventListener('click', () => {
         const groupToRemove = controlRow.dataset.arrayGroup;
@@ -540,6 +541,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     addButton.textContent = 'Add Item';
     addButton.className = 'add-array-item-btn';
     addButton.dataset.arrayName = currentPath;
+    addButton.style.marginLeft = `${indentationLevel * 20}px`;
     valueCell.appendChild(addButton);
     row.appendChild(valueCell);
 
@@ -576,7 +578,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
             
             [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
             
-            newObjectFragment.appendChild(createArrayItemControlRow(arrayName, newObjectPath));
+            newObjectFragment.appendChild(createArrayItemControlRow(arrayName, newObjectPath, indentationLevel + 1));
             
             const allItemControls = document.querySelectorAll(`.array-item-control-row[data-array-group^="${arrayName}."]`);
             let insertionPoint = addButton.closest('.grid-row');
@@ -619,7 +621,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
             newRow.appendChild(document.createElement('div')).className = 'grid-cell';
             itemFragment.appendChild(newRow);
 
-            itemFragment.appendChild(createArrayItemControlRow(arrayName, path));
+            itemFragment.appendChild(createArrayItemControlRow(arrayName, path, indentationLevel + 1));
 
             const allItemControls = document.querySelectorAll(`.array-item-control-row[data-array-group^="${arrayName}."]`);
             let insertionPoint = addButton.closest('.grid-row');
@@ -760,8 +762,9 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     valueCell.className = 'grid-cell';
     const addButton = document.createElement('button');
     addButton.type = 'button';
-    addButton.textContent = `Add ${key}`;
+    addButton.textContent = 'Add';
     addButton.dataset.optionalObject = key;
+    addButton.style.marginLeft = `${indentationLevel * 20}px`;
     valueCell.appendChild(addButton);
     placeholderRow.appendChild(valueCell);
 
@@ -805,8 +808,9 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const headerValueCell = parentRow.children[1]; // Value cell is at index 1
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
-        removeButton.textContent = `Remove ${key}`;
+        removeButton.textContent = 'Remove';
         removeButton.dataset.removeOptionalObject = key;
+        removeButton.style.marginLeft = `${indentationLevel * 20}px`;
         
         removeButton.addEventListener('click', () => {
              const grid = removeButton.closest('.sector-form-grid');
@@ -918,12 +922,13 @@ export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
  * @param {Function} collisionChecker - Function to check for name collisions.
  * @param {Array} customTypeRegistry - Registry of custom types.
  * @param {Function} schemaLoader - Function to load schemas.
+ * @param {Function} prefixChecker - Function to check defined prefixes.
  */
-function populateGroupFromSchema(container, insertBeforeElement, schema, collisionChecker, customTypeRegistry, schemaLoader) {
+function populateGroupFromSchema(container, insertBeforeElement, schema, collisionChecker, customTypeRegistry, schemaLoader, prefixChecker = null) {
     if (!schema || !schema.properties) return;
 
     for (const [key, prop] of Object.entries(schema.properties)) {
-        const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
+        const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, new Map(), prefixChecker);
 
         const nameInput = newRow.querySelector('.voluntary-name');
         nameInput.value = key;
@@ -941,7 +946,7 @@ function populateGroupFromSchema(container, insertBeforeElement, schema, collisi
         if (mappedType === 'Group' && prop.properties) {
             const nestedContainer = newRow.querySelector('.voluntary-group-container');
             const nestedAddBtn = nestedContainer.querySelector('.add-voluntary-prop-btn');
-            populateGroupFromSchema(nestedContainer, nestedAddBtn, prop, collisionChecker, customTypeRegistry, schemaLoader);
+            populateGroupFromSchema(nestedContainer, nestedAddBtn, prop, collisionChecker, customTypeRegistry, schemaLoader, prefixChecker);
         }
 
         container.insertBefore(newRow, insertBeforeElement);
@@ -1015,7 +1020,7 @@ function updateNestedPaths(container, oldPrefix, newPrefix) {
  * Includes inputs for Name, Type, Value, and a Remove button.
  * @returns {HTMLDivElement} The generated row element.
  */
-export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [], schemaLoader = null, ontologyMap = new Map()) {
+export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [], schemaLoader = null, ontologyMap = new Map(), prefixChecker = null) {
     const row = document.createElement('div');
     row.className = 'voluntary-field-row';
     // Generate a unique ID for this row to track validation state
@@ -1045,6 +1050,17 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 if (type === 'key') {
                     input.value = value;
                     result = validateKey(input.value);
+
+                    if (result.isValid) {
+                        // Check Prefix Validity
+                        if (input.value.includes(':') && prefixChecker) {
+                            const prefix = input.value.split(':')[0];
+                            const definedPrefixes = prefixChecker();
+                            if (!definedPrefixes.has(prefix)) {
+                                result = { isValid: false, message: `Undefined prefix '${prefix}'. Add it to External Contexts.` };
+                            }
+                        }
+                    }
 
                     if (result.isValid && collisionChecker) {
                         const conflicts = await collisionChecker(input.value);
@@ -1187,7 +1203,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 addBtn.className = 'add-voluntary-prop-btn';
                 addBtn.textContent = 'Add Field';
                 addBtn.addEventListener('click', () => {
-                    const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
+                    const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, ontologyMap, prefixChecker);
                     container.insertBefore(newRow, addBtn);
                 });
 

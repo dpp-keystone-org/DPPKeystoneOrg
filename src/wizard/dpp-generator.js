@@ -119,9 +119,10 @@ function scrapeVoluntaryContainer(container) {
  * @param {HTMLElement} formContainer - The container for the schema-generated sector form.
  * @param {HTMLElement} voluntaryFieldsWrapper - The container for voluntary fields.
  * @param {HTMLElement} [voluntaryModulesContainer] - Optional container for voluntary modules.
+ * @param {HTMLElement} [externalContextsWrapper] - Optional container for external contexts.
  * @returns {object} The generated DPP JSON object.
  */
-export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper, voluntaryModulesContainer = null) {
+export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper, voluntaryModulesContainer = null, externalContextsWrapper = null) {
     const dpp = {};
     
     // Add @context
@@ -133,6 +134,30 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
     } else {
         contexts.push(`${baseUrl}dpp-core.context.jsonld`);
     }
+
+    // Scrape external contexts
+    if (externalContextsWrapper) {
+        const rows = externalContextsWrapper.querySelectorAll('.external-context-row');
+        const prefixMap = {};
+        
+        rows.forEach(row => {
+            const prefix = row.querySelector('.context-prefix')?.value.trim();
+            const uri = row.querySelector('.context-uri')?.value.trim();
+            
+            if (uri) {
+                if (prefix) {
+                    prefixMap[prefix] = uri;
+                } else {
+                    contexts.push(uri);
+                }
+            }
+        });
+
+        if (Object.keys(prefixMap).length > 0) {
+            contexts.push(prefixMap);
+        }
+    }
+
     dpp['@context'] = contexts.length === 1 ? contexts[0] : contexts;
 
     const containers = [coreFormContainer, formContainer];

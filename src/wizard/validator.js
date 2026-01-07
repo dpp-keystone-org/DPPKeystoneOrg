@@ -80,9 +80,10 @@ export function validateKey(value) {
     const reserved = ['__proto__', 'constructor', 'prototype'];
     if (reserved.includes(value)) return { isValid: false, message: 'Reserved word not allowed' };
 
-    const camelCaseRegex = /^[a-z][a-zA-Z0-9]*$/;
-    if (!camelCaseRegex.test(value)) {
-        return { isValid: false, message: 'Name must be camelCase (e.g., myProperty)' };
+    // Allow simple camelCase OR prefix:camelCase
+    const keyRegex = /^([a-z][a-zA-Z0-9]*:)?[a-z][a-zA-Z0-9]*$/;
+    if (!keyRegex.test(value)) {
+        return { isValid: false, message: 'Name must be camelCase (e.g. key) or CURIE (e.g. prefix:key)' };
     }
 
     return { isValid: true };

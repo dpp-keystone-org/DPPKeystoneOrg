@@ -67,7 +67,7 @@
             </div>
     
             <div id="voluntary-info-container">
-                <h2>2. Add Voluntary Information</h2>
+                <h2>2. Add Voluntary Information & Contexts</h2>
                 <div style="margin-bottom: 15px;">
                     <button class="sector-btn" data-sector="general-product">Add General Product Information</button>
                     <button class="sector-btn" data-sector="packaging">Add Packaging</button>
@@ -75,6 +75,15 @@
                 <div id="voluntary-modules-container">
                     <!-- Voluntary module forms (General Info, Packaging) will be generated here -->
                 </div>
+                
+                <h3>External Contexts</h3>
+                <p class="help-text">Add external JSON-LD contexts or namespaces to use custom prefixes (e.g. <code>ex:myField</code>).</p>
+                <div id="external-contexts-wrapper">
+                    <!-- External context rows will be added here -->
+                </div>
+                <button type="button" id="add-external-context-btn" style="margin-bottom: 20px;">Add Context</button>
+
+                <h3>Custom Fields</h3>
                 <div id="voluntary-fields-wrapper">
                     <!-- Dynamic name-value fields will be added here -->
                 </div>
