@@ -465,7 +465,7 @@ function reindexArrayItems(arrayName, indexRemoved) {
  * @param {string} itemPath - The full path of the item (e.g., 'tags.0').
  * @returns {HTMLDivElement} The control row element.
  */
-function createArrayItemControlRow(arrayName, itemPath, indentationLevel) {
+function createArrayItemControlRow(arrayName, itemPath) {
     const controlRow = document.createElement('div');
     controlRow.className = 'grid-row array-item-control-row';
     controlRow.dataset.arrayGroup = itemPath;
@@ -477,7 +477,6 @@ function createArrayItemControlRow(arrayName, itemPath, indentationLevel) {
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.textContent = 'Remove';
-    removeButton.style.marginLeft = `${indentationLevel * 20}px`;
     
     removeButton.addEventListener('click', () => {
         const groupToRemove = controlRow.dataset.arrayGroup;
@@ -541,7 +540,6 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     addButton.textContent = 'Add Item';
     addButton.className = 'add-array-item-btn';
     addButton.dataset.arrayName = currentPath;
-    addButton.style.marginLeft = `${indentationLevel * 20}px`;
     valueCell.appendChild(addButton);
     row.appendChild(valueCell);
 
@@ -578,7 +576,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
             
             [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
             
-            newObjectFragment.appendChild(createArrayItemControlRow(arrayName, newObjectPath, indentationLevel + 1));
+            newObjectFragment.appendChild(createArrayItemControlRow(arrayName, newObjectPath));
             
             const allItemControls = document.querySelectorAll(`.array-item-control-row[data-array-group^="${arrayName}."]`);
             let insertionPoint = addButton.closest('.grid-row');
@@ -621,7 +619,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
             newRow.appendChild(document.createElement('div')).className = 'grid-cell';
             itemFragment.appendChild(newRow);
 
-            itemFragment.appendChild(createArrayItemControlRow(arrayName, path, indentationLevel + 1));
+            itemFragment.appendChild(createArrayItemControlRow(arrayName, path));
 
             const allItemControls = document.querySelectorAll(`.array-item-control-row[data-array-group^="${arrayName}."]`);
             let insertionPoint = addButton.closest('.grid-row');
@@ -764,7 +762,6 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     addButton.type = 'button';
     addButton.textContent = 'Add';
     addButton.dataset.optionalObject = key;
-    addButton.style.marginLeft = `${indentationLevel * 20}px`;
     valueCell.appendChild(addButton);
     placeholderRow.appendChild(valueCell);
 
@@ -810,7 +807,6 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         removeButton.type = 'button';
         removeButton.textContent = 'Remove';
         removeButton.dataset.removeOptionalObject = key;
-        removeButton.style.marginLeft = `${indentationLevel * 20}px`;
         
         removeButton.addEventListener('click', () => {
              const grid = removeButton.closest('.sector-form-grid');
