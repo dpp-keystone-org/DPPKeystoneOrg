@@ -250,7 +250,22 @@ export async function initializeWizard() {
             const listItem = document.createElement('li');
             const link = document.createElement('a');
             link.href = '#';
-            link.textContent = path;
+            
+            let label = path;
+            const input = document.querySelector(`[name="${path}"]`);
+            
+            if (input) {
+                if (input.classList.contains('voluntary-name')) {
+                    label = input.value || '(Empty Custom Field Name)';
+                } else if (input.classList.contains('voluntary-value')) {
+                    const row = input.closest('.voluntary-field-row');
+                    const keyInput = row?.querySelector('.voluntary-name');
+                    const keyName = keyInput?.value || 'Unknown Field';
+                    label = `Value for '${keyName}'`;
+                }
+            }
+            
+            link.textContent = label;
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 document.querySelector(`[name="${path}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
