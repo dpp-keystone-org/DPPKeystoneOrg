@@ -49,13 +49,28 @@
       "ConformityAssessmentBodyRole"
     ],
     "organizationName": "TUV Sued",
-    "notifiedBodyId": "NB0123"
+    "additionalOrganizationId": "NB0123",
+    "additionalOrganizationIdType": "NotifiedBodyNumber"
   },
   "dopcDeclarations": {
     "railProfile": "46E1",
     "steelGrade": "R260"
   },
   "harmonisedStandardReference": "https://ec.europa.eu/docsroom/documents/56934",
+  "europeanAssessmentDocument": {
+    "resourceTitle": "European Assessment Document",
+    "contentType": "application/pdf",
+    "url": "https://eota.eu/ead/123456-00-0102",
+    "language": "en"
+  },
+  "validationReports": [
+    {
+      "resourceTitle": "Fire Resistance Test Report",
+      "contentType": "application/pdf",
+      "url": "https://example.com/reports/fire-test-2024.pdf",
+      "language": "en"
+    }
+  ],
   "instructionsForUse": {
     "resourceTitle": "Installation and Maintenance Guide",
     "contentType": "application/pdf",

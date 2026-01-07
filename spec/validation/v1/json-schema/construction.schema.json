@@ -40,13 +40,17 @@
         "$ref": "organization.schema.json"
       },
       "validationReports": {
-        "type": "string"
+        "type": "array",
+        "items": {
+          "$ref": "related-resource.schema.json"
+        }
       },
       "harmonisedStandardReference": {
-        "type": "string"
+        "type": "string",
+        "format": "uri"
       },
       "europeanAssessmentDocument": {
-        "type": "string"
+        "$ref": "related-resource.schema.json"
       },
       "dopc": {
         "$ref": "dopc.schema.json"

@@ -21,7 +21,7 @@ const STORAGE_KEY = 'dpp_wizard_state_v1';
 
 // --- DOM Element References ---
 let coreFormContainer, sectorsFormContainer, voluntaryModulesContainer, addVoluntaryFieldBtn,
-    voluntaryFieldsWrapper, generateBtn, showErrorsBtn, errorCountBadge,
+    voluntaryFieldsWrapper, externalContextsWrapper, addExternalContextBtn, generateBtn, showErrorsBtn, errorCountBadge,
     jsonOutput, sectorButtons, languageSelector;
 
 /**
@@ -122,6 +122,8 @@ export async function initializeWizard() {
     voluntaryModulesContainer = document.getElementById('voluntary-modules-container');
     addVoluntaryFieldBtn = document.getElementById('add-voluntary-field-btn');
     voluntaryFieldsWrapper = document.getElementById('voluntary-fields-wrapper');
+    externalContextsWrapper = document.getElementById('external-contexts-wrapper');
+    addExternalContextBtn = document.getElementById('add-external-context-btn');
     generateBtn = document.getElementById('generate-dpp-btn');
     showErrorsBtn = document.getElementById('show-errors-btn');
     errorCountBadge = document.getElementById('error-count-badge');
@@ -368,15 +370,7 @@ export async function initializeWizard() {
         addVoluntaryFieldBtn.addEventListener('click', () => addVoluntaryField());
     }
 
-    if (generateBtn) {
-        generateBtn.addEventListener('click', () => {
-            const activeSectors = [...document.querySelectorAll('.sector-form-container')]
-                .map(container => container.id.replace('sector-form-', ''));
 
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer);
-            jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
-        });
-    }
 
     /**
      * Checks if a key conflicts with existing fields in Core or any available Sector.
@@ -421,11 +415,68 @@ export async function initializeWizard() {
         return conflicts;
     }
 
+    /**
+     * Retrieves the set of currently defined external context prefixes.
+     * @returns {Set<string>} A set of defined prefixes.
+     */
+    function getDefinedPrefixes() {
+        const prefixes = new Set();
+        if (externalContextsWrapper) {
+            const inputs = externalContextsWrapper.querySelectorAll('.context-prefix');
+            inputs.forEach(input => {
+                const val = input.value.trim();
+                if (val) prefixes.add(val);
+            });
+        }
+        return prefixes;
+    }
+
     function addVoluntaryField() {
-        const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap);
+        const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap, getDefinedPrefixes);
         voluntaryFieldsWrapper.appendChild(fieldRow);
     }
 
+    function addExternalContext() {
+        const row = document.createElement('div');
+        row.className = 'voluntary-field-row external-context-row';
+        
+        // Reuse similar styling as voluntary fields
+        const prefixInput = document.createElement('input');
+        prefixInput.type = 'text';
+        prefixInput.className = 'context-prefix voluntary-name'; // reuse class for styling
+        prefixInput.placeholder = 'Prefix (opt)';
+        prefixInput.style.maxWidth = '150px';
+
+        const uriInput = document.createElement('input');
+        uriInput.type = 'text';
+        uriInput.className = 'context-uri voluntary-value'; // reuse class for styling
+        uriInput.placeholder = 'Context URI (e.g. https://schema.org)';
+        
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.textContent = 'Remove';
+        removeBtn.addEventListener('click', () => row.remove());
+
+        row.appendChild(prefixInput);
+        row.appendChild(uriInput);
+        row.appendChild(removeBtn);
+        
+        externalContextsWrapper.appendChild(row);
+    }
+
+    if (addExternalContextBtn && externalContextsWrapper) {
+        addExternalContextBtn.addEventListener('click', addExternalContext);
+    }
+
+    if (generateBtn) {
+        generateBtn.addEventListener('click', () => {
+            const activeSectors = [...document.querySelectorAll('.sector-form-container')]
+                .map(container => container.id.replace('sector-form-', ''));
+
+            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper);
+            jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
+        });
+    }
     /**
      * Saves the current session state (Core + Sectors) to localStorage.
      */

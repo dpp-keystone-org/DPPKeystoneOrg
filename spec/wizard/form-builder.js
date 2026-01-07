@@ -732,78 +732,7 @@ function generateRows(fragment, properties, ontologyMap, requiredFields = [], pa
     }
 }
 
-/**
- * Creates a control row with a "Remove" button for an optional object.
- * @param {string} objectKey - The key of the optional object (e.g., 'epd').
- * @param {string} objectPath - The full path of the optional object (e.g., 'root.epd').
- * @param {number} indentationLevel - The current level of nesting for UI indentation.
- * @param {string} [lang='en'] - The current language code.
- * @returns {HTMLDivElement} The control row element.
- */
-function createOptionalObjectControlRow(objectKey, objectPath, indentationLevel, lang = 'en', prop, ontologyMap) {
-    const controlRow = document.createElement('div');
-    controlRow.className = 'grid-row array-item-control-row'; // Reusing array-item-control-row class for now
-    controlRow.dataset.optionalObjectControl = objectKey; // Mark this as the control row for the optional object
-    controlRow.dataset.objectPath = objectPath; // Store path for updates
 
-    const firstCell = document.createElement('div');
-    firstCell.className = 'grid-cell';
-    firstCell.style.paddingLeft = `${indentationLevel * 20}px`;
-    controlRow.appendChild(firstCell);
-
-    const removeButtonCell = document.createElement('div');
-    removeButtonCell.className = 'grid-cell';
-    const removeButton = document.createElement('button');
-    removeButton.type = 'button';
-    removeButton.textContent = 'Remove';
-    removeButton.dataset.removeOptionalObject = objectKey;
-
-    // 5z-f: Implement the "Remove" functionality.
-    removeButton.addEventListener('click', () => {
-        const grid = removeButton.closest('.sector-form-grid');
-        if (!grid) return;
-
-        const controlRowElement = removeButton.closest('[data-optional-object-groups]');
-        if (!controlRowElement) return;
-
-        // Find the first row of the group to know where to re-insert the placeholder
-        const firstRowOfGroup = grid.querySelector(`[data-optional-object-groups~="${objectKey}"]`);
-        if (!firstRowOfGroup) return;
-
-        // Find all rows belonging to this specific group to remove them
-        const rowsToRemove = grid.querySelectorAll(`[data-optional-object-groups~="${objectKey}"]`);
-        
-        // 5z-j: Before removing, find all inputs and dispatch an event to clear their validation state.
-        // clearValidationForRows(rowsToRemove); // Handled by MutationObserver
-
-        // Determine the parent groups by removing the current group from the list
-        const allGroups = controlRowElement.dataset.optionalObjectGroups || '';
-        const parentGroups = allGroups.replace(new RegExp(`\\b${objectKey}\\b`), '').trim();
-
-        // Re-create and insert the placeholder row before removing the old rows
-        const dynamicPath = controlRow.dataset.objectPath;
-        const newPlaceholder = createOptionalObjectPlaceholderRow(objectKey, prop, dynamicPath, indentationLevel, ontologyMap, lang);
-        
-        // Assign the parent groups to the new placeholder
-        if (parentGroups) {
-            newPlaceholder.dataset.optionalObjectGroups = parentGroups;
-        }
-
-        firstRowOfGroup.before(newPlaceholder);
-        
-        rowsToRemove.forEach(row => row.remove());
-    });
-
-    removeButtonCell.appendChild(removeButton);
-    controlRow.appendChild(removeButtonCell);
-
-    // Add empty cells for alignment
-    controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
-    controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
-    controlRow.appendChild(document.createElement('div')).className = 'grid-cell';
-
-    return controlRow;
-}
 
 /**
  * Creates a placeholder row for an optional object, including the "Add" button and its logic.
@@ -872,9 +801,42 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         parentRow.dataset.optionalObjectGroups = newGroup;
         populateHeaderRow(parentRow, { currentPath: dynamicPath, indentationLevel, ontologyMap, lang });
 
+        // Add Remove Button to the header (replacing the empty value cell content)
+        const headerValueCell = parentRow.children[1]; // Value cell is at index 1
+        const removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.textContent = 'Remove';
+        removeButton.dataset.removeOptionalObject = key;
+        
+        removeButton.addEventListener('click', () => {
+             const grid = removeButton.closest('.sector-form-grid');
+             if (!grid) return;
+
+             // The row containing the button is the header row
+             const headerRow = removeButton.closest('.grid-row');
+             
+             // Find all rows belonging to this specific group
+             const rowsToRemove = grid.querySelectorAll(`[data-optional-object-groups~="${key}"]`);
+             
+             // Calculate parent groups
+             const allGroups = headerRow.dataset.optionalObjectGroups || '';
+             const parentGroups = allGroups.replace(new RegExp(`\\b${key}\\b`), '').trim();
+
+             // Re-create placeholder
+             const newPlaceholder = createOptionalObjectPlaceholderRow(key, prop, dynamicPath, indentationLevel, ontologyMap, lang);
+             if (parentGroups) {
+                 newPlaceholder.dataset.optionalObjectGroups = parentGroups;
+             }
+
+             // Insert before and remove old
+             headerRow.before(newPlaceholder);
+             rowsToRemove.forEach(row => row.remove());
+        });
+        
+        headerValueCell.appendChild(removeButton);
+
         // Generate and add the child fields.
         generateRows(newFieldsFragment, prop.properties, ontologyMap, prop.required || [], dynamicPath, indentationLevel + 1, lang);
-        newFieldsFragment.appendChild(createOptionalObjectControlRow(key, dynamicPath, indentationLevel, lang, prop, ontologyMap));
         
         // Mark all new rows as belonging to the group.
         [...newFieldsFragment.children].forEach(row => {
@@ -956,12 +918,13 @@ export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
  * @param {Function} collisionChecker - Function to check for name collisions.
  * @param {Array} customTypeRegistry - Registry of custom types.
  * @param {Function} schemaLoader - Function to load schemas.
+ * @param {Function} prefixChecker - Function to check defined prefixes.
  */
-function populateGroupFromSchema(container, insertBeforeElement, schema, collisionChecker, customTypeRegistry, schemaLoader) {
+function populateGroupFromSchema(container, insertBeforeElement, schema, collisionChecker, customTypeRegistry, schemaLoader, prefixChecker = null) {
     if (!schema || !schema.properties) return;
 
     for (const [key, prop] of Object.entries(schema.properties)) {
-        const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
+        const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, new Map(), prefixChecker);
 
         const nameInput = newRow.querySelector('.voluntary-name');
         nameInput.value = key;
@@ -979,7 +942,7 @@ function populateGroupFromSchema(container, insertBeforeElement, schema, collisi
         if (mappedType === 'Group' && prop.properties) {
             const nestedContainer = newRow.querySelector('.voluntary-group-container');
             const nestedAddBtn = nestedContainer.querySelector('.add-voluntary-prop-btn');
-            populateGroupFromSchema(nestedContainer, nestedAddBtn, prop, collisionChecker, customTypeRegistry, schemaLoader);
+            populateGroupFromSchema(nestedContainer, nestedAddBtn, prop, collisionChecker, customTypeRegistry, schemaLoader, prefixChecker);
         }
 
         container.insertBefore(newRow, insertBeforeElement);
@@ -1053,7 +1016,7 @@ function updateNestedPaths(container, oldPrefix, newPrefix) {
  * Includes inputs for Name, Type, Value, and a Remove button.
  * @returns {HTMLDivElement} The generated row element.
  */
-export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [], schemaLoader = null, ontologyMap = new Map()) {
+export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [], schemaLoader = null, ontologyMap = new Map(), prefixChecker = null) {
     const row = document.createElement('div');
     row.className = 'voluntary-field-row';
     // Generate a unique ID for this row to track validation state
@@ -1083,6 +1046,17 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 if (type === 'key') {
                     input.value = value;
                     result = validateKey(input.value);
+
+                    if (result.isValid) {
+                        // Check Prefix Validity
+                        if (input.value.includes(':') && prefixChecker) {
+                            const prefix = input.value.split(':')[0];
+                            const definedPrefixes = prefixChecker();
+                            if (!definedPrefixes.has(prefix)) {
+                                result = { isValid: false, message: `Undefined prefix '${prefix}'. Add it to External Contexts.` };
+                            }
+                        }
+                    }
 
                     if (result.isValid && collisionChecker) {
                         const conflicts = await collisionChecker(input.value);
@@ -1225,7 +1199,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 addBtn.className = 'add-voluntary-prop-btn';
                 addBtn.textContent = 'Add Field';
                 addBtn.addEventListener('click', () => {
-                    const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader);
+                    const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, ontologyMap, prefixChecker);
                     container.insertBefore(newRow, addBtn);
                 });
 

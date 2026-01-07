@@ -31,14 +31,15 @@
   ConstructionProduct : +hasDoP
   ConstructionProduct --|> DeclarationOfPerformance : hasDoP
   ConstructionProduct : +harmonisedStandardReference
-  ConstructionProduct : +notifiedBodyId
   ConstructionProduct : +avsSystem
   ConstructionProduct : +notifiedBody
   ConstructionProduct --|> Organization : notifiedBody
   ConstructionProduct : +technicalAssessmentBody
   ConstructionProduct --|> Organization : technicalAssessmentBody
   ConstructionProduct : +validationReports
+  ConstructionProduct --|> RelatedResource : validationReports
   ConstructionProduct : +europeanAssessmentDocument
+  ConstructionProduct --|> RelatedResource : europeanAssessmentDocument
   ConstructionProduct : +reactionToFire
   ConstructionProduct : +thermalConductivity
   ConstructionProduct --|> QuantitativeValue : thermalConductivity
@@ -50,6 +51,8 @@
   style DeclarationOfPerformance stroke:#2962ff,color:#2962ff
   click Organization href "../../core/Organization/Organization.html" "dppk:Organization"
   style Organization stroke:#2962ff,color:#2962ff
+  click RelatedResource href "../../core/RelatedResource/RelatedResource.html" "dppk:RelatedResource"
+  style RelatedResource stroke:#2962ff,color:#2962ff
   click QuantitativeValue href "../../core/Product/QuantitativeValue.html" "dppk:QuantitativeValue"
   style QuantitativeValue stroke:#2962ff,color:#2962ff
 
@@ -87,13 +90,6 @@
                                 </tr>
                             
                                 <tr>
-                                    <td>Notified Body Identifier (dppk:notifiedBodyId)</td>
-                                    <td>The identification number of the Notified Body involved in the assessment and verification of constancy of performance (e.g., NB1234).</td>
-                                    <td>xsd:string</td>
-                                    
-                                </tr>
-                            
-                                <tr>
                                     <td>AVCP System (dppk:avsSystem)</td>
                                     <td>The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4).</td>
                                     <td>xsd:string</td>
@@ -102,14 +98,14 @@
                             
                                 <tr>
                                     <td>Notified Body (NB) Details (dppk:notifiedBody)</td>
-                                    <td></td>
+                                    <td>The EU-recognized notified body that verifies a product's conformance to European regulations</td>
                                     <td>dppk:Organization</td>
                                     
                                 </tr>
                             
                                 <tr>
                                     <td>Technical Assessment Body (TAB) Details (dppk:technicalAssessmentBody)</td>
-                                    <td></td>
+                                    <td>The technical assessment body that independently evaluates a product's technical characteristics</td>
                                     <td>dppk:Organization</td>
                                     
                                 </tr>
@@ -117,14 +113,14 @@
                                 <tr>
                                     <td>Validation Reports Reference (dppk:validationReports)</td>
                                     <td></td>
-                                    <td>xsd:string</td>
+                                    <td>dppk:RelatedResource</td>
                                     
                                 </tr>
                             
                                 <tr>
                                     <td>European Assessment Document (EAD) Reference (dppk:europeanAssessmentDocument)</td>
                                     <td></td>
-                                    <td>xsd:string</td>
+                                    <td>dppk:RelatedResource</td>
                                     
                                 </tr>
                             
