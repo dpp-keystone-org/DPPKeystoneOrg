@@ -1,11 +1,6 @@
-
-// Mock HTMLElement and related interfaces if not present (JSDOM handles most, but we might need specific mocks)
-// In JSDOM, custom events and basic DOM manipulation work fine.
-
 /**
  * @jest-environment jsdom
  */
-
 import { createVoluntaryFieldRow } from '../../src/wizard/form-builder.js';
 import { validateKey } from '../../src/wizard/validator.js';
 import { jest } from '@jest/globals';
