@@ -1,6 +1,6 @@
 // src/wizard/wizard.js
-import { loadSchema } from './schema-loader.js';
-import { loadOntology } from './ontology-loader.js';
+import { loadSchema } from '../lib/schema-loader.js';
+import { loadOntology } from '../lib/ontology-loader.js';
 import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
 import { generateDpp } from './dpp-generator.js';
 

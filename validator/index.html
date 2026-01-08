@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Validator</title>
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1767873614269">
+    <link rel="stylesheet" href="validator.css?v=1767873614269">
+    <script type="importmap">
+    {
+      "imports": {
+        "ajv/dist/2020.js": "https://esm.sh/ajv@8.17.1/dist/2020.js",
+        "ajv-formats": "https://esm.sh/ajv-formats@3.0.1",
+        "strip-json-comments": "https://esm.sh/strip-json-comments@5.0.1"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
+            <div>
+                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Validator</h1>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Official JSON Schema Validation Tool</p>
+            </div>
+        </header>
+
+        <nav style="margin-bottom: 20px;">
+            <a href="../index.html" class="nav-link">Home</a> | 
+            <a href="../wizard/index.html" class="nav-link">Wizard</a>
+        </nav>
+
+        <div id="validator-container">
+            <section id="validator-tool" class="card">
+                <h2>JSON DPP Validator</h2>
+                <p>Paste a DPP JSON file below to validate it against the official schemas (Core + Sectors).</p>
+                <textarea id="json-input" placeholder='{"digitalProductPassportId": "..."}'></textarea>
+                <button id="validate-btn" disabled>Validate</button>
+                <div id="validation-result" class="result-box" hidden></div>
+            </section>
+        </div>
+
+        <footer>
+            <p><small>Part of the <a href="../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module" src="validator.js?v=1767873614269"></script>
+</body>
+</html>
