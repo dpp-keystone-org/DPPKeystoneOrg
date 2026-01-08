@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Ontology Explorer</title>
+    <link rel="stylesheet" href="../branding/css/keystone-style.css">
+    <link rel="stylesheet" href="explorer.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
+            <div>
+                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Ontology Explorer</h1>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Search and browse definitions across all DPP sectors.</p>
+            </div>
+        </header>
+
+        <nav style="margin-bottom: 20px;">
+            <a href="../index.html" class="nav-link">Home</a> | 
+            <a href="../wizard/index.html" class="nav-link">Wizard</a> |
+            <a href="../validator/index.html" class="nav-link">Validator</a>
+        </nav>
+
+        <div id="explorer-container">
+            <section class="card">
+                <input type="text" id="search-box" placeholder="Search for terms (e.g., 'GTIN', 'Carbon', 'Battery')..." autofocus>
+                <div id="results-area">
+                    <p id="results-count"></p>
+                    <div id="results-grid" class="results-grid"></div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p><small>Part of the <a href="../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module" src="explorer.js"></script>
+</body>
+</html>

@@ -39,7 +39,7 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
-        if (entry.name === 'desktop.ini' || entry.name === 'branding' || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator'))) {
+        if (entry.name === 'desktop.ini' || entry.name === 'branding' || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator' || entry.name === 'explorer'))) {
             continue;
         }
         const sourcePath = path.join(sourceDir, entry.name);
@@ -87,7 +87,8 @@ async function addCacheBusting(targetDir) {
     console.log('Adding cache-busting...');
     const pathsToProcess = [
         path.join(targetDir, 'wizard', 'index.html'),
-        path.join(targetDir, 'validator', 'index.html')
+        path.join(targetDir, 'validator', 'index.html'),
+        path.join(targetDir, 'explorer', 'index.html')
     ];
 
     for (const htmlPath of pathsToProcess) {
@@ -142,6 +143,13 @@ async function build() {
     if (await fse.pathExists(path.join(SOURCE_DIR, 'validator'))) {
         await processDirectory(path.join(SOURCE_DIR, 'validator'), validatorDir);
         console.log(`Copied validator to dist/validator`);
+    }
+
+    // Process 'explorer' into its own root-level directory in dist
+    const explorerDir = path.join(BUILD_DIR, 'explorer');
+    if (await fse.pathExists(path.join(SOURCE_DIR, 'explorer'))) {
+        await processDirectory(path.join(SOURCE_DIR, 'explorer'), explorerDir);
+        console.log(`Copied explorer to dist/explorer`);
     }
 
     // Copy root-level static assets

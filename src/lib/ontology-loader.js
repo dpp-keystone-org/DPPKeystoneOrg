@@ -99,6 +99,17 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
         loadedUrls.add(fetchUrl);
         const ontology = await response.json();
 
+        // Extract module info from URL
+        // Expecting structure like: .../ontology/v1/{type}/{name}.jsonld
+        let definedIn = null;
+        const urlMatch = fetchUrl.match(/ontology\/v1\/(.+?)\/(.+?)\.jsonld/);
+        if (urlMatch) {
+            definedIn = {
+                type: urlMatch[1],
+                name: urlMatch[2]
+            };
+        }
+
         // Process the graph of the current ontology
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
@@ -115,6 +126,9 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                         range = range.split(':')[1];
                     }
 
+                    // Extract type
+                    const rdfType = term['@type'] || term['rdf:type'];
+
                     let key = term['@id'];
                     if (key.includes(':')) {
                         key = key.split(':')[1];
@@ -130,6 +144,8 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                             range: range || '',
                             source: source || null,
                             domain: domain || null,
+                            definedIn: definedIn,
+                            type: rdfType
                         });
                     }
                 }

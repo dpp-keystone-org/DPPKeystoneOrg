@@ -121,7 +121,45 @@ This design defines the **canonical architecture** for future features.
     *   **Logic:** Add a new card linking to `validator/index.html` in the "DPP Toolkit" section.
 
 ### Phase 4: Ontology Explorer
-*   **[PENDING] 4a. Create Indexer:** Implement `src/lib/ontology-indexer.js`. It should have a function `buildIndex()` that uses `ontology-loader` to fetch all sectors and flatten them into a searchable array.
-*   **[PENDING] 4b. Build UI:**
-    *   **[PENDING] 4b.1.** Create `src/explorer/index.html` with Search Input and Results Table.
-    *   **[PENDING] 4b.2.** Wire up search logic in `src/explorer/explorer.js`.
+*   **[COMPLETED] 4a. Create Indexer:** Implement `src/lib/ontology-indexer.js`. It should have a function `buildIndex()` that uses `ontology-loader` to fetch all sectors and flatten them into a searchable array.
+*   **[COMPLETED] 4b. Build UI:**
+    *   **[COMPLETED] 4b.1.** Create `src/explorer/index.html` with Search Input and Results Table.
+    *   **[COMPLETED] 4b.2.** Wire up search logic in `src/explorer/explorer.js`.
+
+### Phase 5: Ontology Explorer Contextualization
+*   **[COMPLETED] 5a. Enhance Loader (`src/lib/ontology-loader.js`):**
+    *   **Goal:** Capture source context (file/module) and RDF type during parsing.
+    *   **Logic:**
+        *   Update `loadAndParseOntology` to parse the file URL (e.g., `../spec/ontology/v1/core/Product.jsonld`) to extract `moduleType` ('core' or 'sectors') and `moduleName` ('Product').
+        *   Extract `rdf:type` from the term definition to distinguish between `rdfs:Class` and `rdf:Property`.
+        *   Store `definedIn` (module path) and `type` in the ontology map values.
+*   **[COMPLETED] 5b. Update Indexer (`src/lib/ontology-indexer.js`):**
+    *   **Goal:** Generate documentation links and context labels.
+    *   **Logic:**
+        *   Implement `getFragment(id)` helper (consistent with `generate-spec-docs.mjs`).
+        *   In `buildIndex()`, for each term:
+            *   Generate `contextLabel`: `${moduleType} / ${moduleName}` (Title Case).
+            *   Generate `docUrl`:
+                *   If Class: `/spec/ontology/v1/${moduleType}/${moduleName}/${fragment}.html`.
+                *   If Property: `/spec/ontology/v1/${moduleType}/${moduleName}/index.html#${fragment}`.
+            *   Add `docUrl` and `contextLabel` to the returned index objects.
+*   **[COMPLETED] 5c. Update Explorer UI (`src/explorer/explorer.js` & `.css`):**
+    *   **Goal:** Display context and link to official docs.
+    *   **Logic:**
+        *   Update `renderResults`:
+            *   Add a badge/label showing `term.contextLabel`.
+            *   Wrap the Term ID/Label in an `<a>` tag pointing to `term.docUrl`.
+            *   If `term.domain` is present, display "Applies to: [Domain]" (ideally linking to the domain class if known).
+            *   Add visual distinction between Classes and Properties (e.g., icon or label).
+*   **[COMPLETED] 5d. Unit Testing:**
+    *   **Goal:** Verify logic for context extraction and URL generation.
+    *   **Logic:**
+        *   Update `testing/unit/lib/ontology-loader.test.js`: Test that `loadOntology` correctly populates `definedIn` and `type` fields.
+        *   Create `testing/unit/lib/ontology-indexer.test.js`: Test `buildIndex` with mock data to ensure `docUrl` is constructed correctly for Classes vs Properties.
+*   **[COMPLETED] 5e. E2E Testing:**
+    *   **Goal:** Verify Explorer UI functionality.
+    *   **Logic:**
+        *   Create `testing/integration/playwright/explorer.spec.js`.
+        *   Test loading the page (smoke test).
+        *   Test searching for a known term (e.g., "Product").
+        *   Verify that results display the "Context" badge and "View Spec" link.
