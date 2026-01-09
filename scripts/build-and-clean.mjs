@@ -85,23 +85,83 @@ async function createRedirects(targetDir) {
 
 async function addCacheBusting(targetDir) {
     console.log('Adding cache-busting...');
-    const pathsToProcess = [
+    const timestamp = Date.now();
+
+    // 1. Update HTML files (Entry points)
+    const htmlPaths = [
         path.join(targetDir, 'wizard', 'index.html'),
         path.join(targetDir, 'validator', 'index.html'),
         path.join(targetDir, 'explorer', 'index.html')
     ];
 
-    for (const htmlPath of pathsToProcess) {
+    for (const htmlPath of htmlPaths) {
         try {
             if (await fse.pathExists(htmlPath)) {
                 let content = await fs.readFile(htmlPath, 'utf-8');
-                const timestamp = Date.now();
                 content = content.replace(/(href|src)="(.*?\.(css|js))"/g, `$1="$2?v=${timestamp}"`);
                 await fs.writeFile(htmlPath, content, 'utf-8');
-                console.log(`Added cache-busting to ${htmlPath}`);
+                console.log(`Added cache-busting to HTML: ${htmlPath}`);
             }
         } catch (error) {
             console.warn(`Warning: Could not add cache-busting to ${htmlPath}. Error: ${error.message}`);
+        }
+    }
+
+    // 2. Update JS files (Imports)
+    // Directories known to contain JS modules that might have imports
+    const jsDirs = ['wizard', 'validator', 'explorer', 'lib', 'util'];
+    
+    // Helper function to recursively walk and process JS files
+    async function walkAndCacheBustJs(dir) {
+        const entries = await fs.readdir(dir, { withFileTypes: true });
+        for (const entry of entries) {
+            const fullPath = path.join(dir, entry.name);
+            if (entry.isDirectory()) {
+                await walkAndCacheBustJs(fullPath);
+            } else if (entry.name.endsWith('.js') || entry.name.endsWith('.mjs')) {
+                try {
+                    let content = await fs.readFile(fullPath, 'utf-8');
+                    let changed = false;
+                    
+                    // Replace static imports: import ... from '...';
+                    // Matches: import ... from './file.js' or from "../lib/file.mjs"
+                    // Modified to require starting with . or / to avoid breaking bare specifiers
+                    const importRegex = /(from\s+['"])((?:\.|\/).*?\.(js|mjs))(['"])/g;
+                    if (importRegex.test(content)) {
+                        content = content.replace(importRegex, `$1$2?v=${timestamp}$4`);
+                        changed = true;
+                    }
+                    
+                    // Replace side-effect imports: import '...';
+                    // Matches: import './file.js'
+                    const sideEffectImportRegex = /(import\s+['"])((?:\.|\/).*?\.(js|mjs))(['"])/g;
+                    if (sideEffectImportRegex.test(content)) {
+                         content = content.replace(sideEffectImportRegex, `$1$2?v=${timestamp}$4`);
+                         changed = true;
+                    }
+
+                    // Replace dynamic imports: import('...')
+                    const dynamicImportRegex = /(import\(['"])((?:\.|\/).*?\.(js|mjs))(['"]\))/g;
+                    if (dynamicImportRegex.test(content)) {
+                        content = content.replace(dynamicImportRegex, `$1$2?v=${timestamp}$4`);
+                        changed = true;
+                    }
+
+                    if (changed) {
+                        await fs.writeFile(fullPath, content, 'utf-8');
+                        // console.log(`Added cache-busting to JS: ${fullPath}`);
+                    }
+                } catch (err) {
+                    console.warn(`Warning: Could not process JS file for cache-busting: ${fullPath}`, err);
+                }
+            }
+        }
+    }
+
+    for (const dirName of jsDirs) {
+        const dirPath = path.join(targetDir, dirName);
+        if (await fse.pathExists(dirPath)) {
+            await walkAndCacheBustJs(dirPath);
         }
     }
 }
