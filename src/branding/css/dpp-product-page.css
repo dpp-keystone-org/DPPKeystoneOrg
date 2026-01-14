@@ -1,0 +1,69 @@
+:root {
+  --primary-color: #005f9e;
+  --secondary-color: #f4f4f4;
+  --text-color: #333;
+  --border-color: #ddd;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.dpp-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+header.dpp-hero {
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.dpp-metadata {
+  background: var(--secondary-color);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+  color: var(--primary-color);
+}
+
+.dpp-section {
+  margin-bottom: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--secondary-color);
+}
+
+.dpp-field {
+  margin-bottom: 10px;
+}
+
+.dpp-label {
+  font-weight: bold;
+  display: block;
+}

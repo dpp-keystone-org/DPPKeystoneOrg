@@ -69,7 +69,7 @@ Transform the raw JSON output of the DPP Wizard into a tangible, visually appeal
     *   Implement basic function `generateHTML(dppJson)` that returns a simple HTML string.
     *   Create `testing/unit/html-generator.test.js` to verify it returns a string containing the input.
 
-*   [PENDING] **Step 1.2: CSS Foundation**
+*   [COMPLETED] **Step 1.2: CSS Foundation**
     *   Create `src/branding/css/dpp-product-page.css` with basic variables (colors, fonts).
     *   Update `generateHTML` to read this file and embed it into the `<style>` tag of the output.
     *   **Test:** Update unit test to verify CSS content is present in the output.
