@@ -1,4 +1,4 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1768404137593';
 import stripJsonComments from 'strip-json-comments';
 
 // Configuration: Map Spec IDs to Schema filenames

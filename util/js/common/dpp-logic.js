@@ -1,5 +1,5 @@
 import jsonld from 'jsonld';
-import { profile as schemaOrgProfile } from './profiles/schema.org.js';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1768404137593';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
