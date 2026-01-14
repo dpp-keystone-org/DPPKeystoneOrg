@@ -74,51 +74,80 @@ Transform the raw JSON output of the DPP Wizard into a tangible, visually appeal
     *   Update `generateHTML` to read this file and embed it into the `<style>` tag of the output.
     *   **Test:** Update unit test to verify CSS content is present in the output.
 
-*   [PENDING] **Step 1.3: Hero Section Implementation**
+*   [COMPLETED] **Step 1.3: Hero Section Implementation**
     *   Update `generateHTML` to extract `productName`, `manufacturer.organizationName`, and `uniqueProductIdentifier`.
     *   Render them in a `<header class="dpp-hero">` block.
     *   **Test:** Update unit test with a sample containing these fields and verify they appear in the HTML.
 
-*   [PENDING] **Step 1.4: Metadata Header Implementation**
+*   [COMPLETED] **Step 3.1: Wizard UI Button** (Pulled forward for early interaction)
+    *   Add "Preview Product Page" button to `src/wizard/index.html`.
+    *   Add event listener in `src/wizard/wizard.js` (or new logic file) to call `generateHTML`.
+    *   **Test:** Manual verification (Browser) - Button appears and opens new tab.
+
+*   [COMPLETED] **Step 1.4: Metadata Header Implementation**
     *   Update `generateHTML` to extract `dppStatus`, `lastUpdate`, `digitalProductPassportId`.
     *   Render them in a `<section class="dpp-metadata">` block.
     *   **Test:** Verify metadata fields are rendered correctly.
 
 ### Phase 2: Algorithmic Content Rendering
-*   [PENDING] **Step 2.1: Recursive Primitive Renderer**
+*   [COMPLETED] **Step 2.1: Recursive Primitive Renderer**
     *   Create a helper function `renderValue(key, value)` inside the generator.
     *   Handle string/number/boolean types by returning a `<div class="dpp-field">` with label and value.
     *   Iterate over root keys (excluding those already used in Hero/Header) and call this helper.
     *   **Test:** Feed a simple flat JSON object and verify all keys are rendered.
 
-*   [PENDING] **Step 2.2: Matrix/Table Detection Logic (Unit Logic)**
+*   [COMPLETED] **Step 2.2: Matrix/Table Detection Logic (Unit Logic)**
     *   Implement `detectTableStructure(object)` helper.
     *   Returns `true` if children are objects sharing > 50% keys.
     *   **Test:** Add specific test cases in `html-generator.test.js` for this function (export it for testing or test via effect).
 
-*   [PENDING] **Step 2.3: Rendering Matrix Objects**
+*   [COMPLETED] **Step 2.3: Rendering Matrix Objects**
     *   Update `renderValue` to handle objects.
     *   If `detectTableStructure` is true, render as `<table>`.
     *   **Test:** Use an EPD-like mock object and verify it renders as a table with correct headers.
 
-*   [PENDING] **Step 2.4: Rendering Object Arrays**
+*   [COMPLETED] **Step 2.4: Rendering Object Arrays**
     *   Update `renderValue` to handle arrays.
     *   If array contains objects with shared schema, render as `<table>`.
     *   Else, render as list of cards.
     *   **Test:** Use a `components` array mock and verify table output.
 
+### Phase 2.5: Immediate Fixes & Adjustments
+*   [COMPLETED] **Step 2.5.1: Fix Unit Test Warnings**
+    *   Address the console warning regarding `fetch` mocking in `html-generator.test.js`.
+
+*   [COMPLETED] **Step 2.5.2: Stabilize Playwright Tests**
+    *   Investigate and fix the flaky Chrome/Playwright test (`validator.spec.js`) where `toBeEnabled` times out.
+    *   Ensure robust waiting for button states.
+
+*   [COMPLETED] **Step 2.5.3: UI Renaming & Hiding**
+    *   Rename "Preview Product Page" button to "Generate Example HTML".
+    *   Ensure this button is hidden/shown in sync with the "Generate DPP" button (only visible when valid).
+    *   **Reasoning:** Avoid implying this is a transactional product page.
+
+*   [PENDING] **Step 2.5.4: Remove Raw Data View**
+    *   Remove the `<pre>` block displaying raw JSON from `html-generator.js`.
+    *   **Reasoning:** User confusion reduction; focus on visual representation.
+
 ### Phase 3: Integration & Polish
-*   [PENDING] **Step 3.1: Wizard UI Button**
-    *   Add "Preview Product Page" button to `src/wizard/index.html`.
+*   [COMPLETED] **Step 3.1: Wizard UI Button**
+    *   Add "Generate Example HTML" button to `src/wizard/index.html`.
     *   Add event listener in `src/wizard/wizard.js` (or new logic file) to call `generateHTML`.
     *   **Test:** Manual verification (Browser) - Button appears and opens new tab.
 
-*   [PENDING] **Step 3.2: Adapter Injection**
+*   [PENDING] **Step 3.2: Web-Friendly Data Injection (Adapter)**
     *   Import `dpp-adapter.js` in `html-generator.js`.
-    *   Generate JSON-LD and inject into head.
-    *   **Test:** Unit test to verify `<script type="application/ld+json">` presence and content.
+    *   Generate JSON-LD (Schema.org/GS1) using the adapter.
+    *   Inject this structured data into a `<script type="application/ld+json">` tag in the `<head>` of the generated HTML.
+    *   **Goal:** Ensure the HTML is "web-ready" and machine-readable by standard crawlers.
+    *   **Test:** Unit test to verify `<script type="application/ld+json">` presence and valid JSON content.
 
 *   [PENDING] **Step 3.3: Image Handling**
     *   Implement logic to find image URLs in the JSON.
     *   Update Hero section to display the image.
     *   **Test:** Mock JSON with image URL, verify `<img>` tag.
+
+*   [PENDING] **Step 3.4: Visual Polish (GS1 Style)**
+    *   Upgrade `dpp-product-page.css` to reflect a professional, GS1-aligned visual style.
+    *   Ensure responsive tables and clean typography.
+    *   **Test:** Manual verification of the generated page's aesthetics.

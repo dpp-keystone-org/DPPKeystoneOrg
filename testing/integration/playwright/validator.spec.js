@@ -5,8 +5,26 @@ test.describe('DPP Validator', () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to the validator page
     await page.goto('/validator/index.html');
-    // Wait for schemas to load (button becomes enabled)
-    await expect(page.locator('#validate-btn')).toBeEnabled({ timeout: 15000 });
+    
+    // Wait for schemas to load (button becomes enabled) OR error to appear
+    // This provides better debugging if loading fails
+    const btn = page.locator('#validate-btn');
+    const errorBox = page.locator('#validation-result.error'); // Use ID selector for specificity if class varies, or combine
+
+    await expect(async () => {
+        const isEnabled = await btn.isEnabled();
+        // Check if error box is visible and has text (it might be hidden but exist)
+        const isError = await errorBox.isVisible();
+        
+        if (isError) {
+             const text = await errorBox.textContent();
+             // If specifically the system error, throw
+             if (text && text.includes('System Error')) {
+                 throw new Error(`Schema loading failed: ${text}`);
+             }
+        }
+        expect(isEnabled).toBe(true);
+    }).toPass({ timeout: 30000, intervals: [1000] });
   });
 
   test('Empty string input shows error', async ({ page }) => {

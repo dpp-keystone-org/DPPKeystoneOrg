@@ -3,6 +3,7 @@ import { loadSchema } from '../lib/schema-loader.js';
 import { loadOntology } from '../lib/ontology-loader.js';
 import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
 import { generateDpp } from './dpp-generator.js';
+import { generateHTML } from '../lib/html-generator.js';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
@@ -131,6 +132,8 @@ export async function initializeWizard() {
     sectorButtons = document.querySelectorAll('.sector-btn');
     languageSelector = document.getElementById('language-selector');
 
+    const previewBtn = document.getElementById('preview-html-btn');
+
     /**
      * Toggles the visibility of the 'Generate' and 'Show Errors' buttons
      * based on the current validation state.
@@ -138,7 +141,10 @@ export async function initializeWizard() {
     function updateButtonState() {
         if (!generateBtn || !showErrorsBtn) return;
         const hasErrors = invalidFields.size > 0;
+        
         generateBtn.hidden = hasErrors;
+        if (previewBtn) previewBtn.hidden = hasErrors;
+        
         showErrorsBtn.hidden = !hasErrors;
         errorCountBadge.textContent = invalidFields.size;
     }
@@ -490,6 +496,23 @@ export async function initializeWizard() {
 
             const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper);
             jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
+        });
+    }
+
+    if (previewBtn) {
+        previewBtn.addEventListener('click', async () => {
+            const activeSectors = [...document.querySelectorAll('.sector-form-container')]
+                .map(container => container.id.replace('sector-form-', ''));
+
+            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper);
+            
+            // Generate the HTML Blob
+            const htmlContent = await generateHTML(dppObject);
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            // Open in new tab
+            window.open(url, '_blank');
         });
     }
     /**
