@@ -1,9 +1,9 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1768404137593';
-import { loadOntology } from '../lib/ontology-loader.js?v=1768404137593';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1768404137593';
-import { generateDpp } from './dpp-generator.js?v=1768404137593';
-import { generateHTML } from '../lib/html-generator.js?v=1768404137593';
+import { loadSchema } from '../lib/schema-loader.js?v=1768414137213';
+import { loadOntology } from '../lib/ontology-loader.js?v=1768414137213';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1768414137213';
+import { generateDpp } from './dpp-generator.js?v=1768414137213';
+import { generateHTML } from '../lib/html-generator.js?v=1768414137213';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
