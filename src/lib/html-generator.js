@@ -216,9 +216,6 @@ export async function generateHTML(dppJson) {
             <h3>Product Attributes</h3>
             ${contentHtml}
         </section>
-
-        <h2>Raw Data</h2>
-        <pre>${jsonString}</pre>
     </div>
 </body>
 </html>`;

@@ -125,7 +125,7 @@ Transform the raw JSON output of the DPP Wizard into a tangible, visually appeal
     *   Ensure this button is hidden/shown in sync with the "Generate DPP" button (only visible when valid).
     *   **Reasoning:** Avoid implying this is a transactional product page.
 
-*   [PENDING] **Step 2.5.4: Remove Raw Data View**
+*   [COMPLETED] **Step 2.5.4: Remove Raw Data View**
     *   Remove the `<pre>` block displaying raw JSON from `html-generator.js`.
     *   **Reasoning:** User confusion reduction; focus on visual representation.
 
@@ -151,3 +151,9 @@ Transform the raw JSON output of the DPP Wizard into a tangible, visually appeal
     *   Upgrade `dpp-product-page.css` to reflect a professional, GS1-aligned visual style.
     *   Ensure responsive tables and clean typography.
     *   **Test:** Manual verification of the generated page's aesthetics.
+
+*   [PENDING] **Step 3.5: Integration Testing**
+    *   Create a new Playwright test (or extend `wizard.spec.js`) to verify the "Generate Example HTML" flow.
+    *   Simulate filling a valid form.
+    *   Verify the button becomes visible.
+    *   Verify clicking the button triggers the HTML generation (check for new page/tab content if possible, or intercept the blob creation).
