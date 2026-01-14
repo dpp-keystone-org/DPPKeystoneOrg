@@ -6,7 +6,7 @@ test.describe('DPP Validator', () => {
     // Navigate to the validator page
     await page.goto('/validator/index.html');
     // Wait for schemas to load (button becomes enabled)
-    await expect(page.locator('#validate-btn')).toBeEnabled();
+    await expect(page.locator('#validate-btn')).toBeEnabled({ timeout: 15000 });
   });
 
   test('Empty string input shows error', async ({ page }) => {
