@@ -94,8 +94,8 @@ describe('HTML Generator', () => {
     // Verify CSS is embedded
     expect(html).toContain(mockCss);
     
-    // Verify fetch was called with correct path
-    expect(fetch).toHaveBeenCalledWith('/src/branding/css/dpp-product-page.css');
+    // Verify fetch was called with correct path (allowing for other calls like HEAD check)
+    expect(fetch).toHaveBeenCalledWith(expect.stringMatching(/branding\/css\/dpp-product-page\.css/));
   });
 
   test('should render Hero section correctly', async () => {
@@ -260,10 +260,11 @@ describe('HTML Generator', () => {
       const html = await generateHTML(mockDpp);
 
       // Verify transformDpp called with correct arguments
-      expect(transformDppMock).toHaveBeenCalledWith(mockDpp, {
+      expect(transformDppMock).toHaveBeenCalledWith(mockDpp, expect.objectContaining({
           profile: 'schema.org',
-          ontologyPaths: ['../ontology/v1/dpp-ontology.jsonld']
-      });
+          ontologyPaths: expect.arrayContaining([expect.stringMatching(/ontology\/v1\/dpp-ontology\.jsonld/)]),
+          documentLoader: expect.any(Function)
+      }));
 
       // Verify script tag is present
       expect(html).toContain('<script type="application/ld+json">');

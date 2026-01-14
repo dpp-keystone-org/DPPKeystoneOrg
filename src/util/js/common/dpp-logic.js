@@ -1,5 +1,22 @@
 import * as jsonldEngine from 'jsonld';
-const jsonld = jsonldEngine.default || jsonldEngine;
+
+// Robustly resolve the jsonld library instance across different environments
+let jsonld = jsonldEngine.default || jsonldEngine;
+
+// Search for the object that has the 'expand' method
+if (typeof jsonld.expand !== 'function') {
+    if (jsonld.default && typeof jsonld.default.expand === 'function') {
+        jsonld = jsonld.default;
+    } else if (typeof jsonldEngine.expand === 'function') {
+        jsonld = jsonldEngine;
+    } else if (jsonld.jsonld && typeof jsonld.jsonld.expand === 'function') {
+        jsonld = jsonld.jsonld;
+    } else if (typeof globalThis.jsonld !== 'undefined' && typeof globalThis.jsonld.expand === 'function') {
+        // Fallback for UMD builds in browser that attach to window/globalThis
+        jsonld = globalThis.jsonld;
+    }
+}
+
 import { profile as schemaOrgProfile } from './profiles/schema.org.js';
 
 const profiles = {

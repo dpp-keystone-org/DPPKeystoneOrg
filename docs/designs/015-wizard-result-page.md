@@ -157,3 +157,11 @@ Transform the raw JSON output of the DPP Wizard into a tangible, visually appeal
     *   Simulate filling a valid form.
     *   Verify the button becomes visible.
     *   Verify clicking the button triggers the HTML generation (check for new page/tab content if possible, or intercept the blob creation).
+
+*   [PENDING] **Step 3.6: Advanced Rendering Logic Refinement**
+    *   **Goal:** Improve the recursive renderer to handle complex, nested, or partially populated structures (specifically EPDs) with high fidelity.
+    *   **Requirements:**
+        *   **EPD Table Rendering:** Ensure EPD (Environmental Product Declaration) data is always rendered as a clean, readable table, even if partially populated.
+        *   **Complex Attribute Composition:** Refine how nested objects are displayed to clearly reflect their composition (e.g. avoiding "flat lists" for deep structures).
+        *   **Null/Empty Handling:** Ensure robust handling of missing fields within these complex structures.
+    *   **Test:** Create complex mock DPPs with nested/partial data and verify the HTML output structure.

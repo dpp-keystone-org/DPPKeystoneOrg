@@ -187,8 +187,11 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
  * @returns {Array} An array containing the single schema.org certification object.
  */
 function epdToSchemaOrgCertifications(epdData, dictionary, parentNode) {
-    const manufacturerNode = parentNode['https://dpp-keystone.org/spec/v1/terms#manufacturer'][0];
-    const manufacturerName = getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#organizationName') || 'Unknown';
+    const manufacturerList = parentNode['https://dpp-keystone.org/spec/v1/terms#manufacturer'];
+    const manufacturerNode = manufacturerList ? manufacturerList[0] : null;
+    const manufacturerName = manufacturerNode 
+        ? (getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#organizationName') || 'Unknown') 
+        : 'Unknown';
 
     const measurements = [];
 
