@@ -36,6 +36,31 @@ export async function generateHTML(dppJson) {
       `;
   }
 
+  // --- JSON-LD Generation ---
+  let jsonLdScript = '';
+  try {
+      // Dynamically import the adapter to avoid top-level dependency on 'jsonld'
+      // which can break app loading if not properly resolved by the environment.
+      const { transformDpp } = await import('../util/js/client/dpp-adapter.js');
+
+      // Path to ontology relative to the wizard (which executes this code)
+      // Wizard is at src/wizard/index.html, Ontology is at src/ontology/v1/dpp-ontology.jsonld
+      // So relative path is ../ontology/v1/dpp-ontology.jsonld
+      const ontologyPaths = ['../ontology/v1/dpp-ontology.jsonld'];
+      
+      const transformed = await transformDpp(dppJson, {
+           profile: 'schema.org',
+           ontologyPaths: ontologyPaths
+      });
+      
+      if (transformed) {
+           const jsonLdString = JSON.stringify(transformed, null, 2);
+           jsonLdScript = `<script type="application/ld+json">\n${jsonLdString}\n</script>`;
+      }
+  } catch (e) {
+      console.warn("Failed to generate JSON-LD:", e);
+  }
+
   const jsonString = JSON.stringify(dppJson, null, 2);
 
   // --- Data Extraction ---
@@ -203,6 +228,7 @@ export async function generateHTML(dppJson) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${productName} - Digital Product Passport</title>
+    ${jsonLdScript}
     <style>
         ${cssContent}
     </style>

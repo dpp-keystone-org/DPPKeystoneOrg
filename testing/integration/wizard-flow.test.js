@@ -8,6 +8,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import { TextDecoder, TextEncoder } from 'util';
+
+global.TextDecoder = TextDecoder;
+global.TextEncoder = TextEncoder;
 
 // NOTE: We do not import the modules to be mocked or tested at the top level.
 // They will be imported dynamically within the test.

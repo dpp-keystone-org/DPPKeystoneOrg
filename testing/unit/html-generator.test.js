@@ -2,14 +2,34 @@
  * @jest-environment jsdom
  */
 import { jest } from '@jest/globals';
-import { generateHTML, detectTableStructure } from '../../src/lib/html-generator.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
 
 describe('HTML Generator', () => {
+  let generateHTML;
+  let detectTableStructure;
+  let transformDppMock;
+
+  beforeAll(async () => {
+      transformDppMock = jest.fn();
+      
+      // Mock the dpp-adapter dependency
+      jest.unstable_mockModule('../../src/util/js/client/dpp-adapter.js', () => ({
+          transformDpp: transformDppMock
+      }));
+
+      // Dynamically import the module under test
+      const module = await import('../../src/lib/html-generator.js');
+      generateHTML = module.generateHTML;
+      detectTableStructure = module.detectTableStructure;
+  });
+
   beforeEach(() => {
       fetch.mockClear();
+      transformDppMock.mockClear();
+      // Default mock implementation for transformDpp (return null/undefined to skip LD generation by default)
+      transformDppMock.mockResolvedValue(null);
   });
   
   describe('detectTableStructure', () => {
@@ -226,5 +246,28 @@ describe('HTML Generator', () => {
 
   test('should throw error if input is missing', async () => {
     await expect(generateHTML(null)).rejects.toThrow("DPP JSON is required");
+  });
+
+  test('should inject JSON-LD script when transformDpp returns data', async () => {
+      const mockDpp = { productName: "Test", id: "1" };
+      const mockJsonLd = { "@context": "http://schema.org", "@type": "Product", "name": "Test" };
+      
+      // Setup mock return
+      transformDppMock.mockResolvedValueOnce(mockJsonLd);
+      
+      fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+
+      const html = await generateHTML(mockDpp);
+
+      // Verify transformDpp called with correct arguments
+      expect(transformDppMock).toHaveBeenCalledWith(mockDpp, {
+          profile: 'schema.org',
+          ontologyPaths: ['../ontology/v1/dpp-ontology.jsonld']
+      });
+
+      // Verify script tag is present
+      expect(html).toContain('<script type="application/ld+json">');
+      expect(html).toContain('"@type": "Product"');
+      expect(html).toContain('</script>');
   });
 });

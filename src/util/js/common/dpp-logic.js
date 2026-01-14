@@ -1,4 +1,5 @@
-import jsonld from 'jsonld';
+import * as jsonldEngine from 'jsonld';
+const jsonld = jsonldEngine.default || jsonldEngine;
 import { profile as schemaOrgProfile } from './profiles/schema.org.js';
 
 const profiles = {

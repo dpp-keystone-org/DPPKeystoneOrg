@@ -135,7 +135,7 @@ Transform the raw JSON output of the DPP Wizard into a tangible, visually appeal
     *   Add event listener in `src/wizard/wizard.js` (or new logic file) to call `generateHTML`.
     *   **Test:** Manual verification (Browser) - Button appears and opens new tab.
 
-*   [PENDING] **Step 3.2: Web-Friendly Data Injection (Adapter)**
+*   [COMPLETED] **Step 3.2: Web-Friendly Data Injection (Adapter)**
     *   Import `dpp-adapter.js` in `html-generator.js`.
     *   Generate JSON-LD (Schema.org/GS1) using the adapter.
     *   Inject this structured data into a `<script type="application/ld+json">` tag in the `<head>` of the generated HTML.
