@@ -23,8 +23,15 @@
   "productName": {
     "en": "Vignole railway rails 46 kg/m"
   },
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/rail.svg",
+      "contentType": "image/svg+xml"
+    }
+  ],
 
-  // Placeholder for verifiable credential data.
+  // --- Product-Specific Payload ---
   "verifiableCredential": "what value do you want to put in? SHA-256 PKI",
 
   // --- Economic Operator & Manufacturer (Aligned with Core Ontology) ---

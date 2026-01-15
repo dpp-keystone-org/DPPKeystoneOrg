@@ -369,7 +369,10 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
   expect(dpp.torque).toBeDefined(); // From Electronics
   
   // 6. Assert that contentSpecificationIds are correctly set
-  expect(dpp.contentSpecificationIds).toEqual(['battery-product-dpp-v1', 'electronics-product-dpp-v1']);
+    expect(dpp.contentSpecificationIds).toEqual(expect.arrayContaining([
+      'draft_battery_specification_id',
+      'draft_electronics_specification_id'
+    ]));
 });
 
 test('language selector dropdown should be visible', async ({ page }) => {

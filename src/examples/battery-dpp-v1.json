@@ -19,6 +19,23 @@
 
   // --- Core Product Information ---
   "productName": "Industrial Lithium-Ion Battery Module",
+  "image": [
+    {
+      "resourceTitle": "Front View",
+      "url": "/spec/examples/images/battery.svg",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "resourceTitle": "Side View",
+      "url": "/spec/examples/images/battery-side.svg",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "resourceTitle": "Top View",
+      "url": "/spec/examples/images/battery-top.svg",
+      "contentType": "image/svg+xml"
+    }
+  ],
 
   // --- Battery-Specific Payload ---
   // This section contains data points relevant to the battery sector.

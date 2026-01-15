@@ -24,7 +24,9 @@ async function loader(path) {
  */
 export async function transformDpp(productDoc, options) {
     const { ontologyPaths, documentLoader } = options;
+    console.log("DPP Adapter Debug: Building dictionary with paths:", ontologyPaths);
     await buildDictionary(ontologyPaths, loader, documentLoader, dictionary);
+    console.log("DPP Adapter Debug: Dictionary built. Transforming...");
     
     return transform(productDoc, options, dictionary);
 }

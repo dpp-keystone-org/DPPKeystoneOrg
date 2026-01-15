@@ -1,69 +1,300 @@
 :root {
-  --primary-color: #005f9e;
-  --secondary-color: #f4f4f4;
-  --text-color: #333;
-  --border-color: #ddd;
-  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --primary-color: #002c6c; /* GS1 Blue */
+  --secondary-color: #f26334; /* GS1 Orange Accent */
+  --background-light: #f8f9fa;
+  --text-dark: #212529;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+  --radius: 6px;
 }
 
 body {
   font-family: var(--font-family);
-  color: var(--text-color);
+  color: var(--text-dark);
+  background-color: #eef1f5;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   line-height: 1.6;
 }
 
 .dpp-container {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 20px;
   background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
 }
 
+/* --- Hero Section --- */
 header.dpp-hero {
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding: 30px;
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.dpp-metadata {
-  background: var(--secondary-color);
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-h1, h2, h3 {
+.dpp-hero-content h1 {
+  font-size: 2.2rem;
+  margin: 0 0 10px 0;
   color: var(--primary-color);
 }
 
-.dpp-section {
-  margin-bottom: 30px;
+.dpp-hero-content h2 {
+  font-size: 1.25rem;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  color: var(--text-muted);
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-th, td {
+.dpp-hero-content p {
+  font-family: monospace;
+  background: var(--background-light);
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--text-dark);
   border: 1px solid var(--border-color);
-  padding: 8px;
-  text-align: left;
 }
 
-th {
+.dpp-hero-image {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* --- Carousel --- */
+.dpp-carousel-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto 25px auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.dpp-carousel-slide {
+  display: none;
+  padding: 20px;
+  text-align: center;
+}
+
+.dpp-carousel-slide.active {
+  display: block;
+}
+
+.dpp-carousel-slide img {
+  max-width: 100%;
+  max-height: 350px;
+  height: auto;
+  object-fit: contain;
+}
+
+.dpp-carousel-caption {
+  margin-top: 10px;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.dpp-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.dpp-carousel-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.dpp-carousel-btn.prev { left: 10px; }
+.dpp-carousel-btn.next { right: 10px; }
+
+.dpp-carousel-indicators {
+  text-align: center;
+  padding: 10px;
+  background: var(--background-light);
+  border-top: 1px solid var(--border-color);
+}
+
+.dpp-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dpp-indicator.active {
   background-color: var(--secondary-color);
+  transform: scale(1.2);
 }
 
+/* --- Metadata Section --- */
+.dpp-metadata {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 20px 30px;
+  /* Use simple block layout to stack items vertically (one per line) */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dpp-metadata .dpp-field {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column; /* Stack label and value vertically */
+}
+
+.dpp-metadata .dpp-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block; /* Ensure label takes full width */
+}
+
+.dpp-metadata .dpp-value {
+    display: block;
+    width: 100%;
+}
+
+
+.dpp-metadata div {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* --- Main Content --- */
+.dpp-section {
+  padding: 30px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dpp-section:last-child {
+  border-bottom: none;
+}
+
+.dpp-section h3, .dpp-section h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.dpp-section h3 {
+    font-size: 1.5rem;
+    border-left: 4px solid var(--secondary-color);
+    padding-left: 10px;
+}
+
+/* --- Fields --- */
 .dpp-field {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start; /* Changed from baseline to flex-start for better multi-line handling */
+}
+
+/* Specific styling for list fields to stack label and list */
+.dpp-field-list {
+  flex-direction: column;
+}
+
+.dpp-field-list .dpp-value {
+    margin-top: 5px;
+    width: 100%;
 }
 
 .dpp-label {
-  font-weight: bold;
-  display: block;
+  font-weight: 600;
+  min-width: 180px;
+  color: var(--text-dark);
+  flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+.dpp-value {
+    flex: 1;
+    min-width: 0; /* Important for word wrapping in flex items */
+    overflow-wrap: break-word; /* Wrap long words/URLs */
+    word-wrap: break-word;
+}
+
+/* --- Tables --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  font-weight: 600;
+  border-bottom: 2px solid #ccc;
+}
+
+tr:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+tr:hover {
+  background-color: #f1f3f5;
+}
+
+/* --- Cards (Nested Objects) --- */
+.dpp-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.dpp-card h4 {
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+}
+
+ul {
+    padding-left: 0;
+    margin: 0;
+    list-style-position: inside;
+}
+
+li {
+    margin-bottom: 5px;
 }

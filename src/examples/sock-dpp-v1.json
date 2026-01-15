@@ -20,6 +20,13 @@
 
   // --- Core Product Information ---
   "productName": "Everyday Comfort Crew Socks (3-Pack)",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/sock.svg",
+      "contentType": "image/svg+xml"
+    }
+  ],
 
     // --- Documents (Aligned with Core Ontology) ---
   "documents": [

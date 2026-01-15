@@ -98,27 +98,124 @@ describe('HTML Generator', () => {
     expect(fetch).toHaveBeenCalledWith(expect.stringMatching(/branding\/css\/dpp-product-page\.css/));
   });
 
-  test('should render Hero section correctly', async () => {
-    // Mock successful CSS fetch (or failure, doesn't matter for this test, but must return an object)
-    fetch.mockResolvedValueOnce({
-        ok: true,
-        text: async () => "body {}",
-    });
+  test('should render Header Only correctly (Minimal)', async () => {
+    fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
 
     const mockDpp = {
-      productName: "Super Widget",
-      manufacturer: { organizationName: "Acme Corp" },
+      productName: "Minimal Product",
+      id: "MIN-123"
+    };
+
+    const html = await generateHTML(mockDpp);
+
+    expect(html).toContain('Digital Product Passport');
+    expect(html).toContain('MIN-123');
+    expect(html).toContain('No Image Available');
+    expect(html).not.toContain('<img');
+  });
+
+  test('should render Hero Title from Brand and Model', async () => {
+      fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+
+      const mockDpp = {
+          brand: "Acme",
+          model: "Rocket 5000",
+          id: "123"
+      };
+
+      const html = await generateHTML(mockDpp);
+
+      expect(html).toContain('<h1>Acme Rocket 5000</h1>');
+  });
+
+  test('should render Hero Title from Model only', async () => {
+      fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+      const mockDpp = { model: "Just Model", id: "123" };
+      const html = await generateHTML(mockDpp);
+      expect(html).toContain('<h1>Just Model</h1>');
+  });
+
+  test('should render Default Title if only Brand provided', async () => {
+      fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+      const mockDpp = { brand: "Just Brand", id: "123" };
+      const html = await generateHTML(mockDpp);
+      // Fallback logic: no model -> default title
+      expect(html).toContain('<h1>Digital Product Passport</h1>');
+  });
+
+  test('should render Single Image correctly (Static)', async () => {
+    fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+
+    const mockDpp = {
+      brand: "Super",
+      model: "Widget",
       uniqueProductIdentifier: "GTIN:123456789",
-      productImage: "http://example.com/image.png"
+      image: [
+          { url: "http://example.com/image.png", resourceTitle: "Main View" }
+      ]
     };
 
     const html = await generateHTML(mockDpp);
 
     expect(html).toContain('Super Widget');
-    expect(html).toContain('Acme Corp');
     expect(html).toContain('GTIN:123456789');
     expect(html).toContain('<img src="http://example.com/image.png"');
     expect(html).toContain('class="dpp-hero"');
+    // Ensure carousel container is NOT present
+    expect(html).not.toContain('dpp-carousel-container');
+  });
+
+  test('should render Multiple Images correctly (Carousel)', async () => {
+      fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+
+      const mockDpp = {
+          productName: "Carousel Item",
+          image: [
+              { url: "img1.png", resourceTitle: "View 1" },
+              { url: "img2.png", resourceTitle: "View 2" }
+          ]
+      };
+
+      const html = await generateHTML(mockDpp);
+
+      expect(html).toContain('dpp-carousel-container');
+      expect(html).toContain('onclick="moveSlide(1)"'); // Next button
+      expect(html).toContain('onclick="moveSlide(-1)"'); // Prev button
+      expect(html).toContain('img1.png');
+      expect(html).toContain('img2.png');
+      expect(html).toContain('function moveSlide'); // JS injected
+  });
+
+  test('should ignore Legacy Image Fields', async () => {
+    fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+
+    const mockDpp = {
+      productName: "Legacy Product",
+      productImage: "http://example.com/legacy.png", // Should be ignored
+      images: ["http://example.com/legacy2.png"] // Should be ignored
+    };
+
+    const html = await generateHTML(mockDpp);
+
+    expect(html).toContain('Legacy Product');
+    expect(html).toContain('No Image Available');
+    expect(html).not.toContain('http://example.com/legacy.png');
+    expect(html).not.toContain('http://example.com/legacy2.png');
+  });
+
+  test('should render Voluntary Attributes correctly', async () => {
+      fetch.mockResolvedValueOnce({ ok: true, text: async () => "" });
+
+      const mockDpp = {
+          productName: "Voluntary Product",
+          customAttribute: "Custom Value",
+          anotherAttribute: 123
+      };
+
+      const html = await generateHTML(mockDpp);
+
+      expect(html).toContain('Custom Attribute:</span> <span class="dpp-value">Custom Value</span>');
+      expect(html).toContain('Another Attribute:</span> <span class="dpp-value">123</span>');
   });
 
   test('should render Metadata section correctly', async () => {
@@ -134,9 +231,9 @@ describe('HTML Generator', () => {
 
     const html = await generateHTML(mockDpp);
     
-    expect(html).toContain('Passport Status:</span> Active');
-    expect(html).toContain('Last Updated:</span> 2023-10-27');
-    expect(html).toContain('Passport ID:</span> urn:uuid:999');
+    expect(html).toContain('Passport Status:</span> <span class="dpp-value">Active</span>');
+    expect(html).toContain('Last Updated:</span> <span class="dpp-value">2023-10-27</span>');
+    expect(html).toContain('Passport ID:</span> <span class="dpp-value">urn:uuid:999</span>');
     expect(html).toContain('class="dpp-metadata"');
   });
 
@@ -152,9 +249,9 @@ describe('HTML Generator', () => {
 
     const html = await generateHTML(mockDpp);
     
-    expect(html).toContain('Color:</span> Red');
-    expect(html).toContain('Weight:</span> 10');
-    expect(html).toContain('Is Recyclable:</span> true');
+    expect(html).toContain('Color:</span> <span class="dpp-value">Red</span>');
+    expect(html).toContain('Weight:</span> <span class="dpp-value">10</span>');
+    expect(html).toContain('Is Recyclable:</span> <span class="dpp-value">true</span>');
   });
 
   test('should render matrix objects as tables', async () => {
@@ -190,7 +287,7 @@ describe('HTML Generator', () => {
       
       expect(html).not.toContain('<table>');
       expect(html).toContain('<h4>Dimensions</h4>');
-      expect(html).toContain('Width:</span> 10');
+      expect(html).toContain('Width:</span> <span class="dpp-value">10</span>');
   });
 
   test('should render object arrays as tables', async () => {

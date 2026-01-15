@@ -97,7 +97,7 @@ async function rerenderAllForms() {
             const sectorContainer = document.createElement('div');
             sectorContainer.id = `sector-form-${sector}`;
             sectorContainer.className = 'sector-form-container';
-            const sectorHeader = document.createElement('h2');
+            const sectorHeader = document.createElement('h3');
             sectorHeader.textContent = `${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
             sectorContainer.appendChild(sectorHeader);
             sectorContainer.appendChild(formFragment);
@@ -359,7 +359,7 @@ export async function initializeWizard() {
                     sectorContainer.id = sectorContainerId;
                     sectorContainer.className = 'sector-form-container';
                     
-                    const sectorHeader = document.createElement('h2');
+                    const sectorHeader = document.createElement('h3');
                     sectorHeader.textContent = displayName;
                     sectorContainer.appendChild(sectorHeader);
 
@@ -494,7 +494,7 @@ export async function initializeWizard() {
             const activeSectors = [...document.querySelectorAll('.sector-form-container')]
                 .map(container => container.id.replace('sector-form-', ''));
 
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper);
+            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper, sectorDataCache);
             jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
         });
     }
@@ -504,10 +504,11 @@ export async function initializeWizard() {
             const activeSectors = [...document.querySelectorAll('.sector-form-container')]
                 .map(container => container.id.replace('sector-form-', ''));
 
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper);
+            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper, sectorDataCache);
             
             // Generate the HTML Blob
-            const htmlContent = await generateHTML(dppObject);
+            const customCssUrl = document.getElementById('custom-css-url')?.value?.trim();
+            const htmlContent = await generateHTML(dppObject, customCssUrl);
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             

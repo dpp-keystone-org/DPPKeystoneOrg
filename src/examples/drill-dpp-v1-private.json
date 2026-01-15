@@ -52,13 +52,21 @@
   "productName": {
     "en-UK": "Drills 4 U Cordless drill GSB 451"
   },
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "https://dpp.eecc.de/api/management/files/05410000111128_cordless_drill_be1",
+      "contentType": "image/jpeg"
+    }
+  ],
+
+  // --- General Product Payload ---
   "description": {
     "en-UK": "GSB 451, 18V."
   },
   "brand": "Drills 4 U",
   "model": "GSB 451",
   "gtin": "5012345101064",
-  "image": "https://dpp.eecc.de/api/management/files/05410000111128_cordless_drill_be1",
   "color": "blue",
   "countryOfOrigin": ["China", "United Kingdom"],
 

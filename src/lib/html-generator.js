@@ -1,9 +1,10 @@
 /**
  * Generates a standalone HTML product page from a DPP JSON object.
  * @param {Object} dppJson - The Digital Product Passport data.
+ * @param {string} [customCssUrl] - Optional URL for a custom stylesheet to override defaults.
  * @returns {Promise<string>} The complete HTML string.
  */
-export async function generateHTML(dppJson) {
+export async function generateHTML(dppJson, customCssUrl) {
   if (!dppJson) {
     throw new Error("DPP JSON is required");
   }
@@ -108,11 +109,13 @@ export async function generateHTML(dppJson) {
           };
       };
 
+      console.log("DPP HTML Generator Debug: Calling transformDpp with:", dppJson);
       const transformed = await transformDpp(dppJson, {
            profile: 'schema.org',
            ontologyPaths: ontologyPaths,
            documentLoader: localDocumentLoader
       });
+      console.log("DPP HTML Generator Debug: Result from transformDpp:", transformed);
       
       if (transformed) {
            const jsonLdString = JSON.stringify(transformed, null, 2);
@@ -120,6 +123,7 @@ export async function generateHTML(dppJson) {
       }
   } catch (e) {
       console.warn("Failed to generate JSON-LD:", e);
+      console.log("DPP HTML Generator Debug: JSON-LD generation error:", e);
   }
 
   const jsonString = JSON.stringify(dppJson, null, 2);
@@ -133,24 +137,107 @@ export async function generateHTML(dppJson) {
   
   const uniqueId = dppJson.uniqueProductIdentifier || dppJson.id || "N/A";
   
-  // Try to find an image (naive check for now, can be improved later)
-  // Check for specific 'productImage' or search in keys
-  let imageUrl = dppJson.productImage;
-  if (!imageUrl && dppJson.images && Array.isArray(dppJson.images) && dppJson.images.length > 0) {
-      imageUrl = dppJson.images[0];
+  // Extract Images
+  // Priority: 'image' array (Schema.org/general-product compliant)
+  let images = [];
+  
+  if (dppJson.image && Array.isArray(dppJson.image)) {
+      // Filter for valid objects with URLs
+      images = dppJson.image.filter(img => img.url).map(img => ({
+          url: img.url,
+          title: img.resourceTitle || img.name || productName
+      }));
   }
 
-  // --- Hero Section HTML ---
-  const imageHtml = imageUrl 
-      ? `<div class="dpp-hero-image"><img src="${imageUrl}" alt="${productName}" style="max-width: 100%; height: auto;"></div>` 
-      : '';
+  // --- Hero Section Generation ---
+  let heroImageHtml = '';
+  let carouselScript = '';
+
+  if (images.length === 0) {
+      // No images placeholder
+      heroImageHtml = '<div class="dpp-hero-placeholder">No Image Available</div>';
+  } else if (images.length === 1) {
+      // Single Static Image
+      heroImageHtml = `
+          <div class="dpp-hero-image">
+              <img src="${images[0].url}" alt="${images[0].title}" style="max-width: 100%; height: auto;">
+          </div>`;
+  } else {
+      // Carousel Logic
+      const slidesHtml = images.map((img, index) => `
+          <div class="dpp-carousel-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
+              <img src="${img.url}" alt="${img.title}">
+              <div class="dpp-carousel-caption">${img.title}</div>
+          </div>
+      `).join('');
+
+      const indicatorsHtml = images.map((_, index) => `
+          <span class="dpp-indicator ${index === 0 ? 'active' : ''}" onclick="setSlide(${index})"></span>
+      `).join('');
+
+      heroImageHtml = `
+          <div class="dpp-carousel-container" id="heroCarousel">
+              <div class="dpp-carousel-slides">
+                  ${slidesHtml}
+              </div>
+              <button class="dpp-carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+              <button class="dpp-carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+              <div class="dpp-carousel-indicators">
+                  ${indicatorsHtml}
+              </div>
+          </div>
+      `;
+
+      // Inject Carousel JS logic
+      carouselScript = `
+        <script>
+            let currentSlide = 0;
+            const totalSlides = ${images.length};
+
+            function showSlide(index) {
+                if (index >= totalSlides) currentSlide = 0;
+                else if (index < 0) currentSlide = totalSlides - 1;
+                else currentSlide = index;
+
+                // Update Slides
+                const slides = document.querySelectorAll('.dpp-carousel-slide');
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[currentSlide].classList.add('active');
+
+                // Update Indicators
+                const indicators = document.querySelectorAll('.dpp-indicator');
+                indicators.forEach(ind => ind.classList.remove('active'));
+                if(indicators[currentSlide]) indicators[currentSlide].classList.add('active');
+            }
+
+            function moveSlide(step) {
+                showSlide(currentSlide + step);
+            }
+
+            function setSlide(index) {
+                showSlide(index);
+            }
+        </script>
+      `;
+  }
+
+  // Construct Product Title logic
+  let productTitle = "Digital Product Passport";
+  const brand = dppJson.brand || "";
+  const model = dppJson.model || "";
+
+  if (brand && model) {
+      productTitle = `${brand} ${model}`;
+  } else if (model) {
+      productTitle = model;
+  }
+  // If only brand is present, we still default to "Digital Product Passport" (or maybe "Brand Product"? stick to spec: no model -> no specific name)
 
   const heroHtml = `
     <header class="dpp-hero">
-        ${imageHtml}
+        ${heroImageHtml}
         <div class="dpp-hero-content">
-            <h1>${productName}</h1>
-            <h2>${manufacturerName}</h2>
+            <h1>${productTitle}</h1>
             <p><strong>ID:</strong> ${uniqueId}</p>
         </div>
     </header>
@@ -163,16 +250,19 @@ export async function generateHTML(dppJson) {
   
   const metadataHtml = `
     <section class="dpp-metadata">
-        <div class="dpp-field"><span class="dpp-label">Passport Status:</span> ${dppStatus}</div>
-        <div class="dpp-field"><span class="dpp-label">Last Updated:</span> ${lastUpdate}</div>
-        <div class="dpp-field"><span class="dpp-label">Passport ID:</span> ${dppJson.digitalProductPassportId || "N/A"}</div>
+        <div class="dpp-field"><span class="dpp-label">Passport Status:</span> <span class="dpp-value">${dppStatus}</span></div>
+        <div class="dpp-field"><span class="dpp-label">Last Updated:</span> <span class="dpp-value">${lastUpdate}</span></div>
+        <div class="dpp-field"><span class="dpp-label">Passport ID:</span> <span class="dpp-value">${dppJson.digitalProductPassportId || "N/A"}</span></div>
+        <div class="dpp-field"><span class="dpp-label">Schema Version:</span> <span class="dpp-value">${dppJson.dppSchemaVersion || "N/A"}</span></div>
+        <div class="dpp-field"><span class="dpp-label">Economic Operator ID:</span> <span class="dpp-value">${dppJson.economicOperatorId || "N/A"}</span></div>
+        <div class="dpp-field"><span class="dpp-label">Granularity:</span> <span class="dpp-value">${dppJson.granularity || "N/A"}</span></div>
     </section>
   `;
 
   // --- Content Body (Recursive Renderer) ---
   const EXCLUDED_KEYS = new Set([
-      'productName', 'manufacturer', 'uniqueProductIdentifier', 'id', 'images', 'productImage', // Hero
-      'dppStatus', 'lastUpdate', 'digitalProductPassportId', // Metadata
+      'productName', 'manufacturer', 'uniqueProductIdentifier', 'id', 'images', 'productImage', 'image', // Hero
+      'dppStatus', 'lastUpdate', 'digitalProductPassportId', 'dppSchemaVersion', 'economicOperatorId', 'granularity', // Metadata
       '@context', '@type' // JSON-LD infrastructure
   ]);
 
@@ -182,11 +272,13 @@ export async function generateHTML(dppJson) {
   function renderValue(key, value) {
       if (value === null || value === undefined) return '';
       
-      const label = key.replace(/([A-Z])/g, ' $1').trim(); // CamelCase to Title Case (rough)
+      const label = key.replace(/([A-Z])/g, ' $1') // CamelCase to Title Case (rough)
+                       .replace(/([a-zA-Z])(\d)/g, '$1 $2') // Space before numbers
+                       .trim(); 
       const displayLabel = label.charAt(0).toUpperCase() + label.slice(1);
 
       if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          return `<div class="dpp-field"><span class="dpp-label">${displayLabel}:</span> ${value}</div>`;
+          return `<div class="dpp-field"><span class="dpp-label">${displayLabel}:</span> <span class="dpp-value">${value}</span></div>`;
       }
 
       if (typeof value === 'object' && !Array.isArray(value)) {
@@ -205,7 +297,7 @@ export async function generateHTML(dppJson) {
               }).join('');
 
               return `
-                  <div class="dpp-section">
+                  <div class="dpp-card">
                       <h4>${displayLabel}</h4>
                       <table>
                           <thead><tr>${headers}</tr></thead>
@@ -248,12 +340,12 @@ export async function generateHTML(dppJson) {
               const headers = sortedKeys.map(h => `<th>${h}</th>`).join('');
               
               const rows = value.map(item => {
-                  const cells = sortedKeys.map(key => `<td>${item[key] !== undefined ? item[key] : ''}</td>`).join('');
+                  const cells = sortedKeys.map(key => `<td>${item[key] !== undefined ? item[key] : '-'}</td>`).join('');
                   return `<tr>${cells}</tr>`;
               }).join('');
 
               return `
-                  <div class="dpp-section">
+                  <div class="dpp-card">
                       <h4>${displayLabel}</h4>
                       <table>
                           <thead><tr>${headers}</tr></thead>
@@ -266,9 +358,9 @@ export async function generateHTML(dppJson) {
           // Array of Primitives
           const listItems = value.map(item => `<li>${item}</li>`).join('');
           return `
-              <div class="dpp-field">
+              <div class="dpp-field dpp-field-list">
                   <span class="dpp-label">${displayLabel}:</span>
-                  <ul>${listItems}</ul>
+                  <span class="dpp-value"><ul>${listItems}</ul></span>
               </div>
           `;
       }
@@ -293,6 +385,7 @@ export async function generateHTML(dppJson) {
     <style>
         ${cssContent}
     </style>
+    ${customCssUrl ? `<link rel="stylesheet" href="${customCssUrl}">` : ''}
 </head>
 <body>
     <div class="dpp-container">
@@ -304,6 +397,7 @@ export async function generateHTML(dppJson) {
             ${contentHtml}
         </section>
     </div>
+    ${carouselScript}
 </body>
 </html>`;
 }
@@ -317,39 +411,43 @@ export async function generateHTML(dppJson) {
 export function detectTableStructure(obj) {
     if (typeof obj !== 'object' || obj === null) return false;
     
-    const keys = Object.keys(obj);
-    if (keys.length < 2) return false; // Need at least 2 rows to justify a table
+    const rowKeys = Object.keys(obj);
+    if (rowKeys.length === 0) return false;
 
     let objectChildCount = 0;
-    const allSubKeys = new Set();
+    const allUniqueSubKeys = new Set();
     
-    // Pass 1: Check children type and collect keys
-    for (const key of keys) {
+    // Pass 1: Check children type and collect all unique column keys
+    for (const key of rowKeys) {
         const val = obj[key];
-        if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+        // Must be an object, not null, not array, and not empty
+        if (typeof val === 'object' && val !== null && !Array.isArray(val) && Object.keys(val).length > 0) {
             objectChildCount++;
-            Object.keys(val).forEach(k => allSubKeys.add(k));
+            Object.keys(val).forEach(k => allUniqueSubKeys.add(k));
         } else {
-            // If any child is not an object, it's likely a mixed bag, not a matrix
+            // If any child is not a suitable object, it's likely not a matrix
             return false; 
         }
     }
 
-    if (objectChildCount !== keys.length) return false;
-    if (allSubKeys.size === 0) return false;
+    if (objectChildCount !== rowKeys.length) return false;
+    if (allUniqueSubKeys.size === 0) return false;
 
     // Pass 2: Check density
-    // If we have 3 rows and 3 unique columns, total cells = 9.
-    // If actual data has 8 or 9 entries, it's a good table.
-    // If actual data has 3 entries (each row has disjoint keys), it's not a table.
-    
-    let totalCells = 0;
-    for (const key of keys) {
-        totalCells += Object.keys(obj[key]).length;
+    // Density = (Actual Total Cells) / (Rows * Unique Columns)
+    let totalActualCells = 0;
+    for (const key of rowKeys) {
+        totalActualCells += Object.keys(obj[key]).length;
     }
 
-    const theoreticalCells = keys.length * allSubKeys.size;
-    const density = totalCells / theoreticalCells;
+    const theoreticalCells = rowKeys.length * allUniqueSubKeys.size;
+    const density = totalActualCells / theoreticalCells;
+
+    // Allow single-row tables if they have multiple columns (e.g. wide data)
+    // But typically matrix implies > 1 row. 
+    // If only 1 row, density is always 1.0 (since unique cols = actual cols).
+    // A 1-row table is usually better as a Card unless it has many columns.
+    if (rowKeys.length < 2 && allUniqueSubKeys.size < 3) return false;
 
     return density > 0.5;
 }
