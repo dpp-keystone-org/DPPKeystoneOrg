@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Wizard</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1768414137213">
-    <link rel="stylesheet" href="wizard.css?v=1768414137213">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1768510063388">
+    <link rel="stylesheet" href="wizard.css?v=1768510063388">
     <script type="importmap">
     {
         "imports": {
@@ -98,14 +98,27 @@
             </div>
     
             <hr>
-    
-            <button id="generate-dpp-btn">Generate DPP</button>
-            <button id="preview-html-btn" style="background-color: #005f9e; color: white;" hidden>Generate Example HTML</button>
-            <button id="show-errors-btn" class="remove-btn-active" hidden>Show Errors (<span id="error-count-badge">0</span>)</button>
-    
-            <div id="output-container">
-                <h2>3. Generated DPP</h2>
-                <pre id="json-output"></pre>
+
+            <div id="dpp-generation-section">
+                <h2>3. Generate Passport</h2>
+                <div class="button-group">
+                    <button id="generate-dpp-btn">Generate DPP</button>
+                    <button id="show-errors-btn" class="remove-btn-active" hidden>Show Errors (<span id="error-count-badge">0</span>)</button>
+                </div>
+
+                <div id="output-container" style="margin-top: 30px;">
+                    <h3>Generated JSON</h3>
+                    <pre id="json-output"></pre>
+                </div>
+                
+                <div id="html-generation-wrapper" style="margin-top: 20px;">
+                    <h3>Product Page Preview</h3>
+                    <div class="form-group">
+                        <label for="custom-css-url">Custom CSS URL (optional):</label>
+                        <input type="text" id="custom-css-url" placeholder="https://example.com/style.css" style="width: 100%; max-width: 400px;">
+                    </div>
+                    <button id="preview-html-btn" style="background-color: #005f9e; color: white;">Generate Example HTML</button>
+                </div>
             </div>
         </div>
 
@@ -113,6 +126,6 @@
             <p><small>Part of the <a href="../index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
-    <script type="module" src="wizard.js?v=1768414137213"></script>
+    <script type="module" src="wizard.js?v=1768510063388"></script>
 </body>
 </html>

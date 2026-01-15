@@ -1,4 +1,4 @@
-import { transform, buildDictionary } from '../common/dpp-logic.js?v=1768414137213';
+import { transform, buildDictionary } from '../common/dpp-logic.js?v=1768510063388';
 
 // Using a global dictionary with memoization to avoid re-building on every call
 const dictionary = {};
@@ -24,7 +24,9 @@ async function loader(path) {
  */
 export async function transformDpp(productDoc, options) {
     const { ontologyPaths, documentLoader } = options;
+    console.log("DPP Adapter Debug: Building dictionary with paths:", ontologyPaths);
     await buildDictionary(ontologyPaths, loader, documentLoader, dictionary);
+    console.log("DPP Adapter Debug: Dictionary built. Transforming...");
     
     return transform(productDoc, options, dictionary);
 }

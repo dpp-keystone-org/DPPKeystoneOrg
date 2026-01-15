@@ -1,9 +1,9 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1768414137213';
-import { loadOntology } from '../lib/ontology-loader.js?v=1768414137213';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1768414137213';
-import { generateDpp } from './dpp-generator.js?v=1768414137213';
-import { generateHTML } from '../lib/html-generator.js?v=1768414137213';
+import { loadSchema } from '../lib/schema-loader.js?v=1768510063388';
+import { loadOntology } from '../lib/ontology-loader.js?v=1768510063388';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1768510063388';
+import { generateDpp } from './dpp-generator.js?v=1768510063388';
+import { generateHTML } from '../lib/html-generator.js?v=1768510063388';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
@@ -97,7 +97,7 @@ async function rerenderAllForms() {
             const sectorContainer = document.createElement('div');
             sectorContainer.id = `sector-form-${sector}`;
             sectorContainer.className = 'sector-form-container';
-            const sectorHeader = document.createElement('h2');
+            const sectorHeader = document.createElement('h3');
             sectorHeader.textContent = `${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
             sectorContainer.appendChild(sectorHeader);
             sectorContainer.appendChild(formFragment);
@@ -359,7 +359,7 @@ export async function initializeWizard() {
                     sectorContainer.id = sectorContainerId;
                     sectorContainer.className = 'sector-form-container';
                     
-                    const sectorHeader = document.createElement('h2');
+                    const sectorHeader = document.createElement('h3');
                     sectorHeader.textContent = displayName;
                     sectorContainer.appendChild(sectorHeader);
 
@@ -494,7 +494,7 @@ export async function initializeWizard() {
             const activeSectors = [...document.querySelectorAll('.sector-form-container')]
                 .map(container => container.id.replace('sector-form-', ''));
 
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper);
+            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper, sectorDataCache);
             jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
         });
     }
@@ -504,10 +504,11 @@ export async function initializeWizard() {
             const activeSectors = [...document.querySelectorAll('.sector-form-container')]
                 .map(container => container.id.replace('sector-form-', ''));
 
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper);
+            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper, sectorDataCache);
             
             // Generate the HTML Blob
-            const htmlContent = await generateHTML(dppObject);
+            const customCssUrl = document.getElementById('custom-css-url')?.value?.trim();
+            const htmlContent = await generateHTML(dppObject, customCssUrl);
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             

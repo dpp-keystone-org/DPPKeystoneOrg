@@ -120,9 +120,10 @@ function scrapeVoluntaryContainer(container) {
  * @param {HTMLElement} voluntaryFieldsWrapper - The container for voluntary fields.
  * @param {HTMLElement} [voluntaryModulesContainer] - Optional container for voluntary modules.
  * @param {HTMLElement} [externalContextsWrapper] - Optional container for external contexts.
+ * @param {Map} [sectorDataCache] - Cache containing loaded schema objects for active sectors.
  * @returns {object} The generated DPP JSON object.
  */
-export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper, voluntaryModulesContainer = null, externalContextsWrapper = null) {
+export function generateDpp(sectors, coreFormContainer, formContainer, voluntaryFieldsWrapper, voluntaryModulesContainer = null, externalContextsWrapper = null, sectorDataCache = null) {
     const dpp = {};
     
     // Add @context
@@ -199,7 +200,22 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
 
     // 3. Automatically add contentSpecificationId(s) based on the array of sectors
     if (sectors && sectors.length > 0) {
-        dpp.contentSpecificationIds = sectors.map(sector => `${sector}-product-dpp-v1`);
+        dpp.contentSpecificationIds = sectors.map(sector => {
+            // Attempt to fetch from schema if available
+            if (sectorDataCache && sectorDataCache.has(sector)) {
+                const data = sectorDataCache.get(sector);
+                if (data.schema && 
+                    data.schema.if && 
+                    data.schema.if.properties && 
+                    data.schema.if.properties.contentSpecificationIds &&
+                    data.schema.if.properties.contentSpecificationIds.contains &&
+                    data.schema.if.properties.contentSpecificationIds.contains.const) {
+                    
+                    return data.schema.if.properties.contentSpecificationIds.contains.const;
+                }
+            }
+            return `${sector}-product-dpp-v1`;
+        });
     }
 
     return dpp;
