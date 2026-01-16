@@ -83,6 +83,7 @@
         "@id": "dppk:dateOfManufacture",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Date of Manufacture",
+        "rdfs:comment": "The date when the battery was manufactured.",
         "rdfs:domain": { "@id": "dppk:Battery" },
         "rdfs:range": { "@id": "xsd:date" },
         "owl:equivalentProperty": [
@@ -101,6 +102,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Rated Capacity",
         "rdfs:comment": "The total electric charge the battery can deliver under specific conditions. Value provided in Ampere-hours (Ah).",
+        "dppk:unit": "kWh",
         "rdfs:domain": { "@id": "dppk:Battery" },
         "rdfs:range": { "@id": "xsd:decimal" },
         "rdfs:term_status": "unstable"
@@ -112,6 +114,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Nominal Voltage",
         "rdfs:comment": "The nominal voltage of the battery in Volts (V).",
+        "dppk:unit": "V",
         "rdfs:domain": { "@id": "dppk:Battery" },
         "rdfs:range": { "@id": "xsd:decimal" },
         "rdfs:term_status": "unstable"
@@ -134,6 +137,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "State of Health (SoH)",
         "rdfs:comment": "A measure of the battery's condition relative to its ideal new condition. Applicable to EV, LMT, and Industrial batteries.",
+        "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:Battery" },
         "rdfs:range": { "@id": "xsd:decimal" }, // Expressed as a percentage (0.0 to 1.0)
         "rdfs:term_status": "unstable"
@@ -175,6 +179,7 @@
         "@id": "dppk:bcfPerformanceClass",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Carbon Footprint Performance Class",
+        "rdfs:comment": "The performance class of the battery's carbon footprint.",
         "rdfs:domain": { "@id": "dppk:BatteryCarbonFootprint" },
         "rdfs:range": { "@id": "xsd:string" },
         "rdfs:term_status": "unstable"

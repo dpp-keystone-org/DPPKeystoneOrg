@@ -3,7 +3,7 @@
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dopc": {
-      "@id": "dppk:DoPCBlock",
+      "@id": "dppk:dopc",
       "@context": {
         "declarationCode": "dppk:declarationCode",
         "dateOfIssue": {

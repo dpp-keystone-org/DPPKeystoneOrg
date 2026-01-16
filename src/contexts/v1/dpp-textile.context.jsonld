@@ -47,6 +47,7 @@
             },
 
             // Durability & Quality Indicators
+            "tearStrength": "dppk:tearStrength",
             "abrasionResistance": "dppk:abrasionResistance",
             "cycles": { "@id": "dppk:cycles", "@type": "xsd:integer" },
 

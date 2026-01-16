@@ -168,6 +168,11 @@ async function addCacheBusting(targetDir) {
 
 async function build() {
     console.log('Starting build process: Cleaning and copying files...');
+    
+    // Run vendor bundling first to ensure dependencies are ready
+    console.log('Running vendor bundling...');
+    execSync('npm run bundle:vendor', { stdio: 'inherit' });
+
     await fse.emptyDir(BUILD_DIR); // Clear previous build artifacts
 
     // Process source directories into the 'dist/spec' subdirectory
@@ -219,6 +224,14 @@ async function build() {
         const targetPath = path.join(BUILD_DIR, asset);
         await fse.copy(sourcePath, targetPath);
         //console.log(`Copied root asset: ${sourcePath} -> ${targetPath}`);
+    }
+
+    // Copy docs folder
+    const docsDir = path.join(PROJECT_ROOT, 'docs');
+    const targetDocsDir = path.join(BUILD_DIR, 'docs');
+    if (await fse.pathExists(docsDir)) {
+        await fse.copy(docsDir, targetDocsDir);
+        console.log(`Copied docs to dist/docs`);
     }
 
     // Call the new redirect function

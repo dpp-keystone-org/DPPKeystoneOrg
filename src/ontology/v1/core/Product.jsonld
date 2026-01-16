@@ -165,6 +165,7 @@
         "@id": "dppk:brand",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Brand Name",
+        "rdfs:comment": "The brand name of the product.",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -180,6 +181,7 @@
         "@id": "dppk:model",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Model Number",
+        "rdfs:comment": "The model identifier or number of the product.",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -210,6 +212,7 @@
         "@id": "dppk:color",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Color Description",
+        "rdfs:comment": "The color of the product.",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "rdf:langString" },
         "owl:equivalentProperty": [
@@ -259,6 +262,7 @@
         "@id": "dppk:weightPercentage",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Weight Percentage",
+        "dppk:unit": "%",
         "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
         // No strict domain to allow usage on Component or Product
         "rdfs:range": { "@id": "xsd:decimal" },
@@ -270,6 +274,7 @@
         "@id": "dppk:recycledContentPercentage",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Recycled Content Percentage",
+        "dppk:unit": "%",
         "rdfs:comment": "The percentage of the material that is derived from recycled sources.",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "xsd:decimal" },
@@ -281,20 +286,6 @@
     // ==================================================================
 
     // --- Weight (Relationship) ---
-    {
-        "@id": "dppk:weight",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": "Weight (Deprecated)",
-        "rdfs:comment": "DEPRECATED. Use dppk:netWeight or dppk:grossWeight instead. The weight of the product or material, expressed as a QuantitativeValue.",
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:weight" }
-            // GS1 uses specific properties like gs1:netWeight, not a generic 'weight' relationship.
-        ],
-        "rdfs:term_status": "unstable",
-        "owl:deprecated": true
-    },
     {
         "@id": "dppk:netWeight",
         "@type": "owl:DatatypeProperty",
@@ -375,6 +366,7 @@
         "@id": "dppk:value",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Value",
+        "dppk:unit": "unitless",
         "rdfs:comment": "The numeric value of the measurement.",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
         // Allowing various numeric types, standardized on decimal for broad use.
@@ -400,17 +392,6 @@
             { "@id": "gs1:unitCode" },
             { "@id": "unece:QuantityTypeCode" }
         ],
-        "rdfs:term_status": "unstable"
-    },
-
-    // --- Methodology/Dictionary Reference (Strategy 4) ---
-    {
-        "@id": "dppk:methodologyReference",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Methodology or Dictionary Reference",
-        "rdfs:comment": "A reference to the standard, methodology, or data dictionary used to define or measure this specific value (e.g., ISO standard number, specific PEFCR rule).",
-        "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:string" },
         "rdfs:term_status": "unstable"
     },
 

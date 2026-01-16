@@ -661,6 +661,7 @@
         { "@language": "ga", "@value": "A1: Soláthar amhábhar" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Upstream A1 (Raw Material Supply)",
@@ -696,6 +697,7 @@
         { "@language": "ga", "@value": "A2: Iompar" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Core Process A2 (Transport to Manufacturing)",
@@ -731,6 +733,7 @@
         { "@language": "ga", "@value": "A3: Déantúsaíocht" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Core Process A3 (Manufacturing)",
@@ -766,6 +769,7 @@
         { "@language": "ga", "@value": "A4: Iompar" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream A4 (Transport to Site)",
@@ -801,6 +805,7 @@
         { "@language": "ga", "@value": "C1: Díchóimeáil / Leagadh" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C1 (Deconstruction)",
@@ -836,6 +841,7 @@
         { "@language": "ga", "@value": "C2: Iompar" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C2 (Transport to Waste Processing)",
@@ -871,6 +877,7 @@
         { "@language": "ga", "@value": "C3: Próiseáil dramhaíola" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C3 (Waste Processing)",
@@ -906,6 +913,7 @@
         { "@language": "ga", "@value": "C4: Diúscairt" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C4 (Disposal)",
@@ -941,6 +949,7 @@
         { "@language": "ga", "@value": "D: Acmhainneacht athúsáide, aisghabhála agus athchúrsála" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "D",
@@ -976,6 +985,7 @@
         { "@language": "ga", "@value": "Iomlán" }
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
+      "dppk:unitInherited": true,
       "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Total",

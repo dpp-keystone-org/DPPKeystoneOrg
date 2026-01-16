@@ -6,13 +6,26 @@ This document serves as a historical archive of all major tasks and features com
 
 ## Completed
 
+- **[COMPLETED] 6. Wizard HTML Result Page.**
+  - **Goal:** Add a "Generate" step to the Wizard that creates a rich HTML page from the user's input, with options to view embedded GS1/Schema.org JSON-LD adapters.
+  - **See Design Doc:** [015-wizard-result-page-COMPLETE.md](./015-wizard-result-page-COMPLETE.md)
+
+- **[COMPLETED] 12. New Sector Model Development:** Research and create new ontologies, contexts, schemas, and examples for new sectors (e.g., Construction DoPC) following the established project patterns.
+  - **See Design Doc:** [017-new-dopc-example-ontology-COMPLETE.md](./017-new-dopc-example-ontology-COMPLETE.md)
+
+- **[COMPLETED] 16. DPP Toolkit Page:** Create a centralized dashboard for developer utilities including a Validator and Ontology Explorer.
+  - **See Design Doc:** [018-dpp-toolkit-page-COMPLETE.md](./018-dpp-toolkit-page-COMPLETE.md)
+
+- **[COMPLETED] Dangling Field Overhaul:** Address the "dangling field" issue where schema fields were not properly mapped to ontology properties.
+  - **See Design Doc:** [016-dangling-field-overhaul-COMPLETE.md](./016-dangling-field-overhaul-COMPLETE.md)
+
 - **[COMPLETED] 5. DPP Wizard MVP:** Developed a client-side web-based wizard to generate a valid DPP JSON file, serving as a proof-of-concept for stakeholders.
-  - **See Design Doc:** [docs/designs/005-dpp-wizard.md](./docs/designs/005-dpp-wizard.md)
+  - **See Design Doc:** [005-dpp-wizard.md](./005-dpp-wizard.md)
   - **Key Features:** Dynamic form generation from JSON schema, multi-sector support, custom field support, rich validation (schema & ontology based), automated JSON generation, and 24-language support for UI labels.
 
 - **[COMPLETED] 5. Case Convention Cleanup.**
   - **Note:** This was a blocking prerequisite for the DPP Wizard.
-  - **See Design Doc:** [docs/designs/007-case-convention-cleanup.md](./docs/designs/007-case-convention-cleanup.md)
+  - **See Design Doc:** [007-case-convention-cleanup.md](./007-case-convention-cleanup.md)
 
 - **[COMPLETED] Tier 1: Foundational Cleanup & Core Tooling (Highest Priority)**
 - **[COMPLETED] 1. JSON Schema Overhaul:** Clear critical tech debt related to data validation.

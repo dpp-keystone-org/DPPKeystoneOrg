@@ -11,14 +11,18 @@
     "ajv-formats": "^3.0.1",
     "fs-extra": "^11.3.2",
     "jsonc-parser": "^3.3.1",
-    "jsonld": "^8.3.2"
+    "jsonld": "^9.0.0",
+    "strip-json-comments": "^5.0.3"
   },
   "devDependencies": {
+    "esbuild": "^0.27.2",
     "mermaid": "^11.12.2"
   },
   "scripts": {
+    "bundle:vendor": "node scripts/bundle-vendor.mjs",
     "build": "node scripts/build-and-clean.mjs",
-    "test": "npm run clean && npm run build && cd testing && npm test",
+    "test": "npm run clean && npm run build && node scripts/validate-ontology-integrity.mjs && cd testing && npm test",
+    "test:integrity": "npm run build && node scripts/validate-ontology-integrity.mjs",
     "clean": "node scripts/clean.mjs"
   },
   "repository": {

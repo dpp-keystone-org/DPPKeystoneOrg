@@ -83,6 +83,15 @@
                     "required": ["substanceName", "casNumber", "concentration"]
                 }
             },
+            "tearStrength": {
+                "description": "The force required to propagate a tear in the fabric. Unit: Newtons (N). Standard: ISO 13937-2.",
+                "type": "object",
+                "properties": {
+                    "value": { "type": "number", "minimum": 0 },
+                    "testMethod": { "type": "string", "const": "ISO 13937-2" }
+                },
+                "required": ["value", "testMethod"]
+            },
             "abrasionResistance": {
                 "description": "The durability of the fabric against abrasion. Unit: Number of Rubs/Cycles to breakdown. Standard: ISO 12947 series.",
                 "type": "object",

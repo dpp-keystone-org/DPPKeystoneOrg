@@ -78,6 +78,7 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": { "@value": "The Declaration of Performance and Conformity.", "@language": "en" },
       "dppk:governedBy": "CPR",
+      "rdfs:range": { "@id": "dppk:DoPCBlock" },
       "rdfs:comment": { "@value": "The Declaration of Performance and Conformity.", "@language": "en" }
     },
     {
@@ -198,118 +199,6 @@
       "rdfs:range": "xsd:date"
     },
     {
-      "@id": "dppk:governedBy",
-      "@type": "owl:AnnotationProperty",
-      "rdfs:label": [
-        { "@value": "Регламентирано от стандарт", "@language": "bg" },
-        { "@value": "Řídí se normou", "@language": "cs" },
-        { "@value": "Styret af standard", "@language": "da" },
-        { "@value": "Geregelt durch Norm", "@language": "de" },
-        { "@value": "Διέπεται από πρότυπο", "@language": "el" },
-        { "@value": "Governed By Standard", "@language": "en" },
-        { "@value": "Regido por la norma", "@language": "es" },
-        { "@value": "Reguleeritud standardiga", "@language": "et" },
-        { "@value": "Standardin säätelemä", "@language": "fi" },
-        { "@value": "Régi par la norme", "@language": "fr" },
-        { "@value": "Rialaithe ag Caighdeán", "@language": "ga" },
-        { "@value": "Uređeno normom", "@language": "hr" },
-        { "@value": "Szabvány szabályozza", "@language": "hu" },
-        { "@value": "Regolato dallo standard", "@language": "it" },
-        { "@value": "Reglamentuojama standarto", "@language": "lt" },
-        { "@value": "Regulēts ar standartu", "@language": "lv" },
-        { "@value": "Regolat mill-Istandard", "@language": "mt" },
-        { "@value": "Geregeld door norm", "@language": "nl" },
-        { "@value": "Regulowane normą", "@language": "pl" },
-        { "@value": "Regido pela norma", "@language": "pt" },
-        { "@value": "Reglementat de standard", "@language": "ro" },
-        { "@value": "Riadené normou", "@language": "sk" },
-        { "@value": "Urejeno s standardom", "@language": "sl" },
-        { "@value": "Regleras av standard", "@language": "sv" }
-      ],
-      "rdfs:comment": [
-        { "@value": "Стандарт, който регламентира това свойство.", "@language": "bg" },
-        { "@value": "Norma, která řídí tuto vlastnost.", "@language": "cs" },
-        { "@value": "Standard, der styrer denne egenskab.", "@language": "da" },
-        { "@value": "Norm, die diese Eigenschaft regelt.", "@language": "de" },
-        { "@value": "Πρότυπο που διέπει αυτή την ιδιότητα.", "@language": "el" },
-        { "@value": "Standard that governs this property.", "@language": "en" },
-        { "@value": "Norma que rige esta propiedad.", "@language": "es" },
-        { "@value": "Standard, mis reguleerib seda omadust.", "@language": "et" },
-        { "@value": "Standardi, joka säätelee tätä ominaisuutta.", "@language": "fi" },
-        { "@value": "Norme régissant cette propriété.", "@language": "fr" },
-        { "@value": "Caighdeán a rialaíonn an t-airí seo.", "@language": "ga" },
-        { "@value": "Norma koja uređuje ovo svojstvo.", "@language": "hr" },
-        { "@value": "A tulajdonságot szabályozó szabvány.", "@language": "hu" },
-        { "@value": "Standard che regola questa proprietà.", "@language": "it" },
-        { "@value": "Standartas, reglamentuojantis šią savybę.", "@language": "lt" },
-        { "@value": "Standarts, kas regulē šo īpašību.", "@language": "lv" },
-        { "@value": "Standard li jirregola din il-proprjetà.", "@language": "mt" },
-        { "@value": "Norm die deze eigenschap regelt.", "@language": "nl" },
-        { "@value": "Norma regulująca tę właściwość.", "@language": "pl" },
-        { "@value": "Norma que rege esta propriedade.", "@language": "pt" },
-        { "@value": "Standardul care reglementează această proprietate.", "@language": "ro" },
-        { "@value": "Norma, ktorá riadi túto vlastnosť.", "@language": "sk" },
-        { "@value": "Standard, ki ureja to lastnost.", "@language": "sl" },
-        { "@value": "Standard som reglerar denna egenskap.", "@language": "sv" }
-      ]
-    },
-    {
-      "@id": "dppk:unit",
-      "@type": "owl:AnnotationProperty",
-      "rdfs:label": [
-        { "@value": "Мерна единица", "@language": "bg" },
-        { "@value": "Měrná jednotka", "@language": "cs" },
-        { "@value": "Måleenhed", "@language": "da" },
-        { "@value": "Maßeinheit", "@language": "de" },
-        { "@value": "Μονάδα μέτρησης", "@language": "el" },
-        { "@value": "Unit of Measurement", "@language": "en" },
-        { "@value": "Unidad de medida", "@language": "es" },
-        { "@value": "Mõõtühik", "@language": "et" },
-        { "@value": "Mittayksikkö", "@language": "fi" },
-        { "@value": "Unité de mesure", "@language": "fr" },
-        { "@value": "Aonad Tomhais", "@language": "ga" },
-        { "@value": "Mjerna jedinica", "@language": "hr" },
-        { "@value": "Mértékegység", "@language": "hu" },
-        { "@value": "Unità di misura", "@language": "it" },
-        { "@value": "Matavimo vienetas", "@language": "lt" },
-        { "@value": "Mērvienība", "@language": "lv" },
-        { "@value": "Unità ta' Kejl", "@language": "mt" },
-        { "@value": "Meeteenheid", "@language": "nl" },
-        { "@value": "Jednostka miary", "@language": "pl" },
-        { "@value": "Unidade de medida", "@language": "pt" },
-        { "@value": "Unitate de măsură", "@language": "ro" },
-        { "@value": "Merná jednotka", "@language": "sk" },
-        { "@value": "Merska enota", "@language": "sl" },
-        { "@value": "Måttenhet", "@language": "sv" }
-      ],
-      "rdfs:comment": [
-        { "@value": "Мерната единица.", "@language": "bg" },
-        { "@value": "Měrná jednotka.", "@language": "cs" },
-        { "@value": "Måleenheden.", "@language": "da" },
-        { "@value": "Die Maßeinheit.", "@language": "de" },
-        { "@value": "Η μονάδα μέτρησης.", "@language": "el" },
-        { "@value": "The unit of measurement.", "@language": "en" },
-        { "@value": "La unidad de medida.", "@language": "es" },
-        { "@value": "Mõõtühik.", "@language": "et" },
-        { "@value": "Mittayksikkö.", "@language": "fi" },
-        { "@value": "L'unité de mesure.", "@language": "fr" },
-        { "@value": "An t-aonad tomhais.", "@language": "ga" },
-        { "@value": "Mjerna jedinica.", "@language": "hr" },
-        { "@value": "A mértékegység.", "@language": "hu" },
-        { "@value": "L'unità di misura.", "@language": "it" },
-        { "@value": "Matavimo vienetas.", "@language": "lt" },
-        { "@value": "Mērvienība.", "@language": "lv" },
-        { "@value": "L-unità tal-kejl.", "@language": "mt" },
-        { "@value": "De meeteenheid.", "@language": "nl" },
-        { "@value": "Jednostka miary.", "@language": "pl" },
-        { "@value": "A unidade de medida.", "@language": "pt" },
-        { "@value": "Unitatea de măsură.", "@language": "ro" },
-        { "@value": "Merná jednotka.", "@language": "sk" },
-        { "@value": "Merska enota.", "@language": "sl" },
-        { "@value": "Måttenheten.", "@language": "sv" }
-      ]
-    },
-    {
       "@id": "dppk:chlorideContent",
       "@type": "owl:ObjectProperty",
       "rdfs:label": [
@@ -340,6 +229,7 @@
       ],
       "dppk:governedBy": "EN 1015-17",
       "dppk:unit": "%",
+      "rdfs:seeAlso": "dppk:21DegC",
       "rdfs:comment": [
         { "@value": "Група свойства относно съдържанието на хлориди.", "@language": "bg" },
         { "@value": "Skupina vlastností týkajících se obsahu chloridů.", "@language": "cs" },
@@ -372,7 +262,7 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": { "@value": "21°C", "@language": "en" },
       "dppk:governedBy": "EN 13295:2004",
-      "rdfs:comment": { "@value": "A standardized temperature for some measurments.", "@language": "en" }
+      "rdfs:comment": { "@value": "A standardized temperature for some measurements.", "@language": "en" }
     },
     {
       "@id": "dppk:bondStrength",
@@ -405,6 +295,7 @@
       ],
       "dppk:governedBy": "EN 1542:1999",
       "dppk:unit": "MPa",
+      "rdfs:seeAlso": "dppk:28Days",
       "rdfs:comment": [
         { "@value": "Група свойства относно якостта на сцепление.", "@language": "bg" },
         { "@value": "Skupina vlastností týkajících se přídržnosti.", "@language": "cs" },
@@ -470,6 +361,7 @@
       ],
       "dppk:governedBy": "EN 13687-1",
       "dppk:unit": "MPa",
+      "rdfs:seeAlso": "dppk:wetSurface",
       "rdfs:comment": [
         { "@value": "Група свойства относно термичната съвместимост.", "@language": "bg" },
         { "@value": "Skupina vlastností týkajících se tepelné kompatibility.", "@language": "cs" },
@@ -535,6 +427,7 @@
       ],
       "dppk:governedBy": "ISO 1920-12:2015",
       "dppk:unit": "mm",
+      "rdfs:seeAlso": "dppk:21DegC",
       "rdfs:comment": [
         { "@value": "Група свойства относно устойчивостта на карбонизация.", "@language": "bg" },
         { "@value": "Skupina vlastností týkajících se odolnosti proti karbonataci.", "@language": "cs" },
@@ -593,6 +486,12 @@
       ],
       "dppk:governedBy": "EN 13501-1",
       "dppk:unit": "Euroclass",
+      "rdfs:seeAlso": [
+        "dppk:avcpSystem1",
+        "dppk:avcpSystem2",
+        "dppk:avcpSystem3",
+        "dppk:avcpSystem4"
+      ],
       "rdfs:comment": [
         { "@value": "Група свойства относно реакцията на огън.", "@language": "bg" },
         { "@value": "Skupina vlastností týkajících se reakce na oheň.", "@language": "cs" },
@@ -642,6 +541,13 @@
       "rdfs:comment": { "@value": "System 3 for measuring reaction to fire.", "@language": "en" }
     },
     {
+      "@id": "dppk:avcpSystem4",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": { "@value": "AVCP System 4", "@language": "en" },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": { "@value": "System 4 for measuring reaction to fire.", "@language": "en" }
+    },
+    {
       "@id": "dppk:elasticRecovery",
       "@type": "owl:ObjectProperty",
       "rdfs:label": [
@@ -672,6 +578,13 @@
       ],
       "dppk:governedBy": "ISO 7389:2002",
       "dppk:unit": "%",
+      "rdfs:seeAlso": [
+        "dppk:methodA",
+        "dppk:methodB",
+        "dppk:25Percent",
+        "dppk:60Percent",
+        "dppk:100Percent"
+      ],
       "rdfs:comment": [
         { "@value": "Група свойства относно еластичното възстановяване.", "@language": "bg" },
         { "@value": "Skupina vlastností týkajících se elastického zotavení.", "@language": "cs" },
@@ -865,6 +778,13 @@
       ],
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
+      "rdfs:seeAlso": [
+        "dppk:procedureA",
+        "dppk:procedureB",
+        "dppk:5DegC",
+        "dppk:50DegC",
+        "dppk:70DegC"
+      ],
       "rdfs:comment": [
         { "@value": "Група свойства относно устойчивостта на свличане.", "@language": "bg" },
         { "@value": "Skupina vlastností týkajících se odolnosti proti stékání.", "@language": "cs" },
@@ -917,7 +837,8 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc A, 5°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": { "@value": "Flow resistance measured using Procedure A at 5°C.", "@language": "en" }
     },
     {
       "@id": "dppk:flowResistanceProcedureA70",
@@ -925,7 +846,8 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc A, 70°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": { "@value": "Flow resistance measured using Procedure A at 70°C.", "@language": "en" }
     },
     {
       "@id": "dppk:flowResistanceProcedureB5",
@@ -933,7 +855,8 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc B, 5°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": { "@value": "Flow resistance measured using Procedure B at 5°C.", "@language": "en" }
     },
     {
       "@id": "dppk:flowResistanceProcedureB50",
@@ -941,7 +864,8 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc B, 50°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": { "@value": "Flow resistance measured using Procedure B at 50°C.", "@language": "en" }
     },
     {
       "@id": "dppk:flowResistanceProcedureB70",
@@ -949,7 +873,8 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc B, 70°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": { "@value": "Flow resistance measured using Procedure B at 70°C.", "@language": "en" }
     },
     {
       "@id": "dppk:procedureA",
@@ -1064,11 +989,13 @@
         { "@value": "Sklic na postopek B.", "@language": "sl" },
         { "@value": "Hänvisning till procedur B.", "@language": "sv" }
       ]
-    },{
+    },
+    {
       "@id": "dppk:shrinkageAndExpansion",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": { "@value": "Shrinkage and Expansion", "@language": "en" },
       "dppk:governedBy": "EN 12617-4:2002",
+      "rdfs:comment": { "@value": "The shrinkage and expansion of the material.", "@language": "en" },
       "rdfs:range": "xsd:string"
     },
     {
@@ -1076,6 +1003,7 @@
       "@type": "owl:ObjectProperty",
       "rdfs:label": { "@value": "Slip/Skid Resistance Group", "@language": "en" },
       "dppk:governedBy": "EN 13036-4:2011",
+      "rdfs:seeAlso": "dppk:laboratory",
       "rdfs:comment": { "@value": "Group of properties regarding slip/skid resistance.", "@language": "en" }
     },
     {
@@ -1095,9 +1023,63 @@
     {
       "@id": "dppk:modulusOfElasticityInCompression",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": { "@value": "Modulus of Elasticity Group", "@language": "en" },
+      "rdfs:label": [
+        { "@value": "Модул на еластичност", "@language": "bg" },
+        { "@value": "Modul pružnosti", "@language": "cs" },
+        { "@value": "Elasticitetsmodul", "@language": "da" },
+        { "@value": "Elastizitätsmodul", "@language": "de" },
+        { "@value": "Μέτρο ελαστικότητας", "@language": "el" },
+        { "@value": "Modulus of Elasticity Group", "@language": "en" },
+        { "@value": "Módulo de elasticidad", "@language": "es" },
+        { "@value": "Elastsusmoodul", "@language": "et" },
+        { "@value": "Kimmokerroin", "@language": "fi" },
+        { "@value": "Module d'élasticité", "@language": "fr" },
+        { "@value": "Modúl Leaisteachais", "@language": "ga" },
+        { "@value": "Modul elastičnosti", "@language": "hr" },
+        { "@value": "Rugalmassági modulus", "@language": "hu" },
+        { "@value": "Modulo di elasticità", "@language": "it" },
+        { "@value": "Tamprumo modulis", "@language": "lt" },
+        { "@value": "Elastības modulis", "@language": "lv" },
+        { "@value": "Modulu ta' Elastiċità", "@language": "mt" },
+        { "@value": "Elasticiteitsmodulus", "@language": "nl" },
+        { "@value": "Moduł sprężystości", "@language": "pl" },
+        { "@value": "Módulo de elasticidade", "@language": "pt" },
+        { "@value": "Modul de elasticitate", "@language": "ro" },
+        { "@value": "Modul pružnosti", "@language": "sk" },
+        { "@value": "Modul elastičnosti", "@language": "sl" },
+        { "@value": "Elasticitetsmodul", "@language": "sv" }
+      ],
       "dppk:governedBy": "EN 13412:2006",
-      "rdfs:comment": { "@value": "Group of properties regarding modulus of elasticity.", "@language": "en" }
+      "dppk:unit": "GPa",
+      "rdfs:seeAlso": "dppk:method1",
+      "rdfs:comment": [
+        { "@value": "Модул на еластичност при натиск.", "@language": "bg" },
+        { "@value": "Modul pružnosti v tlaku.", "@language": "cs" },
+        { "@value": "Elasticitetsmodul ved tryk.", "@language": "da" },
+        { "@value": "Elastizitätsmodul bei Druck.", "@language": "de" },
+        { "@value": "Μέτρο ελαστικότητας σε συμπίεση.", "@language": "el" },
+        { "@value": "Group of properties regarding modulus of elasticity in compression.", "@language": "en" },
+        { "@value": "Módulo de elasticidad en compresión.", "@language": "es" },
+        { "@value": "Surve elastsusmoodul.", "@language": "et" },
+        { "@value": "Puristuskimmokerroin.", "@language": "fi" },
+        { "@value": "Module d'élasticité en compression.", "@language": "fr" },
+        { "@value": "Modúl leaisteachais i gcomhbhrú.", "@language": "ga" },
+        { "@value": "Modul elastičnosti pri kompresiji.", "@language": "hr" },
+        { "@value": "Nyomó rugalmassági modulus.", "@language": "hu" },
+        { "@value": "Modulo di elasticità a compressione.", "@language": "it" },
+        { "@value": "Tamprumo modulis gniuždant.", "@language": "lt" },
+        { "@value": "Elastības modulis saspiežot.", "@language": "lv" },
+        { "@value": "Modulu ta' elastiċità fil-kompressjoni.", "@language": "mt" },
+        { "@value": "Elasticiteitsmodulus in compressie.", "@language": "nl" },
+        { "@value": "Moduł sprężystości przy ściskaniu.", "@language": "pl" },
+        { "@value": "Módulo de elasticidade na compressão.", "@language": "pt" },
+        { "@value": "Modul de elasticitate la compresiune.", "@language": "ro" },
+        { "@value": "Modul pružnosti v tlaku.", "@language": "sk" },
+        { "@value": "Modul elastičnosti pri stiskanju.", "@language": "sl" },
+        { "@value": "Elasticitetsmodul vid tryck.", "@language": "sv" }
+      ],
+      "rdfs:domain": { "@id": "dppk:DoPCBlock" },
+      "rdfs:range": "xsd:decimal"
     },
     {
       "@id": "dppk:modulusMethod1",
@@ -1105,12 +1087,14 @@
       "rdfs:label": { "@value": "Modulus of Elasticity (Method 1)", "@language": "en" },
       "dppk:governedBy": "EN 13412:2006",
       "dppk:unit": "GPa",
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:decimal",
+      "rdfs:comment": { "@value": "Modulus of elasticity measured using Method 1.", "@language": "en" }
     },
     {
       "@id": "dppk:method1",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": { "@value": "Method 1", "@language": "en" }
+      "rdfs:label": { "@value": "Method 1", "@language": "en" },
+      "rdfs:comment": { "@value": "A reference to Method 1 for measuring modulus of elasticity.", "@language": "en" }
     },
     {
       "@id": "dppk:thermalExpansion",
@@ -1540,6 +1524,19 @@
       ]
     },
     {
+      "@id": "dppk:reactionToFireSystem4",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        { "@value": "Reaction to Fire (AVCP System 4)", "@language": "en" }
+      ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": [
+        { "@value": "Reaction to fire under AVCP System 4.", "@language": "en" }
+      ]
+    },
+    {
       "@id": "dppk:elasticRecoveryMethodA25",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": [
@@ -1736,66 +1733,7 @@
         { "@value": "Klassificering av vidhäftning.", "@language": "sv" }
       ]
     },
-    {
-      "@id": "dppk:modulusOfElasticityInCompression",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        { "@value": "Модул на еластичност", "@language": "bg" },
-        { "@value": "Modul pružnosti", "@language": "cs" },
-        { "@value": "Elasticitetsmodul", "@language": "da" },
-        { "@value": "Elastizitätsmodul", "@language": "de" },
-        { "@value": "Μέτρο ελαστικότητας", "@language": "el" },
-        { "@value": "Modulus of Elasticity", "@language": "en" },
-        { "@value": "Módulo de elasticidad", "@language": "es" },
-        { "@value": "Elastsusmoodul", "@language": "et" },
-        { "@value": "Kimmokerroin", "@language": "fi" },
-        { "@value": "Module d'élasticité", "@language": "fr" },
-        { "@value": "Modúl Leaisteachais", "@language": "ga" },
-        { "@value": "Modul elastičnosti", "@language": "hr" },
-        { "@value": "Rugalmassági modulus", "@language": "hu" },
-        { "@value": "Modulo di elasticità", "@language": "it" },
-        { "@value": "Tamprumo modulis", "@language": "lt" },
-        { "@value": "Elastības modulis", "@language": "lv" },
-        { "@value": "Modulu ta' Elastiċità", "@language": "mt" },
-        { "@value": "Elasticiteitsmodulus", "@language": "nl" },
-        { "@value": "Moduł sprężystości", "@language": "pl" },
-        { "@value": "Módulo de elasticidade", "@language": "pt" },
-        { "@value": "Modul de elasticitate", "@language": "ro" },
-        { "@value": "Modul pružnosti", "@language": "sk" },
-        { "@value": "Modul elastičnosti", "@language": "sl" },
-        { "@value": "Elasticitetsmodul", "@language": "sv" }
-      ],
-      "dppk:governedBy": "EN 13412:2006",
-      "dppk:unit": "GPa",
-      "rdfs:range": "xsd:decimal",
-      "rdfs:domain": { "@id": "dppk:DoPCBlock" },
-      "rdfs:comment": [
-        { "@value": "Модул на еластичност при натиск.", "@language": "bg" },
-        { "@value": "Modul pružnosti v tlaku.", "@language": "cs" },
-        { "@value": "Elasticitetsmodul ved tryk.", "@language": "da" },
-        { "@value": "Elastizitätsmodul bei Druck.", "@language": "de" },
-        { "@value": "Μέτρο ελαστικότητας σε συμπίεση.", "@language": "el" },
-        { "@value": "Modulus of elasticity in compression.", "@language": "en" },
-        { "@value": "Módulo de elasticidad en compresión.", "@language": "es" },
-        { "@value": "Surve elastsusmoodul.", "@language": "et" },
-        { "@value": "Puristuskimmokerroin.", "@language": "fi" },
-        { "@value": "Module d'élasticité en compression.", "@language": "fr" },
-        { "@value": "Modúl leaisteachais i gcomhbhrú.", "@language": "ga" },
-        { "@value": "Modul elastičnosti pri kompresiji.", "@language": "hr" },
-        { "@value": "Nyomó rugalmassági modulus.", "@language": "hu" },
-        { "@value": "Modulo di elasticità a compressione.", "@language": "it" },
-        { "@value": "Tamprumo modulis gniuždant.", "@language": "lt" },
-        { "@value": "Elastības modulis saspiežot.", "@language": "lv" },
-        { "@value": "Modulu ta' elastiċità fil-kompressjoni.", "@language": "mt" },
-        { "@value": "Elasticiteitsmodulus in compressie.", "@language": "nl" },
-        { "@value": "Moduł sprężystości przy ściskaniu.", "@language": "pl" },
-        { "@value": "Módulo de elasticidade na compressão.", "@language": "pt" },
-        { "@value": "Modul de elasticitate la compresiune.", "@language": "ro" },
-        { "@value": "Modul pružnosti v tlaku.", "@language": "sk" },
-        { "@value": "Modul elastičnosti pri stiskanju.", "@language": "sl" },
-        { "@value": "Elasticitetsmodul vid tryck.", "@language": "sv" }
-      ]
-    },
+
     {
       "@id": "dppk:capillaryAbsorption",
       "@type": "owl:DatatypeProperty",
