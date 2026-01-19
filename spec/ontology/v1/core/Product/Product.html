@@ -41,8 +41,6 @@
   Product : +countryOfOrigin
   Product : +weightPercentage
   Product : +recycledContentPercentage
-  Product : +weight
-  Product --|> QuantitativeValue : weight
   Product : +netWeight
   Product --|> KgWeightLiteral : netWeight
   Product : +grossWeight
@@ -64,8 +62,6 @@
   Product --|> SubstanceOfConcern : substancesOfConcern
   Product : +packaging
   Product --|> Packaging : packaging
-  Product : +packagingMaterials
-  Product --|> Packaging : packagingMaterials
   Product : +productionSteps
   Product --|> ProductionStep : productionSteps
   Product : +epd
@@ -80,8 +76,6 @@
   style RelatedResource stroke:#2962ff,color:#2962ff
   click Component href "Component.html" "dppk:Component"
   style Component stroke:#2962ff,color:#2962ff
-  click QuantitativeValue href "QuantitativeValue.html" "dppk:QuantitativeValue"
-  style QuantitativeValue stroke:#2962ff,color:#2962ff
   click ProductCharacteristic href "ProductCharacteristic.html" "dppk:ProductCharacteristic"
   style ProductCharacteristic stroke:#2962ff,color:#2962ff
   click Certification href "../Compliance/Certification.html" "dppk:Certification"
@@ -144,14 +138,14 @@
                             
                                 <tr>
                                     <td>Brand Name (dppk:brand)</td>
-                                    <td></td>
+                                    <td>The brand name of the product.</td>
                                     <td>xsd:string</td>
                                     <td><a href="https://schema.org/brand">schema:brand</a>, <a href="https://ref.gs1.org/voc/brandName">gs1:brandName</a>, <a href="https://vocabulary.uncefact.org/brandName">unece:brandName</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Model Number (dppk:model)</td>
-                                    <td></td>
+                                    <td>The model identifier or number of the product.</td>
                                     <td>xsd:string</td>
                                     <td><a href="https://schema.org/model">schema:model</a>, <a href="https://vocabulary.uncefact.org/modelId">unece:modelId</a></td><td></td>
                                 </tr>
@@ -165,7 +159,7 @@
                             
                                 <tr>
                                     <td>Color Description (dppk:color)</td>
-                                    <td></td>
+                                    <td>The color of the product.</td>
                                     <td>rdf:langString</td>
                                     <td><a href="https://schema.org/color">schema:color</a>, <a href="https://ref.gs1.org/voc/colourDescription">gs1:colourDescription</a>, <a href="https://vocabulary.uncefact.org/colourDescription">unece:colourDescription</a></td><td></td>
                                 </tr>
@@ -196,13 +190,6 @@
                                     <td>The percentage of the material that is derived from recycled sources.</td>
                                     <td>xsd:decimal</td>
                                     <td></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Weight (Deprecated) (dppk:weight)</td>
-                                    <td>DEPRECATED. Use dppk:netWeight or dppk:grossWeight instead. The weight of the product or material, expressed as a QuantitativeValue.</td>
-                                    <td>dppk:QuantitativeValue</td>
-                                    <td><a href="https://schema.org/weight">schema:weight</a></td><td></td>
                                 </tr>
                             
                                 <tr>
@@ -270,23 +257,16 @@
                             
                                 <tr>
                                     <td><a href="../Compliance/index.html#substancesOfConcern">Substances of Concern</a> (dppk:substancesOfConcern)</td>
-                                    <td></td>
+                                    <td>Relates the product to any substances of concern it contains.</td>
                                     <td>dppk:SubstanceOfConcern</td>
                                     <td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Compliance/index.html#packaging">Packaging</a> (dppk:packaging)</td>
-                                    <td></td>
-                                    <td>dppk:Packaging</td>
-                                    <td><a href="https://ref.gs1.org/voc/packaging">gs1:packaging</a></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td><a href="../Compliance/index.html#packagingMaterials">Packaging Materials</a> (dppk:packagingMaterials)</td>
                                     <td>A list of packaging elements associated with the product.</td>
                                     <td>dppk:Packaging</td>
-                                    <td></td><td></td>
+                                    <td><a href="https://ref.gs1.org/voc/packaging">gs1:packaging</a></td><td></td>
                                 </tr>
                             
                                 <tr>
@@ -305,14 +285,14 @@
                             
                                 <tr>
                                     <td><a href="../RelatedResource/index.html#instructionsForUse">Instructions for Use</a> (dppk:instructionsForUse)</td>
-                                    <td></td>
+                                    <td>A link to the instructions for use or user manual for the product.</td>
                                     <td>dppk:RelatedResource</td>
                                     <td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../RelatedResource/index.html#safetyDataSheet">Safety Data Sheet</a> (dppk:safetyDataSheet)</td>
-                                    <td></td>
+                                    <td>A link to the safety data sheet (SDS) for the product.</td>
                                     <td>dppk:RelatedResource</td>
                                     <td></td><td></td>
                                 </tr>

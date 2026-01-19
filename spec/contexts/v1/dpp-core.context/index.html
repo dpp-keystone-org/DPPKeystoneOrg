@@ -40,9 +40,9 @@
 <li><a href="../../../ontology/v1/core/Organization/FacilityRole.html"><strong>FacilityRole</strong></a> - <em>A specific location or site where manufacturing or processing activities occur.</em></li>
 <li><a href="../../../ontology/v1/core/Organization/ConformityAssessmentBodyRole.html"><strong>ConformityAssessmentBodyRole</strong></a> - <em>The role of an entity (e.g., Notified Body) that performs conformity assessment activities.</em></li>
 <li><strong>ISO6523</strong></li>
-<li><strong>Item</strong></li>
-<li><strong>Batch</strong></li>
-<li><strong>Model</strong></li>
+<li><strong>Item</strong> - <em>Indicates that the DPP applies to an individual serialized unit.</em></li>
+<li><strong>Batch</strong> - <em>Indicates that the DPP applies to a production lot or batch.</em></li>
+<li><strong>Model</strong> - <em>Indicates that the DPP applies to a product type or model.</em></li>
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>digitalProductPassportId</strong></a> - <em>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). Implementation-specific identifier.</em></li>
 <li><strong>uniqueProductIdentifier</strong> - <em>The globally resolvable URI for the product/DPP.</em></li>
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>economicOperatorId</strong></a> - <em>The unique identifier for the Economic Operator responsible for placing the product on the market.</em></li>
@@ -71,11 +71,11 @@
 <li><strong>iso6523Value</strong></li>
 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>address</strong></a> - <em>Relates an organization to its physical address.</em></li>
 <li><a href="../../../ontology/v1/core/Organization/PostalAddress.html"><strong>streetAddress</strong></a> - <em>Includes street name and number.</em></li>
-<li><strong>postalCode</strong></li>
-<li><strong>addressLocality</strong></li>
-<li><strong>addressCountry</strong></li>
-<li><strong>email</strong></li>
-<li><strong>telephone</strong></li>
+<li><a href="../../../ontology/v1/core/Organization/PostalAddress.html"><strong>postalCode</strong></a> - <em>The postal code of the location.</em></li>
+<li><a href="../../../ontology/v1/core/Organization/PostalAddress.html"><strong>addressLocality</strong></a> - <em>The locality (e.g. city) of the address.</em></li>
+<li><a href="../../../ontology/v1/core/Organization/PostalAddress.html"><strong>addressCountry</strong></a> - <em>The country component of the address.</em></li>
+<li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>email</strong></a> - <em>The email address for contacting the organization.</em></li>
+<li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>telephone</strong></a> - <em>The telephone number for contacting the organization.</em></li>
 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>website</strong></a> - <em>The URL of the organization's website.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>productName</strong></a> - <em>The common name of the product.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>description</strong></a> - <em>A detailed description of the product.</em></li>
@@ -92,18 +92,21 @@
 <li><a href="../../../ontology/v1/core/Product/QuantitativeValue.html"><strong>unitCode</strong></a> - <em>The unit of measurement, preferably using UN/CEFACT codes (e.g., KGM, MTR, LTR).</em></li>
 <li><a href="../../../ontology/v1/core/Product/QuantitativeValue.html"><strong>unitText</strong></a> - <em>A human-readable representation of the unit (e.g., kg CO2e, Nm).</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>documents</strong></a> - <em>Relates the product to associated digital documents.</em></li>
-<li><strong>substancesOfConcern</strong></li>
-<li><strong>instructionsForUse</strong></li>
-<li><strong>safetyDataSheet</strong></li>
-<li><strong>resourceTitle</strong></li>
-<li><strong>contentType</strong></li>
-<li><strong>language</strong></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>substancesOfConcern</strong></a> - <em>Relates the product to any substances of concern it contains.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>instructionsForUse</strong></a> - <em>A link to the instructions for use or user manual for the product.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>safetyDataSheet</strong></a> - <em>A link to the safety data sheet (SDS) for the product.</em></li>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>resourceTitle</strong></a> - <em>The title of the related resource.</em></li>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>contentType</strong></a> - <em>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</em></li>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>language</strong></a> - <em>The language of the resource content (e.g., 'en', 'fr').</em></li>
 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>minValue</strong></a> - <em>The minimum concentration or amount of the substance present.</em></li>
 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>maxValue</strong></a> - <em>The maximum concentration or amount of the substance present.</em></li>
-<li><strong>dateOfManufacture</strong></li>
+<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>substanceName</strong></a> - <em>The common name of the substance.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>casNumber</strong></a> - <em>The Chemical Abstracts Service (CAS) registry number for the substance.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>concentration</strong></a> - <em>The concentration of the substance in the product.</em></li>
+<li><a href="../../../ontology/v1/sectors/Battery/Battery.html"><strong>dateOfManufacture</strong></a> - <em>The date when the battery was manufactured.</em></li>
 <li><strong>name</strong> - <em>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</em></li>
 <li><strong>identifier</strong></li>
-<li><strong>url</strong></li>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>url</strong></a> - <em>The location of the resource.</em></li>
 </ul>
         </main>
         <footer>

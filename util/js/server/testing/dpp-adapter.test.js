@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import the function to be tested
-import { transformDpp } from '../dpp-adapter.js?v=1768510063388';
+import { transformDpp } from '../dpp-adapter.js?v=1768832598436';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

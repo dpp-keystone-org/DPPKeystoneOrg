@@ -29,6 +29,9 @@
   class SubstanceOfConcern
   SubstanceOfConcern : +minValue
   SubstanceOfConcern : +maxValue
+  SubstanceOfConcern : +substanceName
+  SubstanceOfConcern : +casNumber
+  SubstanceOfConcern : +concentration
 
                 </pre>
 
@@ -61,6 +64,27 @@
                                     <td>The maximum concentration or amount of the substance present.</td>
                                     <td></td>
                                     <td><a href="https://schema.org/maxValue">schema:maxValue</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Substance Name (dppk:substanceName)</td>
+                                    <td>The common name of the substance.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>CAS Number (dppk:casNumber)</td>
+                                    <td>The Chemical Abstracts Service (CAS) registry number for the substance.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Concentration (dppk:concentration)</td>
+                                    <td>The concentration of the substance in the product.</td>
+                                    <td>xsd:decimal</td>
+                                    <td></td>
                                 </tr>
                             
                         </tbody>

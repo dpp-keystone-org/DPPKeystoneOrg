@@ -29,6 +29,7 @@
   class Certification
   RelatedResource <|-- Certification
   Certification : +certificationBodyName
+  Certification : +certificationBodyId
   Certification : +certificationStartDate
   click RelatedResource href "../RelatedResource/RelatedResource.html" "dppk:RelatedResource"
   style RelatedResource stroke:#2962ff,color:#2962ff
@@ -54,14 +55,21 @@
                             
                                 <tr>
                                     <td>Certifying Body Name (dppk:certificationBodyName)</td>
-                                    <td></td>
+                                    <td>The name of the body that issued the certification.</td>
                                     <td></td>
                                     <td><a href="https://ref.gs1.org/voc/certificationAgency">gs1:certificationAgency</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Start of Certificate Validity (dppk:certificationStartDate)</td>
+                                    <td>Certifying Body ID (dppk:certificationBodyId)</td>
+                                    <td>The unique identifier of the certifying body.</td>
+                                    <td>xsd:string</td>
                                     <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Start of Certificate Validity (dppk:certificationStartDate)</td>
+                                    <td>The date when the certification became valid.</td>
                                     <td>xsd:date</td>
                                     <td><a href="https://ref.gs1.org/voc/certificationStartDate">gs1:certificationStartDate</a></td>
                                 </tr>

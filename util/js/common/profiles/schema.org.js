@@ -75,8 +75,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         product.manufacturer = toSchemaOrgOrganization(manufacturerNode);
     }
 
-    const dopcNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#dopcDeclarations') || 
-                     getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#DoPCBlock');
+    const dopcNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#dopc');
 
     if (dopcNode) {
         const properties = [];

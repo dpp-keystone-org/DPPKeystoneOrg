@@ -116,6 +116,7 @@
       "@id": "dppk:substancesOfConcern",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Substances of Concern",
+      "rdfs:comment": "Relates the product to any substances of concern it contains.",
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
@@ -128,6 +129,7 @@
       "@id": "dppk:packaging",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Packaging",
+      "rdfs:comment": "A list of packaging elements associated with the product.",
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
@@ -136,19 +138,6 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packaging"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:packagingMaterials",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "Packaging Materials",
-      "rdfs:comment": "A list of packaging elements associated with the product.",
-      "rdfs:domain": {
-        "@id": "dppk:Product"
-      },
-      "rdfs:range": {
-        "@id": "dppk:Packaging"
       },
       "rdfs:term_status": "unstable"
     },
@@ -168,6 +157,7 @@
       "@id": "dppk:certificationBodyName",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Certifying Body Name",
+      "rdfs:comment": "The name of the body that issued the certification.",
       "rdfs:domain": {
         "@id": "dppk:Certification"
       },
@@ -177,9 +167,23 @@
       "rdfs:term_status": "unstable"
     },
     {
+      "@id": "dppk:certificationBodyId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Certifying Body ID",
+      "rdfs:comment": "The unique identifier of the certifying body.",
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
       "@id": "dppk:certificationStartDate",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Start of Certificate Validity",
+      "rdfs:comment": "The date when the certification became valid.",
       "rdfs:domain": {
         "@id": "dppk:Certification"
       },
@@ -218,9 +222,51 @@
       "rdfs:term_status": "unstable"
     },
     {
+      "@id": "dppk:substanceName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Substance Name",
+      "rdfs:comment": "The common name of the substance.",
+      "rdfs:domain": {
+        "@id": "dppk:SubstanceOfConcern"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:casNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "CAS Number",
+      "rdfs:comment": "The Chemical Abstracts Service (CAS) registry number for the substance.",
+      "dppk:unit": "unitless",
+      "rdfs:domain": {
+        "@id": "dppk:SubstanceOfConcern"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:concentration",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Concentration",
+      "rdfs:comment": "The concentration of the substance in the product.",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:SubstanceOfConcern"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
       "@id": "dppk:packagingMaterialType",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Packaging Material Type",
+      "rdfs:comment": "The type of material used for the packaging (e.g., 'Cardboard', 'Plastic').",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
       },
@@ -233,6 +279,7 @@
       "@id": "dppk:packagingMaterialCompositionQuantity",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Packaging Material Composition Quantity",
+      "rdfs:comment": "The percentage of the material in the packaging.",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
       },
@@ -259,6 +306,7 @@
       "@id": "dppk:packagingRecycledContent",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Packaging Recycled Content",
+      "rdfs:comment": "The percentage of recycled content in the packaging material.",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
       },
@@ -268,6 +316,7 @@
       "@id": "dppk:packagingSubstanceOfConcern",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Packaging Substance of Concern Present",
+      "rdfs:comment": "Indicates if any substances of concern are present in the packaging.",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
       },

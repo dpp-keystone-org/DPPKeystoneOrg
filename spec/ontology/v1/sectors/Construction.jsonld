@@ -697,6 +697,12 @@
           "@value": "Referens till valideringsrapporter"
         }
       ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Reference to reports validating the performance or conformity of the product."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ConstructionProduct"
       },
@@ -806,6 +812,12 @@
           "@value": "Referens till europeiskt bedömningsdokument (EAD)"
         }
       ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A reference to the European Assessment Document (EAD) relevant to the product."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ConstructionProduct"
       },
@@ -846,6 +858,12 @@
           "@value": "Thermal Conductivity (Lambda)"
         }
       ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The property of a material to conduct heat."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:ConstructionProduct"
       },
@@ -861,6 +879,12 @@
         {
           "@language": "en",
           "@value": "Compressive Strength"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The capacity of a material or structure to withstand loads tending to reduce size."
         }
       ],
       "rdfs:domain": {

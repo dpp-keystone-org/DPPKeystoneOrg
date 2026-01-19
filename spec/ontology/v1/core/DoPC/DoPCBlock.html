@@ -28,6 +28,7 @@
                     classDiagram
   class DoPCBlock
   DoPCBlock : +dopc
+  DoPCBlock --|> DoPCBlock : dopc
   DoPCBlock : +declarationCode
   DoPCBlock : +dateOfIssue
   DoPCBlock : +chlorideContent
@@ -41,6 +42,7 @@
   DoPCBlock : +avcpSystem1
   DoPCBlock : +avcpSystem2
   DoPCBlock : +avcpSystem3
+  DoPCBlock : +avcpSystem4
   DoPCBlock : +elasticRecovery
   DoPCBlock : +methodA
   DoPCBlock : +methodB
@@ -73,6 +75,7 @@
   DoPCBlock : +reactionToFireSystem1
   DoPCBlock : +reactionToFireSystem2
   DoPCBlock : +reactionToFireSystem3
+  DoPCBlock : +reactionToFireSystem4
   DoPCBlock : +elasticRecoveryMethodA25
   DoPCBlock : +elasticRecoveryMethodA60
   DoPCBlock : +elasticRecoveryMethodA100
@@ -81,7 +84,6 @@
   DoPCBlock : +elasticRecoveryMethodB100
   DoPCBlock : +flowResistanceProcedureA50
   DoPCBlock : +tensileStrengthAdhesion
-  DoPCBlock : +modulusOfElasticityInCompression
   DoPCBlock : +capillaryAbsorption
   DoPCBlock : +dangerousSubstances
   DoPCBlock : +referenceServiceLife
@@ -90,7 +92,7 @@
 
                 <h4>Attributes</h4>
                 <p>Data block for Declaration of Performance and Conformity.</p>
-                <p><strong>equivalentClass:</strong> <a href="http://schema.org/Certification">schema:Certification</a></p>
+                <p><strong>equivalentClass:</strong> <a href="http://schema.org/Certification">schema:Certification</a></p><p><strong>governedBy:</strong> CPR</p>
 
                 
                     <h4>Properties</h4>
@@ -108,7 +110,7 @@
                                 <tr>
                                     <td>The Declaration of Performance and Conformity. (dppk:dopc)</td>
                                     <td>The Declaration of Performance and Conformity.</td>
-                                    <td></td>
+                                    <td>dppk:DoPCBlock</td>
                                     <td>CPR</td>
                                 </tr>
                             
@@ -135,7 +137,7 @@
                             
                                 <tr>
                                     <td>21°C (dppk:21DegC)</td>
-                                    <td>A standardized temperature for some measurments.</td>
+                                    <td>A standardized temperature for some measurements.</td>
                                     <td></td>
                                     <td>EN 13295:2004</td>
                                 </tr>
@@ -199,6 +201,13 @@
                                 <tr>
                                     <td>AVCP System 3 (dppk:avcpSystem3)</td>
                                     <td>System 3 for measuring reaction to fire.</td>
+                                    <td></td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>AVCP System 4 (dppk:avcpSystem4)</td>
+                                    <td>System 4 for measuring reaction to fire.</td>
                                     <td></td>
                                     <td>EN 13501-1</td>
                                 </tr>
@@ -275,35 +284,35 @@
                             
                                 <tr>
                                     <td>Flow Resistance (Proc A, 5°C) (dppk:flowResistanceProcedureA5)</td>
-                                    <td></td>
+                                    <td>Flow resistance measured using Procedure A at 5°C.</td>
                                     <td>xsd:decimal</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc A, 70°C) (dppk:flowResistanceProcedureA70)</td>
-                                    <td></td>
+                                    <td>Flow resistance measured using Procedure A at 70°C.</td>
                                     <td>xsd:decimal</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc B, 5°C) (dppk:flowResistanceProcedureB5)</td>
-                                    <td></td>
+                                    <td>Flow resistance measured using Procedure B at 5°C.</td>
                                     <td>xsd:decimal</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc B, 50°C) (dppk:flowResistanceProcedureB50)</td>
-                                    <td></td>
+                                    <td>Flow resistance measured using Procedure B at 50°C.</td>
                                     <td>xsd:decimal</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc B, 70°C) (dppk:flowResistanceProcedureB70)</td>
-                                    <td></td>
+                                    <td>Flow resistance measured using Procedure B at 70°C.</td>
                                     <td>xsd:decimal</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
@@ -324,7 +333,7 @@
                             
                                 <tr>
                                     <td>Shrinkage and Expansion (dppk:shrinkageAndExpansion)</td>
-                                    <td></td>
+                                    <td>The shrinkage and expansion of the material.</td>
                                     <td>xsd:string</td>
                                     <td>EN 12617-4:2002</td>
                                 </tr>
@@ -352,21 +361,21 @@
                             
                                 <tr>
                                     <td>Modulus of Elasticity Group (dppk:modulusOfElasticityInCompression)</td>
-                                    <td>Group of properties regarding modulus of elasticity.</td>
-                                    <td></td>
+                                    <td>Group of properties regarding modulus of elasticity in compression.</td>
+                                    <td>xsd:decimal</td>
                                     <td>EN 13412:2006</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Modulus of Elasticity (Method 1) (dppk:modulusMethod1)</td>
-                                    <td></td>
+                                    <td>Modulus of elasticity measured using Method 1.</td>
                                     <td>xsd:decimal</td>
                                     <td>EN 13412:2006</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Method 1 (dppk:method1)</td>
-                                    <td></td>
+                                    <td>A reference to Method 1 for measuring modulus of elasticity.</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -428,6 +437,13 @@
                                 </tr>
                             
                                 <tr>
+                                    <td>Reaction to Fire (AVCP System 4) (dppk:reactionToFireSystem4)</td>
+                                    <td>Reaction to fire under AVCP System 4.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 13501-1</td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Elastic Recovery (Method A, 25% Elongation) (dppk:elasticRecoveryMethodA25)</td>
                                     <td>Elastic recovery using Method A at 25% elongation.</td>
                                     <td>xsd:decimal</td>
@@ -481,13 +497,6 @@
                                     <td>Classification of adhesion.</td>
                                     <td>xsd:string</td>
                                     <td>N 12618-2</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Modulus of Elasticity (dppk:modulusOfElasticityInCompression)</td>
-                                    <td>Modulus of elasticity in compression.</td>
-                                    <td>xsd:decimal</td>
-                                    <td>EN 13412:2006</td>
                                 </tr>
                             
                                 <tr>

@@ -26,6 +26,7 @@
       "@id": "dppk:resourceTitle",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Resource Title",
+      "rdfs:comment": "The title of the related resource.",
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -38,6 +39,7 @@
       "@id": "dppk:contentType",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Content Type",
+      "rdfs:comment": "The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').",
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -53,6 +55,7 @@
       "@id": "dppk:language",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Language",
+      "rdfs:comment": "The language of the resource content (e.g., 'en', 'fr').",
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -68,6 +71,7 @@
       "@id": "dppk:url",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "URL",
+      "rdfs:comment": "The location of the resource.",
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -83,6 +87,7 @@
       "@id": "dppk:instructionsForUse",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "Instructions for Use",
+      "rdfs:comment": "A link to the instructions for use or user manual for the product.",
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
@@ -98,6 +103,7 @@
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
+      "rdfs:comment": "A link to the safety data sheet (SDS) for the product.",
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
       },

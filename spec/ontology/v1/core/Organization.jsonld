@@ -304,6 +304,7 @@
       "@id": "dppk:postalCode",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Postal Code",
+      "rdfs:comment": "The postal code of the location.",
       "rdfs:domain": {
         "@id": "dppk:PostalAddress"
       },
@@ -321,6 +322,7 @@
       "@id": "dppk:addressLocality",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "City/Locality",
+      "rdfs:comment": "The locality (e.g. city) of the address.",
       "rdfs:domain": {
         "@id": "dppk:PostalAddress"
       },
@@ -338,6 +340,7 @@
       "@id": "dppk:addressCountry",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Country",
+      "rdfs:comment": "The country component of the address.",
       "rdfs:domain": {
         "@id": "dppk:PostalAddress"
       },
@@ -358,6 +361,7 @@
       "@id": "dppk:email",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Email Address",
+      "rdfs:comment": "The email address for contacting the organization.",
       "rdfs:domain": {
         "@id": "dppk:Organization"
       },
@@ -375,6 +379,7 @@
       "@id": "dppk:telephone",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Telephone Number",
+      "rdfs:comment": "The telephone number for contacting the organization.",
       "rdfs:domain": {
         "@id": "dppk:Organization"
       },

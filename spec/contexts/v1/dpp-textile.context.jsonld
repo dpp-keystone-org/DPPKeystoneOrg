@@ -24,6 +24,7 @@
         "@id": "dppk:animalOriginNonTextile",
         "@type": "xsd:boolean"
       },
+      "tearStrength": "dppk:tearStrength",
       "abrasionResistance": "dppk:abrasionResistance",
       "cycles": {
         "@id": "dppk:cycles",

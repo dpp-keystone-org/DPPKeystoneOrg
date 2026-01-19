@@ -151,6 +151,12 @@
       "language": "dppk:language",
       "minValue": "dppk:minValue",
       "maxValue": "dppk:maxValue",
+      "substanceName": "dppk:substanceName",
+      "casNumber": "dppk:casNumber",
+      "concentration": {
+        "@id": "dppk:concentration",
+        "@type": "xsd:decimal"
+      },
       "dateOfManufacture": {
         "@id": "dppk:dateOfManufacture",
         "@type": "xsd:date"
