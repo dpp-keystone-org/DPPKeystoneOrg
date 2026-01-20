@@ -184,4 +184,38 @@ test.describe('DPP Validator', () => {
        expect(innerHTML).toContain('must match format "uri"');
   });
 
+  test('Example Loader populates input', async ({ page }) => {
+    // Select 'Battery' from the dropdown
+    await page.locator('#example-selector').selectOption({ label: 'Battery' });
+    
+    // Check that textarea is populated (wait for fetch to complete)
+    await expect(page.locator('#json-input')).toHaveValue(/digitalProductPassportId/);
+    await expect(page.locator('#json-input')).toHaveValue(/Battery/);
+    
+    // Validate the loaded example
+    await page.locator('#validate-btn').click();
+    await expect(page.locator('.result-box.success')).toContainText('Validation Successful');
+  });
+
+  test('Preview Button generates HTML', async ({ page, context }) => {
+    // Load a simple example
+    await page.locator('#json-input').fill(JSON.stringify({ "digitalProductPassportId": "123", "productName": "Preview Test" }));
+    
+    // Setup listener for new page
+    const pagePromise = context.waitForEvent('page');
+    
+    await page.locator('#preview-btn').click();
+    
+    const newPage = await pagePromise;
+    await newPage.waitForLoadState();
+    
+    // Check title of new page
+    expect(await newPage.title()).toContain('Preview Test');
+    
+    // Check content
+    await expect(newPage.locator('h1')).toContainText('Digital Product Passport');
+    
+    await newPage.close();
+  });
+
 });

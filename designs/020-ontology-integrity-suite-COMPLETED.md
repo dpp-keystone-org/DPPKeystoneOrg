@@ -57,8 +57,8 @@ We will tackle these sector by sector.
     -   Add `dppk:unitInherited: true` to `EPD.jsonld` properties (`a1`, `a2`, `a3`, `a4`, `c1`, `c2`, `c3`, `c4`, `d`, `total`).
     -   Add `dppk:unit: "unitless"` to `Product.jsonld`'s `dppk:value`.
     -   Add `dppk:unit: "percent"` to `Product.jsonld`'s `dppk:weightPercentage` and `dppk:recycledContentPercentage`.
--   [PENDING] **1.2. Fix Core Documentation:** Add labels/comments to `Header.jsonld` and `Organization.jsonld`.
--   [PENDING] **1.3. Fix DoPC Context:** Address `dopc.schema.json` failures by ensuring `dpp-dopc.context.jsonld` maps the following terms which are currently missing or misaligned:
+-   [COMPLETED] **1.2. Fix Core Documentation:** Add labels/comments to `Header.jsonld` and `Organization.jsonld`.
+-   [COMPLETED] **1.3. Fix DoPC Context:** Address `dopc.schema.json` failures by ensuring `dpp-dopc.context.jsonld` maps the following terms which are currently missing or misaligned:
     -   `declarationCode`
     -   `dateOfIssue`
     -   `contentSpecificationIds`
@@ -68,7 +68,7 @@ We will tackle these sector by sector.
 
 ### Phase 2: Battery Sector
 -   [COMPLETED] **2.1. Fix Numeric Units:** `nominalVoltage`, `ratedCapacity`.
--   [PENDING] **2.2. Fix Mappings:** Ensure all Battery schema fields map to ontology.
+-   [COMPLETED] **2.2. Fix Mappings:** Ensure all Battery schema fields map to ontology.
 
 ### Phase 3: Textile & Construction
 -   [COMPLETED] **3.1. Fix Numeric Units:** `fibrePercentage`, `cycles`.
@@ -81,11 +81,11 @@ We will tackle these sector by sector.
 
 ### Phase 4: Script Refinement
 -   [COMPLETED] **4.1. Update Script Logic:** Implement check for `dppk:unitInherited` and "unitless" value in the `validate-ontology-integrity.mjs` script.
--   [PENDING] **4.2. Smart Dead Code:** Update script to whitelist known Core classes or check for usage in `@type`.
--   [PENDING] **4.3. Improve Schema Mapping Logic:** Refine the "Schema Mapping Integrity" check to reduce spurious errors. (e.g., handling polymorphic schemas or complex context mappings better).
+-   [COMPLETED] **4.2. Smart Dead Code:** Update script to whitelist known Core classes or check for usage in `@type`.
+-   [COMPLETED] **4.3. Improve Schema Mapping Logic:** Refine the "Schema Mapping Integrity" check to reduce spurious errors. (e.g., handling polymorphic schemas or complex context mappings better).
 
 ### Phase 5: Advanced Integrity Checks (Future)
--   [PENDING] **5.1. Undefined Term Usage:** Verify that every term used in an ontology file (e.g., `dppk:unit`) is actually defined in the file itself or its transitive imports. This catches "invisible dependencies" where a term is used without being imported.
+-   [COMPLETED] **5.1. Undefined Term Usage:** Verify that every term used in an ontology file (e.g., `dppk:unit`) is actually defined in the file itself or its transitive imports. This catches "invisible dependencies" where a term is used without being imported.
 
 ## 6. Execution Strategy
 1.  **Run Test:** `npm run test:integrity`.

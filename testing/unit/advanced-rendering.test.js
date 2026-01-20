@@ -12,7 +12,7 @@ describe('Advanced Rendering Logic', () => {
 
     beforeAll(async () => {
         // Mock dependencies
-        jest.unstable_mockModule('../../src/util/js/client/dpp-adapter.js', () => ({
+        jest.unstable_mockModule('../../src/util/js/client/dpp-schema-adapter.js', () => ({
             transformDpp: jest.fn().mockResolvedValue(null)
         }));
 

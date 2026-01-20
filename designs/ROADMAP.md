@@ -24,10 +24,10 @@ For a history of completed tasks, please see the [CHANGELOG.md](./CHANGELOG.md).
 
 - **[PENDING] 9. Assign Explicit IRIs to all Ontology Terms:** Audit all ontology files in `src/ontology/` and ensure every defined Class and Property has an explicit `@id` to guarantee a stable, unique identifier. Pause and allow the user to test and discuss next steps.
 
-- **[PENDING] 10. Ontology and Example Refinement:** Establish a recurring task to audit and refactor existing ontologies, contexts, and examples. Pause and allow the user to test and discuss next steps.
-  - **[PENDING] 10a. Identify Redundancy:** Periodically review all ontologies and contexts to identify superseded terms or files. Pause and allow the user to test and discuss next steps.
-  - **[PENDING] 10b. Update Examples:** Refactor older examples to use the most current and streamlined ontologies. Pause and allow the user to test and discuss next steps.
-  - **[PENDING] 10c. Remove Dead Code:** Deprecate and remove unused context and ontology files after ensuring no examples rely on them. Pause and allow the user to test and discuss next steps.
+- **[COMPLETED] 10. Ontology and Example Refinement:** Establish a recurring task to audit and refactor existing ontologies, contexts, and examples. Pause and allow the user to test and discuss next steps.
+  - **[COMPLETED] 10a. Identify Redundancy:** Periodically review all ontologies and contexts to identify superseded terms or files. Pause and allow the user to test and discuss next steps.
+  - **[COMPLETED] 10b. Update Examples:** Refactor older examples to use the most current and streamlined ontologies. Pause and allow the user to test and discuss next steps.
+  - **[COMPLETED] 10c. Remove Dead Code:** Deprecate and remove unused context and ontology files after ensuring no examples rely on them. Pause and allow the user to test and discuss next steps.
 
 ---
 

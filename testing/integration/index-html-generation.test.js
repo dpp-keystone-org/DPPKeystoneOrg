@@ -75,7 +75,9 @@ describe('index.html generation', () => {
     
     // Check for links (relative paths)
     // In dist/util/index.html, the link to js/client/dpp-adapter.js is just "js/client/dpp-adapter.js"
-    expect(content).toContain('<a href="js/client/dpp-adapter.js">js/client/dpp-adapter.js</a>');
-    expect(content).toContain('<a href="js/server/dpp-adapter.js">js/server/dpp-adapter.js</a>');
+    expect(content).toContain('<a href="js/client/dpp-schema-adapter.js">js/client/dpp-schema-adapter.js</a>');
+    expect(content).toContain('<a href="js/server/dpp-schema-adapter.js">js/server/dpp-schema-adapter.js</a>');
+    expect(content).toContain('<a href="js/common/rendering/dpp-html-renderer.js">js/common/rendering/dpp-html-renderer.js</a>');
+    expect(content).toContain('<a href="js/common/transformation/dpp-schema-logic.js">js/common/transformation/dpp-schema-logic.js</a>');
   });
 });

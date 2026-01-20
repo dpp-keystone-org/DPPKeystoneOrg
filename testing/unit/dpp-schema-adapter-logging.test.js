@@ -16,7 +16,7 @@ describe('DPP Adapter Logging', () => {
       transformDppMock = jest.fn();
       
       // Mock the dpp-adapter dependency
-      jest.unstable_mockModule('../../src/util/js/client/dpp-adapter.js', () => ({
+      jest.unstable_mockModule('../../src/util/js/client/dpp-schema-adapter.js', () => ({
           transformDpp: transformDppMock
       }));
 
