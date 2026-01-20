@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { transformDpp } from '../dpp-schema-adapter.js?v=1768913709534';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1768914539084';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { parse as jsoncParse } from 'jsonc-parser';
