@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Validator</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1768832598436">
-    <link rel="stylesheet" href="validator.css?v=1768832598436">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1768913709534">
+    <link rel="stylesheet" href="validator.css?v=1768913709534">
     <script type="importmap">
     {
       "imports": {
@@ -34,9 +34,26 @@
         <div id="validator-container">
             <section id="validator-tool" class="card">
                 <h2>JSON DPP Validator</h2>
-                <p>Paste a DPP JSON file below to validate it against the official schemas (Core + Sectors).</p>
+                <p>Paste a DPP JSON file below to validate it against the official schemas (Core + Sectors) or try it out with one of our examples.</p>
+                
+                <div class="input-group" style="margin-bottom: 10px; display: flex; gap: 10px; align-items: center;">
+                    <label for="example-selector">Load Example:</label>
+                    <select id="example-selector">
+                        <option value="">-- Select an example --</option>
+                    </select>
+                </div>
+
                 <textarea id="json-input" placeholder='{"digitalProductPassportId": "..."}'></textarea>
                 <button id="validate-btn" disabled>Validate</button>
+                
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                    <h3 style="margin-top: 0;">Visualization</h3>
+                    <div style="margin-bottom: 10px;">
+                        <input type="text" id="css-url" placeholder="Custom CSS URL (optional)" style="width: 100%; padding: 8px; box-sizing: border-box;">
+                    </div>
+                    <button id="preview-btn" class="secondary" disabled>Generate HTML Preview</button>
+                </div>
+
                 <div id="validation-result" class="result-box" hidden></div>
             </section>
         </div>
@@ -45,6 +62,6 @@
             <p><small>Part of the <a href="../index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
-    <script type="module" src="validator.js?v=1768832598436"></script>
+    <script type="module" src="validator.js?v=1768913709534"></script>
 </body>
 </html>

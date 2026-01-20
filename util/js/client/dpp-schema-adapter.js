@@ -1,22 +1,20 @@
-import { parse as jsoncParse } from 'jsonc-parser';
-import { promises as fs } from 'fs';
-import { transform, buildDictionary } from '../common/dpp-logic.js?v=1768832598436';
+import { transform, buildDictionary } from '../common/transformation/dpp-schema-logic.js?v=1768913709534';
 
 // Using a global dictionary with memoization to avoid re-building on every call
 const dictionary = {};
 
 /**
- * Loader function for the server-side environment using fs.
- * @param {string} path - The file system path to the ontology file.
+ * Loader function for the client-side environment using fetch.
+ * @param {string} path - The URL path to the ontology file.
  * @returns {Promise<object>} - A promise that resolves to the JSON content.
  */
 async function loader(path) {
-    const content = await fs.readFile(path, 'utf-8');
-    return jsoncParse(content);
+    const resp = await fetch(path);
+    return resp.json();
 }
 
 /**
- * The server-side DPP transformer. It uses a profile-based engine to transform DPP data.
+ * The client-side DPP transformer. It uses a profile-based engine to transform DPP data.
  * @param {object} productDoc - The raw DPP JSON document.
  * @param {object} options - The transformation options.
  * @param {string} options.profile - The name of the target profile (e.g., 'schema.org').
@@ -26,7 +24,9 @@ async function loader(path) {
  */
 export async function transformDpp(productDoc, options) {
     const { ontologyPaths, documentLoader } = options;
+    console.log("DPP Adapter Debug: Building dictionary with paths:", ontologyPaths);
     await buildDictionary(ontologyPaths, loader, documentLoader, dictionary);
+    console.log("DPP Adapter Debug: Dictionary built. Transforming...");
     
     return transform(productDoc, options, dictionary);
 }

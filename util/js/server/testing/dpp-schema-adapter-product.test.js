@@ -3,7 +3,7 @@ import jsonld from 'jsonld';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { transformDpp } from '../dpp-adapter.js?v=1768832598436';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1768913709534';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

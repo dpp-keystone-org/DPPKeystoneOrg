@@ -1,5 +1,7 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1768832598436';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1768913709534';
 import stripJsonComments from 'strip-json-comments';
+import { EXAMPLES } from '../lib/example-registry.js?v=1768913709534';
+import { generateHTML } from '../lib/html-generator.js?v=1768913709534';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/
@@ -40,14 +42,18 @@ const schemaContext = {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const validateBtn = document.getElementById('validate-btn');
+    const previewBtn = document.getElementById('preview-btn');
+    const cssUrlInput = document.getElementById('css-url');
     const jsonInput = document.getElementById('json-input');
     const resultBox = document.getElementById('validation-result');
+    const exampleSelector = document.getElementById('example-selector');
 
     // 1. Load Schemas
     try {
         await loadSchemas();
         console.log('Schemas loaded successfully');
         validateBtn.disabled = false;
+        if (previewBtn) previewBtn.disabled = false;
     } catch (error) {
         console.error('Failed to load schemas:', error);
         resultBox.hidden = false;
@@ -57,7 +63,43 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // 2. Setup Event Listener
+    // 2. Setup Example Selector
+    if (exampleSelector) {
+        Object.keys(EXAMPLES).forEach(name => {
+            const option = document.createElement('option');
+            option.value = EXAMPLES[name];
+            option.textContent = name;
+            exampleSelector.appendChild(option);
+        });
+
+        exampleSelector.addEventListener('change', async (e) => {
+            const url = e.target.value;
+            if (!url) return;
+            
+            try {
+                jsonInput.disabled = true;
+                exampleSelector.disabled = true;
+                
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                
+                // We use text() then JSON.parse to allow potentially handling JSONC if examples ever use comments (unlikely for strict JSON examples but safe)
+                // Actually, examples are .json, so strictly JSON.
+                const json = await res.json();
+                
+                jsonInput.value = JSON.stringify(json, null, 2);
+                resultBox.hidden = true;
+            } catch (err) {
+                console.error(err);
+                alert('Failed to load example: ' + err.message);
+            } finally {
+                jsonInput.disabled = false;
+                exampleSelector.disabled = false;
+            }
+        });
+    }
+
+    // 3. Setup Validation Event Listener
     validateBtn.addEventListener('click', () => {
         const inputStr = jsonInput.value.trim();
         resultBox.hidden = true;
@@ -86,7 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // 3. Validate
+        // Validate
         try {
             const result = validateDpp(dppData, schemaContext);
             if (result.valid) {
@@ -103,6 +145,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             showError('An unexpected error occurred during validation: ' + e.message);
         }
     });
+
+    // 4. Setup Preview Event Listener
+    if (previewBtn) {
+        previewBtn.addEventListener('click', async () => {
+             const inputStr = jsonInput.value.trim();
+             resultBox.hidden = true;
+             
+             if (!inputStr) {
+                 showError('Please paste a JSON object to preview.');
+                 return;
+             }
+             
+             try {
+                 let dppData;
+                 // Try strict then loose parsing
+                 try {
+                    dppData = JSON.parse(inputStr);
+                 } catch (e) {
+                    const stripped = stripJsonComments(inputStr);
+                    dppData = JSON.parse(stripped);
+                 }
+                 
+                 previewBtn.disabled = true;
+                 previewBtn.textContent = 'Generating...';
+
+                 const customCss = cssUrlInput ? cssUrlInput.value.trim() : '';
+                 const html = await generateHTML(dppData, customCss);
+                 
+                 // Open in new tab
+                 const blob = new Blob([html], { type: 'text/html' });
+                 const url = URL.createObjectURL(blob);
+                 window.open(url, '_blank');
+                 
+             } catch (e) {
+                 console.error(e);
+                 showError('Failed to generate HTML: ' + e.message);
+             } finally {
+                 previewBtn.disabled = false;
+                 previewBtn.textContent = 'Generate HTML Preview';
+             }
+        });
+    }
 
     function showError(msg) {
         resultBox.hidden = false;
