@@ -24,7 +24,7 @@
             "fibreType": "dppk:fibreType",
             "fibrePercentage": {
                 "@id": "dppk:fibrePercentage",
-                "@type": "xsd:decimal"
+                "@type": "xsd:double"
             },
 
             // ==================================================================
@@ -52,14 +52,14 @@
             "cycles": { "@id": "dppk:cycles", "@type": "xsd:integer" },
 
             "dimensionalStability": "dppk:dimensionalStability",
-            "warpChange": { "@id": "dppk:warpChange", "@type": "xsd:decimal" },
-            "weftChange": { "@id": "dppk:weftChange", "@type": "xsd:decimal" },
+            "warpChange": { "@id": "dppk:warpChange", "@type": "xsd:double" },
+            "weftChange": { "@id": "dppk:weftChange", "@type": "xsd:double" },
 
             "colorfastnessToWashing": "dppk:colorfastnessToWashing",
-            "grade": { "@id": "dppk:grade", "@type": "xsd:decimal" },
+            "grade": { "@id": "dppk:grade", "@type": "xsd:double" },
 
             "microplasticRelease": "dppk:microplasticRelease",
-            "value": { "@id": "dppk:value", "@type": "xsd:decimal" },
+            "value": { "@id": "dppk:value", "@type": "xsd:double" },
 
             //Properties (Size)
             // ==================================================================

@@ -66,7 +66,7 @@
               {
                   "path": "dppk:recycledContentPercentage",
                   "minCount": 1,
-                  "datatype": "xsd:decimal",
+                  "datatype": "xsd:double",
                   "message": "Textile product must specify recycled content percentage."
               },
               {
@@ -91,7 +91,7 @@
             {
                 "path": "dppk:fibrePercentage",
                 "minCount": 1,
-                "datatype": "xsd:decimal",
+                "datatype": "xsd:double",
                 "message": "Fibre composition must specify the percentage (dppk:fibrePercentage)."
             }
         ]

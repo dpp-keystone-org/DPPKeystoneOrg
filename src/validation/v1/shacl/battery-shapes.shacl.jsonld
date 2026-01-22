@@ -11,7 +11,8 @@
     "path": { "@type": "@id" },
     "targetClass": { "@type": "@id" },
     "class": { "@type": "@id" },
-    "datatype": { "@type": "@id" }
+    "datatype": { "@type": "@id" },
+    "nodeKind": { "@type": "@id" }
   },
   "@id": "dppkval:BatteryShapes",
   "@type": "ShapesGraph",
@@ -21,45 +22,37 @@
       "@id": "dppkval:BatteryShape",
       "@type": "NodeShape",
       "targetClass": "dppk:DigitalProductPassport",
-      "or": [
-        {
-          "not": {
-            "property": {
-              "path": "dppk:contentSpecificationIds",
-              "hasValue": "draft_battery_specification_id"
-            }
-          }
-        },
-        {
-          "property": [
+      "property": [
             {
               "path": "dppk:batteryCategory",
               "minCount": 1,
+              "datatype": "xsd:string",
               "message": "Battery must have a category (dppk:batteryCategory)."
             },
             {
                 "path": "dppk:batteryChemistry",
                 "minCount": 1,
+                "datatype": "xsd:string",
                 "message": "Battery must declare its chemistry (dppk:batteryChemistry)."
             },
             {
-                "path": "dppk:dateOfManufacture",
+                "path": "dppk:manufacturingDate",
                 "minCount": 1,
                 "datatype": "xsd:date",
-                "message": "Battery must have a date of manufacture (dppk:dateOfManufacture)."
+                "message": "Battery must have a manufacturing date (dppk:manufacturingDate)."
             },
             {
-                "path": "dppk:ratedCapacity",
+                "path": "dppk:batteryMass",
                 "minCount": 1,
-                "message": "Battery must have a rated capacity (dppk:ratedCapacity) as a decimal value."
+                "datatype": "xsd:double",
+                "message": "Battery must have a mass (dppk:batteryMass)."
             },
             {
-                "path": "dppk:nominalVoltage",
+                "path": "dppk:materialComposition",
                 "minCount": 1,
-                "message": "Battery must have a nominal voltage (dppk:nominalVoltage) as a decimal value."
+                "nodeKind": "sh:BlankNodeOrIRI",
+                "message": "Battery must have a material composition declaration."
             }
-          ]
-        }
       ]
     }
   ]

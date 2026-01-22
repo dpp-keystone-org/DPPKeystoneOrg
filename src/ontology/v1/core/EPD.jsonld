@@ -662,7 +662,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Upstream A1 (Raw Material Supply)",
       "rdfs:term_status": "unstable"
@@ -698,7 +698,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Core Process A2 (Transport to Manufacturing)",
       "rdfs:term_status": "unstable"
@@ -734,7 +734,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Core Process A3 (Manufacturing)",
       "rdfs:term_status": "unstable"
@@ -770,7 +770,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream A4 (Transport to Site)",
       "rdfs:term_status": "unstable"
@@ -806,7 +806,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C1 (Deconstruction)",
       "rdfs:term_status": "unstable"
@@ -842,7 +842,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C2 (Transport to Waste Processing)",
       "rdfs:term_status": "unstable"
@@ -878,7 +878,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C3 (Waste Processing)",
       "rdfs:term_status": "unstable"
@@ -914,7 +914,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Downstream C4 (Disposal)",
       "rdfs:term_status": "unstable"
@@ -950,7 +950,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "D",
       "rdfs:term_status": "unstable"
@@ -986,7 +986,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:ImpactValues" },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": { "@id": "schema:value" },
       "rdfs:comment": "Total",
       "rdfs:term_status": "unstable"

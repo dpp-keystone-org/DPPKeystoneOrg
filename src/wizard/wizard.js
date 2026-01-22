@@ -236,6 +236,21 @@ export async function initializeWizard() {
         updateButtonState();
     });
 
+    /**
+     * Toggles the visibility of the 'Generate' and 'Show Errors' buttons
+     * based on the current validation state.
+     */
+    function updateButtonState() {
+        if (!generateBtn || !showErrorsBtn) return;
+        const hasErrors = invalidFields.size > 0;
+        
+        generateBtn.hidden = hasErrors;
+        if (previewBtn) previewBtn.hidden = hasErrors;
+        
+        showErrorsBtn.hidden = !hasErrors;
+        errorCountBadge.textContent = invalidFields.size;
+    }
+
     showErrorsBtn.addEventListener('click', () => {
         // Remove any existing modal first
         const existingModal = document.querySelector('.error-summary-modal-overlay');

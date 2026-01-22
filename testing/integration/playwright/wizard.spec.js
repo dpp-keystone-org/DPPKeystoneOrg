@@ -115,34 +115,35 @@ for (const sector of sectors) {
       case 'battery':
         await expect(page.locator('input[name="batteryCategory"]')).toBeVisible();
 
+        // performance and capacity are optional objects, so we need to add them first
+        await page.locator('button[data-optional-object="performance"]').click();
+        await page.locator('button[data-optional-object="capacity"]').click();
+
         // Assert that the nominalVoltage field does not have '[object]' as its value
-        const nominalVoltageInput = page.locator('input[name="nominalVoltage"]');
+        const nominalVoltageInput = page.locator('input[name="performance.capacity.voltageNominal"]');
         await expect(nominalVoltageInput).toBeVisible();
         await expect(nominalVoltageInput).not.toHaveValue('[object]');
 
-        // Test array of objects functionality for 'documents'
-        const addButton = page.locator('button[data-array-name="documents"]');
+        // Test array of objects functionality for 'materialComposition'
+        const addButton = page.locator('button[data-array-name="materialComposition"]');
         await expect(addButton).toBeVisible();
 
         // Add the first item
         await addButton.click();
-        await expect(page.locator('input[name="documents.0.resourceTitle"]')).toBeVisible();
-        await expect(page.locator('input[name="documents.0.contentType"]')).toBeVisible();
-        await expect(page.locator('input[name="documents.0.language"]')).toBeVisible();
-        await expect(page.locator('input[name="documents.0.url"]')).toBeVisible();
+        await expect(page.locator('input[name="materialComposition.0.weightPercentage"]')).toBeVisible();
 
         // Add a second item
         await addButton.click();
-        await expect(page.locator('input[name="documents.1.resourceTitle"]')).toBeVisible();
+        await expect(page.locator('input[name="materialComposition.1.weightPercentage"]')).toBeVisible();
 
         // Remove the first item
-        const controlRow = page.locator('.array-item-control-row[data-array-group="documents.0"]');
+        const controlRow = page.locator('.array-item-control-row[data-array-group="materialComposition.0"]');
         const removeButton = controlRow.locator('button:text-is("Remove")');
         await removeButton.click();
         
         // Assert the first item is gone and the second is re-indexed
-        await expect(page.locator('input[name="documents.0.resourceTitle"]')).toBeVisible();
-        await expect(page.locator('input[name="documents.1.resourceTitle"]')).not.toBeVisible();
+        await expect(page.locator('input[name="materialComposition.0.weightPercentage"]')).toBeVisible();
+        await expect(page.locator('input[name="materialComposition.1.weightPercentage"]')).not.toBeVisible();
         break;
       case 'construction':
         await expect(page.locator('input[name="harmonisedStandardReference"]')).toBeVisible();
@@ -179,7 +180,8 @@ for (const sector of sectors) {
         await expect(overlay).not.toBeVisible();
 
         // The EPD object is optional, so we need to add it first.
-        await page.locator('button[data-optional-object="epd"]').click();
+            await page.locator('button[data-optional-object="epd"]').click();
+    await page.locator('.type-selector').selectOption({ label: 'DPP EPD (Environmental Product Declaration) Data Block' });
         await page.locator('button[data-optional-object="gwp"]').click();
         await expect(page.locator('input[name="epd.gwp.a1"]')).toBeVisible();
 
@@ -437,7 +439,7 @@ test('should show and hide an error summary', async ({ page }) => {
 });
 
 test('should show an error for non-numeric text in a number field', async ({ page }) => {
-      await page.goto('/wizard/index.html');
+  await page.goto('/wizard/index.html');
 
   const generateBtn = page.locator('#generate-dpp-btn');
   const showErrorsBtn = page.locator('#show-errors-btn');
@@ -464,22 +466,13 @@ test('should show an error for non-numeric text in a number field', async ({ pag
   await operatorInput.fill('https://example.com/operator/123');
   await operatorInput.blur();
 
-
   // 2. Add battery sector to get a number field.
   await page.locator('button[data-sector="battery"]').click();
-  const numberInput = page.locator('input[name="nominalVoltage"]');
-  await expect(numberInput).toBeVisible();
   
-  // 3. Fill all other required battery fields to isolate the number field.
-  const productNameInput = page.locator('input[name="productName"]');
-  await productNameInput.fill('Test Battery');
-  await productNameInput.blur();
+  // Wait for the form to load
+  await expect(page.locator('#sector-form-battery')).toBeVisible();
 
-  await page.locator('button[data-array-name="documents"]').click();
-  const docUrlInput = page.locator('input[name="documents.0.url"]');
-  await docUrlInput.fill('https://example.com/doc');
-  await docUrlInput.blur();
-
+  // 3. Fill required Battery fields to isolate the number field (batteryMass).
   const batteryCategoryInput = page.locator('input[name="batteryCategory"]');
   await batteryCategoryInput.fill('Test Category');
   await batteryCategoryInput.blur();
@@ -488,54 +481,41 @@ test('should show an error for non-numeric text in a number field', async ({ pag
   await batteryChemistryInput.fill('LFP');
   await batteryChemistryInput.blur();
 
-  const dateOfManufactureInput = page.locator('input[name="dateOfManufacture"]');
-  await dateOfManufactureInput.fill('2025-01-01');
-  await dateOfManufactureInput.blur();
+  const manufacturingDateInput = page.locator('input[name="manufacturingDate"]');
+  await manufacturingDateInput.fill('2025-01-01');
+  await manufacturingDateInput.blur();
 
-  const ratedCapacityInput = page.locator('input[name="ratedCapacity"]');
-  await ratedCapacityInput.fill('100');
-  await ratedCapacityInput.blur();
-
-  const recycledContentPercentageInput = page.locator('input[name="recycledContentPercentage"]');
-  await recycledContentPercentageInput.fill('10');
-  await recycledContentPercentageInput.blur();
-
-  const stateOfHealthInput = page.locator('input[name="stateOfHealth"]');
-  await stateOfHealthInput.fill('99');
-  await stateOfHealthInput.blur();
-
-  // 4. At this point, only "nominalVoltage" should be invalid (because it's empty and required).
-  await expect(generateBtn).toBeHidden();
-  await expect(showErrorsBtn).toBeVisible();
+  // batteryMass is required and is a number field.
+  const batteryMassInput = page.locator('input[name="batteryMass"]');
+  
+  // Verify it's required initially
+  await batteryMassInput.focus();
+  await batteryMassInput.blur();
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
+  await expect(page.locator('#batteryMass-error')).toHaveText('This field is required');
 
-  // 5. Use page.evaluate to set the value directly and dispatch an event.
-  const numberInputName = 'nominalVoltage';
-  await page.evaluate((name) => {
-      const input = document.querySelector(`input[name="${name}"]`);
+  // 4. Enter invalid number input (simulate typing invalid chars which browser might reject or accept depending on implementation)
+  // We use the same technique as before to force text type for testing validation message
+  await page.evaluate(() => {
+      const input = document.querySelector('input[name="batteryMass"]');
       if (input) {
-          input.value = 'this is not a number';
+          input.type = 'text';
+          input.value = 'invalid number';
           input.dispatchEvent(new Event('blur', { bubbles: true }));
       }
-  }, numberInputName);
-  
-  // The value is invalid text, so the error count should still be 1.
+  });
+
+  // 5. Verify specific validation error message
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
+  await expect(page.locator('#batteryMass-error')).toHaveText('Must be a valid number.');
 
-  // 6. Click the "Show Errors" button and assert the modal appears with the error.
-  await showErrorsBtn.click();
-  const errorModal = page.locator('.error-summary-modal');
-  await expect(errorModal).toBeVisible();
-  await expect(errorModal).toContainText('nominalVoltage');
-  await errorModal.locator('.modal-close-btn').click(); // Close the modal
+  // 6. Correct the input
+  await batteryMassInput.fill('100');
+  await batteryMassInput.blur();
 
-  // 7. Now, enter a valid number.
-  await numberInput.fill('12.5');
-  await numberInput.blur();
-
-  // 8. Assert the form is now valid.
-  await expect(generateBtn).toBeVisible();
+  // 7. Verify form is valid
   await expect(showErrorsBtn).toBeHidden();
+  await expect(generateBtn).toBeVisible();
 });
 
 test('should validate on blur, not on every keystroke', async ({ page }) => {
@@ -590,7 +570,8 @@ test('should show an error for non-numeric text in an EPD field', async ({ page 
   await page.locator('button[data-sector="construction"]').click();
   
   // The EPD object is optional, so we need to add it first.
-  await page.locator('button[data-optional-object="epd"]').click();
+      await page.locator('button[data-optional-object="epd"]').click();
+    await page.locator('.type-selector').selectOption({ label: 'DPP EPD (Environmental Product Declaration) Data Block' });
   await page.locator('button[data-optional-object="gwp"]').click();
 
   // 2. Wait for the EPD fields to be visible.
@@ -646,7 +627,8 @@ test('validation should not create duplicate error messages', async ({ page }) =
     // 1. Add the construction sector to get the EPD fields.
     await page.locator('button[data-sector="construction"]').click();
     // The EPD object is optional, so we need to add it first.
-    await page.locator('button[data-optional-object="epd"]').click();
+        await page.locator('button[data-optional-object="epd"]').click();
+    await page.locator('.type-selector').selectOption({ label: 'DPP EPD (Environmental Product Declaration) Data Block' });
     await page.locator('button[data-optional-object="gwp"]').click();
 
     const epdInput = page.locator('input[name="epd.gwp.a1"]');
@@ -709,7 +691,8 @@ test.describe('Conditional Validation for Optional Objects', () => {
     const initialErrorCount = 3;
 
     // 3. Add the optional 'epd' object and its nested 'gwp' object.
-    await page.locator('button[data-optional-object="epd"]').click();
+        await page.locator('button[data-optional-object="epd"]').click();
+    await page.locator('.type-selector').selectOption({ label: 'DPP EPD (Environmental Product Declaration) Data Block' });
     await page.locator('button[data-optional-object="gwp"]').click();
 
     // 4. Assert that the error count has increased.
@@ -737,18 +720,18 @@ test.describe('Conditional Validation for Optional Objects', () => {
     // 2. Add the battery sector.
     await page.locator('button[data-sector="battery"]').click();
     
-    // 3. Wait for form and get new error count (5 from core + 8 from battery).
-    const errorCountAfterSectorAdd = initialCoreErrorCount + 8;
+    // 3. Wait for form and get new error count (3 from core + 4 from battery).
+    const errorCountAfterSectorAdd = initialCoreErrorCount + 4;
     await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
 
-    // 4. Add an item to the 'documents' array.
-    await page.locator('button[data-array-name="documents"]').click();
+    // 4. Add an item to the 'materialComposition' array.
+    await page.locator('button[data-array-name="materialComposition"]').click();
 
-    // 5. Assert that the error count has increased by 1 (for the required 'documents.0.url' field). This will fail.
-    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd + 1})`);
+    // 5. Assert that the error count has increased by 2 (for 'materialComposition.0.name' and 'materialComposition.0.weightPercentage').
+    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd + 2})`);
 
     // 6. Now, remove the item and assert the count returns to the previous value.
-    await page.locator('.array-item-control-row[data-array-group="documents.0"] button:text-is("Remove")').click();
+    await page.locator('.array-item-control-row[data-array-group="materialComposition.0"] button:text-is("Remove")').click();
     await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
   });
 });
@@ -890,7 +873,7 @@ test.describe('DPP Wizard - Input Validation', () => {
       await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Core');
 
       // 4. Test Sector collision
-      await nameInput.fill('nominalVoltage'); // Battery field
+      await nameInput.fill('batteryCategory'); // Battery field
       await nameInput.blur();
       await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Battery');
   });

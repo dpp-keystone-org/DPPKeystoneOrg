@@ -1,63 +1,106 @@
-// This is a source file. Do not edit the file in the `dist` directory.
-// This example represents a Digital Product Passport for a specific industrial battery.
-// It includes the mandatory core header fields and a payload with battery-specific data points.
 {
   "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld",
-  "@type": ["dppk:DigitalProductPassport", "dppk:Battery"],
+  "@type": ["dppk:DigitalProductPassport", "dppk:BatteryProduct"],
 
-  // --- Normative DPP Header ---
-  // These fields are required for all DPPs, regardless of sector.
   "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
   "uniqueProductIdentifier": "urn:gtin:01234567890123",
   "granularity": "Item",
-  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppSchemaVersion": "v2.0",
   "dppStatus": "Active",
   "lastUpdate": "2024-05-21T10:00:00Z",
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
   "contentSpecificationIds": ["draft_battery_specification_id"],
 
-  // --- Core Product Information ---
-  "productName": "Industrial Lithium-Ion Battery Module",
+  "productName": "Keystone Industrial LFP Module Gen2",
   "image": [
     {
       "resourceTitle": "Front View",
       "url": "/spec/examples/images/battery.svg",
       "contentType": "image/svg+xml"
-    },
-    {
-      "resourceTitle": "Side View",
-      "url": "/spec/examples/images/battery-side.svg",
-      "contentType": "image/svg+xml"
-    },
-    {
-      "resourceTitle": "Top View",
-      "url": "/spec/examples/images/battery-top.svg",
-      "contentType": "image/svg+xml"
     }
   ],
 
-  // --- Battery-Specific Payload ---
-  // This section contains data points relevant to the battery sector.
-  // The vocabulary for these terms is defined in the battery-specific context and ontology.  
+  "manufacturerInfo": {
+    "@type": "Organization",
+    "organizationName": "Keystone Battery Systems",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Voltastrasse 10",
+      "postalCode": "12345",
+      "addressLocality": "Berlin",
+      "addressCountry": "Germany"
+    },
+    "identifier": "urn:gln:9876543210987"
+  },
+  "manufacturingPlace": "Berlin, Germany",
+  "manufacturingDate": "2024-01-15",
+  "serviceDate": "2024-02-01",
+  "warrantyPeriod": "5 Years",
+  
   "batteryCategory": "IndustrialBattery",
   "batteryChemistry": "LFP",
-  "dateOfManufacture": "2024-01-15",
+  "batteryMass": 45.5,
+  "batteryStatus": "Original",
 
-    // --- Documents (Aligned with Core Ontology) ---
-  "documents": [
-      {
-        "@type": "RelatedResource",
-        "resourceTitle": "IBU EPD Listing",
-        "url": "https://ibu-epd.com/veroeffentlichte-epds/"
-      }
+  "materialComposition": [
+    { "name": "Lithium Iron Phosphate (LFP)", "weightPercentage": 32.0 },
+    { "name": "Graphite", "weightPercentage": 22.0 },
+    { "name": "Aluminum", "weightPercentage": 18.0 },
+    { "name": "Copper", "weightPercentage": 12.0 },
+    { "name": "Electrolyte (LiPF6 in Carbonates)", "weightPercentage": 14.0 },
+    { "name": "Separator (PP/PE)", "weightPercentage": 2.0 }
   ],
 
-  "nominalVoltage": 48.0,
-  "ratedCapacity": 100.0,
-  "recycledContentPercentage": 15.0,
-  "batteryCarbonFootprint": {
-    "bcfTotal": 120.5
+  "hazardousSubstances": [
+    { "name": "Lithium Hexafluorophosphate", "weightPercentage": 1.5, "uniqueProductIdentifier": "https://echa.europa.eu/substance-information/-/substancefact/100.040.839" }
+  ],
+  "hazardousSubstancesImpact": "Toxic if swallowed; Causes severe skin burns.",
+
+  "preConsumerRecycledMaterialComposition": [
+    { "name": "Copper", "weightPercentage": 5.0 }
+  ],
+  "postConsumerRecycledMaterialComposition": [
+    { "name": "Aluminum", "weightPercentage": 10.0 },
+    { "name": "Nickel", "weightPercentage": 2.0 }
+  ],
+  "renewableContent": 0.0,
+
+  "performance": {
+    "capacity": {
+      "rated": 100,
+      "voltageNominal": 48,
+      "voltageMin": 40,
+      "voltageMax": 54,
+      "certifiedUsableEnergy": 4800,
+      "stateOfCharge": 98.5
+    },
+    "power": {
+      "original": 2000,
+      "maximumPermitted": 2500
+    },
+    "efficiency": {
+      "roundTripInitial": 95.5,
+      "selfDischargeInitial": 2.0
+    },
+    "lifetime": {
+      "years": 10,
+      "cycles": 3000,
+      "cycleCountFull": 5,
+      "capacityThroughput": 500.0
+    },
+    "temperature": {
+      "idleLower": -20,
+      "idleUpper": 60
+    }
   },
-  "stateOfHealth": 98.5
+
+  "carbonFootprintAbsolute": 120,
+  "carbonFootprintClass": "A",
+
+  "dopc": {
+    "@type": "RelatedResource",
+    "resourceTitle": "EU Declaration of Conformity",
+    "url": "https://keystone-batteries.com/docs/doc-lfp-gen2.pdf"
+  }
 }

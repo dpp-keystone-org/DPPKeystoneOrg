@@ -204,7 +204,7 @@
         "rdfs:comment": "The concentration of the substance in the product.",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
 

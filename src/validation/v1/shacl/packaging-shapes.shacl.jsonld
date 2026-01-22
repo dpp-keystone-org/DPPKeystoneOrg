@@ -30,7 +30,7 @@
         {
           "path": "dppk:packagingMaterialCompositionQuantity",
           "minCount": 0,
-          "datatype": "xsd:decimal" // Assumed decimal
+          "datatype": "xsd:double" // Assumed decimal
         },
         {
             "path": "dppk:packagingRecyclingProcessType",
@@ -40,7 +40,7 @@
         {
             "path": "dppk:packagingRecycledContent",
             "minCount": 0,
-            "datatype": "xsd:decimal"
+            "datatype": "xsd:double"
         },
         {
             "path": "dppk:packagingSubstanceOfConcern",

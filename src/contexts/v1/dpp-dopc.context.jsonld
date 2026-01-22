@@ -17,13 +17,13 @@
           "@context": {
             "method1": {
               "@id": "dppk:modulusMethod1",
-              "@type": "xsd:decimal"
+              "@type": "xsd:double"
             }
           }
         },
         "capillaryAbsorption": {
           "@id": "dppk:capillaryAbsorption",
-          "@type": "xsd:decimal"
+          "@type": "xsd:double"
         },
         "dangerousSubstances": "dppk:dangerousSubstances",
         "shrinkageAndExpansion": "dppk:shrinkageAndExpansion",
@@ -39,11 +39,11 @@
         "thermalExpansion": "dppk:thermalExpansion",
         "declaredUnit": {
           "@id": "dppk:declaredUnit",
-          "@type": "xsd:decimal"
+          "@type": "xsd:string"
         },
         "functionalUnit": {
           "@id": "dppk:functionalUnit",
-          "@type": "xsd:decimal"
+          "@type": "xsd:string"
         },
         "referenceServiceLife": {
           "@id": "dppk:referenceServiceLife",
@@ -56,7 +56,7 @@
           "@context": {
             "21DegC": {
               "@id": "dppk:chlorideContentAt21DegC",
-              "@type": "xsd:decimal"
+              "@type": "xsd:double"
             }
           }
         },
@@ -66,7 +66,7 @@
           "@context": {
             "28Days": {
               "@id": "dppk:bondStrengthAt28Days",
-              "@type": "xsd:decimal"
+              "@type": "xsd:double"
             }
           }
         },
@@ -76,7 +76,7 @@
           "@context": {
             "wetSurface": {
               "@id": "dppk:thermalCompatibilityWet",
-              "@type": "xsd:decimal"
+              "@type": "xsd:double"
             }
           }
         },
@@ -121,15 +121,15 @@
               "@context": {
                 "25Percent": {
                   "@id": "dppk:elasticRecoveryMethodA25",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "60Percent": {
                   "@id": "dppk:elasticRecoveryMethodA60",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "100Percent": {
                   "@id": "dppk:elasticRecoveryMethodA100",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 }
               }
             },
@@ -138,15 +138,15 @@
               "@context": {
                 "25Percent": {
                   "@id": "dppk:elasticRecoveryMethodB25",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "60Percent": {
                   "@id": "dppk:elasticRecoveryMethodB60",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "100Percent": {
                   "@id": "dppk:elasticRecoveryMethodB100",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 }
               }
             }
@@ -161,15 +161,15 @@
               "@context": {
                 "5DegC": {
                   "@id": "dppk:flowResistanceProcedureA5",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "50DegC": {
                   "@id": "dppk:flowResistanceProcedureA50",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "70DegC": {
                   "@id": "dppk:flowResistanceProcedureA70",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 }
               }
             },
@@ -178,15 +178,15 @@
               "@context": {
                 "5DegC": {
                   "@id": "dppk:flowResistanceProcedureB5",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "50DegC": {
                   "@id": "dppk:flowResistanceProcedureB50",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 },
                 "70DegC": {
                   "@id": "dppk:flowResistanceProcedureB70",
-                  "@type": "xsd:decimal"
+                  "@type": "xsd:double"
                 }
               }
             }

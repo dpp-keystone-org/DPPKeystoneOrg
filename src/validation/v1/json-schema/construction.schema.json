@@ -31,8 +31,18 @@
             },
             "harmonisedStandardReference": { "type": "string", "format": "uri" },
             "europeanAssessmentDocument": { "$ref": "related-resource.schema.json" },
-            "dopc": { "$ref": "dopc.schema.json" },
-            "epd": { "$ref": "epd.schema.json" }
+            "dopc": { 
+                "oneOf": [
+                    { "$ref": "dopc.schema.json" },
+                    { "$ref": "related-resource.schema.json" }
+                ]
+            },
+            "epd": { 
+                "oneOf": [
+                    { "$ref": "epd.schema.json" },
+                    { "$ref": "related-resource.schema.json" }
+                ]
+            }
         }
     }
 }

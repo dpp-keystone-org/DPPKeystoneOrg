@@ -90,7 +90,7 @@
         "rdfs:comment": "The percentage of the total product weight constituted by this fibre.",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:FibreComposition" },
-        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
     
@@ -193,7 +193,7 @@
         "rdfs:comment": "Dimensional change in the warp (length) direction.",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
     {
@@ -203,7 +203,7 @@
         "rdfs:comment": "Dimensional change in the weft (width) direction.",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
 
@@ -224,7 +224,7 @@
         "rdfs:comment": "The specific grade or value achieved (e.g. 1-5 scale).",
         "dppk:unit": "unitless",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
 

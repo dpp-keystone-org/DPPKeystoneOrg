@@ -485,11 +485,35 @@ function createArrayItemControlRow(arrayName, itemPath) {
         const suffix = groupToRemove.slice(arrayName.length + 1);
         const indexToRemove = parseInt(suffix.split('.')[0], 10);
 
-            const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"]`);
-            rowsToRemove.forEach(r => r.remove());
+        const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"]`);
+        
+        // Robustly clear errors for all inputs associated with this group
+        // We look for exact match (simple array) or prefix match (object array)
+        // And also explicitly check within the rows being removed
+        const inputsToClear = new Set();
+        
+        rowsToRemove.forEach(row => {
+            row.querySelectorAll('input, select').forEach(input => inputsToClear.add(input));
+        });
 
-            // Re-index remaining items
-            reindexArrayItems(arrayName, indexToRemove);
+        const globalInputs = document.querySelectorAll(`
+            input[name="${groupToRemove}"],
+            input[name^="${groupToRemove}."],
+            select[name="${groupToRemove}"],
+            select[name^="${groupToRemove}."]
+        `);
+        globalInputs.forEach(input => inputsToClear.add(input));
+
+        inputsToClear.forEach(input => {
+            if (input.name) {
+                input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                    bubbles: true, composed: true, detail: { path: input.name, isValid: true },
+                }));
+            }
+        });
+
+        rowsToRemove.forEach(row => row.remove());        // Re-index remaining items
+        reindexArrayItems(arrayName, indexToRemove);
     });
     
     removeCell.appendChild(removeButton);
@@ -707,6 +731,8 @@ function renderObjectProperty(fragment, { key, prop, currentPath, isRequired, in
  * @param {string} [lang='en'] - The current language code.
  */
 function generateRows(fragment, properties, ontologyMap, requiredFields = [], parentPath = '', indentationLevel = 0, lang = 'en') {
+    if (!properties) return; // Prevent crash if properties is undefined
+
     // This function now acts as a dispatcher, deciding which render function to call.
     for (const [key, prop] of Object.entries(properties)) {
         // If the property is a placeholder for a circular ref, skip it.
@@ -722,7 +748,7 @@ function generateRows(fragment, properties, ontologyMap, requiredFields = [], pa
         const currentPath = parentPath ? `${parentPath}.${key}` : key;
         const isRequired = requiredFields.includes(key);
 
-        if (prop.type === 'object' && prop.properties) {
+        if ((prop.type === 'object' && prop.properties) || prop.oneOf || prop.anyOf) {
             renderObjectProperty(fragment, { key, prop, currentPath, isRequired, indentationLevel, ontologyMap, lang });
         } else if (prop.type === 'array') {
             renderArrayProperty(fragment, { key, prop, currentPath, isRequired, indentationLevel, ontologyMap, lang });
@@ -784,25 +810,24 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
 
     placeholderRow.appendChild(createTooltipCell(ontologyInfo, governedBy, source, lang));
 
-    addButton.addEventListener('click', (event) => {
-        const parentRow = event.currentTarget.closest('.grid-row[data-optional-object-placeholder]');
-        if (!parentRow) return;
-
-        const dynamicPath = parentRow.dataset.objectPath;
+    // Shared logic to expand the row once a schema is chosen
+    const expandRow = (schemaToUse) => {
+        const dynamicPath = placeholderRow.dataset.objectPath;
         // Get existing groups from the placeholder row itself.
-        const existingGroups = parentRow.dataset.optionalObjectGroups || '';
+        const existingGroups = placeholderRow.dataset.optionalObjectGroups || '';
 
         const newFieldsFragment = document.createDocumentFragment();
         const newGroup = `${existingGroups} ${key}`.trim();
 
         // 1. Transform the placeholder row into a header row.
-        parentRow.classList.add('grid-row-header');
-        parentRow.removeAttribute('data-optional-object-placeholder');
-        parentRow.dataset.optionalObjectGroups = newGroup;
-        populateHeaderRow(parentRow, { currentPath: dynamicPath, indentationLevel, ontologyMap, lang });
+        placeholderRow.classList.add('grid-row-header');
+        placeholderRow.removeAttribute('data-optional-object-placeholder');
+        placeholderRow.dataset.optionalObjectGroups = newGroup;
+        populateHeaderRow(placeholderRow, { currentPath: dynamicPath, indentationLevel, ontologyMap, lang });
 
         // Add Remove Button to the header (replacing the empty value cell content)
-        const headerValueCell = parentRow.children[1]; // Value cell is at index 1
+        const headerValueCell = placeholderRow.children[1]; // Value cell is at index 1
+        headerValueCell.innerHTML = ''; // Clear any existing buttons/selects
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
         removeButton.textContent = 'Remove';
@@ -836,7 +861,13 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         headerValueCell.appendChild(removeButton);
 
         // Generate and add the child fields.
-        generateRows(newFieldsFragment, prop.properties, ontologyMap, prop.required || [], dynamicPath, indentationLevel + 1, lang);
+        // Check if schemaToUse has properties or needs further resolution (oneOf selected schemas are usually objects with properties)
+        if (schemaToUse && schemaToUse.properties) {
+             generateRows(newFieldsFragment, schemaToUse.properties, ontologyMap, schemaToUse.required || [], dynamicPath, indentationLevel + 1, lang);
+        } else {
+             // Fallback or error handling if the selected schema doesn't have properties (e.g. empty object)
+             console.warn(`[FormBuilder] Expanded schema for ${key} has no properties.`);
+        }
         
         // Mark all new rows as belonging to the group.
         [...newFieldsFragment.children].forEach(row => {
@@ -845,14 +876,49 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         });
 
         // Insert the new rows after the transformed header row.
-        parentRow.after(newFieldsFragment);
+        placeholderRow.after(newFieldsFragment);
 
         // 5z-h: Now that the new elements are in the DOM, find their inputs and trigger validation.
-        const newInputs = parentRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${key}"] input:not([type="checkbox"]), [data-optional-object-groups~="${key}"] select`);
+        const newInputs = placeholderRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${key}"] input:not([type="checkbox"]), [data-optional-object-groups~="${key}"] select`);
         newInputs.forEach(input => {
             // Dispatch a 'blur' event to trigger the existing validation handler.
             input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
         });
+    };
+
+    addButton.addEventListener('click', (event) => {
+        // Handle OneOf / AnyOf Selection
+        if (prop.oneOf && Array.isArray(prop.oneOf)) {
+             // Create selector UI in the value cell
+             valueCell.innerHTML = ''; // Clear "Add" button
+
+             const select = document.createElement('select');
+             select.className = 'type-selector';
+             const defaultOpt = document.createElement('option');
+             defaultOpt.text = 'Select Type...';
+             defaultOpt.value = '';
+             select.appendChild(defaultOpt);
+
+             prop.oneOf.forEach((opt, idx) => {
+                 const option = document.createElement('option');
+                 option.value = idx;
+                 option.text = opt.title || `Option ${idx + 1}`;
+                 select.appendChild(option);
+             });
+
+             valueCell.appendChild(select);
+             
+             // Handle selection
+             select.addEventListener('change', () => {
+                 if (select.value === '') return;
+                 const selectedSchema = prop.oneOf[parseInt(select.value, 10)];
+                 expandRow(selectedSchema); 
+             });
+             return;
+        }
+
+        // Default expansion
+        expandRow(prop);
     });
 
     return placeholderRow;

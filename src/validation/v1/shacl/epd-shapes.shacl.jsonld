@@ -39,22 +39,22 @@
         "property": [
             {
                 "path": "dppk:a1",
-                "datatype": "xsd:decimal",
+                "datatype": "xsd:double",
                 "minCount": 0
             },
             {
                 "path": "dppk:a2",
-                "datatype": "xsd:decimal",
+                "datatype": "xsd:double",
                 "minCount": 0
             },
             {
                 "path": "dppk:a3",
-                "datatype": "xsd:decimal",
+                "datatype": "xsd:double",
                 "minCount": 0
             },
             {
                 "path": "dppk:total",
-                "datatype": "xsd:decimal",
+                "datatype": "xsd:double",
                 "minCount": 0
             }
         ]

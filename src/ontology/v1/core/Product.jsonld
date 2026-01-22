@@ -63,14 +63,14 @@
         "@type": "rdfs:Datatype",
         "rdfs:label": "Kilogram Weight Literal",
         "rdfs:comment": "A literal value representing a weight in kilograms. A reasoner can expand this into a full dppk:QuantitativeValue.",
-        "rdfs:subClassOf": { "@id": "xsd:decimal" }
+        "rdfs:subClassOf": { "@id": "xsd:double" }
     },
     {
         "@id": "dppk:MetersLengthLiteral",
         "@type": "rdfs:Datatype",
         "rdfs:label": "Meters Length Literal",
         "rdfs:comment": "A literal value representing a length in meters. A reasoner can expand this into a full dppk:QuantitativeValue.",
-        "rdfs:subClassOf": { "@id": "xsd:decimal" }
+        "rdfs:subClassOf": { "@id": "xsd:double" }
     },
 
     {
@@ -90,6 +90,27 @@
         "@type": "rdfs:Class",
         "rdfs:label": "A part or material that is included in the main product.",
         "rdfs:comment": "A part or material that is included in the main product.",
+        "rdfs:term_status": "unstable"
+    },
+    
+    // --- Component Properties ---
+    {
+        "@id": "dppk:componentName",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Component Name",
+        "rdfs:comment": "The name of the component or material.",
+        "rdfs:range": { "@id": "xsd:string" },
+        "rdfs:subPropertyOf": { "@id": "dppk:name" },
+        "rdfs:term_status": "unstable"
+    },
+    {
+        "@id": "dppk:percentage",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Percentage",
+        "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
+        "dppk:unit": "%",
+        "rdfs:domain": { "@id": "dppk:Component" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
 
@@ -265,7 +286,7 @@
         "dppk:unit": "%",
         "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
         // No strict domain to allow usage on Component or Product
-        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
 
@@ -277,7 +298,7 @@
         "dppk:unit": "%",
         "rdfs:comment": "The percentage of the material that is derived from recycled sources.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:decimal" },
+        "rdfs:range": { "@id": "xsd:double" },
         "rdfs:term_status": "unstable"
     },
 
@@ -370,7 +391,7 @@
         "rdfs:comment": "The numeric value of the measurement.",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
         // Allowing various numeric types, standardized on decimal for broad use.
-        "rdfs:range": { "@id": "xsd:decimal" }, 
+        "rdfs:range": { "@id": "xsd:double" }, 
         "owl:equivalentProperty": [
             { "@id": "schema:value" },
             { "@id": "gs1:value" },

@@ -77,7 +77,12 @@
       "@id": "dppk:dopc",
       "@type": "owl:ObjectProperty",
       "rdfs:label": { "@value": "The Declaration of Performance and Conformity.", "@language": "en" },
-      "dppk:governedBy": "CPR",
+      "dppk:governedBy": "Construction Products Regulation - CPR",
+      
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/eli/reg/2024/3110/oj/eng",
+        "rdfs:label": "Construction Products Regulation - CPR"
+      },
       "rdfs:range": { "@id": "dppk:DoPCBlock" },
       "rdfs:comment": { "@value": "The Declaration of Performance and Conformity.", "@language": "en" }
     },
@@ -837,7 +842,7 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc A, 5°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": { "@value": "Flow resistance measured using Procedure A at 5°C.", "@language": "en" }
     },
     {
@@ -846,7 +851,7 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc A, 70°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": { "@value": "Flow resistance measured using Procedure A at 70°C.", "@language": "en" }
     },
     {
@@ -855,7 +860,7 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc B, 5°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": { "@value": "Flow resistance measured using Procedure B at 5°C.", "@language": "en" }
     },
     {
@@ -864,7 +869,7 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc B, 50°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": { "@value": "Flow resistance measured using Procedure B at 50°C.", "@language": "en" }
     },
     {
@@ -873,7 +878,7 @@
       "rdfs:label": { "@value": "Flow Resistance (Proc B, 70°C)", "@language": "en" },
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": { "@value": "Flow resistance measured using Procedure B at 70°C.", "@language": "en" }
     },
     {
@@ -1079,7 +1084,7 @@
         { "@value": "Elasticitetsmodul vid tryck.", "@language": "sv" }
       ],
       "rdfs:domain": { "@id": "dppk:DoPCBlock" },
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:modulusMethod1",
@@ -1087,7 +1092,7 @@
       "rdfs:label": { "@value": "Modulus of Elasticity (Method 1)", "@language": "en" },
       "dppk:governedBy": "EN 13412:2006",
       "dppk:unit": "GPa",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": { "@value": "Modulus of elasticity measured using Method 1.", "@language": "en" }
     },
     {
@@ -1157,6 +1162,42 @@
       "rdfs:range": "xsd:string"
     },
     {
+      "@id": "dppk:declaredUnit",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Declared Unit"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The quantity of a construction product for use as a reference unit in an EPD for an environmental impact assessment."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:functionalUnit",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Functional Unit"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The quantified performance of a product system for use as a reference unit."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
       "@id": "dppk:chlorideContentAt21DegC",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": [
@@ -1213,7 +1254,7 @@
         { "@value": "Največji odstotek mase.", "@language": "sl" },
         { "@value": "Maximal procentandel av massan.", "@language": "sv" }
       ],
-      "rdfs:range": "xsd:decimal"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:bondStrengthAt28Days",
@@ -1246,7 +1287,7 @@
       ],
       "dppk:governedBy": "EN 1542:1999",
       "dppk:unit": "MPa",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Якост на сцепление, измерена след 28 дни.", "@language": "bg" },
         { "@value": "Přídržnost měřená po 28 dnech.", "@language": "cs" },
@@ -1305,7 +1346,7 @@
       ],
       "dppk:governedBy": "EN 13687-1",
       "dppk:unit": "MPa",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Термична съвместимост, измерена върху мокра повърхност.", "@language": "bg" },
         { "@value": "Tepelná kompatibilita měřená na mokrém povrchu.", "@language": "cs" },
@@ -1544,7 +1585,7 @@
       ],
       "dppk:governedBy": "ISO 7389:2002",
       "dppk:unit": "%",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Elastic recovery using Method A at 25% elongation.", "@language": "en" }
       ]
@@ -1557,7 +1598,7 @@
       ],
       "dppk:governedBy": "ISO 7389:2002",
       "dppk:unit": "%",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Elastic recovery using Method A at 60% elongation.", "@language": "en" }
       ]
@@ -1570,7 +1611,7 @@
       ],
       "dppk:governedBy": "ISO 7389:2002",
       "dppk:unit": "%",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Elastic recovery using Method A at 25% elongation.", "@language": "en" }
       ]
@@ -1583,7 +1624,7 @@
       ],
       "dppk:governedBy": "ISO 7389:2002",
       "dppk:unit": "%",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Elastic recovery using Method B at 25% elongation.", "@language": "en" }
       ]
@@ -1596,7 +1637,7 @@
       ],
       "dppk:governedBy": "ISO 7389:2002",
       "dppk:unit": "%",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Elastic recovery using Method B at 60% elongation.", "@language": "en" }
       ]
@@ -1609,7 +1650,7 @@
       ],
       "dppk:governedBy": "ISO 7389:2002",
       "dppk:unit": "%",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Elastic recovery using Method B at 100% elongation.", "@language": "en" }
       ]
@@ -1645,7 +1686,7 @@
       ],
       "dppk:governedBy": "ISO 7390:2002",
       "dppk:unit": "mm",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:comment": [
         { "@value": "Устойчивост на свличане чрез Процедура А при 50 градуса по Целзий.", "@language": "bg" },
         { "@value": "Odolnost proti stékání pomocí postupu A při 50 stupních Celsia.", "@language": "cs" },
@@ -1765,7 +1806,7 @@
       ],
       "dppk:governedBy": "EN 13057:2002",
       "dppk:unit": "kg/(m²·h^0.5)",
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "rdfs:domain": { "@id": "dppk:DoPCBlock" },
       "rdfs:comment": [
         { "@value": "Скорост на капилярна абсорбция.", "@language": "bg" },

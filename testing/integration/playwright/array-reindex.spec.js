@@ -32,69 +32,67 @@ test('should maintain correct error count when removing array items shifts inval
     // 2. Add the battery sector.
     await page.locator('button[data-sector="battery"]').click();
     
-    // Battery has 8 required fields.
-    const errorCountAfterSectorAdd = initialCoreErrorCount + 8;
+    // Battery has 4 required fields: batteryCategory, batteryChemistry, manufacturingDate, batteryMass.
+    const errorCountAfterSectorAdd = initialCoreErrorCount + 4;
     await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
 
-    // 3. Add 3 items to the 'documents' array.
-    const addDocBtn = page.locator('button[data-array-name="documents"]');
-    await addDocBtn.click(); // documents.0
-    await addDocBtn.click(); // documents.1
-    await addDocBtn.click(); // documents.2
+    // 3. Add 3 items to the 'materialComposition' array.
+    const addCompBtn = page.locator('button[data-array-name="materialComposition"]');
+    await addCompBtn.click(); // materialComposition.0
+    await addCompBtn.click(); // materialComposition.1
+    await addCompBtn.click(); // materialComposition.2
 
-    // Each document has a required 'url' field (and others, but let's focus on one).
-    // documents.0.url, documents.1.url, documents.2.url are all required and empty.
-    // However, they are NOT invalid immediately upon addition unless we trigger validation.
-    // The current implementation DOES trigger validation on add:
-    // "triggerValidationForGroup(insertionPoint, path);" in form-builder.js
+    // Each component has 2 required fields: 'name' and 'weightPercentage'.
+    // So 3 items * 2 fields = 6 new errors.
+    const expectedErrorsWith3Items = errorCountAfterSectorAdd + 6;
+    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWith3Items})`);
+
+    // 4. Fill in fields for materialComposition.0 to make it VALID.
+    // 'name' is now a simple string field.
+    // Note: The form builder should render it as a standard text input.
+    // We intentionally leave 'name' empty here to keep the item partially invalid,
+    // in order to test the error shifting logic.
+    await page.locator('input[name="materialComposition.0.weightPercentage"]').fill('10');
+    await page.locator('input[name="materialComposition.0.weightPercentage"]').blur();
     
-    // Let's verify how many errors we have.
-    // 3 items added. Each item has 1 required field: url (from related-resource.schema.json).
-    // So 3 items * 1 field = 3 new errors.
-    const expectedErrorsWith3Docs = errorCountAfterSectorAdd + 3;
-    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWith3Docs})`);
-
-    // 4. Fill in fields for documents.0 to make it VALID.
-    await page.locator('input[name="documents.0.url"]').fill('http://example.com/0');
-    await page.locator('input[name="documents.0.url"]').blur(); // Trigger validation
-
-    // Now documents.0 is valid. Errors should decrease by 1.
-    const expectedErrorsWithDoc0Valid = expectedErrorsWith3Docs - 1;
-    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWithDoc0Valid})`);
-
-    // 5. Fill in fields for documents.2 to make it VALID.
-    await page.locator('input[name="documents.2.url"]').fill('http://example.com/2');
-    await page.locator('input[name="documents.2.url"]').blur();
-
-    // Now documents.2 is valid. Errors should decrease by another 1.
-    const expectedErrorsWithDoc0And2Valid = expectedErrorsWithDoc0Valid - 1;
-    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWithDoc0And2Valid})`);
-
-    // At this point:
-    // documents.0 is VALID.
-    // documents.1 is INVALID (1 error).
-    // documents.2 is VALID.
+    // Validating weightPercentage removes 1 error.
+    // 'name' remains invalid (required).
     
-    // 6. Remove documents.0 (the first valid one).
-    // This will cause:
-    // documents.1 (INVALID) -> becomes documents.0
-    // documents.2 (VALID) -> becomes documents.1
-    await page.locator('.array-item-control-row[data-array-group="documents.0"] button:text-is("Remove")').click();
+    // Step 4 revised: Fill weightPercentage for Item 0.
+    // Expect errors to drop by 1.
+    const expectedErrorsWithItem0Partial = expectedErrorsWith3Items - 1;
+    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWithItem0Partial})`);
 
-    // Expected outcome so far:
-    // The old documents.0 (valid) is gone.
-    // The new documents.0 (was documents.1) is INVALID.
-    // The new documents.1 (was documents.2) is VALID.
-    // Total errors should still be: Base + 1.
-    const expectedErrorsAfterRemove = errorCountAfterSectorAdd + 1;
+    // Step 5: Fill weightPercentage for Item 2.
+    await page.locator('input[name="materialComposition.2.weightPercentage"]').fill('20');
+    await page.locator('input[name="materialComposition.2.weightPercentage"]').blur();
+    
+    const expectedErrorsWithItem0And2Partial = expectedErrorsWithItem0Partial - 1;
+    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWithItem0And2Partial})`);
+    
+    // 6. Remove materialComposition.0.
+    // Item 0 was partially valid (weightPercentage filled).
+    // Item 1 is fully invalid (nothing filled).
+    // Item 2 is partially valid (weightPercentage filled).
+
+    // Locate the remove button for the specific group
+    await page.locator('[data-array-group="materialComposition.0"] button:has-text("Remove")').click();
+    
+    // After removing Item 0:
+    // Old Item 1 (Invalid) becomes Item 0.
+    // Old Item 2 (Partially Valid) becomes Item 1.
+    
+    // Total errors calculation:
+    // We removed Item 0. It had 1 error remaining (name).
+    // So total errors should decrease by 1.
+    const expectedErrorsAfterRemove = expectedErrorsWithItem0And2Partial - 1;
     await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsAfterRemove})`);
 
-    // 7. PROVE THE BUG: Fix the remaining invalid field (now documents.0.url).
-    // If the state is desynchronized, the error count will NOT decrease,
-    // because invalidFields still points to "documents.1.url" (phantom),
-    // and fixing "documents.0.url" won't remove "documents.1.url" from the set.
-    await page.locator('input[name="documents.0.url"]').fill('http://example.com/fixed');
-    await page.locator('input[name="documents.0.url"]').blur();
-
-    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
+    // 7. Verify desynchronization bug logic.
+    // The new Item 0 (was 1) should be fully invalid.
+    // If we fill its weightPercentage, error count should drop by 1.
+    await page.locator('input[name="materialComposition.0.weightPercentage"]').fill('30');
+    await page.locator('input[name="materialComposition.0.weightPercentage"]').blur();
+    
+    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsAfterRemove - 1})`);
 });
