@@ -33,7 +33,7 @@ jobs:
         run: cd testing && npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: cd testing && npx playwright install --with-deps
 
       - name: Run build and validation tests
         run: npm test
