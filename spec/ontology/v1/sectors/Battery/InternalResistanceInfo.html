@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class: Fibre Composition</title>
+    <title>Class: Internal Resistance</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
@@ -17,27 +17,24 @@
         <header>
             <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
-                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Sector Ontology - Textile Definitions (v1)</a></h1>
-                <h2 style="margin: 0; color: var(--text-light);">Class: Fibre Composition (dppk:FibreComposition)</h2>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Internal Resistance (dppk:InternalResistanceInfo)</h2>
             </div>
         </header>
         <main>
-            <div class="class-section" id="FibreComposition">
+            <div class="class-section" id="InternalResistanceInfo">
                 <h4>Visual Diagram</h4>
                 <pre class="mermaid">
                     classDiagram
-  class FibreComposition
-  Product <|-- FibreComposition
-  FibreComposition : +fibreType
-  FibreComposition : +fibrePercentage
-  click Product href "../../core/Product/Product.html" "dppk:Product"
-  style Product stroke:#2962ff,color:#2962ff
+  class InternalResistanceInfo
+  InternalResistanceInfo : +internalResistanceInitial
+  InternalResistanceInfo : +internalResistanceIncrease
 
                 </pre>
 
                 <h4>Attributes</h4>
-                <p>Details the specific type and percentage of textile fibres making up the product.</p>
-                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a></p><p><strong>governedBy:</strong> Regulation (EU) No 1007/2011</p>
+                <p>Information regarding the battery's internal resistance and its increase over time.</p>
+                <p><strong>governedBy:</strong> Annex XIII (1o); Art. 10</p>
 
                 
                     <h4>Properties</h4>
@@ -47,23 +44,23 @@
                                 <th>Property</th>
                                 <th>Description</th>
                                 <th>Type</th>
-                                
+                                <th>governedBy</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                                 <tr>
-                                    <td>Fibre Type (dppk:fibreType)</td>
-                                    <td>The specific type of fibre (e.g., Cotton, Polyester, Wool, Elastane).</td>
-                                    <td>xsd:string</td>
-                                    
+                                    <td>Initial internal resistance of battery cell and pack (dppk:internalResistanceInitial)</td>
+                                    <td>The opposition to the flow of current within a cell or a battery under reference conditions.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1o); Art. 10: Annex IV Part A (3)</td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Fibre Percentage (dppk:fibrePercentage)</td>
-                                    <td>The percentage of the total product weight constituted by this fibre.</td>
+                                    <td>Internal resistance increase of pack (dppk:internalResistanceIncrease)</td>
+                                    <td>The increase over time and upon usage of internal resistance.</td>
                                     <td>xsd:double</td>
-                                    
+                                    <td>Annex IV, Part A(3)</td>
                                 </tr>
                             
                         </tbody>

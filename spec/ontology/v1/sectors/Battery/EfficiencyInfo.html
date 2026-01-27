@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Round Trip Efficiency and Self-Discharge</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Round Trip Efficiency and Self-Discharge (dppk:EfficiencyInfo)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="EfficiencyInfo">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class EfficiencyInfo
+  EfficiencyInfo : +roundTripEfficiencyInitial
+  EfficiencyInfo : +roundTripEfficiencyAt50Cycles
+  EfficiencyInfo : +roundTripEfficiencyRemaining
+  EfficiencyInfo : +roundTripEfficiencyFade
+  EfficiencyInfo : +selfDischargeInitial
+  EfficiencyInfo : +selfDischargeCurrent
+  EfficiencyInfo : +selfDischargeEvolution
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Information regarding the battery's round trip energy efficiency and self-discharge rates.</p>
+                <p><strong>governedBy:</strong> Annex XIII (1n); Art. 10</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Initial round trip energy efficiency (dppk:roundTripEfficiencyInitial)</td>
+                                    <td>The ratio of the net energy delivered by a battery during a discharge test to the total energy required to restore the initial state of charge.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex XIII (1n); Art. 10; Annex IV (6)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Round trip energy efficiency at 50% of cycle life (dppk:roundTripEfficiencyAt50Cycles)</td>
+                                    <td>Round trip energy efficiency measured at 50% of cycle-life.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex XIII 1(n); Annex IV (6)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Remaining round trip energy efficiency (dppk:roundTripEfficiencyRemaining)</td>
+                                    <td>The in-use analogy to the initial roundtrip energy efficiency.</td>
+                                    <td>xsd:double</td>
+                                    <td>Art. 10; Annex VII Part A (3)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Energy round trip efficiency fade (dppk:roundTripEfficiencyFade)</td>
+                                    <td>The decrease of round trip energy efficiency as percentage.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex IV Part A (4)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Initial self-discharge rate (dppk:selfDischargeInitial)</td>
+                                    <td>The self-discharge-rate in an idle state of the battery in reference conditions at begin of life.</td>
+                                    <td>xsd:double</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Current self-discharge rate (dppk:selfDischargeCurrent)</td>
+                                    <td>The change of the self-discharge rate in an idle state of the battery.</td>
+                                    <td>xsd:double</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Evolution of self-discharge rates (dppk:selfDischargeEvolution)</td>
+                                    <td>The change of self-discharge over time and usage, calculated from the initial and current self-discharge rate.</td>
+                                    <td>xsd:double</td>
+                                    <td>Art. 14: Annex VII Part A (4)</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

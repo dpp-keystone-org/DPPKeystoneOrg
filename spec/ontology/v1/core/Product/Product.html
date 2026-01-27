@@ -27,6 +27,7 @@
                 <pre class="mermaid">
                     classDiagram
   class Product
+  Product : +componentName
   Product : +name
   Product : +productName
   Product : +description
@@ -103,212 +104,219 @@
                                 <th>Property</th>
                                 <th>Description</th>
                                 <th>Type</th>
-                                <th>equivalentProperty</th><th>governedBy</th>
+                                <th>subPropertyOf</th><th>equivalentProperty</th><th>governedBy</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                                 <tr>
+                                    <td>Component Name (dppk:componentName)</td>
+                                    <td>The name of the component or material.</td>
+                                    <td>xsd:string</td>
+                                    <td><a href="https://dpp-keystone.org/spec/v1/terms#name">dppk:name</a></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Name (dppk:name)</td>
                                     <td>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</td>
                                     <td>rdf:langString</td>
-                                    <td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Product Name (dppk:productName)</td>
                                     <td>The common name of the product.</td>
                                     <td>rdf:langString</td>
-                                    <td><a href="https://ref.gs1.org/voc/productName">gs1:productName</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td><td></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/productName">gs1:productName</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Product Description (dppk:description)</td>
                                     <td>A detailed description of the product.</td>
                                     <td>rdf:langString</td>
-                                    <td><a href="https://schema.org/description">schema:description</a>, <a href="https://ref.gs1.org/voc/productDescription">gs1:productDescription</a>, <a href="https://vocabulary.uncefact.org/description">unece:description</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/description">schema:description</a>, <a href="https://ref.gs1.org/voc/productDescription">gs1:productDescription</a>, <a href="https://vocabulary.uncefact.org/description">unece:description</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Global Trade Item Number (GTIN) (dppk:gtin)</td>
                                     <td>The GS1 identifier for the trade item.</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://schema.org/gtin">schema:gtin</a>, <a href="https://ref.gs1.org/voc/gtin">gs1:gtin</a>, <a href="https://vocabulary.uncefact.org/gTINId">unece:gTINId</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/gtin">schema:gtin</a>, <a href="https://ref.gs1.org/voc/gtin">gs1:gtin</a>, <a href="https://vocabulary.uncefact.org/gTINId">unece:gTINId</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Brand Name (dppk:brand)</td>
                                     <td>The brand name of the product.</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://schema.org/brand">schema:brand</a>, <a href="https://ref.gs1.org/voc/brandName">gs1:brandName</a>, <a href="https://vocabulary.uncefact.org/brandName">unece:brandName</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/brand">schema:brand</a>, <a href="https://ref.gs1.org/voc/brandName">gs1:brandName</a>, <a href="https://vocabulary.uncefact.org/brandName">unece:brandName</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Model Number (dppk:model)</td>
                                     <td>The model identifier or number of the product.</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://schema.org/model">schema:model</a>, <a href="https://vocabulary.uncefact.org/modelId">unece:modelId</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/model">schema:model</a>, <a href="https://vocabulary.uncefact.org/modelId">unece:modelId</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Product Image (dppk:image)</td>
                                     <td>A reference to an image resource related to the product.</td>
                                     <td>dppk:RelatedResource</td>
-                                    <td><a href="https://schema.org/image">schema:image</a>, <a href="https://ref.gs1.org/voc/productImage">gs1:productImage</a>, <a href="https://vocabulary.uncefact.org/specifiedPicture">unece:specifiedPicture</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/image">schema:image</a>, <a href="https://ref.gs1.org/voc/productImage">gs1:productImage</a>, <a href="https://vocabulary.uncefact.org/specifiedPicture">unece:specifiedPicture</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Color Description (dppk:color)</td>
                                     <td>The color of the product.</td>
                                     <td>rdf:langString</td>
-                                    <td><a href="https://schema.org/color">schema:color</a>, <a href="https://ref.gs1.org/voc/colourDescription">gs1:colourDescription</a>, <a href="https://vocabulary.uncefact.org/colourDescription">unece:colourDescription</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/color">schema:color</a>, <a href="https://ref.gs1.org/voc/colourDescription">gs1:colourDescription</a>, <a href="https://vocabulary.uncefact.org/colourDescription">unece:colourDescription</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Components (dppk:components)</td>
                                     <td>A constituent part or material of the product.</td>
                                     <td>dppk:Component</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Country of Origin (dppk:countryOfOrigin)</td>
                                     <td>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://schema.org/countryOfOrigin">schema:countryOfOrigin</a>, <a href="https://ref.gs1.org/voc/countryOfOrigin">gs1:countryOfOrigin</a>, <a href="https://vocabulary.uncefact.org/originCountry">unece:originCountry</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/countryOfOrigin">schema:countryOfOrigin</a>, <a href="https://ref.gs1.org/voc/countryOfOrigin">gs1:countryOfOrigin</a>, <a href="https://vocabulary.uncefact.org/originCountry">unece:originCountry</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Weight Percentage (dppk:weightPercentage)</td>
                                     <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td><td></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Recycled Content Percentage (dppk:recycledContentPercentage)</td>
                                     <td>The percentage of the material that is derived from recycled sources.</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td><td></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Net Weight (dppk:netWeight)</td>
                                     <td>The weight of the product or material, excluding packaging. Recommended to use specific datatypes like dppk:KgWeightLiteral.</td>
                                     <td>dppk:KgWeightLiteral</td>
-                                    <td><a href="https://ref.gs1.org/voc/netWeight">gs1:netWeight</a>, <a href="https://vocabulary.uncefact.org/netWeightMeasure">unece:netWeightMeasure</a></td><td></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/netWeight">gs1:netWeight</a>, <a href="https://vocabulary.uncefact.org/netWeightMeasure">unece:netWeightMeasure</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Gross Weight (dppk:grossWeight)</td>
                                     <td>The weight of the product or material, including packaging, expressed as a QuantitativeValue.</td>
                                     <td>rdfs:Literal</td>
-                                    <td><a href="https://ref.gs1.org/voc/grossWeight">gs1:grossWeight</a>, <a href="https://vocabulary.uncefact.org/grossWeightMeasure">unece:grossWeightMeasure</a></td><td></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/grossWeight">gs1:grossWeight</a>, <a href="https://vocabulary.uncefact.org/grossWeightMeasure">unece:grossWeightMeasure</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Length (dppk:length)</td>
                                     <td>The length of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
                                     <td>dppk:MetersLengthLiteral</td>
-                                    <td><a href="https://schema.org/length">schema:length</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/length">schema:length</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Width (dppk:width)</td>
                                     <td>The width of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
                                     <td>dppk:MetersLengthLiteral</td>
-                                    <td><a href="https://schema.org/width">schema:width</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/width">schema:width</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Height (dppk:height)</td>
                                     <td>The height of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
                                     <td>dppk:MetersLengthLiteral</td>
-                                    <td><a href="https://schema.org/height">schema:height</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/height">schema:height</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Depth (dppk:depth)</td>
                                     <td>The depth of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
                                     <td>dppk:MetersLengthLiteral</td>
-                                    <td><a href="https://schema.org/depth">schema:depth</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/depth">schema:depth</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Product Characteristics (dppk:productCharacteristics)</td>
                                     <td>Relates a product to its specific characteristics or performance properties.</td>
                                     <td>dppk:ProductCharacteristic</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Compliance/index.html#documents">Documents</a> (dppk:documents)</td>
                                     <td>Relates the product to associated digital documents.</td>
                                     <td>dppk:RelatedResource</td>
-                                    <td><a href="https://ref.gs1.org/voc/referencedFile">gs1:referencedFile</a></td><td></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/referencedFile">gs1:referencedFile</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Compliance/index.html#additionalCertifications">Additional Certifications. Please do not use this field for sector specific, mandatory certifications.</a> (dppk:additionalCertifications)</td>
                                     <td>Relates the product to its certifications.</td>
                                     <td>dppk:Certification</td>
-                                    <td><a href="https://schema.org/hasCertification">schema:hasCertification</a>, <a href="https://ref.gs1.org/voc/certification">gs1:certification</a></td><td></td>
+                                    <td></td><td><a href="https://schema.org/hasCertification">schema:hasCertification</a>, <a href="https://ref.gs1.org/voc/certification">gs1:certification</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Compliance/index.html#substancesOfConcern">Substances of Concern</a> (dppk:substancesOfConcern)</td>
                                     <td>Relates the product to any substances of concern it contains.</td>
                                     <td>dppk:SubstanceOfConcern</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Compliance/index.html#packaging">Packaging</a> (dppk:packaging)</td>
                                     <td>A list of packaging elements associated with the product.</td>
                                     <td>dppk:Packaging</td>
-                                    <td><a href="https://ref.gs1.org/voc/packaging">gs1:packaging</a></td><td></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/packaging">gs1:packaging</a></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Compliance/index.html#productionSteps">Production Steps</a> (dppk:productionSteps)</td>
                                     <td></td>
                                     <td>dppk:ProductionStep</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../EPD/index.html#epd">Environmental Product Declaration</a> (dppk:epd)</td>
                                     <td>A dictionary of environmental impact indicators and their values across different life cycle stages.</td>
                                     <td>dppk:EPDBlock</td>
-                                    <td></td><td>EN 15804:2012+A2:2019</td>
+                                    <td></td><td></td><td>EN 15804:2012+A2:2019</td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../RelatedResource/index.html#instructionsForUse">Instructions for Use</a> (dppk:instructionsForUse)</td>
                                     <td>A link to the instructions for use or user manual for the product.</td>
                                     <td>dppk:RelatedResource</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../RelatedResource/index.html#safetyDataSheet">Safety Data Sheet</a> (dppk:safetyDataSheet)</td>
                                     <td>A link to the safety data sheet (SDS) for the product.</td>
                                     <td>dppk:RelatedResource</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../../sectors/Construction/index.html#steelGrade">Steel Grade</a> (dppk:steelGrade)</td>
                                     <td>The classification of the steel based on its composition and physical properties (e.g., R260, S355).</td>
                                     <td>xsd:string</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../../sectors/Construction/index.html#railProfile">Rail Profile</a> (dppk:railProfile)</td>
                                     <td>The standardized cross-section design of a railway rail (e.g., 46E1).</td>
                                     <td>xsd:string</td>
-                                    <td></td><td></td>
+                                    <td></td><td></td><td></td>
                                 </tr>
                             
                         </tbody>

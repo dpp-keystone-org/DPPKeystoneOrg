@@ -4,6 +4,7 @@
   "title": "DPP DoPC (Declaration of Performance) Data Block",
   "description": "A dense, nested schema for Construction DoPC characteristics.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "declarationCode": {
       "type": "string"
@@ -35,6 +36,27 @@
     },
     "shrinkageAndExpansion": {
       "type": "string"
+    },
+    "capillaryAbsorption": {
+      "type": "number"
+    },
+    "declaredUnit": {
+      "type": "string"
+    },
+    "functionalUnit": {
+      "type": "string"
+    },
+    "referenceServiceLife": {
+      "type": "integer"
+    },
+    "dangerousSubstances": {
+      "type": "string"
+    },
+    "thermalExpansion": {
+      "type": "string"
+    },
+    "resistanceToCarbonation": {
+      "$ref": "#/$defs/resistanceToCarbonationGroup"
     },
     "slipSkidResistance": {
       "$ref": "#/$defs/slipSkidResistanceGroup"
@@ -124,6 +146,15 @@
       "properties": {
         "21DegC": {
           "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "resistanceToCarbonationGroup": {
+      "type": "object",
+      "properties": {
+        "21DegC": {
+          "type": "string"
         }
       },
       "additionalProperties": false

@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Battery Lifetime</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Battery Lifetime (dppk:LifetimeInfo)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="LifetimeInfo">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class LifetimeInfo
+  LifetimeInfo : +expectedLifetimeYears
+  LifetimeInfo : +expectedLifetimeCycles
+  LifetimeInfo : +cycleCountFull
+  LifetimeInfo : +referenceTestCycleLife
+  LifetimeInfo : +cRateCycleTest
+  LifetimeInfo : +energyThroughput
+  LifetimeInfo : +capacityThroughput
+  LifetimeInfo : +exhaustionCapacityThreshold
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Information regarding the expected lifetime of the battery in years and cycles, including reference tests.</p>
+                <p><strong>governedBy:</strong> Annex XIII (1j, 1k, 4a); Annex IV</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Expected lifetime in calendar years (dppk:expectedLifetimeYears)</td>
+                                    <td>The expected life-time under the reference conditions for which they have been designed in calendar years.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex IV, Part A(5); Annex XIII (1); Annex XIII (4a)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Expected lifetime: Number of charge-discharge cycles (dppk:expectedLifetimeCycles)</td>
+                                    <td>The expected life-time under the reference conditions for which they have been designed in terms of cycles.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex IV A(5)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Number of full charging and discharging cycles (dppk:cycleCountFull)</td>
+                                    <td>The value for the number of full charging and discharging cycles should result from the aggregation of partial cycles occurring in the use phase.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (4d); Art. 14: Annex VII Part B (5)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Cycle-life reference test (dppk:referenceTestCycleLife)</td>
+                                    <td>The reference test used for determining the expected battery lifetime in cycles.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1j)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>C-rate of relevant cycle-life test (dppk:cRateCycleTest)</td>
+                                    <td>Applied charge and discharge rate in terms of rated capacity (C-rate) of relevant cycle-life reference test.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex XIII (1p)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Energy throughput (dppk:energyThroughput)</td>
+                                    <td>The overall sum of the energy throughput over the battery lifetime at a specific time during usage.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex VII Part B (2)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Capacity throughput (dppk:capacityThroughput)</td>
+                                    <td>The overall sum of the capacity throughput over the battery lifetime at a specific time during usage.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex VII Part B (3)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Capacity threshold for exhaustion (dppk:exhaustionCapacityThreshold)</td>
+                                    <td>The percentage of SOCE, above which the battery is still considered operational.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex XIII (1k)</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

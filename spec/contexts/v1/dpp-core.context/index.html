@@ -80,6 +80,11 @@
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>productName</strong></a> - <em>The common name of the product.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>description</strong></a> - <em>A detailed description of the product.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>gtin</strong></a> - <em>The GS1 identifier for the trade item.</em></li>
+<li><strong>component</strong><ul>
+<li><strong>name</strong> - <em>The name of the component or material.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Component.html"><strong>percentage</strong></a> - <em>The percentage contribution of this component to the parent assembly (e.g., by weight).</em></li>
+<li><strong>uniqueProductIdentifier</strong> - <em>The globally resolvable URI for the product/DPP.</em></li>
+</ul></li>
 <li><strong>weightPercentage</strong> - <em>The percentage of the total weight of the main product that this component or material constitutes.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>recycledContentPercentage</strong></a> - <em>The percentage of the material that is derived from recycled sources.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>productCharacteristics</strong></a> - <em>Relates a product to its specific characteristics or performance properties.</em></li>
@@ -103,7 +108,7 @@
 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>substanceName</strong></a> - <em>The common name of the substance.</em></li>
 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>casNumber</strong></a> - <em>The Chemical Abstracts Service (CAS) registry number for the substance.</em></li>
 <li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>concentration</strong></a> - <em>The concentration of the substance in the product.</em></li>
-<li><a href="../../../ontology/v1/sectors/Battery/Battery.html"><strong>dateOfManufacture</strong></a> - <em>The date when the battery was manufactured.</em></li>
+<li><strong>dateOfManufacture</strong></li>
 <li><strong>name</strong> - <em>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</em></li>
 <li><strong>identifier</strong></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>url</strong></a> - <em>The location of the resource.</em></li>

@@ -27,6 +27,7 @@
                 <pre class="mermaid">
                     classDiagram
   class ProductCharacteristic
+  ProductCharacteristic : +componentName
   ProductCharacteristic : +name
   ProductCharacteristic : +weightPercentage
   ProductCharacteristic : +characteristicName
@@ -47,44 +48,51 @@
                                 <th>Property</th>
                                 <th>Description</th>
                                 <th>Type</th>
-                                <th>equivalentProperty</th>
+                                <th>subPropertyOf</th><th>equivalentProperty</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                                 <tr>
+                                    <td>Component Name (dppk:componentName)</td>
+                                    <td>The name of the component or material.</td>
+                                    <td>xsd:string</td>
+                                    <td><a href="https://dpp-keystone.org/spec/v1/terms#name">dppk:name</a></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Name (dppk:name)</td>
                                     <td>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</td>
                                     <td>rdf:langString</td>
-                                    <td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                                    <td></td><td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Weight Percentage (dppk:weightPercentage)</td>
                                     <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Characteristic Name (dppk:characteristicName)</td>
                                     <td>The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://ref.gs1.org/voc/characteristicName">gs1:characteristicName</a>, <a href="https://schema.org/name">schema:name</a></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/characteristicName">gs1:characteristicName</a>, <a href="https://schema.org/name">schema:name</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Characteristic Value (dppk:characteristicValue)</td>
                                     <td>The measured or declared value of the characteristic (e.g., '≥ 2.0 MPa', 'Class A1').</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://ref.gs1.org/voc/characteristicValue">gs1:characteristicValue</a>, <a href="https://schema.org/value">schema:value</a></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/characteristicValue">gs1:characteristicValue</a>, <a href="https://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Test Method (dppk:testMethod)</td>
                                     <td>A reference to the standard or methodology used to determine the characteristic's value.</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://ref.gs1.org/voc/measurementMethod">gs1:measurementMethod</a>, <a href="https://schema.org/measurementMethod">schema:measurementMethod</a></td>
+                                    <td></td><td><a href="https://ref.gs1.org/voc/measurementMethod">gs1:measurementMethod</a>, <a href="https://schema.org/measurementMethod">schema:measurementMethod</a></td>
                                 </tr>
                             
                         </tbody>

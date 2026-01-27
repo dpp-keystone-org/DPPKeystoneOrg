@@ -12,7 +12,7 @@
       "fibreType": "dppk:fibreType",
       "fibrePercentage": {
         "@id": "dppk:fibrePercentage",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "productionSteps": {
         "@id": "dppk:productionSteps",
@@ -33,21 +33,21 @@
       "dimensionalStability": "dppk:dimensionalStability",
       "warpChange": {
         "@id": "dppk:warpChange",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "weftChange": {
         "@id": "dppk:weftChange",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "colorfastnessToWashing": "dppk:colorfastnessToWashing",
       "grade": {
         "@id": "dppk:grade",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "microplasticRelease": "dppk:microplasticRelease",
       "value": {
         "@id": "dppk:value",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "apparelSize": "dppk:apparelSize",
       "apparelSizeSystem": "dppk:apparelSizeSystem",

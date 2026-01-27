@@ -93,7 +93,7 @@
         "@id": "dppk:FibreComposition"
       },
       "rdfs:range": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       },
       "rdfs:term_status": "unstable"
     },
@@ -215,7 +215,7 @@
         "@id": "dppk:QuantitativeValue"
       },
       "rdfs:range": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       },
       "rdfs:term_status": "unstable"
     },
@@ -229,7 +229,7 @@
         "@id": "dppk:QuantitativeValue"
       },
       "rdfs:range": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       },
       "rdfs:term_status": "unstable"
     },
@@ -257,7 +257,7 @@
         "@id": "dppk:QuantitativeValue"
       },
       "rdfs:range": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       },
       "rdfs:term_status": "unstable"
     },

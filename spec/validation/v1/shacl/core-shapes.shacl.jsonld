@@ -55,7 +55,7 @@
         {
           "path": "dppk:value",
           "minCount": 1,
-          "datatype": "xsd:decimal",
+          "datatype": "xsd:double",
           "message": "QuantitativeValue must have a numeric value (dppk:value)."
         },
         {

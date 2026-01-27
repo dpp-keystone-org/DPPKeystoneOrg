@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class: Battery Carbon Footprint (BCF)</title>
+    <title>Class: Negative Events and Accidents</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
@@ -17,26 +17,25 @@
         <header>
             <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
-                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Sector Ontology - Battery Definitions (v1)</a></h1>
-                <h2 style="margin: 0; color: var(--text-light);">Class: Battery Carbon Footprint (BCF) (dppk:BatteryCarbonFootprint)</h2>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Negative Events and Accidents (dppk:NegativeEventsInfo)</h2>
             </div>
         </header>
         <main>
-            <div class="class-section" id="BatteryCarbonFootprint">
+            <div class="class-section" id="NegativeEventsInfo">
                 <h4>Visual Diagram</h4>
                 <pre class="mermaid">
                     classDiagram
-  class BatteryCarbonFootprint
-  EcoDesignProperty <|-- BatteryCarbonFootprint
-  BatteryCarbonFootprint : +bcfTotal
-  BatteryCarbonFootprint : +bcfPerformanceClass
-  BatteryCarbonFootprint : +bcfDeclarationWebLink
+  class NegativeEventsInfo
+  NegativeEventsInfo : +eventsDeepDischarge
+  NegativeEventsInfo : +eventsOvercharge
+  NegativeEventsInfo : +eventsAccidents
 
                 </pre>
 
                 <h4>Attributes</h4>
-                <p>Information related to the carbon footprint of the battery, calculated according to the relevant Product Environmental Footprint Category Rules (PEFCR).</p>
-                <p><strong>subClassOf:</strong> <a href="https://dpp-keystone.org/spec/v1/terms#EcoDesignProperty">dppk:EcoDesignProperty</a></p>
+                <p>Information regarding negative events such as deep discharges, overcharges, and accidents.</p>
+                <p><strong>governedBy:</strong> Annex XIII (4d); Annex VII Part B (4)</p>
 
                 
                     <h4>Properties</h4>
@@ -46,30 +45,30 @@
                                 <th>Property</th>
                                 <th>Description</th>
                                 <th>Type</th>
-                                
+                                <th>governedBy</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                                 <tr>
-                                    <td>Total Carbon Footprint (dppk:bcfTotal)</td>
-                                    <td>The total declared carbon footprint of the battery per functional unit.</td>
-                                    <td>xsd:decimal</td>
-                                    
+                                    <td>Number of deep discharge events (dppk:eventsDeepDischarge)</td>
+                                    <td>The number of occasions in which voltage has dropped below the lower operational limit.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex VII Part B (4)</td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Carbon Footprint Performance Class (dppk:bcfPerformanceClass)</td>
-                                    <td>The performance class of the battery's carbon footprint.</td>
+                                    <td>Number of overcharge events (dppk:eventsOvercharge)</td>
+                                    <td>The number of occasions in which voltage has increased above the upper operational limit.</td>
+                                    <td>xsd:integer</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Information on accidents (dppk:eventsAccidents)</td>
+                                    <td>Information and data resulting from use such as accidents, based on measuring abrupt positive or negative acceleration.</td>
                                     <td>xsd:string</td>
-                                    
-                                </tr>
-                            
-                                <tr>
-                                    <td>Carbon Footprint Declaration Web Link (dppk:bcfDeclarationWebLink)</td>
-                                    <td>A web link to a public version of the study supporting the carbon footprint declaration.</td>
-                                    <td>xsd:anyURI</td>
-                                    
+                                    <td>Annex XIII (4d)</td>
                                 </tr>
                             
                         </tbody>

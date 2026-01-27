@@ -1,9 +1,9 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1768914539084';
-import { loadOntology } from '../lib/ontology-loader.js?v=1768914539084';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1768914539084';
-import { generateDpp } from './dpp-generator.js?v=1768914539084';
-import { generateHTML } from '../lib/html-generator.js?v=1768914539084';
+import { loadSchema } from '../lib/schema-loader.js?v=1769506534837';
+import { loadOntology } from '../lib/ontology-loader.js?v=1769506534837';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1769506534837';
+import { generateDpp } from './dpp-generator.js?v=1769506534837';
+import { generateHTML } from '../lib/html-generator.js?v=1769506534837';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
@@ -235,6 +235,21 @@ export async function initializeWizard() {
         }
         updateButtonState();
     });
+
+    /**
+     * Toggles the visibility of the 'Generate' and 'Show Errors' buttons
+     * based on the current validation state.
+     */
+    function updateButtonState() {
+        if (!generateBtn || !showErrorsBtn) return;
+        const hasErrors = invalidFields.size > 0;
+        
+        generateBtn.hidden = hasErrors;
+        if (previewBtn) previewBtn.hidden = hasErrors;
+        
+        showErrorsBtn.hidden = !hasErrors;
+        errorCountBadge.textContent = invalidFields.size;
+    }
 
     showErrorsBtn.addEventListener('click', () => {
         // Remove any existing modal first

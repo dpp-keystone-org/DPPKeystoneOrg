@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Temperature Conditions</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Temperature Conditions (dppk:TemperatureInfo)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="TemperatureInfo">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class TemperatureInfo
+  TemperatureInfo : +temperatureIdleLower
+  TemperatureInfo : +temperatureIdleUpper
+  TemperatureInfo : +timeExtremeTempUpper
+  TemperatureInfo : +timeExtremeTempLower
+  TemperatureInfo : +timeChargingTempUpper
+  TemperatureInfo : +timeChargingTempLower
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Information regarding the temperature ranges the battery can withstand and time spent in extreme temperatures.</p>
+                <p><strong>governedBy:</strong> Annex XIII (1l); Annex VII Part B (4)</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Temperature range idle state, lower boundary (dppk:temperatureIdleLower)</td>
+                                    <td>The lower boundary of the surrounding temperature range the battery can withstand when not in use.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1l)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Temperature range idle state, upper boundary (dppk:temperatureIdleUpper)</td>
+                                    <td>The upper boundary of the surrounding temperature range the battery can withstand when not in use.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1l)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Time spent in extreme temperatures above boundary (dppk:timeExtremeTempUpper)</td>
+                                    <td>The aggregated time in which temperatures above the upper boundary of the temperature range are prevalent.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex VII Part B (4)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Time spent in extreme temperatures below boundary (dppk:timeExtremeTempLower)</td>
+                                    <td>The aggregated time in which temperatures below the lower boundary of the temperature range are prevalent.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex VII Part B (4)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Time spent charging during extreme temperatures above boundary (dppk:timeChargingTempUpper)</td>
+                                    <td>The aggregated time in which the battery is charged while temperatures above the upper boundary are prevalent.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex VII Part B (4)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Time spent charging during extreme temperatures below boundary (dppk:timeChargingTempLower)</td>
+                                    <td>The aggregated time in which the battery is charged while temperatures below the lower boundary are prevalent.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex VII Part B (4)</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

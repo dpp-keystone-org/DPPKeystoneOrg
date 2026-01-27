@@ -53,10 +53,24 @@
         "$ref": "related-resource.schema.json"
       },
       "dopc": {
-        "$ref": "dopc.schema.json"
+        "oneOf": [
+          {
+            "$ref": "dopc.schema.json"
+          },
+          {
+            "$ref": "related-resource.schema.json"
+          }
+        ]
       },
       "epd": {
-        "$ref": "epd.schema.json"
+        "oneOf": [
+          {
+            "$ref": "epd.schema.json"
+          },
+          {
+            "$ref": "related-resource.schema.json"
+          }
+        ]
       }
     }
   }

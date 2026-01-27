@@ -71,7 +71,7 @@
       "rdfs:label": "Kilogram Weight Literal",
       "rdfs:comment": "A literal value representing a weight in kilograms. A reasoner can expand this into a full dppk:QuantitativeValue.",
       "rdfs:subClassOf": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       }
     },
     {
@@ -80,7 +80,7 @@
       "rdfs:label": "Meters Length Literal",
       "rdfs:comment": "A literal value representing a length in meters. A reasoner can expand this into a full dppk:QuantitativeValue.",
       "rdfs:subClassOf": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       }
     },
     {
@@ -103,6 +103,33 @@
       "@type": "rdfs:Class",
       "rdfs:label": "A part or material that is included in the main product.",
       "rdfs:comment": "A part or material that is included in the main product.",
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:componentName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Component Name",
+      "rdfs:comment": "The name of the component or material.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:name"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:percentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Percentage",
+      "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      },
       "rdfs:term_status": "unstable"
     },
     {
@@ -329,7 +356,7 @@
       "dppk:unit": "%",
       "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
       "rdfs:range": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       },
       "rdfs:term_status": "unstable"
     },
@@ -343,7 +370,7 @@
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       },
       "rdfs:term_status": "unstable"
     },
@@ -471,7 +498,7 @@
         "@id": "dppk:QuantitativeValue"
       },
       "rdfs:range": {
-        "@id": "xsd:decimal"
+        "@id": "xsd:double"
       },
       "owl:equivalentProperty": [
         {

@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Battery Product</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Battery Product (dppk:BatteryProduct)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="BatteryProduct">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class BatteryProduct
+  Product <|-- BatteryProduct
+  BatteryProduct : +manufacturerInfo
+  BatteryProduct --|> Organization : manufacturerInfo
+  BatteryProduct : +manufacturingPlace
+  BatteryProduct : +manufacturingDate
+  BatteryProduct : +serviceDate
+  BatteryProduct : +warrantyPeriod
+  BatteryProduct : +batteryCategory
+  BatteryProduct : +batteryMass
+  BatteryProduct : +batteryStatus
+  BatteryProduct : +separateCollectionSymbol
+  BatteryProduct --|> RelatedResource : separateCollectionSymbol
+  BatteryProduct : +heavyMetalSymbols
+  BatteryProduct --|> RelatedResource : heavyMetalSymbols
+  BatteryProduct : +carbonFootprintLabel
+  BatteryProduct --|> RelatedResource : carbonFootprintLabel
+  BatteryProduct : +extinguishingAgent
+  BatteryProduct : +labelMeaning
+  BatteryProduct : +testReports
+  BatteryProduct --|> RelatedResource : testReports
+  BatteryProduct : +carbonFootprintClass
+  BatteryProduct : +carbonFootprintStudy
+  BatteryProduct --|> RelatedResource : carbonFootprintStudy
+  BatteryProduct : +carbonFootprintGeneralInfo
+  BatteryProduct --|> RelatedResource : carbonFootprintGeneralInfo
+  BatteryProduct : +carbonFootprintAbsolute
+  BatteryProduct : +dueDiligenceReport
+  BatteryProduct --|> RelatedResource : dueDiligenceReport
+  BatteryProduct : +supplyChainAssurances
+  BatteryProduct --|> RelatedResource : supplyChainAssurances
+  BatteryProduct : +supplyChainIndices
+  BatteryProduct --|> RelatedResource : supplyChainIndices
+  BatteryProduct : +batteryChemistry
+  BatteryProduct : +criticalRawMaterials
+  BatteryProduct : +materialComposition
+  BatteryProduct --|> Component : materialComposition
+  BatteryProduct : +hazardousSubstances
+  BatteryProduct --|> Component : hazardousSubstances
+  BatteryProduct : +hazardousSubstancesImpact
+  BatteryProduct : +dismantlingInformation
+  BatteryProduct --|> RelatedResource : dismantlingInformation
+  BatteryProduct : +partNumbers
+  BatteryProduct --|> RelatedResource : partNumbers
+  BatteryProduct : +sparePartsSources
+  BatteryProduct --|> RelatedResource : sparePartsSources
+  BatteryProduct : +safetyMeasures
+  BatteryProduct --|> RelatedResource : safetyMeasures
+  BatteryProduct : +wastePreventionInfo
+  BatteryProduct --|> RelatedResource : wastePreventionInfo
+  BatteryProduct : +preConsumerRecycledMaterialComposition
+  BatteryProduct --|> Component : preConsumerRecycledMaterialComposition
+  BatteryProduct : +postConsumerRecycledMaterialComposition
+  BatteryProduct --|> Component : postConsumerRecycledMaterialComposition
+  BatteryProduct : +renewableContent
+  BatteryProduct : +performance
+  BatteryProduct --|> BatteryPerformance : performance
+  click Product href "../../core/Product/Product.html" "dppk:Product"
+  style Product stroke:#2962ff,color:#2962ff
+  click Organization href "../../core/Organization/Organization.html" "dppk:Organization"
+  style Organization stroke:#2962ff,color:#2962ff
+  click RelatedResource href "../../core/RelatedResource/RelatedResource.html" "dppk:RelatedResource"
+  style RelatedResource stroke:#2962ff,color:#2962ff
+  click Component href "../../core/Product/Component.html" "dppk:Component"
+  style Component stroke:#2962ff,color:#2962ff
+  click BatteryPerformance href "BatteryPerformance.html" "dppk:BatteryPerformance"
+  style BatteryPerformance stroke:#2962ff,color:#2962ff
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Data model for the Battery Passport according to EU Battery Regulation.</p>
+                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Manufacturer identifier and information (dppk:manufacturerInfo)</td>
+                                    <td>A battery passport must include information identifying the manufacturer. The manufacturer information must also be provided on the battery label. Includes name, registered trade name/mark, postal address, web address, and email.</td>
+                                    <td>dppk:Organization</td>
+                                    <td>Annex VI Part A (1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Manufacturing place (dppk:manufacturingPlace)</td>
+                                    <td>A battery passport must include the manufacturing place (geographical location of a battery manufacturing plant). The manufacturing place must also be provided on the battery label.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1a)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Manufacturing date (dppk:manufacturingDate)</td>
+                                    <td>A battery passport must include the date of manufacture (month and year). The manufacturing date must also be provided on the battery label. Format YYYY-MM-DD (ISO 8601).</td>
+                                    <td>xsd:date</td>
+                                    <td>Annex XIII (1a)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Date of putting the battery into service (dppk:serviceDate)</td>
+                                    <td>Where appropriate, the battery passport must include information on the date of putting the battery into service. Format YYYY-MM-DD (ISO 8601).</td>
+                                    <td>xsd:date</td>
+                                    <td>Annex VII Part B (1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Warranty period of the battery (dppk:warrantyPeriod)</td>
+                                    <td>The battery passport must include information about the period for which the commercial warranty applies.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1m)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Battery category (dppk:batteryCategory)</td>
+                                    <td>A battery passport must include the battery category. The battery category must be provided on the battery label. Categories: LMT battery, electric vehicle battery, or industrial battery.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1a); Annex VI Part A (2)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Battery mass (dppk:batteryMass)</td>
+                                    <td>A battery passport must include the battery mass. The battery mass must also be provided on the battery label.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex XIII (1a); Annex VI Part A (5)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Battery status (dppk:batteryStatus)</td>
+                                    <td>A battery passport must include information on the status of the battery. Statuses: original, repurposed, re-used, remanufactured, or waste.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII 4(c)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Separate collection symbol (dppk:separateCollectionSymbol)</td>
+                                    <td>The battery passport must include the symbol for separate collection. The symbol should be translated into text to ensure machine readability.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (1s); Art. 13(4); Annex VI Part B</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Symbols for cadmium and lead (dppk:heavyMetalSymbols)</td>
+                                    <td>Batteries containing more than 0.002% cadmium or 0.004% lead must be marked with the chemical symbol (Cd or Pb).</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (1s); Art. 13(5)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Carbon footprint label (dppk:carbonFootprintLabel)</td>
+                                    <td>EV and rechargeable industrial batteries > 2 kWh and LMT batteries must bear a label indicating the carbon footprint and performance class.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Article 7(2) via Annex XIII (1c)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Extinguishing agent (dppk:extinguishingAgent)</td>
+                                    <td>A battery passport must include the usable extinguishing agent. The information should be related to their possible area of application as regulated in DIN EN 2.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex VI Part A (9)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Meaning of labels and symbols (dppk:labelMeaning)</td>
+                                    <td>Information regarding the prevention and management of waste batteries including the meaning of the labels and symbols.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1s); Art. 74 1(e)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Results of test reports proving compliance (dppk:testReports)</td>
+                                    <td>A battery passport must include the test report results that can prove the compliance with the requirements stated in the battery regulation.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (3); Annex VIII Part A 2(h)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Carbon footprint performance class (dppk:carbonFootprintClass)</td>
+                                    <td>The battery passport must include the carbon footprint performance class in accordance with the delegated and implementing acts.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1c); Art. 7(2)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Web link to public carbon footprint study (dppk:carbonFootprintStudy)</td>
+                                    <td>The battery passport must include a web link to the carbon footprint study accompanying the battery carbon footprint declaration.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (1c); Art. 7 1(g)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>General battery and manufacturer information (dppk:carbonFootprintGeneralInfo)</td>
+                                    <td>The battery passport must contain general battery and manufacturer information in relation to the battery carbon footprint.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII, Article 7(1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Absolute battery carbon footprint (dppk:carbonFootprintAbsolute)</td>
+                                    <td>The battery passport should include the battery carbon footprint in absolute terms (kg CO2e).</td>
+                                    <td>xsd:integer</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Information of due diligence report (dppk:dueDiligenceReport)</td>
+                                    <td>The battery passport must include information on responsible sourcing as indicated in the report on its due diligence policy.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Art. 52(3)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Third party assurances of recognised schemes (dppk:supplyChainAssurances)</td>
+                                    <td>The battery passport should contain information on third-party supply chain assurances such as certifications.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Art. 49(d)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Supply chain indices (dppk:supplyChainIndices)</td>
+                                    <td>The battery passport should contain supply chain indices to allow easy assessment for consumers on level of responsible sourcing.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Battery chemistry (dppk:batteryChemistry)</td>
+                                    <td>The battery passport must contain information on the battery chemistry (cathode, anode, electrolyte).</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1b); Annex VI Part A (7)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Critical raw materials (dppk:criticalRawMaterials)</td>
+                                    <td>The battery passport must contain information on the critical raw materials present in the battery in a concentration of more than 0.1%.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1b); Annex VI Part A (10)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Materials used in cathode, anode and electrolyte (dppk:materialComposition)</td>
+                                    <td>The battery passport must contain information on the detailed composition of the battery, including materials used in the cathode, anode and electrolyte. Reuses dppk:Component.</td>
+                                    <td>dppk:Component</td>
+                                    <td>Annex XIII (2a)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Hazardous substances (dppk:hazardousSubstances)</td>
+                                    <td>The battery passport must contain information on hazardous substances other than mercury, cadmium, or lead. Reuses dppk:Component.</td>
+                                    <td>dppk:Component</td>
+                                    <td>Annex XIII (1b); Annex VI Part A (8)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Impact of substances on environment, human health, safety, persons (dppk:hazardousSubstancesImpact)</td>
+                                    <td>The battery passport must contain information on the impact of substances, in particular hazardous substances, on the environment and human health.</td>
+                                    <td>xsd:string</td>
+                                    <td>Annex XIII (1s); Art. 74 1(f)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Dismantling information (dppk:dismantlingInformation)</td>
+                                    <td>A battery passport must include dismantling information, including exploded diagrams, disassembly sequences, and tools required.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (2c)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Part numbers for components (dppk:partNumbers)</td>
+                                    <td>A battery passport must include part numbers for components, provided together with contact details of sources for spare parts.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (2b)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Information on sources of spare parts (dppk:sparePartsSources)</td>
+                                    <td>A battery passport must include contact details of sources for spare parts.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (2b)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Safety measures (dppk:safetyMeasures)</td>
+                                    <td>A battery passport must include safety measures, provided via the instruction manual.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Annex XIII (2d); Art. 74(2)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Information on waste prevention and management (dppk:wastePreventionInfo)</td>
+                                    <td>Information on the role of end-users in waste prevention, separate collection, and information on battery collection and treatment.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td>Art. 74(1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Pre-consumer recycled material shares (dppk:preConsumerRecycledMaterialComposition)</td>
+                                    <td>The percentage shares of Nickel, Cobalt, Lithium, and Lead recovered from battery manufacturing waste (pre-consumer).</td>
+                                    <td>dppk:Component</td>
+                                    <td>Annex XIII (1e); Art. 8(1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Post-consumer recycled material shares (dppk:postConsumerRecycledMaterialComposition)</td>
+                                    <td>The percentage shares of Nickel, Cobalt, Lithium, and Lead recovered from waste (post-consumer).</td>
+                                    <td>dppk:Component</td>
+                                    <td>Annex XIII (1e); Art. 8(1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Renewable content share (dppk:renewableContent)</td>
+                                    <td>A battery passport must include information about the share of renewable content.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex XIII (1f)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Performance and durability parameters (dppk:performance)</td>
+                                    <td>A battery passport must include information on the performance and durability of the battery.</td>
+                                    <td>dppk:BatteryPerformance</td>
+                                    <td>Annex XIII (1)</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

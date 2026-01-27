@@ -22,83 +22,83 @@
     "wdp": "dppk:wdp",
     "a1": {
       "@id": "dppk:a1",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "A1": {
       "@id": "dppk:a1",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "a2": {
       "@id": "dppk:a2",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "A2": {
       "@id": "dppk:a2",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "a3": {
       "@id": "dppk:a3",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "A3": {
       "@id": "dppk:a3",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "a4": {
       "@id": "dppk:a4",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "A4": {
       "@id": "dppk:a4",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "c1": {
       "@id": "dppk:c1",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "C1": {
       "@id": "dppk:c1",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "c2": {
       "@id": "dppk:c2",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "C2": {
       "@id": "dppk:c2",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "c3": {
       "@id": "dppk:c3",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "C3": {
       "@id": "dppk:c3",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "c4": {
       "@id": "dppk:c4",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "C4": {
       "@id": "dppk:c4",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "d": {
       "@id": "dppk:d",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "D": {
       "@id": "dppk:d",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "total": {
       "@id": "dppk:total",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     },
     "Total": {
       "@id": "dppk:total",
-      "@type": "xsd:decimal"
+      "@type": "xsd:double"
     }
   }
 }

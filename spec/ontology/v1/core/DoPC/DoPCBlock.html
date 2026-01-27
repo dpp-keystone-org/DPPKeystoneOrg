@@ -68,6 +68,8 @@
   DoPCBlock : +modulusMethod1
   DoPCBlock : +method1
   DoPCBlock : +thermalExpansion
+  DoPCBlock : +declaredUnit
+  DoPCBlock : +functionalUnit
   DoPCBlock : +chlorideContentAt21DegC
   DoPCBlock : +bondStrengthAt28Days
   DoPCBlock : +thermalCompatibilityWet
@@ -92,7 +94,7 @@
 
                 <h4>Attributes</h4>
                 <p>Data block for Declaration of Performance and Conformity.</p>
-                <p><strong>equivalentClass:</strong> <a href="http://schema.org/Certification">schema:Certification</a></p><p><strong>governedBy:</strong> CPR</p>
+                <p><strong>equivalentClass:</strong> <a href="http://schema.org/Certification">schema:Certification</a></p><p><strong>governedBy:</strong> Construction Products Regulation - CPR</p>
 
                 
                     <h4>Properties</h4>
@@ -111,7 +113,7 @@
                                     <td>The Declaration of Performance and Conformity. (dppk:dopc)</td>
                                     <td>The Declaration of Performance and Conformity.</td>
                                     <td>dppk:DoPCBlock</td>
-                                    <td>CPR</td>
+                                    <td>Construction Products Regulation - CPR</td>
                                 </tr>
                             
                                 <tr>
@@ -285,35 +287,35 @@
                                 <tr>
                                     <td>Flow Resistance (Proc A, 5°C) (dppk:flowResistanceProcedureA5)</td>
                                     <td>Flow resistance measured using Procedure A at 5°C.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc A, 70°C) (dppk:flowResistanceProcedureA70)</td>
                                     <td>Flow resistance measured using Procedure A at 70°C.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc B, 5°C) (dppk:flowResistanceProcedureB5)</td>
                                     <td>Flow resistance measured using Procedure B at 5°C.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc B, 50°C) (dppk:flowResistanceProcedureB50)</td>
                                     <td>Flow resistance measured using Procedure B at 50°C.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc B, 70°C) (dppk:flowResistanceProcedureB70)</td>
                                     <td>Flow resistance measured using Procedure B at 70°C.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
@@ -362,14 +364,14 @@
                                 <tr>
                                     <td>Modulus of Elasticity Group (dppk:modulusOfElasticityInCompression)</td>
                                     <td>Group of properties regarding modulus of elasticity in compression.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>EN 13412:2006</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Modulus of Elasticity (Method 1) (dppk:modulusMethod1)</td>
                                     <td>Modulus of elasticity measured using Method 1.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>EN 13412:2006</td>
                                 </tr>
                             
@@ -388,23 +390,37 @@
                                 </tr>
                             
                                 <tr>
+                                    <td>Declared Unit (dppk:declaredUnit)</td>
+                                    <td>The quantity of a construction product for use as a reference unit in an EPD for an environmental impact assessment.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Functional Unit (dppk:functionalUnit)</td>
+                                    <td>The quantified performance of a product system for use as a reference unit.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Chloride Content (21°C) (dppk:chlorideContentAt21DegC)</td>
                                     <td>Maximum percentage by mass.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>EN 1015-17</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Bond Strength (28 Days) (dppk:bondStrengthAt28Days)</td>
                                     <td>Bond strength measured after 28 days.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>EN 1542:1999</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Thermal Compatibility (Wet Surface) (dppk:thermalCompatibilityWet)</td>
                                     <td>Thermal compatibility measured on wet surface.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>EN 13687-1</td>
                                 </tr>
                             
@@ -446,49 +462,49 @@
                                 <tr>
                                     <td>Elastic Recovery (Method A, 25% Elongation) (dppk:elasticRecoveryMethodA25)</td>
                                     <td>Elastic recovery using Method A at 25% elongation.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7389:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Elastic Recovery (Method A, 60% Elongation) (dppk:elasticRecoveryMethodA60)</td>
                                     <td>Elastic recovery using Method A at 60% elongation.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7389:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Elastic Recovery (Method A, 100% Elongation) (dppk:elasticRecoveryMethodA100)</td>
                                     <td>Elastic recovery using Method A at 25% elongation.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7389:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Elastic Recovery (Method B, 25% Elongation) (dppk:elasticRecoveryMethodB25)</td>
                                     <td>Elastic recovery using Method B at 25% elongation.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7389:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Elastic Recovery (Method B, 60% Elongation) (dppk:elasticRecoveryMethodB60)</td>
                                     <td>Elastic recovery using Method B at 60% elongation.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7389:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Elastic Recovery (Method B, 100% Elongation) (dppk:elasticRecoveryMethodB100)</td>
                                     <td>Elastic recovery using Method B at 100% elongation.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7389:2002</td>
                                 </tr>
                             
                                 <tr>
                                     <td>Flow Resistance (Proc A, 50°C) (dppk:flowResistanceProcedureA50)</td>
                                     <td>Resistance to flow using Procedure A at 50 degrees Celsius.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>ISO 7390:2002</td>
                                 </tr>
                             
@@ -502,7 +518,7 @@
                                 <tr>
                                     <td>Capillary Absorption (dppk:capillaryAbsorption)</td>
                                     <td>Capillary absorption rate.</td>
-                                    <td>xsd:decimal</td>
+                                    <td>xsd:double</td>
                                     <td>EN 13057:2002</td>
                                 </tr>
                             

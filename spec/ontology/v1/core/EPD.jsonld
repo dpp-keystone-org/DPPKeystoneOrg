@@ -1972,7 +1972,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2084,7 +2084,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2196,7 +2196,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2308,7 +2308,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2420,7 +2420,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2532,7 +2532,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2644,7 +2644,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2756,7 +2756,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2868,7 +2868,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },
@@ -2980,7 +2980,7 @@
         "@id": "dppk:ImpactValues"
       },
       "dppk:unitInherited": true,
-      "rdfs:range": "xsd:decimal",
+      "rdfs:range": "xsd:double",
       "owl:equivalentProperty": {
         "@id": "schema:value"
       },

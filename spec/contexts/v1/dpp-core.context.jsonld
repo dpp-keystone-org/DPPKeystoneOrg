@@ -110,10 +110,24 @@
       },
       "description": "dppk:description",
       "gtin": "dppk:gtin",
+      "component": {
+        "@id": "dppk:component",
+        "@context": {
+          "name": "dppk:componentName",
+          "percentage": {
+            "@id": "dppk:percentage",
+            "@type": "xsd:double"
+          },
+          "uniqueProductIdentifier": {
+            "@id": "dppk:uniqueProductIdentifier",
+            "@type": "@id"
+          }
+        }
+      },
       "weightPercentage": "dppk:weightPercentage",
       "recycledContentPercentage": {
         "@id": "dppk:recycledContentPercentage",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "productCharacteristics": {
         "@id": "dppk:productCharacteristics",
@@ -126,7 +140,7 @@
       "MetersLengthLiteral": "dppk:MetersLengthLiteral",
       "value": {
         "@id": "dppk:value",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "unitCode": "dppk:unitCode",
       "unitText": "dppk:unitText",
@@ -155,7 +169,7 @@
       "casNumber": "dppk:casNumber",
       "concentration": {
         "@id": "dppk:concentration",
-        "@type": "xsd:decimal"
+        "@type": "xsd:double"
       },
       "dateOfManufacture": {
         "@id": "dppk:dateOfManufacture",

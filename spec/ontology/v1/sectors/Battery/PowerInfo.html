@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Power Capability</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Power Capability (dppk:PowerInfo)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="PowerInfo">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class PowerInfo
+  PowerInfo : +powerOriginal
+  PowerInfo : +powerRemaining
+  PowerInfo : +powerFade
+  PowerInfo : +powerMaximumPermitted
+  PowerInfo : +powerEnergyRatio
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Information regarding the battery's power capability, power fade, and maximum permitted power.</p>
+                <p><strong>governedBy:</strong> Annex XIII (1i); Art. 10</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Original power capability (dppk:powerOriginal)</td>
+                                    <td>The amount of energy that a battery is capable to provide over a given period of time under reference conditions.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1i); Art. 10; Annex IV Part B (4)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Remaining power capability (dppk:powerRemaining)</td>
+                                    <td>Information on the remaining power capability as information on the state of health of the battery.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Art. 10; Annex IV (3); Annex VII Part A (2)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Power fade (dppk:powerFade)</td>
+                                    <td>The decrease over time and upon usage in the amount of power that a battery can deliver at the rated voltage.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex IV Part A (4)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Maximum permitted battery power (dppk:powerMaximumPermitted)</td>
+                                    <td>The value of maximum permitted power the battery is rated for.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1i)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Ratio between nominal battery power and battery energy (dppk:powerEnergyRatio)</td>
+                                    <td>Provides an indication of the applicable discharge and charge rate in terms of rated capacity (C-rate).</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex IV Part B (2)</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

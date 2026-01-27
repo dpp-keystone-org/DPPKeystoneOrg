@@ -57,7 +57,7 @@
         {
           "path": "dppk:grossWeight",
           "minCount": 0,
-          "datatype": "xsd:decimal"
+          "datatype": "xsd:double"
         },
         {
           "path": "dppk:length",

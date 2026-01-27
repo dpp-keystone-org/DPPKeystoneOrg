@@ -27,6 +27,7 @@
                 <pre class="mermaid">
                     classDiagram
   class QuantitativeValue
+  QuantitativeValue : +componentName
   QuantitativeValue : +name
   QuantitativeValue : +weightPercentage
   QuantitativeValue : +value
@@ -51,72 +52,79 @@
                                 <th>Property</th>
                                 <th>Description</th>
                                 <th>Type</th>
-                                <th>equivalentProperty</th>
+                                <th>subPropertyOf</th><th>equivalentProperty</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                                 <tr>
+                                    <td>Component Name (dppk:componentName)</td>
+                                    <td>The name of the component or material.</td>
+                                    <td>xsd:string</td>
+                                    <td><a href="https://dpp-keystone.org/spec/v1/terms#name">dppk:name</a></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Name (dppk:name)</td>
                                     <td>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</td>
                                     <td>rdf:langString</td>
-                                    <td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                                    <td></td><td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Weight Percentage (dppk:weightPercentage)</td>
                                     <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Value (dppk:value)</td>
                                     <td>The numeric value of the measurement.</td>
-                                    <td>xsd:decimal</td>
-                                    <td><a href="https://schema.org/value">schema:value</a>, <a href="https://ref.gs1.org/voc/value">gs1:value</a>, <a href="https://vocabulary.uncefact.org/unitQuantity">unece:unitQuantity</a></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td><a href="https://schema.org/value">schema:value</a>, <a href="https://ref.gs1.org/voc/value">gs1:value</a>, <a href="https://vocabulary.uncefact.org/unitQuantity">unece:unitQuantity</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Unit Code (dppk:unitCode)</td>
                                     <td>The unit of measurement, preferably using UN/CEFACT codes (e.g., KGM, MTR, LTR).</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://schema.org/unitCode">schema:unitCode</a>, <a href="https://ref.gs1.org/voc/unitCode">gs1:unitCode</a>, <a href="https://vocabulary.uncefact.org/QuantityTypeCode">unece:QuantityTypeCode</a></td>
+                                    <td></td><td><a href="https://schema.org/unitCode">schema:unitCode</a>, <a href="https://ref.gs1.org/voc/unitCode">gs1:unitCode</a>, <a href="https://vocabulary.uncefact.org/QuantityTypeCode">unece:QuantityTypeCode</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Unit Text (dppk:unitText)</td>
                                     <td>A human-readable representation of the unit (e.g., kg CO2e, Nm).</td>
                                     <td>xsd:string</td>
-                                    <td><a href="https://schema.org/unitText">schema:unitText</a></td>
+                                    <td></td><td><a href="https://schema.org/unitText">schema:unitText</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../../sectors/Textile/index.html#cycles">Cycles</a> (dppk:cycles)</td>
                                     <td>Number of cycles (e.g., rubs) withstanded.</td>
                                     <td>xsd:integer</td>
-                                    <td></td>
+                                    <td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../../sectors/Textile/index.html#warpChange">Warp Change</a> (dppk:warpChange)</td>
                                     <td>Dimensional change in the warp (length) direction.</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../../sectors/Textile/index.html#weftChange">Weft Change</a> (dppk:weftChange)</td>
                                     <td>Dimensional change in the weft (width) direction.</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../../sectors/Textile/index.html#grade">Grade</a> (dppk:grade)</td>
                                     <td>The specific grade or value achieved (e.g. 1-5 scale).</td>
-                                    <td>xsd:decimal</td>
-                                    <td></td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td>
                                 </tr>
                             
                         </tbody>

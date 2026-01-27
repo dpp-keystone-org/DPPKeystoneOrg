@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Capacity, Energy and Voltage</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Capacity, Energy and Voltage (dppk:CapacityInfo)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="CapacityInfo">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class CapacityInfo
+  CapacityInfo : +ratedCapacity
+  CapacityInfo : +remainingCapacity
+  CapacityInfo : +capacityFade
+  CapacityInfo : +certifiedUsableEnergy
+  CapacityInfo : +remainingUsableEnergy
+  CapacityInfo : +soce
+  CapacityInfo : +stateOfCharge
+  CapacityInfo : +voltageMinimum
+  CapacityInfo : +voltageMaximum
+  CapacityInfo : +voltageNominal
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Information regarding the battery's capacity, energy, state of charge, and voltage limits.</p>
+                <p><strong>governedBy:</strong> Annex XIII (1g, 1h, 4d)</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Rated capacity (dppk:ratedCapacity)</td>
+                                    <td>The total number of ampere-hours (Ah) that can be withdrawn from a fully charged battery under reference conditions.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1g); Annex IV Part A (1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Remaining capacity (dppk:remainingCapacity)</td>
+                                    <td>The corresponding in-use data attribute to rated capacity, as information on the state of health of the battery.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex VII Part A (1)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Capacity fade (dppk:capacityFade)</td>
+                                    <td>The decrease over time and upon usage in the amount of charge that a battery can deliver at the rated voltage, with respect to the original rated capacity.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex IV Part A (2)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Certified usable battery energy (dppk:certifiedUsableEnergy)</td>
+                                    <td>The usable battery energy according to the procedure in the UN GTR No 22 as determined during the certification.</td>
+                                    <td>xsd:integer</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Remaining usable battery energy (dppk:remainingUsableEnergy)</td>
+                                    <td>The usable battery energy at the present point in the lifetime of a battery.</td>
+                                    <td>xsd:integer</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>State of certified energy (SOCE) (dppk:soce)</td>
+                                    <td>The measured or on-board usable battery energy performance at a specific point in its lifetime, expressed as a percentage of the certified usable battery energy.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex VII Part A (EV)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>State of Charge (SoC) (dppk:stateOfCharge)</td>
+                                    <td>The available energy or charge in a battery expressed as a percentage of rated capacity.</td>
+                                    <td>xsd:double</td>
+                                    <td>Annex XIII (4d); Article 3 1(27)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Minimum voltage (dppk:voltageMinimum)</td>
+                                    <td>The lower voltage limit that the safe operation of the battery is rated for.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1h)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Maximum voltage (dppk:voltageMaximum)</td>
+                                    <td>The upper voltage limit that the safe operation of the battery is rated for.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1h)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Nominal voltage (dppk:voltageNominal)</td>
+                                    <td>The suitable approximate value of the voltage used to designate or identify the battery.</td>
+                                    <td>xsd:integer</td>
+                                    <td>Annex XIII (1h)</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
