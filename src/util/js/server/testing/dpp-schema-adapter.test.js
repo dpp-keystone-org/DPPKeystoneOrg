@@ -30,7 +30,10 @@ describe('DPP Transformer Library', () => {
     const options = {
         profile: 'schema.org',
         ontologyPaths: [
-            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPD.jsonld')
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPD.jsonld'),
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPDIndicators.jsonld'),
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPDLifecycle.jsonld'),
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPDMetadata.jsonld')
         ],
         documentLoader,
     };

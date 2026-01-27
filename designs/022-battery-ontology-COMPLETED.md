@@ -44,16 +44,16 @@ Overhaul the battery sector schema and ontology based on updated guidance and be
    - Rewrote the SHACL shapes to validate the new ontology structure (BatteryProduct, nested performance, etc.) when `draft_battery_specification_id` is present.
    - Updated property paths to match the new ontology (e.g., `dppk:manufacturingDate`, `dppk:batteryMass`).
 
-2.6 [PENDING] **Fix Test Breakages**
+2.6 [COMPLETED] **Fix Test Breakages**
    - Run relevant tests (unit/integration) and fix any regressions caused by the ontology/schema/context changes.
    - Ensure the new example data passes validation.
 
-2.7 [PENDING] **Wizard Adjustments**
+2.7 [COMPLETED] **Wizard Adjustments**
    - Verify Wizard support for `rdfs:seeAlso` grouping.
    - **New Feature:** Implement UI support for `oneOf` / Union types.
      - User should be able to switch between "Structured Input" and "Upload/Link Resource" modes for fields like `dopc`.
 
-2.8 [PENDING] **Verify & Cleanup**
+2.8 [COMPLETED] **Verify & Cleanup**
    - Run ontology integrity scripts.
    - Verify the generated Wizard form against the new schema.
 

@@ -25,7 +25,6 @@
     { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld" },
     { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/DoPC.jsonld" }
   ],
-
   "@graph": [
     {
       "@id": "dppk:ConstructionProduct",
@@ -67,314 +66,308 @@
       "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:DeclarationOfPerformance",
-        "@type": "rdfs:Class",
-        "rdfs:label": [
-            { "@language": "en", "@value": "Declaration of Performance (DoP)" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product." }
-        ],
-        "rdfs:subClassOf": { "@id": "dppk:DigitalDocument" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:DeclarationOfPerformance",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        { "@language": "en", "@value": "Declaration of Performance (DoP)" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product." }
+      ],
+      "rdfs:subClassOf": { "@id": "dppk:DigitalDocument" },
+      "rdfs:term_status": "unstable"
     },
-
     {
-        "@id": "dppk:hasDoP",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "Has Declaration of Performance" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "Relates the construction product to its Declaration of Performance." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:DeclarationOfPerformance" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:hasDoP",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "Has Declaration of Performance" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "Relates the construction product to its Declaration of Performance." }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "dppk:DeclarationOfPerformance" },
+      "rdfs:term_status": "unstable"
     },
-
     {
-        "@id": "dppk:dopIdentifier",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "DoP Identifier" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The unique identification code of the Declaration of Performance." }
-        ],
-        "rdfs:domain": { "@id": "dppk:DeclarationOfPerformance" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:dopIdentifier",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "DoP Identifier" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The unique identification code of the Declaration of Performance." }
+      ],
+      "rdfs:domain": { "@id": "dppk:DeclarationOfPerformance" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     },
-
     {
-        "@id": "dppk:harmonisedStandardReference",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "bg", "@value": "Хармонизиран европейски стандарт (hEN)" },
-            { "@language": "cs", "@value": "Harmonizovaná evropská norma (hEN)" },
-            { "@language": "da", "@value": "Harmoniseret europæisk standard (hEN)" },
-            { "@language": "de", "@value": "Harmonisierte Europäische Norm (hEN)" },
-            { "@language": "el", "@value": "Εναρμονισμένο ευρωπαϊκό πρότυπο (hEN)" },
-            { "@language": "en", "@value": "Harmonised European Standard (hEN)" },
-            { "@language": "es", "@value": "Norma europea armonizada (hEN)" },
-            { "@language": "et", "@value": "Harmoneeritud Euroopa standard (hEN)" },
-            { "@language": "fi", "@value": "Yhdenmukaistettu eurooppalainen standardi (hEN)" },
-            { "@language": "fr", "@value": "Norme européenne harmonisée (hEN)" },
-            { "@language": "ga", "@value": "Caighdeán Eorpach Comhchuibhithe (hEN)" },
-            { "@language": "hr", "@value": "Usklađena europska norma (hEN)" },
-            { "@language": "hu", "@value": "Harmonizált európai szabvány (hEN)" },
-            { "@language": "it", "@value": "Norma europea armonizzata (hEN)" },
-            { "@language": "lt", "@value": "Darnusis Europos standartas (hEN)" },
-            { "@language": "lv", "@value": "Saskaņotais Eiropas standarts (hEN)" },
-            { "@language": "mt", "@value": "Standard Ewropew Armonizzat (hEN)" },
-            { "@language": "nl", "@value": "Geharmoniseerde Europese norm (hEN)" },
-            { "@language": "pl", "@value": "Zharmonizowana norma europejska (hEN)" },
-            { "@language": "pt", "@value": "Norma Europeia Harmonizada (hEN)" },
-            { "@language": "ro", "@value": "Standard european armonizat (hEN)" },
-            { "@language": "sk", "@value": "Harmonizovaná európska norma (hEN)" },
-            { "@language": "sl", "@value": "Harmonizirani evropski standard (hEN)" },
-            { "@language": "sv", "@value": "Harmoniserad europeisk standard (hEN)" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:anyURI" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:harmonisedStandardReference",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "bg", "@value": "Хармонизиран европейски стандарт (hEN)" },
+        { "@language": "cs", "@value": "Harmonizovaná evropská norma (hEN)" },
+        { "@language": "da", "@value": "Harmoniseret europæisk standard (hEN)" },
+        { "@language": "de", "@value": "Harmonisierte Europäische Norm (hEN)" },
+        { "@language": "el", "@value": "Εναρμονισμένο ευρωπαϊκό πρότυπο (hEN)" },
+        { "@language": "en", "@value": "Harmonised European Standard (hEN)" },
+        { "@language": "es", "@value": "Norma europea armonizada (hEN)" },
+        { "@language": "et", "@value": "Harmoneeritud Euroopa standard (hEN)" },
+        { "@language": "fi", "@value": "Yhdenmukaistettu eurooppalainen standardi (hEN)" },
+        { "@language": "fr", "@value": "Norme européenne harmonisée (hEN)" },
+        { "@language": "ga", "@value": "Caighdeán Eorpach Comhchuibhithe (hEN)" },
+        { "@language": "hr", "@value": "Usklađena europska norma (hEN)" },
+        { "@language": "hu", "@value": "Harmonizált európai szabvány (hEN)" },
+        { "@language": "it", "@value": "Norma europea armonizzata (hEN)" },
+        { "@language": "lt", "@value": "Darnusis Europos standartas (hEN)" },
+        { "@language": "lv", "@value": "Saskaņotais Eiropas standarts (hEN)" },
+        { "@language": "mt", "@value": "Standard Ewropew Armonizzat (hEN)" },
+        { "@language": "nl", "@value": "Geharmoniseerde Europese norm (hEN)" },
+        { "@language": "pl", "@value": "Zharmonizowana norma europejska (hEN)" },
+        { "@language": "pt", "@value": "Norma Europeia Harmonizada (hEN)" },
+        { "@language": "ro", "@value": "Standard european armonizat (hEN)" },
+        { "@language": "sk", "@value": "Harmonizovaná európska norma (hEN)" },
+        { "@language": "sl", "@value": "Harmonizirani evropski standard (hEN)" },
+        { "@language": "sv", "@value": "Harmoniserad europeisk standard (hEN)" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product." }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "xsd:anyURI" },
+      "rdfs:term_status": "unstable"
     },
-
     {
-        "@id": "dppk:avsSystem",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "AVCP System" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4)." }
-        ],
+      "@id": "dppk:avsSystem",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "AVCP System" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4)." }
+      ],
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
         "rdfs:label": "CPR - Annex V"
       },
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:notifiedBody",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "bg", "@value": "Подробности за нотифицирания орган (NB)" },
-            { "@language": "cs", "@value": "Podrobnosti o oznámeném subjektu (NB)" },
-            { "@language": "da", "@value": "Oplysninger om bemyndiget organ (NB)" },
-            { "@language": "de", "@value": "Angaben zur notifizierten Stelle (NB)" },
-            { "@language": "el", "@value": "Στοιχεία κοινοποιημένου οργανισμού (NB)" },
-            { "@language": "en", "@value": "Notified Body (NB) Details" },
-            { "@language": "es", "@value": "Detalles del Organismo Notificado (NB)" },
-            { "@language": "et", "@value": "Teavitatud asutuse (NB) üksikasjad" },
-            { "@language": "fi", "@value": "Ilmoitetun laitoksen (NB) tiedot" },
-            { "@language": "fr", "@value": "Détails de l'organisme notifié (ON)" },
-            { "@language": "ga", "@value": "Sonraí an Chomhlachta a dtugtar Fógra dó (NB)" },
-            { "@language": "hr", "@value": "Pojedinosti o prijavljenom tijelu (NB)" },
-            { "@language": "hu", "@value": "Bejelentett szervezet (NB) adatai" },
-            { "@language": "it", "@value": "Dettagli dell'organismo notificato (ON)" },
-            { "@language": "lt", "@value": "Notifikuotosios įstaigos (NB) duomenys" },
-            { "@language": "lv", "@value": "Informācija par paziņoto iestādi (NB)" },
-            { "@language": "mt", "@value": "Dettalji tal-Korp Notifikat (NB)" },
-            { "@language": "nl", "@value": "Gegevens aangemelde instantie (NB)" },
-            { "@language": "pl", "@value": "Szczegóły jednostki notyfikowanej (NB)" },
-            { "@language": "pt", "@value": "Detalhes do Organismo Notificado (ON)" },
-            { "@language": "ro", "@value": "Detalii organism notificat (ON)" },
-            { "@language": "sk", "@value": "Podrobnosti o notifikovanej osobe (NB)" },
-            { "@language": "sl", "@value": "Podrobnosti o priglašenem organu (NB)" },
-            { "@language": "sv", "@value": "Information om anmält organ (NB)" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The EU-recognized notified body that verifies a product's conformance to European regulations" }
-        ],
-        "dcterms:source": {
-            "@id": "https://single-market-economy.ec.europa.eu/sectors/construction/construction-products-regulation-cpr/notified-bodies_en",
-            "rdfs:label": "Notified bodies - Internal Market, Industry, Entrepreneurship and SMEs"
-        },
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:Organization" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:notifiedBody",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "bg", "@value": "Подробности за нотифицирания орган (NB)" },
+        { "@language": "cs", "@value": "Podrobnosti o oznámeném subjektu (NB)" },
+        { "@language": "da", "@value": "Oplysninger om bemyndiget organ (NB)" },
+        { "@language": "de", "@value": "Angaben zur notifizierten Stelle (NB)" },
+        { "@language": "el", "@value": "Στοιχεία κοινοποιημένου οργανισμού (NB)" },
+        { "@language": "en", "@value": "Notified Body (NB) Details" },
+        { "@language": "es", "@value": "Detalles del Organismo Notificado (NB)" },
+        { "@language": "et", "@value": "Teavitatud asutuse (NB) üksikasjad" },
+        { "@language": "fi", "@value": "Ilmoitetun laitoksen (NB) tiedot" },
+        { "@language": "fr", "@value": "Détails de l'organisme notifié (ON)" },
+        { "@language": "ga", "@value": "Sonraí an Chomhlachta a dtugtar Fógra dó (NB)" },
+        { "@language": "hr", "@value": "Pojedinosti o prijavljenom tijelu (NB)" },
+        { "@language": "hu", "@value": "Bejelentett szervezet (NB) adatai" },
+        { "@language": "it", "@value": "Dettagli dell'organismo notificato (ON)" },
+        { "@language": "lt", "@value": "Notifikuotosios įstaigos (NB) duomenys" },
+        { "@language": "lv", "@value": "Informācija par paziņoto iestādi (NB)" },
+        { "@language": "mt", "@value": "Dettalji tal-Korp Notifikat (NB)" },
+        { "@language": "nl", "@value": "Gegevens aangemelde instantie (NB)" },
+        { "@language": "pl", "@value": "Szczegóły jednostki notyfikowanej (NB)" },
+        { "@language": "pt", "@value": "Detalhes do Organismo Notificado (ON)" },
+        { "@language": "ro", "@value": "Detalii organism notificat (ON)" },
+        { "@language": "sk", "@value": "Podrobnosti o notifikovanej osobe (NB)" },
+        { "@language": "sl", "@value": "Podrobnosti o priglašenem organu (NB)" },
+        { "@language": "sv", "@value": "Information om anmält organ (NB)" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The EU-recognized notified body that verifies a product's conformance to European regulations" }
+      ],
+      "dcterms:source": {
+        "@id": "https://single-market-economy.ec.europa.eu/sectors/construction/construction-products-regulation-cpr/notified-bodies_en",
+        "rdfs:label": "Notified bodies - Internal Market, Industry, Entrepreneurship and SMEs"
+      },
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "dppk:Organization" },
+      "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:technicalAssessmentBody",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "bg", "@value": "Подробности за органа за техническа оценка (TAB)" },
-            { "@language": "cs", "@value": "Podrobnosti o subjektu pro technické posuzování (TAB)" },
-            { "@language": "da", "@value": "Oplysninger om teknisk vurderingsorgan (TAB)" },
-            { "@language": "de", "@value": "Angaben zur Technischen Bewertungsstelle (TAB)" },
-            { "@language": "el", "@value": "Στοιχεία οργανισμού τεχνικής αξιολόγησης (TAB)" },
-            { "@language": "en", "@value": "Technical Assessment Body (TAB) Details" },
-            { "@language": "es", "@value": "Detalles del Organismo de Evaluación Técnica (TAB)" },
-            { "@language": "et", "@value": "Tehnilise hindamise asutuse (TAB) üksikasjad" },
-            { "@language": "fi", "@value": "Teknisestä arviointilaitoksesta (TAB) annettavat tiedot" },
-            { "@language": "fr", "@value": "Détails de l'organisme d'évaluation technique (OET)" },
-            { "@language": "ga", "@value": "Sonraí an Chomhlachta um Measúnú Teicniúil (TAB)" },
-            { "@language": "hr", "@value": "Pojedinosti o tijelu za tehničko ocjenjivanje (TAB)" },
-            { "@language": "hu", "@value": "Műszaki értékelő szervezet (TAB) adatai" },
-            { "@language": "it", "@value": "Dettagli dell'organismo di valutazione tecnica (TAB)" },
-            { "@language": "lt", "@value": "Techninio vertinimo įstaigos (TAB) duomenys" },
-            { "@language": "lv", "@value": "Informācija par tehniskā novērtējuma iestādi (TAB)" },
-            { "@language": "mt", "@value": "Dettalji tal-Korp tal-Valutazzjoni Teknika (TAB)" },
-            { "@language": "nl", "@value": "Gegevens technische beoordelingsinstantie (TAB)" },
-            { "@language": "pl", "@value": "Szczegóły jednostki oceny technicznej (JOT)" },
-            { "@language": "pt", "@value": "Detalhes do Organismo de Avaliação Técnica (OET)" },
-            { "@language": "ro", "@value": "Detalii organism de evaluare tehnică (TAB)" },
-            { "@language": "sk", "@value": "Podrobnosti o orgáne pre technické posudzovanie (TAB)" },
-            { "@language": "sl", "@value": "Podrobnosti o organu za tehnično ocenjevanje (TAB)" },
-            { "@language": "sv", "@value": "Information om tekniskt bedömningsorgan (TAB)" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The technical assessment body that independently evaluates a product's technical characteristics" }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:Organization" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:technicalAssessmentBody",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "bg", "@value": "Подробности за органа за техническа оценка (TAB)" },
+        { "@language": "cs", "@value": "Podrobnosti o subjektu pro technické posuzování (TAB)" },
+        { "@language": "da", "@value": "Oplysninger om teknisk vurderingsorgan (TAB)" },
+        { "@language": "de", "@value": "Angaben zur Technischen Bewertungsstelle (TAB)" },
+        { "@language": "el", "@value": "Στοιχεία οργανισμού τεχνικής αξιολόγησης (TAB)" },
+        { "@language": "en", "@value": "Technical Assessment Body (TAB) Details" },
+        { "@language": "es", "@value": "Detalles del Organismo de Evaluación Técnica (TAB)" },
+        { "@language": "et", "@value": "Tehnilise hindamise asutuse (TAB) üksikasjad" },
+        { "@language": "fi", "@value": "Teknisestä arviointilaitoksesta (TAB) annettavat tiedot" },
+        { "@language": "fr", "@value": "Détails de l'organisme d'évaluation technique (OET)" },
+        { "@language": "ga", "@value": "Sonraí an Chomhlachta um Measúnú Teicniúil (TAB)" },
+        { "@language": "hr", "@value": "Pojedinosti o tijelu za tehničko ocjenjivanje (TAB)" },
+        { "@language": "hu", "@value": "Műszaki értékelő szervezet (TAB) adatai" },
+        { "@language": "it", "@value": "Dettagli dell'organismo di valutazione tecnica (TAB)" },
+        { "@language": "lt", "@value": "Techninio vertinimo įstaigos (TAB) duomenys" },
+        { "@language": "lv", "@value": "Informācija par tehniskā novērtējuma iestādi (TAB)" },
+        { "@language": "mt", "@value": "Dettalji tal-Korp tal-Valutazzjoni Teknika (TAB)" },
+        { "@language": "nl", "@value": "Gegevens technische beoordelingsinstantie (TAB)" },
+        { "@language": "pl", "@value": "Szczegóły jednostki oceny technicznej (JOT)" },
+        { "@language": "pt", "@value": "Detalhes do Organismo de Avaliação Técnica (OET)" },
+        { "@language": "ro", "@value": "Detalii organism de evaluare tehnică (TAB)" },
+        { "@language": "sk", "@value": "Podrobnosti o orgáne pre technické posudzovanie (TAB)" },
+        { "@language": "sl", "@value": "Podrobnosti o organu za tehnično ocenjevanje (TAB)" },
+        { "@language": "sv", "@value": "Information om tekniskt bedömningsorgan (TAB)" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The technical assessment body that independently evaluates a product's technical characteristics" }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "dppk:Organization" },
+      "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:validationReports",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "bg", "@value": "Референтни доклади за валидиране" },
-            { "@language": "cs", "@value": "Reference na validační zprávy" },
-            { "@language": "da", "@value": "Reference til valideringsrapporter" },
-            { "@language": "de", "@value": "Verweis auf Validierungsberichte" },
-            { "@language": "el", "@value": "Αναφορά εκθέσεων επικύρωσης" },
-            { "@language": "en", "@value": "Validation Reports Reference" },
-            { "@language": "es", "@value": "Referencia de informes de validación" },
-            { "@language": "et", "@value": "Valideerimisaruannete viide" },
-            { "@language": "fi", "@value": "Validointiraporttien viite" },
-            { "@language": "fr", "@value": "Référence des rapports de validation" },
-            { "@language": "ga", "@value": "Tagairt Tuarascálacha Bailíochtaithe" },
-            { "@language": "hr", "@value": "Referenca izvješća o validaciji" },
-            { "@language": "hu", "@value": "Érvényesítési jelentések hivatkozása" },
-            { "@language": "it", "@value": "Riferimento ai rapporti di convalida" },
-            { "@language": "lt", "@value": "Patvirtinimo ataskaitų nuoroda" },
-            { "@language": "lv", "@value": "Validācijas ziņojumu atsauce" },
-            { "@language": "mt", "@value": "Referenza tar-Rapporti ta' Validazzjoni" },
-            { "@language": "nl", "@value": "Referentie validatierapporten" },
-            { "@language": "pl", "@value": "Odniesienie do raportów walidacyjnych" },
-            { "@language": "pt", "@value": "Referência dos relatórios de validação" },
-            { "@language": "ro", "@value": "Referință rapoarte de validare" },
-            { "@language": "sk", "@value": "Odkaz na validačné správy" },
-            { "@language": "sl", "@value": "Referenca poročil o validaciji" },
-            { "@language": "sv", "@value": "Referens till valideringsrapporter" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "Reference to reports validating the performance or conformity of the product." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:RelatedResource" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:validationReports",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "bg", "@value": "Референтни доклади за валидиране" },
+        { "@language": "cs", "@value": "Reference na validační zprávy" },
+        { "@language": "da", "@value": "Reference til valideringsrapporter" },
+        { "@language": "de", "@value": "Verweis auf Validierungsberichte" },
+        { "@language": "el", "@value": "Αναφορά εκθέσεων επικύρωσης" },
+        { "@language": "en", "@value": "Validation Reports Reference" },
+        { "@language": "es", "@value": "Referencia de informes de validación" },
+        { "@language": "et", "@value": "Valideerimisaruannete viide" },
+        { "@language": "fi", "@value": "Validointiraporttien viite" },
+        { "@language": "fr", "@value": "Référence des rapports de validation" },
+        { "@language": "ga", "@value": "Tagairt Tuarascálacha Bailíochtaithe" },
+        { "@language": "hr", "@value": "Referenca izvješća o validaciji" },
+        { "@language": "hu", "@value": "Érvényesítési jelentések hivatkozása" },
+        { "@language": "it", "@value": "Riferimento ai rapporti di convalida" },
+        { "@language": "lt", "@value": "Patvirtinimo ataskaitų nuoroda" },
+        { "@language": "lv", "@value": "Validācijas ziņojumu atsauce" },
+        { "@language": "mt", "@value": "Referenza tar-Rapporti ta' Validazzjoni" },
+        { "@language": "nl", "@value": "Referentie validatierapporten" },
+        { "@language": "pl", "@value": "Odniesienie do raportów walidacyjnych" },
+        { "@language": "pt", "@value": "Referência dos relatórios de validação" },
+        { "@language": "ro", "@value": "Referință rapoarte de validare" },
+        { "@language": "sk", "@value": "Odkaz na validačné správy" },
+        { "@language": "sl", "@value": "Referenca poročil o validaciji" },
+        { "@language": "sv", "@value": "Referens till valideringsrapporter" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "Reference to reports validating the performance or conformity of the product." }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:europeanAssessmentDocument",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "bg", "@value": "Референтен европейски документ за оценяване (EAD)" },
-            { "@language": "cs", "@value": "Reference na evropský dokument pro posuzování (EAD)" },
-            { "@language": "da", "@value": "Reference til europæisk vurderingsdokument (EAD)" },
-            { "@language": "de", "@value": "Verweis auf Europäisches Bewertungsdokument (EAD)" },
-            { "@language": "el", "@value": "Αναφορά ευρωπαϊκού εγγράφου αξιολόγησης (EAD)" },
-            { "@language": "en", "@value": "European Assessment Document (EAD) Reference" },
-            { "@language": "es", "@value": "Referencia del Documento de Evaluación Europeo (EAD)" },
-            { "@language": "et", "@value": "Euroopa hindamisdokumendi (EAD) viide" },
-            { "@language": "fi", "@value": "Eurooppalaisen arviointiasiakirjan (EAD) viite" },
-            { "@language": "fr", "@value": "Référence du document d'évaluation européen (DEE)" },
-            { "@language": "ga", "@value": "Tagairt an Doiciméid Measúnaithe Eorpaigh (EAD)" },
-            { "@language": "hr", "@value": "Referenca europskog dokumenta za ocjenjivanje (EAD)" },
-            { "@language": "hu", "@value": "Európai értékelési dokumentum (EAD) hivatkozása" },
-            { "@language": "it", "@value": "Riferimento al documento per la valutazione europea (EAD)" },
-            { "@language": "lt", "@value": "Europos vertinimo dokumento (EAD) nuoroda" },
-            { "@language": "lv", "@value": "Eiropas novērtējuma dokumenta (EAD) atsauce" },
-            { "@language": "mt", "@value": "Referenza tad-Dokument ta' Valutazzjoni Ewropew (EAD)" },
-            { "@language": "nl", "@value": "Referentie Europees beoordelingsdocument (EAD)" },
-            { "@language": "pl", "@value": "Odniesienie do europejskiego dokumentu oceny (EAD)" },
-            { "@language": "pt", "@value": "Referência do Documento de Avaliação Europeu (EAD)" },
-            { "@language": "ro", "@value": "Referință document de evaluare european (EAD)" },
-            { "@language": "sk", "@value": "Odkaz na európsky hodnotiaci dokument (EAD)" },
-            { "@language": "sl", "@value": "Referenca evropskega ocenjevalnega dokumenta (EAD)" },
-            { "@language": "sv", "@value": "Referens till europeiskt bedömningsdokument (EAD)" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "A reference to the European Assessment Document (EAD) relevant to the product." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:RelatedResource" },
-        "rdfs:term_status": "unstable"
-    },
-
-    {
-        "@id": "dppk:reactionToFire",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "Reaction to Fire" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The classification of the product's contribution to fire (Euroclass)." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:europeanAssessmentDocument",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "bg", "@value": "Референтен европейски документ за оценяване (EAD)" },
+        { "@language": "cs", "@value": "Reference na evropský dokument pro posuzování (EAD)" },
+        { "@language": "da", "@value": "Reference til europæisk vurderingsdokument (EAD)" },
+        { "@language": "de", "@value": "Verweis auf Europäisches Bewertungsdokument (EAD)" },
+        { "@language": "el", "@value": "Αναφορά ευρωπαϊκού εγγράφου αξιολόγησης (EAD)" },
+        { "@language": "en", "@value": "European Assessment Document (EAD) Reference" },
+        { "@language": "es", "@value": "Referencia del Documento de Evaluación Europeo (EAD)" },
+        { "@language": "et", "@value": "Euroopa hindamisdokumendi (EAD) viide" },
+        { "@language": "fi", "@value": "Eurooppalaisen arviointiasiakirjan (EAD) viite" },
+        { "@language": "fr", "@value": "Référence du document d'évaluation européen (DEE)" },
+        { "@language": "ga", "@value": "Tagairt an Doiciméid Measúnaithe Eorpaigh (EAD)" },
+        { "@language": "hr", "@value": "Referenca europskog dokumenta za ocjenjivanje (EAD)" },
+        { "@language": "hu", "@value": "Európai értékelési dokumentum (EAD) hivatkozása" },
+        { "@language": "it", "@value": "Riferimento al documento per la valutazione europea (EAD)" },
+        { "@language": "lt", "@value": "Europos vertinimo dokumento (EAD) nuoroda" },
+        { "@language": "lv", "@value": "Eiropas novērtējuma dokumenta (EAD) atsauce" },
+        { "@language": "mt", "@value": "Referenza tad-Dokument ta' Valutazzjoni Ewropew (EAD)" },
+        { "@language": "nl", "@value": "Referentie Europees beoordelingsdocument (EAD)" },
+        { "@language": "pl", "@value": "Odniesienie do europejskiego dokumentu oceny (EAD)" },
+        { "@language": "pt", "@value": "Referência do Documento de Avaliação Europeu (EAD)" },
+        { "@language": "ro", "@value": "Referință document de evaluare european (EAD)" },
+        { "@language": "sk", "@value": "Odkaz na európsky hodnotiaci dokument (EAD)" },
+        { "@language": "sl", "@value": "Referenca evropskega ocenjevalnega dokumenta (EAD)" },
+        { "@language": "sv", "@value": "Referens till europeiskt bedömningsdokument (EAD)" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "A reference to the European Assessment Document (EAD) relevant to the product." }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:thermalConductivity",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "Thermal Conductivity (Lambda)" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The property of a material to conduct heat." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:reactionToFire",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "Reaction to Fire" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The classification of the product's contribution to fire (Euroclass)." }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:compressiveStrength",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "Compressive Strength" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The capacity of a material or structure to withstand loads tending to reduce size." }
-        ],
-        "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:term_status": "unstable"
-    },
-
-    {
-        "@id": "dppk:steelGrade",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "Steel Grade" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The classification of the steel based on its composition and physical properties (e.g., R260, S355)." }
-        ],
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:thermalConductivity",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "Thermal Conductivity (Lambda)" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The property of a material to conduct heat." }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+      "rdfs:term_status": "unstable"
     },
     {
-        "@id": "dppk:railProfile",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [
-            { "@language": "en", "@value": "Rail Profile" }
-        ],
-        "rdfs:comment": [
-            { "@language": "en", "@value": "The standardized cross-section design of a railway rail (e.g., 46E1)." }
-        ],
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+      "@id": "dppk:compressiveStrength",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "Compressive Strength" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The capacity of a material or structure to withstand loads tending to reduce size." }
+      ],
+      "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
+      "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:steelGrade",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "Steel Grade" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The classification of the steel based on its composition and physical properties (e.g., R260, S355)." }
+      ],
+      "rdfs:domain": { "@id": "dppk:Product" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:railProfile",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        { "@language": "en", "@value": "Rail Profile" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The standardized cross-section design of a railway rail (e.g., 46E1)." }
+      ],
+      "rdfs:domain": { "@id": "dppk:Product" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:term_status": "unstable"
     }
   ]
 }

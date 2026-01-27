@@ -17,12 +17,8 @@
       ],
       "rdfs:comment": "A generic identifier for a resource. It is equivalent to schema:identifier.",
       "rdfs:label": "Identifier",
-      "owl:equivalentProperty": {
-        "@id": "schema:identifier"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      }
+      "owl:equivalentProperty": { "@id": "schema:identifier" },
+      "rdfs:range": { "@id": "xsd:string" }
     }
   ]
 }
