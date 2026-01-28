@@ -1,7 +1,7 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1769601990225';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1769605912385';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1769601990225';
-import { generateHTML } from '../lib/html-generator.js?v=1769601990225';
+import { EXAMPLES } from '../lib/example-registry.js?v=1769605912385';
+import { generateHTML } from '../lib/html-generator.js?v=1769605912385';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/
