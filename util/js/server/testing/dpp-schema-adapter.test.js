@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import the function to be tested
-import { transformDpp } from '../dpp-schema-adapter.js?v=1769506534837';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1769601990225';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,7 +30,10 @@ describe('DPP Transformer Library', () => {
     const options = {
         profile: 'schema.org',
         ontologyPaths: [
-            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPD.jsonld')
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPD.jsonld'),
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPDIndicators.jsonld'),
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPDLifecycle.jsonld'),
+            path.resolve(__dirname, '../../../../../src/ontology/v1/core/EPDMetadata.jsonld')
         ],
         documentLoader,
     };

@@ -17,7 +17,7 @@
         <header>
             <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
-                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Environmental Product Declaration (EPD)</a></h1>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - EPD Metadata</a></h1>
                 <h2 style="margin: 0; color: var(--text-light);">Class: Impact Values (dppk:ImpactValues)</h2>
             </div>
         </header>
@@ -31,6 +31,14 @@
   ImpactValues : +a2
   ImpactValues : +a3
   ImpactValues : +a4
+  ImpactValues : +a5
+  ImpactValues : +b1
+  ImpactValues : +b2
+  ImpactValues : +b3
+  ImpactValues : +b4
+  ImpactValues : +b5
+  ImpactValues : +b6
+  ImpactValues : +b7
   ImpactValues : +c1
   ImpactValues : +c2
   ImpactValues : +c3
@@ -42,7 +50,7 @@
 
                 <h4>Attributes</h4>
                 <p>A class to hold the values for a single environmental impact indicator across different life cycle stages.</p>
-                <p><strong>governedBy:</strong> EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019, EN 15804:2012+A2:2019</p>
+                
 
                 
                     <h4>Properties</h4>
@@ -58,70 +66,126 @@
                         <tbody>
                             
                                 <tr>
-                                    <td>A1: Raw material supply (dppk:a1)</td>
+                                    <td><a href="../EPDLifecycle/index.html#a1">A1: Raw material supply</a> (dppk:a1)</td>
                                     <td>Upstream A1 (Raw Material Supply)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>A2: Transport (dppk:a2)</td>
+                                    <td><a href="../EPDLifecycle/index.html#a2">A2: Transport</a> (dppk:a2)</td>
                                     <td>Core Process A2 (Transport to Manufacturing)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>A3: Manufacturing (dppk:a3)</td>
+                                    <td><a href="../EPDLifecycle/index.html#a3">A3: Manufacturing</a> (dppk:a3)</td>
                                     <td>Core Process A3 (Manufacturing)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>A4: Transport (dppk:a4)</td>
+                                    <td><a href="../EPDLifecycle/index.html#a4">A4: Transport</a> (dppk:a4)</td>
                                     <td>Downstream A4 (Transport to Site)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>C1: Deconstruction / Demolition (dppk:c1)</td>
+                                    <td><a href="../EPDLifecycle/index.html#a5">A5: Construction installation</a> (dppk:a5)</td>
+                                    <td>Core Process A5 (Construction Installation)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#b1">B1: Use</a> (dppk:b1)</td>
+                                    <td>Use Stage B1 (Use)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#b2">B2: Maintenance</a> (dppk:b2)</td>
+                                    <td>Use Stage B2 (Maintenance)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#b3">B3: Repair</a> (dppk:b3)</td>
+                                    <td>Use Stage B3 (Repair)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#b4">B4: Replacement</a> (dppk:b4)</td>
+                                    <td>Use Stage B4 (Replacement)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#b5">B5: Refurbishment</a> (dppk:b5)</td>
+                                    <td>Use Stage B5 (Refurbishment)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#b6">B6: Operational energy use</a> (dppk:b6)</td>
+                                    <td>Use Stage B6 (Operational Energy Use)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#b7">B7: Operational water use</a> (dppk:b7)</td>
+                                    <td>Use Stage B7 (Operational Water Use)</td>
+                                    <td>xsd:double</td>
+                                    <td><a href="http://schema.org/value">schema:value</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDLifecycle/index.html#c1">C1: Deconstruction / Demolition</a> (dppk:c1)</td>
                                     <td>Downstream C1 (Deconstruction)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>C2: Transport (dppk:c2)</td>
+                                    <td><a href="../EPDLifecycle/index.html#c2">C2: Transport</a> (dppk:c2)</td>
                                     <td>Downstream C2 (Transport to Waste Processing)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>C3: Waste processing (dppk:c3)</td>
+                                    <td><a href="../EPDLifecycle/index.html#c3">C3: Waste processing</a> (dppk:c3)</td>
                                     <td>Downstream C3 (Waste Processing)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>C4: Disposal (dppk:c4)</td>
+                                    <td><a href="../EPDLifecycle/index.html#c4">C4: Disposal</a> (dppk:c4)</td>
                                     <td>Downstream C4 (Disposal)</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>D: Reuse, recovery, recycling potential (dppk:d)</td>
-                                    <td>D</td>
+                                    <td><a href="../EPDLifecycle/index.html#d">D: Reuse, recovery, recycling potential</a> (dppk:d)</td>
+                                    <td>Reuse, recovery, recycling potential</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Total (dppk:total)</td>
+                                    <td><a href="../EPDLifecycle/index.html#total">Total</a> (dppk:total)</td>
                                     <td>Total</td>
                                     <td>xsd:double</td>
                                     <td><a href="http://schema.org/value">schema:value</a></td>

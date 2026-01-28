@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { transformDpp } from '../dpp-schema-adapter.js?v=1769506534837';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1769601990225';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { parse as jsoncParse } from 'jsonc-parser';
@@ -17,6 +17,9 @@ const readFixture = async (filePath) => {
 describe('Client-side DPP Transformer', () => {
     let productDoc;
     let epdOntology;
+    let epdIndicators;
+    let epdLifecycle;
+    let epdMetadata;
     // Store all contexts in a map for easy lookup
     const contexts = new Map();
 
@@ -24,6 +27,9 @@ describe('Client-side DPP Transformer', () => {
         // Load main document and ontology
         productDoc = await readFixture('src/examples/construction-product-dpp-v1.json');
         epdOntology = await readFixture('src/ontology/v1/core/EPD.jsonld');
+        epdIndicators = await readFixture('src/ontology/v1/core/EPDIndicators.jsonld');
+        epdLifecycle = await readFixture('src/ontology/v1/core/EPDLifecycle.jsonld');
+        epdMetadata = await readFixture('src/ontology/v1/core/EPDMetadata.jsonld');
         
         // Load all the context files that might be requested
         contexts.set('https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld', await readFixture('src/contexts/v1/dpp-construction.context.jsonld'));
@@ -38,6 +44,12 @@ describe('Client-side DPP Transformer', () => {
             let json;
             if (url.includes('EPD.jsonld')) {
                 json = epdOntology;
+            } else if (url.includes('EPDIndicators.jsonld')) {
+                json = epdIndicators;
+            } else if (url.includes('EPDLifecycle.jsonld')) {
+                json = epdLifecycle;
+            } else if (url.includes('EPDMetadata.jsonld')) {
+                json = epdMetadata;
             } else if (contexts.has(url)) {
                 json = contexts.get(url);
             } else {
@@ -50,7 +62,12 @@ describe('Client-side DPP Transformer', () => {
     it('should transform the EPD data into a single schema.org Certification', async () => {
         const options = {
             profile: 'schema.org',
-            ontologyPaths: ['http://mock.com/EPD.jsonld'],
+            ontologyPaths: [
+                'http://mock.com/EPD.jsonld',
+                'http://mock.com/EPDIndicators.jsonld',
+                'http://mock.com/EPDLifecycle.jsonld',
+                'http://mock.com/EPDMetadata.jsonld'
+            ],
             documentLoader: async (url) => {
                 const response = await fetch(url);
                 if (!response.ok) {
