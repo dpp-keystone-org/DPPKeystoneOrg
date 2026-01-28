@@ -42,10 +42,7 @@
                 "c4": { "type": ["string", "number"] },
                 "total": { "type": ["string", "number"] },
                 "d": { "type": ["string", "number"] }
-            },
-            "required": [
-                "a1", "a2", "a3", "a4", "c1", "c2", "c3", "c4", "total", "d"
-            ]
+            }
         }
     }
 }
