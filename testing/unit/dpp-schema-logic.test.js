@@ -40,7 +40,10 @@ const mockLoader = async (path) => {
 const fullExampleDpp = {
   "@context": [
       "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld"
+      "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld",
+      "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld",
+      "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld",
+      "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld"
   ],
   "@type": "DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:1234-5678-90ab-cdef",
@@ -67,7 +70,7 @@ const fullExampleDpp = {
       }
   ],
   // Dimensions
-  "weight": { "value": 0.2, "unitCode": "KGM" },
+  "netWeight": { "value": 0.2, "unitCode": "KGM" },
   
   // EPD Data
   "epd": {
@@ -255,7 +258,10 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 2.3: Battery Parity ---
     test('Product maps Battery specific fields (Mass, Performance, Dates)', async () => {
         const batteryDpp = {
-            "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+            "@context": [
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld"
+            ],
             "@type": ["DigitalProductPassport", "BatteryProduct"],
             "digitalProductPassportId": "urn:uuid:battery-test",
             "uniqueProductIdentifier": "urn:gtin:battery-test",
@@ -303,7 +309,10 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 3.3: Construction Parity ---
     test('Product maps Construction specific fields (Notified Body, DoP ID)', async () => {
         const constructionDpp = {
-            "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+            "@context": [
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld"
+            ],
             "@type": ["DigitalProductPassport", "ConstructionProduct"],
             "digitalProductPassportId": "urn:uuid:const-test",
             "uniqueProductIdentifier": "urn:gtin:const-test",
@@ -344,7 +353,10 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 5.3: Electronics Parity ---
     test('Product maps Electronics specific fields (IP Rating, Voltage)', async () => {
         const electronicsDpp = {
-            "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+            "@context": [
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld"
+            ],
             "@type": ["DigitalProductPassport", "ElectronicDevice"],
             "digitalProductPassportId": "urn:uuid:elec-test",
             "uniqueProductIdentifier": "urn:gtin:elec-test",
@@ -374,7 +386,10 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 7.3: General Product Parity ---
     test('Product maps General Product specific fields (Color, Country, Length, Certs)', async () => {
         const generalDpp = {
-            "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+            "@context": [
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld"
+            ],
             "@type": "DigitalProductPassport",
             "digitalProductPassportId": "urn:uuid:gen-test",
             "uniqueProductIdentifier": "urn:gtin:gen-test",
@@ -441,7 +456,10 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 8.3: Packaging Parity ---
     test('Product maps Packaging details to hasPart', async () => {
         const packagingDpp = {
-            "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+            "@context": [
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld"
+            ],
             "@type": "DigitalProductPassport",
             "digitalProductPassportId": "urn:uuid:pack-test",
             "uniqueProductIdentifier": "urn:gtin:pack-test",

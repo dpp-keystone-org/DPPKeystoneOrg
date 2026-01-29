@@ -36,7 +36,7 @@ We will methodically iterate through every context definition file in `src/conte
         *   `dppk:batteryMass` -> `schema:weight`.
         *   `dppk:materialComposition` (and Recycled/Hazardous variants) are lists.
         *   Many specific documents (`testReports`, `dismantlingInformation`).
-*   **[ ] Step 2.2: Align**
+*   **[COMPLETED] Step 2.2: Align**
     *   **Mapping Table:**
         *   `dppk:performance` -> Recursive `schema:additionalProperty`.
         *   `dppk:manufacturingDate` -> `schema:productionDate`.
@@ -58,7 +58,7 @@ We will methodically iterate through every context definition file in `src/conte
         *   `dppk:dopIdentifier` / `dopc:declarationCode` -> Identifier.
         *   Specific props (`harmonisedStandardReference`, `avsSystem`) -> `additionalProperty`.
         *   `dppk:reactionToFire` etc. are usually in `dopc` (already handled) but might be root.
-*   **[ ] Step 3.2: Align**
+*   **[COMPLETED] Step 3.2: Align**
     *   **Mapping Table:**
         *   `dppk:notifiedBody` -> `schema:additionalProperty` (Name: "Notified Body", Value: Org Name).
         *   `dppk:dopIdentifier` -> `schema:identifier` (PropertyID: "DoP ID").
@@ -98,14 +98,14 @@ We will methodically iterate through every context definition file in `src/conte
     *   **Gap:**
         *   These are root-level, so generic `dopc` flattening doesn't catch them.
         *   Need explicit mapping to `additionalProperty`.
-*   **[ ] Step 5.2: Align**
+*   **[COMPLETED] Step 5.2: Align**
     *   **Mapping Table:**
         *   `dppk:energyEfficiencyClass` -> `schema:additionalProperty`.
         *   `dppk:ipRating` -> `schema:additionalProperty`.
         *   `dppk:sparePartsAvailable` -> `schema:additionalProperty` (Boolean).
         *   `dppk:torque` -> `schema:additionalProperty` (Name: "Torque").
         *   `dppk:voltage` -> `schema:additionalProperty` (Name: "Voltage").
-*   **[ ] Step 5.3: Test**
+*   **[COMPLETED] Step 5.3: Test**
     *   Update `testing/unit/dpp-schema-logic.test.js` with Electronics fixture.
 *   **[COMPLETED] Step 5.4: Implement**
     *   Add Electronics mappings.
@@ -136,7 +136,7 @@ We will methodically iterate through every context definition file in `src/conte
         *   `dppk:length`: **Gap**. Target `schema:depth` (Standardize L/W/H -> W/H/D).
         *   `dppk:components` (Plural): **Gap**. Core uses `component`. General Product uses `components`. Target `schema:hasPart`.
         *   `dppk:additionalCertifications`: **Gap**. Target `schema:hasCertification`.
-*   **[ ] Step 7.2: Align**
+*   **[COMPLETED] Step 7.2: Align**
     *   **Mapping Table:**
         *   `dppk:color` -> `schema:color`.
         *   `dppk:countryOfOrigin` -> `schema:countryOfOrigin`.
@@ -144,9 +144,9 @@ We will methodically iterate through every context definition file in `src/conte
         *   `dppk:length` -> `schema:depth` (if depth is missing, else ignore or alias).
         *   `dppk:components` -> `schema:hasPart`.
         *   `dppk:additionalCertifications` -> `schema:hasCertification` (Name: Body Name, StartDate, etc.).
-*   **[ ] Step 7.3: Test**
+*   **[COMPLETED] Step 7.3: Test**
     *   Update tests with General Product fixture.
-*   **[ ] Step 7.4: Implement**
+*   **[COMPLETED] Step 7.4: Implement**
     *   Update adapter.
 
 ### 8. Packaging Context (`dpp-packaging.context.jsonld`)
@@ -163,7 +163,7 @@ We will methodically iterate through every context definition file in `src/conte
         *   Schema.org doesn't have a dedicated `packaging` property on Product.
         *   We can map it to `schema:hasPart` where the part has `@type`: `dppk:Packaging` (which we can leave as is, or map to `Product` with a role).
         *   Better: Flatten packaging info into `additionalProperty` if it's small, OR map to `hasPart` objects named "Packaging - [Material]".
-*   **[ ] Step 8.2: Align**
+*   **[COMPLETED] Step 8.2: Align**
     *   **Mapping Table:**
         *   `dppk:packaging` -> `schema:hasPart` (Type: `Product` (conceptually), Name: "Packaging - [Material]").
         *   Inside the packaging part:
@@ -171,9 +171,9 @@ We will methodically iterate through every context definition file in `src/conte
             *   `recyclingProcess` -> `additionalProperty`.
             *   `recycledContent` -> `additionalProperty`.
             *   `quantity` -> `weight`.
-*   **[ ] Step 8.3: Test**
+*   **[COMPLETED] Step 8.3: Test**
     *   Update tests with Packaging fixture.
-*   **[ ] Step 8.4: Implement**
+*   **[COMPLETED] Step 8.4: Implement**
     *   Update adapter.
 
 ### 9. Textile Context (`dpp-textile.context.jsonld`)
