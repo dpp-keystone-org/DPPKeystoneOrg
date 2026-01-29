@@ -12,6 +12,7 @@ import { TextDecoder, TextEncoder } from 'util';
 
 global.TextDecoder = TextDecoder;
 global.TextEncoder = TextEncoder;
+global.setImmediate = global.setImmediate || ((fn, ...args) => global.setTimeout(fn, 0, ...args));
 
 // NOTE: We do not import the modules to be mocked or tested at the top level.
 // They will be imported dynamically within the test.
