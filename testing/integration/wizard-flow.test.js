@@ -9,9 +9,11 @@ import { fileURLToPath } from 'url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { TextDecoder, TextEncoder } from 'util';
+import { ReadableStream } from 'stream/web';
 
 global.TextDecoder = TextDecoder;
 global.TextEncoder = TextEncoder;
+global.ReadableStream = ReadableStream;
 global.setImmediate = global.setImmediate || ((fn, ...args) => global.setTimeout(fn, 0, ...args));
 
 // NOTE: We do not import the modules to be mocked or tested at the top level.
