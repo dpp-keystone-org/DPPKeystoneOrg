@@ -197,23 +197,95 @@ test.describe('DPP Validator', () => {
     await expect(page.locator('.result-box.success')).toContainText('Validation Successful');
   });
 
-  test('Preview Button generates HTML', async ({ page, context }) => {
-    // Load a simple example
-    await page.locator('#json-input').fill(JSON.stringify({ "digitalProductPassportId": "123", "productName": "Preview Test" }));
+  test('Preview HTML With Schema.org generates HTML with JSON-LD', async ({ page, context }) => {
+    // Load a simple example with context so expansion works
+    const input = {
+        "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "digitalProductPassportId": "123", 
+        "productName": "Preview With Schema" 
+    };
+    await page.locator('#json-input').fill(JSON.stringify(input));
     
     // Setup listener for new page
     const pagePromise = context.waitForEvent('page');
     
-    await page.locator('#preview-btn').click();
+    await page.locator('#preview-schema-btn').click();
     
     const newPage = await pagePromise;
     await newPage.waitForLoadState();
     
     // Check title of new page
-    expect(await newPage.title()).toContain('Preview Test');
+    expect(await newPage.title()).toContain('Preview With Schema');
     
     // Check content
     await expect(newPage.locator('h1')).toContainText('Digital Product Passport');
+    
+    // Verify JSON-LD script exists
+    const jsonLd = await newPage.locator('script[type="application/ld+json"]').textContent();
+    // Debug output if empty
+    if (jsonLd.trim() === '[]') console.log('DEBUG: Empty JSON-LD array received');
+    
+    expect(jsonLd).toContain('http://schema.org');
+    expect(jsonLd).toContain('Product');
+    expect(jsonLd).toContain('Preview With Schema');
+    
+    await newPage.close();
+  });
+
+  test('Preview HTML Without Schema generates HTML without JSON-LD', async ({ page, context }) => {
+    // Load a simple example
+    await page.locator('#json-input').fill(JSON.stringify({ 
+        "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "digitalProductPassportId": "123", 
+        "productName": "Preview No Schema" 
+    }));
+    
+    // Setup listener for new page
+    const pagePromise = context.waitForEvent('page');
+    
+    await page.locator('#preview-no-schema-btn').click();
+    
+    const newPage = await pagePromise;
+    await newPage.waitForLoadState();
+    
+    // Check title of new page
+    expect(await newPage.title()).toContain('Preview No Schema');
+    
+    // Check content
+    await expect(newPage.locator('h1')).toContainText('Digital Product Passport');
+    
+    // Verify JSON-LD script does NOT exist
+    const scriptCount = await newPage.locator('script[type="application/ld+json"]').count();
+    expect(scriptCount).toBe(0);
+    
+    await newPage.close();
+  });
+
+  test('Preview Schema.org generates JSON-LD directly', async ({ page, context }) => {
+    // Load a simple example with context
+    const input = {
+        "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "digitalProductPassportId": "123", 
+        "productName": "Schema Only" 
+    };
+    await page.locator('#json-input').fill(JSON.stringify(input));
+    
+    // Setup listener for new page
+    const pagePromise = context.waitForEvent('page');
+    
+    await page.locator('#schema-btn').click();
+    
+    const newPage = await pagePromise;
+    await newPage.waitForLoadState();
+    
+    // The new page contains raw JSON.
+    const content = await newPage.locator('body').textContent();
+    
+    if (content.trim() === '[]') console.log('DEBUG: Empty JSON-LD array received in direct preview');
+
+    expect(content).toContain('http://schema.org');
+    expect(content).toContain('Product');
+    expect(content).toContain('Schema Only');
     
     await newPage.close();
   });

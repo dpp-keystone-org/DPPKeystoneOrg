@@ -48,6 +48,36 @@ function toSchemaOrgDigitalDocument(docNode) {
     };
 }
 
+/**
+ * Transforms a DPP QuantitativeValue node into a schema.org QuantitativeValue.
+ * @param {object} node - The expanded JSON-LD node.
+ * @returns {object} A schema.org QuantitativeValue object.
+ */
+function toSchemaQuantitativeValue(node) {
+    if (!node) return undefined;
+    const value = getValue(node, 'https://dpp-keystone.org/spec/v1/terms#value');
+    const unitCode = getValue(node, 'https://dpp-keystone.org/spec/v1/terms#unitCode');
+    
+    if (value !== undefined) {
+        return {
+            "@type": "QuantitativeValue",
+            "value": Number(value),
+            ...(unitCode && { "unitCode": unitCode })
+        };
+    }
+    return undefined;
+}
+
+function flattenImage(rootNode) {
+    const images = rootNode['https://dpp-keystone.org/spec/v1/terms#image'];
+    if (!images) return undefined;
+    
+    // images is an array of objects (RelatedResource nodes)
+    return images.map(imgNode => {
+        return getValue(imgNode, 'https://dpp-keystone.org/spec/v1/terms#url');
+    }).filter(url => url);
+}
+
 
 /**
  * Transforms the root DPP node into a schema.org Product object.
@@ -68,6 +98,14 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         "name": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#productName'),
         "description": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#description'),
         "model": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#model'),
+        "brand": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#brand'),
+        "gtin": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#gtin'),
+        "sku": getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#sku'),
+        "image": flattenImage(rootNode),
+        "weight": toSchemaQuantitativeValue(getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#netWeight')),
+        "width": toSchemaQuantitativeValue(getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#width')),
+        "height": toSchemaQuantitativeValue(getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#height')),
+        "depth": toSchemaQuantitativeValue(getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#depth')),
     };
 
     const manufacturerNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#manufacturer');
@@ -173,6 +211,15 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         product.safetyDataSheet = toSchemaOrgDigitalDocument(safetySheetNode);
     }
     
+    // Nest EPD Certifications
+    const epdNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#epd');
+    if (epdNode) {
+        const certifications = epdToSchemaOrgCertifications(epdNode, dictionary, rootNode);
+        if (certifications && certifications.length > 0) {
+            product.hasCertification = certifications;
+        }
+    }
+
     return [product];
 }
 
@@ -242,11 +289,6 @@ export const profile = {
       {
         source: 'https://dpp-keystone.org/spec/v1/terms#digitalProductPassportId',
         transformer: dppToSchemaOrgProduct
-      },
-      {
-        source: 'https://dpp-keystone.org/spec/v1/terms#epd',
-        // The actual function that converts EPD data to schema.org
-        transformer: epdToSchemaOrgCertifications 
       }
     ]
   };

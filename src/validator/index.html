@@ -11,7 +11,8 @@
       "imports": {
         "ajv/dist/2020.js": "../lib/vendor/ajv.2020.js",
         "ajv-formats": "../lib/vendor/ajv-formats.js",
-        "strip-json-comments": "../lib/vendor/strip-json-comments.js"
+        "strip-json-comments": "../lib/vendor/strip-json-comments.js",
+        "jsonld": "../lib/vendor/jsonld.esm.min.js"
       }
     }
     </script>
@@ -51,7 +52,23 @@
                     <div style="margin-bottom: 10px;">
                         <input type="text" id="css-url" placeholder="Custom CSS URL (optional)" style="width: 100%; padding: 8px; box-sizing: border-box;">
                     </div>
-                    <button id="preview-btn" class="secondary" disabled>Generate HTML Preview</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="preview-schema-btn" class="secondary" disabled>Preview HTML With Schema.org</button>
+                        <button id="preview-no-schema-btn" class="secondary" disabled>Preview HTML Without Schema</button>
+                        <button id="schema-btn" class="secondary" disabled>Preview Schema.org</button>
+                    </div>
+                    
+                    <div style="margin-top: 15px; font-size: 0.9em; color: #666; background: #f9f9f9; padding: 10px; border-radius: 4px;">
+                        <p style="margin-top: 0;"><strong>About these tools:</strong></p>
+                        <ul style="padding-left: 20px; margin-bottom: 0;">
+                            <li style="margin-bottom: 5px;">
+                                <strong>HTML Preview:</strong> Renders your JSON data into a user-friendly web page. This feature uses code freely available in our Developer SDKs and is intended to serve as inspiration for how a legally compliant JSON DPP can be visualized.
+                            </li>
+                            <li>
+                                <strong>Schema.org Generation:</strong> Transforms your DPP data into <a href="https://schema.org/Product" target="_blank">Schema.org Product</a> structured data (JSON-LD). This format is optimized for search engines (Google, Bing) and e-commerce integration, making your product data machine-readable and discoverable.
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div id="validation-result" class="result-box" hidden></div>

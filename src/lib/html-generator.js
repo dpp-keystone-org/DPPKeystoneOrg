@@ -8,13 +8,19 @@ export { detectTableStructure };
  * Orchestrates CSS fetching, JSON-LD generation, and HTML rendering.
  * 
  * @param {Object} dppJson - The Digital Product Passport data.
- * @param {string} [customCssUrl] - Optional URL for a custom stylesheet to override defaults.
+ * @param {string|Object} [optionsOrCssUrl] - Optional URL for a custom stylesheet OR an options object { customCssUrl, includeSchema }.
  * @returns {Promise<string>} The complete HTML string.
  */
-export async function generateHTML(dppJson, customCssUrl) {
+export async function generateHTML(dppJson, optionsOrCssUrl) {
   if (!dppJson) {
     throw new Error("DPP JSON is required");
   }
+
+  const options = typeof optionsOrCssUrl === 'string' 
+    ? { customCssUrl: optionsOrCssUrl } 
+    : (optionsOrCssUrl || {});
+    
+  const { customCssUrl, includeSchema = true } = options;
 
   // 1. Fetch CSS
   let cssContent = '';
@@ -31,59 +37,61 @@ export async function generateHTML(dppJson, customCssUrl) {
 
   // 2. Generate JSON-LD (Schema.org)
   let jsonLdString = null;
-  try {
-      // Dynamically import the adapter
-      const { transformDpp } = await import('../util/js/client/dpp-schema-adapter.js');
+  if (includeSchema) {
+    try {
+        // Dynamically import the adapter
+        const { transformDpp } = await import('../util/js/client/dpp-schema-adapter.js');
 
-      // Determine correct ontology path
-      let ontologyPath = '../ontology/v1/dpp-ontology.jsonld';
-      try {
-          const specCheck = await fetch('../spec/ontology/v1/dpp-ontology.jsonld', { method: 'HEAD' });
-          if (specCheck.ok) {
-              ontologyPath = '../spec/ontology/v1/dpp-ontology.jsonld';
-          }
-      } catch (ignore) { }
-      
-      const ontologyPaths = [ontologyPath];
-      
-      // Custom Document Loader
-      const localDocumentLoader = async (url) => {
-          if (url.startsWith('https://dpp-keystone.org/spec/')) {
-              let relativePath = url.replace('https://dpp-keystone.org/spec/', '../');
-              const isDist = ontologyPath.includes('/spec/');
-              if (isDist) {
-                   relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
-              } else {
-                   relativePath = url.replace('https://dpp-keystone.org/spec/', '../');
-              }
-              try {
-                  const response = await fetch(relativePath);
-                  if (!response.ok) throw new Error('404');
-                  const document = await response.json();
-                  return { contextUrl: null, documentUrl: url, document: document };
-              } catch (e) {
-                  console.warn(`Failed to fetch local context for ${url}, falling back to network.`);
-              }
-          }
-          const response = await fetch(url, { headers: { 'Accept': 'application/ld+json, application/json' } });
-          const document = await response.json();
-          return { contextUrl: null, documentUrl: url, document: document };
-      };
+        // Determine correct ontology path
+        let ontologyPath = '../ontology/v1/dpp-ontology.jsonld';
+        try {
+            const specCheck = await fetch('../spec/ontology/v1/dpp-ontology.jsonld', { method: 'HEAD' });
+            if (specCheck.ok) {
+                ontologyPath = '../spec/ontology/v1/dpp-ontology.jsonld';
+            }
+        } catch (ignore) { }
+        
+        const ontologyPaths = [ontologyPath];
+        
+        // Custom Document Loader
+        const localDocumentLoader = async (url) => {
+            if (url.startsWith('https://dpp-keystone.org/spec/')) {
+                let relativePath = url.replace('https://dpp-keystone.org/spec/', '../');
+                const isDist = ontologyPath.includes('/spec/');
+                if (isDist) {
+                    relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                } else {
+                    relativePath = url.replace('https://dpp-keystone.org/spec/', '../');
+                }
+                try {
+                    const response = await fetch(relativePath);
+                    if (!response.ok) throw new Error('404');
+                    const document = await response.json();
+                    return { contextUrl: null, documentUrl: url, document: document };
+                } catch (e) {
+                    console.warn(`Failed to fetch local context for ${url}, falling back to network.`);
+                }
+            }
+            const response = await fetch(url, { headers: { 'Accept': 'application/ld+json, application/json' } });
+            const document = await response.json();
+            return { contextUrl: null, documentUrl: url, document: document };
+        };
 
-      console.log("DPP HTML Generator Debug: Calling transformDpp with:", dppJson);
-      const transformed = await transformDpp(dppJson, {
-           profile: 'schema.org',
-           ontologyPaths: ontologyPaths,
-           documentLoader: localDocumentLoader
-      });
-      console.log("DPP HTML Generator Debug: Result from transformDpp:", transformed);
-      
-      if (transformed) {
-           jsonLdString = JSON.stringify(transformed, null, 2);
-      }
-  } catch (e) {
-      console.warn("Failed to generate JSON-LD:", e);
-      console.log("DPP HTML Generator Debug: JSON-LD generation error:", e);
+        console.log("DPP HTML Generator Debug: Calling transformDpp with:", dppJson);
+        const transformed = await transformDpp(dppJson, {
+            profile: 'schema.org',
+            ontologyPaths: ontologyPaths,
+            documentLoader: localDocumentLoader
+        });
+        console.log("DPP HTML Generator Debug: Result from transformDpp:", transformed);
+        
+        if (transformed) {
+            jsonLdString = JSON.stringify(transformed, null, 2);
+        }
+    } catch (e) {
+        console.warn("Failed to generate JSON-LD:", e);
+        console.log("DPP HTML Generator Debug: JSON-LD generation error:", e);
+    }
   }
 
   // 3. Render Page
