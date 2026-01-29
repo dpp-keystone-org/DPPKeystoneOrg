@@ -10,6 +10,7 @@
     "qudt": "http://qudt.org/schema/qudt/",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
+    "eudpp": "https://w3id.org/eudpp/",
     "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld",
@@ -43,6 +44,9 @@
         },
         {
           "@id": "unece:TradeProduct"
+        },
+        {
+          "@id": "eudpp:Product"
         }
       ],
       "rdfs:term_status": "unstable"

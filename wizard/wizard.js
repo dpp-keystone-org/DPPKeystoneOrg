@@ -1,9 +1,11 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1769605912385';
-import { loadOntology } from '../lib/ontology-loader.js?v=1769605912385';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1769605912385';
-import { generateDpp } from './dpp-generator.js?v=1769605912385';
-import { generateHTML } from '../lib/html-generator.js?v=1769605912385';
+import { loadSchema } from '../lib/schema-loader.js?v=1769696486423';
+import { loadOntology } from '../lib/ontology-loader.js?v=1769696486423';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1769696486423';
+import { generateDpp } from './dpp-generator.js?v=1769696486423';
+import { generateHTML } from '../lib/html-generator.js?v=1769696486423';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1769696486423';
+import * as jsonld from 'jsonld';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
@@ -132,7 +134,9 @@ export async function initializeWizard() {
     sectorButtons = document.querySelectorAll('.sector-btn');
     languageSelector = document.getElementById('language-selector');
 
-    const previewBtn = document.getElementById('preview-html-btn');
+    const previewSchemaBtn = document.getElementById('preview-schema-btn');
+    const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
+    const schemaBtn = document.getElementById('schema-btn');
 
     /**
      * Toggles the visibility of the 'Generate' and 'Show Errors' buttons
@@ -143,7 +147,9 @@ export async function initializeWizard() {
         const hasErrors = invalidFields.size > 0;
         
         generateBtn.hidden = hasErrors;
-        if (previewBtn) previewBtn.hidden = hasErrors;
+        if (previewSchemaBtn) previewSchemaBtn.hidden = hasErrors;
+        if (previewNoSchemaBtn) previewNoSchemaBtn.hidden = hasErrors;
+        if (schemaBtn) schemaBtn.hidden = hasErrors;
         
         showErrorsBtn.hidden = !hasErrors;
         errorCountBadge.textContent = invalidFields.size;
@@ -245,7 +251,9 @@ export async function initializeWizard() {
         const hasErrors = invalidFields.size > 0;
         
         generateBtn.hidden = hasErrors;
-        if (previewBtn) previewBtn.hidden = hasErrors;
+        if (previewSchemaBtn) previewSchemaBtn.hidden = hasErrors;
+        if (previewNoSchemaBtn) previewNoSchemaBtn.hidden = hasErrors;
+        if (schemaBtn) schemaBtn.hidden = hasErrors;
         
         showErrorsBtn.hidden = !hasErrors;
         errorCountBadge.textContent = invalidFields.size;
@@ -504,33 +512,108 @@ export async function initializeWizard() {
         addExternalContextBtn.addEventListener('click', addExternalContext);
     }
 
+    // Helper to gather data and handle previews
+    const getDppData = () => {
+        const activeSectors = [...document.querySelectorAll('.sector-form-container')]
+            .map(container => container.id.replace('sector-form-', ''));
+        return generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper, sectorDataCache);
+    };
+
     if (generateBtn) {
         generateBtn.addEventListener('click', () => {
-            const activeSectors = [...document.querySelectorAll('.sector-form-container')]
-                .map(container => container.id.replace('sector-form-', ''));
-
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper, sectorDataCache);
+            const dppObject = getDppData();
             jsonOutput.textContent = JSON.stringify(dppObject, null, 2);
         });
     }
 
-    if (previewBtn) {
-        previewBtn.addEventListener('click', async () => {
-            const activeSectors = [...document.querySelectorAll('.sector-form-container')]
-                .map(container => container.id.replace('sector-form-', ''));
+    const handleHtmlPreview = async (includeSchema, btn) => {
+        try {
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Generating...';
 
-            const dppObject = generateDpp(activeSectors, coreFormContainer, sectorsFormContainer, voluntaryFieldsWrapper, voluntaryModulesContainer, externalContextsWrapper, sectorDataCache);
-            
-            // Generate the HTML Blob
+            const dppObject = getDppData();
             const customCssUrl = document.getElementById('custom-css-url')?.value?.trim();
-            const htmlContent = await generateHTML(dppObject, customCssUrl);
+            const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema });
+            
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
-            
-            // Open in new tab
             window.open(url, '_blank');
+        } catch (e) {
+            console.error(e);
+            alert("Failed to generate HTML preview: " + e.message);
+        } finally {
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = btn.id === 'preview-schema-btn' ? 'Preview HTML With Schema.org' : 'Preview HTML Without Schema';
+            }
+        }
+    };
+
+    if (previewSchemaBtn) {
+        previewSchemaBtn.addEventListener('click', () => handleHtmlPreview(true, previewSchemaBtn));
+    }
+
+    if (previewNoSchemaBtn) {
+        previewNoSchemaBtn.addEventListener('click', () => handleHtmlPreview(false, previewNoSchemaBtn));
+    }
+
+    if (schemaBtn) {
+        schemaBtn.addEventListener('click', async () => {
+            try {
+                const originalText = schemaBtn.textContent;
+                schemaBtn.disabled = true;
+                schemaBtn.textContent = 'Transforming...';
+
+                const dppData = getDppData();
+                
+                // Configure document loader to resolve specific URLs locally
+                const documentLoader = async (url, options) => {
+                    // Intercept spec URLs and redirect to local files if possible
+                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
+                         const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                         
+                         // Try to fetch locally
+                         try {
+                             const res = await fetch(relativePath);
+                             if (res.ok) {
+                                 const document = await res.json();
+                                 return {
+                                     contextUrl: null,
+                                     document,
+                                     documentUrl: url
+                                 };
+                             }
+                         } catch (e) {
+                             console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
+                         }
+                    }
+                    return (jsonld.documentLoaders ? jsonld.documentLoaders.xhr() : (u) => fetch(u).then(r => r.json()).then(d => ({ document: d, documentUrl: u })))(url);
+                };
+
+                const options = {
+                    profile: 'schema.org',
+                    ontologyPaths: ['../spec/ontology/v1/dpp-ontology.jsonld'],
+                    documentLoader
+                };
+
+                const transformed = await transformDpp(dppData, options);
+
+                const jsonStr = JSON.stringify(transformed, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/ld+json' });
+                const url = URL.createObjectURL(blob);
+                window.open(url, '_blank');
+
+            } catch (e) {
+                console.error(e);
+                alert('Failed to generate Schema.org JSON-LD: ' + e.message);
+            } finally {
+                schemaBtn.disabled = false;
+                schemaBtn.textContent = 'Preview Schema.org';
+            }
         });
     }
+
     /**
      * Saves the current session state (Core + Sectors) to localStorage.
      */

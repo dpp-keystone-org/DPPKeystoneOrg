@@ -28,6 +28,8 @@
                     classDiagram
   class TextileProduct
   Product <|-- TextileProduct
+  Product <|-- TextileProduct
+  Clothing <|-- TextileProduct
   TextileProduct : +fibreComposition
   TextileProduct --|> FibreComposition : fibreComposition
   TextileProduct : +productionSteps
@@ -60,7 +62,7 @@
 
                 <h4>Attributes</h4>
                 <p>Any raw, semi-worked, or worked product which is exclusively composed of textile fibres, regardless of the mixing or assembly process employed.</p>
-                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a></p>
+                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a>, <a href="https://schema.org/Product">schema:Product</a>, <a href="https://ref.gs1.org/voc/Clothing">gs1:Clothing</a></p>
 
                 
                     <h4>Properties</h4>

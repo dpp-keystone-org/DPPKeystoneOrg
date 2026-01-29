@@ -1,7 +1,9 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1769605912385';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1769696486423';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1769605912385';
-import { generateHTML } from '../lib/html-generator.js?v=1769605912385';
+import { EXAMPLES } from '../lib/example-registry.js?v=1769696486423';
+import { generateHTML } from '../lib/html-generator.js?v=1769696486423';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1769696486423';
+import * as jsonld from 'jsonld'; // Import jsonld for the default loader
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/
@@ -42,7 +44,9 @@ const schemaContext = {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const validateBtn = document.getElementById('validate-btn');
-    const previewBtn = document.getElementById('preview-btn');
+    const previewSchemaBtn = document.getElementById('preview-schema-btn');
+    const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
+    const schemaBtn = document.getElementById('schema-btn');
     const cssUrlInput = document.getElementById('css-url');
     const jsonInput = document.getElementById('json-input');
     const resultBox = document.getElementById('validation-result');
@@ -53,7 +57,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadSchemas();
         console.log('Schemas loaded successfully');
         validateBtn.disabled = false;
-        if (previewBtn) previewBtn.disabled = false;
+        if (previewSchemaBtn) previewSchemaBtn.disabled = false;
+        if (previewNoSchemaBtn) previewNoSchemaBtn.disabled = false;
+        if (schemaBtn) schemaBtn.disabled = false;
     } catch (error) {
         console.error('Failed to load schemas:', error);
         resultBox.hidden = false;
@@ -146,45 +152,132 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // 4. Setup Preview Event Listener
-    if (previewBtn) {
-        previewBtn.addEventListener('click', async () => {
-             const inputStr = jsonInput.value.trim();
-             resultBox.hidden = true;
-             
-             if (!inputStr) {
-                 showError('Please paste a JSON object to preview.');
-                 return;
-             }
-             
-             try {
-                 let dppData;
-                 // Try strict then loose parsing
-                 try {
+    // 4. Setup HTML Preview Helper
+    const handleHtmlPreview = async (includeSchema, btn) => {
+        const inputStr = jsonInput.value.trim();
+        resultBox.hidden = true;
+        
+        if (!inputStr) {
+            showError('Please paste a JSON object to preview.');
+            return;
+        }
+        
+        const originalText = btn.textContent;
+        
+        try {
+            let dppData;
+            // Try strict then loose parsing
+            try {
+               dppData = JSON.parse(inputStr);
+            } catch (e) {
+               const stripped = stripJsonComments(inputStr);
+               dppData = JSON.parse(stripped);
+            }
+            
+            btn.disabled = true;
+            btn.textContent = 'Generating...';
+
+            const customCssUrl = cssUrlInput ? cssUrlInput.value.trim() : '';
+            const html = await generateHTML(dppData, { customCssUrl, includeSchema });
+            
+            // Open in new tab
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            window.open(url, '_blank');
+            
+        } catch (e) {
+            console.error(e);
+            showError('Failed to generate HTML: ' + e.message);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = originalText;
+        }
+    };
+
+    if (previewSchemaBtn) {
+        previewSchemaBtn.addEventListener('click', () => handleHtmlPreview(true, previewSchemaBtn));
+    }
+
+    if (previewNoSchemaBtn) {
+        previewNoSchemaBtn.addEventListener('click', () => handleHtmlPreview(false, previewNoSchemaBtn));
+    }
+
+    // 5. Setup Schema.org Event Listener
+    if (schemaBtn) {
+        schemaBtn.addEventListener('click', async () => {
+            const inputStr = jsonInput.value.trim();
+            resultBox.hidden = true;
+
+            if (!inputStr) {
+                showError('Please paste a JSON object to transform.');
+                return;
+            }
+
+            try {
+                let dppData;
+                try {
                     dppData = JSON.parse(inputStr);
-                 } catch (e) {
+                } catch (e) {
                     const stripped = stripJsonComments(inputStr);
                     dppData = JSON.parse(stripped);
-                 }
-                 
-                 previewBtn.disabled = true;
-                 previewBtn.textContent = 'Generating...';
+                }
 
-                 const customCss = cssUrlInput ? cssUrlInput.value.trim() : '';
-                 const html = await generateHTML(dppData, customCss);
-                 
-                 // Open in new tab
-                 const blob = new Blob([html], { type: 'text/html' });
-                 const url = URL.createObjectURL(blob);
-                 window.open(url, '_blank');
-                 
-             } catch (e) {
-                 console.error(e);
-                 showError('Failed to generate HTML: ' + e.message);
-             } finally {
-                 previewBtn.disabled = false;
-                 previewBtn.textContent = 'Generate HTML Preview';
-             }
+                schemaBtn.disabled = true;
+                schemaBtn.textContent = 'Transforming...';
+
+                // Configure document loader to resolve specific URLs locally
+                const documentLoader = async (url, options) => {
+                    // Intercept spec URLs and redirect to local files if possible
+                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
+                         const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                         
+                         // Try to fetch locally
+                         try {
+                             const res = await fetch(relativePath);
+                             if (res.ok) {
+                                 const document = await res.json();
+                                 return {
+                                     contextUrl: null,
+                                     document,
+                                     documentUrl: url
+                                 };
+                             }
+                         } catch (e) {
+                             console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
+                         }
+                    }
+                    
+                    // Fallback to standard jsonld loader (which uses fetch/node)
+                    // Note: jsonld in browser environment usually uses XHR/fetch
+                    // We can use the default or a simple fetch wrapper.
+                    // Accessing the global jsonld object or the imported one.
+                    return (jsonld.documentLoaders ? jsonld.documentLoaders.xhr() : (u) => fetch(u).then(r => r.json()).then(d => ({ document: d, documentUrl: u })))(url);
+                };
+
+                const options = {
+                    profile: 'schema.org',
+                    // Point to the full ontology file. 
+                    // Note: dpp-ontology.jsonld might be an aggregate or imports others.
+                    // If imports are used, the documentLoader must handle them.
+                    ontologyPaths: ['../spec/ontology/v1/dpp-ontology.jsonld'],
+                    documentLoader
+                };
+
+                const transformed = await transformDpp(dppData, options);
+
+                // Open in new tab as formatted JSON
+                const jsonStr = JSON.stringify(transformed, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/ld+json' });
+                const url = URL.createObjectURL(blob);
+                window.open(url, '_blank');
+
+            } catch (e) {
+                console.error(e);
+                showError('Failed to generate Schema.org JSON-LD: ' + e.message);
+            } finally {
+                schemaBtn.disabled = false;
+                schemaBtn.textContent = 'Preview Schema.org';
+            }
         });
     }
 

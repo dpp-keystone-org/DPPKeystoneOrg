@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Wizard</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1769605912385">
-    <link rel="stylesheet" href="wizard.css?v=1769605912385">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1769696486423">
+    <link rel="stylesheet" href="wizard.css?v=1769696486423">
     <script type="importmap">
     {
         "imports": {
@@ -112,12 +112,28 @@
                 </div>
                 
                 <div id="html-generation-wrapper" style="margin-top: 20px;">
-                    <h3>Product Page Preview</h3>
+                    <h3>Visualization</h3>
                     <div class="form-group">
                         <label for="custom-css-url">Custom CSS URL (optional):</label>
                         <input type="text" id="custom-css-url" placeholder="https://example.com/style.css" style="width: 100%; max-width: 400px;">
                     </div>
-                    <button id="preview-html-btn" style="background-color: #005f9e; color: white;">Generate Example HTML</button>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <button id="preview-schema-btn" style="background-color: #005f9e; color: white;">Preview HTML With Schema.org</button>
+                        <button id="preview-no-schema-btn" class="secondary">Preview HTML Without Schema</button>
+                        <button id="schema-btn" class="secondary">Preview Schema.org</button>
+                    </div>
+
+                    <div style="font-size: 0.9em; color: #666; background: #f9f9f9; padding: 10px; border-radius: 4px;">
+                        <p style="margin-top: 0;"><strong>About these tools:</strong></p>
+                        <ul style="padding-left: 20px; margin-bottom: 0;">
+                            <li style="margin-bottom: 5px;">
+                                <strong>HTML Preview:</strong> Renders your JSON data into a user-friendly web page. This feature uses code freely available in our Developer SDKs and is intended to serve as inspiration for how a legally compliant JSON DPP can be visualized.
+                            </li>
+                            <li>
+                                <strong>Schema.org Generation:</strong> Transforms your DPP data into <a href="https://schema.org/Product" target="_blank">Schema.org Product</a> structured data (JSON-LD). This format is optimized for search engines (Google, Bing) and e-commerce integration, making your product data machine-readable and discoverable.
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,6 +142,6 @@
             <p><small>Part of the <a href="../index.html">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
-    <script type="module" src="wizard.js?v=1769605912385"></script>
+    <script type="module" src="wizard.js?v=1769696486423"></script>
 </body>
 </html>
