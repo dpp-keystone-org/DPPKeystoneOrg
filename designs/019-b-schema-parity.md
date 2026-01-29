@@ -150,12 +150,29 @@ We will methodically iterate through every context definition file in `src/conte
     *   Update adapter.
 
 ### 8. Packaging Context (`dpp-packaging.context.jsonld`)
-*   **[ ] Step 8.1: Analyze**
-    *   Read `src/contexts/v1/dpp-packaging.context.jsonld`.
+*   **[COMPLETED] Step 8.1: Analyze**
+    *   **Findings:**
+        *   `dppk:packaging` (array of `Packaging` objects): **Gap**. Target `schema:hasPart` (or a specific packaging relation if Schema.org had one, but `hasPart` with a specific type is best).
+        *   Properties inside `Packaging`:
+            *   `dppk:packagingMaterialType`: -> `schema:name` or `schema:material`.
+            *   `dppk:packagingMaterialCompositionQuantity`: -> `schema:weight` (if mass) or `schema:additionalProperty`.
+            *   `dppk:packagingRecyclingProcessType`: -> `schema:additionalProperty`.
+            *   `dppk:packagingRecycledContent`: -> `schema:additionalProperty` ("Recycled Content %").
+            *   `dppk:packagingSubstanceOfConcern`: -> `schema:additionalProperty` (List).
+    *   **Alignment:**
+        *   Schema.org doesn't have a dedicated `packaging` property on Product.
+        *   We can map it to `schema:hasPart` where the part has `@type`: `dppk:Packaging` (which we can leave as is, or map to `Product` with a role).
+        *   Better: Flatten packaging info into `additionalProperty` if it's small, OR map to `hasPart` objects named "Packaging - [Material]".
 *   **[ ] Step 8.2: Align**
-    *   Define mappings.
+    *   **Mapping Table:**
+        *   `dppk:packaging` -> `schema:hasPart` (Type: `Product` (conceptually), Name: "Packaging - [Material]").
+        *   Inside the packaging part:
+            *   `material` -> `name` ("Packaging - Cardboard").
+            *   `recyclingProcess` -> `additionalProperty`.
+            *   `recycledContent` -> `additionalProperty`.
+            *   `quantity` -> `weight`.
 *   **[ ] Step 8.3: Test**
-    *   Update tests.
+    *   Update tests with Packaging fixture.
 *   **[ ] Step 8.4: Implement**
     *   Update adapter.
 

@@ -1,110 +1,47 @@
 
 import { transform, buildDictionary } from '../../src/util/js/common/transformation/dpp-schema-logic.js';
 import * as jsonld from 'jsonld';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PROJECT_ROOT = path.resolve(__dirname, '../../');
+
+const CONTEXT_MAP = {
+    // Contexts
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld": "src/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld": "src/contexts/v1/dpp-battery.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld": "src/contexts/v1/dpp-construction.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld": "src/contexts/v1/dpp-electronics.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld": "src/contexts/v1/dpp-textile.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld": "src/contexts/v1/dpp-general-product.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld": "src/contexts/v1/dpp-packaging.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld": "src/contexts/v1/dpp-epd.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld": "src/contexts/v1/dpp-dopc.context.jsonld",
+};
 
 // Mock the document loader for jsonld to avoid network requests during tests
 const customDocumentLoader = async (url) => {
-    // Return minimal contexts for expansion
-    if (url.includes('dpp-core.context.jsonld')) {
-        return {
-            contextUrl: null,
-            document: {
-                "@context": {
-                    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-                    "xsd": "http://www.w3.org/2001/XMLSchema#",
-                    "name": "dppk:name",
-                    "DigitalProductPassport": "dppk:DigitalProductPassport",
-                    "digitalProductPassportId": { "@id": "dppk:digitalProductPassportId", "@type": "@id" },
-                    "uniqueProductIdentifier": { "@id": "dppk:uniqueProductIdentifier", "@type": "@id" },
-                    "epd": { "@id": "dppk:epd", "@type": "@id" }, // Ensure EPD is mapped
-                    "manufacturer": { "@id": "dppk:manufacturer", "@type": "@id" },
-                    "organizationName": "dppk:organizationName",
-                    "image": { "@id": "dppk:image", "@type": "@id" },
-                    "RelatedResource": "dppk:RelatedResource",
-                    "url": { "@id": "dppk:url", "@type": "xsd:anyURI" },
-                    "productName": "dppk:productName",
-                    "description": "dppk:description",
-                    "gtin": "dppk:gtin",
-                    "brand": "dppk:brand",
-                    "model": "dppk:model",
-                    "weight": "dppk:netWeight",
-                    "dopc": "dppk:dopc",
-                    "value": "dppk:value",
-                    "unitCode": "dppk:unitCode",
-                    // New Core Terms
-                    "hsCode": "dppk:hsCode",
-                    "recycledContentPercentage": { "@id": "dppk:recycledContentPercentage", "@type": "xsd:double" },
-                    "productCharacteristics": { "@id": "dppk:productCharacteristics", "@container": "@set" },
-                    "characteristicName": "dppk:characteristicName",
-                    "characteristicValue": "dppk:characteristicValue",
-                    "component": {
-                      "@id": "dppk:component",
-                      "@context": {
-                        "name": "dppk:componentName",
-                        "percentage": { "@id": "dppk:percentage", "@type": "xsd:double" }
-                      }
-                    },
-                    // Battery Terms
-                    "BatteryProduct": "dppk:BatteryProduct",
-                    "manufacturingDate": { "@id": "dppk:manufacturingDate", "@type": "xsd:date" },
-                    "warrantyPeriod": "dppk:warrantyPeriod",
-                    "batteryMass": { "@id": "dppk:batteryMass", "@type": "xsd:double" },
-                    "performance": {
-                        "@id": "dppk:performance",
-                        "@context": {
-                            "capacity": {
-                                "@id": "dppk:capacity",
-                                "@context": {
-                                    "rated": "dppk:ratedCapacity"
-                                }
-                            }
-                        }
-                    },
-                    // Construction Terms
-                    "ConstructionProduct": "dppk:ConstructionProduct",
-                    "notifiedBody": { "@id": "dppk:notifiedBody", "@type": "@id" },
-                    "dopIdentifier": "dppk:dopIdentifier",
-                    "harmonisedStandardReference": "dppk:harmonisedStandardReference",
-                    // Electronics Terms
-                    "ElectronicDevice": "dppk:ElectronicDevice",
-                    "ipRating": "dppk:ipRating",
-                    "voltage": "dppk:voltage",
-                    // General Product Terms
-                    "color": "dppk:color",
-                    "countryOfOrigin": "dppk:countryOfOrigin",
-                    "grossWeight": { "@id": "dppk:grossWeight", "@type": "xsd:double" },
-                    "length": { "@id": "dppk:length", "@type": "xsd:double" },
-                    "components": { "@id": "dppk:components", "@container": "@list" },
-                    "additionalCertifications": { "@id": "dppk:additionalCertifications", "@container": "@set" },
-                    "certificationBodyName": "dppk:certificationBodyName"
-                }
-            },
-            documentUrl: url
-        };
-    }
-    if (url.includes('dpp-textile.context.jsonld')) {
-         return {
-            contextUrl: null,
-            document: {
-                "@context": {
-                    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
-                    "fibreComposition": "dppk:fibreComposition",
-                    "fibreType": "dppk:fibreType",
-                    "fibrePercentage": "dppk:fibrePercentage",
-                    "tearStrength": "dppk:tearStrength"
-                }
-            },
-            documentUrl: url
-        };
+    // Check if we have a local mapping
+    const localPathRelative = CONTEXT_MAP[url];
+    if (localPathRelative) {
+        const localPath = path.join(PROJECT_ROOT, localPathRelative);
+        try {
+            const content = await fs.readFile(localPath, 'utf8');
+            return {
+                contextUrl: null,
+                document: JSON.parse(content),
+                documentUrl: url
+            };
+        } catch (error) {
+            console.error(`Failed to load local context for ${url} from ${localPath}:`, error);
+            throw error;
+        }
     }
 
-    if (url.startsWith('http')) {
-        return {
-            contextUrl: null,
-            document: {}, 
-            documentUrl: url
-        };
-    }
+    // Default node loader for anything else (or throw if strict)
     return jsonld.documentLoaders.node()(url);
 };
 
@@ -533,6 +470,48 @@ describe('DPP Schema Logic (Unit)', () => {
         // Mapping plan says: "Name: Body Name".
         // Let's verify we have a certification entry.
         expect(product.hasCertification.length).toBeGreaterThan(0);
+    });
+
+    // --- Step 8.3: Packaging Parity ---
+    test('Product maps Packaging details to hasPart', async () => {
+        const packagingDpp = {
+            "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+            "@type": "DigitalProductPassport",
+            "digitalProductPassportId": "urn:uuid:pack-test",
+            "uniqueProductIdentifier": "urn:gtin:pack-test",
+            "packagingMaterials": [
+                {
+                    "packagingMaterialType": "Cardboard",
+                    "packagingRecycledContent": 80.0,
+                    "packagingMaterialCompositionQuantity": 0.5
+                }
+            ]
+        };
+
+        const dictionary = {}; 
+        const result = await transform(packagingDpp, { 
+            profile: 'schema.org',
+            documentLoader: customDocumentLoader
+        }, dictionary);
+
+        const product = result[0];
+
+        // Expect Packaging to be in hasPart
+        expect(product.hasPart).toBeDefined();
+        const packPart = product.hasPart.find(p => p.name.includes('Packaging'));
+        expect(packPart).toBeDefined();
+        
+        // Name should include material
+        expect(packPart.name).toContain('Cardboard');
+
+        // Recycled content -> additionalProperty
+        const recycled = packPart.additionalProperty?.find(p => p.name === 'Recycled Content');
+        expect(recycled).toBeDefined();
+        expect(recycled.value).toBe(80.0);
+
+        // Quantity -> weight
+        expect(packPart.weight).toBeDefined();
+        expect(packPart.weight.value).toBe(0.5);
     });
 
 });

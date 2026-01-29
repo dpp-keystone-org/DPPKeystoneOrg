@@ -478,6 +478,62 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         }
     }
 
+    // --- Packaging Parity Additions (v1.1) ---
+
+    // Packaging -> hasPart
+    const packaging = rootNode['https://dpp-keystone.org/spec/v1/terms#packaging'];
+    if (packaging && Array.isArray(packaging)) {
+        const packParts = packaging.map(p => {
+            const material = getValue(p, 'https://dpp-keystone.org/spec/v1/terms#packagingMaterialType') || 'Unknown Material';
+            const part = {
+                "@type": "Product", // Treated as a sub-product/part
+                "name": `Packaging - ${material}`,
+                "additionalProperty": []
+            };
+
+            // Recycled Content
+            const rec = getValue(p, 'https://dpp-keystone.org/spec/v1/terms#packagingRecycledContent');
+            if (rec !== undefined) {
+                part.additionalProperty.push({
+                    "@type": "PropertyValue",
+                    "name": "Recycled Content",
+                    "value": Number(rec),
+                    "unitText": "%"
+                });
+            }
+
+            // Process Type
+            const proc = getValue(p, 'https://dpp-keystone.org/spec/v1/terms#packagingRecyclingProcessType');
+            if (proc) {
+                 part.additionalProperty.push({
+                    "@type": "PropertyValue",
+                    "name": "Recycling Process",
+                    "value": proc
+                });
+            }
+
+            // Quantity -> weight
+            // Check for literal first (as per test) or object
+            const qtyVal = getValue(p, 'https://dpp-keystone.org/spec/v1/terms#packagingMaterialCompositionQuantity');
+            if (qtyVal !== undefined) {
+                part.weight = {
+                    "@type": "QuantitativeValue",
+                    "value": Number(qtyVal),
+                    "unitCode": "KGM" // Assumption
+                };
+            }
+
+            if (part.additionalProperty.length === 0) delete part.additionalProperty;
+            return part;
+        });
+
+        if (product.hasPart) {
+             product.hasPart = product.hasPart.concat(packParts);
+        } else {
+            product.hasPart = packParts;
+        }
+    }
+
     // ------------------------------------
 
     const safetySheetNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#safetyDataSheet');
