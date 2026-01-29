@@ -78,6 +78,62 @@ function flattenImage(rootNode) {
     }).filter(url => url);
 }
 
+/**
+ * Recursively flattens a nested DPP node into an array of schema.org PropertyValues.
+ * @param {object} node - The node to flatten.
+ * @param {string} parentName - The accumulated name prefix.
+ * @param {object} dictionary - The dictionary of indicator metadata.
+ * @returns {Array} An array of PropertyValue objects.
+ */
+function flattenToAdditionalProperties(node, parentName, dictionary) {
+    const properties = [];
+    const toTitleCase = (str) => {
+        return str.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase());
+    };
+
+    const recurse = (currentNode, currentParentName) => {
+        for (const [uri, valueList] of Object.entries(currentNode)) {
+             if (uri.startsWith('@')) continue;
+
+             const meta = dictionary[uri] || {};
+             const definedLabel = meta.label;
+             const unitText = meta.unit;
+             
+             const localName = uri.split('#')[1] || uri;
+             let displayName;
+             
+             // Logic to decide display name: Use explicit label if available and distinct, 
+             // otherwise build path.
+             if (definedLabel && definedLabel !== localName) {
+                 displayName = definedLabel;
+             } else {
+                 const localDisplay = toTitleCase(localName);
+                 displayName = currentParentName ? `${currentParentName} - ${localDisplay}` : localDisplay;
+             }
+             
+             const valueItem = valueList[0];
+             if (valueItem && valueItem['@value'] !== undefined) {
+                  const propertyObj = {
+                        "@type": "PropertyValue",
+                        "name": displayName,
+                        "value": valueItem['@value'],
+                    };
+                    if (unitText) propertyObj.unitText = unitText;
+                    properties.push(propertyObj);
+             } else if (valueItem && typeof valueItem === 'object') {
+                  // For recursion, we always append the path segment to ensure uniqueness 
+                  // and context, unless the child logic overrides it (which it won't here easily).
+                  const localDisplay = toTitleCase(localName);
+                  const nextParentName = currentParentName ? `${currentParentName} - ${localDisplay}` : localDisplay;
+                  recurse(valueItem, nextParentName);
+             }
+        }
+    };
+
+    recurse(node, parentName);
+    return properties;
+}
+
 
 /**
  * Transforms the root DPP node into a schema.org Product object.
@@ -116,66 +172,8 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
     const dopcNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#dopc');
 
     if (dopcNode) {
-        const properties = [];
+        let properties = [];
         
-        const flattenProperties = (node, parentName) => {
-            for (const [uri, valueList] of Object.entries(node)) {
-                if (uri.startsWith('@')) continue;
-                
-                // Get metadata from dictionary if available
-                const meta = dictionary[uri] || {};
-                const definedLabel = meta.label; // e.g. "Bond Strength (28 Days)"
-                const unitText = meta.unit;      // e.g. "MPa"
-
-                // If we have a defined label from the ontology, use it directly.
-                // Otherwise, construct a name from the JSON key structure.
-                // Note: If we are deep in recursion, we might want to combine parentName, 
-                // BUT if the property URI itself is specific (e.g. bondStrengthAt28Days), the label is full.
-                // If the property URI is generic (e.g. 'value'), we rely on parentName.
-                
-                const localName = uri.split('#')[1] || uri;
-                let displayName;
-                
-                if (definedLabel && definedLabel !== localName) {
-                    // Use the official label if it seems meaningful
-                    displayName = definedLabel;
-                } else {
-                    // Fallback to title casing the URI fragment
-                    const localDisplay = toTitleCase(localName);
-                    displayName = parentName ? `${parentName} - ${localDisplay}` : localDisplay;
-                }
-
-                const valueItem = valueList[0];
-                
-                if (valueItem && valueItem['@value'] !== undefined) {
-                    // It's a literal value
-                    const propertyObj = {
-                        "@type": "PropertyValue",
-                        "name": displayName,
-                        "value": valueItem['@value'],
-                    };
-                    
-                    if (unitText) {
-                        propertyObj.unitText = unitText;
-                    }
-                    
-                    properties.push(propertyObj);
-                } else if (valueItem && typeof valueItem === 'object') {
-                    // It's a nested node. Recurse.
-                    // If this node corresponds to a specific property (e.g. bondStrength), 
-                    // we pass its label as the parent name for children IF children are generic.
-                    // But in the new structure, children are often specific (e.g. bondStrengthAt28Days).
-                    // If children are specific, they will ignore the parentName in the 'if(definedLabel)' block above.
-                    
-                    // We pass the fallback name just in case.
-                    const localDisplay = toTitleCase(localName);
-                    const nextParentName = parentName ? `${parentName} - ${localDisplay}` : localDisplay;
-                    
-                    flattenProperties(valueItem, nextParentName);
-                }
-            }
-        };
-
         // Check for 'essentialCharacteristics' array (intermediate structure)
         const characteristics = dopcNode['https://dpp-keystone.org/spec/v1/terms#essentialCharacteristics'];
         if (characteristics && Array.isArray(characteristics)) {
@@ -193,7 +191,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
             }
         } else {
              // Handle Recursive Structure (New & Legacy)
-             flattenProperties(dopcNode, '');
+             properties = flattenToAdditionalProperties(dopcNode, '', dictionary);
         }
 
         if (properties.length > 0) {
@@ -201,10 +199,280 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         }
     }
 
+    // --- Core Parity Additions (v1.1) ---
+
+    // 1. HS Code
+    const hsCode = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#hsCode');
+    if (hsCode) {
+        const hsObj = {
+            "@type": "PropertyValue",
+            "propertyID": "HS Code",
+            "value": hsCode
+        };
+        // Normalize identifier to array if needed, or append
+        if (Array.isArray(product.identifier)) {
+            product.identifier.push(hsObj);
+        } else if (product.identifier) {
+            product.identifier = [product.identifier, hsObj];
+        } else {
+            product.identifier = hsObj;
+        }
+    }
+
+    // 2. Recycled Content
+    const recycledPct = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#recycledContentPercentage');
+    if (recycledPct !== undefined) {
+         if (!product.additionalProperty) product.additionalProperty = [];
+         product.additionalProperty.push({
+             "@type": "PropertyValue",
+             "name": "Recycled Content",
+             "value": Number(recycledPct),
+             "unitText": "%"
+         });
+    }
+
+    // 3. Root Product Characteristics (List)
+    const rootCharacteristics = rootNode['https://dpp-keystone.org/spec/v1/terms#productCharacteristics'];
+    if (rootCharacteristics && Array.isArray(rootCharacteristics)) {
+         if (!product.additionalProperty) product.additionalProperty = [];
+         for (const charNode of rootCharacteristics) {
+             const name = getValue(charNode, 'https://dpp-keystone.org/spec/v1/terms#characteristicName');
+             const value = getValue(charNode, 'https://dpp-keystone.org/spec/v1/terms#characteristicValue');
+             if (name && value) {
+                 product.additionalProperty.push({
+                     "@type": "PropertyValue",
+                     "name": name,
+                     "value": value,
+                 });
+             }
+         }
+    }
+
+    // 4. Components -> hasPart
+    const components = rootNode['https://dpp-keystone.org/spec/v1/terms#component'];
+    if (components && Array.isArray(components)) {
+        product.hasPart = components.map(c => ({
+             "@type": "Product", 
+             "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#componentName')
+        }));
+    }
+
+    // --- Battery Parity Additions (v1.1) ---
+    
+    // Manufacturing Date -> productionDate
+    const mfgDate = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#manufacturingDate');
+    if (mfgDate) {
+        product.productionDate = mfgDate;
+    }
+
+    // Warranty -> warranty
+    const warranty = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#warrantyPeriod');
+    if (warranty) {
+        product.warranty = warranty;
+    }
+
+    // Battery Mass -> weight (if not already set)
+    if (!product.weight) {
+        const batteryMass = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#batteryMass');
+        if (batteryMass) {
+            product.weight = {
+                "@type": "QuantitativeValue",
+                "value": Number(batteryMass),
+                "unitCode": "KGM" // Assuming kg, ideally strictly checked or from context
+            };
+        }
+    }
+
+    // Performance (Nested)
+    const performanceNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#performance');
+    if (performanceNode) {
+        const perfProps = flattenToAdditionalProperties(performanceNode, 'Performance', dictionary);
+        if (perfProps.length > 0) {
+             if (!product.additionalProperty) product.additionalProperty = [];
+             product.additionalProperty.push(...perfProps);
+        }
+    }
+
+    // --- Construction Parity Additions (v1.1) ---
+
+    // 1. DoP Identifier
+    const dopId = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#dopIdentifier');
+    if (dopId) {
+        const dopObj = {
+            "@type": "PropertyValue",
+            "propertyID": "DoP ID",
+            "value": dopId
+        };
+        if (Array.isArray(product.identifier)) {
+            product.identifier.push(dopObj);
+        } else if (product.identifier) {
+            product.identifier = [product.identifier, dopObj];
+        } else {
+            product.identifier = dopObj;
+        }
+    }
+
+    // 2. Harmonised Standard Reference
+    const hStd = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#harmonisedStandardReference');
+    if (hStd) {
+        if (!product.additionalProperty) product.additionalProperty = [];
+        product.additionalProperty.push({
+            "@type": "PropertyValue",
+            "name": "Harmonised Standard Reference",
+            "value": hStd
+        });
+    }
+
+    // 3. Notified Body
+    const notifiedBodyNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#notifiedBody');
+    if (notifiedBodyNode) {
+        const nbName = getValue(notifiedBodyNode, 'https://dpp-keystone.org/spec/v1/terms#organizationName');
+        if (nbName) {
+            if (!product.additionalProperty) product.additionalProperty = [];
+            product.additionalProperty.push({
+                "@type": "PropertyValue",
+                "name": "Notified Body",
+                "value": nbName
+            });
+        }
+    }
+
+    // ------------------------------------
+
     const instructionsNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#instructionsForUse');
     if (instructionsNode) {
         product.instructionsForUse = toSchemaOrgDigitalDocument(instructionsNode);
     }
+
+    // --- Electronics Parity Additions (v1.1) ---
+    const electronicsProps = [
+        { term: 'ipRating', label: 'IP Rating' },
+        { term: 'energyEfficiencyClass', label: 'Energy Efficiency Class' },
+        { term: 'sparePartsAvailable', label: 'Spare Parts Available' },
+        { term: 'voltage', label: 'Voltage' }, // If simple value
+        { term: 'torque', label: 'Torque' },
+        { term: 'ratedPower', label: 'Rated Power' },
+        { term: 'maximumRatedSpeed', label: 'Maximum Rated Speed' }
+    ];
+
+    electronicsProps.forEach(prop => {
+        const val = getValue(rootNode, `https://dpp-keystone.org/spec/v1/terms#${prop.term}`);
+        if (val !== undefined) {
+            if (!product.additionalProperty) product.additionalProperty = [];
+            product.additionalProperty.push({
+                "@type": "PropertyValue",
+                "name": prop.label,
+                "value": val
+            });
+        }
+    });
+
+    // --- General Product Parity Additions (v1.1) ---
+
+    // 1. Color
+    const color = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#color');
+    if (color) {
+        product.color = color;
+    }
+
+    // 2. Country of Origin
+    const country = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#countryOfOrigin');
+    if (country) {
+        product.countryOfOrigin = {
+            "@type": "Country",
+            "name": country
+        };
+    }
+
+    // 3. Length -> depth (if not already set by depth)
+    if (!product.depth) {
+        const lenVal = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#length');
+        if (lenVal !== undefined) {
+             product.depth = {
+                "@type": "QuantitativeValue",
+                "value": Number(lenVal),
+                "unitCode": "MTR" // Defaulting to meters as per context hint
+            };
+        } else {
+            // Fallback for complex object if needed
+            const lengthNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#length');
+            if (lengthNode) {
+                product.depth = toSchemaQuantitativeValue(lengthNode);
+            }
+        }
+    }
+
+    // 4. Gross Weight
+    const grossWeight = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#grossWeight');
+    // Note: grossWeight in context is simple literal or QV? Context said "@type": "KgWeightLiteral", which resolves to value/unit.
+    // Wait, context said "KgWeightLiteral" is a datatype? No, it's a class in context?
+    // "netWeight": { "@id": "dppk:netWeight", "@type": "KgWeightLiteral" } 
+    // And "KgWeightLiteral": "dppk:KgWeightLiteral".
+    // Usually that means it's a type like xsd:double but custom. 
+    // If json-ld expansion keeps it as value object with type, `getValue` works if it's `@value`.
+    // If it expands to a node, we need `toSchemaQuantitativeValue`.
+    // Let's assume it behaves like netWeight/weight which uses `toSchemaQuantitativeValue` in the code I read.
+    // Wait, `weight` code uses `toSchemaQuantitativeValue`.
+    // Let's check `toSchemaQuantitativeValue`: it looks for `dppk:value` inside. 
+    // If `grossWeight` is just a number in JSON but context types it, the expansion depends on the loader.
+    // In the test mock, I defined it as `"@type": "xsd:double"`. So it will be a literal value.
+    // `toSchemaQuantitativeValue` expects an object with `value`.
+    // If it's a literal, `getValue` works.
+    // Let's handle both or check test. Test uses `grossWeight: 5.0`.
+    // If it's xsd:double, it expands to `[{ "@value": 5.0 }]`.
+    // `toSchemaQuantitativeValue` checks `dppk:value` property. It won't work on a literal.
+    // So for Gross Weight (which might be simple literal in some contexts or complex), let's try simple first.
+    const gwVal = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#grossWeight');
+    if (gwVal !== undefined) {
+        if (!product.additionalProperty) product.additionalProperty = [];
+        product.additionalProperty.push({
+            "@type": "PropertyValue",
+            "name": "Gross Weight",
+            "value": Number(gwVal),
+            "unitText": "kg" // Defaulting since implicit in context often
+        });
+    }
+
+    // 5. Components (Plural) -> hasPart
+    // Merge with existing components (Singular)
+    const componentsPlural = rootNode['https://dpp-keystone.org/spec/v1/terms#components'];
+    if (componentsPlural && Array.isArray(componentsPlural)) {
+        const newParts = componentsPlural.map(c => {
+             // If c is just a node (from @list), getting name might be direct
+             // Context maps "components": { "@container": "@list" }
+             // List items are nodes.
+             return {
+                 "@type": "Product",
+                 "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#componentName') || getValue(c, 'https://dpp-keystone.org/spec/v1/terms#name')
+             };
+        });
+        
+        if (product.hasPart) {
+            product.hasPart = product.hasPart.concat(newParts);
+        } else {
+            product.hasPart = newParts;
+        }
+    }
+
+    // 6. Additional Certifications -> hasCertification
+    const addCerts = rootNode['https://dpp-keystone.org/spec/v1/terms#additionalCertifications'];
+    if (addCerts && Array.isArray(addCerts)) {
+        const newCerts = addCerts.map(c => ({
+            "@type": "Certification",
+            "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#certificationBodyName') || "Unknown Certification",
+            "startDate": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#certificationStartDate')
+        }));
+
+        if (product.hasCertification) {
+             // Ensure array
+             if (!Array.isArray(product.hasCertification)) product.hasCertification = [product.hasCertification];
+             product.hasCertification = product.hasCertification.concat(newCerts);
+        } else {
+            product.hasCertification = newCerts;
+        }
+    }
+
+    // ------------------------------------
 
     const safetySheetNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#safetyDataSheet');
     if (safetySheetNode) {

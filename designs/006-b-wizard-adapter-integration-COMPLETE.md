@@ -22,10 +22,10 @@ The Wizard currently only has a generic "Generate Example HTML" button. We will 
     *   Remove the old event listener for `preview-html-btn`.
     *   Add event listeners for the three new buttons.
     *   Reuse the existing `generateDpp(...)` result for all previews.
-*   **[PENDING] Step 3: Integration Tests**
+*   **[COMPLETED] Step 3: Integration Tests**
     *   Update `testing/integration/playwright/wizard-html-generator.spec.js` to verify the three new buttons:
         *   `preview-schema-btn` (HTML + Schema)
         *   `preview-no-schema-btn` (HTML only)
         *   `schema-btn` (Schema JSON-LD)
-*   **[PENDING] Step 4: Fix Existing Tests**
+*   **[COMPLETED] Step 4: Fix Existing Tests**
     *   Run `testing/integration/playwright/wizard.spec.js` and other existing tests to ensure no regressions were introduced by the UI changes (e.g., removal of the old button).
