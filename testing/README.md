@@ -49,7 +49,7 @@ A standalone script is provided for quick, manual validation of a single example
 To run it, execute the following command from the `testing` directory:
 
 ```sh
-$ node integration/run-shacl-validation.mjs
+$ node scripts/run-shacl-validation.mjs
 ```
 
 The script will output the validation status to the console. If the data does not conform, it will print a detailed report of the validation failures.

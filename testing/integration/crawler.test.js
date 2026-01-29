@@ -8,7 +8,7 @@ describe('Site Crawler', () => {
     let stdout = '';
     let stderr = '';
     try {
-      const result = await execAsync('node integration/crawler.mjs');
+      const result = await execAsync('node scripts/crawler.mjs');
       stdout = result.stdout;
       stderr = result.stderr;
     } catch (e) {

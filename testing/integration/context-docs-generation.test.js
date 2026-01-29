@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { generateSpecDocs } from '../../scripts/generate-spec-docs.mjs';
-import { setupTestEnvironment } from './test-helpers.mjs';
+import { setupTestEnvironment } from '../scripts/test-helpers.mjs';
 
 describe('Context documentation page generation', () => {
 

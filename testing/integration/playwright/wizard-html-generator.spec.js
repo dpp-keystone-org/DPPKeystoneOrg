@@ -1,6 +1,6 @@
 // testing/integration/playwright/wizard-html-generator.spec.js
 import { test, expect } from '@playwright/test';
-import { fillRequiredFields } from '../test-helpers.mjs';
+import { fillRequiredFields } from '../../scripts/test-helpers.mjs';
 
 const WIZARD_URL = 'http://localhost:8080/wizard/index.html';
 

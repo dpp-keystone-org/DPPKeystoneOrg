@@ -4,46 +4,12 @@ import * as jsonld from 'jsonld';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { localFileDocumentLoader } from '../scripts/shacl-helpers.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const PROJECT_ROOT = path.resolve(__dirname, '../../');
 
-const CONTEXT_MAP = {
-    // Contexts
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld": "src/contexts/v1/dpp-core.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld": "src/contexts/v1/dpp-battery.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld": "src/contexts/v1/dpp-construction.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld": "src/contexts/v1/dpp-electronics.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld": "src/contexts/v1/dpp-textile.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld": "src/contexts/v1/dpp-general-product.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld": "src/contexts/v1/dpp-packaging.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld": "src/contexts/v1/dpp-epd.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld": "src/contexts/v1/dpp-dopc.context.jsonld",
-};
-
-// Mock the document loader for jsonld to avoid network requests during tests
-const customDocumentLoader = async (url) => {
-    // Check if we have a local mapping
-    const localPathRelative = CONTEXT_MAP[url];
-    if (localPathRelative) {
-        const localPath = path.join(PROJECT_ROOT, localPathRelative);
-        try {
-            const content = await fs.readFile(localPath, 'utf8');
-            return {
-                contextUrl: null,
-                document: JSON.parse(content),
-                documentUrl: url
-            };
-        } catch (error) {
-            console.error(`Failed to load local context for ${url} from ${localPath}:`, error);
-            throw error;
-        }
-    }
-
-    // Default node loader for anything else (or throw if strict)
-    return jsonld.documentLoaders.node()(url);
-};
+const customDocumentLoader = localFileDocumentLoader;
 
 
 // --- Step 1.b: Define mockLoader ---

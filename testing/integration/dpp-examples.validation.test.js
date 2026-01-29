@@ -5,7 +5,7 @@ import {
     PROJECT_ROOT,
     loadRdfFile,
     combineDatasets
-} from './shacl-helpers.mjs';
+} from '../scripts/shacl-helpers.mjs';
 
 /**
  * A helper function to find a human-readable name for a given node in a graph.

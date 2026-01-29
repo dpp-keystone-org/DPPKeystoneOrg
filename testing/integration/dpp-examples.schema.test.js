@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { PROJECT_ROOT } from './shacl-helpers.mjs';
+import { PROJECT_ROOT } from '../scripts/shacl-helpers.mjs';
 import { validateDpp } from '../../src/util/js/common/validation/schema-validator.js';
 
 // --- Configuration ---

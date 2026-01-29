@@ -6,7 +6,7 @@ import {
 } from '../../scripts/generate-spec-docs.mjs';
 import { join } from 'path';
 import { promises as fs } from 'fs';
-import { setupTestEnvironment } from './test-helpers.mjs';
+import { setupTestEnvironment } from '../scripts/test-helpers.mjs';
 
 describe('generate-spec-docs.mjs', () => {
 

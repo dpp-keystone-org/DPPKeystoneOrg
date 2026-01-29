@@ -4,7 +4,7 @@ import jsonld from 'jsonld';
 import {
     PROJECT_ROOT,
     localFileDocumentLoader
-} from './shacl-helpers.mjs';
+} from '../scripts/shacl-helpers.mjs';
 
 describe('Simple DPP Expansion', () => {
     test('should correctly expand rail-dpp-v1.json using local contexts', async () => {

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { CONTEXT_URL_TO_LOCAL_PATH_MAP, fillRequiredFields } from '../test-helpers.mjs';
+import { CONTEXT_URL_TO_LOCAL_PATH_MAP, fillRequiredFields } from '../../scripts/test-helpers.mjs';
 import fs from 'fs';
 
 test.beforeEach(async ({ page }) => {
