@@ -534,6 +534,62 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         }
     }
 
+    // --- Textile Parity Additions (v1.1) ---
+
+    // 1. Fibre Composition -> material
+    const fibres = rootNode['https://dpp-keystone.org/spec/v1/terms#fibreComposition'];
+    if (fibres && Array.isArray(fibres)) {
+        const materialParts = fibres.map(f => {
+            const type = getValue(f, 'https://dpp-keystone.org/spec/v1/terms#fibreType');
+            const pct = getValue(f, 'https://dpp-keystone.org/spec/v1/terms#fibrePercentage');
+            if (type && pct !== undefined) {
+                return `${pct}% ${type}`;
+            }
+            return null;
+        }).filter(p => p);
+        
+        if (materialParts.length > 0) {
+            product.material = materialParts.join(', ');
+        }
+    }
+
+    // 2. Apparel Size -> size
+    const size = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#apparelSize');
+    const system = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#apparelSizeSystem');
+    if (size) {
+        product.size = system ? `${size} (${system})` : size;
+    }
+
+    // 3. Generic Textile Properties
+    const textileProps = [
+        { term: 'animalOriginNonTextile', label: 'Contains Non-Textile Parts of Animal Origin' },
+        { term: 'tearStrength', label: 'Tear Strength' },
+        { term: 'abrasionResistance', label: 'Abrasion Resistance' }, // Simple or object? If object, flattening handles if not root. If root simple:
+        { term: 'dimensionalStability', label: 'Dimensional Stability' },
+        { term: 'colorfastnessToWashing', label: 'Colorfastness to Washing' },
+        { term: 'microplasticRelease', label: 'Microplastic Release' }
+    ];
+
+    textileProps.forEach(prop => {
+        // Check for simple value
+        let val = getValue(rootNode, `https://dpp-keystone.org/spec/v1/terms#${prop.term}`);
+        
+        // Handle Boolean specifically
+        if (prop.term === 'animalOriginNonTextile' && val === undefined) {
+             // Boolean might be literal "true"/"false" or boolean type. getValue handles @value.
+             // If missing, skip.
+        }
+
+        if (val !== undefined) {
+            if (!product.additionalProperty) product.additionalProperty = [];
+            product.additionalProperty.push({
+                "@type": "PropertyValue",
+                "name": prop.label,
+                "value": val
+            });
+        }
+    });
+
     // ------------------------------------
 
     const safetySheetNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#safetyDataSheet');
