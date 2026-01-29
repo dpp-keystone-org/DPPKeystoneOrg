@@ -498,4 +498,53 @@ describe('DPP Schema Logic (Unit)', () => {
         expect(packPart.weight.value).toBe(0.5);
     });
 
+    // --- Step 9.3: Textile Parity ---
+    test('Product maps Textile specific fields (Fibres, Size, Animal Origin)', async () => {
+        const textileDpp = {
+            "@context": [
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld"
+            ],
+            "@type": ["DigitalProductPassport", "TextileProduct"],
+            "digitalProductPassportId": "urn:uuid:text-test",
+            "uniqueProductIdentifier": "urn:gtin:text-test",
+            "fibreComposition": [
+                { "fibreType": "Cotton", "fibrePercentage": 80 },
+                { "fibreType": "Polyester", "fibrePercentage": 20 }
+            ],
+            "apparelSize": "L",
+            "apparelSizeSystem": "EU",
+            "animalOriginNonTextile": false,
+            "tearStrength": "50N"
+        };
+
+        const dictionary = {}; 
+        const result = await transform(textileDpp, { 
+            profile: 'schema.org',
+            documentLoader: customDocumentLoader
+        }, dictionary);
+
+        const product = result[0];
+
+        // 1. Fibre Composition -> material
+        expect(product.material).toBeDefined();
+        expect(product.material).toContain('80% Cotton');
+        expect(product.material).toContain('20% Polyester');
+
+        // 2. Size -> size
+        expect(product.size).toBeDefined();
+        expect(product.size).toContain('L');
+        expect(product.size).toContain('EU');
+
+        // 3. Animal Origin -> additionalProperty
+        const animal = product.additionalProperty?.find(p => p.name.includes('Animal Origin'));
+        expect(animal).toBeDefined();
+        expect(animal.value).toBe(false);
+
+        // 4. Tear Strength -> additionalProperty
+        const tear = product.additionalProperty?.find(p => p.name === 'Tear Strength');
+        expect(tear).toBeDefined();
+        expect(tear.value).toBe('50N');
+    });
+
 });

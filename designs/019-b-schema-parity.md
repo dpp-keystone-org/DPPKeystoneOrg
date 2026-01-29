@@ -177,11 +177,17 @@ We will methodically iterate through every context definition file in `src/conte
     *   Update adapter.
 
 ### 9. Textile Context (`dpp-textile.context.jsonld`)
-*   **[ ] Step 9.1: Analyze**
-    *   Read `src/contexts/v1/dpp-textile.context.jsonld`.
-*   **[ ] Step 9.2: Align**
-    *   Define mappings.
-*   **[ ] Step 9.3: Test**
-    *   Update tests.
-*   **[ ] Step 9.4: Implement**
+*   **[COMPLETED] Step 9.1: Analyze**
+    *   **Findings:**
+        *   `dppk:fibreComposition`: List of type/percentage. Target `schema:material`.
+        *   `dppk:apparelSize`: Target `schema:size`.
+        *   Generic: `tearStrength`, `animalOriginNonTextile`. Target `schema:additionalProperty`.
+*   **[COMPLETED] Step 9.2: Align**
+    *   **Mapping Table:**
+        *   `dppk:fibreComposition` -> `schema:material` ("X% Type, ...").
+        *   `dppk:apparelSize` (+System) -> `schema:size` ("Size (System)").
+        *   Others -> `schema:additionalProperty`.
+*   **[COMPLETED] Step 9.3: Test**
+    *   Update `testing/unit/dpp-schema-logic.test.js` with Textile fixture.
+*   **[COMPLETED] Step 9.4: Implement**
     *   Update adapter.
