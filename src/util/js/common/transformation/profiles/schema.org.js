@@ -435,7 +435,13 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
 
     // 5. Components (Plural) -> hasPart
     // Merge with existing components (Singular)
-    const componentsPlural = rootNode['https://dpp-keystone.org/spec/v1/terms#components'];
+    let componentsPlural = rootNode['https://dpp-keystone.org/spec/v1/terms#components'];
+    
+    // Check for @list wrapper (Standard JSON-LD expansion for @list container)
+    if (componentsPlural && componentsPlural.length > 0 && componentsPlural[0]['@list']) {
+        componentsPlural = componentsPlural[0]['@list'];
+    }
+
     if (componentsPlural && Array.isArray(componentsPlural)) {
         const newParts = componentsPlural.map(c => {
              // If c is just a node (from @list), getting name might be direct
