@@ -9,12 +9,14 @@
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "eudpp": "https://w3id.org/eudpp/",
     "@base": "https://dpp-keystone.org/spec/v1/terms"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Sector Ontology - Textile Definitions (v1)",
-  "dcterms:description": "Defines sector-specific concepts required for the Textile DPP, based on the EU Strategy for Sustainable and Circular Textiles.",
+  "dcterms:description": "Defines sector-specific concepts required for the Textile DPP, based on the EU Strategy for Sustainable and Circular Textiles. Acts as a bridge (Keystone) between Schema.org, GS1, UNECE, and EUDPP.",
   "owl:versionInfo": "1.0.0",
   // Import Core ontologies.
   "owl:imports": [
@@ -36,7 +38,12 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
         "rdfs:label": "Regulation (EU) No 1007/2011 (Textile Fibre Names)"
       },
-      "rdfs:subClassOf": { "@id": "dppk:Product" },
+      "rdfs:subClassOf": [
+          { "@id": "dppk:Product" },
+          { "@id": "schema:Product" },
+          { "@id": "gs1:Clothing" }
+      ],
+      "rdfs:seeAlso": { "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles" },
       "rdfs:term_status": "unstable"
     },
     {
@@ -279,6 +286,7 @@
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
+        "skos:closeMatch": { "@id": "schema:size" },
         "rdfs:term_status": "unstable"
     },
     {
