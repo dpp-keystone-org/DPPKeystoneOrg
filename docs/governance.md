@@ -23,7 +23,6 @@ This project adheres to a set of guiding principles to ensure it remains agile, 
 *   **Maintainers:** A core group responsible for the day-to-day management of the repository, reviewing Pull Requests, ensuring technical soundness (validation, testing), and managing releases.
 *   **Contributors:** Any individual or organization submitting changes or participating in discussions (See [CONTRIBUTING.md](../CONTRIBUTING.md)).
 *   **Domain Experts:** Sector-specific experts who provide the necessary knowledge for defining and validating vertical ontologies and schemas.
-*   **Advisory Board (Future Consideration):** A potential oversight body composed of representatives from the European Commission, SDOs, and key industry alliances to ensure alignment with regulatory intent.
 
 ## 3. The Decision-Making Process
 

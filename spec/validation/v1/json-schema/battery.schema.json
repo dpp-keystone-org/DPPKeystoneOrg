@@ -95,7 +95,7 @@
         "$ref": "related-resource.schema.json"
       },
       "carbonFootprintAbsolute": {
-        "type": "integer"
+        "type": "number"
       },
       "dueDiligenceReport": {
         "$ref": "related-resource.schema.json"
@@ -164,19 +164,19 @@
             "type": "object",
             "properties": {
               "rated": {
-                "type": "integer"
+                "type": "number"
               },
               "remaining": {
-                "type": "integer"
+                "type": "number"
               },
               "fade": {
                 "type": "number"
               },
               "certifiedUsableEnergy": {
-                "type": "integer"
+                "type": "number"
               },
               "remainingUsableEnergy": {
-                "type": "integer"
+                "type": "number"
               },
               "soce": {
                 "type": "number"
@@ -185,13 +185,13 @@
                 "type": "number"
               },
               "voltageMin": {
-                "type": "integer"
+                "type": "number"
               },
               "voltageMax": {
-                "type": "integer"
+                "type": "number"
               },
               "voltageNominal": {
-                "type": "integer"
+                "type": "number"
               }
             }
           },
@@ -199,19 +199,19 @@
             "type": "object",
             "properties": {
               "original": {
-                "type": "integer"
+                "type": "number"
               },
               "remaining": {
-                "type": "integer"
+                "type": "number"
               },
               "fade": {
                 "type": "number"
               },
               "maximumPermitted": {
-                "type": "integer"
+                "type": "number"
               },
               "energyRatio": {
-                "type": "integer"
+                "type": "number"
               }
             }
           },
@@ -245,7 +245,7 @@
             "type": "object",
             "properties": {
               "initial": {
-                "type": "integer"
+                "type": "number"
               },
               "increase": {
                 "type": "number"
@@ -285,22 +285,22 @@
             "type": "object",
             "properties": {
               "idleLower": {
-                "type": "integer"
+                "type": "number"
               },
               "idleUpper": {
-                "type": "integer"
+                "type": "number"
               },
               "timeExtremeUpper": {
-                "type": "integer"
+                "type": "number"
               },
               "timeExtremeLower": {
-                "type": "integer"
+                "type": "number"
               },
               "timeChargingUpper": {
-                "type": "integer"
+                "type": "number"
               },
               "timeChargingLower": {
-                "type": "integer"
+                "type": "number"
               }
             }
           },

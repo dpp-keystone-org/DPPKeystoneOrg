@@ -55,7 +55,10 @@
         "@id": "dppk:carbonFootprintGeneralInfo",
         "@type": "@id"
       },
-      "carbonFootprintAbsolute": "dppk:carbonFootprintAbsolute",
+      "carbonFootprintAbsolute": {
+        "@id": "dppk:carbonFootprintAbsolute",
+        "@type": "xsd:double"
+      },
       "dueDiligenceReport": {
         "@id": "dppk:dueDiligenceReport",
         "@type": "@id"
@@ -156,27 +159,60 @@
             "@id": "dppk:capacity",
             "@type": "@id",
             "@context": {
-              "rated": "dppk:ratedCapacity",
-              "remaining": "dppk:remainingCapacity",
+              "rated": {
+                "@id": "dppk:ratedCapacity",
+                "@type": "xsd:double"
+              },
+              "remaining": {
+                "@id": "dppk:remainingCapacity",
+                "@type": "xsd:double"
+              },
               "fade": "dppk:capacityFade",
-              "certifiedUsableEnergy": "dppk:certifiedUsableEnergy",
-              "remainingUsableEnergy": "dppk:remainingUsableEnergy",
+              "certifiedUsableEnergy": {
+                "@id": "dppk:certifiedUsableEnergy",
+                "@type": "xsd:double"
+              },
+              "remainingUsableEnergy": {
+                "@id": "dppk:remainingUsableEnergy",
+                "@type": "xsd:double"
+              },
               "soce": "dppk:soce",
               "stateOfCharge": "dppk:stateOfCharge",
-              "voltageMin": "dppk:voltageMinimum",
-              "voltageMax": "dppk:voltageMaximum",
-              "voltageNominal": "dppk:voltageNominal"
+              "voltageMin": {
+                "@id": "dppk:voltageMinimum",
+                "@type": "xsd:double"
+              },
+              "voltageMax": {
+                "@id": "dppk:voltageMaximum",
+                "@type": "xsd:double"
+              },
+              "voltageNominal": {
+                "@id": "dppk:voltageNominal",
+                "@type": "xsd:double"
+              }
             }
           },
           "power": {
             "@id": "dppk:power",
             "@type": "@id",
             "@context": {
-              "original": "dppk:powerOriginal",
-              "remaining": "dppk:powerRemaining",
+              "original": {
+                "@id": "dppk:powerOriginal",
+                "@type": "xsd:double"
+              },
+              "remaining": {
+                "@id": "dppk:powerRemaining",
+                "@type": "xsd:double"
+              },
               "fade": "dppk:powerFade",
-              "maximumPermitted": "dppk:powerMaximumPermitted",
-              "energyRatio": "dppk:powerEnergyRatio"
+              "maximumPermitted": {
+                "@id": "dppk:powerMaximumPermitted",
+                "@type": "xsd:double"
+              },
+              "energyRatio": {
+                "@id": "dppk:powerEnergyRatio",
+                "@type": "xsd:double"
+              }
             }
           },
           "efficiency": {
@@ -196,7 +232,10 @@
             "@id": "dppk:internalResistance",
             "@type": "@id",
             "@context": {
-              "initial": "dppk:internalResistanceInitial",
+              "initial": {
+                "@id": "dppk:internalResistanceInitial",
+                "@type": "xsd:double"
+              },
               "increase": "dppk:internalResistanceIncrease"
             }
           },
@@ -218,12 +257,30 @@
             "@id": "dppk:temperature",
             "@type": "@id",
             "@context": {
-              "idleLower": "dppk:temperatureIdleLower",
-              "idleUpper": "dppk:temperatureIdleUpper",
-              "timeExtremeUpper": "dppk:timeExtremeTempUpper",
-              "timeExtremeLower": "dppk:timeExtremeTempLower",
-              "timeChargingUpper": "dppk:timeChargingTempUpper",
-              "timeChargingLower": "dppk:timeChargingTempLower"
+              "idleLower": {
+                "@id": "dppk:temperatureIdleLower",
+                "@type": "xsd:double"
+              },
+              "idleUpper": {
+                "@id": "dppk:temperatureIdleUpper",
+                "@type": "xsd:double"
+              },
+              "timeExtremeUpper": {
+                "@id": "dppk:timeExtremeTempUpper",
+                "@type": "xsd:double"
+              },
+              "timeExtremeLower": {
+                "@id": "dppk:timeExtremeTempLower",
+                "@type": "xsd:double"
+              },
+              "timeChargingUpper": {
+                "@id": "dppk:timeChargingTempUpper",
+                "@type": "xsd:double"
+              },
+              "timeChargingLower": {
+                "@id": "dppk:timeChargingTempLower",
+                "@type": "xsd:double"
+              }
             }
           },
           "negativeEvents": {

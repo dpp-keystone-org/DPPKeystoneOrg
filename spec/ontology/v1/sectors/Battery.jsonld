@@ -689,7 +689,7 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:dueDiligenceReport",
@@ -1330,7 +1330,7 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:remainingCapacity",
@@ -1355,7 +1355,7 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:capacityFade",
@@ -1404,7 +1404,7 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:remainingUsableEnergy",
@@ -1428,7 +1428,7 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:soce",
@@ -1503,7 +1503,7 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:voltageMaximum",
@@ -1528,7 +1528,7 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:voltageNominal",
@@ -1553,7 +1553,7 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:powerOriginal",
@@ -1578,7 +1578,7 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:powerRemaining",
@@ -1603,7 +1603,7 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:powerFade",
@@ -1653,7 +1653,7 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:powerEnergyRatio",
@@ -1678,7 +1678,7 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:roundTripEfficiencyInitial",
@@ -1876,7 +1876,7 @@
       "rdfs:domain": {
         "@id": "dppk:InternalResistanceInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:internalResistanceIncrease",
@@ -2125,7 +2125,7 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:temperatureIdleUpper",
@@ -2150,7 +2150,7 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeExtremeTempUpper",
@@ -2175,7 +2175,7 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeExtremeTempLower",
@@ -2200,7 +2200,7 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeChargingTempUpper",
@@ -2225,7 +2225,7 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeChargingTempLower",
@@ -2250,7 +2250,7 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:eventsDeepDischarge",
