@@ -291,7 +291,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Absolute battery carbon footprint" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The battery passport should include the battery carbon footprint in absolute terms (kg CO2e)." } ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
 
     // --- Supply Chain ---
@@ -554,7 +554,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Rated capacity" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The total number of ampere-hours (Ah) that can be withdrawn from a fully charged battery under reference conditions." } ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:remainingCapacity",
@@ -565,7 +565,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Remaining capacity" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The corresponding in-use data attribute to rated capacity, as information on the state of health of the battery." } ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:capacityFade",
@@ -586,7 +586,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Certified usable battery energy" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The usable battery energy according to the procedure in the UN GTR No 22 as determined during the certification." } ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:remainingUsableEnergy",
@@ -596,7 +596,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Remaining usable battery energy" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The usable battery energy at the present point in the lifetime of a battery." } ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:soce",
@@ -629,7 +629,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Minimum voltage" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The lower voltage limit that the safe operation of the battery is rated for." } ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:voltageMaximum",
@@ -640,7 +640,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Maximum voltage" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The upper voltage limit that the safe operation of the battery is rated for." } ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:voltageNominal",
@@ -651,7 +651,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Nominal voltage" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The suitable approximate value of the voltage used to designate or identify the battery." } ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
 
     // --- Power Properties ---
@@ -664,7 +664,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Original power capability" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The amount of energy that a battery is capable to provide over a given period of time under reference conditions." } ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:powerRemaining",
@@ -675,7 +675,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Remaining power capability" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "Information on the remaining power capability as information on the state of health of the battery." } ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:powerFade",
@@ -697,7 +697,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Maximum permitted battery power" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The value of maximum permitted power the battery is rated for." } ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:powerEnergyRatio",
@@ -708,7 +708,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Ratio between nominal battery power and battery energy" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "Provides an indication of the applicable discharge and charge rate in terms of rated capacity (C-rate)." } ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
 
     // --- Efficiency Properties ---
@@ -798,7 +798,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Initial internal resistance of battery cell and pack" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The opposition to the flow of current within a cell or a battery under reference conditions." } ],
       "rdfs:domain": { "@id": "dppk:InternalResistanceInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:internalResistanceIncrease",
@@ -911,7 +911,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Temperature range idle state, lower boundary" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The lower boundary of the surrounding temperature range the battery can withstand when not in use." } ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:temperatureIdleUpper",
@@ -922,7 +922,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Temperature range idle state, upper boundary" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The upper boundary of the surrounding temperature range the battery can withstand when not in use." } ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeExtremeTempUpper",
@@ -933,7 +933,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Time spent in extreme temperatures above boundary" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The aggregated time in which temperatures above the upper boundary of the temperature range are prevalent." } ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeExtremeTempLower",
@@ -944,7 +944,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Time spent in extreme temperatures below boundary" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The aggregated time in which temperatures below the lower boundary of the temperature range are prevalent." } ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeChargingTempUpper",
@@ -955,7 +955,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Time spent charging during extreme temperatures above boundary" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The aggregated time in which the battery is charged while temperatures above the upper boundary are prevalent." } ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
     {
       "@id": "dppk:timeChargingTempLower",
@@ -966,7 +966,7 @@
       "rdfs:label": [ { "@language": "en", "@value": "Time spent charging during extreme temperatures below boundary" } ],
       "rdfs:comment": [ { "@language": "en", "@value": "The aggregated time in which the battery is charged while temperatures below the lower boundary are prevalent." } ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:double"
     },
 
     // --- Negative Events Properties ---

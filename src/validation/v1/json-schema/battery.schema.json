@@ -48,7 +48,7 @@
             "carbonFootprintClass": { "type": "string" },
             "carbonFootprintStudy": { "$ref": "related-resource.schema.json" },
             "carbonFootprintGeneralInfo": { "$ref": "related-resource.schema.json" },
-            "carbonFootprintAbsolute": { "type": "integer" },
+            "carbonFootprintAbsolute": { "type": "number" },
 
             "dueDiligenceReport": { "$ref": "related-resource.schema.json" },
             "supplyChainAssurances": { "$ref": "related-resource.schema.json" },
@@ -89,26 +89,26 @@
                     "capacity": {
                         "type": "object",
                         "properties": {
-                            "rated": { "type": "integer" },
-                            "remaining": { "type": "integer" },
+                            "rated": { "type": "number" },
+                            "remaining": { "type": "number" },
                             "fade": { "type": "number" },
-                            "certifiedUsableEnergy": { "type": "integer" },
-                            "remainingUsableEnergy": { "type": "integer" },
+                            "certifiedUsableEnergy": { "type": "number" },
+                            "remainingUsableEnergy": { "type": "number" },
                             "soce": { "type": "number" },
                             "stateOfCharge": { "type": "number" },
-                            "voltageMin": { "type": "integer" },
-                            "voltageMax": { "type": "integer" },
-                            "voltageNominal": { "type": "integer" }
+                            "voltageMin": { "type": "number" },
+                            "voltageMax": { "type": "number" },
+                            "voltageNominal": { "type": "number" }
                         }
                     },
                     "power": {
                         "type": "object",
                         "properties": {
-                            "original": { "type": "integer" },
-                            "remaining": { "type": "integer" },
+                            "original": { "type": "number" },
+                            "remaining": { "type": "number" },
                             "fade": { "type": "number" },
-                            "maximumPermitted": { "type": "integer" },
-                            "energyRatio": { "type": "integer" }
+                            "maximumPermitted": { "type": "number" },
+                            "energyRatio": { "type": "number" }
                         }
                     },
                     "efficiency": {
@@ -126,7 +126,7 @@
                     "internalResistance": {
                         "type": "object",
                         "properties": {
-                            "initial": { "type": "integer" },
+                            "initial": { "type": "number" },
                             "increase": { "type": "number" }
                         }
                     },
@@ -146,12 +146,12 @@
                     "temperature": {
                         "type": "object",
                         "properties": {
-                            "idleLower": { "type": "integer" },
-                            "idleUpper": { "type": "integer" },
-                            "timeExtremeUpper": { "type": "integer" },
-                            "timeExtremeLower": { "type": "integer" },
-                            "timeChargingUpper": { "type": "integer" },
-                            "timeChargingLower": { "type": "integer" }
+                            "idleLower": { "type": "number" },
+                            "idleUpper": { "type": "number" },
+                            "timeExtremeUpper": { "type": "number" },
+                            "timeExtremeLower": { "type": "number" },
+                            "timeChargingUpper": { "type": "number" },
+                            "timeChargingLower": { "type": "number" }
                         }
                     },
                     "negativeEvents": {
