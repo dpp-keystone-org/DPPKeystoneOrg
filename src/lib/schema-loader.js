@@ -137,3 +137,109 @@ export async function loadSchema(sector) {
 export function clearSchemaCache() {
     schemaCache.clear();
 }
+
+/**
+ * Flatten a JSON schema into a list of dot-notation field paths with metadata.
+ * Handles properties, items (arrays), allOf, oneOf, anyOf, and if/then/else conditionals.
+ * 
+ * @param {object} schema - The resolved JSON schema object.
+ * @param {string} parentPath - The current path prefix (used for recursion).
+ * @param {boolean} inArray - Whether the current path is inside an array context.
+ * @returns {Array<{path: string, isArray: boolean}>} An array of unique field objects.
+ */
+export function flattenSchema(schema, parentPath = '', inArray = false) {
+    if (!schema || typeof schema !== 'object') {
+        return [];
+    }
+
+    let collected = new Map(); // Use Map to deduplicate by path
+
+    const addFields = (fields) => {
+        fields.forEach(f => collected.set(f.path, f));
+    };
+
+    // Determine current array context
+    // If the *current* node is an array, then its children (via items) are in an array.
+    // However, if we are *already* in an array (from parent), that state persists.
+    const isCurrentNodeArray = schema.type === 'array';
+    
+    // 1. Traverse Properties
+    if (schema.properties) {
+        for (const key in schema.properties) {
+            const currentPath = parentPath ? `${parentPath}.${key}` : key;
+            const subFields = flattenSchema(schema.properties[key], currentPath, inArray);
+            
+            if (subFields.length > 0) {
+                addFields(subFields);
+            } else {
+                // It's a leaf (or at least has no further structure we recursed into).
+                // Check if THIS specific property definition is an array of primitives 
+                // (which wouldn't be caught by subFields if it has no 'properties').
+                const isLeafArray = schema.properties[key].type === 'array';
+                // Effectively, a field is "multivalued" if it is an array itself OR inside an array object.
+                collected.set(currentPath, { 
+                    path: currentPath, 
+                    isArray: inArray || isLeafArray 
+                });
+            }
+        }
+    }
+
+    // 2. Traverse Items (if array)
+    if (schema.items && typeof schema.items === 'object') {
+        // If we are at 'components' (array), we traverse 'components.items'.
+        // The path usually stays 'components' for the array itself, but for *content* of objects inside:
+        // 'components.name'.
+        // So we recurse into items with the SAME parentPath? 
+        // No, typically 'items' defines the structure of the elements.
+        // If items has properties, we recurse.
+        // We pass `inArray: true` because we are now inside the array.
+        
+        // Note: We don't append '.items' to the path for user-friendliness, usually.
+        // But if it's a primitive array, we might want to capture the path itself.
+        
+        const subFields = flattenSchema(schema.items, parentPath, true); // true because we entered items
+        if (subFields.length > 0) {
+            addFields(subFields);
+        } else if (parentPath) {
+            // It's an array of primitives (e.g. items: { type: string })
+            collected.set(parentPath, { path: parentPath, isArray: true });
+        }
+    }
+
+    // 3. Traverse Combinators (allOf, oneOf, anyOf)
+    const combinators = ['allOf', 'oneOf', 'anyOf'];
+    for (const combinator of combinators) {
+        if (Array.isArray(schema[combinator])) {
+            schema[combinator].forEach(subSchema => {
+                // Pass parentPath and inArray context directly
+                addFields(flattenSchema(subSchema, parentPath, inArray));
+            });
+        }
+    }
+
+    // 4. Traverse Conditionals (if, then, else)
+    const conditionals = ['if', 'then', 'else'];
+    for (const cond of conditionals) {
+        if (schema[cond]) {
+            addFields(flattenSchema(schema[cond], parentPath, inArray));
+        }
+    }
+    
+    // If we are at a leaf node in the recursion (no properties, combinators, etc found)
+    // AND we have a valid parentPath, add it. 
+    // This is catch-all for simple types that are not properties of something else (e.g. inside allOf).
+    // But we need to be careful not to double-add.
+    if (collected.size === 0 && parentPath && !schema.properties && !schema.items) {
+        // Simple type check to avoid adding pure container logic objects
+        if (schema.type || schema.enum) {
+            collected.set(parentPath, { 
+                path: parentPath, 
+                isArray: inArray || isCurrentNodeArray 
+            });
+        }
+    }
+
+    // Convert Map values to array and sort
+    return Array.from(collected.values()).sort((a, b) => a.path.localeCompare(b.path));
+}

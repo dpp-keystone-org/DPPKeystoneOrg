@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadSchema, clearSchemaCache } from '../../../src/lib/schema-loader.js';
+import { loadSchema, clearSchemaCache, flattenSchema } from '../../../src/lib/schema-loader.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -134,5 +134,197 @@ describe('DPP Wizard - Schema Loader', () => {
 
         // The allOf should be gone, as it has been processed
         expect(schema.allOf).toBeUndefined();
+    });
+
+    describe('Schema Flattening Logic', () => {
+        test('should flatten basic properties', () => {
+            const schema = {
+                type: "object",
+                properties: {
+                    name: { type: "string" },
+                    age: { type: "integer" }
+                }
+            };
+            const result = flattenSchema(schema);
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'name', isArray: false },
+                { path: 'age', isArray: false }
+            ]));
+            expect(result).toHaveLength(2);
+        });
+
+        test('should flatten nested objects using dot notation', () => {
+            const schema = {
+                type: "object",
+                properties: {
+                    manufacturer: {
+                        type: "object",
+                        properties: {
+                            name: { type: "string" },
+                            address: {
+                                type: "object",
+                                properties: {
+                                    city: { type: "string" }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            const result = flattenSchema(schema);
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'manufacturer.name', isArray: false },
+                { path: 'manufacturer.address.city', isArray: false }
+            ]));
+        });
+
+        test('should merge fields from allOf', () => {
+            const schema = {
+                allOf: [
+                    {
+                        properties: {
+                            baseField: { type: "string" }
+                        }
+                    },
+                    {
+                        properties: {
+                            extendedField: { type: "number" }
+                        }
+                    }
+                ]
+            };
+            const result = flattenSchema(schema);
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'baseField', isArray: false },
+                { path: 'extendedField', isArray: false }
+            ]));
+        });
+
+        test('should collect union of fields from oneOf', () => {
+            const schema = {
+                oneOf: [
+                    {
+                        properties: {
+                            variantA: { type: "string" }
+                        }
+                    },
+                    {
+                        properties: {
+                            variantB: { type: "number" }
+                        }
+                    }
+                ]
+            };
+            const result = flattenSchema(schema);
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'variantA', isArray: false },
+                { path: 'variantB', isArray: false }
+            ]));
+        });
+
+        test('should collect fields from if/then/else conditionals', () => {
+            const schema = {
+                properties: {
+                    type: { type: "string" }
+                },
+                if: {
+                    properties: { type: { const: "special" } }
+                },
+                then: {
+                    properties: {
+                        specialAttr: { type: "string" }
+                    }
+                },
+                else: {
+                    properties: {
+                        standardAttr: { type: "string" }
+                    }
+                }
+            };
+            const result = flattenSchema(schema);
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'type', isArray: false },
+                { path: 'specialAttr', isArray: false },
+                { path: 'standardAttr', isArray: false }
+            ]));
+        });
+
+        test('should handle complex nested combinations (oneOf inside properties)', () => {
+            const schema = {
+                properties: {
+                    productData: {
+                        oneOf: [
+                            {
+                                properties: { color: { type: "string" } }
+                            },
+                            {
+                                properties: { size: { type: "number" } }
+                            }
+                        ]
+                    }
+                }
+            };
+            const result = flattenSchema(schema);
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'productData.color', isArray: false },
+                { path: 'productData.size', isArray: false }
+            ]));
+        });
+    });
+
+    describe('flattenSchema (New Metadata)', () => {
+        test('should return list of dot-notation paths with isArray flag', () => {
+            const schema = {
+                type: "object",
+                properties: {
+                    id: { type: "string" },
+                    product: {
+                        type: "object",
+                        properties: {
+                            name: { type: "string" },
+                            tags: { 
+                                type: "array",
+                                items: { type: "string" }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const result = flattenSchema(schema);
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'id', isArray: false },
+                { path: 'product.name', isArray: false },
+                { path: 'product.tags', isArray: true }
+            ]));
+        });
+
+        test('should handle nested arrays', () => {
+            const schema = {
+                type: "object",
+                properties: {
+                    components: {
+                        type: "array",
+                        items: {
+                            type: "object",
+                            properties: {
+                                id: { type: "string" },
+                                materials: {
+                                    type: "array",
+                                    items: { type: "string" }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const result = flattenSchema(schema);
+            // components.id is inside an array (components)
+            expect(result).toEqual(expect.arrayContaining([
+                { path: 'components.id', isArray: true },
+                { path: 'components.materials', isArray: true }
+            ]));
+        });
     });
 });

@@ -39,7 +39,7 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
-        if (entry.name === 'desktop.ini' || entry.name === 'branding' || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator' || entry.name === 'explorer'))) {
+        if (entry.name === 'desktop.ini' || entry.name === 'branding' || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator' || entry.name === 'explorer' || entry.name === 'csv-dpp-adapter'))) {
             continue;
         }
         const sourcePath = path.join(sourceDir, entry.name);
@@ -91,7 +91,8 @@ async function addCacheBusting(targetDir) {
     const htmlPaths = [
         path.join(targetDir, 'wizard', 'index.html'),
         path.join(targetDir, 'validator', 'index.html'),
-        path.join(targetDir, 'explorer', 'index.html')
+        path.join(targetDir, 'explorer', 'index.html'),
+        path.join(targetDir, 'csv-dpp-adapter', 'index.html')
     ];
 
     for (const htmlPath of htmlPaths) {
@@ -109,7 +110,7 @@ async function addCacheBusting(targetDir) {
 
     // 2. Update JS files (Imports)
     // Directories known to contain JS modules that might have imports
-    const jsDirs = ['wizard', 'validator', 'explorer', 'lib', 'util'];
+    const jsDirs = ['wizard', 'validator', 'explorer', 'lib', 'util', 'csv-dpp-adapter'];
     
     // Helper function to recursively walk and process JS files
     async function walkAndCacheBustJs(dir) {
@@ -215,6 +216,13 @@ async function build() {
     if (await fse.pathExists(path.join(SOURCE_DIR, 'explorer'))) {
         await processDirectory(path.join(SOURCE_DIR, 'explorer'), explorerDir);
         console.log(`Copied explorer to dist/explorer`);
+    }
+
+    // Process 'csv-dpp-adapter' into its own root-level directory in dist
+    const csvAdapterDir = path.join(BUILD_DIR, 'csv-dpp-adapter');
+    if (await fse.pathExists(path.join(SOURCE_DIR, 'csv-dpp-adapter'))) {
+        await processDirectory(path.join(SOURCE_DIR, 'csv-dpp-adapter'), csvAdapterDir);
+        console.log(`Copied csv-dpp-adapter to dist/csv-dpp-adapter`);
     }
 
     // Copy root-level static assets

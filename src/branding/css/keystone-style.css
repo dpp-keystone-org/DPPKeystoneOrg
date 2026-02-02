@@ -134,6 +134,11 @@ button:hover {
     filter: brightness(90%);
 }
 
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 
 /* --- Form Layout & Validation --- */
 

@@ -1,0 +1,94 @@
+/* Scoped styles for CSV Generator */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* File Drop Area */
+.file-drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.file-drop-area:hover, .file-drop-area.dragover {
+    background-color: #f9f9f9;
+    border-color: #666;
+}
+
+/* Mapping Table */
+#mapping-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+#mapping-table th, #mapping-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+#mapping-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+select.dpp-field-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Toolbar */
+.toolbar {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.checkbox-group label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Review Status */
+tr.needs-review {
+    background-color: #fff3cd; /* Yellow alert background */
+}
+
+tr.needs-review:hover {
+    background-color: #ffeeba;
+}

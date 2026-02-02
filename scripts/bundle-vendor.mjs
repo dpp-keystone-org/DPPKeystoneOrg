@@ -23,6 +23,10 @@ try {
     console.log('  Bundling strip-json-comments.js...');
     execSync('npx esbuild node_modules/strip-json-comments/index.js --bundle --format=esm --outfile=src/lib/vendor/strip-json-comments.js', { stdio: 'inherit' });
 
+    // Bundle PapaParse
+    console.log('  Bundling papaparse.js...');
+    execSync('npx esbuild node_modules/papaparse/papaparse.min.js --bundle --format=esm --outfile=src/lib/vendor/papaparse.js', { stdio: 'inherit' });
+
     console.log('Vendor bundling completed successfully.');
 } catch (error) {
     console.error('Vendor bundling failed:', error);

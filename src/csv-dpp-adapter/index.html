@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP CSV Adapter</title>
+    <link rel="stylesheet" href="../branding/css/keystone-style.css">
+    <link rel="stylesheet" href="csv-dpp-adapter.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
+            <div>
+                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the Digital Product Passport</p>
+            </div>
+        </header>
+
+        <div class="card">
+            <h1>DPP CSV Adapter</h1>
+            <nav style="margin-bottom: 20px;">
+                <a href="../../index.html">← Back to Home</a>
+            </nav>
+
+            <section id="source-section">
+                <h2>1. Load Data</h2>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;"><strong>Target Sector(s):</strong></label>
+                    <div id="sector-select" class="checkbox-group">
+                        <label><input type="checkbox" name="sector" value="battery"> Battery</label>
+                        <label><input type="checkbox" name="sector" value="construction"> Construction</label>
+                        <label><input type="checkbox" name="sector" value="textile"> Textile</label>
+                        <label><input type="checkbox" name="sector" value="electronics"> Electronics</label>
+                        <label><input type="checkbox" name="sector" value="packaging"> Packaging (Add-on)</label>
+                    </div>
+                </div>
+                <p>Select a CSV file containing your product data. The first row must contain headers.</p>
+                <div class="file-drop-area" id="drop-area">
+                    <p>Drag & Drop CSV here or</p>
+                    <input type="file" id="csv-file-input" accept=".csv" />
+                </div>
+                <div id="file-info" class="hidden">
+                    <p>Loaded: <strong id="file-name"></strong> (<span id="row-count"></span> rows)</p>
+                </div>
+            </section>
+
+            <section id="mapping-section" class="hidden" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                <h2>2. Map Fields</h2>
+                <p>Map your CSV columns to standard DPP fields. Unmapped columns will be ignored. <strong>You must confirm every row (mapped or ignored) by checking the box on the right.</strong> Once reviewed, you can "Save Mapping Config" for later or "Generate DPPs" using the button at the bottom.</p>
+                
+                <div class="toolbar" style="margin-bottom: 15px;">
+                    <button id="load-config-btn">Load Mapping Config</button>
+                    <button id="save-config-btn">Save Mapping Config</button>
+                    <input type="file" id="config-file-input" accept=".json" style="display: none;">
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table id="mapping-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #f5f5f5; text-align: left;">
+                                <th style="padding: 10px;">CSV Header</th>
+                                <th style="padding: 10px;">Sample Value</th>
+                                <th style="padding: 10px;">Target DPP Field</th>
+                                <th style="padding: 10px; width: 60px; text-align: center;">Review</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mapping-tbody">
+                            <!-- Rows generated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="action-section" class="hidden" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                <h2>3. Generate</h2>
+                <p>Generate a single JSON file containing an array of all Digital Product Passports based on your mapping. <i>Note: This batch export format is designed for portability. Future updates may include options for direct API uploads or segmented file generation to align with emerging DPP infrastructure standards.</i></p>
+                <div class="actions">
+                    <button id="generate-btn" class="primary-btn">Generate DPPs</button>
+                </div>
+                <div id="output-area" style="margin-top: 15px;"></div>
+            </section>
+        </div>
+
+        <footer>
+            <p><small>Part of the <a href="../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+
+    <!-- Vendor Libraries -->
+    <!-- Removed manual script tag for papaparse, will import in module -->
+    
+    <!-- Application Logic -->
+    <script type="module" src="csv-dpp-adapter.js"></script>
+</body>
+</html>
