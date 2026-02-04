@@ -11,12 +11,16 @@
     "lastUpdate": "2024-05-21T10:00:00Z",
     "economicOperatorId": "urn:gln:9876543210987",
     "facilityId": "urn:gln:9876543210988",
-    "contentSpecificationIds": "draft_battery_specification_id",
-    "image": {
-      "resourceTitle": "Front View",
-      "url": "/spec/examples/images/battery.svg",
-      "contentType": "image/svg+xml"
-    },
+    "contentSpecificationIds": [
+      "draft_battery_specification_id"
+    ],
+    "image": [
+      {
+        "resourceTitle": "Front View",
+        "url": "/spec/examples/images/battery.svg",
+        "contentType": "image/svg+xml"
+      }
+    ],
     "manufacturerInfo": {
       "organizationName": "Keystone Battery Systems",
       "address": {
@@ -32,21 +36,52 @@
     "batteryCategory": "IndustrialBattery",
     "batteryChemistry": "LFP",
     "batteryStatus": "Original",
-    "materialComposition": {
-      "name": "Separator (PP/PE)",
-      "weightPercentage": 2
-    },
-    "hazardousSubstances": {
-      "name": "Lithium Hexafluorophosphate",
-      "weightPercentage": 1.5
-    },
+    "materialComposition": [
+      {
+        "name": "Lithium Iron Phosphate (LFP)",
+        "weightPercentage": 32
+      },
+      {
+        "name": "Graphite",
+        "weightPercentage": 22
+      },
+      {
+        "name": "Aluminum",
+        "weightPercentage": 18
+      },
+      {
+        "name": "Copper",
+        "weightPercentage": 12
+      },
+      {
+        "name": "Electrolyte (LiPF6 in Carbonates)",
+        "weightPercentage": 14
+      },
+      {
+        "name": "Separator (PP/PE)",
+        "weightPercentage": 2
+      }
+    ],
+    "hazardousSubstances": [
+      {
+        "name": "Lithium Hexafluorophosphate",
+        "weightPercentage": 1.5
+      }
+    ],
     "hazardousSubstancesImpact": "Toxic if swallowed; Causes severe skin burns.",
-    "preConsumerRecycledMaterialComposition": {
-      "name": "Copper"
-    },
-    "postConsumerRecycledMaterialComposition": {
-      "name": "Nickel"
-    },
+    "preConsumerRecycledMaterialComposition": [
+      {
+        "name": "Copper"
+      }
+    ],
+    "postConsumerRecycledMaterialComposition": [
+      {
+        "name": "Aluminum"
+      },
+      {
+        "name": "Nickel"
+      }
+    ],
     "renewableContent": 0,
     "performance": {
       "capacity": {

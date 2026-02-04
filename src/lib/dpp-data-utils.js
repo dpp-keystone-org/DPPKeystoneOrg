@@ -13,7 +13,10 @@ export function setProperty(obj, path, value) {
         return;
     }
 
-    const keys = path.split('.');
+    // Convert bracket notation to dot notation (e.g. "prop[0]" -> "prop.0")
+    const normalizedPath = path.replace(/\[(\d+)\]/g, '.$1');
+
+    const keys = normalizedPath.split('.');
     let current = obj;
 
     for (let i = 0; i < keys.length - 1; i++) {
@@ -38,4 +41,30 @@ export function setProperty(obj, path, value) {
     } else {
         current[lastKey] = value;
     }
+}
+
+/**
+ * Recursively traverses an object and compacts any arrays that have holes (sparse arrays).
+ * Also filters out null/undefined items if desired (currently just compacts holes).
+ * @param {object} obj 
+ * @returns {object} The modified object (in-place).
+ */
+export function compactArrays(obj) {
+    if (Array.isArray(obj)) {
+        // Compact the array itself (remove holes)
+        // .filter(Boolean) would remove false/0/null/undefined. 
+        // We only want to remove *holes* (sparse) and maybe explicit nulls/undefineds from mapping?
+        // JS .filter(item => true) automatically removes holes from sparse arrays.
+        // We also likely want to remove explicit 'undefined' if it somehow got there, 
+        // but keep 0 or false.
+        const compacted = obj.filter(item => item !== undefined && item !== null);
+        
+        // Recurse into children
+        return compacted.map(item => compactArrays(item));
+    } else if (obj !== null && typeof obj === 'object') {
+        for (const key in obj) {
+            obj[key] = compactArrays(obj[key]);
+        }
+    }
+    return obj;
 }

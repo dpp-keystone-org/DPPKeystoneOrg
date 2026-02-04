@@ -214,13 +214,53 @@ This design introduces a standalone, client-side utility (`src/csv-generator`) t
             *   Verify numeric fields (e.g. `weight`) are numbers, not strings.
             *   Verify boolean fields (if any) are booleans.
 
-*   **[PENDING] Step 7.9: Investigation: Advanced Array Support**
+*   **[COMPLETED] Step 7.9: Advanced Array Support (Indexed Paths)**
     *   **Problem:** Mapping multiple CSV columns to an array (e.g. `components`) is ambiguous regarding object identity and order.
-    *   **Goal:** Define a strategy (e.g., indexed paths like `components[0].name`) to handle arrays of objects robustly.
+    *   **Goal:** Define and implement a robust strategy for indexed paths (e.g. `components[0].name`) covering complex edge cases.
+    *   **Scenarios to Cover:**
+        *   **[COMPLETED] Step 7.9.1: Basic Indexing:** Support explicit bracket notation `[0]`, `[1]` in `setProperty`.
+        *   **[COMPLETED] Step 7.9.2: Sparse/Skipped Indices:** Verify behavior when indices are missing (e.g. `Mat 1` and `Mat 3`). Should it compact or leave holes? (Goal: Compact/Dense arrays preferred for JSON).
+        *   **[COMPLETED] Step 7.9.3: Unordered Headers:** Verify behavior when columns appear out of order (e.g. `Mat 2` before `Mat 1`).
+        *   **[COMPLETED] Step 7.9.5: Deep Nesting:** Support arrays within arrays (e.g. `components[0].parts[0].name`).
+        *   **[COMPLETED] Step 7.9.6: Manual Overrides (E2E):** 
+            *   **Goal:** Verify that user-typed specific indices (e.g. `[5]`) are respected by the UI and result in correctly grouped (and compacted) output.
+            *   **Behavior:** Input `items[5]` should group data with other `items[5]` fields. Final output should be compacted (e.g. if `0-4` are empty, `items[5]` becomes `items[0]`).
+        *   **[COMPLETED] Step 7.9.7: Advanced Array Strategies (UI):**
+            *   **Selected Approach:** Context-Aware Path Selection (Option 1).
+            *   **[COMPLETED] Step 7.9.7.1: Logic Extraction & Unit Testing:**
+                *   Create `findUsedIndices(currentMapping, arrayFieldPath)` in `src/lib/csv-adapter-logic.js`.
+                *   Create `generateIndexedSuggestions(field, usedIndices)` in `src/lib/csv-adapter-logic.js`.
+                *   **Test:** Verify that if `arr[0].name` is mapped, `usedIndices` returns `[0]`.
+                *   **Test:** Verify that suggestions include `arr[0].*` (existing) and `arr[1].*` (new).
+            *   **[COMPLETED] Step 7.9.7.2: Logic Integration (Data Collection):**
+                *   Update `src/csv-dpp-adapter/csv-dpp-adapter.js` to collect the current mapping state from all inputs effectively.
+                *   Ensure this state is accessible when the `focus` event triggers.
+            *   **[COMPLETED] Step 7.9.7.3: Dynamic Datalist Generation:**
+                *   Update the `focus` event handler in `csv-dpp-adapter.js`.
+                *   Call `findUsedIndices` and `generateIndexedSuggestions`.
+                *   Dynamically rebuild the `<datalist>` options to show specific indexed paths (e.g., `components[0].name`, `components[1].name`).
+            *   **[COMPLETED] Step 7.9.7.4: E2E Verification:**
+                *   Update Playwright tests to verify:
+                    *   Assign `arr[0].name` to Row 1.
+                    *   Focus Row 2.
+                    *   Verify suggestions include `arr[0].weight` (join) and `arr[1].name` (start new).
 
-## Phase 8: Future Improvements
-*   **Step 8.1: User-Defined Voluntary Fields**
+## Phase 8: Stabilization & Reliability
+*   **Step 8.1: Fix Playwright Flakiness**
+    *   Investigate and fix timeouts in E2E tests.
+    *   Add appropriate `wait` statements (e.g., `waitForSelector`, `waitForLoadState`) to ensure robust element interaction.
+
+## Phase 9: Validation Integration
+*   **Step 9.1: CSV Data Validation**
+    *   **Goal:** Ensure generated DPPs comply with the schema/ontology before export.
+    *   **Implementation:** Reuse the existing DPP Validator logic (`src/validator/validator.js` or `src/lib/schema-validator.js`).
+    *   **Workflow:**
+        *   After generation (but before download), run the validation suite on the generated objects.
+        *   Display a summary report (e.g., "3 Rows Invalid").
+        *   Allow users to download a "Validation Report" or see inline errors.
+
+## Phase 10: Future Improvements
+*   **Step 10.1: User-Defined Voluntary Fields**
     *   **UI for Custom Fields:** Allow users to type a custom field path in the input box even if it's not in the datalist.
     *   **Schema Mapping for Complex Types:** Support mapping to `additionalProductCharacteristics` or `additionalOrganizationIds`.
     *   **Validation:** Ensure these custom fields are structured correctly in the output JSON.
-*   **Step 8.2: Advanced Array Strategies:** Define syntax for mapping columns to specific array indices (e.g. `components[0].name`).

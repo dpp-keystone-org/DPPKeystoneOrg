@@ -158,25 +158,27 @@ test.describe('CSV DPP Adapter E2E', () => {
         
         // Test 15: Scalar Uniqueness (Forward)
         // Focus Row 2. 'brand' should NOT be in the datalist.
+        // Clear input2 first to ensure we see all options (if it was auto-mapped)
+        await input2.fill(''); 
         await input2.focus();
         
-        const datalist = page.locator('#schema-fields-list');
-        await expect(datalist.locator('option[value="brand"]')).toHaveCount(0);
+        const dropdown = page.locator('#autocomplete-dropdown');
+        await expect(dropdown.locator('li[data-value="brand"]')).toHaveCount(0);
         
         // Test 16: Scalar Uniqueness (Reverse)
         // Clear Row 1
         await input1.fill('');
         // Focus Row 2 again
         await input2.focus(); // Re-trigger build
-        await expect(datalist.locator('option[value="brand"]')).toHaveCount(1);
+        await expect(dropdown.locator('li[data-value="brand"]')).toHaveCount(1);
 
         // Test 17: Array Exception
-        // Set Row 1 to 'components.name' (Array item property)
-        await input1.fill('components.name');
+        // Set Row 1 to 'components[0].name' (Array item property)
+        await input1.fill('components[0].name');
         // Focus Row 2
         await input2.focus();
-        // Should STILL be there because image is an array group
-        await expect(datalist.locator('option[value="components.name"]')).toHaveCount(1);
+        // Should suggest the NEXT index (Start New) because [0] is taken
+        await expect(dropdown.locator('li[data-value="components[1].name"]')).toHaveCount(1);
 
         // Test 18: Self-Exclusion
         // Set Row 2 to 'brand'
@@ -184,7 +186,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         // Focus Row 2
         await input2.focus();
         // 'brand' should BE there (because it's the current value)
-        await expect(datalist.locator('option[value="brand"]')).toHaveCount(1);
+        await expect(dropdown.locator('li[data-value="brand"]')).toHaveCount(1);
     });
 
     test('Test 19-25: Review Workflow', async ({ page }) => {
@@ -343,6 +345,236 @@ test.describe('CSV DPP Adapter E2E', () => {
         // Let's check a field we know.
         // "DPP ID" -> "digitalProductPassportId"
         expect(firstDPP).toHaveProperty('digitalProductPassportId');
+    });
+
+    test('should load CSV, allow manual index override, and compact arrays on generation', async ({ page }) => {
+        const csvPath = path.resolve('../src/examples/csv/battery-product.csv');
+    
+        // 1. Upload CSV
+        const fileInput = page.locator('#csv-file-input');
+        await fileInput.setInputFiles(csvPath);
+    
+        // Verify loaded
+        await expect(page.locator('#file-name')).toContainText('battery-product.csv');
+        
+        // 2. Select Sector (Battery)
+        await page.check('input[value="battery"]');
+        
+        // Wait for mapping table and auto-mapping update
+        await expect(page.locator('#mapping-table')).toBeVisible();
+        // Wait for 'Material 1 Name' to have the battery auto-mapping.
+        // This confirms the table has re-rendered with the new schema.
+        await expect(page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('materialComposition[0].name');
+    
+        // 3. Manual Override
+        // We will find the row for "Material 3 Name" (Aluminum) and map it to index 10 explicitly.
+        // This tests moving an item from the middle (index 2) to the end.
+        
+        // Find the input corresponding to "Material 3 Name"
+        // Use exact text matching to avoid matching similar rows
+        const row = page.locator('tr').filter({ has: page.getByText('Material 3 Name', { exact: true }) });
+        const input = row.locator('.dpp-field-input');
+        
+        // Override to index 10
+        await input.fill('materialComposition[10].name');
+        await input.blur(); // Ensure change event fires
+        await expect(input).toHaveValue('materialComposition[10].name');
+        
+        // Also override the percentage for the same item
+        const rowPct = page.locator('tr').filter({ has: page.getByText('Material 3 %', { exact: true }) });
+        const inputPct = rowPct.locator('.dpp-field-input');
+        await inputPct.fill('materialComposition[10].weightPercentage');
+        await inputPct.blur(); // Ensure change event fires
+        await expect(inputPct).toHaveValue('materialComposition[10].weightPercentage');
+    
+        // 4. Review All (Cheat: iterate and check all boxes)
+        const checkboxes = page.locator('.review-checkbox');
+        const count = await checkboxes.count();
+        for (let i = 0; i < count; ++i) {
+            await checkboxes.nth(i).check();
+        }
+    
+        // 5. Generate
+        // Setup download listener
+        const downloadPromise = page.waitForEvent('download');
+        await page.click('#generate-btn');
+        const download = await downloadPromise;
+        
+        // 6. Verify Content
+        const stream = await download.createReadStream();
+        const chunks = [];
+        for await (const chunk of stream) {
+            chunks.push(chunk);
+        }
+        const buffer = Buffer.concat(chunks);
+        const json = JSON.parse(buffer.toString());
+    
+        expect(Array.isArray(json)).toBeTruthy();
+        const dpp = json[0];
+        
+        // Verify Material Composition
+        // We moved Material 3 (originally index 2) to index 10.
+        // Original indices: 0, 1, 2, 3, 4, 5.
+        // New indices map: 0->0, 1->1, 3->3, 4->4, 5->5, 2->10.
+        // Compaction should result in: 0, 1, 3, 4, 5, 2 (remapped to 0,1,2,3,4,5 order).
+        // So the last item (index 5) should be Material 3 (Aluminum).
+        
+        expect(dpp.materialComposition).toBeDefined();
+        expect(dpp.materialComposition).toHaveLength(6);
+        
+        const lastItem = dpp.materialComposition[5];
+        expect(lastItem.name).toBe('Aluminum');
+        expect(lastItem.weightPercentage).toBe(18.0);
+      });
+    test('should dynamically suggest array indices based on usage', async ({ page }) => {
+        const csvPath = path.resolve('../src/examples/csv/battery-product.csv');
+        await page.setInputFiles('#csv-file-input', csvPath);
+        await page.check('input[value="battery"]');
+
+        // Wait for auto-mapping stability
+        await expect(page.locator('#mapping-table')).toBeVisible();
+        // Wait for 'Material 1 Name' to have the battery auto-mapping.
+        await expect(page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('materialComposition[0].name');
+
+        // Clear 'Material 1 %' mapping so 'materialComposition[0].weightPercentage' becomes available for suggestions
+        // (Otherwise it's excluded because it's already mapped to this row)
+        const rowMat1Pct = page.locator('tr').filter({ has: page.getByText('Material 1 %', { exact: true }) });
+        await rowMat1Pct.locator('.dpp-field-input').fill('');
+        await rowMat1Pct.locator('.dpp-field-input').blur();
+
+        const row1 = page.locator('#mapping-tbody tr').nth(0); 
+        const input1 = row1.locator('.dpp-field-input');
+        
+        const row2 = page.locator('#mapping-tbody tr').nth(1);
+        const input2 = row2.locator('.dpp-field-input');
+
+        // 1. Assign Index 0 to Row 1
+        await input1.fill('materialComposition[0].name');
+        await input1.blur();
+        await expect(input1).toHaveValue('materialComposition[0].name');
+
+        // 2. Focus Row 2 to trigger suggestion generation
+        await input2.focus();
+
+        // 3. Verify Suggestions
+        const dropdown = page.locator('#autocomplete-dropdown');
+        
+        // Should suggest joining Index 0 (e.g., weightPercentage)
+        await expect(dropdown.locator('li[data-value="materialComposition[0].weightPercentage"]')).toHaveCount(1);
+        
+        // Should suggest starting Index 6 (Next available, as 0-5 are used by Materials 1-6)
+        await expect(dropdown.locator('li[data-value="materialComposition[6].name"]')).toHaveCount(1);
+        
+        // Should NOT suggest 'materialComposition[0].name' because it's taken by Row 1
+        await expect(dropdown.locator('li[data-value="materialComposition[0].name"]')).toHaveCount(0);
+    });
+
+    test('should close dropdown on item selection', async ({ page }) => {
+        const csvPath = path.resolve('../src/examples/csv/battery-product.csv');
+        await page.setInputFiles('#csv-file-input', csvPath);
+
+        const row = page.locator('#mapping-tbody tr').first();
+        const input = row.locator('.dpp-field-input');
+        const dropdown = page.locator('#autocomplete-dropdown');
+
+        // 1. Open Dropdown
+        await input.focus();
+        await expect(dropdown).toBeVisible();
+
+        // 2. Select an item (click)
+        // Ensure there is at least one item
+        const firstItem = dropdown.locator('li').first();
+        await expect(firstItem).toBeVisible();
+        
+        // Get value to assert later
+        const value = await firstItem.getAttribute('data-value');
+        
+        await firstItem.click();
+
+        // 3. Assertions
+        // Dropdown should be hidden
+        await expect(dropdown).not.toBeVisible();
+        // Input should have value
+        await expect(input).toHaveValue(value);
+    });
+
+    test('should display correct autocomplete suggestion labels for new and existing arrays', async ({ page }) => {
+        const csvPath = path.resolve('../src/examples/csv/battery-product.csv');
+        await page.setInputFiles('#csv-file-input', csvPath);
+        await page.check('input[value="battery"]');
+
+        // Clear all inputs to start fresh
+        const inputs = page.locator('.dpp-field-input');
+        const count = await inputs.count();
+        for (let i = 0; i < count; ++i) {
+            await inputs.nth(i).fill('');
+        }
+
+        // 1. Verify "START NEW ARRAY" (Index 0)
+        // Focus second input (Row 2, often ID) and type partial path
+        const input1 = inputs.nth(1); 
+        await input1.fill('components');
+        await input1.focus();
+
+        const dropdown = page.locator('#autocomplete-dropdown');
+        await expect(dropdown).toBeVisible();
+
+        // Check for "START NEW ARRAY" on index 0
+        // We look for components[0].name as a generic field in components array
+        const startItem = dropdown.locator('li').filter({ hasText: 'components[0].name' });
+        await expect(startItem).toContainText('START NEW ARRAY');
+        
+        // 2. Verify "ADD TO EXISTING" (Index 0)
+        // Select the first item to "start" the array
+        await startItem.click();
+
+        // Focus third input for next property
+        const input2 = inputs.nth(2);
+        await input2.fill('components');
+        await input2.focus();
+
+        // 'components[0].uniqueProductIdentifier' should be "ADD TO EXISTING" 
+        // (assuming it exists in schema, which it usually does for components)
+        const existingItem = dropdown.locator('li').filter({ hasText: 'components[0].uniqueProductIdentifier' });
+        await expect(existingItem).toContainText('ADD TO EXISTING');
+
+        // 3. Verify "ADD NEW ITEM" (Index 1)
+        // 'components[1].name' should be "ADD NEW ITEM"
+        const newItem = dropdown.locator('li').filter({ hasText: 'components[1].name' });
+        await expect(newItem).toContainText('ADD NEW ITEM');
+    });
+
+    test('should approve all mappings when "Approve All" button is clicked', async ({ page }) => {
+        const csvPath = path.resolve('../src/examples/csv/battery-product.csv');
+        await page.setInputFiles('#csv-file-input', csvPath);
+        
+        // Ensure table is rendered
+        await expect(page.locator('#mapping-table')).toBeVisible();
+
+        const generateBtn = page.locator('#generate-btn');
+        const approveAllBtn = page.locator('#approve-all-btn');
+        const checkboxes = page.locator('.review-checkbox');
+
+        // 1. Initial State: Generate Disabled, Checkboxes Unchecked (mostly)
+        await expect(generateBtn).toBeDisabled();
+        
+        // 2. Click Approve All
+        await expect(approveAllBtn).toBeVisible();
+        await approveAllBtn.click();
+
+        // 3. Verify All Checked
+        const count = await checkboxes.count();
+        expect(count).toBeGreaterThan(0);
+        for (let i = 0; i < count; ++i) {
+            await expect(checkboxes.nth(i)).toBeChecked();
+        }
+
+        // 4. Verify Generate Enabled
+        await expect(generateBtn).toBeEnabled();
+        
+        // 5. Verify Row Styles (optional, check one)
+        const firstRow = page.locator('#mapping-tbody tr').first();
+        await expect(firstRow).not.toHaveClass(/needs-review/);
     });
 
 });

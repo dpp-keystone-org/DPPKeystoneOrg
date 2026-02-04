@@ -1,6 +1,6 @@
 import Papa from '../lib/vendor/papaparse.js';
 import { loadSchema, flattenSchema } from '../lib/schema-loader.js';
-import { generateDPPsFromCsv, generateAutoMapping } from '../lib/csv-adapter-logic.js';
+import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions } from '../lib/csv-adapter-logic.js';
 
 console.log('CSV Adapter Initialized');
 
@@ -20,6 +20,10 @@ const saveConfigBtn = document.getElementById('save-config-btn');
 const configFileInput = document.getElementById('config-file-input');
 const outputArea = document.getElementById('output-area');
 
+// Autocomplete Dropdown Singleton
+let dropdownList = null;
+let activeInputIndex = -1; // For keyboard navigation within list
+
 // State
 let csvData = [];
 let csvHeaders = [];
@@ -27,9 +31,24 @@ let schemaFields = [];
 
 // Initialize
 (async function init() {
+    createDropdown(); // Create the DOM element for the dropdown
     setupEventListeners();
     await updateSchema();
 })();
+
+function createDropdown() {
+    dropdownList = document.createElement('ul');
+    dropdownList.id = 'autocomplete-dropdown';
+    dropdownList.className = 'autocomplete-dropdown';
+    document.body.appendChild(dropdownList);
+
+    // Global click listener to hide dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.autocomplete-dropdown') && !e.target.closest('.dpp-field-input')) {
+            hideDropdown();
+        }
+    });
+}
 
 function setupEventListeners() {
     // File Input
@@ -126,52 +145,198 @@ function handleFile(file) {
     });
 }
 
+// --- Autocomplete Logic ---
+
+function updateRowReviewState(input) {
+    const row = input.closest('tr');
+    const checkbox = row.querySelector('.review-checkbox');
+    if (checkbox && !checkbox.checked) {
+        checkbox.checked = true;
+        row.classList.remove('needs-review');
+        row.dataset.reviewed = "true";
+        updateGenerateButtonState();
+    }
+}
+
+function setupAutocomplete(input) {
+    input.addEventListener('focus', () => {
+        showDropdown(input);
+    });
+
+    input.addEventListener('input', () => {
+        showDropdown(input);
+        updateRowReviewState(input);
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (!dropdownList.classList.contains('visible')) return;
+
+        const items = dropdownList.querySelectorAll('li');
+        if (items.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeInputIndex = (activeInputIndex + 1) % items.length;
+            highlightItem(items, activeInputIndex);
+            items[activeInputIndex].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeInputIndex = (activeInputIndex - 1 + items.length) % items.length;
+            highlightItem(items, activeInputIndex);
+            items[activeInputIndex].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (activeInputIndex >= 0 && activeInputIndex < items.length) {
+                selectItem(input, items[activeInputIndex]);
+            }
+        } else if (e.key === 'Escape') {
+            hideDropdown();
+        }
+    });
+}
+
+function highlightItem(items, index) {
+    items.forEach(item => item.classList.remove('selected'));
+    if (items[index]) {
+        items[index].classList.add('selected');
+    }
+}
+
+function selectItem(input, itemElement) {
+    input.value = itemElement.dataset.value;
+    hideDropdown();
+    updateRowReviewState(input);
+}
+
+function hideDropdown() {
+    dropdownList.classList.remove('visible');
+    dropdownList.innerHTML = '';
+    activeInputIndex = -1;
+}
+
+function showDropdown(input) {
+    const rect = input.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const viewportHeight = window.innerHeight;
+
+    // 1. Generate Suggestions
+    const currentVal = input.value;
+    const filterText = currentVal.toLowerCase();
+    
+    // Calculate global usage
+    const currentMapping = {};
+    const selectedPaths = new Set();
+    document.querySelectorAll('.dpp-field-input').forEach(inp => {
+        const val = inp.value;
+        if (val) {
+            currentMapping[inp.dataset.csvHeader] = val;
+            if (val !== currentVal) { // Don't exclude our own value
+                selectedPaths.add(val);
+            }
+        }
+    });
+
+    const suggestions = [];
+    schemaFields.forEach(field => {
+        if (field.isArray) {
+            const root = field.path.split('.')[0];
+            const usedIndices = findUsedIndices(currentMapping, root);
+            const indexedSuggestions = generateIndexedSuggestions(field, usedIndices);
+            indexedSuggestions.forEach(s => {
+                if ((s.value === currentVal || !selectedPaths.has(s.value)) && 
+                    s.value.toLowerCase().includes(filterText)) {
+                    suggestions.push(s);
+                }
+            });
+        } else {
+            if ((field.path === currentVal || !selectedPaths.has(field.path)) && 
+                field.path.toLowerCase().includes(filterText)) {
+                suggestions.push({ value: field.path, type: 'scalar', index: null });
+            }
+        }
+    });
+
+    // 2. Render Items (populates DOM, determining height)
+    renderDropdownItems(input, suggestions);
+    
+    if (suggestions.length === 0) return;
+
+    // 3. Position Dropdown
+    // Reset basic styles
+    dropdownList.style.top = '';
+    dropdownList.style.bottom = '';
+    dropdownList.style.left = `${rect.left}px`;
+    dropdownList.style.minWidth = `${rect.width}px`;
+    dropdownList.style.width = 'auto';
+    
+    // Calculate Space
+    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    const minSpaceRequired = 300; // Preferable space for list
+
+    // Decision: Flip if tight below but spacious above
+    if (spaceBelow < minSpaceRequired && spaceAbove > spaceBelow) {
+        // Position Above
+        const dropdownHeight = dropdownList.offsetHeight;
+        dropdownList.style.top = `${(scrollTop + rect.top) - dropdownHeight}px`;
+    } else {
+        // Position Below
+        dropdownList.style.top = `${rect.bottom + scrollTop}px`;
+    }
+}
+
+function renderDropdownItems(input, suggestions) {
+    dropdownList.innerHTML = '';
+    
+    if (suggestions.length === 0) {
+        hideDropdown();
+        return;
+    }
+
+    suggestions.forEach(s => {
+        const li = document.createElement('li');
+        li.className = 'autocomplete-item';
+        li.dataset.value = s.value;
+        
+        let labelHTML = `<strong>${s.value}</strong>`;
+        
+        if (s.type === 'new') {
+            li.classList.add('suggestion-new');
+            if (s.index === 0) {
+                labelHTML += ` <span class="autocomplete-meta">✨ START NEW ARRAY</span>`;
+            } else {
+                labelHTML += ` <span class="autocomplete-meta">✨ ADD NEW ITEM (Index ${s.index})</span>`;
+            }
+        } else if (s.type === 'existing') {
+            li.classList.add('suggestion-join');
+            labelHTML += ` <span class="autocomplete-meta">🔗 ADD TO EXISTING (Index ${s.index})</span>`;
+        }
+
+        li.innerHTML = labelHTML;
+        
+        li.addEventListener('mousedown', (e) => {
+             e.preventDefault(); // Prevent blur on input
+             selectItem(input, li);
+        });
+
+        dropdownList.appendChild(li);
+    });
+
+    dropdownList.classList.add('visible');
+    activeInputIndex = -1;
+}
+
+// --- End Autocomplete Logic ---
+
+
 function renderMappingTable() {
     console.log('Rendering Mapping Table...');
     mappingTbody.innerHTML = '';
     
-    // Create/Update Shared Datalist
-    let dataList = document.getElementById('schema-fields-list');
-    if (!dataList) {
-        dataList = document.createElement('datalist');
-        dataList.id = 'schema-fields-list';
-        document.body.appendChild(dataList);
-    }
-    
-    // Helper to rebuild datalist based on current context
-    const rebuildDatalist = (currentInputValue) => {
-        dataList.innerHTML = ''; 
-        
-        // precise tracking of selected fields across all inputs
-        const selectedPaths = new Set();
-        document.querySelectorAll('.dpp-field-input').forEach(inp => {
-            if (inp.value && inp.value !== currentInputValue) {
-                selectedPaths.add(inp.value);
-            }
-        });
-
-        schemaFields.forEach(field => {
-            if (field.isArray || field.path === currentInputValue || !selectedPaths.has(field.path)) {
-                const opt = document.createElement('option');
-                opt.value = field.path;
-                if (field.isArray) {
-                    opt.label = "(Array)";
-                }
-                dataList.appendChild(opt);
-            }
-        });
-    };
-
-    // Initial build (full list)
-    rebuildDatalist(null);
-
-    // Prepare string list for matching logic (still useful if needed, but generateAutoMapping now takes objects)
+    // Use schemaFields directly
     const availableFieldPaths = schemaFields.map(f => f.path);
     console.log(`Available Fields: ${availableFieldPaths.length}, CSV Headers: ${csvHeaders.length}`);
 
-    // --- Generate Auto-Mappings (Global Greedy Strategy) ---
-    // Instead of calling findBestMatch per header, we generate a global mapping first.
-    // We pass schemaFields directly so it knows which fields are arrays.
     try {
         console.log('Generating Auto Mapping...');
         const autoMapping = generateAutoMapping(csvHeaders, schemaFields);
@@ -179,7 +344,7 @@ function renderMappingTable() {
 
         csvHeaders.forEach((header, index) => {
             const row = document.createElement('tr');
-            row.dataset.reviewed = "false"; // State tracking
+            row.dataset.reviewed = "false"; 
             row.classList.add('needs-review');
             
             // 1. CSV Header
@@ -187,7 +352,7 @@ function renderMappingTable() {
             headerCell.textContent = header;
             row.appendChild(headerCell);
 
-            // 2. Sample Value (from first row)
+            // 2. Sample Value
             const sampleCell = document.createElement('td');
             const sampleVal = csvData.length > 0 ? csvData[0][header] : '';
             sampleCell.textContent = typeof sampleVal === 'string' && sampleVal.length > 50 
@@ -197,31 +362,19 @@ function renderMappingTable() {
             sampleCell.style.fontStyle = 'italic';
             row.appendChild(sampleCell);
 
-            // 3. Target Field Input with Datalist
+            // 3. Target Field Input (Custom Autocomplete)
             const targetCell = document.createElement('td');
             const input = document.createElement('input');
             input.type = 'text';
-            input.setAttribute('list', 'schema-fields-list');
+            // Removed list="..." attribute
             input.className = 'dpp-field-input';
             input.dataset.csvHeader = header;
             input.placeholder = 'Search target field...';
             input.style.width = '100%';
+            input.autocomplete = "off"; // Disable browser native autocomplete
             
-            // Dynamic Datalist Filtering on Focus
-            input.addEventListener('focus', () => {
-                rebuildDatalist(input.value);
-            });
-
-            // Auto-check logic on manual input
-            input.addEventListener('input', () => {
-                // If user types something, assume they are reviewing it
-                if (!checkbox.checked) {
-                    checkbox.checked = true;
-                    row.classList.remove('needs-review');
-                    row.dataset.reviewed = "true";
-                    updateGenerateButtonState();
-                }
-            });
+            // Setup custom autocomplete
+            setupAutocomplete(input);
 
             // Apply Auto-Mapping
             if (autoMapping[header]) {
@@ -233,15 +386,14 @@ function renderMappingTable() {
 
             // 4. Review Checkbox
             const reviewCell = document.createElement('td');
-            reviewCell.style.textAlign = 'center'; // Center the checkbox
-            reviewCell.style.cursor = 'pointer'; // Indicate clickability
+            reviewCell.style.textAlign = 'center';
+            reviewCell.style.cursor = 'pointer';
             
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.className = 'review-checkbox';
             checkbox.title = "Confirm this mapping";
             
-            // Function to toggle state
             const toggleReview = (newState) => {
                 checkbox.checked = newState;
                 if (checkbox.checked) {
@@ -254,15 +406,11 @@ function renderMappingTable() {
                 updateGenerateButtonState();
             };
 
-            // Checkbox change event (handles clicks on the box AND keyboard interaction)
             checkbox.addEventListener('change', () => {
                 toggleReview(checkbox.checked);
             });
 
-            // Cell click event (handles clicks on the empty space in the cell)
             reviewCell.addEventListener('click', (e) => {
-                // Only toggle if the click was NOT on the checkbox itself
-                // (because the checkbox click is handled natively + 'change' event)
                 if (e.target !== checkbox) {
                     toggleReview(!checkbox.checked);
                 }
@@ -273,6 +421,32 @@ function renderMappingTable() {
             
             mappingTbody.appendChild(row);
         });
+
+        // Add "Approve All" button
+        const existingBtn = document.getElementById('approve-all-btn');
+        if (existingBtn) existingBtn.remove();
+
+        const approveAllBtn = document.createElement('button');
+        approveAllBtn.id = 'approve-all-btn';
+        approveAllBtn.textContent = 'Approve All';
+        approveAllBtn.className = 'secondary-btn'; // Assuming this class exists or I'll style it
+        approveAllBtn.style.marginTop = '1rem';
+        approveAllBtn.style.marginBottom = '1rem';
+        approveAllBtn.style.float = 'right';
+
+        approveAllBtn.addEventListener('click', () => {
+            document.querySelectorAll('.review-checkbox').forEach(cb => {
+                cb.checked = true;
+                const row = cb.closest('tr');
+                if (row) {
+                    row.classList.remove('needs-review');
+                    row.dataset.reviewed = "true";
+                }
+            });
+            updateGenerateButtonState();
+        });
+
+        mappingTbody.closest('table').after(approveAllBtn);
         
         updateGenerateButtonState();
         console.log('Rendering Complete.');

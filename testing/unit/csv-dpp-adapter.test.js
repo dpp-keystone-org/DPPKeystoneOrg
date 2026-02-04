@@ -1,6 +1,104 @@
-import { generateDPPsFromCsv, findBestMatch, generateAutoMapping } from '../../src/lib/csv-adapter-logic.js';
+import { generateDPPsFromCsv, findBestMatch, generateAutoMapping, findUsedIndices, generateIndexedSuggestions } from '../../src/lib/csv-adapter-logic.js';
 
 describe('CSV Adapter Logic', () => {
+
+    describe('Advanced Array Strategies (Step 7.9.7)', () => {
+        
+        describe('findUsedIndices', () => {
+            it('should return empty set if no arrays are mapped', () => {
+                const mapping = {
+                    "Header A": "some.scalar",
+                    "Header B": "another.scalar"
+                };
+                const indices = findUsedIndices(mapping, "materialComposition");
+                expect(indices.size).toBe(0);
+            });
+
+            it('should find single index for a simple array mapping', () => {
+                const mapping = {
+                    "Mat 1": "materialComposition[0].name"
+                };
+                const indices = findUsedIndices(mapping, "materialComposition");
+                expect(indices.size).toBe(1);
+                expect(indices.has(0)).toBe(true);
+            });
+
+            it('should find multiple indices', () => {
+                const mapping = {
+                    "Mat 1": "materialComposition[0].name",
+                    "Mat 2": "materialComposition[1].name",
+                    "Mat 3": "materialComposition[5].weightPercentage" // Sparse/Manual
+                };
+                const indices = findUsedIndices(mapping, "materialComposition");
+                expect(indices.size).toBe(3);
+                expect(indices.has(0)).toBe(true);
+                expect(indices.has(1)).toBe(true);
+                expect(indices.has(5)).toBe(true);
+            });
+
+            it('should ignore other arrays', () => {
+                const mapping = {
+                    "Doc 1": "referenceDocuments[0].uri",
+                    "Mat 1": "materialComposition[0].name"
+                };
+                const indices = findUsedIndices(mapping, "materialComposition");
+                expect(indices.size).toBe(1);
+                expect(indices.has(0)).toBe(true);
+                // Should not carry over refDocs index
+            });
+        });
+
+        describe('generateIndexedSuggestions', () => {
+            it('should suggest [0] properties for a fresh array', () => {
+                const field = { path: 'materialComposition.name', isArray: true };
+                const usedIndices = new Set();
+                
+                const suggestions = generateIndexedSuggestions(field, usedIndices);
+                
+                // Should default to [0]
+                expect(suggestions).toHaveLength(1);
+                expect(suggestions[0].value).toBe('materialComposition[0].name');
+                expect(suggestions[0].type).toBe('new');
+            });
+
+            it('should suggest joining existing indices AND starting a new one', () => {
+                const field = { path: 'materialComposition.name', isArray: true };
+                const usedIndices = new Set([0]); // Index 0 already used
+                
+                const suggestions = generateIndexedSuggestions(field, usedIndices);
+                
+                // Expect suggestions for [0] and [1]
+                expect(suggestions).toHaveLength(2);
+                expect(suggestions[0].value).toBe('materialComposition[0].name');
+                expect(suggestions[0].type).toBe('existing');
+                expect(suggestions[1].value).toBe('materialComposition[1].name');
+                expect(suggestions[1].type).toBe('new');
+            });
+
+            it('should handle sparse existing indices correctly', () => {
+                const field = { path: 'materialComposition.weightPercentage', isArray: true };
+                const usedIndices = new Set([0, 5]); // User skipped 1-4
+                
+                const suggestions = generateIndexedSuggestions(field, usedIndices);
+                
+                expect(suggestions).toHaveLength(3);
+                expect(suggestions[0].value).toBe('materialComposition[0].weightPercentage');
+                expect(suggestions[1].value).toBe('materialComposition[5].weightPercentage');
+                expect(suggestions[2].value).toBe('materialComposition[6].weightPercentage');
+                expect(suggestions[2].type).toBe('new');
+            });
+            
+            it('should not affect scalar fields', () => {
+                 const field = { path: 'tradeName', isArray: false };
+                 const usedIndices = new Set([0]); // Irrelevant for scalar
+                 
+                 const suggestions = generateIndexedSuggestions(field, usedIndices);
+                 expect(suggestions).toHaveLength(1);
+                 expect(suggestions[0].value).toBe('tradeName');
+            });
+        });
+
+    });
 
     describe('generateAutoMapping (Global Greedy Strategy)', () => {
         it('should resolve collisions by prioritizing the best match (DPP ID vs Product ID)', () => {
@@ -34,8 +132,8 @@ describe('CSV Adapter Logic', () => {
             expect(mapping['Name']).toBe('manufacturer.name');
         });
 
-        it('should allow multiple headers to map to the same field if it is an array', () => {
-            const headers = ['Doc 1', 'Doc 2'];
+        it('should allow multiple headers to map to the same field if it is an array and assign indices', () => {
+            const headers = ['Reference Documents 1', 'Reference Documents 2'];
             // Pass field objects to simulate schema metadata
             const fields = [
                 { path: 'referenceDocuments', isArray: true }, 
@@ -44,24 +142,76 @@ describe('CSV Adapter Logic', () => {
             
             const mapping = generateAutoMapping(headers, fields);
             
-            // Both "Doc 1" and "Doc 2" should map to 'referenceDocuments' 
-            // because fuzzy/token matching likely picks it up (assuming "Doc" matches "Documents")
-            // Actually, "Doc" vs "referenceDocuments" might be weak.
-            // Let's use a stronger token match example or synonym?
-            // "Document 1" vs "referenceDocuments".
+            // Should assign indices based on numbers in headers
+            expect(mapping['Reference Documents 1']).toBe('referenceDocuments[0]');
+            expect(mapping['Reference Documents 2']).toBe('referenceDocuments[1]');
         });
         
-        it('should verify array mapping capability with stronger matches', () => {
-             const headers = ['Reference Document 1', 'Reference Document 2'];
+        it('should verify array mapping capability with stronger matches and mixed content', () => {
+             const headers = ['Material Composition 1 Name', 'Material Composition 1 %', 'Material Composition 2 Name', 'Material Composition 2 %'];
              const fields = [
-                { path: 'referenceDocuments', isArray: true },
-                { path: 'other', isArray: false }
+                { path: 'materialComposition.name', isArray: true },
+                { path: 'materialComposition.weightPercentage', isArray: true }
              ];
              
              const mapping = generateAutoMapping(headers, fields);
              
-             expect(mapping['Reference Document 1']).toBe('referenceDocuments');
-             expect(mapping['Reference Document 2']).toBe('referenceDocuments');
+             // Group 1
+             expect(mapping['Material Composition 1 Name']).toBe('materialComposition[0].name');
+             expect(mapping['Material Composition 1 %']).toBe('materialComposition[0].weightPercentage');
+             
+             // Group 2
+             expect(mapping['Material Composition 2 Name']).toBe('materialComposition[1].name');
+             expect(mapping['Material Composition 2 %']).toBe('materialComposition[1].weightPercentage');
+        });
+
+        it('should compact sparse arrays when indices are skipped', () => {
+            const csvData = [
+                { "Mat 1": "A", "Mat 3": "C" }
+            ];
+            // Simulate a user manually mapping to skipped indices, or auto-mapping doing so
+            const mapping = {
+                "Mat 1": "items[0]",
+                "Mat 3": "items[2]"
+            };
+    
+            const result = generateDPPsFromCsv(csvData, mapping, "core");
+    
+            // We expect the array to be compacted to length 2: ["A", "C"]
+            // Instead of length 3: ["A", <empty>, "C"]
+            expect(result[0].items).toHaveLength(2);
+            expect(result[0].items[0]).toBe("A");
+            expect(result[0].items[1]).toBe("C");
+        });
+        
+        it('should assign indices in ascending order even if headers are unordered in CSV', () => {
+             const headers = ['Item 2', 'Item 1'];
+             const fields = [{ path: 'items', isArray: true }];
+             
+             const mapping = generateAutoMapping(headers, fields);
+             
+             // "Item 1" should get index [0], "Item 2" should get index [1]
+             // regardless of their order in the input list.
+             expect(mapping['Item 1']).toBe('items[0]');
+             expect(mapping['Item 2']).toBe('items[1]');
+        });
+
+        it('should handle deep nesting of arrays', () => {
+             // Case: components[0].parts[0].name
+             const csvData = [
+                 { "Comp 1 Part 1": "Gear", "Comp 1 Part 2": "Bolt" }
+             ];
+             const mapping = {
+                 "Comp 1 Part 1": "components[0].parts[0].name",
+                 "Comp 1 Part 2": "components[0].parts[1].name"
+             };
+             
+             const result = generateDPPsFromCsv(csvData, mapping, "core");
+             
+             expect(result[0].components).toHaveLength(1);
+             expect(result[0].components[0].parts).toHaveLength(2);
+             expect(result[0].components[0].parts[0].name).toBe("Gear");
+             expect(result[0].components[0].parts[1].name).toBe("Bolt");
         });
     });
     
@@ -313,5 +463,23 @@ describe('CSV Adapter Logic', () => {
 
         expect(result[0].name).toBe("Product A");
         expect(result[0]).not.toHaveProperty("description");
+    });
+
+    it('should support explicit array indexing via bracket notation in mapping', () => {
+        const csvData = [
+            { "Mat 1 Name": "Lithium", "Mat 1 %": "32", "Mat 2 Name": "Graphite", "Mat 2 %": "22" }
+        ];
+        const mapping = {
+            "Mat 1 Name": "materialComposition[0].name",
+            "Mat 1 %": "materialComposition[0].weightPercentage",
+            "Mat 2 Name": "materialComposition[1].name",
+            "Mat 2 %": "materialComposition[1].weightPercentage"
+        };
+
+        const result = generateDPPsFromCsv(csvData, mapping, "battery");
+
+        expect(result[0].materialComposition).toHaveLength(2);
+        expect(result[0].materialComposition[0]).toEqual({ name: "Lithium", weightPercentage: 32 });
+        expect(result[0].materialComposition[1]).toEqual({ name: "Graphite", weightPercentage: 22 });
     });
 });

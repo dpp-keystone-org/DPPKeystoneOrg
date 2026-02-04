@@ -1,4 +1,4 @@
-import { setProperty } from './dpp-data-utils.js';
+import { setProperty, compactArrays } from './dpp-data-utils.js';
 
 /**
  * Map of common industry terms to standard DPP schema fields.
@@ -170,6 +170,82 @@ export function generateAutoMapping(headers, availableFields) {
         usedFields.add(cand.field.path);
     }
 
+    // 4. Post-processing: Apply Array Indices
+    // We must convert "root.prop" to "root[i].prop" for all array fields
+    // to ensure setProperty creates arrays correctly.
+    
+    // Group headers by Array Root
+    const arrayRoots = {}; // "root" -> [headers]
+    const fieldIsArrayMap = new Map();
+    normalizedFields.forEach(f => fieldIsArrayMap.set(f.path, f.isArray));
+
+    for (const [header, path] of Object.entries(mapping)) {
+        if (fieldIsArrayMap.get(path)) {
+            const root = path.split('.')[0];
+            if (!arrayRoots[root]) arrayRoots[root] = [];
+            arrayRoots[root].push(header);
+        }
+    }
+
+    // Process each Array Root
+    for (const [root, headers] of Object.entries(arrayRoots)) {
+        // Group by numeric ID in header
+        const idGroups = new Map(); // id (int) -> [headers]
+        const noIdHeaders = [];
+
+        headers.forEach(h => {
+            const match = h.match(/(\d+)/);
+            if (match) {
+                const id = parseInt(match[1], 10);
+                if (!idGroups.has(id)) idGroups.set(id, []);
+                idGroups.get(id).push(h);
+            } else {
+                noIdHeaders.push(h);
+            }
+        });
+
+        const sortedIds = Array.from(idGroups.keys()).sort((a, b) => a - b);
+        let currentIndex = 0;
+
+        // Assign indices for numbered groups
+        sortedIds.forEach(id => {
+            const groupHeaders = idGroups.get(id);
+            groupHeaders.forEach(h => {
+                const originalPath = mapping[h];
+                const parts = originalPath.split('.');
+                parts[0] = `${root}[${currentIndex}]`;
+                mapping[h] = parts.join('.');
+            });
+            currentIndex++;
+        });
+
+        // Assign indices for unnumbered headers
+        if (noIdHeaders.length > 0) {
+            noIdHeaders.sort(); // Alpha sort for stability
+            
+            const currentGroupPaths = new Set();
+            
+            noIdHeaders.forEach(h => {
+                const path = mapping[h];
+                // If we've already seen this path in the current index group,
+                // it means we have a collision (e.g. "Doc A" -> refDocs, "Doc B" -> refDocs).
+                // We must start a new item/index.
+                if (currentGroupPaths.has(path)) {
+                    currentIndex++;
+                    currentGroupPaths.clear();
+                }
+                
+                currentGroupPaths.add(path);
+                
+                const parts = path.split('.');
+                parts[0] = `${root}[${currentIndex}]`;
+                mapping[h] = parts.join('.');
+            });
+            // If we processed any unnumbered headers, ensure we increment for safety if logic continues
+            // (though loop ends here for this root)
+        }
+    }
+
     return mapping;
 }
 
@@ -192,6 +268,76 @@ export function findBestMatch(header, availableFields) {
     return bestField;
 }
 
+
+/**
+ * Scans the current mapping to find which indices are already used for a given array root.
+ * 
+ * @param {Object} mapping - Current mapping { "Header": "path" }
+ * @param {string} arrayRoot - The root path of the array (e.g., "materialComposition")
+ * @returns {Set<number>} Set of used indices
+ */
+export function findUsedIndices(mapping, arrayRoot) {
+    const indices = new Set();
+    if (!mapping || !arrayRoot) return indices;
+
+    const regex = new RegExp(`^${escapeRegExp(arrayRoot)}\\[(\\d+)\\]`);
+
+    for (const path of Object.values(mapping)) {
+        if (!path) continue;
+        const match = path.match(regex);
+        if (match) {
+            indices.add(parseInt(match[1], 10));
+        }
+    }
+    return indices;
+}
+
+/**
+ * Generates specific indexed path suggestions for an array field.
+ * Returns paths for all currently used indices (to join objects) 
+ * plus one for the next available index (to start a new object).
+ * 
+ * @param {Object} field - { path, isArray }
+ * @param {Set<number>} usedIndices - Indices currently used in the mapping for this array
+ * @returns {Array<{value: string, type: 'existing'|'new', index: number}>} List of suggestion objects
+ */
+export function generateIndexedSuggestions(field, usedIndices) {
+    if (!field.isArray) {
+        // Return structured object for scalar (though usually not called for scalars by UI logic, but good for safety)
+        return [{ value: field.path, type: 'scalar', index: -1 }];
+    }
+
+    const parts = field.path.split('.');
+    const root = parts[0];
+    const rest = parts.slice(1).join('.');
+    const suggestions = [];
+
+    // 1. Suggest joining existing items
+    const sortedIndices = Array.from(usedIndices).sort((a, b) => a - b);
+    for (const idx of sortedIndices) {
+        suggestions.push({
+            value: `${root}[${idx}].${rest}`,
+            type: 'existing',
+            index: idx
+        });
+    }
+
+    // 2. Suggest starting a new item
+    // If no indices used, start at 0.
+    // Otherwise, start at max + 1.
+    const nextIndex = sortedIndices.length > 0 ? sortedIndices[sortedIndices.length - 1] + 1 : 0;
+    suggestions.push({
+        value: `${root}[${nextIndex}].${rest}`,
+        type: 'new',
+        index: nextIndex
+    });
+
+    return suggestions;
+}
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 // --- Helpers ---
 
@@ -275,6 +421,10 @@ export function generateDPPsFromCsv(csvData, mapping, sector) {
             }
             setProperty(dpp, targetField, value);
         }
+        
+        // Post-process to remove holes from arrays (e.g. from indices like [0], [2])
+        compactArrays(dpp);
+        
         return dpp;
     });
 }
