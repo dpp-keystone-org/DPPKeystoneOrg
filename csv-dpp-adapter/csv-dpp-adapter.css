@@ -39,17 +39,41 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+    table-layout: fixed; /* Allow column widths to control layout */
 }
 
 #mapping-table th, #mapping-table td {
     padding: 0.75rem;
     border-bottom: 1px solid #eee;
     text-align: left;
+    overflow: hidden; /* Ensure content doesn't break layout */
 }
 
 #mapping-table th {
     background-color: #f5f5f5;
     font-weight: 600;
+}
+
+/* Column Widths */
+#mapping-table th:nth-child(1), #mapping-table td:nth-child(1) {
+    width: 20%; /* Header */
+}
+
+#mapping-table th:nth-child(2), #mapping-table td:nth-child(2) {
+    width: 15%; /* Sample Value */
+    color: #666;
+    font-style: italic;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#mapping-table th:nth-child(3), #mapping-table td:nth-child(3) {
+    width: 60%; /* Target Field - Wide */
+}
+
+#mapping-table th:nth-child(4), #mapping-table td:nth-child(4) {
+    width: 5%; /* Review */
+    text-align: center;
 }
 
 select.dpp-field-select {
@@ -91,4 +115,90 @@ tr.needs-review {
 
 tr.needs-review:hover {
     background-color: #ffeeba;
+}
+
+/* Buttons */
+.secondary-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.secondary-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+}
+
+/* Autocomplete Dropdown */
+.autocomplete-dropdown {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-height: 60vh; /* Use 60% of viewport height */
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    display: none; /* Hidden by default */
+    
+    /* Mega Dropdown Logic */
+    width: auto;      /* Allow growing */
+    min-width: 100%;  /* At least as wide as the input */
+    max-width: 90vw;  /* Cap at 90% viewport width to prevent off-screen */
+    white-space: nowrap; /* Prevent wrapping of long paths */
+}
+
+.autocomplete-dropdown.visible {
+    display: block;
+}
+
+.autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    border-left: 4px solid #888; /* Default dark gray hint */
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover, .autocomplete-item.selected {
+    background-color: #f0f4f8;
+}
+
+.autocomplete-item strong {
+    color: #2c3e50;
+}
+
+/* Special Styles for Suggestion Types */
+.autocomplete-item.suggestion-new {
+    border-left-color: #10b981;
+}
+
+.autocomplete-item.suggestion-new:hover, .autocomplete-item.suggestion-new.selected {
+    background-color: #f0f4f8;
+}
+
+.autocomplete-item.suggestion-join {
+    border-left-color: #3b82f6;
+}
+
+.autocomplete-item.suggestion-join:hover, .autocomplete-item.suggestion-join.selected {
+    background-color: #f0f4f8;
+}
+
+.autocomplete-meta {
+    font-size: 0.8em;
+    color: #666;
+    margin-left: 8px;
+    font-weight: normal;
 }
