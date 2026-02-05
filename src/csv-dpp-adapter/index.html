@@ -49,10 +49,16 @@
                 <h2>2. Map Fields</h2>
                 <p>Map your CSV columns to standard DPP fields. Unmapped columns will be ignored. <strong>You must confirm every row (mapped or ignored) by checking the box on the right.</strong> Once reviewed, you can "Save Mapping Config" for later or "Generate DPPs" using the button at the bottom.</p>
                 
-                <div class="toolbar" style="margin-bottom: 15px;">
+                <div class="toolbar" style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
                     <button id="load-config-btn">Load Mapping Config</button>
                     <button id="save-config-btn">Save Mapping Config</button>
                     <input type="file" id="config-file-input" accept=".json" style="display: none;">
+                    
+                    <div style="margin-left: auto;">
+                        <label style="cursor: pointer; user-select: none;">
+                            <input type="checkbox" id="show-incompatible-toggle"> Show incompatible fields
+                        </label>
+                    </div>
                 </div>
 
                 <div style="overflow-x: auto;">

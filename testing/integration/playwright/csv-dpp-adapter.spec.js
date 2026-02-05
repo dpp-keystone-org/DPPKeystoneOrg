@@ -8,6 +8,8 @@ test.describe('CSV DPP Adapter E2E', () => {
         // Navigate to the CSV Adapter page
         // Served at /csv-dpp-adapter/ based on dist/ structure
         await page.goto('/csv-dpp-adapter/index.html');
+        // Wait for schema initialization to complete to avoid race conditions
+        await page.waitForFunction(() => window.dppSchemaLoaded === true);
     });
 
     test('Test 1: Page Navigation and Title', async ({ page }) => {
@@ -251,7 +253,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         const input = firstRow.locator('input.dpp-field-input');
         const checkbox = firstRow.locator('.review-checkbox');
 
-        await input.fill('tradeName'); // Ensure value
+        await input.fill('description'); // Use non-default value to verify config load
         await checkbox.check();
 
         // Check all others to enable Save
@@ -267,7 +269,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         const download = await downloadPromise;
         
         // Save to temp path
-        const configPath = path.resolve('testing/tmp/test-config.json');
+        const configPath = path.resolve('tmp/test-config.json');
         // Ensure directory exists
         if (!fs.existsSync(path.dirname(configPath))) {
             fs.mkdirSync(path.dirname(configPath), { recursive: true });
@@ -279,19 +281,24 @@ test.describe('CSV DPP Adapter E2E', () => {
         // Find header for first row. Assuming battery-product.csv, first header is "Product Name" (mapped to tradeName)
         // Note: The input we filled was 'tradeName'. We need to know the header key.
         const header = await firstRow.locator('td').first().textContent();
-        expect(configContent[header]).toBe('tradeName');
+        expect(configContent[header]).toBe('description');
 
         // Test 27: Load Config (Round Trip)
         await page.reload();
+        await page.waitForFunction(() => window.dppSchemaLoaded === true);
+
         await page.setInputFiles('#csv-file-input', csvPath); // Re-upload CSV
         
+        // Wait for table to render to avoid race condition with config load
+        await expect(page.locator('#mapping-tbody tr').first()).toBeVisible();
+
         // Upload config
         await page.setInputFiles('#config-file-input', configPath);
         // Note: The UI logic listens for change on hidden input. We simulate that.
 
         // Test 28: Verify Restoration
         // First row should have 'tradeName' and be checked
-        await expect(firstRow.locator('input.dpp-field-input')).toHaveValue('tradeName');
+        await expect(firstRow.locator('input.dpp-field-input')).toHaveValue('description');
         await expect(firstRow.locator('.review-checkbox')).toBeChecked();
         
         // Verify ALL are checked (since we saved all checked)
@@ -311,6 +318,9 @@ test.describe('CSV DPP Adapter E2E', () => {
         // We need to verify sector logic too. Let's check 'Battery'.
         await page.check('input[value="battery"]');
 
+        // Wait for table update (re-render) by checking a battery-specific auto-map
+        await expect(page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('materialComposition[0].name');
+
         // Map fields quickly. We rely on auto-map or manually fill a few.
         // We MUST check all boxes to enable generate.
         const checkboxes = page.locator('.review-checkbox');
@@ -324,7 +334,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         await page.click('#generate-btn');
         const download = await downloadPromise;
 
-        const dppPath = path.resolve('testing/tmp/dpp-output.json');
+        const dppPath = path.resolve('tmp/dpp-output.json');
         await download.saveAs(dppPath);
 
         // Test 30: Content Verification
@@ -445,7 +455,8 @@ test.describe('CSV DPP Adapter E2E', () => {
         const row1 = page.locator('#mapping-tbody tr').nth(0); 
         const input1 = row1.locator('.dpp-field-input');
         
-        const row2 = page.locator('#mapping-tbody tr').nth(1);
+        // Use "Material 1 %" row (Numeric) for weightPercentage suggestion
+        const row2 = page.locator('tr').filter({ has: page.getByText('Material 1 %', { exact: true }) });
         const input2 = row2.locator('.dpp-field-input');
 
         // 1. Assign Index 0 to Row 1
@@ -528,8 +539,9 @@ test.describe('CSV DPP Adapter E2E', () => {
         // Select the first item to "start" the array
         await startItem.click();
 
-        // Focus third input for next property
-        const input2 = inputs.nth(2);
+        // Focus "Economic Operator ID" input (Row 6) which is a URI column
+        // This is compatible with 'uniqueProductIdentifier' (format: uri)
+        const input2 = page.locator('tr').filter({ has: page.getByText('Economic Operator ID', { exact: true }) }).locator('.dpp-field-input');
         await input2.fill('components');
         await input2.focus();
 
@@ -575,6 +587,150 @@ test.describe('CSV DPP Adapter E2E', () => {
         // 5. Verify Row Styles (optional, check one)
         const firstRow = page.locator('#mapping-tbody tr').first();
         await expect(firstRow).not.toHaveClass(/needs-review/);
+    });
+
+    test('Filtering: Numeric column should not show string-only fields', async ({ page }) => {
+        // 1. Create a mock CSV with known types (ID, Weight, IsActive)
+        // We use setInputFiles with a buffer to simulate a fresh file with specific content
+        const csvContent = "ID,Weight,IsActive\n1,10.5,true\n2,20.0,false";
+        const csvFile = {
+            name: 'test_types.csv',
+            mimeType: 'text/csv',
+            buffer: Buffer.from(csvContent)
+        };
+
+        await page.locator('#csv-file-input').setInputFiles(csvFile);
+
+        // 2. Wait for table
+        await expect(page.locator('#mapping-tbody tr')).toHaveCount(3);
+
+        // 3. Focus on "Weight" (Number) input
+        const weightInput = page.locator('input[data-csv-header="Weight"]');
+        await weightInput.click();
+
+        const dropdown = page.locator('#autocomplete-dropdown');
+        await expect(dropdown).toBeVisible();
+        
+        // 4. Verify Filtering
+        // "gross" (Number) -> Should find "grossWeight"
+        await weightInput.fill('gross');
+        await expect(dropdown.locator('li[data-value="grossWeight"]')).toBeVisible();
+
+        // "hazard" (Boolean) -> Should NOT be visible for a Number column
+        await weightInput.fill('hazard');
+        await expect(dropdown.locator('li[data-value="isHazardous"]')).not.toBeVisible();
+        
+        // "brand" (String) -> SHOULD be visible (Numbers can be mapped to Strings)
+        await weightInput.fill('brand');
+        await expect(dropdown.locator('li[data-value="brand"]')).toBeVisible();
+
+        // "certificationStartDate" (String with format: date) -> Should NOT be visible for Number column
+        // This confirms format-based filtering for strings
+        await weightInput.fill('certification');
+        // We expect additionalCertifications[0].certificationStartDate to be hidden
+        // Note: The field might be nested.
+        await expect(dropdown.locator('li[data-value*="certificationStartDate"]')).not.toBeVisible();
+    });
+
+    test('Filtering: String column should not show numeric fields', async ({ page }) => {
+        // 1. Mock CSV
+        const csvContent = "Description\nA nice product";
+        const csvFile = {
+            name: 'test_string.csv',
+            mimeType: 'text/csv',
+            buffer: Buffer.from(csvContent)
+        };
+ 
+        await page.locator('#csv-file-input').setInputFiles(csvFile);
+        await expect(page.locator('#mapping-tbody tr')).toHaveCount(1);
+ 
+        // 2. Focus input
+        const descInput = page.locator('input[data-csv-header="Description"]');
+        await descInput.click();
+ 
+        // 3. Check Suggestions
+        // Type "gross" (numeric field) -> Should NOT match for String column
+        await descInput.fill('gross');
+        await expect(page.locator('#autocomplete-dropdown li[data-value="grossWeight"]')).not.toBeVisible();
+ 
+        // Type "brand" (string field) -> Should match
+        await descInput.fill('brand');
+        await expect(page.locator('#autocomplete-dropdown li[data-value="brand"]')).toBeVisible();
+    });
+
+    test('Filtering: String column (URN) should not show ontology-restricted Double fields', async ({ page }) => {
+        // 1. Load battery product CSV (which has "Product ID": "urn:gtin:...")
+        const csvPath = path.resolve('../src/examples/csv/battery-product.csv');
+        await page.setInputFiles('#csv-file-input', csvPath);
+        
+        // 2. Select Battery sector (to ensure EPD/Battery ontology is loaded)
+        await page.check('input[value="battery"]');
+
+        // 3. Find the "Product ID" row
+        // Note: The CSV header is "Product ID"
+        const row = page.locator('tr').filter({ has: page.getByText('Product ID', { exact: true }) });
+        const input = row.locator('.dpp-field-input');
+
+        // 4. Clear and Focus to search
+        await input.fill(''); // Clear potentially auto-mapped value
+        await input.fill('epd.ap.a1'); // Type the exact field path we are investigating
+        await input.focus();
+        
+        const dropdown = page.locator('#autocomplete-dropdown');
+
+        // 5. Assert: The item should NOT be there.
+        // If it shows up, it means the filter failed.
+        await expect(dropdown.locator('li[data-value="epd.ap.a1"]')).toHaveCount(0);
+        
+        // Positive Control: Check that a valid string field IS there
+        // 'uniqueProductIdentifier' fits 'urn:gtin' perfectly
+        await input.fill('');
+        await input.fill('uniqueProductIdentifier');
+        await expect(dropdown.locator('li[data-value="uniqueProductIdentifier"]')).toBeVisible();
+    });
+
+    test('Toggle "Show incompatible fields" should reveal filtered options', async ({ page }) => {
+        // 1. Load battery product CSV
+        const csvPath = path.resolve('../src/examples/csv/battery-product.csv');
+        await page.setInputFiles('#csv-file-input', csvPath);
+        
+        // Before checking the box, set the flag to false. After, wait for it to be true.
+        await page.evaluate(() => { window.dppSchemaLoaded = false; });
+        await page.check('input[value="battery"]');
+        await page.waitForFunction(() => window.dppSchemaLoaded === true);
+
+        // 2. Focus on "Product ID" (URN string)
+        const row = page.locator('tr').filter({ has: page.getByText('Product ID', { exact: true }) });
+        const input = row.locator('.dpp-field-input');
+        
+        // 3. Search for a Double field (epd.ap.a1)
+        await input.fill('');
+        await input.fill('epd.ap.a1');
+        await input.focus();
+
+        const dropdown = page.locator('#autocomplete-dropdown');
+
+        // 4. Default: Should be hidden (filtered out)
+        await expect(dropdown.locator('li[data-value="epd.ap.a1"]')).toHaveCount(0);
+
+        // 5. Enable Toggle
+        await page.check('#show-incompatible-toggle');
+        
+        // Refocus input to trigger dropdown update
+        await input.focus();
+
+        // 6. Should now be visible and styled as incompatible
+        const item = dropdown.locator('li[data-value="epd.ap.a1"]');
+        await expect(item).toBeVisible();
+        await expect(item).toHaveClass(/suggestion-incompatible/);
+        await expect(item).toContainText('(Incompatible Type)');
+
+        // 7. Select it
+        await item.click();
+        await expect(input).toHaveValue('epd.ap.a1');
+        
+        // 8. Verify Error Row (because it IS incompatible)
+        await expect(row).toHaveClass(/error-row/);
     });
 
 });

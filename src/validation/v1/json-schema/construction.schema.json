@@ -29,7 +29,7 @@
                 "type": "array",
                 "items": { "$ref": "related-resource.schema.json" }
             },
-            "harmonisedStandardReference": { "type": "string", "format": "uri" },
+            "harmonisedStandardReference": { "type": "string", "format": "uri-reference" },
             "europeanAssessmentDocument": { "$ref": "related-resource.schema.json" },
             "dopc": { 
                 "oneOf": [

@@ -5,9 +5,6 @@
 .vs/
 # Build artifacts
 /dist/
-/contexts/
-/ontology/
-/validation/
 
 ## User-specific files
 *.suo
@@ -73,6 +70,7 @@ sensitive/
 test-results
 testing/playwright-report
 testing/playwright-report/index.html
+testing/tmp
 
 aether-soul
 
