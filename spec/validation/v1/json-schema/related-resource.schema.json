@@ -19,7 +19,7 @@
     },
     "url": {
       "type": "string",
-      "format": "uri",
+      "format": "uri-reference",
       "description": "The URL of the related resource."
     }
   },

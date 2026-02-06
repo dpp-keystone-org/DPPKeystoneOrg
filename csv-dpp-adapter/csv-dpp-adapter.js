@@ -1,6 +1,7 @@
-import Papa from '../lib/vendor/papaparse.js?v=1770217775596';
-import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1770217775596';
-import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions } from '../lib/csv-adapter-logic.js?v=1770217775596';
+import Papa from '../lib/vendor/papaparse.js?v=1770413198757';
+import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1770413198757';
+import { loadOntology } from '../lib/ontology-loader.js?v=1770413198757';
+import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions, analyzeColumnData, isTypeCompatible, enrichSchemaWithOntology, validateMappingConstraints } from '../lib/csv-adapter-logic.js?v=1770413198757';
 
 console.log('CSV Adapter Initialized');
 
@@ -18,6 +19,7 @@ const generateBtn = document.getElementById('generate-btn');
 const loadConfigBtn = document.getElementById('load-config-btn');
 const saveConfigBtn = document.getElementById('save-config-btn');
 const configFileInput = document.getElementById('config-file-input');
+const showIncompatibleToggle = document.getElementById('show-incompatible-toggle');
 const outputArea = document.getElementById('output-area');
 
 // Autocomplete Dropdown Singleton
@@ -27,7 +29,9 @@ let activeInputIndex = -1; // For keyboard navigation within list
 // State
 let csvData = [];
 let csvHeaders = [];
+let csvColumnTypes = new Map(); // Header -> { type, format }
 let schemaFields = [];
+let schemaFieldMap = new Map(); // Path -> SchemaField
 
 // Initialize
 (async function init() {
@@ -76,6 +80,14 @@ function setupEventListeners() {
     loadConfigBtn.addEventListener('click', () => configFileInput.click());
     configFileInput.addEventListener('change', (e) => importMappingConfig(e.target.files[0]));
 
+    // Toggle Incompatible
+    showIncompatibleToggle.addEventListener('change', () => {
+        const active = document.activeElement;
+        if (active && active.classList.contains('dpp-field-input')) {
+            showDropdown(active);
+        }
+    });
+
     // Generate Button
     generateBtn.addEventListener('click', generateDPPs);
 }
@@ -94,19 +106,31 @@ async function updateSchema() {
         let allFields = new Map(); // Use Map to deduplicate by path
         
         for (const sector of schemasToLoad) {
-            const schema = await loadSchema(sector);
-            const fields = flattenSchema(schema);
+            // Load Schema and Ontology in parallel for speed
+            const [schema, ontology] = await Promise.all([
+                loadSchema(sector),
+                loadOntology(sector)
+            ]);
+            
+            const fields = flattenSchema(schema, '', false, true); // Include metadata
+            
+            // Enrich with Ontology Data
+            if (ontology) {
+                enrichSchemaWithOntology(fields, ontology);
+            }
+            
             fields.forEach(f => allFields.set(f.path, f));
         }
         
         // Store full objects, sorted by path
-        schemaFields = Array.from(allFields.values()).sort((a, b) => a.path.localeCompare(b.path));
-        console.log(`Loaded ${schemaFields.length} unique fields.`);
-        
+                schemaFields = Array.from(allFields.values()).sort((a, b) => a.path.localeCompare(b.path));
+                schemaFieldMap = allFields; // Store map for fast lookup
+                console.log(`Loaded ${schemaFields.length} unique fields.`);        
         // If we already have data, re-render to update dropdown options
         if (csvHeaders.length > 0) {
             renderMappingTable();
         }
+        window.dppSchemaLoaded = true;
     } catch (err) {
         console.error('Error loading schema:', err);
         alert('Failed to load schemas.');
@@ -135,6 +159,14 @@ function handleFile(file) {
             csvData = results.data;
             csvHeaders = results.meta.fields || [];
             
+            // Analyze Column Types
+            csvColumnTypes.clear();
+            csvHeaders.forEach(header => {
+                const info = analyzeColumnData(csvData, header);
+                csvColumnTypes.set(header, info);
+            });
+            console.log('Column Analysis Complete:', csvColumnTypes);
+
             rowCountDisplay.textContent = csvData.length;
             fileInfo.classList.remove('hidden');
             mappingSection.classList.remove('hidden');
@@ -145,7 +177,72 @@ function handleFile(file) {
     });
 }
 
-// --- Autocomplete Logic ---
+// --- Autocomplete & Validation Logic ---
+
+function updateAllRowValidations() {
+    // 1. Clear all previous conflict styles
+    document.querySelectorAll('#mapping-tbody tr.conflict-row').forEach(row => {
+        row.classList.remove('conflict-row');
+        // We need to be careful not to overwrite a type-mismatch title
+        const input = row.querySelector('.dpp-field-input');
+        if (input && input.title.startsWith('Conflict:')) {
+            input.title = '';
+        }
+    });
+
+    // 2. Get current mapping and find conflicts
+    const currentMapping = getMappingConfig();
+    const conflicts = validateMappingConstraints(currentMapping, schemaFieldMap);
+
+    // 3. Apply new conflict styles
+    if (conflicts.length > 0) {
+        const allConflictingPaths = new Set(conflicts.flat());
+
+        for (const conflictGroup of conflicts) {
+            const otherPaths = allConflictingPaths.size > 1 
+                ? [...allConflictingPaths].filter(p => !conflictGroup.includes(p)) 
+                : [];
+            
+            const groupMessage = `Conflict: This field is mutually exclusive with ${conflictGroup.length > 1 ? 'other mapped fields' : `'${conflictGroup[0]}'`}.`;
+
+            document.querySelectorAll('#mapping-tbody .dpp-field-input').forEach(input => {
+                if (conflictGroup.includes(input.value)) {
+                    const row = input.closest('tr');
+                    row.classList.add('conflict-row');
+                    input.title = groupMessage;
+                }
+            });
+        }
+    }
+}
+
+
+function validateRow(input) {
+    const row = input.closest('tr');
+    if (!row) return;
+
+    const mappedPath = input.value;
+    
+    // Clear previous error states
+    row.classList.remove('error-row');
+    row.classList.remove('conflict-row'); // Also clear conflict if we are re-validating
+    input.title = '';
+
+    if (!mappedPath) return;
+
+    // VALIDATION 1: Check for Type Mismatch
+    const header = input.dataset.csvHeader;
+    const schemaPath = mappedPath.replace(/\[\d+\]/g, ''); // Normalize path for schema lookup
+    const targetField = schemaFieldMap.get(schemaPath);
+    const columnType = csvColumnTypes.get(header);
+
+    if (targetField && columnType) {
+        if (!isTypeCompatible(columnType, targetField)) {
+            row.classList.add('error-row');
+            input.title = `Type Mismatch: Column is '${columnType.type}' but Field requires '${targetField.type}'`;
+        }
+    }
+}
 
 function updateRowReviewState(input) {
     const row = input.closest('tr');
@@ -165,6 +262,8 @@ function setupAutocomplete(input) {
 
     input.addEventListener('input', () => {
         showDropdown(input);
+        validateRow(input);
+        updateAllRowValidations(); // Run full validation on any input change
         updateRowReviewState(input);
     });
 
@@ -205,6 +304,8 @@ function highlightItem(items, index) {
 function selectItem(input, itemElement) {
     input.value = itemElement.dataset.value;
     hideDropdown();
+    validateRow(input);
+    updateAllRowValidations(); // Run full validation after selecting an item
     updateRowReviewState(input);
 }
 
@@ -222,6 +323,8 @@ function showDropdown(input) {
     // 1. Generate Suggestions
     const currentVal = input.value;
     const filterText = currentVal.toLowerCase();
+    const currentHeader = input.dataset.csvHeader;
+    const currentColumnType = csvColumnTypes.get(currentHeader);
     
     // Calculate global usage
     const currentMapping = {};
@@ -237,7 +340,15 @@ function showDropdown(input) {
     });
 
     const suggestions = [];
+    const showIncompatible = showIncompatibleToggle.checked;
+
     schemaFields.forEach(field => {
+        // Check Type Compatibility
+        const isCompatible = isTypeCompatible(currentColumnType, field);
+        if (!isCompatible && !showIncompatible) {
+            return; 
+        }
+
         if (field.isArray) {
             const root = field.path.split('.')[0];
             const usedIndices = findUsedIndices(currentMapping, root);
@@ -245,19 +356,27 @@ function showDropdown(input) {
             indexedSuggestions.forEach(s => {
                 if ((s.value === currentVal || !selectedPaths.has(s.value)) && 
                     s.value.toLowerCase().includes(filterText)) {
+                    s.schemaField = field; // Attach metadata
+                    s.incompatible = !isCompatible;
                     suggestions.push(s);
                 }
             });
         } else {
             if ((field.path === currentVal || !selectedPaths.has(field.path)) && 
                 field.path.toLowerCase().includes(filterText)) {
-                suggestions.push({ value: field.path, type: 'scalar', index: null });
+                suggestions.push({ 
+                    value: field.path, 
+                    type: 'scalar', 
+                    index: null, 
+                    schemaField: field,
+                    incompatible: !isCompatible
+                });
             }
         }
     });
 
     // 2. Render Items (populates DOM, determining height)
-    renderDropdownItems(input, suggestions);
+    renderDropdownItems(input, suggestions, currentMapping);
     
     if (suggestions.length === 0) return;
 
@@ -285,7 +404,7 @@ function showDropdown(input) {
     }
 }
 
-function renderDropdownItems(input, suggestions) {
+function renderDropdownItems(input, suggestions, currentMapping) {
     dropdownList.innerHTML = '';
     
     if (suggestions.length === 0) {
@@ -293,23 +412,85 @@ function renderDropdownItems(input, suggestions) {
         return;
     }
 
+    const currentPath = input.value;
+    const showIncompatible = showIncompatibleToggle.checked;
+
     suggestions.forEach(s => {
+        // --- Proactive Conflict Check ---
+        const tempMapping = { ...currentMapping };
+        tempMapping[input.dataset.csvHeader] = s.value; // Use the suggestion's value
+        const conflicts = validateMappingConstraints(tempMapping, schemaFieldMap);
+
+        let conflictError = null;
+        if (conflicts.length > 0) {
+            // Find a conflict group that involves our current suggestion
+            const relevantConflict = conflicts.find(group => group.includes(s.value));
+            if (relevantConflict) {
+                const otherField = relevantConflict.find(p => p !== s.value);
+                s.incompatible = true; // Mark as incompatible
+                conflictError = `oneOf conflict with mapped field: '${otherField}'`;
+            }
+        }
+        // --- End Conflict Check ---
+
+        // If the item is incompatible (either by type or conflict) and the user hasn't
+        // explicitly asked to see them, skip rendering it entirely.
+        if (s.incompatible && !showIncompatible) {
+            return;
+        }
+
         const li = document.createElement('li');
         li.className = 'autocomplete-item';
         li.dataset.value = s.value;
         
+        // 1. Label
         let labelHTML = `<strong>${s.value}</strong>`;
+
+        // 2. Type Badge & Tooltip
+        let tooltipText = '';
+        if (s.schemaField) {
+            let typeLabel = '';
+            
+            if (s.schemaField.ontology && s.schemaField.ontology.range) {
+                 typeLabel = s.schemaField.ontology.range.replace('xsd:', '');
+            } else if (s.schemaField.format) {
+                typeLabel = s.schemaField.format;
+            } else {
+                typeLabel = s.schemaField.type;
+            }
+
+            if (typeLabel) {
+                labelHTML += ` <span class="type-badge">${typeLabel}</span>`;
+            }
+
+            if (s.schemaField.ontology && s.schemaField.ontology.description) {
+                tooltipText = s.schemaField.ontology.description;
+            }
+        }
         
-        if (s.type === 'new') {
+        // 3. Metadata (Incompatible, New, Existing)
+        if (conflictError) {
+            li.classList.add('suggestion-incompatible');
+            labelHTML += ` <span class="autocomplete-meta">(Incompatible)</span>`;
+            li.title = tooltipText ? `${tooltipText}\n\nConflict: ${conflictError}` : `Conflict: ${conflictError}`;
+        } else if (s.incompatible) {
+            li.classList.add('suggestion-incompatible');
+            labelHTML += ` <span class="autocomplete-meta">(Incompatible Type)</span>`;
+            li.title = tooltipText; // Keep original description
+        } else if (s.type === 'new') {
             li.classList.add('suggestion-new');
             if (s.index === 0) {
                 labelHTML += ` <span class="autocomplete-meta">✨ START NEW ARRAY</span>`;
             } else {
                 labelHTML += ` <span class="autocomplete-meta">✨ ADD NEW ITEM (Index ${s.index})</span>`;
             }
+            li.title = tooltipText;
         } else if (s.type === 'existing') {
             li.classList.add('suggestion-join');
             labelHTML += ` <span class="autocomplete-meta">🔗 ADD TO EXISTING (Index ${s.index})</span>`;
+            li.title = tooltipText;
+        } else {
+            li.title = tooltipText;
         }
 
         li.innerHTML = labelHTML;
@@ -379,6 +560,7 @@ function renderMappingTable() {
             // Apply Auto-Mapping
             if (autoMapping[header]) {
                 input.value = autoMapping[header];
+                validateRow(input);
             }
 
             targetCell.appendChild(input);
@@ -472,9 +654,8 @@ function getMappingConfig() {
     const mapping = {};
     const inputs = document.querySelectorAll('.dpp-field-input');
     inputs.forEach(input => {
-        if (input.value) {
-            mapping[input.dataset.csvHeader] = input.value;
-        }
+        // Save all headers, even if empty, to persist "ignored" state
+        mapping[input.dataset.csvHeader] = input.value || "";
     });
     return mapping;
 }
@@ -510,23 +691,42 @@ function applyMappingConfig(config) {
     const inputs = document.querySelectorAll('.dpp-field-input');
     inputs.forEach(input => {
         const header = input.dataset.csvHeader;
-        if (config[header]) {
-            input.value = config[header];
-        } else {
-            input.value = '';
-        }
         
-        const row = input.closest('tr');
-        if (row) {
-            const checkbox = row.querySelector('.review-checkbox');
-            if (checkbox) {
-                checkbox.checked = true;
-                row.classList.remove('needs-review');
-                row.dataset.reviewed = "true";
+        // If the header exists in the config (even if value is empty string)
+        if (Object.prototype.hasOwnProperty.call(config, header)) {
+            const mappedPath = config[header];
+            input.value = mappedPath;
+            
+            const row = input.closest('tr');
+            if (row) {
+                const checkbox = row.querySelector('.review-checkbox');
+                if (checkbox) {
+                    checkbox.checked = true;
+                    row.classList.remove('needs-review');
+                    row.dataset.reviewed = "true";
+                }
+
+                // VALIDATION: Check for Type Mismatch
+                validateRow(input);
             }
+        } else {
+            // Header not in config - leave as is (auto-mapped) or clear?  
+            // Current behavior was to clear. Let's stick to clearing for consistency with "applying a state".
+            input.value = '';
+            // And ensure it is unchecked
+             const row = input.closest('tr');
+             if (row) {
+                 const checkbox = row.querySelector('.review-checkbox');
+                 if (checkbox) {
+                     checkbox.checked = false;
+                     row.classList.add('needs-review');
+                     row.dataset.reviewed = "false";
+                 }
+             }
         }
     });
     updateGenerateButtonState();
+    updateAllRowValidations(); // Run full validation on the newly loaded config
 }
 
 function generateDPPs() {

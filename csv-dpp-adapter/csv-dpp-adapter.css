@@ -196,9 +196,65 @@ tr.needs-review:hover {
     background-color: #f0f4f8;
 }
 
+/* Incompatible Suggestions (Step 2.5.4) */
+.autocomplete-item.suggestion-incompatible {
+    opacity: 0.7;
+    background-color: #fdfdfd;
+    border-left-color: #cbd5e1; /* Grey */
+}
+
+.autocomplete-item.suggestion-incompatible strong {
+     text-decoration: line-through;
+     color: #94a3b8;
+}
+
+.autocomplete-item.suggestion-incompatible:hover {
+    background-color: #f1f5f9;
+}
+
 .autocomplete-meta {
     font-size: 0.8em;
     color: #666;
     margin-left: 8px;
     font-weight: normal;
+}
+
+/* Type Badge */
+.type-badge {
+    font-size: 0.75em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    background-color: #e2e8f0;
+    color: #475569;
+    font-family: monospace;
+    border: 1px solid #cbd5e1;
+}
+
+/* Error Row for Type Mismatch */
+tr.error-row {
+    background-color: #fee2e2 !important; /* Red background */
+}
+
+tr.error-row input.dpp-field-input {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+tr.error-row:hover {
+    background-color: #fecaca !important;
+}
+
+/* Error Row for oneOf Conflict */
+tr.conflict-row {
+    background-color: #ffe8e2 !important; /* Orange-red background */
+}
+
+tr.conflict-row input.dpp-field-input {
+    border-color: #ff6b4b;
+    background-color: #fff2f0;
+}
+
+tr.conflict-row:hover {
+    background-color: #ffdacc !important;
 }

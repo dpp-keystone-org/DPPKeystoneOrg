@@ -47,7 +47,7 @@
       },
       "harmonisedStandardReference": {
         "type": "string",
-        "format": "uri"
+        "format": "uri-reference"
       },
       "europeanAssessmentDocument": {
         "$ref": "related-resource.schema.json"
