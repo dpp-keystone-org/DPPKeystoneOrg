@@ -39,9 +39,15 @@ describe('Schema Loader (Unit)', () => {
         };
 
         const result = flattenSchema(schema, '', false, true);
-        expect(result).toHaveLength(1);
-        expect(result[0].path).toBe('user.name');
-        expect(result[0].type).toBe('string');
+        expect(result).toHaveLength(2);
+
+        const parent = result.find(f => f.path === 'user');
+        expect(parent).toBeDefined();
+        expect(parent.type).toBe('object');
+        
+        const child = result.find(f => f.path === 'user.name');
+        expect(child).toBeDefined();
+        expect(child.type).toBe('string');
     });
 
     test('flattenSchema handles arrays of objects', () => {
@@ -61,9 +67,16 @@ describe('Schema Loader (Unit)', () => {
         };
 
         const result = flattenSchema(schema, '', false, true);
-        expect(result).toHaveLength(1);
-        expect(result[0].path).toBe('tags.label');
-        expect(result[0].isArray).toBe(true);
+        expect(result).toHaveLength(2);
+
+        const parent = result.find(f => f.path === 'tags');
+        expect(parent).toBeDefined();
+        expect(parent.type).toBe('array');
+        expect(parent.isArray).toBe(true);
+
+        const child = result.find(f => f.path === 'tags.label');
+        expect(child).toBeDefined();
+        expect(child.isArray).toBe(true);
     });
 
     test('flattenSchema handles array types (nullable)', () => {
@@ -125,6 +138,29 @@ describe('Schema Loader (Unit)', () => {
         expect(result).toHaveLength(2);
         expect(result.find(f => f.path === 'id')).toBeDefined();
         expect(result.find(f => f.path === 'rev')).toBeDefined();
+    });
+
+    test('flattenSchema includes parent for non-required array with required children', () => {
+        const schema = {
+            type: 'object',
+            properties: {
+                components: {
+                    type: 'array',
+                    // 'components' itself is not required
+                    items: {
+                        type: 'object',
+                        properties: {
+                            name: { type: 'string' }
+                        },
+                        required: ['name'] // but 'name' is required if a component exists
+                    }
+                }
+            }
+        };
+
+        const result = flattenSchema(schema, '', false, true);
+        expect(result.find(f => f.path === 'components')).toBeDefined();
+        expect(result.find(f => f.path === 'components.name')).toBeDefined();
     });
 
 });

@@ -57,6 +57,7 @@ class IntegrityReporter {
 // --- Ontology Loader (Node.js version) ---
 const ontologyGraph = new Map();
 const loadedFiles = new Set();
+const ontologyFileContents = new Map();
 const contextMap = new Map(); // term -> expanded IRI
 
 function resolveImportPath(currentFile, importUrl) {
@@ -82,6 +83,7 @@ function loadOntologyFile(filePath) {
     }
 
     const content = fs.readFileSync(filePath, 'utf-8');
+    ontologyFileContents.set(filePath, content);
     const json = JSON.parse(content);
     
     // Process Graph
@@ -183,6 +185,46 @@ function processContextBlock(ctxBlock) {
 }
 
 // --- Audits ---
+
+function auditOntologyMetadata(reporter) {
+    ontologyFileContents.forEach((content, filePath) => {
+        const json = JSON.parse(content);
+        const relativePath = path.relative(PROJECT_ROOT, filePath);
+
+        let ontologyInfo = (json['@graph'] || []).find(node => node['@type'] === 'owl:Ontology');
+        if (!ontologyInfo && json['@type'] === 'owl:Ontology') {
+            ontologyInfo = json;
+        }
+
+        if (!ontologyInfo) {
+            reporter.report(
+                'Ontology Metadata',
+                'FAIL',
+                `File is missing the main 'owl:Ontology' declaration.`,
+                relativePath
+            );
+            return; // Skip to the next file
+        }
+
+        if (!ontologyInfo['dcterms:title'] || String(ontologyInfo['dcterms:title']).trim() === '') {
+            reporter.report(
+                'Ontology Metadata',
+                'FAIL',
+                `The 'owl:Ontology' declaration is missing a 'dcterms:title'.`,
+                relativePath
+            );
+        }
+        
+        if (!ontologyInfo['dcterms:description'] || String(ontologyInfo['dcterms:description']).trim() === '') {
+            reporter.report(
+                'Ontology Metadata',
+                'WARN',
+                `The 'owl:Ontology' declaration is missing a 'dcterms:description'.`,
+                relativePath
+            );
+        }
+    });
+}
 
 function auditNumericUnits(reporter) {
     const numericRanges = [
@@ -340,21 +382,6 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
         'dppk:DigitalProductPassport', // Root class
     ];
     
-    // Also treat all defined Classes as roots (they are the API surface of the ontology)
-    ontologyGraph.forEach((term, id) => {
-        let types = [];
-        if (term['@type']) {
-            types = Array.isArray(term['@type']) ? term['@type'] : [term['@type']];
-        }
-        
-        if (types.includes('rdfs:Class') || types.includes('owl:Class')) {
-            if (!aliveIRIs.has(id)) {
-                aliveIRIs.add(id);
-                queue.push(id);
-            }
-        }
-    });
-
     extraRoots.forEach(root => {
         if (ontologyGraph.has(root) && !aliveIRIs.has(root)) {
             aliveIRIs.add(root);
@@ -437,6 +464,7 @@ async function run() {
 
     // 3. Run Audits
     console.log('🕵️  Running audits...');
+    auditOntologyMetadata(reporter);
     auditNumericUnits(reporter);
     const usedIRIs = auditSchemaMappings(reporter);
     

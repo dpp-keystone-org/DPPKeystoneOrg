@@ -103,22 +103,22 @@ Prevent invalid object construction logic.
         *   Update tooltip to explain the conflict (e.g., "Conflict with existing mapping: 'otherField'").
     *   This prevents users from creating invalid mappings in the first place, rather than just warning them afterwards.
 
-### Phase 4: Requirement Enforcement & Blocking
+### [COMPLETED] Phase 4: Requirement Enforcement & Blocking
 Ensure the minimum viable product is generated.
 
-*   **Step 4.1: Missing Requirements Logic**
+*   **[COMPLETED] Step 4.1: Missing Requirements Logic**
     *   Add `getMissingRequiredFields(currentMapping, flatSchema)` to `csv-adapter-logic.js`.
     *   Logic: Check if all root-level `required` fields (and recursively, required fields of mapped objects) are present.
-*   **Step 4.2: UI "Gatekeeping"**
+*   **[COMPLETED] Step 4.2: UI "Gatekeeping"**
     *   Add a status section above the "Generate" button.
     *   Show "Ready" (Green) or "Missing Fields: [List]" (Red).
     *   Disable the "Generate DPPs" button if critical requirements are missing or if `oneOf` conflicts exist.
-    *   **Step 4.3: E2E Verification**
-        *   Update `csv-dpp-adapter.spec.js`:
-            *   Upload CSV.
-            *   Verify "Generate" is initially disabled (assuming required fields like ID/Context are missing).
-            *   Map all required fields.
-            *   Verify "Generate" becomes enabled.
+*   **[COMPLETED] Step 4.3: E2E Verification**
+    *   Update `csv-dpp-adapter.spec.js`:
+        *   Upload CSV.
+        *   Verify "Generate" is initially disabled (assuming required fields like ID/Context are missing).
+        *   Map all required fields.
+        *   Verify "Generate" becomes enabled.
 
 ### Phase 5: Value & Format Validation
 Check the data itself.

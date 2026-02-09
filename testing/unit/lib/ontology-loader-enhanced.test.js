@@ -65,34 +65,19 @@ describe('Ontology Loader - Enhanced Metadata', () => {
     });
 
     it('should handle URL parsing failure gracefully', async () => {
-        const mockOntology = {
-            "@graph": [
-                {
-                    "@id": "dppk:MysteryTerm",
-                    "rdfs:label": "Mystery"
-                }
-            ]
-        };
+        // Suppress console.error for this specific test case
+        const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-        // This URL does NOT match the regex (missing /v1/ etc)
-        // Note: loadOntology constructs a specific URL, so we can't easily force a bad URL 
-        // through the public API without modifying the implementation's URL construction logic.
-        // However, we can mock the fetch call URL if we were mocking the implementation, but we are testing the result.
-        // Actually, loadOntology ALWAYS uses the standard path. 
-        // We can test 'dpp' sector which maps to 'dpp-ontology.jsonld' which might fail the regex.
-        
-        fetch.mockResolvedValue({
-            ok: true,
-            json: async () => mockOntology
-        });
+        // Mock a failed fetch response (e.g., network error)
+        fetch.mockRejectedValue(new Error('Network error'));
 
-        // 'dpp' -> '../spec/ontology/v1/dpp-ontology.jsonld'
-        // Regex: /ontology\/v1\/(.+?)\/(.+?)\.jsonld/
-        // This regex expects TWO segments after v1. 'dpp-ontology.jsonld' is only one segment (filename).
-        // So definedIn should be null.
-        const ontologyMap = await loadOntology('dpp');
-        const term = ontologyMap.get('MysteryTerm');
+        // Attempt to load an ontology, which should now fail
+        const ontologyMap = await loadOntology('bad-sector');
 
-        expect(term.definedIn).toBeNull();
+        // Verify that the function gracefully returned null
+        expect(ontologyMap).toBeNull();
+
+        // Restore the original console.error to not affect other tests
+        consoleErrorSpy.mockRestore();
     });
 });

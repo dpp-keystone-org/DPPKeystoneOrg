@@ -156,43 +156,77 @@ export function flattenSchema(schema, parentPath = '', inArray = false, includeM
     let collected = new Map(); // Use Map to deduplicate by path
 
     const addFields = (fields) => {
-        fields.forEach(f => collected.set(f.path, f));
+        fields.forEach(f => {
+            // Perform a merge for oneOf properties if the field is discovered multiple times
+            if (collected.has(f.path)) {
+                const existing = collected.get(f.path);
+                if (f.oneOf) {
+                    if (!existing.oneOf) existing.oneOf = [];
+                    f.oneOf.forEach(newItem => {
+                        if (!existing.oneOf.some(oldItem => oldItem.groupId === newItem.groupId && oldItem.index === newItem.index)) {
+                            existing.oneOf.push(newItem);
+                        }
+                    });
+                }
+                // If the field is found again and is marked as required, update the existing entry
+                if (f.required) {
+                    existing.required = true;
+                }
+            } else {
+                collected.set(f.path, f);
+            }
+        });
     };
 
-    // Determine current array context
-    // If the *current* node is an array, then its children (via items) are in an array.
-    // However, if we are *already* in an array (from parent), that state persists.
     const isCurrentNodeArray = schema.type === 'array';
     
     // 1. Traverse Properties
     if (schema.properties) {
+        const requiredProperties = new Set(schema.required || []);
         for (const key in schema.properties) {
             const currentPath = parentPath ? `${parentPath}.${key}` : key;
-            const subFields = flattenSchema(schema.properties[key], currentPath, inArray, includeMetadata);
+            const propSchema = schema.properties[key];
+            const isRequired = requiredProperties.has(key);
+
+            // Recurse first to get all child fields
+            const subFields = flattenSchema(propSchema, currentPath, inArray || propSchema.type === 'array', includeMetadata);
             
             if (subFields.length > 0) {
                 addFields(subFields);
+                
+                // Always add an entry for the parent object/array itself to make its metadata available for validation.
+                const field = {
+                    path: currentPath,
+                    isArray: propSchema.type === 'array', // This property is an array.
+                    required: isRequired,
+                };
+                if (includeMetadata) { 
+                    field.type = propSchema.type;
+                    field.minItems = propSchema.minItems;
+                }
+                
+                // Use addFields to merge correctly with any existing definition
+                addFields([field]);
             } else {
-                // It's a leaf (or at least has no further structure we recursed into).
-                // Check if THIS specific property definition is an array of primitives 
-                // (which wouldn't be caught by subFields if it has no 'properties').
-                const isLeafArray = schema.properties[key].type === 'array';
-                // Effectively, a field is "multivalued" if it is an array itself OR inside an array object.
+                // It's a leaf node (or at least has no further structure we recursed into).
+                const isLeafArray = propSchema.type === 'array';
                 const field = { 
                     path: currentPath, 
                     isArray: inArray || isLeafArray 
                 };
-                if (includeMetadata) {
-                     // We need to extract metadata from the property itself since it's a leaf here
-                     const propSchema = schema.properties[key];
-                     let type = propSchema.type;
+                 if (includeMetadata) {
+                     const leafSchema = propSchema;
+                     let type = leafSchema.type;
                      if (Array.isArray(type)) {
                         const validTypes = type.filter(t => t !== 'null');
                         type = validTypes.length > 0 ? validTypes[0] : type[0];
                      }
                      field.type = type;
-                     field.format = propSchema.format;
-                     field.enum = propSchema.enum;
+                     field.format = leafSchema.format;
+                     field.enum = leafSchema.enum;
+                }
+                if (isRequired) {
+                    field.required = true;
                 }
                 collected.set(currentPath, field);
             }
@@ -201,14 +235,12 @@ export function flattenSchema(schema, parentPath = '', inArray = false, includeM
 
     // 2. Traverse Items (if array)
     if (schema.items && typeof schema.items === 'object') {
-        const subFields = flattenSchema(schema.items, parentPath, true, includeMetadata); // true because we entered items
+        const subFields = flattenSchema(schema.items, parentPath, true, includeMetadata); 
         if (subFields.length > 0) {
             addFields(subFields);
         } else if (parentPath) {
-            // It's an array of primitives (e.g. items: { type: string })
             const field = { path: parentPath, isArray: true };
             if (includeMetadata && schema.items) {
-                 // For array of primitives, the type is defined in `items`
                  let type = schema.items.type;
                  if (Array.isArray(type)) {
                     const validTypes = type.filter(t => t !== 'null');
@@ -227,40 +259,19 @@ export function flattenSchema(schema, parentPath = '', inArray = false, includeM
     for (const combinator of combinators) {
         if (Array.isArray(schema[combinator])) {
             const isOneOf = combinator === 'oneOf';
-            // Generate a simple group ID based on the parent path
             const groupId = isOneOf ? (parentPath || 'root') + '#oneOf' : null;
 
             schema[combinator].forEach((subSchema, index) => {
-                // Pass parentPath and inArray context directly
                 const subFields = flattenSchema(subSchema, parentPath, inArray, includeMetadata);
-                
                 if (isOneOf && includeMetadata) {
                     subFields.forEach(f => {
                         if (!f.oneOf) f.oneOf = [];
-                        // Avoid duplicates
                         if (!f.oneOf.some(o => o.groupId === groupId && o.index === index)) {
                             f.oneOf.push({ groupId, index });
                         }
                     });
                 }
-
-                // addFields logic with merging
-                subFields.forEach(f => {
-                    if (collected.has(f.path)) {
-                        const existing = collected.get(f.path);
-                        // Merge oneOf info
-                        if (f.oneOf) {
-                            if (!existing.oneOf) existing.oneOf = [];
-                            f.oneOf.forEach(newItem => {
-                                if (!existing.oneOf.some(oldItem => oldItem.groupId === newItem.groupId && oldItem.index === newItem.index)) {
-                                    existing.oneOf.push(newItem);
-                                }
-                            });
-                        }
-                    } else {
-                        collected.set(f.path, f);
-                    }
-                });
+                addFields(subFields);
             });
         }
     }
@@ -273,24 +284,15 @@ export function flattenSchema(schema, parentPath = '', inArray = false, includeM
         }
     }
     
-    // If we are at a leaf node in the recursion (no properties, combinators, etc found)
-    // AND we have a valid parentPath, add it. 
-    // This is catch-all for simple types that are not properties of something else (e.g. inside allOf).
-    // But we need to be careful not to double-add.
-    if (collected.size === 0 && parentPath && !schema.properties && !schema.items) {
-        // Simple type check to avoid adding pure container logic objects
+    if (collected.size === 0 && parentPath && (schema.type || schema.enum)) {
         if (schema.type || schema.enum) {
-            
             const field = { 
                 path: parentPath, 
                 isArray: inArray || isCurrentNodeArray
             };
-
             if (includeMetadata) {
-                // Extract Type
                 let type = schema.type;
                 if (Array.isArray(type)) {
-                    // If type is ["string", "null"], grab "string"
                     const validTypes = type.filter(t => t !== 'null');
                     type = validTypes.length > 0 ? validTypes[0] : type[0];
                 }
@@ -298,11 +300,9 @@ export function flattenSchema(schema, parentPath = '', inArray = false, includeM
                 field.format = schema.format;
                 field.enum = schema.enum;
             }
-
             collected.set(parentPath, field);
         }
     }
 
-    // Convert Map values to array and sort
     return Array.from(collected.values()).sort((a, b) => a.path.localeCompare(b.path));
 }

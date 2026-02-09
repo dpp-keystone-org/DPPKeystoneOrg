@@ -11,6 +11,19 @@
   "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Battery Sector Ontology",
+  "dcterms:description": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "DPP Battery Sector Ontology"
+    }
+  ],
+  "rdfs:comment": [
+    {
+      "@language": "en",
+      "@value": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information."
+    }
+  ],
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
     { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld" },
@@ -28,20 +41,6 @@
     },
     
     // --- Sub-Classes for Structure ---
-    {
-      "@id": "dppk:RecycledContentInfo",
-      "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1e); Art. 8(1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/standard/din-dke-spec-99100" },
-      "rdfs:label": [ { "@language": "en", "@value": "Recycled Content Information" } ],
-      "rdfs:comment": [ { "@language": "en", "@value": "Container for recycled content shares of Nickel, Cobalt, Lithium, and Lead recovered from battery manufacturing waste (pre-consumer) or waste (post-consumer)." } ]
-    },
-    {
-      "@id": "dppk:MaterialShareInfo",
-      "@type": "rdfs:Class",
-      "rdfs:label": [ { "@language": "en", "@value": "Material Share Information" } ],
-      "rdfs:comment": [ { "@language": "en", "@value": "Structure for holding material share percentages." } ]
-    },
     {
       "@id": "dppk:BatteryPerformance",
       "@type": "rdfs:Class",

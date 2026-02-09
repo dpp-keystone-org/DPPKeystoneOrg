@@ -24,17 +24,36 @@ test.describe('CSV Adapter - oneOf Validation', () => {
   // This is a shared setup sequence for all tests in this file. It serializes
   // operations to prevent race conditions between schema loading and table rendering.
   const setupTest = async (page) => {
-    // 1. Load the file first. This renders the table with the default schema.
+    // 1. Load the file first.
     await page.locator('#csv-file-input').setInputFiles(csvPath);
     await expect(page.locator('#mapping-tbody tr').last()).toBeVisible();
 
-    // 2. NOW check the sector. This triggers an async schema update and re-render.
+    // 2. Check the sector to trigger schema update and re-render.
     await page.getByLabel('Battery').check();
     
-    // 3. Robust Wait: Wait for a signal that the re-render with the NEW schema
-    // is complete. The auto-mapping of a battery-specific field is a perfect signal.
+    // 3. Wait for re-render by checking for a battery-specific auto-mapping.
     const mat1NameInput = page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('input.dpp-field-input');
     await expect(mat1NameInput).toHaveValue('materialComposition[0].name');
+
+    // 4. Manually map all required fields to clear validation errors.
+    const mappings = {
+      'Product ID': 'uniqueProductIdentifier',
+      'Mass (kg)': 'batteryMass',
+      'Manufacturer City': 'manufacturerInfo.address.addressLocality',
+      'Manufacturer Zip': 'manufacturerInfo.address.postalCode',
+      'Recycled Pre 1 %': 'preConsumerRecycledMaterialComposition[0].weightPercentage',
+      'Recycled Post 1 %': 'postConsumerRecycledMaterialComposition[0].weightPercentage',
+      'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].weightPercentage'
+    };
+
+    for (const [csvHeader, schemaPath] of Object.entries(mappings)) {
+      const input = page.locator('tr').filter({ has: page.getByText(csvHeader, { exact: true }) }).locator('input.dpp-field-input');
+      await input.fill(schemaPath);
+    }
+
+    // 5. Assert that the UI is now in a valid state.
+    await expect(page.locator('#show-errors-btn')).toBeHidden();
+    await expect(page.locator('#generate-btn')).toBeVisible();
   };
 
   test('should highlight rows with oneOf conflicts and then remove it', async ({ page }) => {

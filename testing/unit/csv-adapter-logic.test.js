@@ -1,4 +1,4 @@
-import { analyzeColumnData, isTypeCompatible, generateDPPsFromCsv, validateMappingConstraints } from '../../src/lib/csv-adapter-logic.js';
+import { analyzeColumnData, isTypeCompatible, generateDPPsFromCsv, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../../src/lib/csv-adapter-logic.js';
 
 describe('DPP Generation Logic', () => {
     test('should ignore empty mappings', () => {
@@ -201,6 +201,55 @@ describe('Type Compatibility (Unit)', () => {
         // If logic forces strict check:
         expect(isTypeCompatible(csvFloat, schemaField)).toBe(false);
     });
+
+    test('should allow string-to-ontology-enum mapping', () => {
+        const csvString = { type: 'string' };
+        const schemaField = { 
+            type: undefined, // Type is missing from schema, defined by ontology
+            ontology: { range: 'dppk:GranularityValue' } // Custom enum-like class
+        };
+        // The fix should infer this as string-compatible
+        expect(isTypeCompatible(csvString, schemaField)).toBe(true);
+    });
+});
+
+describe('validateValue', () => {
+    const enumField = {
+        path: 'granularity',
+        type: 'string',
+        enum: ['Item', 'Batch', 'Model']
+    };
+
+    const nonEnumField = {
+        path: 'name',
+        type: 'string'
+    };
+
+    test('should return true for a valid enum value', () => {
+        expect(validateValue('Item', enumField)).toBe(true);
+    });
+
+    test('should return false for an invalid enum value', () => {
+        expect(validateValue('InvalidValue', enumField)).toBe(false);
+    });
+
+    test('should return true for any value if field has no enum', () => {
+        expect(validateValue('AnyString', nonEnumField)).toBe(true);
+        expect(validateValue(123, nonEnumField)).toBe(true);
+    });
+
+    test('should return true for empty, null, or undefined values', () => {
+        expect(validateValue('', enumField)).toBe(true);
+        expect(validateValue(null, enumField)).toBe(true);
+        expect(validateValue(undefined, enumField)).toBe(true);
+    });
+
+    test('should handle numeric values correctly if enum contains numbers as strings', () => {
+        const numericEnumField = { enum: ['1', '2', '3'] };
+        expect(validateValue(1, numericEnumField)).toBe(true);
+        expect(validateValue('2', numericEnumField)).toBe(true);
+        expect(validateValue(4, numericEnumField)).toBe(false);
+    });
 });
 
 describe('validateMappingConstraints', () => {
@@ -311,5 +360,131 @@ describe('validateMappingConstraints', () => {
         const conflicts = validateMappingConstraints(mapping, schemaFieldMap);
         expect(conflicts).toHaveLength(1);
         expect(new Set(conflicts[0])).toEqual(new Set(['optionA', 'optionB']));
+    });
+});
+
+describe('getMissingRequiredFields', () => {
+    // Mock schema fields with 'required' metadata
+    const schemaFields = [
+        { path: 'id', type: 'string', required: true },
+        { path: 'tradeName', type: 'string', required: false },
+        { path: 'manufacturer', type: 'object', required: false },
+        { path: 'manufacturer.name', type: 'string', required: true },
+        { path: 'manufacturer.url', type: 'string', required: false },
+        { path: 'items', type: 'array', required: true },
+        { path: 'items.name', type: 'string', required: true },
+        { path: 'items.value', type: 'number', required: false },
+    ];
+
+    test('should return empty when all root and nested used fields are mapped', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_ITEMS': 'items.name', // This satisfies both 'items' and 'items.name'
+        };
+        expect(getMissingRequiredFields(mapping, schemaFields)).toEqual([]);
+    });
+
+    test('should return root requirements if mapping is empty', () => {
+        const mapping = {};
+        expect(new Set(getMissingRequiredFields(mapping, schemaFields))).toEqual(new Set(['`id`', '`items`']));
+    });
+
+    test('should detect missing root-level field', () => {
+        const mapping = {
+            'CSV_ITEMS': 'items.name',
+        };
+        expect(getMissingRequiredFields(mapping, schemaFields)).toEqual(['`id`']);
+    });
+    
+    test('should detect missing nested required field when sibling is mapped', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_ITEMS': 'items.name',
+            'CSV_MAN_URL': 'manufacturer.url', // Using the manufacturer object
+        };
+        // 'manufacturer.name' is now required
+        expect(getMissingRequiredFields(mapping, schemaFields)).toEqual(['`manufacturer.name`']);
+    });
+
+    test('should detect missing required field within an array item when sibling is mapped', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_ITEM_VALUE': 'items.value', // Using an item object
+        };
+        // 'items' is satisfied, but 'items.name' is now required
+        expect(getMissingRequiredFields(mapping, schemaFields)).toEqual(['`items.name`']);
+    });
+
+    test('should not require nested fields if parent object is not used at all', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_ITEMS': 'items.name',
+        };
+        // manufacturer object not used, so manufacturer.name is not listed as missing
+        expect(getMissingRequiredFields(mapping, schemaFields)).toEqual([]);
+    });
+
+    test('should handle a completely satisfied mapping', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_MAN_NAME': 'manufacturer.name',
+            'CSV_ITEMS': 'items.name',
+        };
+        expect(getMissingRequiredFields(mapping, schemaFields)).toEqual([]);
+    });
+});
+
+describe('getMissingRequiredFields with array requirements', () => {
+    const schemaFields = [
+        { path: 'id', required: true },
+        // Array with minItems
+        { path: 'rootArray', type: 'array', isArray: true, minItems: 2 },
+        { path: 'rootArray.name', type: 'string', required: true },
+        { path: 'rootArray.value', type: 'number', required: false },
+        // Array without minItems
+        { path: 'optionalArray', type: 'array', isArray: true },
+        { path: 'optionalArray.name', type: 'string', required: true },
+    ];
+
+    test('should require fields for all items in a minItems array if that array is being constructed', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_ROOT_VAL': 'rootArray[0].value', // This constructs the rootArray
+        };
+        const missing = getMissingRequiredFields(mapping, schemaFields);
+        expect(new Set(missing)).toEqual(new Set([
+            '`rootArray[0].name`', // Missing from the constructed item
+            '`rootArray[1].name`', // Required because of minItems: 2
+        ]));
+    });
+    
+    test('should only require fields for constructed items in optional arrays', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_OPT_VAL': 'optionalArray[0].value', // Constructing item 0
+            'CSV_OPT_NAME': 'optionalArray[2].name', // Constructing item 2
+        };
+        const missing = getMissingRequiredFields(mapping, schemaFields);
+        expect(new Set(missing)).toEqual(new Set([
+            '`optionalArray[0].name`', // Because item 0 is used and its 'name' is required
+        ]));
+    });
+
+     test('should report all missing fields when minItems array is unmapped', () => {
+        const mapping = { 'CSV_ID': 'id' }; // rootArray is not mapped at all
+        const missing = getMissingRequiredFields(mapping, schemaFields);
+         // If the array itself isn't being constructed, its children aren't required.
+        expect(missing).toEqual([]);
+    });
+    
+    test('should be satisfied if all requirements are met', () => {
+        const mapping = {
+            'CSV_ID': 'id',
+            'CSV_ROOT_0': 'rootArray[0].name',
+            'CSV_ROOT_1': 'rootArray[1].name',
+            'CSV_OPT_0': 'optionalArray[0].name',
+        };
+        const missing = getMissingRequiredFields(mapping, schemaFields);
+        expect(missing).toEqual([]);
     });
 });
