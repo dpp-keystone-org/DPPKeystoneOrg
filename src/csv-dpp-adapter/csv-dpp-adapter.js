@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         validationErrors = [];
         if (missingRequired.length > 0) {
-            validationErrors.push(...missingRequired.map(f => `Missing required field: ${f}`));
+            validationErrors.push(...missingRequired.map(f => `Empty mapping for required field: ${f}`));
         }
         if (oneOfConflicts.length > 0) {
             oneOfConflicts.forEach(group => {
