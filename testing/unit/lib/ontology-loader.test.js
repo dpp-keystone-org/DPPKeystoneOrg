@@ -245,7 +245,7 @@ describe('DPP Wizard - Ontology Loader', () => {
                 {
                     '@id': 'dppk:batteryChemistry',
                     '@type': 'owl:DatatypeProperty',
-                    'dcterms:source': { '@id': 'https://www.dinmedia.de/en/standard/din-dke-spec-99100' },
+                    'dcterms:source': { '@id': 'https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321' },
                     'rdfs:label': [{ '@language': 'en', '@value': 'Battery chemistry' }],
                 },
             ],
@@ -264,7 +264,7 @@ describe('DPP Wizard - Ontology Loader', () => {
         expect(batteryChemistryInfo).toBeDefined();
         expect(batteryChemistryInfo.source).toBeDefined();
         expect(typeof batteryChemistryInfo.source).toBe('object');
-        expect(batteryChemistryInfo.source['@id']).toBe('https://www.dinmedia.de/en/standard/din-dke-spec-99100');
+        expect(batteryChemistryInfo.source['@id']).toBe('https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321');
     });
 
     test('should handle dcterms:source as a simple string', async () => {
