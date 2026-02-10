@@ -154,11 +154,9 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                 const hasDomain = domain && domain.length > 0;
                 const hasOneOf = oneOf && oneOf.length > 0;
 
-                console.log(`[DEBUG] Processing term: ${key}`);
-                console.log(`  - range: '${range}', hasRange: ${hasRange}`);
-                console.log(`  - oneOf: '${oneOf}', hasOneOf: ${hasOneOf}`);
+                const termHasAnyMetadata = hasLabel || hasComment || hasUnit || hasGov || hasRange || hasSource || hasDomain || hasOneOf;
 
-                if (hasLabel || hasComment || hasUnit || hasGov || hasRange || hasSource || hasDomain || hasOneOf) {
+                if (termHasAnyMetadata) {
                      ontologyMap.set(key, {
                         ...existing,
                         label: hasLabel ? label : (existing.label || {}),
