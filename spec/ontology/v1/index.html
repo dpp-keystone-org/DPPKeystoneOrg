@@ -1180,150 +1180,6 @@
                             </tr>
                         
                             <tr>
-                                <td>Resource Title (dppk:resourceTitle)</td>
-                                <td>The title of the related resource.</td>
-                                <td>dppk:RelatedResource</td>
-                                <td>xsd:string</td>
-                                <td>RelatedResource.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Content Type (dppk:contentType)</td>
-                                <td>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</td>
-                                <td>dppk:RelatedResource</td>
-                                <td>xsd:string</td>
-                                <td>RelatedResource.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Language (dppk:language)</td>
-                                <td>The language of the resource content (e.g., 'en', 'fr').</td>
-                                <td>dppk:RelatedResource</td>
-                                <td>xsd:string</td>
-                                <td>RelatedResource.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>URL (dppk:url)</td>
-                                <td>The location of the resource.</td>
-                                <td>dppk:RelatedResource</td>
-                                <td>xsd:anyURI</td>
-                                <td>RelatedResource.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Instructions for Use (dppk:instructionsForUse)</td>
-                                <td>A link to the instructions for use or user manual for the product.</td>
-                                <td>dppk:Product</td>
-                                <td>dppk:RelatedResource</td>
-                                <td>RelatedResource.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Safety Data Sheet (dppk:safetyDataSheet)</td>
-                                <td>A link to the safety data sheet (SDS) for the product.</td>
-                                <td>dppk:Product</td>
-                                <td>dppk:RelatedResource</td>
-                                <td>RelatedResource.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>DPP Identifier (dppk:digitalProductPassportId)</td>
-                                <td>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). Implementation-specific identifier.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:anyURI</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Unique Product Identifier (UPI) (dppk:uniqueProductIdentifier)</td>
-                                <td>The globally resolvable URI for the product/DPP.</td>
-                                <td></td>
-                                <td>xsd:anyURI</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Economic Operator Identifier (EOI) (dppk:economicOperatorId)</td>
-                                <td>The unique identifier for the Economic Operator responsible for placing the product on the market.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:anyURI</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Facility Identifier (dppk:facilityId)</td>
-                                <td>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:anyURI</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Granularity Level (dppk:granularity)</td>
-                                <td>Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>dppk:GranularityValue</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>DPP Status (dppk:dppStatus)</td>
-                                <td>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:string</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Last Update Timestamp (dppk:lastUpdate)</td>
-                                <td>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:dateTime</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Version Number (dppk:versionNumber)</td>
-                                <td>The version number of the DPP instance.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:string</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Version Date (dppk:versionDate)</td>
-                                <td>The date of the version of the DPP instance.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:date</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>DPP Schema Version (dppk:dppSchemaVersion)</td>
-                                <td>The version of the horizontal (cross-sector) DPP schema used for this instance.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:string</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Content Specification Identifiers (dppk:contentSpecificationIds)</td>
-                                <td>A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:string</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Harmonized System Code (HS Code) or TARIC (dppk:hsCode)</td>
-                                <td>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</td>
-                                <td>dppk:DigitalProductPassport</td>
-                                <td>xsd:string</td>
-                                <td>Header.jsonld</td>
-                            </tr>
-                        
-                            <tr>
                                 <td>A1: Raw material supply (dppk:a1)</td>
                                 <td>Upstream A1 (Raw Material Supply)</td>
                                 <td>dppk:ImpactValues</td>
@@ -1465,6 +1321,150 @@
                                 <td>dppk:ImpactValues</td>
                                 <td>xsd:double</td>
                                 <td>EPDLifecycle.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Resource Title (dppk:resourceTitle)</td>
+                                <td>The title of the related resource.</td>
+                                <td>dppk:RelatedResource</td>
+                                <td>xsd:string</td>
+                                <td>RelatedResource.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Content Type (dppk:contentType)</td>
+                                <td>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</td>
+                                <td>dppk:RelatedResource</td>
+                                <td>xsd:string</td>
+                                <td>RelatedResource.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Language (dppk:language)</td>
+                                <td>The language of the resource content (e.g., 'en', 'fr').</td>
+                                <td>dppk:RelatedResource</td>
+                                <td>xsd:string</td>
+                                <td>RelatedResource.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>URL (dppk:url)</td>
+                                <td>The location of the resource.</td>
+                                <td>dppk:RelatedResource</td>
+                                <td>xsd:anyURI</td>
+                                <td>RelatedResource.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Instructions for Use (dppk:instructionsForUse)</td>
+                                <td>A link to the instructions for use or user manual for the product.</td>
+                                <td>dppk:Product</td>
+                                <td>dppk:RelatedResource</td>
+                                <td>RelatedResource.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Safety Data Sheet (dppk:safetyDataSheet)</td>
+                                <td>A link to the safety data sheet (SDS) for the product.</td>
+                                <td>dppk:Product</td>
+                                <td>dppk:RelatedResource</td>
+                                <td>RelatedResource.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>DPP Identifier (dppk:digitalProductPassportId)</td>
+                                <td>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). Implementation-specific identifier.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:anyURI</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Unique Product Identifier (UPI) (dppk:uniqueProductIdentifier)</td>
+                                <td>The globally resolvable URI for the product/DPP.</td>
+                                <td></td>
+                                <td>xsd:anyURI</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Economic Operator Identifier (EOI) (dppk:economicOperatorId)</td>
+                                <td>The unique identifier for the Economic Operator responsible for placing the product on the market.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:anyURI</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Facility Identifier (dppk:facilityId)</td>
+                                <td>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:anyURI</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Granularity Level (dppk:granularity)</td>
+                                <td>Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>dppk:GranularityValue</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>DPP Status (dppk:dppStatus)</td>
+                                <td>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:string</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Last Update Timestamp (dppk:lastUpdate)</td>
+                                <td>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:dateTime</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Version Number (dppk:versionNumber)</td>
+                                <td>The version number of the DPP instance.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:string</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Version Date (dppk:versionDate)</td>
+                                <td>The date of the version of the DPP instance.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:date</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>DPP Schema Version (dppk:dppSchemaVersion)</td>
+                                <td>The version of the horizontal (cross-sector) DPP schema used for this instance.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:string</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Content Specification Identifiers (dppk:contentSpecificationIds)</td>
+                                <td>A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:string</td>
+                                <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Harmonized System Code (HS Code) or TARIC (dppk:hsCode)</td>
+                                <td>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</td>
+                                <td>dppk:DigitalProductPassport</td>
+                                <td>xsd:string</td>
+                                <td>Header.jsonld</td>
                             </tr>
                         
                             <tr>
