@@ -11,6 +11,19 @@
   "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Environmental Product Declaration (EPD)",
+  "dcterms:description": "A module that aggregates all components required for an Environmental Product Declaration (EPD), including metadata, lifecycle stages, and indicators.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Environmental Product Declaration (EPD)"
+    }
+  ],
+  "rdfs:comment": [
+    {
+      "@language": "en",
+      "@value": "A module that aggregates all components required for an Environmental Product Declaration (EPD), including metadata, lifecycle stages, and indicators."
+    }
+  ],
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"

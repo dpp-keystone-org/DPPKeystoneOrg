@@ -11,6 +11,19 @@
   "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Related Resource",
+  "dcterms:description": "Defines a class for linking to external resources, such as documents or websites, with associated metadata.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Related Resource"
+    }
+  ],
+  "rdfs:comment": [
+    {
+      "@language": "en",
+      "@value": "Defines a class for linking to external resources, such as documents or websites, with associated metadata."
+    }
+  ],
   "owl:imports": {
     "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
   },

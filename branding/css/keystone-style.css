@@ -139,6 +139,10 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap's danger red */
+}
+
 
 /* --- Form Layout & Validation --- */
 

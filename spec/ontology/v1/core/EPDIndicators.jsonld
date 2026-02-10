@@ -10,6 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDIndicators.jsonld",
   "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - EPD Indicators",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
