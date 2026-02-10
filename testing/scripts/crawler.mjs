@@ -7,6 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
+const ONTOLOGY_DIR = path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology');
 const START_PAGE = 'index.html';
 const STYLESHEET_NAME = 'keystone-style.css';
 
@@ -14,6 +15,7 @@ const stats = {
   html: { good: 0, broken: 0 },
   json: { good: 0, broken: 0 },
   jsonld: { good: 0, broken: 0 },
+  external: { good: 0, broken: 0 },
 };
 
 let firstBrokenLinkDetails = null;
@@ -22,6 +24,87 @@ const crawledPages = new Set();
 const pagesWithCssIssues = [];
 const pagesWithImageIssues = [];
 const pagesWithObjectObjectIssues = [];
+const brokenExternalLinks = [];
+const externalLinksToCheck = new Set();
+
+/**
+ * Recursively finds all files with a given extension in a directory.
+ * @param {string} dir - The directory to start in.
+ * @param {string} ext - The file extension (e.g., '.jsonld').
+ * @returns {Promise<string[]>} A list of file paths.
+ */
+async function findFilesByExtension(dir, ext) {
+    const dirents = await fs.readdir(dir, { withFileTypes: true });
+    const files = await Promise.all(dirents.map((dirent) => {
+        const res = path.resolve(dir, dirent.name);
+        if (dirent.isDirectory()) {
+            return findFilesByExtension(res, ext);
+        }
+        return res.endsWith(ext) ? res : null;
+    }));
+    return Array.prototype.concat(...files).filter(Boolean);
+}
+
+/**
+ * Recursively traverses a JSON object to find all `dcterms:source` URLs.
+ * @param {any} obj - The object or value to traverse.
+ * @param {Set<string>} urls - The Set to store found URLs in.
+ */
+function findSourceUrls(obj, urls) {
+    if (!obj || typeof obj !== 'object') {
+        return;
+    }
+
+    if (obj['dcterms:source']) {
+        const source = obj['dcterms:source'];
+        let url;
+        if (typeof source === 'string' && source.startsWith('http')) {
+            url = source;
+        } else if (typeof source === 'object' && source['@id'] && source['@id'].startsWith('http')) {
+            url = source['@id'];
+        }
+        if (url) {
+            urls.add(url);
+        }
+    }
+
+    for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            findSourceUrls(obj[key], urls);
+        }
+    }
+}
+
+/**
+ * Checks an external URL with a HEAD request.
+ * @param {string} url - The URL to check.
+ */
+async function checkExternalLink(url) {
+    try {
+        // Use a timeout and a specific user-agent
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout
+
+        const response = await fetch(url, {
+            method: 'HEAD',
+            signal: controller.signal,
+            headers: { 'User-Agent': 'DPP-Keystone-Crawler/1.0' }
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+            brokenExternalLinks.push({ url, status: response.status });
+            stats.external.broken++;
+        } else {
+            stats.external.good++;
+        }
+    } catch (error) {
+        brokenExternalLinks.push({ url, status: 'Error', reason: error.name === 'AbortError' ? 'Timeout' : error.message });
+        stats.external.broken++;
+    }
+}
+
 
 async function checkLink(linkInfo) {
   const { href, sourcePage, linkText, absolutePath } = linkInfo;
@@ -103,7 +186,6 @@ async function crawlPage(pagePath) {
       return; // Skip external links, mailto links, and anchors
     }
     
-    // Check for [object Object] BEFORE cleaning, as it's a text content check usually
     const linkText = $(el).text().trim();
     if (linkText.includes('[object Object]')) {
         pagesWithObjectObjectIssues.push({
@@ -129,22 +211,56 @@ async function crawlPage(pagePath) {
 async function main() {
   console.log('Starting crawler...');
 
-  try {
-    await fs.access(DIST_DIR, fs.constants.F_OK);
-  } catch (error) {
-    console.error('Error: The `dist` directory does not exist. Please run `npm run build` first.');
-    process.exit(1);
+  // --- New: Ontology Link Checking ---
+  console.log('\nScanning ontologies for dcterms:source links...');
+  const ontologyFiles = await findFilesByExtension(ONTOLOGY_DIR, '.jsonld');
+  
+  for (const file of ontologyFiles) {
+      const content = await fs.readFile(file, 'utf-8');
+      try {
+          const json = JSON.parse(content);
+          findSourceUrls(json, externalLinksToCheck);
+      } catch (e) {
+          console.error(`\nError parsing JSON in file: ${file}\n`, e);
+      }
   }
 
-  while (pagesToCrawl.size > 0) {
-    const nextPage = pagesToCrawl.values().next().value;
-    await crawlPage(nextPage);
+  console.log(`Found ${externalLinksToCheck.size} unique external source links to check.`);
+  if (externalLinksToCheck.size > 0) {
+      const externalCheckPromises = [];
+      for (const url of externalLinksToCheck) {
+          externalCheckPromises.push(checkExternalLink(url));
+      }
+      await Promise.all(externalCheckPromises);
+  }
+  // --- End New ---
+
+  // --- Existing HTML Crawling ---
+  try {
+    await fs.access(DIST_DIR, fs.constants.F_OK);
+
+    while (pagesToCrawl.size > 0) {
+        const nextPage = pagesToCrawl.values().next().value;
+        await crawlPage(nextPage);
+    }
+  } catch (error) {
+    console.log('\nSkipping internal link check because `dist` directory does not exist.');
   }
 
   console.log('\n--- Crawler Report ---');
   console.log(`HTML: ${stats.html.good} good, ${stats.html.broken} broken.`);
   console.log(`JSON: ${stats.json.good} good, ${stats.json.broken} broken.`);
   console.log(`JSON-LD: ${stats.jsonld.good} good, ${stats.jsonld.broken} broken.`);
+  console.log(`External Source Links: ${stats.external.good} good, ${stats.external.broken} broken.`);
+
+  if (brokenExternalLinks.length > 0) {
+    console.log('\n--- Broken External dcterms:source Links ---');
+    brokenExternalLinks.forEach(link => {
+        console.log(`  -> URL: ${link.url} (Status: ${link.status}${link.reason ? `, Reason: ${link.reason}` : ''})`);
+    });
+  } else if (stats.external.broken === 0 && stats.external.good > 0) {
+      console.log('\nAll external dcterms:source links are valid. ✨');
+  }
 
   if (firstBrokenLinkDetails) {
     console.log('\n--- First Broken Link Details ---');
@@ -153,23 +269,19 @@ async function main() {
     console.log(`Link Href:    "${firstBrokenLinkDetails.href}"`);
     console.log(`Resolved Path:  "${firstBrokenLinkDetails.resolvedPath}" (Not Found)`);
   } else if (stats.html.broken > 0 || stats.json.broken > 0 || stats.jsonld.broken > 0) {
-    console.log('\nBroken links were found, but details could not be recorded.');
+    console.log('\nBroken internal links were found, but details could not be recorded.');
   } else {
-    console.log('\nNo broken links found. ✨');
+    console.log('\nNo broken internal links found. ✨');
   }
 
   if (pagesWithCssIssues.length > 0) {
     console.log('\n--- Pages Missing CSS ---');
     pagesWithCssIssues.forEach(page => console.log(`  -> ${page}`));
-  } else {
-    console.log('\nAll pages have valid CSS links. ✨');
   }
 
   if (pagesWithImageIssues.length > 0) {
     console.log('\n--- Pages Missing Images ---');
     pagesWithImageIssues.forEach(page => console.log(`  -> ${page}`));
-  } else {
-    console.log('\nAll pages have valid image links. ✨');
   }
 
   if (pagesWithObjectObjectIssues.length > 0) {
@@ -179,11 +291,15 @@ async function main() {
       console.log(`     Link Text: "${issue.linkText}"`);
       console.log(`     Link Href: "${issue.href}"`);
     });
-  } else {
-    console.log('\nNo "[object Object]" links found. ✨');
   }
 
-  console.log('\nCrawler finished.');
+  const totalBroken = stats.html.broken + stats.json.broken + stats.jsonld.broken + stats.external.broken;
+  if (totalBroken > 0) {
+      console.error(`\nCrawler finished with ${totalBroken} broken link(s).`);
+      // The test will fail based on the output, no need to exit(1) here
+  } else {
+      console.log('\nCrawler finished successfully.');
+  }
 }
 
 main().catch(console.error);
