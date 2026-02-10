@@ -219,8 +219,7 @@
       ],
       "owl:equivalentClass": {
         "@id": "schema:Certification"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:ImpactValues",
@@ -420,8 +419,7 @@
           "@language": "ga",
           "@value": "Aicme chun na luachanna a choinneáil do tháscaire tionchair comhshaoil amháin thar chéimeanna éagsúla den saolré."
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epd",
@@ -628,8 +626,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:EPDBlock"
-      },
-      "rdfs:term_status": "unstable"
+      }
     }
   ]
 }

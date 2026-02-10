@@ -230,8 +230,7 @@
         {
           "@id": "unece:Document"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:digitalProductPassportId",
@@ -437,8 +436,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:uniqueProductIdentifier",
@@ -653,8 +651,7 @@
         {
           "@id": "schema:productID"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:economicOperatorId",
@@ -860,8 +857,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:facilityId",
@@ -1067,8 +1063,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:GranularityValue",
@@ -1904,8 +1899,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:GranularityValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:dppStatus",
@@ -2111,8 +2105,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:lastUpdate",
@@ -2318,8 +2311,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:dateTime"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:versionNumber",
@@ -2525,8 +2517,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:versionDate",
@@ -2732,8 +2723,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:date"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:dppSchemaVersion",
@@ -2939,8 +2929,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:contentSpecificationIds",
@@ -3146,8 +3135,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:hsCode",
@@ -3361,8 +3349,7 @@
         {
           "@id": "schema:hscode"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:governedBy",

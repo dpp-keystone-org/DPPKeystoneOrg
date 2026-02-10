@@ -49,8 +49,7 @@
       ],
       "rdfs:seeAlso": {
         "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:FibreComposition",
@@ -59,15 +58,13 @@
       "rdfs:comment": "Details the specific type and percentage of textile fibres making up the product.",
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:ProductionStep",
       "@type": "rdfs:Class",
       "rdfs:label": "Production Step",
-      "rdfs:comment": "A specific stage in the manufacturing process of the product, associated with a location.",
-      "rdfs:term_status": "unstable"
+      "rdfs:comment": "A specific stage in the manufacturing process of the product, associated with a location."
     },
     {
       "@id": "dppk:fibreComposition",
@@ -80,8 +77,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:FibreComposition"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:fibreType",
@@ -93,8 +89,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:fibrePercentage",
@@ -107,8 +102,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:productionSteps",
@@ -120,8 +114,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:ProductionStep"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:productionStepType",
@@ -133,8 +126,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:productionLocationCountry",
@@ -146,8 +138,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:animalOriginNonTextile",
@@ -159,8 +150,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:tearStrength",
@@ -173,8 +163,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:abrasionResistance",
@@ -187,8 +176,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:cycles",
@@ -201,8 +189,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:integer"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:dimensionalStability",
@@ -215,8 +202,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:warpChange",
@@ -229,8 +215,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:weftChange",
@@ -243,8 +228,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:colorfastnessToWashing",
@@ -257,8 +241,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:grade",
@@ -271,8 +254,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:microplasticRelease",
@@ -285,8 +267,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:careInstructions",
@@ -299,8 +280,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:repairabilityInformation",
@@ -312,8 +292,7 @@
       },
       "rdfs:range": {
         "@id": "rdf:langString"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:apparelSize",
@@ -331,8 +310,7 @@
       },
       "skos:closeMatch": {
         "@id": "schema:size"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:apparelSizeSystem",
@@ -347,8 +325,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:sizeSystemCode"
-      },
-      "rdfs:term_status": "unstable"
+      }
     }
   ]
 }

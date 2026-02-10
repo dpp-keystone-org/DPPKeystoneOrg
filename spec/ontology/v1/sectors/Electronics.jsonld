@@ -36,8 +36,7 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:PowerTool",
@@ -46,8 +45,7 @@
       "rdfs:comment": "A tool that is actuated by an additional power source and mechanism other than the solely manual labor used with hand tools.",
       "rdfs:subClassOf": {
         "@id": "dppk:ElectronicDevice"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:voltage",
@@ -59,8 +57,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:ratedPower",
@@ -72,8 +69,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:energyEfficiencyClass",
@@ -85,8 +81,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:ipRating",
@@ -98,8 +93,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:sparePartsAvailable",
@@ -111,8 +105,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:serviceManualAvailable",
@@ -124,8 +117,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:softwareUpdatePolicy",
@@ -137,8 +129,7 @@
       },
       "rdfs:range": {
         "@id": "rdf:langString"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:weeeCategory",
@@ -150,8 +141,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:disassemblyInstructions",
@@ -163,8 +153,7 @@
       },
       "rdfs:range": {
         "@id": "rdf:langString"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:torque",
@@ -176,8 +165,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:maximumRatedSpeed",
@@ -189,8 +177,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     }
   ]
 }

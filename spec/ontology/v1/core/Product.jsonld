@@ -48,8 +48,7 @@
         {
           "@id": "eudpp:Product"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:QuantitativeValue",
@@ -66,8 +65,7 @@
         {
           "@id": "unece:QuantityType"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:KgWeightLiteral",
@@ -99,15 +97,13 @@
         {
           "@id": "schema:PropertyValue"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:Component",
       "@type": "rdfs:Class",
       "rdfs:label": "A part or material that is included in the main product.",
-      "rdfs:comment": "A part or material that is included in the main product.",
-      "rdfs:term_status": "unstable"
+      "rdfs:comment": "A part or material that is included in the main product."
     },
     {
       "@id": "dppk:componentName",
@@ -119,8 +115,7 @@
       },
       "rdfs:subPropertyOf": {
         "@id": "dppk:name"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:percentage",
@@ -133,8 +128,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:name",
@@ -151,8 +145,7 @@
         {
           "@id": "unece:name"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:productName",
@@ -172,8 +165,7 @@
         {
           "@id": "unece:name"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:description",
@@ -196,8 +188,7 @@
         {
           "@id": "unece:description"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gtin",
@@ -220,8 +211,7 @@
         {
           "@id": "unece:gTINId"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:brand",
@@ -244,8 +234,7 @@
         {
           "@id": "unece:brandName"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:model",
@@ -265,8 +254,7 @@
         {
           "@id": "unece:modelId"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:image",
@@ -289,8 +277,7 @@
         {
           "@id": "unece:specifiedPicture"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:color",
@@ -313,8 +300,7 @@
         {
           "@id": "unece:colourDescription"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:components",
@@ -326,8 +312,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:Component"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:countryOfOrigin",
@@ -350,8 +335,7 @@
         {
           "@id": "unece:originCountry"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:weightPercentage",
@@ -361,8 +345,7 @@
       "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:recycledContentPercentage",
@@ -375,8 +358,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:netWeight",
@@ -396,8 +378,7 @@
         {
           "@id": "unece:netWeightMeasure"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:grossWeight",
@@ -417,8 +398,7 @@
         {
           "@id": "unece:grossWeightMeasure"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:length",
@@ -435,8 +415,7 @@
         {
           "@id": "schema:length"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:width",
@@ -453,8 +432,7 @@
         {
           "@id": "schema:width"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:height",
@@ -471,8 +449,7 @@
         {
           "@id": "schema:height"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:depth",
@@ -489,8 +466,7 @@
         {
           "@id": "schema:depth"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:value",
@@ -514,8 +490,7 @@
         {
           "@id": "unece:unitQuantity"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:unitCode",
@@ -538,8 +513,7 @@
         {
           "@id": "unece:QuantityTypeCode"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:unitText",
@@ -556,8 +530,7 @@
         {
           "@id": "schema:unitText"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:productCharacteristics",
@@ -569,8 +542,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:ProductCharacteristic"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:characteristicName",
@@ -590,8 +562,7 @@
         {
           "@id": "schema:name"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:characteristicValue",
@@ -611,8 +582,7 @@
         {
           "@id": "schema:value"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:testMethod",
@@ -632,8 +602,7 @@
         {
           "@id": "schema:measurementMethod"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     }
   ]
 }

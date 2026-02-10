@@ -46,15 +46,13 @@
         {
           "@id": "unece:certificationEvidenceDocument"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:SubstanceOfConcern",
       "@type": "rdfs:Class",
       "rdfs:label": "Substance of Concern",
-      "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product.",
-      "rdfs:term_status": "unstable"
+      "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product."
     },
     {
       "@id": "dppk:Packaging",
@@ -65,15 +63,13 @@
         {
           "@id": "gs1:PackagingMaterialDetails"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:ProductionStep",
       "@type": "rdfs:Class",
       "rdfs:label": "Production Step",
-      "rdfs:comment": "A significant step in the manufacturing or processing chain of the product, including its location.",
-      "rdfs:term_status": "unstable"
+      "rdfs:comment": "A significant step in the manufacturing or processing chain of the product, including its location."
     },
     {
       "@id": "dppk:documents",
@@ -88,8 +84,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:referencedFile"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:additionalCertifications",
@@ -109,8 +104,7 @@
         {
           "@id": "gs1:certification"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:substancesOfConcern",
@@ -122,8 +116,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:SubstanceOfConcern"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:packaging",
@@ -138,8 +131,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packaging"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:productionSteps",
@@ -150,8 +142,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:ProductionStep"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:certificationBodyName",
@@ -163,8 +154,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:certificationAgency"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:certificationBodyId",
@@ -176,8 +166,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:certificationStartDate",
@@ -192,8 +181,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:certificationStartDate"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:minValue",
@@ -205,8 +193,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:minValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:maxValue",
@@ -218,8 +205,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:maxValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:substanceName",
@@ -231,8 +217,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:casNumber",
@@ -245,8 +230,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:concentration",
@@ -259,8 +243,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:packagingMaterialType",
@@ -272,8 +255,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packagingMaterialType"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:packagingMaterialCompositionQuantity",
@@ -286,8 +268,7 @@
       "owl:equivalentProperty": {
         "@id": "gs1:packagingMaterialCompositionQuantity"
       },
-      "dppk:unit": "%",
-      "rdfs:term_status": "unstable"
+      "dppk:unit": "%"
     },
     {
       "@id": "dppk:packagingRecyclingProcessType",
@@ -299,8 +280,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:packagingRecyclingProcessType"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:packagingRecycledContent",
@@ -309,8 +289,7 @@
       "rdfs:comment": "The percentage of recycled content in the packaging material.",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:packagingSubstanceOfConcern",
@@ -319,8 +298,7 @@
       "rdfs:comment": "Indicates if any substances of concern are present in the packaging.",
       "rdfs:domain": {
         "@id": "dppk:Packaging"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:productionStepType",
@@ -329,8 +307,7 @@
       "rdfs:comment": "The name or description of the production step (e.g., Assembly, Weaving, Smelting).",
       "rdfs:domain": {
         "@id": "dppk:ProductionStep"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:productionLocationCountry",
@@ -342,8 +319,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "gs1:countryCode"
-      },
-      "rdfs:term_status": "unstable"
+      }
     }
   ]
 }

@@ -32,8 +32,7 @@
       "@id": "dppk:RelatedResource",
       "@type": "rdfs:Class",
       "rdfs:label": "Related Resource",
-      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language.",
-      "rdfs:term_status": "unstable"
+      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language."
     },
     {
       "@id": "dppk:resourceTitle",
@@ -45,8 +44,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:contentType",
@@ -61,8 +59,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:encodingFormat"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:language",
@@ -77,8 +74,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:inLanguage"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:url",
@@ -93,8 +89,7 @@
       },
       "owl:equivalentProperty": {
         "@id": "schema:url"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:instructionsForUse",
@@ -106,8 +101,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:safetyDataSheet",
@@ -119,8 +113,7 @@
       "rdfs:comment": "A link to the safety data sheet (SDS) for the product.",
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      },
-      "rdfs:term_status": "unstable"
+      }
     }
   ]
 }

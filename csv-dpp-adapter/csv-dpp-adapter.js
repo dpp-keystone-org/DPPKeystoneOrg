@@ -1,7 +1,7 @@
-import Papa from '../lib/vendor/papaparse.js?v=1770749483538';
-import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1770749483538';
-import { loadOntology } from '../lib/ontology-loader.js?v=1770749483538';
-import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions, analyzeColumnData, isTypeCompatible, enrichSchemaWithOntology, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../lib/csv-adapter-logic.js?v=1770749483538';
+import Papa from '../lib/vendor/papaparse.js?v=1770752725720';
+import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1770752725720';
+import { loadOntology } from '../lib/ontology-loader.js?v=1770752725720';
+import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions, analyzeColumnData, isTypeCompatible, enrichSchemaWithOntology, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../lib/csv-adapter-logic.js?v=1770752725720';
 
 console.log('CSV Adapter Initialized');
 
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         validationErrors = [];
         if (missingRequired.length > 0) {
-            validationErrors.push(...missingRequired.map(f => `Missing required field: ${f}`));
+            validationErrors.push(...missingRequired.map(f => `Empty mapping for required field: ${f}`));
         }
         if (oneOfConflicts.length > 0) {
             oneOfConflicts.forEach(group => {

@@ -225,8 +225,7 @@
       ],
       "rdfs:domain": {
         "@id": "dppk:EPDBlock"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:gwp",
@@ -437,8 +436,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Teasa Domhanda"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpF",
@@ -649,8 +647,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Teasa Domhanda, Fósil"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpB",
@@ -861,8 +858,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Teasa Domhanda, Bithigineach"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpLuluc",
@@ -1073,8 +1069,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpGhg",
@@ -1285,8 +1280,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:odp",
@@ -1497,8 +1491,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Laghdaithe Ózóin"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:ap",
@@ -1709,8 +1702,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Aigéadú"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epF",
@@ -1921,8 +1913,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Eutrófachta, fionnuisce"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epM",
@@ -2133,8 +2124,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Eutrófachta, Uisce Muirí"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epT",
@@ -2345,8 +2335,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Eutrófachta, Talún"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:pocp",
@@ -2557,8 +2546,7 @@
           "@language": "ga",
           "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla"
         }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:adpe",
@@ -2672,7 +2660,6 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
-      "rdfs:term_status": "unstable",
       "rdfs:comment": [
         {
           "@language": "en",
@@ -2884,7 +2871,6 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
-      "rdfs:term_status": "unstable",
       "rdfs:comment": [
         {
           "@language": "en",
@@ -3096,7 +3082,6 @@
       "rdfs:range": {
         "@id": "dppk:ImpactValues"
       },
-      "rdfs:term_status": "unstable",
       "rdfs:comment": [
         {
           "@language": "en",

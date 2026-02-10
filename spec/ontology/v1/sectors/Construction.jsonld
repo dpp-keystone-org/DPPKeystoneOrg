@@ -151,8 +151,7 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:DeclarationOfPerformance",
@@ -171,8 +170,7 @@
       ],
       "rdfs:subClassOf": {
         "@id": "dppk:DigitalDocument"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:hasDoP",
@@ -194,8 +192,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:DeclarationOfPerformance"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:dopIdentifier",
@@ -217,8 +214,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:harmonisedStandardReference",
@@ -332,8 +328,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:avsSystem",
@@ -359,8 +354,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:notifiedBody",
@@ -478,8 +472,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:technicalAssessmentBody",
@@ -593,8 +586,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:validationReports",
@@ -708,8 +700,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:europeanAssessmentDocument",
@@ -823,8 +814,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:reactionToFire",
@@ -846,8 +836,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:thermalConductivity",
@@ -869,8 +858,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:compressiveStrength",
@@ -892,8 +880,7 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:steelGrade",
@@ -915,8 +902,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     },
     {
       "@id": "dppk:railProfile",
@@ -938,8 +924,7 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      },
-      "rdfs:term_status": "unstable"
+      }
     }
   ]
 }
