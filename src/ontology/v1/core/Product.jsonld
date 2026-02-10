@@ -41,8 +41,7 @@
           { "@id": "gs1:Product" },
           { "@id": "unece:TradeProduct" },
           { "@id": "eudpp:Product" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     {
@@ -55,8 +54,7 @@
             { "@id": "qudt:QuantityValue" },
             { "@id": "unece:QuantityType" }
             // Note: GS1 does not have a direct equivalent class; it uses properties directly on the product.
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Custom Datatypes for simple measurements ---
@@ -83,16 +81,14 @@
         "owl:equivalentClass": [
             { "@id": "gs1:ProductCharacteristic" },
             { "@id": "schema:PropertyValue" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     {
         "@id": "dppk:Component",
         "@type": "rdfs:Class",
         "rdfs:label": "A part or material that is included in the main product.",
-        "rdfs:comment": "A part or material that is included in the main product.",
-        "rdfs:term_status": "unstable"
+        "rdfs:comment": "A part or material that is included in the main product."
     },
     
     // --- Component Properties ---
@@ -102,8 +98,7 @@
         "rdfs:label": "Component Name",
         "rdfs:comment": "The name of the component or material.",
         "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:subPropertyOf": { "@id": "dppk:name" },
-        "rdfs:term_status": "unstable"
+        "rdfs:subPropertyOf": { "@id": "dppk:name" }
     },
     {
         "@id": "dppk:percentage",
@@ -112,8 +107,7 @@
         "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:double" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:double" }
     },
 
 
@@ -132,8 +126,7 @@
         "owl:equivalentProperty": [
             { "@id": "schema:name" },
             { "@id": "unece:name" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Product Name ---
@@ -147,8 +140,7 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:productName" },
             { "@id": "unece:name" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Product Description ---
@@ -163,8 +155,7 @@
             { "@id": "schema:description" },
             { "@id": "gs1:productDescription" },
             { "@id": "unece:description" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- GTIN ---
@@ -179,8 +170,7 @@
             { "@id": "schema:gtin" },
             { "@id": "gs1:gtin" },
             { "@id": "unece:gTINId" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     
     // --- Brand ---
@@ -195,8 +185,7 @@
             { "@id": "schema:brand" },
             { "@id": "gs1:brandName" },
             { "@id": "unece:brandName" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Model Number ---
@@ -210,8 +199,7 @@
         "owl:equivalentProperty": [
             { "@id": "schema:model" },
             { "@id": "unece:modelId" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Image ---
@@ -226,8 +214,7 @@
             { "@id": "schema:image" },
             { "@id": "gs1:productImage" },
             { "@id": "unece:specifiedPicture" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Color (Mapped based on spreadsheet) ---
@@ -242,8 +229,7 @@
             { "@id": "schema:color" },
             { "@id": "gs1:colourDescription" },
             { "@id": "unece:colourDescription" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
 
@@ -260,8 +246,7 @@
         "rdfs:label": "Components",
         "rdfs:comment": "A constituent part or material of the product.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:Component" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:Component" }
     },
 
     // --- Country of Origin ---
@@ -276,8 +261,7 @@
             { "@id": "schema:countryOfOrigin" },
             { "@id": "gs1:countryOfOrigin" },
             { "@id": "unece:originCountry" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Weight Percentage ---
@@ -288,8 +272,7 @@
         "dppk:unit": "%",
         "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
         // No strict domain to allow usage on Component or Product
-        "rdfs:range": { "@id": "xsd:double" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:double" }
     },
 
     // --- Recycled Content Percentage ---
@@ -300,8 +283,7 @@
         "dppk:unit": "%",
         "rdfs:comment": "The percentage of the material that is derived from recycled sources.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:double" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:double" }
     },
 
     // ==================================================================
@@ -319,8 +301,7 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:netWeight" },
             { "@id": "unece:netWeightMeasure" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     {
         "@id": "dppk:grossWeight",
@@ -332,8 +313,7 @@
                 "owl:equivalentProperty": [
             { "@id": "gs1:grossWeight" },
             { "@id": "unece:grossWeightMeasure" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     {
         "@id": "dppk:length",
@@ -344,8 +324,7 @@
         "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
         "owl:equivalentProperty": [
             { "@id": "schema:length" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     {
         "@id": "dppk:width",
@@ -356,8 +335,7 @@
         "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
         "owl:equivalentProperty": [
             { "@id": "schema:width" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     {
         "@id": "dppk:height",
@@ -368,8 +346,7 @@
         "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
         "owl:equivalentProperty": [
             { "@id": "schema:height" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     {
         "@id": "dppk:depth",
@@ -380,8 +357,7 @@
         "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
         "owl:equivalentProperty": [
             { "@id": "schema:depth" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Value (Numeric) ---
@@ -398,8 +374,7 @@
             { "@id": "schema:value" },
             { "@id": "gs1:value" },
             { "@id": "unece:unitQuantity" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Unit Code (Standardized) ---
@@ -414,8 +389,7 @@
             { "@id": "schema:unitCode" },
             { "@id": "gs1:unitCode" },
             { "@id": "unece:QuantityTypeCode" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // --- Unit Text (Human-readable) ---
@@ -428,8 +402,7 @@
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
             { "@id": "schema:unitText" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     {
@@ -438,8 +411,7 @@
         "rdfs:label": "Product Characteristics",
         "rdfs:comment": "Relates a product to its specific characteristics or performance properties.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:ProductCharacteristic" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:ProductCharacteristic" }
     },
     {
         "@id": "dppk:characteristicName",
@@ -451,8 +423,7 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:characteristicName" },
             { "@id": "schema:name" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     {
         "@id": "dppk:characteristicValue",
@@ -464,8 +435,7 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:characteristicValue" },
             { "@id": "schema:value" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
     {
         "@id": "dppk:testMethod",
@@ -477,8 +447,7 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:measurementMethod" },
             { "@id": "schema:measurementMethod" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     }
   ]
 }

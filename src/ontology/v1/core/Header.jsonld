@@ -85,8 +85,7 @@
         { "@id": "schema:Product" },
         { "@id": "schema:Certification" },
         { "@id": "unece:Document" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
 
     // ==================================================================
@@ -151,8 +150,7 @@
         { "@language": "sv", "@value": "Den unika identifieraren för denna specifika instans av digitalt produktpass. Bör vara en beständig, globalt unik och upplösningsbar URI (t.ex. URN UUID eller HTTP URI). Standardvärdet är en platshållare och bör ersättas med en riktig identifierare senare." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:anyURI" }
     },
 
     // --- uniqueProductIdentifier (UPI) ---
@@ -219,8 +217,7 @@
       "owl:equivalentProperty": [
         { "@id": "gs1:productID" },
         { "@id": "schema:productID" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
 
     // --- EconomicOperatorID (EOI) ---
@@ -280,8 +277,7 @@
         { "@language": "sv", "@value": "Den unika identifieraren för den ekonomiska aktör som ansvarar för att släppa ut produkten på marknaden." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:anyURI" }
     },
 
     // --- FacilityID ---
@@ -341,8 +337,7 @@
         { "@language": "sv", "@value": "Valfritt. Den unika identifieraren för den tillverknings- eller bearbetningsanläggning som är kopplad till produkten." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:anyURI" }
     },
 
     // --- Granularity ---
@@ -587,8 +582,7 @@
         { "@language": "sv", "@value": "Anger den detaljnivå som DPP gäller för: 'Modell' (produkttyp), 'Batch' (produktionsparti) eller 'Artikel' (individuell serialiserad enhet)." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "dppk:GranularityValue" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:GranularityValue" }
     },
 
     // --- StatusOfTheDPP ---
@@ -648,8 +642,7 @@
         { "@language": "sv", "@value": "Den aktuella livscykelstatusen för DPP-instansen (t.ex. 'aktiv', 'inaktiv')." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
 
     // --- lastUpdate ---
@@ -709,8 +702,7 @@
         { "@language": "sv", "@value": "Datum och tid då DPP-instansen senast ändrades. Måste vara i ISO 8601-format (xsd:dateTime)." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:dateTime" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:dateTime" }
     },
 
     // --- Versioning ---
@@ -770,8 +762,7 @@
         { "@language": "sv", "@value": "Versionsnumret för DPP-instansen." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
     {
       "@id": "dppk:versionDate",
@@ -829,8 +820,7 @@
         { "@language": "sv", "@value": "Datumet för versionen av DPP-instansen." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:date" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:date" }
     },
     {
       "@id": "dppk:dppSchemaVersion",
@@ -888,8 +878,7 @@
         { "@language": "sv", "@value": "Versionen av det horisontella (tvärsektoriella) DPP-schema som används för denna instans." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
     {
       "@id": "dppk:contentSpecificationIds",
@@ -947,8 +936,7 @@
         { "@language": "sv", "@value": "En uppsättning identifierare för de delegerade akter eller sektorspecifika datamodeller som detta DPP överensstämmer med." }
       ],
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
 
     // --- hsCode (Often considered part of the header/identification) ---
@@ -1012,8 +1000,7 @@
         "owl:equivalentProperty": [
             { "@id": "gs1:customsClassification" },
             { "@id": "schema:hscode" }
-        ],
-        "rdfs:term_status": "unstable"
+        ]
     },
 
     // ==================================================================

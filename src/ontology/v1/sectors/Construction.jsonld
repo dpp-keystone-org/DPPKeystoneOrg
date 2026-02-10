@@ -62,8 +62,7 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
         "rdfs:label": "Regulation (EU) No 305/2011 (Construction Products Regulation - CPR)"
       },
-      "rdfs:subClassOf": { "@id": "dppk:Product" },
-      "rdfs:term_status": "unstable"
+      "rdfs:subClassOf": { "@id": "dppk:Product" }
     },
     {
       "@id": "dppk:DeclarationOfPerformance",
@@ -74,8 +73,7 @@
       "rdfs:comment": [
         { "@language": "en", "@value": "A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product." }
       ],
-      "rdfs:subClassOf": { "@id": "dppk:DigitalDocument" },
-      "rdfs:term_status": "unstable"
+      "rdfs:subClassOf": { "@id": "dppk:DigitalDocument" }
     },
     {
       "@id": "dppk:hasDoP",
@@ -87,8 +85,7 @@
         { "@language": "en", "@value": "Relates the construction product to its Declaration of Performance." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:DeclarationOfPerformance" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:DeclarationOfPerformance" }
     },
     {
       "@id": "dppk:dopIdentifier",
@@ -100,8 +97,7 @@
         { "@language": "en", "@value": "The unique identification code of the Declaration of Performance." }
       ],
       "rdfs:domain": { "@id": "dppk:DeclarationOfPerformance" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
     {
       "@id": "dppk:harmonisedStandardReference",
@@ -136,8 +132,7 @@
         { "@language": "en", "@value": "A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "xsd:anyURI" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:anyURI" }
     },
     {
       "@id": "dppk:avsSystem",
@@ -153,8 +148,7 @@
         "rdfs:label": "CPR - Annex V"
       },
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
     {
       "@id": "dppk:notifiedBody",
@@ -193,8 +187,7 @@
         "rdfs:label": "Notified bodies - Internal Market, Industry, Entrepreneurship and SMEs"
       },
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:Organization" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:Organization" }
     },
     {
       "@id": "dppk:technicalAssessmentBody",
@@ -229,8 +222,7 @@
         { "@language": "en", "@value": "The technical assessment body that independently evaluates a product's technical characteristics" }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:Organization" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:Organization" }
     },
     {
       "@id": "dppk:validationReports",
@@ -265,8 +257,7 @@
         { "@language": "en", "@value": "Reference to reports validating the performance or conformity of the product." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:RelatedResource" }
     },
     {
       "@id": "dppk:europeanAssessmentDocument",
@@ -301,8 +292,7 @@
         { "@language": "en", "@value": "A reference to the European Assessment Document (EAD) relevant to the product." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:RelatedResource" }
     },
     {
       "@id": "dppk:reactionToFire",
@@ -314,8 +304,7 @@
         { "@language": "en", "@value": "The classification of the product's contribution to fire (Euroclass)." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
     {
       "@id": "dppk:thermalConductivity",
@@ -327,8 +316,7 @@
         { "@language": "en", "@value": "The property of a material to conduct heat." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:QuantitativeValue" }
     },
     {
       "@id": "dppk:compressiveStrength",
@@ -340,8 +328,7 @@
         { "@language": "en", "@value": "The capacity of a material or structure to withstand loads tending to reduce size." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:QuantitativeValue" }
     },
     {
       "@id": "dppk:steelGrade",
@@ -353,8 +340,7 @@
         { "@language": "en", "@value": "The classification of the steel based on its composition and physical properties (e.g., R260, S355)." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
     {
       "@id": "dppk:railProfile",
@@ -366,8 +352,7 @@
         { "@language": "en", "@value": "The standardized cross-section design of a railway rail (e.g., 46E1)." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     }
   ]
 }

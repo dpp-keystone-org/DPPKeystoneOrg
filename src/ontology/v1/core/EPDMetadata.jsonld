@@ -71,8 +71,7 @@
         { "@language": "sv", "@value": "En klass för att hålla alla miljöpåverkanskategorier i ett kompakt ordboksformat." },
         { "@language": "ga", "@value": "Aicme chun gach catagóir tionchair comhshaoil a choinneáil i bhformáid dhlúth foclóra." }
       ],
-      "owl:equivalentClass": { "@id": "schema:Certification" },
-      "rdfs:term_status": "unstable"
+      "owl:equivalentClass": { "@id": "schema:Certification" }
     },
     {
       "@id": "dppk:ImpactValues",
@@ -128,8 +127,7 @@
         { "@language": "sl", "@value": "Razred, ki vsebuje vrednosti za en kazalnik vpliva na okolje v različnih fazah življenjskega cikla." },
         { "@language": "sv", "@value": "En klass för att hålla värdena för en enda miljöpåverkansindikator över olika livscykelstadier." },
         { "@language": "ga", "@value": "Aicme chun na luachanna a choinneáil do tháscaire tionchair comhshaoil amháin thar chéimeanna éagsúla den saolré." }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epd",
@@ -188,8 +186,7 @@
       ],
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "dppk:EPDBlock" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:EPDBlock" }
     }
   ]
 }

@@ -43,8 +43,7 @@
           { "@id": "schema:Product" },
           { "@id": "gs1:Clothing" }
       ],
-      "rdfs:seeAlso": { "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles" },
-      "rdfs:term_status": "unstable"
+      "rdfs:seeAlso": { "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles" }
     },
     {
         "@id": "dppk:FibreComposition",
@@ -52,14 +51,13 @@
         "rdfs:label": "Fibre Composition",
         "rdfs:comment": "Details the specific type and percentage of textile fibres making up the product.",
         "rdfs:subClassOf": { "@id": "dppk:Product" }, // Fibre is treated as a material/product
-        "rdfs:term_status": "unstable"
+        
     },
     {
         "@id": "dppk:ProductionStep",
         "@type": "rdfs:Class",
         "rdfs:label": "Production Step",
-        "rdfs:comment": "A specific stage in the manufacturing process of the product, associated with a location.",
-        "rdfs:term_status": "unstable"
+        "rdfs:comment": "A specific stage in the manufacturing process of the product, associated with a location."
     },
 
     // ==================================================================
@@ -74,8 +72,7 @@
         "dppk:governedBy": "Regulation (EU) No 1007/2011",
         "rdfs:comment": "Relates the textile product to its constituent fibres and their proportions.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:FibreComposition" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:FibreComposition" }
     },
 
     // --- Fibre Type ---
@@ -85,8 +82,7 @@
         "rdfs:label": "Fibre Type",
         "rdfs:comment": "The specific type of fibre (e.g., Cotton, Polyester, Wool, Elastane).",
         "rdfs:domain": { "@id": "dppk:FibreComposition" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:string" }
     },
 
     // --- Fibre Percentage ---
@@ -97,8 +93,7 @@
         "rdfs:comment": "The percentage of the total product weight constituted by this fibre.",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:FibreComposition" },
-        "rdfs:range": { "@id": "xsd:double" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:double" }
     },
     
     // ==================================================================
@@ -111,8 +106,7 @@
         "rdfs:label": "Production Steps",
         "rdfs:comment": "The sequence of major production steps that occurred for this product.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:ProductionStep" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:ProductionStep" }
     },
     {
         "@id": "dppk:productionStepType",
@@ -120,8 +114,7 @@
         "rdfs:label": "Production Step Type",
         "rdfs:comment": "The type of activity performed (e.g., Spinning, Weaving, Dyeing).",
         "rdfs:domain": { "@id": "dppk:ProductionStep" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:string" }
     },
     {
         "@id": "dppk:productionLocationCountry",
@@ -129,8 +122,7 @@
         "rdfs:label": "Production Location Country",
         "rdfs:comment": "The country code (ISO 3166-1 alpha-3) where the production step took place.",
         "rdfs:domain": { "@id": "dppk:ProductionStep" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:string" }
     },
 
     // ==================================================================
@@ -146,8 +138,7 @@
         "rdfs:label": "Presence of Non-Textile Parts of Animal Origin",
         "rdfs:comment": "Indicates the presence of materials such as leather, bone, or shell.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "xsd:boolean" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:boolean" }
     },
 
     // --- Durability Indicators ---
@@ -159,8 +150,7 @@
         "dppk:governedBy": "ISO 13937-2",
         "rdfs:comment": "The force required to propagate a tear in the fabric.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
     },
     {
         "@id": "dppk:abrasionResistance",
@@ -169,8 +159,7 @@
         "dppk:governedBy": "ISO 12947",
         "rdfs:comment": "Resistance to wear, often measured in Martindale cycles.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
     },
     {
         "@id": "dppk:cycles",
@@ -179,8 +168,7 @@
         "rdfs:comment": "Number of cycles (e.g., rubs) withstanded.",
         "dppk:unit": "unitless",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:integer" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:integer" }
     },
 
     {
@@ -190,8 +178,7 @@
         "dppk:governedBy": "ISO 5077",
         "rdfs:comment": "The percentage a fabric shrinks or grows after washing and drying.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
     },
     {
         "@id": "dppk:warpChange",
@@ -200,8 +187,7 @@
         "rdfs:comment": "Dimensional change in the warp (length) direction.",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:double" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:double" }
     },
     {
         "@id": "dppk:weftChange",
@@ -210,8 +196,7 @@
         "rdfs:comment": "Dimensional change in the weft (width) direction.",
         "dppk:unit": "%",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:double" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:double" }
     },
 
     {
@@ -221,8 +206,7 @@
         "dppk:governedBy": "ISO 105-C06",
         "rdfs:comment": "The resistance of the color to domestic laundering.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
     },
     {
         "@id": "dppk:grade",
@@ -231,8 +215,7 @@
         "rdfs:comment": "The specific grade or value achieved (e.g. 1-5 scale).",
         "dppk:unit": "unitless",
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:double" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:double" }
     },
 
     // --- Microplastic Release ---
@@ -243,8 +226,7 @@
         "dppk:governedBy": "ISO 4484-1",
         "rdfs:comment": "Information regarding the amount of lint/particles released during washing.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" }
     },
     
     // ==================================================================
@@ -259,8 +241,7 @@
         "dppk:governedBy": "ISO 3758",
         "rdfs:comment": "Standardized care symbols (e.g., GINETEX codes).",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "xsd:string" }
     },
 
     // --- Repairability Score/Information ---
@@ -270,8 +251,7 @@
         "rdfs:label": "Repairability Information",
         "rdfs:comment": "Instructions or scores related to the ease of repairing the textile product.",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
-        "rdfs:range": { "@id": "rdf:langString" },
-        "rdfs:term_status": "unstable"
+        "rdfs:range": { "@id": "rdf:langString" }
     },
 
     // ==================================================================
@@ -286,8 +266,7 @@
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
-        "skos:closeMatch": { "@id": "schema:size" },
-        "rdfs:term_status": "unstable"
+        "skos:closeMatch": { "@id": "schema:size" }
     },
     {
         "@id": "dppk:apparelSizeSystem",
@@ -296,8 +275,7 @@
         "rdfs:comment": "The system used for the apparel size (e.g., 'EU', 'US', 'UK').",
         "rdfs:domain": { "@id": "dppk:TextileProduct" },
         "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:sizeSystemCode" },
-        "rdfs:term_status": "unstable"
+        "owl:equivalentProperty": { "@id": "gs1:sizeSystemCode" }
     }
   ]
 }

@@ -112,8 +112,8 @@ test.describe('CSV DPP Adapter E2E', () => {
         await expect(errorItems).toHaveCount(2);
 
         const errorTexts = await errorItems.allTextContents();
-        expect(errorTexts.some(text => text.includes('Missing required field: uniqueProductIdentifier'))).toBe(true);
-        expect(errorTexts.some(text => text.includes('Missing required field: contentSpecificationIds'))).toBe(true);
+        expect(errorTexts.some(text => text.includes('Empty mapping for required field: uniqueProductIdentifier'))).toBe(true);
+        expect(errorTexts.some(text => text.includes('Empty mapping for required field: contentSpecificationIds'))).toBe(true);
     });
 
     test('Test 14-18: Mapping Logic and Constraints', async ({ page }) => {

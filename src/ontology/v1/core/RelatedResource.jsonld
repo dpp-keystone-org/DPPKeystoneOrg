@@ -30,8 +30,7 @@
       "@id": "dppk:RelatedResource",
       "@type": "rdfs:Class",
       "rdfs:label": "Related Resource",
-      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language.",
-      "rdfs:term_status": "unstable"
+      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language."
     },
     {
       "@id": "dppk:resourceTitle",
@@ -39,8 +38,7 @@
       "rdfs:label": "Resource Title",
       "rdfs:comment": "The title of the related resource.",
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "xsd:string" }
     },
     {
       "@id": "dppk:contentType",
@@ -49,8 +47,7 @@
       "rdfs:comment": "The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').",
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:string" },
-      "owl:equivalentProperty": { "@id": "schema:encodingFormat" },
-      "rdfs:term_status": "unstable"
+      "owl:equivalentProperty": { "@id": "schema:encodingFormat" }
     },
     {
       "@id": "dppk:language",
@@ -59,8 +56,7 @@
       "rdfs:comment": "The language of the resource content (e.g., 'en', 'fr').",
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:string" },
-      "owl:equivalentProperty": { "@id": "schema:inLanguage" },
-      "rdfs:term_status": "unstable"
+      "owl:equivalentProperty": { "@id": "schema:inLanguage" }
     },
     {
       "@id": "dppk:url",
@@ -69,8 +65,7 @@
       "rdfs:comment": "The location of the resource.",
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
       "rdfs:range": { "@id": "xsd:anyURI" },
-      "owl:equivalentProperty": { "@id": "schema:url" },
-      "rdfs:term_status": "unstable"
+      "owl:equivalentProperty": { "@id": "schema:url" }
     },
     {
       "@id": "dppk:instructionsForUse",
@@ -78,8 +73,7 @@
       "rdfs:label": "Instructions for Use",
       "rdfs:comment": "A link to the instructions for use or user manual for the product.",
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:RelatedResource" }
     },
     {
       "@id": "dppk:safetyDataSheet",
@@ -87,8 +81,7 @@
       "rdfs:label": "Safety Data Sheet",
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:comment": "A link to the safety data sheet (SDS) for the product.",
-      "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:term_status": "unstable"
+      "rdfs:range": { "@id": "dppk:RelatedResource" }
     }
   ]
 }

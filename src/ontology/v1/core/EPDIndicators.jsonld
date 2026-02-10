@@ -73,8 +73,7 @@
         { "@language": "sv", "@value": "En generisk egenskap som representerar en miljöpåverkansindikator." },
         { "@language": "ga", "@value": "Airí ginearálta a léiríonn táscaire tionchair comhshaoil." }
       ],
-      "rdfs:domain": { "@id": "dppk:EPDBlock" },
-      "rdfs:term_status": "unstable"
+      "rdfs:domain": { "@id": "dppk:EPDBlock" }
     },
     {
       "@id": "dppk:gwp",
@@ -135,8 +134,7 @@
         { "@language": "sl", "@value": "Potencial globalnega segrevanja" },
         { "@language": "sv", "@value": "Global uppvärmningspotential" },
         { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpF",
@@ -197,8 +195,7 @@
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, fosilni" },
         { "@language": "sv", "@value": "Global uppvärmningspotential, fossil" },
         { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Fósil" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpB",
@@ -259,8 +256,7 @@
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, biogen" },
         { "@language": "sv", "@value": "Global uppvärmningspotential, biogen" },
         { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Bithigineach" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpLuluc",
@@ -321,8 +317,7 @@
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, raba tal in spremembe rabe tal" },
         { "@language": "sv", "@value": "Global uppvärmningspotential, markanvändning och markanvändningsförändring" },
         { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:gwpGhg",
@@ -383,8 +378,7 @@
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, toplogredni plini" },
         { "@language": "sv", "@value": "Global uppvärmningspotential, växthusgaser" },
         { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:odp",
@@ -445,8 +439,7 @@
         { "@language": "sl", "@value": "Potencial za zmanjšanje ozonskega plašča" },
         { "@language": "sv", "@value": "Potential för nedbrytning av ozonskiktet" },
         { "@language": "ga", "@value": "Féidearthacht Laghdaithe Ózóin" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:ap",
@@ -507,8 +500,7 @@
         { "@language": "sl", "@value": "Potencial zakisanosti" },
         { "@language": "sv", "@value": "Försurningspotential" },
         { "@language": "ga", "@value": "Féidearthacht Aigéadú" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epF",
@@ -569,8 +561,7 @@
         { "@language": "sl", "@value": "Potencial eutrofikacije, sladka voda" },
         { "@language": "sv", "@value": "Eutrofieringspotential, sötvatten" },
         { "@language": "ga", "@value": "Féidearthacht Eutrófachta, fionnuisce" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epM",
@@ -631,8 +622,7 @@
         { "@language": "sl", "@value": "Potencial eutrofikacije, morska voda" },
         { "@language": "sv", "@value": "Eutrofieringspotential, havsvatten" },
         { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Uisce Muirí" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:epT",
@@ -693,8 +683,7 @@
         { "@language": "sl", "@value": "Potencial eutrofikacije, kopenski" },
         { "@language": "sv", "@value": "Eutrofieringspotential, mark" },
         { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Talún" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:pocp",
@@ -755,8 +744,7 @@
         { "@language": "sl", "@value": "Potencial za nastanek fotokemijskega ozona" },
         { "@language": "sv", "@value": "Potential för fotokemisk ozonbildning" },
         { "@language": "ga", "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla" }
-      ],
-      "rdfs:term_status": "unstable"
+      ]
     },
     {
       "@id": "dppk:adpe",
@@ -792,7 +780,7 @@
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": { "@id": "dppk:EPDBlock" },
       "rdfs:range": { "@id": "dppk:ImpactValues" },
-      "rdfs:term_status": "unstable",
+      
       "rdfs:comment": [
         { "@language": "en", "@value": "Abiotic Depletion Potential (elements)" },
         { "@language": "bg", "@value": "Потенциал за изчерпване на абиотични елементи" },
@@ -854,7 +842,7 @@
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": { "@id": "dppk:EPDBlock" },
       "rdfs:range": { "@id": "dppk:ImpactValues" },
-      "rdfs:term_status": "unstable",
+      
       "rdfs:comment": [
         { "@language": "en", "@value": "Abiotic Depletion Potential (fossil fuels)" },
         { "@language": "bg", "@value": "Потенциал за изчерпване на абиотични горива" },
@@ -916,7 +904,7 @@
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": { "@id": "dppk:EPDBlock" },
       "rdfs:range": { "@id": "dppk:ImpactValues" },
-      "rdfs:term_status": "unstable",
+      
       "rdfs:comment": [
         { "@language": "en", "@value": "Water Depletion Potential" },
         { "@language": "bg", "@value": "Потенциал за изчерпване на вода" },
