@@ -237,4 +237,137 @@ describe('DPP Wizard - Ontology Loader', () => {
         expect(ontologyMap.has('importedProp')).toBe(true);
         expect(ontologyMap.get('importedProp').label.en).toBe('Imported Prop Label');
     });
+
+    test('should preserve dcterms:source object with @id', async () => {
+        const mockOntology = {
+            '@context': 'https://www.w3.org/ns/odrl.jsonld',
+            '@graph': [
+                {
+                    '@id': 'dppk:batteryChemistry',
+                    '@type': 'owl:DatatypeProperty',
+                    'dcterms:source': { '@id': 'https://www.dinmedia.de/en/standard/din-dke-spec-99100' },
+                    'rdfs:label': [{ '@language': 'en', '@value': 'Battery chemistry' }],
+                },
+            ],
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: () => Promise.resolve(mockOntology),
+        });
+
+        const ontologyMap = await loadOntology('battery');
+        
+        expect(ontologyMap).not.toBeNull();
+        const batteryChemistryInfo = ontologyMap.get('batteryChemistry');
+        
+        expect(batteryChemistryInfo).toBeDefined();
+        expect(batteryChemistryInfo.source).toBeDefined();
+        expect(typeof batteryChemistryInfo.source).toBe('object');
+        expect(batteryChemistryInfo.source['@id']).toBe('https://www.dinmedia.de/en/standard/din-dke-spec-99100');
+    });
+
+    test('should handle dcterms:source as a simple string', async () => {
+        const mockOntology = {
+            '@graph': [
+                {
+                    '@id': 'dppk:someProperty',
+                    'dcterms:source': 'A simple string source.',
+                },
+            ],
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: () => Promise.resolve(mockOntology),
+        });
+
+        const ontologyMap = await loadOntology('battery');
+        const somePropertyInfo = ontologyMap.get('someProperty');
+        
+        expect(somePropertyInfo).toBeDefined();
+        expect(somePropertyInfo.source).toBe('A simple string source.');
+    });
+
+    test('should merge properties for the same term from different files', async () => {
+        const mockCoreOntology = {
+            'owl:imports': ['../spec/ontology/v1/sectors/mock-sector.jsonld'],
+            '@graph': [
+                { '@id': 'dppk:sharedProperty', 'rdfs:label': [{ '@language': 'en', '@value': 'Shared Label' }] }
+            ]
+        };
+        const mockSectorOntology = {
+            '@graph': [
+                { '@id': 'dppk:sharedProperty', 'rdfs:comment': [{ '@language': 'en', '@value': 'Shared Comment' }] }
+            ]
+        };
+
+        // First fetch is for the main ontology (which imports the other)
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: () => Promise.resolve(mockCoreOntology),
+        });
+        // Second fetch is for the imported sector ontology
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: () => Promise.resolve(mockSectorOntology),
+        });
+
+        const ontologyMap = await loadOntology('dpp'); // Use a sector that triggers the mock
+        const sharedPropertyInfo = ontologyMap.get('sharedProperty');
+
+        expect(fetch).toHaveBeenCalledTimes(2);
+        expect(sharedPropertyInfo).toBeDefined();
+        expect(sharedPropertyInfo.label.en).toBe('Shared Label');
+        expect(sharedPropertyInfo.comment.en).toBe('Shared Comment');
+    });
+
+    test('should correctly parse rdfs:range when it is an object with @id', async () => {
+        const mockOntology = {
+            '@graph': [
+                {
+                    '@id': 'dppk:someProperty',
+                    'rdfs:range': { '@id': 'xsd:decimal' },
+                },
+            ],
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: () => Promise.resolve(mockOntology),
+        });
+
+        const ontologyMap = await loadOntology('battery');
+        const somePropertyInfo = ontologyMap.get('someProperty');
+        
+        expect(somePropertyInfo).toBeDefined();
+        expect(somePropertyInfo.range).toBe('decimal');
+    });
+
+    test('should correctly parse owl:oneOf into an enum array', async () => {
+        const mockOntology = {
+            '@graph': [
+                {
+                    '@id': 'dppk:someClass',
+                    'owl:oneOf': [
+                        { '@id': 'dppk:OptionA' },
+                        { '@id': 'dppk:OptionB' }
+                    ]
+                },
+            ],
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: () => Promise.resolve(mockOntology),
+        });
+
+        const ontologyMap = await loadOntology('battery');
+        const someClassInfo = ontologyMap.get('someClass');
+
+        expect(someClassInfo).toBeDefined();
+        expect(someClassInfo.enum).toBeDefined();
+        expect(Array.isArray(someClassInfo.enum)).toBe(true);
+        expect(someClassInfo.enum).toEqual(['OptionA', 'OptionB']);
+    });
 });
