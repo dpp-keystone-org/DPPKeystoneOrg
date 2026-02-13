@@ -17,7 +17,7 @@ function getAllFiles(dirPath, arrayOfFiles) {
         if (fs.statSync(fullPath).isDirectory()) {
             arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
         } else {
-            if (file.endsWith('.json') || file.endsWith('.jsonld')) {
+            if (file.endsWith('.json') || file.endsWith('.jsonld') || file.endsWith('.jsonc')) {
                 arrayOfFiles.push(fullPath);
             }
         }
@@ -29,34 +29,37 @@ function getAllFiles(dirPath, arrayOfFiles) {
 function processFile(filePath) {
     try {
         const rawContent = fs.readFileSync(filePath, 'utf8');
-        const jsonContent = JSON.parse(rawContent);
-        
-        // 1. Standard Prettify first
-        let content = JSON.stringify(jsonContent, null, 2);
+        let content = rawContent;
 
-        // 2. Collapse Language Objects
+        // The original script would JSON.parse and then JSON.stringify here.
+        // That would strip comments. By operating on the raw text, we can
+        // preserve comments. This means, however, that we cannot re-format
+        // the JSON structure, and rely on the RegEx below to be flexible
+        // enough to handle JSON that is not "perfectly" formatted.
+
+        // Collapse Language Objects
         // Case A: @language first
         // Matches: { "@language": "...", "@value": ... }
         content = content.replace(
-            /\{\s*"@language":\s*"([^"]+)",\s*"@value":\s*(.*?)\s*\}/gs, 
+            /\{\s*"@language":\s*"([^"]+)",\s*"@value":\s*(.*?)\s*\}/gs,
             (match, lang, val) => `{ "@language": "${lang}", "@value": ${val} }`
         );
-        
+
         // Case B: @value first (Handle inconsistent key order from JSON.stringify)
         // Matches: { "@value": ..., "@language": "..." }
         content = content.replace(
-            /\{\s*"@value":\s*(.*?),\s*"@language":\s*"([^"]+)"\s*\}/gs, 
+            /\{\s*"@value":\s*(.*?),\s*"@language":\s*"([^"]+)"\s*\}/gs,
             (match, val, lang) => `{ "@language": "${lang}", "@value": ${val} }`
         );
 
-        // 3. Collapse ID Objects
+        // Collapse ID Objects
         // Matches: { "@id": "..." }
         content = content.replace(
             /\{\s*"@id":\s*"([^"]+)"\s*\}/gs,
             (match, id) => `{ "@id": "${id}" }`
         );
 
-        // 4. Collapse Type Objects
+        // Collapse Type Objects
         // Matches: { "@type": "..." }
         content = content.replace(
             /\{\s*"@type":\s*"([^"]+)"\s*\}/gs,

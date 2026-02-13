@@ -780,7 +780,6 @@
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": { "@id": "dppk:EPDBlock" },
       "rdfs:range": { "@id": "dppk:ImpactValues" },
-      
       "rdfs:comment": [
         { "@language": "en", "@value": "Abiotic Depletion Potential (elements)" },
         { "@language": "bg", "@value": "Потенциал за изчерпване на абиотични елементи" },
@@ -842,7 +841,6 @@
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": { "@id": "dppk:EPDBlock" },
       "rdfs:range": { "@id": "dppk:ImpactValues" },
-      
       "rdfs:comment": [
         { "@language": "en", "@value": "Abiotic Depletion Potential (fossil fuels)" },
         { "@language": "bg", "@value": "Потенциал за изчерпване на абиотични горива" },
@@ -904,7 +902,6 @@
       "rdfs:subPropertyOf": { "@id": "dppk:indicator" },
       "rdfs:domain": { "@id": "dppk:EPDBlock" },
       "rdfs:range": { "@id": "dppk:ImpactValues" },
-      
       "rdfs:comment": [
         { "@language": "en", "@value": "Water Depletion Potential" },
         { "@language": "bg", "@value": "Потенциал за изчерпване на вода" },
