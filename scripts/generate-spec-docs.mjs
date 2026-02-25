@@ -632,6 +632,50 @@ export function generateContextHtml(directoryName, files, distDir, currentHtmlPa
 </html>`;
 }
 
+function generateTopLevelContextIndexHtml(directoryName, files, distDir, currentHtmlPath) {
+    const listItems = files.map(file => {
+        const link = `./${file.name}`; // Direct link to the file
+        
+        return `
+        <li>
+            <h3><a href="${link}">${file.name}</a></h3>
+        </li>
+    `}).join('\n');
+
+    const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
+
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Explorer: ${directoryName}</title>
+    <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1>Context Explorer</h1>
+                <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
+            </div>
+        </header>
+        <main>
+            <p>These context files point to the latest version of the DPP Keystone contexts.</p>
+            <ul>
+                ${listItems}
+            </ul>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+</body>
+</html>`;
+}
+
 const expandCurie = (curie, context) => {
     if (typeof curie !== 'string' || !curie.includes(':')) return curie;
     const [prefix, localPart] = curie.split(':');
@@ -868,6 +912,17 @@ export async function generateSpecDocs({
             const contextPageHtml = generateIndividualContextPageHtml(metadata, currentHtmlPath, ontologyDir, distDir, allMetadata);
             await writeFile(currentHtmlPath, contextPageHtml);
         }
+    }
+
+    // 5. Generate Top-Level Context Index for "latest"
+    const topLevelContextDir = join(distDir, 'contexts');
+    const topLevelContextFiles = await getJsonLdFiles(topLevelContextDir);
+    if (topLevelContextFiles.length > 0) {
+        const fileMetadata = topLevelContextFiles.map(file => ({ name: basename(file) }));
+        const outputPath = join(topLevelContextDir, 'index.html');
+        const htmlContent = generateTopLevelContextIndexHtml('Latest Contexts', fileMetadata, distDir, outputPath);
+        await writeFile(outputPath, htmlContent);
+        console.log(`Generated latest contexts index at: ${outputPath}`);
     }
 }
 

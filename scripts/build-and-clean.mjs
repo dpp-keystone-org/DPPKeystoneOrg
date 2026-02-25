@@ -180,6 +180,17 @@ async function build() {
     const specDir = path.join(BUILD_DIR, 'spec');
     await processDirectory(SOURCE_DIR, specDir);
 
+    // Create version-less "latest" copies of context files
+    console.log('Creating "latest" context file shadows...');
+    const latestContextsDir = path.join(specDir, 'contexts', 'v1');
+    const shadowContextsDir = path.join(specDir, 'contexts');
+    if (await fse.pathExists(latestContextsDir)) {
+        await fse.copy(latestContextsDir, shadowContextsDir, { overwrite: true });
+        console.log(`Shadowed latest context files to dist/spec/contexts`);
+    } else {
+        console.warn(`Warning: Latest contexts directory not found at ${latestContextsDir}. Skipping shadow creation.`);
+    }
+
     // Copy branding to the root of dist
     await fse.copy(path.join(SOURCE_DIR, 'branding'), path.join(BUILD_DIR, 'branding'));
     console.log(`Copied branding to dist root`);

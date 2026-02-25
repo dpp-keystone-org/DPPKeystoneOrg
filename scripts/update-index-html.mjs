@@ -210,6 +210,15 @@ export async function updateIndexHtml({
       '<!-- CONTEXTS_LIST_START -->\n' + contextsList + '\n                            <!-- CONTEXTS_LIST_END -->'
     );
 
+    // Generate and inject LATEST contexts list (non-recursive)
+    const latestContextsPath = path.join(DIST_DIR, 'spec', 'contexts');
+    // We read from dist, which is where the shadow files are. We link to the raw files.
+    const latestContextsList = await generateFileList(latestContextsPath, 'spec/contexts/', { recursive: false, removeV1: true });
+    indexContent = indexContent.replace(
+      /<!-- LATEST_CONTEXTS_LIST_START -->[\s\S]*<!-- LATEST_CONTEXTS_LIST_END -->/,
+      '<!-- LATEST_CONTEXTS_LIST_START -->\n' + latestContextsList + '\n                            <!-- LATEST_CONTEXTS_LIST_END -->'
+    );
+
     // Generate and inject ontology core list (non-recursive)
     const ontologyCorePath = path.join(srcDir, 'ontology', 'v1', 'core');
     const ontologyCoreList = await generateFileList(ontologyCorePath, 'spec/ontology/v1/core/', { isOntology: true });
