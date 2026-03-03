@@ -445,8 +445,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
     });
 
     it('should load the General Product module and generate valid JSON', async () => {
-        // 1. Load the real General Product schema
+        // 1. Load the real General Product schema and its new dependency
         const generalProductSchema = await loadJson('src/validation/v1/json-schema/general-product.schema.json');
+        const componentSchema = await loadJson('src/validation/v1/json-schema/component.schema.json');
+
+        // Manually resolve the $ref for the test environment
+        generalProductSchema.properties.components.items = componentSchema;
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();

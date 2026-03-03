@@ -42,57 +42,40 @@ test('should maintain correct error count when removing array items shifts inval
     await addCompBtn.click(); // materialComposition.1
     await addCompBtn.click(); // materialComposition.2
 
-    // Each component has 2 required fields: 'name' and 'weightPercentage'.
-    // So 3 items * 2 fields = 6 new errors.
-    const expectedErrorsWith3Items = errorCountAfterSectorAdd + 6;
+    // Each component has 1 required field: 'name'.
+    // So 3 items * 1 field = 3 new errors.
+    const expectedErrorsWith3Items = errorCountAfterSectorAdd + 3;
     await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWith3Items})`);
 
-    // 4. Fill in fields for materialComposition.0 to make it VALID.
-    // 'name' is now a simple string field.
-    // Note: The form builder should render it as a standard text input.
-    // We intentionally leave 'name' empty here to keep the item partially invalid,
-    // in order to test the error shifting logic.
-    await page.locator('input[name="materialComposition.0.weightPercentage"]').fill('10');
-    await page.locator('input[name="materialComposition.0.weightPercentage"]').blur();
+    // 4. Fill in a non-required field for materialComposition.0.
+    // This should NOT change the error count.
+    await page.locator('input[name="materialComposition.0.percentage"]').fill('10');
+    await page.locator('input[name="materialComposition.0.percentage"]').blur();
+    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWith3Items})`);
     
-    // Validating weightPercentage removes 1 error.
-    // 'name' remains invalid (required).
-    
-    // Step 4 revised: Fill weightPercentage for Item 0.
-    // Expect errors to drop by 1.
-    const expectedErrorsWithItem0Partial = expectedErrorsWith3Items - 1;
-    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWithItem0Partial})`);
-
-    // Step 5: Fill weightPercentage for Item 2.
-    await page.locator('input[name="materialComposition.2.weightPercentage"]').fill('20');
-    await page.locator('input[name="materialComposition.2.weightPercentage"]').blur();
-    
-    const expectedErrorsWithItem0And2Partial = expectedErrorsWithItem0Partial - 1;
-    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWithItem0And2Partial})`);
+    // 5. Fill in a non-required field for materialComposition.2.
+    // This should also NOT change the error count.
+    await page.locator('input[name="materialComposition.2.percentage"]').fill('20');
+    await page.locator('input[name="materialComposition.2.percentage"]').blur();
+    await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsWith3Items})`);
     
     // 6. Remove materialComposition.0.
-    // Item 0 was partially valid (weightPercentage filled).
-    // Item 1 is fully invalid (nothing filled).
-    // Item 2 is partially valid (weightPercentage filled).
-
-    // Locate the remove button for the specific group
+    // Item 0 was fully invalid (it had 1 error for the 'name' field).
+    // Removing it should decrease the total error count by 1.
     await page.locator('[data-array-group="materialComposition.0"] button:has-text("Remove")').click();
     
     // After removing Item 0:
     // Old Item 1 (Invalid) becomes Item 0.
-    // Old Item 2 (Partially Valid) becomes Item 1.
-    
-    // Total errors calculation:
-    // We removed Item 0. It had 1 error remaining (name).
-    // So total errors should decrease by 1.
-    const expectedErrorsAfterRemove = expectedErrorsWithItem0And2Partial - 1;
+    // Old Item 2 (Invalid) becomes Item 1.
+    // Total errors should decrease by 1.
+    const expectedErrorsAfterRemove = expectedErrorsWith3Items - 1;
     await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsAfterRemove})`);
 
     // 7. Verify desynchronization bug logic.
     // The new Item 0 (was 1) should be fully invalid.
-    // If we fill its weightPercentage, error count should drop by 1.
-    await page.locator('input[name="materialComposition.0.weightPercentage"]').fill('30');
-    await page.locator('input[name="materialComposition.0.weightPercentage"]').blur();
+    // If we fill its NAME field, error count should drop by 1.
+    await page.locator('input[name="materialComposition.0.name"]').fill('Test Component');
+    await page.locator('input[name="materialComposition.0.name"]').blur();
     
     await expect(showErrorsBtn).toContainText(`Show Errors (${expectedErrorsAfterRemove - 1})`);
 });

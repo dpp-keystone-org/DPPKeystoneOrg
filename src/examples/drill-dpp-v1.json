@@ -86,17 +86,14 @@
   "components": [
     {
       "@type": "Component",
-      "description": "Cordless drill (base unit)",
-      "gtin": "5012345101071",
+      "name": "Cordless drill (base unit)",
       "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101071"
     },
     {
-      // Incomplete entry accepted.
-      "gtin": "5012345101095"
+      "name": "Fastening Hardware"
     },
     {
-      "description": "Battery",
-      "gtin": "5012345101088",
+      "name": "Battery",
       "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101088"
     }
   ],

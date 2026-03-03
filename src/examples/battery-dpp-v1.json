@@ -44,25 +44,25 @@
   "batteryStatus": "Original",
 
   "materialComposition": [
-    { "name": "Lithium Iron Phosphate (LFP)", "weightPercentage": 32.0 },
-    { "name": "Graphite", "weightPercentage": 22.0 },
-    { "name": "Aluminum", "weightPercentage": 18.0 },
-    { "name": "Copper", "weightPercentage": 12.0 },
-    { "name": "Electrolyte (LiPF6 in Carbonates)", "weightPercentage": 14.0 },
-    { "name": "Separator (PP/PE)", "weightPercentage": 2.0 }
+    { "name": "Lithium Iron Phosphate (LFP)", "percentage": 32.0 },
+    { "name": "Graphite", "percentage": 22.0 },
+    { "name": "Aluminum", "percentage": 18.0 },
+    { "name": "Copper", "percentage": 12.0 },
+    { "name": "Electrolyte (LiPF6 in Carbonates)", "percentage": 14.0 },
+    { "name": "Separator (PP/PE)", "percentage": 2.0 }
   ],
 
   "hazardousSubstances": [
-    { "name": "Lithium Hexafluorophosphate", "weightPercentage": 1.5, "uniqueProductIdentifier": "https://echa.europa.eu/substance-information/-/substancefact/100.040.839" }
+    { "name": "Lithium Hexafluorophosphate", "percentage": 1.5, "uniqueProductIdentifier": "https://echa.europa.eu/substance-information/-/substancefact/100.040.839" }
   ],
   "hazardousSubstancesImpact": "Toxic if swallowed; Causes severe skin burns.",
 
   "preConsumerRecycledMaterialComposition": [
-    { "name": "Copper", "weightPercentage": 5.0 }
+    { "name": "Copper", "percentage": 5.0 }
   ],
   "postConsumerRecycledMaterialComposition": [
-    { "name": "Aluminum", "weightPercentage": 10.0 },
-    { "name": "Nickel", "weightPercentage": 2.0 }
+    { "name": "Aluminum", "percentage": 10.0 },
+    { "name": "Nickel", "percentage": 2.0 }
   ],
   "renewableContent": 0.0,
 

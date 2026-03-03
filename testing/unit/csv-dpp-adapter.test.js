@@ -27,7 +27,7 @@ describe('CSV Adapter Logic', () => {
                 const mapping = {
                     "Mat 1": "materialComposition[0].name",
                     "Mat 2": "materialComposition[1].name",
-                    "Mat 3": "materialComposition[5].weightPercentage" // Sparse/Manual
+                    "Mat 3": "materialComposition[5].percentage" // Sparse/Manual
                 };
                 const indices = findUsedIndices(mapping, "materialComposition");
                 expect(indices.size).toBe(3);
@@ -76,15 +76,15 @@ describe('CSV Adapter Logic', () => {
             });
 
             it('should handle sparse existing indices correctly', () => {
-                const field = { path: 'materialComposition.weightPercentage', isArray: true };
+                const field = { path: 'materialComposition.percentage', isArray: true };
                 const usedIndices = new Set([0, 5]); // User skipped 1-4
                 
                 const suggestions = generateIndexedSuggestions(field, usedIndices);
                 
                 expect(suggestions).toHaveLength(3);
-                expect(suggestions[0].value).toBe('materialComposition[0].weightPercentage');
-                expect(suggestions[1].value).toBe('materialComposition[5].weightPercentage');
-                expect(suggestions[2].value).toBe('materialComposition[6].weightPercentage');
+                expect(suggestions[0].value).toBe('materialComposition[0].percentage');
+                expect(suggestions[1].value).toBe('materialComposition[5].percentage');
+                expect(suggestions[2].value).toBe('materialComposition[6].percentage');
                 expect(suggestions[2].type).toBe('new');
             });
             
@@ -150,19 +150,18 @@ describe('CSV Adapter Logic', () => {
         it('should verify array mapping capability with stronger matches and mixed content', () => {
              const headers = ['Material Composition 1 Name', 'Material Composition 1 %', 'Material Composition 2 Name', 'Material Composition 2 %'];
              const fields = [
-                { path: 'materialComposition.name', isArray: true },
-                { path: 'materialComposition.weightPercentage', isArray: true }
-             ];
-             
+                             { path: 'materialComposition.name', isArray: true }, 
+                             { path: 'materialComposition.percentage', isArray: true }
+                          ];             
              const mapping = generateAutoMapping(headers, fields);
              
              // Group 1
              expect(mapping['Material Composition 1 Name']).toBe('materialComposition[0].name');
-             expect(mapping['Material Composition 1 %']).toBe('materialComposition[0].weightPercentage');
+             expect(mapping['Material Composition 1 %']).toBe('materialComposition[0].percentage');
              
              // Group 2
              expect(mapping['Material Composition 2 Name']).toBe('materialComposition[1].name');
-             expect(mapping['Material Composition 2 %']).toBe('materialComposition[1].weightPercentage');
+             expect(mapping['Material Composition 2 %']).toBe('materialComposition[1].percentage');
         });
 
         it('should compact sparse arrays when indices are skipped', () => {
@@ -471,15 +470,15 @@ describe('CSV Adapter Logic', () => {
         ];
         const mapping = {
             "Mat 1 Name": "materialComposition[0].name",
-            "Mat 1 %": "materialComposition[0].weightPercentage",
+            "Mat 1 %": "materialComposition[0].percentage",
             "Mat 2 Name": "materialComposition[1].name",
-            "Mat 2 %": "materialComposition[1].weightPercentage"
+            "Mat 2 %": "materialComposition[1].percentage"
         };
 
         const result = generateDPPsFromCsv(csvData, mapping, "battery");
 
         expect(result[0].materialComposition).toHaveLength(2);
-        expect(result[0].materialComposition[0]).toEqual({ name: "Lithium", weightPercentage: 32 });
-        expect(result[0].materialComposition[1]).toEqual({ name: "Graphite", weightPercentage: 22 });
+        expect(result[0].materialComposition[0]).toEqual({ name: "Lithium", percentage: 32 });
+        expect(result[0].materialComposition[1]).toEqual({ name: "Graphite", percentage: 22 });
     });
 });

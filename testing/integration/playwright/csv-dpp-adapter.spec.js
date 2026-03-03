@@ -23,9 +23,9 @@ test.describe('CSV DPP Adapter E2E', () => {
             'Mass (kg)': 'batteryMass',
             'Manufacturer City': 'manufacturerInfo.address.addressLocality',
             'Manufacturer Zip': 'manufacturerInfo.address.postalCode',
-            'Recycled Pre 1 %': 'preConsumerRecycledMaterialComposition[0].weightPercentage',
-            'Recycled Post 1 %': 'postConsumerRecycledMaterialComposition[0].weightPercentage',
-            'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].weightPercentage'
+            'Recycled Pre 1 %': 'preConsumerRecycledMaterialComposition[0].percentage',
+            'Recycled Post 1 %': 'postConsumerRecycledMaterialComposition[0].percentage',
+            'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage'
         };
 
         for (const [csvHeader, schemaPath] of Object.entries(mappingsToFix)) {

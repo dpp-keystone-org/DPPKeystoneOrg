@@ -248,14 +248,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
          }
     }
 
-    // 4. Components -> hasPart
-    const components = rootNode['https://dpp-keystone.org/spec/v1/terms#component'];
-    if (components && Array.isArray(components)) {
-        product.hasPart = components.map(c => ({
-             "@type": "Product", 
-             "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#componentName')
-        }));
-    }
+    // 4. Components -> hasPart (handled in General Product Parity section)
 
     // --- Battery Parity Additions (v1.1) ---
     
@@ -433,23 +426,19 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         });
     }
 
-    // 5. Components (Plural) -> hasPart
-    // Merge with existing components (Singular)
-    let componentsPlural = rootNode['https://dpp-keystone.org/spec/v1/terms#components'];
+    // 5. Components -> hasPart
+    let components = rootNode['https://dpp-keystone.org/spec/v1/terms#components'];
     
     // Check for @list wrapper (Standard JSON-LD expansion for @list container)
-    if (componentsPlural && componentsPlural.length > 0 && componentsPlural[0]['@list']) {
-        componentsPlural = componentsPlural[0]['@list'];
+    if (components && components.length > 0 && components[0]['@list']) {
+        components = components[0]['@list'];
     }
 
-    if (componentsPlural && Array.isArray(componentsPlural)) {
-        const newParts = componentsPlural.map(c => {
-             // If c is just a node (from @list), getting name might be direct
-             // Context maps "components": { "@container": "@list" }
-             // List items are nodes.
+    if (components && Array.isArray(components)) {
+        const newParts = components.map(c => {
              return {
                  "@type": "Product",
-                 "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#componentName') || getValue(c, 'https://dpp-keystone.org/spec/v1/terms#name')
+                 "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#name')
              };
         });
         

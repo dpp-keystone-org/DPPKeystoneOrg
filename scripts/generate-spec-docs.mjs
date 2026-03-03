@@ -72,9 +72,23 @@ export function parseOntologyMetadata(content) {
             const label = getDisplayLabel(p['rdfs:label'], p['@id']);
 
             const annotations = {};
-                                const annotationKeys = ['dppk:governedBy', 'owl:equivalentProperty', 'rdfs:subPropertyOf'];            for (const key of annotationKeys) {
+            const annotationKeys = ['dppk:governedBy', 'owl:equivalentProperty', 'rdfs:subPropertyOf'];
+            for (const key of annotationKeys) {
                 if (p[key]) {
                     annotations[key] = p[key];
+                }
+            }
+            
+            // Collect all domains from rdfs:domain and schema:domainIncludes
+            const domains = [];
+            const domainSources = ['rdfs:domain', 'schema:domainIncludes'];
+            for (const source of domainSources) {
+                if (p[source]) {
+                    if (Array.isArray(p[source])) {
+                        domains.push(...p[source].map(d => d['@id']));
+                    } else if (p[source]['@id']) {
+                        domains.push(p[source]['@id']);
+                    }
                 }
             }
 
@@ -82,7 +96,7 @@ export function parseOntologyMetadata(content) {
                 id: p['@id'],
                 label: label,
                 comment: getDisplayLabel(p['rdfs:comment'], ''),
-                domain: p['rdfs:domain'],
+                domains: [...new Set(domains)], // Ensure uniqueness
                 range: p['rdfs:range'] ? (p['rdfs:range']['@id'] || p['rdfs:range']) : '',
                 annotations: annotations
             };
@@ -118,8 +132,8 @@ export function parseOntologyMetadata(content) {
                 comment: getDisplayLabel(node['rdfs:comment'], ''),
                 // Find properties whose domain includes this class OR properties with NO domain (assumed to belong to the module/class)
                 properties: properties.filter(p => {
-                    if (!p.domain) return true;
-                    return p.domain['@id'] === classId || (Array.isArray(p.domain) && p.domain.some(d => d['@id'] === classId));
+                    if (p.domains.length === 0) return true;
+                    return p.domains.includes(classId);
                 }),
                 attributes: classAttributes
             };
@@ -815,20 +829,19 @@ export async function generateSpecDocs({
     // Phase 2: Cross-link properties to their domain classes across modules
     for (const metadata of allMetadata) {
         for (const property of metadata.properties) {
-            // We are looking for properties that have a domain definition
-            if (property.domain && property.domain['@id']) {
-                const domainClassId = property.domain['@id'];
-                
-                // Find the class definition in our metadata (could be in any module)
-                for (const targetModule of allMetadata) {
-                    const targetClass = targetModule.classes.find(c => c.id === domainClassId);
-                    if (targetClass) {
-                        // Found the class! Check if it already lists this property
-                        const alreadyExists = targetClass.properties.some(p => p.id === property.id);
-                        if (!alreadyExists) {
-                            targetClass.properties.push(property);
+            if (property.domains.length > 0) {
+                for (const domainClassId of property.domains) {
+                    // Find the class definition in our metadata (could be in any module)
+                    for (const targetModule of allMetadata) {
+                        const targetClass = targetModule.classes.find(c => c.id === domainClassId);
+                        if (targetClass) {
+                            // Found the class! Check if it already lists this property
+                            const alreadyExists = targetClass.properties.some(p => p.id === property.id);
+                            if (!alreadyExists) {
+                                targetClass.properties.push(property);
+                            }
+                            // We don't break here because a property can belong to classes in different modules
                         }
-                        break; // Found the class, stop searching modules
                     }
                 }
             }

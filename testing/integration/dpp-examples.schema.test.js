@@ -41,6 +41,7 @@ describe('DPP JSON Schema Validation', () => {
             return JSON.parse(await fs.promises.readFile(schemaPath, 'utf-8'));
         };
 
+        const componentSchema = await loadSchema('component.schema.json');
         const epdSchema = await loadSchema('epd.schema.json');
         const relatedResourceSchema = await loadSchema('related-resource.schema.json');
         const organizationSchema = await loadSchema('organization.schema.json');
@@ -49,6 +50,7 @@ describe('DPP JSON Schema Validation', () => {
         const prodCharSchema = await loadSchema('product-characteristic.schema.json');
 
         schemaContext.commonSchemas = [
+            componentSchema,
             epdSchema,
             relatedResourceSchema,
             organizationSchema,

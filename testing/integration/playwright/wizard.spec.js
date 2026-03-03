@@ -130,11 +130,11 @@ for (const sector of sectors) {
 
         // Add the first item
         await addButton.click();
-        await expect(page.locator('input[name="materialComposition.0.weightPercentage"]')).toBeVisible();
+        await expect(page.locator('input[name="materialComposition.0.percentage"]')).toBeVisible();
 
         // Add a second item
         await addButton.click();
-        await expect(page.locator('input[name="materialComposition.1.weightPercentage"]')).toBeVisible();
+        await expect(page.locator('input[name="materialComposition.1.percentage"]')).toBeVisible();
 
         // Remove the first item
         const controlRow = page.locator('.array-item-control-row[data-array-group="materialComposition.0"]');
@@ -142,8 +142,8 @@ for (const sector of sectors) {
         await removeButton.click();
         
         // Assert the first item is gone and the second is re-indexed
-        await expect(page.locator('input[name="materialComposition.0.weightPercentage"]')).toBeVisible();
-        await expect(page.locator('input[name="materialComposition.1.weightPercentage"]')).not.toBeVisible();
+        await expect(page.locator('input[name="materialComposition.0.percentage"]')).toBeVisible();
+        await expect(page.locator('input[name="materialComposition.1.percentage"]')).not.toBeVisible();
         break;
       case 'construction':
         await expect(page.locator('input[name="harmonisedStandardReference"]')).toBeVisible();
@@ -713,8 +713,8 @@ test.describe('Conditional Validation for Optional Objects', () => {
     // 4. Add an item to the 'materialComposition' array.
     await page.locator('button[data-array-name="materialComposition"]').click();
 
-    // 5. Assert that the error count has increased by 2 (for 'materialComposition.0.name' and 'materialComposition.0.weightPercentage').
-    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd + 2})`);
+    // 5. Assert that the error count has increased by 1 (for 'materialComposition.0.name').
+    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd + 1})`);
 
     // 6. Now, remove the item and assert the count returns to the previous value.
     await page.locator('.array-item-control-row[data-array-group="materialComposition.0"] button:text-is("Remove")').click();

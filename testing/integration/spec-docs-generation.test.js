@@ -33,12 +33,12 @@ describe('generate-spec-docs.mjs', () => {
             expect(title).toBe('Mock Core Ontology');
             expect(description).toBe('A mock ontology for testing purposes.');
             expect(classes).toHaveLength(3);
-            expect(properties).toHaveLength(3);
+            expect(properties).toHaveLength(4);
 
             const mockProduct = classes.find(c => c.label === 'Mock Product');
             expect(mockProduct).toBeDefined();
-            // Mock Product has 'Mock Property' (explicit domain) AND 'Generic Indicator' (no domain)
-            expect(mockProduct.properties).toHaveLength(2);
+            // Mock Product has 'Mock Property' (explicit domain), 'Generic Indicator' (no domain), and 'Domain Includes Property'
+            expect(mockProduct.properties).toHaveLength(3);
             
             const mockProperty = mockProduct.properties.find(p => p.label === 'Mock Property');
             expect(mockProperty).toBeDefined();
@@ -49,6 +49,10 @@ describe('generate-spec-docs.mjs', () => {
             const genericIndicator = mockProduct.properties.find(p => p.label === 'Generic Indicator');
             expect(genericIndicator).toBeDefined();
             expect(genericIndicator.comment).toBe('A generic indicator for testing sub-property relationships.');
+
+            const domainIncludesProperty = mockProduct.properties.find(p => p.label === 'Domain Includes Property');
+            expect(domainIncludesProperty).toBeDefined();
+            expect(domainIncludesProperty.comment).toBe('A test property using schema:domainIncludes.');
 
             expect(mockProduct.attributes['rdfs:subClassOf']).toHaveLength(2);
             expect(mockProduct.attributes['owl:equivalentClass']).toHaveLength(2);

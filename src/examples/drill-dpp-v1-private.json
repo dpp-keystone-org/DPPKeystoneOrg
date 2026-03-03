@@ -136,17 +136,17 @@
   // --- Components (BOM) (Aligned with Core Ontology) [CBI/Supply Chain] ---
   "components": [
     {
-      "description": "Cordless drill (base unit)",
-      "gtin": "5012345101071",
-      "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101071"
+      "name": "Cordless drill (base unit)",
+      // Fake URI
+      "uniqueProductIdentifier": "https://dpp-keystone.org/01/05012345101071"
     },
     {
-      "gtin": "5012345101095"
+      "name": "Fastening Hardware"
     },
     {
-      "description": "Battery",
-      "gtin": "5012345101088",
-      "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101088"
+      "name": "Battery",
+      // Fake URI
+      "uniqueProductIdentifier": "https://dpp-keystone.org/01/05012345101088"
     }
   ],
   

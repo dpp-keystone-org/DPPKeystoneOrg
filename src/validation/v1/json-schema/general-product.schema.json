@@ -56,13 +56,7 @@
       "type": "array",
       "description": "List of components or materials.",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "uniqueProductIdentifier": { "type": "string", "format": "uri" },
-          "weightPercentage": { "type": "number" }
-        },
-        "required": ["name"]
+        "$ref": "component.schema.json"
       }
     },
     "additionalCertifications": {

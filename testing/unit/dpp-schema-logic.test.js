@@ -212,7 +212,7 @@ describe('DPP Schema Logic (Unit)', () => {
             "productCharacteristics": [
                 { "characteristicName": "Color", "characteristicValue": "Matte Black" }
             ],
-            "component": [
+            "components": [
                 { "name": "Casing", "percentage": 15.0 }
             ]
         };

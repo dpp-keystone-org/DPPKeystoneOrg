@@ -33,6 +33,18 @@
             "rdfs:comment": "A generic indicator for testing sub-property relationships."
         },
         {
+            "@id": "dppk:domainIncludesProperty",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": "Domain Includes Property",
+            "rdfs:comment": "A test property using schema:domainIncludes.",
+            "schema:domainIncludes": {
+                "@id": "dppk:MockProduct"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
             "@id": "dppk:MockProduct",
             "@type": "rdfs:Class",
             "rdfs:label": "Mock Product",
