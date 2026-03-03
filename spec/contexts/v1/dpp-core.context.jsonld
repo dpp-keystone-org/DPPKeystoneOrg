@@ -110,21 +110,14 @@
       },
       "description": "dppk:description",
       "gtin": "dppk:gtin",
-      "component": {
-        "@id": "dppk:component",
-        "@context": {
-          "name": "dppk:componentName",
-          "percentage": {
-            "@id": "dppk:percentage",
-            "@type": "xsd:double"
-          },
-          "uniqueProductIdentifier": {
-            "@id": "dppk:uniqueProductIdentifier",
-            "@type": "@id"
-          }
-        }
+      "components": {
+        "@id": "dppk:components",
+        "@container": "@set"
       },
-      "weightPercentage": "dppk:weightPercentage",
+      "percentage": {
+        "@id": "dppk:percentage",
+        "@type": "xsd:double"
+      },
       "recycledContentPercentage": {
         "@id": "dppk:recycledContentPercentage",
         "@type": "xsd:double"

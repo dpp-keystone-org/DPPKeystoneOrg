@@ -43,50 +43,50 @@
     "materialComposition": [
       {
         "name": "Lithium Iron Phosphate (LFP)",
-        "weightPercentage": 32
+        "percentage": 32
       },
       {
         "name": "Graphite",
-        "weightPercentage": 22
+        "percentage": 22
       },
       {
         "name": "Aluminum",
-        "weightPercentage": 18
+        "percentage": 18
       },
       {
         "name": "Copper",
-        "weightPercentage": 12
+        "percentage": 12
       },
       {
         "name": "Electrolyte (LiPF6 in Carbonates)",
-        "weightPercentage": 14
+        "percentage": 14
       },
       {
         "name": "Separator (PP/PE)",
-        "weightPercentage": 2
+        "percentage": 2
       }
     ],
     "hazardousSubstances": [
       {
         "name": "Lithium Hexafluorophosphate",
-        "weightPercentage": 1.5
+        "percentage": 1.5
       }
     ],
     "hazardousSubstancesImpact": "Toxic if swallowed; Causes severe skin burns.",
     "preConsumerRecycledMaterialComposition": [
       {
         "name": "Copper",
-        "weightPercentage": 5
+        "percentage": 5
       }
     ],
     "postConsumerRecycledMaterialComposition": [
       {
         "name": "Aluminum",
-        "weightPercentage": 10
+        "percentage": 10
       },
       {
         "name": "Nickel",
-        "weightPercentage": 2
+        "percentage": 2
       }
     ],
     "renewableContent": 0,

@@ -3,27 +3,6 @@
   "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/battery.schema.json",
   "title": "DPP for Batteries (Draft)",
   "description": "A conditional schema that applies if the DPP is for the battery sector, based on the draft Battery Regulation.",
-  "definitions": {
-    "component": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "weightPercentage": {
-          "type": "number"
-        },
-        "uniqueProductIdentifier": {
-          "type": "string",
-          "format": "uri"
-        }
-      },
-      "required": [
-        "name",
-        "weightPercentage"
-      ]
-    }
-  },
   "if": {
     "type": "object",
     "properties": {
@@ -115,13 +94,13 @@
       "materialComposition": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/component"
+          "$ref": "component.schema.json"
         }
       },
       "hazardousSubstances": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/component"
+          "$ref": "component.schema.json"
         }
       },
       "hazardousSubstancesImpact": {
@@ -145,13 +124,13 @@
       "preConsumerRecycledMaterialComposition": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/component"
+          "$ref": "component.schema.json"
         }
       },
       "postConsumerRecycledMaterialComposition": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/component"
+          "$ref": "component.schema.json"
         }
       },
       "renewableContent": {

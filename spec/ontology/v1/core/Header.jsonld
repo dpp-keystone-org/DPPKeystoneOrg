@@ -641,6 +641,17 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "ESPR - Article 9 (Unique product identifier)"
       },
+      "schema:domainIncludes": [
+        {
+          "@id": "dppk:Component"
+        },
+        {
+          "@id": "dppk:DigitalProductPassport"
+        },
+        {
+          "@id": "dppk:Product"
+        }
+      ],
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },

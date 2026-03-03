@@ -75,31 +75,11 @@
       "criticalRawMaterials": "dppk:criticalRawMaterials",
       "materialComposition": {
         "@id": "dppk:materialComposition",
-        "@context": {
-          "name": "dppk:componentName",
-          "weightPercentage": {
-            "@id": "dppk:percentage",
-            "@type": "xsd:double"
-          },
-          "uniqueProductIdentifier": {
-            "@id": "dppk:uniqueProductIdentifier",
-            "@type": "@id"
-          }
-        }
+        "@container": "@set"
       },
       "hazardousSubstances": {
         "@id": "dppk:hazardousSubstances",
-        "@context": {
-          "name": "dppk:componentName",
-          "weightPercentage": {
-            "@id": "dppk:percentage",
-            "@type": "xsd:double"
-          },
-          "uniqueProductIdentifier": {
-            "@id": "dppk:uniqueProductIdentifier",
-            "@type": "@id"
-          }
-        }
+        "@container": "@set"
       },
       "hazardousSubstancesImpact": "dppk:hazardousSubstancesImpact",
       "dismantlingInformation": {
@@ -124,31 +104,11 @@
       },
       "preConsumerRecycledMaterialComposition": {
         "@id": "dppk:preConsumerRecycledMaterialComposition",
-        "@context": {
-          "name": "dppk:componentName",
-          "weightPercentage": {
-            "@id": "dppk:percentage",
-            "@type": "xsd:double"
-          },
-          "uniqueProductIdentifier": {
-            "@id": "dppk:uniqueProductIdentifier",
-            "@type": "@id"
-          }
-        }
+        "@container": "@set"
       },
       "postConsumerRecycledMaterialComposition": {
         "@id": "dppk:postConsumerRecycledMaterialComposition",
-        "@context": {
-          "name": "dppk:componentName",
-          "weightPercentage": {
-            "@id": "dppk:percentage",
-            "@type": "xsd:double"
-          },
-          "uniqueProductIdentifier": {
-            "@id": "dppk:uniqueProductIdentifier",
-            "@type": "@id"
-          }
-        }
+        "@container": "@set"
       },
       "renewableContent": "dppk:renewableContent",
       "performance": {

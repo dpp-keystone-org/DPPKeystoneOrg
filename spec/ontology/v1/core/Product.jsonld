@@ -102,20 +102,8 @@
     {
       "@id": "dppk:Component",
       "@type": "rdfs:Class",
-      "rdfs:label": "A part or material that is included in the main product.",
-      "rdfs:comment": "A part or material that is included in the main product."
-    },
-    {
-      "@id": "dppk:componentName",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Component Name",
-      "rdfs:comment": "The name of the component or material.",
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "rdfs:subPropertyOf": {
-        "@id": "dppk:name"
-      }
+      "rdfs:label": "Component",
+      "rdfs:comment": "A constituent part, material, or substance that is included in the main product."
     },
     {
       "@id": "dppk:percentage",
@@ -123,7 +111,7 @@
       "rdfs:label": "Percentage",
       "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
       "dppk:unit": "%",
-      "rdfs:domain": {
+      "schema:domainIncludes": {
         "@id": "dppk:Component"
       },
       "rdfs:range": {
@@ -336,16 +324,6 @@
           "@id": "unece:originCountry"
         }
       ]
-    },
-    {
-      "@id": "dppk:weightPercentage",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Weight Percentage",
-      "dppk:unit": "%",
-      "rdfs:comment": "The percentage of the total weight of the main product that this component or material constitutes.",
-      "rdfs:range": {
-        "@id": "xsd:double"
-      }
     },
     {
       "@id": "dppk:recycledContentPercentage",

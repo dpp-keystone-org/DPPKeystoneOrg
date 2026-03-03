@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class: A part or material that is included in the main product.</title>
+    <title>Class: Component</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
@@ -18,7 +18,7 @@
             <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
                 <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Product and Material Definitions (v1)</a></h1>
-                <h2 style="margin: 0; color: var(--text-light);">Class: A part or material that is included in the main product. (dppk:Component)</h2>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Component (dppk:Component)</h2>
             </div>
         </header>
         <main>
@@ -27,15 +27,14 @@
                 <pre class="mermaid">
                     classDiagram
   class Component
-  Component : +componentName
   Component : +percentage
   Component : +name
-  Component : +weightPercentage
+  Component : +uniqueProductIdentifier
 
                 </pre>
 
                 <h4>Attributes</h4>
-                <p>A part or material that is included in the main product.</p>
+                <p>A constituent part, material, or substance that is included in the main product.</p>
                 
 
                 
@@ -46,37 +45,30 @@
                                 <th>Property</th>
                                 <th>Description</th>
                                 <th>Type</th>
-                                <th>subPropertyOf</th><th>equivalentProperty</th>
+                                <th>equivalentProperty</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                                 <tr>
-                                    <td>Component Name (dppk:componentName)</td>
-                                    <td>The name of the component or material.</td>
-                                    <td>xsd:string</td>
-                                    <td><a href="https://dpp-keystone.org/spec/v1/terms#name">dppk:name</a></td><td></td>
-                                </tr>
-                            
-                                <tr>
                                     <td>Percentage (dppk:percentage)</td>
                                     <td>The percentage contribution of this component to the parent assembly (e.g., by weight).</td>
                                     <td>xsd:double</td>
-                                    <td></td><td></td>
+                                    <td></td>
                                 </tr>
                             
                                 <tr>
                                     <td>Name (dppk:name)</td>
                                     <td>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</td>
                                     <td>rdf:langString</td>
-                                    <td></td><td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                                    <td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Weight Percentage (dppk:weightPercentage)</td>
-                                    <td>The percentage of the total weight of the main product that this component or material constitutes.</td>
-                                    <td>xsd:double</td>
-                                    <td></td><td></td>
+                                    <td><a href="../Header/index.html#uniqueProductIdentifier">Unique Product Identifier (UPI)</a> (dppk:uniqueProductIdentifier)</td>
+                                    <td>The globally resolvable URI for the product/DPP.</td>
+                                    <td>xsd:anyURI</td>
+                                    <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td>
                                 </tr>
                             
                         </tbody>
