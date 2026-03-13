@@ -8,7 +8,7 @@ import { jest } from '@jest/globals';
 const mockLoadOntology = jest.fn();
 
 // Mock the dependency using unstable_mockModule for ESM support
-jest.unstable_mockModule('../../../src/lib/ontology-loader.js', () => ({
+jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
     loadOntology: mockLoadOntology
 }));
 

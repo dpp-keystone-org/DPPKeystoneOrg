@@ -21,10 +21,11 @@ const config = {
         '/node_modules/(?!(@rdfjs|rdf-validate-shacl|clownface|jsonc-parser)/)',
     ],
     // Add this to handle module name mapping, if you have aliases
-    // moduleNameMapper: {
-    //     '^@/(.*)$': '<rootDir>/$1',
-    // },
+    moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/$1',
+    },
     testTimeout: 10000,
+    setupFilesAfterEnv: ['<rootDir>/testing/setupTests.js'],
 };
 
 export default config;

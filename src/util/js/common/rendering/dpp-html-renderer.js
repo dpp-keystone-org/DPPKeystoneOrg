@@ -4,6 +4,23 @@
  */
 
 /**
+ * Helper to safely format values for table cells
+ */
+function formatCellValue(val) {
+    if (val === undefined || val === null || val === '') return '-';
+    if (typeof val === 'object') {
+        if (Array.isArray(val)) return val.map(formatCellValue).join(', ');
+        // For objects like translated strings {"en": "Value"} or simple key-value pairs
+        const vals = Object.values(val);
+        if (vals.length > 0 && vals.every(v => typeof v === 'string' || typeof v === 'number')) {
+            return vals.join(', ');
+        }
+        return JSON.stringify(val);
+    }
+    return String(val);
+}
+
+/**
  * Heuristic to detect if an object should be rendered as a matrix table.
  * Returns true if children are objects sharing significant keys.
  * @param {Object} obj 
@@ -11,13 +28,13 @@
  */
 export function detectTableStructure(obj) {
     if (typeof obj !== 'object' || obj === null) return false;
-    
+
     const rowKeys = Object.keys(obj);
     if (rowKeys.length === 0) return false;
 
     let objectChildCount = 0;
     const allUniqueSubKeys = new Set();
-    
+
     // Pass 1: Check children type and collect all unique column keys
     for (const key of rowKeys) {
         const val = obj[key];
@@ -27,7 +44,7 @@ export function detectTableStructure(obj) {
             Object.keys(val).forEach(k => allUniqueSubKeys.add(k));
         } else {
             // If any child is not a suitable object, it's likely not a matrix
-            return false; 
+            return false;
         }
     }
 
@@ -59,31 +76,47 @@ export function detectTableStructure(obj) {
  * @param {any} value 
  * @returns {string} HTML string
  */
-function renderValue(key, value) {
+function renderValue(key, value, ontologyMap = null) {
     if (value === null || value === undefined) return '';
-    
+
     const label = key.replace(/([A-Z])/g, ' $1') // CamelCase to Title Case (rough)
-                     .replace(/([a-zA-Z])(\d)/g, '$1 $2') // Space before numbers
-                     .trim(); 
+        .replace(/([a-zA-Z])(\d)/g, '$1 $2') // Space before numbers
+        .trim();
     const displayLabel = label.charAt(0).toUpperCase() + label.slice(1);
 
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-        return `<div class="dpp-field"><span class="dpp-label">${displayLabel}:</span> <span class="dpp-value">${value}</span></div>`;
+        let displayValue = value;
+        if (ontologyMap && ontologyMap.has(key)) {
+            const info = ontologyMap.get(key);
+            if (info && info.unit) {
+                displayValue = `${value} ${info.unit}`;
+            }
+        }
+        return `<div class="dpp-field"><span class="dpp-label">${displayLabel}:</span> <span class="dpp-value">${displayValue}</span></div>`;
     }
 
     if (typeof value === 'object' && !Array.isArray(value)) {
         // Check for Table Structure
         if (detectTableStructure(value)) {
-            // Collect all unique columns
+            // Collect all unique columns, ignoring JSON-LD @ keys
             const allColumns = new Set();
-            Object.values(value).forEach(row => Object.keys(row).forEach(k => allColumns.add(k)));
+            Object.values(value).forEach(row => {
+                Object.keys(row).forEach(k => {
+                    if (!k.startsWith('@')) allColumns.add(k);
+                });
+            });
             const sortedCols = Array.from(allColumns).sort();
 
             const headers = ['Metric', ...sortedCols].map(h => `<th>${h}</th>`).join('');
-            
+
             const rows = Object.entries(value).map(([rowKey, rowData]) => {
-                const cells = sortedCols.map(col => `<td>${rowData[col] !== undefined ? rowData[col] : '-'}</td>`).join('');
-                return `<tr><td><strong>${rowKey}</strong></td>${cells}</tr>`;
+                let rowUnit = '';
+                if (ontologyMap && ontologyMap.has(rowKey)) {
+                    const info = ontologyMap.get(rowKey);
+                    if (info && info.unit) rowUnit = ` (${info.unit})`;
+                }
+                const cells = sortedCols.map(col => `<td>${formatCellValue(rowData[col])}</td>`).join('');
+                return `<tr><td><strong>${rowKey}${rowUnit}</strong></td>${cells}</tr>`;
             }).join('');
 
             return `
@@ -100,37 +133,56 @@ function renderValue(key, value) {
         // Recursive Standard Object Rendering
         let childContent = '';
         Object.keys(value).forEach(k => {
-            childContent += renderValue(k, value[k]);
+            if (!k.startsWith('@')) {
+                childContent += renderValue(k, value[k], ontologyMap);
+            }
         });
-        
+
+        let cardUnit = '';
+        if (ontologyMap && ontologyMap.has(key)) {
+            const info = ontologyMap.get(key);
+            if (info && info.unit) cardUnit = ` <span class="dpp-unit">(${info.unit})</span>`;
+        }
+
         return `
             <div class="dpp-card">
-                <h4>${displayLabel}</h4>
+                <h4>${displayLabel}${cardUnit}</h4>
                 <div class="dpp-card-content">
                     ${childContent}
                 </div>
             </div>
         `;
     }
-    
+
     if (Array.isArray(value)) {
         if (value.length === 0) return '';
-        
+
         // Check for Array of Objects (Potential Table)
         const isArrayOfObjects = value.every(item => typeof item === 'object' && item !== null && !Array.isArray(item));
-        
+
         if (isArrayOfObjects) {
-            // Collect all keys
+            // Collect all keys, ignoring JSON-LD @ keys
             const allKeys = new Set();
-            value.forEach(item => Object.keys(item).forEach(k => allKeys.add(k)));
+            value.forEach(item => {
+                Object.keys(item).forEach(k => {
+                    if (!k.startsWith('@')) allKeys.add(k);
+                });
+            });
             const sortedKeys = Array.from(allKeys).sort();
 
             // Simple Heuristic: If we have keys, render as table. 
             // (Could check for schema overlap, but for MVP assuming uniform array if they are objects)
-            const headers = sortedKeys.map(h => `<th>${h}</th>`).join('');
-            
+            const headers = sortedKeys.map(h => {
+                let cellUnit = '';
+                if (ontologyMap && ontologyMap.has(h)) {
+                    const info = ontologyMap.get(h);
+                    if (info && info.unit) cellUnit = ` (${info.unit})`;
+                }
+                return `<th>${h}${cellUnit}</th>`;
+            }).join('');
+
             const rows = value.map(item => {
-                const cells = sortedKeys.map(key => `<td>${item[key] !== undefined ? item[key] : '-'}</td>`).join('');
+                const cells = sortedKeys.map(key => `<td>${formatCellValue(item[key])}</td>`).join('');
                 return `<tr>${cells}</tr>`;
             }).join('');
 
@@ -167,15 +219,15 @@ function renderValue(key, value) {
  * @param {string} [options.customCssUrl] - Optional external CSS URL.
  * @returns {string} The full HTML document.
  */
-export function renderProductPage({ dppData, css, jsonLd, customCssUrl }) {
+export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap }) {
     if (!dppData) throw new Error("DPP JSON is required");
 
-    const jsonLdScript = jsonLd 
+    const jsonLdScript = jsonLd
         ? `<script type="application/ld+json">
 ${jsonLd}
-</script>` 
+</script>`
         : '';
-    
+
     const cssContent = css || `
         body { font-family: sans-serif; padding: 20px; }
         pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
@@ -183,7 +235,7 @@ ${jsonLd}
 
     const productName = dppData.productName || "Untitled Product";
     const uniqueId = dppData.uniqueProductIdentifier || dppData.id || "N/A";
-  
+
     // Extract Images
     let images = [];
     if (dppData.image && Array.isArray(dppData.image)) {
@@ -280,7 +332,7 @@ ${jsonLd}
     // --- Metadata Section ---
     const dppStatus = dppData.dppStatus || "Unknown";
     let lastUpdate = dppData.lastUpdate || "N/A";
-    
+
     const metadataHtml = `
       <section class="dpp-metadata">
           <div class="dpp-field"><span class="dpp-label">Passport Status:</span> <span class="dpp-value">${dppStatus}</span></div>
@@ -289,6 +341,7 @@ ${jsonLd}
           <div class="dpp-field"><span class="dpp-label">Schema Version:</span> <span class="dpp-value">${dppData.dppSchemaVersion || "N/A"}</span></div>
           <div class="dpp-field"><span class="dpp-label">Economic Operator ID:</span> <span class="dpp-value">${dppData.economicOperatorId || "N/A"}</span></div>
           <div class="dpp-field"><span class="dpp-label">Granularity:</span> <span class="dpp-value">${dppData.granularity || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">Content Specification IDs:</span> <span class="dpp-value">${(dppData.contentSpecificationIds || []).join(', ') || "N/A"}</span></div>
       </section>
     `;
 
@@ -296,13 +349,13 @@ ${jsonLd}
     const EXCLUDED_KEYS = new Set([
         'productName', 'manufacturer', 'uniqueProductIdentifier', 'id', 'images', 'productImage', 'image',
         'dppStatus', 'lastUpdate', 'digitalProductPassportId', 'dppSchemaVersion', 'economicOperatorId', 'granularity',
-        '@context', '@type'
+        '@context', '@type', 'contentSpecificationIds'
     ]);
 
     let contentHtml = '';
     Object.keys(dppData).forEach(key => {
         if (!EXCLUDED_KEYS.has(key)) {
-            contentHtml += renderValue(key, dppData[key]);
+            contentHtml += renderValue(key, dppData[key], ontologyMap);
         }
     });
 

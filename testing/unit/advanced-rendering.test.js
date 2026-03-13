@@ -12,7 +12,7 @@ describe('Advanced Rendering Logic', () => {
 
     beforeAll(async () => {
         // Mock dependencies
-        jest.unstable_mockModule('../../src/util/js/client/dpp-schema-adapter.js', () => ({
+        jest.unstable_mockModule('@/src/util/js/client/dpp-schema-adapter.js', () => ({
             transformDpp: jest.fn().mockResolvedValue(null)
         }));
 
@@ -24,8 +24,17 @@ describe('Advanced Rendering Logic', () => {
 
     beforeEach(() => {
         fetch.mockClear();
-        // Default mock for CSS fetch
-        fetch.mockResolvedValue({ ok: true, text: async () => "" });
+        // Default mock for CSS and Ontology fetches
+        fetch.mockResolvedValue({
+            ok: true,
+            text: async () => "",
+            json: async () => ({
+                "@graph": [
+                    { "@id": "dppk:gwp", "dppk:unit": "kg CO2 eq" },
+                    { "@id": "dppk:weight", "dppk:unit": "kg" }
+                ]
+            })
+        });
     });
 
     describe('Matrix Detection (EPD Style)', () => {
@@ -102,7 +111,7 @@ describe('Advanced Rendering Logic', () => {
             expect(html).toContain('<div class="dpp-card">');
             expect(html).toContain('<h4>Environmental Profile</h4>');
             expect(html).toContain('<table>');
-            
+
             // Check Headers (Union of keys: a1, a2, c1 -> Sorted: a1, a2, c1)
             expect(html).toContain('<th>a1</th>');
             expect(html).toContain('<th>a2</th>');
@@ -110,7 +119,7 @@ describe('Advanced Rendering Logic', () => {
 
             // Check Rows
             // gwp row
-            expect(html).toContain('<strong>gwp</strong>');
+            expect(html).toContain('<strong>gwp (kg CO2 eq)</strong>');
             expect(html).toContain('<td>10</td>'); // a1
             expect(html).toContain('<td>-</td>');  // a2 (missing in gwp)
             expect(html).toContain('<td>5</td>');  // c1
@@ -132,12 +141,12 @@ describe('Advanced Rendering Logic', () => {
             };
 
             const html = await generateHTML(dpp);
-            
+
             expect(html).toContain('<table>');
             // Headers: material, name, weight (sorted)
             expect(html).toContain('<th>material</th>');
             expect(html).toContain('<th>name</th>');
-            expect(html).toContain('<th>weight</th>');
+            expect(html).toContain('<th>weight (kg)</th>');
 
             // Row 1
             expect(html).toContain('<td>Part A</td>');
@@ -170,7 +179,7 @@ describe('Advanced Rendering Logic', () => {
             expect(html).toContain('<h4>Level 2</h4>');
             expect(html).toContain('<h4>Level 3</h4>');
             expect(html).toContain('Value:</span> <span class="dpp-value">Deep Value</span>');
-            
+
             // Ensure we have multiple dpp-card divs (at least 3 levels)
             // Use regex to count occurrences or checking structure logic is hard via string match.
             // We can just check that it's present multiple times.

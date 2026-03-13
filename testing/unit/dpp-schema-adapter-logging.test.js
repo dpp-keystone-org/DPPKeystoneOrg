@@ -9,49 +9,58 @@ global.fetch = jest.fn();
 global.console.log = jest.fn();
 
 describe('DPP Adapter Logging', () => {
-  let generateHTML;
-  let transformDppMock;
+    let generateHTML;
+    let transformDppMock;
 
-  beforeAll(async () => {
-      transformDppMock = jest.fn();
-      
-      // Mock the dpp-adapter dependency
-      jest.unstable_mockModule('../../src/util/js/client/dpp-schema-adapter.js', () => ({
-          transformDpp: transformDppMock
-      }));
+    beforeAll(async () => {
+        transformDppMock = jest.fn();
 
-      // Dynamically import the module under test
-      const module = await import('../../src/lib/html-generator.js');
-      generateHTML = module.generateHTML;
-  });
+        // Mock the dpp-adapter dependency
+        jest.unstable_mockModule('@/src/util/js/client/dpp-schema-adapter.js', () => ({
+            transformDpp: transformDppMock
+        }));
 
-  beforeEach(() => {
-      fetch.mockClear();
-      transformDppMock.mockClear();
-      console.log.mockClear();
-      
-      // Default mock implementation
-      transformDppMock.mockResolvedValue({ "@context": "test", "name": "Test" });
-      fetch.mockResolvedValue({ ok: true, text: async () => "" });
-  });
+        // Dynamically import the module under test
+        const module = await import('../../src/lib/html-generator.js');
+        generateHTML = module.generateHTML;
+    });
 
-  test('should log debug messages during JSON-LD generation', async () => {
-      const mockDpp = { productName: "Debug Product" };
-      
-      await generateHTML(mockDpp);
-      
-      // Verify calls to console.log
-      expect(console.log).toHaveBeenCalledWith("DPP HTML Generator Debug: Calling transformDpp with:", mockDpp);
-      expect(console.log).toHaveBeenCalledWith("DPP HTML Generator Debug: Result from transformDpp:", expect.anything());
-  });
+    beforeEach(() => {
+        fetch.mockClear();
+        transformDppMock.mockClear();
+        console.log.mockClear();
 
-  test('should log error if transformation fails', async () => {
-      const mockDpp = { productName: "Error Product" };
-      const error = new Error("Transform Failed");
-      transformDppMock.mockRejectedValueOnce(error);
-      
-      await generateHTML(mockDpp);
-      
-      expect(console.log).toHaveBeenCalledWith("DPP HTML Generator Debug: JSON-LD generation error:", error);
-  });
+        // Default mock implementation
+        transformDppMock.mockResolvedValue({ "@context": "test", "name": "Test" });
+        fetch.mockResolvedValue({
+            ok: true,
+            text: async () => "",
+            json: async () => ({
+                "@graph": [
+                    { "@id": "dppk:gwp", "dppk:unit": "kg CO2 eq" },
+                    { "@id": "dppk:weight", "dppk:unit": "kg" }
+                ]
+            })
+        });
+    });
+
+    test('should log debug messages during JSON-LD generation', async () => {
+        const mockDpp = { productName: "Debug Product" };
+
+        await generateHTML(mockDpp);
+
+        // Verify calls to console.log
+        expect(console.log).toHaveBeenCalledWith("DPP HTML Generator Debug: Calling transformDpp with:", mockDpp);
+        expect(console.log).toHaveBeenCalledWith("DPP HTML Generator Debug: Result from transformDpp:", expect.anything());
+    });
+
+    test('should log error if transformation fails', async () => {
+        const mockDpp = { productName: "Error Product" };
+        const error = new Error("Transform Failed");
+        transformDppMock.mockRejectedValueOnce(error);
+
+        await generateHTML(mockDpp);
+
+        expect(console.log).toHaveBeenCalledWith("DPP HTML Generator Debug: JSON-LD generation error:", error);
+    });
 });

@@ -1,7 +1,11 @@
 {
     "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
     "digitalProductPassportId": "https://www.example.org/dpp/1234545",
-    "uniqueProductIdentifier": "https://www.example.org/1234545",
+    // Note: This example uses a direct HTML link for demonstrative purposes. 
+    // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
+    // content negotiation to return either this JSON payload or an HTML page 
+    // depending on the client's Accept headers.
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/construction-product-dpp-v1.html",
     "granularity": "Model",
     "dppSchemaVersion": "ENXXX:v1.0",
     "dppStatus": "Active",
@@ -18,18 +22,16 @@
     },
     "image": [
         {
-          "resourceTitle": "Product Image",
-          "url": "/spec/examples/images/beam.svg",
-          "contentType": "image/svg+xml"
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/construction.png",
+            "contentType": "image/png"
         }
     ],
     "model": "70210534",
     "manufacturer": {
-        "type": "Organization",
         "organizationName": "ExampleCorp",
         "tradingName": "ExampleCorp Services AG",
         "address": {
-            "type": "PostalAddress",
             "streetAddress": "123 Example Street",
             "postalCode": "12345",
             "addressLocality": "Anytown",
@@ -54,16 +56,11 @@
         "language": "en-GB"
     },
     "notifiedBody": {
-        "type": [
-            "Organization",
-            "ConformityAssessmentBodyRole"
-        ],
         "organizationName": "Example Inspection Body",
         "additionalOrganizationId": "1234",
         "additionalOrganizationIdType": "NotifiedBodyNumber",
         "tradingName": "EIB",
         "address": {
-            "type": "PostalAddress",
             "streetAddress": "456 Inspection Avenue",
             "postalCode": "54321",
             "addressLocality": "Testville",

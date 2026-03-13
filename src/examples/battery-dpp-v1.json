@@ -1,71 +1,104 @@
 {
   "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld",
-  "@type": ["dppk:DigitalProductPassport", "dppk:BatteryProduct"],
-
+  "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
-  "uniqueProductIdentifier": "urn:gtin:01234567890123",
+  // Note: This example uses a direct HTML link for demonstrative purposes. 
+  // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
+  // content negotiation to return either this JSON payload or an HTML page 
+  // depending on the client's Accept headers.
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/battery-dpp-v1.html",
   "granularity": "Item",
   "dppSchemaVersion": "v2.0",
   "dppStatus": "Active",
   "lastUpdate": "2024-05-21T10:00:00Z",
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
-  "contentSpecificationIds": ["draft_battery_specification_id"],
-
+  "contentSpecificationIds": [
+    "draft_battery_specification_id",
+    "draft_construction_specification_id"
+  ],
   "productName": "Keystone Industrial LFP Module Gen2",
   "image": [
     {
       "resourceTitle": "Front View",
-      "url": "/spec/examples/images/battery.svg",
-      "contentType": "image/svg+xml"
+      "url": "/spec/examples/images/battery.png",
+      "contentType": "image/png"
     }
   ],
-
   "manufacturerInfo": {
-    "@type": "Organization",
     "organizationName": "Keystone Battery Systems",
     "address": {
-      "@type": "PostalAddress",
       "streetAddress": "Voltastrasse 10",
       "postalCode": "12345",
       "addressLocality": "Berlin",
       "addressCountry": "Germany"
     },
-    "identifier": "urn:gln:9876543210987"
+    "additionalOrganizationId": "urn:gln:9876543210987",
+    "additionalOrganizationIdType": "GLN"
   },
   "manufacturingPlace": "Berlin, Germany",
   "manufacturingDate": "2024-01-15",
   "serviceDate": "2024-02-01",
   "warrantyPeriod": "5 Years",
-  
   "batteryCategory": "IndustrialBattery",
   "batteryChemistry": "LFP",
   "batteryMass": 45.5,
   "batteryStatus": "Original",
-
   "materialComposition": [
-    { "name": "Lithium Iron Phosphate (LFP)", "percentage": 32.0 },
-    { "name": "Graphite", "percentage": 22.0 },
-    { "name": "Aluminum", "percentage": 18.0 },
-    { "name": "Copper", "percentage": 12.0 },
-    { "name": "Electrolyte (LiPF6 in Carbonates)", "percentage": 14.0 },
-    { "name": "Separator (PP/PE)", "percentage": 2.0 }
+    {
+      "name": "Lithium Iron Phosphate (LFP)",
+      "percentage": 32.0
+    },
+    {
+      "name": "Graphite",
+      "percentage": 22.0
+    },
+    {
+      "name": "Aluminum",
+      "percentage": 18.0
+    },
+    {
+      "name": "Copper",
+      "percentage": 12.0
+    },
+    {
+      "name": "Electrolyte (LiPF6 in Carbonates)",
+      "percentage": 14.0
+    },
+    {
+      "name": "Separator (PP/PE)",
+      "percentage": 2.0
+    }
   ],
-
   "hazardousSubstances": [
-    { "name": "Lithium Hexafluorophosphate", "percentage": 1.5, "uniqueProductIdentifier": "https://echa.europa.eu/substance-information/-/substancefact/100.040.839" }
+    {
+      "name": "Lithium Hexafluorophosphate",
+      "percentage": 1.5,
+      // Note: This example uses a direct HTML link for demonstrative purposes. 
+      // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
+      // content negotiation to return either this JSON payload or an HTML page 
+      // depending on the client's Accept headers.
+      "uniqueProductIdentifier": "https://echa.europa.eu/substance-information/-/substancefact/100.040.839"
+    }
   ],
   "hazardousSubstancesImpact": "Toxic if swallowed; Causes severe skin burns.",
-
   "preConsumerRecycledMaterialComposition": [
-    { "name": "Copper", "percentage": 5.0 }
+    {
+      "name": "Copper",
+      "percentage": 5.0
+    }
   ],
   "postConsumerRecycledMaterialComposition": [
-    { "name": "Aluminum", "percentage": 10.0 },
-    { "name": "Nickel", "percentage": 2.0 }
+    {
+      "name": "Aluminum",
+      "percentage": 10.0
+    },
+    {
+      "name": "Nickel",
+      "percentage": 2.0
+    }
   ],
   "renewableContent": 0.0,
-
   "performance": {
     "capacity": {
       "rated": 100,
@@ -94,12 +127,10 @@
       "idleUpper": 60
     }
   },
-
   "carbonFootprintAbsolute": 120,
   "carbonFootprintClass": "A",
-
   "dopc": {
-    "@type": "RelatedResource",
+    "contentType": "RelatedResource",
     "resourceTitle": "EU Declaration of Conformity",
     "url": "https://keystone-batteries.com/docs/doc-lfp-gen2.pdf"
   }

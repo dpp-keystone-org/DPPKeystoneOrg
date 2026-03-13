@@ -80,15 +80,15 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock the modules before importing them
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        
+
         const loadOntologyMock = jest.fn();
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: loadOntologyMock,
         }));
-        
+
         // Setup the mock implementations
         loadSchemaMock
             .mockResolvedValueOnce(mockDppSchema) // First call for 'dpp'
@@ -117,16 +117,16 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(coreGrid).not.toBeNull();
         const firstCoreCell = coreGrid.querySelector('.grid-cell');
         expect(firstCoreCell.textContent).toBe('digitalProductPassportId');
-        
+
         // 6. Programmatically fill out the forms
         coreInput.value = 'urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4';
         document.querySelector('[name="uniqueProductIdentifier"]').value = 'urn:uuid:a38f6c90-2b9a-4e6f-8524-7a42f6f3e3f4';
         document.querySelector('[name="granularity"]').value = 'Batch'; // Select from the enum dropdown
-        
+
         // 7. Simulate user adding a sector
         const addConstructionBtn = document.querySelector('button[data-sector="construction"]');
         addConstructionBtn.click();
-        
+
         // Wait for the sector-specific grid to render and validate it
         const sectorGrid = await waitFor(() => document.querySelector('#sector-form-construction .sector-form-grid'));
         expect(sectorGrid).not.toBeNull();
@@ -166,13 +166,13 @@ describe('DPP Wizard - Full Integration Flow', () => {
             lastUpdate: "2025-12-10T12:00:00Z",
             economicOperatorId: "urn:uuid:c4b4e72a-0b29-4877-9883-384a5a5b7b5b"
         };
-        
+
         const validate = ajv.compile(dppSchema);
         const valid = validate(finalDpp);
 
         expect(validate.errors).toBeNull();
         expect(valid).toBe(true);
-        
+
         // Also check that the core and sector data is present
         expect(finalDpp.digitalProductPassportId).toBe('urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4');
         expect(finalDpp.productName).toBe('Test Construction Product');
@@ -194,10 +194,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
         ]);
 
         // 2. Mock the modules
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
         }));
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
         }));
 
@@ -230,7 +230,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // --- Assert updated German state ---
         // The form re-renders, so we must wait for the new content and re-query elements.
         await waitFor(() => coreContainer.querySelector('.grid-cell:nth-child(4)')?.textContent === 'Deutscher Label');
-        
+
         const updatedRow = coreContainer.querySelector('.grid-row');
         const updatedLabelCell = updatedRow.querySelector('.grid-cell:nth-child(4)');
         expect(updatedLabelCell.textContent).toBe('Deutscher Label');
@@ -257,10 +257,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -303,14 +303,14 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 1. Define mock schemas with a shared field 'manufacturer' and unique fields
         const mockSectorASchema = {
             "type": "object",
-            "properties": { 
+            "properties": {
                 "manufacturer": { "type": "string" },
                 "sectorAProp": { "type": "string" }
             }
         };
         const mockSectorBSchema = {
             "type": "object",
-            "properties": { 
+            "properties": {
                 "manufacturer": { "type": "string" },
                 "sectorBProp": { "type": "string" }
             }
@@ -318,10 +318,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -350,7 +350,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 5. Fill inputs
         const formA = await waitFor(() => document.querySelector('#sector-form-sector-a'));
         const formB = await waitFor(() => document.querySelector('#sector-form-sector-b'));
-        
+
         // Unique fields
         formA.querySelector('input[name="sectorAProp"]').value = 'ValueA';
         formB.querySelector('input[name="sectorBProp"]').value = 'ValueB';
@@ -371,7 +371,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(generatedDpp.sectorAProp).toBe('ValueA');
         expect(generatedDpp.sectorBProp).toBe('ValueB');
         expect(generatedDpp.manufacturer).toBe('SharedManufacturer');
-        
+
         // Ensure no duplication in keys (JSON.parse handles this, but we can check if it's an array or something weird)
         expect(Array.isArray(generatedDpp.manufacturer)).toBe(false);
 
@@ -394,10 +394,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -417,7 +417,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 5. Find the row and configure it
         const voluntaryWrapper = document.getElementById('voluntary-fields-wrapper');
         const row = await waitFor(() => voluntaryWrapper.lastElementChild);
-        
+
         const keyInput = row.querySelector('input[type="text"]');
         keyInput.value = 'myOrg';
         keyInput.dispatchEvent(new Event('input'));
@@ -454,10 +454,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -480,7 +480,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 5. Fill fields
         const form = await waitFor(() => document.querySelector('#sector-form-general-product'));
         expect(form).not.toBeNull();
-        
+
         // Check if fields exist
         const brandInput = form.querySelector('input[name="brand"]');
         expect(brandInput).not.toBeNull();
@@ -517,10 +517,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -543,7 +543,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 5. Fill fields
         const form = await waitFor(() => document.querySelector('#sector-form-packaging'));
         expect(form).not.toBeNull();
-        
+
         // This is a nested array "packagingMaterials" -> [ { ... } ]
         // The wizard should render an "Add" button for the array.
         const addPkgBtn = await waitFor(() => form.querySelector('button[data-array-name="packagingMaterials"]'));
@@ -553,7 +553,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // Wait for the array items to appear
         const materialInput = await waitFor(() => form.querySelector('input[name="packagingMaterials.0.packagingMaterialType"]'));
         expect(materialInput).not.toBeNull();
-        
+
         materialInput.value = 'Cardboard';
 
         // 6. Generate
@@ -568,10 +568,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
     it('should display user-friendly labels in the error summary for custom fields', async () => {
         // 1. Mock minimal modules
-        jest.unstable_mockModule('../../src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
             loadSchema: jest.fn().mockResolvedValue({ type: 'object', properties: {} }),
         }));
-        jest.unstable_mockModule('../../src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -586,7 +586,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 4. Find the row and enter an invalid prefixed key
         const voluntaryWrapper = document.getElementById('voluntary-fields-wrapper');
         const row = await waitFor(() => voluntaryWrapper.lastElementChild);
-        
+
         const keyInput = row.querySelector('.voluntary-name');
         keyInput.value = 'undefinedPrefix:test';
         keyInput.dispatchEvent(new Event('blur')); // Trigger validation
@@ -598,7 +598,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 6. Open "Show Errors" modal
         const showErrorsBtn = document.getElementById('show-errors-btn');
         showErrorsBtn.click();
-        
+
         const modal = await waitFor(() => document.querySelector('.error-summary-modal'));
         expect(modal).not.toBeNull();
 

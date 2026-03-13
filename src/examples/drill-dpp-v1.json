@@ -1,12 +1,14 @@
 {
   // The context points to the external sector-specific definition, which imports the core.
   "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld",
-
-  "@type": ["dppk:DigitalProductPassport", "dppk:PowerTool"],
-
+  "@type": "dppk:DigitalProductPassport",
   // --- DPP Headers (Aligned with Core Ontology) ---
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
-  "uniqueProductIdentifier": "https://id.gs1.org/01/05012345101095/21/22334455",
+  // Note: This example uses a direct HTML link for demonstrative purposes. 
+  // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
+  // content negotiation to return either this JSON payload or an HTML page 
+  // depending on the client's Accept headers.
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/drill-dpp-v1.html",
   "granularity": "Item",
   "facilityId": "urn:lei:ABCDE123456789012345",
   "dppSchemaVersion": "ENXXX:v1.0",
@@ -17,7 +19,6 @@
     "draft_electronics_specification_id"
   ],
   "hsCode": "84672100",
-
   // --- Core Product Information (Aligned with Core Ontology) ---
   // Using 'productName' as defined in the core context.
   "productName": {
@@ -26,8 +27,8 @@
   "image": [
     {
       "resourceTitle": "Product Image",
-      "url": "https://dpp.eecc.de/api/management/files/05410000111128_cordless_drill_be1",
-      "contentType": "image/jpeg"
+      "url": "/spec/examples/images/drill.png",
+      "contentType": "image/png"
     }
   ],
   "description": {
@@ -37,56 +38,50 @@
   "model": "GSB 451",
   "gtin": "5012345101064",
   "color": "blue",
-  "countryOfOrigin": ["China", "United Kingdom"],
-
-  // --- Manufacturer Details (Aligned with Core Ontology) ---
+  "countryOfOrigin": [
+    "China",
+    "United Kingdom"
+  ],
   "manufacturer": {
-    "@id": "urn:lei:ABCDE123456789012345",
-    // Co-typing the organization with its role.
-    "@type": ["Organization", "ManufacturerRole"],
     "organizationName": "Drills R Us SE",
     "leiCode": "ABCDE123456789012345",
     "gln": "5012345100036",
+    "additionalOrganizationId": "urn:lei:ABCDE123456789012345",
+    "additionalOrganizationIdType": "URN:LEI",
     "address": {
-      "@type": "PostalAddress",
       "streetAddress": "4 Black Street",
       "postalCode": "12345",
       "addressLocality": "London",
       "addressCountry": "UK"
     }
   },
-  
   // --- Documents (Aligned with Core Ontology) ---
   "documents": [
-      {
-        "@type": "RelatedResource",
-        "resourceTitle": {
-          "en": "IBU EPD Listing"
-        },
-        "url": "https://ibu-epd.com/veroeffentlichte-epds/"
-      }
+    {
+      "contentType": "RelatedResource",
+      "resourceTitle": "IBU EPD Listing",
+      "url": "https://ibu-epd.com/veroeffentlichte-epds/"
+    }
   ],
-
   // --- Technical Specifications (Aligned with Core/Electronics Ontology) ---
   "netWeight": 1.8,
-
   // Properties defined in the Electronics/PowerTool ontology.
   "torque": 20.0,
   "maximumRatedSpeed": 1000.0,
-
   // --- Power (Aligned with Electronics Ontology) ---
   "ratedPower": 100.0,
   "voltage": 12.0,
-
   // --- Repairability (Aligned with Electronics Ontology) ---
   "sparePartsAvailable": true,
   "serviceManualAvailable": true,
-
   // --- Components (BOM) (Aligned with Core Ontology) ---
   "components": [
     {
-      "@type": "Component",
       "name": "Cordless drill (base unit)",
+      // Note: This example uses a direct HTML link for demonstrative purposes. 
+      // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
+      // content negotiation to return either this JSON payload or an HTML page 
+      // depending on the client's Accept headers.
       "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101071"
     },
     {
@@ -94,14 +89,16 @@
     },
     {
       "name": "Battery",
+      // Note: This example uses a direct HTML link for demonstrative purposes. 
+      // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
+      // content negotiation to return either this JSON payload or an HTML page 
+      // depending on the client's Accept headers.
       "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101088"
     }
   ],
-  
   // --- Compliance (Aligned with Core Ontology) ---
   "additionalCertifications": [
     {
-      "@type": "Certification",
       "resourceTitle": "CE Mark",
       "identifier": "CE-2024-98765",
       "certificationBodyName": "Self-declared",
@@ -110,16 +107,13 @@
       "url": "https://example.com/dop/GSB451"
     }
   ],
-  
   // Environmental data modeled using the ProductCharacteristic structure.
   "productCharacteristics": [
     {
-      "@type": "ProductCharacteristic",
       "characteristicName": "CO2e Emissions (per unit)",
       "characteristicValue": "34 kg CO2e"
     },
     {
-      "@type": "ProductCharacteristic",
       "characteristicName": "Energy Consumption (per unit)",
       "characteristicValue": "66 KWH"
     }
