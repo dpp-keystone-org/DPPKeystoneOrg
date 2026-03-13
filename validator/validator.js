@@ -1,8 +1,8 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1772540780660';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1773417158405';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1772540780660';
-import { generateHTML } from '../lib/html-generator.js?v=1772540780660';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1772540780660';
+import { EXAMPLES } from '../lib/example-registry.js?v=1773417158405';
+import { generateHTML } from '../lib/html-generator.js?v=1773417158405';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1773417158405';
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
 
 // Configuration: Map Spec IDs to Schema filenames
@@ -81,18 +81,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         exampleSelector.addEventListener('change', async (e) => {
             const url = e.target.value;
             if (!url) return;
-            
+
             try {
                 jsonInput.disabled = true;
                 exampleSelector.disabled = true;
-                
+
                 const res = await fetch(url);
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                
+
                 // We use text() then JSON.parse to allow potentially handling JSONC if examples ever use comments (unlikely for strict JSON examples but safe)
                 // Actually, examples are .json, so strictly JSON.
                 const json = await res.json();
-                
+
                 jsonInput.value = JSON.stringify(json, null, 2);
                 resultBox.hidden = true;
             } catch (err) {
@@ -156,35 +156,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     const handleHtmlPreview = async (includeSchema, btn) => {
         const inputStr = jsonInput.value.trim();
         resultBox.hidden = true;
-        
+
         if (!inputStr) {
             showError('Please paste a JSON object to preview.');
             return;
         }
-        
+
         const originalText = btn.textContent;
-        
+
         try {
             let dppData;
             // Try strict then loose parsing
             try {
-               dppData = JSON.parse(inputStr);
+                dppData = JSON.parse(inputStr);
             } catch (e) {
-               const stripped = stripJsonComments(inputStr);
-               dppData = JSON.parse(stripped);
+                const stripped = stripJsonComments(inputStr);
+                dppData = JSON.parse(stripped);
             }
-            
+
             btn.disabled = true;
             btn.textContent = 'Generating...';
 
+            // Patch image URLs to be absolute if they use absolute-relative paths
+            // because the generated HTML runs in a 'blob:' context and will fail to resolve them.
+            if (dppData.image && Array.isArray(dppData.image)) {
+                dppData.image.forEach(img => {
+                    if (img.url && img.url.startsWith('/spec/')) {
+                        img.url = window.location.origin + img.url;
+                    }
+                });
+            }
+
             const customCssUrl = cssUrlInput ? cssUrlInput.value.trim() : '';
             const html = await generateHTML(dppData, { customCssUrl, includeSchema });
-            
+
             // Open in new tab
             const blob = new Blob([html], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             window.open(url, '_blank');
-            
+
         } catch (e) {
             console.error(e);
             showError('Failed to generate HTML: ' + e.message);
@@ -229,24 +239,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const documentLoader = async (url, options) => {
                     // Intercept spec URLs and redirect to local files if possible
                     if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                         const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
-                         
-                         // Try to fetch locally
-                         try {
-                             const res = await fetch(relativePath);
-                             if (res.ok) {
-                                 const document = await res.json();
-                                 return {
-                                     contextUrl: null,
-                                     document,
-                                     documentUrl: url
-                                 };
-                             }
-                         } catch (e) {
-                             console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
-                         }
+                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+
+                        // Try to fetch locally
+                        try {
+                            const res = await fetch(relativePath);
+                            if (res.ok) {
+                                const document = await res.json();
+                                return {
+                                    contextUrl: null,
+                                    document,
+                                    documentUrl: url
+                                };
+                            }
+                        } catch (e) {
+                            console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
+                        }
                     }
-                    
+
                     // Fallback to standard jsonld loader (which uses fetch/node)
                     // Note: jsonld in browser environment usually uses XHR/fetch
                     // We can use the default or a simple fetch wrapper.
@@ -295,14 +305,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function showSuccessWithWarning(title, msg) {
         resultBox.hidden = false;
-        resultBox.className = 'result-box success'; 
-        
+        resultBox.className = 'result-box success';
+
         const strong = document.createElement('strong');
         strong.textContent = title;
         resultBox.appendChild(strong);
-        
+
         resultBox.appendChild(document.createElement('br'));
-        
+
         const span = document.createElement('span');
         span.textContent = msg;
         resultBox.appendChild(span);
@@ -311,7 +321,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function showValidationErrors(errors, isJsonc) {
         resultBox.hidden = false;
         resultBox.className = 'result-box error';
-        
+
         const heading = document.createElement('h3');
         heading.textContent = `Validation Failed (${errors.length} errors)`;
         resultBox.appendChild(heading);

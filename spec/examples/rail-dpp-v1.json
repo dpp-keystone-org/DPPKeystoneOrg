@@ -1,12 +1,8 @@
 {
   "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
-  "@type": [
-    "Product",
-    "DigitalProductPassport",
-    "ConstructionProduct"
-  ],
+  "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "https://www.example.org/API/RAIL/4711",
-  "uniqueProductIdentifier": "https://id.gs1.org/01/07649997749703/10/4711",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/rail-dpp-v1.html",
   "granularity": "Batch",
   "dppSchemaVersion": "ENXXX:v1.0",
   "dppStatus": "Active",
@@ -23,38 +19,30 @@
   "image": [
     {
       "resourceTitle": "Product Image",
-      "url": "/spec/examples/images/rail.svg",
-      "contentType": "image/svg+xml"
+      "url": "/spec/examples/images/rail.png",
+      "contentType": "image/png"
     }
   ],
   "verifiableCredential": "what value do you want to put in? SHA-256 PKI",
   "economicOperator": {
-    "@id": "https://id.gs1.org/417/9010788000001",
-    "@type": [
-      "Organization",
-      "EconomicOperatorRole"
-    ],
     "organizationName": "Voestalpine Rail Technology GmbH",
     "url": "https://www.voestalpine.com/railway-systems/",
-    "additionalOrganizationId": "AT12345678",
-    "additionalOrganizationIdType": "EORI",
+    "additionalOrganizationId": "https://id.gs1.org/417/9010788000001",
+    "additionalOrganizationIdType": "GLN",
     "address": {
-      "@type": "PostalAddress",
       "addressLocality": "Loeben, Austria",
       "postalCode": "AT-8700",
       "streetAddress": "Kerpelystraße 199"
     }
   },
   "manufacturer": {
-    "@id": "https://id.gs1.org/417/9010788000001"
+    "organizationName": "Voestalpine Rail Technology GmbH",
+    "additionalOrganizationId": "https://id.gs1.org/417/9010788000001",
+    "additionalOrganizationIdType": "GLN"
   },
   "netWeight": 4968,
   "length": 108,
   "notifiedBody": {
-    "@type": [
-      "Organization",
-      "ConformityAssessmentBodyRole"
-    ],
     "organizationName": "TUV Sued",
     "additionalOrganizationId": "NB0123",
     "additionalOrganizationIdType": "NotifiedBodyNumber"
@@ -262,7 +250,6 @@
   },
   "additionalCertifications": [
     {
-      "@type": "Certification",
       "resourceTitle": "CE Certificate of Conformity",
       "identifier": "CERT-TUV-2024-1138",
       "certificationBodyName": "TUV Sued",
@@ -272,7 +259,6 @@
       "url": "https://www.tuvsud.com/certificates/1138"
     },
     {
-      "@type": "Certification",
       "resourceTitle": "Environmental Product Declaration (EPD)",
       "identifier": "EPD-IBU-20230157-V1",
       "certificationBodyName": "Institut Bauen und Umwelt e.V. (IBU)",

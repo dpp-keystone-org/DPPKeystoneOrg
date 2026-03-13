@@ -65,11 +65,11 @@
   Product --|> ProductionStep : productionSteps
   Product : +epd
   Product --|> EPDBlock : epd
+  Product : +uniqueProductIdentifier
   Product : +instructionsForUse
   Product --|> RelatedResource : instructionsForUse
   Product : +safetyDataSheet
   Product --|> RelatedResource : safetyDataSheet
-  Product : +uniqueProductIdentifier
   Product : +steelGrade
   Product : +railProfile
   click RelatedResource href "../RelatedResource/RelatedResource.html" "dppk:RelatedResource"
@@ -277,6 +277,13 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="../Header/index.html#uniqueProductIdentifier">Unique Product Identifier (UPI)</a> (dppk:uniqueProductIdentifier)</td>
+                                    <td>The globally resolvable URI for the product/DPP.</td>
+                                    <td>xsd:anyURI</td>
+                                    <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="../RelatedResource/index.html#instructionsForUse">Instructions for Use</a> (dppk:instructionsForUse)</td>
                                     <td>A link to the instructions for use or user manual for the product.</td>
                                     <td>dppk:RelatedResource</td>
@@ -288,13 +295,6 @@
                                     <td>A link to the safety data sheet (SDS) for the product.</td>
                                     <td>dppk:RelatedResource</td>
                                     <td></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td><a href="../Header/index.html#uniqueProductIdentifier">Unique Product Identifier (UPI)</a> (dppk:uniqueProductIdentifier)</td>
-                                    <td>The globally resolvable URI for the product/DPP.</td>
-                                    <td>xsd:anyURI</td>
-                                    <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td><td></td>
                                 </tr>
                             
                                 <tr>

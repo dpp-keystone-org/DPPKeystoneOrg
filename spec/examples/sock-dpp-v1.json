@@ -1,11 +1,8 @@
 {
   "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld",
-  "@type": [
-    "dppk:DigitalProductPassport",
-    "dppk:TextileProduct"
-  ],
+  "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
-  "uniqueProductIdentifier": "urn:gtin:54321098765432",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/sock-dpp-v1.html",
   "granularity": "Model",
   "dppSchemaVersion": "ENXXX:v1.0",
   "dppStatus": "Active",
@@ -18,32 +15,27 @@
   "image": [
     {
       "resourceTitle": "Product Image",
-      "url": "/spec/examples/images/sock.svg",
-      "contentType": "image/svg+xml"
+      "url": "/spec/examples/images/sock.png",
+      "contentType": "image/png"
     }
   ],
   "documents": [
     {
-      "@type": "RelatedResource",
-      "resourceTitle": {
-        "en": "IBU EPD Listing"
-      },
+      "contentType": "RelatedResource",
+      "resourceTitle": "IBU EPD Listing",
       "url": "https://ibu-epd.com/veroeffentlichte-epds/"
     }
   ],
   "fibreComposition": [
     {
-      "@type": "dppk:FibreComposition",
       "fibreType": "Cotton",
       "fibrePercentage": 85
     },
     {
-      "@type": "dppk:FibreComposition",
       "fibreType": "Polyamide",
       "fibrePercentage": 13
     },
     {
-      "@type": "dppk:FibreComposition",
       "fibreType": "Elastane",
       "fibrePercentage": 2
     }

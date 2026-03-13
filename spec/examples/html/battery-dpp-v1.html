@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keystone Industrial LFP Module Gen2 - Digital Product Passport</title>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": "https://dpp-keystone.org/spec/examples/html/battery-dpp-v1.html",
+    "name": "Keystone Industrial LFP Module Gen2",
+    "image": [
+      "http://localhost:8081/spec/examples/images/battery.png"
+    ],
+    "weight": {
+      "@type": "QuantitativeValue",
+      "value": 45.5,
+      "unitCode": "KGM"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Content Type",
+        "value": "RelatedResource"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Resource Title",
+        "value": "EU Declaration of Conformity"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Url",
+        "value": "https://keystone-batteries.com/docs/doc-lfp-gen2.pdf"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Capacity - Certified Usable Energy",
+        "value": 4800
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Capacity - Rated Capacity",
+        "value": 100
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Capacity - State Of Charge",
+        "value": 98.5
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Capacity - Voltage Maximum",
+        "value": 54
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Capacity - Voltage Minimum",
+        "value": 40
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Capacity - Voltage Nominal",
+        "value": 48
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Efficiency - Round Trip Efficiency Initial",
+        "value": 95.5
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Efficiency - Self Discharge Initial",
+        "value": 2
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Lifetime - Capacity Throughput",
+        "value": 500
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Lifetime - Cycle Count Full",
+        "value": 5
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Lifetime - Expected Lifetime Cycles",
+        "value": 3000
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Lifetime - Expected Lifetime Years",
+        "value": 10
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Power - Power Maximum Permitted",
+        "value": 2500
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Power - Power Original",
+        "value": 2000
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Temperature - Temperature Idle Lower",
+        "value": -20
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Performance - Temperature - Temperature Idle Upper",
+        "value": 60
+      }
+    ],
+    "productionDate": "2024-01-15",
+    "warranty": "5 Years"
+  }
+]
+</script>
+    <style>
+        :root {
+            --primary-color: #002c6c;
+            /* GS1 Blue */
+            --secondary-color: #f26334;
+            /* GS1 Orange Accent */
+            --background-light: #f8f9fa;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --radius: 6px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-dark);
+            background-color: #eef1f5;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .dpp-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        /* --- Hero Section --- */
+        header.dpp-hero {
+            padding: 30px;
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dpp-hero-content h1 {
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+        }
+
+        .dpp-hero-content h2 {
+            font-size: 1.25rem;
+            margin: 0 0 15px 0;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .dpp-hero-content p {
+            font-family: monospace;
+            background: var(--background-light);
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0;
+            font-size: 0.9em;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .dpp-hero-image {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* --- Carousel --- */
+        .dpp-carousel-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: #fff;
+        }
+
+        .dpp-carousel-slide {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dpp-carousel-slide.active {
+            display: block;
+        }
+
+        .dpp-carousel-slide img {
+            max-width: 100%;
+            max-height: 350px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .dpp-carousel-caption {
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .dpp-carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .dpp-carousel-btn:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .dpp-carousel-btn.prev {
+            left: 10px;
+        }
+
+        .dpp-carousel-btn.next {
+            right: 10px;
+        }
+
+        .dpp-carousel-indicators {
+            text-align: center;
+            padding: 10px;
+            background: var(--background-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .dpp-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .dpp-indicator.active {
+            background-color: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        /* --- Metadata Section --- */
+        .dpp-metadata {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 30px;
+            /* Use simple block layout to stack items vertically (one per line) */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dpp-metadata .dpp-field {
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            /* Stack label and value vertically */
+        }
+
+        .dpp-metadata .dpp-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            display: block;
+            /* Ensure label takes full width */
+        }
+
+        .dpp-metadata .dpp-value {
+            display: block;
+            width: 100%;
+        }
+
+
+        .dpp-metadata div {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* --- Main Content --- */
+        .dpp-section {
+            padding: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dpp-section:last-child {
+            border-bottom: none;
+        }
+
+        .dpp-section h3,
+        .dpp-section h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .dpp-section h3 {
+            font-size: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 10px;
+        }
+
+        /* --- Fields --- */
+        .dpp-field {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            /* Changed from baseline to flex-start for better multi-line handling */
+        }
+
+        /* Specific styling for list fields to stack label and list */
+        .dpp-field-list {
+            flex-direction: column;
+        }
+
+        .dpp-field-list .dpp-value {
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        .dpp-label {
+            font-weight: 600;
+            min-width: 180px;
+            color: var(--text-dark);
+            flex-shrink: 0;
+            /* Prevent label from shrinking */
+        }
+
+        .dpp-value {
+            flex: 1;
+            min-width: 0;
+            /* Important for word wrapping in flex items */
+            overflow-wrap: break-word;
+            /* Wrap long words/URLs */
+            word-wrap: break-word;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            font-weight: 600;
+            border-bottom: 2px solid #ccc;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        /* --- Cards (Nested Objects) --- */
+        .dpp-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .dpp-card h4 {
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            padding-left: 0;
+            margin: 0;
+            list-style-position: inside;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="dpp-container">
+
+        <header class="dpp-hero">
+
+            <div class="dpp-hero-image">
+                <img src="http://localhost:8081/spec/examples/images/battery.png" alt="Front View"
+                    style="max-width: 100%; height: auto;">
+            </div>
+            <div class="dpp-hero-content">
+                <h1>Digital Product Passport</h1>
+                <p><strong>ID:</strong> https://dpp-keystone.org/spec/examples/html/battery-dpp-v1.html</p>
+            </div>
+        </header>
+
+
+        <section class="dpp-metadata">
+            <div class="dpp-field"><span class="dpp-label">Passport Status:</span> <span class="dpp-value">Active</span>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Last Updated:</span> <span
+                    class="dpp-value">2024-05-21T10:00:00Z</span></div>
+            <div class="dpp-field"><span class="dpp-label">Passport ID:</span> <span
+                    class="dpp-value">urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</span></div>
+            <div class="dpp-field"><span class="dpp-label">Schema Version:</span> <span class="dpp-value">v2.0</span>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Economic Operator ID:</span> <span
+                    class="dpp-value">urn:gln:9876543210987</span></div>
+            <div class="dpp-field"><span class="dpp-label">Granularity:</span> <span class="dpp-value">Item</span></div>
+            <div class="dpp-field"><span class="dpp-label">Content Specification IDs:</span> <span
+                    class="dpp-value">draft_battery_specification_id, draft_construction_specification_id</span></div>
+        </section>
+
+
+        <section class="dpp-section">
+            <h3>Product Attributes</h3>
+            <div class="dpp-field"><span class="dpp-label">Facility Id:</span> <span
+                    class="dpp-value">urn:gln:9876543210988</span></div>
+            <div class="dpp-card">
+                <h4>Manufacturer Info</h4>
+                <div class="dpp-card-content">
+                    <div class="dpp-field"><span class="dpp-label">Organization Name:</span> <span
+                            class="dpp-value">Keystone Battery Systems</span></div>
+                    <div class="dpp-card">
+                        <h4>Address</h4>
+                        <div class="dpp-card-content">
+                            <div class="dpp-field"><span class="dpp-label">Street Address:</span> <span
+                                    class="dpp-value">Voltastrasse 10</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Postal Code:</span> <span
+                                    class="dpp-value">12345</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Address Locality:</span> <span
+                                    class="dpp-value">Berlin</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Address Country:</span> <span
+                                    class="dpp-value">Germany</span></div>
+                        </div>
+                    </div>
+                    <div class="dpp-field"><span class="dpp-label">Additional Organization Id:</span> <span
+                            class="dpp-value">urn:gln:9876543210987</span></div>
+                    <div class="dpp-field"><span class="dpp-label">Additional Organization Id Type:</span> <span
+                            class="dpp-value">GLN</span></div>
+                </div>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Manufacturing Place:</span> <span class="dpp-value">Berlin,
+                    Germany</span></div>
+            <div class="dpp-field"><span class="dpp-label">Manufacturing Date:</span> <span
+                    class="dpp-value">2024-01-15</span></div>
+            <div class="dpp-field"><span class="dpp-label">Service Date:</span> <span
+                    class="dpp-value">2024-02-01</span></div>
+            <div class="dpp-field"><span class="dpp-label">Warranty Period:</span> <span class="dpp-value">5
+                    Years</span></div>
+            <div class="dpp-field"><span class="dpp-label">Battery Category:</span> <span
+                    class="dpp-value">IndustrialBattery</span></div>
+            <div class="dpp-field"><span class="dpp-label">Battery Chemistry:</span> <span class="dpp-value">LFP</span>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Battery Mass:</span> <span class="dpp-value">45.5 kg</span>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Battery Status:</span> <span
+                    class="dpp-value">Original</span></div>
+            <div class="dpp-card">
+                <h4>Material Composition</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>percentage (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lithium Iron Phosphate (LFP)</td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>Graphite</td>
+                            <td>22</td>
+                        </tr>
+                        <tr>
+                            <td>Aluminum</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>Copper</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Electrolyte (LiPF6 in Carbonates)</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>Separator (PP/PE)</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dpp-card">
+                <h4>Hazardous Substances</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>percentage (%)</th>
+                            <th>uniqueProductIdentifier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lithium Hexafluorophosphate</td>
+                            <td>1.5</td>
+                            <td>https://echa.europa.eu/substance-information/-/substancefact/100.040.839</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Hazardous Substances Impact:</span> <span
+                    class="dpp-value">Toxic if swallowed; Causes severe skin burns.</span></div>
+            <div class="dpp-card">
+                <h4>Pre Consumer Recycled Material Composition</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>percentage (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Copper</td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dpp-card">
+                <h4>Post Consumer Recycled Material Composition</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>percentage (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aluminum</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Nickel</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Renewable Content:</span> <span class="dpp-value">0 %</span>
+            </div>
+            <div class="dpp-card">
+                <h4>Performance</h4>
+                <div class="dpp-card-content">
+
+                    <div class="dpp-card">
+                        <h4>Capacity</h4>
+                        <div class="dpp-card-content">
+                            <div class="dpp-field"><span class="dpp-label">Rated:</span> <span
+                                    class="dpp-value">100</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Voltage Nominal:</span> <span
+                                    class="dpp-value">48 V</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Voltage Min:</span> <span
+                                    class="dpp-value">40</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Voltage Max:</span> <span
+                                    class="dpp-value">54</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Certified Usable Energy:</span> <span
+                                    class="dpp-value">4800 kWh</span></div>
+                            <div class="dpp-field"><span class="dpp-label">State Of Charge:</span> <span
+                                    class="dpp-value">98.5 %</span></div>
+                        </div>
+                    </div>
+
+                    <div class="dpp-card">
+                        <h4>Power</h4>
+                        <div class="dpp-card-content">
+                            <div class="dpp-field"><span class="dpp-label">Original:</span> <span
+                                    class="dpp-value">2000</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Maximum Permitted:</span> <span
+                                    class="dpp-value">2500</span></div>
+                        </div>
+                    </div>
+
+                    <div class="dpp-card">
+                        <h4>Efficiency</h4>
+                        <div class="dpp-card-content">
+                            <div class="dpp-field"><span class="dpp-label">Round Trip Initial:</span> <span
+                                    class="dpp-value">95.5</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Self Discharge Initial:</span> <span
+                                    class="dpp-value">2 %/month</span></div>
+                        </div>
+                    </div>
+
+                    <div class="dpp-card">
+                        <h4>Lifetime</h4>
+                        <div class="dpp-card-content">
+                            <div class="dpp-field"><span class="dpp-label">Years:</span> <span
+                                    class="dpp-value">10</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Cycles:</span> <span class="dpp-value">3000
+                                    unitless</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Cycle Count Full:</span> <span
+                                    class="dpp-value">5 unitless</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Capacity Throughput:</span> <span
+                                    class="dpp-value">500 Ah</span></div>
+                        </div>
+                    </div>
+
+                    <div class="dpp-card">
+                        <h4>Temperature</h4>
+                        <div class="dpp-card-content">
+                            <div class="dpp-field"><span class="dpp-label">Idle Lower:</span> <span
+                                    class="dpp-value">-20</span></div>
+                            <div class="dpp-field"><span class="dpp-label">Idle Upper:</span> <span
+                                    class="dpp-value">60</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="dpp-field"><span class="dpp-label">Carbon Footprint Absolute:</span> <span class="dpp-value">120
+                    tCO2e</span></div>
+            <div class="dpp-field"><span class="dpp-label">Carbon Footprint Class:</span> <span
+                    class="dpp-value">A</span></div>
+            <div class="dpp-card">
+                <h4>Dopc</h4>
+                <div class="dpp-card-content">
+                    <div class="dpp-field"><span class="dpp-label">Content Type:</span> <span
+                            class="dpp-value">RelatedResource</span></div>
+                    <div class="dpp-field"><span class="dpp-label">Resource Title:</span> <span class="dpp-value">EU
+                            Declaration of Conformity</span></div>
+                    <div class="dpp-field"><span class="dpp-label">Url:</span> <span
+                            class="dpp-value">https://keystone-batteries.com/docs/doc-lfp-gen2.pdf</span></div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+</body>
+
+</html>

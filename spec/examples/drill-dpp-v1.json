@@ -1,11 +1,8 @@
 {
   "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld",
-  "@type": [
-    "dppk:DigitalProductPassport",
-    "dppk:PowerTool"
-  ],
+  "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
-  "uniqueProductIdentifier": "https://id.gs1.org/01/05012345101095/21/22334455",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/drill-dpp-v1.html",
   "granularity": "Item",
   "facilityId": "urn:lei:ABCDE123456789012345",
   "dppSchemaVersion": "ENXXX:v1.0",
@@ -22,8 +19,8 @@
   "image": [
     {
       "resourceTitle": "Product Image",
-      "url": "https://dpp.eecc.de/api/management/files/05410000111128_cordless_drill_be1",
-      "contentType": "image/jpeg"
+      "url": "/spec/examples/images/drill.png",
+      "contentType": "image/png"
     }
   ],
   "description": {
@@ -38,16 +35,12 @@
     "United Kingdom"
   ],
   "manufacturer": {
-    "@id": "urn:lei:ABCDE123456789012345",
-    "@type": [
-      "Organization",
-      "ManufacturerRole"
-    ],
     "organizationName": "Drills R Us SE",
     "leiCode": "ABCDE123456789012345",
     "gln": "5012345100036",
+    "additionalOrganizationId": "urn:lei:ABCDE123456789012345",
+    "additionalOrganizationIdType": "URN:LEI",
     "address": {
-      "@type": "PostalAddress",
       "streetAddress": "4 Black Street",
       "postalCode": "12345",
       "addressLocality": "London",
@@ -56,10 +49,8 @@
   },
   "documents": [
     {
-      "@type": "RelatedResource",
-      "resourceTitle": {
-        "en": "IBU EPD Listing"
-      },
+      "contentType": "RelatedResource",
+      "resourceTitle": "IBU EPD Listing",
       "url": "https://ibu-epd.com/veroeffentlichte-epds/"
     }
   ],
@@ -72,7 +63,6 @@
   "serviceManualAvailable": true,
   "components": [
     {
-      "@type": "Component",
       "name": "Cordless drill (base unit)",
       "uniqueProductIdentifier": "https://freedpp.eu/01/05012345101071"
     },
@@ -86,7 +76,6 @@
   ],
   "additionalCertifications": [
     {
-      "@type": "Certification",
       "resourceTitle": "CE Mark",
       "identifier": "CE-2024-98765",
       "certificationBodyName": "Self-declared",
@@ -97,12 +86,10 @@
   ],
   "productCharacteristics": [
     {
-      "@type": "ProductCharacteristic",
       "characteristicName": "CO2e Emissions (per unit)",
       "characteristicValue": "34 kg CO2e"
     },
     {
-      "@type": "ProductCharacteristic",
       "characteristicName": "Energy Consumption (per unit)",
       "characteristicValue": "66 KWH"
     }
