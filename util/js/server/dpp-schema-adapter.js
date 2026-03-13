@@ -1,6 +1,6 @@
 import { parse as jsoncParse } from 'jsonc-parser';
 import { promises as fs } from 'fs';
-import { transform, buildDictionary } from '../common/transformation/dpp-schema-logic.js?v=1773417158405';
+import { transform, buildDictionary } from '../common/transformation/dpp-schema-logic.js?v=1773417219458';
 
 // Using a global dictionary with memoization to avoid re-building on every call
 const dictionary = {};

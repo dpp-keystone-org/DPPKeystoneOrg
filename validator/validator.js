@@ -1,8 +1,8 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1773417158405';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1773417219458';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1773417158405';
-import { generateHTML } from '../lib/html-generator.js?v=1773417158405';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1773417158405';
+import { EXAMPLES } from '../lib/example-registry.js?v=1773417219458';
+import { generateHTML } from '../lib/html-generator.js?v=1773417219458';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1773417219458';
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
 
 // Configuration: Map Spec IDs to Schema filenames
