@@ -1,0 +1,117 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-rangehoods.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelRangehoodsProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-rangehoods-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-rangehoods-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_rangehoods_specification_id"
+  ],
+  "productName": "Keystone Demo 'rangehoods' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-rangehoods-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "greaseFilteringEfficiency": 93.61,
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "contactReference": "Keystone Demo Electrolux",
+    "serviceName": "Keystone Demo EPREL Compliance",
+    "addressBloc": "Keystone Demo Electrolux\nEPREL Compliance\nal. Powstańców Śląskich 26\n30-570 Kraków\nPoland",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "id": 22,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo AB Electrolux",
+    "organisationName": "Keystone Demo AB Electrolux",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-5653",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "modelAvailabilityInCountries": [],
+  "energyClass": "AP",
+  "orgVerificationStatus": "VERIFIED",
+  "energyLabelId": 1720369,
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1951076161,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "greaseFilteringEfficiencyClass": "B",
+  "airFlowBoost": 693,
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "soundPowerBoost": 76,
+  "allowEprelLabelGeneration": false,
+  "firstPublicationDateTS": 1951072285,
+  "lightingEfficiency": 1,
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 4,
+  "exportDateTS": 1951072911336,
+  "soundPowerMin": 56,
+  "airFlowMax": 572,
+  "onMarketFirstStartDateTS": 1951076161,
+  "noise": 73,
+  "implementingAct": "Keystone Demo EU_65_2014",
+  "blocked": false,
+  "modelIdentifier": "DEMO-9533",
+  "fluidDynamicEfficiencyClass": "DEMO-8200",
+  "lightingEfficiencyClass": "NA",
+  "energyClassImageWithScale": "Keystone Demo AP-Left-LightGreen-WithAPPPDScale.svg",
+  "versionId": 5817230,
+  "energyClassImage": "Keystone Demo AP-Left-LightGreen.png",
+  "trademarkVerificationStatus": "VERIFIED",
+  "powerConsumptionOffMode": 0.54,
+  "importedOn": 1951072917599,
+  "publishedOnDateTS": 1951072285115,
+  "energyClassRange": "Keystone Demo APPP_D",
+  "energyAnnual": 30.36,
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2888912,
+  "versionNumber": 2,
+  "uploadedLabels": [
+    "Keystone Demo Label_2623814_0.pdf"
+  ],
+  "fluidDynamicEfficiency": 35.86,
+  "supplierOrTrademark": "Keystone Demo AEG",
+  "airFlowMin": 275,
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo rangehoods",
+  "soundPowerMax": 73,
+  "eprelRegistrationNumber": "DEMO-5248"
+}

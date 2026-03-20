@@ -1,0 +1,42 @@
+{
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/filter-visual-warning.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "positionText": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "orderNumber": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "descriptionText": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

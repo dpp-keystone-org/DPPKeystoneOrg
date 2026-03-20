@@ -1,0 +1,380 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-waterheatersolardevices.schema.json",
+  "title": "DPP for waterheatersolardevices (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the waterheatersolardevices sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "eprel_waterheatersolardevices_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "contactDetails": {
+        "$ref": "eprel/contact-details.schema.json"
+      },
+      "organisation": {
+        "$ref": "eprel/organisation.schema.json"
+      },
+      "onMarketEndDateTS": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyClass": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "orgVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "storageVolume": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyLabelId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "onMarketStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "firstPublicationDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "generatedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "incidenceAngleModifier": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "firstOrderCoefficient": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "visibleToUkMsa": {
+        "type": "boolean"
+      },
+      "contactId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalDetails": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "lastVersion": {
+        "type": "boolean"
+      },
+      "trademarkOwner": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "allowEprelLabelGeneration": {
+        "type": "boolean"
+      },
+      "firstPublicationDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "loadProfiles": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/load-profile.schema.json"
+        }
+      },
+      "onMarketEndDate": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "registrantNature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "exportDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "implementingAct": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "blocked": {
+        "type": "boolean"
+      },
+      "modelIdentifier": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyClassImageWithScale": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "versionId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassImage": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "trademarkVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "importedOn": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "publishedOnDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "secondOrderCoefficient": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productModelCoreId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "standByPowerConsumption": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "versionNumber": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "zeroLossEfficiency": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "uploadedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "electricityAnnual": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "pumpPowerConsumption": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "supplierOrTrademark": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "publishedOnDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productGroup": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "solarCollectorSize": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInEUEEACountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "isEnergySmartAppliance": {
+        "type": "boolean"
+      },
+      "modelAvailabilityInOtherCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "availabilityInEUEEACountries": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "eprelRegistrationNumber": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

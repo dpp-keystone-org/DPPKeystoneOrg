@@ -1,0 +1,119 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-solidfuelboilers.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelSolidfuelboilersProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-solidfuelboilers-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-solidfuelboilers-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_solidfuelboilers_specification_id"
+  ],
+  "productName": "Keystone Demo 'solidfuelboilers' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-solidfuelboilers-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-4925",
+    "city": "Keystone Demo Gołuchów",
+    "postalCode": "DEMO-2384",
+    "contactReference": "Keystone Demo 123",
+    "municipality": "Keystone Demo Gołuchów",
+    "serviceName": "Keystone Demo Walendowscy Spółka Jawna",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "province": "Keystone Demo wielkopolskie",
+    "defaultContact": true,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Tursko",
+    "id": 20091,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "waterHeatingFunction": true,
+  "organisation": {
+    "organisationTitle": "Keystone Demo P.P.H.U. Ślusarstwo Kotlarstwo Spółka Jawna Walendowscy",
+    "organisationName": "Keystone Demo P.P.H.U. Ślusarstwo Kotlarstwo Spółka Jawna Walendowscy",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-3995",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "ecoLabel": false,
+  "modelAvailabilityInCountries": [],
+  "energyClass": "AP",
+  "orgVerificationStatus": "VERIFIED",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1951171201,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "specificPrecautions": [
+    {
+      "language": "PL",
+      "id": 1871906,
+      "orderNumber": 2,
+      "text": "Keystone Demo Przed montażem, uruchomieniem lub serwisowaniem urządzenia należy stosować się do zaleceń zawartych w Instrukcji Obsługi"
+    }
+  ],
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951262355,
+  "seasonalHeatingEnergyEfficiency": 88,
+  "electricGenerationFunction": false,
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 93190,
+  "exportDateTS": 1951262972435,
+  "ratedHeatOutput": 9,
+  "onMarketFirstStartDateTS": 1951171201,
+  "implementingAct": "Keystone Demo EU_2015_1187",
+  "blocked": false,
+  "modelIdentifier": "DEMO-8415",
+  "energyClassImageWithScale": "Keystone Demo AP-Left-LightGreen-WithAPPPDScale.svg",
+  "versionId": 5897554,
+  "energyClassImage": "Keystone Demo AP-Left-LightGreen.png",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1951262975182,
+  "publishedOnDateTS": 1951262355087,
+  "energyClassRange": "Keystone Demo APPP_D",
+  "energyEfficiencyIndex": 130,
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2934513,
+  "versionNumber": 2,
+  "supplierOrTrademark": "Keystone Demo WALENDOWSCY SPÓŁKA JAWNA",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo solidfuelboilers",
+  "eprelRegistrationNumber": "DEMO-6462"
+}

@@ -1,0 +1,151 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-refrigeratingappliancesdirectsalesfunction.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelRefrigeratingappliancesdirectsalesfunctionProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-refrigeratingappliancesdirectsalesfunction-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-refrigeratingappliancesdirectsalesfunction-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_refrigeratingappliancesdirectsalesfunction_specification_id"
+  ],
+  "productName": "Keystone Demo 'refrigeratingappliancesdirectsalesfunction' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-refrigeratingappliancesdirectsalesfunction-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "refrigerator": true,
+  "highestWarmTempChilled": 5,
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-7780",
+    "city": "Keystone Demo Campo San Martino",
+    "postalCode": "DEMO-7257",
+    "contactReference": "Keystone Demo ARN001",
+    "serviceName": "Keystone Demo ARNEG SPA",
+    "province": "Keystone Demo Padova",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Venezia",
+    "id": 9431,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo ARNEG SPA",
+    "organisationName": "Keystone Demo ARNEG SPA",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-1918",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "webLinkManufacturer": "Keystone Demo https://www.arneg.it",
+  "modelAvailabilityInCountries": [
+    "XI"
+  ],
+  "energyClass": "B",
+  "orgVerificationStatus": "VERIFIED",
+  "lightSources": [
+    {
+      "orderNumber": 2,
+      "lightAntiGlareShield": false,
+      "lightHighLuminance": false,
+      "lightTechnology": "Keystone Demo LED",
+      "lightConnected": false,
+      "lightColourTuneable": false,
+      "lightSourceClass": "F",
+      "id": 449069
+    }
+  ],
+  "applianceType": "Keystone Demo SUPERMARKET_CABINET",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "Keystone Demo TYPE_2",
+  "onMarketStartDateTS": 1951266241,
+  "machineInfos": [],
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "additionalInfos": [
+    {
+      "language": "IT",
+      "id": 499755,
+      "orderNumber": 2,
+      "text": "Keystone Demo informazioni in italiano"
+    }
+  ],
+  "visibleToUkMsa": true,
+  "energyConsAnnual": 2648.69,
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951262524,
+  "lowestColdHighestMinTempChilled": -1,
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "cabinetType": "Keystone Demo INTEGRAL",
+  "trademarkId": 52346,
+  "exportDateTS": 1951263240169,
+  "onMarketFirstStartDateTS": 1951266241,
+  "implementingAct": "Keystone Demo EU_2019_2018",
+  "blocked": false,
+  "modelIdentifier": "DEMO-7945",
+  "energyClassImageWithScale": "Keystone Demo B-Left-MediumGreen-WithAGScale.svg",
+  "versionId": 5896608,
+  "energyClassImage": "Keystone Demo B-Left-MediumGreen-WithAGScale.svg",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1951263244812,
+  "publishedOnDateTS": 1951262523390,
+  "cabinetFamilyCode": "DEMO-5582",
+  "energyClassRange": "Keystone Demo A_G",
+  "energyEfficiencyIndex": 15.18,
+  "modelAvailabilityInOtherCountries": [
+    "XI"
+  ],
+  "displayAreaChilledTotal": 2.93,
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2933702,
+  "compartments": [
+    {
+      "orderNumber": 2,
+      "superMarketTempClassRefrigeratorV2": "M0",
+      "displayArea": 2.93,
+      "recommendedTemp": 5,
+      "id": 973761
+    }
+  ],
+  "versionNumber": 2,
+  "guaranteeDuration": 14,
+  "supplierOrTrademark": "Keystone Demo ARNEG s.p.a.",
+  "cabinetOrientation": "Keystone Demo VERTICAL",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo refrigeratingappliancesdirectsalesfunction",
+  "freezer": false,
+  "rollIn": false,
+  "eprelRegistrationNumber": "DEMO-5563"
+}

@@ -1,0 +1,1029 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelRangeHoods.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Range Hoods Sector Ontology",
+  "dcterms:description": "Sector ontology for the EPREL Range Hoods product category.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Range Hoods Sector Ontology"
+    }
+  ],
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelContactDetails.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelOrganisation.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:EprelRangeHoodsProduct",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Range Hoods Product"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Base class"
+      }
+    },
+    {
+      "@id": "dppk:eprelGreaseFilteringEfficiency",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Grease Filtering Efficiency"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "%"
+    },
+    {
+      "@id": "dppk:eprelStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelOnMarketEndDateTS",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel On Market End Date T S"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelModelAvailabilityInCountries",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Model Availability In Countries"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelEnergyClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelOrgVerificationStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Org Verification Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelEnergyLabelId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Label Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelOnMarketStartDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel On Market Start Date"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelModelAvailabilityInEUEEACountries",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Model Availability In E U E E A Countries"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelFormType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Form Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel On Market Start Date T S"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelFirstPublicationDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel First Publication Date"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelGreaseFilteringEfficiencyClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Grease Filtering Efficiency Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "%"
+    },
+    {
+      "@id": "dppk:eprelAirFlowBoost",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Air Flow Boost"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "m3/h"
+    },
+    {
+      "@id": "dppk:eprelGeneratedLabels",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Generated Labels"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Visible To Uk Msa"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelContactId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Contact Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAdditionalDetails",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Additional Details"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Last Version"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelSoundPowerBoost",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Sound Power Boost"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "dB"
+    },
+    {
+      "@id": "dppk:eprelTrademarkOwner",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Trademark Owner"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Allow Eprel Label Generation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel First Publication Date T S"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelOnMarketEndDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel On Market End Date"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLightingEfficiency",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lighting Efficiency"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "lux/W"
+    },
+    {
+      "@id": "dppk:eprelRegistrantNature",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Registrant Nature"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Trademark Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Export Date T S"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelSoundPowerMin",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Sound Power Min"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "dB"
+    },
+    {
+      "@id": "dppk:eprelAirFlowMax",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Air Flow Max"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "m3/h"
+    },
+    {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel On Market First Start Date T S"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelNoise",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Noise"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "dB"
+    },
+    {
+      "@id": "dppk:eprelImplementingAct",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Implementing Act"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelBlocked",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Blocked"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelModelIdentifier",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Model Identifier"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelFluidDynamicEfficiencyClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Fluid Dynamic Efficiency Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "%"
+    },
+    {
+      "@id": "dppk:eprelLightingEfficiencyClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lighting Efficiency Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "lux/W"
+    },
+    {
+      "@id": "dppk:eprelEnergyClassImageWithScale",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Image With Scale"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelVersionId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Version Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelEnergyClassImage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Image"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelTrademarkVerificationStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Trademark Verification Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelPowerConsumptionOffMode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Power Consumption Off Mode"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "W"
+    },
+    {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Imported On"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Published On Date T S"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelEnergyClassRange",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Range"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelEnergyAnnual",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Annual"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "kWh"
+    },
+    {
+      "@id": "dppk:eprelPowerConsumptionStandbyMode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Power Consumption Standby Mode"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "W"
+    },
+    {
+      "@id": "dppk:eprelModelAvailabilityInOtherCountries",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Model Availability In Other Countries"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelOnMarketFirstStartDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel On Market First Start Date"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Product Model Core Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Version Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelUploadedLabels",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Uploaded Labels"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelFluidDynamicEfficiency",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Fluid Dynamic Efficiency"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "%"
+    },
+    {
+      "@id": "dppk:eprelSupplierOrTrademark",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Supplier Or Trademark"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAirFlowMin",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Air Flow Min"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "m3/h"
+    },
+    {
+      "@id": "dppk:eprelAvailabilityInEUEEACountries",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Availability In E U E E A Countries"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelPublishedOnDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Published On Date"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelProductGroup",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Product Group"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelSoundPowerMax",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Sound Power Max"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "dB"
+    },
+    {
+      "@id": "dppk:eprelRegistrationNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelRangeHoodsProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Registration Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    }
+  ]
+}

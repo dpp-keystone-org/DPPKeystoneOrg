@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/organisation.schema.json",
+  "title": "EPREL Organisation",
+  "type": "object",
+  "properties": {
+    "organisationTitle": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "closeDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "firstName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lastName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "organisationName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "website": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "closeStatus": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isClosed": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "guid": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "personType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

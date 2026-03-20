@@ -1,0 +1,156 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {}
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {}
+    },
+    "status": "dppk:eprelStatus",
+    "standbyPowerConsumption": {
+      "@id": "dppk:eprelStandbyPowerConsumption",
+      "@type": "xsd:integer"
+    },
+    "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+    "waterStorageStandingLoss": {
+      "@id": "dppk:eprelWaterStorageStandingLoss",
+      "@type": "xsd:integer"
+    },
+    "energyClass": "dppk:eprelEnergyClass",
+    "solarTankEnergyClass": "dppk:eprelSolarTankEnergyClass",
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "energyLabelId": "dppk:eprelEnergyLabelId",
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "solarCollectorApertureArea": {
+      "@id": "dppk:eprelSolarCollectorApertureArea",
+      "@type": "xsd:double"
+    },
+    "formType": "dppk:eprelFormType",
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "annualAuxiliaryElectricityConsumption": {
+      "@id": "dppk:eprelAnnualAuxiliaryElectricityConsumption",
+      "@type": "xsd:integer"
+    },
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "contactId": "dppk:eprelContactId",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "loadProfiles": {
+      "@id": "dppk:eprelLoadProfileContainer",
+      "@context": {
+        "id": {
+          "@id": "dppk:eprelLpId",
+          "@type": "xsd:integer"
+        },
+        "orderNumber": {
+          "@id": "dppk:eprelLpOrderNumber",
+          "@type": "xsd:integer"
+        },
+        "type": "dppk:eprelLpType",
+        "annualNonSolarHeatContributionElec": {
+          "@id": "dppk:eprelLpAnnualNonSolarHeatContributionElec",
+          "@type": "xsd:integer"
+        },
+        "annualNonSolarHeatContributionFuel": "dppk:eprelLpAnnualNonSolarHeatContributionFuel"
+      }
+    },
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "solarCollectorEfficiency": {
+      "@id": "dppk:eprelSolarCollectorEfficiency",
+      "@type": "xsd:integer"
+    },
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "solarTankStorageVolumeM3": {
+      "@id": "dppk:eprelSolarTankStorageVolumeM3",
+      "@type": "xsd:double"
+    },
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "solarTankStorageVolumeL": {
+      "@id": "dppk:eprelSolarTankStorageVolumeL",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "pumpPowerConsumption": {
+      "@id": "dppk:eprelPumpPowerConsumption",
+      "@type": "xsd:integer"
+    },
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "productGroup": "dppk:eprelProductGroup",
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "isEnergySmartAppliance": {
+      "@id": "dppk:eprelIsEnergySmartAppliance",
+      "@type": "xsd:boolean"
+    },
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

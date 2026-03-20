@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: EPREL Spaceheatersolardevice Product</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">EPREL Spaceheatersolardevice Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: EPREL Spaceheatersolardevice Product (dppk:EprelSpaceheatersolardeviceProduct)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="EprelSpaceheatersolardeviceProduct">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class EprelSpaceheatersolardeviceProduct
+  EprelSpaceheatersolardeviceProduct : +eprelLoadProfileContainer
+  EprelSpaceheatersolardeviceProduct --|> EprelLoadProfile : eprelLoadProfileContainer
+  EprelSpaceheatersolardeviceProduct : +eprelStatus
+  EprelSpaceheatersolardeviceProduct : +eprelStandbyPowerConsumption
+  EprelSpaceheatersolardeviceProduct : +eprelOnMarketEndDateTS
+  EprelSpaceheatersolardeviceProduct : +eprelWaterStorageStandingLoss
+  EprelSpaceheatersolardeviceProduct : +eprelEnergyClass
+  EprelSpaceheatersolardeviceProduct : +eprelSolarTankEnergyClass
+  EprelSpaceheatersolardeviceProduct : +eprelOrgVerificationStatus
+  EprelSpaceheatersolardeviceProduct : +eprelEnergyLabelId
+  EprelSpaceheatersolardeviceProduct : +eprelOnMarketStartDate
+  EprelSpaceheatersolardeviceProduct : +eprelSolarCollectorApertureArea
+  EprelSpaceheatersolardeviceProduct : +eprelFormType
+  EprelSpaceheatersolardeviceProduct : +eprelOnMarketStartDateTS
+  EprelSpaceheatersolardeviceProduct : +eprelFirstPublicationDate
+  EprelSpaceheatersolardeviceProduct : +eprelAnnualAuxiliaryElectricityConsumption
+  EprelSpaceheatersolardeviceProduct : +eprelGeneratedLabels
+  EprelSpaceheatersolardeviceProduct : +eprelVisibleToUkMsa
+  EprelSpaceheatersolardeviceProduct : +eprelContactId
+  EprelSpaceheatersolardeviceProduct : +eprelAdditionalDetails
+  EprelSpaceheatersolardeviceProduct : +eprelLastVersion
+  EprelSpaceheatersolardeviceProduct : +eprelTrademarkOwner
+  EprelSpaceheatersolardeviceProduct : +eprelAllowEprelLabelGeneration
+  EprelSpaceheatersolardeviceProduct : +eprelFirstPublicationDateTS
+  EprelSpaceheatersolardeviceProduct : +eprelOnMarketEndDate
+  EprelSpaceheatersolardeviceProduct : +eprelSolarCollectorEfficiency
+  EprelSpaceheatersolardeviceProduct : +eprelRegistrantNature
+  EprelSpaceheatersolardeviceProduct : +eprelTrademarkId
+  EprelSpaceheatersolardeviceProduct : +eprelExportDateTS
+  EprelSpaceheatersolardeviceProduct : +eprelOnMarketFirstStartDateTS
+  EprelSpaceheatersolardeviceProduct : +eprelImplementingAct
+  EprelSpaceheatersolardeviceProduct : +eprelBlocked
+  EprelSpaceheatersolardeviceProduct : +eprelModelIdentifier
+  EprelSpaceheatersolardeviceProduct : +eprelSolarTankStorageVolumeM3
+  EprelSpaceheatersolardeviceProduct : +eprelEnergyClassImageWithScale
+  EprelSpaceheatersolardeviceProduct : +eprelVersionId
+  EprelSpaceheatersolardeviceProduct : +eprelEnergyClassImage
+  EprelSpaceheatersolardeviceProduct : +eprelTrademarkVerificationStatus
+  EprelSpaceheatersolardeviceProduct : +eprelImportedOn
+  EprelSpaceheatersolardeviceProduct : +eprelPublishedOnDateTS
+  EprelSpaceheatersolardeviceProduct : +eprelEnergyClassRange
+  EprelSpaceheatersolardeviceProduct : +eprelSolarTankStorageVolumeL
+  EprelSpaceheatersolardeviceProduct : +eprelOnMarketFirstStartDate
+  EprelSpaceheatersolardeviceProduct : +eprelProductModelCoreId
+  EprelSpaceheatersolardeviceProduct : +eprelVersionNumber
+  EprelSpaceheatersolardeviceProduct : +eprelUploadedLabels
+  EprelSpaceheatersolardeviceProduct : +eprelPumpPowerConsumption
+  EprelSpaceheatersolardeviceProduct : +eprelSupplierOrTrademark
+  EprelSpaceheatersolardeviceProduct : +eprelPublishedOnDate
+  EprelSpaceheatersolardeviceProduct : +eprelProductGroup
+  EprelSpaceheatersolardeviceProduct : +eprelModelAvailabilityInCountries
+  EprelSpaceheatersolardeviceProduct : +eprelModelAvailabilityInEUEEACountries
+  EprelSpaceheatersolardeviceProduct : +eprelIsEnergySmartAppliance
+  EprelSpaceheatersolardeviceProduct : +eprelModelAvailabilityInOtherCountries
+  EprelSpaceheatersolardeviceProduct : +eprelAvailabilityInEUEEACountries
+  EprelSpaceheatersolardeviceProduct : +eprelRegistrationNumber
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Base class</p>
+                
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Load Profile Container (dppk:eprelLoadProfileContainer)</td>
+                                    <td>-</td>
+                                    <td>dppk:EprelLoadProfile</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Status (dppk:eprelStatus)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Standby Power Consumption (dppk:eprelStandbyPowerConsumption)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market End Date T S (dppk:eprelOnMarketEndDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Water Storage Standing Loss (dppk:eprelWaterStorageStandingLoss)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class (dppk:eprelEnergyClass)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Solar Tank Energy Class (dppk:eprelSolarTankEnergyClass)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Org Verification Status (dppk:eprelOrgVerificationStatus)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Label Id (dppk:eprelEnergyLabelId)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market Start Date (dppk:eprelOnMarketStartDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Solar Collector Aperture Area (dppk:eprelSolarCollectorApertureArea)</td>
+                                    <td>-</td>
+                                    <td>xsd:double</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Form Type (dppk:eprelFormType)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market Start Date T S (dppk:eprelOnMarketStartDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel First Publication Date (dppk:eprelFirstPublicationDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Annual Auxiliary Electricity Consumption (dppk:eprelAnnualAuxiliaryElectricityConsumption)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Generated Labels (dppk:eprelGeneratedLabels)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Visible To Uk Msa (dppk:eprelVisibleToUkMsa)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Contact Id (dppk:eprelContactId)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Additional Details (dppk:eprelAdditionalDetails)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Last Version (dppk:eprelLastVersion)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Trademark Owner (dppk:eprelTrademarkOwner)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Allow Eprel Label Generation (dppk:eprelAllowEprelLabelGeneration)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel First Publication Date T S (dppk:eprelFirstPublicationDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market End Date (dppk:eprelOnMarketEndDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Solar Collector Efficiency (dppk:eprelSolarCollectorEfficiency)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Registrant Nature (dppk:eprelRegistrantNature)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Trademark Id (dppk:eprelTrademarkId)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Export Date T S (dppk:eprelExportDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market First Start Date T S (dppk:eprelOnMarketFirstStartDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Implementing Act (dppk:eprelImplementingAct)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Blocked (dppk:eprelBlocked)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Identifier (dppk:eprelModelIdentifier)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Solar Tank Storage Volume M3 (dppk:eprelSolarTankStorageVolumeM3)</td>
+                                    <td>-</td>
+                                    <td>xsd:double</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class Image With Scale (dppk:eprelEnergyClassImageWithScale)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Version Id (dppk:eprelVersionId)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class Image (dppk:eprelEnergyClassImage)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Trademark Verification Status (dppk:eprelTrademarkVerificationStatus)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Imported On (dppk:eprelImportedOn)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Published On Date T S (dppk:eprelPublishedOnDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class Range (dppk:eprelEnergyClassRange)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Solar Tank Storage Volume L (dppk:eprelSolarTankStorageVolumeL)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market First Start Date (dppk:eprelOnMarketFirstStartDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Product Model Core Id (dppk:eprelProductModelCoreId)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Version Number (dppk:eprelVersionNumber)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Uploaded Labels (dppk:eprelUploadedLabels)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Pump Power Consumption (dppk:eprelPumpPowerConsumption)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Supplier Or Trademark (dppk:eprelSupplierOrTrademark)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Published On Date (dppk:eprelPublishedOnDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Product Group (dppk:eprelProductGroup)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Availability In Countries (dppk:eprelModelAvailabilityInCountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Availability In E U E E A Countries (dppk:eprelModelAvailabilityInEUEEACountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Is Energy Smart Appliance (dppk:eprelIsEnergySmartAppliance)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Availability In Other Countries (dppk:eprelModelAvailabilityInOtherCountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Availability In E U E E A Countries (dppk:eprelAvailabilityInEUEEACountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Registration Number (dppk:eprelRegistrationNumber)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

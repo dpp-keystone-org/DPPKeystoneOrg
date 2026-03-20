@@ -1,0 +1,127 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-professionalrefrigeratedstoragecabinets.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelProfessionalrefrigeratedstoragecabinetsProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-professionalrefrigeratedstoragecabinets-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-professionalrefrigeratedstoragecabinets-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_professionalrefrigeratedstoragecabinets_specification_id"
+  ],
+  "productName": "Keystone Demo 'professionalrefrigeratedstoragecabinets' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-professionalrefrigeratedstoragecabinets-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "climateClass": "Keystone Demo FIVE",
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-5206",
+    "city": "Keystone Demo Pordenone",
+    "postalCode": "DEMO-1683",
+    "contactReference": "Keystone Demo RecContact001",
+    "serviceName": "Keystone Demo Technical Support",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "province": "Keystone Demo PORDENONE",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Viale Treviso",
+    "id": 12124,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo Electrolux Professional AB (publ)",
+    "organisationName": "Keystone Demo Electrolux Professional AB (publ)",
+    "isClosed": false,
+    "guid": "DEMO-8814",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "onMarketEndDateTS": 2846352960,
+  "ecoLabel": false,
+  "modelAvailabilityInCountries": [],
+  "energyClass": "C",
+  "orgVerificationStatus": "VERIFIED",
+  "energyLabelId": 1733494,
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1951076161,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "visibleToUkMsa": false,
+  "frozenVolume": 195,
+  "energyConsumption": 4708,
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951167320,
+  "onMarketEndDate": [
+    2028,
+    1,
+    1
+  ],
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 56920,
+  "exportDateTS": 1951167953151,
+  "onMarketFirstStartDateTS": 1951076161,
+  "implementingAct": "Keystone Demo EU_2015_1094",
+  "blocked": false,
+  "modelIdentifier": "DEMO-6602",
+  "modelType": "Keystone Demo COUNTER_CABINET",
+  "energyClassImageWithScale": "Keystone Demo C-Left-DarkOrange-WithAPPPGScale.svg",
+  "versionId": 5896313,
+  "energyClassImage": "Keystone Demo C-Left-DarkOrange.png",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1951167954838,
+  "publishedOnDateTS": 1951167319369,
+  "energyClassRange": "Keystone Demo APPP_G",
+  "energyAnnual": 1721,
+  "energyEfficiencyIndex": 50.39,
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2933533,
+  "compartments": [
+    {
+      "id": 174778,
+      "orderNumber": 2,
+      "netVolume": 195,
+      "climateClassInOperations": "Keystone Demo FROZEN_OPERATING_TEMPERATURE"
+    }
+  ],
+  "versionNumber": 2,
+  "chilledVolume": 1,
+  "supplierOrTrademark": "Keystone Demo Electrolux Professional",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo professionalrefrigeratedstoragecabinets",
+  "operatingTemperature": "Keystone Demo HEAVY_DUTY_CABINET",
+  "eprelRegistrationNumber": "DEMO-5051"
+}

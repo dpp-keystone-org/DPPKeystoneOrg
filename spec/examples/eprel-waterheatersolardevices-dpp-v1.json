@@ -1,0 +1,110 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-waterheatersolardevices.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelWaterheatersolardevicesProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-waterheatersolardevices-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-waterheatersolardevices-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_waterheatersolardevices_specification_id"
+  ],
+  "productName": "Keystone Demo 'waterheatersolardevices' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-waterheatersolardevices-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-5148",
+    "city": "Keystone Demo Dettenhausen",
+    "postalCode": "DEMO-4762",
+    "contactReference": "Keystone Demo PDD",
+    "serviceName": "Keystone Demo Allgemeiner Kontakt Paradigma",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Kuchenäcker",
+    "id": 497,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo Ritter Energie GmbH & Co. KG",
+    "organisationName": "Keystone Demo Ritter Energie GmbH & Co. KG",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-9374",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "orgVerificationStatus": "VERIFIED",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1935204481,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "incidenceAngleModifier": 1.13,
+  "firstOrderCoefficient": 0.52,
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1935196676,
+  "loadProfiles": [],
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 1236,
+  "exportDateTS": 1949791305368,
+  "onMarketFirstStartDateTS": 1935204481,
+  "implementingAct": "Keystone Demo EU_812_2013",
+  "blocked": false,
+  "modelIdentifier": "DEMO-4467",
+  "versionId": 5461211,
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1949791323844,
+  "publishedOnDateTS": 1935196676113,
+  "secondOrderCoefficient": 0,
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2698405,
+  "versionNumber": 2,
+  "zeroLossEfficiency": 0.65,
+  "supplierOrTrademark": "Keystone Demo Paradigma",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo waterheatersolardevices",
+  "solarCollectorSize": 3.84,
+  "modelAvailabilityInCountries": [
+    "DE"
+  ],
+  "modelAvailabilityInEUEEACountries": [
+    "DE"
+  ],
+  "isEnergySmartAppliance": false,
+  "modelAvailabilityInOtherCountries": [],
+  "availabilityInEUEEACountries": "Keystone Demo AS_SPECIFIED",
+  "eprelRegistrationNumber": "DEMO-7167"
+}

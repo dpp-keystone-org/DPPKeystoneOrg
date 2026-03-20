@@ -1,0 +1,174 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {}
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {}
+    },
+    "tyreClass": "dppk:eprelTyreClass",
+    "loadCapacityIndex": {
+      "@id": "dppk:eprelLoadCapacityIndex",
+      "@type": "xsd:integer"
+    },
+    "status": "dppk:eprelStatus",
+    "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "energyClass": "dppk:eprelEnergyClass",
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "speedCategorySymbol2": "dppk:eprelSpeedCategorySymbol2",
+    "energyLabelId": "dppk:eprelEnergyLabelId",
+    "dateStartProductionYear": {
+      "@id": "dppk:eprelDateStartProductionYear",
+      "@type": "xsd:integer"
+    },
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "rimDiameter": {
+      "@id": "dppk:eprelRimDiameter",
+      "@type": "xsd:integer"
+    },
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "formType": "dppk:eprelFormType",
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "externalRollingNoiseClass": "dppk:eprelExternalRollingNoiseClass",
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "loadCapacityIndicator": "dppk:eprelLoadCapacityIndicator",
+    "externalRollingNoiseValue": {
+      "@id": "dppk:eprelExternalRollingNoiseValue",
+      "@type": "xsd:integer"
+    },
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "additionalInfos": {
+      "@id": "dppk:eprelAdditionalInfoContainer",
+      "@context": {
+        "language": {
+          "@id": "dppk:eprelAiLanguage",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "dppk:eprelAiId",
+          "@type": "xsd:integer"
+        },
+        "orderNumber": {
+          "@id": "dppk:eprelAiOrderNumber",
+          "@type": "xsd:integer"
+        },
+        "text": {
+          "@id": "dppk:eprelAiText",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "tyreSection": {
+      "@id": "dppk:eprelTyreSection",
+      "@type": "xsd:integer"
+    },
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "dateEndProductionWeek": "dppk:eprelDateEndProductionWeek",
+    "commercialName": "dppk:eprelCommercialName",
+    "wetGripClassRange": "dppk:eprelWetGripClassRange",
+    "contactId": "dppk:eprelContactId",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "sizeDesignationFiltered": "dppk:eprelSizeDesignationFiltered",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "aspectRatio": {
+      "@id": "dppk:eprelAspectRatio",
+      "@type": "xsd:integer"
+    },
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "speedCategorySymbol": "dppk:eprelSpeedCategorySymbol",
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "wetGripClass": "dppk:eprelWetGripClass",
+    "loadCapacityIndex3": "dppk:eprelLoadCapacityIndex3",
+    "dateEndProductionYear": "dppk:eprelDateEndProductionYear",
+    "tyreDesignation": "dppk:eprelTyreDesignation",
+    "loadCapacityIndex4": "dppk:eprelLoadCapacityIndex4",
+    "loadCapacityIndex2": "dppk:eprelLoadCapacityIndex2",
+    "sizeDesignation": "dppk:eprelSizeDesignation",
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "dateStartProductionWeek": {
+      "@id": "dppk:eprelDateStartProductionWeek",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "externalRollingNoiseClassRange": "dppk:eprelExternalRollingNoiseClassRange",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "iceTyre": {
+      "@id": "dppk:eprelIceTyre",
+      "@type": "xsd:boolean"
+    },
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "productGroup": "dppk:eprelProductGroup",
+    "severeSnowTyre": {
+      "@id": "dppk:eprelSevereSnowTyre",
+      "@type": "xsd:boolean"
+    },
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

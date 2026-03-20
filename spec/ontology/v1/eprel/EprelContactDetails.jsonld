@@ -1,0 +1,341 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelContactDetails",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Contact Details Sub-Ontology",
+  "dcterms:description": "Defines the classes and properties required for representing EPREL Contact Details.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Contact Details Sub-Ontology"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:eprelContactDetails",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Contact Details"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Object property linking to contact details block."
+      },
+      "rdfs:range": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      }
+    },
+    {
+      "@id": "dppk:EprelContactDetailsBlock",
+      "@type": "rdfs:Class",
+      "owl:equivalentClass": {
+        "@id": "schema:ContactPoint"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Contact Details"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Contact Details Block"
+      }
+    },
+    {
+      "@id": "dppk:eprelCountry",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The country."
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Country"
+      }
+    },
+    {
+      "@id": "dppk:eprelContactByReferenceId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Contact By Reference Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Contact By Reference Id"
+      }
+    },
+    {
+      "@id": "dppk:eprelOrderNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Order Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Order Number"
+      }
+    },
+    {
+      "@id": "dppk:eprelStreetNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Street Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Street Number"
+      }
+    },
+    {
+      "@id": "dppk:eprelCity",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel City"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel City"
+      }
+    },
+    {
+      "@id": "dppk:eprelPostalCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Postal Code"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Postal Code"
+      }
+    },
+    {
+      "@id": "dppk:eprelContactReference",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Contact Reference"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Contact Reference"
+      }
+    },
+    {
+      "@id": "dppk:eprelMunicipality",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Municipality"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Municipality"
+      }
+    },
+    {
+      "@id": "dppk:eprelServiceName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Service Name"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Service Name"
+      }
+    },
+    {
+      "@id": "dppk:eprelWebSiteURL",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:anyURI",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Web Site U R L"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Web Site U R L"
+      }
+    },
+    {
+      "@id": "dppk:eprelAddressBloc",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Address Bloc"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Address Bloc"
+      }
+    },
+    {
+      "@id": "dppk:eprelProvince",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Province"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Province"
+      }
+    },
+    {
+      "@id": "dppk:eprelDefaultContact",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Default Contact"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Default Contact"
+      }
+    },
+    {
+      "@id": "dppk:eprelPhone",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Phone"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Phone"
+      }
+    },
+    {
+      "@id": "dppk:eprelStreet",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Street"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Street"
+      }
+    },
+    {
+      "@id": "dppk:eprelContactId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Contact Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Contact Id"
+      }
+    },
+    {
+      "@id": "dppk:eprelEmail",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Email"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Email"
+      }
+    },
+    {
+      "@id": "dppk:eprelContactStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelContactDetailsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Contact Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Contact Status"
+      }
+    }
+  ]
+}

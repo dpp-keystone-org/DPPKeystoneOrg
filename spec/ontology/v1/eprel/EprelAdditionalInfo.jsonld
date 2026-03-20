@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelAdditionalInfo.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Additional Info Sector Ontology",
+  "dcterms:description": "Sector ontology for the EPREL Additional Info product category.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Additional Info Sector Ontology"
+    }
+  ],
+  "owl:imports": [],
+  "@graph": [
+    {
+      "@id": "dppk:EprelAdditionalInfo",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Additional Info"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAiLanguage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelAdditionalInfo"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Ai Language"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAiId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelAdditionalInfo"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Ai Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelAiOrderNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelAdditionalInfo"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Ai Order Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelAiText",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelAdditionalInfo"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Ai Text"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    }
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-washerdriers.schema.json",
+  "title": "DPP for washerdriers (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the washerdriers sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "eprel_washerdriers_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "releasesSilverIrons": {
+        "type": "boolean"
+      },
+      "energyEfficiencyIndexWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "dimensionWidth": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "dimensionDepth": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "maxTempHalfWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyConsumption100WashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "washingEfficiencyIndexWash": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketEndDateTS": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "spinSpeedRated": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyLabelId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "noiseClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "onMarketStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInEUEEACountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "rinsingEffectivenessWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "washingEfficiencyIndexWashAndDry": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "washingEfficiencyIndexWashAndDryV2": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "maxTempRatedWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "firstPublicationDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "generatedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalInfos": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/additional-info.schema.json"
+        }
+      },
+      "ratedCapacityWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "powerStandbyMode": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "lastVersion": {
+        "type": "boolean"
+      },
+      "trademarkOwner": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "allowEprelLabelGeneration": {
+        "type": "boolean"
+      },
+      "isEnergySmartAppliance": {
+        "type": "boolean"
+      },
+      "moistureHalf": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketEndDate": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "programDurationQuarterWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "noise": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "implementingAct": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "blocked": {
+        "type": "boolean"
+      },
+      "rinsingEffectivenessWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyConsumption100Wash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "versionId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassImage": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "importedOn": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyEfficiencyIndexWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "programDurationHalfWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInOtherCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productModelCoreId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "versionNumber": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "powerNetworkedStandby": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "moisture": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "supplierOrTrademark": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "guaranteeDuration": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "maxTempQuarterWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "availabilityInEUEEACountries": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ratedCapacityWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "contactDetails": {
+        "$ref": "eprel/contact-details.schema.json"
+      },
+      "organisation": {
+        "$ref": "eprel/organisation.schema.json"
+      },
+      "energyConsumptionWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "energyClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "orgVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "programDurationRatedWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "webLinkSupplier": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "onMarketStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "programDurationRatedWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassWashAndDry": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "dimensionHeight": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "visibleToUkMsa": {
+        "type": "boolean"
+      },
+      "contactId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalDetails": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "moistureRated": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyConsumptionWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassWash": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "firstPublicationDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "waterConsumptionWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "spinSpeedHalf": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "powerOffMode": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "maxTempRatedWash": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "registrantNature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "exportDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "washingEfficiencyIndexWashV2": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "waterConsumptionWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelIdentifier": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyClassImageWithScale": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "maxTempHalfWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "trademarkVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "spinSpeedQuarter": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "publishedOnDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassRange": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "spinClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "moistureQuarter": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "programDurationHalfWashAndDry": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "uploadedLabels": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "powerDelayStart": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "publishedOnDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productGroup": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "designType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "eprelRegistrationNumber": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

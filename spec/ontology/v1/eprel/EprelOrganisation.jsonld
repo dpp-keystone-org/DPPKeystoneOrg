@@ -1,0 +1,219 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelOrganisation",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Organisation Sub-Ontology",
+  "dcterms:description": "Defines the classes and properties required for representing EPREL Organisation.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Organisation Sub-Ontology"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:eprelOrganisation",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Organisation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Object property linking to organisation block."
+      },
+      "rdfs:range": {
+        "@id": "dppk:EprelOrganisationBlock"
+      }
+    },
+    {
+      "@id": "dppk:EprelOrganisationBlock",
+      "@type": "rdfs:Class",
+      "owl:equivalentClass": {
+        "@id": "schema:Organization"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Organisation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Organisation Block"
+      }
+    },
+    {
+      "@id": "dppk:eprelOrganisationTitle",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Organisation Title"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Organisation Title"
+      }
+    },
+    {
+      "@id": "dppk:eprelCloseDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Close Date"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Close Date"
+      }
+    },
+    {
+      "@id": "dppk:eprelFirstName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel First Name"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel First Name"
+      }
+    },
+    {
+      "@id": "dppk:eprelLastName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Last Name"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Last Name"
+      }
+    },
+    {
+      "@id": "dppk:eprelOrganisationName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "owl:equivalentProperty": {
+        "@id": "schema:name"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Organisation Name"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Organisation Name"
+      }
+    },
+    {
+      "@id": "dppk:eprelWebsite",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "owl:equivalentProperty": {
+        "@id": "schema:url"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Website"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Website"
+      }
+    },
+    {
+      "@id": "dppk:eprelCloseStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Close Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Close Status"
+      }
+    },
+    {
+      "@id": "dppk:eprelIsClosed",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Is Closed"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Is Closed"
+      }
+    },
+    {
+      "@id": "dppk:eprelGuid",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Guid"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Guid"
+      }
+    },
+    {
+      "@id": "dppk:eprelPersonType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelOrganisationBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Person Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Person Type"
+      }
+    }
+  ]
+}

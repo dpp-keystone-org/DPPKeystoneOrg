@@ -1,0 +1,454 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelHeatingCharacteristics",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Heating Characteristics Sub-Ontology",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Heating Characteristics Sub-Ontology"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:eprelHeatingCharacteristics",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Heating Characteristics"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Object property linking to heating characteristics block."
+      },
+      "rdfs:range": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      }
+    },
+    {
+      "@id": "dppk:EprelHeatingCharacteristicsBlock",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Heating Characteristics"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Heating Characteristics Block"
+      }
+    },
+    {
+      "@id": "dppk:eprelBackupCapacityAverage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Backup Capacity Average"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Backup Capacity Average"
+      }
+    },
+    {
+      "@id": "dppk:eprelBackupCapacityWarm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Backup Capacity Warm"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Backup Capacity Warm"
+      }
+    },
+    {
+      "@id": "dppk:eprelBackupCapacityCold",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Backup Capacity Cold"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Backup Capacity Cold"
+      }
+    },
+    {
+      "@id": "dppk:eprelAnnualElectricityConsumptionWarm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kWh/a",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Annual Electricity Consumption Warm"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Annual Electricity Consumption Warm"
+      }
+    },
+    {
+      "@id": "dppk:eprelAnnualElectricityConsumptionAverage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kWh/a",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Annual Electricity Consumption Average"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Annual Electricity Consumption Average"
+      }
+    },
+    {
+      "@id": "dppk:eprelAnnualElectricityConsumptionCold",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kWh/a",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Annual Electricity Consumption Cold"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Annual Electricity Consumption Cold"
+      }
+    },
+    {
+      "@id": "dppk:eprelHourlyElectricityConsumption",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kWh/h",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Hourly Electricity Consumption"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Hourly Electricity Consumption"
+      }
+    },
+    {
+      "@id": "dppk:eprelDesignLoadWarm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Design Load Warm"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Design Load Warm"
+      }
+    },
+    {
+      "@id": "dppk:eprelDesignLoadAverage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Design Load Average"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Design Load Average"
+      }
+    },
+    {
+      "@id": "dppk:eprelDesignLoadCold",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Design Load Cold"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Design Load Cold"
+      }
+    },
+    {
+      "@id": "dppk:eprelDeclaredCapacityAverage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Declared Capacity Average"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Declared Capacity Average"
+      }
+    },
+    {
+      "@id": "dppk:eprelDeclaredCapacityWarm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Declared Capacity Warm"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Declared Capacity Warm"
+      }
+    },
+    {
+      "@id": "dppk:eprelDeclaredCapacityCold",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Declared Capacity Cold"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Declared Capacity Cold"
+      }
+    },
+    {
+      "@id": "dppk:eprelRatedCapacity",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Rated Capacity"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Rated Capacity"
+      }
+    },
+    {
+      "@id": "dppk:eprelSeasonalCoefficientOfPerformanceAverage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Coefficient Of Performance Average"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Coefficient Of Performance Average"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelSeasonalCoefficientOfPerformanceCold",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Coefficient Of Performance Cold"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Coefficient Of Performance Cold"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelSeasonalCoefficientOfPerformanceWarm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Coefficient Of Performance Warm"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Coefficient Of Performance Warm"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelCoefficientOfPerformance",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Coefficient Of Performance"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Coefficient Of Performance"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelEnergyClassWarm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Warm"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Warm"
+      }
+    },
+    {
+      "@id": "dppk:eprelEnergyClassAverage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Average"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Average"
+      }
+    },
+    {
+      "@id": "dppk:eprelEnergyClassCold",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Cold"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Energy Class Cold"
+      }
+    },
+    {
+      "@id": "dppk:eprelEnergyClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Energy Class"
+      }
+    },
+    {
+      "@id": "dppk:eprelIndoorSoundPower",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "dB",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Indoor Sound Power"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Indoor Sound Power"
+      }
+    },
+    {
+      "@id": "dppk:eprelOutdoorSoundPower",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelHeatingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "dB",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Outdoor Sound Power"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Outdoor Sound Power"
+      }
+    }
+  ],
+  "dcterms:description": "Sub-ontology defining the properties for EPREL heating characteristics."
+}

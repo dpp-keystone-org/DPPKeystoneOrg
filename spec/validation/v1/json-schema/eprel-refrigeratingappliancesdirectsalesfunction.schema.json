@@ -1,0 +1,507 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-refrigeratingappliancesdirectsalesfunction.schema.json",
+  "title": "DPP for Refrigerating Appliances Direct Sales Function (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the refrigeratingappliancesdirectsalesfunction sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "eprel_refrigeratingappliancesdirectsalesfunction_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "refrigerator": {
+        "type": "boolean"
+      },
+      "displayAreaFrozenTotal": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "highestWarmTempChilled": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "contactDetails": {
+        "$ref": "eprel/contact-details.schema.json"
+      },
+      "organisation": {
+        "$ref": "eprel/organisation.schema.json"
+      },
+      "onMarketEndDateTS": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "webLinkManufacturer": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "netVolumeChilledTotal": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "modelAvailabilityInCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "energyClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "orgVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyLabelId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "lightSources": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/appliance-light-source.schema.json"
+        }
+      },
+      "applianceType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "onMarketStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInEUEEACountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "warmestAmbientTemp": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "machineInfos": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "firstPublicationDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "highestWarmTempFrozen": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "generatedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalInfos": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/additional-info.schema.json"
+        }
+      },
+      "visibleToUkMsa": {
+        "type": "boolean"
+      },
+      "energyConsAnnual": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "machineType": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "contactId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalDetails": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "lastVersion": {
+        "type": "boolean"
+      },
+      "trademarkOwner": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "allowEprelLabelGeneration": {
+        "type": "boolean"
+      },
+      "firstPublicationDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "lowestColdHighestMinTempChilled": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "transparentLid": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketEndDate": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "netVolumeFrozenTotal": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "registrantNature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "cabinetType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "exportDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "implementingAct": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "blocked": {
+        "type": "boolean"
+      },
+      "modelIdentifier": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyClassImageWithScale": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "versionId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassImage": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "lowestColdHighestMinTempFrozen": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "importedOn": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "publishedOnDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "cabinetFamilyCode": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyClassRange": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "grossVolumeChilledTotal": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyEfficiencyIndex": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "highestTempChilled": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "modelAvailabilityInOtherCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "maxAmbientTemp": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "displayAreaChilledTotal": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productModelCoreId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "compartments": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/direct-sales-compartment.schema.json"
+        }
+      },
+      "versionNumber": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "uploadedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "guaranteeDuration": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "supplierOrTrademark": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "cabinetOrientation": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "availabilityInEUEEACountries": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "publishedOnDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productGroup": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "highestTempFrozen": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "freezer": {
+        "type": "boolean"
+      },
+      "rollIn": {
+        "type": "boolean"
+      },
+      "eprelRegistrationNumber": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

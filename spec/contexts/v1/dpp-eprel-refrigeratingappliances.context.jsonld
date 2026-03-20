@@ -1,0 +1,278 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {}
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {}
+    },
+    "lightSources": {
+      "@id": "dppk:eprelApplianceLightSourceContainer",
+      "@context": {
+        "orderNumber": {
+          "@id": "dppk:eprelAlsOrderNumber",
+          "@type": "xsd:integer"
+        },
+        "lightAntiGlareShield": {
+          "@id": "dppk:eprelAlsLightAntiGlareShield",
+          "@type": "xsd:boolean"
+        },
+        "lightHighLuminance": {
+          "@id": "dppk:eprelAlsLightHighLuminance",
+          "@type": "xsd:boolean"
+        },
+        "lightTechnology": "dppk:eprelAlsLightTechnology",
+        "lightConnected": {
+          "@id": "dppk:eprelAlsLightConnected",
+          "@type": "xsd:boolean"
+        },
+        "lightColourTuneable": {
+          "@id": "dppk:eprelAlsLightColourTuneable",
+          "@type": "xsd:boolean"
+        },
+        "lightSourceClass": "dppk:eprelAlsLightSourceClass",
+        "id": {
+          "@id": "dppk:eprelAlsId",
+          "@type": "xsd:integer"
+        },
+        "lightDirectionality": "dppk:eprelAlsLightDirectionality",
+        "lightEnvelop": "dppk:eprelAlsLightEnvelop",
+        "lightDimmable": "dppk:eprelAlsLightDimmable",
+        "lightMains": "dppk:eprelAlsLightMains"
+      }
+    },
+    "compartments": {
+      "@id": "dppk:eprelFridgeCompartmentContainer",
+      "@context": {
+        "volume": {
+          "@id": "dppk:eprelFcVolume",
+          "@type": "xsd:integer"
+        },
+        "defrostingType": "dppk:eprelFcDefrostingType",
+        "id": {
+          "@id": "dppk:eprelFcId",
+          "@type": "xsd:integer"
+        },
+        "orderNumber": {
+          "@id": "dppk:eprelFcOrderNumber",
+          "@type": "xsd:integer"
+        },
+        "compartmentType": "dppk:eprelFcCompartmentType",
+        "subCompartments": {
+          "@id": "dppk:eprelFridgeSubCompartmentContainer",
+          "@context": {
+            "recommendedTemp": {
+              "@id": "dppk:eprelFscRecommendedTemp",
+              "@type": "xsd:integer"
+            },
+            "capFreezing": "dppk:eprelFscCapFreezing",
+            "id": {
+              "@id": "dppk:eprelFscId",
+              "@type": "xsd:integer"
+            },
+            "orderNumber": {
+              "@id": "dppk:eprelFscOrderNumber",
+              "@type": "xsd:integer"
+            },
+            "capFreezingV2": "dppk:eprelFscCapFreezingV2",
+            "compartmentType": "dppk:eprelFscCompartmentType"
+          }
+        }
+      }
+    },
+    "dimensionWidth": {
+      "@id": "dppk:eprelDimensionWidth",
+      "@type": "xsd:integer"
+    },
+    "otherRefrigeratingAppliance": {
+      "@id": "dppk:eprelOtherRefrigeratingAppliance",
+      "@type": "xsd:boolean"
+    },
+    "dimensionDepth": {
+      "@id": "dppk:eprelDimensionDepth",
+      "@type": "xsd:integer"
+    },
+    "status": "dppk:eprelStatus",
+    "lowNoiseAppliance": {
+      "@id": "dppk:eprelLowNoiseAppliance",
+      "@type": "xsd:boolean"
+    },
+    "onMarketEndDateTS": {
+      "@id": "dppk:eprelOnMarketEndDateTS",
+      "@type": "xsd:integer"
+    },
+    "webLinkManufacturer": "dppk:eprelWebLinkManufacturer",
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "energyClass": "dppk:eprelEnergyClass",
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "energyLabelId": {
+      "@id": "dppk:eprelEnergyLabelId",
+      "@type": "xsd:integer"
+    },
+    "noiseClass": "dppk:eprelNoiseClass",
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "formType": "dppk:eprelFormType",
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "fastFreeze": {
+      "@id": "dppk:eprelFastFreeze",
+      "@type": "xsd:boolean"
+    },
+    "additionalInfos": "dppk:eprelAdditionalInfos",
+    "dimensionHeight": {
+      "@id": "dppk:eprelDimensionHeight",
+      "@type": "xsd:integer"
+    },
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "energyConsAnnual": "dppk:eprelEnergyConsAnnual",
+    "contactId": "dppk:eprelContactId",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "climateClassN": {
+      "@id": "dppk:eprelClimateClassN",
+      "@type": "xsd:boolean"
+    },
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "capFreezeNet": {
+      "@id": "dppk:eprelCapFreezeNet",
+      "@type": "xsd:integer"
+    },
+    "climateClassSN": {
+      "@id": "dppk:eprelClimateClassSN",
+      "@type": "xsd:boolean"
+    },
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "capRefrNet": {
+      "@id": "dppk:eprelCapRefrNet",
+      "@type": "xsd:integer"
+    },
+    "numberCompartments": {
+      "@id": "dppk:eprelNumberCompartments",
+      "@type": "xsd:integer"
+    },
+    "climateClassT": {
+      "@id": "dppk:eprelClimateClassT",
+      "@type": "xsd:boolean"
+    },
+    "minAmbientTemp": {
+      "@id": "dppk:eprelMinAmbientTemp",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "noise": {
+      "@id": "dppk:eprelNoise",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "wineStorageAppliance": {
+      "@id": "dppk:eprelWineStorageAppliance",
+      "@type": "xsd:boolean"
+    },
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "climateClassST": {
+      "@id": "dppk:eprelClimateClassST",
+      "@type": "xsd:boolean"
+    },
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "energyEfficiencyIndex": {
+      "@id": "dppk:eprelEnergyEfficiencyIndex",
+      "@type": "xsd:integer"
+    },
+    "winterSetting": {
+      "@id": "dppk:eprelWinterSetting",
+      "@type": "xsd:boolean"
+    },
+    "capBottles": "dppk:eprelCapBottles",
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "maxAmbientTemp": {
+      "@id": "dppk:eprelMaxAmbientTemp",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "totalVolume": {
+      "@id": "dppk:eprelTotalVolume",
+      "@type": "xsd:integer"
+    },
+    "consolidatedEnergyConsAnnual": {
+      "@id": "dppk:eprelConsolidatedEnergyConsAnnual",
+      "@type": "xsd:integer"
+    },
+    "guaranteeDuration": {
+      "@id": "dppk:eprelGuaranteeDuration",
+      "@type": "xsd:integer"
+    },
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "energyConsAnnualV2": {
+      "@id": "dppk:eprelEnergyConsAnnualV2",
+      "@type": "xsd:integer"
+    },
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "productGroup": "dppk:eprelProductGroup",
+    "designType": "dppk:eprelDesignType",
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

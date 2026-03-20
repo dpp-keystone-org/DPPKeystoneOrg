@@ -1,0 +1,84 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelCorrelatedColourTemp.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Correlated Colour Temp Ontology",
+  "dcterms:description": "Ontology for Correlated Colour Temp",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "Correlated Colour Temp Ontology"
+    }
+  ],
+  "owl:imports": [],
+  "@graph": [
+    {
+      "@id": "dppk:EprelCorrelatedColourTemp",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Correlated Colour Temp"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelCctCorrelatedColourTemperature",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCorrelatedColourTemp"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cct Correlated Colour Temperature"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "K"
+    },
+    {
+      "@id": "dppk:eprelCctId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCorrelatedColourTemp"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cct Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelCctOrderNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCorrelatedColourTemp"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cct Order Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    }
+  ]
+}

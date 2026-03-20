@@ -1,0 +1,481 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-tyres.schema.json",
+  "title": "DPP for tyres (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the tyres sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "eprel_tyres_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "tyreClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "loadCapacityIndex": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "contactDetails": {
+        "$ref": "eprel/contact-details.schema.json"
+      },
+      "organisation": {
+        "$ref": "eprel/organisation.schema.json"
+      },
+      "onMarketEndDateTS": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "modelAvailabilityInCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "energyClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "orgVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "speedCategorySymbol2": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyLabelId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "dateStartProductionYear": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "rimDiameter": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInEUEEACountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "onMarketStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "externalRollingNoiseClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "firstPublicationDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "loadCapacityIndicator": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "externalRollingNoiseValue": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "generatedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalInfos": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/additional-info.schema.json"
+        }
+      },
+      "tyreSection": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "visibleToUkMsa": {
+        "type": "boolean"
+      },
+      "dateEndProductionWeek": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "commercialName": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "wetGripClassRange": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "contactId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalDetails": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "sizeDesignationFiltered": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "lastVersion": {
+        "type": "boolean"
+      },
+      "trademarkOwner": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "allowEprelLabelGeneration": {
+        "type": "boolean"
+      },
+      "aspectRatio": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "firstPublicationDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketEndDate": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "speedCategorySymbol": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "registrantNature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "exportDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "wetGripClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "loadCapacityIndex3": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "dateEndProductionYear": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "tyreDesignation": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "loadCapacityIndex4": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "loadCapacityIndex2": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "sizeDesignation": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "onMarketFirstStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "dateStartProductionWeek": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "implementingAct": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "blocked": {
+        "type": "boolean"
+      },
+      "modelIdentifier": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyClassImageWithScale": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "versionId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassImage": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "externalRollingNoiseClassRange": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "importedOn": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "publishedOnDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassRange": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "modelAvailabilityInOtherCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productModelCoreId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "versionNumber": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "uploadedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "iceTyre": {
+        "type": "boolean"
+      },
+      "supplierOrTrademark": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "availabilityInEUEEACountries": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "publishedOnDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productGroup": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "severeSnowTyre": {
+        "type": "boolean"
+      },
+      "eprelRegistrationNumber": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

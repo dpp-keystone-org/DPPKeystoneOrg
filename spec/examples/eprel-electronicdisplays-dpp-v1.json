@@ -1,0 +1,130 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-electronicdisplays.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelElectronicdisplaysProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-electronicdisplays-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-electronicdisplays-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_electronicdisplays_specification_id"
+  ],
+  "productName": "Keystone Demo 'electronicdisplays' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-electronicdisplays-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "status": "PUBLISHED",
+  "energyClassSDR": "D",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-3249",
+    "city": "Keystone Demo Eschborn",
+    "postalCode": "DEMO-4292",
+    "contactReference": "Keystone Demo LG_Electronics_",
+    "serviceName": "Keystone Demo EU representative of LG Electronics Inc. ",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Alfred Herrhausen Allee ",
+    "id": 3593,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "powerSupplyType": "Keystone Demo INTERNAL",
+  "organisation": {
+    "organisationTitle": "Keystone Demo LG Electronics Deutschland GmbH",
+    "organisationName": "Keystone Demo LG Electronics Deutschland GmbH",
+    "isClosed": false,
+    "guid": "DEMO-3899",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "modelAvailabilityInCountries": [
+    "XI"
+  ],
+  "energyClass": "D",
+  "minAvailabilitySparePartsYears": 9,
+  "orgVerificationStatus": "VERIFIED",
+  "powerOnModeSDR": 107.91,
+  "powerStandby": 0.55,
+  "voiceAvailable": false,
+  "diagonalInch": 92,
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "Keystone Demo TYPE_2",
+  "onMarketStartDateTS": 1951361281,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "autoBrightnessControlAvailable": true,
+  "visibleToUkMsa": true,
+  "minGuaranteedGuarantee": 2,
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "category": "Keystone Demo TELEVISION",
+  "firstPublicationDateTS": 1951357422,
+  "roomPresenceAvailable": false,
+  "panelTechnology": "Keystone Demo OLED",
+  "minAvailabilitySoftwareUpdatesYears": 9,
+  "sizeRatioY": 10,
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 3628,
+  "exportDateTS": 1951358131750,
+  "onMarketFirstStartDateTS": 1951361281,
+  "implementingAct": "Keystone Demo EU_2019_2013",
+  "blocked": false,
+  "modelIdentifier": "DEMO-8380",
+  "resolutionHorizontalPixels": 4224,
+  "energyClassImageWithScale": "Keystone Demo D-Left-Yellow-WithAGScale.svg",
+  "resolutionVerticalPixels": 2376,
+  "versionId": 5766901,
+  "energyClassImage": "Keystone Demo D-Left-Yellow-WithAGScale.svg",
+  "trademarkVerificationStatus": "VERIFIED",
+  "sizeRatioX": 18,
+  "energyClassHDR": "G",
+  "importedOn": 1951358135396,
+  "minGuaranteedSupportYears": 9,
+  "publishedOnDateTS": 1951357421231,
+  "powerOnModeHDR": 380,
+  "energyClassRange": "Keystone Demo A_G",
+  "frequencyRate": 132,
+  "modelAvailabilityInOtherCountries": [
+    "XI"
+  ],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2858746,
+  "versionNumber": 2,
+  "supplierOrTrademark": "Keystone Demo LG Electronics",
+  "visibleAreaV2": 206.47,
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo electronicdisplays",
+  "powerStandbyNetworked": 3,
+  "calculatedDiagonalInch": false,
+  "diagonalCm": 230.56,
+  "eprelRegistrationNumber": "DEMO-9823"
+}

@@ -1,0 +1,229 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelApplianceLightSource.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Appliance Light Source Sector Ontology",
+  "dcterms:description": "Sector ontology for the EPREL Appliance Light Source product category.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Appliance Light Source Sector Ontology"
+    }
+  ],
+  "owl:imports": [],
+  "@graph": [
+    {
+      "@id": "dppk:EprelApplianceLightSource",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Appliance Light Source"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsOrderNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Order Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelAlsLightAntiGlareShield",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Anti Glare Shield"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightHighLuminance",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light High Luminance"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightTechnology",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Technology"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightConnected",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Connected"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightColourTuneable",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Colour Tuneable"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightSourceClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Source Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelAlsLightDirectionality",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Directionality"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightEnvelop",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Envelop"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightDimmable",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Dimmable"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelAlsLightMains",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelApplianceLightSource"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Als Light Mains"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    }
+  ]
+}

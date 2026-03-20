@@ -1,0 +1,135 @@
+{
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/direct-sales-compartment.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "ambientTempMin": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "superMarketTempClassFreezer": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "orderNumber": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "tempClass": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "superMarketTempClassRefrigeratorV2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relativeHumidityMin": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "displayArea": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "warmestTemp": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "recommendedTemp": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "volume": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "relativeHumidityMax": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "grossVolume": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "netVolume": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "relativeHumidity": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "superMarketTempClassRefrigerator": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "tempClassV2": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "ambientTempMax": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    }
+  }
+}

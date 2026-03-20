@@ -1,0 +1,141 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-residentialventilationunits.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelResidentialventilationunitsProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-residentialventilationunits-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-residentialventilationunits-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_residentialventilationunits_specification_id"
+  ],
+  "productName": "Keystone Demo 'residentialventilationunits' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-residentialventilationunits-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "fanDrivePowerInput": 561,
+  "referencePressureDifference": 111,
+  "ductedUnit": true,
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-1900",
+    "city": "Keystone Demo Kobyla Góra",
+    "postalCode": "DEMO-1993",
+    "contactReference": "Keystone Demo ECS_Piotr_Paruszewski",
+    "municipality": "Keystone Demo Kobyla Góra",
+    "serviceName": "Keystone Demo ECS Piotr Paruszewski",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "province": "Keystone Demo wielkopolskie",
+    "defaultContact": true,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Bierzów",
+    "id": 21964,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo Piotr Paruszewski",
+    "firstName": "Keystone Demo Piotr",
+    "lastName": "Keystone Demo Paruszewski",
+    "organisationName": "Keystone Demo Paruszewski Piotr - \"ECS\" ",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-1858",
+    "personType": "Keystone Demo NATURAL_PERSON"
+  },
+  "modelAvailabilityInCountries": [],
+  "energyClass": "A",
+  "orgVerificationStatus": "VERIFIED",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "specificPowerInput": 0.94,
+  "thermalEfficiencyHeatRecovery": 96,
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1951266241,
+  "referenceFlowRate": 0.16,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "soundPowerLevel": 44,
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "trademarkOwner": "Keystone Demo PIOTR PARUSZEWSKI",
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951262353,
+  "isEnergySmartAppliance": false,
+  "annualHeatingSavedAverageClimate": 50.93,
+  "maximumInternalLeakageRate": 2,
+  "specificEnergyConsumptionCold": -80.85,
+  "controlTypology": "Keystone Demo LOCAL_DEMAND_CONTROL",
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "grilleInstallationInstructions": [],
+  "trademarkId": 97784,
+  "exportDateTS": 1951262967411,
+  "specificEnergyConsumptionAverage": -38.06,
+  "onMarketFirstStartDateTS": 1951266241,
+  "driveType": "Keystone Demo VARIABLE_SPEED_DRIVE",
+  "implementingAct": "Keystone Demo EU_1254_2014",
+  "blocked": false,
+  "modelIdentifier": "DEMO-7535",
+  "energyClassImageWithScale": "Keystone Demo A-Left-MediumGreen-WithAPGScale.svg",
+  "versionId": 5897262,
+  "energyClassImage": "Keystone Demo A-Left-MediumGreen.png",
+  "heatRecoverySystem": "Keystone Demo RECUPERATIVE",
+  "trademarkVerificationStatus": "VERIFIED",
+  "filterVisualWarnings": [
+    {
+      "positionText": "Keystone Demo Na wyświetlaczu panelu sterującego. ",
+      "language": "PL",
+      "id": 94100,
+      "orderNumber": 2,
+      "descriptionText": "Keystone Demo W przypadku zabrudzenia filtru wyświetli się komunikat: SPRAWDŹ FILTR WENTYLACJI "
+    }
+  ],
+  "annualHeatingSavedWarmClimate": 22.99,
+  "importedOn": 1951262969828,
+  "publishedOnDateTS": 1951262352945,
+  "energyClassRange": "Keystone Demo AP_G",
+  "energyAnnual": 5.39,
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "specificEnergyConsumptionWarm": -10.67,
+  "productModelCoreId": 2934296,
+  "versionNumber": 2,
+  "onlineInstruction": "Keystone Demo www.o3ozon.pl",
+  "annualHeatingSavedColdClimate": 99.66,
+  "supplierOrTrademark": "Keystone Demo PIOTR PARUSZEWSKI",
+  "maximumExternalLeakageRate": 2,
+  "typology": "Keystone Demo BVU",
+  "availabilityInEUEEACountries": "ALL",
+  "maximumFlowRate": 660,
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo residentialventilationunits",
+  "eprelRegistrationNumber": "DEMO-3581"
+}

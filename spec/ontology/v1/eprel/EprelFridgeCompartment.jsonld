@@ -1,0 +1,140 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelFridgeCompartment.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Fridge Compartment Sector Ontology",
+  "dcterms:description": "Sector ontology for the EPREL Fridge Compartment product category.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Fridge Compartment Sector Ontology"
+    }
+  ],
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelFridgeSubCompartment.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:EprelFridgeCompartment",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fridge Compartment"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelFridgeSubCompartmentContainer",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelFridgeCompartment"
+      },
+      "rdfs:range": {
+        "@id": "dppk:EprelFridgeSubCompartment"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Sub Compartment Container"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelFcVolume",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelFridgeCompartment"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Fc Volume"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "litres"
+    },
+    {
+      "@id": "dppk:eprelFcDefrostingType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelFridgeCompartment"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Fc Defrosting Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelFcId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelFridgeCompartment"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Fc Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelFcOrderNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelFridgeCompartment"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Fc Order Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelFcCompartmentType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelFridgeCompartment"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Fc Compartment Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    }
+  ]
+}

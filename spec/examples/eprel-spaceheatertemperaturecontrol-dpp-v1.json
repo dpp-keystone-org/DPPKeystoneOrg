@@ -1,0 +1,100 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheatertemperaturecontrol.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelSpaceheatertemperaturecontrolProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-spaceheatertemperaturecontrol-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-spaceheatertemperaturecontrol-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_spaceheatertemperaturecontrol_specification_id"
+  ],
+  "productName": "Keystone Demo 'spaceheatertemperaturecontrol' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-spaceheatertemperaturecontrol-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "temperatureControlClass": "Keystone Demo CLASS_V",
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 1412,
+  "status": "PUBLISHED",
+  "exportDateTS": 1951263005465,
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-2605",
+    "city": "Keystone Demo Remscheid",
+    "postalCode": "DEMO-1547",
+    "contactReference": "Keystone Demo VaillantCertification",
+    "serviceName": "Keystone Demo Vaillant Certification Department",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Berghauser Str.",
+    "id": 12449,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo Vaillant GmbH",
+    "organisationName": "Keystone Demo Vaillant GmbH",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-4682",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "onMarketFirstStartDateTS": 1949555521,
+  "implementingAct": "Keystone Demo EU_811_2013",
+  "modelAvailabilityInCountries": [],
+  "blocked": false,
+  "modelIdentifier": "DEMO-4730",
+  "orgVerificationStatus": "VERIFIED",
+  "versionId": 5897085,
+  "trademarkVerificationStatus": "VERIFIED",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "importedOn": 1951263008107,
+  "modelAvailabilityInEUEEACountries": [],
+  "publishedOnDateTS": 1951262367361,
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1949555521,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2934192,
+  "versionNumber": 2,
+  "visibleToUkMsa": false,
+  "supplierOrTrademark": "Keystone Demo Bulex",
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951262367,
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "availabilityInEUEEACountries": "ALL",
+  "productGroup": "Keystone Demo spaceheatertemperaturecontrol",
+  "isEnergySmartAppliance": false,
+  "eprelRegistrationNumber": "DEMO-2228"
+}

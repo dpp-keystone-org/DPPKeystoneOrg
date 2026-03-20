@@ -1,0 +1,194 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-refrigeratingappliances.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelRefrigeratingappliancesProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-refrigeratingappliances-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-refrigeratingappliances-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_refrigeratingappliances_specification_id"
+  ],
+  "productName": "Keystone Demo 'refrigeratingappliances' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-refrigeratingappliances-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "dimensionWidth": 655,
+  "otherRefrigeratingAppliance": true,
+  "dimensionDepth": 749,
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "contactReference": "Keystone Demo Public_Contact",
+    "serviceName": "Keystone Demo TCL",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "addressBloc": "Keystone Demo TCL Europe\n9-15 Rue Rouget de L'Isle, Issy-les-Moulineaux,\n92130 France",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "id": 21806,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "lowNoiseAppliance": false,
+  "organisation": {
+    "organisationTitle": "Keystone Demo TCL Netherlands B.V.",
+    "organisationName": "Keystone Demo TCL Netherlands B.V.",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-1901",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "onMarketEndDateTS": 2030624641,
+  "webLinkManufacturer": "Keystone Demo http://www.tcl.com/",
+  "modelAvailabilityInCountries": [
+    "XI"
+  ],
+  "energyClass": "C",
+  "orgVerificationStatus": "VERIFIED",
+  "energyLabelId": 1731888,
+  "lightSources": [
+    {
+      "orderNumber": 2,
+      "lightAntiGlareShield": false,
+      "lightHighLuminance": false,
+      "lightTechnology": "Keystone Demo LED",
+      "lightConnected": false,
+      "lightColourTuneable": false,
+      "lightSourceClass": "G",
+      "id": 314929
+    }
+  ],
+  "noiseClass": "C",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "Keystone Demo TYPE_2",
+  "onMarketStartDateTS": 1951361281,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "fastFreeze": true,
+  "additionalInfos": [],
+  "dimensionHeight": 2211,
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "climateClassN": true,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951357411,
+  "onMarketEndDate": [
+    2028,
+    1,
+    1
+  ],
+  "capFreezeNet": 157,
+  "climateClassSN": true,
+  "registrantNature": "Keystone Demo IMPORTER",
+  "trademarkId": 57707,
+  "exportDateTS": 1951358092814,
+  "capRefrNet": 346,
+  "numberCompartments": 4,
+  "climateClassT": true,
+  "minAmbientTemp": 11,
+  "onMarketFirstStartDateTS": 1951361281,
+  "noise": 43,
+  "implementingAct": "Keystone Demo EU_2019_2016",
+  "blocked": false,
+  "modelIdentifier": "DEMO-4562",
+  "wineStorageAppliance": false,
+  "energyClassImageWithScale": "Keystone Demo C-Left-LightGreen-WithAGScale.svg",
+  "versionId": 5887941,
+  "energyClassImage": "Keystone Demo C-Left-LightGreen-WithAGScale.svg",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1951358096209,
+  "publishedOnDateTS": 1951357411205,
+  "climateClassST": true,
+  "energyClassRange": "Keystone Demo A_G",
+  "energyEfficiencyIndex": 71,
+  "winterSetting": false,
+  "modelAvailabilityInOtherCountries": [
+    "XI"
+  ],
+  "maxAmbientTemp": 48,
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2877402,
+  "compartments": [
+    {
+      "volume": 301,
+      "defrostingType": "A",
+      "id": 735855,
+      "orderNumber": 2,
+      "compartmentType": "Keystone Demo FRESH_FOOD",
+      "subCompartments": [
+        {
+          "recommendedTemp": 5,
+          "id": 746615,
+          "orderNumber": 2
+        }
+      ]
+    },
+    {
+      "volume": 46,
+      "defrostingType": "A",
+      "id": 735857,
+      "orderNumber": 3,
+      "compartmentType": "Keystone Demo CHILL",
+      "subCompartments": [
+        {
+          "recommendedTemp": 3,
+          "id": 746616,
+          "orderNumber": 2
+        }
+      ]
+    },
+    {
+      "volume": 157,
+      "defrostingType": "A",
+      "id": 735858,
+      "orderNumber": 4,
+      "compartmentType": "Keystone Demo FOUR_STAR",
+      "subCompartments": [
+        {
+          "recommendedTemp": -19,
+          "id": 746617,
+          "orderNumber": 2,
+          "capFreezingV2": 11
+        }
+      ]
+    }
+  ],
+  "versionNumber": 2,
+  "totalVolume": 502,
+  "consolidatedEnergyConsAnnual": 210,
+  "guaranteeDuration": 27,
+  "supplierOrTrademark": "Keystone Demo TCL",
+  "energyConsAnnualV2": 210,
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo refrigeratingappliances2019",
+  "designType": "Keystone Demo FREE_STANDING",
+  "eprelRegistrationNumber": "DEMO-8879"
+}

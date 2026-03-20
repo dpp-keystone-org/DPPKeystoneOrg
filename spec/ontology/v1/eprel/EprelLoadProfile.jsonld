@@ -1,0 +1,247 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelLoadProfile.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Load Profile Sector Ontology",
+  "dcterms:description": "Sector ontology for the EPREL Load Profile product category.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Load Profile Sector Ontology"
+    }
+  ],
+  "owl:imports": [],
+  "@graph": [
+    {
+      "@id": "dppk:EprelLoadProfile",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Load Profile"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpIsDeclaredLoadProfile",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:boolean",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Is Declared Load Profile"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingAnnualColdClimKWH",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Annual Cold Clim K W H"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingAnnualWarmClimKWH",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Annual Warm Clim K W H"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingAnnualElectricityCons",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Annual Electricity Cons"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingEfficiencyColdClim",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Efficiency Cold Clim"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpOrderNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Order Number"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingEfficiencyWarmClim",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Efficiency Warm Clim"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingEfficiency",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Efficiency"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelLpType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingAnnualEnergyGJ",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Annual Energy G J"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingAnnualColdClimGJ",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Annual Cold Clim G J"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpWaterHeatingAnnualWarmClimGJ",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Water Heating Annual Warm Clim G J"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      }
+    },
+    {
+      "@id": "dppk:eprelLpId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelLoadProfile"
+      },
+      "rdfs:range": "xsd:integer",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Lp Id"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "-"
+      },
+      "dppk:unit": "unitless"
+    }
+  ]
+}

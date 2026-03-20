@@ -1,0 +1,222 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {}
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {}
+    },
+    "spectralPowerDistributionImage": {
+      "@id": "dppk:eprelSpectralPowerDistributionImage",
+      "@context": {
+        "fileName": "dppk:eprelSpdiFileName",
+        "id": "dppk:eprelSpdiId",
+        "file": "dppk:eprelSpdiFile",
+        "fileSize": "dppk:eprelSpdiFileSize"
+      }
+    },
+    "correlatedColourTemp": {
+      "@id": "dppk:eprelCorrelatedColourTempContainer",
+      "@context": {
+        "correlatedColourTemperature": "dppk:eprelCctCorrelatedColourTemperature",
+        "id": "dppk:eprelCctId",
+        "orderNumber": "dppk:eprelCctOrderNumber"
+      }
+    },
+    "highLuminanceLightSource": {
+      "@id": "dppk:eprelHighLuminanceLightSource",
+      "@type": "xsd:boolean"
+    },
+    "lumenMaintenanceFactor": {
+      "@id": "dppk:eprelLumenMaintenanceFactor",
+      "@type": "xsd:double"
+    },
+    "dimensionWidth": {
+      "@id": "dppk:eprelDimensionWidth",
+      "@type": "xsd:integer"
+    },
+    "dimensionDepth": {
+      "@id": "dppk:eprelDimensionDepth",
+      "@type": "xsd:integer"
+    },
+    "status": "dppk:eprelStatus",
+    "antiGlareShield": {
+      "@id": "dppk:eprelAntiGlareShield",
+      "@type": "xsd:boolean"
+    },
+    "luminousFlux": {
+      "@id": "dppk:eprelLuminousFlux",
+      "@type": "xsd:integer"
+    },
+    "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+    "connectedLightSource": {
+      "@id": "dppk:eprelConnectedLightSource",
+      "@type": "xsd:boolean"
+    },
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "energyClass": "dppk:eprelEnergyClass",
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "survivalFactor": {
+      "@id": "dppk:eprelSurvivalFactor",
+      "@type": "xsd:integer"
+    },
+    "dimmable": "dppk:eprelDimmable",
+    "energyLabelId": "dppk:eprelEnergyLabelId",
+    "powerStandby": {
+      "@id": "dppk:eprelPowerStandby",
+      "@type": "xsd:integer"
+    },
+    "mains": "dppk:eprelMains",
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "formType": "dppk:eprelFormType",
+    "maxColourRenderingIndex": "dppk:eprelMaxColourRenderingIndex",
+    "powerOnMode": {
+      "@id": "dppk:eprelPowerOnMode",
+      "@type": "xsd:double"
+    },
+    "energyConsOnMode": {
+      "@id": "dppk:eprelEnergyConsOnMode",
+      "@type": "xsd:integer"
+    },
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "directional": "dppk:eprelDirectional",
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "equivalentPower": "dppk:eprelEquivalentPower",
+    "dimensionHeight": {
+      "@id": "dppk:eprelDimensionHeight",
+      "@type": "xsd:integer"
+    },
+    "colourRenderingIndex": {
+      "@id": "dppk:eprelColourRenderingIndex",
+      "@type": "xsd:integer"
+    },
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "contactId": "dppk:eprelContactId",
+    "minBeamAngle": "dppk:eprelMinBeamAngle",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "claimEquivalentPower": {
+      "@id": "dppk:eprelClaimEquivalentPower",
+      "@type": "xsd:boolean"
+    },
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "colourTuneableLightSource": {
+      "@id": "dppk:eprelColourTuneableLightSource",
+      "@type": "xsd:boolean"
+    },
+    "stroboscopicEffectMetric": "dppk:eprelStroboscopicEffectMetric",
+    "beamAngleCorrespondence": "dppk:eprelBeamAngleCorrespondence",
+    "chromaticityCoordY": {
+      "@id": "dppk:eprelChromaticityCoordY",
+      "@type": "xsd:double"
+    },
+    "chromaticityCoordX": {
+      "@id": "dppk:eprelChromaticityCoordX",
+      "@type": "xsd:double"
+    },
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "flickerMetric": "dppk:eprelFlickerMetric",
+    "replacementClaim": "dppk:eprelReplacementClaim",
+    "r9ColourRenderingIndex": {
+      "@id": "dppk:eprelR9ColourRenderingIndex",
+      "@type": "xsd:integer"
+    },
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "capType": "dppk:eprelCapType",
+    "displacementFactor": "dppk:eprelDisplacementFactor",
+    "claimLedReplaceFluorescent": {
+      "@id": "dppk:eprelClaimLedReplaceFluorescent",
+      "@type": "xsd:boolean"
+    },
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "peakLuminousIntensity": "dppk:eprelPeakLuminousIntensity",
+    "beamAngle": "dppk:eprelBeamAngle",
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "maxBeamAngle": "dppk:eprelMaxBeamAngle",
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "correlatedColourTempType": "dppk:eprelCorrelatedColourTempType",
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "correlatedColourTempMax": {
+      "@id": "dppk:eprelCorrelatedColourTempMax",
+      "@type": "xsd:integer"
+    },
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "colourConsistency": "dppk:eprelColourConsistency",
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "envelope": "dppk:eprelEnvelope",
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "productGroup": "dppk:eprelProductGroup",
+    "powerStandbyNetworked": "dppk:eprelPowerStandbyNetworked",
+    "minColourRenderingIndex": "dppk:eprelMinColourRenderingIndex",
+    "lightingTechnology": "dppk:eprelLightingTechnology",
+    "correlatedColourTempMin": {
+      "@id": "dppk:eprelCorrelatedColourTempMin",
+      "@type": "xsd:integer"
+    },
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

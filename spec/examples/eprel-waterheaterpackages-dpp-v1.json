@@ -1,0 +1,120 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-waterheaterpackages.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelWaterheaterpackagesProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-waterheaterpackages-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-waterheaterpackages-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_waterheaterpackages_specification_id"
+  ],
+  "productName": "Keystone Demo 'waterheaterpackages' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-waterheaterpackages-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-1779",
+    "city": "Keystone Demo Mainburg",
+    "postalCode": "DEMO-3259",
+    "contactReference": "Keystone Demo Alarko",
+    "serviceName": "Keystone Demo HVAC Sales Europe Region",
+    "province": "Keystone Demo Bayern",
+    "defaultContact": true,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Zieglerstr.",
+    "id": 21768,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "waterHeaterHeatingEfficiency": 124,
+  "organisation": {
+    "organisationTitle": "Keystone Demo KAMAN Smart Equipments GmbH",
+    "organisationName": "Keystone Demo KAMAN Smart Equipments GmbH",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-8233",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "waterHeaterLoadProfile": "M",
+  "energyClass": "AP",
+  "orgVerificationStatus": "VERIFIED",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1931212801,
+  "solarCollectorIncluded": false,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "visibleToUkMsa": false,
+  "packageWaterHeatingEfficiencyCold": 105,
+  "additionalDetails": "{\"gtinIdentifier\": \"DEMO-3565\"}",
+  "lastVersion": false,
+  "trademarkOwner": "Keystone Demo Alarko-Carrier Sanayi ve Ticaret A.Ş.",
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1940713101,
+  "packageWaterHeatingEfficiency": 124,
+  "packageWaterHeatingEfficiencyWarm": 127,
+  "registrantNature": "Keystone Demo AUTHORISED_REPRESENTATIVE",
+  "trademarkId": 97452,
+  "exportDateTS": 1949700689917,
+  "packageLoadProfile": "M",
+  "onMarketFirstStartDateTS": 1931212801,
+  "implementingAct": "Keystone Demo EU_812_2013",
+  "blocked": false,
+  "modelIdentifier": "DEMO-3227",
+  "waterHeaterEnergyClass": "AP",
+  "energyClassImageWithScale": "Keystone Demo AP-Left-LightGreen-WithAPPPGScale.svg",
+  "waterStorageTankIncluded": true,
+  "versionId": 5669776,
+  "energyClassImage": "Keystone Demo AP-Left-LightGreen.png",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1949700701569,
+  "publishedOnDateTS": 1940713101652,
+  "energyClassRange": "Keystone Demo APPP_G",
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2807457,
+  "versionNumber": 2,
+  "supplierOrTrademark": "Keystone Demo ALARKO",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo waterheaterpackages",
+  "modelAvailabilityInCountries": [
+    "DE",
+    "AT"
+  ],
+  "modelAvailabilityInEUEEACountries": [
+    "DE",
+    "AT"
+  ],
+  "modelAvailabilityInOtherCountries": [],
+  "availabilityInEUEEACountries": "Keystone Demo AS_SPECIFIED",
+  "eprelRegistrationNumber": "DEMO-1207"
+}

@@ -1,0 +1,156 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {
+        "country": "dppk:eprelCountry",
+        "contactByReferenceId": "dppk:eprelContactByReferenceId",
+        "orderNumber": "dppk:eprelOrderNumber",
+        "streetNumber": "dppk:eprelStreetNumber",
+        "city": "dppk:eprelCity",
+        "postalCode": "dppk:eprelPostalCode",
+        "contactReference": "dppk:eprelContactReference",
+        "municipality": "dppk:eprelMunicipality",
+        "serviceName": "dppk:eprelServiceName",
+        "webSiteURL": {
+          "@id": "dppk:eprelWebSiteURL",
+          "@type": "xsd:anyURI"
+        },
+        "addressBloc": "dppk:eprelAddressBloc",
+        "province": "dppk:eprelProvince",
+        "defaultContact": {
+          "@id": "dppk:eprelDefaultContact",
+          "@type": "xsd:boolean"
+        },
+        "phone": "dppk:eprelPhone",
+        "street": "dppk:eprelStreet",
+        "id": "dppk:eprelContactId",
+        "email": "dppk:eprelEmail",
+        "status": "dppk:eprelContactStatus"
+      }
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {
+        "organisationTitle": "dppk:eprelOrganisationTitle",
+        "closeDate": "dppk:eprelCloseDate",
+        "firstName": "dppk:eprelFirstName",
+        "lastName": "dppk:eprelLastName",
+        "organisationName": "dppk:eprelOrganisationName",
+        "website": {
+          "@id": "dppk:eprelWebsite",
+          "@type": "xsd:anyURI"
+        },
+        "closeStatus": "dppk:eprelCloseStatus",
+        "isClosed": {
+          "@id": "dppk:eprelIsClosed",
+          "@type": "xsd:boolean"
+        },
+        "guid": "dppk:eprelGuid",
+        "personType": "dppk:eprelPersonType"
+      }
+    },
+    "status": "dppk:eprelStatus",
+    "ecoLabelRegistrationNumber": "dppk:eprelEcoLabelRegistrationNumber",
+    "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+    "ecoLabel": "dppk:eprelEcoLabel",
+    "waterStorageStandingLoss": {
+      "@id": "dppk:eprelWaterStorageStandingLoss",
+      "@type": "xsd:integer"
+    },
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "energyClass": "dppk:eprelEnergyClass",
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "energyLabelId": "dppk:eprelEnergyLabelId",
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "formType": "dppk:eprelFormType",
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "contactId": "dppk:eprelContactId",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "isEnergySmartAppliance": {
+      "@id": "dppk:eprelIsEnergySmartAppliance",
+      "@type": "xsd:boolean"
+    },
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "solarTankVolumeLiters": {
+      "@id": "dppk:eprelSolarTankVolumeLiters",
+      "@type": "xsd:integer"
+    },
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "productGroup": "dppk:eprelProductGroup",
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

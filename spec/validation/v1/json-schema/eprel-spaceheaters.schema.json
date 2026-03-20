@@ -1,0 +1,797 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-spaceheaters.schema.json",
+  "title": "DPP for Space Heaters (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the spaceheaters sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "eprel_spaceheaters_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "waterHeatingElectricityAnnualWarmGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualWarmGj35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "waterHeatingElectricityAnnualColdGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "ecoLabel": {
+        "type": "boolean"
+      },
+      "onMarketEndDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "mediumTempEnergyAnnualColdGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualWarmKwh55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualColdKwh": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyLabelId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "waterHeatingElectricityAnnualWarmKwh": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInEUEEACountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "mediumTempEnergyAnnualWarmGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "firstPublicationDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "specificPrecautions": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/specific-precaution.schema.json"
+        }
+      },
+      "generatedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyClass35": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "lastVersion": {
+        "type": "boolean"
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyWarm": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "trademarkOwner": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "allowEprelLabelGeneration": {
+        "type": "boolean"
+      },
+      "isEnergySmartAppliance": {
+        "type": "boolean"
+      },
+      "mediumTempRatedHeatOutputAverage": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "waterHeatingEnergyEfficiencyCold": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualWarmGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketEndDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyWarm35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualWarmKwh35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "ratedHeatOutput": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "noise": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "implementingAct": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "blocked": {
+        "type": "boolean"
+      },
+      "waterHeatingElectricityAnnualGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "versionId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassImage": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "importedOn": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "waterHeatingEnergyClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyAnnualKwh": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInOtherCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "energyAnnualAverageKwh35": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyAverage55": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productModelCoreId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "versionNumber": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "outdoorNoise": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "supplierOrTrademark": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "mediumTempRatedHeatOutputWarm": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "ratedHeatOutputWarm55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "availabilityInEUEEACountries": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ratedHeatOutputCold": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "ratedHeatOutputCold35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "waterHeatingEnergyEfficiencyWarm": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "ratedHeatOutputAverage55": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ecoLabelRegistrationNumber": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "contactDetails": {
+        "$ref": "eprel/contact-details.schema.json"
+      },
+      "organisation": {
+        "$ref": "eprel/organisation.schema.json"
+      },
+      "mediumTempSeasonalSpaceHeatingEnergyEfficiencyCold": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "modelAvailabilityInCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "energyClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "orgVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyAnnualColdKwh35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyCold55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyAnnualAverageKwh55": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyAverage35": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "waterHeatingElectricityAnnualColdKwh": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualColdGj35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiency": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "lowTemperatureApplication": {
+        "type": "boolean"
+      },
+      "visibleToUkMsa": {
+        "type": "boolean"
+      },
+      "mediumTempRatedHeatOutputCold": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "contactId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalDetails": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualWarmKwh": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "category": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ratedHeatOutputCold55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "firstPublicationDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyAnnualAverageGj55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "mediumTempEnergyAnnualAverageKwh": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "ratedHeatOutputWarm35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "registrantNature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ratedHeatOutputAverage35": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "trademarkId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyAnnualWarmGj55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "exportDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelIdentifier": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ratedHeatOutputWarm": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "mediumTempEnergyAnnualWarmKwh": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyClassImageWithScale": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "mediumTempEnergyClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "publishedOnDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyAnnualColdKwh55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyClassRange": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyAnnualColdGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyCold35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyAnnualGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "mediumTempEnergyAnnualColdKwh": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "mediumTempSeasonalSpaceHeatingEnergyEfficiencyWarm": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onlyForOffPeakPeriod": {
+        "type": "boolean"
+      },
+      "energyClass55": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "loadProfile": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "mediumTempSeasonalSpaceHeatingEnergyEfficiencyAverage": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyCold": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "uploadedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "waterHeatingElectricityAnnualKwh": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyAnnualColdGj55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "mediumTempEnergyAnnualAverageGj": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "waterHeatingEnergyEfficiency": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "publishedOnDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "electricalEfficiency": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "productGroup": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyAnnualAverageGj35": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "type": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "seasonalSpaceHeatingEnergyEfficiencyWarm55": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "eprelRegistrationNumber": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

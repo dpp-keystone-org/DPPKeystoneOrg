@@ -1,0 +1,90 @@
+{
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/cavity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "volume": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "energyClassImage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "energyConsumptionCycleGas": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "orderNumber": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "energyConsumptionCycle": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "energyConsumptionCycleFanForcedGas": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "heatSourceType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "energyConsumptionCycleFanForced": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "energyClass": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "energyEfficiencyIndex": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "energyClassImageWithScale": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {}
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {}
+    },
+    "specificPrecautions": {
+      "@id": "dppk:eprelSpecificPrecautionContainer",
+      "@context": {
+        "language": {
+          "@id": "dppk:eprelSpLanguage",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "dppk:eprelSpId",
+          "@type": "xsd:integer"
+        },
+        "orderNumber": {
+          "@id": "dppk:eprelSpOrderNumber",
+          "@type": "xsd:integer"
+        },
+        "text": {
+          "@id": "dppk:eprelSpText",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "waterHeatingElectricityAnnualWarmGj": "dppk:eprelWaterHeatingElectricityAnnualWarmGj",
+    "energyAnnualWarmGj35": "dppk:eprelEnergyAnnualWarmGj35",
+    "waterHeatingElectricityAnnualColdGj": "dppk:eprelWaterHeatingElectricityAnnualColdGj",
+    "ecoLabel": {
+      "@id": "dppk:eprelEcoLabel",
+      "@type": "xsd:boolean"
+    },
+    "onMarketEndDateTS": {
+      "@id": "dppk:eprelOnMarketEndDateTS",
+      "@type": "xsd:integer"
+    },
+    "mediumTempEnergyAnnualColdGj": "dppk:eprelMediumTempEnergyAnnualColdGj",
+    "energyAnnualWarmKwh55": "dppk:eprelEnergyAnnualWarmKwh55",
+    "energyAnnualColdKwh": "dppk:eprelEnergyAnnualColdKwh",
+    "energyLabelId": "dppk:eprelEnergyLabelId",
+    "waterHeatingElectricityAnnualWarmKwh": "dppk:eprelWaterHeatingElectricityAnnualWarmKwh",
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "mediumTempEnergyAnnualWarmGj": "dppk:eprelMediumTempEnergyAnnualWarmGj",
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "energyClass35": "dppk:eprelEnergyClass35",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "seasonalSpaceHeatingEnergyEfficiencyWarm": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyWarm",
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "isEnergySmartAppliance": {
+      "@id": "dppk:eprelIsEnergySmartAppliance",
+      "@type": "xsd:boolean"
+    },
+    "mediumTempRatedHeatOutputAverage": {
+      "@id": "dppk:eprelMediumTempRatedHeatOutputAverage",
+      "@type": "xsd:integer"
+    },
+    "waterHeatingEnergyEfficiencyCold": "dppk:eprelWaterHeatingEnergyEfficiencyCold",
+    "energyAnnualWarmGj": "dppk:eprelEnergyAnnualWarmGj",
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "seasonalSpaceHeatingEnergyEfficiencyWarm35": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyWarm35",
+    "energyAnnualWarmKwh35": "dppk:eprelEnergyAnnualWarmKwh35",
+    "ratedHeatOutput": {
+      "@id": "dppk:eprelRatedHeatOutput",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "noise": {
+      "@id": "dppk:eprelNoise",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "waterHeatingElectricityAnnualGj": "dppk:eprelWaterHeatingElectricityAnnualGj",
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "waterHeatingEnergyClass": "dppk:eprelWaterHeatingEnergyClass",
+    "energyAnnualKwh": {
+      "@id": "dppk:eprelEnergyAnnualKwh",
+      "@type": "xsd:integer"
+    },
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "energyAnnualAverageKwh35": {
+      "@id": "dppk:eprelEnergyAnnualAverageKwh35",
+      "@type": "xsd:integer"
+    },
+    "seasonalSpaceHeatingEnergyEfficiencyAverage55": {
+      "@id": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyAverage55",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "outdoorNoise": {
+      "@id": "dppk:eprelOutdoorNoise",
+      "@type": "xsd:integer"
+    },
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "mediumTempRatedHeatOutputWarm": "dppk:eprelMediumTempRatedHeatOutputWarm",
+    "ratedHeatOutputWarm55": "dppk:eprelRatedHeatOutputWarm55",
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "ratedHeatOutputCold": "dppk:eprelRatedHeatOutputCold",
+    "ratedHeatOutputCold35": "dppk:eprelRatedHeatOutputCold35",
+    "waterHeatingEnergyEfficiencyWarm": "dppk:eprelWaterHeatingEnergyEfficiencyWarm",
+    "ratedHeatOutputAverage55": {
+      "@id": "dppk:eprelRatedHeatOutputAverage55",
+      "@type": "xsd:integer"
+    },
+    "status": "dppk:eprelStatus",
+    "ecoLabelRegistrationNumber": "dppk:eprelEcoLabelRegistrationNumber",
+    "mediumTempSeasonalSpaceHeatingEnergyEfficiencyCold": "dppk:eprelMediumTempSeasonalSpaceHeatingEnergyEfficiencyCold",
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "energyClass": "dppk:eprelEnergyClass",
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "energyAnnualColdKwh35": "dppk:eprelEnergyAnnualColdKwh35",
+    "formType": "dppk:eprelFormType",
+    "seasonalSpaceHeatingEnergyEfficiencyCold55": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyCold55",
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyAnnualAverageKwh55": {
+      "@id": "dppk:eprelEnergyAnnualAverageKwh55",
+      "@type": "xsd:integer"
+    },
+    "seasonalSpaceHeatingEnergyEfficiencyAverage35": {
+      "@id": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyAverage35",
+      "@type": "xsd:integer"
+    },
+    "waterHeatingElectricityAnnualColdKwh": "dppk:eprelWaterHeatingElectricityAnnualColdKwh",
+    "energyAnnualColdGj35": "dppk:eprelEnergyAnnualColdGj35",
+    "seasonalSpaceHeatingEnergyEfficiency": {
+      "@id": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiency",
+      "@type": "xsd:integer"
+    },
+    "lowTemperatureApplication": {
+      "@id": "dppk:eprelLowTemperatureApplication",
+      "@type": "xsd:boolean"
+    },
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "mediumTempRatedHeatOutputCold": "dppk:eprelMediumTempRatedHeatOutputCold",
+    "contactId": "dppk:eprelContactId",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "energyAnnualWarmKwh": "dppk:eprelEnergyAnnualWarmKwh",
+    "category": "dppk:eprelCategory",
+    "ratedHeatOutputCold55": "dppk:eprelRatedHeatOutputCold55",
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyAnnualAverageGj55": "dppk:eprelEnergyAnnualAverageGj55",
+    "mediumTempEnergyAnnualAverageKwh": {
+      "@id": "dppk:eprelMediumTempEnergyAnnualAverageKwh",
+      "@type": "xsd:integer"
+    },
+    "ratedHeatOutputWarm35": "dppk:eprelRatedHeatOutputWarm35",
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "ratedHeatOutputAverage35": {
+      "@id": "dppk:eprelRatedHeatOutputAverage35",
+      "@type": "xsd:integer"
+    },
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "energyAnnualWarmGj55": "dppk:eprelEnergyAnnualWarmGj55",
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "ratedHeatOutputWarm": "dppk:eprelRatedHeatOutputWarm",
+    "mediumTempEnergyAnnualWarmKwh": "dppk:eprelMediumTempEnergyAnnualWarmKwh",
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "mediumTempEnergyClass": "dppk:eprelMediumTempEnergyClass",
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyAnnualColdKwh55": "dppk:eprelEnergyAnnualColdKwh55",
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "energyAnnualColdGj": "dppk:eprelEnergyAnnualColdGj",
+    "seasonalSpaceHeatingEnergyEfficiencyCold35": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyCold35",
+    "energyAnnualGj": "dppk:eprelEnergyAnnualGj",
+    "mediumTempEnergyAnnualColdKwh": "dppk:eprelMediumTempEnergyAnnualColdKwh",
+    "mediumTempSeasonalSpaceHeatingEnergyEfficiencyWarm": "dppk:eprelMediumTempSeasonalSpaceHeatingEnergyEfficiencyWarm",
+    "onlyForOffPeakPeriod": {
+      "@id": "dppk:eprelOnlyForOffPeakPeriod",
+      "@type": "xsd:boolean"
+    },
+    "energyClass55": "dppk:eprelEnergyClass55",
+    "loadProfile": "dppk:eprelLoadProfile",
+    "mediumTempSeasonalSpaceHeatingEnergyEfficiencyAverage": {
+      "@id": "dppk:eprelMediumTempSeasonalSpaceHeatingEnergyEfficiencyAverage",
+      "@type": "xsd:integer"
+    },
+    "seasonalSpaceHeatingEnergyEfficiencyCold": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyCold",
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "waterHeatingElectricityAnnualKwh": {
+      "@id": "dppk:eprelWaterHeatingElectricityAnnualKwh",
+      "@type": "xsd:integer"
+    },
+    "energyAnnualColdGj55": "dppk:eprelEnergyAnnualColdGj55",
+    "mediumTempEnergyAnnualAverageGj": "dppk:eprelMediumTempEnergyAnnualAverageGj",
+    "waterHeatingEnergyEfficiency": {
+      "@id": "dppk:eprelWaterHeatingEnergyEfficiency",
+      "@type": "xsd:integer"
+    },
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "electricalEfficiency": "dppk:eprelElectricalEfficiency",
+    "productGroup": "dppk:eprelProductGroup",
+    "energyAnnualAverageGj35": "dppk:eprelEnergyAnnualAverageGj35",
+    "type": "dppk:eprelType",
+    "seasonalSpaceHeatingEnergyEfficiencyWarm55": "dppk:eprelSeasonalSpaceHeatingEnergyEfficiencyWarm55",
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

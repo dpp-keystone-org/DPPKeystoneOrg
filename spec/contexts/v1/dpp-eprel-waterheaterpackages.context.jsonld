@@ -1,0 +1,130 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {}
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {}
+    },
+    "status": "dppk:eprelStatus",
+    "waterHeaterHeatingEfficiency": {
+      "@id": "dppk:eprelWaterHeaterHeatingEfficiency",
+      "@type": "xsd:integer"
+    },
+    "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+    "waterHeaterLoadProfile": "dppk:eprelWaterHeaterLoadProfile",
+    "energyClass": "dppk:eprelEnergyClass",
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "energyLabelId": "dppk:eprelEnergyLabelId",
+    "waterHeaterMathExprIII": "dppk:eprelWaterHeaterMathExprIII",
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "formType": "dppk:eprelFormType",
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "solarCollectorIncluded": {
+      "@id": "dppk:eprelSolarCollectorIncluded",
+      "@type": "xsd:boolean"
+    },
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "packageWaterHeatingEfficiencyCold": {
+      "@id": "dppk:eprelPackageWaterHeatingEfficiencyCold",
+      "@type": "xsd:integer"
+    },
+    "contactId": "dppk:eprelContactId",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "waterHeaterMathExprII": "dppk:eprelWaterHeaterMathExprII",
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "packageWaterHeatingEfficiency": {
+      "@id": "dppk:eprelPackageWaterHeatingEfficiency",
+      "@type": "xsd:integer"
+    },
+    "packageWaterHeatingEfficiencyWarm": {
+      "@id": "dppk:eprelPackageWaterHeatingEfficiencyWarm",
+      "@type": "xsd:integer"
+    },
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "packageLoadProfile": "dppk:eprelPackageLoadProfile",
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "waterHeaterEnergyClass": "dppk:eprelWaterHeaterEnergyClass",
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "waterStorageTankIncluded": {
+      "@id": "dppk:eprelWaterStorageTankIncluded",
+      "@type": "xsd:boolean"
+    },
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "solarContribution": "dppk:eprelSolarContribution",
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "productGroup": "dppk:eprelProductGroup",
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

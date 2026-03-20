@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-residentialventilationunits.schema.json",
+  "title": "DPP for Residential Ventilation Units (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the residentialventilationunits sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "eprel_residentialventilationunits_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "fanDrivePowerInput": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "referencePressureDifference": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "ductedUnit": {
+        "type": "boolean"
+      },
+      "status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "contactDetails": {
+        "$ref": "eprel/contact-details.schema.json"
+      },
+      "organisation": {
+        "$ref": "eprel/organisation.schema.json"
+      },
+      "onMarketEndDateTS": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "modelAvailabilityInCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "energyClass": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "orgVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "airTightness": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "energyLabelId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "onMarketStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "specificPowerInput": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "thermalEfficiencyHeatRecovery": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInEUEEACountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "onMarketStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "referenceFlowRate": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "firstPublicationDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "externalLeakageRate": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "generatedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "soundPowerLevel": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "visibleToUkMsa": {
+        "type": "boolean"
+      },
+      "contactId": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "additionalDetails": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "lastVersion": {
+        "type": "boolean"
+      },
+      "trademarkOwner": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "allowEprelLabelGeneration": {
+        "type": "boolean"
+      },
+      "firstPublicationDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "isEnergySmartAppliance": {
+        "type": "boolean"
+      },
+      "annualHeatingSavedAverageClimate": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketEndDate": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "maximumInternalLeakageRate": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "specificEnergyConsumptionCold": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "controlTypology": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "registrantNature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "grilleInstallationInstructions": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "trademarkId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "exportDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "airflowSensitivity": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "specificEnergyConsumptionAverage": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "driveType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "implementingAct": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "blocked": {
+        "type": "boolean"
+      },
+      "modelIdentifier": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyClassImageWithScale": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "versionId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassImage": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "heatRecoverySystem": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trademarkVerificationStatus": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "filterVisualWarnings": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "eprel/filter-visual-warning.schema.json"
+        }
+      },
+      "annualHeatingSavedWarmClimate": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "importedOn": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "carryOver": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "publishedOnDateTS": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "energyClassRange": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "energyAnnual": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "modelAvailabilityInOtherCountries": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "onMarketFirstStartDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "specificEnergyConsumptionWarm": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "productModelCoreId": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "versionNumber": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "onlineInstruction": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "uploadedLabels": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "annualHeatingSavedColdClimate": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "supplierOrTrademark": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "maximumExternalLeakageRate": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "typology": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "availabilityInEUEEACountries": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "maximumFlowRate": {
+        "type": [
+          "number",
+          "null",
+          "string"
+        ]
+      },
+      "mixingRate": {
+        "type": [
+          "string",
+          "number",
+          "null"
+        ]
+      },
+      "publishedOnDate": {
+        "type": [
+          "array",
+          "null",
+          "string"
+        ]
+      },
+      "productGroup": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "eprelRegistrationNumber": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

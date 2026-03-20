@@ -1,0 +1,142 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-lightsources.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelLightsourcesProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-lightsources-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-lightsources-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_lightsources_specification_id"
+  ],
+  "productName": "Keystone Demo 'lightsources' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-lightsources-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "highLuminanceLightSource": false,
+  "lumenMaintenanceFactor": 1.06,
+  "dimensionWidth": 21,
+  "dimensionDepth": 3,
+  "status": "PUBLISHED",
+  "antiGlareShield": false,
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-7537",
+    "city": "Keystone Demo Frankfurt am Main",
+    "postalCode": "DEMO-8728",
+    "contactReference": "Keystone Demo CR001",
+    "serviceName": "Keystone Demo EU sales office",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "defaultContact": true,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Bockenheimer Landstraße",
+    "id": 6188,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo C-E (DEUTSCHLAND)GMBH",
+    "organisationName": "Keystone Demo C-E (DEUTSCHLAND)GMBH",
+    "isClosed": false,
+    "guid": "DEMO-5037",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "luminousFlux": 2769,
+  "connectedLightSource": false,
+  "modelAvailabilityInCountries": [],
+  "energyClass": "D",
+  "orgVerificationStatus": "VERIFIED",
+  "survivalFactor": 2,
+  "dimmable": "Keystone Demo YES",
+  "powerStandby": 1,
+  "mains": "Keystone Demo NMLS",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "TYPE_1",
+  "powerOnMode": 16.83,
+  "energyConsOnMode": 18,
+  "onMarketStartDateTS": 1951361281,
+  "directional": "Keystone Demo NDLS",
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "dimensionHeight": 21,
+  "colourRenderingIndex": 92,
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "claimEquivalentPower": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951357448,
+  "colourTuneableLightSource": false,
+  "beamAngleCorrespondence": "Keystone Demo SPHERE_360",
+  "chromaticityCoordY": 0.42,
+  "chromaticityCoordX": 0.42,
+  "r9ColourRenderingIndex": 1,
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 11050,
+  "exportDateTS": 1951358275545,
+  "capType": "Keystone Demo Electric PAD",
+  "claimLedReplaceFluorescent": false,
+  "spectralPowerDistributionImage": {
+    "fileName": "Keystone Demo spdimage_2666220.png",
+    "id": 2001655,
+    "fileSize": 629860
+  },
+  "onMarketFirstStartDateTS": 1951361281,
+  "implementingAct": "Keystone Demo EU_2019_2015",
+  "blocked": false,
+  "modelIdentifier": "DEMO-4725",
+  "energyClassImageWithScale": "Keystone Demo D-Left-Yellow-WithAGScale.svg",
+  "versionId": 5898964,
+  "energyClassImage": "Keystone Demo D-Left-Yellow-WithAGScale.svg",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1951358294959,
+  "correlatedColourTempType": "Keystone Demo STEPS",
+  "publishedOnDateTS": 1951357447865,
+  "energyClassRange": "Keystone Demo A_G",
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "correlatedColourTempMax": 4400,
+  "productModelCoreId": 2935562,
+  "versionNumber": 2,
+  "correlatedColourTemp": [
+    {
+      "correlatedColourTemperature": 4400,
+      "id": 4374240,
+      "orderNumber": 2
+    }
+  ],
+  "supplierOrTrademark": "Keystone Demo CITIZEN ELECTRONICS CO., LTD.",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo lightsources",
+  "lightingTechnology": "Keystone Demo LED",
+  "correlatedColourTempMin": 4400,
+  "eprelRegistrationNumber": "DEMO-8812"
+}

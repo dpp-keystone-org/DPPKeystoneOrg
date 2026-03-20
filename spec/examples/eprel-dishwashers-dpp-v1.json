@@ -1,0 +1,127 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-dishwashers.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelDishwashersProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-dishwashers-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-dishwashers-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_dishwashers_specification_id"
+  ],
+  "productName": "Keystone Demo 'dishwashers' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-dishwashers-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "dimensionWidth": 50,
+  "dimensionDepth": 61,
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-8427",
+    "city": "Keystone Demo München",
+    "postalCode": "DEMO-6946",
+    "contactReference": "Keystone Demo PUBLIC_CONTACT_BOSCH",
+    "serviceName": "Keystone Demo Bosch Service",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Carl-Wery-Straße",
+    "id": 283,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo BSH Hausgeräte GmbH",
+    "organisationName": "Keystone Demo BSH Hausgeräte GmbH",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-7081",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "modelAvailabilityInCountries": [
+    "XI"
+  ],
+  "energyClass": "B",
+  "orgVerificationStatus": "VERIFIED",
+  "webLinkSupplier": "Keystone Demo https://www.bosch-home.com/energylabel",
+  "cleaningPerformanceIndexV2": 1.23,
+  "noiseClass": "B",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "Keystone Demo TYPE_2",
+  "onMarketStartDateTS": 1951361281,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "powerNetworkStandby": 3,
+  "additionalInfos": [],
+  "dimensionHeight": 91,
+  "energyCons100": 57,
+  "visibleToUkMsa": true,
+  "powerStandbyMode": 0.55,
+  "energyCons": 0.56,
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951357429,
+  "isEnergySmartAppliance": false,
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 686,
+  "exportDateTS": 1951358138245,
+  "dryingPerformanceIndexV2": 1.17,
+  "programmeDuration": 259,
+  "onMarketFirstStartDateTS": 1951361281,
+  "noise": 49,
+  "implementingAct": "Keystone Demo EU_2019_2017",
+  "blocked": false,
+  "modelIdentifier": "DEMO-6075",
+  "ratedCapacity": 11,
+  "energyClassImageWithScale": "Keystone Demo B-Left-MediumGreen-WithAGScale.svg",
+  "versionId": 5866477,
+  "energyClassImage": "Keystone Demo B-Left-MediumGreen-WithAGScale.svg",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1951358140342,
+  "publishedOnDateTS": 1951357429709,
+  "energyClassRange": "Keystone Demo A_G",
+  "energyEfficiencyIndex": 41.69,
+  "modelAvailabilityInOtherCountries": [
+    "XI"
+  ],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2628804,
+  "versionNumber": 2,
+  "powerDelayStart": 5,
+  "guaranteeDuration": 27,
+  "supplierOrTrademark": "Keystone Demo Bosch",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo dishwashers2019",
+  "waterCons": 9.57,
+  "type": "Keystone Demo BUILT_IN",
+  "eprelRegistrationNumber": "DEMO-7540"
+}

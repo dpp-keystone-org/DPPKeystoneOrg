@@ -1,0 +1,76 @@
+{
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/appliance-light-source.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "orderNumber": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "lightAntiGlareShield": {
+      "type": "boolean"
+    },
+    "lightHighLuminance": {
+      "type": "boolean"
+    },
+    "lightTechnology": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lightConnected": {
+      "type": "boolean"
+    },
+    "lightColourTuneable": {
+      "type": "boolean"
+    },
+    "lightSourceClass": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "lightDirectionality": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "lightEnvelop": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "lightDimmable": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "lightMains": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    }
+  }
+}

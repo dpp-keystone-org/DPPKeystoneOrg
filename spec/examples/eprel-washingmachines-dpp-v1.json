@@ -1,0 +1,137 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-washingmachines.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelWashingmachinesProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-washingmachines-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-washingmachines-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_washingmachines_specification_id"
+  ],
+  "productName": "Keystone Demo 'washingmachines' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-washingmachines-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "dimensionWidth": 66,
+  "dimensionDepth": 58,
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "contactReference": "Keystone Demo Public_Contact",
+    "serviceName": "Keystone Demo TCL",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "addressBloc": "Keystone Demo TCL Europe\n9-15 Rue Rouget de L'Isle, Issy-les-Moulineaux,\n92130 France",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "id": 21806,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "energyConsPer100Cycle": 47,
+  "organisation": {
+    "organisationTitle": "Keystone Demo TCL Netherlands B.V.",
+    "organisationName": "Keystone Demo TCL Netherlands B.V.",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-9290",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "onMarketEndDateTS": 2030529601,
+  "modelAvailabilityInCountries": [],
+  "energyClass": "A",
+  "spinSpeedRated": 1541,
+  "orgVerificationStatus": "VERIFIED",
+  "energyLabelId": 1733516,
+  "webLinkSupplier": "Keystone Demo http://www.tcl.com/",
+  "noiseClass": "A",
+  "programmeDurationQuarter": 185,
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "Keystone Demo TYPE_2",
+  "onMarketStartDateTS": 1951361281,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "dimensionHeight": 94,
+  "visibleToUkMsa": false,
+  "maxTemperatureQuarter": 25,
+  "lastVersion": false,
+  "programmeDurationHalf": 185,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951357415,
+  "energyConsPerCycle": 0.47,
+  "isEnergySmartAppliance": false,
+  "onMarketEndDate": [
+    2028,
+    1,
+    1
+  ],
+  "spinSpeedHalf": 1541,
+  "powerOffMode": 0.55,
+  "registrantNature": "Keystone Demo IMPORTER",
+  "trademarkId": 57707,
+  "exportDateTS": 1951358109814,
+  "onMarketFirstStartDateTS": 1951361281,
+  "noise": 80,
+  "implementingAct": "Keystone Demo EU_2019_2014",
+  "maxTemperatureRated": 39,
+  "blocked": false,
+  "modelIdentifier": "DEMO-8522",
+  "ratedCapacity": 9,
+  "energyClassImageWithScale": "Keystone Demo A-Left-DarkGreen-WithAGScale.svg",
+  "versionId": 5896294,
+  "energyClassImage": "Keystone Demo A-Left-DarkGreen-WithAGScale.svg",
+  "trademarkVerificationStatus": "VERIFIED",
+  "maxTemperatureHalf": 30,
+  "spinSpeedQuarter": 1541,
+  "importedOn": 1951358112335,
+  "publishedOnDateTS": 1951357415555,
+  "washingEfficiencyIndexV2": 1.13,
+  "energyClassRange": "Keystone Demo A_G",
+  "energyEfficiencyIndex": 51.26,
+  "spinClass": "B",
+  "rinsingEffectiveness": 6,
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2711702,
+  "versionNumber": 2,
+  "moisture": 59.29,
+  "programmeDurationRated": 240,
+  "powerDelayStart": 5,
+  "guaranteeDuration": 27,
+  "supplierOrTrademark": "Keystone Demo TCL",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo washingmachines2019",
+  "waterCons": 53,
+  "additionalInfo": [],
+  "releasesSilverIons": false,
+  "type": "Keystone Demo FREE_STANDING",
+  "eprelRegistrationNumber": "DEMO-4354"
+}

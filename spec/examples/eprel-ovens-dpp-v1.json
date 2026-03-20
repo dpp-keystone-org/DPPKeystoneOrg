@@ -1,0 +1,124 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-ovens.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelOvensProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-ovens-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-ovens-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_ovens_specification_id"
+  ],
+  "productName": "Keystone Demo 'ovens' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-ovens-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-4610",
+    "city": "Keystone Demo Milan",
+    "postalCode": "DEMO-6787",
+    "contactReference": "Keystone Demo MIS",
+    "serviceName": "Keystone Demo Midea Italia S.r.l. a socio unico",
+    "webSiteURL": "https://dpp-keystone.org/demo",
+    "defaultContact": false,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo Viale Luigi Bodio",
+    "id": 10364,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "organisation": {
+    "organisationTitle": "Keystone Demo MIDEA ITALIA SRL",
+    "organisationName": "Keystone Demo MIDEA ITALIA SRL",
+    "isClosed": false,
+    "guid": "DEMO-9075",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "onMarketEndDateTS": 2391111360,
+  "ecoLabel": false,
+  "modelAvailabilityInCountries": [],
+  "energyClass": "Keystone Demo APP",
+  "orgVerificationStatus": "VERIFIED",
+  "cavities": [
+    {
+      "volume": 80,
+      "energyClassImage": "Keystone Demo APP-Left-MediumGreen.png",
+      "orderNumber": 2,
+      "energyConsumptionCycle": 1.17,
+      "id": 210505,
+      "heatSourceType": "Keystone Demo ELECTRIC",
+      "energyConsumptionCycleFanForced": 0.56,
+      "energyClass": "Keystone Demo APP",
+      "energyEfficiencyIndex": 66,
+      "energyClassImageWithScale": "Keystone Demo APP-Left-MediumGreen-WithAPPPDScale.svg"
+    }
+  ],
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1951171201,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "numberCavities": 2,
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951262352,
+  "onMarketEndDate": [
+    2028,
+    1,
+    1
+  ],
+  "registrantNature": "Keystone Demo IMPORTER",
+  "trademarkId": 57279,
+  "exportDateTS": 1951262957835,
+  "onMarketFirstStartDateTS": 1951171201,
+  "implementingAct": "Keystone Demo EU_65_2014",
+  "blocked": false,
+  "modelIdentifier": "DEMO-4731",
+  "energyClassImageWithScale": "Keystone Demo APP-Left-MediumGreen-WithAPPPDScale.svg",
+  "versionId": 5896942,
+  "energyClassImage": "Keystone Demo APP-Left-MediumGreen.png",
+  "trademarkVerificationStatus": "VERIFIED",
+  "importedOn": 1951262960472,
+  "publishedOnDateTS": 1951262351523,
+  "energyClassRange": "Keystone Demo APPP_D",
+  "modelAvailabilityInOtherCountries": [],
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2934033,
+  "versionNumber": 2,
+  "supplierOrTrademark": "Keystone Demo Midea",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo ovens",
+  "eprelRegistrationNumber": "DEMO-4971"
+}

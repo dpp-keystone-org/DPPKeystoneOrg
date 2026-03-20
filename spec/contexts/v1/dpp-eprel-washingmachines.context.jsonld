@@ -1,0 +1,241 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "contactDetails": {
+      "@id": "dppk:eprelContactDetails",
+      "@context": {}
+    },
+    "organisation": {
+      "@id": "dppk:eprelOrganisation",
+      "@context": {}
+    },
+    "dimensionWidth": {
+      "@id": "dppk:eprelDimensionWidth",
+      "@type": "xsd:integer"
+    },
+    "dimensionDepth": {
+      "@id": "dppk:eprelDimensionDepth",
+      "@type": "xsd:integer"
+    },
+    "status": "dppk:eprelStatus",
+    "energyConsPer100Cycle": {
+      "@id": "dppk:eprelEnergyConsPer100Cycle",
+      "@type": "xsd:integer"
+    },
+    "onMarketEndDateTS": {
+      "@id": "dppk:eprelOnMarketEndDateTS",
+      "@type": "xsd:integer"
+    },
+    "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+    "energyClass": "dppk:eprelEnergyClass",
+    "spinSpeedRated": {
+      "@id": "dppk:eprelSpinSpeedRated",
+      "@type": "xsd:integer"
+    },
+    "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+    "washingEfficiencyIndex": "dppk:eprelWashingEfficiencyIndex",
+    "energyLabelId": {
+      "@id": "dppk:eprelEnergyLabelId",
+      "@type": "xsd:integer"
+    },
+    "webLinkSupplier": "dppk:eprelWebLinkSupplier",
+    "noiseClass": "dppk:eprelNoiseClass",
+    "programmeDurationQuarter": {
+      "@id": "dppk:eprelProgrammeDurationQuarter",
+      "@type": "xsd:integer"
+    },
+    "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+    "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+    "formType": "dppk:eprelFormType",
+    "onMarketStartDateTS": {
+      "@id": "dppk:eprelOnMarketStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+    "powerNetworkStandby": "dppk:eprelPowerNetworkStandby",
+    "generatedLabels": "dppk:eprelGeneratedLabels",
+    "dimensionHeight": {
+      "@id": "dppk:eprelDimensionHeight",
+      "@type": "xsd:integer"
+    },
+    "visibleToUkMsa": {
+      "@id": "dppk:eprelVisibleToUkMsa",
+      "@type": "xsd:boolean"
+    },
+    "maxTemperatureQuarter": {
+      "@id": "dppk:eprelMaxTemperatureQuarter",
+      "@type": "xsd:integer"
+    },
+    "contactId": "dppk:eprelContactId",
+    "additionalDetails": "dppk:eprelAdditionalDetails",
+    "powerStandbyMode": "dppk:eprelPowerStandbyMode",
+    "lastVersion": {
+      "@id": "dppk:eprelLastVersion",
+      "@type": "xsd:boolean"
+    },
+    "moistureRated": "dppk:eprelMoistureRated",
+    "trademarkOwner": "dppk:eprelTrademarkOwner",
+    "programmeDurationHalf": {
+      "@id": "dppk:eprelProgrammeDurationHalf",
+      "@type": "xsd:integer"
+    },
+    "allowEprelLabelGeneration": {
+      "@id": "dppk:eprelAllowEprelLabelGeneration",
+      "@type": "xsd:boolean"
+    },
+    "firstPublicationDateTS": {
+      "@id": "dppk:eprelFirstPublicationDateTS",
+      "@type": "xsd:integer"
+    },
+    "energyConsPerCycle": {
+      "@id": "dppk:eprelEnergyConsPerCycle",
+      "@type": "xsd:double"
+    },
+    "isEnergySmartAppliance": {
+      "@id": "dppk:eprelIsEnergySmartAppliance",
+      "@type": "xsd:boolean"
+    },
+    "moistureHalf": "dppk:eprelMoistureHalf",
+    "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+    "spinSpeedHalf": {
+      "@id": "dppk:eprelSpinSpeedHalf",
+      "@type": "xsd:integer"
+    },
+    "powerOffMode": {
+      "@id": "dppk:eprelPowerOffMode",
+      "@type": "xsd:double"
+    },
+    "registrantNature": "dppk:eprelRegistrantNature",
+    "trademarkId": {
+      "@id": "dppk:eprelTrademarkId",
+      "@type": "xsd:integer"
+    },
+    "exportDateTS": {
+      "@id": "dppk:eprelExportDateTS",
+      "@type": "xsd:integer"
+    },
+    "onMarketFirstStartDateTS": {
+      "@id": "dppk:eprelOnMarketFirstStartDateTS",
+      "@type": "xsd:integer"
+    },
+    "noise": {
+      "@id": "dppk:eprelNoise",
+      "@type": "xsd:integer"
+    },
+    "implementingAct": "dppk:eprelImplementingAct",
+    "maxTemperatureRated": {
+      "@id": "dppk:eprelMaxTemperatureRated",
+      "@type": "xsd:integer"
+    },
+    "blocked": {
+      "@id": "dppk:eprelBlocked",
+      "@type": "xsd:boolean"
+    },
+    "modelIdentifier": "dppk:eprelModelIdentifier",
+    "ratedCapacity": {
+      "@id": "dppk:eprelRatedCapacity",
+      "@type": "xsd:integer"
+    },
+    "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+    "versionId": {
+      "@id": "dppk:eprelVersionId",
+      "@type": "xsd:integer"
+    },
+    "energyClassImage": "dppk:eprelEnergyClassImage",
+    "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+    "maxTemperatureHalf": {
+      "@id": "dppk:eprelMaxTemperatureHalf",
+      "@type": "xsd:integer"
+    },
+    "spinSpeedQuarter": {
+      "@id": "dppk:eprelSpinSpeedQuarter",
+      "@type": "xsd:integer"
+    },
+    "importedOn": {
+      "@id": "dppk:eprelImportedOn",
+      "@type": "xsd:integer"
+    },
+    "publishedOnDateTS": {
+      "@id": "dppk:eprelPublishedOnDateTS",
+      "@type": "xsd:integer"
+    },
+    "washingEfficiencyIndexV2": {
+      "@id": "dppk:eprelWashingEfficiencyIndexV2",
+      "@type": "xsd:double"
+    },
+    "energyClassRange": "dppk:eprelEnergyClassRange",
+    "energyEfficiencyIndex": {
+      "@id": "dppk:eprelEnergyEfficiencyIndex",
+      "@type": "xsd:double"
+    },
+    "spinClass": "dppk:eprelSpinClass",
+    "rinsingEffectiveness": {
+      "@id": "dppk:eprelRinsingEffectiveness",
+      "@type": "xsd:integer"
+    },
+    "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+    "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+    "moistureQuarter": "dppk:eprelMoistureQuarter",
+    "productModelCoreId": {
+      "@id": "dppk:eprelProductModelCoreId",
+      "@type": "xsd:integer"
+    },
+    "versionNumber": {
+      "@id": "dppk:eprelVersionNumber",
+      "@type": "xsd:integer"
+    },
+    "uploadedLabels": "dppk:eprelUploadedLabels",
+    "moisture": {
+      "@id": "dppk:eprelMoisture",
+      "@type": "xsd:double"
+    },
+    "programmeDurationRated": {
+      "@id": "dppk:eprelProgrammeDurationRated",
+      "@type": "xsd:integer"
+    },
+    "powerDelayStart": {
+      "@id": "dppk:eprelPowerDelayStart",
+      "@type": "xsd:integer"
+    },
+    "guaranteeDuration": {
+      "@id": "dppk:eprelGuaranteeDuration",
+      "@type": "xsd:integer"
+    },
+    "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+    "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+    "publishedOnDate": "dppk:eprelPublishedOnDate",
+    "productGroup": "dppk:eprelProductGroup",
+    "waterCons": {
+      "@id": "dppk:eprelWaterCons",
+      "@type": "xsd:integer"
+    },
+    "additionalInfo": {
+      "@id": "dppk:eprelAdditionalInfoContainer",
+      "@context": {
+        "language": {
+          "@id": "dppk:eprelAiLanguage",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "dppk:eprelAiId",
+          "@type": "xsd:integer"
+        },
+        "orderNumber": {
+          "@id": "dppk:eprelAiOrderNumber",
+          "@type": "xsd:integer"
+        },
+        "text": {
+          "@id": "dppk:eprelAiText",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "releasesSilverIons": {
+      "@id": "dppk:eprelReleasesSilverIons",
+      "@type": "xsd:boolean"
+    },
+    "type": "dppk:eprelType",
+    "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+  }
+}

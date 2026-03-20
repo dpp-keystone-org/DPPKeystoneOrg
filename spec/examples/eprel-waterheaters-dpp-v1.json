@@ -1,0 +1,133 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-waterheaters.context.jsonld"
+  ],
+  "@type": [
+    "dppk:DigitalProductPassport",
+    "dppk:EprelWaterheatersProduct"
+  ],
+  "digitalProductPassportId": "urn:uuid:demo-dpp-waterheaters-001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-waterheaters-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "v2.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2026-05-01T10:00:00Z",
+  "economicOperatorId": "urn:gln:9999999999999",
+  "contentSpecificationIds": [
+    "eprel_waterheaters_specification_id"
+  ],
+  "productName": "Keystone Demo 'waterheaters' Product",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/eprel-waterheaters-dpp-v1.png",
+      "contentType": "image/png"
+    }
+  ],
+  "status": "PUBLISHED",
+  "contactDetails": {
+    "country": "DE",
+    "streetNumber": "DEMO-1600",
+    "city": "Keystone Demo  Варна / Varna",
+    "postalCode": "DEMO-7052",
+    "contactReference": "Keystone Demo Supplier user",
+    "serviceName": "Keystone Demo Отдел \" Техническо развитие\" / Department of technical development",
+    "defaultContact": true,
+    "phone": "+1-555-0199",
+    "street": "Keystone Demo бул. \"Владислав Варненчик\" / Boulevard \"Vladislav Varnenchik\"",
+    "id": 472,
+    "email": "demo-contact@dpp-keystone.org",
+    "status": "ACTIVE"
+  },
+  "languageSpecifics": [
+    {
+      "language": "BG",
+      "id": 328669,
+      "orderNumber": 2,
+      "thermostatSettings": "60"
+    },
+    {
+      "language": "EN",
+      "id": 328671,
+      "orderNumber": 3,
+      "thermostatSettings": "60"
+    }
+  ],
+  "organisation": {
+    "organisationTitle": "Keystone Demo ELDOMINVEST OOD",
+    "organisationName": "Keystone Demo ELDOMINVEST OOD",
+    "website": "https://dpp-keystone.org/demo",
+    "isClosed": false,
+    "guid": "DEMO-4483",
+    "personType": "Keystone Demo LEGAL_PERSON"
+  },
+  "modelAvailabilityInCountries": [],
+  "energyClass": "C",
+  "orgVerificationStatus": "VERIFIED",
+  "onMarketStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "modelAvailabilityInEUEEACountries": [],
+  "formType": "TYPE_1",
+  "onMarketStartDateTS": 1951361281,
+  "firstPublicationDate": [
+    2028,
+    1,
+    1
+  ],
+  "visibleToUkMsa": false,
+  "lastVersion": false,
+  "complexType": "Keystone Demo CONVENTIONAL_WATER_HEATER",
+  "allowEprelLabelGeneration": true,
+  "firstPublicationDateTS": 1951357399,
+  "isEnergySmartAppliance": false,
+  "loadProfiles": [
+    {
+      "isDeclaredLoadProfile": true,
+      "waterHeatingAnnualElectricityCons": 1478,
+      "orderNumber": 2,
+      "waterHeatingEfficiency": 42,
+      "type": "M",
+      "id": 198758
+    }
+  ],
+  "registrantNature": "Keystone Demo MANUFACTURER",
+  "trademarkId": 76,
+  "exportDateTS": 1951358050769,
+  "onMarketFirstStartDateTS": 1951361281,
+  "noise": 17,
+  "declaredLoadProfileWaterHeatingAnnualElectricityCons": 1478,
+  "implementingAct": "Keystone Demo EU_812_2013",
+  "blocked": false,
+  "modelIdentifier": "DEMO-5494",
+  "energyClassImageWithScale": "Keystone Demo C-Left-Yellow-WithAPFScale.svg",
+  "versionId": 5899547,
+  "energyClassImage": "Keystone Demo C-Left-Yellow.png",
+  "trademarkVerificationStatus": "VERIFIED",
+  "declaredLoadProfileWaterHeatingEfficiency": 42,
+  "importedOn": 1951358053078,
+  "publishedOnDateTS": 1951357398519,
+  "energyClassRange": "Keystone Demo AP_F",
+  "modelAvailabilityInOtherCountries": [],
+  "workOnlyDuringOffPeakHours": false,
+  "onMarketFirstStartDate": [
+    2028,
+    1,
+    1
+  ],
+  "productModelCoreId": 2936110,
+  "declaredLoadProfileType": "M",
+  "versionNumber": 2,
+  "supplierOrTrademark": "Keystone Demo ELDOM",
+  "availabilityInEUEEACountries": "ALL",
+  "publishedOnDate": [
+    2028,
+    1,
+    1
+  ],
+  "productGroup": "Keystone Demo waterheaters",
+  "eprelRegistrationNumber": "DEMO-8343"
+}

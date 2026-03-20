@@ -1,0 +1,96 @@
+{
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/load-profile.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "isDeclaredLoadProfile": {
+      "type": "boolean"
+    },
+    "waterHeatingAnnualColdClimKWH": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "waterHeatingAnnualWarmClimKWH": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "waterHeatingAnnualElectricityCons": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "waterHeatingEfficiencyColdClim": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "orderNumber": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "waterHeatingEfficiencyWarmClim": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "waterHeatingEfficiency": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    },
+    "type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "waterHeatingAnnualEnergyGJ": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "waterHeatingAnnualColdClimGJ": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "waterHeatingAnnualWarmClimGJ": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "number",
+        "null",
+        "string"
+      ]
+    }
+  }
+}

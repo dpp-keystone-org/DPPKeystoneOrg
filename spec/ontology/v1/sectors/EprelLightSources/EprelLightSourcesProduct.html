@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: EPREL Light Sources Product</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">EPREL Light Sources Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: EPREL Light Sources Product (dppk:EprelLightSourcesProduct)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="EprelLightSourcesProduct">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class EprelLightSourcesProduct
+  EprelLightSourcesProduct : +eprelSpectralPowerDistributionImage
+  EprelLightSourcesProduct --|> EprelSpectralPowerDistributionImage : eprelSpectralPowerDistributionImage
+  EprelLightSourcesProduct : +eprelCorrelatedColourTempContainer
+  EprelLightSourcesProduct --|> EprelCorrelatedColourTemp : eprelCorrelatedColourTempContainer
+  EprelLightSourcesProduct : +eprelHighLuminanceLightSource
+  EprelLightSourcesProduct : +eprelLumenMaintenanceFactor
+  EprelLightSourcesProduct : +eprelDimensionWidth
+  EprelLightSourcesProduct : +eprelDimensionDepth
+  EprelLightSourcesProduct : +eprelStatus
+  EprelLightSourcesProduct : +eprelAntiGlareShield
+  EprelLightSourcesProduct : +eprelLuminousFlux
+  EprelLightSourcesProduct : +eprelOnMarketEndDateTS
+  EprelLightSourcesProduct : +eprelConnectedLightSource
+  EprelLightSourcesProduct : +eprelModelAvailabilityInCountries
+  EprelLightSourcesProduct : +eprelEnergyClass
+  EprelLightSourcesProduct : +eprelOrgVerificationStatus
+  EprelLightSourcesProduct : +eprelSurvivalFactor
+  EprelLightSourcesProduct : +eprelDimmable
+  EprelLightSourcesProduct : +eprelEnergyLabelId
+  EprelLightSourcesProduct : +eprelPowerStandby
+  EprelLightSourcesProduct : +eprelMains
+  EprelLightSourcesProduct : +eprelOnMarketStartDate
+  EprelLightSourcesProduct : +eprelModelAvailabilityInEUEEACountries
+  EprelLightSourcesProduct : +eprelFormType
+  EprelLightSourcesProduct : +eprelMaxColourRenderingIndex
+  EprelLightSourcesProduct : +eprelPowerOnMode
+  EprelLightSourcesProduct : +eprelEnergyConsOnMode
+  EprelLightSourcesProduct : +eprelOnMarketStartDateTS
+  EprelLightSourcesProduct : +eprelDirectional
+  EprelLightSourcesProduct : +eprelFirstPublicationDate
+  EprelLightSourcesProduct : +eprelGeneratedLabels
+  EprelLightSourcesProduct : +eprelEquivalentPower
+  EprelLightSourcesProduct : +eprelDimensionHeight
+  EprelLightSourcesProduct : +eprelColourRenderingIndex
+  EprelLightSourcesProduct : +eprelVisibleToUkMsa
+  EprelLightSourcesProduct : +eprelContactId
+  EprelLightSourcesProduct : +eprelMinBeamAngle
+  EprelLightSourcesProduct : +eprelAdditionalDetails
+  EprelLightSourcesProduct : +eprelLastVersion
+  EprelLightSourcesProduct : +eprelClaimEquivalentPower
+  EprelLightSourcesProduct : +eprelTrademarkOwner
+  EprelLightSourcesProduct : +eprelAllowEprelLabelGeneration
+  EprelLightSourcesProduct : +eprelFirstPublicationDateTS
+  EprelLightSourcesProduct : +eprelColourTuneableLightSource
+  EprelLightSourcesProduct : +eprelStroboscopicEffectMetric
+  EprelLightSourcesProduct : +eprelBeamAngleCorrespondence
+  EprelLightSourcesProduct : +eprelChromaticityCoordY
+  EprelLightSourcesProduct : +eprelChromaticityCoordX
+  EprelLightSourcesProduct : +eprelOnMarketEndDate
+  EprelLightSourcesProduct : +eprelFlickerMetric
+  EprelLightSourcesProduct : +eprelReplacementClaim
+  EprelLightSourcesProduct : +eprelR9ColourRenderingIndex
+  EprelLightSourcesProduct : +eprelRegistrantNature
+  EprelLightSourcesProduct : +eprelTrademarkId
+  EprelLightSourcesProduct : +eprelExportDateTS
+  EprelLightSourcesProduct : +eprelCapType
+  EprelLightSourcesProduct : +eprelDisplacementFactor
+  EprelLightSourcesProduct : +eprelClaimLedReplaceFluorescent
+  EprelLightSourcesProduct : +eprelOnMarketFirstStartDateTS
+  EprelLightSourcesProduct : +eprelImplementingAct
+  EprelLightSourcesProduct : +eprelBlocked
+  EprelLightSourcesProduct : +eprelModelIdentifier
+  EprelLightSourcesProduct : +eprelPeakLuminousIntensity
+  EprelLightSourcesProduct : +eprelBeamAngle
+  EprelLightSourcesProduct : +eprelEnergyClassImageWithScale
+  EprelLightSourcesProduct : +eprelVersionId
+  EprelLightSourcesProduct : +eprelEnergyClassImage
+  EprelLightSourcesProduct : +eprelTrademarkVerificationStatus
+  EprelLightSourcesProduct : +eprelMaxBeamAngle
+  EprelLightSourcesProduct : +eprelImportedOn
+  EprelLightSourcesProduct : +eprelCorrelatedColourTempType
+  EprelLightSourcesProduct : +eprelPublishedOnDateTS
+  EprelLightSourcesProduct : +eprelEnergyClassRange
+  EprelLightSourcesProduct : +eprelModelAvailabilityInOtherCountries
+  EprelLightSourcesProduct : +eprelOnMarketFirstStartDate
+  EprelLightSourcesProduct : +eprelCorrelatedColourTempMax
+  EprelLightSourcesProduct : +eprelProductModelCoreId
+  EprelLightSourcesProduct : +eprelVersionNumber
+  EprelLightSourcesProduct : +eprelColourConsistency
+  EprelLightSourcesProduct : +eprelUploadedLabels
+  EprelLightSourcesProduct : +eprelSupplierOrTrademark
+  EprelLightSourcesProduct : +eprelEnvelope
+  EprelLightSourcesProduct : +eprelAvailabilityInEUEEACountries
+  EprelLightSourcesProduct : +eprelPublishedOnDate
+  EprelLightSourcesProduct : +eprelProductGroup
+  EprelLightSourcesProduct : +eprelPowerStandbyNetworked
+  EprelLightSourcesProduct : +eprelMinColourRenderingIndex
+  EprelLightSourcesProduct : +eprelLightingTechnology
+  EprelLightSourcesProduct : +eprelCorrelatedColourTempMin
+  EprelLightSourcesProduct : +eprelRegistrationNumber
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Base class</p>
+                
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Spectral Power Distribution Image (dppk:eprelSpectralPowerDistributionImage)</td>
+                                    <td>-</td>
+                                    <td>dppk:EprelSpectralPowerDistributionImage</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Correlated Colour Temp (dppk:eprelCorrelatedColourTempContainer)</td>
+                                    <td>-</td>
+                                    <td>dppk:EprelCorrelatedColourTemp</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel High Luminance Light Source (dppk:eprelHighLuminanceLightSource)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Lumen Maintenance Factor (dppk:eprelLumenMaintenanceFactor)</td>
+                                    <td>-</td>
+                                    <td>xsd:double</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Dimension Width (dppk:eprelDimensionWidth)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Dimension Depth (dppk:eprelDimensionDepth)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Status (dppk:eprelStatus)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Anti Glare Shield (dppk:eprelAntiGlareShield)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Luminous Flux (dppk:eprelLuminousFlux)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market End Date T S (dppk:eprelOnMarketEndDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Connected Light Source (dppk:eprelConnectedLightSource)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Availability In Countries (dppk:eprelModelAvailabilityInCountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class (dppk:eprelEnergyClass)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Org Verification Status (dppk:eprelOrgVerificationStatus)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Survival Factor (dppk:eprelSurvivalFactor)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Dimmable (dppk:eprelDimmable)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Label Id (dppk:eprelEnergyLabelId)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Power Standby (dppk:eprelPowerStandby)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Mains (dppk:eprelMains)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market Start Date (dppk:eprelOnMarketStartDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Availability In E U E E A Countries (dppk:eprelModelAvailabilityInEUEEACountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Form Type (dppk:eprelFormType)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Max Colour Rendering Index (dppk:eprelMaxColourRenderingIndex)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Power On Mode (dppk:eprelPowerOnMode)</td>
+                                    <td>-</td>
+                                    <td>xsd:double</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Cons On Mode (dppk:eprelEnergyConsOnMode)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market Start Date T S (dppk:eprelOnMarketStartDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Directional (dppk:eprelDirectional)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel First Publication Date (dppk:eprelFirstPublicationDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Generated Labels (dppk:eprelGeneratedLabels)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Equivalent Power (dppk:eprelEquivalentPower)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Dimension Height (dppk:eprelDimensionHeight)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Colour Rendering Index (dppk:eprelColourRenderingIndex)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Visible To Uk Msa (dppk:eprelVisibleToUkMsa)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Contact Id (dppk:eprelContactId)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Min Beam Angle (dppk:eprelMinBeamAngle)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Additional Details (dppk:eprelAdditionalDetails)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Last Version (dppk:eprelLastVersion)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Claim Equivalent Power (dppk:eprelClaimEquivalentPower)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Trademark Owner (dppk:eprelTrademarkOwner)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Allow Eprel Label Generation (dppk:eprelAllowEprelLabelGeneration)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel First Publication Date T S (dppk:eprelFirstPublicationDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Colour Tuneable Light Source (dppk:eprelColourTuneableLightSource)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Stroboscopic Effect Metric (dppk:eprelStroboscopicEffectMetric)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Beam Angle Correspondence (dppk:eprelBeamAngleCorrespondence)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Chromaticity Coord Y (dppk:eprelChromaticityCoordY)</td>
+                                    <td>-</td>
+                                    <td>xsd:double</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Chromaticity Coord X (dppk:eprelChromaticityCoordX)</td>
+                                    <td>-</td>
+                                    <td>xsd:double</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market End Date (dppk:eprelOnMarketEndDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Flicker Metric (dppk:eprelFlickerMetric)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Replacement Claim (dppk:eprelReplacementClaim)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel R9 Colour Rendering Index (dppk:eprelR9ColourRenderingIndex)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Registrant Nature (dppk:eprelRegistrantNature)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Trademark Id (dppk:eprelTrademarkId)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Export Date T S (dppk:eprelExportDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Cap Type (dppk:eprelCapType)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Displacement Factor (dppk:eprelDisplacementFactor)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Claim Led Replace Fluorescent (dppk:eprelClaimLedReplaceFluorescent)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market First Start Date T S (dppk:eprelOnMarketFirstStartDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Implementing Act (dppk:eprelImplementingAct)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Blocked (dppk:eprelBlocked)</td>
+                                    <td>-</td>
+                                    <td>xsd:boolean</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Identifier (dppk:eprelModelIdentifier)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Peak Luminous Intensity (dppk:eprelPeakLuminousIntensity)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Beam Angle (dppk:eprelBeamAngle)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class Image With Scale (dppk:eprelEnergyClassImageWithScale)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Version Id (dppk:eprelVersionId)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class Image (dppk:eprelEnergyClassImage)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Trademark Verification Status (dppk:eprelTrademarkVerificationStatus)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Max Beam Angle (dppk:eprelMaxBeamAngle)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Imported On (dppk:eprelImportedOn)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Correlated Colour Temp Type (dppk:eprelCorrelatedColourTempType)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Published On Date T S (dppk:eprelPublishedOnDateTS)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Energy Class Range (dppk:eprelEnergyClassRange)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Model Availability In Other Countries (dppk:eprelModelAvailabilityInOtherCountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel On Market First Start Date (dppk:eprelOnMarketFirstStartDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Correlated Colour Temp Max (dppk:eprelCorrelatedColourTempMax)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Product Model Core Id (dppk:eprelProductModelCoreId)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Version Number (dppk:eprelVersionNumber)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Colour Consistency (dppk:eprelColourConsistency)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Uploaded Labels (dppk:eprelUploadedLabels)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Supplier Or Trademark (dppk:eprelSupplierOrTrademark)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Envelope (dppk:eprelEnvelope)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Availability In E U E E A Countries (dppk:eprelAvailabilityInEUEEACountries)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Published On Date (dppk:eprelPublishedOnDate)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Product Group (dppk:eprelProductGroup)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Power Standby Networked (dppk:eprelPowerStandbyNetworked)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Min Colour Rendering Index (dppk:eprelMinColourRenderingIndex)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Lighting Technology (dppk:eprelLightingTechnology)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Correlated Colour Temp Min (dppk:eprelCorrelatedColourTempMin)</td>
+                                    <td>-</td>
+                                    <td>xsd:integer</td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td>Eprel Registration Number (dppk:eprelRegistrationNumber)</td>
+                                    <td>-</td>
+                                    <td>xsd:string</td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
