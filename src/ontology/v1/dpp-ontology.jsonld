@@ -14,22 +14,120 @@
   "dcterms:title": "DPP Harmonizing Data Dictionary - Complete Ontology (v1)",
   "dcterms:description": "The main entry point for the DPP Harmonizing Data Dictionary (Keystone). This file imports all core modules and sector-specific definitions for Version 1.",
   "owl:versionInfo": "1.0.0",
-
   "owl:imports": [
     // Core Modules
     // Note: These URIs assume the files are hosted at these locations.
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Identifier.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld" },
-    
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Identifier.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld"
+    },
     // Sector Modules
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld" }
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelAirconditioners.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelDishwashers.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelElectronicDisplays.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelHotWaterStorageTanks.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelLightSources.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelLocalSpaceHeaters.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelOvens.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelProfessionalRefrigeratedStorageCabinets.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelRangeHoods.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelRefrigeratingAppliances.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelRefrigeratingAppliancesDirectSalesFunction.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelResidentialVentilationUnits.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSmartphonesTablets.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSolidFuelBoilerPackages.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSolidFuelBoilers.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceHeaterPackages.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceHeaters.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceheatersolardevice.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceheatertemperaturecontrol.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelTumbledryers.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelTyres.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWasherdriers.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWashingmachines.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWaterheaterpackages.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWaterheaters.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWaterheatersolardevices.jsonld"
+    }
   ]
 }

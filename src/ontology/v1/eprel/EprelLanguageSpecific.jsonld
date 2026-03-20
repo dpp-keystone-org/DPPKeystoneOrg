@@ -1,0 +1,133 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelLanguageSpecific.jsonld",
+    "@type": "owl:Ontology",
+    "dcterms:title": "EPREL Language Specific Sector Ontology",
+    "dcterms:description": "Sector ontology for the EPREL Language Specific product category.",
+    "rdfs:label": [
+        {
+            "@language": "en",
+            "@value": "EPREL Language Specific Sector Ontology"
+        }
+    ],
+    "owl:imports": [],
+    "@graph": [
+        {
+            "@id": "dppk:EprelLanguageSpecific",
+            "@type": "rdfs:Class",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Language Specific"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelLsLanguage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelLanguageSpecific"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Ls Language"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelLsId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelLanguageSpecific"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Ls Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelLsOrderNumber",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelLanguageSpecific"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Ls Order Number"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelLsThermostatSettings",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelLanguageSpecific"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Ls Thermostat Settings"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelLsSmartTextualIndication",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelLanguageSpecific"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Ls Smart Textual Indication"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelLsSpecificInstructions",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelLanguageSpecific"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Ls Specific Instructions"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        }
+    ]
+}

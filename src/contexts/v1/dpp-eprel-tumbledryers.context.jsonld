@@ -1,0 +1,194 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "technology": "dppk:eprelTechnology",
+        "dimensionWidth": {
+            "@id": "dppk:eprelDimensionWidth",
+            "@type": "xsd:integer"
+        },
+        "programDurationRated": {
+            "@id": "dppk:eprelProgramDurationRated",
+            "@type": "xsd:integer"
+        },
+        "dimensionDepth": {
+            "@id": "dppk:eprelDimensionDepth",
+            "@type": "xsd:integer"
+        },
+        "programDurationHalf": {
+            "@id": "dppk:eprelProgramDurationHalf",
+            "@type": "xsd:integer"
+        },
+        "status": "dppk:eprelStatus",
+        "energyConsDry": {
+            "@id": "dppk:eprelEnergyConsDry",
+            "@type": "xsd:double"
+        },
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "webLinkManufacturer": "dppk:eprelWebLinkManufacturer",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "refrigerantName": "dppk:eprelRefrigerantName",
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "fastenersScore": "dppk:eprelFastenersScore",
+        "noiseClass": "dppk:eprelNoiseClass",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "toolsScore": "dppk:eprelToolsScore",
+        "guranteeDuration": {
+            "@id": "dppk:eprelGuranteeDuration",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "webLinkPretaxPrices": "dppk:eprelWebLinkPretaxPrices",
+        "webLinkSparePartsAvailability": "dppk:eprelWebLinkSparePartsAvailability",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "additionalInfos": {
+            "@id": "dppk:eprelAdditionalInfoContainer",
+            "@context": {
+                "language": {
+                    "@id": "dppk:eprelAiLanguage",
+                    "@type": "xsd:string"
+                },
+                "id": {
+                    "@id": "dppk:eprelAiId",
+                    "@type": "xsd:integer"
+                },
+                "orderNumber": {
+                    "@id": "dppk:eprelAiOrderNumber",
+                    "@type": "xsd:integer"
+                },
+                "text": {
+                    "@id": "dppk:eprelAiText",
+                    "@type": "xsd:string"
+                }
+            }
+        },
+        "dimensionHeight": {
+            "@id": "dppk:eprelDimensionHeight",
+            "@type": "xsd:integer"
+        },
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "contactId": "dppk:eprelContactId",
+        "repairabilityIndex": "dppk:eprelRepairabilityIndex",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "powerStandbyMode": "dppk:eprelPowerStandbyMode",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "isEnergySmartAppliance": {
+            "@id": "dppk:eprelIsEnergySmartAppliance",
+            "@type": "xsd:boolean"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "condensationEfficiencyClass": "dppk:eprelCondensationEfficiencyClass",
+        "repairInfoScore": "dppk:eprelRepairInfoScore",
+        "powerOffMode": {
+            "@id": "dppk:eprelPowerOffMode",
+            "@type": "xsd:double"
+        },
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "disassemblyDepthScore": "dppk:eprelDisassemblyDepthScore",
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "noise": {
+            "@id": "dppk:eprelNoise",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "ratedCapacity": {
+            "@id": "dppk:eprelRatedCapacity",
+            "@type": "xsd:integer"
+        },
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "condensationEfficiency": {
+            "@id": "dppk:eprelCondensationEfficiency",
+            "@type": "xsd:integer"
+        },
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "energyEfficiencyIndex": {
+            "@id": "dppk:eprelEnergyEfficiencyIndex",
+            "@type": "xsd:double"
+        },
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "repairabilityClass": "dppk:eprelRepairabilityClass",
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "powerNetworkedStandby": "dppk:eprelPowerNetworkedStandby",
+        "webLinkRepairInstructions": "dppk:eprelWebLinkRepairInstructions",
+        "powerDelayStart": {
+            "@id": "dppk:eprelPowerDelayStart",
+            "@type": "xsd:integer"
+        },
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "type": "dppk:eprelType",
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

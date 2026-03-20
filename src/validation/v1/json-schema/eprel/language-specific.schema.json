@@ -1,0 +1,50 @@
+{
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/language-specific.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": [
+        "object",
+        "null"
+    ],
+    "properties": {
+        "language": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "id": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "orderNumber": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "thermostatSettings": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "smartTextualIndication": {
+            "type": [
+                "string",
+                "number",
+                "null"
+            ]
+        },
+        "specificInstructions": {
+            "type": [
+                "string",
+                "number",
+                "null"
+            ]
+        }
+    }
+}

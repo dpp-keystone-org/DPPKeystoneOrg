@@ -1,0 +1,62 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/cooling-characteristics.schema.json",
+    "title": "EPREL Cooling Characteristics",
+    "type": "object",
+    "properties": {
+        "ratedCapacity": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "seasonalEnergyEfficiencyRatio": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "annualElectricityConsumption": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "outdoorSoundPower": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "indoorSoundPower": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "energyEfficiencyRatio": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "hourlyElectricityConsumption": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "energyClass": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "designLoad": {
+            "type": [
+                "number",
+                "null"
+            ]
+        }
+    }
+}

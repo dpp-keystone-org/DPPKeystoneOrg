@@ -1,0 +1,285 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "releasesSilverIrons": {
+            "@id": "dppk:eprelReleasesSilverIrons",
+            "@type": "xsd:boolean"
+        },
+        "energyEfficiencyIndexWash": {
+            "@id": "dppk:eprelEnergyEfficiencyIndexWash",
+            "@type": "xsd:double"
+        },
+        "dimensionWidth": {
+            "@id": "dppk:eprelDimensionWidth",
+            "@type": "xsd:integer"
+        },
+        "dimensionDepth": {
+            "@id": "dppk:eprelDimensionDepth",
+            "@type": "xsd:integer"
+        },
+        "maxTempHalfWash": {
+            "@id": "dppk:eprelMaxTempHalfWash",
+            "@type": "xsd:integer"
+        },
+        "energyConsumption100WashAndDry": {
+            "@id": "dppk:eprelEnergyConsumption100WashAndDry",
+            "@type": "xsd:integer"
+        },
+        "washingEfficiencyIndexWash": "dppk:eprelWashingEfficiencyIndexWash",
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "spinSpeedRated": {
+            "@id": "dppk:eprelSpinSpeedRated",
+            "@type": "xsd:integer"
+        },
+        "energyLabelId": {
+            "@id": "dppk:eprelEnergyLabelId",
+            "@type": "xsd:integer"
+        },
+        "noiseClass": "dppk:eprelNoiseClass",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "rinsingEffectivenessWash": {
+            "@id": "dppk:eprelRinsingEffectivenessWash",
+            "@type": "xsd:integer"
+        },
+        "washingEfficiencyIndexWashAndDry": "dppk:eprelWashingEfficiencyIndexWashAndDry",
+        "washingEfficiencyIndexWashAndDryV2": {
+            "@id": "dppk:eprelWashingEfficiencyIndexWashAndDryV2",
+            "@type": "xsd:double"
+        },
+        "maxTempRatedWashAndDry": {
+            "@id": "dppk:eprelMaxTempRatedWashAndDry",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "additionalInfos": {
+            "@id": "dppk:eprelAdditionalInfoContainer",
+            "@context": {
+                "language": {
+                    "@id": "dppk:eprelAiLanguage",
+                    "@type": "xsd:string"
+                },
+                "id": {
+                    "@id": "dppk:eprelAiId",
+                    "@type": "xsd:integer"
+                },
+                "orderNumber": {
+                    "@id": "dppk:eprelAiOrderNumber",
+                    "@type": "xsd:integer"
+                },
+                "text": {
+                    "@id": "dppk:eprelAiText",
+                    "@type": "xsd:string"
+                }
+            }
+        },
+        "ratedCapacityWash": {
+            "@id": "dppk:eprelRatedCapacityWash",
+            "@type": "xsd:integer"
+        },
+        "powerStandbyMode": "dppk:eprelPowerStandbyMode",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "isEnergySmartAppliance": {
+            "@id": "dppk:eprelIsEnergySmartAppliance",
+            "@type": "xsd:boolean"
+        },
+        "moistureHalf": "dppk:eprelMoistureHalf",
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "programDurationQuarterWash": {
+            "@id": "dppk:eprelProgramDurationQuarterWash",
+            "@type": "xsd:integer"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "noise": {
+            "@id": "dppk:eprelNoise",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "rinsingEffectivenessWashAndDry": {
+            "@id": "dppk:eprelRinsingEffectivenessWashAndDry",
+            "@type": "xsd:integer"
+        },
+        "energyConsumption100Wash": {
+            "@id": "dppk:eprelEnergyConsumption100Wash",
+            "@type": "xsd:integer"
+        },
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "energyEfficiencyIndexWashAndDry": {
+            "@id": "dppk:eprelEnergyEfficiencyIndexWashAndDry",
+            "@type": "xsd:double"
+        },
+        "programDurationHalfWash": {
+            "@id": "dppk:eprelProgramDurationHalfWash",
+            "@type": "xsd:integer"
+        },
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "powerNetworkedStandby": "dppk:eprelPowerNetworkedStandby",
+        "moisture": {
+            "@id": "dppk:eprelMoisture",
+            "@type": "xsd:double"
+        },
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "guaranteeDuration": {
+            "@id": "dppk:eprelGuaranteeDuration",
+            "@type": "xsd:integer"
+        },
+        "maxTempQuarterWash": {
+            "@id": "dppk:eprelMaxTempQuarterWash",
+            "@type": "xsd:integer"
+        },
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "ratedCapacityWashAndDry": {
+            "@id": "dppk:eprelRatedCapacityWashAndDry",
+            "@type": "xsd:integer"
+        },
+        "status": "dppk:eprelStatus",
+        "energyConsumptionWashAndDry": {
+            "@id": "dppk:eprelEnergyConsumptionWashAndDry",
+            "@type": "xsd:double"
+        },
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "programDurationRatedWashAndDry": {
+            "@id": "dppk:eprelProgramDurationRatedWashAndDry",
+            "@type": "xsd:integer"
+        },
+        "webLinkSupplier": "dppk:eprelWebLinkSupplier",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "programDurationRatedWash": {
+            "@id": "dppk:eprelProgramDurationRatedWash",
+            "@type": "xsd:integer"
+        },
+        "energyClassWashAndDry": "dppk:eprelEnergyClassWashAndDry",
+        "dimensionHeight": {
+            "@id": "dppk:eprelDimensionHeight",
+            "@type": "xsd:integer"
+        },
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "moistureRated": "dppk:eprelMoistureRated",
+        "energyConsumptionWash": {
+            "@id": "dppk:eprelEnergyConsumptionWash",
+            "@type": "xsd:double"
+        },
+        "energyClassWash": "dppk:eprelEnergyClassWash",
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "waterConsumptionWash": {
+            "@id": "dppk:eprelWaterConsumptionWash",
+            "@type": "xsd:integer"
+        },
+        "spinSpeedHalf": {
+            "@id": "dppk:eprelSpinSpeedHalf",
+            "@type": "xsd:integer"
+        },
+        "powerOffMode": {
+            "@id": "dppk:eprelPowerOffMode",
+            "@type": "xsd:double"
+        },
+        "maxTempRatedWash": {
+            "@id": "dppk:eprelMaxTempRatedWash",
+            "@type": "xsd:integer"
+        },
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "washingEfficiencyIndexWashV2": {
+            "@id": "dppk:eprelWashingEfficiencyIndexWashV2",
+            "@type": "xsd:double"
+        },
+        "waterConsumptionWashAndDry": {
+            "@id": "dppk:eprelWaterConsumptionWashAndDry",
+            "@type": "xsd:integer"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "maxTempHalfWashAndDry": {
+            "@id": "dppk:eprelMaxTempHalfWashAndDry",
+            "@type": "xsd:integer"
+        },
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "spinSpeedQuarter": {
+            "@id": "dppk:eprelSpinSpeedQuarter",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "spinClass": "dppk:eprelSpinClass",
+        "moistureQuarter": "dppk:eprelMoistureQuarter",
+        "programDurationHalfWashAndDry": {
+            "@id": "dppk:eprelProgramDurationHalfWashAndDry",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "powerDelayStart": {
+            "@id": "dppk:eprelPowerDelayStart",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "designType": "dppk:eprelDesignType",
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

@@ -1,0 +1,202 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelCoolingCharacteristics",
+  "@type": "owl:Ontology",
+  "dcterms:title": "EPREL Cooling Characteristics Sub-Ontology",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "EPREL Cooling Characteristics Sub-Ontology"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:eprelCoolingCharacteristics",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Cooling Characteristics"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Object property linking to cooling characteristics block."
+      },
+      "rdfs:range": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      }
+    },
+    {
+      "@id": "dppk:EprelCoolingCharacteristicsBlock",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EPREL Cooling Characteristics"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Characteristics Block"
+      }
+    },
+    {
+      "@id": "dppk:eprelCoolingRatedCapacity",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cooling Rated Capacity"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Rated Capacity"
+      }
+    },
+    {
+      "@id": "dppk:eprelCoolingDesignLoad",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kW",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cooling Design Load"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Design Load"
+      }
+    },
+    {
+      "@id": "dppk:eprelCoolingAnnualElectricityConsumption",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kWh/a",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cooling Annual Electricity Consumption"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Annual Electricity Consumption"
+      }
+    },
+    {
+      "@id": "dppk:eprelCoolingHourlyElectricityConsumption",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "kWh/h",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cooling Hourly Electricity Consumption"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Hourly Electricity Consumption"
+      }
+    },
+    {
+      "@id": "dppk:eprelSeasonalEnergyEfficiencyRatio",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Energy Efficiency Ratio"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Seasonal Energy Efficiency Ratio"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelEnergyEfficiencyRatio",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Energy Efficiency Ratio"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Energy Efficiency Ratio"
+      },
+      "dppk:unit": "unitless"
+    },
+    {
+      "@id": "dppk:eprelCoolingEnergyClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cooling Energy Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Energy Class"
+      }
+    },
+    {
+      "@id": "dppk:eprelCoolingIndoorSoundPower",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "dB",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cooling Indoor Sound Power"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Indoor Sound Power"
+      }
+    },
+    {
+      "@id": "dppk:eprelCoolingOutdoorSoundPower",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk:EprelCoolingCharacteristicsBlock"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:unit": "dB",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Eprel Cooling Outdoor Sound Power"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Eprel Cooling Outdoor Sound Power"
+      }
+    }
+  ],
+  "dcterms:description": "Sub-ontology defining the properties for EPREL cooling characteristics."
+}

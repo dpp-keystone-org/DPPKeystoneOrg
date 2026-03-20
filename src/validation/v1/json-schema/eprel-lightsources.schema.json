@@ -1,0 +1,583 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-lightsources.schema.json",
+    "title": "DPP for Lightsources (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the lightsources sector.",
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "eprel_lightsources_specification_id"
+                }
+            }
+        },
+        "required": [
+            "contentSpecificationIds"
+        ]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "highLuminanceLightSource": {
+                "type": "boolean"
+            },
+            "lumenMaintenanceFactor": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "dimensionWidth": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "dimensionDepth": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "status": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "antiGlareShield": {
+                "type": "boolean"
+            },
+            "contactDetails": {
+                "$ref": "eprel/contact-details.schema.json"
+            },
+            "organisation": {
+                "$ref": "eprel/organisation.schema.json"
+            },
+            "luminousFlux": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketEndDateTS": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "connectedLightSource": {
+                "type": "boolean"
+            },
+            "modelAvailabilityInCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "orgVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "survivalFactor": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "dimmable": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyLabelId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "powerStandby": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "mains": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInEUEEACountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "formType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "maxColourRenderingIndex": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "powerOnMode": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyConsOnMode": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "directional": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "firstPublicationDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "generatedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "equivalentPower": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "dimensionHeight": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "colourRenderingIndex": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "visibleToUkMsa": {
+                "type": "boolean"
+            },
+            "contactId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "minBeamAngle": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "additionalDetails": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "lastVersion": {
+                "type": "boolean"
+            },
+            "claimEquivalentPower": {
+                "type": "boolean"
+            },
+            "trademarkOwner": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "allowEprelLabelGeneration": {
+                "type": "boolean"
+            },
+            "firstPublicationDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "colourTuneableLightSource": {
+                "type": "boolean"
+            },
+            "stroboscopicEffectMetric": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "beamAngleCorrespondence": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "chromaticityCoordY": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "chromaticityCoordX": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketEndDate": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "flickerMetric": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "replacementClaim": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "r9ColourRenderingIndex": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "registrantNature": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "exportDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "capType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "displacementFactor": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "claimLedReplaceFluorescent": {
+                "type": "boolean"
+            },
+            "spectralPowerDistributionImage": {
+                "$ref": "eprel/spectral-power-distribution-image.schema.json"
+            },
+            "onMarketFirstStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "implementingAct": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "blocked": {
+                "type": "boolean"
+            },
+            "modelIdentifier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "peakLuminousIntensity": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "beamAngle": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "energyClassImageWithScale": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "versionId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassImage": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "maxBeamAngle": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "importedOn": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "correlatedColourTempType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "publishedOnDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassRange": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "modelAvailabilityInOtherCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "correlatedColourTempMax": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "productModelCoreId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "versionNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "correlatedColourTemp": {
+                "type": [
+                    "array",
+                    "null"
+                ],
+                "items": {
+                    "$ref": "eprel/correlated-colour-temp.schema.json"
+                }
+            },
+            "colourConsistency": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "uploadedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "supplierOrTrademark": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "envelope": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "availabilityInEUEEACountries": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "publishedOnDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "productGroup": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "powerStandbyNetworked": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "minColourRenderingIndex": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "lightingTechnology": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "correlatedColourTempMin": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "eprelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            }
+        }
+    }
+}

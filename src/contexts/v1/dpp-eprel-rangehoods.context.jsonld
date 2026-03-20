@@ -1,0 +1,155 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "greaseFilteringEfficiency": {
+            "@id": "dppk:eprelGreaseFilteringEfficiency",
+            "@type": "xsd:double"
+        },
+        "status": "dppk:eprelStatus",
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "energyLabelId": {
+            "@id": "dppk:eprelEnergyLabelId",
+            "@type": "xsd:integer"
+        },
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "greaseFilteringEfficiencyClass": "dppk:eprelGreaseFilteringEfficiencyClass",
+        "airFlowBoost": {
+            "@id": "dppk:eprelAirFlowBoost",
+            "@type": "xsd:integer"
+        },
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "soundPowerBoost": {
+            "@id": "dppk:eprelSoundPowerBoost",
+            "@type": "xsd:integer"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "lightingEfficiency": {
+            "@id": "dppk:eprelLightingEfficiency",
+            "@type": "xsd:integer"
+        },
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "soundPowerMin": {
+            "@id": "dppk:eprelSoundPowerMin",
+            "@type": "xsd:integer"
+        },
+        "airFlowMax": {
+            "@id": "dppk:eprelAirFlowMax",
+            "@type": "xsd:integer"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "noise": {
+            "@id": "dppk:eprelNoise",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "fluidDynamicEfficiencyClass": "dppk:eprelFluidDynamicEfficiencyClass",
+        "lightingEfficiencyClass": "dppk:eprelLightingEfficiencyClass",
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "powerConsumptionOffMode": {
+            "@id": "dppk:eprelPowerConsumptionOffMode",
+            "@type": "xsd:double"
+        },
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "energyAnnual": {
+            "@id": "dppk:eprelEnergyAnnual",
+            "@type": "xsd:double"
+        },
+        "powerConsumptionStandbyMode": "dppk:eprelPowerConsumptionStandbyMode",
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "fluidDynamicEfficiency": {
+            "@id": "dppk:eprelFluidDynamicEfficiency",
+            "@type": "xsd:double"
+        },
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "airFlowMin": {
+            "@id": "dppk:eprelAirFlowMin",
+            "@type": "xsd:integer"
+        },
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "soundPowerMax": {
+            "@id": "dppk:eprelSoundPowerMax",
+            "@type": "xsd:integer"
+        },
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

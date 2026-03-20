@@ -1,0 +1,100 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelSpectralPowerDistributionImage.jsonld",
+    "@type": "owl:Ontology",
+    "dcterms:title": "EPREL Spectral Power Distribution Image Ontology",
+    "dcterms:description": "Ontology for Spectral Power Distribution Image",
+    "rdfs:label": [
+        {
+            "@language": "en",
+            "@value": "Spectral Power Distribution Image Ontology"
+        }
+    ],
+    "owl:imports": [],
+    "@graph": [
+        {
+            "@id": "dppk:EprelSpectralPowerDistributionImage",
+            "@type": "rdfs:Class",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Spectral Power Distribution Image"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelSpdiFileName",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpectralPowerDistributionImage"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Spdi File Name"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelSpdiId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpectralPowerDistributionImage"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Spdi Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelSpdiFile",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpectralPowerDistributionImage"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Spdi File"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelSpdiFileSize",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpectralPowerDistributionImage"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Spdi File Size"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "bytes"
+        }
+    ]
+}

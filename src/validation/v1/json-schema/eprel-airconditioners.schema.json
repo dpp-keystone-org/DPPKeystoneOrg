@@ -1,0 +1,275 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-airconditioners.schema.json",
+    "title": "DPP for Air Conditioners (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the air conditioners sector.",
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "eprel_airconditioners_specification_id"
+                }
+            }
+        },
+        "required": [
+            "contentSpecificationIds"
+        ]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "status": {
+                "type": "string"
+            },
+            "ecoLabelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "contactDetails": {
+                "$ref": "eprel/contact-details.schema.json"
+            },
+            "organisation": {
+                "$ref": "eprel/organisation.schema.json"
+            },
+            "onMarketEndDateTS": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "ecoLabel": {
+                "type": "boolean"
+            },
+            "modelAvailabilityInCountries": {
+                "type": "array"
+            },
+            "energyClass": {
+                "type": "string"
+            },
+            "heatingDesignLoad": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "orgVerificationStatus": {
+                "type": "string"
+            },
+            "refrigerantName": {
+                "type": "string"
+            },
+            "indoorSoundPowerCooling": {
+                "type": "number"
+            },
+            "energyLabelId": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "coolingEnergyClass": {
+                "type": "string"
+            },
+            "onMarketStartDate": {
+                "type": "array"
+            },
+            "modelAvailabilityInEUEEACountries": {
+                "type": "array"
+            },
+            "formType": {
+                "type": "string"
+            },
+            "onMarketStartDateTS": {
+                "type": "number"
+            },
+            "firstPublicationDate": {
+                "type": "array"
+            },
+            "generatedLabels": {
+                "type": [
+                    "array",
+                    "null"
+                ]
+            },
+            "visibleToUkMsa": {
+                "type": "boolean"
+            },
+            "contactId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "additionalDetails": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "lastVersion": {
+                "type": "boolean"
+            },
+            "trademarkOwner": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "indoorModelIdentifiers": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "allowEprelLabelGeneration": {
+                "type": "boolean"
+            },
+            "firstPublicationDateTS": {
+                "type": "number"
+            },
+            "ductedType": {
+                "type": "string"
+            },
+            "isEnergySmartAppliance": {
+                "type": "boolean"
+            },
+            "onMarketEndDate": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "outdoorSoundPowerCooling": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "registrantNature": {
+                "type": "string"
+            },
+            "trademarkId": {
+                "type": "number"
+            },
+            "exportDateTS": {
+                "type": "number"
+            },
+            "numberIndoorUnits": {
+                "type": "number"
+            },
+            "indoorSoundPowerHeating": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "outdoorModelIdentifier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketFirstStartDateTS": {
+                "type": "number"
+            },
+            "implementingAct": {
+                "type": "string"
+            },
+            "blocked": {
+                "type": "boolean"
+            },
+            "modelIdentifier": {
+                "type": "string"
+            },
+            "energyClassImageWithScale": {
+                "type": "string"
+            },
+            "versionId": {
+                "type": "number"
+            },
+            "energyClassImage": {
+                "type": "string"
+            },
+            "trademarkVerificationStatus": {
+                "type": "string"
+            },
+            "refrigerantGwp": {
+                "type": "number"
+            },
+            "importedOn": {
+                "type": "number"
+            },
+            "publishedOnDateTS": {
+                "type": "number"
+            },
+            "functionType": {
+                "type": "string"
+            },
+            "energyClassRange": {
+                "type": "string"
+            },
+            "coolingDesignLoad": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "heatingEnergyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "modelAvailabilityInOtherCountries": {
+                "type": "array"
+            },
+            "onMarketFirstStartDate": {
+                "type": "array"
+            },
+            "productModelCoreId": {
+                "type": "number"
+            },
+            "versionNumber": {
+                "type": "number"
+            },
+            "uploadedLabels": {
+                "type": [
+                    "array",
+                    "null"
+                ]
+            },
+            "heatingCharacteristics": {
+                "$ref": "eprel/heating-characteristics.schema.json"
+            },
+            "supplierOrTrademark": {
+                "type": "string"
+            },
+            "outdoorSoundPowerHeating": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "availabilityInEUEEACountries": {
+                "type": "string"
+            },
+            "publishedOnDate": {
+                "type": "array"
+            },
+            "productGroup": {
+                "type": "string"
+            },
+            "coolingCharacteristics": {
+                "type": "object"
+            },
+            "eprelRegistrationNumber": {
+                "type": "string"
+            }
+        }
+    }
+}

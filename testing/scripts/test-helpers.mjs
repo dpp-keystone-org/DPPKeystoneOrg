@@ -67,6 +67,111 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
     "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-dopc.context.jsonld'),
 
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-airconditioners.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-airconditioners.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-dishwashers.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-dishwashers.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-electronicdisplays.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-electronicdisplays.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-hotwaterstoragetanks.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-hotwaterstoragetanks.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-lightsources.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-lightsources.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-localspaceheaters.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-localspaceheaters.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-ovens.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-ovens.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-professionalrefrigeratedstoragecabinets.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-professionalrefrigeratedstoragecabinets.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-rangehoods.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-rangehoods.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-refrigeratingappliances.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-refrigeratingappliances.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-refrigeratingappliancesdirectsalesfunction.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-refrigeratingappliancesdirectsalesfunction.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-residentialventilationunits.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-residentialventilationunits.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-smartphonestablets.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-smartphonestablets.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-solidfuelboilerpackages.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-solidfuelboilerpackages.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-solidfuelboilers.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-solidfuelboilers.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheaterpackages.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-spaceheaterpackages.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheaters.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-spaceheaters.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheatersolardevice.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-spaceheatersolardevice.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheatertemperaturecontrol.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-spaceheatertemperaturecontrol.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-tumbledryers.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-tumbledryers.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-tyres.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-tyres.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-washerdriers.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-washerdriers.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-washingmachines.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-washingmachines.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-waterheaterpackages.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-waterheaterpackages.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-waterheaters.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-waterheaters.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-waterheatersolardevices.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-eprel-waterheatersolardevices.context.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelAirconditioners.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelAirconditioners.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelDishwashers.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelDishwashers.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelElectronicdisplays.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelElectronicdisplays.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelHotwaterstoragetanks.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelHotwaterstoragetanks.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelLightsources.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelLightsources.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelLocalspaceheaters.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelLocalspaceheaters.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelOvens.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelOvens.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelProfessionalrefrigeratedstoragecabinets.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelProfessionalrefrigeratedstoragecabinets.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelRangehoods.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelRangehoods.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelRefrigeratingappliances.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelRefrigeratingappliances.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelRefrigeratingappliancesdirectsalesfunction.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelRefrigeratingappliancesdirectsalesfunction.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelResidentialventilationunits.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelResidentialventilationunits.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSmartphonestablets.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelSmartphonestablets.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSolidfuelboilerpackages.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelSolidfuelboilerpackages.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSolidfuelboilers.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelSolidfuelboilers.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceheaterpackages.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelSpaceheaterpackages.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceheaters.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelSpaceheaters.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceheatersolardevice.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelSpaceheatersolardevice.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelSpaceheatertemperaturecontrol.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelSpaceheatertemperaturecontrol.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelTumbledryers.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelTumbledryers.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelTyres.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelTyres.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWasherdriers.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelWasherdriers.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWashingmachines.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelWashingmachines.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWaterheaterpackages.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelWaterheaterpackages.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWaterheaters.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelWaterheaters.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelWaterheatersolardevices.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EprelWaterheatersolardevices.jsonld'),
+
     // --- Ontology Files ---
     "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'dpp-ontology.jsonld'),

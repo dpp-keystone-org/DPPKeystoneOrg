@@ -1,0 +1,136 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheaters.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelSpaceheatersProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-spaceheaters-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-spaceheaters-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_spaceheaters_specification_id"
+    ],
+    "productName": "Keystone Demo 'spaceheaters' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-spaceheaters-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "ecoLabel": false,
+    "onMarketEndDateTS": 2298447360,
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "modelAvailabilityInEUEEACountries": [],
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "specificPrecautions": [],
+    "energyClass35": "Keystone Demo APPP",
+    "lastVersion": false,
+    "trademarkOwner": "Keystone Demo SolaX Power Network Technology (Zhejiang) Co.,Ltd",
+    "allowEprelLabelGeneration": true,
+    "isEnergySmartAppliance": false,
+    "mediumTempRatedHeatOutputAverage": 14,
+    "onMarketEndDate": [
+        2028,
+        1,
+        1
+    ],
+    "ratedHeatOutput": 14,
+    "onMarketFirstStartDateTS": 1951361281,
+    "noise": 37,
+    "implementingAct": "Keystone Demo EU_811_2013",
+    "blocked": false,
+    "versionId": 5895697,
+    "energyClassImage": "Keystone Demo APPP-Left-DarkGreen.png",
+    "importedOn": 1951357994602,
+    "waterHeatingEnergyClass": "A",
+    "energyAnnualKwh": 5393,
+    "modelAvailabilityInOtherCountries": [],
+    "energyAnnualAverageKwh35": 5393,
+    "seasonalSpaceHeatingEnergyEfficiencyAverage55": 169,
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2933044,
+    "versionNumber": 2,
+    "outdoorNoise": 57,
+    "supplierOrTrademark": "Keystone Demo SOLAX POWER",
+    "availabilityInEUEEACountries": "ALL",
+    "ratedHeatOutputAverage55": 14,
+    "status": "PUBLISHED",
+    "contactDetails": {
+        "country": "DE",
+        "streetNumber": "DEMO-6356",
+        "city": "Keystone Demo ENSCHEDE",
+        "postalCode": "DEMO-2731",
+        "contactReference": "Keystone Demo 859333243",
+        "serviceName": "Keystone Demo SolaX Power NL Company B.V.",
+        "defaultContact": true,
+        "phone": "+1-555-0199",
+        "street": "Keystone Demo Twekkeler Es",
+        "id": 23811,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo SOLAX POWER NL Company B.V.",
+        "organisationName": "Keystone Demo SOLAX POWER NL Company B.V.",
+        "isClosed": false,
+        "guid": "DEMO-9702",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "modelAvailabilityInCountries": [],
+    "energyClass": "Keystone Demo APPP",
+    "orgVerificationStatus": "VERIFIED",
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1951361281,
+    "energyAnnualAverageKwh55": 7011,
+    "seasonalSpaceHeatingEnergyEfficiencyAverage35": 219,
+    "seasonalSpaceHeatingEnergyEfficiency": 219,
+    "lowTemperatureApplication": false,
+    "visibleToUkMsa": false,
+    "category": "Keystone Demo COMBINATION_HEATER",
+    "firstPublicationDateTS": 1951357391,
+    "mediumTempEnergyAnnualAverageKwh": 7011,
+    "registrantNature": "Keystone Demo IMPORTER",
+    "ratedHeatOutputAverage35": 14,
+    "trademarkId": 102910,
+    "exportDateTS": 1951357989720,
+    "modelIdentifier": "DEMO-3146",
+    "energyClassImageWithScale": "Keystone Demo APPP-Left-DarkGreen-WithAPPPDScale.svg",
+    "trademarkVerificationStatus": "VERIFIED",
+    "mediumTempEnergyClass": "Keystone Demo APPP",
+    "publishedOnDateTS": 1951357391143,
+    "energyClassRange": "Keystone Demo APPP_D",
+    "onlyForOffPeakPeriod": false,
+    "energyClass55": "Keystone Demo APPP",
+    "loadProfile": "L",
+    "mediumTempSeasonalSpaceHeatingEnergyEfficiencyAverage": 169,
+    "waterHeatingElectricityAnnualKwh": 989,
+    "waterHeatingEnergyEfficiency": 126,
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo spaceheaters",
+    "type": "Keystone Demo HEAT_PUMP",
+    "eprelRegistrationNumber": "DEMO-7288"
+}

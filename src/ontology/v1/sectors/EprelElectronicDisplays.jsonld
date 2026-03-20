@@ -1,0 +1,1434 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EprelElectronicDisplays.jsonld",
+    "@type": "owl:Ontology",
+    "dcterms:title": "EPREL Electronic Displays Sector Ontology",
+    "dcterms:description": "Sector ontology for the EPREL Electronic Displays product category.",
+    "rdfs:label": [
+        {
+            "@language": "en",
+            "@value": "EPREL Electronic Displays Sector Ontology"
+        }
+    ],
+    "owl:imports": [
+        {
+            "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelContactDetails.jsonld"
+        },
+        {
+            "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelOrganisation.jsonld"
+        }
+    ],
+    "@graph": [
+        {
+            "@id": "dppk:EprelElectronicDisplaysProduct",
+            "@type": "rdfs:Class",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "EPREL Electronic Displays Product"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Base class for EPREL Electronic Displays"
+            }
+        },
+        {
+            "@id": "dppk:eprelStatus",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Status"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Status"
+            }
+        },
+        {
+            "@id": "dppk:eprelEnergyClassSDR",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Energy Class S D R"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Energy Class S D R"
+            }
+        },
+        {
+            "@id": "dppk:eprelPowerSupplyType",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Power Supply Type"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Power Supply Type"
+            }
+        },
+        {
+            "@id": "dppk:eprelExternalStandardPowerIncludedOutput",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel External Standard Power Included Output"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel External Standard Power Included Output"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelOnMarketEndDateTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel On Market End Date T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel On Market End Date T S"
+            }
+        },
+        {
+            "@id": "dppk:eprelVisibleArea",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Visible Area"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Visible Area"
+            },
+            "dppk:unit": "dm2"
+        },
+        {
+            "@id": "dppk:eprelModelAvailabilityInCountries",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Model Availability In Countries"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Model Availability In Countries"
+            }
+        },
+        {
+            "@id": "dppk:eprelEnergyClass",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Energy Class"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Energy Class"
+            }
+        },
+        {
+            "@id": "dppk:eprelMinAvailabilitySparePartsYears",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Availability Spare Parts Years"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Availability Spare Parts Years"
+            },
+            "dppk:unit": "years"
+        },
+        {
+            "@id": "dppk:eprelPanelTechnologyOther",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Panel Technology Other"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Panel Technology Other"
+            }
+        },
+        {
+            "@id": "dppk:eprelOrgVerificationStatus",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Org Verification Status"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Org Verification Status"
+            }
+        },
+        {
+            "@id": "dppk:eprelPowerOnModeSDR",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:double",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Power On Mode S D R"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Power On Mode S D R"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelEnergyLabelId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Energy Label Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Energy Label Id"
+            }
+        },
+        {
+            "@id": "dppk:eprelPowerStandby",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:double",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Power Standby"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Power Standby"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelVoiceAvailable",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Voice Available"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Voice Available"
+            }
+        },
+        {
+            "@id": "dppk:eprelMinGuaranteedSupportTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Guaranteed Support T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Guaranteed Support T S"
+            }
+        },
+        {
+            "@id": "dppk:eprelExternalStandardPowerExcludedOutput",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel External Standard Power Excluded Output"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel External Standard Power Excluded Output"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelDiagonalInch",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Diagonal Inch"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Diagonal Inch"
+            },
+            "dppk:unit": "inch"
+        },
+        {
+            "@id": "dppk:eprelOnMarketStartDate",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel On Market Start Date"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel On Market Start Date"
+            }
+        },
+        {
+            "@id": "dppk:eprelModelAvailabilityInEUEEACountries",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Model Availability In E U E E A Countries"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Model Availability In E U E E A Countries"
+            }
+        },
+        {
+            "@id": "dppk:eprelFormType",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Form Type"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Form Type"
+            }
+        },
+        {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel On Market Start Date T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel On Market Start Date T S"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelFirstPublicationDate",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel First Publication Date"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel First Publication Date"
+            }
+        },
+        {
+            "@id": "dppk:eprelExternalStandardPowerIncludedInput",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel External Standard Power Included Input"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel External Standard Power Included Input"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelMinAvailabilitySpareParts",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Availability Spare Parts"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Availability Spare Parts"
+            }
+        },
+        {
+            "@id": "dppk:eprelMinAvailabilitySparePartsTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Availability Spare Parts T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Availability Spare Parts T S"
+            }
+        },
+        {
+            "@id": "dppk:eprelGeneratedLabels",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Generated Labels"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Generated Labels"
+            }
+        },
+        {
+            "@id": "dppk:eprelAutoBrightnessControlAvailable",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Auto Brightness Control Available"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Auto Brightness Control Available"
+            }
+        },
+        {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Visible To Uk Msa"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Visible To Uk Msa"
+            }
+        },
+        {
+            "@id": "dppk:eprelMinGuaranteedGuarantee",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Guaranteed Guarantee"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Guaranteed Guarantee"
+            },
+            "dppk:unit": "years"
+        },
+        {
+            "@id": "dppk:eprelContactId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Contact Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Contact Id"
+            }
+        },
+        {
+            "@id": "dppk:eprelAdditionalDetails",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Additional Details"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Additional Details"
+            }
+        },
+        {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Last Version"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Last Version"
+            }
+        },
+        {
+            "@id": "dppk:eprelTrademarkOwner",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Trademark Owner"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Trademark Owner"
+            }
+        },
+        {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Allow Eprel Label Generation"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Allow Eprel Label Generation"
+            }
+        },
+        {
+            "@id": "dppk:eprelCategory",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Category"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Category"
+            }
+        },
+        {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel First Publication Date T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel First Publication Date T S"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelRoomPresenceAvailable",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Room Presence Available"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Room Presence Available"
+            }
+        },
+        {
+            "@id": "dppk:eprelOnMarketEndDate",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel On Market End Date"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel On Market End Date"
+            }
+        },
+        {
+            "@id": "dppk:eprelPanelTechnology",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Panel Technology"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Panel Technology"
+            }
+        },
+        {
+            "@id": "dppk:eprelMinAvailabilitySoftwareUpdatesYears",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Availability Software Updates Years"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Availability Software Updates Years"
+            },
+            "dppk:unit": "years"
+        },
+        {
+            "@id": "dppk:eprelSizeRatioY",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Size Ratio Y"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Size Ratio Y"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelPowerOffMode",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Power Off Mode"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Power Off Mode"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelMinAvailabilitySoftwareUpdates",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Availability Software Updates"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Availability Software Updates"
+            }
+        },
+        {
+            "@id": "dppk:eprelRegistrantNature",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Registrant Nature"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Registrant Nature"
+            }
+        },
+        {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Trademark Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Trademark Id"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Export Date T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Export Date T S"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel On Market First Start Date T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel On Market First Start Date T S"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelImplementingAct",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Implementing Act"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Implementing Act"
+            }
+        },
+        {
+            "@id": "dppk:eprelBlocked",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Blocked"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Blocked"
+            }
+        },
+        {
+            "@id": "dppk:eprelModelIdentifier",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Model Identifier"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Model Identifier"
+            }
+        },
+        {
+            "@id": "dppk:eprelMinGuaranteedSupport",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Guaranteed Support"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Guaranteed Support"
+            },
+            "dppk:unit": "years"
+        },
+        {
+            "@id": "dppk:eprelResolutionHorizontalPixels",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Resolution Horizontal Pixels"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Resolution Horizontal Pixels"
+            },
+            "dppk:unit": "pixels"
+        },
+        {
+            "@id": "dppk:eprelEnergyClassImageWithScale",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Energy Class Image With Scale"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Energy Class Image With Scale"
+            }
+        },
+        {
+            "@id": "dppk:eprelResolutionVerticalPixels",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Resolution Vertical Pixels"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Resolution Vertical Pixels"
+            },
+            "dppk:unit": "pixels"
+        },
+        {
+            "@id": "dppk:eprelVersionId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Version Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Version Id"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelEnergyClassImage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Energy Class Image"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Energy Class Image"
+            }
+        },
+        {
+            "@id": "dppk:eprelTrademarkVerificationStatus",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Trademark Verification Status"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Trademark Verification Status"
+            }
+        },
+        {
+            "@id": "dppk:eprelSizeRatioX",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Size Ratio X"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Size Ratio X"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelEnergyClassHDR",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Energy Class H D R"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Energy Class H D R"
+            }
+        },
+        {
+            "@id": "dppk:eprelExternalStandardPowerExcludedName",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel External Standard Power Excluded Name"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel External Standard Power Excluded Name"
+            }
+        },
+        {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Imported On"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Imported On"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelMinGuaranteedSupportYears",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Guaranteed Support Years"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Guaranteed Support Years"
+            },
+            "dppk:unit": "years"
+        },
+        {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Published On Date T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Published On Date T S"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelPowerOnModeHDR",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Power On Mode H D R"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Power On Mode H D R"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelEnergyClassRange",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Energy Class Range"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Energy Class Range"
+            }
+        },
+        {
+            "@id": "dppk:eprelMinAvailabilitySoftwareUpdatesTS",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Min Availability Software Updates T S"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Min Availability Software Updates T S"
+            }
+        },
+        {
+            "@id": "dppk:eprelFrequencyRate",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Frequency Rate"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Frequency Rate"
+            },
+            "dppk:unit": "Hz"
+        },
+        {
+            "@id": "dppk:eprelModelAvailabilityInOtherCountries",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Model Availability In Other Countries"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Model Availability In Other Countries"
+            }
+        },
+        {
+            "@id": "dppk:eprelExternalStandardPowerIncludedName",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel External Standard Power Included Name"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel External Standard Power Included Name"
+            }
+        },
+        {
+            "@id": "dppk:eprelOnMarketFirstStartDate",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel On Market First Start Date"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel On Market First Start Date"
+            }
+        },
+        {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Product Model Core Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Product Model Core Id"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Version Number"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Version Number"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelUploadedLabels",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Uploaded Labels"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Uploaded Labels"
+            }
+        },
+        {
+            "@id": "dppk:eprelSupplierOrTrademark",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Supplier Or Trademark"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Supplier Or Trademark"
+            }
+        },
+        {
+            "@id": "dppk:eprelExternalStandardPowerExcludedFrequency",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel External Standard Power Excluded Frequency"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel External Standard Power Excluded Frequency"
+            }
+        },
+        {
+            "@id": "dppk:eprelExternalStandardPowerExcludedCurrent",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel External Standard Power Excluded Current"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel External Standard Power Excluded Current"
+            }
+        },
+        {
+            "@id": "dppk:eprelVisibleAreaV2",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:double",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Visible Area V2"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Visible Area V2"
+            },
+            "dppk:unit": "dm2"
+        },
+        {
+            "@id": "dppk:eprelAvailabilityInEUEEACountries",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Availability In E U E E A Countries"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Availability In E U E E A Countries"
+            }
+        },
+        {
+            "@id": "dppk:eprelPublishedOnDate",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Published On Date"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Published On Date"
+            }
+        },
+        {
+            "@id": "dppk:eprelProductGroup",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Product Group"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Product Group"
+            }
+        },
+        {
+            "@id": "dppk:eprelPowerStandbyNetworked",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Power Standby Networked"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Power Standby Networked"
+            },
+            "dppk:unit": "W"
+        },
+        {
+            "@id": "dppk:eprelCalculatedDiagonalInch",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:boolean",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Calculated Diagonal Inch"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Calculated Diagonal Inch"
+            }
+        },
+        {
+            "@id": "dppk:eprelDiagonalCm",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:double",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Diagonal Cm"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Diagonal Cm"
+            },
+            "dppk:unit": "cm"
+        },
+        {
+            "@id": "dppk:eprelRegistrationNumber",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelElectronicDisplaysProduct"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Registration Number"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "Property representing Eprel Registration Number"
+            }
+        }
+    ]
+}

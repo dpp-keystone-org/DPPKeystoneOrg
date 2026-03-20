@@ -1,0 +1,110 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-localspaceheaters.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelLocalspaceheatersProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-localspaceheaters-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-localspaceheaters-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_localspaceheaters_specification_id"
+    ],
+    "productName": "Keystone Demo 'localspaceheaters' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-localspaceheaters-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "status": "PUBLISHED",
+    "contactDetails": {
+        "contactReference": "Keystone Demo ENIFPEGASUSSRL",
+        "serviceName": "Keystone Demo ENIFPEGASUSSRL",
+        "addressBloc": "Keystone Demo MIHAI, Bloc 42, Scara 1,\nEtaj 5, Apartament 29,\n22882 Bucuresti Sectorul 2,\nRomania",
+        "defaultContact": true,
+        "phone": "+1-555-0199",
+        "id": 16558,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo ENIF PEGASUS S.R.L.",
+        "organisationName": "Keystone Demo ENIF PEGASUS S.R.L.",
+        "isClosed": false,
+        "guid": "DEMO-3224",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "onMarketEndDateTS": 2055240001,
+    "modelAvailabilityInCountries": [],
+    "energyClass": "AP",
+    "orgVerificationStatus": "VERIFIED",
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "modelAvailabilityInEUEEACountries": [],
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1951076161,
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "specificPrecautions": [],
+    "visibleToUkMsa": false,
+    "usefulEnergyEfficiencyMinimum": 69,
+    "lastVersion": false,
+    "allowEprelLabelGeneration": true,
+    "firstPublicationDateTS": 1951167313,
+    "isEnergySmartAppliance": false,
+    "onMarketEndDate": [
+        2028,
+        1,
+        1
+    ],
+    "indirectHeatOutput": 6,
+    "registrantNature": "Keystone Demo AUTHORISED_REPRESENTATIVE",
+    "trademarkId": 103066,
+    "exportDateTS": 1951167921251,
+    "onMarketFirstStartDateTS": 1951076161,
+    "implementingAct": "Keystone Demo EU_2015_1186",
+    "blocked": false,
+    "modelIdentifier": "DEMO-9016",
+    "usefulEnergyEfficiencyNominal": 90,
+    "energyClassImageWithScale": "Keystone Demo AP-Left-MediumGreen-WithAPPGScale.svg",
+    "versionId": 5894805,
+    "energyClassImage": "Keystone Demo AP-Left-MediumGreen.png",
+    "trademarkVerificationStatus": "VERIFIED",
+    "importedOn": 1951167924085,
+    "publishedOnDateTS": 1951167313400,
+    "energyClassRange": "Keystone Demo APP_G",
+    "energyEfficiencyIndex": 84,
+    "modelAvailabilityInOtherCountries": [],
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2932335,
+    "versionNumber": 2,
+    "supplierOrTrademark": "Keystone Demo Renqiu City Jujiang Electric Appliance Co., Ltd",
+    "directHeatOutput": 6,
+    "availabilityInEUEEACountries": "ALL",
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo localspaceheaters",
+    "eprelRegistrationNumber": "DEMO-4753"
+}

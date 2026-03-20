@@ -1,0 +1,361 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-solidfuelboilers.schema.json",
+    "title": "DPP for Solid Fuel Boilers (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the solidfuelboilers sector.",
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "eprel_solidfuelboilers_specification_id"
+                }
+            }
+        },
+        "required": [
+            "contentSpecificationIds"
+        ]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "status": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "ecoLabelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "contactDetails": {
+                "$ref": "eprel/contact-details.schema.json"
+            },
+            "waterHeatingFunction": {
+                "type": "boolean"
+            },
+            "organisation": {
+                "$ref": "eprel/organisation.schema.json"
+            },
+            "onMarketEndDateTS": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "ecoLabel": {
+                "type": "boolean"
+            },
+            "modelAvailabilityInCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "orgVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyLabelId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "onMarketStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInEUEEACountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "formType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "firstPublicationDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "specificPrecautions": {
+                "type": [
+                    "array",
+                    "null"
+                ],
+                "items": {
+                    "$ref": "eprel/specific-precaution.schema.json"
+                }
+            },
+            "generatedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "electricEfficiency": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "visibleToUkMsa": {
+                "type": "boolean"
+            },
+            "contactId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "additionalDetails": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "lastVersion": {
+                "type": "boolean"
+            },
+            "trademarkOwner": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "allowEprelLabelGeneration": {
+                "type": "boolean"
+            },
+            "firstPublicationDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketEndDate": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "seasonalHeatingEnergyEfficiency": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "electricGenerationFunction": {
+                "type": "boolean"
+            },
+            "registrantNature": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "exportDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "ratedHeatOutput": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "implementingAct": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "blocked": {
+                "type": "boolean"
+            },
+            "modelIdentifier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyClassImageWithScale": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "versionId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassImage": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "importedOn": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "publishedOnDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassRange": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyEfficiencyIndex": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInOtherCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "productModelCoreId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "versionNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "uploadedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "supplierOrTrademark": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "availabilityInEUEEACountries": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "publishedOnDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "productGroup": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "eprelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            }
+        }
+    }
+}

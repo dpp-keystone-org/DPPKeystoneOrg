@@ -1,0 +1,417 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-rangehoods.schema.json",
+    "title": "DPP for Range Hoods (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the rangehoods sector.",
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "eprel_rangehoods_specification_id"
+                }
+            }
+        },
+        "required": [
+            "contentSpecificationIds"
+        ]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "greaseFilteringEfficiency": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "status": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "contactDetails": {
+                "$ref": "eprel/contact-details.schema.json"
+            },
+            "organisation": {
+                "$ref": "eprel/organisation.schema.json"
+            },
+            "onMarketEndDateTS": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "modelAvailabilityInCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "orgVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyLabelId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInEUEEACountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "formType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "firstPublicationDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "greaseFilteringEfficiencyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "airFlowBoost": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "generatedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "visibleToUkMsa": {
+                "type": "boolean"
+            },
+            "contactId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "additionalDetails": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "lastVersion": {
+                "type": "boolean"
+            },
+            "soundPowerBoost": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "trademarkOwner": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "allowEprelLabelGeneration": {
+                "type": "boolean"
+            },
+            "firstPublicationDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketEndDate": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "lightingEfficiency": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "registrantNature": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "exportDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "soundPowerMin": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "airFlowMax": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "noise": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "implementingAct": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "blocked": {
+                "type": "boolean"
+            },
+            "modelIdentifier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "fluidDynamicEfficiencyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "lightingEfficiencyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyClassImageWithScale": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "versionId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassImage": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "powerConsumptionOffMode": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "importedOn": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "publishedOnDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassRange": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyAnnual": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "powerConsumptionStandbyMode": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "modelAvailabilityInOtherCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "productModelCoreId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "versionNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "uploadedLabels": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "fluidDynamicEfficiency": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "supplierOrTrademark": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "airFlowMin": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "availabilityInEUEEACountries": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "publishedOnDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "productGroup": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "soundPowerMax": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "eprelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            }
+        }
+    }
+}

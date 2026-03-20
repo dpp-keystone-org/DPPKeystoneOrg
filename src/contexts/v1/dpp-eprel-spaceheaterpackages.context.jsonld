@@ -1,0 +1,181 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "waterHeatingEnergyEfficiencyWarm": "dppk:eprelWaterHeatingEnergyEfficiencyWarm",
+        "status": "dppk:eprelStatus",
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "waterHeatingEnergyEfficiencyAverage": "dppk:eprelWaterHeatingEnergyEfficiencyAverage",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "combinationMathExprIII": "dppk:eprelCombinationMathExprIII",
+        "heatPumpContribution": "dppk:eprelHeatPumpContribution",
+        "packageSeasonalSpaceHeatingEfficiency": {
+            "@id": "dppk:eprelPackageSeasonalSpaceHeatingEfficiency",
+            "@type": "xsd:integer"
+        },
+        "boilerSeasonalHeatingEnergyContribution": "dppk:eprelBoilerSeasonalHeatingEnergyContribution",
+        "energyLabelId": {
+            "@id": "dppk:eprelEnergyLabelId",
+            "@type": "xsd:integer"
+        },
+        "waterHeatingEfficiency": "dppk:eprelWaterHeatingEfficiency",
+        "collectorEfficiency": "dppk:eprelCollectorEfficiency",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "solarCollectorIncluded": {
+            "@id": "dppk:eprelSolarCollectorIncluded",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "packageEnergyClass": "dppk:eprelPackageEnergyClass",
+        "waterHeatingSolarContribution": "dppk:eprelWaterHeatingSolarContribution",
+        "spaceHeaterType": "dppk:eprelSpaceHeaterType",
+        "combinationMathExprII": "dppk:eprelCombinationMathExprII",
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "weightFactorHeatOutput": {
+            "@id": "dppk:eprelWeightFactorHeatOutput",
+            "@type": "xsd:integer"
+        },
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "solarTankRatingClass": "dppk:eprelSolarTankRatingClass",
+        "differenceHeatingEfficiencyWarmAverage": {
+            "@id": "dppk:eprelDifferenceHeatingEfficiencyWarmAverage",
+            "@type": "xsd:integer"
+        },
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "category": "dppk:eprelCategory",
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "waterHeatingEnergyEfficiencyCold": "dppk:eprelWaterHeatingEnergyEfficiencyCold",
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "seasonalHeatingEnergyEfficiency": {
+            "@id": "dppk:eprelSeasonalHeatingEnergyEfficiency",
+            "@type": "xsd:integer"
+        },
+        "temperatureControlIncluded": {
+            "@id": "dppk:eprelTemperatureControlIncluded",
+            "@type": "xsd:boolean"
+        },
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "packageWaterHeatingEnergyClass": "dppk:eprelPackageWaterHeatingEnergyClass",
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "packageLoadProfile": "dppk:eprelPackageLoadProfile",
+        "differenceHeatingEfficiencyColdAverage": {
+            "@id": "dppk:eprelDifferenceHeatingEfficiencyColdAverage",
+            "@type": "xsd:integer"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "supplementaryHeaterIncluded": {
+            "@id": "dppk:eprelSupplementaryHeaterIncluded",
+            "@type": "xsd:boolean"
+        },
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "solarContributionAndHeatPumpAdjustment": "dppk:eprelSolarContributionAndHeatPumpAdjustment",
+        "temperatureControlContribution": "dppk:eprelTemperatureControlContribution",
+        "waterStorageTankIncluded": {
+            "@id": "dppk:eprelWaterStorageTankIncluded",
+            "@type": "xsd:boolean"
+        },
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "packageSeasonalSpaceHeatingEfficiencyWarm": {
+            "@id": "dppk:eprelPackageSeasonalSpaceHeatingEfficiencyWarm",
+            "@type": "xsd:integer"
+        },
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "mathExprIII": {
+            "@id": "dppk:eprelMathExprIII",
+            "@type": "xsd:double"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "waterHeatingEnergyClass": "dppk:eprelWaterHeatingEnergyClass",
+        "packageSeasonalSpaceHeatingEfficiencyCold": {
+            "@id": "dppk:eprelPackageSeasonalSpaceHeatingEfficiencyCold",
+            "@type": "xsd:integer"
+        },
+        "heatPumpSeasonalHeatingEnergyEfficiency": "dppk:eprelHeatPumpSeasonalHeatingEnergyEfficiency",
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "boilerSeasonalHeatingEfficiency": "dppk:eprelBoilerSeasonalHeatingEfficiency",
+        "solarTankVolume": "dppk:eprelSolarTankVolume",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "loadProfile": "dppk:eprelLoadProfile",
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "solarContribution": "dppk:eprelSolarContribution",
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "lowTempHeatEmitters": "dppk:eprelLowTempHeatEmitters",
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "solarCollectorSize": "dppk:eprelSolarCollectorSize",
+        "mathExprIV": {
+            "@id": "dppk:eprelMathExprIV",
+            "@type": "xsd:double"
+        },
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

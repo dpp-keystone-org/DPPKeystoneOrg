@@ -1,0 +1,341 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelDirectSalesCompartment.jsonld",
+    "@type": "owl:Ontology",
+    "dcterms:title": "EPREL Direct Sales Compartment Sector Ontology",
+    "dcterms:description": "Sector ontology for the EPREL Direct Sales Compartment product category.",
+    "rdfs:label": [
+        {
+            "@language": "en",
+            "@value": "EPREL Direct Sales Compartment Sector Ontology"
+        }
+    ],
+    "owl:imports": [],
+    "@graph": [
+        {
+            "@id": "dppk:EprelDirectSalesCompartment",
+            "@type": "rdfs:Class",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Direct Sales Compartment"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelDscAmbientTempMin",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Ambient Temp Min"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscSuperMarketTempClassFreezer",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Super Market Temp Class Freezer"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscOrderNumber",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Order Number"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelDscTempClass",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Temp Class"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscSuperMarketTempClassRefrigeratorV2",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Super Market Temp Class Refrigerator V2"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscRelativeHumidityMin",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Relative Humidity Min"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "%"
+        },
+        {
+            "@id": "dppk:eprelDscDisplayArea",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:double",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Display Area"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "m2"
+        },
+        {
+            "@id": "dppk:eprelDscWarmestTemp",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Warmest Temp"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscRecommendedTemp",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Recommended Temp"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscVolume",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Volume"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "litres"
+        },
+        {
+            "@id": "dppk:eprelDscRelativeHumidityMax",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Relative Humidity Max"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "%"
+        },
+        {
+            "@id": "dppk:eprelDscGrossVolume",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Gross Volume"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "litres"
+        },
+        {
+            "@id": "dppk:eprelDscNetVolume",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Net Volume"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "litres"
+        },
+        {
+            "@id": "dppk:eprelDscRelativeHumidity",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Relative Humidity"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "%"
+        },
+        {
+            "@id": "dppk:eprelDscSuperMarketTempClassRefrigerator",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Super Market Temp Class Refrigerator"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelDscTempClassV2",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Temp Class V2"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        },
+        {
+            "@id": "dppk:eprelDscAmbientTempMax",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelDirectSalesCompartment"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Dsc Ambient Temp Max"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "\u00b0C"
+        }
+    ]
+}

@@ -1,0 +1,129 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "cavities": {
+            "@id": "dppk:eprelCavityContainer",
+            "@context": {
+                "volume": "dppk:eprelCavityVolume",
+                "energyClassImage": "dppk:eprelCavityEnergyClassImage",
+                "energyConsumptionCycleGas": "dppk:eprelCavityEnergyConsumptionCycleGas",
+                "orderNumber": "dppk:eprelCavityOrderNumber",
+                "energyConsumptionCycle": "dppk:eprelCavityEnergyConsumptionCycle",
+                "energyConsumptionCycleFanForcedGas": "dppk:eprelCavityEnergyConsumptionCycleFanForcedGas",
+                "id": "dppk:eprelCavityId",
+                "heatSourceType": "dppk:eprelCavityHeatSourceType",
+                "energyConsumptionCycleFanForced": "dppk:eprelCavityEnergyConsumptionCycleFanForced",
+                "energyClass": "dppk:eprelCavityEnergyClass",
+                "energyEfficiencyIndex": "dppk:eprelCavityEnergyEfficiencyIndex",
+                "energyClassImageWithScale": "dppk:eprelCavityEnergyClassImageWithScale"
+            }
+        },
+        "status": "dppk:eprelStatus",
+        "ecoLabelRegistrationNumber": "dppk:eprelEcoLabelRegistrationNumber",
+        "onMarketEndDateTS": {
+            "@id": "dppk:eprelOnMarketEndDateTS",
+            "@type": "xsd:integer"
+        },
+        "ecoLabel": {
+            "@id": "dppk:eprelEcoLabel",
+            "@type": "xsd:boolean"
+        },
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "numberCavities": {
+            "@id": "dppk:eprelNumberCavities",
+            "@type": "xsd:integer"
+        },
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

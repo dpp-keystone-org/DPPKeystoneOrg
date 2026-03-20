@@ -1,0 +1,104 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "temperatureControlClass": "dppk:eprelTemperatureControlClass",
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "status": "dppk:eprelStatus",
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "productGroup": "dppk:eprelProductGroup",
+        "isEnergySmartAppliance": {
+            "@id": "dppk:eprelIsEnergySmartAppliance",
+            "@type": "xsd:boolean"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

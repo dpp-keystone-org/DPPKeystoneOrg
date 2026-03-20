@@ -1,0 +1,182 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "deviceType": "dppk:eprelDeviceType",
+        "status": "dppk:eprelStatus",
+        "ingressProtectionRatingWaterNumber": {
+            "@id": "dppk:eprelIngressProtectionRatingWaterNumber",
+            "@type": "xsd:integer"
+        },
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "immersionDepthWater": "dppk:eprelImmersionDepthWater",
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "ingressProtectionRatingWater": "dppk:eprelIngressProtectionRatingWater",
+        "fastenersScore": {
+            "@id": "dppk:eprelFastenersScore",
+            "@type": "xsd:double"
+        },
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "softwareUpdatesScore": "dppk:eprelSoftwareUpdatesScore",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "toolsScore": {
+            "@id": "dppk:eprelToolsScore",
+            "@type": "xsd:double"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "ratedBatteryCapacity": {
+            "@id": "dppk:eprelRatedBatteryCapacity",
+            "@type": "xsd:integer"
+        },
+        "shippedWithProtectiveCover": {
+            "@id": "dppk:eprelShippedWithProtectiveCover",
+            "@type": "xsd:boolean"
+        },
+        "webLinkPretaxPrices": "dppk:eprelWebLinkPretaxPrices",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "additionalInfos": "dppk:eprelAdditionalInfos",
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "ingressProtectionRating": "dppk:eprelIngressProtectionRating",
+        "contactId": "dppk:eprelContactId",
+        "repairabilityIndex": {
+            "@id": "dppk:eprelRepairabilityIndex",
+            "@type": "xsd:double"
+        },
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "batteryEnduranceInCycles": {
+            "@id": "dppk:eprelBatteryEnduranceInCycles",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "chargerReceptacleType": "dppk:eprelChargerReceptacleType",
+        "operatingSystem": "dppk:eprelOperatingSystem",
+        "repairInfoScore": "dppk:eprelRepairInfoScore",
+        "isFoldable": {
+            "@id": "dppk:eprelIsFoldable",
+            "@type": "xsd:boolean"
+        },
+        "ingressProtectionRatingSolid": "dppk:eprelIngressProtectionRatingSolid",
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "repeatedFreeFallReliabilityClass": "dppk:eprelRepeatedFreeFallReliabilityClass",
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "fallsWithoutDefect": {
+            "@id": "dppk:eprelFallsWithoutDefect",
+            "@type": "xsd:integer"
+        },
+        "disassemblyDepthScore": {
+            "@id": "dppk:eprelDisassemblyDepthScore",
+            "@type": "xsd:double"
+        },
+        "batteryEndurancePerCycle": {
+            "@id": "dppk:eprelBatteryEndurancePerCycle",
+            "@type": "xsd:integer"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "webLinkInfoSparePartsAvailability": "dppk:eprelWebLinkInfoSparePartsAvailability",
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "fallsWithoutDefectFullyExtended": "dppk:eprelFallsWithoutDefectFullyExtended",
+        "batteryUserReplaceable": {
+            "@id": "dppk:eprelBatteryUserReplaceable",
+            "@type": "xsd:boolean"
+        },
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "sparePartScore": "dppk:eprelSparePartScore",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "screenScratchResistance": "dppk:eprelScreenScratchResistance",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "minYearsSoftwareUpdates": {
+            "@id": "dppk:eprelMinYearsSoftwareUpdates",
+            "@type": "xsd:integer"
+        },
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "repairabilityClass": "dppk:eprelRepairabilityClass",
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "webLinkRepairInstructions": "dppk:eprelWebLinkRepairInstructions",
+        "guaranteeDuration": {
+            "@id": "dppk:eprelGuaranteeDuration",
+            "@type": "xsd:integer"
+        },
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "chargerRequiredOutputPower": {
+            "@id": "dppk:eprelChargerRequiredOutputPower",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "ingressProtectionRatingSolidNumber": {
+            "@id": "dppk:eprelIngressProtectionRatingSolidNumber",
+            "@type": "xsd:integer"
+        },
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

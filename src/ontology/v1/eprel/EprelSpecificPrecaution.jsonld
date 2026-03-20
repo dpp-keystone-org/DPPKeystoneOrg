@@ -1,0 +1,101 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelSpecificPrecaution.jsonld",
+    "@type": "owl:Ontology",
+    "dcterms:title": "EPREL Specific Precaution Sector Ontology",
+    "dcterms:description": "Sector ontology for the EPREL Specific Precaution product category.",
+    "rdfs:label": [
+        {
+            "@language": "en",
+            "@value": "EPREL Specific Precaution Sector Ontology"
+        }
+    ],
+    "owl:imports": [],
+    "@graph": [
+        {
+            "@id": "dppk:EprelSpecificPrecaution",
+            "@type": "rdfs:Class",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Specific Precaution"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelSpLanguage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpecificPrecaution"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Sp Language"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelSpId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpecificPrecaution"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Sp Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelSpOrderNumber",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpecificPrecaution"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Sp Order Number"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelSpText",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelSpecificPrecaution"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Sp Text"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        }
+    ]
+}

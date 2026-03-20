@@ -1,0 +1,105 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-hotwaterstoragetanks.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelHotwaterstoragetanksProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-hotwaterstoragetanks-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-hotwaterstoragetanks-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_hotwaterstoragetanks_specification_id"
+    ],
+    "productName": "Keystone Demo 'hotwaterstoragetanks' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-hotwaterstoragetanks-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "status": "PUBLISHED",
+    "contactDetails": {
+        "country": "DE",
+        "streetNumber": "DEMO-3917",
+        "city": "Keystone Demo  \u0412\u0430\u0440\u043d\u0430 / Varna",
+        "postalCode": "DEMO-1957",
+        "contactReference": "Keystone Demo Supplier user",
+        "serviceName": "Keystone Demo \u041e\u0442\u0434\u0435\u043b \" \u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u043e \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435\" / Department of technical development",
+        "defaultContact": true,
+        "phone": "+1-555-0199",
+        "street": "Keystone Demo \u0431\u0443\u043b. \"\u0412\u043b\u0430\u0434\u0438\u0441\u043b\u0430\u0432 \u0412\u0430\u0440\u043d\u0435\u043d\u0447\u0438\u043a\" / Boulevard \"Vladislav Varnenchik\"",
+        "id": 472,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo ELDOMINVEST OOD",
+        "organisationName": "Keystone Demo ELDOMINVEST OOD",
+        "website": "https://dpp-keystone.org/demo",
+        "isClosed": false,
+        "guid": "DEMO-4806",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "waterStorageStandingLoss": 49,
+    "modelAvailabilityInCountries": [],
+    "energyClass": "B",
+    "orgVerificationStatus": "VERIFIED",
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "modelAvailabilityInEUEEACountries": [],
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1951266241,
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "visibleToUkMsa": false,
+    "lastVersion": false,
+    "allowEprelLabelGeneration": true,
+    "firstPublicationDateTS": 1951262365,
+    "isEnergySmartAppliance": false,
+    "registrantNature": "Keystone Demo MANUFACTURER",
+    "trademarkId": 76,
+    "exportDateTS": 1951263002364,
+    "onMarketFirstStartDateTS": 1951266241,
+    "implementingAct": "Keystone Demo EU_812_2013",
+    "blocked": false,
+    "modelIdentifier": "DEMO-8218",
+    "energyClassImageWithScale": "Keystone Demo B-Left-LightGreen-WithAPFScale.svg",
+    "versionId": 5896923,
+    "energyClassImage": "Keystone Demo B-Left-LightGreen.png",
+    "trademarkVerificationStatus": "VERIFIED",
+    "importedOn": 1951263004177,
+    "publishedOnDateTS": 1951262365132,
+    "energyClassRange": "Keystone Demo AP_F",
+    "modelAvailabilityInOtherCountries": [],
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2934015,
+    "versionNumber": 2,
+    "solarTankVolumeLiters": 85,
+    "supplierOrTrademark": "Keystone Demo ELDOM",
+    "availabilityInEUEEACountries": "ALL",
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo hotwaterstoragetanks",
+    "eprelRegistrationNumber": "DEMO-7926"
+}

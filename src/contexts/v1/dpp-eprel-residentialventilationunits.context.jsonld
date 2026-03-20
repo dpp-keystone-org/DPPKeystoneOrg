@@ -1,0 +1,199 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "filterVisualWarnings": {
+            "@id": "dppk:eprelFilterVisualWarningContainer",
+            "@context": {
+                "positionText": "dppk:eprelFvwPositionText",
+                "language": "dppk:eprelFvwLanguage",
+                "id": {
+                    "@id": "dppk:eprelFvwId",
+                    "@type": "xsd:integer"
+                },
+                "orderNumber": {
+                    "@id": "dppk:eprelFvwOrderNumber",
+                    "@type": "xsd:integer"
+                },
+                "descriptionText": "dppk:eprelFvwDescriptionText"
+            }
+        },
+        "fanDrivePowerInput": {
+            "@id": "dppk:eprelFanDrivePowerInput",
+            "@type": "xsd:integer"
+        },
+        "referencePressureDifference": {
+            "@id": "dppk:eprelReferencePressureDifference",
+            "@type": "xsd:integer"
+        },
+        "ductedUnit": {
+            "@id": "dppk:eprelDuctedUnit",
+            "@type": "xsd:boolean"
+        },
+        "status": "dppk:eprelStatus",
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "airTightness": "dppk:eprelAirTightness",
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "specificPowerInput": {
+            "@id": "dppk:eprelSpecificPowerInput",
+            "@type": "xsd:double"
+        },
+        "thermalEfficiencyHeatRecovery": {
+            "@id": "dppk:eprelThermalEfficiencyHeatRecovery",
+            "@type": "xsd:integer"
+        },
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "referenceFlowRate": {
+            "@id": "dppk:eprelReferenceFlowRate",
+            "@type": "xsd:double"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "externalLeakageRate": "dppk:eprelExternalLeakageRate",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "soundPowerLevel": {
+            "@id": "dppk:eprelSoundPowerLevel",
+            "@type": "xsd:integer"
+        },
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "isEnergySmartAppliance": {
+            "@id": "dppk:eprelIsEnergySmartAppliance",
+            "@type": "xsd:boolean"
+        },
+        "annualHeatingSavedAverageClimate": {
+            "@id": "dppk:eprelAnnualHeatingSavedAverageClimate",
+            "@type": "xsd:double"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "maximumInternalLeakageRate": {
+            "@id": "dppk:eprelMaximumInternalLeakageRate",
+            "@type": "xsd:integer"
+        },
+        "specificEnergyConsumptionCold": {
+            "@id": "dppk:eprelSpecificEnergyConsumptionCold",
+            "@type": "xsd:double"
+        },
+        "controlTypology": "dppk:eprelControlTypology",
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "grilleInstallationInstructions": "dppk:eprelGrilleInstallationInstructions",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "airflowSensitivity": "dppk:eprelAirflowSensitivity",
+        "specificEnergyConsumptionAverage": {
+            "@id": "dppk:eprelSpecificEnergyConsumptionAverage",
+            "@type": "xsd:double"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "driveType": "dppk:eprelDriveType",
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "heatRecoverySystem": "dppk:eprelHeatRecoverySystem",
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "annualHeatingSavedWarmClimate": {
+            "@id": "dppk:eprelAnnualHeatingSavedWarmClimate",
+            "@type": "xsd:double"
+        },
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "carryOver": "dppk:eprelCarryOver",
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "energyAnnual": {
+            "@id": "dppk:eprelEnergyAnnual",
+            "@type": "xsd:double"
+        },
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "specificEnergyConsumptionWarm": {
+            "@id": "dppk:eprelSpecificEnergyConsumptionWarm",
+            "@type": "xsd:double"
+        },
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "onlineInstruction": "dppk:eprelOnlineInstruction",
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "annualHeatingSavedColdClimate": {
+            "@id": "dppk:eprelAnnualHeatingSavedColdClimate",
+            "@type": "xsd:double"
+        },
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "maximumExternalLeakageRate": {
+            "@id": "dppk:eprelMaximumExternalLeakageRate",
+            "@type": "xsd:integer"
+        },
+        "typology": "dppk:eprelTypology",
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "maximumFlowRate": {
+            "@id": "dppk:eprelMaximumFlowRate",
+            "@type": "xsd:integer"
+        },
+        "mixingRate": "dppk:eprelMixingRate",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

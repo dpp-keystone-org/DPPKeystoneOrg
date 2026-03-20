@@ -1,0 +1,117 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/contact-details.schema.json",
+    "title": "EPREL Contact Details",
+    "type": "object",
+    "properties": {
+        "country": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "contactByReferenceId": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "orderNumber": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "streetNumber": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "city": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "postalCode": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "contactReference": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "municipality": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "serviceName": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "webSiteURL": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "addressBloc": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "province": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "defaultContact": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "phone": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "street": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "id": {
+            "type": [
+                "string",
+                "number",
+                "null"
+            ]
+        },
+        "email": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "status": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    }
+}

@@ -1,0 +1,314 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-spaceheatertemperaturecontrol.schema.json",
+    "title": "DPP for spaceheatertemperaturecontrol (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the spaceheatertemperaturecontrol sector.",
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "eprel_spaceheatertemperaturecontrol_specification_id"
+                }
+            }
+        },
+        "required": [
+            "contentSpecificationIds"
+        ]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "temperatureControlClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "registrantNature": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "status": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "exportDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "contactDetails": {
+                "$ref": "eprel/contact-details.schema.json"
+            },
+            "organisation": {
+                "$ref": "eprel/organisation.schema.json"
+            },
+            "onMarketEndDateTS": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "onMarketFirstStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "implementingAct": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "modelAvailabilityInCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClass": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "blocked": {
+                "type": "boolean"
+            },
+            "modelIdentifier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "orgVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyClassImageWithScale": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "energyClassImage": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "energyLabelId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "versionId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "trademarkVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "importedOn": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInEUEEACountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "publishedOnDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "formType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "firstPublicationDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInOtherCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "generatedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "productModelCoreId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "versionNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "visibleToUkMsa": {
+                "type": "boolean"
+            },
+            "uploadedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "contactId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "additionalDetails": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "supplierOrTrademark": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "lastVersion": {
+                "type": "boolean"
+            },
+            "trademarkOwner": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "allowEprelLabelGeneration": {
+                "type": "boolean"
+            },
+            "firstPublicationDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "publishedOnDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "availabilityInEUEEACountries": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "productGroup": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "isEnergySmartAppliance": {
+                "type": "boolean"
+            },
+            "onMarketEndDate": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "eprelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            }
+        }
+    }
+}

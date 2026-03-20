@@ -108,7 +108,137 @@ describe('DPP SHACL Validation', () => {
             name: 'Construction DPP (rail-dpp-v1.json)',
             exampleFile: 'rail-dpp-v1.json',
             shapeFiles: ['construction-shapes.shacl.jsonld']
+        },,
+        {
+            name: 'EPREL airconditioners DPP (eprel-airconditioners-dpp-v1.json)',
+            exampleFile: 'eprel-airconditioners-dpp-v1.json',
+            shapeFiles: []
         },
+        {
+            name: 'EPREL dishwashers DPP (eprel-dishwashers-dpp-v1.json)',
+            exampleFile: 'eprel-dishwashers-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL electronicdisplays DPP (eprel-electronicdisplays-dpp-v1.json)',
+            exampleFile: 'eprel-electronicdisplays-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL hotwaterstoragetanks DPP (eprel-hotwaterstoragetanks-dpp-v1.json)',
+            exampleFile: 'eprel-hotwaterstoragetanks-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL lightsources DPP (eprel-lightsources-dpp-v1.json)',
+            exampleFile: 'eprel-lightsources-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL localspaceheaters DPP (eprel-localspaceheaters-dpp-v1.json)',
+            exampleFile: 'eprel-localspaceheaters-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL ovens DPP (eprel-ovens-dpp-v1.json)',
+            exampleFile: 'eprel-ovens-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL professionalrefrigeratedstoragecabinets DPP (eprel-professionalrefrigeratedstoragecabinets-dpp-v1.json)',
+            exampleFile: 'eprel-professionalrefrigeratedstoragecabinets-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL rangehoods DPP (eprel-rangehoods-dpp-v1.json)',
+            exampleFile: 'eprel-rangehoods-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL refrigeratingappliances DPP (eprel-refrigeratingappliances-dpp-v1.json)',
+            exampleFile: 'eprel-refrigeratingappliances-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL refrigeratingappliancesdirectsalesfunction DPP (eprel-refrigeratingappliancesdirectsalesfunction-dpp-v1.json)',
+            exampleFile: 'eprel-refrigeratingappliancesdirectsalesfunction-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL residentialventilationunits DPP (eprel-residentialventilationunits-dpp-v1.json)',
+            exampleFile: 'eprel-residentialventilationunits-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL smartphonestablets DPP (eprel-smartphonestablets-dpp-v1.json)',
+            exampleFile: 'eprel-smartphonestablets-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL solidfuelboilerpackages DPP (eprel-solidfuelboilerpackages-dpp-v1.json)',
+            exampleFile: 'eprel-solidfuelboilerpackages-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL solidfuelboilers DPP (eprel-solidfuelboilers-dpp-v1.json)',
+            exampleFile: 'eprel-solidfuelboilers-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL spaceheaterpackages DPP (eprel-spaceheaterpackages-dpp-v1.json)',
+            exampleFile: 'eprel-spaceheaterpackages-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL spaceheaters DPP (eprel-spaceheaters-dpp-v1.json)',
+            exampleFile: 'eprel-spaceheaters-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL spaceheatersolardevice DPP (eprel-spaceheatersolardevice-dpp-v1.json)',
+            exampleFile: 'eprel-spaceheatersolardevice-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL spaceheatertemperaturecontrol DPP (eprel-spaceheatertemperaturecontrol-dpp-v1.json)',
+            exampleFile: 'eprel-spaceheatertemperaturecontrol-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL tumbledryers DPP (eprel-tumbledryers-dpp-v1.json)',
+            exampleFile: 'eprel-tumbledryers-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL tyres DPP (eprel-tyres-dpp-v1.json)',
+            exampleFile: 'eprel-tyres-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL washerdriers DPP (eprel-washerdriers-dpp-v1.json)',
+            exampleFile: 'eprel-washerdriers-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL washingmachines DPP (eprel-washingmachines-dpp-v1.json)',
+            exampleFile: 'eprel-washingmachines-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL waterheaterpackages DPP (eprel-waterheaterpackages-dpp-v1.json)',
+            exampleFile: 'eprel-waterheaterpackages-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL waterheaters DPP (eprel-waterheaters-dpp-v1.json)',
+            exampleFile: 'eprel-waterheaters-dpp-v1.json',
+            shapeFiles: []
+        },
+        {
+            name: 'EPREL waterheatersolardevices DPP (eprel-waterheatersolardevices-dpp-v1.json)',
+            exampleFile: 'eprel-waterheatersolardevices-dpp-v1.json',
+            shapeFiles: []
+        }
     ];
 
     // Use test.each to run the same validation logic for each test case.

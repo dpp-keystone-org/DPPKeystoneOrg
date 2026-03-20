@@ -1,0 +1,122 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-tyres.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelTyresProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-tyres-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-tyres-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_tyres_specification_id"
+    ],
+    "productName": "Keystone Demo 'tyres' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-tyres-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "tyreClass": "C1",
+    "loadCapacityIndex": 105,
+    "status": "PUBLISHED",
+    "contactDetails": {
+        "contactReference": "Keystone Demo Kumhotire",
+        "serviceName": "Keystone Demo Technical support",
+        "webSiteURL": "https://dpp-keystone.org/demo",
+        "addressBloc": "Keystone Demo KUMHO TIRE EUROPE GmbH, Strahlenberger Str. 110 \u2013 112, D-63067 Offenbach, Germany\n",
+        "defaultContact": true,
+        "phone": "+1-555-0199",
+        "id": 4389,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo Kumho Tire Europe GmbH",
+        "organisationName": "Keystone Demo Kumho Tire Europe GmbH",
+        "isClosed": false,
+        "guid": "DEMO-6399",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "modelAvailabilityInCountries": [
+        "XI"
+    ],
+    "energyClass": "C",
+    "orgVerificationStatus": "VERIFIED",
+    "dateStartProductionYear": 29,
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "rimDiameter": 18,
+    "modelAvailabilityInEUEEACountries": [],
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1951361281,
+    "externalRollingNoiseClass": "B",
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "loadCapacityIndicator": "SL",
+    "externalRollingNoiseValue": 79,
+    "additionalInfos": [],
+    "tyreSection": 226,
+    "visibleToUkMsa": true,
+    "commercialName": "Keystone Demo HS63",
+    "wetGripClassRange": "Keystone Demo A_E",
+    "sizeDesignationFiltered": "Keystone Demo 20565R16",
+    "lastVersion": false,
+    "trademarkOwner": "Keystone Demo KUMHO",
+    "allowEprelLabelGeneration": true,
+    "aspectRatio": 72,
+    "firstPublicationDateTS": 1951357545,
+    "speedCategorySymbol": "H",
+    "registrantNature": "Keystone Demo MANUFACTURER",
+    "trademarkId": 97606,
+    "exportDateTS": 1951358376648,
+    "wetGripClass": "C",
+    "tyreDesignation": "Keystone Demo 205/65  R16  95 H",
+    "sizeDesignation": "Keystone Demo 205/65  R16 ",
+    "onMarketFirstStartDateTS": 1951361281,
+    "dateStartProductionWeek": 3,
+    "implementingAct": "Keystone Demo EU_2020_740",
+    "blocked": false,
+    "modelIdentifier": "DEMO-9943",
+    "versionId": 5845545,
+    "externalRollingNoiseClassRange": "Keystone Demo A_C",
+    "trademarkVerificationStatus": "VERIFIED",
+    "importedOn": 1951358382760,
+    "publishedOnDateTS": 1951357544812,
+    "energyClassRange": "Keystone Demo A_E",
+    "modelAvailabilityInOtherCountries": [
+        "XI"
+    ],
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2907746,
+    "versionNumber": 2,
+    "iceTyre": false,
+    "supplierOrTrademark": "Keystone Demo KUMHO",
+    "availabilityInEUEEACountries": "ALL",
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo tyres",
+    "severeSnowTyre": false,
+    "eprelRegistrationNumber": "DEMO-8146"
+}

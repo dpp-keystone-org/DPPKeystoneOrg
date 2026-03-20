@@ -1,0 +1,320 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "status": "dppk:eprelStatus",
+        "ecoLabelRegistrationNumber": "dppk:eprelEcoLabelRegistrationNumber",
+        "onMarketEndDateTS": {
+            "@id": "dppk:eprelOnMarketEndDateTS",
+            "@type": "xsd:integer"
+        },
+        "ecoLabel": {
+            "@id": "dppk:eprelEcoLabel",
+            "@type": "xsd:boolean"
+        },
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelTopLevelEnergyClass",
+        "heatingDesignLoad": {
+            "@id": "dppk:eprelHeatingDesignLoadTopLevel",
+            "@type": "xsd:double"
+        },
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "refrigerantName": "dppk:eprelRefrigerantName",
+        "indoorSoundPowerCooling": {
+            "@id": "dppk:eprelIndoorSoundPowerCooling",
+            "@type": "xsd:double"
+        },
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "coolingEnergyClass": "dppk:eprelTopLevelCoolingEnergyClass",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "contactId": "dppk:eprelContactIdLink",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "indoorModelIdentifiers": "dppk:eprelIndoorModelIdentifiers",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "ductedType": "dppk:eprelDuctedType",
+        "isEnergySmartAppliance": {
+            "@id": "dppk:eprelIsEnergySmartAppliance",
+            "@type": "xsd:boolean"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "outdoorSoundPowerCooling": {
+            "@id": "dppk:eprelOutdoorSoundPowerCooling",
+            "@type": "xsd:double"
+        },
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "numberIndoorUnits": {
+            "@id": "dppk:eprelNumberIndoorUnits",
+            "@type": "xsd:integer"
+        },
+        "indoorSoundPowerHeating": {
+            "@id": "dppk:eprelIndoorSoundPowerHeating",
+            "@type": "xsd:double"
+        },
+        "outdoorModelIdentifier": "dppk:eprelOutdoorModelIdentifier",
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "refrigerantGwp": {
+            "@id": "dppk:eprelRefrigerantGwp",
+            "@type": "xsd:double"
+        },
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "functionType": "dppk:eprelFunctionType",
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "coolingDesignLoad": {
+            "@id": "dppk:eprelCoolingDesignLoadTopLevel",
+            "@type": "xsd:double"
+        },
+        "heatingEnergyClass": "dppk:eprelTopLevelHeatingEnergyClass",
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "outdoorSoundPowerHeating": {
+            "@id": "dppk:eprelOutdoorSoundPowerHeating",
+            "@type": "xsd:double"
+        },
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {
+                "country": "dppk:eprelCountry",
+                "contactByReferenceId": "dppk:eprelContactByReferenceId",
+                "orderNumber": "dppk:eprelOrderNumber",
+                "streetNumber": "dppk:eprelStreetNumber",
+                "city": "dppk:eprelCity",
+                "postalCode": "dppk:eprelPostalCode",
+                "contactReference": "dppk:eprelContactReference",
+                "municipality": "dppk:eprelMunicipality",
+                "serviceName": "dppk:eprelServiceName",
+                "webSiteURL": {
+                    "@id": "dppk:eprelWebSiteURL",
+                    "@type": "xsd:anyURI"
+                },
+                "addressBloc": "dppk:eprelAddressBloc",
+                "province": "dppk:eprelProvince",
+                "defaultContact": {
+                    "@id": "dppk:eprelDefaultContact",
+                    "@type": "xsd:boolean"
+                },
+                "phone": "dppk:eprelPhone",
+                "street": "dppk:eprelStreet",
+                "id": "dppk:eprelContactId",
+                "email": "dppk:eprelEmail",
+                "status": "dppk:eprelContactStatus"
+            }
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {
+                "organisationTitle": "dppk:eprelOrganisationTitle",
+                "closeDate": "dppk:eprelCloseDate",
+                "firstName": "dppk:eprelFirstName",
+                "lastName": "dppk:eprelLastName",
+                "organisationName": "dppk:eprelOrganisationName",
+                "website": {
+                    "@id": "dppk:eprelWebsite",
+                    "@type": "xsd:anyURI"
+                },
+                "closeStatus": "dppk:eprelCloseStatus",
+                "isClosed": {
+                    "@id": "dppk:eprelIsClosed",
+                    "@type": "xsd:boolean"
+                },
+                "guid": "dppk:eprelGuid",
+                "personType": "dppk:eprelPersonType"
+            }
+        },
+        "heatingCharacteristics": {
+            "@id": "dppk:eprelHeatingCharacteristics",
+            "@context": {
+                "backupCapacityAverage": {
+                    "@id": "dppk:eprelBackupCapacityAverage",
+                    "@type": "xsd:double"
+                },
+                "backupCapacityWarm": {
+                    "@id": "dppk:eprelBackupCapacityWarm",
+                    "@type": "xsd:double"
+                },
+                "backupCapacityCold": {
+                    "@id": "dppk:eprelBackupCapacityCold",
+                    "@type": "xsd:double"
+                },
+                "annualElectricityConsumptionWarm": {
+                    "@id": "dppk:eprelAnnualElectricityConsumptionWarm",
+                    "@type": "xsd:double"
+                },
+                "annualElectricityConsumptionAverage": {
+                    "@id": "dppk:eprelAnnualElectricityConsumptionAverage",
+                    "@type": "xsd:double"
+                },
+                "annualElectricityConsumptionCold": {
+                    "@id": "dppk:eprelAnnualElectricityConsumptionCold",
+                    "@type": "xsd:double"
+                },
+                "hourlyElectricityConsumption": {
+                    "@id": "dppk:eprelHourlyElectricityConsumption",
+                    "@type": "xsd:double"
+                },
+                "designLoadWarm": {
+                    "@id": "dppk:eprelDesignLoadWarm",
+                    "@type": "xsd:double"
+                },
+                "designLoadAverage": {
+                    "@id": "dppk:eprelDesignLoadAverage",
+                    "@type": "xsd:double"
+                },
+                "designLoadCold": {
+                    "@id": "dppk:eprelDesignLoadCold",
+                    "@type": "xsd:double"
+                },
+                "declaredCapacityAverage": {
+                    "@id": "dppk:eprelDeclaredCapacityAverage",
+                    "@type": "xsd:double"
+                },
+                "declaredCapacityWarm": {
+                    "@id": "dppk:eprelDeclaredCapacityWarm",
+                    "@type": "xsd:double"
+                },
+                "declaredCapacityCold": {
+                    "@id": "dppk:eprelDeclaredCapacityCold",
+                    "@type": "xsd:double"
+                },
+                "ratedCapacity": {
+                    "@id": "dppk:eprelRatedCapacity",
+                    "@type": "xsd:double"
+                },
+                "seasonalCoefficientOfPerformanceAverage": {
+                    "@id": "dppk:eprelSeasonalCoefficientOfPerformanceAverage",
+                    "@type": "xsd:double"
+                },
+                "seasonalCoefficientOfPerformanceCold": {
+                    "@id": "dppk:eprelSeasonalCoefficientOfPerformanceCold",
+                    "@type": "xsd:double"
+                },
+                "seasonalCoefficientOfPerformanceWarm": {
+                    "@id": "dppk:eprelSeasonalCoefficientOfPerformanceWarm",
+                    "@type": "xsd:double"
+                },
+                "coefficientOfPerformance": {
+                    "@id": "dppk:eprelCoefficientOfPerformance",
+                    "@type": "xsd:double"
+                },
+                "energyClassWarm": "dppk:eprelEnergyClassWarm",
+                "energyClassAverage": "dppk:eprelEnergyClassAverage",
+                "energyClassCold": "dppk:eprelEnergyClassCold",
+                "energyClass": "dppk:eprelEnergyClass",
+                "indoorSoundPower": {
+                    "@id": "dppk:eprelIndoorSoundPower",
+                    "@type": "xsd:double"
+                },
+                "outdoorSoundPower": {
+                    "@id": "dppk:eprelOutdoorSoundPower",
+                    "@type": "xsd:double"
+                }
+            }
+        },
+        "coolingCharacteristics": {
+            "@id": "dppk:eprelCoolingCharacteristics",
+            "@context": {
+                "ratedCapacity": {
+                    "@id": "dppk:eprelCoolingRatedCapacity",
+                    "@type": "xsd:double"
+                },
+                "designLoad": {
+                    "@id": "dppk:eprelCoolingDesignLoad",
+                    "@type": "xsd:double"
+                },
+                "annualElectricityConsumption": {
+                    "@id": "dppk:eprelCoolingAnnualElectricityConsumption",
+                    "@type": "xsd:double"
+                },
+                "hourlyElectricityConsumption": {
+                    "@id": "dppk:eprelCoolingHourlyElectricityConsumption",
+                    "@type": "xsd:double"
+                },
+                "seasonalEnergyEfficiencyRatio": {
+                    "@id": "dppk:eprelSeasonalEnergyEfficiencyRatio",
+                    "@type": "xsd:double"
+                },
+                "energyEfficiencyRatio": {
+                    "@id": "dppk:eprelEnergyEfficiencyRatio",
+                    "@type": "xsd:double"
+                },
+                "energyClass": "dppk:eprelCoolingEnergyClass",
+                "indoorSoundPower": {
+                    "@id": "dppk:eprelCoolingIndoorSoundPower",
+                    "@type": "xsd:double"
+                },
+                "outdoorSoundPower": {
+                    "@id": "dppk:eprelCoolingOutdoorSoundPower",
+                    "@type": "xsd:double"
+                }
+            }
+        }
+    }
+}

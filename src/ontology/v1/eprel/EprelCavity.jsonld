@@ -1,0 +1,232 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelCavity.jsonld",
+    "@type": "owl:Ontology",
+    "dcterms:title": "EPREL Cavity Sub-Ontology",
+    "dcterms:description": "Sub-Ontology mapping.",
+    "rdfs:label": [
+        {
+            "@language": "en",
+            "@value": "EPREL Cavity"
+        }
+    ],
+    "owl:imports": [],
+    "@graph": [
+        {
+            "@id": "dppk:EprelCavity",
+            "@type": "rdfs:Class",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Cavity"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelCavityVolume",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Volume"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "litres"
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyClassImage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Class Image"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyConsumptionCycleGas",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Consumption Cycle Gas"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "MJ/cycle"
+        },
+        {
+            "@id": "dppk:eprelCavityOrderNumber",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Order Number"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyConsumptionCycle",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Consumption Cycle"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "kWh/cycle"
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyConsumptionCycleFanForcedGas",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Consumption Cycle Fan Forced Gas"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "MJ/cycle"
+        },
+        {
+            "@id": "dppk:eprelCavityId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelCavityHeatSourceType",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Heat Source Type"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyConsumptionCycleFanForced",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Consumption Cycle Fan Forced"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "kWh/cycle"
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyClass",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Class"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyEfficiencyIndex",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Efficiency Index"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelCavityEnergyClassImageWithScale",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelCavity"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Cavity Energy Class Image With Scale"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        }
+    ]
+}

@@ -1,0 +1,121 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-airconditioners.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelAirconditionersProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-airconditioners-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-airconditioners-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_airconditioners_specification_id"
+    ],
+    "productName": "Keystone Demo 'airconditioners' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-airconditioners-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "status": "PUBLISHED",
+    "contactDetails": {
+        "country": "DE",
+        "streetNumber": "DEMO-3298",
+        "city": "Keystone Demo Leuze-en-Hainaut",
+        "postalCode": "DEMO-2788",
+        "contactReference": "sv",
+        "serviceName": "Keystone Demo Dienst aankoop",
+        "defaultContact": false,
+        "phone": "+1-555-0199",
+        "street": "Keystone Demo Zone industrielle de l'Europe",
+        "id": 3071,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo ELECTRO AV",
+        "organisationName": "Keystone Demo ELECTRO AV",
+        "isClosed": false,
+        "guid": "DEMO-4757",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "ecoLabel": false,
+    "modelAvailabilityInCountries": [],
+    "energyClass": "A",
+    "orgVerificationStatus": "VERIFIED",
+    "refrigerantName": "Keystone Demo R290",
+    "indoorSoundPowerCooling": 71,
+    "coolingEnergyClass": "A",
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "modelAvailabilityInEUEEACountries": [],
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1951361281,
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "visibleToUkMsa": false,
+    "lastVersion": false,
+    "indoorModelIdentifiers": [
+        "DEMO-3678"
+    ],
+    "allowEprelLabelGeneration": true,
+    "firstPublicationDateTS": 1951357396,
+    "ductedType": "Keystone Demo SINGLE_DUCT",
+    "isEnergySmartAppliance": false,
+    "registrantNature": "Keystone Demo IMPORTER",
+    "trademarkId": 4514,
+    "exportDateTS": 1951358042137,
+    "numberIndoorUnits": 2,
+    "onMarketFirstStartDateTS": 1951361281,
+    "implementingAct": "Keystone Demo EU_626_2011",
+    "blocked": false,
+    "modelIdentifier": "DEMO-7846",
+    "energyClassImageWithScale": "Keystone Demo A-Left-Yellow-WithAPPPDScale.svg",
+    "versionId": 5900351,
+    "energyClassImage": "Keystone Demo A-Left-Yellow.png",
+    "trademarkVerificationStatus": "VERIFIED",
+    "refrigerantGwp": 4,
+    "importedOn": 1951358044989,
+    "publishedOnDateTS": 1951357396876,
+    "functionType": "Keystone Demo COOLING_ONLY",
+    "energyClassRange": "Keystone Demo APPP_D",
+    "modelAvailabilityInOtherCountries": [],
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2936672,
+    "versionNumber": 2,
+    "heatingCharacteristics": {},
+    "supplierOrTrademark": "Keystone Demo FRIAC",
+    "availabilityInEUEEACountries": "ALL",
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo airconditioners",
+    "coolingCharacteristics": {
+        "ratedCapacity": 3.19,
+        "indoorSoundPower": 71,
+        "energyEfficiencyRatio": 2.86,
+        "hourlyElectricityConsumption": 1.21,
+        "energyClass": "A"
+    },
+    "eprelRegistrationNumber": "DEMO-9927"
+}

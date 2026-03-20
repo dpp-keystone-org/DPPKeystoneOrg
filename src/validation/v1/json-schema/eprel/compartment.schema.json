@@ -1,0 +1,37 @@
+{
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/compartment.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": [
+        "object",
+        "null"
+    ],
+    "properties": {
+        "id": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "orderNumber": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "netVolume": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "climateClassInOperations": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    }
+}

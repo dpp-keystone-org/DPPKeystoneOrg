@@ -1,0 +1,52 @@
+{
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/fridge-sub-compartment.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": [
+        "object",
+        "null"
+    ],
+    "properties": {
+        "recommendedTemp": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "capFreezing": {
+            "type": [
+                "string",
+                "number",
+                "null"
+            ]
+        },
+        "id": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "orderNumber": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "capFreezingV2": {
+            "type": [
+                "string",
+                "number",
+                "null"
+            ]
+        },
+        "compartmentType": {
+            "type": [
+                "string",
+                "number",
+                "null"
+            ]
+        }
+    }
+}

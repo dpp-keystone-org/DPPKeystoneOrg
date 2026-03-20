@@ -1,0 +1,243 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {
+                "country": "dppk:eprelCountry",
+                "contactByReferenceId": "dppk:eprelContactByReferenceId",
+                "orderNumber": "dppk:eprelOrderNumber",
+                "streetNumber": "dppk:eprelStreetNumber",
+                "city": "dppk:eprelCity",
+                "postalCode": "dppk:eprelPostalCode",
+                "contactReference": "dppk:eprelContactReference",
+                "municipality": "dppk:eprelMunicipality",
+                "serviceName": "dppk:eprelServiceName",
+                "webSiteURL": {
+                    "@id": "dppk:eprelWebSiteURL",
+                    "@type": "xsd:anyURI"
+                },
+                "addressBloc": "dppk:eprelAddressBloc",
+                "province": "dppk:eprelProvince",
+                "defaultContact": {
+                    "@id": "dppk:eprelDefaultContact",
+                    "@type": "xsd:boolean"
+                },
+                "phone": "dppk:eprelPhone",
+                "street": "dppk:eprelStreet",
+                "id": "dppk:eprelContactId",
+                "email": "dppk:eprelEmail",
+                "status": "dppk:eprelContactStatus"
+            }
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {
+                "organisationTitle": "dppk:eprelOrganisationTitle",
+                "closeDate": "dppk:eprelCloseDate",
+                "firstName": "dppk:eprelFirstName",
+                "lastName": "dppk:eprelLastName",
+                "organisationName": "dppk:eprelOrganisationName",
+                "website": {
+                    "@id": "dppk:eprelWebsite",
+                    "@type": "xsd:anyURI"
+                },
+                "closeStatus": "dppk:eprelCloseStatus",
+                "isClosed": {
+                    "@id": "dppk:eprelIsClosed",
+                    "@type": "xsd:boolean"
+                },
+                "guid": "dppk:eprelGuid",
+                "personType": "dppk:eprelPersonType"
+            }
+        },
+        "status": "dppk:eprelStatus",
+        "energyClassSDR": "dppk:eprelEnergyClassSDR",
+        "powerSupplyType": "dppk:eprelPowerSupplyType",
+        "externalStandardPowerIncludedOutput": "dppk:eprelExternalStandardPowerIncludedOutput",
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "visibleArea": "dppk:eprelVisibleArea",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "minAvailabilitySparePartsYears": {
+            "@id": "dppk:eprelMinAvailabilitySparePartsYears",
+            "@type": "xsd:integer"
+        },
+        "panelTechnologyOther": "dppk:eprelPanelTechnologyOther",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "powerOnModeSDR": {
+            "@id": "dppk:eprelPowerOnModeSDR",
+            "@type": "xsd:double"
+        },
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "powerStandby": {
+            "@id": "dppk:eprelPowerStandby",
+            "@type": "xsd:double"
+        },
+        "voiceAvailable": {
+            "@id": "dppk:eprelVoiceAvailable",
+            "@type": "xsd:boolean"
+        },
+        "minGuaranteedSupportTS": "dppk:eprelMinGuaranteedSupportTS",
+        "externalStandardPowerExcludedOutput": "dppk:eprelExternalStandardPowerExcludedOutput",
+        "diagonalInch": {
+            "@id": "dppk:eprelDiagonalInch",
+            "@type": "xsd:integer"
+        },
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "externalStandardPowerIncludedInput": "dppk:eprelExternalStandardPowerIncludedInput",
+        "minAvailabilitySpareParts": "dppk:eprelMinAvailabilitySpareParts",
+        "minAvailabilitySparePartsTS": "dppk:eprelMinAvailabilitySparePartsTS",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "autoBrightnessControlAvailable": {
+            "@id": "dppk:eprelAutoBrightnessControlAvailable",
+            "@type": "xsd:boolean"
+        },
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "minGuaranteedGuarantee": {
+            "@id": "dppk:eprelMinGuaranteedGuarantee",
+            "@type": "xsd:integer"
+        },
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "category": "dppk:eprelCategory",
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "roomPresenceAvailable": {
+            "@id": "dppk:eprelRoomPresenceAvailable",
+            "@type": "xsd:boolean"
+        },
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "panelTechnology": "dppk:eprelPanelTechnology",
+        "minAvailabilitySoftwareUpdatesYears": {
+            "@id": "dppk:eprelMinAvailabilitySoftwareUpdatesYears",
+            "@type": "xsd:integer"
+        },
+        "sizeRatioY": {
+            "@id": "dppk:eprelSizeRatioY",
+            "@type": "xsd:integer"
+        },
+        "powerOffMode": "dppk:eprelPowerOffMode",
+        "minAvailabilitySoftwareUpdates": "dppk:eprelMinAvailabilitySoftwareUpdates",
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "minGuaranteedSupport": "dppk:eprelMinGuaranteedSupport",
+        "resolutionHorizontalPixels": {
+            "@id": "dppk:eprelResolutionHorizontalPixels",
+            "@type": "xsd:integer"
+        },
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "resolutionVerticalPixels": {
+            "@id": "dppk:eprelResolutionVerticalPixels",
+            "@type": "xsd:integer"
+        },
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "sizeRatioX": {
+            "@id": "dppk:eprelSizeRatioX",
+            "@type": "xsd:integer"
+        },
+        "energyClassHDR": "dppk:eprelEnergyClassHDR",
+        "externalStandardPowerExcludedName": "dppk:eprelExternalStandardPowerExcludedName",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "minGuaranteedSupportYears": {
+            "@id": "dppk:eprelMinGuaranteedSupportYears",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "powerOnModeHDR": {
+            "@id": "dppk:eprelPowerOnModeHDR",
+            "@type": "xsd:integer"
+        },
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "minAvailabilitySoftwareUpdatesTS": "dppk:eprelMinAvailabilitySoftwareUpdatesTS",
+        "frequencyRate": {
+            "@id": "dppk:eprelFrequencyRate",
+            "@type": "xsd:integer"
+        },
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "externalStandardPowerIncludedName": "dppk:eprelExternalStandardPowerIncludedName",
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "externalStandardPowerExcludedFrequency": "dppk:eprelExternalStandardPowerExcludedFrequency",
+        "externalStandardPowerExcludedCurrent": "dppk:eprelExternalStandardPowerExcludedCurrent",
+        "visibleAreaV2": {
+            "@id": "dppk:eprelVisibleAreaV2",
+            "@type": "xsd:double"
+        },
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "powerStandbyNetworked": {
+            "@id": "dppk:eprelPowerStandbyNetworked",
+            "@type": "xsd:integer"
+        },
+        "calculatedDiagonalInch": {
+            "@id": "dppk:eprelCalculatedDiagonalInch",
+            "@type": "xsd:boolean"
+        },
+        "diagonalCm": {
+            "@id": "dppk:eprelDiagonalCm",
+            "@type": "xsd:double"
+        },
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

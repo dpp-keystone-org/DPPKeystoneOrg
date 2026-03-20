@@ -1,0 +1,152 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/heating-characteristics.schema.json",
+    "title": "EPREL Heating Characteristics",
+    "type": "object",
+    "properties": {
+        "backupCapacityAverage": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "backupCapacityWarm": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "annualElectricityConsumptionWarm": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "designLoadWarm": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "seasonalCoefficientOfPerformanceAverage": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "designLoadAverage": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "annualElectricityConsumptionCold": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "declaredCapacityAverage": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "seasonalCoefficientOfPerformanceCold": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "energyClassCold": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "ratedCapacity": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "energyClassWarm": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "annualElectricityConsumptionAverage": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "energyClassAverage": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "outdoorSoundPower": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "declaredCapacityWarm": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "indoorSoundPower": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "seasonalCoefficientOfPerformanceWarm": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "backupCapacityCold": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "declaredCapacityCold": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "hourlyElectricityConsumption": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "energyClass": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "designLoadCold": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "coefficientOfPerformance": {
+            "type": [
+                "number",
+                "null"
+            ]
+        }
+    }
+}

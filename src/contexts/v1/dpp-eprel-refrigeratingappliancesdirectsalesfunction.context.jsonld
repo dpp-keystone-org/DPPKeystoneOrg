@@ -1,0 +1,239 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "contactDetails": {
+            "@id": "dppk:eprelContactDetails",
+            "@context": {}
+        },
+        "organisation": {
+            "@id": "dppk:eprelOrganisation",
+            "@context": {}
+        },
+        "lightSources": {
+            "@id": "dppk:eprelApplianceLightSourceContainer",
+            "@context": {
+                "orderNumber": {
+                    "@id": "dppk:eprelAlsOrderNumber",
+                    "@type": "xsd:integer"
+                },
+                "lightAntiGlareShield": {
+                    "@id": "dppk:eprelAlsLightAntiGlareShield",
+                    "@type": "xsd:boolean"
+                },
+                "lightHighLuminance": {
+                    "@id": "dppk:eprelAlsLightHighLuminance",
+                    "@type": "xsd:boolean"
+                },
+                "lightTechnology": "dppk:eprelAlsLightTechnology",
+                "lightConnected": {
+                    "@id": "dppk:eprelAlsLightConnected",
+                    "@type": "xsd:boolean"
+                },
+                "lightColourTuneable": {
+                    "@id": "dppk:eprelAlsLightColourTuneable",
+                    "@type": "xsd:boolean"
+                },
+                "lightSourceClass": "dppk:eprelAlsLightSourceClass",
+                "id": {
+                    "@id": "dppk:eprelAlsId",
+                    "@type": "xsd:integer"
+                },
+                "lightDirectionality": "dppk:eprelAlsLightDirectionality",
+                "lightEnvelop": "dppk:eprelAlsLightEnvelop",
+                "lightDimmable": "dppk:eprelAlsLightDimmable",
+                "lightMains": "dppk:eprelAlsLightMains"
+            }
+        },
+        "compartments": {
+            "@id": "dppk:eprelDirectSalesCompartmentContainer",
+            "@context": {
+                "ambientTempMin": "dppk:eprelDscAmbientTempMin",
+                "superMarketTempClassFreezer": "dppk:eprelDscSuperMarketTempClassFreezer",
+                "orderNumber": {
+                    "@id": "dppk:eprelDscOrderNumber",
+                    "@type": "xsd:integer"
+                },
+                "tempClass": "dppk:eprelDscTempClass",
+                "superMarketTempClassRefrigeratorV2": "dppk:eprelDscSuperMarketTempClassRefrigeratorV2",
+                "relativeHumidityMin": "dppk:eprelDscRelativeHumidityMin",
+                "displayArea": {
+                    "@id": "dppk:eprelDscDisplayArea",
+                    "@type": "xsd:double"
+                },
+                "warmestTemp": "dppk:eprelDscWarmestTemp",
+                "recommendedTemp": {
+                    "@id": "dppk:eprelDscRecommendedTemp",
+                    "@type": "xsd:integer"
+                },
+                "volume": "dppk:eprelDscVolume",
+                "relativeHumidityMax": "dppk:eprelDscRelativeHumidityMax",
+                "grossVolume": "dppk:eprelDscGrossVolume",
+                "netVolume": "dppk:eprelDscNetVolume",
+                "relativeHumidity": "dppk:eprelDscRelativeHumidity",
+                "superMarketTempClassRefrigerator": "dppk:eprelDscSuperMarketTempClassRefrigerator",
+                "id": {
+                    "@id": "dppk:eprelDscId",
+                    "@type": "xsd:integer"
+                },
+                "tempClassV2": "dppk:eprelDscTempClassV2",
+                "ambientTempMax": "dppk:eprelDscAmbientTempMax"
+            }
+        },
+        "additionalInfos": {
+            "@id": "dppk:eprelAdditionalInfoContainer",
+            "@context": {
+                "language": "dppk:eprelAiLanguage",
+                "id": {
+                    "@id": "dppk:eprelAiId",
+                    "@type": "xsd:integer"
+                },
+                "orderNumber": {
+                    "@id": "dppk:eprelAiOrderNumber",
+                    "@type": "xsd:integer"
+                },
+                "text": "dppk:eprelAiText"
+            }
+        },
+        "refrigerator": {
+            "@id": "dppk:eprelRefrigerator",
+            "@type": "xsd:boolean"
+        },
+        "displayAreaFrozenTotal": "dppk:eprelDisplayAreaFrozenTotal",
+        "highestWarmTempChilled": {
+            "@id": "dppk:eprelHighestWarmTempChilled",
+            "@type": "xsd:integer"
+        },
+        "status": "dppk:eprelStatus",
+        "onMarketEndDateTS": "dppk:eprelOnMarketEndDateTS",
+        "webLinkManufacturer": "dppk:eprelWebLinkManufacturer",
+        "netVolumeChilledTotal": "dppk:eprelNetVolumeChilledTotal",
+        "modelAvailabilityInCountries": "dppk:eprelModelAvailabilityInCountries",
+        "energyClass": "dppk:eprelEnergyClass",
+        "orgVerificationStatus": "dppk:eprelOrgVerificationStatus",
+        "energyLabelId": "dppk:eprelEnergyLabelId",
+        "applianceType": "dppk:eprelApplianceType",
+        "onMarketStartDate": "dppk:eprelOnMarketStartDate",
+        "modelAvailabilityInEUEEACountries": "dppk:eprelModelAvailabilityInEUEEACountries",
+        "formType": "dppk:eprelFormType",
+        "warmestAmbientTemp": "dppk:eprelWarmestAmbientTemp",
+        "onMarketStartDateTS": {
+            "@id": "dppk:eprelOnMarketStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "machineInfos": "dppk:eprelMachineInfos",
+        "firstPublicationDate": "dppk:eprelFirstPublicationDate",
+        "highestWarmTempFrozen": "dppk:eprelHighestWarmTempFrozen",
+        "generatedLabels": "dppk:eprelGeneratedLabels",
+        "visibleToUkMsa": {
+            "@id": "dppk:eprelVisibleToUkMsa",
+            "@type": "xsd:boolean"
+        },
+        "energyConsAnnual": {
+            "@id": "dppk:eprelEnergyConsAnnual",
+            "@type": "xsd:double"
+        },
+        "machineType": "dppk:eprelMachineType",
+        "contactId": "dppk:eprelContactId",
+        "additionalDetails": "dppk:eprelAdditionalDetails",
+        "lastVersion": {
+            "@id": "dppk:eprelLastVersion",
+            "@type": "xsd:boolean"
+        },
+        "trademarkOwner": "dppk:eprelTrademarkOwner",
+        "allowEprelLabelGeneration": {
+            "@id": "dppk:eprelAllowEprelLabelGeneration",
+            "@type": "xsd:boolean"
+        },
+        "firstPublicationDateTS": {
+            "@id": "dppk:eprelFirstPublicationDateTS",
+            "@type": "xsd:integer"
+        },
+        "lowestColdHighestMinTempChilled": {
+            "@id": "dppk:eprelLowestColdHighestMinTempChilled",
+            "@type": "xsd:integer"
+        },
+        "transparentLid": "dppk:eprelTransparentLid",
+        "onMarketEndDate": "dppk:eprelOnMarketEndDate",
+        "netVolumeFrozenTotal": "dppk:eprelNetVolumeFrozenTotal",
+        "registrantNature": "dppk:eprelRegistrantNature",
+        "cabinetType": "dppk:eprelCabinetType",
+        "trademarkId": {
+            "@id": "dppk:eprelTrademarkId",
+            "@type": "xsd:integer"
+        },
+        "exportDateTS": {
+            "@id": "dppk:eprelExportDateTS",
+            "@type": "xsd:integer"
+        },
+        "onMarketFirstStartDateTS": {
+            "@id": "dppk:eprelOnMarketFirstStartDateTS",
+            "@type": "xsd:integer"
+        },
+        "implementingAct": "dppk:eprelImplementingAct",
+        "blocked": {
+            "@id": "dppk:eprelBlocked",
+            "@type": "xsd:boolean"
+        },
+        "modelIdentifier": "dppk:eprelModelIdentifier",
+        "energyClassImageWithScale": "dppk:eprelEnergyClassImageWithScale",
+        "versionId": {
+            "@id": "dppk:eprelVersionId",
+            "@type": "xsd:integer"
+        },
+        "energyClassImage": "dppk:eprelEnergyClassImage",
+        "trademarkVerificationStatus": "dppk:eprelTrademarkVerificationStatus",
+        "lowestColdHighestMinTempFrozen": "dppk:eprelLowestColdHighestMinTempFrozen",
+        "importedOn": {
+            "@id": "dppk:eprelImportedOn",
+            "@type": "xsd:integer"
+        },
+        "publishedOnDateTS": {
+            "@id": "dppk:eprelPublishedOnDateTS",
+            "@type": "xsd:integer"
+        },
+        "cabinetFamilyCode": "dppk:eprelCabinetFamilyCode",
+        "energyClassRange": "dppk:eprelEnergyClassRange",
+        "grossVolumeChilledTotal": "dppk:eprelGrossVolumeChilledTotal",
+        "energyEfficiencyIndex": {
+            "@id": "dppk:eprelEnergyEfficiencyIndex",
+            "@type": "xsd:double"
+        },
+        "highestTempChilled": "dppk:eprelHighestTempChilled",
+        "modelAvailabilityInOtherCountries": "dppk:eprelModelAvailabilityInOtherCountries",
+        "maxAmbientTemp": "dppk:eprelMaxAmbientTemp",
+        "displayAreaChilledTotal": {
+            "@id": "dppk:eprelDisplayAreaChilledTotal",
+            "@type": "xsd:double"
+        },
+        "onMarketFirstStartDate": "dppk:eprelOnMarketFirstStartDate",
+        "productModelCoreId": {
+            "@id": "dppk:eprelProductModelCoreId",
+            "@type": "xsd:integer"
+        },
+        "versionNumber": {
+            "@id": "dppk:eprelVersionNumber",
+            "@type": "xsd:integer"
+        },
+        "uploadedLabels": "dppk:eprelUploadedLabels",
+        "guaranteeDuration": {
+            "@id": "dppk:eprelGuaranteeDuration",
+            "@type": "xsd:integer"
+        },
+        "supplierOrTrademark": "dppk:eprelSupplierOrTrademark",
+        "cabinetOrientation": "dppk:eprelCabinetOrientation",
+        "availabilityInEUEEACountries": "dppk:eprelAvailabilityInEUEEACountries",
+        "publishedOnDate": "dppk:eprelPublishedOnDate",
+        "productGroup": "dppk:eprelProductGroup",
+        "highestTempFrozen": "dppk:eprelHighestTempFrozen",
+        "freezer": {
+            "@id": "dppk:eprelFreezer",
+            "@type": "xsd:boolean"
+        },
+        "rollIn": {
+            "@id": "dppk:eprelRollIn",
+            "@type": "xsd:boolean"
+        },
+        "eprelRegistrationNumber": "dppk:eprelRegistrationNumber"
+    }
+}

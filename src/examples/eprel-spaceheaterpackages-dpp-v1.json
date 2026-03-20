@@ -1,0 +1,120 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheaterpackages.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelSpaceheaterpackagesProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-spaceheaterpackages-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-spaceheaterpackages-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_spaceheaterpackages_specification_id"
+    ],
+    "productName": "Keystone Demo 'spaceheaterpackages' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-spaceheaterpackages-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "status": "PUBLISHED",
+    "contactDetails": {
+        "country": "DE",
+        "streetNumber": "DEMO-8326",
+        "city": "Keystone Demo Hechingen",
+        "postalCode": "DEMO-1543",
+        "contactReference": "Keystone Demo ELCO GmbH",
+        "serviceName": "Keystone Demo Kontakt",
+        "defaultContact": false,
+        "phone": "+1-555-0199",
+        "street": "Keystone Demo Hohenzollernstra\u00dfe",
+        "id": 168,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo Ariston SpA",
+        "organisationName": "Keystone Demo Ariston SpA",
+        "website": "https://dpp-keystone.org/demo",
+        "isClosed": false,
+        "guid": "DEMO-4703",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "modelAvailabilityInCountries": [],
+    "energyClass": "Keystone Demo APPP",
+    "orgVerificationStatus": "VERIFIED",
+    "packageSeasonalSpaceHeatingEfficiency": 169,
+    "energyLabelId": 1733191,
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "modelAvailabilityInEUEEACountries": [],
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1950505921,
+    "solarCollectorIncluded": false,
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "packageEnergyClass": "Keystone Demo APPP",
+    "spaceHeaterType": "Keystone Demo HEAT_PUMP",
+    "visibleToUkMsa": false,
+    "weightFactorHeatOutput": 1,
+    "differenceHeatingEfficiencyWarmAverage": -27,
+    "lastVersion": false,
+    "allowEprelLabelGeneration": true,
+    "category": "Keystone Demo SPACE_HEATER_PACKAGE",
+    "firstPublicationDateTS": 1951072305,
+    "seasonalHeatingEnergyEfficiency": 167,
+    "temperatureControlIncluded": true,
+    "registrantNature": "Keystone Demo AUTHORISED_REPRESENTATIVE",
+    "trademarkId": 246,
+    "exportDateTS": 1951072959459,
+    "differenceHeatingEfficiencyColdAverage": 38,
+    "onMarketFirstStartDateTS": 1950505921,
+    "implementingAct": "Keystone Demo EU_811_2013",
+    "blocked": false,
+    "modelIdentifier": "DEMO-6659",
+    "supplementaryHeaterIncluded": false,
+    "energyClassImageWithScale": "Keystone Demo APPP-Left-DarkGreen-WithAPPPGScale.svg",
+    "temperatureControlContribution": "Keystone Demo CLASS_II",
+    "waterStorageTankIncluded": false,
+    "versionId": 5892064,
+    "energyClassImage": "Keystone Demo APPP-Left-DarkGreen.png",
+    "packageSeasonalSpaceHeatingEfficiencyWarm": 196,
+    "trademarkVerificationStatus": "VERIFIED",
+    "importedOn": 1951072961450,
+    "mathExprIII": 2.18,
+    "publishedOnDateTS": 1951072304800,
+    "energyClassRange": "Keystone Demo APPP_G",
+    "packageSeasonalSpaceHeatingEfficiencyCold": 131,
+    "modelAvailabilityInOtherCountries": [],
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2931327,
+    "versionNumber": 2,
+    "supplierOrTrademark": "Keystone Demo ELCO",
+    "availabilityInEUEEACountries": "ALL",
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo spaceheaterpackages",
+    "mathExprIV": 0.85,
+    "eprelRegistrationNumber": "DEMO-8653"
+}

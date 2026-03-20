@@ -1,0 +1,557 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-washingmachines.schema.json",
+    "title": "DPP for washingmachines (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the washingmachines sector.",
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "eprel_washingmachines_specification_id"
+                }
+            }
+        },
+        "required": [
+            "contentSpecificationIds"
+        ]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "dimensionWidth": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "dimensionDepth": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "status": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "contactDetails": {
+                "$ref": "eprel/contact-details.schema.json"
+            },
+            "energyConsPer100Cycle": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "organisation": {
+                "$ref": "eprel/organisation.schema.json"
+            },
+            "onMarketEndDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "spinSpeedRated": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "orgVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "washingEfficiencyIndex": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "energyLabelId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "webLinkSupplier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "noiseClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "programmeDurationQuarter": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInEUEEACountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "formType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "firstPublicationDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "powerNetworkStandby": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "generatedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "dimensionHeight": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "visibleToUkMsa": {
+                "type": "boolean"
+            },
+            "maxTemperatureQuarter": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "contactId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "additionalDetails": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "powerStandbyMode": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "lastVersion": {
+                "type": "boolean"
+            },
+            "moistureRated": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "trademarkOwner": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "programmeDurationHalf": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "allowEprelLabelGeneration": {
+                "type": "boolean"
+            },
+            "firstPublicationDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyConsPerCycle": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "isEnergySmartAppliance": {
+                "type": "boolean"
+            },
+            "moistureHalf": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "onMarketEndDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "spinSpeedHalf": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "powerOffMode": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "registrantNature": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "exportDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "noise": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "implementingAct": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "maxTemperatureRated": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "blocked": {
+                "type": "boolean"
+            },
+            "modelIdentifier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "ratedCapacity": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassImageWithScale": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "versionId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassImage": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "maxTemperatureHalf": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "spinSpeedQuarter": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "importedOn": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "publishedOnDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "washingEfficiencyIndexV2": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassRange": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "energyEfficiencyIndex": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "spinClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "rinsingEffectiveness": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInOtherCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "moistureQuarter": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "productModelCoreId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "versionNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "uploadedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "moisture": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "programmeDurationRated": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "powerDelayStart": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "guaranteeDuration": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "supplierOrTrademark": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "availabilityInEUEEACountries": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "publishedOnDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "productGroup": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "waterCons": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "additionalInfo": {
+                "type": [
+                    "array",
+                    "null"
+                ],
+                "items": {
+                    "$ref": "eprel/additional-info.schema.json"
+                }
+            },
+            "releasesSilverIons": {
+                "type": "boolean"
+            },
+            "type": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "eprelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            }
+        }
+    }
+}

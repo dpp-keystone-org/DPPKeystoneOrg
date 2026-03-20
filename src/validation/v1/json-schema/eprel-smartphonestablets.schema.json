@@ -1,0 +1,519 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel-smartphonestablets.schema.json",
+    "title": "DPP for Smartphones and Tablets (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the smartphonestablets sector.",
+    "if": {
+        "type": "object",
+        "properties": {
+            "contentSpecificationIds": {
+                "type": "array",
+                "contains": {
+                    "const": "eprel_smartphonestablets_specification_id"
+                }
+            }
+        },
+        "required": [
+            "contentSpecificationIds"
+        ]
+    },
+    "then": {
+        "type": "object",
+        "properties": {
+            "deviceType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "status": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "contactDetails": {
+                "$ref": "eprel/contact-details.schema.json"
+            },
+            "ingressProtectionRatingWaterNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "organisation": {
+                "$ref": "eprel/organisation.schema.json"
+            },
+            "onMarketEndDateTS": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "modelAvailabilityInCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "orgVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "immersionDepthWater": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "energyLabelId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "ingressProtectionRatingWater": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "fastenersScore": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "modelAvailabilityInEUEEACountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "formType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "softwareUpdatesScore": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "onMarketStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "toolsScore": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "firstPublicationDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "ratedBatteryCapacity": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "shippedWithProtectiveCover": {
+                "type": "boolean"
+            },
+            "webLinkPretaxPrices": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "generatedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "additionalInfos": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "visibleToUkMsa": {
+                "type": "boolean"
+            },
+            "ingressProtectionRating": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "contactId": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "repairabilityIndex": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "additionalDetails": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "lastVersion": {
+                "type": "boolean"
+            },
+            "trademarkOwner": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "allowEprelLabelGeneration": {
+                "type": "boolean"
+            },
+            "batteryEnduranceInCycles": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "firstPublicationDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketEndDate": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "chargerReceptacleType": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "operatingSystem": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "repairInfoScore": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "isFoldable": {
+                "type": "boolean"
+            },
+            "ingressProtectionRatingSolid": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "registrantNature": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "repeatedFreeFallReliabilityClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "exportDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "fallsWithoutDefect": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "disassemblyDepthScore": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "batteryEndurancePerCycle": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "webLinkInfoSparePartsAvailability": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "implementingAct": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "blocked": {
+                "type": "boolean"
+            },
+            "modelIdentifier": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "fallsWithoutDefectFullyExtended": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "batteryUserReplaceable": {
+                "type": "boolean"
+            },
+            "energyClassImageWithScale": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "sparePartScore": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "versionId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassImage": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "trademarkVerificationStatus": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "screenScratchResistance": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "importedOn": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "publishedOnDateTS": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "energyClassRange": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "modelAvailabilityInOtherCountries": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "onMarketFirstStartDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "minYearsSoftwareUpdates": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "productModelCoreId": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "repairabilityClass": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "versionNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "uploadedLabels": {
+                "type": [
+                    "string",
+                    "number",
+                    "null"
+                ]
+            },
+            "webLinkRepairInstructions": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "guaranteeDuration": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "supplierOrTrademark": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "availabilityInEUEEACountries": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "chargerRequiredOutputPower": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "publishedOnDate": {
+                "type": [
+                    "array",
+                    "null",
+                    "string"
+                ]
+            },
+            "productGroup": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "ingressProtectionRatingSolidNumber": {
+                "type": [
+                    "number",
+                    "null",
+                    "string"
+                ]
+            },
+            "eprelRegistrationNumber": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            }
+        }
+    }
+}

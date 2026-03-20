@@ -1,0 +1,117 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/eprel/EprelFilterVisualWarning.jsonld",
+    "@type": "owl:Ontology",
+    "dcterms:title": "EPREL Filter Visual Warning Sector Ontology",
+    "dcterms:description": "Sector ontology for the EPREL Filter Visual Warning product category.",
+    "rdfs:label": [
+        {
+            "@language": "en",
+            "@value": "EPREL Filter Visual Warning Sector Ontology"
+        }
+    ],
+    "owl:imports": [],
+    "@graph": [
+        {
+            "@id": "dppk:EprelFilterVisualWarning",
+            "@type": "rdfs:Class",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Filter Visual Warning"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelFvwPositionText",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelFilterVisualWarning"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Fvw Position Text"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelFvwLanguage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelFilterVisualWarning"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Fvw Language"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        },
+        {
+            "@id": "dppk:eprelFvwId",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelFilterVisualWarning"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Fvw Id"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelFvwOrderNumber",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelFilterVisualWarning"
+            },
+            "rdfs:range": "xsd:integer",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Fvw Order Number"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            },
+            "dppk:unit": "unitless"
+        },
+        {
+            "@id": "dppk:eprelFvwDescriptionText",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "dppk:EprelFilterVisualWarning"
+            },
+            "rdfs:range": "xsd:string",
+            "rdfs:label": {
+                "@language": "en",
+                "@value": "Eprel Fvw Description Text"
+            },
+            "rdfs:comment": {
+                "@language": "en",
+                "@value": "-"
+            }
+        }
+    ]
+}

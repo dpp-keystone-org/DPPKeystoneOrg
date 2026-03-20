@@ -1,0 +1,124 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-spaceheatersolardevice.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelSpaceheatersolardeviceProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-spaceheatersolardevice-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-spaceheatersolardevice-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_spaceheatersolardevice_specification_id"
+    ],
+    "productName": "Keystone Demo 'spaceheatersolardevice' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-spaceheatersolardevice-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "status": "PUBLISHED",
+    "standbyPowerConsumption": 5,
+    "contactDetails": {
+        "country": "DE",
+        "streetNumber": "DEMO-2717",
+        "city": "Keystone Demo Perpignan",
+        "postalCode": "DEMO-7031",
+        "contactReference": "Keystone Demo Hot_line",
+        "municipality": "Keystone Demo Perpignan",
+        "serviceName": "Keystone Demo Service technique",
+        "province": "Keystone Demo Occitanie",
+        "defaultContact": false,
+        "phone": "+1-555-0199",
+        "street": "Keystone Demo Rue Ga\u00efa",
+        "id": 23675,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo FHE FRANCE",
+        "organisationName": "Keystone Demo FHE FRANCE",
+        "website": "https://dpp-keystone.org/demo",
+        "isClosed": false,
+        "guid": "DEMO-8063",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "waterStorageStandingLoss": 98,
+    "solarTankEnergyClass": "C",
+    "orgVerificationStatus": "VERIFIED",
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "solarCollectorApertureArea": 9.06,
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1850523841,
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "annualAuxiliaryElectricityConsumption": 83,
+    "visibleToUkMsa": false,
+    "lastVersion": false,
+    "trademarkOwner": "Keystone Demo FHE",
+    "allowEprelLabelGeneration": true,
+    "firstPublicationDateTS": 1948411153,
+    "loadProfiles": [
+        {
+            "id": 5021,
+            "orderNumber": 2,
+            "type": "Keystone Demo XXL",
+            "annualNonSolarHeatContributionElec": 2288
+        }
+    ],
+    "solarCollectorEfficiency": 69,
+    "registrantNature": "Keystone Demo IMPORTER",
+    "trademarkId": 102646,
+    "exportDateTS": 1949790495992,
+    "onMarketFirstStartDateTS": 1850523841,
+    "implementingAct": "Keystone Demo EU_811_2013",
+    "blocked": false,
+    "modelIdentifier": "DEMO-2824",
+    "solarTankStorageVolumeM3": 0.46,
+    "versionId": 5837880,
+    "trademarkVerificationStatus": "VERIFIED",
+    "importedOn": 1949790506211,
+    "publishedOnDateTS": 1948411153245,
+    "energyClassRange": "Keystone Demo AP_G",
+    "solarTankStorageVolumeL": 463,
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2902893,
+    "versionNumber": 2,
+    "pumpPowerConsumption": 22,
+    "supplierOrTrademark": "Keystone Demo FHE",
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo spaceheatersolardevice",
+    "modelAvailabilityInCountries": [
+        "FR"
+    ],
+    "modelAvailabilityInEUEEACountries": [
+        "FR"
+    ],
+    "isEnergySmartAppliance": false,
+    "modelAvailabilityInOtherCountries": [],
+    "availabilityInEUEEACountries": "Keystone Demo AS_SPECIFIED",
+    "eprelRegistrationNumber": "DEMO-8983"
+}

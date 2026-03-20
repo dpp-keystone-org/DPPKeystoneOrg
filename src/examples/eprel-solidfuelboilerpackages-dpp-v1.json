@@ -1,0 +1,114 @@
+{
+    "@context": [
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+        "https://dpp-keystone.org/spec/contexts/v1/dpp-eprel-solidfuelboilerpackages.context.jsonld"
+    ],
+    "@type": [
+        "dppk:DigitalProductPassport",
+        "dppk:EprelSolidfuelboilerpackagesProduct"
+    ],
+    "digitalProductPassportId": "urn:uuid:demo-dpp-solidfuelboilerpackages-001",
+    "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/eprel-solidfuelboilerpackages-dpp-v1.html",
+    "granularity": "Model",
+    "dppSchemaVersion": "v2.0",
+    "dppStatus": "Active",
+    "lastUpdate": "2026-05-01T10:00:00Z",
+    "economicOperatorId": "urn:gln:9999999999999",
+    "contentSpecificationIds": [
+        "eprel_solidfuelboilerpackages_specification_id"
+    ],
+    "productName": "Keystone Demo 'solidfuelboilerpackages' Product",
+    "image": [
+        {
+            "resourceTitle": "Product Image",
+            "url": "/spec/examples/images/eprel-solidfuelboilerpackages-dpp-v1.png",
+            "contentType": "image/png"
+        }
+    ],
+    "status": "PUBLISHED",
+    "contactDetails": {
+        "country": "DE",
+        "streetNumber": "DEMO-7241",
+        "city": "Keystone Demo Hofkirchen an der Trattnach",
+        "postalCode": "DEMO-1953",
+        "contactReference": "Keystone Demo DEUTSCHELMAR",
+        "municipality": "Keystone Demo Hofkirchen",
+        "serviceName": "Keystone Demo Technischer Verkauf",
+        "webSiteURL": "https://dpp-keystone.org/demo",
+        "defaultContact": true,
+        "phone": "+1-555-0199",
+        "street": "Keystone Demo Gewerbepark",
+        "id": 15784,
+        "email": "demo-contact@dpp-keystone.org",
+        "status": "ACTIVE"
+    },
+    "organisation": {
+        "organisationTitle": "Keystone Demo ETA Heiztechnik GmbH",
+        "organisationName": "Keystone Demo ETA Heiztechnik GmbH",
+        "website": "https://dpp-keystone.org/demo",
+        "isClosed": false,
+        "guid": "DEMO-7640",
+        "personType": "Keystone Demo LEGAL_PERSON"
+    },
+    "energyClass": "Keystone Demo APP",
+    "orgVerificationStatus": "VERIFIED",
+    "onMarketStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "formType": "TYPE_1",
+    "onMarketStartDateTS": 1939861441,
+    "solarCollectorIncluded": false,
+    "firstPublicationDate": [
+        2028,
+        1,
+        1
+    ],
+    "packageEnergyClass": "Keystone Demo APP",
+    "visibleToUkMsa": false,
+    "weightFactorHeatOutput": 2,
+    "lastVersion": false,
+    "allowEprelLabelGeneration": true,
+    "firstPublicationDateTS": 1944704614,
+    "temperatureControlIncluded": false,
+    "hotWaterStorageTanksIncluded": false,
+    "registrantNature": "Keystone Demo MANUFACTURER",
+    "trademarkId": 54831,
+    "exportDateTS": 1949701758742,
+    "onMarketFirstStartDateTS": 1939861441,
+    "implementingAct": "Keystone Demo EU_2015_1187",
+    "blocked": false,
+    "modelIdentifier": "DEMO-8709",
+    "supplementaryHeaterIncluded": false,
+    "energyClassImageWithScale": "Keystone Demo APP-Left-MediumGreen-WithAPPPGScale.svg",
+    "versionId": 5758552,
+    "energyClassImage": "Keystone Demo APP-Left-MediumGreen.png",
+    "trademarkVerificationStatus": "VERIFIED",
+    "importedOn": 1949701763956,
+    "mathExprIII": 0.58,
+    "publishedOnDateTS": 1944704614120,
+    "energyClassRange": "Keystone Demo APPP_G",
+    "energyEfficiencyIndex": 147,
+    "onMarketFirstStartDate": [
+        2028,
+        1,
+        1
+    ],
+    "productModelCoreId": 2853747,
+    "versionNumber": 2,
+    "supplierOrTrademark": "Keystone Demo ETA Heiztechnik",
+    "publishedOnDate": [
+        2028,
+        1,
+        1
+    ],
+    "productGroup": "Keystone Demo solidfuelboilerpackages",
+    "mathExprIV": 0.23,
+    "packageEnergyEfficiencyIndex": 152,
+    "modelAvailabilityInCountries": [],
+    "modelAvailabilityInEUEEACountries": [],
+    "modelAvailabilityInOtherCountries": [],
+    "availabilityInEUEEACountries": "ALL",
+    "eprelRegistrationNumber": "DEMO-5769"
+}

@@ -1,0 +1,37 @@
+{
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/eprel/spectral-power-distribution-image.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": [
+        "object",
+        "null"
+    ],
+    "properties": {
+        "fileName": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "id": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        },
+        "file": {
+            "type": [
+                "string",
+                "number",
+                "null"
+            ]
+        },
+        "fileSize": {
+            "type": [
+                "number",
+                "null",
+                "string"
+            ]
+        }
+    }
+}
