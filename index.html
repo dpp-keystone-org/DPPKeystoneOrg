@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,22 +14,26 @@
             gap: 20px;
             margin-bottom: 30px;
         }
+
         .toolkit-card {
             background: var(--white);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s ease-in-out;
         }
+
         .toolkit-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .toolkit-card h3 {
             margin-top: 0;
             color: var(--keystone-blue);
         }
+
         .spec-section {
             background: var(--white);
             padding: 20px;
@@ -36,50 +41,81 @@
             margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
+
+        .warning-banner {
+            background-color: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .warning-banner h2 {
+            margin-top: 0;
+            color: #d46b08;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <img src="branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
             <div>
                 <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
-                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the Digital Product Passport</p>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the
+                    Digital Product Passport</p>
             </div>
         </header>
+
+        <div class="warning-banner">
+            <h2>Proof of Concept - Not for Production Use</h2>
+            <p>The DPP standardization process is ongoing. Utilities on this website are for demonstration and
+                proof-of-concept purposes only.</p>
+        </div>
 
         <main>
             <section>
                 <h2>About This Project</h2>
-                <p>This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies between various standards (ISO, GS1, etc.) to any exact schemas that are required for the DPP. Our goal is to ensure interoperability and lower the barrier for implementation, especially for SMEs.</p>
-                <p>In addition, this site provides a suite of in-browser tools to assist with DPP generation (manually and in bulk) and validation of JSON files against DPP standards.</p>
-                <p>For more details on the approach, please read the <a href="docs/methodology.md">Methodology documentation</a>.</p>
+                <p>This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies
+                    between various standards (ISO, GS1, etc.) to any exact schemas that are required for the DPP. Our
+                    goal is to ensure interoperability and lower the barrier for implementation, especially for SMEs.
+                </p>
+                <p>In addition, this site provides a suite of in-browser tools to assist with DPP generation (manually
+                    and in bulk) and validation of JSON files against DPP standards.</p>
+                <p>For more details on the approach, please read the <a href="docs/methodology.md">Methodology
+                        documentation</a>.</p>
             </section>
 
             <section>
                 <h2>DPP Toolkit</h2>
                 <p>Interactive tools and libraries to build, validate, and visualize Digital Product Passports.</p>
-                
+
                 <div class="toolkit-grid">
                     <div class="toolkit-card">
                         <h3><a href="wizard/">🚀 DPP Wizard</a></h3>
-                        <p>An interactive web-based form to generate valid JSON-LD Digital Product Passports for Battery, Construction, Electronics and Textile sectors. Validate your data in real-time.</p>
+                        <p>An interactive web-based form to generate valid JSON-LD Digital Product Passports for
+                            Battery, Construction, Electronics and Textile sectors. Validate your data in real-time.</p>
                     </div>
                     <div class="toolkit-card">
                         <h3><a href="validator/">✅ DPP Validator</a></h3>
-                        <p>Standalone tool to validate DPP JSON files against the V1 schemas. Supports both strict JSON and JSONC (with comments).</p>
+                        <p>Standalone tool to validate DPP JSON files against the V1 schemas. Supports both strict JSON
+                            and JSONC (with comments).</p>
                     </div>
                     <div class="toolkit-card">
                         <h3><a href="csv-dpp-adapter/">📊 CSV Adapter</a></h3>
-                        <p>Batch convert CSV data to DPP JSON files in your browser. Map columns to schema fields and export.</p>
+                        <p>Batch convert CSV data to DPP JSON files in your browser. Map columns to schema fields and
+                            export.</p>
                     </div>
                     <div class="toolkit-card">
                         <h3><a href="explorer/">🔍 Ontology Explorer</a></h3>
-                        <p>Searchable index of all DPP definitions. Find terms, units, and semantic mappings across all sectors.</p>
+                        <p>Searchable index of all DPP definitions. Find terms, units, and semantic mappings across all
+                            sectors.</p>
                     </div>
                     <div class="toolkit-card">
                         <h3><a href="util/">📦 Developer SDKs</a></h3>
-                        <p>JavaScript utilities and reference implementations for schema validation, HTML generation, and ontology indexing. Includes adapter examples for converting between formats.</p>
+                        <p>JavaScript utilities and reference implementations for schema validation, HTML generation,
+                            and ontology indexing. Includes adapter examples for converting between formats.</p>
                     </div>
                 </div>
             </section>
@@ -90,14 +126,16 @@
 
                 <div class="spec-section">
                     <h3>Semantics & Vocabulary</h3>
-                    <p>The semantic definitions (Ontology) and JSON-LD mappings (Contexts) that define the meaning of data.</p>
-                    
+                    <p>The semantic definitions (Ontology) and JSON-LD mappings (Contexts) that define the meaning of
+                        data.</p>
+
                     <h4>Ontology (Semantic Definitions)</h4>
                     <ul>
                         <li><strong>Browse Modules:</strong>
                             <ul>
                                 <li><a href="spec/ontology/v1/core/index.html">Browse Core Modules (HTML Docs)</a></li>
-                                <li><a href="spec/ontology/v1/sectors/index.html">Browse Sector Modules (HTML Docs)</a></li>
+                                <li><a href="spec/ontology/v1/sectors/index.html">Browse Sector Modules (HTML Docs)</a>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Individual Classes:</strong>
@@ -295,15 +333,19 @@
                 <h3>EPCIS Integration</h3>
                 <p>Example of how a DPP can be shared via EPCIS 2.0.</p>
                 <ul>
-                    <li><a href="spec/examples/epcis/epcis-publishing-event.json" target="_blank" rel="noopener noreferrer">EPCIS 2.0 Example Event (JSON-LD)</a></li>
-                    <li><a href="https://gs1-epcis-reg.org/const/examples/dpp_rail_example_V3dhu_dh_mit%20URI.json" target="_blank" rel="noopener noreferrer">Event Subject DPP JSON</a></li>
+                    <li><a href="spec/examples/epcis/epcis-publishing-event.json" target="_blank"
+                            rel="noopener noreferrer">EPCIS 2.0 Example Event (JSON-LD)</a></li>
+                    <li><a href="https://gs1-epcis-reg.org/const/examples/dpp_rail_example_V3dhu_dh_mit%20URI.json"
+                            target="_blank" rel="noopener noreferrer">Event Subject DPP JSON</a></li>
                 </ul>
             </section>
 
             <section>
                 <h2>Contributing and Governance</h2>
-                <p>Contributions are welcome. Please review the <a href="CONTRIBUTING.md">Contribution Guidelines</a> and the <a href="docs/governance.md">Governance Model</a>.</p>
-                <p>This project is hosted on <a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg">GitHub</a>.</p>
+                <p>Contributions are welcome. Please review the <a href="CONTRIBUTING.md">Contribution Guidelines</a>
+                    and the <a href="docs/governance.md">Governance Model</a>.</p>
+                <p>This project is hosted on <a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg">GitHub</a>.
+                </p>
             </section>
         </main>
 
@@ -312,4 +354,5 @@
         </footer>
     </div>
 </body>
+
 </html>
