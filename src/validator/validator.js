@@ -4,20 +4,18 @@ import { EXAMPLES } from '../lib/example-registry.js';
 import { generateHTML } from '../lib/html-generator.js';
 import { transformDpp } from '../util/js/client/dpp-schema-adapter.js';
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
+import { loadOntology } from '../lib/ontology-loader.js';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/
 // NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
 const SECTOR_MAP = {
-    'urn:uuid:0c017772-8874-4b52-b89e-04f8b9cb030a': 'battery.schema.json',
-    'urn:uuid:6b0101d2-a720-4321-9543-9a3d45543d8d': 'construction.schema.json',
-    'urn:uuid:71a067b0-8e62-431c-b5f7-8761741e449a': 'electronics.schema.json',
-    'urn:uuid:b2010464-a080-4965-827c-9b7681607593': 'textile.schema.json',
-    // DoPC is technically a sector/extension, though often treated as core.
-    // Assuming it has an ID if it appears in contentSpecificationIds.
-    // If not, it might be a common schema. 
-    // For now, let's treat it as a potential spec ID target if we knew the ID.
-    // The previous code didn't strictly map IDs for common schemas, only sectors.
+    'draft_battery_specification_id': 'battery.schema.json',
+    'draft_construction_specification_id': 'construction.schema.json',
+    'draft_electronics_specification_id': 'electronics.schema.json',
+    'draft_textile_specification_id': 'textile.schema.json',
 };
 
 // Common schemas that should always be loaded for $ref resolution
@@ -29,7 +27,8 @@ const COMMON_SCHEMAS = [
     'postal-address.schema.json',
     'product-characteristic.schema.json',
     'related-resource.schema.json',
-    'general-product.schema.json'
+    'general-product.schema.json',
+    'component.schema.json'
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
@@ -106,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // 3. Setup Validation Event Listener
-    validateBtn.addEventListener('click', () => {
+    validateBtn.addEventListener('click', async () => {
         const inputStr = jsonInput.value.trim();
         resultBox.hidden = true;
         resultBox.innerHTML = '';
@@ -135,20 +134,59 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Validate
+        validateBtn.disabled = true;
         try {
             const result = validateDpp(dppData, schemaContext);
-            if (result.valid) {
+            let isValid = result.valid;
+            let allErrors = result.errors ? [...result.errors] : [];
+
+            // Branch dynamic Ontology validation to intercept `@context` specifically!
+            if (dppData['@context']) {
+                const contextResult = await validateContextAwarePayload(dppData);
+                if (!contextResult.valid) {
+                    isValid = false;
+                    allErrors = allErrors.concat(contextResult.errors);
+                }
+
+            } else {
+                // Compile dynamic Ontology Map tracking short key replacements for Legacy/Wizard Draft Fallbacks
+                const aggregatedMap = new Map();
+                const dppOntology = await loadOntology('dpp');
+                if (dppOntology) dppOntology.forEach((v, k) => aggregatedMap.set(k, v));
+
+                if (dppData.contentSpecificationIds && Array.isArray(dppData.contentSpecificationIds)) {
+                    for (const id of dppData.contentSpecificationIds) {
+                        const schemaFile = SECTOR_MAP[id];
+                        if (schemaFile) {
+                            const sectorName = schemaFile.replace('.schema.json', '');
+                            const sectorOntology = await loadOntology(sectorName);
+                            if (sectorOntology) sectorOntology.forEach((v, k) => aggregatedMap.set(k, v));
+                        }
+                    }
+                }
+
+                const ontologyResult = validateAgainstOntology(dppData, aggregatedMap);
+
+                if (!ontologyResult.valid) {
+                    isValid = false;
+                    allErrors = allErrors.concat(ontologyResult.errors);
+                }
+            }
+
+            if (isValid) {
                 if (isJsonc) {
-                    showSuccessWithWarning('Validation Successful! (Note: Comments were stripped from valid JSONC)', 'The DPP data conforms to the schema.');
+                    showSuccessWithWarning('Validation Successful! (Note: Comments were stripped from valid JSONC)', 'The DPP data conforms to all schemas and strict ontology logic.');
                 } else {
-                    showSuccess('Validation Successful! The DPP data conforms to the schema.');
+                    showSuccess('Validation Successful! The DPP data conforms to all schemas and strict ontology logic.');
                 }
             } else {
-                showValidationErrors(result.errors, isJsonc);
+                showValidationErrors(allErrors, isJsonc);
             }
         } catch (e) {
             console.error(e);
             showError('An unexpected error occurred during validation: ' + e.message);
+        } finally {
+            validateBtn.disabled = false;
         }
     });
 
