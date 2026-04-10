@@ -1,4 +1,4 @@
-import { validateDpp } from '../schema-validator.js?v=1775744581023';
+import { validateDpp } from '../schema-validator.js?v=1775831842077';
 
 describe('validateDpp', () => {
     // Mock Schemas
@@ -7,7 +7,7 @@ describe('validateDpp', () => {
         type: 'object',
         properties: {
             id: { type: 'string' },
-            contentSpecificationIds: { 
+            contentSpecificationIds: {
                 type: 'array',
                 items: { type: 'string' }
             }
@@ -17,11 +17,23 @@ describe('validateDpp', () => {
 
     const sectorASchema = {
         $id: 'http://example.com/sectorA',
-        type: 'object',
-        properties: {
-            sectorAProp: { type: 'string' }
+        if: {
+            type: 'object',
+            properties: {
+                contentSpecificationIds: {
+                    type: 'array',
+                    contains: { const: 'spec-id-a' }
+                }
+            },
+            required: ['contentSpecificationIds']
         },
-        required: ['sectorAProp']
+        then: {
+            type: 'object',
+            properties: {
+                sectorAProp: { type: 'string' }
+            },
+            required: ['sectorAProp']
+        }
     };
 
     const commonSchema = {
@@ -71,7 +83,7 @@ describe('validateDpp', () => {
         };
         const result = validateDpp(data, { baseSchema, sectorSchemas });
         expect(result.valid).toBe(false);
-        
+
         // Error might be nested in 'allOf', so we check if any error refers to the missing property
         const hasMissingPropError = result.errors.some(
             err => err.params.missingProperty === 'sectorAProp'
@@ -103,9 +115,9 @@ describe('validateDpp', () => {
             commonThing: { commonProp: 42 }
         };
 
-        const result = validateDpp(data, { 
-            baseSchema: baseWithRef, 
-            commonSchemas 
+        const result = validateDpp(data, {
+            baseSchema: baseWithRef,
+            commonSchemas
         });
         expect(result.valid).toBe(true);
     });

@@ -34,17 +34,9 @@ export function validateDpp(dppData, schemaContext) {
         }
     });
 
-    // Start with the base schema
-    const schemasToApply = [baseSchema];
-
-    // Determine conditional schemas based on contentSpecificationIds
-    if (dppData.contentSpecificationIds && Array.isArray(dppData.contentSpecificationIds)) {
-        for (const id of dppData.contentSpecificationIds) {
-            if (sectorSchemas[id]) {
-                schemasToApply.push(sectorSchemas[id]);
-            }
-        }
-    }
+    // Start with the base schema, and unconditionally push all loaded conditional schemas (sectors, general products, packaging, etc.)
+    // AJV effortlessly evaluates JSON Schema Draft-2020-12 `if/then` conditional rules intrinsically upon execution!
+    const schemasToApply = [baseSchema, ...Object.values(sectorSchemas)];
 
     // Create a composite schema
     const compositeSchema = {
