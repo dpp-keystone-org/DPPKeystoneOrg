@@ -61,8 +61,9 @@ async function createRedirects(targetDir) {
     console.log('Generating client-side redirects...');
 
     const redirectPath = path.join(targetDir, 'spec', 'v1', 'terms', 'index.html');
-    // The target URL should be a relative path to work correctly on the deployed site.
-    const redirectTarget = '/spec/ontology/v1/dpp-ontology.jsonld';
+    // The target URL should be an absolute path that factors in the preview deployment directory
+    const branchPrefix = process.env.PREVIEW_BRANCH ? `/preview/${process.env.PREVIEW_BRANCH}` : '';
+    const redirectTarget = `${branchPrefix}/spec/ontology/v1/dpp-ontology.jsonld`;
     
     // This HTML file uses a meta refresh tag to immediately redirect the user.
     const redirectContent = `<!DOCTYPE html>

@@ -53,7 +53,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           # CRITICAL: Deploys to a folder rather than root
-          destination_dir: pr-${{ github.event.number }}
+          destination_dir: preview/${{ github.ref_name }}
           # CRITICAL: Ensures we don't wipe out the main site
           keep_files: true 
 ```
@@ -107,8 +107,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          rm -rf pr-${{ github.event.number }}
+          rm -rf preview/${{ github.head_ref }}
           git add .
-          git commit -m "Cleanup PR preview pr-${{ github.event.number }}" || echo "Nothing to clean"
+          git commit -m "Cleanup PR preview preview/${{ github.head_ref }}" || echo "Nothing to clean"
           git push
 ```

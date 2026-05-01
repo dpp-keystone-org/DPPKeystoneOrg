@@ -1,0 +1,70 @@
+name: Deploy Branch Preview
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - gh-pages
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy-preview:
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install testing dependencies
+        run: cd testing && npm install
+
+      - name: Install Playwright Browsers
+        run: cd testing && npx playwright install --with-deps
+
+      - name: Run build and validation tests
+        run: npm test
+        env:
+          PREVIEW_BRANCH: ${{ github.ref_name }}
+
+      - name: Deploy to GitHub Pages Subdirectory
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          # Deploys to a preview/branch-name folder rather than root
+          destination_dir: preview/${{ github.ref_name }}
+          keep_files: true 
+
+  cleanup:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          
+      - name: Delete Preview Folder
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          rm -rf preview/${{ github.head_ref }}
+          git add .
+          git commit -m "Cleanup PR preview preview/${{ github.head_ref }}" || echo "Nothing to clean"
+          git push
