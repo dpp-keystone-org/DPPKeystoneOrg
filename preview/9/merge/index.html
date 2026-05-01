@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Keystone (Harmonizing Data Dictionary)</title>
+    <link rel="stylesheet" href="branding/css/keystone-style.css">
+    <style>
+        /* Inline styles for the new layout until moved to CSS */
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .toolkit-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .toolkit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .toolkit-card h3 {
+            margin-top: 0;
+            color: var(--keystone-blue);
+        }
+
+        .spec-section {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .warning-banner {
+            background-color: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .warning-banner h2 {
+            margin-top: 0;
+            color: #d46b08;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
+            <div>
+                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the
+                    Digital Product Passport</p>
+            </div>
+        </header>
+
+        <div class="warning-banner">
+            <h2>Proof of Concept - Not for Production Use</h2>
+            <p>The DPP standardization process is ongoing. Utilities on this website are for demonstration and
+                proof-of-concept purposes only.</p>
+        </div>
+
+        <main>
+            <section>
+                <h2>About This Project</h2>
+                <p>This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies
+                    between various standards (ISO, GS1, etc.) to any exact schemas that are required for the DPP. Our
+                    goal is to ensure interoperability and lower the barrier for implementation, especially for SMEs.
+                </p>
+                <p>In addition, this site provides a suite of in-browser tools to assist with DPP generation (manually
+                    and in bulk) and validation of JSON files against DPP standards.</p>
+                <p>For more details on the approach, please read the <a href="docs/methodology.md">Methodology
+                        documentation</a>.</p>
+            </section>
+
+            <section>
+                <h2>DPP Toolkit</h2>
+                <p>Interactive tools and libraries to build, validate, and visualize Digital Product Passports.</p>
+
+                <div class="toolkit-grid">
+                    <div class="toolkit-card">
+                        <h3><a href="wizard/">🚀 DPP Wizard</a></h3>
+                        <p>An interactive web-based form to generate valid JSON-LD Digital Product Passports for
+                            Battery, Construction, Electronics and Textile sectors. Validate your data in real-time.</p>
+                    </div>
+                    <div class="toolkit-card">
+                        <h3><a href="validator/">✅ DPP Validator</a></h3>
+                        <p>Standalone tool to validate DPP JSON files against the V1 schemas. Supports both strict JSON
+                            and JSONC (with comments).</p>
+                    </div>
+                    <div class="toolkit-card">
+                        <h3><a href="csv-dpp-adapter/">📊 CSV Adapter</a></h3>
+                        <p>Batch convert CSV data to DPP JSON files in your browser. Map columns to schema fields and
+                            export.</p>
+                    </div>
+                    <div class="toolkit-card">
+                        <h3><a href="explorer/">🔍 Ontology Explorer</a></h3>
+                        <p>Searchable index of all DPP definitions. Find terms, units, and semantic mappings across all
+                            sectors.</p>
+                    </div>
+                    <div class="toolkit-card">
+                        <h3><a href="util/">📦 Developer SDKs</a></h3>
+                        <p>JavaScript utilities and reference implementations for schema validation, HTML generation,
+                            and ontology indexing. Includes adapter examples for converting between formats.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>V1 Specifications (The "Standard")</h2>
+                <p>The canonical data models, vocabulary definitions, and validation rules for Version 1.</p>
+
+                <div class="spec-section">
+                    <h3>Semantics & Vocabulary</h3>
+                    <p>The semantic definitions (Ontology) and JSON-LD mappings (Contexts) that define the meaning of
+                        data.</p>
+
+                    <h4>Ontology (Semantic Definitions)</h4>
+                    <ul>
+                        <li><strong>Browse Modules:</strong>
+                            <ul>
+                                <li><a href="spec/ontology/v1/core/index.html">Browse Core Modules (HTML Docs)</a></li>
+                                <li><a href="spec/ontology/v1/sectors/index.html">Browse Sector Modules (HTML Docs)</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Individual Classes:</strong>
+                            <ul>
+                                <li><a href="spec/ontology/v1/dpp-ontology.jsonld">V1 Ontology Entry Point</a></li>
+                                <li>Core:
+                                    <ul>
+                                        <!-- ONTOLOGY_CORE_LIST_START -->
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/Compliance/index.html">Compliance</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/Compliance/Certification.html">Certification</a></li>
+                                        <li><a href="spec/ontology/v1/core/Compliance/SubstanceOfConcern.html">Substance of Concern</a></li>
+                                        <li><a href="spec/ontology/v1/core/Compliance/Packaging.html">Packaging</a></li>
+                                        <li><a href="spec/ontology/v1/core/Compliance/ProductionStep.html">Production Step</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/DoPC/index.html">DoPC</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/DoPC/DoPCBlock.html">DoPC Data Block</a></li>
+                                    </ul></details></li>
+                            <li><a href="spec/ontology/v1/core/EPD/index.html">EPD</a></li>
+                            <li><a href="spec/ontology/v1/core/EPDIndicators/index.html">EPDIndicators</a></li>
+                            <li><a href="spec/ontology/v1/core/EPDLifecycle/index.html">EPDLifecycle</a></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/EPDMetadata/index.html">EPDMetadata</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/EPDMetadata/EPDBlock.html">Environmental Product Declaration</a></li>
+                                        <li><a href="spec/ontology/v1/core/EPDMetadata/ImpactValues.html">Impact Values</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/Header/index.html">Header</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/Header/DigitalProductPassport.html">Digital Product Passport (DPP)</a></li>
+                                        <li><a href="spec/ontology/v1/core/Header/GranularityValue.html">Granularity Value</a></li>
+                                    </ul></details></li>
+                            <li><a href="spec/ontology/v1/core/Identifier/index.html">Identifier</a></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/Organization/index.html">Organization</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/Organization/Organization.html">Organization</a></li>
+                                        <li><a href="spec/ontology/v1/core/Organization/PostalAddress.html">Postal Address</a></li>
+                                        <li><a href="spec/ontology/v1/core/Organization/EconomicOperatorRole.html">Economic Operator Role</a></li>
+                                        <li><a href="spec/ontology/v1/core/Organization/ManufacturerRole.html">Manufacturer Role</a></li>
+                                        <li><a href="spec/ontology/v1/core/Organization/FacilityRole.html">Facility Role</a></li>
+                                        <li><a href="spec/ontology/v1/core/Organization/ConformityAssessmentBodyRole.html">Conformity Assessment Body Role</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/Product/index.html">Product</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/Product/Product.html">Product or Material</a></li>
+                                        <li><a href="spec/ontology/v1/core/Product/QuantitativeValue.html">Quantitative Value</a></li>
+                                        <li><a href="spec/ontology/v1/core/Product/ProductCharacteristic.html">Product Characteristic</a></li>
+                                        <li><a href="spec/ontology/v1/core/Product/Component.html">Component</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/RelatedResource/index.html">RelatedResource</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/RelatedResource/RelatedResource.html">Related Resource</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/core/Visibility/index.html">Visibility</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/core/Visibility/VisibilityValue.html">Visibility Value</a></li>
+                                    </ul></details></li>
+                                    <!-- ONTOLOGY_CORE_LIST_END -->
+                                    </ul>
+                                </li>
+                                <li>Sectors:
+                                    <ul>
+                                        <!-- ONTOLOGY_SECTORS_LIST_START -->
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/sectors/Battery/index.html">Battery</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/BatteryProduct.html">Battery Product</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/BatteryPerformance.html">Performance and Durability</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/CapacityInfo.html">Capacity, Energy and Voltage</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/PowerInfo.html">Power Capability</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/EfficiencyInfo.html">Round Trip Efficiency and Self-Discharge</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/InternalResistanceInfo.html">Internal Resistance</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/LifetimeInfo.html">Battery Lifetime</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/TemperatureInfo.html">Temperature Conditions</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Battery/NegativeEventsInfo.html">Negative Events and Accidents</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/sectors/Construction/index.html">Construction</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/sectors/Construction/ConstructionProduct.html">Construction Product</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Construction/DeclarationOfPerformance.html">Declaration of Performance (DoP)</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/sectors/Electronics/index.html">Electronics</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/sectors/Electronics/ElectronicDevice.html">Electronic Device (EEE)</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Electronics/PowerTool.html">Power Tool</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/sectors/IronSteel/index.html">IronSteel</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/sectors/IronSteel/IronSteelProduct.html">Iron and Steel Product</a></li>
+                                    </ul></details></li>
+                            <li class="expandable"><details><summary><a href="spec/ontology/v1/sectors/Textile/index.html">Textile</a></summary><ul>
+                                        <li><a href="spec/ontology/v1/sectors/Textile/TextileProduct.html">Textile Product</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Textile/FibreComposition.html">Fibre Composition</a></li>
+                                        <li><a href="spec/ontology/v1/sectors/Textile/ProductionStep.html">Production Step</a></li>
+                                    </ul></details></li>
+                                    <!-- ONTOLOGY_SECTORS_LIST_END -->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Contexts (Implementation Vocabularies)</h4>
+                    <ul>
+                        <li><a href="spec/contexts/index.html">Index of "Latest" Context Files</a></li>
+                        <li><a href="spec/contexts/v1/index.html">Version 1 Context Documentation</a></li>
+                        <li><strong>Direct Links to "Latest" Files:</strong>
+                            <ul>
+                                <!-- LATEST_CONTEXTS_LIST_START -->
+                            <li><a href="spec/contexts/dpp-battery.context.jsonld">Dpp Battery Context</a></li>
+                            <li><a href="spec/contexts/dpp-construction.context.jsonld">Dpp Construction Context</a></li>
+                            <li><a href="spec/contexts/dpp-core.context.jsonld">Dpp Core Context</a></li>
+                            <li><a href="spec/contexts/dpp-dopc.context.jsonld">Dpp Dopc Context</a></li>
+                            <li><a href="spec/contexts/dpp-electronics.context.jsonld">Dpp Electronics Context</a></li>
+                            <li><a href="spec/contexts/dpp-epd.context.jsonld">Dpp Epd Context</a></li>
+                            <li><a href="spec/contexts/dpp-general-product.context.jsonld">Dpp General Product Context</a></li>
+                            <li><a href="spec/contexts/dpp-iron-steel.context.jsonld">Dpp Iron Steel Context</a></li>
+                            <li><a href="spec/contexts/dpp-packaging.context.jsonld">Dpp Packaging Context</a></li>
+                            <li><a href="spec/contexts/dpp-textile.context.jsonld">Dpp Textile Context</a></li>
+                            <!-- LATEST_CONTEXTS_LIST_END -->
+                            </ul>
+                        </li>
+                        <li><strong>Browse Version 1 Documentation:</strong>
+                            <ul>
+                                <!-- CONTEXTS_LIST_START -->
+                            <li><a href="spec/contexts/v1/dpp-battery.context/index.html">Dpp Battery Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-construction.context/index.html">Dpp Construction Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-core.context/index.html">Dpp Core Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-dopc.context/index.html">Dpp Dopc Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-electronics.context/index.html">Dpp Electronics Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-epd.context/index.html">Dpp Epd Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-general-product.context/index.html">Dpp General Product Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-iron-steel.context/index.html">Dpp Iron Steel Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-packaging.context/index.html">Dpp Packaging Context</a></li>
+                            <li><a href="spec/contexts/v1/dpp-textile.context/index.html">Dpp Textile Context</a></li>
+                            <!-- CONTEXTS_LIST_END -->
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="spec-section">
+                    <h3>Validation Rules</h3>
+                    <p>The structural and constraint validation rules ensuring data quality.</p>
+
+                    <h4>DPP JSON Schemas</h4>
+                    <ul>
+                        <li><strong>DPP Schema (Root)</strong>
+                            <ul>
+                                <!-- DPP_SCHEMA_LIST_START -->
+                            <li><a href="spec/validation/v1/json-schema/dpp.schema.json">Dpp Schema</a></li>
+                            <!-- DPP_SCHEMA_LIST_END -->
+                            </ul>
+                        </li>
+                        <li><strong>Content Specification Schemas</strong>
+                            <ul>
+                                <!-- CONTENT_SPEC_SCHEMAS_LIST_START -->
+                            <li><a href="spec/validation/v1/json-schema/battery.schema.json">Battery Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/construction.schema.json">Construction Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/electronics.schema.json">Electronics Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/iron-steel.schema.json">Iron Steel Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/textile.schema.json">Textile Schema</a></li>
+                            <!-- CONTENT_SPEC_SCHEMAS_LIST_END -->
+                            </ul>
+                        </li>
+                        <li><strong>Auxiliary Schemas</strong>
+                            <ul>
+                                <!-- AUX_SCHEMAS_LIST_START -->
+                            <li><a href="spec/validation/v1/json-schema/component.schema.json">Component Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/dopc.schema.json">Dopc Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/epd.schema.json">Epd Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/general-product.schema.json">General Product Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/organization.schema.json">Organization Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/packaging.schema.json">Packaging Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/postal-address.schema.json">Postal Address Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/product-characteristic.schema.json">Product Characteristic Schema</a></li>
+                            <li><a href="spec/validation/v1/json-schema/related-resource.schema.json">Related Resource Schema</a></li>
+                            <!-- AUX_SCHEMAS_LIST_END -->
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>SHACL Shapes</h4>
+                    <ul>
+                        <!-- SHACL_SHAPES_LIST_START -->
+                            <li><a href="spec/validation/v1/shacl/battery-shapes.shacl.jsonld">Battery Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/construction-shapes.shacl.jsonld">Construction Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/core-shapes.shacl.jsonld">Core Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/dopc-shapes.shacl.jsonld">Dopc Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/electronics-shapes.shacl.jsonld">Electronics Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/epd-shapes.shacl.jsonld">Epd Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/general-product-shapes.shacl.jsonld">General Product Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/packaging-shapes.shacl.jsonld">Packaging Shapes.Shacl</a></li>
+                            <li><a href="spec/validation/v1/shacl/textile-shapes.shacl.jsonld">Textile Shapes.Shacl</a></li>
+                    <!-- SHACL_SHAPES_LIST_END -->
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Other Implementation Resources</h2>
+                <p>Examples and guides to help you implement the DPP.</p>
+
+                <h3>Examples (Proof of Concept)</h3>
+                <p>Illustrative JSON-LD examples for various products.</p>
+                <ul>
+                    <!-- EXAMPLES_LIST_START -->
+                            <li><a href="spec/examples/battery-dpp-v1.json">Battery Dpp</a></li>
+                            <li><a href="spec/examples/construction-product-dpp-v1.json">Construction Product Dpp</a></li>
+                            <li><a href="spec/examples/drill-dpp-v1-private.json">Drill Dpp V1 Private</a></li>
+                            <li><a href="spec/examples/drill-dpp-v1.json">Drill Dpp</a></li>
+                            <li><a href="spec/examples/iron-steel-dpp-v1.json">Iron Steel Dpp</a></li>
+                            <li><a href="spec/examples/rail-dpp-v1.json">Rail Dpp</a></li>
+                            <li><a href="spec/examples/sock-dpp-v1.json">Sock Dpp</a></li>
+                    <!-- EXAMPLES_LIST_END -->
+                </ul>
+
+                <h3>EPCIS Integration</h3>
+                <p>Example of how a DPP can be shared via EPCIS 2.0.</p>
+                <ul>
+                    <li><a href="spec/examples/epcis/epcis-publishing-event.json" target="_blank"
+                            rel="noopener noreferrer">EPCIS 2.0 Example Event (JSON-LD)</a></li>
+                    <li><a href="https://gs1-epcis-reg.org/const/examples/dpp_rail_example_V3dhu_dh_mit%20URI.json"
+                            target="_blank" rel="noopener noreferrer">Event Subject DPP JSON</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Contributing and Governance</h2>
+                <p>Contributions are welcome. Please review the <a href="CONTRIBUTING.md">Contribution Guidelines</a>
+                    and the <a href="docs/governance.md">Governance Model</a>.</p>
+                <p>This project is hosted on <a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg">GitHub</a>.
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p><small>Licensed under the <a href="LICENSE">CC0 1.0 Universal</a>.</small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

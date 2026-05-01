@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "brand": "dppk:brand",
+    "model": "dppk:model",
+    "color": "dppk:color",
+    "countryOfOrigin": "dppk:countryOfOrigin",
+    "netWeight": {
+      "@id": "dppk:netWeight",
+      "@type": "KgWeightLiteral"
+    },
+    "grossWeight": "dppk:grossWeight",
+    "length": {
+      "@id": "dppk:length",
+      "@type": "MetersLengthLiteral"
+    },
+    "width": {
+      "@id": "dppk:width",
+      "@type": "MetersLengthLiteral"
+    },
+    "height": {
+      "@id": "dppk:height",
+      "@type": "MetersLengthLiteral"
+    },
+    "depth": {
+      "@id": "dppk:depth",
+      "@type": "MetersLengthLiteral"
+    },
+    "image": {
+      "@id": "dppk:image",
+      "@container": "@set"
+    },
+    "components": {
+      "@id": "dppk:components",
+      "@container": "@list"
+    },
+    "additionalCertifications": {
+      "@id": "dppk:additionalCertifications",
+      "@container": "@set"
+    },
+    "KgWeightLiteral": "dppk:KgWeightLiteral",
+    "MetersLengthLiteral": "dppk:MetersLengthLiteral",
+    "RelatedResource": "dppk:RelatedResource",
+    "resourceTitle": "dppk:resourceTitle",
+    "contentType": "dppk:contentType",
+    "language": "dppk:language",
+    "url": {
+      "@id": "dppk:url",
+      "@type": "xsd:anyURI"
+    },
+    "certificationBodyName": "dppk:certificationBodyName",
+    "certificationStartDate": {
+      "@id": "dppk:certificationStartDate",
+      "@type": "xsd:date"
+    },
+    "certificationBodyId": "dppk:certificationBodyId"
+  }
+}

@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Performance and Durability</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Battery Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Performance and Durability (dppk:BatteryPerformance)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="BatteryPerformance">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class BatteryPerformance
+  BatteryPerformance : +capacity
+  BatteryPerformance --|> CapacityInfo : capacity
+  BatteryPerformance : +power
+  BatteryPerformance --|> PowerInfo : power
+  BatteryPerformance : +efficiency
+  BatteryPerformance --|> EfficiencyInfo : efficiency
+  BatteryPerformance : +internalResistance
+  BatteryPerformance --|> InternalResistanceInfo : internalResistance
+  BatteryPerformance : +lifetime
+  BatteryPerformance --|> LifetimeInfo : lifetime
+  BatteryPerformance : +temperature
+  BatteryPerformance --|> TemperatureInfo : temperature
+  BatteryPerformance : +negativeEvents
+  BatteryPerformance --|> NegativeEventsInfo : negativeEvents
+  click CapacityInfo href "CapacityInfo.html" "dppk:CapacityInfo"
+  style CapacityInfo stroke:#2962ff,color:#2962ff
+  click PowerInfo href "PowerInfo.html" "dppk:PowerInfo"
+  style PowerInfo stroke:#2962ff,color:#2962ff
+  click EfficiencyInfo href "EfficiencyInfo.html" "dppk:EfficiencyInfo"
+  style EfficiencyInfo stroke:#2962ff,color:#2962ff
+  click InternalResistanceInfo href "InternalResistanceInfo.html" "dppk:InternalResistanceInfo"
+  style InternalResistanceInfo stroke:#2962ff,color:#2962ff
+  click LifetimeInfo href "LifetimeInfo.html" "dppk:LifetimeInfo"
+  style LifetimeInfo stroke:#2962ff,color:#2962ff
+  click TemperatureInfo href "TemperatureInfo.html" "dppk:TemperatureInfo"
+  style TemperatureInfo stroke:#2962ff,color:#2962ff
+  click NegativeEventsInfo href "NegativeEventsInfo.html" "dppk:NegativeEventsInfo"
+  style NegativeEventsInfo stroke:#2962ff,color:#2962ff
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Container for performance and durability parameters of the battery.</p>
+                <p><strong>governedBy:</strong> Annex XIII (1)</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>Capacity, energy, and voltage (dppk:capacity)</td>
+                                    <td>Sub-section for capacity, energy, state of charge, and voltage limits.</td>
+                                    <td>dppk:CapacityInfo</td>
+                                    <td>Annex XIII (1g, 1h, 4d)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Power capability (dppk:power)</td>
+                                    <td>Sub-section for power capability, fade, and limits.</td>
+                                    <td>dppk:PowerInfo</td>
+                                    <td>Annex XIII (1i); Art. 10</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Round trip energy efficiency and self-discharge (dppk:efficiency)</td>
+                                    <td>Sub-section for round trip efficiency and self-discharge.</td>
+                                    <td>dppk:EfficiencyInfo</td>
+                                    <td>Annex XIII (1n); Art. 10</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Internal resistance (dppk:internalResistance)</td>
+                                    <td>Sub-section for internal resistance.</td>
+                                    <td>dppk:InternalResistanceInfo</td>
+                                    <td>Annex XIII (1o); Art. 10</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Battery lifetime (dppk:lifetime)</td>
+                                    <td>Sub-section for battery lifetime in years and cycles.</td>
+                                    <td>dppk:LifetimeInfo</td>
+                                    <td>Annex XIII (1j, 1k, 4a); Annex IV</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Temperature conditions (dppk:temperature)</td>
+                                    <td>Sub-section for temperature conditions and time in extreme temperatures.</td>
+                                    <td>dppk:TemperatureInfo</td>
+                                    <td>Annex XIII (1l); Annex VII Part B (4)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Negative events and accidents (dppk:negativeEvents)</td>
+                                    <td>Sub-section for negative events and accidents.</td>
+                                    <td>dppk:NegativeEventsInfo</td>
+                                    <td>Annex XIII (4d); Annex VII Part B (4)</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project.</small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
