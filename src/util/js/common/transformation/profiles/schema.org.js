@@ -20,14 +20,29 @@ function toSchemaOrgOrganization(manufacturerNode) {
         "addressCountry": getValue(addressNode, 'https://dpp-keystone.org/spec/v1/terms#addressCountry'),
     } : null;
 
-    return {
+    const org = {
         "@type": "Organization",
         "name": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#organizationName'),
-        "url": getValue(manufacturerNode, 'https://schema.org/url'),
-        "email": getValue(manufacturerNode, 'https://schema.org/email'),
-        "telephone": getValue(manufacturerNode, 'https://schema.org/telephone'),
+        "alternateName": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#tradingName'),
+        "url": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#website') || getValue(manufacturerNode, 'https://schema.org/url'),
+        "email": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#email') || getValue(manufacturerNode, 'https://schema.org/email'),
+        "telephone": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#telephone') || getValue(manufacturerNode, 'https://schema.org/telephone'),
+        "globalLocationNumber": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#gln'),
+        "leiCode": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#leiCode'),
         ...(address && { address }),
     };
+
+    const addOrgId = getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#additionalOrganizationId');
+    if (addOrgId) {
+        org.identifier = {
+            "@type": "PropertyValue",
+            "propertyID": getValue(manufacturerNode, 'https://dpp-keystone.org/spec/v1/terms#additionalOrganizationIdType') || "Additional ID",
+            "value": addOrgId
+        };
+    }
+
+    Object.keys(org).forEach(key => org[key] === undefined && delete org[key]);
+    return org;
 }
 
 /**
@@ -163,6 +178,61 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         "height": toSchemaQuantitativeValue(getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#height')),
         "depth": toSchemaQuantitativeValue(getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#depth')),
     };
+
+    // Generic dppk:identifier
+    const genericId = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#identifier');
+    if (genericId) {
+        if (!product.identifier) product.identifier = [];
+        else if (!Array.isArray(product.identifier)) product.identifier = [product.identifier];
+        product.identifier.push({ "@type": "PropertyValue", "propertyID": "Identifier", "value": genericId });
+    }
+
+    // --- Core DPP Header Metadata ---
+    const headerProps = [
+        { term: 'digitalProductPassportId', label: 'DPP ID', isIdentifier: true },
+        { term: 'economicOperatorId', label: 'Economic Operator ID', isIdentifier: true },
+        { term: 'facilityId', label: 'Facility ID', isIdentifier: true },
+        { term: 'granularity', label: 'DPP Granularity' },
+        { term: 'dppStatus', label: 'DPP Status' },
+        { term: 'lastUpdate', label: 'DPP Last Update' },
+        { term: 'versionNumber', label: 'DPP Version' },
+        { term: 'versionDate', label: 'DPP Version Date' },
+        { term: 'dppSchemaVersion', label: 'DPP Schema Version' }
+    ];
+
+    headerProps.forEach(prop => {
+        const val = getValue(rootNode, `https://dpp-keystone.org/spec/v1/terms#${prop.term}`);
+        if (val !== undefined) {
+            if (prop.isIdentifier) {
+                const idObj = { "@type": "PropertyValue", "propertyID": prop.label, "value": val };
+                if (Array.isArray(product.identifier)) product.identifier.push(idObj);
+                else if (product.identifier) product.identifier = [product.identifier, idObj];
+                else product.identifier = [idObj];
+            } else {
+                if (!product.additionalProperty) product.additionalProperty = [];
+                product.additionalProperty.push({
+                    "@type": "PropertyValue",
+                    "name": prop.label,
+                    "value": val
+                });
+            }
+        }
+    });
+
+    const specIds = rootNode['https://dpp-keystone.org/spec/v1/terms#contentSpecificationIds'];
+    if (specIds && Array.isArray(specIds)) {
+        specIds.forEach(spec => {
+            const val = spec['@value'] || spec['@id'];
+            if (val !== undefined) {
+                if (!product.additionalProperty) product.additionalProperty = [];
+                product.additionalProperty.push({
+                    "@type": "PropertyValue",
+                    "name": "DPP Content Specifications",
+                    "value": val
+                });
+            }
+        });
+    }
 
     const manufacturerNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#manufacturer');
     if (manufacturerNode) {
@@ -569,6 +639,79 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
              // If missing, skip.
         }
 
+        if (val !== undefined) {
+            if (!product.additionalProperty) product.additionalProperty = [];
+            product.additionalProperty.push({
+                "@type": "PropertyValue",
+                "name": prop.label,
+                "value": val
+            });
+        }
+    });
+
+    // --- Iron and Steel Parity Additions (v1.1) ---
+    
+    // 1. Core Identifiers & Equivalencies
+    const heatNumber = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#heatNumber');
+    if (heatNumber) {
+        if (!product.sku) {
+            product.sku = heatNumber;
+        } else {
+            const hnObj = { "@type": "PropertyValue", "propertyID": "Heat Number", "value": heatNumber };
+            if (Array.isArray(product.identifier)) product.identifier.push(hnObj);
+            else if (product.identifier) product.identifier = [product.identifier, hnObj];
+            else product.identifier = hnObj;
+        }
+    }
+
+    const prodNumber = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#productNumber');
+    if (prodNumber && !product.productID) {
+        product.productID = prodNumber;
+    }
+
+    const pOrder = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#purchaserOrder');
+    if (pOrder) {
+        const poObj = { "@type": "PropertyValue", "propertyID": "schema:orderNumber", "name": "Purchaser Order", "value": pOrder };
+        if (Array.isArray(product.identifier)) product.identifier.push(poObj);
+        else if (product.identifier) product.identifier = [product.identifier, poObj];
+        else product.identifier = poObj;
+    }
+
+    const meltCountry = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#meltAndPourCountry');
+    if (meltCountry) {
+        const mcObj = { "@type": "Country", "name": meltCountry, "description": "Melt and Pour Country" };
+        if (product.countryOfOrigin) {
+             if (Array.isArray(product.countryOfOrigin)) product.countryOfOrigin.push(mcObj);
+             else product.countryOfOrigin = [product.countryOfOrigin, mcObj];
+        } else {
+             product.countryOfOrigin = mcObj;
+        }
+    }
+
+    // 2. Specific Sector Properties
+    const ironSteelProps = [
+        { term: 'castNumber', label: 'Cast Number' },
+        { term: 'lotNumber', label: 'Lot Number' },
+        { term: 'steelGradeClassification', label: 'Steel Grade Classification' },
+        { term: 'steelDesignation', label: 'Steel Designation' },
+        { term: 'technologyRoute', label: 'Technology Route' },
+        { term: 'yieldStrength', label: 'Yield Strength' },
+        { term: 'yieldStrengthRatio', label: 'Yield Strength Ratio' },
+        { term: 'elongation', label: 'Elongation' },
+        { term: 'relativeRibArea', label: 'Relative Rib Area' },
+        { term: 'carbonContent', label: 'Carbon Content' },
+        { term: 'phosphorusContent', label: 'Phosphorus Content' },
+        { term: 'sulfurContent', label: 'Sulfur Content' },
+        { term: 'copperContent', label: 'Copper Content' },
+        { term: 'nitrogenContent', label: 'Nitrogen Content' },
+        { term: 'carbonEquivalent', label: 'Carbon Equivalent' },
+        { term: 'steelProcess', label: 'Steel Process' },
+        { term: 'finishing', label: 'Finishing' },
+        { term: 'radiometricControl', label: 'Radiometric Control' }
+    ];
+
+    ironSteelProps.forEach(prop => {
+        const val = getValue(rootNode, `https://dpp-keystone.org/spec/v1/terms#${prop.term}`);
         if (val !== undefined) {
             if (!product.additionalProperty) product.additionalProperty = [];
             product.additionalProperty.push({

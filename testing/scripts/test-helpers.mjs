@@ -9,11 +9,11 @@ export const PROJECT_ROOT = path.join(__dirname, '..', '..');
 export async function setupTestEnvironment(testDirName) {
     const FIXTURES_DIR = path.resolve(PROJECT_ROOT, 'testing', 'fixtures', 'spec-docs');
     const TEMP_DIR = path.resolve(PROJECT_ROOT, 'testing', 'tmp', testDirName);
-    
+
     await fs.rm(TEMP_DIR, { recursive: true, force: true });
-    
+
     const distSpecDir = path.join(TEMP_DIR, 'dist', 'spec');
-    
+
     const tempOntologyDir = path.join(distSpecDir, 'ontology', 'v1');
     const tempContextsDir = path.join(distSpecDir, 'contexts', 'v1');
     await fs.mkdir(path.join(tempOntologyDir, 'core'), { recursive: true });
@@ -66,6 +66,8 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-epd.context.jsonld'),
     "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-dopc.context.jsonld'),
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-iron-steel.context.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-iron-steel.context.jsonld'),
 
     // --- Ontology Files ---
     "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld":
@@ -80,7 +82,7 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
     "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld":
-    path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'RelatedResource.jsonld'),
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'RelatedResource.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'EPD.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/core/DoPC.jsonld":
@@ -94,6 +96,8 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Construction.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Electronics.jsonld'),
+    "https://dpp-keystone.org/spec/ontology/v1/sectors/IronSteel.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'IronSteel.jsonld'),
 
     // --- SHACL Shape Files ---
     "https://dpp-keystone.org/spec/validation/v1/shacl/core-shapes.shacl.jsonld":
@@ -106,6 +110,8 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'electronics-shapes.shacl.jsonld'),
     "https://dpp-keystone.org/spec/validation/v1/shacl/textile-shapes.shacl.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'textile-shapes.shacl.jsonld'),
+    "https://dpp-keystone.org/spec/validation/v1/shacl/iron-steel-shapes.shacl.jsonld":
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'iron-steel-shapes.shacl.jsonld'),
 };
 
 export async function fillRequiredFields(page, sector) {
@@ -117,7 +123,7 @@ export async function fillRequiredFields(page, sector) {
     // The data generation logic MUST run inside the browser context (page.evaluate)
     // to have access to the complete, resolved schema objects.
     const dataToFill = await page.evaluate(({ sector, counters }) => {
-        
+
         function traverse(schema, ontologyMap, counters, results, pathPrefix) {
             let schemaToProcess = schema;
 
@@ -135,7 +141,7 @@ export async function fillRequiredFields(page, sector) {
                 if (!prop) continue;
 
                 const fullPath = pathPrefix ? `${pathPrefix}.${key}` : key;
-                
+
                 if (prop.enum && Array.isArray(prop.enum) && prop.enum.length > 0) {
                     results[fullPath] = prop.enum[0];
                 } else if (prop.type === 'object' && prop.properties) {
@@ -153,7 +159,7 @@ export async function fillRequiredFields(page, sector) {
                 }
             }
         }
-        
+
         function generateRequiredFieldData(schema, ontologyMap, counters) {
             const results = {};
             traverse(schema, ontologyMap, counters, results, '');
@@ -163,7 +169,7 @@ export async function fillRequiredFields(page, sector) {
         const { schema, ontologyMap } = (() => {
             if (sector === 'dpp') {
                 const coreSchema = window.testing.getCoreSchema();
-                return { schema: coreSchema, ontologyMap: null }; 
+                return { schema: coreSchema, ontologyMap: null };
             }
             const sectorData = window.testing.getSectorData().get(sector);
             return { schema: sectorData.schema, ontologyMap: sectorData.ontologyMap };

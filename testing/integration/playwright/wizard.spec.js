@@ -84,7 +84,7 @@ test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
   expect(box.width).toBeGreaterThan(800);
 });
 
-const sectors = ['battery', 'construction', 'electronics', 'textile'];
+const sectors = ['battery', 'construction', 'electronics', 'iron-steel', 'textile'];
 
 for (const sector of sectors) {
   test(`loads ${sector} sector form`, async ({ page }) => {
@@ -220,6 +220,10 @@ for (const sector of sectors) {
         break;
       case 'electronics':
         await expect(page.locator('input[name="torque"]')).toBeVisible();
+        break;
+      case 'iron-steel':
+        await expect(page.locator('input[name="heatNumber"]')).toBeVisible();
+        await expect(page.locator('input[name="productNumber"]')).toBeVisible();
         break;
       case 'textile':
         // For array fields, the form builder creates an "Add" button

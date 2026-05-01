@@ -15,6 +15,7 @@ const SECTOR_MAP = {
     'draft_battery_specification_id': 'battery.schema.json',
     'draft_construction_specification_id': 'construction.schema.json',
     'draft_electronics_specification_id': 'electronics.schema.json',
+    'draft_iron_and_steel_specification_id': 'iron-steel.schema.json',
     'draft_textile_specification_id': 'textile.schema.json',
 };
 
@@ -142,7 +143,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Branch dynamic Ontology validation to intercept `@context` specifically!
             if (dppData['@context']) {
-                const contextResult = await validateContextAwarePayload(dppData);
+                const localContextLoader = async (url) => {
+                    const CONTEXT_PROD_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
+                    let fetchUrl = url;
+                    if (url.startsWith(CONTEXT_PROD_PREFIX)) {
+                        fetchUrl = url.replace(CONTEXT_PROD_PREFIX, '../spec/contexts/');
+                    }
+                    const response = await fetch(fetchUrl);
+                    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                    return {
+                        contextUrl: null,
+                        documentUrl: url,
+                        document: await response.json()
+                    };
+                };
+
+                const contextResult = await validateContextAwarePayload(dppData, localContextLoader);
                 if (!contextResult.valid) {
                     isValid = false;
                     allErrors = allErrors.concat(contextResult.errors);
