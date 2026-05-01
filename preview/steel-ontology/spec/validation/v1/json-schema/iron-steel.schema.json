@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/iron-steel.schema.json",
+  "title": "Iron and Steel Sector Module",
+  "description": "A conditional schema for the Iron and Steel sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "draft_iron_and_steel_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "heatNumber": {
+        "type": "string"
+      },
+      "productNumber": {
+        "type": "string"
+      },
+      "castNumber": {
+        "type": "string"
+      },
+      "lotNumber": {
+        "type": "string"
+      },
+      "purchaserOrder": {
+        "type": "string"
+      },
+      "steelGradeClassification": {
+        "type": "string"
+      },
+      "steelDesignation": {
+        "type": "string"
+      },
+      "technologyRoute": {
+        "type": "string"
+      },
+      "manufacturerInfo": {
+        "$ref": "organization.schema.json"
+      },
+      "manufacturingDate": {
+        "type": "string"
+      },
+      "countryOfOrigin": {
+        "type": "string"
+      },
+      "meltAndPourCountry": {
+        "type": "string"
+      },
+      "substancesOfConcern": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "component.schema.json"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "casNumber": {
+                  "type": "string"
+                },
+                "ecNumber": {
+                  "type": "string"
+                },
+                "iupacName": {
+                  "type": "string"
+                },
+                "locationInProduct": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "safeUseInstructions": {
+        "$ref": "related-resource.schema.json"
+      },
+      "endOfLifeInstructions": {
+        "$ref": "related-resource.schema.json"
+      },
+      "recycledContentPercentage": {
+        "type": "number"
+      },
+      "preConsumerRecycledContent": {
+        "type": "number"
+      },
+      "postConsumerRecycledContent": {
+        "type": "number"
+      },
+      "recycledContentConformity": {
+        "type": "string",
+        "format": "uri"
+      },
+      "cbamReportId": {
+        "type": "string"
+      },
+      "reachDocumentation": {
+        "$ref": "related-resource.schema.json"
+      },
+      "nominalSize": {
+        "type": "number"
+      },
+      "weightTolerance": {
+        "type": "number"
+      },
+      "yieldStrength": {
+        "type": "number"
+      },
+      "yieldStrengthRatio": {
+        "type": "number"
+      },
+      "elongation": {
+        "type": "number"
+      },
+      "relativeRibArea": {
+        "type": "number"
+      },
+      "carbonContent": {
+        "type": "number"
+      },
+      "phosphorusContent": {
+        "type": "number"
+      },
+      "sulfurContent": {
+        "type": "number"
+      },
+      "copperContent": {
+        "type": "number"
+      },
+      "nitrogenContent": {
+        "type": "number"
+      },
+      "carbonEquivalent": {
+        "type": "number"
+      },
+      "steelProcess": {
+        "type": "string"
+      },
+      "finishing": {
+        "type": "string"
+      },
+      "radiometricControl": {
+        "type": "number"
+      },
+      "epd": {
+        "oneOf": [
+          {
+            "$ref": "epd.schema.json"
+          },
+          {
+            "$ref": "related-resource.schema.json"
+          }
+        ]
+      },
+      "dopc": {
+        "oneOf": [
+          {
+            "$ref": "dopc.schema.json"
+          },
+          {
+            "$ref": "related-resource.schema.json"
+          }
+        ]
+      }
+    }
+  }
+}
