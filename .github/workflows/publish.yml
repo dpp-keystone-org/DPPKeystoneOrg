@@ -45,3 +45,5 @@ jobs:
           publish_dir: ./dist
           # This ensures your custom domain configuration is preserved on the gh-pages branch
           cname: dpp-keystone.org
+          # CRITICAL: Ensures pushing to main doesn't delete the preview/ folders
+          keep_files: true
