@@ -238,7 +238,7 @@ async function build() {
     }
 
     // Copy root-level static assets
-    const rootStaticAssets = ['CONTRIBUTING.md', 'LICENSE', 'README.md'];
+    const rootStaticAssets = ['CONTRIBUTING.md', 'LICENSE', 'README.md', 'impressum.html'];
     for (const asset of rootStaticAssets) {
         const sourcePath = path.join(PROJECT_ROOT, asset);
         const targetPath = path.join(BUILD_DIR, asset);

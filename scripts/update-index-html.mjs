@@ -181,7 +181,7 @@ ${fileListHtml}
             </ul>
         </main>
         <footer>
-            <p><small>DPP Keystone Project</small></p>
+            <p><small>DPP Keystone Project | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
 </body>

@@ -438,7 +438,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
             </div>
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
     <script type="module">
@@ -519,7 +519,7 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
             ${termsList}
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
 </body>
@@ -567,7 +567,7 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir) 
             </ul>
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
 </body>
@@ -639,7 +639,7 @@ export function generateContextHtml(directoryName, files, distDir, currentHtmlPa
             </ul>
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
 </body>
@@ -683,7 +683,7 @@ function generateTopLevelContextIndexHtml(directoryName, files, distDir, current
             </ul>
         </main>
         <footer>
-            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project.</small></p>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
 </body>
