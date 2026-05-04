@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/product-characteristic.schema.json",
+  "title": "Product Characteristic",
+  "description": "A specific characteristic or feature of the product, often voluntary or supplemental.",
+  "type": "object",
+  "properties": {
+    "characteristicName": {
+      "type": "string",
+      "description": "The name of the characteristic (e.g., 'WaterResistance')."
+    },
+    "characteristicValue": {
+      "type": [
+        "string",
+        "number",
+        "boolean"
+      ],
+      "description": "The value of the characteristic."
+    },
+    "testMethod": {
+      "type": "string",
+      "description": "The standard or method used to measure the characteristic."
+    }
+  },
+  "required": [
+    "characteristicName",
+    "characteristicValue"
+  ]
+}

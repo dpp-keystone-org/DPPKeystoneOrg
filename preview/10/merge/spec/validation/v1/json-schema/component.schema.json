@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/component.schema.json",
+  "title": "Component",
+  "description": "A constituent part, material, or substance that is included in the main product.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the component."
+    },
+    "uniqueProductIdentifier": {
+      "type": "string",
+      "format": "uri",
+      "description": "A unique identifier for the component, if available as a distinct product."
+    },
+    "percentage": {
+      "type": "number",
+      "description": "The percentage of the total weight of the main product that this component constitutes."
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

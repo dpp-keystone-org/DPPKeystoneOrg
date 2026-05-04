@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/construction.schema.json",
+  "title": "DPP for Construction Products (Draft)",
+  "description": "A conditional schema that applies if the DPP is for the construction sector.",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "draft_construction_specification_id"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "versionNumber": {
+        "type": "string"
+      },
+      "versionDate": {
+        "type": "string",
+        "format": "date"
+      },
+      "instructionsForUse": {
+        "$ref": "related-resource.schema.json"
+      },
+      "safetyDataSheet": {
+        "$ref": "related-resource.schema.json"
+      },
+      "notifiedBody": {
+        "$ref": "organization.schema.json"
+      },
+      "technicalAssessmentBody": {
+        "$ref": "organization.schema.json"
+      },
+      "validationReports": {
+        "type": "array",
+        "items": {
+          "$ref": "related-resource.schema.json"
+        }
+      },
+      "harmonisedStandardReference": {
+        "type": "string",
+        "format": "uri-reference"
+      },
+      "europeanAssessmentDocument": {
+        "$ref": "related-resource.schema.json"
+      },
+      "dopc": {
+        "oneOf": [
+          {
+            "$ref": "dopc.schema.json"
+          },
+          {
+            "$ref": "related-resource.schema.json"
+          }
+        ]
+      },
+      "epd": {
+        "oneOf": [
+          {
+            "$ref": "epd.schema.json"
+          },
+          {
+            "$ref": "related-resource.schema.json"
+          }
+        ]
+      }
+    }
+  }
+}
