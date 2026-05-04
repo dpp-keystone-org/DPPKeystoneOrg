@@ -119,6 +119,18 @@
       }
     },
     {
+      "@id": "dppk:locationInProduct",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Location in Product",
+      "rdfs:comment": "Specific physical location of the component or substance inside the parent assembly.",
+      "schema:domainIncludes": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
       "@id": "dppk:name",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Name",

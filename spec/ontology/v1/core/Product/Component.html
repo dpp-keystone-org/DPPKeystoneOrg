@@ -28,6 +28,7 @@
                     classDiagram
   class Component
   Component : +percentage
+  Component : +locationInProduct
   Component : +name
   Component : +uniqueProductIdentifier
 
@@ -54,6 +55,13 @@
                                     <td>Percentage (dppk:percentage)</td>
                                     <td>The percentage contribution of this component to the parent assembly (e.g., by weight).</td>
                                     <td>xsd:double</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Location in Product (dppk:locationInProduct)</td>
+                                    <td>Specific physical location of the component or substance inside the parent assembly.</td>
+                                    <td>xsd:string</td>
                                     <td></td>
                                 </tr>
                             

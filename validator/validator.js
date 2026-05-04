@@ -1,12 +1,12 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1777890073601';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1777894660610';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1777890073601';
-import { generateHTML } from '../lib/html-generator.js?v=1777890073601';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1777890073601';
+import { EXAMPLES } from '../lib/example-registry.js?v=1777894660610';
+import { generateHTML } from '../lib/html-generator.js?v=1777894660610';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1777894660610';
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1777890073601';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1777890073601';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1777890073601';
+import { loadOntology } from '../lib/ontology-loader.js?v=1777894660610';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1777894660610';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1777894660610';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/
@@ -15,6 +15,7 @@ const SECTOR_MAP = {
     'draft_battery_specification_id': 'battery.schema.json',
     'draft_construction_specification_id': 'construction.schema.json',
     'draft_electronics_specification_id': 'electronics.schema.json',
+    'draft_iron_and_steel_specification_id': 'iron-steel.schema.json',
     'draft_textile_specification_id': 'textile.schema.json',
 };
 
@@ -142,7 +143,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Branch dynamic Ontology validation to intercept `@context` specifically!
             if (dppData['@context']) {
-                const contextResult = await validateContextAwarePayload(dppData);
+                const localContextLoader = async (url) => {
+                    const CONTEXT_PROD_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
+                    let fetchUrl = url;
+                    if (url.startsWith(CONTEXT_PROD_PREFIX)) {
+                        fetchUrl = url.replace(CONTEXT_PROD_PREFIX, '../spec/contexts/');
+                    }
+                    const response = await fetch(fetchUrl);
+                    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                    return {
+                        contextUrl: null,
+                        documentUrl: url,
+                        document: await response.json()
+                    };
+                };
+
+                const contextResult = await validateContextAwarePayload(dppData, localContextLoader);
                 if (!contextResult.valid) {
                     isValid = false;
                     allErrors = allErrors.concat(contextResult.errors);
