@@ -1,0 +1,586 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "eudpp": "https://w3id.org/eudpp/",
+    "@base": "https://dpp-keystone.org/spec/v1/terms"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Product and Material Definitions (v1)",
+  "dcterms:description": "Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.",
+  "owl:versionInfo": "1.0.0",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:Product",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Product or Material",
+      "rdfs:comment": "A general concept covering finished goods, components, or raw materials.",
+      "owl:equivalentClass": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        },
+        {
+          "@id": "unece:TradeProduct"
+        },
+        {
+          "@id": "eudpp:Product"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:QuantitativeValue",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Quantitative Value",
+      "rdfs:comment": "A structured value representing a measurement, including the numeric value and the unit of measure.",
+      "owl:equivalentClass": [
+        {
+          "@id": "schema:QuantitativeValue"
+        },
+        {
+          "@id": "qudt:QuantityValue"
+        },
+        {
+          "@id": "unece:QuantityType"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:KgWeightLiteral",
+      "@type": "rdfs:Datatype",
+      "rdfs:label": "Kilogram Weight Literal",
+      "rdfs:comment": "A literal value representing a weight in kilograms. A reasoner can expand this into a full dppk:QuantitativeValue.",
+      "rdfs:subClassOf": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:MetersLengthLiteral",
+      "@type": "rdfs:Datatype",
+      "rdfs:label": "Meters Length Literal",
+      "rdfs:comment": "A literal value representing a length in meters. A reasoner can expand this into a full dppk:QuantitativeValue.",
+      "rdfs:subClassOf": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:ProductCharacteristic",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Product Characteristic",
+      "rdfs:comment": "A specific, measurable or declared property of a product, such as its technical performance against a standard test.",
+      "owl:equivalentClass": [
+        {
+          "@id": "gs1:ProductCharacteristic"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:Component",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Component",
+      "rdfs:comment": "A constituent part, material, or substance that is included in the main product."
+    },
+    {
+      "@id": "dppk:percentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Percentage",
+      "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
+      "dppk:unit": "%",
+      "schema:domainIncludes": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:name",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Name",
+      "rdfs:comment": "A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.",
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:name"
+        },
+        {
+          "@id": "unece:name"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:productName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Product Name",
+      "rdfs:comment": "The common name of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:productName"
+        },
+        {
+          "@id": "unece:name"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:description",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Product Description",
+      "rdfs:comment": "A detailed description of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:description"
+        },
+        {
+          "@id": "gs1:productDescription"
+        },
+        {
+          "@id": "unece:description"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:gtin",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Global Trade Item Number (GTIN)",
+      "rdfs:comment": "The GS1 identifier for the trade item.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:gtin"
+        },
+        {
+          "@id": "gs1:gtin"
+        },
+        {
+          "@id": "unece:gTINId"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:brand",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Brand Name",
+      "rdfs:comment": "The brand name of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:brand"
+        },
+        {
+          "@id": "gs1:brandName"
+        },
+        {
+          "@id": "unece:brandName"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:model",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Model Number",
+      "rdfs:comment": "The model identifier or number of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:model"
+        },
+        {
+          "@id": "unece:modelId"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:image",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Product Image",
+      "rdfs:comment": "A reference to an image resource related to the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:image"
+        },
+        {
+          "@id": "gs1:productImage"
+        },
+        {
+          "@id": "unece:specifiedPicture"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:color",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Color Description",
+      "rdfs:comment": "The color of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:color"
+        },
+        {
+          "@id": "gs1:colourDescription"
+        },
+        {
+          "@id": "unece:colourDescription"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:components",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Components",
+      "rdfs:comment": "A constituent part or material of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      }
+    },
+    {
+      "@id": "dppk:countryOfOrigin",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Country of Origin",
+      "rdfs:comment": "The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:countryOfOrigin"
+        },
+        {
+          "@id": "gs1:countryOfOrigin"
+        },
+        {
+          "@id": "unece:originCountry"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:recycledContentPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Recycled Content Percentage",
+      "dppk:unit": "%",
+      "rdfs:comment": "The percentage of the material that is derived from recycled sources.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:netWeight",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Net Weight",
+      "rdfs:comment": "The weight of the product or material, excluding packaging. Recommended to use specific datatypes like dppk:KgWeightLiteral.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:KgWeightLiteral"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:netWeight"
+        },
+        {
+          "@id": "unece:netWeightMeasure"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:grossWeight",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Gross Weight",
+      "rdfs:comment": "The weight of the product or material, including packaging, expressed as a QuantitativeValue.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "rdfs:Literal"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:grossWeight"
+        },
+        {
+          "@id": "unece:grossWeightMeasure"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:length",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Length",
+      "rdfs:comment": "The length of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:MetersLengthLiteral"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:length"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:width",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Width",
+      "rdfs:comment": "The width of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:MetersLengthLiteral"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:width"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:height",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Height",
+      "rdfs:comment": "The height of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:MetersLengthLiteral"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:height"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:depth",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Depth",
+      "rdfs:comment": "The depth of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:MetersLengthLiteral"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:depth"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:value",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Value",
+      "dppk:unit": "unitless",
+      "rdfs:comment": "The numeric value of the measurement.",
+      "rdfs:domain": {
+        "@id": "dppk:QuantitativeValue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        },
+        {
+          "@id": "unece:unitQuantity"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:unitCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Unit Code",
+      "rdfs:comment": "The unit of measurement, preferably using UN/CEFACT codes (e.g., KGM, MTR, LTR).",
+      "rdfs:domain": {
+        "@id": "dppk:QuantitativeValue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:unitCode"
+        },
+        {
+          "@id": "gs1:unitCode"
+        },
+        {
+          "@id": "unece:QuantityTypeCode"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:unitText",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Unit Text",
+      "rdfs:comment": "A human-readable representation of the unit (e.g., kg CO2e, Nm).",
+      "rdfs:domain": {
+        "@id": "dppk:QuantitativeValue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:unitText"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:productCharacteristics",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Product Characteristics",
+      "rdfs:comment": "Relates a product to its specific characteristics or performance properties.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ProductCharacteristic"
+      }
+    },
+    {
+      "@id": "dppk:characteristicName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Characteristic Name",
+      "rdfs:comment": "The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').",
+      "rdfs:domain": {
+        "@id": "dppk:ProductCharacteristic"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:characteristicName"
+        },
+        {
+          "@id": "schema:name"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:characteristicValue",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Characteristic Value",
+      "rdfs:comment": "The measured or declared value of the characteristic (e.g., '≥ 2.0 MPa', 'Class A1').",
+      "rdfs:domain": {
+        "@id": "dppk:ProductCharacteristic"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:characteristicValue"
+        },
+        {
+          "@id": "schema:value"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:testMethod",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Test Method",
+      "rdfs:comment": "A reference to the standard or methodology used to determine the characteristic's value.",
+      "rdfs:domain": {
+        "@id": "dppk:ProductCharacteristic"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:measurementMethod"
+        },
+        {
+          "@id": "schema:measurementMethod"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld",
+    {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+      "cencpr": "urn:cen:cpr:",
+      "ConstructionProduct": "dppk:ConstructionProduct",
+      "DeclarationOfPerformance": "dppk:DeclarationOfPerformance",
+      "hasDoP": "dppk:hasDoP",
+      "dopIdentifier": "dppk:dopIdentifier",
+      "notifiedBody": {
+        "@id": "dppk:notifiedBody",
+        "@type": "@id"
+      },
+      "technicalAssessmentBody": {
+        "@id": "dppk:technicalAssessmentBody",
+        "@type": "@id"
+      },
+      "validationReports": "dppk:validationReports",
+      "europeanAssessmentDocument": "dppk:europeanAssessmentDocument",
+      "harmonisedStandardReference": "dppk:harmonisedStandardReference",
+      "avsSystem": "dppk:avsSystem",
+      "reactionToFire": "dppk:reactionToFire",
+      "thermalConductivity": "dppk:thermalConductivity",
+      "compressiveStrength": "dppk:compressiveStrength",
+      "steelGrade": "dppk:steelGrade",
+      "railProfile": "dppk:railProfile"
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+/* src/wizard/wizard.css */
+
+body {
+    /* Base font styles are inherited from keystone-style.css */
+    /* The main .container class now handles width, margin, and padding */
+    color: var(--text-dark);
+}
+
+/* #wizard-container removed, use .card class in HTML */
+
+#global-form-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#global-form-controls .form-group {
+    margin-bottom: 0; /* Override default form-group margin */
+    display: flex;
+    align-items: center;
+}
+
+#global-form-controls label {
+    margin-bottom: 0; /* Override default label margin */
+    margin-right: 10px;
+}
+
+#wizard-container > h1, #wizard-container > h2, #voluntary-info-container > h2, #sector-selection > h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* Dynamic Module Headers */
+#sectors-form-container h2, #voluntary-modules-container h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    margin-top: 20px;
+    color: var(--text-dark);
+}
+
+.sector-form-container {
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+/* .form-group styles promoted to keystone-style.css */
+
+.remove-btn-active {
+    background-color: #dc3545; /* Bootstrap's danger red */
+}
+
+#sector-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#voluntary-info-container {
+    margin-top: 30px;
+}
+
+.voluntary-field-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.voluntary-field-row .voluntary-name-container {
+    flex: 1.5;
+}
+
+.voluntary-field-row .voluntary-type-container {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.voluntary-field-row .voluntary-type {
+    background-color: #f8f9fa; /* Light gray to distinguish from text inputs */
+}
+
+.voluntary-field-row .voluntary-value-container {
+    flex: 3;
+}
+
+.voluntary-field-row .voluntary-unit-container {
+    flex: 1;
+}
+
+.voluntary-field-row.group-mode .voluntary-name-container {
+    flex: 1;
+}
+
+.voluntary-group-container {
+    flex: 4; /* Take up the space of the value input + extra from name */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px dashed var(--border-color);
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid var(--border-color);
+}
+
+/* .error promoted to keystone-style.css */
+
+/* 5-Column Grid for Sector-Specific Forms */
+.sector-form-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr 2.5fr 30px; /* Field, Value, Unit, Label, Tooltip */
+    gap: 10px 15px; /* Row gap, Column gap */
+    align-items: center;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.grid-header {
+    font-weight: bold;
+    color: var(--text-dark);
+    padding-bottom: 5px;
+}
+
+.grid-row {
+    display: contents; /* Allows row to be part of the parent grid layout */
+}
+
+.grid-cell {
+    padding: 5px 0;
+}
+
+.grid-cell:first-child {
+    font-family: monospace;
+    font-size: 0.9em;
+    color: var(--text-dark);
+}
+
+.grid-cell:nth-child(4) {
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+.tooltip-button {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    text-align: center;
+    font-weight: bold;
+        cursor: help;
+    }
+    
+    /* Tooltip Modal Styles */
+    .tooltip-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+    
+    .tooltip-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--white);
+        padding: 20px 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 1001;
+        max-width: 500px;
+        width: 80%;
+    }
+    
+    .modal-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: var(--text-light);
+    }
+
+    .tooltip-modal a {
+        color: var(--keystone-blue);
+        text-decoration: underline;
+    }
+    .tooltip-modal a:hover {
+        color: var(--text-dark);
+    }
+
+/* Compact View Styles */
+.compact-view .grid-row .grid-cell:nth-child(4) {
+    /* Hide the Ontology (label) column by default, but keep it in the layout */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.compact-view .grid-row:hover .grid-cell:nth-child(4) {
+    /* Reveal the Ontology column on row hover */
+    opacity: 1;
+}
+
+/* Validation styles (input.invalid, .error-message) promoted to keystone-style.css */
+
+/* Error Summary Modal */
+.error-summary-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1010;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-summary-modal {
+    background-color: var(--white);
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1011;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+}
+
+.error-summary-modal ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.error-summary-modal li a {
+    display: block;
+    padding: 8px 12px;
+    background-color: var(--background-light);
+    margin-bottom: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--keystone-blue);
+    font-family: monospace;
+}
+
+.error-summary-modal li a:hover {
+    background-color: var(--border-color);
+    text-decoration: underline;
+}
