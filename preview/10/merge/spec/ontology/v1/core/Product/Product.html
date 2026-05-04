@@ -63,9 +63,9 @@
   Product --|> Packaging : packaging
   Product : +productionSteps
   Product --|> ProductionStep : productionSteps
-  Product : +uniqueProductIdentifier
   Product : +epd
   Product --|> EPDBlock : epd
+  Product : +uniqueProductIdentifier
   Product : +instructionsForUse
   Product --|> RelatedResource : instructionsForUse
   Product : +safetyDataSheet
@@ -270,17 +270,17 @@
                                 </tr>
                             
                                 <tr>
-                                    <td><a href="../Header/index.html#uniqueProductIdentifier">Unique Product Identifier (UPI)</a> (dppk:uniqueProductIdentifier)</td>
-                                    <td>The globally resolvable URI for the product/DPP.</td>
-                                    <td>xsd:anyURI</td>
-                                    <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td><td></td>
-                                </tr>
-                            
-                                <tr>
                                     <td><a href="../EPDMetadata/index.html#epd">Environmental Product Declaration</a> (dppk:epd)</td>
                                     <td>A dictionary of environmental impact indicators and their values across different life cycle stages.</td>
                                     <td>dppk:EPDBlock</td>
                                     <td></td><td>EN 15804:2012+A2:2019</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Header/index.html#uniqueProductIdentifier">Unique Product Identifier (UPI)</a> (dppk:uniqueProductIdentifier)</td>
+                                    <td>The globally resolvable URI for the product/DPP.</td>
+                                    <td>xsd:anyURI</td>
+                                    <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td><td></td>
                                 </tr>
                             
                                 <tr>
