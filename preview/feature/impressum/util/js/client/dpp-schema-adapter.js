@@ -1,4 +1,4 @@
-import { transform, buildDictionary } from '../common/transformation/dpp-schema-logic.js?v=1777900530978';
+import { transform, buildDictionary } from '../common/transformation/dpp-schema-logic.js?v=1777914331655';
 
 // Using a global dictionary with memoization to avoid re-building on every call
 const dictionary = {};
