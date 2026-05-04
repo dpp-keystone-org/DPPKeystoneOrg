@@ -218,7 +218,7 @@ export async function loadOntology(sector) {
     } else if (sector === 'packaging') {
         initialUrl = '../spec/ontology/v1/core/Compliance.jsonld';
     } else {
-        const sectorPascalCase = sector.charAt(0).toUpperCase() + sector.slice(1);
+        const sectorPascalCase = sector.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
         initialUrl = `../spec/ontology/v1/sectors/${sectorPascalCase}.jsonld`;
     }
 

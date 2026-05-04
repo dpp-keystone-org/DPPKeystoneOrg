@@ -10,6 +10,7 @@ export const EXAMPLES = {
     'Construction Product': '../spec/examples/construction-product-dpp-v1.json',
     'Drill': '../spec/examples/drill-dpp-v1.json',
     'Drill (Private)': '../spec/examples/drill-dpp-v1-private.json',
+    'Iron & Steel': '../spec/examples/iron-steel-dpp-v1.json',
     'Rail': '../spec/examples/rail-dpp-v1.json',
     'Textile (Sock)': '../spec/examples/sock-dpp-v1.json'
 };
