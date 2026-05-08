@@ -870,6 +870,32 @@ test.describe('DPP Wizard - Input Validation', () => {
       await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Battery');
   });
 
+  test('should re-evaluate voluntary field validation dynamically when sectors are added or removed', async ({ page }) => {
+      await page.goto('/wizard/index.html');
+      
+      // 1. Add custom field and fill with a key from the Battery sector
+      await page.click('#add-voluntary-field-btn');
+      const nameInput = page.locator('.voluntary-name').first();
+      await nameInput.fill('batteryCategory'); // Battery field
+      await nameInput.blur();
+      
+      // 2. Verify no error is shown since Battery sector is not active
+      const errorMsg = page.locator('.voluntary-field-row .error-message').first();
+      await expect(errorMsg).not.toBeVisible();
+
+      // 3. Add Battery sector explicitly and verify error appears
+      await page.click('button[data-sector="battery"]');
+      await expect(page.locator('#sector-form-battery')).toBeVisible();
+      await expect(errorMsg).toBeVisible();
+      await expect(errorMsg).toHaveText('Field conflicts with Battery');
+
+      // 4. Remove Battery sector and verify error disappears
+      // The button data-sector attribute stays the same, it acts as a toggle
+      await page.click('button[data-sector="battery"]'); 
+      await expect(page.locator('#sector-form-battery')).not.toBeAttached();
+      await expect(errorMsg).not.toBeVisible();
+  });
+
   test('should clear validation errors when changing voluntary field type', async ({ page }) => {
     const showErrorsBtn = page.locator('#show-errors-btn');
 
