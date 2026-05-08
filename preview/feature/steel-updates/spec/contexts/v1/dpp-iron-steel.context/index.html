@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context: dpp-iron-steel.context.jsonld</title>
+    <link rel="stylesheet" href="../../../../branding/css/keystone-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../index.html"><img src="../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Contexts</a> / dpp-iron-steel.context.jsonld</h1>
+            </div>
+        </header>
+        <main>
+            <p><strong>Source:</strong> <a href="../dpp-iron-steel.context.jsonld">dpp-iron-steel.context.jsonld</a></p>
+            <h4>Imports</h4><ul>
+                <li><a href="https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld">https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld</a></li>
+                <li><a href="https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld">https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld</a></li>
+                <li><a href="https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld">https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld</a></li>
+            </ul>
+            <h4>Locally Defined Terms</h4>
+<ul>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>IronSteelProduct</strong></a> - <em>Data model for the Iron and Steel Passport according to EU ESPR.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>heatNumber</strong></a> - <em>The heat number for iron and steel to serve as a lot-level identifier.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>productNumber</strong></a> - <em>Model-level identifier for the steel product.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>castNumber</strong></a> - <em>Optional batch-level identifier representing the specific cast.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>lotNumber</strong></a> - <em>Optional batch-level identifier representing the specific manufacturing lot.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>manufacturingDate</strong></a> - <em>The date on which the product was manufactured.</em></li>
+<li><a href="../../../ontology/v1/sectors/Battery/BatteryProduct.html"><strong>manufacturerInfo</strong></a> - <em>A battery passport must include information identifying the manufacturer. The manufacturer information must also be provided on the battery label. Includes name, registered trade name/mark, postal address, web address, and email.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>purchaserOrder</strong></a> - <em>Associated purchase order identifier.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>steelGradeClassification</strong></a> - <em>The classification of the steel grade.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>steelDesignation</strong></a> - <em>The specific designation or name of the steel.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>technologyRoute</strong></a> - <em>The primary manufacturing route (e.g. EAF, BF-BOF).</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>meltAndPourCountry</strong></a> - <em>The country where the steel was originally melted and poured.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>countryOfOrigin</strong></a> - <em>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>safeUseInstructions</strong></a> - <em>Instructions and warnings for the safe use of the product.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>endOfLifeInstructions</strong></a> - <em>Instructions for dismantling, recycling, or disposing of the product.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>recycledContentPercentage</strong></a> - <em>Total recycled content percentage in the steel.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>preConsumerRecycledContent</strong></a> - <em>Percentage of pre-consumer recycled material.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>postConsumerRecycledContent</strong></a> - <em>Percentage of post-consumer recycled material.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>recycledContentConformity</strong></a> - <em>Reference or URI to the conformity declaration of the recycled content calculation.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>cbamReportId</strong></a> - <em>Identifier for the Carbon Border Adjustment Mechanism (CBAM) report.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>reachDocumentation</strong></a> - <em>URI link to the REACH regulatory documentation if applicable.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>substancesOfConcern</strong></a> - <em>Relates the product to any substances of concern it contains.</em><ul>
+<li><strong>casNumber</strong> - <em>Chemical Abstracts Service registry number.</em></li>
+<li><strong>ecNumber</strong> - <em>European Community number for chemicals.</em></li>
+<li><strong>iupacName</strong> - <em>International Union of Pure and Applied Chemistry nomenclature.</em></li>
+<li><strong>locationInProduct</strong> - <em>Specific physical location of the component or substance inside the parent assembly.</em></li>
+</ul></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>nominalSize</strong></a> - <em>Nominal dimensional size of the steel product.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>weightTolerance</strong></a> - <em>Tolerated deviation in weight as per EN 10168.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>yieldStrength</strong></a> - <em>Yield strength parameter from the Mill Test Certificate.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>yieldStrengthRatio</strong></a> - <em>Ratio of yield strength to tensile strength (Re/Rm).</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>elongation</strong></a> - <em>Percentage elongation at fracture.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>relativeRibArea</strong></a> - <em>Relative rib area on reinforcing steel products.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>carbonContent</strong></a> - <em>Carbon (C) content percentage defined in the MTC.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>phosphorusContent</strong></a> - <em>Phosphorus (P) content percentage.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>sulfurContent</strong></a> - <em>Sulfur (S) content percentage.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>copperContent</strong></a> - <em>Copper (Cu) content percentage.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>nitrogenContent</strong></a> - <em>Nitrogen (N) content percentage.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>carbonEquivalent</strong></a> - <em>Carbon equivalent value (CEV) for assessing weldability.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>steelProcess</strong></a> - <em>Details of the steelmaking or casting process.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>finishing</strong></a> - <em>Information regarding the surface finish or condition.</em></li>
+<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>radiometricControl</strong></a> - <em>Values associated with radiometric testing of the steel.</em></li>
+</ul>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../index.html">DPP Keystone</a> project. | <a href="../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+</body>
+</html>
