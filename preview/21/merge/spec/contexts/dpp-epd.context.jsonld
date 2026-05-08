@@ -1,0 +1,168 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "epd": {
+      "@id": "dppk:epd"
+    },
+    "gwp": "dppk:gwp",
+    "gwpF": "dppk:gwpF",
+    "gwpB": "dppk:gwpB",
+    "gwpLuluc": "dppk:gwpLuluc",
+    "gwpGhg": "dppk:gwpGhg",
+    "odp": "dppk:odp",
+    "ap": "dppk:ap",
+    "epF": "dppk:epF",
+    "epM": "dppk:epM",
+    "epT": "dppk:epT",
+    "pocp": "dppk:pocp",
+    "adpe": "dppk:adpe",
+    "adpf": "dppk:adpf",
+    "wdp": "dppk:wdp",
+    "a1": {
+      "@id": "dppk:a1",
+      "@type": "xsd:double"
+    },
+    "A1": {
+      "@id": "dppk:a1",
+      "@type": "xsd:double"
+    },
+    "a2": {
+      "@id": "dppk:a2",
+      "@type": "xsd:double"
+    },
+    "A2": {
+      "@id": "dppk:a2",
+      "@type": "xsd:double"
+    },
+    "a3": {
+      "@id": "dppk:a3",
+      "@type": "xsd:double"
+    },
+    "A3": {
+      "@id": "dppk:a3",
+      "@type": "xsd:double"
+    },
+    "a4": {
+      "@id": "dppk:a4",
+      "@type": "xsd:double"
+    },
+    "A4": {
+      "@id": "dppk:a4",
+      "@type": "xsd:double"
+    },
+    "a5": {
+      "@id": "dppk:a5",
+      "@type": "xsd:double"
+    },
+    "A5": {
+      "@id": "dppk:a5",
+      "@type": "xsd:double"
+    },
+    "b1": {
+      "@id": "dppk:b1",
+      "@type": "xsd:double"
+    },
+    "B1": {
+      "@id": "dppk:b1",
+      "@type": "xsd:double"
+    },
+    "b2": {
+      "@id": "dppk:b2",
+      "@type": "xsd:double"
+    },
+    "B2": {
+      "@id": "dppk:b2",
+      "@type": "xsd:double"
+    },
+    "b3": {
+      "@id": "dppk:b3",
+      "@type": "xsd:double"
+    },
+    "B3": {
+      "@id": "dppk:b3",
+      "@type": "xsd:double"
+    },
+    "b4": {
+      "@id": "dppk:b4",
+      "@type": "xsd:double"
+    },
+    "B4": {
+      "@id": "dppk:b4",
+      "@type": "xsd:double"
+    },
+    "b5": {
+      "@id": "dppk:b5",
+      "@type": "xsd:double"
+    },
+    "B5": {
+      "@id": "dppk:b5",
+      "@type": "xsd:double"
+    },
+    "b6": {
+      "@id": "dppk:b6",
+      "@type": "xsd:double"
+    },
+    "B6": {
+      "@id": "dppk:b6",
+      "@type": "xsd:double"
+    },
+    "b7": {
+      "@id": "dppk:b7",
+      "@type": "xsd:double"
+    },
+    "B7": {
+      "@id": "dppk:b7",
+      "@type": "xsd:double"
+    },
+    "c1": {
+      "@id": "dppk:c1",
+      "@type": "xsd:double"
+    },
+    "C1": {
+      "@id": "dppk:c1",
+      "@type": "xsd:double"
+    },
+    "c2": {
+      "@id": "dppk:c2",
+      "@type": "xsd:double"
+    },
+    "C2": {
+      "@id": "dppk:c2",
+      "@type": "xsd:double"
+    },
+    "c3": {
+      "@id": "dppk:c3",
+      "@type": "xsd:double"
+    },
+    "C3": {
+      "@id": "dppk:c3",
+      "@type": "xsd:double"
+    },
+    "c4": {
+      "@id": "dppk:c4",
+      "@type": "xsd:double"
+    },
+    "C4": {
+      "@id": "dppk:c4",
+      "@type": "xsd:double"
+    },
+    "d": {
+      "@id": "dppk:d",
+      "@type": "xsd:double"
+    },
+    "D": {
+      "@id": "dppk:d",
+      "@type": "xsd:double"
+    },
+    "total": {
+      "@id": "dppk:total",
+      "@type": "xsd:double"
+    },
+    "Total": {
+      "@id": "dppk:total",
+      "@type": "xsd:double"
+    }
+  }
+}

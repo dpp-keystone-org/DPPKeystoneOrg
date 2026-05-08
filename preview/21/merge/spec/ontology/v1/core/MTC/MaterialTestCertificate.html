@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Material Test Certificate (MTC)</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Material Test Certificate (MTC)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Material Test Certificate (MTC) (dppk:MaterialTestCertificate)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="MaterialTestCertificate">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class MaterialTestCertificate
+  MaterialTestCertificate : +mtc
+  MaterialTestCertificate --|> MaterialTestCertificate : mtc
+  MaterialTestCertificate : +mtcNominalSize
+  MaterialTestCertificate : +mtcWeightTolerance
+  MaterialTestCertificate : +mtcYieldStrength
+  MaterialTestCertificate : +mtcYieldStrengthRatio
+  MaterialTestCertificate : +mtcElongation
+  MaterialTestCertificate : +mtcRelativeRibArea
+  MaterialTestCertificate : +mtcCarbonContent
+  MaterialTestCertificate : +mtcPhosphorusContent
+  MaterialTestCertificate : +mtcSulfurContent
+  MaterialTestCertificate : +mtcCopperContent
+  MaterialTestCertificate : +mtcNitrogenContent
+  MaterialTestCertificate : +mtcCarbonEquivalent
+  MaterialTestCertificate : +mtcSteelProcess
+  MaterialTestCertificate : +mtcFinishing
+  MaterialTestCertificate : +mtcRadiometricControl
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>A certificate detailing the results of tests performed on a material, such as those defined in EN 10204.</p>
+                <p><strong>equivalentClass:</strong> <a href="http://schema.org/Certification">schema:Certification</a></p><p><strong>governedBy:</strong> EN 10204</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>The Material Test Certificate. (dppk:mtc)</td>
+                                    <td>A link to the Material Test Certificate associated with this product.</td>
+                                    <td>dppk:MaterialTestCertificate</td>
+                                    <td>EN 10204</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Nominal Size (dppk:mtcNominalSize)</td>
+                                    <td>Nominal dimensional size of the steel product.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Weight Tolerance (dppk:mtcWeightTolerance)</td>
+                                    <td>Tolerated deviation in weight as per EN 10168.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Yield Strength (dppk:mtcYieldStrength)</td>
+                                    <td>Yield strength parameter from the Mill Test Certificate.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Yield Strength Ratio (dppk:mtcYieldStrengthRatio)</td>
+                                    <td>Ratio of yield strength to tensile strength (Re/Rm).</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Elongation (dppk:mtcElongation)</td>
+                                    <td>Percentage elongation at fracture.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Relative Rib Area (dppk:mtcRelativeRibArea)</td>
+                                    <td>Relative rib area on reinforcing steel products.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Carbon Content (dppk:mtcCarbonContent)</td>
+                                    <td>Carbon (C) content percentage defined in the MTC.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Phosphorus Content (dppk:mtcPhosphorusContent)</td>
+                                    <td>Phosphorus (P) content percentage.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Sulfur Content (dppk:mtcSulfurContent)</td>
+                                    <td>Sulfur (S) content percentage.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Copper Content (dppk:mtcCopperContent)</td>
+                                    <td>Copper (Cu) content percentage.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Nitrogen Content (dppk:mtcNitrogenContent)</td>
+                                    <td>Nitrogen (N) content percentage.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Carbon Equivalent (dppk:mtcCarbonEquivalent)</td>
+                                    <td>Carbon equivalent value (CEV) for assessing weldability.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Steel Process (dppk:mtcSteelProcess)</td>
+                                    <td>Details of the steelmaking or casting process.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Finishing (dppk:mtcFinishing)</td>
+                                    <td>Information regarding the surface finish or condition.</td>
+                                    <td>xsd:string</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Radiometric Control (dppk:mtcRadiometricControl)</td>
+                                    <td>Values associated with radiometric testing of the steel.</td>
+                                    <td>xsd:double</td>
+                                    <td>EN 10168</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
