@@ -1,10 +1,10 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1778253851754';
-import { loadOntology } from '../lib/ontology-loader.js?v=1778253851754';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1778253851754';
-import { generateDpp } from './dpp-generator.js?v=1778253851754';
-import { generateHTML } from '../lib/html-generator.js?v=1778253851754';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1778253851754';
+import { loadSchema } from '../lib/schema-loader.js?v=1778256602513';
+import { loadOntology } from '../lib/ontology-loader.js?v=1778256602513';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1778256602513';
+import { generateDpp } from './dpp-generator.js?v=1778256602513';
+import { generateHTML } from '../lib/html-generator.js?v=1778256602513';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1778256602513';
 import * as jsonld from 'jsonld';
 
 // --- Module-level state ---
@@ -85,7 +85,7 @@ async function rerenderAllForms() {
     const coreFormFragment = buildForm(coreSchema, coreOntologyMap, currentLanguage);
     coreFormContainer.appendChild(coreFormFragment);
     restoreFormState(coreFormContainer, coreState);
-    
+
     // Re-render sector forms
     sectorsFormContainer.innerHTML = '';
     voluntaryModulesContainer.innerHTML = ''; // Clear voluntary modules too
@@ -95,7 +95,7 @@ async function rerenderAllForms() {
         if (data) {
             const { schema, ontologyMap } = data;
             const formFragment = buildForm(schema, ontologyMap, currentLanguage);
-            
+
             const sectorContainer = document.createElement('div');
             sectorContainer.id = `sector-form-${sector}`;
             sectorContainer.className = 'sector-form-container';
@@ -103,13 +103,13 @@ async function rerenderAllForms() {
             sectorHeader.textContent = `${sector.charAt(0).toUpperCase() + sector.slice(1)}`;
             sectorContainer.appendChild(sectorHeader);
             sectorContainer.appendChild(formFragment);
-            
+
             if (sector === 'general-product' || sector === 'packaging') {
                 voluntaryModulesContainer.appendChild(sectorContainer);
             } else {
                 sectorsFormContainer.appendChild(sectorContainer);
             }
-            
+
             restoreFormState(sectorContainer, sectorStates.get(sector));
         }
     }
@@ -145,12 +145,12 @@ export async function initializeWizard() {
     function updateButtonState() {
         if (!generateBtn || !showErrorsBtn) return;
         const hasErrors = invalidFields.size > 0;
-        
+
         generateBtn.hidden = hasErrors;
         if (previewSchemaBtn) previewSchemaBtn.hidden = hasErrors;
         if (previewNoSchemaBtn) previewNoSchemaBtn.hidden = hasErrors;
         if (schemaBtn) schemaBtn.hidden = hasErrors;
-        
+
         showErrorsBtn.hidden = !hasErrors;
         errorCountBadge.textContent = invalidFields.size;
     }
@@ -180,7 +180,7 @@ export async function initializeWizard() {
             // Load from network or use cache
             if (!coreSchema) coreSchema = await loadSchema('dpp');
             if (!coreOntologyMap) coreOntologyMap = await loadOntology('dpp');
-            
+
             const formFragment = buildForm(coreSchema, coreOntologyMap, currentLanguage);
             coreFormContainer.innerHTML = ''; // Clear previous content
             coreFormContainer.appendChild(formFragment);
@@ -249,12 +249,12 @@ export async function initializeWizard() {
     function updateButtonState() {
         if (!generateBtn || !showErrorsBtn) return;
         const hasErrors = invalidFields.size > 0;
-        
+
         generateBtn.hidden = hasErrors;
         if (previewSchemaBtn) previewSchemaBtn.hidden = hasErrors;
         if (previewNoSchemaBtn) previewNoSchemaBtn.hidden = hasErrors;
         if (schemaBtn) schemaBtn.hidden = hasErrors;
-        
+
         showErrorsBtn.hidden = !hasErrors;
         errorCountBadge.textContent = invalidFields.size;
     }
@@ -279,10 +279,10 @@ export async function initializeWizard() {
             const listItem = document.createElement('li');
             const link = document.createElement('a');
             link.href = '#';
-            
+
             let label = path;
             const input = document.querySelector(`[name="${path}"]`);
-            
+
             if (input) {
                 if (input.classList.contains('voluntary-name')) {
                     label = input.value || '(Empty Custom Field Name)';
@@ -293,7 +293,7 @@ export async function initializeWizard() {
                     label = `Value for '${keyName}'`;
                 }
             }
-            
+
             link.textContent = label;
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -304,11 +304,11 @@ export async function initializeWizard() {
             list.appendChild(listItem);
         });
         modal.appendChild(list);
-        
+
         const closeButton = document.createElement('button');
         closeButton.className = 'modal-close-btn';
         closeButton.innerHTML = '&times;';
-        
+
         const closeModal = () => {
             overlay.remove();
         };
@@ -374,20 +374,20 @@ export async function initializeWizard() {
                         data = { schema, ontologyMap };
                         sectorDataCache.set(sector, data);
                     }
-                    
+
                     const { schema, ontologyMap } = data;
                     const formFragment = buildForm(schema, ontologyMap, currentLanguage);
 
                     const sectorContainer = document.createElement('div');
                     sectorContainer.id = sectorContainerId;
                     sectorContainer.className = 'sector-form-container';
-                    
+
                     const sectorHeader = document.createElement('h3');
                     sectorHeader.textContent = displayName;
                     sectorContainer.appendChild(sectorHeader);
 
                     sectorContainer.appendChild(formFragment);
-                    
+
                     if (sector === 'general-product' || sector === 'packaging') {
                         voluntaryModulesContainer.appendChild(sectorContainer);
                     } else {
@@ -407,6 +407,12 @@ export async function initializeWizard() {
                 }
             }
             saveSession();
+
+            // Re-evaluate all voluntary fields now that the active sectors have changed.
+            // This prevents the validation state from being one cycle behind the DOM updates.
+            document.querySelectorAll('.voluntary-name').forEach(input => {
+                input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+            });
         });
     });
 
@@ -423,7 +429,7 @@ export async function initializeWizard() {
      */
     async function getConflictingSectors(key) {
         const conflicts = [];
-        
+
         const hasProperty = (schema, prop) => {
             if (!schema) return false;
             if (schema.properties && schema.properties[prop]) return true;
@@ -437,7 +443,7 @@ export async function initializeWizard() {
 
         const activeSectors = [...document.querySelectorAll('.sector-form-container')]
             .map(c => c.id.replace('sector-form-', ''));
-        
+
         for (const sector of activeSectors) {
             let data = sectorDataCache.get(sector);
             if (!data) {
@@ -484,7 +490,7 @@ export async function initializeWizard() {
     function addExternalContext() {
         const row = document.createElement('div');
         row.className = 'voluntary-field-row external-context-row';
-        
+
         // Reuse similar styling as voluntary fields
         const prefixInput = document.createElement('input');
         prefixInput.type = 'text';
@@ -496,7 +502,7 @@ export async function initializeWizard() {
         uriInput.type = 'text';
         uriInput.className = 'context-uri voluntary-value'; // reuse class for styling
         uriInput.placeholder = 'Context URI (e.g. https://schema.org)';
-        
+
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
         removeBtn.textContent = 'Remove';
@@ -505,7 +511,7 @@ export async function initializeWizard() {
         row.appendChild(prefixInput);
         row.appendChild(uriInput);
         row.appendChild(removeBtn);
-        
+
         externalContextsWrapper.appendChild(row);
     }
 
@@ -536,7 +542,7 @@ export async function initializeWizard() {
             const dppObject = getDppData();
             const customCssUrl = document.getElementById('custom-css-url')?.value?.trim();
             const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema });
-            
+
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             window.open(url, '_blank');
@@ -567,27 +573,27 @@ export async function initializeWizard() {
                 schemaBtn.textContent = 'Transforming...';
 
                 const dppData = getDppData();
-                
+
                 // Configure document loader to resolve specific URLs locally
                 const documentLoader = async (url, options) => {
                     // Intercept spec URLs and redirect to local files if possible
                     if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                         const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
-                         
-                         // Try to fetch locally
-                         try {
-                             const res = await fetch(relativePath);
-                             if (res.ok) {
-                                 const document = await res.json();
-                                 return {
-                                     contextUrl: null,
-                                     document,
-                                     documentUrl: url
-                                 };
-                             }
-                         } catch (e) {
-                             console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
-                         }
+                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+
+                        // Try to fetch locally
+                        try {
+                            const res = await fetch(relativePath);
+                            if (res.ok) {
+                                const document = await res.json();
+                                return {
+                                    contextUrl: null,
+                                    document,
+                                    documentUrl: url
+                                };
+                            }
+                        } catch (e) {
+                            console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
+                        }
                     }
                     return (jsonld.documentLoaders ? jsonld.documentLoaders.xhr() : (u) => fetch(u).then(r => r.json()).then(d => ({ document: d, documentUrl: u })))(url);
                 };
@@ -623,7 +629,7 @@ export async function initializeWizard() {
         // Capture from both main sectors container and voluntary modules container
         const activeSectors = [...document.querySelectorAll('.sector-form-container')]
             .map(c => c.id.replace('sector-form-', ''));
-        
+
         const sectorStates = {};
         activeSectors.forEach(sector => {
             const container = document.getElementById(`sector-form-${sector}`);
@@ -649,7 +655,7 @@ export async function initializeWizard() {
 
         try {
             const session = JSON.parse(raw);
-            
+
             // 1. Restore Core Form
             if (session.core) {
                 restoreFormState(coreFormContainer, new Map(Object.entries(session.core)));
@@ -663,7 +669,7 @@ export async function initializeWizard() {
                     const btn = document.querySelector(`button[data-sector="${sector}"]`);
                     if (btn && !btn.classList.contains('remove-btn-active')) {
                         await btn.click(); // This is async because it fetches schemas
-                        
+
                         // Restore data for this sector
                         if (session.sectorData && session.sectorData[sector]) {
                             const container = document.getElementById(`sector-form-${sector}`);
@@ -677,7 +683,7 @@ export async function initializeWizard() {
             console.warn('Failed to restore session:', e);
         }
     }
-    
+
     // Initial setup
     await initializeCoreForm();
     await restoreSession();
