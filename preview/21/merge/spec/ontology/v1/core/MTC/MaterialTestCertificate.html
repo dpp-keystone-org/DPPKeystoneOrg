@@ -29,6 +29,8 @@
   class MaterialTestCertificate
   MaterialTestCertificate : +mtc
   MaterialTestCertificate --|> MaterialTestCertificate : mtc
+  MaterialTestCertificate : +sourceDocument
+  MaterialTestCertificate --|> RelatedResource : sourceDocument
   MaterialTestCertificate : +mtcNominalSize
   MaterialTestCertificate : +mtcWeightTolerance
   MaterialTestCertificate : +mtcYieldStrength
@@ -44,6 +46,8 @@
   MaterialTestCertificate : +mtcSteelProcess
   MaterialTestCertificate : +mtcFinishing
   MaterialTestCertificate : +mtcRadiometricControl
+  click RelatedResource href "../RelatedResource/RelatedResource.html" "dppk:RelatedResource"
+  style RelatedResource stroke:#2962ff,color:#2962ff
 
                 </pre>
 
@@ -69,6 +73,13 @@
                                     <td>A link to the Material Test Certificate associated with this product.</td>
                                     <td>dppk:MaterialTestCertificate</td>
                                     <td>EN 10204</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Source Document (dppk:sourceDocument)</td>
+                                    <td>A reference to the original digital document or file representing this certificate.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td></td>
                                 </tr>
                             
                                 <tr>

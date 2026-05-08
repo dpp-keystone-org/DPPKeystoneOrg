@@ -64,6 +64,25 @@
       }
     },
     {
+      "@id": "dppk:sourceDocument",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Source Document"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A reference to the original digital document or file representing this certificate."
+        }
+      ],
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      }
+    },
+    {
       "@id": "dppk:mtcNominalSize",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": [
