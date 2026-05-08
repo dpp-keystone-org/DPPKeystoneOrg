@@ -6,17 +6,14 @@
   "type": "object",
   "properties": {
     "name": {
-      "type": "string",
-      "description": "The name of the component."
+      "type": "string"
     },
     "uniqueProductIdentifier": {
       "type": "string",
-      "format": "uri",
-      "description": "A unique identifier for the component, if available as a distinct product."
+      "format": "uri"
     },
     "percentage": {
-      "type": "number",
-      "description": "The percentage of the total weight of the main product that this component constitutes."
+      "type": "number"
     }
   },
   "required": [

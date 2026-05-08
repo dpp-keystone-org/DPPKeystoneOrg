@@ -28,8 +28,6 @@
                     classDiagram
   class BatteryProduct
   Product <|-- BatteryProduct
-  BatteryProduct : +manufacturerInfo
-  BatteryProduct --|> Organization : manufacturerInfo
   BatteryProduct : +manufacturingPlace
   BatteryProduct : +manufacturingDate
   BatteryProduct : +serviceDate
@@ -85,8 +83,6 @@
   BatteryProduct --|> BatteryPerformance : performance
   click Product href "../../core/Product/Product.html" "dppk:Product"
   style Product stroke:#2962ff,color:#2962ff
-  click Organization href "../../core/Organization/Organization.html" "dppk:Organization"
-  style Organization stroke:#2962ff,color:#2962ff
   click RelatedResource href "../../core/RelatedResource/RelatedResource.html" "dppk:RelatedResource"
   style RelatedResource stroke:#2962ff,color:#2962ff
   click Component href "../../core/Product/Component.html" "dppk:Component"
@@ -112,13 +108,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
-                                <tr>
-                                    <td>Manufacturer identifier and information (dppk:manufacturerInfo)</td>
-                                    <td>A battery passport must include information identifying the manufacturer. The manufacturer information must also be provided on the battery label. Includes name, registered trade name/mark, postal address, web address, and email.</td>
-                                    <td>dppk:Organization</td>
-                                    <td>Annex VI Part A (1)</td>
-                                </tr>
                             
                                 <tr>
                                     <td>Manufacturing place (dppk:manufacturingPlace)</td>

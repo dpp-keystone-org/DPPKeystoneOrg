@@ -47,8 +47,12 @@
       "manufacturerInfo": {
         "$ref": "organization.schema.json"
       },
+      "importerInfo": {
+        "$ref": "organization.schema.json"
+      },
       "manufacturingDate": {
-        "type": "string"
+        "type": "string",
+        "format": "date"
       },
       "countryOfOrigin": {
         "type": "string"

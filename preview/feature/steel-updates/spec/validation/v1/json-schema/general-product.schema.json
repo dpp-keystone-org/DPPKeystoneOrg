@@ -5,63 +5,59 @@
   "description": "General product information properties that are common across many sectors.",
   "type": "object",
   "properties": {
+    "productName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
     "brand": {
-      "type": "string",
-      "description": "Brand Name"
+      "type": "string"
     },
     "model": {
-      "type": "string",
-      "description": "Model Number"
+      "type": "string"
+    },
+    "gtin": {
+      "type": "string"
     },
     "color": {
-      "type": "string",
-      "description": "Color Description"
+      "type": "string"
     },
     "countryOfOrigin": {
-      "type": "string",
-      "description": "Country of Origin"
+      "type": "string"
     },
     "netWeight": {
-      "type": "number",
-      "description": "Net Weight (kg)"
+      "type": "number"
     },
     "grossWeight": {
-      "type": "number",
-      "description": "Gross Weight"
+      "type": "number"
     },
     "length": {
-      "type": "number",
-      "description": "Length (m)"
+      "type": "number"
     },
     "width": {
-      "type": "number",
-      "description": "Width (m)"
+      "type": "number"
     },
     "height": {
-      "type": "number",
-      "description": "Height (m)"
+      "type": "number"
     },
     "depth": {
-      "type": "number",
-      "description": "Depth (m)"
+      "type": "number"
     },
     "image": {
       "type": "array",
       "items": {
         "$ref": "related-resource.schema.json"
-      },
-      "description": "Product Image"
+      }
     },
     "components": {
       "type": "array",
-      "description": "List of components or materials.",
       "items": {
         "$ref": "component.schema.json"
       }
     },
     "additionalCertifications": {
       "type": "array",
-      "description": "Certifications that are not required by sector-specific delegated acts.",
       "items": {
         "allOf": [
           {
