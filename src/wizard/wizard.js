@@ -435,9 +435,10 @@ export async function initializeWizard() {
             conflicts.push('Core');
         }
 
-        const allSectors = [...sectorButtons].map(btn => btn.dataset.sector);
+        const activeSectors = [...document.querySelectorAll('.sector-form-container')]
+            .map(c => c.id.replace('sector-form-', ''));
         
-        for (const sector of allSectors) {
+        for (const sector of activeSectors) {
             let data = sectorDataCache.get(sector);
             if (!data) {
                 try {
