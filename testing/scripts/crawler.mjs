@@ -97,7 +97,7 @@ async function checkExternalLink(url) {
             // Treat 403 and 503 as "soft" failures that don't break the build for external links,
             // as many corporate sites (like DIN) block GitHub Actions IPs or bot user-agents.
             if (response.status === 403 || response.status === 503) {
-                 console.warn(`\nWarning: External URL ${url} returned ${response.status}. It is likely blocking automated requests. Treating as valid for CI purposes.`);
+                 console.log(`\nWarning: External URL ${url} returned ${response.status}. It is likely blocking automated requests. Treating as valid for CI purposes.`);
                  stats.external.good++;
             } else {
                  brokenExternalLinks.push({ url, status: response.status });
