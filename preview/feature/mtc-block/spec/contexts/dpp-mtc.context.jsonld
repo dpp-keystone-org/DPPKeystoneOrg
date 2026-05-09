@@ -5,6 +5,10 @@
     "mtc": {
       "@id": "dppk:mtc",
       "@context": {
+        "sourceDocument": {
+          "@id": "dppk:sourceDocument",
+          "@type": "@id"
+        },
         "nominalSize": {
           "@id": "dppk:mtcNominalSize",
           "@type": "xsd:double"

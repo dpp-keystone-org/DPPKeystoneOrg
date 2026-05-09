@@ -5,6 +5,9 @@
   "description": "Validation schema for the Material Test Certificate parameters (e.g. EN 10204).",
   "type": "object",
   "properties": {
+    "sourceDocument": {
+      "$ref": "related-resource.schema.json"
+    },
     "nominalSize": {
       "type": "number"
     },

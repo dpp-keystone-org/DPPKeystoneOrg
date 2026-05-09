@@ -109,14 +109,7 @@
         "$ref": "related-resource.schema.json"
       },
       "mtc": {
-        "oneOf": [
-          {
-            "$ref": "mtc.schema.json"
-          },
-          {
-            "$ref": "related-resource.schema.json"
-          }
-        ]
+        "$ref": "mtc.schema.json"
       },
       "epd": {
         "oneOf": [
