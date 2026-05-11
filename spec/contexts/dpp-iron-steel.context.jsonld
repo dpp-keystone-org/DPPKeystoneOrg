@@ -3,6 +3,7 @@
     "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
     "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld",
     "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/v1/dpp-mtc.context.jsonld",
     {
       "dppk": "https://dpp-keystone.org/spec/v1/terms#",
       "dcterms": "http://purl.org/dc/terms/",
@@ -55,60 +56,6 @@
           "iupacName": "dppk:iupacName",
           "locationInProduct": "dppk:locationInProduct"
         }
-      },
-      "nominalSize": {
-        "@id": "dppk:nominalSize",
-        "@type": "xsd:double"
-      },
-      "weightTolerance": {
-        "@id": "dppk:weightTolerance",
-        "@type": "xsd:double"
-      },
-      "yieldStrength": {
-        "@id": "dppk:yieldStrength",
-        "@type": "xsd:double"
-      },
-      "yieldStrengthRatio": {
-        "@id": "dppk:yieldStrengthRatio",
-        "@type": "xsd:double"
-      },
-      "elongation": {
-        "@id": "dppk:elongation",
-        "@type": "xsd:double"
-      },
-      "relativeRibArea": {
-        "@id": "dppk:relativeRibArea",
-        "@type": "xsd:double"
-      },
-      "carbonContent": {
-        "@id": "dppk:carbonContent",
-        "@type": "xsd:double"
-      },
-      "phosphorusContent": {
-        "@id": "dppk:phosphorusContent",
-        "@type": "xsd:double"
-      },
-      "sulfurContent": {
-        "@id": "dppk:sulfurContent",
-        "@type": "xsd:double"
-      },
-      "copperContent": {
-        "@id": "dppk:copperContent",
-        "@type": "xsd:double"
-      },
-      "nitrogenContent": {
-        "@id": "dppk:nitrogenContent",
-        "@type": "xsd:double"
-      },
-      "carbonEquivalent": {
-        "@id": "dppk:carbonEquivalent",
-        "@type": "xsd:double"
-      },
-      "steelProcess": "dppk:steelProcess",
-      "finishing": "dppk:finishing",
-      "radiometricControl": {
-        "@id": "dppk:radiometricControl",
-        "@type": "xsd:double"
       }
     }
   ],

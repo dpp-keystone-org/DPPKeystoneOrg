@@ -52,21 +52,6 @@
   IronSteelProduct : +casNumber
   IronSteelProduct : +ecNumber
   IronSteelProduct : +iupacName
-  IronSteelProduct : +nominalSize
-  IronSteelProduct : +weightTolerance
-  IronSteelProduct : +yieldStrength
-  IronSteelProduct : +yieldStrengthRatio
-  IronSteelProduct : +elongation
-  IronSteelProduct : +relativeRibArea
-  IronSteelProduct : +carbonContent
-  IronSteelProduct : +phosphorusContent
-  IronSteelProduct : +sulfurContent
-  IronSteelProduct : +copperContent
-  IronSteelProduct : +nitrogenContent
-  IronSteelProduct : +carbonEquivalent
-  IronSteelProduct : +steelProcess
-  IronSteelProduct : +finishing
-  IronSteelProduct : +radiometricControl
   click Product href "../../core/Product/Product.html" "dppk:Product"
   style Product stroke:#2962ff,color:#2962ff
   click RelatedResource href "../../core/RelatedResource/RelatedResource.html" "dppk:RelatedResource"
@@ -93,7 +78,7 @@
                             
                                 <tr>
                                     <td>Heat Number (dppk:heatNumber)</td>
-                                    <td>The primary Unique Product Identifier (UPI) for batch-level steel.</td>
+                                    <td>The heat number for iron and steel to serve as a lot-level identifier.</td>
                                     <td>xsd:string</td>
                                     <td>EN 10168</td><td><a href="gs1:batchLot">gs1:batchLot</a>, <a href="http://schema.org/sku">schema:sku</a></td>
                                 </tr>
@@ -236,111 +221,6 @@
                                     <td>International Union of Pure and Applied Chemistry nomenclature.</td>
                                     <td>xsd:string</td>
                                     <td></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Nominal Size (dppk:nominalSize)</td>
-                                    <td>Nominal dimensional size of the steel product.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Weight Tolerance (dppk:weightTolerance)</td>
-                                    <td>Tolerated deviation in weight as per EN 10168.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Yield Strength (dppk:yieldStrength)</td>
-                                    <td>Yield strength parameter from the Mill Test Certificate.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Yield Strength Ratio (dppk:yieldStrengthRatio)</td>
-                                    <td>Ratio of yield strength to tensile strength (Re/Rm).</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Elongation (dppk:elongation)</td>
-                                    <td>Percentage elongation at fracture.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Relative Rib Area (dppk:relativeRibArea)</td>
-                                    <td>Relative rib area on reinforcing steel products.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Carbon Content (dppk:carbonContent)</td>
-                                    <td>Carbon (C) content percentage defined in the MTC.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Phosphorus Content (dppk:phosphorusContent)</td>
-                                    <td>Phosphorus (P) content percentage.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Sulfur Content (dppk:sulfurContent)</td>
-                                    <td>Sulfur (S) content percentage.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Copper Content (dppk:copperContent)</td>
-                                    <td>Copper (Cu) content percentage.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Nitrogen Content (dppk:nitrogenContent)</td>
-                                    <td>Nitrogen (N) content percentage.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Carbon Equivalent (dppk:carbonEquivalent)</td>
-                                    <td>Carbon equivalent value (CEV) for assessing weldability.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Steel Process (dppk:steelProcess)</td>
-                                    <td>Details of the steelmaking or casting process.</td>
-                                    <td>xsd:string</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Finishing (dppk:finishing)</td>
-                                    <td>Information regarding the surface finish or condition.</td>
-                                    <td>xsd:string</td>
-                                    <td>EN 10168</td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Radiometric Control (dppk:radiometricControl)</td>
-                                    <td>Values associated with radiometric testing of the steel.</td>
-                                    <td>xsd:double</td>
-                                    <td>EN 10168</td><td></td>
                                 </tr>
                             
                         </tbody>

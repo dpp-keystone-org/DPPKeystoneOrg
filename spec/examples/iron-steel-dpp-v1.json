@@ -28,7 +28,9 @@
       "locationInProduct": "Throughout alloy matrix"
     }
   ],
-  "yieldStrength": 355,
-  "carbonContent": 0.2,
-  "sulfurContent": 0.02
+  "mtc": {
+    "yieldStrength": 355,
+    "carbonContent": 0.2,
+    "sulfurContent": 0.02
+  }
 }
