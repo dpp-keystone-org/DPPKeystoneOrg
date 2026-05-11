@@ -29,7 +29,8 @@ const COMMON_SCHEMAS = [
     'product-characteristic.schema.json',
     'related-resource.schema.json',
     'general-product.schema.json',
-    'component.schema.json'
+    'component.schema.json',
+    'mtc.schema.json'
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
