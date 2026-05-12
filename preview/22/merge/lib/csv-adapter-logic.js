@@ -1,4 +1,4 @@
-import { setProperty, compactArrays } from './dpp-data-utils.js?v=1778597608799';
+import { setProperty, compactArrays } from './dpp-data-utils.js?v=1778606010390';
 
 /**
  * Map of common industry terms to standard DPP schema fields.
