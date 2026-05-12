@@ -5,19 +5,16 @@
   "type": "object",
   "properties": {
     "digitalProductPassportId": {
-      "description": "The unique identifier of an instance of the digital product passport.",
       "type": "string",
       "format": "uri",
       "default": "https://dpp.example.com/dpp/77b583e8-8575-4862-986c-4863a2995f68"
     },
     "uniqueProductIdentifier": {
-      "description": "A unique string of characters for the identification of a product. Formatted according to EN18219.",
       "type": "string",
       "format": "uri",
       "default": "https://pid.example.com/gtin/01234567890123"
     },
     "granularity": {
-      "description": "The level of granularity of the ProductID as per ESPR.",
       "enum": [
         "Model",
         "Batch",
@@ -25,36 +22,29 @@
       ]
     },
     "dppSchemaVersion": {
-      "description": "The reference standard the DPP instance schema refers to.",
       "type": "string",
       "default": "0.1"
     },
     "dppStatus": {
-      "description": "The status of the DPP instance as digital resource.",
       "type": "string",
       "default": "Active"
     },
     "lastUpdate": {
-      "description": "The date and time of the latest update to the DPP instance. ISO 8601-1:2019/Amd 1:2022",
       "type": "string",
       "format": "date-time"
     },
     "economicOperatorId": {
-      "description": "Formatted according to EN18219.",
       "type": "string",
       "format": "uri-reference"
     },
     "facilityId": {
-      "description": "Formatted according to EN18219.",
       "type": "string",
       "format": "uri-reference"
     },
     "hsCode": {
-      "description": "The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.",
       "type": "string"
     },
     "contentSpecificationIds": {
-      "description": "Formatted according to EN18219.",
       "type": "array",
       "items": {
         "type": "string"

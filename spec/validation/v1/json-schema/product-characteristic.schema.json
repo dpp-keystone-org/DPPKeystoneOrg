@@ -6,20 +6,17 @@
   "type": "object",
   "properties": {
     "characteristicName": {
-      "type": "string",
-      "description": "The name of the characteristic (e.g., 'WaterResistance')."
+      "type": "string"
     },
     "characteristicValue": {
       "type": [
         "string",
         "number",
         "boolean"
-      ],
-      "description": "The value of the characteristic."
+      ]
     },
     "testMethod": {
-      "type": "string",
-      "description": "The standard or method used to measure the characteristic."
+      "type": "string"
     }
   },
   "required": [

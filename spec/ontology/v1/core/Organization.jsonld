@@ -71,6 +71,12 @@
       "rdfs:comment": "The role of an entity responsible for the production of the finished goods."
     },
     {
+      "@id": "dppk:ImporterRole",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Importer Role",
+      "rdfs:comment": "The role of an entity responsible for importing the product into the market."
+    },
+    {
       "@id": "dppk:FacilityRole",
       "@type": "rdfs:Class",
       "rdfs:label": "Facility Role",
@@ -113,6 +119,18 @@
           "@id": "gs1:manufacturer"
         }
       ]
+    },
+    {
+      "@id": "dppk:importer",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Importer",
+      "rdfs:comment": "Relates the DPP to the Importer of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:DigitalProductPassport"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
     },
     {
       "@id": "dppk:manufacturingFacility",
