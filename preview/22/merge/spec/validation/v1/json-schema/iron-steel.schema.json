@@ -63,28 +63,7 @@
       "substancesOfConcern": {
         "type": "array",
         "items": {
-          "allOf": [
-            {
-              "$ref": "component.schema.json"
-            },
-            {
-              "type": "object",
-              "properties": {
-                "casNumber": {
-                  "type": "string"
-                },
-                "ecNumber": {
-                  "type": "string"
-                },
-                "iupacName": {
-                  "type": "string"
-                },
-                "locationInProduct": {
-                  "type": "string"
-                }
-              }
-            }
-          ]
+          "$ref": "component.schema.json"
         }
       },
       "safeUseInstructions": {
@@ -112,50 +91,8 @@
       "reachDocumentation": {
         "$ref": "related-resource.schema.json"
       },
-      "nominalSize": {
-        "type": "number"
-      },
-      "weightTolerance": {
-        "type": "number"
-      },
-      "yieldStrength": {
-        "type": "number"
-      },
-      "yieldStrengthRatio": {
-        "type": "number"
-      },
-      "elongation": {
-        "type": "number"
-      },
-      "relativeRibArea": {
-        "type": "number"
-      },
-      "carbonContent": {
-        "type": "number"
-      },
-      "phosphorusContent": {
-        "type": "number"
-      },
-      "sulfurContent": {
-        "type": "number"
-      },
-      "copperContent": {
-        "type": "number"
-      },
-      "nitrogenContent": {
-        "type": "number"
-      },
-      "carbonEquivalent": {
-        "type": "number"
-      },
-      "steelProcess": {
-        "type": "string"
-      },
-      "finishing": {
-        "type": "string"
-      },
-      "radiometricControl": {
-        "type": "number"
+      "mtc": {
+        "$ref": "mtc.schema.json"
       },
       "epd": {
         "oneOf": [
