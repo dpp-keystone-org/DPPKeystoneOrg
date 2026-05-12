@@ -68,7 +68,6 @@
     "$defs": {
         "elasticRecoveryGroup": {
             "type": "object",
-            "description": "Elastic recovery determined by ISO 7389:2002",
             "properties": {
                 "methodA": {
                     "$ref": "#/$defs/elongationValues"
@@ -96,7 +95,6 @@
         },
         "resistanceToFlowGroup": {
             "type": "object",
-            "description": "Resistance to flow determined by ISO 7390:2002",
             "properties": {
                 "procedureA": {
                     "$ref": "#/$defs/flowTempValues"
@@ -124,7 +122,6 @@
         },
         "reactionToFireGroup": {
             "type": "object",
-            "description": "Reaction to fire classification under EN 13501-1. Keys are the AVCP System; Values are the Class.",
             "properties": {
                 "avcpSystem1": {
                     "type": "string"
@@ -179,7 +176,6 @@
         },
         "slipSkidResistanceGroup": {
             "type": "object",
-            "description": "Slip/skid resistance determined by EN 13036-4:2011",
             "properties": {
                 "laboratory": {
                     "type": "string"
@@ -189,7 +185,6 @@
         },
         "modulusGroup": {
             "type": "object",
-            "description": "Modulus of elasticity determined by EN 13412:2006",
             "properties": {
                 "method1": {
                     "type": "number"

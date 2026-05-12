@@ -6,20 +6,16 @@
     "type": "object",
     "properties": {
         "streetAddress": {
-            "type": "string",
-            "description": "Includes street name and number."
+            "type": "string"
         },
         "postalCode": {
-            "type": "string",
-            "description": "The postal code."
+            "type": "string"
         },
         "addressLocality": {
-            "type": "string",
-            "description": "The city or locality."
+            "type": "string"
         },
         "addressCountry": {
-            "type": "string",
-            "description": "The country."
+            "type": "string"
         }
     },
     "required": [

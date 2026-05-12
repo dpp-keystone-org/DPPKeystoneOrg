@@ -1,80 +1,85 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/general-product.schema.json",
-  "title": "General Product Module",
-  "description": "General product information properties that are common across many sectors.",
-  "type": "object",
-  "properties": {
-    "brand": {
-      "type": "string",
-      "description": "Brand Name"
-    },
-    "model": {
-      "type": "string",
-      "description": "Model Number"
-    },
-    "color": {
-      "type": "string",
-      "description": "Color Description"
-    },
-    "countryOfOrigin": {
-      "type": "string",
-      "description": "Country of Origin"
-    },
-    "netWeight": {
-      "type": "number",
-      "description": "Net Weight (kg)"
-    },
-    "grossWeight": {
-      "type": "number",
-      "description": "Gross Weight"
-    },
-    "length": {
-      "type": "number",
-      "description": "Length (m)"
-    },
-    "width": {
-      "type": "number",
-      "description": "Width (m)"
-    },
-    "height": {
-      "type": "number",
-      "description": "Height (m)"
-    },
-    "depth": {
-      "type": "number",
-      "description": "Depth (m)"
-    },
-    "image": {
-      "type": "array",
-      "items": {
-        "$ref": "related-resource.schema.json"
-      },
-      "description": "Product Image"
-    },
-    "components": {
-      "type": "array",
-      "description": "List of components or materials.",
-      "items": {
-        "$ref": "component.schema.json"
-      }
-    },
-    "additionalCertifications": {
-      "type": "array",
-      "description": "Certifications that are not required by sector-specific delegated acts.",
-      "items": {
-        "allOf": [
-          { "$ref": "related-resource.schema.json" },
-          {
-            "type": "object",
-            "properties": {
-              "certificationBodyName": { "type": "string" },
-              "certificationBodyId": { "type": "string" },
-              "certificationStartDate": { "type": "string", "format": "date" }
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/general-product.schema.json",
+    "title": "General Product Module",
+    "description": "General product information properties that are common across many sectors.",
+    "type": "object",
+    "properties": {
+        "productName": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "brand": {
+            "type": "string"
+        },
+        "model": {
+            "type": "string"
+        },
+        "gtin": {
+            "type": "string"
+        },
+        "color": {
+            "type": "string"
+        },
+        "countryOfOrigin": {
+            "type": "string"
+        },
+        "netWeight": {
+            "type": "number"
+        },
+        "grossWeight": {
+            "type": "number"
+        },
+        "length": {
+            "type": "number"
+        },
+        "width": {
+            "type": "number"
+        },
+        "height": {
+            "type": "number"
+        },
+        "depth": {
+            "type": "number"
+        },
+        "image": {
+            "type": "array",
+            "items": {
+                "$ref": "related-resource.schema.json"
             }
-          }
-        ]
-      }
+        },
+        "components": {
+            "type": "array",
+            "items": {
+                "$ref": "component.schema.json"
+            }
+        },
+        "additionalCertifications": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "$ref": "related-resource.schema.json"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "certificationBodyName": {
+                                "type": "string"
+                            },
+                            "certificationBodyId": {
+                                "type": "string"
+                            },
+                            "certificationStartDate": {
+                                "type": "string",
+                                "format": "date"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
     }
-  }
 }

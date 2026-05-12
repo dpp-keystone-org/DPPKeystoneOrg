@@ -3,8 +3,7 @@ const path = require('path');
 
 // Default directories to process if no arguments are provided
 const DEFAULT_PATHS = [
-    path.join('src', 'ontology'),
-    path.join('src', 'contexts')
+    path.join('src')
 ];
 
 function getAllFiles(dirPath, arrayOfFiles) {

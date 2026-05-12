@@ -71,7 +71,11 @@
     
     // Relationships
     "economicOperator": { "@id": "dppk:economicOperator", "@type": "@id" },
+    "economicOperatorInfo": "dppk:economicOperator",
     "manufacturer": { "@id": "dppk:manufacturer", "@type": "@id" },
+    "manufacturerInfo": "dppk:manufacturer",
+    "importer": { "@id": "dppk:importer", "@type": "@id" },
+    "importerInfo": "dppk:importer",
     "manufacturingFacility": { "@id": "dppk:manufacturingFacility", "@type": "@id" },
 
     // Details
@@ -97,16 +101,10 @@
     "website": { "@id": "dppk:website", "@type": "@id" },
 
     // ==================================================================
-    // Properties: Product Description and Materials
+    // ==================================================================
+    // Properties: Product Materials
     // ==================================================================
     
-    "productName": {
-      "@id": "dppk:productName",
-      "@container": "@language"
-    },
-    "description": "dppk:description",
-    "gtin": "dppk:gtin",
-
     // BOM and Materials
     "components": {
       "@id": "dppk:components",

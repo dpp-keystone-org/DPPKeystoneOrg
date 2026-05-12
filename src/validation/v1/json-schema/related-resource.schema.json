@@ -6,21 +6,17 @@
     "type": "object",
     "properties": {
         "resourceTitle": {
-            "type": "string",
-            "description": "The title of the related resource."
+            "type": "string"
         },
         "contentType": {
-            "type": "string",
-            "description": "The content type of the related resource (e.g., 'application/pdf')."
+            "type": "string"
         },
         "language": {
-            "type": "string",
-            "description": "The language of the related resource (e.g., 'en')."
+            "type": "string"
         },
         "url": {
             "type": "string",
-            "format": "uri-reference",
-            "description": "The URL of the related resource."
+            "format": "uri-reference"
         }
     },
     "required": [
