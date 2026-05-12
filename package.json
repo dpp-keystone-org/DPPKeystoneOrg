@@ -21,7 +21,7 @@
   },
   "scripts": {
     "bundle:vendor": "node scripts/bundle-vendor.mjs",
-    "build": "node scripts/build-and-clean.mjs",
+    "build": "node scripts/compact-json.cjs && node scripts/build-and-clean.mjs",
     "test": "npm run clean && npm run build && node scripts/validate-ontology-integrity.mjs && cd testing && npm test",
     "test:integrity": "npm run build && node scripts/validate-ontology-integrity.mjs",
     "clean": "node scripts/clean.mjs"

@@ -6,28 +6,22 @@
     "type": "object",
     "properties": {
         "organizationName": {
-            "type": "string",
-            "description": "The official legal name of the organization."
+            "type": "string"
         },
         "tradingName": {
-            "type": "string",
-            "description": "The name under which the organization conducts business, if different from the legal name."
+            "type": "string"
         },
         "gln": {
-            "type": "string",
-            "description": "A GS1 standard identifier for legal entities, functional departments, or physical locations."
+            "type": "string"
         },
         "leiCode": {
-            "type": "string",
-            "description": "A standardized global identifier for legal entities."
+            "type": "string"
         },
         "additionalOrganizationId": {
-            "type": "string",
-            "description": "An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID)."
+            "type": "string"
         },
         "additionalOrganizationIdType": {
-            "type": "string",
-            "description": "The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT')."
+            "type": "string"
         },
         "address": {
             "$ref": "postal-address.schema.json"

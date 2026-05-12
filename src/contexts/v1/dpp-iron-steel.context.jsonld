@@ -18,7 +18,6 @@
                 "@id": "dppk:manufacturingDate",
                 "@type": "xsd:date"
             },
-            "manufacturerInfo": { "@id": "dppk:manufacturerInfo" },
             "purchaserOrder": "dppk:purchaserOrder",
             "steelGradeClassification": "dppk:steelGradeClassification",
             "steelDesignation": "dppk:steelDesignation",

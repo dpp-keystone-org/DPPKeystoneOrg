@@ -13,127 +13,76 @@
     "dcterms:title": "DPP Visibility Ontology",
     "dcterms:description": "Defines the allowable visibility tiers (enum) for data properties within a Digital Product Passport to dictate privacy serialization.",
     "rdfs:label": [
-        {
-            "@language": "en",
-            "@value": "DPP Visibility Ontology"
-        }
+        { "@language": "en", "@value": "DPP Visibility Ontology" }
     ],
     "@graph": [
         {
             "@id": "dppk:VisibilityValue",
             "@type": "rdfs:Class",
             "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "Visibility Value"
-                }
+                { "@language": "en", "@value": "Visibility Value" }
             ],
             "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "An enumeration of the allowed visibility and access levels for specific DPP data."
-                }
+                { "@language": "en", "@value": "An enumeration of the allowed visibility and access levels for specific DPP data." }
             ],
-            "rdfs:subClassOf": {
-                "@id": "rdfs:Resource"
-            },
+            "rdfs:subClassOf": { "@id": "rdfs:Resource" },
             "owl:oneOf": [
-                {
-                    "@id": "dppk:Public"
-                },
-                {
-                    "@id": "dppk:LegitimateInterest"
-                },
-                {
-                    "@id": "dppk:LegitimateInterestOrAuthority"
-                },
-                {
-                    "@id": "dppk:AuthorityOnly"
-                }
+                { "@id": "dppk:Public" },
+                { "@id": "dppk:LegitimateInterest" },
+                { "@id": "dppk:LegitimateInterestOrAuthority" },
+                { "@id": "dppk:AuthorityOnly" }
             ]
         },
         {
             "@id": "dppk:Public",
             "@type": "dppk:VisibilityValue",
             "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "Public"
-                }
+                { "@language": "en", "@value": "Public" }
             ],
             "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "Data is publicly accessible without restriction."
-                }
+                { "@language": "en", "@value": "Data is publicly accessible without restriction." }
             ]
         },
         {
             "@id": "dppk:LegitimateInterest",
             "@type": "dppk:VisibilityValue",
             "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "Legitimate Interest"
-                }
+                { "@language": "en", "@value": "Legitimate Interest" }
             ],
             "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "Data access is restricted or relies on proven legitimate interest."
-                }
+                { "@language": "en", "@value": "Data access is restricted or relies on proven legitimate interest." }
             ]
         },
         {
             "@id": "dppk:LegitimateInterestOrAuthority",
             "@type": "dppk:VisibilityValue",
             "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "Legitimate Interest / Authority Only"
-                }
+                { "@language": "en", "@value": "Legitimate Interest / Authority Only" }
             ],
             "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "Data access is tightly restricted to authorities or highly specialized legitimate interests."
-                }
+                { "@language": "en", "@value": "Data access is tightly restricted to authorities or highly specialized legitimate interests." }
             ]
         },
         {
             "@id": "dppk:AuthorityOnly",
             "@type": "dppk:VisibilityValue",
             "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "Authority"
-                }
+                { "@language": "en", "@value": "Authority" }
             ],
             "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "Data access is heavily restricted explicitly to authoritative bodies."
-                }
+                { "@language": "en", "@value": "Data access is heavily restricted explicitly to authoritative bodies." }
             ]
         },
         {
             "@id": "dppk:visibility",
             "@type": "owl:AnnotationProperty",
             "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "Visibility"
-                }
+                { "@language": "en", "@value": "Visibility" }
             ],
             "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "Indicates the explicit visibility class of a given property."
-                }
+                { "@language": "en", "@value": "Indicates the explicit visibility class of a given property." }
             ],
-            "rdfs:range": {
-                "@id": "dppk:VisibilityValue"
-            }
+            "rdfs:range": { "@id": "dppk:VisibilityValue" }
         }
     ]
 }

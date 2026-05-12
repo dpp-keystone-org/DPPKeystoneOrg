@@ -47,8 +47,12 @@
             "manufacturerInfo": {
                 "$ref": "organization.schema.json"
             },
+            "importerInfo": {
+                "$ref": "organization.schema.json"
+            },
             "manufacturingDate": {
-                "type": "string"
+                "type": "string",
+                "format": "date"
             },
             "countryOfOrigin": {
                 "type": "string"
@@ -59,28 +63,7 @@
             "substancesOfConcern": {
                 "type": "array",
                 "items": {
-                    "allOf": [
-                        {
-                            "$ref": "component.schema.json"
-                        },
-                        {
-                            "type": "object",
-                            "properties": {
-                                "casNumber": {
-                                    "type": "string"
-                                },
-                                "ecNumber": {
-                                    "type": "string"
-                                },
-                                "iupacName": {
-                                    "type": "string"
-                                },
-                                "locationInProduct": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    ]
+                    "$ref": "component.schema.json"
                 }
             },
             "safeUseInstructions": {

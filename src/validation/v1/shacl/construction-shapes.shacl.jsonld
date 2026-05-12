@@ -10,21 +10,11 @@
       "@id": "sh:or",
       "@container": "@list"
     },
-    "node": {
-      "@type": "@id"
-    },
-    "path": {
-      "@type": "@id"
-    },
-    "targetClass": {
-      "@type": "@id"
-    },
-    "class": {
-      "@type": "@id"
-    },
-    "datatype": {
-      "@type": "@id"
-    }
+    "node": { "@type": "@id" },
+    "path": { "@type": "@id" },
+    "targetClass": { "@type": "@id" },
+    "class": { "@type": "@id" },
+    "datatype": { "@type": "@id" }
   },
   "@id": "dppkval:ConstructionShapes",
   "@type": "ShapesGraph",

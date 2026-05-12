@@ -2,6 +2,12 @@
   "@context": {
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "productName": {
+      "@id": "dppk:productName",
+      "@container": "@language"
+    },
+    "description": "dppk:description",
+    "gtin": "dppk:gtin",
     "brand": "dppk:brand",
     "model": "dppk:model",
     "color": "dppk:color",
