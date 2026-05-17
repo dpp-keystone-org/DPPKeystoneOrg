@@ -1,5 +1,5 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1778613816456';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1779022660539';
 
 /**
  * Creates and displays a tooltip modal.
