@@ -5,6 +5,7 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
     "dppk": "https://dpp-keystone.org/spec/v1/terms#",
     "dcterms": "http://purl.org/dc/terms/"
   },
@@ -32,7 +33,15 @@
       "@id": "dppk:RelatedResource",
       "@type": "rdfs:Class",
       "rdfs:label": "Related Resource",
-      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language."
+      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language.",
+      "owl:equivalentClass": [
+        {
+          "@id": "schema:DigitalDocument"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:resourceTitle",

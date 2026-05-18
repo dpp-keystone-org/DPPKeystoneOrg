@@ -47,6 +47,8 @@
   DigitalProductPassport --|> Organization : economicOperator
   DigitalProductPassport : +manufacturer
   DigitalProductPassport --|> Organization : manufacturer
+  DigitalProductPassport : +importer
+  DigitalProductPassport --|> Organization : importer
   DigitalProductPassport : +manufacturingFacility
   DigitalProductPassport --|> Organization : manufacturingFacility
   click GranularityValue href "GranularityValue.html" "dppk:GranularityValue"
@@ -169,6 +171,13 @@
                                     <td>Relates the DPP to the Manufacturer of the product.</td>
                                     <td>dppk:Organization</td>
                                     <td><a href="https://schema.org/manufacturer">schema:manufacturer</a>, <a href="https://ref.gs1.org/voc/manufacturer">gs1:manufacturer</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Organization/index.html#importer">Importer</a> (dppk:importer)</td>
+                                    <td>Relates the DPP to the Importer of the product.</td>
+                                    <td>dppk:Organization</td>
+                                    <td></td>
                                 </tr>
                             
                                 <tr>

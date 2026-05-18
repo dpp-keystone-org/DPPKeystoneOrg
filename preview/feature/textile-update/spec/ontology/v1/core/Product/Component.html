@@ -29,6 +29,9 @@
   class Component
   Component : +percentage
   Component : +locationInProduct
+  Component : +casNumber
+  Component : +ecNumber
+  Component : +iupacName
   Component : +name
   Component : +uniqueProductIdentifier
 
@@ -61,6 +64,27 @@
                                 <tr>
                                     <td>Location in Product (dppk:locationInProduct)</td>
                                     <td>Specific physical location of the component or substance inside the parent assembly.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>CAS Number (dppk:casNumber)</td>
+                                    <td>The Chemical Abstracts Service (CAS) registry number for the substance.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>EC Number (dppk:ecNumber)</td>
+                                    <td>European Community number for chemicals.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>IUPAC Name (dppk:iupacName)</td>
+                                    <td>International Union of Pure and Applied Chemistry nomenclature.</td>
                                     <td>xsd:string</td>
                                     <td></td>
                                 </tr>

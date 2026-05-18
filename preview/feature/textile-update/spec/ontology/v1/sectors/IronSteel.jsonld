@@ -107,7 +107,7 @@
       "rdfs:comment": [
         {
           "@language": "en",
-          "@value": "Model-level identifier for the steel product."
+          "@value": "An internal identifier at the article level."
         }
       ],
       "dppk:governedBy": "EN 10168",
@@ -539,69 +539,6 @@
       },
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:casNumber",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "CAS Number"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "Chemical Abstracts Service registry number."
-        }
-      ],
-      "rdfs:range": "xsd:string",
-      "dppk:visibility": {
-        "@id": "dppk:LegitimateInterestOrAuthority"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:ecNumber",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "EC Number"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "European Community number for chemicals."
-        }
-      ],
-      "rdfs:range": "xsd:string",
-      "dppk:visibility": {
-        "@id": "dppk:LegitimateInterestOrAuthority"
-      },
-      "rdfs:term_status": "unstable"
-    },
-    {
-      "@id": "dppk:iupacName",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "IUPAC Name"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "International Union of Pure and Applied Chemistry nomenclature."
-        }
-      ],
-      "rdfs:range": "xsd:string",
-      "dppk:visibility": {
-        "@id": "dppk:LegitimateInterestOrAuthority"
       },
       "rdfs:term_status": "unstable"
     }
