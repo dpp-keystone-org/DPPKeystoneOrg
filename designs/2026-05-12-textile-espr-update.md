@@ -12,9 +12,20 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 
 ### [PENDING] Step 1: Component Specs & Substances of Concern
 *   Plan: We will heavily leverage `component.schema.json`.
-*   **[PENDING] Step 1.1: Component Specs**
-    *   We will map the JRC "Component Specifications" requirement to a `components` array referencing `component.schema.json`.
-    *   GTINs are perfectly supported here via the existing `uniqueProductIdentifier` (URI format).
+*   **[PENDING] Step 1.1: Component Specs & Context Mapping**
+    *   **[COMPLETED] Step 1.1.a: Schema Injection**
+        *   We have mapped the JRC "Component Specifications" requirement, as well as `substancesOfConcern` and `fibreComposition`, to arrays referencing `component.schema.json` in the JSON schema.
+    *   **[PENDING] Step 1.1.b: Context mapping for `components` (Core Refactor)**
+        *   Refactor `dpp-core.context.jsonld` to introduce a scoped context for the generic `components` object.
+        *   This decouples generic JSON keys by mapping them to dedicated URIs (e.g., `dppk:componentName`, `dppk:componentPercentage`, `dppk:componentIdentifier`, `dppk:componentCasNumber`, `dppk:componentEcNumber`, `dppk:componentIupacName`, and `dppk:componentLocationInProduct`).
+        *   **[PENDING] Task 1.1.b.1:** Search the project for usage of old generic properties (`dppk:percentage`, `dppk:casNumber`, `dppk:ecNumber`, `dppk:iupacName`, `dppk:locationInProduct`).
+        *   **[PENDING] Task 1.1.b.2:** If safe, remove the old generic properties from `Product.jsonld` and related context files.
+    *   **[PENDING] Step 1.1.c: Context mapping for `substancesOfConcern` (Textile Scoping)**
+        *   In `dpp-textile-espr.context.jsonld`, define a scoped context for SoC properties to prevent overlap with generic components.
+        *   Map keys to strictly scoped URIs (e.g., `dppk:substanceName`, `dppk:substanceCasNumber`, `dppk:substanceConcentration`).
+    *   **[PENDING] Step 1.1.d: Context mapping for `fibreComposition` (Textile Scoping)**
+        *   In `dpp-textile-espr.context.jsonld`, define a scoped context for fibre properties.
+        *   Map keys to strictly scoped URIs (e.g., `dppk:fibreName`, `dppk:fibrePercentage`).
 *   **[COMPLETED] Step 1.2: Substances of Concern (SoC)**
     *   We will transition Textile (and Iron & Steel) from inline SoC objects to use `component.schema.json` (just like Battery does for `hazardousSubstances`).
 *   **[COMPLETED] Step 1.3: Update to Component Schema**
