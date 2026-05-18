@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/component.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/shared/component.schema.json",
     "title": "Component",
     "description": "A constituent part, material, or substance that is included in the main product.",
     "type": "object",

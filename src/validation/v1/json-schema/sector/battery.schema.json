@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/battery.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/sector/battery.schema.json",
     "title": "DPP for Batteries (Draft)",
     "description": "A conditional schema that applies if the DPP is for the battery sector, based on the draft Battery Regulation.",
     "if": {

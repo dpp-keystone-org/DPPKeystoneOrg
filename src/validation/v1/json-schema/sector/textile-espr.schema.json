@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/textile-espr.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/sector/textile-espr.schema.json",
     "title": "DPP for Textiles (ESPR Update Draft)",
     "description": "A conditional schema that applies if the DPP is for the textile sector following the new ESPR specification.",
     "if": {

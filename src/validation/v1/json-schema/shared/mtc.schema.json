@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/mtc.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/shared/mtc.schema.json",
     "title": "Material Test Certificate (MTC)",
     "description": "Validation schema for the Material Test Certificate parameters (e.g. EN 10204).",
     "type": "object",

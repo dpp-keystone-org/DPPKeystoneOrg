@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/general-product.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/shared/general-product.schema.json",
     "title": "General Product Module",
     "description": "General product information properties that are common across many sectors.",
     "type": "object",
