@@ -20,8 +20,25 @@
     "then": {
         "type": "object",
         "properties": {
+            "components": {
+                "type": "array",
+                "items": {
+                    "$ref": "component.schema.json"
+                }
+            },
+            "substancesOfConcern": {
+                "type": "array",
+                "items": {
+                    "$ref": "component.schema.json"
+                }
+            },
+            "fibreComposition": {
+                "type": "array",
+                "items": {
+                    "$ref": "component.schema.json"
+                }
+            }
         },
-        "required": [
-        ]
+        "required": []
     }
 }
