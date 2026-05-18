@@ -37,6 +37,18 @@
                 "items": {
                     "$ref": "component.schema.json"
                 }
+            },
+            "organicMaterialComposition": {
+                "type": "array",
+                "items": {
+                    "$ref": "component.schema.json"
+                }
+            },
+            "recycledMaterialComposition": {
+                "type": "array",
+                "items": {
+                    "$ref": "component.schema.json"
+                }
             }
         },
         "required": []

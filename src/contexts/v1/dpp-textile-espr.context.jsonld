@@ -2,7 +2,59 @@
     "@context": [
         "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
         {
-            "xsd": "http://www.w3.org/2001/XMLSchema#"
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
+            "substancesOfConcern": {
+                "@id": "dppk:substancesOfConcern",
+                "@container": "@set",
+                "@context": {
+                    "name": "dppk:componentName",
+                    "percentage": "dppk:componentPercentage",
+                    "uniqueProductIdentifier": "dppk:componentIdentifier",
+                    "casNumber": "dppk:componentCasNumber",
+                    "ecNumber": "dppk:componentEcNumber",
+                    "iupacName": "dppk:componentIupacName",
+                    "locationInProduct": "dppk:componentLocationInProduct"
+                }
+            },
+            "fibreComposition": {
+                "@id": "dppk:fibreComposition",
+                "@container": "@set",
+                "@context": {
+                    "name": "dppk:componentName",
+                    "percentage": "dppk:componentPercentage",
+                    "uniqueProductIdentifier": "dppk:componentIdentifier",
+                    "casNumber": "dppk:componentCasNumber",
+                    "ecNumber": "dppk:componentEcNumber",
+                    "iupacName": "dppk:componentIupacName",
+                    "locationInProduct": "dppk:componentLocationInProduct"
+                }
+            },
+            "organicMaterialComposition": {
+                "@id": "dppk:organicMaterialComposition",
+                "@container": "@set",
+                "@context": {
+                    "name": "dppk:componentName",
+                    "percentage": "dppk:componentPercentage",
+                    "uniqueProductIdentifier": "dppk:componentIdentifier",
+                    "casNumber": "dppk:componentCasNumber",
+                    "ecNumber": "dppk:componentEcNumber",
+                    "iupacName": "dppk:componentIupacName",
+                    "locationInProduct": "dppk:componentLocationInProduct"
+                }
+            },
+            "recycledMaterialComposition": {
+                "@id": "dppk:recycledMaterialComposition",
+                "@container": "@set",
+                "@context": {
+                    "name": "dppk:componentName",
+                    "percentage": "dppk:componentPercentage",
+                    "uniqueProductIdentifier": "dppk:componentIdentifier",
+                    "casNumber": "dppk:componentCasNumber",
+                    "ecNumber": "dppk:componentEcNumber",
+                    "iupacName": "dppk:componentIupacName",
+                    "locationInProduct": "dppk:componentLocationInProduct"
+                }
+            }
         }
     ]
 }
