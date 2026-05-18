@@ -15,9 +15,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[PENDING] Step 1.1: Component Specs**
     *   We will map the JRC "Component Specifications" requirement to a `components` array referencing `component.schema.json`.
     *   GTINs are perfectly supported here via the existing `uniqueProductIdentifier` (URI format).
-*   **[PENDING] Step 1.2: Substances of Concern (SoC)**
+*   **[COMPLETED] Step 1.2: Substances of Concern (SoC)**
     *   We will transition Textile (and Iron & Steel) from inline SoC objects to use `component.schema.json` (just like Battery does for `hazardousSubstances`).
-*   **[PENDING] Step 1.3: Update to Component Schema**
+*   **[COMPLETED] Step 1.3: Update to Component Schema**
     *   We will add optional `casNumber` and `location` fields to `component.schema.json` to fully support SoC requirements across all sectors.
 
 ### [PENDING] Step 2: Materials (Organic & Recycled Content)
