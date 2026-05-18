@@ -40,13 +40,6 @@
           { "@id": "unece:certificationEvidenceDocument" }
         ]
     },
-    {
-        "@id": "dppk:SubstanceOfConcern",
-        "@type": "rdfs:Class",
-        "rdfs:label": "Substance of Concern",
-        "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product."
-        // No direct equivalent in GS1/Schema.org.
-    },
 
     {
         "@id": "dppk:Packaging",
@@ -95,7 +88,7 @@
         "rdfs:label": "Substances of Concern",
         "rdfs:comment": "Relates the product to any substances of concern it contains.",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:SubstanceOfConcern" }
+        "rdfs:range": { "@id": "dppk:Component" }
     },
 
     {
@@ -145,52 +138,6 @@
         "rdfs:range": { "@id": "xsd:date" },
         "owl:equivalentProperty": { "@id": "gs1:certificationStartDate" }
     },
-
-    // --- Substances of Concern Details ---
-    // Note: 'name' and 'identifier' are inherited/mapped via Product.jsonld/Header.jsonld
-    {
-        "@id": "dppk:minValue",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Minimum Value",
-        "rdfs:comment": "The minimum concentration or amount of the substance present.",
-        "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "owl:equivalentProperty": { "@id": "schema:minValue" }
-    },
-    {
-        "@id": "dppk:maxValue",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Maximum Value",
-        "rdfs:comment": "The maximum concentration or amount of the substance present.",
-        "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "owl:equivalentProperty": { "@id": "schema:maxValue" }
-    },
-    {
-        "@id": "dppk:substanceName",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Substance Name",
-        "rdfs:comment": "The common name of the substance.",
-        "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "rdfs:range": { "@id": "xsd:string" }
-    },
-    {
-        "@id": "dppk:casNumber",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "CAS Number",
-        "rdfs:comment": "The Chemical Abstracts Service (CAS) registry number for the substance.",
-        "dppk:unit": "unitless",
-        "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "rdfs:range": { "@id": "xsd:string" }
-    },
-    {
-        "@id": "dppk:concentration",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Concentration",
-        "rdfs:comment": "The concentration of the substance in the product.",
-        "dppk:unit": "%",
-        "rdfs:domain": { "@id": "dppk:SubstanceOfConcern" },
-        "rdfs:range": { "@id": "xsd:double" }
-    },
-
 
 
     // --- Packaging Details ---

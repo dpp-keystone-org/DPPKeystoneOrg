@@ -169,45 +169,6 @@
         "schema:domainIncludes": { "@id": "dppk:Component" },
         "rdfs:range": { "@id": "xsd:string" }
     },
-    {
-        "@id": "dppk:locationInProduct",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Location in Product",
-        "rdfs:comment": "Specific physical location of the component or substance inside the parent assembly.",
-        "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:string" }
-    },
-    {
-        "@id": "dppk:casNumber",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [ { "@language": "en", "@value": "CAS Number" } ],
-        "rdfs:comment": [ { "@language": "en", "@value": "The Chemical Abstracts Service (CAS) registry number for the substance." } ],
-        "dppk:unit": "unitless",
-        "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" }
-    },
-    {
-        "@id": "dppk:ecNumber",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [ { "@language": "en", "@value": "EC Number" } ],
-        "rdfs:comment": [ { "@language": "en", "@value": "European Community number for chemicals." } ],
-        "dppk:unit": "unitless",
-        "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" }
-    },
-    {
-        "@id": "dppk:iupacName",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": [ { "@language": "en", "@value": "IUPAC Name" } ],
-        "rdfs:comment": [ { "@language": "en", "@value": "International Union of Pure and Applied Chemistry nomenclature." } ],
-        "dppk:unit": "unitless",
-        "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" }
-    },
-
 
     // ==================================================================
     // Properties (General Product Description)

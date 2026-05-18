@@ -160,13 +160,6 @@
     "contentType": "dppk:contentType",
     "language": "dppk:language",
 
-    // Substance Details
-    "minValue": "dppk:minValue",
-    "maxValue": "dppk:maxValue",
-    "substanceName": "dppk:substanceName",
-    "casNumber": "dppk:casNumber",
-    "concentration": { "@id": "dppk:concentration", "@type": "xsd:double" },
-
     "dateOfManufacture": {
       "@id": "dppk:dateOfManufacture",
       "@type": "xsd:date"
