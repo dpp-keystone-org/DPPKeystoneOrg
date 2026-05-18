@@ -20,7 +20,7 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
         *   This decouples generic JSON keys by mapping them to dedicated URIs (e.g., `dppk:componentName`, `dppk:componentPercentage`, `dppk:componentIdentifier`, `dppk:componentCasNumber`, `dppk:componentEcNumber`, `dppk:componentIupacName`, and `dppk:componentLocationInProduct`).
         *   **[PENDING] Task 1.1.b.1:** Search the project for usage of old generic properties (`dppk:percentage`, `dppk:casNumber`, `dppk:ecNumber`, `dppk:iupacName`, `dppk:locationInProduct`).
         *   **[PENDING] Task 1.1.b.2:** If safe, remove the old generic properties from `Product.jsonld` and related context files.
-        *   **[PENDING] Task 1.1.b.3:** Standardize Battery (`materialComposition`, `hazardousSubstances`) and Iron-Steel (`substancesOfConcern`) to use the new scoped `dppk:component*` terms.
+        *   **[COMPLETED] Task 1.1.b.3:** Standardize Battery (`materialComposition`, `hazardousSubstances`) and Iron-Steel (`substancesOfConcern`) to use the new scoped `dppk:component*` terms.
         *   **[PENDING] Task 1.1.b.4:** Deprecate and remove the redundant `dppk:SubstanceOfConcern` class from `Compliance.jsonld`.
     *   **[PENDING] Step 1.1.c: Context mapping for `substancesOfConcern` (Textile Scoping)**
         *   In `dpp-textile-espr.context.jsonld`, define a scoped context for SoC properties to prevent overlap with generic components.
