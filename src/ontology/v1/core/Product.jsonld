@@ -170,15 +170,6 @@
         "rdfs:range": { "@id": "xsd:string" }
     },
     {
-        "@id": "dppk:percentage",
-        "@type": "owl:DatatypeProperty",
-        "rdfs:label": "Percentage",
-        "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
-        "dppk:unit": "%",
-        "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:double" }
-    },
-    {
         "@id": "dppk:locationInProduct",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Location in Product",
