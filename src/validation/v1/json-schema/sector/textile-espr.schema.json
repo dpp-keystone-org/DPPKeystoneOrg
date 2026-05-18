@@ -23,31 +23,31 @@
             "components": {
                 "type": "array",
                 "items": {
-                    "$ref": "component.schema.json"
+                    "$ref": "../shared/component.schema.json"
                 }
             },
             "substancesOfConcern": {
                 "type": "array",
                 "items": {
-                    "$ref": "component.schema.json"
+                    "$ref": "../shared/component.schema.json"
                 }
             },
             "fibreComposition": {
                 "type": "array",
                 "items": {
-                    "$ref": "component.schema.json"
+                    "$ref": "../shared/component.schema.json"
                 }
             },
             "organicMaterialComposition": {
                 "type": "array",
                 "items": {
-                    "$ref": "component.schema.json"
+                    "$ref": "../shared/component.schema.json"
                 }
             },
             "recycledMaterialComposition": {
                 "type": "array",
                 "items": {
-                    "$ref": "component.schema.json"
+                    "$ref": "../shared/component.schema.json"
                 }
             }
         },

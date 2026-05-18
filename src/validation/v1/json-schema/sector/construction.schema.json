@@ -28,21 +28,21 @@
                 "format": "date"
             },
             "instructionsForUse": {
-                "$ref": "related-resource.schema.json"
+                "$ref": "../shared/related-resource.schema.json"
             },
             "safetyDataSheet": {
-                "$ref": "related-resource.schema.json"
+                "$ref": "../shared/related-resource.schema.json"
             },
             "notifiedBody": {
-                "$ref": "organization.schema.json"
+                "$ref": "../shared/organization.schema.json"
             },
             "technicalAssessmentBody": {
-                "$ref": "organization.schema.json"
+                "$ref": "../shared/organization.schema.json"
             },
             "validationReports": {
                 "type": "array",
                 "items": {
-                    "$ref": "related-resource.schema.json"
+                    "$ref": "../shared/related-resource.schema.json"
                 }
             },
             "harmonisedStandardReference": {
@@ -50,25 +50,25 @@
                 "format": "uri-reference"
             },
             "europeanAssessmentDocument": {
-                "$ref": "related-resource.schema.json"
+                "$ref": "../shared/related-resource.schema.json"
             },
             "dopc": {
                 "oneOf": [
                     {
-                        "$ref": "dopc.schema.json"
+                        "$ref": "../shared/dopc.schema.json"
                     },
                     {
-                        "$ref": "related-resource.schema.json"
+                        "$ref": "../shared/related-resource.schema.json"
                     }
                 ]
             },
             "epd": {
                 "oneOf": [
                     {
-                        "$ref": "epd.schema.json"
+                        "$ref": "../shared/epd.schema.json"
                     },
                     {
-                        "$ref": "related-resource.schema.json"
+                        "$ref": "../shared/related-resource.schema.json"
                     }
                 ]
             }
