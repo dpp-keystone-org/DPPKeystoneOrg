@@ -108,11 +108,16 @@
     // BOM and Materials
     "components": {
       "@id": "dppk:components",
-      "@container": "@set"
-    },
-    "percentage": {
-      "@id": "dppk:percentage",
-      "@type": "xsd:double"
+      "@container": "@set",
+      "@context": {
+        "name": "dppk:componentName",
+        "percentage": "dppk:componentPercentage",
+        "uniqueProductIdentifier": "dppk:componentIdentifier",
+        "casNumber": "dppk:componentCasNumber",
+        "ecNumber": "dppk:componentEcNumber",
+        "iupacName": "dppk:componentIupacName",
+        "locationInProduct": "dppk:componentLocationInProduct"
+      }
     },
     "recycledContentPercentage": {
       "@id": "dppk:recycledContentPercentage",
