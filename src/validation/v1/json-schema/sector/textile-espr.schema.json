@@ -49,6 +49,19 @@
                 "items": {
                     "$ref": "../shared/component.schema.json"
                 }
+            },
+            "textileCertifications": {
+                "type": "array",
+                "items": {
+                    "oneOf": [
+                        {
+                            "$ref": "../shared/certification.schema.json"
+                        },
+                        {
+                            "$ref": "../shared/related-resource.schema.json"
+                        }
+                    ]
+                }
             }
         },
         "required": []
