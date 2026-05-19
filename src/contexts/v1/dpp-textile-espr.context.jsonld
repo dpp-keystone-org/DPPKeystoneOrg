@@ -78,6 +78,32 @@
                     "certificationBodyRole": "dppk:certificationBodyRole",
                     "document": "dppk:documents"
                 }
+            },
+            "safeUseInstructions": {
+                "@id": "dppk:safeUseInstructions",
+                "@container": "@set",
+                "@context": {
+                    "resourceTitle": "dppk:resourceTitle",
+                    "contentType": "dppk:contentType",
+                    "language": "dppk:language",
+                    "url": {
+                        "@id": "dppk:url",
+                        "@type": "xsd:anyURI"
+                    }
+                }
+            },
+            "endOfLifeInstructions": {
+                "@id": "dppk:endOfLifeInstructions",
+                "@container": "@set",
+                "@context": {
+                    "resourceTitle": "dppk:resourceTitle",
+                    "contentType": "dppk:contentType",
+                    "language": "dppk:language",
+                    "url": {
+                        "@id": "dppk:url",
+                        "@type": "xsd:anyURI"
+                    }
+                }
             }
         }
     ]

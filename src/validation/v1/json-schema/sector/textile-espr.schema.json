@@ -62,6 +62,18 @@
                         }
                     ]
                 }
+            },
+            "safeUseInstructions": {
+                "type": "array",
+                "items": {
+                    "$ref": "../shared/related-resource.schema.json"
+                }
+            },
+            "endOfLifeInstructions": {
+                "type": "array",
+                "items": {
+                    "$ref": "../shared/related-resource.schema.json"
+                }
             }
         },
         "required": []
