@@ -29,7 +29,7 @@ describe('DPP Wizard - Schema Loader', () => {
         });
 
         const schema = await loadSchema('simple');
-        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/simple.schema.json');
+        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/sector/simple.schema.json');
         expect(schema).toEqual(mockSchema);
     });
 
