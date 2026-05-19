@@ -80,6 +80,15 @@
                 "items": {
                     "$ref": "../shared/related-resource.schema.json"
                 }
+            },
+            "warrantyDuration": {
+                "type": "string"
+            },
+            "repairServices": {
+                "type": "array",
+                "items": {
+                    "$ref": "../shared/organization.schema.json"
+                }
             }
         },
         "required": []

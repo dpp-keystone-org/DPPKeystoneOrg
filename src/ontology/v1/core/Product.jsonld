@@ -496,6 +496,22 @@
             { "@id": "gs1:measurementMethod" },
             { "@id": "schema:measurementMethod" }
         ]
+    },
+    {
+        "@id": "dppk:warrantyDuration",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Warranty Duration",
+        "rdfs:comment": "The duration of the commercial warranty provided with the product.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": "xsd:string"
+    },
+    {
+        "@id": "dppk:repairServices",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Repair Services",
+        "rdfs:comment": "Contact information for authorized repair services.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:Organization" }
     }
   ]
 }

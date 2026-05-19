@@ -49,12 +49,12 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   Plan: We will use the robust `RelatedResource` pattern for complex document links.
 *   **[PENDING] Step 4.1: Safe Use & Disassembly (EoL)**
     *   Add `safeUseInstructions` and `endOfLifeInstructions` to Textile as `RelatedResource`s.
-*   **[PENDING] Step 4.2: Repair Instructions**
+*   **[COMPLETED] Step 4.2: Repair Instructions**
     *   Add `repairInstructions` as a `RelatedResource`.
-*   **[PENDING] Step 4.3: Repair Contact**
-    *   Add `contactOfRepairServices` (mapping to our `Organization` schema).
-*   **[PENDING] Step 4.4: Warranty**
-    *   Add `warrantyDuration` (using our QuantitativeValue pattern for months/years).
+*   **[COMPLETED] Step 4.3: Repair Services**
+    *   Add `repairServices` (mapping to our `Organization` schema).
+*   **[COMPLETED] Step 4.4: Warranty**
+    *   Add `warrantyDuration` (using string type for flexibility).
 
 ### [PENDING] Step 5: ESPR Categorization (The Content Spec ID Approach)
 *   Plan: Rather than adding an `esprCategory` data field, we will solve this at the architectural level.

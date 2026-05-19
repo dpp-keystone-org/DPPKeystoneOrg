@@ -117,6 +117,14 @@
                         "@type": "xsd:anyURI"
                     }
                 }
+            },
+            "warrantyDuration": {
+                "@id": "dppk:warrantyDuration",
+                "@type": "xsd:string"
+            },
+            "repairServices": {
+                "@id": "dppk:repairServices",
+                "@container": "@set"
             }
         }
     ]
