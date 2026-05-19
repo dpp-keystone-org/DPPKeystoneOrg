@@ -74,6 +74,12 @@
                 "items": {
                     "$ref": "../shared/related-resource.schema.json"
                 }
+            },
+            "repairInstructions": {
+                "type": "array",
+                "items": {
+                    "$ref": "../shared/related-resource.schema.json"
+                }
             }
         },
         "required": []

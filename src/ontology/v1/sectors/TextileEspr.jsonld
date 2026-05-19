@@ -28,22 +28,6 @@
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:Certification" },
             "rdfs:subPropertyOf": { "@id": "schema:hasCertification" }
-        },
-        {
-            "@id": "dppk:safeUseInstructions",
-            "@type": "owl:ObjectProperty",
-            "rdfs:label": { "@language": "en", "@value": "Safe Use Instructions" },
-            "rdfs:comment": { "@language": "en", "@value": "Instructions and guidelines for the safe use and maintenance of the product." },
-            "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "dppk:RelatedResource" }
-        },
-        {
-            "@id": "dppk:endOfLifeInstructions",
-            "@type": "owl:ObjectProperty",
-            "rdfs:label": { "@language": "en", "@value": "End of Life Instructions" },
-            "rdfs:comment": { "@language": "en", "@value": "Instructions for the proper disassembly, recycling, or disposal of the product at the end of its life." },
-            "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "dppk:RelatedResource" }
         }
     ]
 }

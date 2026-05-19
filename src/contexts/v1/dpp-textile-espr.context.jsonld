@@ -104,6 +104,19 @@
                         "@type": "xsd:anyURI"
                     }
                 }
+            },
+            "repairInstructions": {
+                "@id": "dppk:repairInstructions",
+                "@container": "@set",
+                "@context": {
+                    "resourceTitle": "dppk:resourceTitle",
+                    "contentType": "dppk:contentType",
+                    "language": "dppk:language",
+                    "url": {
+                        "@id": "dppk:url",
+                        "@type": "xsd:anyURI"
+                    }
+                }
             }
         }
     ]
