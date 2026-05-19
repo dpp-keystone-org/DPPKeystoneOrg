@@ -1,21 +1,17 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Certification",
-    "description": "A confirmation that the product meets the requirements of a specific standard or regulation.",
     "type": "object",
     "properties": {
         "name": {
-            "type": "string",
-            "description": "The name of the certification (e.g., 'OEKO-TEX Standard 100')."
+            "type": "string"
         },
         "identifier": {
-            "type": "string",
-            "description": "The unique certificate number or ID."
+            "type": "string"
         },
         "url": {
             "type": "string",
-            "format": "uri",
-            "description": "A web-page representation or registry link (e.g., EPREL cert page)."
+            "format": "uri"
         },
         "certificationBodyName": {
             "type": "string"
@@ -24,8 +20,7 @@
             "type": "string"
         },
         "certificationBodyRole": {
-            "type": "string",
-            "description": "The role or capacity of the certifying body."
+            "type": "string"
         },
         "certificationStartDate": {
             "type": "string",
@@ -36,8 +31,7 @@
             "format": "date"
         },
         "document": {
-            "$ref": "related-resource.schema.json",
-            "description": "An optional digital document (like a PDF) of the certification."
+            "$ref": "related-resource.schema.json"
         }
     }
 }
