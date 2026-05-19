@@ -461,14 +461,15 @@ describe('DPP Wizard - Full Integration Flow', () => {
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
-        loadSchemaMock.mockImplementation((sector) => {
-            if (sector === 'general-product') return Promise.resolve(generalProductSchema);
+        loadSchemaMock.mockImplementation((sector, schemaType) => {
+            if (sector === 'general-product' && schemaType === 'shared') return Promise.resolve(generalProductSchema);
             return Promise.resolve({ type: 'object', properties: {} }); // Default
         });
 
         // 3. Inject button for General Product
         const btn = document.createElement('button');
         btn.dataset.sector = 'general-product';
+        btn.dataset.schemaType = 'shared';
         btn.className = 'sector-btn';
         document.body.appendChild(btn);
 

@@ -1276,7 +1276,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
             if (customType && schemaLoader) {
                 try {
                     // Load the schema for the selected complex type
-                    const schema = await schemaLoader(customType.schemaName);
+                    const schema = await schemaLoader(customType.schemaName, 'shared');
                     
                     if (schema && schema.properties) {
                         const container = row.querySelector('.voluntary-group-container');

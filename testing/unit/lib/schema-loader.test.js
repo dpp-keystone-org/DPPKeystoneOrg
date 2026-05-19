@@ -14,7 +14,7 @@ describe('DPP Wizard - Schema Loader', () => {
         clearSchemaCache();
     });
 
-    it('should load a simple schema without refs', async () => {
+    it('should load a sector schema', async () => {
         const mockSchema = {
             "title": "Simple Schema",
             "type": "object",
@@ -28,9 +28,25 @@ describe('DPP Wizard - Schema Loader', () => {
             json: async () => mockSchema,
         });
 
-        const schema = await loadSchema('simple');
+        const schema = await loadSchema('simple', 'sector');
         expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/sector/simple.schema.json');
         expect(schema).toEqual(mockSchema);
+    });
+
+    it('should load a header schema', async () => {
+        fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
+        await loadSchema('dpp', 'header');
+        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/dpp.schema.json');
+    });
+
+    it('should load a shared schema', async () => {
+        fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
+        await loadSchema('organization', 'shared');
+        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/shared/organization.schema.json');
+    });
+
+    it('should throw an error for an unknown schema type', async () => {
+        await expect(loadSchema('simple', 'unknown')).rejects.toThrow("Unrecognized schema type: 'unknown'");
     });
 
     it('should resolve a local $ref', async () => {
@@ -67,7 +83,7 @@ describe('DPP Wizard - Schema Loader', () => {
             return Promise.reject(new Error(`Unexpected fetch url: ${url}`));
         });
 
-        const schema = await loadSchema('main');
+        const schema = await loadSchema('main', 'sector');
 
         expect(schema.properties.address).toEqual(addressSchema);
     });
@@ -93,7 +109,7 @@ describe('DPP Wizard - Schema Loader', () => {
             return Promise.reject(new Error(`Unexpected fetch url: ${url}`));
         });
 
-        const schema = await loadSchema('root');
+        const schema = await loadSchema('root', 'sector');
 
         expect(schema.properties.level1.properties.level2).toEqual(level2Schema);
     });
@@ -125,7 +141,7 @@ describe('DPP Wizard - Schema Loader', () => {
             return Promise.reject(new Error(`Unexpected fetch url: ${url}`));
         });
 
-        const schema = await loadSchema('root');
+        const schema = await loadSchema('root', 'sector');
 
         // The resolved schema should have properties from both parts of the allOf
         expect(schema.properties).toBeDefined();
