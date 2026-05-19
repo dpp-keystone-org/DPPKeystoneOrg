@@ -36,10 +36,12 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[COMPLETED] Step 2.1: Add Organic & Recycled Components**
     *   We will add `organicMaterialComposition` and `recycledMaterialComposition` arrays to the Textile schema, both referencing `component.schema.json`.
 
-### [PENDING] Step 3: Certifications
+### [COMPLETED] Step 3: Certifications
 *   Plan: Instead of a generic `RelatedResource`, we will define a specific property.
 *   **[PENDING] Step 3.1: Define textileCertifications**
     *   We will define `textileCertifications` to inherit from/align with GS1/Schema.org certification models to ensure direct mapping.
+*   **[PENDING] Step 3.2: Clean up Schema Descriptions**
+    *   *Note: Remove the temporary `description` fields from `certification.schema.json` once the terms are formally defined and documented in the ontology.*
 
 ### [PENDING] Step 4: Instructions & Repair
 *   Plan: We will use the robust `RelatedResource` pattern for complex document links.
@@ -76,12 +78,16 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   Fields like `apparelSize`, `color`, and `brand` are already supported by our `general-product` architecture.
 *   **[PENDING] Step 8.2: Animal Origin Label**
     *   `animalOriginNonTextile` will be added as a simple boolean (`true`/`false`) as required by the EU Textile Labelling Regulation.
+*   **[PENDING] Step 8.3: Ontology Equivalency Sweep**
+    *   Make an explicit sweep to mark `schema.org`, `gs1.org`, and UNECE equivalencies (e.g., using `skos:exactMatch` or `owl:sameAs`) wherever appropriate for any new ontology terms introduced in the previous steps.
 
 ### [PENDING] Step 9: Final Review & Verification
-*   Plan: Explicitly review the finished schema and ontology context to ensure complete alignment with the source material.
+*   Plan: Explicitly review the finished schema and ontology context to ensure complete alignment with the source material, and add integration tests.
 *   **[PENDING] Step 9.1: Source Material Verification**
     *   Cross-reference the final JSON schema and JSON-LD context against the original JRC Ecodesign slides and industry templates.
     *   Confirm that every required term is fittingly represented, mapped, and typed.
+*   **[PENDING] Step 9.2: Test Suite Coverage**
+    *   Add Playwright and wizard flow integration test scenarios specifically covering the new ESPR textile schema elements to prevent future regressions.
 
 ### [PENDING] Step 10: Validation and Outputs (Schema.org Adapter & Examples)
 *   Plan: Ensure that the new ESPR structures are correctly translated by the transformation engine and backed by concrete examples.

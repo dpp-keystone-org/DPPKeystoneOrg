@@ -59,24 +59,12 @@
         "additionalCertifications": {
             "type": "array",
             "items": {
-                "allOf": [
+                "oneOf": [
                     {
-                        "$ref": "related-resource.schema.json"
+                        "$ref": "certification.schema.json"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "certificationBodyName": {
-                                "type": "string"
-                            },
-                            "certificationBodyId": {
-                                "type": "string"
-                            },
-                            "certificationStartDate": {
-                                "type": "string",
-                                "format": "date"
-                            }
-                        }
+                        "$ref": "related-resource.schema.json"
                     }
                 ]
             }

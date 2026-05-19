@@ -54,6 +54,30 @@
                     "iupacName": "dppk:componentIupacName",
                     "locationInProduct": "dppk:componentLocationInProduct"
                 }
+            },
+            "textileCertifications": {
+                "@id": "dppk:textileCertifications",
+                "@container": "@set",
+                "@context": {
+                    "name": "dppk:certificationName",
+                    "identifier": "dppk:certificationId",
+                    "url": {
+                        "@id": "dppk:certificationUrl",
+                        "@type": "xsd:anyURI"
+                    },
+                    "certificationBodyName": "dppk:certificationBodyName",
+                    "certificationBodyId": "dppk:certificationBodyId",
+                    "certificationStartDate": {
+                        "@id": "dppk:certificationStartDate",
+                        "@type": "xsd:date"
+                    },
+                    "certificationEndDate": {
+                        "@id": "dppk:certificationEndDate",
+                        "@type": "xsd:date"
+                    },
+                    "certificationBodyRole": "dppk:certificationBodyRole",
+                    "document": "dppk:documents"
+                }
             }
         }
     ]
