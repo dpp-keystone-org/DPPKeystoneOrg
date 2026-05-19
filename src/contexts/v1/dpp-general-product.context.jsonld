@@ -37,10 +37,7 @@
       "@id": "dppk:image",
       "@container": "@set"
     },
-    "components": {
-      "@id": "dppk:components",
-      "@container": "@list"
-    },
+
     "additionalCertifications": {
       "@id": "dppk:additionalCertifications",
       "@container": "@set"
