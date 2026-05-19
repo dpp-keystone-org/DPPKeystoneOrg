@@ -94,41 +94,49 @@ ${classLinks}
  * @returns {Promise<{dppList: string, contentSpecList: string, auxList: string}>}
  */
 async function generateSchemaLists(dirPath, baseHref) {
-  const entries = await fs.readdir(dirPath, { withFileTypes: true });
   const dppSchemas = [];
   const contentSpecSchemas = [];
   const auxSchemas = [];
 
-  for (const entry of entries) {
-    if (entry.isFile() && entry.name.endsWith('.json')) {
-      const fullPath = path.join(dirPath, entry.name);
-      try {
-        const content = await fs.readFile(fullPath, 'utf-8');
-        const json = JSON.parse(content);
-        const fileName = entry.name;
-        // Format link text: "battery.schema.json" -> "Battery Schema"
-        // But the user requested "named links". Let's format nicely.
-        // removing .schema.json and making Title Case
+  const processFile = (subDir, fileName, listArray) => {
         const linkText = fileName
             .replace('.schema.json', '')
             .replace(/-/g, ' ')
             .replace(/\b\w/g, l => l.toUpperCase()) + ' Schema';
             
-        const link = `<a href="${baseHref}${fileName}">${linkText}</a>`;
+        const link = `<a href="${baseHref}${subDir ? subDir + '/' : ''}${fileName}">${linkText}</a>`;
         const listItem = `                            <li>${link}</li>`;
+        listArray.push(listItem);
+  };
 
-        if (fileName === 'dpp.schema.json') {
-          dppSchemas.push(listItem);
-        } else if (json.if && json.if.properties && json.if.properties.contentSpecificationIds) {
-          contentSpecSchemas.push(listItem);
-        } else {
-          auxSchemas.push(listItem);
-        }
-      } catch (err) {
-        console.warn(`Skipping schema file ${entry.name} due to error: ${err.message}`);
+  try {
+      const rootEntries = await fs.readdir(dirPath, { withFileTypes: true });
+      for (const entry of rootEntries) {
+          if (entry.isFile() && entry.name.endsWith('.json')) {
+              processFile('', entry.name, dppSchemas);
+          }
       }
-    }
-  }
+  } catch (e) {}
+
+  try {
+      const sectorPath = path.join(dirPath, 'sector');
+      const sectorEntries = await fs.readdir(sectorPath, { withFileTypes: true });
+      for (const entry of sectorEntries) {
+          if (entry.isFile() && entry.name.endsWith('.json')) {
+              processFile('sector', entry.name, contentSpecSchemas);
+          }
+      }
+  } catch (e) {}
+
+  try {
+      const sharedPath = path.join(dirPath, 'shared');
+      const sharedEntries = await fs.readdir(sharedPath, { withFileTypes: true });
+      for (const entry of sharedEntries) {
+          if (entry.isFile() && entry.name.endsWith('.json')) {
+              processFile('shared', entry.name, auxSchemas);
+          }
+      }
+  } catch (e) {}
 
   // Sort lists alphabetically
   dppSchemas.sort();
