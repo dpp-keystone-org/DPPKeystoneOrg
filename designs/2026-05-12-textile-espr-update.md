@@ -82,3 +82,10 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[PENDING] Step 9.1: Source Material Verification**
     *   Cross-reference the final JSON schema and JSON-LD context against the original JRC Ecodesign slides and industry templates.
     *   Confirm that every required term is fittingly represented, mapped, and typed.
+
+### [PENDING] Step 10: Validation and Outputs (Schema.org Adapter & Examples)
+*   Plan: Ensure that the new ESPR structures are correctly translated by the transformation engine and backed by concrete examples.
+*   **[PENDING] Step 10.1: Update schema.org adapter**
+    *   Update `src/util/js/common/transformation/profiles/schema.org.js` to extract and map the new ESPR textile attributes (`textileCertifications`, `safeUseInstructions`, `organicMaterialComposition`, `recycledMaterialComposition`, etc.) into standard schema.org types.
+*   **[PENDING] Step 10.2: Create/Update Textile ESPR Examples**
+    *   Create a new comprehensive `textile-espr-dpp-v1.json` (or update an existing textile example) to validate the new JSON validation schema, semantic expansion, and the schema.org output.
