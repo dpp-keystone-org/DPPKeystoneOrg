@@ -38,10 +38,12 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 
 ### [COMPLETED] Step 3: Certifications
 *   Plan: Instead of a generic `RelatedResource`, we will define a specific property.
-*   **[PENDING] Step 3.1: Define textileCertifications**
+*   **[COMPLETED] Step 3.1: Define textileCertifications**
     *   We will define `textileCertifications` to inherit from/align with GS1/Schema.org certification models to ensure direct mapping.
-*   **[PENDING] Step 3.2: Clean up Schema Descriptions**
+*   **[COMPLETED] Step 3.2: Clean up Schema Descriptions**
     *   *Note: Remove the temporary `description` fields from `certification.schema.json` once the terms are formally defined and documented in the ontology.*
+*   **[COMPLETED] Step 3.3: Update any breakages**
+    *   Address any test failures or integration issues caused by the certification schema updates.
 
 ### [PENDING] Step 4: Instructions & Repair
 *   Plan: We will use the robust `RelatedResource` pattern for complex document links.

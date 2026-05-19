@@ -63,8 +63,8 @@ export function parseOntologyMetadata(content) {
         ontologyInfo = data;
     }
 
-    const title = ontologyInfo?.['dcterms:title'] || 'No title found';
-    const description = ontologyInfo?.['dcterms:description'] || 'No description found.';
+    const title = getDisplayLabel(ontologyInfo?.['dcterms:title'], 'No title found');
+    const description = getDisplayLabel(ontologyInfo?.['dcterms:description'], 'No description found.');
 
     const properties = graph
         .filter(p => p['@type'] && (p['@type'].includes('owl:ObjectProperty') || p['@type'].includes('owl:DatatypeProperty')))

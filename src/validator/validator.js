@@ -31,7 +31,8 @@ const COMMON_SCHEMAS = [
     'shared/related-resource.schema.json',
     'shared/general-product.schema.json',
     'shared/component.schema.json',
-    'shared/mtc.schema.json'
+    'shared/mtc.schema.json',
+    'shared/certification.schema.json'
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
