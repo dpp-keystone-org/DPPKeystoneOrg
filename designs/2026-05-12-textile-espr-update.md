@@ -45,9 +45,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[COMPLETED] Step 3.3: Update any breakages**
     *   Address any test failures or integration issues caused by the certification schema updates.
 
-### [PENDING] Step 4: Instructions & Repair
+### [COMPLETED] Step 4: Instructions & Repair
 *   Plan: We will use the robust `RelatedResource` pattern for complex document links.
-*   **[PENDING] Step 4.1: Safe Use & Disassembly (EoL)**
+*   **[COMPLETED] Step 4.1: Safe Use & Disassembly (EoL)**
     *   Add `safeUseInstructions` and `endOfLifeInstructions` to Textile as `RelatedResource`s.
 *   **[COMPLETED] Step 4.2: Repair Instructions**
     *   Add `repairInstructions` as a `RelatedResource`.
@@ -56,22 +56,22 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[COMPLETED] Step 4.4: Warranty**
     *   Add `warrantyDuration` (using string type for flexibility).
 
-### [PENDING] Step 5: ESPR Categorization (The Content Spec ID Approach)
+### [COMPLETED] Step 5: ESPR Categorization (The Content Spec ID Approach)
 *   Plan: Rather than adding an `esprCategory` data field, we will solve this at the architectural level.
-*   **[PENDING] Step 5.1: Introduce new Content Spec ID**
+*   **[COMPLETED] Step 5.1: Introduce new Content Spec ID**
     *   Introduce `draft_textile_espr_specification_id`. This allows the DPP to clearly declare it is following the new ESPR rules alongside or instead of legacy textile rules.
 
-### [PENDING] Step 6: Environmental Metrics (Carbon Footprint)
+### [COMPLETED] Step 6: Environmental Metrics (Carbon Footprint)
 *   Plan: We will add two straightforward fields to accommodate the JRC footprint requirements without over-engineering them.
-*   **[PENDING] Step 6.1: Add Carbon Footprint Fields**
-    *   `productCarbonFootprint` (Absolute value object with value/unit).
+*   **[COMPLETED] Step 6.1: Add Carbon Footprint Fields**
+    *   `carbonFootprint` (Absolute value object with value/unit).
     *   `carbonFootprintBenchmarkPercentage` (A simple numeric percentage field representing the delta against the benchmark).
 
-### [PENDING] Step 7: Scores & Physical Tests
+### [COMPLETED] Step 7: Scores & Physical Tests
 *   Plan: The new ESPR high-level scores and tests will live alongside our existing granular ISO tests.
-*   **[PENDING] Step 7.1: Add Scores**
+*   **[COMPLETED] Step 7.1: Add Scores**
     *   Add `robustnessScore` & `recyclabilityScore` (0-10 numeric scale).
-*   **[PENDING] Step 7.2: Add Physical Tests**
+*   **[COMPLETED] Step 7.2: Add Physical Tests**
     *   Add `spirality` (%), `dimensionalChange` (%), and `visualInspection` (pass/fail or test result string).
 
 ### [PENDING] Step 8: GS1 Apparel Standards & Labelling

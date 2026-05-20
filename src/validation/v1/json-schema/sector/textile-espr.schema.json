@@ -89,6 +89,31 @@
                 "items": {
                     "$ref": "../shared/organization.schema.json"
                 }
+            },
+            "carbonFootprint": {
+                "type": "number"
+            },
+            "carbonFootprintBenchmarkPercentage": {
+                "type": "number"
+            },
+            "robustnessScore": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+            },
+            "recyclabilityScore": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+            },
+            "spirality": {
+                "type": "number"
+            },
+            "dimensionalChange": {
+                "type": "number"
+            },
+            "visualInspection": {
+                "type": "string"
             }
         },
         "required": []

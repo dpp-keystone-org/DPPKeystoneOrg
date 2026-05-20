@@ -28,6 +28,66 @@
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:Certification" },
             "rdfs:subPropertyOf": { "@id": "schema:hasCertification" }
+        },
+        {
+            "@id": "dppk:carbonFootprint",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Carbon Footprint" },
+            "rdfs:comment": { "@language": "en", "@value": "The carbon footprint of the product." },
+            "dppk:unit": "kg CO2 eq",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:carbonFootprintBenchmarkPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Carbon Footprint Benchmark Percentage" },
+            "rdfs:comment": { "@language": "en", "@value": "The product's carbon footprint performance compared to the established benchmark, expressed as a percentage." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:robustnessScore",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Robustness Score" },
+            "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's robustness (typically 0-10 scale)." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:recyclabilityScore",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Recyclability Score" },
+            "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's recyclability (typically 0-10 scale)." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:spirality",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Spirality" },
+            "rdfs:comment": { "@language": "en", "@value": "The measured spirality of the textile product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:dimensionalChange",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Dimensional Change" },
+            "rdfs:comment": { "@language": "en", "@value": "The dimensional change (shrinkage or expansion) after testing." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:visualInspection",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Visual Inspection Result" },
+            "rdfs:comment": { "@language": "en", "@value": "The result of the visual inspection (e.g. Pass/Fail or notes)." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:string" }
         }
     ]
 }

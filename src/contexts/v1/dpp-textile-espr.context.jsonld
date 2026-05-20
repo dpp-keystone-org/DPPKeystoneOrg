@@ -125,6 +125,34 @@
             "repairServices": {
                 "@id": "dppk:repairServices",
                 "@container": "@set"
+            },
+            "carbonFootprint": {
+                "@id": "dppk:carbonFootprint",
+                "@type": "xsd:double"
+            },
+            "carbonFootprintBenchmarkPercentage": {
+                "@id": "dppk:carbonFootprintBenchmarkPercentage",
+                "@type": "xsd:double"
+            },
+            "robustnessScore": {
+                "@id": "dppk:robustnessScore",
+                "@type": "xsd:double"
+            },
+            "recyclabilityScore": {
+                "@id": "dppk:recyclabilityScore",
+                "@type": "xsd:double"
+            },
+            "spirality": {
+                "@id": "dppk:spirality",
+                "@type": "xsd:double"
+            },
+            "dimensionalChange": {
+                "@id": "dppk:dimensionalChange",
+                "@type": "xsd:double"
+            },
+            "visualInspection": {
+                "@id": "dppk:visualInspection",
+                "@type": "xsd:string"
             }
         }
     ]
