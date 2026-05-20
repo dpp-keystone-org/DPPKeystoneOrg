@@ -21,6 +21,101 @@
     ],
     "@graph": [
         {
+            "@id": "dppk:pefcrCategory",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "PEFCR Category" },
+            "rdfs:comment": { "@language": "en", "@value": "The Product Environmental Footprint Category Rules (PEFCR) category to which the product belongs." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:PefcrCategoryValue" }
+        },
+        {
+            "@id": "dppk:PefcrCategoryValue",
+            "@type": "rdfs:Class",
+            "rdfs:label": { "@language": "en", "@value": "PEFCR Category Value" },
+            "rdfs:comment": { "@language": "en", "@value": "An enumeration of the allowed PEFCR categories for apparel and footwear." },
+            "rdfs:subClassOf": { "@id": "rdfs:Resource" },
+            "owl:oneOf": [
+                { "@id": "dppk:PefcrTShirts" },
+                { "@id": "dppk:PefcrShirtsAndBlouses" },
+                { "@id": "dppk:PefcrSweatersAndMidlayers" },
+                { "@id": "dppk:PefcrJacketsAndCoats" },
+                { "@id": "dppk:PefcrPantsAndShorts" },
+                { "@id": "dppk:PefcrDressesSkirtsAndJumpsuits" },
+                { "@id": "dppk:PefcrLeggingsStockingsTightsAndSocks" },
+                { "@id": "dppk:PefcrUnderwear" },
+                { "@id": "dppk:PefcrSwimwear" },
+                { "@id": "dppk:PefcrApparelAccessories" },
+                { "@id": "dppk:PefcrOpenToedShoes" },
+                { "@id": "dppk:PefcrClosedToedShoes" },
+                { "@id": "dppk:PefcrBoots" }
+            ]
+        },
+        {
+            "@id": "dppk:PefcrTShirts",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "T-shirts" }
+        },
+        {
+            "@id": "dppk:PefcrShirtsAndBlouses",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Shirts and blouses" }
+        },
+        {
+            "@id": "dppk:PefcrSweatersAndMidlayers",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Sweaters and midlayers" }
+        },
+        {
+            "@id": "dppk:PefcrJacketsAndCoats",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Jackets and coats" }
+        },
+        {
+            "@id": "dppk:PefcrPantsAndShorts",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Pants and shorts" }
+        },
+        {
+            "@id": "dppk:PefcrDressesSkirtsAndJumpsuits",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Dresses, skirts and jumpsuits" }
+        },
+        {
+            "@id": "dppk:PefcrLeggingsStockingsTightsAndSocks",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Leggings, stockings, tights and socks" }
+        },
+        {
+            "@id": "dppk:PefcrUnderwear",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Underwear" }
+        },
+        {
+            "@id": "dppk:PefcrSwimwear",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Swimwear" }
+        },
+        {
+            "@id": "dppk:PefcrApparelAccessories",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Apparel Accessories" }
+        },
+        {
+            "@id": "dppk:PefcrOpenToedShoes",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Open-toed shoes" }
+        },
+        {
+            "@id": "dppk:PefcrClosedToedShoes",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Closed-toed shoes" }
+        },
+        {
+            "@id": "dppk:PefcrBoots",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Boots" }
+        },
+        {
             "@id": "dppk:textileCertifications",
             "@type": "owl:ObjectProperty",
             "rdfs:label": { "@language": "en", "@value": "Textile ESPR Conformity Certifications" },
