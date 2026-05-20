@@ -125,7 +125,7 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   so that our ESPR schema becomes a true, complete superset of the legacy schema?
     6.  **ESPR Discrepancies to Correct (Action Items):**
     *   [COMPLETED] Design and add `pefcrCategory`.
-    *   [PENDING] Add `manufacturerInfo` (map to Organization in the context).
+    *   [COMPLETED] Add `manufacturerInfo` (map to Organization in the context).
     *   [PENDING] Redesign Recycled Content: Split into pre-consumer and post-consumer percentage fields (avoiding the complex 'components' array if unnecessary, following the battery schema approach).
     *   [PENDING] Redesign Organic Content: Convert to a simple percent field and separate kg field in `TextileEspr.jsonld` rather than a complex component array.
     *   [PENDING] Add Conformity Declaration reference.

@@ -37,6 +37,9 @@
                     "Boots"
                 ]
             },
+            "manufacturerInfo": {
+                "$ref": "../shared/organization.schema.json"
+            },
             "components": {
                 "type": "array",
                 "items": {
