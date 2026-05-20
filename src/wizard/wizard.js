@@ -355,7 +355,8 @@ export async function initializeWizard() {
 
             const sectorDisplayNames = {
                 'general-product': 'General Product Information',
-                // Add other specific mappings if needed, otherwise fallback to capitalization
+                'textile-espr': 'Textile',
+                'iron-steel': 'Iron or Steel'
             };
             const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
 

@@ -12,5 +12,5 @@ export const EXAMPLES = {
     'Drill (Private)': '../spec/examples/drill-dpp-v1-private.json',
     'Iron & Steel': '../spec/examples/iron-steel-dpp-v1.json',
     'Rail': '../spec/examples/rail-dpp-v1.json',
-    'Textile (Sock)': '../spec/examples/sock-dpp-v1.json'
+    'Textile (Sock)': '../spec/examples/textile-espr-dpp-v1.json'
 };

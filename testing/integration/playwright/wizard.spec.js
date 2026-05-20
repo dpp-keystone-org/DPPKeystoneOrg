@@ -84,7 +84,7 @@ test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
   expect(box.width).toBeGreaterThan(800);
 });
 
-const sectors = ['battery', 'construction', 'electronics', 'iron-steel', 'textile'];
+const sectors = ['battery', 'construction', 'electronics', 'iron-steel', 'textile-espr'];
 
 for (const sector of sectors) {
   test(`loads ${sector} sector form`, async ({ page }) => {
@@ -225,9 +225,40 @@ for (const sector of sectors) {
         await expect(page.locator('input[name="heatNumber"]')).toBeVisible();
         await expect(page.locator('input[name="productNumber"]')).toBeVisible();
         break;
-      case 'textile':
+      case 'textile-espr':
         // For array fields, the form builder creates an "Add" button
         await expect(page.locator('button[data-array-name="fibreComposition"]')).toBeVisible();
+        
+        // --- Textile ESPR Fields ---
+        // Test Apparel Size Object
+        await page.locator('button[data-optional-object="euApparelSize"]').click();
+        const primaryDimSelect = page.locator('select[name="euApparelSize.primaryDimension"]');
+        await expect(primaryDimSelect).toBeVisible();
+        
+        // Select an enum option
+        await primaryDimSelect.selectOption('Chest girth');
+        await expect(primaryDimSelect).toHaveValue('Chest girth');
+        
+        // Test Production Steps Array
+        const addProdStepBtn = page.locator('button[data-array-name="productionSteps"]');
+        await expect(addProdStepBtn).toBeVisible();
+        
+        await addProdStepBtn.click();
+        const stepSelect = page.locator('select[name="productionSteps.0.step"]');
+        const countryInput = page.locator('input[name="productionSteps.0.countryCode"]');
+        await expect(stepSelect).toBeVisible();
+        await expect(countryInput).toBeVisible();
+        
+        await stepSelect.selectOption('Spinning');
+        await countryInput.fill('ITA');
+        
+        // Test Instructions Array (RelatedResource)
+        const addCareInstBtn = page.locator('button[data-array-name="careInstructions"]');
+        await expect(addCareInstBtn).toBeVisible();
+        
+        await addCareInstBtn.click();
+        await expect(page.locator('input[name="careInstructions.0.resourceTitle"]')).toBeVisible();
+        await expect(page.locator('input[name="careInstructions.0.url"]')).toBeVisible();
         break;
     }
   });
@@ -297,6 +328,31 @@ test('should allow adding and removing sector forms', async ({ page }) => {
   // 6. Assert that the button has reverted to an "Add" button
   await expect(addBatteryBtn).toHaveText('Add Battery');
   await expect(addBatteryBtn).not.toHaveClass(/remove-btn-active/);
+});
+
+test('should correctly format complex sector button names on toggle', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+
+  const ironSteelBtn = page.locator('button[data-sector="iron-steel"]');
+  const textileBtn = page.locator('button[data-sector="textile-espr"]');
+
+  // Assert initial state
+  await expect(ironSteelBtn).toHaveText('Add Iron or Steel');
+  await expect(textileBtn).toHaveText('Add Textile');
+
+  // Click and assert "Remove" state uses correct mapping
+  await ironSteelBtn.click();
+  await expect(ironSteelBtn).toHaveText('Remove Iron or Steel');
+
+  await textileBtn.click();
+  await expect(textileBtn).toHaveText('Remove Textile');
+
+  // Click again and assert it reverts to the correctly mapped "Add" state
+  await ironSteelBtn.click();
+  await expect(ironSteelBtn).toHaveText('Add Iron or Steel');
+
+  await textileBtn.click();
+  await expect(textileBtn).toHaveText('Add Textile');
 });
 
 test('should manage multiple sector forms independently', async ({ page }) => {
