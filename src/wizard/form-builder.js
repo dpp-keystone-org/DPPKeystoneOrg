@@ -443,6 +443,12 @@ function reindexArrayItems(arrayName, indexRemoved) {
                     bubbles: true, composed: true, detail: { path: oldName, isValid: true },
                 }));
 
+                const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
+                const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
+                if (errorSpan) {
+                    errorSpan.remove();
+                }
+
                 input.name = input.name.replace(oldPrefix, newPrefix);
                 input.id = input.name;
 

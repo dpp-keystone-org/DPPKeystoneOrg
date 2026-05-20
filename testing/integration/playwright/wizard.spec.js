@@ -355,6 +355,39 @@ test('should correctly format complex sector button names on toggle', async ({ p
   await expect(textileBtn).toHaveText('Add Textile');
 });
 
+test('should not duplicate error messages when array items are removed and re-indexed', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  
+  const addBatteryBtn = page.locator('button[data-sector="battery"]');
+  await addBatteryBtn.click();
+  
+  // Add two components
+  const addComponentBtn = page.locator('button[data-array-name="components"]');
+  await addComponentBtn.click();
+  await addComponentBtn.click();
+
+  const comp0Name = page.locator('input[name="components.0.name"]');
+  const comp1Name = page.locator('input[name="components.1.name"]');
+  
+  // Force blur to trigger validation
+  await comp0Name.focus();
+  await comp0Name.blur();
+  
+  await comp1Name.focus();
+  await comp1Name.blur();
+
+  // Assert both initially have their errors
+  await expect(page.locator('#components-0-name-error')).toBeVisible();
+  await expect(page.locator('#components-1-name-error')).toBeVisible();
+
+  // Remove the first item
+  const removeButtons = page.locator('.array-item-control-row[data-array-group^="components."] button:text("Remove")');
+  await removeButtons.nth(0).click();
+
+  // The second item becomes the first. It should have EXACTLY one error message sibling.
+  await expect(page.locator('input[name="components.0.name"] ~ .error-message')).toHaveCount(1);
+});
+
 test('should manage multiple sector forms independently', async ({ page }) => {
       await page.goto('/wizard/index.html');
 
