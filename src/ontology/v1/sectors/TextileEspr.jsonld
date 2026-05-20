@@ -16,7 +16,8 @@
     "dcterms:description": { "@language": "en", "@value": "Defines draft sector-specific concepts required for the upcoming ESPR Delegated Act for Textiles. Acts as a standalone V2 replacement for the base Textile ontology." },
     "owl:versionInfo": "Draft",
     "owl:imports": [
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" }
+        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
+        { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EUApparelSizeSystem.jsonld" }
     ],
     "@graph": [
         {
@@ -221,16 +222,6 @@
             "rdfs:comment": { "@language": "en", "@value": "The result of the visual inspection (e.g. Pass/Fail or notes)." },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:string" }
-        },
-        {
-            "@id": "dppk:apparelSize",
-            "@type": "owl:DatatypeProperty",
-            "rdfs:label": "Apparel Size",
-            "rdfs:comment": "The size of the textile product (e.g., 'M', 'L', '42').",
-            "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "xsd:string" },
-            "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
-            "skos:closeMatch": { "@id": "schema:size" }
         },
         {
             "@id": "dppk:animalOriginNonTextile",
