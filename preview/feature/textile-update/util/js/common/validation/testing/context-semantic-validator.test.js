@@ -1,4 +1,4 @@
-import { validateContextAwarePayload } from '../context-semantic-validator.js?v=1779282157522';
+import { validateContextAwarePayload } from '../context-semantic-validator.js?v=1779286449018';
 
 describe('Context Semantic Validator (JSON-LD Native Isolations)', () => {
 

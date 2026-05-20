@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: DPP Core Ontology - Declaration of Performance and Conformity (DoPC)</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,14 +24,513 @@
         <main>
             <p>Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC).</p>
             <p><strong>Source:</strong> <a href="../DoPC.jsonld">DoPC.jsonld</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 <li><a href="DoPCBlock.html">DoPC Data Block</a></li>
             </ul>
             <h3>Properties</h3>
-            <ul>
-                <li id="dopc"><strong>The Declaration of Performance and Conformity.</strong> (dppk:dopc)</li><li id="declarationCode"><strong>Declaration Code</strong> (dppk:declarationCode)</li><li id="dateOfIssue"><strong>Date of Issue</strong> (dppk:dateOfIssue)</li><li id="chlorideContent"><strong>Chloride Content Group</strong> (dppk:chlorideContent)</li><li id="21DegC"><strong>21°C</strong> (dppk:21DegC)</li><li id="bondStrength"><strong>Bond Strength Group</strong> (dppk:bondStrength)</li><li id="28Days"><strong>28 Days</strong> (dppk:28Days)</li><li id="thermalCompatibility"><strong>Thermal Compatibility Group</strong> (dppk:thermalCompatibility)</li><li id="wetSurface"><strong>Wet Surface</strong> (dppk:wetSurface)</li><li id="resistanceToCarbonation"><strong>Carbonation Resistance Group</strong> (dppk:resistanceToCarbonation)</li><li id="reactionToFire"><strong>Reaction to Fire Group</strong> (dppk:reactionToFire)</li><li id="avcpSystem1"><strong>AVCP System 1</strong> (dppk:avcpSystem1)</li><li id="avcpSystem2"><strong>AVCP System 2</strong> (dppk:avcpSystem2)</li><li id="avcpSystem3"><strong>AVCP System 3</strong> (dppk:avcpSystem3)</li><li id="avcpSystem4"><strong>AVCP System 4</strong> (dppk:avcpSystem4)</li><li id="elasticRecovery"><strong>Elastic Recovery Group</strong> (dppk:elasticRecovery)</li><li id="methodA"><strong>Method A</strong> (dppk:methodA)</li><li id="methodB"><strong>Method B</strong> (dppk:methodB)</li><li id="25Percent"><strong>25%</strong> (dppk:25Percent)</li><li id="60Percent"><strong>60%</strong> (dppk:60Percent)</li><li id="100Percent"><strong>100%</strong> (dppk:100Percent)</li><li id="resistanceToFlow"><strong>Resistance to Flow Group</strong> (dppk:resistanceToFlow)</li><li id="5DegC"><strong>For measurements taken at 5°C</strong> (dppk:5DegC)</li><li id="50DegC"><strong>For measurements taken at 50°C</strong> (dppk:50DegC)</li><li id="70DegC"><strong>For measurements taken at 70°C</strong> (dppk:70DegC)</li><li id="flowResistanceProcedureA5"><strong>Flow Resistance (Proc A, 5°C)</strong> (dppk:flowResistanceProcedureA5)</li><li id="flowResistanceProcedureA70"><strong>Flow Resistance (Proc A, 70°C)</strong> (dppk:flowResistanceProcedureA70)</li><li id="flowResistanceProcedureB5"><strong>Flow Resistance (Proc B, 5°C)</strong> (dppk:flowResistanceProcedureB5)</li><li id="flowResistanceProcedureB50"><strong>Flow Resistance (Proc B, 50°C)</strong> (dppk:flowResistanceProcedureB50)</li><li id="flowResistanceProcedureB70"><strong>Flow Resistance (Proc B, 70°C)</strong> (dppk:flowResistanceProcedureB70)</li><li id="procedureA"><strong>Procedure A</strong> (dppk:procedureA)</li><li id="procedureB"><strong>Procedure B</strong> (dppk:procedureB)</li><li id="shrinkageAndExpansion"><strong>Shrinkage and Expansion</strong> (dppk:shrinkageAndExpansion)</li><li id="slipSkidResistance"><strong>Slip/Skid Resistance Group</strong> (dppk:slipSkidResistance)</li><li id="slipSkidResistanceLab"><strong>Slip/Skid Resistance (Laboratory)</strong> (dppk:slipSkidResistanceLab)</li><li id="laboratory"><strong>Laboratory Measurement</strong> (dppk:laboratory)</li><li id="modulusOfElasticityInCompression"><strong>Modulus of Elasticity Group</strong> (dppk:modulusOfElasticityInCompression)</li><li id="modulusMethod1"><strong>Modulus of Elasticity (Method 1)</strong> (dppk:modulusMethod1)</li><li id="method1"><strong>Method 1</strong> (dppk:method1)</li><li id="thermalExpansion"><strong>Thermal Expansion</strong> (dppk:thermalExpansion)</li><li id="declaredUnit"><strong>Declared Unit</strong> (dppk:declaredUnit)</li><li id="functionalUnit"><strong>Functional Unit</strong> (dppk:functionalUnit)</li><li id="chlorideContentAt21DegC"><strong>Chloride Content (21°C)</strong> (dppk:chlorideContentAt21DegC)</li><li id="bondStrengthAt28Days"><strong>Bond Strength (28 Days)</strong> (dppk:bondStrengthAt28Days)</li><li id="thermalCompatibilityWet"><strong>Thermal Compatibility (Wet Surface)</strong> (dppk:thermalCompatibilityWet)</li><li id="carbonationResistanceAt21DegC"><strong>Resistance to Carbonation (21°C)</strong> (dppk:carbonationResistanceAt21DegC)</li><li id="reactionToFireSystem1"><strong>Reaction to Fire (AVCP System 1)</strong> (dppk:reactionToFireSystem1)</li><li id="reactionToFireSystem2"><strong>Reaction to Fire (AVCP System 2)</strong> (dppk:reactionToFireSystem2)</li><li id="reactionToFireSystem3"><strong>Reaction to Fire (AVCP System 3)</strong> (dppk:reactionToFireSystem3)</li><li id="reactionToFireSystem4"><strong>Reaction to Fire (AVCP System 4)</strong> (dppk:reactionToFireSystem4)</li><li id="elasticRecoveryMethodA25"><strong>Elastic Recovery (Method A, 25% Elongation)</strong> (dppk:elasticRecoveryMethodA25)</li><li id="elasticRecoveryMethodA60"><strong>Elastic Recovery (Method A, 60% Elongation)</strong> (dppk:elasticRecoveryMethodA60)</li><li id="elasticRecoveryMethodA100"><strong>Elastic Recovery (Method A, 100% Elongation)</strong> (dppk:elasticRecoveryMethodA100)</li><li id="elasticRecoveryMethodB25"><strong>Elastic Recovery (Method B, 25% Elongation)</strong> (dppk:elasticRecoveryMethodB25)</li><li id="elasticRecoveryMethodB60"><strong>Elastic Recovery (Method B, 60% Elongation)</strong> (dppk:elasticRecoveryMethodB60)</li><li id="elasticRecoveryMethodB100"><strong>Elastic Recovery (Method B, 100% Elongation)</strong> (dppk:elasticRecoveryMethodB100)</li><li id="flowResistanceProcedureA50"><strong>Flow Resistance (Proc A, 50°C)</strong> (dppk:flowResistanceProcedureA50)</li><li id="tensileStrengthAdhesion"><strong>Adhesion Class</strong> (dppk:tensileStrengthAdhesion)</li><li id="capillaryAbsorption"><strong>Capillary Absorption</strong> (dppk:capillaryAbsorption)</li><li id="dangerousSubstances"><strong>Dangerous Substances</strong> (dppk:dangerousSubstances)</li><li id="referenceServiceLife"><strong>Reference Service Life</strong> (dppk:referenceServiceLife)</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>governedBy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="dopc"><strong>The Declaration of Performance and Conformity.</strong> (dppk:dopc)</td>
+                            <td>The Declaration of Performance and Conformity.</td>
+                            <td></td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td>Construction Products Regulation - CPR</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="declarationCode"><strong>Declaration Code</strong> (dppk:declarationCode)</td>
+                            <td>Unique identifier of the declaration.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="dateOfIssue"><strong>Date of Issue</strong> (dppk:dateOfIssue)</td>
+                            <td>The date the declaration was issued.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+                            <td>CPR (Regulation (EU) No 305/2011)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="chlorideContent"><strong>Chloride Content Group</strong> (dppk:chlorideContent)</td>
+                            <td>Group of properties regarding chloride content.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 1015-17</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="21DegC"><strong>21°C</strong> (dppk:21DegC)</td>
+                            <td>A standardized temperature for some measurements.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13295:2004</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="bondStrength"><strong>Bond Strength Group</strong> (dppk:bondStrength)</td>
+                            <td>Group of properties regarding bond strength.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 1542:1999</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="28Days"><strong>28 Days</strong> (dppk:28Days)</td>
+                            <td>A standardized interval for long term bond strength.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 1542:1999</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="thermalCompatibility"><strong>Thermal Compatibility Group</strong> (dppk:thermalCompatibility)</td>
+                            <td>Group of properties regarding thermal compatibility.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13687-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="wetSurface"><strong>Wet Surface</strong> (dppk:wetSurface)</td>
+                            <td>A test condition for dry/wet comparisions.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13687-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="resistanceToCarbonation"><strong>Carbonation Resistance Group</strong> (dppk:resistanceToCarbonation)</td>
+                            <td>Group of properties regarding carbonation resistance.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 1920-12:2015</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="reactionToFire"><strong>Reaction to Fire Group</strong> (dppk:reactionToFire)</td>
+                            <td>Group of properties regarding reaction to fire.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="avcpSystem1"><strong>AVCP System 1</strong> (dppk:avcpSystem1)</td>
+                            <td>System 1 for measuring reaction to fire.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="avcpSystem2"><strong>AVCP System 2</strong> (dppk:avcpSystem2)</td>
+                            <td>System 2 for measuring reaction to fire.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="avcpSystem3"><strong>AVCP System 3</strong> (dppk:avcpSystem3)</td>
+                            <td>System 3 for measuring reaction to fire.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="avcpSystem4"><strong>AVCP System 4</strong> (dppk:avcpSystem4)</td>
+                            <td>System 4 for measuring reaction to fire.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="elasticRecovery"><strong>Elastic Recovery Group</strong> (dppk:elasticRecovery)</td>
+                            <td>Group of properties regarding elastic recovery.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="methodA"><strong>Method A</strong> (dppk:methodA)</td>
+                            <td>Reference to Method A.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="methodB"><strong>Method B</strong> (dppk:methodB)</td>
+                            <td>Reference to Method B.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="25Percent"><strong>25%</strong> (dppk:25Percent)</td>
+                            <td>A standardized expansion factor to be recovered from in elastic material testing.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="60Percent"><strong>60%</strong> (dppk:60Percent)</td>
+                            <td>A standardized expansion factor to be recovered from in elastic material testing.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="100Percent"><strong>100%</strong> (dppk:100Percent)</td>
+                            <td>A standardized expansion factor to be recovered from in elastic material testing.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="resistanceToFlow"><strong>Resistance to Flow Group</strong> (dppk:resistanceToFlow)</td>
+                            <td>Group of properties regarding resistance to flow.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="5DegC"><strong>For measurements taken at 5°C</strong> (dppk:5DegC)</td>
+                            <td>A standardized temperature for resistance to flow testing.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="50DegC"><strong>For measurements taken at 50°C</strong> (dppk:50DegC)</td>
+                            <td>A standardized temperature for resistance to flow testing.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="70DegC"><strong>For measurements taken at 70°C</strong> (dppk:70DegC)</td>
+                            <td>A standardized temperature for resistance to flow testing.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="flowResistanceProcedureA5"><strong>Flow Resistance (Proc A, 5°C)</strong> (dppk:flowResistanceProcedureA5)</td>
+                            <td>Flow resistance measured using Procedure A at 5°C.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="flowResistanceProcedureA70"><strong>Flow Resistance (Proc A, 70°C)</strong> (dppk:flowResistanceProcedureA70)</td>
+                            <td>Flow resistance measured using Procedure A at 70°C.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="flowResistanceProcedureB5"><strong>Flow Resistance (Proc B, 5°C)</strong> (dppk:flowResistanceProcedureB5)</td>
+                            <td>Flow resistance measured using Procedure B at 5°C.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="flowResistanceProcedureB50"><strong>Flow Resistance (Proc B, 50°C)</strong> (dppk:flowResistanceProcedureB50)</td>
+                            <td>Flow resistance measured using Procedure B at 50°C.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="flowResistanceProcedureB70"><strong>Flow Resistance (Proc B, 70°C)</strong> (dppk:flowResistanceProcedureB70)</td>
+                            <td>Flow resistance measured using Procedure B at 70°C.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="procedureA"><strong>Procedure A</strong> (dppk:procedureA)</td>
+                            <td>Reference to Procedure A.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="procedureB"><strong>Procedure B</strong> (dppk:procedureB)</td>
+                            <td>Reference to Procedure B.</td>
+                            <td></td>
+                            <td></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="shrinkageAndExpansion"><strong>Shrinkage and Expansion</strong> (dppk:shrinkageAndExpansion)</td>
+                            <td>The shrinkage and expansion of the material.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 12617-4:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="slipSkidResistance"><strong>Slip/Skid Resistance Group</strong> (dppk:slipSkidResistance)</td>
+                            <td>Group of properties regarding slip/skid resistance.</td>
+                            <td></td>
+                            <td></td>
+                            <td>EN 13036-4:2011</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="slipSkidResistanceLab"><strong>Slip/Skid Resistance (Laboratory)</strong> (dppk:slipSkidResistanceLab)</td>
+                            <td>Measurements in the laboratory.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 13036-4:2011</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="laboratory"><strong>Laboratory Measurement</strong> (dppk:laboratory)</td>
+                            <td>Condition indicating measurements taken in a laboratory setting.</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="modulusOfElasticityInCompression"><strong>Modulus of Elasticity Group</strong> (dppk:modulusOfElasticityInCompression)</td>
+                            <td>Group of properties regarding modulus of elasticity in compression.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>EN 13412:2006</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="modulusMethod1"><strong>Modulus of Elasticity (Method 1)</strong> (dppk:modulusMethod1)</td>
+                            <td>Modulus of elasticity measured using Method 1.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>EN 13412:2006</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="method1"><strong>Method 1</strong> (dppk:method1)</td>
+                            <td>A reference to Method 1 for measuring modulus of elasticity.</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="thermalExpansion"><strong>Thermal Expansion</strong> (dppk:thermalExpansion)</td>
+                            <td>Change in volume in response to a change in temperature.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 1770:1998</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="declaredUnit"><strong>Declared Unit</strong> (dppk:declaredUnit)</td>
+                            <td>The quantity of a construction product for use as a reference unit in an EPD for an environmental impact assessment.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="functionalUnit"><strong>Functional Unit</strong> (dppk:functionalUnit)</td>
+                            <td>The quantified performance of a product system for use as a reference unit.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="chlorideContentAt21DegC"><strong>Chloride Content (21°C)</strong> (dppk:chlorideContentAt21DegC)</td>
+                            <td>Maximum percentage by mass.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>EN 1015-17</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="bondStrengthAt28Days"><strong>Bond Strength (28 Days)</strong> (dppk:bondStrengthAt28Days)</td>
+                            <td>Bond strength measured after 28 days.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>EN 1542:1999</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="thermalCompatibilityWet"><strong>Thermal Compatibility (Wet Surface)</strong> (dppk:thermalCompatibilityWet)</td>
+                            <td>Thermal compatibility measured on wet surface.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>EN 13687-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="carbonationResistanceAt21DegC"><strong>Resistance to Carbonation (21°C)</strong> (dppk:carbonationResistanceAt21DegC)</td>
+                            <td>Resistance to carbonation at 21 degrees Celsius.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 13295:2004</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="reactionToFireSystem1"><strong>Reaction to Fire (AVCP System 1)</strong> (dppk:reactionToFireSystem1)</td>
+                            <td>Reaction to fire under AVCP System 1.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="reactionToFireSystem2"><strong>Reaction to Fire (AVCP System 2)</strong> (dppk:reactionToFireSystem2)</td>
+                            <td>Reaction to fire under AVCP System 2.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="reactionToFireSystem3"><strong>Reaction to Fire (AVCP System 3)</strong> (dppk:reactionToFireSystem3)</td>
+                            <td>Reaction to fire under AVCP System 3.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="reactionToFireSystem4"><strong>Reaction to Fire (AVCP System 4)</strong> (dppk:reactionToFireSystem4)</td>
+                            <td>Reaction to fire under AVCP System 4.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>EN 13501-1</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="elasticRecoveryMethodA25"><strong>Elastic Recovery (Method A, 25% Elongation)</strong> (dppk:elasticRecoveryMethodA25)</td>
+                            <td>Elastic recovery using Method A at 25% elongation.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="elasticRecoveryMethodA60"><strong>Elastic Recovery (Method A, 60% Elongation)</strong> (dppk:elasticRecoveryMethodA60)</td>
+                            <td>Elastic recovery using Method A at 60% elongation.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="elasticRecoveryMethodA100"><strong>Elastic Recovery (Method A, 100% Elongation)</strong> (dppk:elasticRecoveryMethodA100)</td>
+                            <td>Elastic recovery using Method A at 25% elongation.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="elasticRecoveryMethodB25"><strong>Elastic Recovery (Method B, 25% Elongation)</strong> (dppk:elasticRecoveryMethodB25)</td>
+                            <td>Elastic recovery using Method B at 25% elongation.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="elasticRecoveryMethodB60"><strong>Elastic Recovery (Method B, 60% Elongation)</strong> (dppk:elasticRecoveryMethodB60)</td>
+                            <td>Elastic recovery using Method B at 60% elongation.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="elasticRecoveryMethodB100"><strong>Elastic Recovery (Method B, 100% Elongation)</strong> (dppk:elasticRecoveryMethodB100)</td>
+                            <td>Elastic recovery using Method B at 100% elongation.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7389:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="flowResistanceProcedureA50"><strong>Flow Resistance (Proc A, 50°C)</strong> (dppk:flowResistanceProcedureA50)</td>
+                            <td>Resistance to flow using Procedure A at 50 degrees Celsius.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>ISO 7390:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="tensileStrengthAdhesion"><strong>Adhesion Class</strong> (dppk:tensileStrengthAdhesion)</td>
+                            <td>Classification of adhesion.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>N 12618-2</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="capillaryAbsorption"><strong>Capillary Absorption</strong> (dppk:capillaryAbsorption)</td>
+                            <td>Capillary absorption rate.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>EN 13057:2002</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="dangerousSubstances"><strong>Dangerous Substances</strong> (dppk:dangerousSubstances)</td>
+                            <td>Statement on dangerous substances.</td>
+                            <td><a href="DoPCBlock.html">dppk:DoPCBlock</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="referenceServiceLife"><strong>Reference Service Life</strong> (dppk:referenceServiceLife)</td>
+                            <td>The reference service life in years.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                            <td></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>

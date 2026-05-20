@@ -58,7 +58,7 @@
 
                 </pre>
 
-                <h4>Attributes</h4>
+                <h4>Description</h4>
                 <p>A structured collection of product-related data defining the characteristics, provenance, and lifecycle information of a product, as mandated by the Ecodesign for Sustainable Products Regulation (ESPR).</p>
                 <p><strong>subClassOf:</strong> <a href="https://schema.org/Product">schema:Product</a>, <a href="https://schema.org/Certification">schema:Certification</a>, <a href="https://vocabulary.uncefact.org/Document">unece:Document</a></p>
 
@@ -76,114 +76,114 @@
                         <tbody>
                             
                                 <tr>
-                                    <td>DPP Identifier (dppk:digitalProductPassportId)</td>
+                                    <td><a href="index.html#digitalProductPassportId">DPP Identifier</a> (dppk:digitalProductPassportId)</td>
                                     <td>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). Implementation-specific identifier.</td>
-                                    <td>xsd:anyURI</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Unique Product Identifier (UPI) (dppk:uniqueProductIdentifier)</td>
+                                    <td><a href="index.html#uniqueProductIdentifier">Unique Product Identifier (UPI)</a> (dppk:uniqueProductIdentifier)</td>
                                     <td>The globally resolvable URI for the product/DPP.</td>
-                                    <td>xsd:anyURI</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
                                     <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Economic Operator Identifier (EOI) (dppk:economicOperatorId)</td>
+                                    <td><a href="index.html#economicOperatorId">Economic Operator Identifier (EOI)</a> (dppk:economicOperatorId)</td>
                                     <td>The unique identifier for the Economic Operator responsible for placing the product on the market.</td>
-                                    <td>xsd:anyURI</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Facility Identifier (dppk:facilityId)</td>
+                                    <td><a href="index.html#facilityId">Facility Identifier</a> (dppk:facilityId)</td>
                                     <td>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</td>
-                                    <td>xsd:anyURI</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Granularity Level (dppk:granularity)</td>
+                                    <td><a href="index.html#granularity">Granularity Level</a> (dppk:granularity)</td>
                                     <td>Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).</td>
-                                    <td>dppk:GranularityValue</td>
+                                    <td><a href="GranularityValue.html">dppk:GranularityValue</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>DPP Status (dppk:dppStatus)</td>
+                                    <td><a href="index.html#dppStatus">DPP Status</a> (dppk:dppStatus)</td>
                                     <td>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</td>
-                                    <td>xsd:string</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Last Update Timestamp (dppk:lastUpdate)</td>
+                                    <td><a href="index.html#lastUpdate">Last Update Timestamp</a> (dppk:lastUpdate)</td>
                                     <td>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</td>
-                                    <td>xsd:dateTime</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Version Number (dppk:versionNumber)</td>
+                                    <td><a href="index.html#versionNumber">Version Number</a> (dppk:versionNumber)</td>
                                     <td>The version number of the DPP instance.</td>
-                                    <td>xsd:string</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Version Date (dppk:versionDate)</td>
+                                    <td><a href="index.html#versionDate">Version Date</a> (dppk:versionDate)</td>
                                     <td>The date of the version of the DPP instance.</td>
-                                    <td>xsd:date</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>DPP Schema Version (dppk:dppSchemaVersion)</td>
+                                    <td><a href="index.html#dppSchemaVersion">DPP Schema Version</a> (dppk:dppSchemaVersion)</td>
                                     <td>The version of the horizontal (cross-sector) DPP schema used for this instance.</td>
-                                    <td>xsd:string</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Content Specification Identifiers (dppk:contentSpecificationIds)</td>
+                                    <td><a href="index.html#contentSpecificationIds">Content Specification Identifiers</a> (dppk:contentSpecificationIds)</td>
                                     <td>A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.</td>
-                                    <td>xsd:string</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Harmonized System Code (HS Code) or TARIC (dppk:hsCode)</td>
+                                    <td><a href="index.html#hsCode">Harmonized System Code (HS Code) or TARIC</a> (dppk:hsCode)</td>
                                     <td>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</td>
-                                    <td>xsd:string</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
                                     <td><a href="https://ref.gs1.org/voc/customsClassification">gs1:customsClassification</a>, <a href="https://schema.org/hscode">schema:hscode</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Organization/index.html#economicOperator">Economic Operator</a> (dppk:economicOperator)</td>
                                     <td>Relates the DPP to the Economic Operator responsible for it.</td>
-                                    <td>dppk:Organization</td>
+                                    <td><a href="../Organization/Organization.html">dppk:Organization</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Organization/index.html#manufacturer">Manufacturer</a> (dppk:manufacturer)</td>
                                     <td>Relates the DPP to the Manufacturer of the product.</td>
-                                    <td>dppk:Organization</td>
+                                    <td><a href="../Organization/Organization.html">dppk:Organization</a></td>
                                     <td><a href="https://schema.org/manufacturer">schema:manufacturer</a>, <a href="https://ref.gs1.org/voc/manufacturer">gs1:manufacturer</a></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Organization/index.html#importer">Importer</a> (dppk:importer)</td>
                                     <td>Relates the DPP to the Importer of the product.</td>
-                                    <td>dppk:Organization</td>
+                                    <td><a href="../Organization/Organization.html">dppk:Organization</a></td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
                                     <td><a href="../Organization/index.html#manufacturingFacility">Manufacturing Facility</a> (dppk:manufacturingFacility)</td>
                                     <td>Relates the DPP to the specific facility where the product (or a step) was manufactured.</td>
-                                    <td>dppk:Organization</td>
+                                    <td><a href="../Organization/Organization.html">dppk:Organization</a></td>
                                     <td></td>
                                 </tr>
                             

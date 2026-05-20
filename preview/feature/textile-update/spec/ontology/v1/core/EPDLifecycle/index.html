@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: DPP Core Ontology - EPD Lifecycle Stages</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,14 +24,169 @@
         <main>
             <p>Defines the lifecycle stages (A1-D) used in Environmental Product Declarations.</p>
             <p><strong>Source:</strong> <a href="../EPDLifecycle.jsonld">EPDLifecycle.jsonld</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 
             </ul>
             <h3>Properties</h3>
-            <ul>
-                <li id="a1"><strong>A1: Raw material supply</strong> (dppk:a1)</li><li id="a2"><strong>A2: Transport</strong> (dppk:a2)</li><li id="a3"><strong>A3: Manufacturing</strong> (dppk:a3)</li><li id="a4"><strong>A4: Transport</strong> (dppk:a4)</li><li id="a5"><strong>A5: Construction installation</strong> (dppk:a5)</li><li id="b1"><strong>B1: Use</strong> (dppk:b1)</li><li id="b2"><strong>B2: Maintenance</strong> (dppk:b2)</li><li id="b3"><strong>B3: Repair</strong> (dppk:b3)</li><li id="b4"><strong>B4: Replacement</strong> (dppk:b4)</li><li id="b5"><strong>B5: Refurbishment</strong> (dppk:b5)</li><li id="b6"><strong>B6: Operational energy use</strong> (dppk:b6)</li><li id="b7"><strong>B7: Operational water use</strong> (dppk:b7)</li><li id="c1"><strong>C1: Deconstruction / Demolition</strong> (dppk:c1)</li><li id="c2"><strong>C2: Transport</strong> (dppk:c2)</li><li id="c3"><strong>C3: Waste processing</strong> (dppk:c3)</li><li id="c4"><strong>C4: Disposal</strong> (dppk:c4)</li><li id="d"><strong>D: Reuse, recovery, recycling potential</strong> (dppk:d)</li><li id="total"><strong>Total</strong> (dppk:total)</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>equivalentProperty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="a1"><strong>A1: Raw material supply</strong> (dppk:a1)</td>
+                            <td>Upstream A1 (Raw Material Supply)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="a2"><strong>A2: Transport</strong> (dppk:a2)</td>
+                            <td>Core Process A2 (Transport to Manufacturing)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="a3"><strong>A3: Manufacturing</strong> (dppk:a3)</td>
+                            <td>Core Process A3 (Manufacturing)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="a4"><strong>A4: Transport</strong> (dppk:a4)</td>
+                            <td>Downstream A4 (Transport to Site)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="a5"><strong>A5: Construction installation</strong> (dppk:a5)</td>
+                            <td>Core Process A5 (Construction Installation)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="b1"><strong>B1: Use</strong> (dppk:b1)</td>
+                            <td>Use Stage B1 (Use)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="b2"><strong>B2: Maintenance</strong> (dppk:b2)</td>
+                            <td>Use Stage B2 (Maintenance)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="b3"><strong>B3: Repair</strong> (dppk:b3)</td>
+                            <td>Use Stage B3 (Repair)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="b4"><strong>B4: Replacement</strong> (dppk:b4)</td>
+                            <td>Use Stage B4 (Replacement)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="b5"><strong>B5: Refurbishment</strong> (dppk:b5)</td>
+                            <td>Use Stage B5 (Refurbishment)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="b6"><strong>B6: Operational energy use</strong> (dppk:b6)</td>
+                            <td>Use Stage B6 (Operational Energy Use)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="b7"><strong>B7: Operational water use</strong> (dppk:b7)</td>
+                            <td>Use Stage B7 (Operational Water Use)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="c1"><strong>C1: Deconstruction / Demolition</strong> (dppk:c1)</td>
+                            <td>Downstream C1 (Deconstruction)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="c2"><strong>C2: Transport</strong> (dppk:c2)</td>
+                            <td>Downstream C2 (Transport to Waste Processing)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="c3"><strong>C3: Waste processing</strong> (dppk:c3)</td>
+                            <td>Downstream C3 (Waste Processing)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="c4"><strong>C4: Disposal</strong> (dppk:c4)</td>
+                            <td>Downstream C4 (Disposal)</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="d"><strong>D: Reuse, recovery, recycling potential</strong> (dppk:d)</td>
+                            <td>Reuse, recovery, recycling potential</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="total"><strong>Total</strong> (dppk:total)</td>
+                            <td>Total</td>
+                            <td><a href="../EPDMetadata/ImpactValues.html">dppk:ImpactValues</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="http://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>

@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: DPP Core Ontology - Related Resource</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,14 +24,105 @@
         <main>
             <p>Defines a class for linking to external resources, such as documents or websites, with associated metadata.</p>
             <p><strong>Source:</strong> <a href="../RelatedResource.jsonld">RelatedResource.jsonld</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 <li><a href="RelatedResource.html">Related Resource</a></li>
             </ul>
             <h3>Properties</h3>
-            <ul>
-                <li id="resourceTitle"><strong>Resource Title</strong> (dppk:resourceTitle)</li><li id="contentType"><strong>Content Type</strong> (dppk:contentType)</li><li id="language"><strong>Language</strong> (dppk:language)</li><li id="url"><strong>URL</strong> (dppk:url)</li><li id="instructionsForUse"><strong>Instructions for Use</strong> (dppk:instructionsForUse)</li><li id="safetyDataSheet"><strong>Safety Data Sheet</strong> (dppk:safetyDataSheet)</li><li id="safeUseInstructions"><strong>Safe Use Instructions</strong> (dppk:safeUseInstructions)</li><li id="endOfLifeInstructions"><strong>End of Life Instructions</strong> (dppk:endOfLifeInstructions)</li><li id="repairInstructions"><strong>Repair Instructions</strong> (dppk:repairInstructions)</li><li id="careInstructions"><strong>Care Instructions</strong> (dppk:careInstructions)</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>equivalentProperty</th><th>subPropertyOf</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="resourceTitle"><strong>Resource Title</strong> (dppk:resourceTitle)</td>
+                            <td>The title of the related resource.</td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="contentType"><strong>Content Type</strong> (dppk:contentType)</td>
+                            <td>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/encodingFormat">schema:encodingFormat</a></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="language"><strong>Language</strong> (dppk:language)</td>
+                            <td>The language of the resource content (e.g., 'en', 'fr').</td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/inLanguage">schema:inLanguage</a></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="url"><strong>URL</strong> (dppk:url)</td>
+                            <td>The location of the resource.</td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            <td><a href="https://schema.org/url">schema:url</a></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="instructionsForUse"><strong>Instructions for Use</strong> (dppk:instructionsForUse)</td>
+                            <td>A link to the instructions for use or user manual for the product.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="safetyDataSheet"><strong>Safety Data Sheet</strong> (dppk:safetyDataSheet)</td>
+                            <td>A link to the safety data sheet (SDS) for the product.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="safeUseInstructions"><strong>Safe Use Instructions</strong> (dppk:safeUseInstructions)</td>
+                            <td>Instructions and guidelines for the safe use and maintenance of the product.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td></td><td><a href="https://schema.org/subjectOf">schema:subjectOf</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="endOfLifeInstructions"><strong>End of Life Instructions</strong> (dppk:endOfLifeInstructions)</td>
+                            <td>Instructions for the proper disassembly, recycling, or disposal of the product at the end of its life.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td></td><td><a href="https://schema.org/subjectOf">schema:subjectOf</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="repairInstructions"><strong>Repair Instructions</strong> (dppk:repairInstructions)</td>
+                            <td>Instructions on how to repair or replace components of the product.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td></td><td><a href="https://schema.org/subjectOf">schema:subjectOf</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="careInstructions"><strong>Care Instructions</strong> (dppk:careInstructions)</td>
+                            <td>Instructions and manuals for the care, washing, and maintenance of the product.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td></td><td><a href="https://schema.org/subjectOf">schema:subjectOf</a></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>

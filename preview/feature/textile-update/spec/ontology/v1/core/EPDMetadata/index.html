@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: DPP Core Ontology - EPD Metadata</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,14 +24,33 @@
         <main>
             <p>Defines the core structural classes for Environmental Product Declarations (EPD).</p>
             <p><strong>Source:</strong> <a href="../EPDMetadata.jsonld">EPDMetadata.jsonld</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 <li><a href="EPDBlock.html">Environmental Product Declaration</a></li><li><a href="ImpactValues.html">Impact Values</a></li>
             </ul>
             <h3>Properties</h3>
-            <ul>
-                <li id="epd"><strong>Environmental Product Declaration</strong> (dppk:epd)</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>governedBy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="epd"><strong>Environmental Product Declaration</strong> (dppk:epd)</td>
+                            <td>A dictionary of environmental impact indicators and their values across different life cycle stages.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="EPDBlock.html">dppk:EPDBlock</a></td>
+                            <td>EN 15804:2012+A2:2019</td>
+                        </tr>
+                    
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>

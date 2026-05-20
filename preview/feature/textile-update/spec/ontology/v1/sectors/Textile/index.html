@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: DPP Sector Ontology - Textile Definitions (v1)</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,14 +24,185 @@
         <main>
             <p>Defines sector-specific concepts required for the Textile DPP, based on the EU Strategy for Sustainable and Circular Textiles. Acts as a bridge (Keystone) between Schema.org, GS1, UNECE, and EUDPP.</p>
             <p><strong>Source:</strong> <a href="../Textile.jsonld">Textile.jsonld</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 <li><a href="TextileProduct.html">Textile Product</a></li><li><a href="FibreComposition.html">Fibre Composition</a></li><li><a href="ProductionStep.html">Production Step</a></li>
             </ul>
             <h3>Properties</h3>
-            <ul>
-                <li id="fibreComposition"><strong>Fibre Composition</strong> (dppk:fibreComposition)</li><li id="fibreType"><strong>Fibre Type</strong> (dppk:fibreType)</li><li id="fibrePercentage"><strong>Fibre Percentage</strong> (dppk:fibrePercentage)</li><li id="productionSteps"><strong>Production Steps</strong> (dppk:productionSteps)</li><li id="productionStepType"><strong>Production Step Type</strong> (dppk:productionStepType)</li><li id="productionLocationCountry"><strong>Production Location Country</strong> (dppk:productionLocationCountry)</li><li id="animalOriginNonTextile"><strong>Presence of Non-Textile Parts of Animal Origin</strong> (dppk:animalOriginNonTextile)</li><li id="tearStrength"><strong>Tear Strength</strong> (dppk:tearStrength)</li><li id="abrasionResistance"><strong>Abrasion Resistance</strong> (dppk:abrasionResistance)</li><li id="cycles"><strong>Cycles</strong> (dppk:cycles)</li><li id="dimensionalStability"><strong>Dimensional Stability</strong> (dppk:dimensionalStability)</li><li id="warpChange"><strong>Warp Change</strong> (dppk:warpChange)</li><li id="weftChange"><strong>Weft Change</strong> (dppk:weftChange)</li><li id="colorfastnessToWashing"><strong>Colorfastness to Washing</strong> (dppk:colorfastnessToWashing)</li><li id="grade"><strong>Grade</strong> (dppk:grade)</li><li id="microplasticRelease"><strong>Microplastic Release</strong> (dppk:microplasticRelease)</li><li id="careInstructions"><strong>Care Instructions</strong> (dppk:careInstructions)</li><li id="repairabilityInformation"><strong>Repairability Information</strong> (dppk:repairabilityInformation)</li><li id="apparelSize"><strong>Apparel Size</strong> (dppk:apparelSize)</li><li id="apparelSizeSystem"><strong>Apparel Size System</strong> (dppk:apparelSizeSystem)</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>governedBy</th><th>equivalentProperty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="fibreComposition"><strong>Fibre Composition</strong> (dppk:fibreComposition)</td>
+                            <td>Relates the textile product to its constituent fibres and their proportions.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="FibreComposition.html">dppk:FibreComposition</a></td>
+                            <td>Regulation (EU) No 1007/2011</td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="fibreType"><strong>Fibre Type</strong> (dppk:fibreType)</td>
+                            <td>The specific type of fibre (e.g., Cotton, Polyester, Wool, Elastane).</td>
+                            <td><a href="FibreComposition.html">dppk:FibreComposition</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="fibrePercentage"><strong>Fibre Percentage</strong> (dppk:fibrePercentage)</td>
+                            <td>The percentage of the total product weight constituted by this fibre.</td>
+                            <td><a href="FibreComposition.html">dppk:FibreComposition</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productionSteps"><strong>Production Steps</strong> (dppk:productionSteps)</td>
+                            <td>The sequence of major production steps that occurred for this product.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="../../core/Compliance/ProductionStep.html">dppk:ProductionStep</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productionStepType"><strong>Production Step Type</strong> (dppk:productionStepType)</td>
+                            <td>The type of activity performed (e.g., Spinning, Weaving, Dyeing).</td>
+                            <td><a href="../../core/Compliance/ProductionStep.html">dppk:ProductionStep</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productionLocationCountry"><strong>Production Location Country</strong> (dppk:productionLocationCountry)</td>
+                            <td>The country code (ISO 3166-1 alpha-3) where the production step took place.</td>
+                            <td><a href="../../core/Compliance/ProductionStep.html">dppk:ProductionStep</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="animalOriginNonTextile"><strong>Presence of Non-Textile Parts of Animal Origin</strong> (dppk:animalOriginNonTextile)</td>
+                            <td>Indicates the presence of materials such as leather, bone, or shell.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="tearStrength"><strong>Tear Strength</strong> (dppk:tearStrength)</td>
+                            <td>The force required to propagate a tear in the fabric.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td>ISO 13937-2</td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="abrasionResistance"><strong>Abrasion Resistance</strong> (dppk:abrasionResistance)</td>
+                            <td>Resistance to wear, often measured in Martindale cycles.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td>ISO 12947</td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="cycles"><strong>Cycles</strong> (dppk:cycles)</td>
+                            <td>Number of cycles (e.g., rubs) withstanded.</td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="dimensionalStability"><strong>Dimensional Stability</strong> (dppk:dimensionalStability)</td>
+                            <td>The percentage a fabric shrinks or grows after washing and drying.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td>ISO 5077</td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="warpChange"><strong>Warp Change</strong> (dppk:warpChange)</td>
+                            <td>Dimensional change in the warp (length) direction.</td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="weftChange"><strong>Weft Change</strong> (dppk:weftChange)</td>
+                            <td>Dimensional change in the weft (width) direction.</td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="colorfastnessToWashing"><strong>Colorfastness to Washing</strong> (dppk:colorfastnessToWashing)</td>
+                            <td>The resistance of the color to domestic laundering.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td>ISO 105-C06</td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="grade"><strong>Grade</strong> (dppk:grade)</td>
+                            <td>The specific grade or value achieved (e.g. 1-5 scale).</td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="microplasticRelease"><strong>Microplastic Release</strong> (dppk:microplasticRelease)</td>
+                            <td>Information regarding the amount of lint/particles released during washing.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td>ISO 4484-1</td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="careInstructions"><strong>Care Instructions</strong> (dppk:careInstructions)</td>
+                            <td>Standardized care symbols (e.g., GINETEX codes).</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>ISO 3758</td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="repairabilityInformation"><strong>Repairability Information</strong> (dppk:repairabilityInformation)</td>
+                            <td>Instructions or scores related to the ease of repairing the textile product.</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="apparelSize"><strong>Apparel Size</strong> (dppk:apparelSize)</td>
+                            <td>The size of the textile product (e.g., 'M', 'L', '42').</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td><a href="https://ref.gs1.org/voc/sizeCode">gs1:sizeCode</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="apparelSizeSystem"><strong>Apparel Size System</strong> (dppk:apparelSizeSystem)</td>
+                            <td>The system used for the apparel size (e.g., 'EU', 'US', 'UK').</td>
+                            <td><a href="TextileProduct.html">dppk:TextileProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td><a href="https://ref.gs1.org/voc/sizeSystemCode">gs1:sizeSystemCode</a></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>

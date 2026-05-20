@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: DPP Core Ontology - Product and Material Definitions (v1)</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,14 +24,313 @@
         <main>
             <p>Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.</p>
             <p><strong>Source:</strong> <a href="../Product.jsonld">Product.jsonld</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 <li><a href="Product.html">Product or Material</a></li><li><a href="QuantitativeValue.html">Quantitative Value</a></li><li><a href="ProductCharacteristic.html">Product Characteristic</a></li><li><a href="Component.html">Component</a></li>
             </ul>
             <h3>Properties</h3>
-            <ul>
-                <li id="componentName"><strong>Component Name</strong> (dppk:componentName)</li><li id="componentPercentage"><strong>Component Percentage</strong> (dppk:componentPercentage)</li><li id="componentIdentifier"><strong>Component Identifier</strong> (dppk:componentIdentifier)</li><li id="componentCasNumber"><strong>Component CAS Number</strong> (dppk:componentCasNumber)</li><li id="componentEcNumber"><strong>Component EC Number</strong> (dppk:componentEcNumber)</li><li id="componentIupacName"><strong>Component IUPAC Name</strong> (dppk:componentIupacName)</li><li id="componentLocationInProduct"><strong>Component Location in Product</strong> (dppk:componentLocationInProduct)</li><li id="name"><strong>Name</strong> (dppk:name)</li><li id="productName"><strong>Product Name</strong> (dppk:productName)</li><li id="description"><strong>Product Description</strong> (dppk:description)</li><li id="gtin"><strong>Global Trade Item Number (GTIN)</strong> (dppk:gtin)</li><li id="brand"><strong>Brand Name</strong> (dppk:brand)</li><li id="model"><strong>Model Number</strong> (dppk:model)</li><li id="image"><strong>Product Image</strong> (dppk:image)</li><li id="color"><strong>Color Description</strong> (dppk:color)</li><li id="components"><strong>Components</strong> (dppk:components)</li><li id="countryOfOrigin"><strong>Country of Origin</strong> (dppk:countryOfOrigin)</li><li id="recycledContentPercentage"><strong>Recycled Content Percentage</strong> (dppk:recycledContentPercentage)</li><li id="netWeight"><strong>Net Weight</strong> (dppk:netWeight)</li><li id="grossWeight"><strong>Gross Weight</strong> (dppk:grossWeight)</li><li id="length"><strong>Length</strong> (dppk:length)</li><li id="width"><strong>Width</strong> (dppk:width)</li><li id="height"><strong>Height</strong> (dppk:height)</li><li id="depth"><strong>Depth</strong> (dppk:depth)</li><li id="value"><strong>Value</strong> (dppk:value)</li><li id="unitCode"><strong>Unit Code</strong> (dppk:unitCode)</li><li id="unitText"><strong>Unit Text</strong> (dppk:unitText)</li><li id="productCharacteristics"><strong>Product Characteristics</strong> (dppk:productCharacteristics)</li><li id="characteristicName"><strong>Characteristic Name</strong> (dppk:characteristicName)</li><li id="characteristicValue"><strong>Characteristic Value</strong> (dppk:characteristicValue)</li><li id="testMethod"><strong>Test Method</strong> (dppk:testMethod)</li><li id="warrantyDuration"><strong>Warranty Duration</strong> (dppk:warrantyDuration)</li><li id="repairServices"><strong>Repair Services</strong> (dppk:repairServices)</li><li id="manufacturerInfo"><strong>Manufacturer Information</strong> (dppk:manufacturerInfo)</li><li id="apparelSize"><strong>Apparel Size</strong> (dppk:apparelSize)</li><li id="apparelSizeSystem"><strong>Apparel Size System</strong> (dppk:apparelSizeSystem)</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>equivalentProperty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="componentName"><strong>Component Name</strong> (dppk:componentName)</td>
+                            <td>The specific name of the component.</td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="componentPercentage"><strong>Component Percentage</strong> (dppk:componentPercentage)</td>
+                            <td>The percentage contribution of this component to the parent assembly (e.g., by weight).</td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="componentIdentifier"><strong>Component Identifier</strong> (dppk:componentIdentifier)</td>
+                            <td>The unique product identifier of the component.</td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="componentCasNumber"><strong>Component CAS Number</strong> (dppk:componentCasNumber)</td>
+                            <td>The Chemical Abstracts Service (CAS) registry number for the component.</td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="componentEcNumber"><strong>Component EC Number</strong> (dppk:componentEcNumber)</td>
+                            <td>The European Community (EC) number for the component.</td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="componentIupacName"><strong>Component IUPAC Name</strong> (dppk:componentIupacName)</td>
+                            <td>The International Union of Pure and Applied Chemistry nomenclature for the component.</td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="componentLocationInProduct"><strong>Component Location in Product</strong> (dppk:componentLocationInProduct)</td>
+                            <td>Specific physical location of the component or substance inside the parent assembly.</td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="name"><strong>Name</strong> (dppk:name)</td>
+                            <td>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</td>
+                            <td></td>
+                            <td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td>
+                            <td><a href="https://schema.org/name">schema:name</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productName"><strong>Product Name</strong> (dppk:productName)</td>
+                            <td>The common name of the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td>
+                            <td><a href="https://ref.gs1.org/voc/productName">gs1:productName</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="description"><strong>Product Description</strong> (dppk:description)</td>
+                            <td>A detailed description of the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td>
+                            <td><a href="https://schema.org/description">schema:description</a>, <a href="https://ref.gs1.org/voc/productDescription">gs1:productDescription</a>, <a href="https://vocabulary.uncefact.org/description">unece:description</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="gtin"><strong>Global Trade Item Number (GTIN)</strong> (dppk:gtin)</td>
+                            <td>The GS1 identifier for the trade item.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/gtin">schema:gtin</a>, <a href="https://ref.gs1.org/voc/gtin">gs1:gtin</a>, <a href="https://vocabulary.uncefact.org/gTINId">unece:gTINId</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="brand"><strong>Brand Name</strong> (dppk:brand)</td>
+                            <td>The brand name of the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/brand">schema:brand</a>, <a href="https://ref.gs1.org/voc/brandName">gs1:brandName</a>, <a href="https://vocabulary.uncefact.org/brandName">unece:brandName</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="model"><strong>Model Number</strong> (dppk:model)</td>
+                            <td>The model identifier or number of the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/model">schema:model</a>, <a href="https://vocabulary.uncefact.org/modelId">unece:modelId</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="image"><strong>Product Image</strong> (dppk:image)</td>
+                            <td>A reference to an image resource related to the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="../RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td><a href="https://schema.org/image">schema:image</a>, <a href="https://ref.gs1.org/voc/productImage">gs1:productImage</a>, <a href="https://vocabulary.uncefact.org/specifiedPicture">unece:specifiedPicture</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="color"><strong>Color Description</strong> (dppk:color)</td>
+                            <td>The color of the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td>
+                            <td><a href="https://schema.org/color">schema:color</a>, <a href="https://ref.gs1.org/voc/colourDescription">gs1:colourDescription</a>, <a href="https://vocabulary.uncefact.org/colourDescription">unece:colourDescription</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="components"><strong>Components</strong> (dppk:components)</td>
+                            <td>A constituent part or material of the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="Component.html">dppk:Component</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="countryOfOrigin"><strong>Country of Origin</strong> (dppk:countryOfOrigin)</td>
+                            <td>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/countryOfOrigin">schema:countryOfOrigin</a>, <a href="https://ref.gs1.org/voc/countryOfOrigin">gs1:countryOfOrigin</a>, <a href="https://vocabulary.uncefact.org/originCountry">unece:originCountry</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="recycledContentPercentage"><strong>Recycled Content Percentage</strong> (dppk:recycledContentPercentage)</td>
+                            <td>The percentage of the material that is derived from recycled sources.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="netWeight"><strong>Net Weight</strong> (dppk:netWeight)</td>
+                            <td>The weight of the product or material, excluding packaging. Recommended to use specific datatypes like dppk:KgWeightLiteral.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="https://dpp-keystone.org/spec/v1/terms#KgWeightLiteral">dppk:KgWeightLiteral</a></td>
+                            <td><a href="https://ref.gs1.org/voc/netWeight">gs1:netWeight</a>, <a href="https://vocabulary.uncefact.org/netWeightMeasure">unece:netWeightMeasure</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="grossWeight"><strong>Gross Weight</strong> (dppk:grossWeight)</td>
+                            <td>The weight of the product or material, including packaging, expressed as a QuantitativeValue.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2000/01/rdf-schema#Literal">rdfs:Literal</a></td>
+                            <td><a href="https://ref.gs1.org/voc/grossWeight">gs1:grossWeight</a>, <a href="https://vocabulary.uncefact.org/grossWeightMeasure">unece:grossWeightMeasure</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="length"><strong>Length</strong> (dppk:length)</td>
+                            <td>The length of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="https://dpp-keystone.org/spec/v1/terms#MetersLengthLiteral">dppk:MetersLengthLiteral</a></td>
+                            <td><a href="https://schema.org/length">schema:length</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="width"><strong>Width</strong> (dppk:width)</td>
+                            <td>The width of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="https://dpp-keystone.org/spec/v1/terms#MetersLengthLiteral">dppk:MetersLengthLiteral</a></td>
+                            <td><a href="https://schema.org/width">schema:width</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="height"><strong>Height</strong> (dppk:height)</td>
+                            <td>The height of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="https://dpp-keystone.org/spec/v1/terms#MetersLengthLiteral">dppk:MetersLengthLiteral</a></td>
+                            <td><a href="https://schema.org/height">schema:height</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="depth"><strong>Depth</strong> (dppk:depth)</td>
+                            <td>The depth of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="https://dpp-keystone.org/spec/v1/terms#MetersLengthLiteral">dppk:MetersLengthLiteral</a></td>
+                            <td><a href="https://schema.org/depth">schema:depth</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="value"><strong>Value</strong> (dppk:value)</td>
+                            <td>The numeric value of the measurement.</td>
+                            <td><a href="QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td><a href="https://schema.org/value">schema:value</a>, <a href="https://ref.gs1.org/voc/value">gs1:value</a>, <a href="https://vocabulary.uncefact.org/unitQuantity">unece:unitQuantity</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="unitCode"><strong>Unit Code</strong> (dppk:unitCode)</td>
+                            <td>The unit of measurement, preferably using UN/CEFACT codes (e.g., KGM, MTR, LTR).</td>
+                            <td><a href="QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/unitCode">schema:unitCode</a>, <a href="https://ref.gs1.org/voc/unitCode">gs1:unitCode</a>, <a href="https://vocabulary.uncefact.org/QuantityTypeCode">unece:QuantityTypeCode</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="unitText"><strong>Unit Text</strong> (dppk:unitText)</td>
+                            <td>A human-readable representation of the unit (e.g., kg CO2e, Nm).</td>
+                            <td><a href="QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/unitText">schema:unitText</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productCharacteristics"><strong>Product Characteristics</strong> (dppk:productCharacteristics)</td>
+                            <td>Relates a product to its specific characteristics or performance properties.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="ProductCharacteristic.html">dppk:ProductCharacteristic</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="characteristicName"><strong>Characteristic Name</strong> (dppk:characteristicName)</td>
+                            <td>The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').</td>
+                            <td><a href="ProductCharacteristic.html">dppk:ProductCharacteristic</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/characteristicName">gs1:characteristicName</a>, <a href="https://schema.org/name">schema:name</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="characteristicValue"><strong>Characteristic Value</strong> (dppk:characteristicValue)</td>
+                            <td>The measured or declared value of the characteristic (e.g., '≥ 2.0 MPa', 'Class A1').</td>
+                            <td><a href="ProductCharacteristic.html">dppk:ProductCharacteristic</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/characteristicValue">gs1:characteristicValue</a>, <a href="https://schema.org/value">schema:value</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="testMethod"><strong>Test Method</strong> (dppk:testMethod)</td>
+                            <td>A reference to the standard or methodology used to determine the characteristic's value.</td>
+                            <td><a href="ProductCharacteristic.html">dppk:ProductCharacteristic</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/measurementMethod">gs1:measurementMethod</a>, <a href="https://schema.org/measurementMethod">schema:measurementMethod</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="warrantyDuration"><strong>Warranty Duration</strong> (dppk:warrantyDuration)</td>
+                            <td>The duration of the commercial warranty provided with the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="repairServices"><strong>Repair Services</strong> (dppk:repairServices)</td>
+                            <td>Contact information for authorized repair services.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="../Organization/Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="manufacturerInfo"><strong>Manufacturer Information</strong> (dppk:manufacturerInfo)</td>
+                            <td>Information about the manufacturer of the product.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="../Organization/Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="apparelSize"><strong>Apparel Size</strong> (dppk:apparelSize)</td>
+                            <td>The size of the product (e.g., 'M', 'L', '42'). Applicable primarily to apparel and textiles.</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/sizeCode">gs1:sizeCode</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="apparelSizeSystem"><strong>Apparel Size System</strong> (dppk:apparelSizeSystem)</td>
+                            <td>The sizing system used for the apparel size (e.g., 'EU', 'US', 'UK').</td>
+                            <td><a href="Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>

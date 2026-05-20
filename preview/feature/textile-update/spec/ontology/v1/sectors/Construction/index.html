@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: DPP Sector Ontology - Construction and Heavy Industry Definitions (v1)</title>
     <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,14 +24,129 @@
         <main>
             <p>Defines concepts for Construction Products (aligning with CPR) and related heavy industries such as steel and rail.</p>
             <p><strong>Source:</strong> <a href="../Construction.jsonld">Construction.jsonld</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 <li><a href="ConstructionProduct.html">Construction Product</a></li><li><a href="DeclarationOfPerformance.html">Declaration of Performance (DoP)</a></li>
             </ul>
             <h3>Properties</h3>
-            <ul>
-                <li id="hasDoP"><strong>Has Declaration of Performance</strong> (dppk:hasDoP)</li><li id="dopIdentifier"><strong>DoP Identifier</strong> (dppk:dopIdentifier)</li><li id="harmonisedStandardReference"><strong>Harmonised European Standard (hEN)</strong> (dppk:harmonisedStandardReference)</li><li id="avsSystem"><strong>AVCP System</strong> (dppk:avsSystem)</li><li id="notifiedBody"><strong>Notified Body (NB) Details</strong> (dppk:notifiedBody)</li><li id="technicalAssessmentBody"><strong>Technical Assessment Body (TAB) Details</strong> (dppk:technicalAssessmentBody)</li><li id="validationReports"><strong>Validation Reports Reference</strong> (dppk:validationReports)</li><li id="europeanAssessmentDocument"><strong>European Assessment Document (EAD) Reference</strong> (dppk:europeanAssessmentDocument)</li><li id="reactionToFire"><strong>Reaction to Fire</strong> (dppk:reactionToFire)</li><li id="thermalConductivity"><strong>Thermal Conductivity (Lambda)</strong> (dppk:thermalConductivity)</li><li id="compressiveStrength"><strong>Compressive Strength</strong> (dppk:compressiveStrength)</li><li id="steelGrade"><strong>Steel Grade</strong> (dppk:steelGrade)</li><li id="railProfile"><strong>Rail Profile</strong> (dppk:railProfile)</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="hasDoP"><strong>Has Declaration of Performance</strong> (dppk:hasDoP)</td>
+                            <td>Relates the construction product to its Declaration of Performance.</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="DeclarationOfPerformance.html">dppk:DeclarationOfPerformance</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="dopIdentifier"><strong>DoP Identifier</strong> (dppk:dopIdentifier)</td>
+                            <td>The unique identification code of the Declaration of Performance.</td>
+                            <td><a href="DeclarationOfPerformance.html">dppk:DeclarationOfPerformance</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="harmonisedStandardReference"><strong>Harmonised European Standard (hEN)</strong> (dppk:harmonisedStandardReference)</td>
+                            <td>A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product.</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="avsSystem"><strong>AVCP System</strong> (dppk:avsSystem)</td>
+                            <td>The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4).</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="notifiedBody"><strong>Notified Body (NB) Details</strong> (dppk:notifiedBody)</td>
+                            <td>The EU-recognized notified body that verifies a product's conformance to European regulations</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="../../core/Organization/Organization.html">dppk:Organization</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="technicalAssessmentBody"><strong>Technical Assessment Body (TAB) Details</strong> (dppk:technicalAssessmentBody)</td>
+                            <td>The technical assessment body that independently evaluates a product's technical characteristics</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="../../core/Organization/Organization.html">dppk:Organization</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="validationReports"><strong>Validation Reports Reference</strong> (dppk:validationReports)</td>
+                            <td>Reference to reports validating the performance or conformity of the product.</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="europeanAssessmentDocument"><strong>European Assessment Document (EAD) Reference</strong> (dppk:europeanAssessmentDocument)</td>
+                            <td>A reference to the European Assessment Document (EAD) relevant to the product.</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="reactionToFire"><strong>Reaction to Fire</strong> (dppk:reactionToFire)</td>
+                            <td>The classification of the product's contribution to fire (Euroclass).</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="thermalConductivity"><strong>Thermal Conductivity (Lambda)</strong> (dppk:thermalConductivity)</td>
+                            <td>The property of a material to conduct heat.</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="compressiveStrength"><strong>Compressive Strength</strong> (dppk:compressiveStrength)</td>
+                            <td>The capacity of a material or structure to withstand loads tending to reduce size.</td>
+                            <td><a href="ConstructionProduct.html">dppk:ConstructionProduct</a></td>
+                            <td><a href="../../core/Product/QuantitativeValue.html">dppk:QuantitativeValue</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="steelGrade"><strong>Steel Grade</strong> (dppk:steelGrade)</td>
+                            <td>The classification of the steel based on its composition and physical properties (e.g., R260, S355).</td>
+                            <td><a href="../../core/Product/Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            
+                        </tr>
+                    
+                        <tr>
+                            <td id="railProfile"><strong>Rail Profile</strong> (dppk:railProfile)</td>
+                            <td>The standardized cross-section design of a railway rail (e.g., 46E1).</td>
+                            <td><a href="../../core/Product/Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            
+                        </tr>
+                    
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
