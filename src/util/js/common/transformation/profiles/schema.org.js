@@ -649,6 +649,99 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         }
     });
 
+    // --- Textile ESPR Parity Additions ---
+
+    // 1. EU Apparel Size -> size & additionalProperty
+    const euSizeNode = getNode(rootNode, 'https://dpp-keystone.org/spec/v1/terms#euApparelSize');
+    if (euSizeNode) {
+        const sizeDesig = getValue(euSizeNode, 'https://dpp-keystone.org/spec/v1/terms#sizeDesignation');
+        const primDim = getValue(euSizeNode, 'https://dpp-keystone.org/spec/v1/terms#primaryDimension');
+        const primDimVal = getValue(euSizeNode, 'https://dpp-keystone.org/spec/v1/terms#primaryDimensionValue');
+        
+        let sizeStr = sizeDesig || '';
+        if (primDim && primDimVal) {
+            sizeStr += sizeStr ? ` (${primDim}: ${primDimVal})` : `${primDim}: ${primDimVal}`;
+        }
+        if (sizeStr) product.size = sizeStr;
+
+        // Extract secondary dimensions
+        const secDims = euSizeNode['https://dpp-keystone.org/spec/v1/terms#secondaryDimensions'];
+        if (secDims && Array.isArray(secDims)) {
+             secDims.forEach(dim => {
+                 const dName = getValue(dim, 'https://dpp-keystone.org/spec/v1/terms#dimension');
+                 const dVal = getValue(dim, 'https://dpp-keystone.org/spec/v1/terms#value');
+                 if (dName && dVal) {
+                     if (!product.additionalProperty) product.additionalProperty = [];
+                     product.additionalProperty.push({
+                         "@type": "PropertyValue",
+                         "name": dName,
+                         "value": dVal
+                     });
+                 }
+             });
+        }
+    }
+
+    // 2. Production Steps -> additionalProperty
+    const prodSteps = rootNode['https://dpp-keystone.org/spec/v1/terms#productionSteps'];
+    if (prodSteps && Array.isArray(prodSteps)) {
+        prodSteps.forEach(step => {
+            const stepName = getValue(step, 'https://dpp-keystone.org/spec/v1/terms#productionStepType');
+            const country = getValue(step, 'https://dpp-keystone.org/spec/v1/terms#productionLocationCountry');
+            if (stepName) {
+                if (!product.additionalProperty) product.additionalProperty = [];
+                product.additionalProperty.push({
+                    "@type": "PropertyValue",
+                    "name": `Production Step - ${country || 'Unknown Location'}`,
+                    "value": stepName
+                });
+            }
+        });
+    }
+
+    // 3. Instructions (Care and Repair) -> subjectOf
+    const addInstructionsToSubjectOf = (term) => {
+        const nodes = rootNode[`https://dpp-keystone.org/spec/v1/terms#${term}`];
+        if (nodes && Array.isArray(nodes)) {
+            const docs = nodes.map(toSchemaOrgDigitalDocument).filter(d => d);
+            if (docs.length > 0) {
+                if (!product.subjectOf) product.subjectOf = [];
+                else if (!Array.isArray(product.subjectOf)) product.subjectOf = [product.subjectOf];
+                product.subjectOf.push(...docs);
+            }
+        }
+    };
+    addInstructionsToSubjectOf('careInstructions');
+    addInstructionsToSubjectOf('repairInstructions');
+
+    // 4. Warranty Duration -> warranty
+    const warrantyDuration = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#warrantyDuration');
+    if (warrantyDuration && !product.warranty) {
+        product.warranty = warrantyDuration;
+    }
+
+    // 5. ESPR Scores & Metrics -> additionalProperty
+    const esprProps = [
+        { term: 'robustnessScore', label: 'Robustness Score' },
+        { term: 'recyclabilityScore', label: 'Recyclability Score' },
+        { term: 'carbonFootprint', label: 'Carbon Footprint' },
+        { term: 'spirality', label: 'Spirality' },
+        { term: 'dimensionalChange', label: 'Dimensional Change' },
+        { term: 'visualInspection', label: 'Visual Inspection' }
+    ];
+
+    esprProps.forEach(prop => {
+        const val = getValue(rootNode, `https://dpp-keystone.org/spec/v1/terms#${prop.term}`);
+        if (val !== undefined) {
+            if (!product.additionalProperty) product.additionalProperty = [];
+            product.additionalProperty.push({
+                "@type": "PropertyValue",
+                "name": prop.label,
+                "value": val
+            });
+        }
+    });
+
     // --- Iron and Steel Parity Additions (v1.1) ---
     
     // 1. Core Identifiers & Equivalencies
