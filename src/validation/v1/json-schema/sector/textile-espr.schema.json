@@ -3,6 +3,60 @@
     "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/sector/textile-espr.schema.json",
     "title": "DPP for Textiles (ESPR Update Draft)",
     "description": "A conditional schema that applies if the DPP is for the textile sector following the new ESPR specification.",
+    "$defs": {
+        "EuApparelSize": {
+            "type": "object",
+            "properties": {
+                "sizeDesignation": {
+                    "type": "string"
+                },
+                "primaryDimension": {
+                    "type": "string",
+                    "enum": [
+                        "Chest girth",
+                        "Neck girth",
+                        "Waist girth",
+                        "Hip girth",
+                        "Height",
+                        "Bust girth",
+                        "Underbust girth",
+                        "Foot length"
+                    ]
+                },
+                "primaryDimensionValue": {
+                    "type": "string"
+                },
+                "secondaryDimensions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "dimension": {
+                                "type": "string",
+                                "enum": [
+                                    "Waist girth",
+                                    "Chest girth",
+                                    "Hip girth",
+                                    "Arm length",
+                                    "Neck girth",
+                                    "Inside leg length",
+                                    "Bust girth",
+                                    "Underbust girth",
+                                    "Height"
+                                ]
+                            },
+                            "value": { "type": "string" }
+                        },
+                        "required": ["dimension", "value"]
+                    }
+                },
+                "cupSize": {
+                    "type": "string"
+                }
+            },
+            "required": ["primaryDimension", "primaryDimensionValue"]
+        }
+    },
     "if": {
         "type": "object",
         "properties": {
@@ -147,8 +201,8 @@
             "visualInspection": {
                 "type": "string"
             },
-            "apparelSize": {
-                "type": "string"
+            "euApparelSize": {
+                "$ref": "#/$defs/EuApparelSize"
             },
             "animalOriginNonTextile": {
                 "type": "boolean"
