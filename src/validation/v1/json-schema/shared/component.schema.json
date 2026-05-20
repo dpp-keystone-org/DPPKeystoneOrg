@@ -13,7 +13,9 @@
             "format": "uri"
         },
         "percentage": {
-            "type": "number"
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
         },
         "casNumber": {
             "type": "string"

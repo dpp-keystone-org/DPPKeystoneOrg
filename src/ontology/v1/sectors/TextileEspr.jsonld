@@ -12,14 +12,29 @@
     },
     "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/TextileEspr",
     "@type": "owl:Ontology",
-    "dcterms:title": { "@language": "en", "@value": "DPP Sector Ontology - Textile ESPR Draft (v2 Overlay)" },
-    "dcterms:description": { "@language": "en", "@value": "Defines draft sector-specific concepts required for the upcoming ESPR Delegated Act for Textiles. Acts as a V2 overlay on the base Textile ontology." },
+    "dcterms:title": { "@language": "en", "@value": "DPP Sector Ontology - Textile ESPR Draft (v2 Replacement)" },
+    "dcterms:description": { "@language": "en", "@value": "Defines draft sector-specific concepts required for the upcoming ESPR Delegated Act for Textiles. Acts as a standalone V2 replacement for the base Textile ontology." },
     "owl:versionInfo": "Draft",
     "owl:imports": [
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile.jsonld" },
         { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" }
     ],
     "@graph": [
+        {
+            "@id": "dppk:TextileProduct",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Textile Product",
+            "rdfs:comment": "Any raw, semi-worked, or worked product which is exclusively composed of textile fibres, regardless of the mixing or assembly process employed.",
+            "dcterms:source": {
+                "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
+                "rdfs:label": "Regulation (EU) No 1007/2011 (Textile Fibre Names)"
+            },
+            "rdfs:subClassOf": [
+                { "@id": "dppk:Product" },
+                { "@id": "schema:Product" },
+                { "@id": "gs1:Clothing" }
+            ],
+            "rdfs:seeAlso": { "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles" }
+        },
         {
             "@id": "dppk:pefcrCategory",
             "@type": "owl:ObjectProperty",
@@ -140,6 +155,14 @@
             "rdfs:subPropertyOf": { "@id": "schema:hasCertification" }
         },
         {
+            "@id": "dppk:euDeclarationOfConformity",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "EU Declaration of Conformity" },
+            "rdfs:comment": { "@language": "en", "@value": "A reference to the EU Declaration of Conformity for the product." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:RelatedResource" }
+        },
+        {
             "@id": "dppk:carbonFootprint",
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Carbon Footprint" },
@@ -216,6 +239,42 @@
             "rdfs:comment": { "@language": "en", "@value": "Indicates whether the product contains non-textile parts of animal origin, as required by the EU Textile Labelling Regulation." },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:boolean" }
+        },
+        {
+            "@id": "dppk:organicContentPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Organic Content Percentage" },
+            "rdfs:comment": { "@language": "en", "@value": "The percentage of organic material in the product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:organicContentMass",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Organic Content Mass" },
+            "rdfs:comment": { "@language": "en", "@value": "The absolute mass of organic material in the product." },
+            "dppk:unit": "kg",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:preConsumerRecycledContentPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Pre-consumer Recycled Content" },
+            "rdfs:comment": { "@language": "en", "@value": "The percentage of pre-consumer recycled material in the product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:postConsumerRecycledContentPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Post-consumer Recycled Content" },
+            "rdfs:comment": { "@language": "en", "@value": "The percentage of post-consumer recycled material in the product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
         }
     ]
 }

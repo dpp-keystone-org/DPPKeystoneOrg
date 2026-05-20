@@ -58,17 +58,24 @@
                     "$ref": "../shared/component.schema.json"
                 }
             },
-            "organicMaterialComposition": {
-                "type": "array",
-                "items": {
-                    "$ref": "../shared/component.schema.json"
-                }
+            "organicContentPercentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
             },
-            "recycledMaterialComposition": {
-                "type": "array",
-                "items": {
-                    "$ref": "../shared/component.schema.json"
-                }
+            "organicContentMass": {
+                "type": "number",
+                "minimum": 0
+            },
+            "preConsumerRecycledContentPercentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "postConsumerRecycledContentPercentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
             },
             "textileCertifications": {
                 "type": "array",
@@ -82,6 +89,9 @@
                         }
                     ]
                 }
+            },
+            "euDeclarationOfConformity": {
+                "$ref": "../shared/related-resource.schema.json"
             },
             "safeUseInstructions": {
                 "type": "array",
@@ -114,7 +124,9 @@
                 "type": "number"
             },
             "carbonFootprintBenchmarkPercentage": {
-                "type": "number"
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
             },
             "robustnessScore": {
                 "type": "number",

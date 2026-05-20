@@ -89,7 +89,7 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   Cross-reference the final JSON schema and JSON-LD context against the original JRC Ecodesign slides and industry templates.
     *   Confirm that every required term is fittingly represented, mapped, and typed.
 *   **[PENDING] Step 9.1.1: Review Assessment for Hallucinations 1 at a time**
-    1.  **Compliance with JRC Slides (The ESPR Additions)**
+    1.  **[COMPLETED] Compliance with JRC Slides (The ESPR Additions)**
     *   Our new schema is heavily compliant and successfully captures the novel ESPR requirements:
     *   **Instruction Consolidation:** `safeUseInstructions`, `repairInstructions`, `endOfLifeInstructions`, and `repairServices`.
     *   **New Metrics:** `carbonFootprint`, `carbonFootprintBenchmarkPercentage`.
@@ -126,9 +126,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     6.  **ESPR Discrepancies to Correct (Action Items):**
     *   [COMPLETED] Design and add `pefcrCategory`.
     *   [COMPLETED] Add `manufacturerInfo` (map to Organization in the context).
-    *   [PENDING] Redesign Recycled Content: Split into pre-consumer and post-consumer percentage fields (avoiding the complex 'components' array if unnecessary, following the battery schema approach).
-    *   [PENDING] Redesign Organic Content: Convert to a simple percent field and separate kg field in `TextileEspr.jsonld` rather than a complex component array.
-    *   [PENDING] Add Conformity Declaration reference.
+    *   [COMPLETED] Redesign Recycled Content: Split into pre-consumer and post-consumer percentage fields (avoiding the complex 'components' array if unnecessary, following the battery schema approach).
+    *   [COMPLETED] Redesign Organic Content: Convert to a simple percent field and separate kg field in `TextileEspr.jsonld` rather than a complex component array.
+    *   [COMPLETED] Add Conformity Declaration reference.
 *   **[PENDING] Step 9.2: Test Suite Coverage**
     *   Add Playwright and wizard flow integration test scenarios specifically covering the new ESPR textile schema elements to prevent future regressions.
 

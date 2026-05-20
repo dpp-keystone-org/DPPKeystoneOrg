@@ -46,31 +46,24 @@
                     "locationInProduct": "dppk:componentLocationInProduct"
                 }
             },
-            "organicMaterialComposition": {
-                "@id": "dppk:organicMaterialComposition",
-                "@container": "@set",
-                "@context": {
-                    "name": "dppk:componentName",
-                    "percentage": "dppk:componentPercentage",
-                    "uniqueProductIdentifier": "dppk:componentIdentifier",
-                    "casNumber": "dppk:componentCasNumber",
-                    "ecNumber": "dppk:componentEcNumber",
-                    "iupacName": "dppk:componentIupacName",
-                    "locationInProduct": "dppk:componentLocationInProduct"
-                }
+            "organicContentPercentage": {
+                "@id": "dppk:organicContentPercentage",
+                "@type": "xsd:double"
             },
-            "recycledMaterialComposition": {
-                "@id": "dppk:recycledMaterialComposition",
-                "@container": "@set",
-                "@context": {
-                    "name": "dppk:componentName",
-                    "percentage": "dppk:componentPercentage",
-                    "uniqueProductIdentifier": "dppk:componentIdentifier",
-                    "casNumber": "dppk:componentCasNumber",
-                    "ecNumber": "dppk:componentEcNumber",
-                    "iupacName": "dppk:componentIupacName",
-                    "locationInProduct": "dppk:componentLocationInProduct"
-                }
+            "organicContentMass": {
+                "@id": "dppk:organicContentMass",
+                "@type": "xsd:double"
+            },
+            "preConsumerRecycledContentPercentage": {
+                "@id": "dppk:preConsumerRecycledContentPercentage",
+                "@type": "xsd:double"
+            },
+            "postConsumerRecycledContentPercentage": {
+                "@id": "dppk:postConsumerRecycledContentPercentage",
+                "@type": "xsd:double"
+            },
+            "euDeclarationOfConformity": {
+                "@id": "dppk:euDeclarationOfConformity"
             },
             "textileCertifications": {
                 "@id": "dppk:textileCertifications",
