@@ -164,6 +164,14 @@
       "@id": "dppk:dateOfManufacture",
       "@type": "xsd:date"
     },
+    "apparelSize": {
+      "@id": "dppk:apparelSize",
+      "@type": "xsd:string"
+    },
+    "apparelSizeSystem": {
+      "@id": "dppk:apparelSizeSystem",
+      "@type": "xsd:string"
+    },
 
     // ==================================================================
     // General Purpose Aliases (Used across multiple classes)

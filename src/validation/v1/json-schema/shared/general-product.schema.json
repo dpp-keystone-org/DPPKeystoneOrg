@@ -44,6 +44,12 @@
         "depth": {
             "type": "number"
         },
+        "apparelSize": {
+            "type": "string"
+        },
+        "apparelSizeSystem": {
+            "type": "string"
+        },
         "image": {
             "type": "array",
             "items": {

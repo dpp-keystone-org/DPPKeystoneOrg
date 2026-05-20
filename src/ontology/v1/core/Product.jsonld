@@ -517,6 +517,24 @@
         "rdfs:comment": "Information about the manufacturer of the product.",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "dppk:Organization" }
+    },
+    {
+        "@id": "dppk:apparelSize",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Apparel Size",
+        "rdfs:comment": "The size of the product (e.g., 'M', 'L', '42'). Applicable primarily to apparel and textiles.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "xsd:string" },
+        "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
+        "skos:closeMatch": { "@id": "schema:size" }
+    },
+    {
+        "@id": "dppk:apparelSizeSystem",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Apparel Size System",
+        "rdfs:comment": "The sizing system used for the apparel size (e.g., 'EU', 'US', 'UK').",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "xsd:string" }
     }
   ]
 }
