@@ -109,52 +109,62 @@
         {
             "@id": "dppk:BodyDimChestGirth",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Chest girth" }
+            "rdfs:label": { "@language": "en", "@value": "Chest girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the chest girth." }
         },
         {
             "@id": "dppk:BodyDimNeckGirth",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Neck girth" }
+            "rdfs:label": { "@language": "en", "@value": "Neck girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the neck girth." }
         },
         {
             "@id": "dppk:BodyDimWaistGirth",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Waist girth" }
+            "rdfs:label": { "@language": "en", "@value": "Waist girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the waist girth." }
         },
         {
             "@id": "dppk:BodyDimHipGirth",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Hip girth" }
+            "rdfs:label": { "@language": "en", "@value": "Hip girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the hip girth." }
         },
         {
             "@id": "dppk:BodyDimHeight",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Height" }
+            "rdfs:label": { "@language": "en", "@value": "Height" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the body height." }
         },
         {
             "@id": "dppk:BodyDimBustGirth",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Bust girth" }
+            "rdfs:label": { "@language": "en", "@value": "Bust girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the bust girth." }
         },
         {
             "@id": "dppk:BodyDimUnderbustGirth",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Underbust girth" }
+            "rdfs:label": { "@language": "en", "@value": "Underbust girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the underbust girth." }
         },
         {
             "@id": "dppk:BodyDimFootLength",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Foot length" }
+            "rdfs:label": { "@language": "en", "@value": "Foot length" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the foot length." }
         },
         {
             "@id": "dppk:BodyDimArmLength",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Arm length" }
+            "rdfs:label": { "@language": "en", "@value": "Arm length" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the arm length." }
         },
         {
             "@id": "dppk:BodyDimInsideLegLength",
             "@type": "dppk:BodyDimensionValue",
-            "rdfs:label": { "@language": "en", "@value": "Inside leg length" }
+            "rdfs:label": { "@language": "en", "@value": "Inside leg length" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the inside leg length." }
         }
     ]
 }

@@ -186,6 +186,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Robustness Score" },
             "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's robustness (typically 0-10 scale)." },
+            "dppk:unit": "unitless",
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -194,6 +195,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Recyclability Score" },
             "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's recyclability (typically 0-10 scale)." },
+            "dppk:unit": "unitless",
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
