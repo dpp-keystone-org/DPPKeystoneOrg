@@ -88,6 +88,24 @@
             "rdfs:comment": { "@language": "en", "@value": "The result of the visual inspection (e.g. Pass/Fail or notes)." },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
+            "@id": "dppk:apparelSize",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": "Apparel Size",
+            "rdfs:comment": "The size of the textile product (e.g., 'M', 'L', '42').",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:string" },
+            "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
+            "skos:closeMatch": { "@id": "schema:size" }
+        },
+        {
+            "@id": "dppk:animalOriginNonTextile",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Contains Non-Textile Parts of Animal Origin" },
+            "rdfs:comment": { "@language": "en", "@value": "Indicates whether the product contains non-textile parts of animal origin, as required by the EU Textile Labelling Regulation." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:boolean" }
         }
     ]
 }

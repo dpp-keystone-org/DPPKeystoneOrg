@@ -114,6 +114,18 @@
             },
             "visualInspection": {
                 "type": "string"
+            },
+            "apparelSize": {
+                "type": "string"
+            },
+            "animalOriginNonTextile": {
+                "type": "boolean"
+            },
+            "brand": {
+                "type": "string"
+            },
+            "color": {
+                "type": "string"
             }
         },
         "required": []

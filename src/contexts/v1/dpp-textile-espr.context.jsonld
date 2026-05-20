@@ -153,6 +153,22 @@
             "visualInspection": {
                 "@id": "dppk:visualInspection",
                 "@type": "xsd:string"
+            },
+            "apparelSize": {
+                "@id": "dppk:apparelSize",
+                "@type": "xsd:string"
+            },
+            "animalOriginNonTextile": {
+                "@id": "dppk:animalOriginNonTextile",
+                "@type": "xsd:boolean"
+            },
+            "brand": {
+                "@id": "dppk:brand",
+                "@type": "xsd:string"
+            },
+            "color": {
+                "@id": "dppk:color",
+                "@type": "xsd:string"
             }
         }
     ]

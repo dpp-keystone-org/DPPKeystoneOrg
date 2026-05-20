@@ -76,9 +76,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 
 ### [PENDING] Step 8: GS1 Apparel Standards & Labelling
 *   Plan: Leverage existing general-product architecture.
-*   **[PENDING] Step 8.1: General GS1 Fields**
+*   **[COMPLETED] Step 8.1: General GS1 Fields**
     *   Fields like `apparelSize`, `color`, and `brand` are already supported by our `general-product` architecture.
-*   **[PENDING] Step 8.2: Animal Origin Label**
+*   **[COMPLETED] Step 8.2: Animal Origin Label**
     *   `animalOriginNonTextile` will be added as a simple boolean (`true`/`false`) as required by the EU Textile Labelling Regulation.
 *   **[PENDING] Step 8.3: Ontology Equivalency Sweep**
     *   Make an explicit sweep to mark `schema.org`, `gs1.org`, and UNECE equivalencies (e.g., using `skos:exactMatch` or `owl:sameAs`) wherever appropriate for any new ontology terms introduced in the previous steps.
