@@ -358,8 +358,8 @@ test('should correctly format complex sector button names on toggle', async ({ p
 test('should not duplicate error messages when array items are removed and re-indexed', async ({ page }) => {
   await page.goto('/wizard/index.html');
   
-  const addBatteryBtn = page.locator('button[data-sector="battery"]');
-  await addBatteryBtn.click();
+  const addSectorBtn = page.locator('button[data-sector="textile-espr"]');
+  await addSectorBtn.click();
   
   // Add two components
   const addComponentBtn = page.locator('button[data-array-name="components"]');
