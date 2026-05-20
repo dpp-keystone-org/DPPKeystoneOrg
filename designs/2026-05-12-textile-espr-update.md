@@ -88,8 +88,6 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[PENDING] Step 9.1: Source Material Verification**
     *   Cross-reference the final JSON schema and JSON-LD context against the original JRC Ecodesign slides and industry templates.
     *   Confirm that every required term is fittingly represented, mapped, and typed.
-*   **[PENDING] Step 9.2: Test Suite Coverage**
-    *   Add Playwright and wizard flow integration test scenarios specifically covering the new ESPR textile schema elements to prevent future regressions.
 *   **[PENDING] Step 9.1.1: Review Assessment for Hallucinations 1 at a time**
     1.  **Compliance with JRC Slides (The ESPR Additions)**
     *   Our new schema is heavily compliant and successfully captures the novel ESPR requirements:
@@ -125,6 +123,8 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   Should I port fibreComposition, careInstructions, productionSteps, substancesOfConcern,
     *   and the legacy ISO tests over to textile-espr.schema.json (and the ESPR context/ontology)
     *   so that our ESPR schema becomes a true, complete superset of the legacy schema?
+*   **[PENDING] Step 9.2: Test Suite Coverage**
+    *   Add Playwright and wizard flow integration test scenarios specifically covering the new ESPR textile schema elements to prevent future regressions.
 
 ### [PENDING] Step 10: Validation and Outputs (Schema.org Adapter & Examples)
 *   Plan: Ensure that the new ESPR structures are correctly translated by the transformation engine and backed by concrete examples.
