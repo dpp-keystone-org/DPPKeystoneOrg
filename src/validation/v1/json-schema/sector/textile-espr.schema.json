@@ -20,6 +20,23 @@
     "then": {
         "type": "object",
         "properties": {
+            "pefcrCategory": {
+                "enum": [
+                    "T-shirts",
+                    "Shirts and blouses",
+                    "Sweaters and midlayers",
+                    "Jackets and coats",
+                    "Pants and shorts",
+                    "Dresses, skirts and jumpsuits",
+                    "Leggings, stockings, tights and socks",
+                    "Underwear",
+                    "Swimwear",
+                    "Apparel Accessories",
+                    "Open-toed shoes",
+                    "Closed-toed shoes",
+                    "Boots"
+                ]
+            },
             "components": {
                 "type": "array",
                 "items": {
@@ -126,23 +143,6 @@
             },
             "color": {
                 "type": "string"
-            },
-            "pefcrCategory": {
-                "enum": [
-                    "T-shirts",
-                    "Shirts and blouses",
-                    "Sweaters and midlayers",
-                    "Jackets and coats",
-                    "Pants and shorts",
-                    "Dresses, skirts and jumpsuits",
-                    "Leggings, stockings, tights and socks",
-                    "Underwear",
-                    "Swimwear",
-                    "Apparel Accessories",
-                    "Open-toed shoes",
-                    "Closed-toed shoes",
-                    "Boots"
-                ]
             }
         },
         "required": []
