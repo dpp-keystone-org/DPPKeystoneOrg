@@ -12,8 +12,8 @@
     },
     "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/TextileEspr",
     "@type": "owl:Ontology",
-    "dcterms:title": { "@language": "en", "@value": "DPP Sector Ontology - Textile ESPR Draft (v2 Replacement)" },
-    "dcterms:description": { "@language": "en", "@value": "Defines draft sector-specific concepts required for the upcoming ESPR Delegated Act for Textiles. Acts as a standalone V2 replacement for the base Textile ontology." },
+    "dcterms:title": { "@language": "en", "@value": "DPP Sector Ontology - Textile ESPR Compliant" },
+    "dcterms:description": { "@language": "en", "@value": "Defines sector-specific concepts compliant with the upcoming ESPR Delegated Act for Textiles." },
     "owl:versionInfo": "Draft",
     "owl:imports": [
         { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
