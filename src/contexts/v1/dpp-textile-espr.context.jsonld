@@ -62,9 +62,7 @@
                 "@id": "dppk:postConsumerRecycledContentPercentage",
                 "@type": "xsd:double"
             },
-            "euDeclarationOfConformity": {
-                "@id": "dppk:euDeclarationOfConformity"
-            },
+            "euDeclarationOfConformity": { "@id": "dppk:euDeclarationOfConformity" },
             "textileCertifications": {
                 "@id": "dppk:textileCertifications",
                 "@container": "@set",
