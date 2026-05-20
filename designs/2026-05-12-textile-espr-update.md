@@ -83,12 +83,12 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[COMPLETED] Step 8.3: Ontology Equivalency Sweep**
     *   Skipped explicit schema.org/GS1 mappings for highly specific ESPR terms, as no direct equivalents exist. Mapped `apparelSize` and `textileCertifications`.
 
-### [PENDING] Step 9: Final Review & Verification
+### [COMPLETED] Step 9: Final Review & Verification
 *   Plan: Explicitly review the finished schema and ontology context to ensure complete alignment with the source material, and add integration tests.
-*   **[PENDING] Step 9.1: Source Material Verification**
+*   **[COMPLETED] Step 9.1: Source Material Verification**
     *   Cross-reference the final JSON schema and JSON-LD context against the original JRC Ecodesign slides and industry templates.
     *   Confirm that every required term is fittingly represented, mapped, and typed.
-*   **[PENDING] Step 9.1.1: Review Assessment for Hallucinations 1 at a time**
+*   **[COMPLETED] Step 9.1.1: Review Assessment for Hallucinations 1 at a time**
     1.  **[COMPLETED] Compliance with JRC Slides (The ESPR Additions)**
     *   Our new schema is heavily compliant and successfully captures the novel ESPR requirements:
     *   **Instruction Consolidation:** `safeUseInstructions`, `repairInstructions`, `endOfLifeInstructions`, and `repairServices`.
@@ -126,12 +126,12 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   [COMPLETED] Redesign Recycled Content: Split into pre-consumer and post-consumer percentage fields (avoiding the complex 'components' array if unnecessary, following the battery schema approach).
     *   [COMPLETED] Redesign Organic Content: Convert to a simple percent field and separate kg field in `TextileEspr.jsonld` rather than a complex component array.
     *   [COMPLETED] Add Conformity Declaration reference.
-*   **[PENDING] Step 9.2: Test Suite Coverage**
+*   **[COMPLETED] Step 9.2: Test Suite Coverage**
     *   Add Playwright and wizard flow integration test scenarios specifically covering the new ESPR textile schema elements to prevent future regressions.
 
-### [PENDING] Step 10: Validation and Outputs (Schema.org Adapter & Examples)
+### [COMPLETED] Step 10: Validation and Outputs (Schema.org Adapter & Examples)
 *   Plan: Ensure that the new ESPR structures are correctly translated by the transformation engine and backed by concrete examples.
-*   **[PENDING] Step 10.1: Update schema.org adapter**
+*   **[COMPLETED] Step 10.1: Update schema.org adapter**
     *   Update `src/util/js/common/transformation/profiles/schema.org.js` to extract and map the new ESPR textile attributes (`textileCertifications`, `safeUseInstructions`, `organicMaterialComposition`, `recycledMaterialComposition`, etc.) into standard schema.org types.
-*   **[PENDING] Step 10.2: Create/Update Textile ESPR Examples**
+*   **[COMPLETED] Step 10.2: Create/Update Textile ESPR Examples**
     *   Create a new comprehensive `textile-espr-dpp-v1.json` (or update an existing textile example) to validate the new JSON validation schema, semantic expansion, and the schema.org output.
