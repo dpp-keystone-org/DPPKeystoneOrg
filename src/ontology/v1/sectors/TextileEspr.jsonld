@@ -266,6 +266,36 @@
             "dppk:unit": "%",
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:ProductionStep",
+            "@type": "rdfs:Class",
+            "rdfs:label": { "@language": "en", "@value": "Production Step" },
+            "rdfs:comment": { "@language": "en", "@value": "A specific step in the manufacturing process of the product." }
+        },
+        {
+            "@id": "dppk:productionSteps",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Production Steps" },
+            "rdfs:comment": { "@language": "en", "@value": "The sequence of major production steps that occurred for this product." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:ProductionStep" }
+        },
+        {
+            "@id": "dppk:productionStepType",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Production Step Type" },
+            "rdfs:comment": { "@language": "en", "@value": "The type of activity performed (e.g., Spinning, Weaving, Dyeing)." },
+            "rdfs:domain": { "@id": "dppk:ProductionStep" },
+            "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
+            "@id": "dppk:productionLocationCountry",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Production Location Country" },
+            "rdfs:comment": { "@language": "en", "@value": "The country code (ISO 3166-1 alpha-3) where the production step took place." },
+            "rdfs:domain": { "@id": "dppk:ProductionStep" },
+            "rdfs:range": { "@id": "xsd:string" }
         }
     ]
 }

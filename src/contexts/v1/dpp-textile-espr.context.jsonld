@@ -211,6 +211,14 @@
                     "Inside leg length": "dppk:BodyDimInsideLegLength"
                 }
             },
+            "productionSteps": {
+                "@id": "dppk:productionSteps",
+                "@container": "@set",
+                "@context": {
+                    "step": "dppk:productionStepType",
+                    "countryCode": "dppk:productionLocationCountry"
+                }
+            },
             "animalOriginNonTextile": {
                 "@id": "dppk:animalOriginNonTextile",
                 "@type": "xsd:boolean"
