@@ -126,6 +126,23 @@
             },
             "color": {
                 "type": "string"
+            },
+            "pefcrCategory": {
+                "enum": [
+                    "T-shirts",
+                    "Shirts and blouses",
+                    "Sweaters and mid-layers",
+                    "Jackets and coats",
+                    "Trousers and shorts",
+                    "Dresses, skirts, and jumpsuits",
+                    "Underwear and sleepwear",
+                    "Swimwear",
+                    "Hosiery and socks",
+                    "Activewear",
+                    "Boots",
+                    "Closed shoes",
+                    "Open shoes"
+                ]
             }
         },
         "required": []
