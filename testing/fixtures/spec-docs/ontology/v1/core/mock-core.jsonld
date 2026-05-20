@@ -83,6 +83,20 @@
             "rdfs:range": {
                 "@id": "dppk:MockProduct"
             }
+        },
+        {
+            "@id": "dppk:MockEnumCategory",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Enum Category",
+            "owl:oneOf": [
+                { "@id": "dppk:MockEnumValue1" }
+            ]
+        },
+        {
+            "@id": "dppk:MockEnumValue1",
+            "@type": "dppk:MockEnumCategory",
+            "rdfs:label": "Mock Enum Value 1",
+            "rdfs:comment": "The first mock enum value."
         }
     ]
 }
