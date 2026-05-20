@@ -230,6 +230,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Chest girth"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the chest girth."
       }
     },
     {
@@ -238,6 +242,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Neck girth"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the neck girth."
       }
     },
     {
@@ -246,6 +254,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Waist girth"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the waist girth."
       }
     },
     {
@@ -254,6 +266,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Hip girth"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the hip girth."
       }
     },
     {
@@ -262,6 +278,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Height"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the body height."
       }
     },
     {
@@ -270,6 +290,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Bust girth"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the bust girth."
       }
     },
     {
@@ -278,6 +302,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Underbust girth"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the underbust girth."
       }
     },
     {
@@ -286,6 +314,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Foot length"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the foot length."
       }
     },
     {
@@ -294,6 +326,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Arm length"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the arm length."
       }
     },
     {
@@ -302,6 +338,10 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "Inside leg length"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measurement of the inside leg length."
       }
     }
   ]

@@ -1,5 +1,5 @@
 import * as jsonldEngine from 'jsonld';
-import { isDate, isDateTime, isDecimal, isInteger, isCountryCode, isURI, hasControlCharacters } from './ontology-validator.js?v=1779287114252';
+import { isDate, isDateTime, isDecimal, isInteger, isCountryCode, isURI, hasControlCharacters } from './ontology-validator.js?v=1779288075672';
 
 // Robustly resolve the jsonld library instance across different environments
 let _jsonld = jsonldEngine.default || jsonldEngine;

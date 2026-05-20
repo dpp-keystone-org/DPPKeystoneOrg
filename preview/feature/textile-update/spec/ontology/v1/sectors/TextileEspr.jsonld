@@ -376,6 +376,7 @@
         "@language": "en",
         "@value": "A numeric score representing the product's robustness (typically 0-10 scale)."
       },
+      "dppk:unit": "unitless",
       "rdfs:domain": {
         "@id": "dppk:TextileProduct"
       },
@@ -394,6 +395,7 @@
         "@language": "en",
         "@value": "A numeric score representing the product's recyclability (typically 0-10 scale)."
       },
+      "dppk:unit": "unitless",
       "rdfs:domain": {
         "@id": "dppk:TextileProduct"
       },
