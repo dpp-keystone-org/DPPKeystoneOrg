@@ -23,6 +23,8 @@
         {
             "@id": "dppk:pefcrCategory",
             "@type": "owl:ObjectProperty",
+            "dppk:governedBy": "Apparel and Footwear PEFCR v3.1",
+            "dcterms:source": { "@id": "https://pefapparelandfootwear.eu/afw_pefcr_v3-1_final/" },
             "rdfs:label": { "@language": "en", "@value": "PEFCR Category" },
             "rdfs:comment": { "@language": "en", "@value": "The Product Environmental Footprint Category Rules (PEFCR) category to which the product belongs." },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
@@ -53,67 +55,80 @@
         {
             "@id": "dppk:PefcrTShirts",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "T-shirts" }
+            "rdfs:label": { "@language": "en", "@value": "T-shirts" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to cover the upper body to the elbow. Typical products included: Singlets, t-shirts, polo shirts, other short-sleeved shirts." }
         },
         {
             "@id": "dppk:PefcrShirtsAndBlouses",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Shirts and blouses" }
+            "rdfs:label": { "@language": "en", "@value": "Shirts and blouses" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to cover the upper body including the entire arm. Typical products included: Long-sleeved shirts, blouses, tunics, base layers." }
         },
         {
             "@id": "dppk:PefcrSweatersAndMidlayers",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Sweaters and midlayers" }
+            "rdfs:label": { "@language": "en", "@value": "Sweaters and midlayers" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to keep the upper body warm and covered. Typical products included: Pullovers, cardigans, hoodies, jerseys, sweatshirts, knitted and wool sweaters, vests." }
         },
         {
             "@id": "dppk:PefcrJacketsAndCoats",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Jackets and coats" }
+            "rdfs:label": { "@language": "en", "@value": "Jackets and coats" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to put on top of a shirt or sweater or to protect from the elements. Typical products included: Blazers, suit jackets, overcoats, other light jackets, rain jackets, outdoor winter jackets, parkas, down jackets, fur jackets, outdoor vests, leather jackets." }
         },
         {
             "@id": "dppk:PefcrPantsAndShorts",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Pants and shorts" }
+            "rdfs:label": { "@language": "en", "@value": "Pants and shorts" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to cover the lower body, may protect from the elements. Typical products included: Casual pants, outdoor pants, dress pants, jeans, sports pants, capri pants, shorts." }
         },
         {
             "@id": "dppk:PefcrDressesSkirtsAndJumpsuits",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Dresses, skirts and jumpsuits" }
+            "rdfs:label": { "@language": "en", "@value": "Dresses, skirts and jumpsuits" },
+            "rdfs:comment": { "@language": "en", "@value": "One-piece garment that covers both the upper and lower body, or the lower body only, other than pants and shorts. Typical products included: Short- and long-sleeved, strapless, wrap, long and short, one-piece suits." }
         },
         {
             "@id": "dppk:PefcrLeggingsStockingsTightsAndSocks",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Leggings, stockings, tights and socks" }
+            "rdfs:label": { "@language": "en", "@value": "Leggings, stockings, tights and socks" },
+            "rdfs:comment": { "@language": "en", "@value": "Tight garment to cover the legs and/or feet. Typical products included: Opaque and sheer tights, pantyhose, fishnets, ankle socks, knee socks, low-cut socks." }
         },
         {
             "@id": "dppk:PefcrUnderwear",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Underwear" }
+            "rdfs:label": { "@language": "en", "@value": "Underwear" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment worn under clothes, often next to the skin of the upper or lower body. Typical products included: Boxers, briefs, panties, bras, body-shaping suits." }
         },
         {
             "@id": "dppk:PefcrSwimwear",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Swimwear" }
+            "rdfs:label": { "@language": "en", "@value": "Swimwear" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment worn for water-based or sunbased activities. Typical products included: Bikinis, bathing suits, racing-style swimwear, board shorts." }
         },
         {
             "@id": "dppk:PefcrApparelAccessories",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Apparel Accessories" }
+            "rdfs:label": { "@language": "en", "@value": "Apparel Accessories" },
+            "rdfs:comment": { "@language": "en", "@value": "Garments for the head, neck, waist, or hands to protect from elements or secure clothing. Typical products included: Hats (Caps, flat caps, woollen hats/beanies, fedoras, panamas, bowlers, newsboys, berets), Scarves and ties (Warm and light scarves, buffs, neckerchiefs, headscarves, shawls, bowties), Belts (Dress belts, casual belts, buckle belts, tie-up belts, suspenders), Gloves and mittens (fingerless gloves, fashion gloves, outdoor sports gloves, mittens)." }
         },
         {
             "@id": "dppk:PefcrOpenToedShoes",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Open-toed shoes" }
+            "rdfs:label": { "@language": "en", "@value": "Open-toed shoes" },
+            "rdfs:comment": { "@language": "en", "@value": "Open-toed shoes, providing protection from the ground. Used in pairs. Typical products included: Flip-flops, casual /fashion sandals, sports sandals, slippers." }
         },
         {
             "@id": "dppk:PefcrClosedToedShoes",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Closed-toed shoes" }
+            "rdfs:label": { "@language": "en", "@value": "Closed-toed shoes" },
+            "rdfs:comment": { "@language": "en", "@value": "Closed-toed shoes, providing protection from the ground. They may protect against water, the elements and/or heavy objects. Used in pairs. Typical products included: Slippers, tennis shoes, moccasins, espadrilles, sneakers, cleats, athletic shoes, dress shoes, protective toecap – toed shoes." }
         },
         {
             "@id": "dppk:PefcrBoots",
             "@type": "dppk:PefcrCategoryValue",
-            "rdfs:label": { "@language": "en", "@value": "Boots" }
+            "rdfs:label": { "@language": "en", "@value": "Boots" },
+            "rdfs:comment": { "@language": "en", "@value": "Boots that cover the ankle, providing protection from the ground. They may protect against water, the elements, heavy objects and/or ankle injuries. Used in pairs. Typical products included: Polymer boots, winter boots, hiking boots, dress boots, protective toecap - toed boots." }
         },
         {
             "@id": "dppk:textileCertifications",
