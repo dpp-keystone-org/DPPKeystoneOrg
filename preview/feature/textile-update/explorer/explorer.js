@@ -1,4 +1,4 @@
-import { buildIndex } from '../lib/ontology-indexer.js?v=1779100441700';
+import { buildIndex } from '../lib/ontology-indexer.js?v=1779274697393';
 
 let fullIndex = [];
 

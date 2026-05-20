@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Textile Product</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Sector Ontology - Textile ESPR Draft (v2 Replacement)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Textile Product (dppk:TextileProduct)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="TextileProduct">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class TextileProduct
+  Product <|-- TextileProduct
+  Product <|-- TextileProduct
+  Clothing <|-- TextileProduct
+  TextileProduct : +pefcrCategory
+  TextileProduct --|> PefcrCategoryValue : pefcrCategory
+  TextileProduct : +textileCertifications
+  TextileProduct --|> Certification : textileCertifications
+  TextileProduct : +euDeclarationOfConformity
+  TextileProduct --|> RelatedResource : euDeclarationOfConformity
+  TextileProduct : +carbonFootprint
+  TextileProduct : +carbonFootprintBenchmarkPercentage
+  TextileProduct : +robustnessScore
+  TextileProduct : +recyclabilityScore
+  TextileProduct : +spirality
+  TextileProduct : +dimensionalChange
+  TextileProduct : +visualInspection
+  TextileProduct : +animalOriginNonTextile
+  TextileProduct : +organicContentPercentage
+  TextileProduct : +organicContentMass
+  TextileProduct : +preConsumerRecycledContentPercentage
+  TextileProduct : +postConsumerRecycledContentPercentage
+  TextileProduct : +fibreComposition
+  TextileProduct --|> FibreComposition : fibreComposition
+  TextileProduct : +productionSteps
+  TextileProduct --|> ProductionStep : productionSteps
+  TextileProduct : +tearStrength
+  TextileProduct --|> QuantitativeValue : tearStrength
+  TextileProduct : +abrasionResistance
+  TextileProduct --|> QuantitativeValue : abrasionResistance
+  TextileProduct : +dimensionalStability
+  TextileProduct --|> QuantitativeValue : dimensionalStability
+  TextileProduct : +colorfastnessToWashing
+  TextileProduct --|> QuantitativeValue : colorfastnessToWashing
+  TextileProduct : +microplasticRelease
+  TextileProduct --|> QuantitativeValue : microplasticRelease
+  TextileProduct : +careInstructions
+  TextileProduct : +repairabilityInformation
+  TextileProduct : +apparelSize
+  TextileProduct : +apparelSizeSystem
+  click Product href "../../core/Product/Product.html" "dppk:Product"
+  style Product stroke:#2962ff,color:#2962ff
+  click PefcrCategoryValue href "PefcrCategoryValue.html" "dppk:PefcrCategoryValue"
+  style PefcrCategoryValue stroke:#2962ff,color:#2962ff
+  click Certification href "../../core/Compliance/Certification.html" "dppk:Certification"
+  style Certification stroke:#2962ff,color:#2962ff
+  click RelatedResource href "../../core/RelatedResource/RelatedResource.html" "dppk:RelatedResource"
+  style RelatedResource stroke:#2962ff,color:#2962ff
+  click FibreComposition href "../Textile/FibreComposition.html" "dppk:FibreComposition"
+  style FibreComposition stroke:#2962ff,color:#2962ff
+  click ProductionStep href "../../core/Compliance/ProductionStep.html" "dppk:ProductionStep"
+  style ProductionStep stroke:#2962ff,color:#2962ff
+  click QuantitativeValue href "../../core/Product/QuantitativeValue.html" "dppk:QuantitativeValue"
+  style QuantitativeValue stroke:#2962ff,color:#2962ff
+
+                </pre>
+
+                <h4>Attributes</h4>
+                <p>Any raw, semi-worked, or worked product which is exclusively composed of textile fibres, regardless of the mixing or assembly process employed.</p>
+                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a>, <a href="https://schema.org/Product">schema:Product</a>, <a href="https://ref.gs1.org/voc/Clothing">gs1:Clothing</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th><th>subPropertyOf</th><th>equivalentProperty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>PEFCR Category (dppk:pefcrCategory)</td>
+                                    <td>The Product Environmental Footprint Category Rules (PEFCR) category to which the product belongs.</td>
+                                    <td>dppk:PefcrCategoryValue</td>
+                                    <td>Apparel and Footwear PEFCR v3.1</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Textile ESPR Conformity Certifications (dppk:textileCertifications)</td>
+                                    <td>Certifications specifically verifying ESPR textile claims (e.g. recycled content, recyclability, mechanical properties).</td>
+                                    <td>dppk:Certification</td>
+                                    <td></td><td><a href="https://schema.org/hasCertification">schema:hasCertification</a></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>EU Declaration of Conformity (dppk:euDeclarationOfConformity)</td>
+                                    <td>A reference to the EU Declaration of Conformity for the product.</td>
+                                    <td>dppk:RelatedResource</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Carbon Footprint (dppk:carbonFootprint)</td>
+                                    <td>The carbon footprint of the product.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Carbon Footprint Benchmark Percentage (dppk:carbonFootprintBenchmarkPercentage)</td>
+                                    <td>The product's carbon footprint performance compared to the established benchmark, expressed as a percentage.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Robustness Score (dppk:robustnessScore)</td>
+                                    <td>A numeric score representing the product's robustness (typically 0-10 scale).</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Recyclability Score (dppk:recyclabilityScore)</td>
+                                    <td>A numeric score representing the product's recyclability (typically 0-10 scale).</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Spirality (dppk:spirality)</td>
+                                    <td>The measured spirality of the textile product.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Dimensional Change (dppk:dimensionalChange)</td>
+                                    <td>The dimensional change (shrinkage or expansion) after testing.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Visual Inspection Result (dppk:visualInspection)</td>
+                                    <td>The result of the visual inspection (e.g. Pass/Fail or notes).</td>
+                                    <td>xsd:string</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Contains Non-Textile Parts of Animal Origin (dppk:animalOriginNonTextile)</td>
+                                    <td>Indicates whether the product contains non-textile parts of animal origin, as required by the EU Textile Labelling Regulation.</td>
+                                    <td>xsd:boolean</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Organic Content Percentage (dppk:organicContentPercentage)</td>
+                                    <td>The percentage of organic material in the product.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Organic Content Mass (dppk:organicContentMass)</td>
+                                    <td>The absolute mass of organic material in the product.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Pre-consumer Recycled Content (dppk:preConsumerRecycledContentPercentage)</td>
+                                    <td>The percentage of pre-consumer recycled material in the product.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Post-consumer Recycled Content (dppk:postConsumerRecycledContentPercentage)</td>
+                                    <td>The percentage of post-consumer recycled material in the product.</td>
+                                    <td>xsd:double</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#fibreComposition">Fibre Composition</a> (dppk:fibreComposition)</td>
+                                    <td>Relates the textile product to its constituent fibres and their proportions.</td>
+                                    <td>dppk:FibreComposition</td>
+                                    <td>Regulation (EU) No 1007/2011</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#productionSteps">Production Steps</a> (dppk:productionSteps)</td>
+                                    <td>The sequence of major production steps that occurred for this product.</td>
+                                    <td>dppk:ProductionStep</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#tearStrength">Tear Strength</a> (dppk:tearStrength)</td>
+                                    <td>The force required to propagate a tear in the fabric.</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    <td>ISO 13937-2</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#abrasionResistance">Abrasion Resistance</a> (dppk:abrasionResistance)</td>
+                                    <td>Resistance to wear, often measured in Martindale cycles.</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    <td>ISO 12947</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#dimensionalStability">Dimensional Stability</a> (dppk:dimensionalStability)</td>
+                                    <td>The percentage a fabric shrinks or grows after washing and drying.</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    <td>ISO 5077</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#colorfastnessToWashing">Colorfastness to Washing</a> (dppk:colorfastnessToWashing)</td>
+                                    <td>The resistance of the color to domestic laundering.</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    <td>ISO 105-C06</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#microplasticRelease">Microplastic Release</a> (dppk:microplasticRelease)</td>
+                                    <td>Information regarding the amount of lint/particles released during washing.</td>
+                                    <td>dppk:QuantitativeValue</td>
+                                    <td>ISO 4484-1</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#careInstructions">Care Instructions</a> (dppk:careInstructions)</td>
+                                    <td>Standardized care symbols (e.g., GINETEX codes).</td>
+                                    <td>xsd:string</td>
+                                    <td>ISO 3758</td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#repairabilityInformation">Repairability Information</a> (dppk:repairabilityInformation)</td>
+                                    <td>Instructions or scores related to the ease of repairing the textile product.</td>
+                                    <td>rdf:langString</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#apparelSize">Apparel Size</a> (dppk:apparelSize)</td>
+                                    <td>The size of the textile product (e.g., 'M', 'L', '42').</td>
+                                    <td>xsd:string</td>
+                                    <td></td><td></td><td><a href="https://ref.gs1.org/voc/sizeCode">gs1:sizeCode</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Textile/index.html#apparelSizeSystem">Apparel Size System</a> (dppk:apparelSizeSystem)</td>
+                                    <td>The system used for the apparel size (e.g., 'EU', 'US', 'UK').</td>
+                                    <td>xsd:string</td>
+                                    <td></td><td></td><td><a href="https://ref.gs1.org/voc/sizeSystemCode">gs1:sizeSystemCode</a></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

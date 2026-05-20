@@ -34,8 +34,17 @@
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>height</strong></a> - <em>The height of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>depth</strong></a> - <em>The depth of the product or material. Recommended to use specific datatypes like dppk:MetersLengthLiteral.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>image</strong></a> - <em>A reference to an image resource related to the product.</em></li>
-<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>components</strong></a> - <em>A constituent part or material of the product.</em></li>
-<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>additionalCertifications</strong></a> - <em>Relates the product to its certifications.</em></li>
+<li><strong>additionalCertifications</strong><ul>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>name</strong></a> - <em>The name of the certification.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>identifier</strong></a> - <em>The unique identifier or number of the certification.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>url</strong></a> - <em>A web link to the certification details or registry.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationBodyName</strong></a> - <em>The name of the body that issued the certification.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationBodyId</strong></a> - <em>The unique identifier of the certifying body.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationStartDate</strong></a> - <em>The date when the certification became valid.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationEndDate</strong></a> - <em>The date when the certification expires.</em></li>
+<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationBodyRole</strong></a> - <em>The role or capacity in which the certifying body issued the certification.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>document</strong></a> - <em>Relates the product to associated digital documents.</em></li>
+</ul></li>
 <li><strong>KgWeightLiteral</strong> - <em>A literal value representing a weight in kilograms. A reasoner can expand this into a full dppk:QuantitativeValue.</em></li>
 <li><strong>MetersLengthLiteral</strong> - <em>A literal value representing a length in meters. A reasoner can expand this into a full dppk:QuantitativeValue.</em></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>RelatedResource</strong></a> - <em>A resource identified by a URL, with additional metadata such as title, content type, and language.</em></li>
@@ -43,9 +52,6 @@
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>contentType</strong></a> - <em>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</em></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>language</strong></a> - <em>The language of the resource content (e.g., 'en', 'fr').</em></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>url</strong></a> - <em>The location of the resource.</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationBodyName</strong></a> - <em>The name of the body that issued the certification.</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationStartDate</strong></a> - <em>The date when the certification became valid.</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationBodyId</strong></a> - <em>The unique identifier of the certifying body.</em></li>
 </ul>
         </main>
         <footer>

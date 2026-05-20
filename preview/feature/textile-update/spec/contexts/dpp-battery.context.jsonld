@@ -72,11 +72,29 @@
       "criticalRawMaterials": "dppk:criticalRawMaterials",
       "materialComposition": {
         "@id": "dppk:materialComposition",
-        "@container": "@set"
+        "@container": "@set",
+        "@context": {
+          "name": "dppk:componentName",
+          "percentage": "dppk:componentPercentage",
+          "uniqueProductIdentifier": "dppk:componentIdentifier",
+          "casNumber": "dppk:componentCasNumber",
+          "ecNumber": "dppk:componentEcNumber",
+          "iupacName": "dppk:componentIupacName",
+          "locationInProduct": "dppk:componentLocationInProduct"
+        }
       },
       "hazardousSubstances": {
         "@id": "dppk:hazardousSubstances",
-        "@container": "@set"
+        "@container": "@set",
+        "@context": {
+          "name": "dppk:componentName",
+          "percentage": "dppk:componentPercentage",
+          "uniqueProductIdentifier": "dppk:componentIdentifier",
+          "casNumber": "dppk:componentCasNumber",
+          "ecNumber": "dppk:componentEcNumber",
+          "iupacName": "dppk:componentIupacName",
+          "locationInProduct": "dppk:componentLocationInProduct"
+        }
       },
       "hazardousSubstancesImpact": "dppk:hazardousSubstancesImpact",
       "dismantlingInformation": {
@@ -101,11 +119,29 @@
       },
       "preConsumerRecycledMaterialComposition": {
         "@id": "dppk:preConsumerRecycledMaterialComposition",
-        "@container": "@set"
+        "@container": "@set",
+        "@context": {
+          "name": "dppk:componentName",
+          "percentage": "dppk:componentPercentage",
+          "uniqueProductIdentifier": "dppk:componentIdentifier",
+          "casNumber": "dppk:componentCasNumber",
+          "ecNumber": "dppk:componentEcNumber",
+          "iupacName": "dppk:componentIupacName",
+          "locationInProduct": "dppk:componentLocationInProduct"
+        }
       },
       "postConsumerRecycledMaterialComposition": {
         "@id": "dppk:postConsumerRecycledMaterialComposition",
-        "@container": "@set"
+        "@container": "@set",
+        "@context": {
+          "name": "dppk:componentName",
+          "percentage": "dppk:componentPercentage",
+          "uniqueProductIdentifier": "dppk:componentIdentifier",
+          "casNumber": "dppk:componentCasNumber",
+          "ecNumber": "dppk:componentEcNumber",
+          "iupacName": "dppk:componentIupacName",
+          "locationInProduct": "dppk:componentLocationInProduct"
+        }
       },
       "renewableContent": "dppk:renewableContent",
       "performance": {

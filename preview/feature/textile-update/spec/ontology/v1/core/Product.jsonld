@@ -106,9 +106,21 @@
       "rdfs:comment": "A constituent part, material, or substance that is included in the main product."
     },
     {
-      "@id": "dppk:percentage",
+      "@id": "dppk:componentName",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Percentage",
+      "rdfs:label": "Component Name",
+      "rdfs:comment": "The specific name of the component.",
+      "schema:domainIncludes": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      }
+    },
+    {
+      "@id": "dppk:componentPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Component Percentage",
       "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
       "dppk:unit": "%",
       "schema:domainIncludes": {
@@ -119,93 +131,105 @@
       }
     },
     {
-      "@id": "dppk:locationInProduct",
+      "@id": "dppk:componentIdentifier",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Location in Product",
+      "rdfs:label": "Component Identifier",
+      "rdfs:comment": "The unique product identifier of the component.",
+      "schema:domainIncludes": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:componentCasNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Component CAS Number"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The Chemical Abstracts Service (CAS) registry number for the component."
+        }
+      ],
+      "dppk:unit": "unitless",
+      "schema:domainIncludes": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      }
+    },
+    {
+      "@id": "dppk:componentEcNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Component EC Number"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The European Community (EC) number for the component."
+        }
+      ],
+      "dppk:unit": "unitless",
+      "schema:domainIncludes": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      }
+    },
+    {
+      "@id": "dppk:componentIupacName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Component IUPAC Name"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The International Union of Pure and Applied Chemistry nomenclature for the component."
+        }
+      ],
+      "dppk:unit": "unitless",
+      "schema:domainIncludes": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      }
+    },
+    {
+      "@id": "dppk:componentLocationInProduct",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Component Location in Product",
       "rdfs:comment": "Specific physical location of the component or substance inside the parent assembly.",
       "schema:domainIncludes": {
         "@id": "dppk:Component"
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
-    },
-    {
-      "@id": "dppk:casNumber",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "CAS Number"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "The Chemical Abstracts Service (CAS) registry number for the substance."
-        }
-      ],
-      "dppk:unit": "unitless",
-      "schema:domainIncludes": {
-        "@id": "dppk:Component"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "dppk:visibility": {
-        "@id": "dppk:LegitimateInterestOrAuthority"
-      }
-    },
-    {
-      "@id": "dppk:ecNumber",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "EC Number"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "European Community number for chemicals."
-        }
-      ],
-      "dppk:unit": "unitless",
-      "schema:domainIncludes": {
-        "@id": "dppk:Component"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "dppk:visibility": {
-        "@id": "dppk:LegitimateInterestOrAuthority"
-      }
-    },
-    {
-      "@id": "dppk:iupacName",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "IUPAC Name"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "International Union of Pure and Applied Chemistry nomenclature."
-        }
-      ],
-      "dppk:unit": "unitless",
-      "schema:domainIncludes": {
-        "@id": "dppk:Component"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "dppk:visibility": {
-        "@id": "dppk:LegitimateInterestOrAuthority"
       }
     },
     {
@@ -671,6 +695,70 @@
           "@id": "schema:measurementMethod"
         }
       ]
+    },
+    {
+      "@id": "dppk:warrantyDuration",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Warranty Duration",
+      "rdfs:comment": "The duration of the commercial warranty provided with the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "dppk:repairServices",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Repair Services",
+      "rdfs:comment": "Contact information for authorized repair services.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:manufacturerInfo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Manufacturer Information",
+      "rdfs:comment": "Information about the manufacturer of the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:apparelSize",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Apparel Size",
+      "rdfs:comment": "The size of the product (e.g., 'M', 'L', '42'). Applicable primarily to apparel and textiles.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:sizeCode"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:size"
+      }
+    },
+    {
+      "@id": "dppk:apparelSizeSystem",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Apparel Size System",
+      "rdfs:comment": "The sizing system used for the apparel size (e.g., 'EU', 'US', 'UK').",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
     }
   ]
 }

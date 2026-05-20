@@ -1,5 +1,5 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1779100441700';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1779274697393';
 
 /**
  * Creates and displays a tooltip modal.
@@ -1276,7 +1276,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
             if (customType && schemaLoader) {
                 try {
                     // Load the schema for the selected complex type
-                    const schema = await schemaLoader(customType.schemaName);
+                    const schema = await schemaLoader(customType.schemaName, 'shared');
                     
                     if (schema && schema.properties) {
                         const container = row.querySelector('.voluntary-group-container');

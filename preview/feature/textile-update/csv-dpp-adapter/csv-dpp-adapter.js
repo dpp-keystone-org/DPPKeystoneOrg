@@ -1,7 +1,7 @@
-import Papa from '../lib/vendor/papaparse.js?v=1779100441700';
-import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1779100441700';
-import { loadOntology } from '../lib/ontology-loader.js?v=1779100441700';
-import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions, analyzeColumnData, isTypeCompatible, enrichSchemaWithOntology, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../lib/csv-adapter-logic.js?v=1779100441700';
+import Papa from '../lib/vendor/papaparse.js?v=1779274697393';
+import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1779274697393';
+import { loadOntology } from '../lib/ontology-loader.js?v=1779274697393';
+import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions, analyzeColumnData, isTypeCompatible, enrichSchemaWithOntology, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../lib/csv-adapter-logic.js?v=1779274697393';
 
 console.log('CSV Adapter Initialized');
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         showErrorsBtn.className = 'btn-danger';
         showErrorsBtn.hidden = true;
         showErrorsBtn.innerHTML = 'Show Errors (<span id="error-count-badge">0</span>)';
-        
+
         errorCountBadge = showErrorsBtn.querySelector('#error-count-badge');
 
         if (generateBtn.parentElement) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function setupEventListeners() {
         fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
-        
+
         dropArea.addEventListener('dragover', (e) => {
             e.preventDefault();
             dropArea.classList.add('dragover');
@@ -110,24 +110,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             console.log(`Loading schemas for: ${Array.from(schemasToLoad).join(', ')}...`);
             let allFields = new Map();
-            
+
             for (const sector of schemasToLoad) {
+                let schemaType = 'sector';
+                if (sector === 'dpp') schemaType = 'header';
+                else if (sector === 'general-product' || sector === 'packaging') schemaType = 'shared';
+
                 const [schema, ontology] = await Promise.all([
-                    loadSchema(sector),
+                    loadSchema(sector, schemaType),
                     loadOntology(sector)
                 ]);
-                
+
                 const fields = flattenSchema(schema, '', false, true);
                 if (ontology) {
                     enrichSchemaWithOntology(fields, ontology);
                 }
                 fields.forEach(f => allFields.set(f.path, f));
             }
-            
+
             schemaFields = Array.from(allFields.values()).sort((a, b) => a.path.localeCompare(b.path));
             schemaFieldMap = allFields;
             console.log(`Loaded ${schemaFields.length} unique fields.`);
-            
+
             if (csvHeaders.length > 0) {
                 renderMappingTable();
             }
@@ -147,18 +151,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         fileNameDisplay.textContent = file.name;
-        
+
         Papa.parse(file, {
             header: true,
             skipEmptyLines: true,
-            complete: function(results) {
+            complete: function (results) {
                 if (results.errors.length > 0) {
                     console.warn('CSV Parse errors:', results.errors);
                 }
-                
+
                 csvData = results.data;
                 csvHeaders = results.meta.fields || [];
-                
+
                 csvColumnTypes.clear();
                 csvHeaders.forEach(header => {
                     const info = analyzeColumnData(csvData, header);
@@ -224,7 +228,7 @@ ${p}
         }
 
         const hasErrors = validationErrors.length > 0;
-        
+
         generateBtn.hidden = hasErrors;
         showErrorsBtn.hidden = !hasErrors;
 
@@ -254,11 +258,11 @@ ${p}
             list.appendChild(listItem);
         });
         modal.appendChild(list);
-        
+
         const closeButton = document.createElement('button');
         closeButton.className = 'modal-close-btn';
         closeButton.innerHTML = '&times;';
-        
+
         const closeModal = () => overlay.remove();
         closeButton.addEventListener('click', closeModal);
         overlay.addEventListener('click', (e) => {
@@ -542,7 +546,7 @@ ${p}
                 const row = document.createElement('tr');
                 row.dataset.reviewed = "false";
                 row.classList.add('needs-review');
-                
+
                 const headerCell = document.createElement('td');
                 headerCell.textContent = header;
                 row.appendChild(headerCell);
@@ -602,7 +606,7 @@ ${p}
                 document.querySelectorAll('.review-checkbox:not(:checked)').forEach(cb => cb.click());
             });
             mappingTbody.closest('table').after(approveAllBtn);
-            
+
             // Run validation after a timeout to ensure the DOM is fully updated
             // and avoid a race condition that was causing the page to freeze.
             setTimeout(runAllValidations, 0);
@@ -616,7 +620,7 @@ ${p}
         const allRows = document.querySelectorAll('#mapping-tbody tr');
         const checkedRows = document.querySelectorAll('.review-checkbox:checked');
         const allChecked = allRows.length > 0 && allRows.length === checkedRows.length;
-        
+
         if (!generateBtn.hidden) {
             generateBtn.disabled = !allChecked;
             generateBtn.title = allChecked ? "Generate DPPs" : "Please review and check all rows first";
@@ -713,7 +717,7 @@ ${p}
         URL.revokeObjectURL(url);
         outputArea.innerHTML = `<p class="success">Successfully generated ${generatedDocs.length} DPPs!</p>`;
     }
-    
+
     // --- Initial Run ---
     // This is where the script execution starts
     (async () => {

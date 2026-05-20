@@ -49,12 +49,6 @@
       ]
     },
     {
-      "@id": "dppk:SubstanceOfConcern",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Substance of Concern",
-      "rdfs:comment": "Details regarding dangerous substances or substances of very high concern (SVHC) present in the product."
-    },
-    {
       "@id": "dppk:Packaging",
       "@type": "rdfs:Class",
       "rdfs:label": "Packaging",
@@ -87,9 +81,9 @@
       }
     },
     {
-      "@id": "dppk:additionalCertifications",
+      "@id": "dppk:certifications",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Additional Certifications. Please do not use this field for sector specific, mandatory certifications.",
+      "rdfs:label": "Certifications",
       "rdfs:comment": "Relates the product to its certifications.",
       "rdfs:domain": {
         "@id": "dppk:Product"
@@ -115,7 +109,7 @@
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "dppk:SubstanceOfConcern"
+        "@id": "dppk:Component"
       }
     },
     {
@@ -142,6 +136,69 @@
       },
       "rdfs:range": {
         "@id": "dppk:ProductionStep"
+      }
+    },
+    {
+      "@id": "dppk:certificationName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certification Name"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The name of the certification."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:name"
+      }
+    },
+    {
+      "@id": "dppk:certificationId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certification Identifier"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The unique identifier or number of the certification."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:identifier"
+      }
+    },
+    {
+      "@id": "dppk:certificationUrl",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certification URL"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A web link to the certification details or registry."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:url"
       }
     },
     {
@@ -184,65 +241,39 @@
       }
     },
     {
-      "@id": "dppk:minValue",
+      "@id": "dppk:certificationEndDate",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Minimum Value",
-      "rdfs:comment": "The minimum concentration or amount of the substance present.",
-      "rdfs:domain": {
-        "@id": "dppk:SubstanceOfConcern"
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "End of Certificate Validity"
       },
-      "owl:equivalentProperty": {
-        "@id": "schema:minValue"
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The date when the certification expires."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
       }
     },
     {
-      "@id": "dppk:maxValue",
+      "@id": "dppk:certificationBodyRole",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Maximum Value",
-      "rdfs:comment": "The maximum concentration or amount of the substance present.",
-      "rdfs:domain": {
-        "@id": "dppk:SubstanceOfConcern"
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certifying Body Role"
       },
-      "owl:equivalentProperty": {
-        "@id": "schema:maxValue"
-      }
-    },
-    {
-      "@id": "dppk:substanceName",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Substance Name",
-      "rdfs:comment": "The common name of the substance.",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The role or capacity in which the certifying body issued the certification."
+      },
       "rdfs:domain": {
-        "@id": "dppk:SubstanceOfConcern"
+        "@id": "dppk:Certification"
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
-    },
-    {
-      "@id": "dppk:casNumber",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "CAS Number",
-      "rdfs:comment": "The Chemical Abstracts Service (CAS) registry number for the substance.",
-      "dppk:unit": "unitless",
-      "rdfs:domain": {
-        "@id": "dppk:SubstanceOfConcern"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      }
-    },
-    {
-      "@id": "dppk:concentration",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Concentration",
-      "rdfs:comment": "The concentration of the substance in the product.",
-      "dppk:unit": "%",
-      "rdfs:domain": {
-        "@id": "dppk:SubstanceOfConcern"
-      },
-      "rdfs:range": {
-        "@id": "xsd:double"
       }
     },
     {

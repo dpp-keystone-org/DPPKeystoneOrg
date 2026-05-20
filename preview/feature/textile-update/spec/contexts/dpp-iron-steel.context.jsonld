@@ -48,10 +48,13 @@
         "@id": "dppk:substancesOfConcern",
         "@container": "@set",
         "@context": {
-          "casNumber": "dppk:casNumber",
-          "ecNumber": "dppk:ecNumber",
-          "iupacName": "dppk:iupacName",
-          "locationInProduct": "dppk:locationInProduct"
+          "name": "dppk:componentName",
+          "percentage": "dppk:componentPercentage",
+          "uniqueProductIdentifier": "dppk:componentIdentifier",
+          "casNumber": "dppk:componentCasNumber",
+          "ecNumber": "dppk:componentEcNumber",
+          "iupacName": "dppk:componentIupacName",
+          "locationInProduct": "dppk:componentLocationInProduct"
         }
       }
     }

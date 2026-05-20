@@ -37,8 +37,8 @@
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>technologyRoute</strong></a> - <em>The primary manufacturing route (e.g. EAF, BF-BOF).</em></li>
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>meltAndPourCountry</strong></a> - <em>The country where the steel was originally melted and poured.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>countryOfOrigin</strong></a> - <em>The country where the product or material was manufactured or produced. Recommended to use ISO 3166-1 alpha-3 codes.</em></li>
-<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>safeUseInstructions</strong></a> - <em>Instructions and warnings for the safe use of the product.</em></li>
-<li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>endOfLifeInstructions</strong></a> - <em>Instructions for dismantling, recycling, or disposing of the product.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>safeUseInstructions</strong></a> - <em>Instructions and guidelines for the safe use and maintenance of the product.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>endOfLifeInstructions</strong></a> - <em>Instructions for the proper disassembly, recycling, or disposal of the product at the end of its life.</em></li>
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>recycledContentPercentage</strong></a> - <em>Total recycled content percentage in the steel.</em></li>
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>preConsumerRecycledContent</strong></a> - <em>Percentage of pre-consumer recycled material.</em></li>
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>postConsumerRecycledContent</strong></a> - <em>Percentage of post-consumer recycled material.</em></li>
@@ -46,9 +46,12 @@
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>cbamReportId</strong></a> - <em>Identifier for the Carbon Border Adjustment Mechanism (CBAM) report.</em></li>
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>reachDocumentation</strong></a> - <em>URI link to the REACH regulatory documentation if applicable.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>substancesOfConcern</strong></a> - <em>Relates the product to any substances of concern it contains.</em><ul>
-<li><strong>casNumber</strong> - <em>The Chemical Abstracts Service (CAS) registry number for the substance.</em></li>
-<li><strong>ecNumber</strong> - <em>European Community number for chemicals.</em></li>
-<li><strong>iupacName</strong> - <em>International Union of Pure and Applied Chemistry nomenclature.</em></li>
+<li><strong>name</strong> - <em>The specific name of the component.</em></li>
+<li><strong>percentage</strong> - <em>The percentage contribution of this component to the parent assembly (e.g., by weight).</em></li>
+<li><strong>uniqueProductIdentifier</strong> - <em>The unique product identifier of the component.</em></li>
+<li><strong>casNumber</strong> - <em>The Chemical Abstracts Service (CAS) registry number for the component.</em></li>
+<li><strong>ecNumber</strong> - <em>The European Community (EC) number for the component.</em></li>
+<li><strong>iupacName</strong> - <em>The International Union of Pure and Applied Chemistry nomenclature for the component.</em></li>
 <li><strong>locationInProduct</strong> - <em>Specific physical location of the component or substance inside the parent assembly.</em></li>
 </ul></li>
 </ul>

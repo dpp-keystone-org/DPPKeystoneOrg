@@ -27,11 +27,13 @@
                 <pre class="mermaid">
                     classDiagram
   class Component
-  Component : +percentage
-  Component : +locationInProduct
-  Component : +casNumber
-  Component : +ecNumber
-  Component : +iupacName
+  Component : +componentName
+  Component : +componentPercentage
+  Component : +componentIdentifier
+  Component : +componentCasNumber
+  Component : +componentEcNumber
+  Component : +componentIupacName
+  Component : +componentLocationInProduct
   Component : +name
   Component : +uniqueProductIdentifier
 
@@ -55,36 +57,50 @@
                         <tbody>
                             
                                 <tr>
-                                    <td>Percentage (dppk:percentage)</td>
+                                    <td>Component Name (dppk:componentName)</td>
+                                    <td>The specific name of the component.</td>
+                                    <td>rdf:langString</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Component Percentage (dppk:componentPercentage)</td>
                                     <td>The percentage contribution of this component to the parent assembly (e.g., by weight).</td>
                                     <td>xsd:double</td>
                                     <td></td>
                                 </tr>
                             
                                 <tr>
-                                    <td>Location in Product (dppk:locationInProduct)</td>
+                                    <td>Component Identifier (dppk:componentIdentifier)</td>
+                                    <td>The unique product identifier of the component.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Component CAS Number (dppk:componentCasNumber)</td>
+                                    <td>The Chemical Abstracts Service (CAS) registry number for the component.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Component EC Number (dppk:componentEcNumber)</td>
+                                    <td>The European Community (EC) number for the component.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Component IUPAC Name (dppk:componentIupacName)</td>
+                                    <td>The International Union of Pure and Applied Chemistry nomenclature for the component.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Component Location in Product (dppk:componentLocationInProduct)</td>
                                     <td>Specific physical location of the component or substance inside the parent assembly.</td>
-                                    <td>xsd:string</td>
-                                    <td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>CAS Number (dppk:casNumber)</td>
-                                    <td>The Chemical Abstracts Service (CAS) registry number for the substance.</td>
-                                    <td>xsd:string</td>
-                                    <td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>EC Number (dppk:ecNumber)</td>
-                                    <td>European Community number for chemicals.</td>
-                                    <td>xsd:string</td>
-                                    <td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>IUPAC Name (dppk:iupacName)</td>
-                                    <td>International Union of Pure and Applied Chemistry nomenclature.</td>
                                     <td>xsd:string</td>
                                     <td></td>
                                 </tr>

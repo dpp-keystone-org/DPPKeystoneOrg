@@ -508,7 +508,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
         const newParts = components.map(c => {
              return {
                  "@type": "Product",
-                 "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#name')
+                 "name": getValue(c, 'https://dpp-keystone.org/spec/v1/terms#componentName')
              };
         });
         

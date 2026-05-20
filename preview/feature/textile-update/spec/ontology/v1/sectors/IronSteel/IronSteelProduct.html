@@ -38,10 +38,6 @@
   IronSteelProduct : +steelDesignation
   IronSteelProduct : +technologyRoute
   IronSteelProduct : +meltAndPourCountry
-  IronSteelProduct : +safeUseInstructions
-  IronSteelProduct --|> RelatedResource : safeUseInstructions
-  IronSteelProduct : +endOfLifeInstructions
-  IronSteelProduct --|> RelatedResource : endOfLifeInstructions
   IronSteelProduct : +recycledContentPercentage
   IronSteelProduct : +preConsumerRecycledContent
   IronSteelProduct : +postConsumerRecycledContent
@@ -141,20 +137,6 @@
                                     <td>The country where the steel was originally melted and poured.</td>
                                     <td>xsd:string</td>
                                     <td></td><td><a href="http://schema.org/countryOfOrigin">schema:countryOfOrigin</a></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>Safe Use Instructions (dppk:safeUseInstructions)</td>
-                                    <td>Instructions and warnings for the safe use of the product.</td>
-                                    <td>dppk:RelatedResource</td>
-                                    <td></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>End of Life Instructions (dppk:endOfLifeInstructions)</td>
-                                    <td>Instructions for dismantling, recycling, or disposing of the product.</td>
-                                    <td>dppk:RelatedResource</td>
-                                    <td></td><td></td>
                                 </tr>
                             
                                 <tr>

@@ -28,9 +28,14 @@
                     classDiagram
   class Certification
   RelatedResource <|-- Certification
+  Certification : +certificationName
+  Certification : +certificationId
+  Certification : +certificationUrl
   Certification : +certificationBodyName
   Certification : +certificationBodyId
   Certification : +certificationStartDate
+  Certification : +certificationEndDate
+  Certification : +certificationBodyRole
   click RelatedResource href "../RelatedResource/RelatedResource.html" "dppk:RelatedResource"
   style RelatedResource stroke:#2962ff,color:#2962ff
 
@@ -54,6 +59,27 @@
                         <tbody>
                             
                                 <tr>
+                                    <td>Certification Name (dppk:certificationName)</td>
+                                    <td>The name of the certification.</td>
+                                    <td>xsd:string</td>
+                                    <td><a href="https://schema.org/name">schema:name</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Certification Identifier (dppk:certificationId)</td>
+                                    <td>The unique identifier or number of the certification.</td>
+                                    <td>xsd:string</td>
+                                    <td><a href="https://schema.org/identifier">schema:identifier</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Certification URL (dppk:certificationUrl)</td>
+                                    <td>A web link to the certification details or registry.</td>
+                                    <td>xsd:anyURI</td>
+                                    <td><a href="https://schema.org/url">schema:url</a></td>
+                                </tr>
+                            
+                                <tr>
                                     <td>Certifying Body Name (dppk:certificationBodyName)</td>
                                     <td>The name of the body that issued the certification.</td>
                                     <td></td>
@@ -72,6 +98,20 @@
                                     <td>The date when the certification became valid.</td>
                                     <td>xsd:date</td>
                                     <td><a href="https://ref.gs1.org/voc/certificationStartDate">gs1:certificationStartDate</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>End of Certificate Validity (dppk:certificationEndDate)</td>
+                                    <td>The date when the certification expires.</td>
+                                    <td>xsd:date</td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Certifying Body Role (dppk:certificationBodyRole)</td>
+                                    <td>The role or capacity in which the certifying body issued the certification.</td>
+                                    <td>xsd:string</td>
+                                    <td></td>
                                 </tr>
                             
                         </tbody>

@@ -31,7 +31,7 @@
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>RelatedResource</strong></a> - <em>A resource identified by a URL, with additional metadata such as title, content type, and language.</em></li>
 <li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>Certification</strong></a> - <em>A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD).</em></li>
 <li><a href="../../../ontology/v1/core/Product/Component.html"><strong>Component</strong></a> - <em>A constituent part, material, or substance that is included in the main product.</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>SubstanceOfConcern</strong></a> - <em>Details regarding dangerous substances or substances of very high concern (SVHC) present in the product.</em></li>
+<li><strong>SubstanceOfConcern</strong></li>
 <li><a href="../../../ontology/v1/core/Compliance/Packaging.html"><strong>Packaging</strong></a> - <em>Information about the materials and properties of the product's packaging.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/ProductionStep.html"><strong>ProductionStep</strong></a> - <em>A specific stage in the manufacturing process of the product, associated with a location.</em></li>
 <li><a href="../../../ontology/v1/core/Product/ProductCharacteristic.html"><strong>ProductCharacteristic</strong></a> - <em>A specific, measurable or declared property of a product, such as its technical performance against a standard test.</em></li>
@@ -59,7 +59,7 @@
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>economicOperator</strong></a> - <em>Relates the DPP to the Economic Operator responsible for it.</em></li>
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>economicOperatorInfo</strong></a> - <em>Relates the DPP to the Economic Operator responsible for it.</em></li>
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>manufacturer</strong></a> - <em>Relates the DPP to the Manufacturer of the product.</em></li>
-<li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>manufacturerInfo</strong></a> - <em>Relates the DPP to the Manufacturer of the product.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>manufacturerInfo</strong></a> - <em>Information about the manufacturer of the product.</em></li>
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>importer</strong></a> - <em>Relates the DPP to the Importer of the product.</em></li>
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>importerInfo</strong></a> - <em>Relates the DPP to the Importer of the product.</em></li>
 <li><a href="../../../ontology/v1/core/Header/DigitalProductPassport.html"><strong>manufacturingFacility</strong></a> - <em>Relates the DPP to the specific facility where the product (or a step) was manufactured.</em></li>
@@ -81,8 +81,15 @@
 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>email</strong></a> - <em>The email address for contacting the organization.</em></li>
 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>telephone</strong></a> - <em>The telephone number for contacting the organization.</em></li>
 <li><a href="../../../ontology/v1/core/Organization/Organization.html"><strong>website</strong></a> - <em>The URL of the organization's website.</em></li>
-<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>components</strong></a> - <em>A constituent part or material of the product.</em></li>
+<li><a href="../../../ontology/v1/core/Product/Product.html"><strong>components</strong></a> - <em>A constituent part or material of the product.</em><ul>
+<li><strong>name</strong> - <em>The specific name of the component.</em></li>
 <li><strong>percentage</strong> - <em>The percentage contribution of this component to the parent assembly (e.g., by weight).</em></li>
+<li><strong>uniqueProductIdentifier</strong> - <em>The unique product identifier of the component.</em></li>
+<li><strong>casNumber</strong> - <em>The Chemical Abstracts Service (CAS) registry number for the component.</em></li>
+<li><strong>ecNumber</strong> - <em>The European Community (EC) number for the component.</em></li>
+<li><strong>iupacName</strong> - <em>The International Union of Pure and Applied Chemistry nomenclature for the component.</em></li>
+<li><strong>locationInProduct</strong> - <em>Specific physical location of the component or substance inside the parent assembly.</em></li>
+</ul></li>
 <li><a href="../../../ontology/v1/sectors/IronSteel/IronSteelProduct.html"><strong>recycledContentPercentage</strong></a> - <em>Total recycled content percentage in the steel.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>productCharacteristics</strong></a> - <em>Relates a product to its specific characteristics or performance properties.</em></li>
 <li><a href="../../../ontology/v1/core/Product/ProductCharacteristic.html"><strong>characteristicName</strong></a> - <em>The name of the characteristic being described (e.g., 'Bond strength', 'Reaction to fire').</em></li>
@@ -100,12 +107,9 @@
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>resourceTitle</strong></a> - <em>The title of the related resource.</em></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>contentType</strong></a> - <em>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</em></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>language</strong></a> - <em>The language of the resource content (e.g., 'en', 'fr').</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>minValue</strong></a> - <em>The minimum concentration or amount of the substance present.</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>maxValue</strong></a> - <em>The maximum concentration or amount of the substance present.</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>substanceName</strong></a> - <em>The common name of the substance.</em></li>
-<li><strong>casNumber</strong> - <em>The Chemical Abstracts Service (CAS) registry number for the substance.</em></li>
-<li><a href="../../../ontology/v1/core/Compliance/SubstanceOfConcern.html"><strong>concentration</strong></a> - <em>The concentration of the substance in the product.</em></li>
 <li><strong>dateOfManufacture</strong></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>apparelSize</strong></a> - <em>The size of the textile product (e.g., 'M', 'L', '42').</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>apparelSizeSystem</strong></a> - <em>The system used for the apparel size (e.g., 'EU', 'US', 'UK').</em></li>
 <li><strong>name</strong> - <em>A generic name or title for a resource (e.g., a document title). For the name of a product, prefer the more specific 'dppk:productName'.</em></li>
 <li><strong>identifier</strong></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>url</strong></a> - <em>The location of the resource.</em></li>

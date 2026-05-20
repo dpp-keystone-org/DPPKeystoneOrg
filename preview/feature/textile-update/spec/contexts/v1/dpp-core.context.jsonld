@@ -80,7 +80,7 @@
         "@id": "dppk:manufacturer",
         "@type": "@id"
       },
-      "manufacturerInfo": "dppk:manufacturer",
+      "manufacturerInfo": "dppk:manufacturerInfo",
       "importer": {
         "@id": "dppk:importer",
         "@type": "@id"
@@ -113,11 +113,16 @@
       },
       "components": {
         "@id": "dppk:components",
-        "@container": "@set"
-      },
-      "percentage": {
-        "@id": "dppk:percentage",
-        "@type": "xsd:double"
+        "@container": "@set",
+        "@context": {
+          "name": "dppk:componentName",
+          "percentage": "dppk:componentPercentage",
+          "uniqueProductIdentifier": "dppk:componentIdentifier",
+          "casNumber": "dppk:componentCasNumber",
+          "ecNumber": "dppk:componentEcNumber",
+          "iupacName": "dppk:componentIupacName",
+          "locationInProduct": "dppk:componentLocationInProduct"
+        }
       },
       "recycledContentPercentage": {
         "@id": "dppk:recycledContentPercentage",
@@ -157,17 +162,17 @@
       "resourceTitle": "dppk:resourceTitle",
       "contentType": "dppk:contentType",
       "language": "dppk:language",
-      "minValue": "dppk:minValue",
-      "maxValue": "dppk:maxValue",
-      "substanceName": "dppk:substanceName",
-      "casNumber": "dppk:casNumber",
-      "concentration": {
-        "@id": "dppk:concentration",
-        "@type": "xsd:double"
-      },
       "dateOfManufacture": {
         "@id": "dppk:dateOfManufacture",
         "@type": "xsd:date"
+      },
+      "apparelSize": {
+        "@id": "dppk:apparelSize",
+        "@type": "xsd:string"
+      },
+      "apparelSizeSystem": {
+        "@id": "dppk:apparelSizeSystem",
+        "@type": "xsd:string"
       },
       "name": {
         "@id": "dppk:name",
