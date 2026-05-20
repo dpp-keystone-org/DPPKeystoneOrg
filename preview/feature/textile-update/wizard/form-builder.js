@@ -1,5 +1,5 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1779274697393';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1779282157522';
 
 /**
  * Creates and displays a tooltip modal.
@@ -442,6 +442,12 @@ function reindexArrayItems(arrayName, indexRemoved) {
                 input.dispatchEvent(new CustomEvent('fieldValidityChange', {
                     bubbles: true, composed: true, detail: { path: oldName, isValid: true },
                 }));
+
+                const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
+                const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
+                if (errorSpan) {
+                    errorSpan.remove();
+                }
 
                 input.name = input.name.replace(oldPrefix, newPrefix);
                 input.id = input.name;

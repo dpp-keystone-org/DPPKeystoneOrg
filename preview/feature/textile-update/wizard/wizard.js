@@ -1,10 +1,10 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1779274697393';
-import { loadOntology } from '../lib/ontology-loader.js?v=1779274697393';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1779274697393';
-import { generateDpp } from './dpp-generator.js?v=1779274697393';
-import { generateHTML } from '../lib/html-generator.js?v=1779274697393';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779274697393';
+import { loadSchema } from '../lib/schema-loader.js?v=1779282157522';
+import { loadOntology } from '../lib/ontology-loader.js?v=1779282157522';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1779282157522';
+import { generateDpp } from './dpp-generator.js?v=1779282157522';
+import { generateHTML } from '../lib/html-generator.js?v=1779282157522';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779282157522';
 import * as jsonld from 'jsonld';
 
 // --- Module-level state ---
@@ -355,7 +355,8 @@ export async function initializeWizard() {
 
             const sectorDisplayNames = {
                 'general-product': 'General Product Information',
-                // Add other specific mappings if needed, otherwise fallback to capitalization
+                'textile-espr': 'Textile',
+                'iron-steel': 'Iron or Steel'
             };
             const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
 

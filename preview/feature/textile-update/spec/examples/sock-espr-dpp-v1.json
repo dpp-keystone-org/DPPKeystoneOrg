@@ -1,0 +1,64 @@
+{
+  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-textile-espr.context.jsonld",
+  "@type": "dppk:DigitalProductPassport",
+  "digitalProductPassportId": "urn:uuid:123e4567-e89b-12d3-a456-426614174001",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/sock-espr-dpp-v1.html",
+  "granularity": "Model",
+  "dppSchemaVersion": "ENXXX:v1.0",
+  "dppStatus": "Active",
+  "lastUpdate": "2024-05-22T11:30:00Z",
+  "economicOperatorId": "urn:gln:1122334455667",
+  "contentSpecificationIds": [
+    "draft_textile_espr_specification_id"
+  ],
+  "productName": "Everyday Comfort Crew Socks ESPR Edition (3-Pack)",
+  "image": [
+    {
+      "resourceTitle": "Product Image",
+      "url": "/spec/examples/images/sock.png",
+      "contentType": "image/png"
+    }
+  ],
+  "pefcrCategory": "Leggings, stockings, tights and socks",
+  "fibreComposition": [
+    {
+      "fibreType": "Cotton",
+      "fibrePercentage": 85
+    },
+    {
+      "fibreType": "Polyamide",
+      "fibrePercentage": 13
+    },
+    {
+      "fibreType": "Elastane",
+      "fibrePercentage": 2
+    }
+  ],
+  "color": "Black",
+  "euApparelSize": {
+    "sizeDesignation": "EU 42-45",
+    "primaryDimension": "Foot length",
+    "primaryDimensionValue": "26.5-28.5 cm"
+  },
+  "careInstructions": [
+    {
+      "@type": "RelatedResource",
+      "resourceTitle": "Washing and Care Guide",
+      "url": "https://example.com/care/socks"
+    }
+  ],
+  "recycledContentPercentage": 20,
+  "productionSteps": [
+    {
+      "step": "Spinning",
+      "countryCode": "TUR"
+    },
+    {
+      "step": "Knitting",
+      "countryCode": "PRT"
+    }
+  ],
+  "robustnessScore": 8.5,
+  "recyclabilityScore": 7,
+  "carbonFootprint": 1.2
+}

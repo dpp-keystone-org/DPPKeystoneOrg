@@ -48,10 +48,10 @@
   TextileProduct : +organicContentMass
   TextileProduct : +preConsumerRecycledContentPercentage
   TextileProduct : +postConsumerRecycledContentPercentage
-  TextileProduct : +fibreComposition
-  TextileProduct --|> FibreComposition : fibreComposition
   TextileProduct : +productionSteps
   TextileProduct --|> ProductionStep : productionSteps
+  TextileProduct : +fibreComposition
+  TextileProduct --|> FibreComposition : fibreComposition
   TextileProduct : +tearStrength
   TextileProduct --|> QuantitativeValue : tearStrength
   TextileProduct : +abrasionResistance
@@ -74,10 +74,10 @@
   style Certification stroke:#2962ff,color:#2962ff
   click RelatedResource href "../../core/RelatedResource/RelatedResource.html" "dppk:RelatedResource"
   style RelatedResource stroke:#2962ff,color:#2962ff
-  click FibreComposition href "../Textile/FibreComposition.html" "dppk:FibreComposition"
-  style FibreComposition stroke:#2962ff,color:#2962ff
   click ProductionStep href "../../core/Compliance/ProductionStep.html" "dppk:ProductionStep"
   style ProductionStep stroke:#2962ff,color:#2962ff
+  click FibreComposition href "../Textile/FibreComposition.html" "dppk:FibreComposition"
+  style FibreComposition stroke:#2962ff,color:#2962ff
   click QuantitativeValue href "../../core/Product/QuantitativeValue.html" "dppk:QuantitativeValue"
   style QuantitativeValue stroke:#2962ff,color:#2962ff
 
@@ -206,17 +206,17 @@
                                 </tr>
                             
                                 <tr>
+                                    <td>Production Steps (dppk:productionSteps)</td>
+                                    <td>The sequence of major production steps that occurred for this product.</td>
+                                    <td>dppk:ProductionStep</td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="../Textile/index.html#fibreComposition">Fibre Composition</a> (dppk:fibreComposition)</td>
                                     <td>Relates the textile product to its constituent fibres and their proportions.</td>
                                     <td>dppk:FibreComposition</td>
                                     <td>Regulation (EU) No 1007/2011</td><td></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td><a href="../Textile/index.html#productionSteps">Production Steps</a> (dppk:productionSteps)</td>
-                                    <td>The sequence of major production steps that occurred for this product.</td>
-                                    <td>dppk:ProductionStep</td>
-                                    <td></td><td></td><td></td>
                                 </tr>
                             
                                 <tr>
