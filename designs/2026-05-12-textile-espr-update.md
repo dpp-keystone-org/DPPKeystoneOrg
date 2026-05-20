@@ -99,15 +99,12 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     2.  **Missing Fields (Legacy vs. ESPR)**
     *   Because textile-espr.schema.json is a new file being built from the ground up, there are several
     *   fields present in the legacy schema that we have not yet brought over. If this new schema is meant
-    *   to eventually replace the legacy one, we should likely port these:
+    *   to eventually replace the legacy one side-by-side, we should likely port these:
     3.  **Basic Product & Supply Chain Data:**
-    *   fibreComposition: General fibre breakdown (e.g., Cotton 80%, Polyester 20%). The ESPR schema currently
-    *   only has organic/recycled tracking, but lacks standard fibre composition. 
     *   apparelSizeSystem: Often pairs with apparelSize.
     *   careInstructions: Washing/drying instructions (we added repair/safe-use, but missed general care).
     *   productionSteps: Supply chain mapping (Spinning, Weaving, Dyeing).
-    *   substancesOfConcern: Chemical tracking (substance name, CAS number, concentration).
-    *   Granular ISO Tests: Interestingly, the legacy schema had much higher detail for physical tests than the JRC ESPR requirements. The *   legacy schema used structured objects requiring specific ISO test methods (e.g., tearStrength via ISO 13937-2, abrasionResistance *   via ISO 12947, microplasticRelease via ISO 4484-1).
+    *   Granular ISO Tests: Interestingly, the legacy schema had much higher detail for physical tests than the JRC ESPR requirements. The legacy schema used structured objects requiring specific ISO test methods (e.g., tearStrength via ISO 13937-2, abrasionResistance via ISO 12947, microplasticRelease via ISO 4484-1).
     4.  **Missing from ESPR:**
     *   tearStrength,
     *   abrasionResistance,
@@ -118,9 +115,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   Our new ESPR schema is much more advanced regarding circularity
     *   (repairability, footprint, organic/recycled content, high-level recyclability/robustness scores).
     *   However, the legacy schema was actually higher detail regarding textile engineering/manufacturing
-    *  (ISO-standardized physical tests, supply chain steps, standard fibre composition).
+    *  (ISO-standardized physical tests, supply chain steps, general care instructions).
     *   **Next Steps for 9.1:**
-    *   Should I port fibreComposition, careInstructions, productionSteps, substancesOfConcern,
+    *   Should I port careInstructions, productionSteps, apparelSizeSystem,
     *   and the legacy ISO tests over to textile-espr.schema.json (and the ESPR context/ontology)
     *   so that our ESPR schema becomes a true, complete superset of the legacy schema?
     6.  **ESPR Discrepancies to Correct (Action Items):**

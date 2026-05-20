@@ -108,6 +108,15 @@
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
       "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+    },
+    {
+      "@id": "dppk:careInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": { "@language": "en", "@value": "Care Instructions" },
+      "rdfs:comment": { "@language": "en", "@value": "Instructions and manuals for the care, washing, and maintenance of the product." },
+      "rdfs:domain": { "@id": "dppk:Product" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
     }
   ]
 }

@@ -147,6 +147,12 @@
             "euDeclarationOfConformity": {
                 "$ref": "../shared/related-resource.schema.json"
             },
+            "careInstructions": {
+                "type": "array",
+                "items": {
+                    "$ref": "../shared/related-resource.schema.json"
+                }
+            },
             "safeUseInstructions": {
                 "type": "array",
                 "items": {

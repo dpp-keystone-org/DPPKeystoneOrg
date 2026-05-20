@@ -89,6 +89,19 @@
                     "document": "dppk:documents"
                 }
             },
+            "careInstructions": {
+                "@id": "dppk:careInstructions",
+                "@container": "@set",
+                "@context": {
+                    "resourceTitle": "dppk:resourceTitle",
+                    "contentType": "dppk:contentType",
+                    "language": "dppk:language",
+                    "url": {
+                        "@id": "dppk:url",
+                        "@type": "xsd:anyURI"
+                    }
+                }
+            },
             "safeUseInstructions": {
                 "@id": "dppk:safeUseInstructions",
                 "@container": "@set",
@@ -164,9 +177,39 @@
                 "@id": "dppk:visualInspection",
                 "@type": "xsd:string"
             },
-            "apparelSize": {
-                "@id": "dppk:apparelSize",
-                "@type": "xsd:string"
+            "euApparelSize": {
+                "@id": "dppk:euApparelSize",
+                "@type": "@id",
+                "@context": {
+                    "sizeDesignation": "dppk:sizeDesignation",
+                    "primaryDimension": {
+                        "@id": "dppk:primaryDimension",
+                        "@type": "@vocab"
+                    },
+                    "primaryDimensionValue": "dppk:primaryDimensionValue",
+                    "cupSize": "dppk:cupSize",
+                    "secondaryDimensions": {
+                        "@id": "dppk:secondaryDimensions",
+                        "@container": "@set",
+                        "@context": {
+                            "dimension": {
+                                "@id": "dppk:dimensionName",
+                                "@type": "@vocab"
+                            },
+                            "value": "dppk:dimensionValue"
+                        }
+                    },
+                    "Chest girth": "dppk:BodyDimChestGirth",
+                    "Neck girth": "dppk:BodyDimNeckGirth",
+                    "Waist girth": "dppk:BodyDimWaistGirth",
+                    "Hip girth": "dppk:BodyDimHipGirth",
+                    "Height": "dppk:BodyDimHeight",
+                    "Bust girth": "dppk:BodyDimBustGirth",
+                    "Underbust girth": "dppk:BodyDimUnderbustGirth",
+                    "Foot length": "dppk:BodyDimFootLength",
+                    "Arm length": "dppk:BodyDimArmLength",
+                    "Inside leg length": "dppk:BodyDimInsideLegLength"
+                }
             },
             "animalOriginNonTextile": {
                 "@id": "dppk:animalOriginNonTextile",
