@@ -276,6 +276,14 @@
             "rdfs:range": { "@id": "xsd:boolean" }
         },
         {
+            "@id": "dppk:euEcolabel",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "EU Ecolabel" },
+            "rdfs:comment": { "@language": "en", "@value": "Indicates whether the product has been awarded the EU Ecolabel. The label should be found in the certifications array as well, if present." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:boolean" }
+        },
+        {
             "@id": "dppk:weightExcludingTrims",
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Weight Excluding Trims" },

@@ -107,6 +107,10 @@
                     "document": "dppk:documents"
                 }
             },
+            "euEcolabel": {
+                "@id": "dppk:euEcolabel",
+                "@type": "xsd:boolean"
+            },
             "careInstructions": {
                 "@id": "dppk:careInstructions",
                 "@context": {
