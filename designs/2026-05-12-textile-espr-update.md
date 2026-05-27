@@ -145,7 +145,7 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[PENDING] Step 11.2: Implement Actionable Schema Updates**
     *   **[COMPLETED] Task 11.2.1**: Update instruction fields (`safeUseInstructions`, `endOfLifeInstructions`, `repairInstructions`) to allow either a `RelatedResource` object or a plain string.
     *   **[COMPLETED] Task 11.2.2**: Add `preConsumerRecycledContentMass` and `postConsumerRecycledContentMass` mass fields to `textile-espr.schema.json`.
-    *   **[PENDING] Task 11.2.3**: Add `typeOfWaste` string field to `textile-espr.schema.json`.
+    *   **[COMPLETED] Task 11.2.3**: Add `preConsumerTypeOfWaste` and `postConsumerTypeOfWaste` string fields to `textile-espr.schema.json` (split for granularity).
     *   **[PENDING] Task 11.2.4**: Add `carbonFootprintCalculationParameters` referencing `RelatedResource` to `textile-espr.schema.json`.
     *   **[PENDING] Task 11.2.5**: Add `environmentalFootprint` integer field to `textile-espr.schema.json`.
     *   **[PENDING] Task 11.2.6**: Add `euEcolabel` boolean field as a supplement to the certifications array.

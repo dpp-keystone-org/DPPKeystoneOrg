@@ -279,6 +279,14 @@
             "rdfs:range": { "@id": "xsd:double" }
         },
         {
+            "@id": "dppk:preConsumerTypeOfWaste",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Pre-consumer Type of Waste" },
+            "rdfs:comment": { "@language": "en", "@value": "The classification or source of the pre-consumer waste used for recycled content." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
             "@id": "dppk:postConsumerRecycledContentPercentage",
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Post-consumer Recycled Content" },
@@ -295,6 +303,14 @@
             "dppk:unit": "kg",
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:postConsumerTypeOfWaste",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Post-consumer Type of Waste" },
+            "rdfs:comment": { "@language": "en", "@value": "The classification or source of the post-consumer waste used for recycled content." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:string" }
         },
         {
             "@id": "dppk:ProductionStep",

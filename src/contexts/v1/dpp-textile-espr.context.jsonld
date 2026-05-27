@@ -66,6 +66,10 @@
                 "@id": "dppk:preConsumerRecycledContentMass",
                 "@type": "xsd:double"
             },
+            "preConsumerTypeOfWaste": {
+                "@id": "dppk:preConsumerTypeOfWaste",
+                "@type": "xsd:string"
+            },
             "postConsumerRecycledContentPercentage": {
                 "@id": "dppk:postConsumerRecycledContentPercentage",
                 "@type": "xsd:double"
@@ -73,6 +77,10 @@
             "postConsumerRecycledContentMass": {
                 "@id": "dppk:postConsumerRecycledContentMass",
                 "@type": "xsd:double"
+            },
+            "postConsumerTypeOfWaste": {
+                "@id": "dppk:postConsumerTypeOfWaste",
+                "@type": "xsd:string"
             },
             "euDeclarationOfConformity": { "@id": "dppk:euDeclarationOfConformity" },
             "textileCertifications": {
