@@ -81,6 +81,42 @@
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:comment": "A link to the safety data sheet (SDS) for the product.",
       "rdfs:range": { "@id": "dppk:RelatedResource" }
+    },
+    {
+      "@id": "dppk:safeUseInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": { "@language": "en", "@value": "Safe Use Instructions" },
+      "rdfs:comment": { "@language": "en", "@value": "Instructions and guidelines for the safe use and maintenance of the product." },
+      "rdfs:domain": { "@id": "dppk:Product" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+    },
+    {
+      "@id": "dppk:endOfLifeInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": { "@language": "en", "@value": "End of Life Instructions" },
+      "rdfs:comment": { "@language": "en", "@value": "Instructions for the proper disassembly, recycling, or disposal of the product at the end of its life." },
+      "rdfs:domain": { "@id": "dppk:Product" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+    },
+    {
+      "@id": "dppk:repairInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": { "@language": "en", "@value": "Repair Instructions" },
+      "rdfs:comment": { "@language": "en", "@value": "Instructions on how to repair or replace components of the product." },
+      "rdfs:domain": { "@id": "dppk:Product" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+    },
+    {
+      "@id": "dppk:careInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": { "@language": "en", "@value": "Care Instructions" },
+      "rdfs:comment": { "@language": "en", "@value": "Instructions and manuals for the care, washing, and maintenance of the product." },
+      "rdfs:domain": { "@id": "dppk:Product" },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
     }
   ]
 }

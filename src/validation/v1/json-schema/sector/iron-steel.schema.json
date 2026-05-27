@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/iron-steel.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/sector/iron-steel.schema.json",
     "title": "Iron and Steel Sector Module",
     "description": "A conditional schema for the Iron and Steel sector.",
     "if": {
@@ -45,10 +45,10 @@
                 "type": "string"
             },
             "manufacturerInfo": {
-                "$ref": "organization.schema.json"
+                "$ref": "../shared/organization.schema.json"
             },
             "importerInfo": {
-                "$ref": "organization.schema.json"
+                "$ref": "../shared/organization.schema.json"
             },
             "manufacturingDate": {
                 "type": "string",
@@ -63,14 +63,14 @@
             "substancesOfConcern": {
                 "type": "array",
                 "items": {
-                    "$ref": "component.schema.json"
+                    "$ref": "../shared/component.schema.json"
                 }
             },
             "safeUseInstructions": {
-                "$ref": "related-resource.schema.json"
+                "$ref": "../shared/related-resource.schema.json"
             },
             "endOfLifeInstructions": {
-                "$ref": "related-resource.schema.json"
+                "$ref": "../shared/related-resource.schema.json"
             },
             "recycledContentPercentage": {
                 "type": "number"
@@ -89,28 +89,28 @@
                 "type": "string"
             },
             "reachDocumentation": {
-                "$ref": "related-resource.schema.json"
+                "$ref": "../shared/related-resource.schema.json"
             },
             "mtc": {
-                "$ref": "mtc.schema.json"
+                "$ref": "../shared/mtc.schema.json"
             },
             "epd": {
                 "oneOf": [
                     {
-                        "$ref": "epd.schema.json"
+                        "$ref": "../shared/epd.schema.json"
                     },
                     {
-                        "$ref": "related-resource.schema.json"
+                        "$ref": "../shared/related-resource.schema.json"
                     }
                 ]
             },
             "dopc": {
                 "oneOf": [
                     {
-                        "$ref": "dopc.schema.json"
+                        "$ref": "../shared/dopc.schema.json"
                     },
                     {
-                        "$ref": "related-resource.schema.json"
+                        "$ref": "../shared/related-resource.schema.json"
                     }
                 ]
             }

@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/epd.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/shared/epd.schema.json",
     "title": "DPP EPD (Environmental Product Declaration) Data Block",
     "description": "A detailed schema for the EPD data block.",
     "type": "object",

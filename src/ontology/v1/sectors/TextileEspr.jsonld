@@ -1,0 +1,330 @@
+{
+    "@context": {
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "schema": "https://schema.org/",
+        "gs1": "https://ref.gs1.org/voc/",
+        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "@base": "https://dpp-keystone.org/spec/v1/terms"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/TextileEspr",
+    "@type": "owl:Ontology",
+    "dcterms:title": { "@language": "en", "@value": "DPP Sector Ontology - Textile ESPR Compliant" },
+    "dcterms:description": { "@language": "en", "@value": "Defines sector-specific concepts compliant with the upcoming ESPR Delegated Act for Textiles." },
+    "owl:versionInfo": "Draft",
+    "owl:imports": [
+        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
+        { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EUApparelSizeSystem.jsonld" }
+    ],
+    "@graph": [
+        {
+            "@id": "dppk:TextileProduct",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Textile Product",
+            "rdfs:comment": "Any raw, semi-worked, or worked product which is exclusively composed of textile fibres, regardless of the mixing or assembly process employed.",
+            "dcterms:source": {
+                "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
+                "rdfs:label": "Regulation (EU) No 1007/2011 (Textile Fibre Names)"
+            },
+            "rdfs:subClassOf": [
+                { "@id": "dppk:Product" },
+                { "@id": "schema:Product" },
+                { "@id": "gs1:Clothing" }
+            ],
+            "rdfs:seeAlso": { "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles" }
+        },
+        {
+            "@id": "dppk:pefcrCategory",
+            "@type": "owl:ObjectProperty",
+            "dppk:governedBy": "Apparel and Footwear PEFCR v3.1",
+            "dcterms:source": { "@id": "https://pefapparelandfootwear.eu/afw_pefcr_v3-1_final/" },
+            "rdfs:label": { "@language": "en", "@value": "PEFCR Category" },
+            "rdfs:comment": { "@language": "en", "@value": "The Product Environmental Footprint Category Rules (PEFCR) category to which the product belongs." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:PefcrCategoryValue" }
+        },
+        {
+            "@id": "dppk:PefcrCategoryValue",
+            "@type": "rdfs:Class",
+            "rdfs:label": { "@language": "en", "@value": "PEFCR Category Value" },
+            "rdfs:comment": { "@language": "en", "@value": "An enumeration of the allowed PEFCR categories for apparel and footwear." },
+            "rdfs:subClassOf": { "@id": "rdfs:Resource" },
+            "owl:oneOf": [
+                { "@id": "dppk:PefcrTShirts" },
+                { "@id": "dppk:PefcrShirtsAndBlouses" },
+                { "@id": "dppk:PefcrSweatersAndMidlayers" },
+                { "@id": "dppk:PefcrJacketsAndCoats" },
+                { "@id": "dppk:PefcrPantsAndShorts" },
+                { "@id": "dppk:PefcrDressesSkirtsAndJumpsuits" },
+                { "@id": "dppk:PefcrLeggingsStockingsTightsAndSocks" },
+                { "@id": "dppk:PefcrUnderwear" },
+                { "@id": "dppk:PefcrSwimwear" },
+                { "@id": "dppk:PefcrApparelAccessories" },
+                { "@id": "dppk:PefcrOpenToedShoes" },
+                { "@id": "dppk:PefcrClosedToedShoes" },
+                { "@id": "dppk:PefcrBoots" }
+            ]
+        },
+        {
+            "@id": "dppk:PefcrTShirts",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "T-shirts" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to cover the upper body to the elbow. Typical products included: Singlets, t-shirts, polo shirts, other short-sleeved shirts." }
+        },
+        {
+            "@id": "dppk:PefcrShirtsAndBlouses",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Shirts and blouses" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to cover the upper body including the entire arm. Typical products included: Long-sleeved shirts, blouses, tunics, base layers." }
+        },
+        {
+            "@id": "dppk:PefcrSweatersAndMidlayers",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Sweaters and midlayers" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to keep the upper body warm and covered. Typical products included: Pullovers, cardigans, hoodies, jerseys, sweatshirts, knitted and wool sweaters, vests." }
+        },
+        {
+            "@id": "dppk:PefcrJacketsAndCoats",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Jackets and coats" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to put on top of a shirt or sweater or to protect from the elements. Typical products included: Blazers, suit jackets, overcoats, other light jackets, rain jackets, outdoor winter jackets, parkas, down jackets, fur jackets, outdoor vests, leather jackets." }
+        },
+        {
+            "@id": "dppk:PefcrPantsAndShorts",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Pants and shorts" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment to cover the lower body, may protect from the elements. Typical products included: Casual pants, outdoor pants, dress pants, jeans, sports pants, capri pants, shorts." }
+        },
+        {
+            "@id": "dppk:PefcrDressesSkirtsAndJumpsuits",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Dresses, skirts and jumpsuits" },
+            "rdfs:comment": { "@language": "en", "@value": "One-piece garment that covers both the upper and lower body, or the lower body only, other than pants and shorts. Typical products included: Short- and long-sleeved, strapless, wrap, long and short, one-piece suits." }
+        },
+        {
+            "@id": "dppk:PefcrLeggingsStockingsTightsAndSocks",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Leggings, stockings, tights and socks" },
+            "rdfs:comment": { "@language": "en", "@value": "Tight garment to cover the legs and/or feet. Typical products included: Opaque and sheer tights, pantyhose, fishnets, ankle socks, knee socks, low-cut socks." }
+        },
+        {
+            "@id": "dppk:PefcrUnderwear",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Underwear" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment worn under clothes, often next to the skin of the upper or lower body. Typical products included: Boxers, briefs, panties, bras, body-shaping suits." }
+        },
+        {
+            "@id": "dppk:PefcrSwimwear",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Swimwear" },
+            "rdfs:comment": { "@language": "en", "@value": "Garment worn for water-based or sunbased activities. Typical products included: Bikinis, bathing suits, racing-style swimwear, board shorts." }
+        },
+        {
+            "@id": "dppk:PefcrApparelAccessories",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Apparel Accessories" },
+            "rdfs:comment": { "@language": "en", "@value": "Garments for the head, neck, waist, or hands to protect from elements or secure clothing. Typical products included: Hats (Caps, flat caps, woollen hats/beanies, fedoras, panamas, bowlers, newsboys, berets), Scarves and ties (Warm and light scarves, buffs, neckerchiefs, headscarves, shawls, bowties), Belts (Dress belts, casual belts, buckle belts, tie-up belts, suspenders), Gloves and mittens (fingerless gloves, fashion gloves, outdoor sports gloves, mittens)." }
+        },
+        {
+            "@id": "dppk:PefcrOpenToedShoes",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Open-toed shoes" },
+            "rdfs:comment": { "@language": "en", "@value": "Open-toed shoes, providing protection from the ground. Used in pairs. Typical products included: Flip-flops, casual /fashion sandals, sports sandals, slippers." }
+        },
+        {
+            "@id": "dppk:PefcrClosedToedShoes",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Closed-toed shoes" },
+            "rdfs:comment": { "@language": "en", "@value": "Closed-toed shoes, providing protection from the ground. They may protect against water, the elements and/or heavy objects. Used in pairs. Typical products included: Slippers, tennis shoes, moccasins, espadrilles, sneakers, cleats, athletic shoes, dress shoes, protective toecap – toed shoes." }
+        },
+        {
+            "@id": "dppk:PefcrBoots",
+            "@type": "dppk:PefcrCategoryValue",
+            "rdfs:label": { "@language": "en", "@value": "Boots" },
+            "rdfs:comment": { "@language": "en", "@value": "Boots that cover the ankle, providing protection from the ground. They may protect against water, the elements, heavy objects and/or ankle injuries. Used in pairs. Typical products included: Polymer boots, winter boots, hiking boots, dress boots, protective toecap - toed boots." }
+        },
+        {
+            "@id": "dppk:textileCertifications",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Textile ESPR Conformity Certifications" },
+            "rdfs:comment": { "@language": "en", "@value": "Certifications specifically verifying ESPR textile claims (e.g. recycled content, recyclability, mechanical properties)." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:Certification" },
+            "rdfs:subPropertyOf": { "@id": "schema:hasCertification" }
+        },
+        {
+            "@id": "dppk:euDeclarationOfConformity",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "EU Declaration of Conformity" },
+            "rdfs:comment": { "@language": "en", "@value": "A reference to the EU Declaration of Conformity for the product." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:RelatedResource" }
+        },
+        {
+            "@id": "dppk:carbonFootprint",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Carbon Footprint" },
+            "rdfs:comment": { "@language": "en", "@value": "The carbon footprint of the product." },
+            "dppk:unit": "kg CO₂ eq",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:carbonFootprintBenchmarkPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Carbon Footprint Benchmark Percentage" },
+            "rdfs:comment": { "@language": "en", "@value": "The product's carbon footprint performance compared to the established benchmark, expressed as a percentage." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:robustnessScore",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Robustness Score" },
+            "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's robustness (typically 0-10 scale)." },
+            "dppk:unit": "unitless",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:recyclabilityScore",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Recyclability Score" },
+            "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's recyclability (typically 0-10 scale)." },
+            "dppk:unit": "unitless",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:spirality",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Spirality" },
+            "rdfs:comment": { "@language": "en", "@value": "The measured spirality of the textile product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:dimensionalChange",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Dimensional Change" },
+            "rdfs:comment": { "@language": "en", "@value": "The dimensional change (shrinkage or expansion) after testing." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:visualInspection",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Visual Inspection Result" },
+            "rdfs:comment": { "@language": "en", "@value": "The result of the visual inspection (e.g. Pass/Fail or notes)." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
+            "@id": "dppk:animalOriginNonTextile",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Contains Non-Textile Parts of Animal Origin" },
+            "rdfs:comment": { "@language": "en", "@value": "Indicates whether the product contains non-textile parts of animal origin, as required by the EU Textile Labelling Regulation." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:boolean" }
+        },
+        {
+            "@id": "dppk:weightExcludingTrims",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Weight Excluding Trims" },
+            "rdfs:comment": { "@language": "en", "@value": "The weight of the product excluding non-textile trims (e.g. buttons, zippers), used as a base for calculations." },
+            "dppk:unit": "kg",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:organicContentPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Organic Content Percentage" },
+            "rdfs:comment": { "@language": "en", "@value": "The percentage of organic material in the product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:organicContentMass",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Organic Content Mass" },
+            "rdfs:comment": { "@language": "en", "@value": "The absolute mass of organic material in the product." },
+            "dppk:unit": "kg",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:preConsumerRecycledContentPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Pre-consumer Recycled Content" },
+            "rdfs:comment": { "@language": "en", "@value": "The percentage of pre-consumer recycled material in the product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:preConsumerRecycledContentMass",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Pre-consumer Recycled Content Mass" },
+            "rdfs:comment": { "@language": "en", "@value": "The absolute mass of pre-consumer recycled material in the product." },
+            "dppk:unit": "kg",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:postConsumerRecycledContentPercentage",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Post-consumer Recycled Content" },
+            "rdfs:comment": { "@language": "en", "@value": "The percentage of post-consumer recycled material in the product." },
+            "dppk:unit": "%",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:postConsumerRecycledContentMass",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Post-consumer Recycled Content Mass" },
+            "rdfs:comment": { "@language": "en", "@value": "The absolute mass of post-consumer recycled material in the product." },
+            "dppk:unit": "kg",
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
+        },
+        {
+            "@id": "dppk:ProductionStep",
+            "@type": "rdfs:Class",
+            "rdfs:label": { "@language": "en", "@value": "Production Step" },
+            "rdfs:comment": { "@language": "en", "@value": "A specific step in the manufacturing process of the product." }
+        },
+        {
+            "@id": "dppk:productionSteps",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Production Steps" },
+            "rdfs:comment": { "@language": "en", "@value": "The sequence of major production steps that occurred for this product." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:ProductionStep" }
+        },
+        {
+            "@id": "dppk:productionStepType",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Production Step Type" },
+            "rdfs:comment": { "@language": "en", "@value": "The type of activity performed (e.g., Spinning, Weaving, Dyeing)." },
+            "rdfs:domain": { "@id": "dppk:ProductionStep" },
+            "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
+            "@id": "dppk:productionLocationCountry",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Production Location Country" },
+            "rdfs:comment": { "@language": "en", "@value": "The country code (ISO 3166-1 alpha-3) where the production step took place." },
+            "rdfs:domain": { "@id": "dppk:ProductionStep" },
+            "rdfs:range": { "@id": "xsd:string" }
+        }
+    ]
+}

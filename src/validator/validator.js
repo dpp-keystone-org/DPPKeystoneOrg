@@ -12,25 +12,27 @@ import { validateContextAwarePayload } from '../util/js/common/validation/contex
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/
 // NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
 const SECTOR_MAP = {
-    'draft_battery_specification_id': 'battery.schema.json',
-    'draft_construction_specification_id': 'construction.schema.json',
-    'draft_electronics_specification_id': 'electronics.schema.json',
-    'draft_iron_and_steel_specification_id': 'iron-steel.schema.json',
-    'draft_textile_specification_id': 'textile.schema.json',
+    'draft_battery_specification_id': 'sector/battery.schema.json',
+    'draft_construction_specification_id': 'sector/construction.schema.json',
+    'draft_electronics_specification_id': 'sector/electronics.schema.json',
+    'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
+    'draft_textile_specification_id': 'sector/textile.schema.json',
+    'draft_textile_espr_specification_id': 'sector/textile-espr.schema.json'
 };
 
 // Common schemas that should always be loaded for $ref resolution
 const COMMON_SCHEMAS = [
-    'dopc.schema.json',
-    'epd.schema.json',
-    'organization.schema.json',
-    'packaging.schema.json',
-    'postal-address.schema.json',
-    'product-characteristic.schema.json',
-    'related-resource.schema.json',
-    'general-product.schema.json',
-    'component.schema.json',
-    'mtc.schema.json'
+    'shared/dopc.schema.json',
+    'shared/epd.schema.json',
+    'shared/organization.schema.json',
+    'shared/packaging.schema.json',
+    'shared/postal-address.schema.json',
+    'shared/product-characteristic.schema.json',
+    'shared/related-resource.schema.json',
+    'shared/general-product.schema.json',
+    'shared/component.schema.json',
+    'shared/mtc.schema.json',
+    'shared/certification.schema.json'
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
@@ -175,7 +177,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     for (const id of dppData.contentSpecificationIds) {
                         const schemaFile = SECTOR_MAP[id];
                         if (schemaFile) {
-                            const sectorName = schemaFile.replace('.schema.json', '');
+                            const sectorName = schemaFile.replace('sector/', '').replace('.schema.json', '');
                             const sectorOntology = await loadOntology(sectorName);
                             if (sectorOntology) sectorOntology.forEach((v, k) => aggregatedMap.set(k, v));
                         }

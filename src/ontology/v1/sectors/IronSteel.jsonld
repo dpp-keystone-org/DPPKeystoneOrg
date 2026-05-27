@@ -199,34 +199,6 @@
             "rdfs:term_status": "unstable"
         },
         {
-            "@id": "dppk:safeUseInstructions",
-            "@type": "owl:ObjectProperty",
-            "rdfs:label": [
-                { "@language": "en", "@value": "Safe Use Instructions" }
-            ],
-            "rdfs:comment": [
-                { "@language": "en", "@value": "Instructions and warnings for the safe use of the product." }
-            ],
-            "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
-            "rdfs:range": { "@id": "dppk:RelatedResource" },
-            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
-            "rdfs:term_status": "unstable"
-        },
-        {
-            "@id": "dppk:endOfLifeInstructions",
-            "@type": "owl:ObjectProperty",
-            "rdfs:label": [
-                { "@language": "en", "@value": "End of Life Instructions" }
-            ],
-            "rdfs:comment": [
-                { "@language": "en", "@value": "Instructions for dismantling, recycling, or disposing of the product." }
-            ],
-            "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
-            "rdfs:range": { "@id": "dppk:RelatedResource" },
-            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
-            "rdfs:term_status": "unstable"
-        },
-        {
             "@id": "dppk:recycledContentPercentage",
             "@type": "owl:DatatypeProperty",
             "rdfs:label": [

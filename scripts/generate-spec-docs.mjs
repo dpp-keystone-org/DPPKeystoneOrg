@@ -63,8 +63,8 @@ export function parseOntologyMetadata(content) {
         ontologyInfo = data;
     }
 
-    const title = ontologyInfo?.['dcterms:title'] || 'No title found';
-    const description = ontologyInfo?.['dcterms:description'] || 'No description found.';
+    const title = getDisplayLabel(ontologyInfo?.['dcterms:title'], 'No title found');
+    const description = getDisplayLabel(ontologyInfo?.['dcterms:description'], 'No description found.');
 
     const properties = graph
         .filter(p => p['@type'] && (p['@type'].includes('owl:ObjectProperty') || p['@type'].includes('owl:DatatypeProperty')))
@@ -103,12 +103,23 @@ export function parseOntologyMetadata(content) {
         });
 
     const classes = graph
-        .filter(node => node['@type'] === 'rdfs:Class')
+        .filter(node => {
+            const t = node['@type'];
+            if (!t) return false;
+            if (t === 'rdfs:Class' || t === 'owl:NamedIndividual') return true;
+            if (typeof t === 'string' && t.startsWith('dppk:') && t !== 'dppk:governedBy') return true;
+            return false;
+        })
         .map(node => {
             const classId = node['@id'];
             
             const classAttributes = {};
-            const allowedKeys = ['rdfs:subClassOf', 'owl:equivalentClass'];
+            const allowedKeys = ['rdfs:subClassOf', 'owl:equivalentClass', 'owl:oneOf'];
+            
+            if (node['@type'] && node['@type'] !== 'rdfs:Class') {
+                classAttributes['type'] = node['@type'];
+            }
+
             for (const key of allowedKeys) {
                 if (node[key]) {
                     classAttributes[key] = node[key];
@@ -130,6 +141,7 @@ export function parseOntologyMetadata(content) {
                 id: classId,
                 label: getDisplayLabel(node['rdfs:label'], classId),
                 comment: getDisplayLabel(node['rdfs:comment'], ''),
+                type: node['@type'],
                 // Find properties whose domain includes this class OR properties with NO domain (assumed to belong to the module/class)
                 properties: properties.filter(p => {
                     if (p.domains.length === 0) return true;
@@ -350,6 +362,32 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
     const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
 
     const attributesHtml = Object.entries(c.attributes).map(([key, value]) => {
+        if (key === 'owl:oneOf' && Array.isArray(value)) {
+            const tableRows = value.map(val => {
+                const id = val['@id'] || val;
+                const link = processValue(val, context, currentHtmlPath, ontologyDir, allMetadata);
+                let label = '';
+                if (typeof id === 'string') {
+                    for (const m of allMetadata) {
+                        const entity = m.classes.find(e => e.id === id);
+                        if (entity && entity.label) {
+                            label = entity.label;
+                            break;
+                        }
+                    }
+                }
+                return `<tr><td>${link}</td><td>${label}</td></tr>`;
+            }).join('');
+            
+            return `
+                <h4>Enum Values (oneOf)</h4>
+                <table>
+                    <thead><tr><th>Value ID</th><th>Label</th></tr></thead>
+                    <tbody>${tableRows}</tbody>
+                </table>
+            `;
+        }
+
         let displayValue;
         if (Array.isArray(value)) {
             displayValue = value.map(val => processValue(val, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
@@ -361,13 +399,16 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
 
     const mermaidDiagram = generateMermaidDiagram(c, allMetadata, currentHtmlPath, ontologyDir);
 
+    const rawType = Array.isArray(c.type) ? c.type[0] : (c.type || 'Concept');
+    const displayType = rawType.replace('rdfs:', '').replace('owl:', '').replace('dppk:', '');
+
     return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class: ${c.label}</title>
+    <title>${displayType}: ${c.label}</title>
     <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
@@ -381,7 +422,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
             <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
                 <h1><a href="../index.html">Ontology: ${moduleDirName}</a> / <a href="index.html">${moduleTitle}</a></h1>
-                <h2 style="margin: 0; color: var(--text-light);">Class: ${c.label} (${c.id})</h2>
+                <h2 style="margin: 0; color: var(--text-light);">${displayType}: ${c.label} (${c.id})</h2>
             </div>
         </header>
         <main>
@@ -391,7 +432,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
                     ${mermaidDiagram}
                 </pre>
 
-                <h4>Attributes</h4>
+                <h4>Description</h4>
                 <p>${c.comment}</p>
                 ${attributesHtml}
 
@@ -414,21 +455,16 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
                                     return `<td>${renderedValues || ''}</td>`;
                                 }).join('');
 
-                                let propLabelHtml = `${p.label} (${p.id})`;
-                                
-                                // Check if the property is defined in a different module/file
-                                if (p.definedInFile && p.definedInFile !== moduleFileName) {
-                                    const targetPath = join(ontologyDir, p.definedInModule, p.definedInDirName, 'index.html');
-                                    const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
-                                    const link = `${relativeLink}#${getFragment(p.id)}`;
-                                    propLabelHtml = `<a href="${link}">${p.label}</a> (${p.id})`;
-                                }
+                                const targetPath = join(ontologyDir, p.definedInModule, p.definedInDirName, 'index.html');
+                                const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
+                                const link = `${relativeLink}#${getFragment(p.id)}`;
+                                const propLabelHtml = `<a href="${link}">${p.label}</a> (${p.id})`;
 
                                 return `
                                 <tr>
                                     <td>${propLabelHtml}</td>
                                     <td>${p.comment || ''}</td>
-                                    <td>${p.range || ''}</td>
+                                    <td>${p.range ? processValue({"@id": p.range}, context, currentHtmlPath, ontologyDir, allMetadata) : ''}</td>
                                     ${annotationsHtml}
                                 </tr>
                             `}).join('')}
@@ -526,9 +562,10 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
 </html>`;
 }
 
-export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir) {
-    const { title, description, classes, properties, name: fileName, module: moduleDirName } = fileMetadata;
+export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, allMetadata, ontologyDir) {
+    const { title, description, classes, properties, name: fileName, module: moduleDirName, context } = fileMetadata;
     const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
+    const extraColumns = [...new Set(properties.flatMap(p => Object.keys(p.annotations)))];
     
     // Link to the parent directory's index.html (e.g., from /core/Compliance/index.html to /core/index.html)
     const parentIndexLink = relative(dirname(currentHtmlPath), join(dirname(currentHtmlPath), '..', 'index.html')).replace(/\\/g, '/');
@@ -544,6 +581,11 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir) 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Module: ${title}</title>
     <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -557,14 +599,40 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir) 
         <main>
             <p>${description}</p>
             <p><strong>Source:</strong> <a href="${sourceFileLink}">${fileName}</a></p>
-            <h3>Classes</h3>
+            <h3>Classes & Concepts</h3>
             <ul>
                 ${classes.map(c => `<li><a href="${getFragment(c.id)}.html">${c.label}</a></li>`).join('')}
             </ul>
             <h3>Properties</h3>
-            <ul>
-                ${properties.map(p => `<li id="${getFragment(p.id)}"><strong>${p.label}</strong> (${p.id})</li>`).join('')}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        ${extraColumns.map(col => `<th>${col.replace('dppk:', '').replace('owl:','').replace('rdfs:','')}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${properties.map(p => {
+                        const annotationsHtml = extraColumns.map(col => {
+                            const values = Array.isArray(p.annotations[col]) ? p.annotations[col] : (p.annotations[col] != null ? [p.annotations[col]] : []);
+                            const renderedValues = values.map(val => processValue(val, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
+                            return `<td>${renderedValues || ''}</td>`;
+                        }).join('');
+
+                        return `
+                        <tr>
+                            <td id="${getFragment(p.id)}"><strong>${p.label}</strong> (${p.id})</td>
+                            <td>${p.comment || ''}</td>
+                            <td>${p.domains ? p.domains.map(d => processValue({"@id": d}, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ') : ''}</td>
+                            <td>${p.range ? processValue({"@id": p.range}, context, currentHtmlPath, ontologyDir, allMetadata) : ''}</td>
+                            ${annotationsHtml}
+                        </tr>
+                    `}).join('')}
+                </tbody>
+            </table>
         </main>
         <footer>
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
@@ -873,7 +941,7 @@ export async function generateSpecDocs({
 
             // Generate index for the module
             const moduleIndexHtmlPath = join(moduleDir, 'index.html');
-            const moduleIndexHtml = generateModuleIndexHtml(metadata, moduleIndexHtmlPath, distDir);
+            const moduleIndexHtml = generateModuleIndexHtml(metadata, moduleIndexHtmlPath, distDir, allMetadata, ontologyDir);
             await writeFile(moduleIndexHtmlPath, moduleIndexHtml);
 
             // Generate individual pages for each class
@@ -887,8 +955,8 @@ export async function generateSpecDocs({
     }
 
     // 3. Generate Global Index
-    const globalIndexContent = generateGlobalOntologyIndex(allMetadata);
     const globalIndexPath = join(ontologyDir, 'index.html');
+    const globalIndexContent = generateGlobalOntologyIndex(allMetadata, globalIndexPath, ontologyDir);
     await writeFile(globalIndexPath, globalIndexContent);
 
 
@@ -939,9 +1007,9 @@ export async function generateSpecDocs({
     }
 }
 
-function generateGlobalOntologyIndex(allMetadata) {
+function generateGlobalOntologyIndex(allMetadata, currentHtmlPath, ontologyDir) {
     const allClasses = allMetadata.flatMap(m => m.classes.map(c => ({ ...c, module: m.module, moduleName: basename(m.name, '.jsonld') })));
-    const allProperties = allMetadata.flatMap(m => m.properties.map(p => ({ ...p, module: m.module, definedIn: m.name })));
+    const allProperties = allMetadata.flatMap(m => m.properties.map(p => ({ ...p, module: m.module, definedIn: m.name, context: m.context })));
 
     return `
 <!DOCTYPE html>
@@ -969,7 +1037,7 @@ function generateGlobalOntologyIndex(allMetadata) {
         </header>
         <main>
             <div class="index-section">
-                <h3>All Classes</h3>
+                <h3>All Classes & Concepts</h3>
                 <ul>
                     ${allClasses.map(c => `<li><a href="./${c.module}/${c.moduleName}/${getFragment(c.id)}.html">${c.id}</a> (${c.label})</li>`).join('')}
                 </ul>
@@ -991,8 +1059,8 @@ function generateGlobalOntologyIndex(allMetadata) {
                             <tr>
                                 <td>${p.label} (${p.id})</td>
                                 <td>${p.comment || ''}</td>
-                                <td>${p.domain ? (p.domain['@id'] || JSON.stringify(p.domain)) : ''}</td>
-                                <td>${p.range || ''}</td>
+                                <td>${p.domains ? p.domains.map(d => processValue({"@id": d}, p.context, currentHtmlPath, ontologyDir, allMetadata)).join(', ') : ''}</td>
+                                <td>${p.range ? processValue({"@id": p.range}, p.context, currentHtmlPath, ontologyDir, allMetadata) : ''}</td>
                                 <td>${p.definedIn}</td>
                             </tr>
                         `).join('')}

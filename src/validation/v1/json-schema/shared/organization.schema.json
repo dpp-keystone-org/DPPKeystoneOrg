@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/organization.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/shared/organization.schema.json",
     "title": "Organization",
     "description": "A general concept for any organization or legal entity involved in the product lifecycle.",
     "type": "object",

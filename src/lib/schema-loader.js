@@ -101,15 +101,26 @@ async function resolveRefs(schemaNode, rootSchema, basePath, resolutionPath = ne
 
 
 /**
- * Fetches a JSON schema for a given sector and resolves all its $ref pointers.
- * @param {string} sector - The name of the sector (e.g., 'battery', 'construction').
+ * Fetches a JSON schema and resolves all its $ref pointers.
+ * @param {string} schemaName - The name of the schema (e.g., 'battery', 'dpp', 'organization').
+ * @param {string} schemaType - The type of schema ('header', 'sector', 'shared').
  * @returns {Promise<object>} A promise that resolves to the fully resolved JSON schema object.
  */
-export async function loadSchema(sector) {
-    if (!sector) {
-        throw new Error('Sector must be specified.');
+export async function loadSchema(schemaName, schemaType) {
+    if (!schemaName) {
+        throw new Error('Schema name must be specified.');
     }
-    const schemaPath = `../spec/validation/v1/json-schema/${sector}.schema.json`;
+    
+    let schemaPath;
+    if (schemaType === 'header') {
+        schemaPath = `../spec/validation/v1/json-schema/${schemaName}.schema.json`;
+    } else if (schemaType === 'shared') {
+        schemaPath = `../spec/validation/v1/json-schema/shared/${schemaName}.schema.json`;
+    } else if (schemaType === 'sector') {
+        schemaPath = `../spec/validation/v1/json-schema/sector/${schemaName}.schema.json`;
+    } else {
+        throw new Error(`Unrecognized schema type: '${schemaType}'`);
+    }
     //console.log(`[DEBUG] Fetching schema from: ${schemaPath}`);
 
     try {

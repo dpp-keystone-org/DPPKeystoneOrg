@@ -547,4 +547,111 @@ describe('DPP Schema Logic (Unit)', () => {
         expect(tear.value).toBe('50N');
     });
 
+    // --- Step 9.4: Textile ESPR Parity ---
+    test('Product maps Textile ESPR specific fields (Apparel Size, Production Steps, Scores, Instructions)', async () => {
+        const textileEsprDpp = {
+            "@context": [
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-textile-espr.context.jsonld"
+            ],
+            "@type": ["DigitalProductPassport", "TextileProduct"],
+            "digitalProductPassportId": "urn:uuid:espr-test",
+            "uniqueProductIdentifier": "urn:gtin:espr-test",
+            "brand": "Keystone Wear",
+            "color": "Midnight Blue",
+            "euApparelSize": {
+                "@type": "EuApparelSizeObject",
+                "sizeDesignation": "42",
+                "primaryDimension": "Chest girth",
+                "primaryDimensionValue": "100-104 cm",
+                "secondaryDimensions": [
+                    { "dimension": "Height", "value": "180-184 cm" }
+                ]
+            },
+            "productionSteps": [
+                { "@type": "ProductionStep", "step": "Spinning", "countryCode": "ITA" },
+                { "@type": "ProductionStep", "step": "Assembly", "countryCode": "PRT" }
+            ],
+            "careInstructions": [
+                {
+                    "@type": "RelatedResource",
+                    "resourceTitle": "Washing and Care Guide",
+                    "contentType": "application/pdf",
+                    "url": "https://example.com/care.pdf"
+                }
+            ],
+            "repairInstructions": [
+                {
+                    "@type": "RelatedResource",
+                    "resourceTitle": "Repair Guide",
+                    "url": "https://example.com/repair"
+                }
+            ],
+            "warrantyDuration": "P2Y",
+            "robustnessScore": 8.5,
+            "recyclabilityScore": 9.0,
+            "carbonFootprint": 12.5,
+            "spirality": 1.2,
+            "dimensionalChange": -2.0,
+            "visualInspection": "Pass"
+        };
+
+        const dictionary = {}; 
+        // Mocking the ontology so buildDictionary can find the labels
+        const customMockOntologyStore = {
+            'http://mock/ontology/product': {
+                "@context": { "dppk": "https://dpp-keystone.org/spec/v1/terms#", "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
+                "@graph": [
+                    { "@id": "https://dpp-keystone.org/spec/v1/terms#robustnessScore", "rdfs:label": [{ "@value": "Robustness Score", "@language": "en" }] },
+                    { "@id": "https://dpp-keystone.org/spec/v1/terms#recyclabilityScore", "rdfs:label": [{ "@value": "Recyclability Score", "@language": "en" }] }
+                ]
+            }
+        };
+        const customMockLoader = async (path) => {
+            if (customMockOntologyStore[path]) return customMockOntologyStore[path];
+            throw new Error(`Mock ontology not found: ${path}`);
+        };
+
+        await buildDictionary(['http://mock/ontology/product'], customMockLoader, customDocumentLoader, dictionary);
+
+        const result = await transform(textileEsprDpp, { 
+            profile: 'schema.org',
+            documentLoader: customDocumentLoader
+        }, dictionary);
+
+        const product = result[0];
+
+        // 1. Basic Fields
+        expect(product.brand).toBe('Keystone Wear');
+        expect(product.color).toBe('Midnight Blue');
+
+        // 2. Scores -> additionalProperty
+        const robustness = product.additionalProperty?.find(p => p.name === 'Robustness Score' || p.name === 'robustnessScore');
+        expect(robustness).toBeDefined();
+        expect(robustness.value).toBe(8.5);
+
+        const recyclability = product.additionalProperty?.find(p => p.name === 'Recyclability Score' || p.name === 'recyclabilityScore');
+        expect(recyclability).toBeDefined();
+        expect(recyclability.value).toBe(9.0);
+
+        // 3. Warranty
+        expect(product.warranty).toBeDefined();
+        expect(product.warranty).toBe('P2Y');
+
+        // 4. Instructions -> subjectOf (RelatedResource mapping in schema.org)
+        expect(product.subjectOf).toBeDefined();
+        expect(Array.isArray(product.subjectOf)).toBe(true);
+        const careGuide = product.subjectOf.find(s => s.name === 'Washing and Care Guide');
+        expect(careGuide).toBeDefined();
+        expect(careGuide.url).toBe('https://example.com/care.pdf');
+
+        // 5. Production Steps -> potential additional properties or hasPart
+        // Assuming the transformer handles nested arrays of objects (this will likely fail initially)
+        expect(product.additionalProperty?.some(p => p.name === 'productionSteps' || p.value === 'Spinning')).toBe(true);
+
+        // 6. Apparel Size -> size or SizeSpecification
+        // Assuming complex object maps to size property
+        expect(product.size).toBeDefined();
+    });
+
 });

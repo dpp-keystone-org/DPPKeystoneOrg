@@ -446,8 +446,8 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
     it('should load the General Product module and generate valid JSON', async () => {
         // 1. Load the real General Product schema and its new dependency
-        const generalProductSchema = await loadJson('src/validation/v1/json-schema/general-product.schema.json');
-        const componentSchema = await loadJson('src/validation/v1/json-schema/component.schema.json');
+        const generalProductSchema = await loadJson('src/validation/v1/json-schema/shared/general-product.schema.json');
+        const componentSchema = await loadJson('src/validation/v1/json-schema/shared/component.schema.json');
 
         // Manually resolve the $ref for the test environment
         generalProductSchema.properties.components.items = componentSchema;
@@ -461,14 +461,15 @@ describe('DPP Wizard - Full Integration Flow', () => {
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
-        loadSchemaMock.mockImplementation((sector) => {
-            if (sector === 'general-product') return Promise.resolve(generalProductSchema);
+        loadSchemaMock.mockImplementation((sector, schemaType) => {
+            if (sector === 'general-product' && schemaType === 'shared') return Promise.resolve(generalProductSchema);
             return Promise.resolve({ type: 'object', properties: {} }); // Default
         });
 
         // 3. Inject button for General Product
         const btn = document.createElement('button');
         btn.dataset.sector = 'general-product';
+        btn.dataset.schemaType = 'shared';
         btn.className = 'sector-btn';
         document.body.appendChild(btn);
 
@@ -513,7 +514,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
     it('should load the Packaging module and generate valid JSON', async () => {
         // 1. Load the real Packaging schema
-        const packagingSchema = await loadJson('src/validation/v1/json-schema/packaging.schema.json');
+        const packagingSchema = await loadJson('src/validation/v1/json-schema/shared/packaging.schema.json');
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();

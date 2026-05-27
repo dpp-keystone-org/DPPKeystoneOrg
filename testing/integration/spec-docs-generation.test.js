@@ -32,7 +32,7 @@ describe('generate-spec-docs.mjs', () => {
 
             expect(title).toBe('Mock Core Ontology');
             expect(description).toBe('A mock ontology for testing purposes.');
-            expect(classes).toHaveLength(3);
+            expect(classes).toHaveLength(5);
             expect(properties).toHaveLength(4);
 
             const mockProduct = classes.find(c => c.label === 'Mock Product');
@@ -69,6 +69,16 @@ describe('generate-spec-docs.mjs', () => {
             // Mock Thing should inherit the domain-less 'Generic Indicator'
             expect(mockThing.properties).toHaveLength(1);
             expect(mockThing.properties[0].label).toBe('Generic Indicator');
+
+            // Check for enum and concepts
+            const mockEnumCat = classes.find(c => c.label === 'Mock Enum Category');
+            expect(mockEnumCat).toBeDefined();
+            expect(mockEnumCat.attributes['owl:oneOf']).toEqual([{ "@id": "dppk:MockEnumValue1" }]);
+
+            const mockEnumValue1 = classes.find(c => c.label === 'Mock Enum Value 1');
+            expect(mockEnumValue1).toBeDefined();
+            expect(mockEnumValue1.attributes['type']).toBe('dppk:MockEnumCategory');
+            expect(mockEnumValue1.comment).toBe('The first mock enum value.');
         });
 
         it('should parse context metadata correctly', async () => {
@@ -152,7 +162,7 @@ describe('generate-spec-docs.mjs', () => {
             const globalIndexDocPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'index.html');
             await expect(fs.access(globalIndexDocPath)).resolves.not.toThrow();
             const globalIndexHtml = await fs.readFile(globalIndexDocPath, 'utf-8');
-            expect(globalIndexHtml).toContain('<h3>All Classes</h3>');
+            expect(globalIndexHtml).toContain('<h3>All Classes & Concepts</h3>');
             expect(globalIndexHtml).toContain('<a href="./core/mock-core/MockProduct.html">dppk:MockProduct</a>');
         });
 
@@ -169,7 +179,7 @@ describe('generate-spec-docs.mjs', () => {
             const moduleIndex = join(moduleDirPath, 'index.html');
             await expect(fs.access(moduleIndex)).resolves.not.toThrow();
             const moduleIndexHtml = await fs.readFile(moduleIndex, 'utf-8');
-            expect(moduleIndexHtml).toContain('<h3>Classes</h3>');
+            expect(moduleIndexHtml).toContain('<h3>Classes & Concepts</h3>');
             expect(moduleIndexHtml).toContain('<li><a href="MockProduct.html">Mock Product</a></li>');
             
             // Check that the title and description are correctly displayed
@@ -188,11 +198,19 @@ describe('generate-spec-docs.mjs', () => {
             expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="MockBase.html">dppk:MockBase</a>, <a href="MockThing.html">dppk:MockThing</a></p>')
             
             // Check for properties
-            expect(classHtml).toContain('Mock Property (dppk:mockProperty)');
-            expect(classHtml).toContain('Generic Indicator (dppk:genericIndicator)');
+            expect(classHtml).toContain('<a href="index.html#mockProperty">Mock Property</a> (dppk:mockProperty)');
+            expect(classHtml).toContain('<a href="index.html#genericIndicator">Generic Indicator</a> (dppk:genericIndicator)');
 
             // Check for correct CSS path
             expect(classHtml).toContain('<link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">');
+
+            // Check for enum table generation
+            const enumHtmlPath = join(moduleDirPath, 'MockEnumCategory.html');
+            await expect(fs.access(enumHtmlPath)).resolves.not.toThrow();
+            const enumHtml = await fs.readFile(enumHtmlPath, 'utf-8');
+            expect(enumHtml).toContain('<h4>Enum Values (oneOf)</h4>');
+            expect(enumHtml).toContain('<th>Value ID</th><th>Label</th>');
+            expect(enumHtml).toContain('<td>Mock Enum Value 1</td>');
         });
 
         it('should include properties defined in other modules in the class documentation', async () => {

@@ -1565,7 +1565,7 @@
     {
       "@id": "dppk:carbonFootprintAbsolute",
       "@type": "owl:DatatypeProperty",
-      "dppk:unit": "tCO2e",
+      "dppk:unit": "kg CO₂ eq",
       "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
       "rdfs:label": [
         { "@language": "en", "@value": "Absolute battery carbon footprint" },
