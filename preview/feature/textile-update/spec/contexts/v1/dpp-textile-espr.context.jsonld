@@ -66,6 +66,10 @@
         "@id": "dppk:preConsumerRecycledContentMass",
         "@type": "xsd:double"
       },
+      "preConsumerTypeOfWaste": {
+        "@id": "dppk:preConsumerTypeOfWaste",
+        "@type": "xsd:string"
+      },
       "postConsumerRecycledContentPercentage": {
         "@id": "dppk:postConsumerRecycledContentPercentage",
         "@type": "xsd:double"
@@ -73,6 +77,10 @@
       "postConsumerRecycledContentMass": {
         "@id": "dppk:postConsumerRecycledContentMass",
         "@type": "xsd:double"
+      },
+      "postConsumerTypeOfWaste": {
+        "@id": "dppk:postConsumerTypeOfWaste",
+        "@type": "xsd:string"
       },
       "euDeclarationOfConformity": {
         "@id": "dppk:euDeclarationOfConformity"
@@ -101,9 +109,12 @@
           "document": "dppk:documents"
         }
       },
+      "euEcolabel": {
+        "@id": "dppk:euEcolabel",
+        "@type": "xsd:boolean"
+      },
       "careInstructions": {
         "@id": "dppk:careInstructions",
-        "@container": "@set",
         "@context": {
           "resourceTitle": "dppk:resourceTitle",
           "contentType": "dppk:contentType",
@@ -116,7 +127,6 @@
       },
       "safeUseInstructions": {
         "@id": "dppk:safeUseInstructions",
-        "@container": "@set",
         "@context": {
           "resourceTitle": "dppk:resourceTitle",
           "contentType": "dppk:contentType",
@@ -129,7 +139,6 @@
       },
       "endOfLifeInstructions": {
         "@id": "dppk:endOfLifeInstructions",
-        "@container": "@set",
         "@context": {
           "resourceTitle": "dppk:resourceTitle",
           "contentType": "dppk:contentType",
@@ -142,7 +151,6 @@
       },
       "repairInstructions": {
         "@id": "dppk:repairInstructions",
-        "@container": "@set",
         "@context": {
           "resourceTitle": "dppk:resourceTitle",
           "contentType": "dppk:contentType",
@@ -168,6 +176,34 @@
       "carbonFootprintBenchmarkPercentage": {
         "@id": "dppk:carbonFootprintBenchmarkPercentage",
         "@type": "xsd:double"
+      },
+      "carbonFootprintClass": {
+        "@id": "dppk:carbonFootprintClass",
+        "@type": "xsd:integer"
+      },
+      "environmentalFootprint": {
+        "@id": "dppk:environmentalFootprint",
+        "@type": "xsd:double"
+      },
+      "environmentalFootprintBenchmarkPercentage": {
+        "@id": "dppk:environmentalFootprintBenchmarkPercentage",
+        "@type": "xsd:double"
+      },
+      "environmentalFootprintClass": {
+        "@id": "dppk:environmentalFootprintClass",
+        "@type": "xsd:integer"
+      },
+      "carbonFootprintCalculationParameters": {
+        "@id": "dppk:carbonFootprintCalculationParameters",
+        "@context": {
+          "resourceTitle": "dppk:resourceTitle",
+          "contentType": "dppk:contentType",
+          "language": "dppk:language",
+          "url": {
+            "@id": "dppk:url",
+            "@type": "xsd:anyURI"
+          }
+        }
       },
       "robustnessScore": {
         "@id": "dppk:robustnessScore",

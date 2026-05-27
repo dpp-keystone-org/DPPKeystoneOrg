@@ -38,19 +38,28 @@
   TextileProduct --|> RelatedResource : euDeclarationOfConformity
   TextileProduct : +carbonFootprint
   TextileProduct : +carbonFootprintBenchmarkPercentage
+  TextileProduct : +carbonFootprintClass
+  TextileProduct : +environmentalFootprint
+  TextileProduct : +environmentalFootprintBenchmarkPercentage
+  TextileProduct : +environmentalFootprintClass
+  TextileProduct : +carbonFootprintCalculationParameters
+  TextileProduct --|> RelatedResource : carbonFootprintCalculationParameters
   TextileProduct : +robustnessScore
   TextileProduct : +recyclabilityScore
   TextileProduct : +spirality
   TextileProduct : +dimensionalChange
   TextileProduct : +visualInspection
   TextileProduct : +animalOriginNonTextile
+  TextileProduct : +euEcolabel
   TextileProduct : +weightExcludingTrims
   TextileProduct : +organicContentPercentage
   TextileProduct : +organicContentMass
   TextileProduct : +preConsumerRecycledContentPercentage
   TextileProduct : +preConsumerRecycledContentMass
+  TextileProduct : +preConsumerTypeOfWaste
   TextileProduct : +postConsumerRecycledContentPercentage
   TextileProduct : +postConsumerRecycledContentMass
+  TextileProduct : +postConsumerTypeOfWaste
   TextileProduct : +productionSteps
   TextileProduct --|> ProductionStep : productionSteps
   TextileProduct : +fibreComposition
@@ -139,6 +148,41 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="index.html#carbonFootprintClass">Carbon Footprint Class</a> (dppk:carbonFootprintClass)</td>
+                                    <td>The performance class of the product's carbon footprint.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#environmentalFootprint">Environmental Footprint</a> (dppk:environmentalFootprint)</td>
+                                    <td>The absolute value of the product's environmental footprint.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#environmentalFootprintBenchmarkPercentage">Environmental Footprint Benchmark Percentage</a> (dppk:environmentalFootprintBenchmarkPercentage)</td>
+                                    <td>The product's environmental footprint performance compared to the established benchmark, expressed as a percentage.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#environmentalFootprintClass">Environmental Footprint Class</a> (dppk:environmentalFootprintClass)</td>
+                                    <td>The performance class of the product's environmental footprint.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#carbonFootprintCalculationParameters">Carbon Footprint Calculation Parameters</a> (dppk:carbonFootprintCalculationParameters)</td>
+                                    <td>A reference to the document or resource describing the parameters used for the carbon footprint calculation.</td>
+                                    <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="index.html#robustnessScore">Robustness Score</a> (dppk:robustnessScore)</td>
                                     <td>A numeric score representing the product's robustness (typically 0-10 scale).</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
@@ -181,6 +225,13 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="index.html#euEcolabel">EU Ecolabel</a> (dppk:euEcolabel)</td>
+                                    <td>Indicates whether the product has been awarded the EU Ecolabel. The label should be found in the certifications array as well, if present.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="index.html#weightExcludingTrims">Weight Excluding Trims</a> (dppk:weightExcludingTrims)</td>
                                     <td>The weight of the product excluding non-textile trims (e.g. buttons, zippers), used as a base for calculations.</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
@@ -216,6 +267,13 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="index.html#preConsumerTypeOfWaste">Pre-consumer Type of Waste</a> (dppk:preConsumerTypeOfWaste)</td>
+                                    <td>The classification or source of the pre-consumer waste used for recycled content.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="index.html#postConsumerRecycledContentPercentage">Post-consumer Recycled Content</a> (dppk:postConsumerRecycledContentPercentage)</td>
                                     <td>The percentage of post-consumer recycled material in the product.</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
@@ -226,6 +284,13 @@
                                     <td><a href="index.html#postConsumerRecycledContentMass">Post-consumer Recycled Content Mass</a> (dppk:postConsumerRecycledContentMass)</td>
                                     <td>The absolute mass of post-consumer recycled material in the product.</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#postConsumerTypeOfWaste">Post-consumer Type of Waste</a> (dppk:postConsumerTypeOfWaste)</td>
+                                    <td>The classification or source of the post-consumer waste used for recycled content.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
                                     <td></td><td></td><td></td>
                                 </tr>
                             

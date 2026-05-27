@@ -142,6 +142,9 @@
         "type": "number",
         "minimum": 0
       },
+      "preConsumerTypeOfWaste": {
+        "type": "string"
+      },
       "postConsumerRecycledContentPercentage": {
         "type": "number",
         "minimum": 0,
@@ -150,6 +153,9 @@
       "postConsumerRecycledContentMass": {
         "type": "number",
         "minimum": 0
+      },
+      "postConsumerTypeOfWaste": {
+        "type": "string"
       },
       "textileCertifications": {
         "type": "array",
@@ -164,53 +170,51 @@
           ]
         }
       },
+      "euEcolabel": {
+        "type": "boolean"
+      },
       "euDeclarationOfConformity": {
         "$ref": "../shared/related-resource.schema.json"
       },
       "careInstructions": {
-        "type": "array",
-        "items": {
-          "$ref": "../shared/related-resource.schema.json"
-        }
+        "oneOf": [
+          {
+            "$ref": "../shared/related-resource.schema.json"
+          },
+          {
+            "type": "string"
+          }
+        ]
       },
       "safeUseInstructions": {
-        "type": "array",
-        "items": {
-          "oneOf": [
-            {
-              "$ref": "../shared/related-resource.schema.json"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        }
+        "oneOf": [
+          {
+            "$ref": "../shared/related-resource.schema.json"
+          },
+          {
+            "type": "string"
+          }
+        ]
       },
       "endOfLifeInstructions": {
-        "type": "array",
-        "items": {
-          "oneOf": [
-            {
-              "$ref": "../shared/related-resource.schema.json"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        }
+        "oneOf": [
+          {
+            "$ref": "../shared/related-resource.schema.json"
+          },
+          {
+            "type": "string"
+          }
+        ]
       },
       "repairInstructions": {
-        "type": "array",
-        "items": {
-          "oneOf": [
-            {
-              "$ref": "../shared/related-resource.schema.json"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        }
+        "oneOf": [
+          {
+            "$ref": "../shared/related-resource.schema.json"
+          },
+          {
+            "type": "string"
+          }
+        ]
       },
       "warrantyDuration": {
         "type": "string"
@@ -228,6 +232,23 @@
         "type": "number",
         "minimum": 0,
         "maximum": 100
+      },
+      "carbonFootprintClass": {
+        "type": "integer"
+      },
+      "environmentalFootprint": {
+        "type": "number"
+      },
+      "environmentalFootprintBenchmarkPercentage": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "environmentalFootprintClass": {
+        "type": "integer"
+      },
+      "carbonFootprintCalculationParameters": {
+        "$ref": "../shared/related-resource.schema.json"
       },
       "robustnessScore": {
         "type": "number",

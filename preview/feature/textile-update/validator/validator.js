@@ -1,12 +1,12 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1779879059387';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1779890678684';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1779879059387';
-import { generateHTML } from '../lib/html-generator.js?v=1779879059387';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779879059387';
+import { EXAMPLES } from '../lib/example-registry.js?v=1779890678684';
+import { generateHTML } from '../lib/html-generator.js?v=1779890678684';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779890678684';
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1779879059387';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1779879059387';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1779879059387';
+import { loadOntology } from '../lib/ontology-loader.js?v=1779890678684';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1779890678684';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1779890678684';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/

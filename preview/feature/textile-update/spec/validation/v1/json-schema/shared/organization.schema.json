@@ -17,6 +17,9 @@
     "leiCode": {
       "type": "string"
     },
+    "eori": {
+      "type": "string"
+    },
     "additionalOrganizationId": {
       "type": "string"
     },

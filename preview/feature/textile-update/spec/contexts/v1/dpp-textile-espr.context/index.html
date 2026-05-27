@@ -59,8 +59,10 @@
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>organicContentMass</strong></a> - <em>The absolute mass of organic material in the product.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>preConsumerRecycledContentPercentage</strong></a> - <em>The percentage of pre-consumer recycled material in the product.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>preConsumerRecycledContentMass</strong></a> - <em>The absolute mass of pre-consumer recycled material in the product.</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>preConsumerTypeOfWaste</strong></a> - <em>The classification or source of the pre-consumer waste used for recycled content.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>postConsumerRecycledContentPercentage</strong></a> - <em>The percentage of post-consumer recycled material in the product.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>postConsumerRecycledContentMass</strong></a> - <em>The absolute mass of post-consumer recycled material in the product.</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>postConsumerTypeOfWaste</strong></a> - <em>The classification or source of the post-consumer waste used for recycled content.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>euDeclarationOfConformity</strong></a> - <em>A reference to the EU Declaration of Conformity for the product.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>textileCertifications</strong></a> - <em>Certifications specifically verifying ESPR textile claims (e.g. recycled content, recyclability, mechanical properties).</em><ul>
 <li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>name</strong></a> - <em>The name of the certification.</em></li>
@@ -73,6 +75,7 @@
 <li><a href="../../../ontology/v1/core/Compliance/Certification.html"><strong>certificationBodyRole</strong></a> - <em>The role or capacity in which the certifying body issued the certification.</em></li>
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>document</strong></a> - <em>Relates the product to associated digital documents.</em></li>
 </ul></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>euEcolabel</strong></a> - <em>Indicates whether the product has been awarded the EU Ecolabel. The label should be found in the certifications array as well, if present.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>careInstructions</strong></a> - <em>Standardized care symbols (e.g., GINETEX codes).</em><ul>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>resourceTitle</strong></a> - <em>The title of the related resource.</em></li>
 <li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>contentType</strong></a> - <em>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</em></li>
@@ -101,6 +104,16 @@
 <li><a href="../../../ontology/v1/core/Product/Product.html"><strong>repairServices</strong></a> - <em>Contact information for authorized repair services.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>carbonFootprint</strong></a> - <em>The carbon footprint of the product.</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>carbonFootprintBenchmarkPercentage</strong></a> - <em>The product's carbon footprint performance compared to the established benchmark, expressed as a percentage.</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>carbonFootprintClass</strong></a> - <em>The performance class of the product's carbon footprint.</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>environmentalFootprint</strong></a> - <em>The absolute value of the product's environmental footprint.</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>environmentalFootprintBenchmarkPercentage</strong></a> - <em>The product's environmental footprint performance compared to the established benchmark, expressed as a percentage.</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>environmentalFootprintClass</strong></a> - <em>The performance class of the product's environmental footprint.</em></li>
+<li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>carbonFootprintCalculationParameters</strong></a> - <em>A reference to the document or resource describing the parameters used for the carbon footprint calculation.</em><ul>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>resourceTitle</strong></a> - <em>The title of the related resource.</em></li>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>contentType</strong></a> - <em>The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').</em></li>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>language</strong></a> - <em>The language of the resource content (e.g., 'en', 'fr').</em></li>
+<li><a href="../../../ontology/v1/core/RelatedResource/RelatedResource.html"><strong>url</strong></a> - <em>The location of the resource.</em></li>
+</ul></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>robustnessScore</strong></a> - <em>A numeric score representing the product's robustness (typically 0-10 scale).</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>recyclabilityScore</strong></a> - <em>A numeric score representing the product's recyclability (typically 0-10 scale).</em></li>
 <li><a href="../../../ontology/v1/sectors/Textile/TextileProduct.html"><strong>spirality</strong></a> - <em>The measured spirality of the textile product.</em></li>

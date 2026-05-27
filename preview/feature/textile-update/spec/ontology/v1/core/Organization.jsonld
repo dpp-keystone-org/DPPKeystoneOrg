@@ -228,6 +228,18 @@
       ]
     },
     {
+      "@id": "dppk:eori",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Economic Operators Registration and Identification (EORI)",
+      "rdfs:comment": "A unique identifier assigned by a customs authority in the EU to economic operators.",
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
       "@id": "dppk:additionalOrganizationId",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "Additional Organization ID",

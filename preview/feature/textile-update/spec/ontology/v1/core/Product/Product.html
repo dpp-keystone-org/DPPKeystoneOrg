@@ -70,9 +70,9 @@
   Product --|> Packaging : packaging
   Product : +productionSteps
   Product --|> ProductionStep : productionSteps
+  Product : +uniqueProductIdentifier
   Product : +epd
   Product --|> EPDBlock : epd
-  Product : +uniqueProductIdentifier
   Product : +instructionsForUse
   Product --|> RelatedResource : instructionsForUse
   Product : +safetyDataSheet
@@ -85,10 +85,10 @@
   Product --|> RelatedResource : repairInstructions
   Product : +careInstructions
   Product --|> RelatedResource : careInstructions
-  Product : +steelGrade
-  Product : +railProfile
   Product : +euApparelSize
   Product --|> EuApparelSizeObject : euApparelSize
+  Product : +steelGrade
+  Product : +railProfile
   click RelatedResource href "../RelatedResource/RelatedResource.html" "dppk:RelatedResource"
   style RelatedResource stroke:#2962ff,color:#2962ff
   click Component href "Component.html" "dppk:Component"
@@ -324,17 +324,17 @@
                                 </tr>
                             
                                 <tr>
-                                    <td><a href="../EPDMetadata/index.html#epd">Environmental Product Declaration</a> (dppk:epd)</td>
-                                    <td>A dictionary of environmental impact indicators and their values across different life cycle stages.</td>
-                                    <td><a href="../EPDMetadata/EPDBlock.html">dppk:EPDBlock</a></td>
-                                    <td></td><td>EN 15804:2012+A2:2019</td><td></td>
-                                </tr>
-                            
-                                <tr>
                                     <td><a href="../Header/index.html#uniqueProductIdentifier">Unique Product Identifier (UPI)</a> (dppk:uniqueProductIdentifier)</td>
                                     <td>The globally resolvable URI for the product/DPP.</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
                                     <td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../EPDMetadata/index.html#epd">Environmental Product Declaration</a> (dppk:epd)</td>
+                                    <td>A dictionary of environmental impact indicators and their values across different life cycle stages.</td>
+                                    <td><a href="../EPDMetadata/EPDBlock.html">dppk:EPDBlock</a></td>
+                                    <td></td><td>EN 15804:2012+A2:2019</td><td></td>
                                 </tr>
                             
                                 <tr>
@@ -380,6 +380,13 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="../../sectors/EUApparelSizeSystem/index.html#euApparelSize">EU Apparel Size</a> (dppk:euApparelSize)</td>
+                                    <td>The structured EU specific size of the product based on body dimensions (e.g., EN 13402).</td>
+                                    <td><a href="../../sectors/EUApparelSizeSystem/EuApparelSizeObject.html">dppk:EuApparelSizeObject</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="../../sectors/Construction/index.html#steelGrade">Steel Grade</a> (dppk:steelGrade)</td>
                                     <td>The classification of the steel based on its composition and physical properties (e.g., R260, S355).</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
@@ -390,13 +397,6 @@
                                     <td><a href="../../sectors/Construction/index.html#railProfile">Rail Profile</a> (dppk:railProfile)</td>
                                     <td>The standardized cross-section design of a railway rail (e.g., 46E1).</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
-                                    <td></td><td></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td><a href="../../sectors/EUApparelSizeSystem/index.html#euApparelSize">EU Apparel Size</a> (dppk:euApparelSize)</td>
-                                    <td>The structured EU specific size of the product based on body dimensions (e.g., EN 13402).</td>
-                                    <td><a href="../../sectors/EUApparelSizeSystem/EuApparelSizeObject.html">dppk:EuApparelSizeObject</a></td>
                                     <td></td><td></td><td></td>
                                 </tr>
                             
