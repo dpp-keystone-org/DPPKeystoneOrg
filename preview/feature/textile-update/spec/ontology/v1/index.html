@@ -956,14 +956,6 @@
                             </tr>
                         
                             <tr>
-                                <td>Identifier (dppk:identifier)</td>
-                                <td>A generic identifier for a resource. It is equivalent to schema:identifier.</td>
-                                <td></td>
-                                <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
-                                <td>Identifier.jsonld</td>
-                            </tr>
-                        
-                            <tr>
                                 <td>Environmental Product Declaration (dppk:epd)</td>
                                 <td>A dictionary of environmental impact indicators and their values across different life cycle stages.</td>
                                 <td><a href="core/Product/Product.html">dppk:Product</a></td>
@@ -1065,6 +1057,14 @@
                                 <td><a href="core/Header/DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
                                 <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
                                 <td>Header.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Identifier (dppk:identifier)</td>
+                                <td>A generic identifier for a resource. It is equivalent to schema:identifier.</td>
+                                <td></td>
+                                <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                <td>Identifier.jsonld</td>
                             </tr>
                         
                             <tr>
@@ -2348,6 +2348,14 @@
                             </tr>
                         
                             <tr>
+                                <td>Weight Excluding Trims (dppk:weightExcludingTrims)</td>
+                                <td>The weight of the product excluding non-textile trims (e.g. buttons, zippers), used as a base for calculations.</td>
+                                <td><a href="sectors/Textile/TextileProduct.html">dppk:TextileProduct</a></td>
+                                <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                <td>TextileEspr.jsonld</td>
+                            </tr>
+                        
+                            <tr>
                                 <td>Organic Content Percentage (dppk:organicContentPercentage)</td>
                                 <td>The percentage of organic material in the product.</td>
                                 <td><a href="sectors/Textile/TextileProduct.html">dppk:TextileProduct</a></td>
@@ -2372,8 +2380,24 @@
                             </tr>
                         
                             <tr>
+                                <td>Pre-consumer Recycled Content Mass (dppk:preConsumerRecycledContentMass)</td>
+                                <td>The absolute mass of pre-consumer recycled material in the product.</td>
+                                <td><a href="sectors/Textile/TextileProduct.html">dppk:TextileProduct</a></td>
+                                <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                <td>TextileEspr.jsonld</td>
+                            </tr>
+                        
+                            <tr>
                                 <td>Post-consumer Recycled Content (dppk:postConsumerRecycledContentPercentage)</td>
                                 <td>The percentage of post-consumer recycled material in the product.</td>
+                                <td><a href="sectors/Textile/TextileProduct.html">dppk:TextileProduct</a></td>
+                                <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                <td>TextileEspr.jsonld</td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Post-consumer Recycled Content Mass (dppk:postConsumerRecycledContentMass)</td>
+                                <td>The absolute mass of post-consumer recycled material in the product.</td>
                                 <td><a href="sectors/Textile/TextileProduct.html">dppk:TextileProduct</a></td>
                                 <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
                                 <td>TextileEspr.jsonld</td>

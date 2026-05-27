@@ -120,6 +120,10 @@
           "$ref": "../shared/component.schema.json"
         }
       },
+      "weightExcludingTrims": {
+        "type": "number",
+        "minimum": 0
+      },
       "organicContentPercentage": {
         "type": "number",
         "minimum": 0,
@@ -134,10 +138,18 @@
         "minimum": 0,
         "maximum": 100
       },
+      "preConsumerRecycledContentMass": {
+        "type": "number",
+        "minimum": 0
+      },
       "postConsumerRecycledContentPercentage": {
         "type": "number",
         "minimum": 0,
         "maximum": 100
+      },
+      "postConsumerRecycledContentMass": {
+        "type": "number",
+        "minimum": 0
       },
       "textileCertifications": {
         "type": "array",
@@ -164,19 +176,40 @@
       "safeUseInstructions": {
         "type": "array",
         "items": {
-          "$ref": "../shared/related-resource.schema.json"
+          "oneOf": [
+            {
+              "$ref": "../shared/related-resource.schema.json"
+            },
+            {
+              "type": "string"
+            }
+          ]
         }
       },
       "endOfLifeInstructions": {
         "type": "array",
         "items": {
-          "$ref": "../shared/related-resource.schema.json"
+          "oneOf": [
+            {
+              "$ref": "../shared/related-resource.schema.json"
+            },
+            {
+              "type": "string"
+            }
+          ]
         }
       },
       "repairInstructions": {
         "type": "array",
         "items": {
-          "$ref": "../shared/related-resource.schema.json"
+          "oneOf": [
+            {
+              "$ref": "../shared/related-resource.schema.json"
+            },
+            {
+              "type": "string"
+            }
+          ]
         }
       },
       "warrantyDuration": {

@@ -44,10 +44,13 @@
   TextileProduct : +dimensionalChange
   TextileProduct : +visualInspection
   TextileProduct : +animalOriginNonTextile
+  TextileProduct : +weightExcludingTrims
   TextileProduct : +organicContentPercentage
   TextileProduct : +organicContentMass
   TextileProduct : +preConsumerRecycledContentPercentage
+  TextileProduct : +preConsumerRecycledContentMass
   TextileProduct : +postConsumerRecycledContentPercentage
+  TextileProduct : +postConsumerRecycledContentMass
   TextileProduct : +productionSteps
   TextileProduct --|> ProductionStep : productionSteps
   TextileProduct : +fibreComposition
@@ -178,6 +181,13 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="index.html#weightExcludingTrims">Weight Excluding Trims</a> (dppk:weightExcludingTrims)</td>
+                                    <td>The weight of the product excluding non-textile trims (e.g. buttons, zippers), used as a base for calculations.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="index.html#organicContentPercentage">Organic Content Percentage</a> (dppk:organicContentPercentage)</td>
                                     <td>The percentage of organic material in the product.</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
@@ -199,8 +209,22 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="index.html#preConsumerRecycledContentMass">Pre-consumer Recycled Content Mass</a> (dppk:preConsumerRecycledContentMass)</td>
+                                    <td>The absolute mass of pre-consumer recycled material in the product.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="index.html#postConsumerRecycledContentPercentage">Post-consumer Recycled Content</a> (dppk:postConsumerRecycledContentPercentage)</td>
                                     <td>The percentage of post-consumer recycled material in the product.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#postConsumerRecycledContentMass">Post-consumer Recycled Content Mass</a> (dppk:postConsumerRecycledContentMass)</td>
+                                    <td>The absolute mass of post-consumer recycled material in the product.</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
                                     <td></td><td></td><td></td>
                                 </tr>

@@ -338,7 +338,7 @@
         "@language": "en",
         "@value": "The carbon footprint of the product."
       },
-      "dppk:unit": "kg CO2 eq",
+      "dppk:unit": "kg CO₂ eq",
       "rdfs:domain": {
         "@id": "dppk:TextileProduct"
       },
@@ -478,6 +478,25 @@
       }
     },
     {
+      "@id": "dppk:weightExcludingTrims",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Weight Excluding Trims"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The weight of the product excluding non-textile trims (e.g. buttons, zippers), used as a base for calculations."
+      },
+      "dppk:unit": "kg",
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
       "@id": "dppk:organicContentPercentage",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": {
@@ -535,6 +554,25 @@
       }
     },
     {
+      "@id": "dppk:preConsumerRecycledContentMass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Pre-consumer Recycled Content Mass"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The absolute mass of pre-consumer recycled material in the product."
+      },
+      "dppk:unit": "kg",
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
       "@id": "dppk:postConsumerRecycledContentPercentage",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": {
@@ -546,6 +584,25 @@
         "@value": "The percentage of post-consumer recycled material in the product."
       },
       "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:postConsumerRecycledContentMass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Post-consumer Recycled Content Mass"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The absolute mass of post-consumer recycled material in the product."
+      },
+      "dppk:unit": "kg",
       "rdfs:domain": {
         "@id": "dppk:TextileProduct"
       },

@@ -46,6 +46,10 @@
           "locationInProduct": "dppk:componentLocationInProduct"
         }
       },
+      "weightExcludingTrims": {
+        "@id": "dppk:weightExcludingTrims",
+        "@type": "xsd:double"
+      },
       "organicContentPercentage": {
         "@id": "dppk:organicContentPercentage",
         "@type": "xsd:double"
@@ -58,8 +62,16 @@
         "@id": "dppk:preConsumerRecycledContentPercentage",
         "@type": "xsd:double"
       },
+      "preConsumerRecycledContentMass": {
+        "@id": "dppk:preConsumerRecycledContentMass",
+        "@type": "xsd:double"
+      },
       "postConsumerRecycledContentPercentage": {
         "@id": "dppk:postConsumerRecycledContentPercentage",
+        "@type": "xsd:double"
+      },
+      "postConsumerRecycledContentMass": {
+        "@id": "dppk:postConsumerRecycledContentMass",
         "@type": "xsd:double"
       },
       "euDeclarationOfConformity": {

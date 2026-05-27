@@ -1,10 +1,10 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1779288075672';
-import { loadOntology } from '../lib/ontology-loader.js?v=1779288075672';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1779288075672';
-import { generateDpp } from './dpp-generator.js?v=1779288075672';
-import { generateHTML } from '../lib/html-generator.js?v=1779288075672';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779288075672';
+import { loadSchema } from '../lib/schema-loader.js?v=1779879059387';
+import { loadOntology } from '../lib/ontology-loader.js?v=1779879059387';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1779879059387';
+import { generateDpp } from './dpp-generator.js?v=1779879059387';
+import { generateHTML } from '../lib/html-generator.js?v=1779879059387';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779879059387';
 import * as jsonld from 'jsonld';
 
 // --- Module-level state ---
