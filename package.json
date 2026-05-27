@@ -19,6 +19,9 @@
     "esbuild": "^0.27.2",
     "mermaid": "^11.12.2"
   },
+  "workspaces": [
+    "testing"
+  ],
   "scripts": {
     "bundle:vendor": "node scripts/bundle-vendor.mjs",
     "build": "node scripts/compact-json.cjs && node scripts/build-and-clean.mjs",
