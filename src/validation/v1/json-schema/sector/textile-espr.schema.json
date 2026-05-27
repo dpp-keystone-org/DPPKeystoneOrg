@@ -166,49 +166,44 @@
                 "$ref": "../shared/related-resource.schema.json"
             },
             "careInstructions": {
-                "type": "array",
-                "items": {
-                    "$ref": "../shared/related-resource.schema.json"
-                }
+                "oneOf": [
+                    {
+                        "$ref": "../shared/related-resource.schema.json"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
             },
             "safeUseInstructions": {
-                "type": "array",
-                "items": {
-                    "oneOf": [
-                        {
-                            "$ref": "../shared/related-resource.schema.json"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                }
+                "oneOf": [
+                    {
+                        "$ref": "../shared/related-resource.schema.json"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
             },
             "endOfLifeInstructions": {
-                "type": "array",
-                "items": {
-                    "oneOf": [
-                        {
-                            "$ref": "../shared/related-resource.schema.json"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                }
+                "oneOf": [
+                    {
+                        "$ref": "../shared/related-resource.schema.json"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
             },
             "repairInstructions": {
-                "type": "array",
-                "items": {
-                    "oneOf": [
-                        {
-                            "$ref": "../shared/related-resource.schema.json"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                }
+                "oneOf": [
+                    {
+                        "$ref": "../shared/related-resource.schema.json"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
             },
             "warrantyDuration": {
                 "type": "string"
@@ -226,6 +221,9 @@
                 "type": "number",
                 "minimum": 0,
                 "maximum": 100
+            },
+            "carbonFootprintCalculationParameters": {
+                "$ref": "../shared/related-resource.schema.json"
             },
             "robustnessScore": {
                 "type": "number",

@@ -109,7 +109,6 @@
             },
             "careInstructions": {
                 "@id": "dppk:careInstructions",
-                "@container": "@set",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
@@ -122,7 +121,6 @@
             },
             "safeUseInstructions": {
                 "@id": "dppk:safeUseInstructions",
-                "@container": "@set",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
@@ -135,7 +133,6 @@
             },
             "endOfLifeInstructions": {
                 "@id": "dppk:endOfLifeInstructions",
-                "@container": "@set",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
@@ -148,7 +145,6 @@
             },
             "repairInstructions": {
                 "@id": "dppk:repairInstructions",
-                "@container": "@set",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
@@ -174,6 +170,18 @@
             "carbonFootprintBenchmarkPercentage": {
                 "@id": "dppk:carbonFootprintBenchmarkPercentage",
                 "@type": "xsd:double"
+            },
+            "carbonFootprintCalculationParameters": {
+                "@id": "dppk:carbonFootprintCalculationParameters",
+                "@context": {
+                    "resourceTitle": "dppk:resourceTitle",
+                    "contentType": "dppk:contentType",
+                    "language": "dppk:language",
+                    "url": {
+                        "@id": "dppk:url",
+                        "@type": "xsd:anyURI"
+                    }
+                }
             },
             "robustnessScore": {
                 "@id": "dppk:robustnessScore",

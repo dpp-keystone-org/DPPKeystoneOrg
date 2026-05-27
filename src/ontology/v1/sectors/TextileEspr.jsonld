@@ -182,6 +182,14 @@
             "rdfs:range": { "@id": "xsd:double" }
         },
         {
+            "@id": "dppk:carbonFootprintCalculationParameters",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Carbon Footprint Calculation Parameters" },
+            "rdfs:comment": { "@language": "en", "@value": "A reference to the document or resource describing the parameters used for the carbon footprint calculation." },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:RelatedResource" }
+        },
+        {
             "@id": "dppk:robustnessScore",
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Robustness Score" },
