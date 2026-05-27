@@ -195,6 +195,15 @@
             { "@id": "schema:leiCode" }
         ]
     },
+    // --- EORI (Economic Operators Registration and Identification) ---
+    {
+        "@id": "dppk:eori",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Economic Operators Registration and Identification (EORI)",
+        "rdfs:comment": "A unique identifier assigned by a customs authority in the EU to economic operators.",
+        "rdfs:domain": { "@id": "dppk:Organization" },
+        "rdfs:range": { "@id": "xsd:string" }
+    },
 
     // --- Additional Identifiers (EORI, VAT, etc.) ---
     // These utilize the GS1 pattern for extensible identification.

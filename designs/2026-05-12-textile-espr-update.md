@@ -151,4 +151,4 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   **[COMPLETED] Task 11.2.6**: Add `euEcolabel` boolean field as a supplement to the certifications array.
     *   **[COMPLETED] Task 11.2.7**: Add `carbonFootprintClass` and `environmentalFootprintClass` integer fields to `textile-espr.schema.json`.
     *   **[COMPLETED] Task 11.2.8**: Add `weightExcludingTrims` mass field to `textile-espr.schema.json`.
-    *   **[PENDING] Task 11.2.9**: Add `eori` optional field to `organization.schema.json`.
+    *   **[COMPLETED] Task 11.2.9**: Add `eori` optional field to `organization.schema.json`.
