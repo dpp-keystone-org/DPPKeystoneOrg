@@ -252,13 +252,17 @@ for (const sector of sectors) {
         await stepSelect.selectOption('Spinning');
         await countryInput.fill('ITA');
         
-        // Test Instructions Array (RelatedResource)
-        const addCareInstBtn = page.locator('button[data-array-name="careInstructions"]');
+        // Test Instructions (RelatedResource or String)
+        const addCareInstBtn = page.locator('button[data-optional-object="careInstructions"]');
         await expect(addCareInstBtn).toBeVisible();
         
         await addCareInstBtn.click();
-        await expect(page.locator('input[name="careInstructions.0.resourceTitle"]')).toBeVisible();
-        await expect(page.locator('input[name="careInstructions.0.url"]')).toBeVisible();
+        
+        // Select the Related Resource type from the dropdown
+        await page.locator('.type-selector').selectOption({ label: 'Related Resource' });
+        
+        await expect(page.locator('input[name="careInstructions.resourceTitle"]')).toBeVisible();
+        await expect(page.locator('input[name="careInstructions.url"]')).toBeVisible();
         break;
     }
   });
