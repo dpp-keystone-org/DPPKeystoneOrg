@@ -171,6 +171,22 @@
                 "@id": "dppk:carbonFootprintBenchmarkPercentage",
                 "@type": "xsd:double"
             },
+            "carbonFootprintClass": {
+                "@id": "dppk:carbonFootprintClass",
+                "@type": "xsd:integer"
+            },
+            "environmentalFootprint": {
+                "@id": "dppk:environmentalFootprint",
+                "@type": "xsd:double"
+            },
+            "environmentalFootprintBenchmarkPercentage": {
+                "@id": "dppk:environmentalFootprintBenchmarkPercentage",
+                "@type": "xsd:double"
+            },
+            "environmentalFootprintClass": {
+                "@id": "dppk:environmentalFootprintClass",
+                "@type": "xsd:integer"
+            },
             "carbonFootprintCalculationParameters": {
                 "@id": "dppk:carbonFootprintCalculationParameters",
                 "@context": {

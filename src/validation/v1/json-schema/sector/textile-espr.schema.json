@@ -222,6 +222,20 @@
                 "minimum": 0,
                 "maximum": 100
             },
+            "carbonFootprintClass": {
+                "type": "integer"
+            },
+            "environmentalFootprint": {
+                "type": "number"
+            },
+            "environmentalFootprintBenchmarkPercentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "environmentalFootprintClass": {
+                "type": "integer"
+            },
             "carbonFootprintCalculationParameters": {
                 "$ref": "../shared/related-resource.schema.json"
             },
