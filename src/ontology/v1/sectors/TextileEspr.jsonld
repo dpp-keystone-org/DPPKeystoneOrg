@@ -186,6 +186,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Carbon Footprint Class" },
             "rdfs:comment": { "@language": "en", "@value": "The performance class of the product's carbon footprint." },
+            "dppk:unit": "unitless",
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:integer" }
         },
@@ -212,6 +213,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Environmental Footprint Class" },
             "rdfs:comment": { "@language": "en", "@value": "The performance class of the product's environmental footprint." },
+            "dppk:unit": "unitless",
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:integer" }
         },
