@@ -149,6 +149,7 @@
         { "@language": "sl", "@value": "Edinstveni identifikator za ta specifičen primerek digitalnega potnega lista izdelka. Moral bi biti trajen, globalno edinstven in rešljiv URI (npr. URN UUID ali HTTP URI). Privzeta vrednost je ograda in jo je treba kasneje nadomestiti s pravim identifikatorjem." },
         { "@language": "sv", "@value": "Den unika identifieraren för denna specifika instans av digitalt produktpass. Bör vara en beständig, globalt unik och upplösningsbar URI (t.ex. URN UUID eller HTTP URI). Standardvärdet är en platshållare och bör ersättas med en riktig identifierare senare." }
       ],
+      "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:anyURI" }
     },
@@ -209,20 +210,21 @@
         { "@language": "sl", "@value": "Edinstveni identifikator za fizični izdelek, povezan s tem DPP. Uskklajeno z zahtevo po edinstvenem identifikatorju izdelka (UPI) v ESPR. Močno priporočamo uporabo uveljavljenih standardov, kot je URI digitalne povezave GS1. Privzeta vrednost je ograda in jo je treba nadomestiti s pravim identifikatorjem, na primer po registraciji izdelka pri storitvi, kot je GS1." },
         { "@language": "sv", "@value": "Den unika identifieraren för den fysiska produkten som är kopplad till detta DPP. Överensstämmer med kravet på unik produktidentifierare (UPI) i ESPR. Det rekommenderas starkt att använda etablerade standarder som GS1 Digital Link URI. Standardvärdet är en platshållare och bör ersättas med en riktig identifierare, till exempel efter registrering av produkten hos en tjänst som GS1." }
       ],
+      "dppk:visibility": { "@id": "dppk:Public" },
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "ESPR - Article 9 (Unique product identifier)"
       },
-      "schema:domainIncludes":  [
+      "schema:domainIncludes": [
         { "@id": "dppk:Component" },
         { "@id": "dppk:DigitalProductPassport" },
         { "@id": "dppk:Product" }
-    ],
+      ],
       "rdfs:range": { "@id": "xsd:anyURI" },
       "owl:equivalentProperty": [
         { "@id": "gs1:productID" },
         { "@id": "schema:productID" }
-      ]
+      ] 
     },
 
     // --- EconomicOperatorID (EOI) ---
@@ -281,6 +283,7 @@
         { "@language": "sl", "@value": "Edinstveni identifikator gospodarskega subjekta, odgovornega za dajanje izdelka na trg." },
         { "@language": "sv", "@value": "Den unika identifieraren för den ekonomiska aktör som ansvarar för att släppa ut produkten på marknaden." }
       ],
+      "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:anyURI" }
     },
@@ -341,6 +344,7 @@
         { "@language": "sl", "@value": "Izbirno. Edinstveni identifikator za proizvodni ali predelovalni obrat, povezan z izdelkom." },
         { "@language": "sv", "@value": "Valfritt. Den unika identifieraren för den tillverknings- eller bearbetningsanläggning som är kopplad till produkten." }
       ],
+      "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:anyURI" }
     },
@@ -586,6 +590,7 @@
         { "@language": "sl", "@value": "Označuje raven podrobnosti, za katero velja DPP: 'Model' (vrsta izdelka), 'Serija' (proizvodna serija) ali 'Postavka' (posamezna serializirana enota)." },
         { "@language": "sv", "@value": "Anger den detaljnivå som DPP gäller för: 'Modell' (produkttyp), 'Batch' (produktionsparti) eller 'Artikel' (individuell serialiserad enhet)." }
       ],
+      "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "dppk:GranularityValue" }
     },
@@ -646,6 +651,7 @@
         { "@language": "sl", "@value": "Trenutni status življenjskega cikla primerka DPP (npr. 'aktiven', 'neaktiven')." },
         { "@language": "sv", "@value": "Den aktuella livscykelstatusen för DPP-instansen (t.ex. 'aktiv', 'inaktiv')." }
       ],
+      "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:string" }
     },
@@ -706,6 +712,7 @@
         { "@language": "sl", "@value": "Datum in čas, ko je bil primerek DPP nazadnje spremenjen. Biti mora v formatu ISO 8601 (xsd:dateTime)." },
         { "@language": "sv", "@value": "Datum och tid då DPP-instansen senast ändrades. Måste vara i ISO 8601-format (xsd:dateTime)." }
       ],
+      "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:dateTime" }
     },
@@ -766,6 +773,7 @@
         { "@language": "sl", "@value": "Številka različice primerka DPP." },
         { "@language": "sv", "@value": "Versionsnumret för DPP-instansen." }
       ],
+      "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:string" }
     },
@@ -824,6 +832,7 @@
         { "@language": "sl", "@value": "Datum različice primerka DPP." },
         { "@language": "sv", "@value": "Datumet för versionen av DPP-instansen." }
       ],
+      "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:date" }
     },
@@ -882,6 +891,7 @@
         { "@language": "sl", "@value": "Različica horizontalne (medsektorske) sheme DPP, uporabljene za ta primerek." },
         { "@language": "sv", "@value": "Versionen av det horisontella (tvärsektoriella) DPP-schema som används för denna instans." }
       ],
+      "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:string" }
     },
@@ -940,6 +950,7 @@
         { "@language": "sl", "@value": "Nabor identifikatorjev za delegirane akte ali sektorsko specifične podatkovne modele, s katerimi je ta DPP skladen." },
         { "@language": "sv", "@value": "En uppsättning identifierare för de delegerade akter eller sektorspecifika datamodeller som detta DPP överensstämmer med." }
       ],
+      "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
       "rdfs:range": { "@id": "xsd:string" }
     },
@@ -1000,6 +1011,7 @@
           { "@language": "sl", "@value": "Številka carinske tarife (npr. oznaka HS, koda TARIC), ki se uporablja za klasifikacijo mednarodne trgovine." },
           { "@language": "sv", "@value": "Tulltaxenumret (t.ex. HS-kod, TARIC-kod) som används för internationell handelsklassificering." }
         ],
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
