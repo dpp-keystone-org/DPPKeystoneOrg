@@ -71,11 +71,12 @@
     // ==================================================================
     
     // Relationships
-    "economicOperator": { "@id": "dppk:economicOperator", "@type": "@id" },
-    "manufacturer": { "@id": "dppk:manufacturer", "@type": "@id" },
-    "importer": { "@id": "dppk:importer", "@type": "@id" },
-    "manufacturingFacility": { "@id": "dppk:manufacturingFacility", "@type": "@id" },
-    "repairService": { "@id": "dppk:repairService", "@type": "@id" },
+    "economicOperator": { "@id": "dppk:economicOperator" },
+    "manufacturer": { "@id": "dppk:manufacturer" },
+    "importer": { "@id": "dppk:importer" },
+    "repairService": { "@id": "dppk:repairService" },
+    // We may want to revisit if we need a facility type
+    "manufacturingFacilityId": { "@id": "dppk:manufacturingFacility", "@type": "@id" },
 
     // Details
     "organizationName": "dppk:organizationName",

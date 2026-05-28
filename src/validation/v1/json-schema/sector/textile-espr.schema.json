@@ -91,7 +91,13 @@
                     "Boots"
                 ]
             },
-            "manufacturerInfo": {
+            "manufacturer": {
+                "$ref": "../shared/organization.schema.json"
+            },
+            "importer": {
+                "$ref": "../shared/organization.schema.json"
+            },
+            "economicOperator": {
                 "$ref": "../shared/organization.schema.json"
             },
             "components": {
