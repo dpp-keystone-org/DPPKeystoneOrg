@@ -173,3 +173,57 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   Plan: Translate the labels and comments in the textile ontology to support multi-lingual requirements when all other edits are done.
 *   **[PENDING] Step 15.1: Add Translations**
     *   Add translations for all defined terms, following the pattern in the Battery ontology.
+Proposed Visibility Mappings for TextileEspr.jsonld
+Based on Table 14 (Access Rights) from the JRC transcript, here is how we should annotate the properties defined specifically in the textile ontology:
+
+🟢 Public (dppk:Public)
+pefcrCategory
+robustnessScore
+recyclabilityScore
+spirality
+dimensionalChange
+visualInspection
+animalOriginNonTextile
+euEcolabel
+preConsumerRecycledContentPercentage
+postConsumerRecycledContentPercentage
+preConsumerTypeOfWaste
+postConsumerTypeOfWaste
+carbonFootprintClass
+environmentalFootprintClass
+🟡 Legitimate Interest or Authority (dppk:LegitimateInterestOrAuthority)
+weightExcludingTrims
+preConsumerRecycledContentMass
+postConsumerRecycledContentMass
+carbonFootprint (Absolute value)
+environmentalFootprint (Absolute value)
+carbonFootprintBenchmarkPercentage
+environmentalFootprintBenchmarkPercentage
+carbonFootprintCalculationParameters|
+
+
+
+### Table 14. Proposed level of access rights by data point
+
+| Data Category | Data Field | Recommended Access Level |
+| :--- | :--- | :--- |
+| **Identification & Classification** | Unique Product ID | Public |
+| | Batch ID | Public |
+| | Model ID | Public |
+| | Commodity code | Public |
+| **Producer Identification** | Unique operator identifier (manufacturer, importer and other) | Public |
+| | Operator name, address (manufacturer, importer and other) | Public |
+| | Operator contact (manufacturer, importer and other) | Authority only |
+| | Unique facility identifier | Public |
+| **Product Information - Material** | Fiber composition | Public |
+| | Components specification | Public |
+| **Product Information - Mechanical properties** | Robustness score | Public |
+| **Product Information - Chemical Properties** | Substances of Concern (SoC) | Public |
+| | Location of the SoC | Legitimate interest |
+| | Concentration of SoC | Public |
+| | Relevant instructions for the safe use | Public |
+| | Information relevant for disassembly, reuse, recycling and management at EoL | Legitimate interest |
+| **Product Information – Manuals and instructions** | Care instructions | Public |
+| | Repair instructions | Public |
+| | Contact of repair services offered by brand | Public |
+| | Warranty duration | Public |

@@ -43,6 +43,7 @@
             "dcterms:source": { "@id": "https://pefapparelandfootwear.eu/afw_pefcr_v3-1_final/" },
             "rdfs:label": { "@language": "en", "@value": "PEFCR Category" },
             "rdfs:comment": { "@language": "en", "@value": "The Product Environmental Footprint Category Rules (PEFCR) category to which the product belongs." },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:PefcrCategoryValue" }
         },
@@ -160,6 +161,7 @@
             "@type": "owl:ObjectProperty",
             "rdfs:label": { "@language": "en", "@value": "EU Declaration of Conformity" },
             "rdfs:comment": { "@language": "en", "@value": "A reference to the EU Declaration of Conformity for the product." },
+            "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" }
         },
@@ -169,6 +171,7 @@
             "rdfs:label": { "@language": "en", "@value": "Carbon Footprint" },
             "rdfs:comment": { "@language": "en", "@value": "The carbon footprint of the product." },
             "dppk:unit": "kg CO₂ eq",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -178,6 +181,7 @@
             "rdfs:label": { "@language": "en", "@value": "Carbon Footprint Benchmark Percentage" },
             "rdfs:comment": { "@language": "en", "@value": "The product's carbon footprint performance compared to the established benchmark, expressed as a percentage." },
             "dppk:unit": "%",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -187,6 +191,7 @@
             "rdfs:label": { "@language": "en", "@value": "Carbon Footprint Class" },
             "rdfs:comment": { "@language": "en", "@value": "The performance class of the product's carbon footprint." },
             "dppk:unit": "unitless",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:integer" }
         },
@@ -196,6 +201,7 @@
             "rdfs:label": { "@language": "en", "@value": "Environmental Footprint" },
             "rdfs:comment": { "@language": "en", "@value": "The absolute value of the product's environmental footprint." },
             "dppk:unit": "Pt / kg",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -205,6 +211,7 @@
             "rdfs:label": { "@language": "en", "@value": "Environmental Footprint Benchmark Percentage" },
             "rdfs:comment": { "@language": "en", "@value": "The product's environmental footprint performance compared to the established benchmark, expressed as a percentage." },
             "dppk:unit": "%",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -214,14 +221,26 @@
             "rdfs:label": { "@language": "en", "@value": "Environmental Footprint Class" },
             "rdfs:comment": { "@language": "en", "@value": "The performance class of the product's environmental footprint." },
             "dppk:unit": "unitless",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:integer" }
+        },
+        {
+            "@id": "dppk:textileWeight",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Textile Weight" },
+            "rdfs:comment": { "@language": "en", "@value": "The average final product weight including trims, in kilograms." },
+            "dppk:unit": "kg",
+            "dppk:visibility": { "@id": "dppk:Public" },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "xsd:double" }
         },
         {
             "@id": "dppk:carbonFootprintCalculationParameters",
             "@type": "owl:ObjectProperty",
             "rdfs:label": { "@language": "en", "@value": "Carbon Footprint Calculation Parameters" },
             "rdfs:comment": { "@language": "en", "@value": "A reference to the document or resource describing the parameters used for the carbon footprint calculation." },
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" }
         },
@@ -231,6 +250,7 @@
             "rdfs:label": { "@language": "en", "@value": "Robustness Score" },
             "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's robustness (typically 0-10 scale)." },
             "dppk:unit": "unitless",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -240,6 +260,7 @@
             "rdfs:label": { "@language": "en", "@value": "Recyclability Score" },
             "rdfs:comment": { "@language": "en", "@value": "A numeric score representing the product's recyclability (typically 0-10 scale)." },
             "dppk:unit": "unitless",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -249,6 +270,7 @@
             "rdfs:label": { "@language": "en", "@value": "Spirality" },
             "rdfs:comment": { "@language": "en", "@value": "The measured spirality of the textile product." },
             "dppk:unit": "%",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -258,6 +280,7 @@
             "rdfs:label": { "@language": "en", "@value": "Dimensional Change" },
             "rdfs:comment": { "@language": "en", "@value": "The dimensional change (shrinkage or expansion) after testing." },
             "dppk:unit": "%",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -266,6 +289,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Visual Inspection Result" },
             "rdfs:comment": { "@language": "en", "@value": "The result of the visual inspection (e.g. Pass/Fail or notes)." },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:string" }
         },
@@ -274,6 +298,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Contains Non-Textile Parts of Animal Origin" },
             "rdfs:comment": { "@language": "en", "@value": "Indicates whether the product contains non-textile parts of animal origin, as required by the EU Textile Labelling Regulation." },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:boolean" }
         },
@@ -282,6 +307,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "EU Ecolabel" },
             "rdfs:comment": { "@language": "en", "@value": "Indicates whether the product has been awarded the EU Ecolabel. The label should be found in the certifications array as well, if present." },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:boolean" }
         },
@@ -291,6 +317,7 @@
             "rdfs:label": { "@language": "en", "@value": "Weight Excluding Trims" },
             "rdfs:comment": { "@language": "en", "@value": "The weight of the product excluding non-textile trims (e.g. buttons, zippers), used as a base for calculations." },
             "dppk:unit": "kg",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -300,6 +327,7 @@
             "rdfs:label": { "@language": "en", "@value": "Organic Content Percentage" },
             "rdfs:comment": { "@language": "en", "@value": "The percentage of organic material in the product." },
             "dppk:unit": "%",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -309,6 +337,7 @@
             "rdfs:label": { "@language": "en", "@value": "Organic Content Mass" },
             "rdfs:comment": { "@language": "en", "@value": "The absolute mass of organic material in the product." },
             "dppk:unit": "kg",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -318,6 +347,7 @@
             "rdfs:label": { "@language": "en", "@value": "Pre-consumer Recycled Content" },
             "rdfs:comment": { "@language": "en", "@value": "The percentage of pre-consumer recycled material in the product." },
             "dppk:unit": "%",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -327,6 +357,7 @@
             "rdfs:label": { "@language": "en", "@value": "Pre-consumer Recycled Content Mass" },
             "rdfs:comment": { "@language": "en", "@value": "The absolute mass of pre-consumer recycled material in the product." },
             "dppk:unit": "kg",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -335,6 +366,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Pre-consumer Type of Waste" },
             "rdfs:comment": { "@language": "en", "@value": "The classification or source of the pre-consumer waste used for recycled content." },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:string" }
         },
@@ -344,6 +376,7 @@
             "rdfs:label": { "@language": "en", "@value": "Post-consumer Recycled Content" },
             "rdfs:comment": { "@language": "en", "@value": "The percentage of post-consumer recycled material in the product." },
             "dppk:unit": "%",
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -353,6 +386,7 @@
             "rdfs:label": { "@language": "en", "@value": "Post-consumer Recycled Content Mass" },
             "rdfs:comment": { "@language": "en", "@value": "The absolute mass of post-consumer recycled material in the product." },
             "dppk:unit": "kg",
+            "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:double" }
         },
@@ -361,6 +395,7 @@
             "@type": "owl:DatatypeProperty",
             "rdfs:label": { "@language": "en", "@value": "Post-consumer Type of Waste" },
             "rdfs:comment": { "@language": "en", "@value": "The classification or source of the post-consumer waste used for recycled content." },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "xsd:string" }
         },
@@ -375,6 +410,7 @@
             "@type": "owl:ObjectProperty",
             "rdfs:label": { "@language": "en", "@value": "Production Steps" },
             "rdfs:comment": { "@language": "en", "@value": "The sequence of major production steps that occurred for this product." },
+            "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:ProductionStep" }
         },
