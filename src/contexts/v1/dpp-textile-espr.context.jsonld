@@ -20,6 +20,27 @@
             "Open-toed shoes": "dppk:PefcrOpenToedShoes",
             "Closed-toed shoes": "dppk:PefcrClosedToedShoes",
             "Boots": "dppk:PefcrBoots",
+            "manufacturer": {
+                "@id": "dppk:manufacturer",
+                "@context": {
+                    "email": "dppk:operatorEmail",
+                    "telephone": "dppk:operatorTelephone"
+                }
+            },
+            "importer": {
+                "@id": "dppk:importer",
+                "@context": {
+                    "email": "dppk:operatorEmail",
+                    "telephone": "dppk:operatorTelephone"
+                }
+            },
+            "economicOperator": {
+                "@id": "dppk:economicOperator",
+                "@context": {
+                    "email": "dppk:operatorEmail",
+                    "telephone": "dppk:operatorTelephone"
+                }
+            },
             "substancesOfConcern": {
                 "@id": "dppk:substancesOfConcern",
                 "@container": "@set",

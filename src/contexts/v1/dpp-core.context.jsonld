@@ -99,6 +99,8 @@
     "addressCountry": "dppk:addressCountry",
     "email": "dppk:email",
     "telephone": "dppk:telephone",
+    "operatorEmail": "dppk:operatorEmail",
+    "operatorTelephone": "dppk:operatorTelephone",
     "website": { "@id": "dppk:website", "@type": "@id" },
 
     // ==================================================================

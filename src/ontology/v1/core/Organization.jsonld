@@ -156,6 +156,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Organization Name",
         "rdfs:comment": "The official legal name of the organization.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -171,6 +172,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Trading Name",
         "rdfs:comment": "The name under which the organization conducts business, if different from the legal name.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -189,6 +191,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Global Location Number (GLN)",
         "rdfs:comment": "A GS1 standard identifier for legal entities, functional departments, or physical locations.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -204,6 +207,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Legal Entity Identifier (LEI)",
         "rdfs:comment": "A standardized global identifier for legal entities.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -216,6 +220,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Economic Operators Registration and Identification (EORI)",
         "rdfs:comment": "A unique identifier assigned by a customs authority in the EU to economic operators.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "xsd:string" }
     },
@@ -227,6 +232,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Additional Organization ID",
         "rdfs:comment": "An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIdType.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -238,6 +244,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Additional Organization ID Type",
         "rdfs:comment": "The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT').",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "xsd:string" },
         "owl:equivalentProperty": [
@@ -255,6 +262,7 @@
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Address",
         "rdfs:comment": "Relates an organization to its physical address.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "rdfs:range": { "@id": "dppk:PostalAddress" },
         "owl:equivalentProperty": [
@@ -268,6 +276,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Street Address",
         "rdfs:comment": "Includes street name and number.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:PostalAddress" },
         "owl:equivalentProperty": [
              { "@id": "schema:streetAddress" },
@@ -279,6 +288,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Postal Code",
         "rdfs:comment": "The postal code of the location.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:PostalAddress" },
         "owl:equivalentProperty": [
             { "@id": "schema:postalCode" },
@@ -290,6 +300,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "City/Locality",
         "rdfs:comment": "The locality (e.g. city) of the address.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:PostalAddress" },
         "owl:equivalentProperty": [
             { "@id": "schema:addressLocality" },
@@ -301,6 +312,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Country",
         "rdfs:comment": "The country component of the address.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:PostalAddress" },
         "owl:equivalentProperty": [
             { "@id": "schema:addressCountry" },
@@ -313,6 +325,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Email Address",
         "rdfs:comment": "The email address for contacting the organization.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "owl:equivalentProperty": [
             { "@id": "schema:email" },
@@ -324,11 +337,30 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Telephone Number",
         "rdfs:comment": "The telephone number for contacting the organization.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Organization" },
         "owl:equivalentProperty": [
             { "@id": "schema:telephone" },
             { "@id": "gs1:telephone" }
         ]
+    },
+    {
+        "@id": "dppk:operatorEmail",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Operator Email Address",
+        "rdfs:comment": "The email address for contacting the economic operator.",
+        "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
+        "rdfs:domain": { "@id": "dppk:EconomicOperatorRole" },
+        "rdfs:range": { "@id": "xsd:string" }
+    },
+    {
+        "@id": "dppk:operatorTelephone",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "Operator Telephone Number",
+        "rdfs:comment": "The telephone number for contacting the economic operator.",
+        "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
+        "rdfs:domain": { "@id": "dppk:EconomicOperatorRole" },
+        "rdfs:range": { "@id": "xsd:string" }
     },
     {
         "@id": "dppk:website",
