@@ -152,3 +152,24 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   **[COMPLETED] Task 11.2.7**: Add `carbonFootprintClass` and `environmentalFootprintClass` integer fields to `textile-espr.schema.json`.
     *   **[COMPLETED] Task 11.2.8**: Add `weightExcludingTrims` mass field to `textile-espr.schema.json`.
     *   **[COMPLETED] Task 11.2.9**: Add `eori` optional field to `organization.schema.json`.
+
+### [PENDING] Step 12: Ontology and Schema Versioning for Backward Compatibility
+*   Plan: Plan how to handle versioning to ensure backward compatibility before pulling the textile project into the main branch.
+*   **[PENDING] Step 12.1: Strategy for Coexistence**
+    *   Determine how to supplant the legacy textile material while keeping v1 available.
+    *   Design the structure for both versions to coexist in the repository and registry.
+
+### [PENDING] Step 13: Visibility Annotations for Ontological Elements
+*   Plan: Add visibility annotations to ontological elements based on the access rights specified in the ESPR draft (Public, Authority only, Legitimate interest).
+*   **[PENDING] Step 13.1: Map Access Rights to Visibility**
+    *   Review the access rights table and map them to `dppk:visibility` annotations in the ontology.
+
+### [PENDING] Step 14: Add Governance and Source Annotations
+*   Plan: Add `dppk:governedBy` and `dcterms:source` annotations to the textile ontology elements to document regulatory references.
+*   **[PENDING] Step 14.1: Map References to Annotations**
+    *   Review the JRC tables and map regulatory references to `dppk:governedBy` and `dcterms:source`.
+
+### [PENDING] Step 15: Translate Ontology Labels and Comments
+*   Plan: Translate the labels and comments in the textile ontology to support multi-lingual requirements when all other edits are done.
+*   **[PENDING] Step 15.1: Add Translations**
+    *   Add translations for all defined terms, following the pattern in the Battery ontology.
