@@ -207,14 +207,9 @@ carbonFootprintCalculationParameters|
 
 | Data Category | Data Field | Recommended Access Level |
 | :--- | :--- | :--- |
-| **Identification & Classification** | Unique Product ID | Public |
-| | Batch ID | Public |
-| | Model ID | Public |
-| | Commodity code | Public |
-| **Producer Identification** | Unique operator identifier (manufacturer, importer and other) | Public |
+| **Producer Identification** |
 | | Operator name, address (manufacturer, importer and other) | Public |
 | | Operator contact (manufacturer, importer and other) | Authority only |
-| | Unique facility identifier | Public |
 | **Product Information - Material** | Fiber composition | Public |
 | | Components specification | Public |
 | **Product Information - Mechanical properties** | Robustness score | Public |

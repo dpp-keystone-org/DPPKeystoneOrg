@@ -503,22 +503,6 @@
         "rdfs:range": "xsd:string"
     },
     {
-        "@id": "dppk:repairServices",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": "Repair Services",
-        "rdfs:comment": "Contact information for authorized repair services.",
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:Organization" }
-    },
-    {
-        "@id": "dppk:manufacturerInfo",
-        "@type": "owl:ObjectProperty",
-        "rdfs:label": "Manufacturer Information",
-        "rdfs:comment": "Information about the manufacturer of the product.",
-        "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:Organization" }
-    },
-    {
         "@id": "dppk:apparelSize",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Apparel Size",

@@ -36,6 +36,7 @@
     "ManufacturerRole": "dppk:ManufacturerRole",
     "FacilityRole": "dppk:FacilityRole",
     "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
+    "RepairServiceRole": "dppk:RepairServiceRole",
     "ISO6523": "dppk:ISO6523",
 
     // ==================================================================
@@ -71,12 +72,10 @@
     
     // Relationships
     "economicOperator": { "@id": "dppk:economicOperator", "@type": "@id" },
-    "economicOperatorInfo": "dppk:economicOperator",
     "manufacturer": { "@id": "dppk:manufacturer", "@type": "@id" },
-    "manufacturerInfo": "dppk:manufacturerInfo",
     "importer": { "@id": "dppk:importer", "@type": "@id" },
-    "importerInfo": "dppk:importer",
     "manufacturingFacility": { "@id": "dppk:manufacturingFacility", "@type": "@id" },
+    "repairService": { "@id": "dppk:repairService", "@type": "@id" },
 
     // Details
     "organizationName": "dppk:organizationName",

@@ -82,6 +82,12 @@
         "rdfs:label": "Conformity Assessment Body Role",
         "rdfs:comment": "The role of an entity (e.g., Notified Body) that performs conformity assessment activities."
     },
+    {
+        "@id": "dppk:RepairServiceRole",
+        "@type": "rdfs:Class",
+        "rdfs:label": "Repair Service Role",
+        "rdfs:comment": "The role of an entity that provides authorized repair services for the product."
+    },
 
     // ==================================================================
     // Properties (Relationships between DPP and Organizations)
@@ -127,6 +133,15 @@
         "@type": "owl:ObjectProperty",
         "rdfs:label": "Manufacturing Facility",
         "rdfs:comment": "Relates the DPP to the specific facility where the product (or a step) was manufactured.",
+        "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
+        "rdfs:range": { "@id": "dppk:Organization" }
+    },
+    // --- repairService (The Relationship Property) ---
+    {
+        "@id": "dppk:repairService",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Repair Service",
+        "rdfs:comment": "Relates the DPP to an authorized repair service.",
         "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
         "rdfs:range": { "@id": "dppk:Organization" }
     },
