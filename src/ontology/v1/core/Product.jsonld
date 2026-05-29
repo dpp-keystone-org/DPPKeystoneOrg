@@ -498,12 +498,14 @@
             { "@id": "schema:measurementMethod" }
         ]
     },
+    // Skipping dcterms:source because many sector-specific regulations may mandate this same standard.
     {
         "@id": "dppk:warrantyDuration",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Warranty Duration",
         "rdfs:comment": "The duration of the commercial warranty provided with the product.",
         "dppk:visibility": { "@id": "dppk:Public" },
+        "dppk:governedBy": "ISO 22059:2020",
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": "xsd:string"
     },

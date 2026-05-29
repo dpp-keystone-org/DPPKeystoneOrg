@@ -42,7 +42,7 @@
                 }
             },
             "substancesOfConcern": {
-                "@id": "dppk:substancesOfConcern",
+                "@id": "dppk:textileSubstancesOfConcern",
                 "@container": "@set",
                 "@context": {
                     "name": "dppk:componentName",

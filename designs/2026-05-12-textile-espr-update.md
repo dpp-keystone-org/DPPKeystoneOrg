@@ -185,9 +185,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   [x] Add `dppk:governedBy` and `dcterms:source` annotations to these new properties based on the methodology table.
     *   [x] Update `src/contexts/v1/dpp-textile-espr.context.jsonld` to map the context keys to these new specialized properties.
 
-*   **[PENDING] Step 14.3: Specialize Other Common Properties (Components, Fibers, etc.)**
-    *   [ ] Identify other shared properties (e.g., substances of concern, fibre composition) that need textile-specific annotations.
-    *   [ ] Specialize them in `TextileEspr.jsonld` and update context mappings (to be subdivided later).
+*   **[COMPLETED] Step 14.3: Specialize Other Common Properties (Components, Fibers, etc.)**
+    *   [x] Identify other shared properties (e.g., substances of concern, fibre composition) that need textile-specific annotations.
+    *   [x] Specialize them in `TextileEspr.jsonld` and update context mappings (to be subdivided later).
 
    
 

@@ -377,7 +377,7 @@
             "rdfs:label": { "@language": "en", "@value": "Contains Non-Textile Parts of Animal Origin" },
             "rdfs:comment": { "@language": "en", "@value": "Indicates whether the product contains non-textile parts of animal origin, as required by the EU Textile Labelling Regulation." },
             "dppk:visibility": { "@id": "dppk:Public" },
-            "dppk:governedBy": "Textiles Labelling Regulation",
+            "dppk:governedBy": "Textiles Labelling Regulation (EU) No 1007/2011",
             "dcterms:source": {
                 "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
                 "rdfs:label": "Source: ESPR - Annex III (a)"
@@ -618,6 +618,33 @@
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" },
             "rdfs:subPropertyOf": { "@id": "dppk:repairInstructions" }
+        },
+        {
+            "@id": "dppk:fibreComposition",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Fibre Composition" },
+            "rdfs:comment": { "@language": "en", "@value": "Relates the textile product to its constituent fibres and their proportions." },
+            "dppk:governedBy": "Textiles Labelling Regulation (EU) No 1007/2011",
+            "dcterms:source": {
+                "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+                "rdfs:label": "Source: ESPR - Annex I(d), Annex III(a)"
+            },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:Component" }
+        },
+        {
+            "@id": "dppk:textileSubstancesOfConcern",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Textile Substances of Concern" },
+            "rdfs:comment": { "@language": "en", "@value": "Substances of concern present in the textile product." },
+            "dppk:governedBy": "REACH / ESPR",
+            "dcterms:source": {
+                "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+                "rdfs:label": "Source: ESPR - Art 7(5), Annex I(f)"
+            },
+            "rdfs:domain": { "@id": "dppk:TextileProduct" },
+            "rdfs:range": { "@id": "dppk:Component" },
+            "rdfs:subPropertyOf": { "@id": "dppk:substancesOfConcern" }
         }
     ]
 }
