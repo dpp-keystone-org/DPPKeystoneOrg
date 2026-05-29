@@ -1,0 +1,46 @@
+name: Deploy Legacy Version
+
+on:
+  push:
+    branches:
+      - 'legacy/**'
+
+jobs:
+  deploy-legacy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install testing dependencies
+        run: cd testing && npm install
+
+      - name: Install Playwright Browsers
+        run: cd testing && npx playwright install --with-deps
+
+      - name: Run build and validation tests
+        run: npm test
+
+      - name: Clean dist folder to keep only spec
+        run: |
+          find dist -mindepth 1 -maxdepth 1 ! -name spec -exec rm -rf {} +
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: dpp-keystone.org
+          keep_files: true

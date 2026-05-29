@@ -5,6 +5,7 @@ on:
     branches-ignore:
       - main
       - gh-pages
+      - 'legacy/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
   workflow_dispatch:
