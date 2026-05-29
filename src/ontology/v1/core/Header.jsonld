@@ -211,6 +211,7 @@
         { "@language": "sv", "@value": "Den unika identifieraren för den fysiska produkten som är kopplad till detta DPP. Överensstämmer med kravet på unik produktidentifierare (UPI) i ESPR. Det rekommenderas starkt att använda etablerade standarder som GS1 Digital Link URI. Standardvärdet är en platshållare och bör ersättas med en riktig identifierare, till exempel efter registrering av produkten hos en tjänst som GS1." }
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
+      "dppk:governedBy": "hEN18219",
       "dcterms:source": {
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
         "rdfs:label": "ESPR - Article 9 (Unique product identifier)"
@@ -224,7 +225,7 @@
       "owl:equivalentProperty": [
         { "@id": "gs1:productID" },
         { "@id": "schema:productID" }
-      ] 
+      ]
     },
 
     // --- EconomicOperatorID (EOI) ---

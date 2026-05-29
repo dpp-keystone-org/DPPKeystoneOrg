@@ -163,16 +163,103 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   Plan: Add visibility annotations to ontological elements based on the access rights specified in the ESPR draft (Public, Authority only, Legitimate interest).
 *   **[COMPLETED] Step 13.1: Map Access Rights to Visibility**
     *   Review the access rights table and map them to `dppk:visibility` annotations in the ontology.
+    *   *Details*: Added visibility annotations to core properties in `RelatedResource.jsonld` (instructions) and `Product.jsonld` (`warrantyDuration`) since they had no preexisting annotations.
 
 ### [PENDING] Step 14: Add Governance and Source Annotations
-*   Plan: Add `dppk:governedBy` and `dcterms:source` annotations to the textile ontology elements to document regulatory references.
-*   **[PENDING] Step 14.1: Map References to Annotations**
-    *   Review the JRC tables and map regulatory references to `dppk:governedBy` and `dcterms:source`.
+*   Plan: Add `dppk:governedBy` and `dcterms:source` annotations to the textile ontology elements to document regulatory references, using the consolidated table in `docs/sensitive/textile-espr-methodologies.md`.
+*   **Convention**:
+    *   `dcterms:source`: Use an object with `@id` to link to publicly available legislation (e.g., EUR-Lex URL).
+    *   `dppk:governedBy`: Use a string to name the specific standard or methodology (e.g., "ISO 14021:2016", "TLR").
+
+*   **[COMPLETED] Step 14.1: Map References to Annotations for Textile-Specific Terms**
+    *   [x] Identify terms in `docs/sensitive/textile-espr-methodologies.md` that map to properties already defined in `TextileEspr.jsonld`.
+    *   [x] Add `dcterms:source` and `dppk:governedBy` annotations to these properties (completed for 18 properties including environmental footprint, robustness score, recyclability score, etc.).
+    *   [x] Skip editing `Header.jsonld` and `Product.jsonld` directly to avoid merge conflicts.
+
+*   **[COMPLETED] Step 14.2: Specialize Shared RelatedResource Properties**
+    *   [x] Create specialized properties in `TextileEspr.jsonld` for instruction terms that map to core `RelatedResource` properties but have textile-specific legislation:
+        *   [x] `dppk:textileCareInstructions` (subPropertyOf `dppk:careInstructions`)
+        *   [x] `dppk:textileSafeUseInstructions` (subPropertyOf `dppk:safeUseInstructions`)
+        *   [x] `dppk:textileEndOfLifeInstructions` (subPropertyOf `dppk:endOfLifeInstructions`)
+        *   [x] `dppk:textileRepairInstructions` (subPropertyOf `dppk:repairInstructions`)
+    *   [x] Add `dppk:governedBy` and `dcterms:source` annotations to these new properties based on the methodology table.
+    *   [x] Update `src/contexts/v1/dpp-textile-espr.context.jsonld` to map the context keys to these new specialized properties.
+
+*   **[PENDING] Step 14.3: Specialize Other Common Properties (Components, Fibers, etc.)**
+    *   [ ] Identify other shared properties (e.g., substances of concern, fibre composition) that need textile-specific annotations.
+    *   [ ] Specialize them in `TextileEspr.jsonld` and update context mappings (to be subdivided later).
+
+   
 
 ### [PENDING] Step 15: Translate Ontology Labels and Comments
 *   Plan: Translate the labels and comments in the textile ontology to support multi-lingual requirements when all other edits are done.
 *   **[PENDING] Step 15.1: Add Translations**
     *   Add translations for all defined terms, following the pattern in the Battery ontology.
 
+### [PENDING] units: make sure carbon footprint is "/kg" and establish a unit enumeration in its own ontology file so that we have clearer, reusable definitions. The latter will be a major feature update.
+
 ### Scratchpad 
 
+
+
+### Consolidated DPP Attributes, Methodologies, and Mappings
+
+| Attribute Name / Description | Reference Methodologies & Ontology Mappings | ESPR Reference |
+| :--- | :--- | :--- |
+| **Unique product ID** | **Methodology:** Serialised Global Trade Item Number (SGTIN) or equivalent, compliant with prEN18219.<br>**Ontology Mappings:** `UNECE: Global Serial ID`; `circ.ID: sgtin`; `GS1: productID` | Annex III (b) |
+| **Batch ID** | **Methodology:** GTIN + Lot number or equivalent, compliant with prEN18219.<br>**Ontology Mappings:** `UNECE: Batch ID`; `CEON: BatchOfObjects -> batchID` | Annex III (b) |
+| **Model ID** | **Methodology:** GTIN-13 or equivalent, compliant with prEN18219.<br>**Ontology Mappings:** `UNECE: Model ID`; `circ.ID: gtin` | Annex III (c) |
+| **Product ESPR category** | **Methodology:** ESPR classification (knitted, woven, high denim product).<br>**Ontology Mappings:** None | Scope of the DA |
+| **Product PEFCR category** | **Methodology:** PEFCR for Apparel and Footwear.<br>**Ontology Mappings:** None | Scope of the DA |
+| **Commodity Code: HS code (6-digit code)** | **Methodology:** WCO Harmonized System (HS).<br>**Ontology Mappings:** `UNECE: Classification (code type)`; `GS1: additionalProductClassification` | Annex III (d) |
+| **Commodity Code: TARIC Code (10-digit code)** | **Methodology:** TARIC XML Schema.<br>**Ontology Mappings:** `UNECE: Classification (code type)`; `GS1: additionalProductClassification` | Annex III (d) |
+| **Manufacturer unique operator identifier** | **Methodology:** Party Global Location Number (Party GLN) or equivalent, compliant with prEN18219, and Economic Operators Registration and Identification (EORI), if available.<br>**Ontology Mappings:** `UNECE: Global ID / EORI`; `circ.ID: gln`; `TRICK: PARTIn` | Annex III (g) |
+| **Manufacturer name** | **Methodology:** Free text ISO/IEC 6523.<br>**Ontology Mappings:** None | Annex III (g) |
+| **Manufacturer postal address** | **Methodology:** Free text ISO/IEC 6523.<br>**Ontology Mappings:** `UNECE: Address entity`; `circ.ID: street_address, city, postal_code` | Annex III (g) |
+| **Manufacturer contact information** | **Methodology:** \[email or other electronic means\].<br>**Ontology Mappings:** `UNECE: Telephone Number, Email Address`; `TRICK: PARTIn -> contact references`; `GS1 Web: Organization -> customerSupportCentre` | Annex III (g) |
+| **Unique facility identifier(s)** | **Methodology:** Global Location Number (GLN), or equivalent, compliant with prEN18219.<br>**Ontology Mappings:** `UNECE: Facility -> Global ID`; `circ.ID: oar (Open Apparel Registry)` | Annex III (i) |
+| **Importer unique operator identifier** | **Methodology:** Party Global Location Number (Party GLN), or equivalent, compliant with prEN18219, and Economic Operators Registration and Identification (EORI).<br>**Ontology Mappings:** `UNECE: Global ID / EORI`; `circ.ID: gln`; `TRICK: PARTIn` | Annex III (j), (h) |
+| **Importer name** | **Methodology:** Free text ISO/IEC 6523.<br>**Ontology Mappings:** None | Annex III (j) |
+| **Importer postal address** | **Methodology:** Free text ISO/IEC 6523.<br>**Ontology Mappings:** `UNECE: Address entity`; `circ.ID: street_address, city, postal_code` | Annex III (j) |
+| **Importer contact information** | **Methodology:** \[email or other electronic means\].<br>**Ontology Mappings:** `UNECE: Telephone Number, Email Address`; `TRICK: PARTIn -> contact references`; `GS1 Web: Organization -> customerSupportCentre` | Annex III (j) |
+| **Other responsible operator identifier** | **Methodology:** Party Global Location Number (Party GLN), or equivalent, compliant with prEN18219, and Economic Operators Registration and Identification (EORI).<br>**Ontology Mappings:** `UNECE: Global ID / EORI`; `circ.ID: gln`; `TRICK: PARTIn` | Annex III (k) |
+| **Other responsible operator name** | **Methodology:** Free text ISO/IEC 6523.<br>**Ontology Mappings:** None | Annex III (k) |
+| **Other responsible operator address** | **Methodology:** Free text ISO/IEC 6523.<br>**Ontology Mappings:** `UNECE: Address entity`; `circ.ID: street_address, city, postal_code` | Annex III (k) |
+| **Other responsible operator contact information** | **Methodology:** \[email or other electronic means\].<br>**Ontology Mappings:** `UNECE: Telephone Number, Email Address`; `TRICK: PARTIn -> contact references`; `GS1 Web: Organization -> customerSupportCentre` | Annex III (k) |
+| **Fiber composition** | **Methodology:** Textiles Labelling Regulation (clean dry mass).<br>**Ontology Mappings:** `CEON: TextileProductCompositionDisclosureStatement`; `circ.ID: material_composition` | Annex I(d), Annex III(a) |
+| **Contains non-textile parts of animal origin** | **Methodology:** Textiles Labelling Regulation (Regulation (EU) No 1007/2011).<br>**Ontology Mappings:** `dppk:animalOriginNonTextile` | Annex III (a) |
+| **Components specification** | **Methodology:** GTIN-13 or equivalent, compliant with prEN18219.<br>**Ontology Mappings:** `CEON: includesTrims`; `GS1: includedAccessories`; `circ.ID: material_composition` (trims included in composition) | Article 7(2)(b), Annex I(b) |
+| **Robustness score** | **Methodology:** Methodology to be proposed in detail under ESPR DA of textiles.<br>**Ontology Mappings:** `UNECE: Sustainability Score Index (Stress & Aging)`, `Conformity Attestation (Test/Inspection Results)`; `TRICK: TEXQualityRpt`; `circ.ID: circular_design_strategy -> Physical Durability`; `CEON: ResourceQuality, TextileDataSheet` | Article 7(2)(b), Annex I(a) |
+| **Name or numerical code of the substances of concern present in the product** | **Methodology:** IUPAC name, EC number, or CAS name and number as defined in REACH / ESPR.<br>**Ontology Mappings:** `UNECE: Substance of Concern (ID/Name/Max Limit)`; `CEON: TextileChemicalSubstanceThresholdStatement`; `circ.ID: REACH / ZDHC compliance` | Art 7(5), Annex I(f) |
+| **Location of the substances of concern within the product** | **Methodology:** Free text.<br>**Ontology Mappings:** None | Art 7(5), Annex I(f) |
+| **Concentration, maximum concentration or concentration range of the substances of concern, at the level of the product** | **Methodology:** Values expressed in % w/w in relation to the weight of an article as defined in REACH.<br>**Ontology Mappings:** Shared with generic Substance of Concern (SoC) parameters. | Art 7(5), Annex I(f) |
+| **Relevant instructions for the safe use of the product** | **Methodology:** Free text. Standard text: "The identification of the substance is enough to allow safe use" if no instructions are needed.<br>**Ontology Mappings:** `UNECE: Instructions -> Repair`; `circ.ID: disassembly_instructions`; `GS1 Web: instructionsForUse` | Art 7(5), Annex I(f) |
+| **Information relevant for disassembly, preparation for reuse, reuse, recycling and the environmentally sound management of the product at end-of-life** | **Methodology:** Free text.<br>**Ontology Mappings:** None | Art 7(5), Annex I(f) |
+| **Recyclability score** | **Methodology:** Methodology to be proposed in detail under ESPR DA of textiles.<br>**Ontology Mappings:** `CEON: TextileProductDesignForRecycling`; `UNECE: Sustainability Score Index (Recyclability)`; `circ.ID: Material Cyclability`; `GS1: consumerRecyclingInstructions` | Annex I(d), III(a) |
+| **Recycled content** | **Methodology:** Value expressed in % w/w in relation to product weight (based on ISO 14021:2016).<br>**Ontology Mappings:** `UNECE: Recycled Material Content`; `CEON: PostConsumerRecycledCompositionStatement`; `circ.ID: is_recycled` | Annex I(h) |
+| **Origin of the recycled content** | **Methodology:** Classification of post-industrial, pre-, and post-consumer waste aligned with ISO 14021:2016.<br>**Ontology Mappings:** Aligned with UNECE / CEON / circ.ID waste definitions. | Annex I(h) |
+| **Organic content** | **Methodology:** Value expressed in % w/w in relation to product weight (aligned with Organic Regulation (EU) 2018/848).<br>**Ontology Mappings:** `UNECE: Sustainability Claim/Statement`; `circ.ID: certification_standard` | Annex III (a) |
+| **EU Ecolabel** | **Methodology:** EU Ecolabel Certification.<br>**Ontology Mappings:** `circ.ID: certification_standard -> EU Ecolabel, certification_file`; `UNECE: Label (type EU eco label)`; `CEON: TextileProductCertification`; `GS1: certification`; `TRICK: SRVindicatorsDeclaration` | Annex III (a) |
+| **Product carbon footprint – Class of performance** | **Methodology:** PEFCR climate change impact category (partial lifecycle).<br>**Ontology Mappings:** `UNECE: Environmental Footprint (Impact Category/Value)`; `TRICK: PEFInformationSupply` | Annex I(n) |
+| **Product environmental footprint– Class of performance** | **Methodology:** PEFCR single score (partial lifecycle).<br>**Ontology Mappings:** `UNECE: Environmental Footprint (Impact Category/Value)`; `TRICK: PEFInformationSupply` | Annex I(n) |
+| **Care instructions** | **Methodology:** Textiles Labelling Regulation (ISO 21600:2019).<br>**Ontology Mappings:** `UNECE: Instructions -> Care`; `circ.ID: care_guide`; `GS1 Web: consumerUsageInstructions` | Annex III(a)(f) |
+| **Repair instructions** | **Methodology:** Free text (webpage link).<br>**Ontology Mappings:** `UNECE: Instructions -> Repair`; `circ.ID: disassembly_instructions`; `GS1 Web: instructionsForUse` | Article 7(2)(b), Annex I(b) |
+| **Contact of repair services offered by brand** | **Methodology:** Free text ISO/IEC 6523.<br>**Ontology Mappings:** None | Article 7(2)(b), Annex I(b) |
+| **Warranty duration / Commercial guarantee duration above the 2-year legal minimum** | **Methodology:** ISO 22059:2020 (aligned with Consumer Rights Directive).<br>**Ontology Mappings:** `UNECE: Warranty Period`; `GS1 Web: manufacturersWarranty` | Article 7(2)(b), Annex I(a) |
+| **Visual inspection** | **Methodology:** Test results ISO 15487.<br>**Ontology Mappings:** None | Article 7(2)(b), Annex I(a), III(e) |
+| **Spirality** | **Methodology:** Test results ISO 16322-3 (%).<br>**Ontology Mappings:** None | Article 7(2)(b), Annex I(a), III(e) |
+| **Dimensional change** | **Methodology:** Test results ISO 3759 (%).<br>**Ontology Mappings:** None | Article 7(2)(b), Annex I(a), III(e) |
+| **Conformity certification (third-party verification)** | **Methodology:** Verification rules specified in ESPR DA of textiles.<br>**Ontology Mappings:** None *(Deduplicated across Mechanical properties, Recyclability, Recycled content, and Organic content)* | Annex III(e) |
+| **Conformity declaration (self-declaration)** | **Methodology:** Verification rules specified in ESPR DA of textiles.<br>**Ontology Mappings:** None *(Deduplicated across Mechanical properties, Recyclability, Recycled content, and Organic content)* | Annex III(e) |
+| **Weight (excluding trims)** | **Methodology:** Value expressed in kg EN ISO 80000-1 (clean dry mass from TLR).<br>**Ontology Mappings:** None *(Deduplicated across Recycled content and Organic content)* | Annex III(e) |
+| **Amount of recycled material** | **Methodology:** Value expressed in kg (based on ISO 14021:2016).<br>**Ontology Mappings:** None | Annex I(h), III(e) |
+| **Amount of organic material** | **Methodology:** Value expressed in kg (aligned with Organic Regulation (EU) 2018/848).<br>**Ontology Mappings:** None | Annex III (e) |
+| **Product carbon footprint – Absolute value** | **Methodology:** Value expressed in kg CO₂e/kg (based on PEFCR climate change category).<br>**Ontology Mappings:** None | Annex I(n), III(e) |
+| **Product carbon footprint – Compared to a benchmark** | **Methodology:** Value expressed in % compared to PEFCR benchmark.<br>**Ontology Mappings:** None | Annex I(n), III(e) |
+| **Product environmental footprint – Absolute value** | **Methodology:** Value expressed in environmental points/kg (PEFCR single score).<br>**Ontology Mappings:** None | Annex I(n), III(e) |
+| **Product environmental footprint – Compared to a benchmark** | **Methodology:** Value expressed in % compared to PEFCR benchmark (single score).<br>**Ontology Mappings:** None | Annex I(n), III(e) |
+| **Weight** | **Methodology:** Value expressed in kg EN ISO 80000-1 (including trims/accessories as per PEFCR average final product weight).<br>**Ontology Mappings:** `circ.ID: net_weight`; `UNECE: Net Weight`; `GS1: netWeight` | Annex III(e) |
+
+---
+
+Hopefully, this format serves as a solid foundation for defining the equivalency mappings and field definitions within your ontology. Please let me know if you require any adjustments.

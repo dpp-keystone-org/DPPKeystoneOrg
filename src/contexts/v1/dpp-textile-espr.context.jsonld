@@ -133,7 +133,7 @@
                 "@type": "xsd:boolean"
             },
             "careInstructions": {
-                "@id": "dppk:careInstructions",
+                "@id": "dppk:textileCareInstructions",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
@@ -145,7 +145,7 @@
                 }
             },
             "safeUseInstructions": {
-                "@id": "dppk:safeUseInstructions",
+                "@id": "dppk:textileSafeUseInstructions",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
@@ -157,7 +157,7 @@
                 }
             },
             "endOfLifeInstructions": {
-                "@id": "dppk:endOfLifeInstructions",
+                "@id": "dppk:textileEndOfLifeInstructions",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
@@ -169,7 +169,7 @@
                 }
             },
             "repairInstructions": {
-                "@id": "dppk:repairInstructions",
+                "@id": "dppk:textileRepairInstructions",
                 "@context": {
                     "resourceTitle": "dppk:resourceTitle",
                     "contentType": "dppk:contentType",
