@@ -31,6 +31,10 @@ For a history of completed tasks, please see the [CHANGELOG.md](./CHANGELOG.md).
 
 ---
 
+### [PENDING] units: make sure carbon footprint is "/kg" and establish a unit enumeration in its own ontology file so that we have clearer, reusable definitions. The latter will be a major feature update.
+
+
+
 ## Tier 3: Long-Term Growth (Lower Priority / Ongoing)
 
 - **[PENDING] 11. Refactor SHACL Tests for Ontological Mapping Validation.** Pause and allow the user to test and discuss next steps.
