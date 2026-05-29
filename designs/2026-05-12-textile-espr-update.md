@@ -159,9 +159,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   Determine how to supplant the legacy textile material while keeping v1 available.
     *   Design the structure for both versions to coexist in the repository and registry.
 
-### [PENDING] Step 13: Visibility Annotations for Ontological Elements
+### [COMPLETED] Step 13: Visibility Annotations for Ontological Elements
 *   Plan: Add visibility annotations to ontological elements based on the access rights specified in the ESPR draft (Public, Authority only, Legitimate interest).
-*   **[PENDING] Step 13.1: Map Access Rights to Visibility**
+*   **[COMPLETED] Step 13.1: Map Access Rights to Visibility**
     *   Review the access rights table and map them to `dppk:visibility` annotations in the ontology.
 
 ### [PENDING] Step 14: Add Governance and Source Annotations
@@ -173,52 +173,6 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   Plan: Translate the labels and comments in the textile ontology to support multi-lingual requirements when all other edits are done.
 *   **[PENDING] Step 15.1: Add Translations**
     *   Add translations for all defined terms, following the pattern in the Battery ontology.
-Proposed Visibility Mappings for TextileEspr.jsonld
-Based on Table 14 (Access Rights) from the JRC transcript, here is how we should annotate the properties defined specifically in the textile ontology:
 
-🟢 Public (dppk:Public)
-pefcrCategory
-robustnessScore
-recyclabilityScore
-spirality
-dimensionalChange
-visualInspection
-animalOriginNonTextile
-euEcolabel
-preConsumerRecycledContentPercentage
-postConsumerRecycledContentPercentage
-preConsumerTypeOfWaste
-postConsumerTypeOfWaste
-carbonFootprintClass
-environmentalFootprintClass
-🟡 Legitimate Interest or Authority (dppk:LegitimateInterestOrAuthority)
-weightExcludingTrims
-preConsumerRecycledContentMass
-postConsumerRecycledContentMass
-carbonFootprint (Absolute value)
-environmentalFootprint (Absolute value)
-carbonFootprintBenchmarkPercentage
-environmentalFootprintBenchmarkPercentage
-carbonFootprintCalculationParameters|
+### Scratchpad 
 
-
-
-### Table 14. Proposed level of access rights by data point
-
-| Data Category | Data Field | Recommended Access Level |
-| :--- | :--- | :--- |
-| **Producer Identification** |
-| | Operator name, address (manufacturer, importer and other) | Public |
-| | Operator contact (manufacturer, importer and other) | Authority only |
-| **Product Information - Material** | Fiber composition | Public |
-| | Components specification | Public |
-| **Product Information - Mechanical properties** | Robustness score | Public |
-| **Product Information - Chemical Properties** | Substances of Concern (SoC) | Public |
-| | Location of the SoC | Legitimate interest |
-| | Concentration of SoC | Public |
-| | Relevant instructions for the safe use | Public |
-| | Information relevant for disassembly, reuse, recycling and management at EoL | Legitimate interest |
-| **Product Information – Manuals and instructions** | Care instructions | Public |
-| | Repair instructions | Public |
-| | Contact of repair services offered by brand | Public |
-| | Warranty duration | Public |

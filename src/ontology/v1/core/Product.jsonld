@@ -88,7 +88,8 @@
         "@id": "dppk:Component",
         "@type": "rdfs:Class",
         "rdfs:label": "Component",
-        "rdfs:comment": "A constituent part, material, or substance that is included in the main product."
+        "rdfs:comment": "A constituent part, material, or substance that is included in the main product.",
+        "dppk:visibility": { "@id": "dppk:Public" }
     },
     
     // --- Component Properties ---
@@ -99,6 +100,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Component Name",
         "rdfs:comment": "The specific name of the component.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "schema:domainIncludes": { "@id": "dppk:Component" },
         "rdfs:range": { "@id": "rdf:langString" }
     },
@@ -108,6 +110,7 @@
         "rdfs:label": "Component Percentage",
         "rdfs:comment": "The percentage contribution of this component to the parent assembly (e.g., by weight).",
         "dppk:unit": "%",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "schema:domainIncludes": { "@id": "dppk:Component" },
         "rdfs:range": { "@id": "xsd:double" }
     },
@@ -166,6 +169,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Component Location in Product",
         "rdfs:comment": "Specific physical location of the component or substance inside the parent assembly.",
+        "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
         "schema:domainIncludes": { "@id": "dppk:Component" },
         "rdfs:range": { "@id": "xsd:string" }
     },
@@ -499,6 +503,7 @@
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "Warranty Duration",
         "rdfs:comment": "The duration of the commercial warranty provided with the product.",
+        "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": "xsd:string"
     },
