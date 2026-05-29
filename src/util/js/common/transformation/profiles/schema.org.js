@@ -713,6 +713,8 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
     };
     addInstructionsToSubjectOf('careInstructions');
     addInstructionsToSubjectOf('repairInstructions');
+    addInstructionsToSubjectOf('textileCareInstructions');
+    addInstructionsToSubjectOf('textileRepairInstructions');
 
     // 4. Warranty Duration -> warranty
     const warrantyDuration = getValue(rootNode, 'https://dpp-keystone.org/spec/v1/terms#warrantyDuration');
