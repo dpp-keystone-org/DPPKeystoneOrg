@@ -10,9 +10,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[COMPLETED] Step 0.1: Decide Schema & Context Separation**
     *   **Decision:** We will create distinct `textile-espr.schema.json` and `dpp-textile-espr.context.jsonld` files alongside the existing ones. This allows branch reviewers to compare them side-by-side. Our final step (Step 10) will be to decide whether to overwrite the legacy files entirely.
 
-### [PENDING] Step 1: Component Specs & Substances of Concern
+### [COMPLETED] Step 1: Component Specs & Substances of Concern
 *   Plan: We will heavily leverage `component.schema.json`.
-*   **[PENDING] Step 1.1: Component Specs & Context Mapping**
+*   **[COMPLETED] Step 1.1: Component Specs & Context Mapping**
     *   **[COMPLETED] Step 1.1.a: Schema Injection**
         *   We have mapped the JRC "Component Specifications" requirement, as well as `substancesOfConcern` and `fibreComposition`, to arrays referencing `component.schema.json` in the JSON schema.
     *   **[COMPLETED] Step 1.1.b: Context mapping for `components` (Core Refactor)**
@@ -136,13 +136,13 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[COMPLETED] Step 10.2: Create/Update Textile ESPR Examples**
     *   Create a new comprehensive `textile-espr-dpp-v1.json` (or update an existing textile example) to validate the new JSON validation schema, semantic expansion, and the schema.org output.
 
-### [PENDING] Step 11: Address Feedback
+### [COMPLETED] Step 11: Address Feedback
 *   Plan: Discuss and address feedback items, including potential pushbacks on specific items.
-*   **[PENDING] Step 11.1: Review and Discuss Feedback**
+*   **[COMPLETED] Step 11.1: Review and Discuss Feedback**
     *   Review feedback items one by one.
     *   Discuss whether to implement or push back on each item based on logical reasons.
     *   Process a mix of text and screenshots (assisted by another Gemini session) to understand the feedback.
-*   **[PENDING] Step 11.2: Implement Actionable Schema Updates**
+*   **[COMPLETED] Step 11.2: Implement Actionable Schema Updates**
     *   **[COMPLETED] Task 11.2.1**: Update instruction fields (`safeUseInstructions`, `endOfLifeInstructions`, `repairInstructions`) to allow either a `RelatedResource` object or a plain string.
     *   **[COMPLETED] Task 11.2.2**: Add `preConsumerRecycledContentMass` and `postConsumerRecycledContentMass` mass fields to `textile-espr.schema.json`.
     *   **[COMPLETED] Task 11.2.3**: Add `preConsumerTypeOfWaste` and `postConsumerTypeOfWaste` string fields to `textile-espr.schema.json` (split for granularity).
@@ -165,7 +165,7 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   Review the access rights table and map them to `dppk:visibility` annotations in the ontology.
     *   *Details*: Added visibility annotations to core properties in `RelatedResource.jsonld` (instructions) and `Product.jsonld` (`warrantyDuration`) since they had no preexisting annotations.
 
-### [PENDING] Step 14: Add Governance and Source Annotations
+### [COMPLETED] Step 14: Add Governance and Source Annotations
 *   Plan: Add `dppk:governedBy` and `dcterms:source` annotations to the textile ontology elements to document regulatory references, using the consolidated table in `docs/sensitive/textile-espr-methodologies.md`.
 *   **Convention**:
     *   `dcterms:source`: Use an object with `@id` to link to publicly available legislation (e.g., EUR-Lex URL).
@@ -191,19 +191,22 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 
    
 ### [PENDING] Step 15: Versioning Strategy Execution (Move to v2)
-*   **[PENDING] Step 15.1: Update GitHub Actions on `main`**
-    *   [ ] Modify workflow files to recognize the `legacy/v*` branch naming convention.
-    *   [ ] For `legacy/v*` branches, ensure the workflow pushes **only** the contents of the `dist/spec` directory to `gh-pages` (not the full `dist` folder), keeping existing files intact.
-*   **[PENDING] Step 15.2: Cherry-pick Workflow Changes**
-    *   [ ] Cherry-pick the updated workflow files from `main` into the active `textile` development branch.
-*   **[PENDING] Step 15.3: Create and Push Legacy `legacy/v1` Branch**
-    *   [ ] Create a new branch named `legacy/v1` from the current state of `main` (which contains the legacy 1.0 definitions).
-    *   [ ] Push the `legacy/v1` branch to GitHub to trigger the deployment of legacy resources to `spec/.../v1`.
-*   **[PENDING] Step 15.4: Refactor Textile Branch to `v2`**
-    *   [ ] On the `textile` development branch, move files from `v1` directories to `v2` (e.g., `src/ontology/v1` -> `src/ontology/v2`). This will naturally cause `npm build` to output to `dist/spec/.../v2`.
+*   **[COMPLETED] Step 15.1: Update GitHub Actions on `main`**
+    *   [x] Modify workflow files to recognize the `legacy/v*` branch naming convention.
+    *   [x] For `legacy/v*` branches, ensure the workflow pushes **only** the contents of the `dist/spec` directory to `gh-pages` (not the full `dist` folder), keeping existing files intact.
+*   **[COMPLETED] Step 15.2: Cherry-pick Workflow Changes**
+    *   [x] Cherry-pick the updated workflow files from `main` into the active `textile` development branch.
+*   **[COMPLETED] Step 15.3: Create and Push Legacy `legacy/v1` Branch**
+    *   [x] Create a new branch named `legacy/v1` from the current state of `main` (which contains the legacy 1.0 definitions).
+    *   [x] Push the `legacy/v1` branch to GitHub to trigger the deployment of legacy resources to `spec/.../v1`.
+*   **[PENDING] Step 15.4: Fix Broken Tests and Overwrite in Place**
+    *   [ ] Fix any broken tests resulting from the annotation work.
+    *   [ ] Overwrite the old textile directories in place (in `v1` structure) with the new ESPR files and ensure the build is OK.
+*   **[PENDING] Step 15.5: Refactor Textile Branch to `v2`**
+    *   [ ] Move files from `v1` directories to `v2` (e.g., `src/ontology/v1` -> `src/ontology/v2`). This will naturally cause `npm build` to output to `dist/spec/.../v2`.
     *   [ ] Update all URIs, context mappings, and schema references to use `/v2/` paths.
     *   [ ] Rearrange textile files as needed for the clean ESPR profile.
-*   **[PENDING] Step 15.5: Submit Pull Request**
+*   **[PENDING] Step 15.6: Submit Pull Request**
     *   [ ] Open a pull request from the refactored `textile` branch to `main`.
 
 ### [PENDING] Step 16: Translate Ontology Labels and Comments
