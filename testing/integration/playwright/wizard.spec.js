@@ -84,7 +84,7 @@ test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
   expect(box.width).toBeGreaterThan(800);
 });
 
-const sectors = ['battery', 'construction', 'electronics', 'iron-steel', 'textile-espr'];
+const sectors = ['battery', 'construction', 'electronics', 'iron-steel', 'textile'];
 
 for (const sector of sectors) {
   test(`loads ${sector} sector form`, async ({ page }) => {
@@ -225,7 +225,7 @@ for (const sector of sectors) {
         await expect(page.locator('input[name="heatNumber"]')).toBeVisible();
         await expect(page.locator('input[name="productNumber"]')).toBeVisible();
         break;
-      case 'textile-espr':
+      case 'textile':
         // For array fields, the form builder creates an "Add" button
         await expect(page.locator('button[data-array-name="fibreComposition"]')).toBeVisible();
         
@@ -338,7 +338,7 @@ test('should correctly format complex sector button names on toggle', async ({ p
   await page.goto('/wizard/index.html');
 
   const ironSteelBtn = page.locator('button[data-sector="iron-steel"]');
-  const textileBtn = page.locator('button[data-sector="textile-espr"]');
+  const textileBtn = page.locator('button[data-sector="textile"]');
 
   // Assert initial state
   await expect(ironSteelBtn).toHaveText('Add Iron or Steel');
@@ -362,7 +362,7 @@ test('should correctly format complex sector button names on toggle', async ({ p
 test('should not duplicate error messages when array items are removed and re-indexed', async ({ page }) => {
   await page.goto('/wizard/index.html');
   
-  const addSectorBtn = page.locator('button[data-sector="textile-espr"]');
+  const addSectorBtn = page.locator('button[data-sector="textile"]');
   await addSectorBtn.click();
   
   // Add two components

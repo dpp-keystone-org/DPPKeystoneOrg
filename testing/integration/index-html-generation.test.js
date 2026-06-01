@@ -43,7 +43,7 @@ describe('index.html generation', () => {
     expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/index.html">Product</a>');
     // It should also contain a nested link to a class within that module.
     expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/Product.html">Product or Material</a>');
-    expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v1.json">Sock Dpp</a>');
+    expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v2.json">Sock Dpp</a>');
     
     // Utilities are no longer listed directly in index.html, so we don't check for them here.
     // They are checked in the dedicated utility index test below.

@@ -10,7 +10,7 @@
         "dcterms": "http://purl.org/dc/terms/",
         "@base": "https://dpp-keystone.org/spec/v1/terms"
     },
-    "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/TextileEspr",
+    "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile",
     "@type": "owl:Ontology",
     "dcterms:title": { "@language": "en", "@value": "DPP Sector Ontology - Textile ESPR Compliant" },
     "dcterms:description": { "@language": "en", "@value": "Defines sector-specific concepts compliant with the upcoming ESPR Delegated Act for Textiles." },

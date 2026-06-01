@@ -52,9 +52,9 @@ export async function generateFileList(dirPath, baseHref, options = {}, rootPath
             .replace(/-/g, ' ')
             .replace(/\.context$/, ' Context')
             .replace(/\b\w/g, l => l.toUpperCase());
-          if (options.removeV1) {
-            linkText = linkText.replace(/ V1$/, '');
-          }
+          
+          // Automatically remove trailing version strings (e.g., " V1", " V2")
+          linkText = linkText.replace(/ V\d+$/, '');
         }
 
         if (options.isOntology) {
@@ -221,7 +221,7 @@ export async function updateIndexHtml({
     // Generate and inject LATEST contexts list (non-recursive)
     const latestContextsPath = path.join(DIST_DIR, 'spec', 'contexts');
     // We read from dist, which is where the shadow files are. We link to the raw files.
-    const latestContextsList = await generateFileList(latestContextsPath, 'spec/contexts/', { recursive: false, removeV1: true });
+    const latestContextsList = await generateFileList(latestContextsPath, 'spec/contexts/', { recursive: false });
     indexContent = indexContent.replace(
       /<!-- LATEST_CONTEXTS_LIST_START -->[\s\S]*<!-- LATEST_CONTEXTS_LIST_END -->/,
       '<!-- LATEST_CONTEXTS_LIST_START -->\n' + latestContextsList + '\n                            <!-- LATEST_CONTEXTS_LIST_END -->'
@@ -270,7 +270,7 @@ export async function updateIndexHtml({
 
     // Generate and inject examples list (non-recursive)
     const examplesPath = path.join(srcDir, 'examples');
-    const examplesList = await generateFileList(examplesPath, 'spec/examples/', { recursive: false, removeV1: true });
+    const examplesList = await generateFileList(examplesPath, 'spec/examples/', { recursive: false });
     indexContent = indexContent.replace(
       /<!-- EXAMPLES_LIST_START -->[\s\S]*<!-- EXAMPLES_LIST_END -->/,
       '<!-- EXAMPLES_LIST_START -->\n' + examplesList + '\n                    <!-- EXAMPLES_LIST_END -->'

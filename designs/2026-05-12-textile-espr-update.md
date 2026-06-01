@@ -200,14 +200,17 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   [x] Create a new branch named `legacy/v1` from the current state of `main` (which contains the legacy 1.0 definitions).
     *   [x] Push the `legacy/v1` branch to GitHub to trigger the deployment of legacy resources to `spec/.../v1`.
 *   **[PENDING] Step 15.4: Fix Broken Tests and Overwrite in Place**
-    *   [ ] Fix any broken tests resulting from the annotation work.
-    *   [ ] Overwrite the old textile directories in place (in `v1` structure) with the new ESPR files and ensure the build is OK.
+    *   [x] Fix any broken tests resulting from the annotation work.
+    *   [x] Overwrite the old textile directories in place (in `v1` structure) with the new ESPR files and ensure the build is OK.
 *   **[PENDING] Step 15.5: Refactor Textile Branch to `v2`**
     *   [ ] Move files from `v1` directories to `v2` (e.g., `src/ontology/v1` -> `src/ontology/v2`). This will naturally cause `npm build` to output to `dist/spec/.../v2`.
     *   [ ] Update all URIs, context mappings, and schema references to use `/v2/` paths.
     *   [ ] Rearrange textile files as needed for the clean ESPR profile.
 *   **[PENDING] Step 15.6: Submit Pull Request**
     *   [ ] Open a pull request from the refactored `textile` branch to `main`.
+*   **[PENDING] Step 15.7: Implement latest version strategy**
+    *   [ ] Update `scripts/build-and-clean.mjs` to copy the files from the latest version directory (e.g., `v2`) to a `latest` directory in the build output without modifying the file content.
+    *   [ ] Plan for automatic testing of the "latest" fileset in integration tests (details to be discussed).
 
 ### [PENDING] Step 16: Translate Ontology Labels and Comments
 *   Plan: Translate the labels and comments in the textile ontology to support multi-lingual requirements when all other edits are done.

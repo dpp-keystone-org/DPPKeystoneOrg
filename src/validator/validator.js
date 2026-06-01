@@ -16,8 +16,7 @@ const SECTOR_MAP = {
     'draft_construction_specification_id': 'sector/construction.schema.json',
     'draft_electronics_specification_id': 'sector/electronics.schema.json',
     'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'draft_textile_specification_id': 'sector/textile.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile-espr.schema.json'
+    'draft_textile_espr_specification_id': 'sector/textile.schema.json'
 };
 
 // Common schemas that should always be loaded for $ref resolution

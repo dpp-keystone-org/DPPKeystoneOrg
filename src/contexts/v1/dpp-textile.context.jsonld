@@ -46,7 +46,10 @@
                 "@container": "@set",
                 "@context": {
                     "name": "dppk:componentName",
-                    "percentage": "dppk:componentPercentage",
+                    "percentage": {
+                        "@id": "dppk:componentPercentage",
+                        "@type": "xsd:double"
+                    },
                     "uniqueProductIdentifier": "dppk:componentIdentifier",
                     "casNumber": "dppk:componentCasNumber",
                     "ecNumber": "dppk:componentEcNumber",
@@ -59,7 +62,10 @@
                 "@container": "@set",
                 "@context": {
                     "name": "dppk:componentName",
-                    "percentage": "dppk:componentPercentage",
+                    "percentage": {
+                        "@id": "dppk:componentPercentage",
+                        "@type": "xsd:double"
+                    },
                     "uniqueProductIdentifier": "dppk:componentIdentifier",
                     "casNumber": "dppk:componentCasNumber",
                     "ecNumber": "dppk:componentEcNumber",
