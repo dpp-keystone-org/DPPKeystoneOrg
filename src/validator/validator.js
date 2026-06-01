@@ -10,7 +10,7 @@ import { validateContextAwarePayload } from '../util/js/common/validation/contex
 import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
 
 // Configuration: Map Spec IDs to Schema filenames
-// This assumes the schemas are available at ../spec/validation/v1/json-schema/
+// This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
 // NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
 const SECTOR_MAP = {
     'draft_battery_specification_id': 'sector/battery.schema.json',
@@ -36,7 +36,7 @@ const COMMON_SCHEMAS = [
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
-const SCHEMA_BASE_URL = '../spec/validation/v1/json-schema/';
+const SCHEMA_BASE_URL = `../spec/validation/${KEYSTONE_VERSION}/json-schema/`;
 
 // State to hold loaded schemas
 const schemaContext = {

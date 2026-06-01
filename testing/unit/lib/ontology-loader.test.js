@@ -4,6 +4,7 @@
 
 import { jest } from '@jest/globals';
 import { loadOntology } from '../../../dist/lib/ontology-loader.js';
+import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -50,7 +51,7 @@ describe('DPP Wizard - Ontology Loader', () => {
         const ontologyMap = await loadOntology('test');
 
         // Verify fetch was called correctly
-        expect(fetch).toHaveBeenCalledWith('../spec/ontology/v1/sectors/Test.jsonld');
+        expect(fetch).toHaveBeenCalledWith(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Test.jsonld`);
 
         // Verify the returned map
         expect(ontologyMap).toBeInstanceOf(Map);
@@ -85,7 +86,7 @@ describe('DPP Wizard - Ontology Loader', () => {
         const ontologyMap = await loadOntology('nonexistent');
 
         // Verify fetch was called
-        expect(fetch).toHaveBeenCalledWith('../spec/ontology/v1/sectors/Nonexistent.jsonld');
+        expect(fetch).toHaveBeenCalledWith(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Nonexistent.jsonld`);
 
         // Verify it returns null
         expect(ontologyMap).toBeNull();
@@ -192,7 +193,7 @@ describe('DPP Wizard - Ontology Loader', () => {
 
     it('should recursively load imported ontologies and merge their terms', async () => {
         const importedOntology = {
-            "@id": "https://dpp-keystone.org/ontology/v1/core/Imported.jsonld",
+            "@id": `https://dpp-keystone.org/ontology/${KEYSTONE_VERSION}/core/Imported.jsonld`,
             "@graph": [{
                 "@id": "dppk:importedProp",
                 "rdfs:label": "Imported Prop Label"
@@ -200,8 +201,8 @@ describe('DPP Wizard - Ontology Loader', () => {
         };
 
         const mainOntology = {
-            "@id": "https://dpp-keystone.org/ontology/v1/sectors/Main.jsonld",
-            "owl:imports": ["https://dpp-keystone.org/ontology/v1/core/Imported.jsonld"],
+            "@id": `https://dpp-keystone.org/ontology/${KEYSTONE_VERSION}/sectors/Main.jsonld`,
+            "owl:imports": [`https://dpp-keystone.org/ontology/${KEYSTONE_VERSION}/core/Imported.jsonld`],
             "@graph": [{
                 "@id": "dppk:mainProp",
                 "rdfs:label": "Main Prop Label"
@@ -228,8 +229,8 @@ describe('DPP Wizard - Ontology Loader', () => {
         const ontologyMap = await loadOntology('main');
 
         // Assert that fetch was called for both ontologies
-        expect(fetch).toHaveBeenCalledWith('../spec/ontology/v1/sectors/Main.jsonld');
-        expect(fetch).toHaveBeenCalledWith('https://dpp-keystone.org/ontology/v1/core/Imported.jsonld');
+        expect(fetch).toHaveBeenCalledWith(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Main.jsonld`);
+        expect(fetch).toHaveBeenCalledWith(`https://dpp-keystone.org/ontology/${KEYSTONE_VERSION}/core/Imported.jsonld`);
 
         // Assert that the map contains terms from both files
         expect(ontologyMap.size).toBe(2);
@@ -291,7 +292,7 @@ describe('DPP Wizard - Ontology Loader', () => {
 
     test('should merge properties for the same term from different files', async () => {
         const mockCoreOntology = {
-            'owl:imports': ['../spec/ontology/v1/sectors/mock-sector.jsonld'],
+            'owl:imports': [`../spec/ontology/${KEYSTONE_VERSION}/sectors/mock-sector.jsonld`],
             '@graph': [
                 { '@id': 'dppk:sharedProperty', 'rdfs:label': [{ '@language': 'en', '@value': 'Shared Label' }] }
             ]

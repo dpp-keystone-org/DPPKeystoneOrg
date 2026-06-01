@@ -1,5 +1,6 @@
 import { generateMermaidDiagram } from '../../scripts/generate-spec-docs.mjs';
 import { jest } from '@jest/globals';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 describe('Mermaid Diagram Generator', () => {
     const mockMetadata = [
@@ -19,8 +20,8 @@ describe('Mermaid Diagram Generator', () => {
         }
     ];
 
-    const currentHtmlPath = '/abs/dist/ontology/v1/core/Main.html';
-    const ontologyDir = '/abs/dist/ontology/v1';
+    const currentHtmlPath = `/abs/dist/ontology/${KEYSTONE_VERSION}/core/Main.html`;
+    const ontologyDir = `/abs/dist/ontology/${KEYSTONE_VERSION}`;
 
     it('should generate valid mermaid syntax with click events', () => {
         const mockClass = {
@@ -50,8 +51,8 @@ describe('Mermaid Diagram Generator', () => {
         // No, generateMermaidDiagram calls resolveClassUrl which is NOT exported/mocked easily without being rewritten.
         // But since it's in the same module, it uses the internal one. 
         // We need to match the logic: 
-        // target: /abs/dist/ontology/v1/core/Super/SuperClass.html
-        // from: /abs/dist/ontology/v1/core/Main.html
+        // target: /abs/dist/ontology/${KEYSTONE_VERSION}/core/Super/SuperClass.html
+        // from: /abs/dist/ontology/${KEYSTONE_VERSION}/core/Main.html
         // relative: ./Super/SuperClass.html (approx) 
         
         expect(diagram).toMatch(/click SuperClass href ".+" "dppk:SuperClass"/);

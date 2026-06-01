@@ -13,7 +13,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Organization.jsonld",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Organization and Roles Definitions (v1)",
+  "dcterms:title": "DPP Core Ontology - Organization and Roles Definitions ({{VERSION}})",
   "dcterms:description": "Defines concepts related to organizations, roles (Economic Operator, Manufacturer, Facility), identifiers, and contact information within the DPP ecosystem.",
   "owl:versionInfo": "1.0.0",
   // Import the Header ontology as it defines the DPP class used in the domain of properties here.

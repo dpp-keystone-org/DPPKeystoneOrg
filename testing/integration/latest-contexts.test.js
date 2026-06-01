@@ -1,10 +1,11 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 const DIST_DIR = path.resolve(process.cwd(), '..', 'dist');
 
 describe('Latest Contexts Generation', () => {
-    const versionedContextsPath = path.join(DIST_DIR, 'spec', 'contexts', 'v1');
+    const versionedContextsPath = path.join(DIST_DIR, 'spec', 'contexts', KEYSTONE_VERSION);
     const latestContextsPath = path.join(DIST_DIR, 'spec', 'contexts');
 
     test('should create shadow copies of context files in the top-level contexts directory', async () => {

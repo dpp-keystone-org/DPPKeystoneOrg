@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 import { jest } from '@jest/globals';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -370,7 +371,7 @@ describe('HTML Generator', () => {
         // Verify transformDpp called with correct arguments
         expect(transformDppMock).toHaveBeenCalledWith(mockDpp, expect.objectContaining({
             profile: 'schema.org',
-            ontologyPaths: expect.arrayContaining([expect.stringMatching(/ontology\/v1\/dpp-ontology\.jsonld/)]),
+            ontologyPaths: expect.arrayContaining([expect.stringMatching(new RegExp(`ontology/${KEYSTONE_VERSION}/dpp-ontology\\.jsonld`))]),
             documentLoader: expect.any(Function)
         }));
 

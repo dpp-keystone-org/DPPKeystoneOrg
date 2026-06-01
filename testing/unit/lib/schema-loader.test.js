@@ -4,6 +4,7 @@
 
 import { jest } from '@jest/globals';
 import { loadSchema, clearSchemaCache, flattenSchema } from '../../../dist/lib/schema-loader.js';
+import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -29,20 +30,20 @@ describe('DPP Wizard - Schema Loader', () => {
         });
 
         const schema = await loadSchema('simple', 'sector');
-        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/sector/simple.schema.json');
+        expect(fetch).toHaveBeenCalledWith(`../spec/validation/${KEYSTONE_VERSION}/json-schema/sector/simple.schema.json`);
         expect(schema).toEqual(mockSchema);
     });
 
     it('should load a header schema', async () => {
         fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
         await loadSchema('dpp', 'header');
-        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/dpp.schema.json');
+        expect(fetch).toHaveBeenCalledWith(`../spec/validation/${KEYSTONE_VERSION}/json-schema/dpp.schema.json`);
     });
 
     it('should load a shared schema', async () => {
         fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
         await loadSchema('organization', 'shared');
-        expect(fetch).toHaveBeenCalledWith('../spec/validation/v1/json-schema/shared/organization.schema.json');
+        expect(fetch).toHaveBeenCalledWith(`../spec/validation/${KEYSTONE_VERSION}/json-schema/shared/organization.schema.json`);
     });
 
     it('should throw an error for an unknown schema type', async () => {

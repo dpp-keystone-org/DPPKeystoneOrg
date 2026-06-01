@@ -4,6 +4,7 @@
 
 import { buildForm, createVoluntaryFieldRow } from '../../dist/wizard/form-builder.js';
 import { generateDpp } from '../../dist/wizard/dpp-generator.js';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 // Since we are using the 'jsdom' environment via the docblock,
 // 'document' is available globally.
@@ -1648,14 +1649,14 @@ describe('DPP Wizard - DPP Generator', () => {
 
         // 4. Assert the output
         expect(dpp).toEqual({
-            '@context': 'https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld',
+            '@context': `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`,
             productName: 'Super Drill',
             itemsInStock: 123,
             isHeavy: true,
             isLight: false,
             customColor: 'blue',
             customMaterial: 'titanium',
-            contentSpecificationIds: ['construction-product-dpp-v1'],
+            contentSpecificationIds: [`construction-product-dpp-${KEYSTONE_VERSION}`],
         });
     });
 

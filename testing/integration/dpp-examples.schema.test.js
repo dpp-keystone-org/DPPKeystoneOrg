@@ -1,11 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import { PROJECT_ROOT } from '../scripts/shacl-helpers.mjs';
 import { validateDpp } from '../../src/util/js/common/validation/schema-validator.js';
 
 // --- Configuration ---
 
-const SCHEMA_DIR = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'json-schema');
+const SCHEMA_DIR = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'json-schema');
 const EXAMPLES_DIR = path.join(PROJECT_ROOT, 'dist', 'spec', 'examples');
 
 // --- Test Cases ---

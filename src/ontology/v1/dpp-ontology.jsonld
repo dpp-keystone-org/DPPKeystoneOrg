@@ -11,7 +11,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/dpp-ontology.jsonld",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Harmonizing Data Dictionary - Complete Ontology (v1)",
+  "dcterms:title": "DPP Harmonizing Data Dictionary - Complete Ontology ({{VERSION}})",
   "dcterms:description": "The main entry point for the DPP Harmonizing Data Dictionary (Keystone). This file imports all core modules and sector-specific definitions for Version 1.",
   "owl:versionInfo": "1.0.0",
 

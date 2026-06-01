@@ -1,4 +1,5 @@
 import { generateDPPsFromCsv, findBestMatch, generateAutoMapping, findUsedIndices, generateIndexedSuggestions } from '../../dist/lib/csv-adapter-logic.js';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 describe('CSV Adapter Logic', () => {
 
@@ -356,8 +357,8 @@ describe('CSV Adapter Logic', () => {
         expect(result).toHaveLength(1);
         expect(result[0]).toEqual({
             "@context": [
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld"
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`
             ],
             tradeName: "Test Battery",
             serialNumber: 123
@@ -372,9 +373,9 @@ describe('CSV Adapter Logic', () => {
         const result = generateDPPsFromCsv(csvData, mapping, sectors);
 
         expect(result[0]['@context']).toEqual([
-            "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-            "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld",
-            "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld"
+            `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+            `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`,
+            `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-electronics.context.jsonld`
         ]);
     });
 

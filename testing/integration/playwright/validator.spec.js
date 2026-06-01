@@ -1,5 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 
 test.describe('DPP Validator', () => {
   test.beforeEach(async ({ page }) => {
@@ -230,7 +231,7 @@ test.describe('DPP Validator', () => {
   test('Preview HTML With Schema.org generates HTML with JSON-LD', async ({ page, context }) => {
     // Load a simple example with context so expansion works
     const input = {
-      "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+      "@context": `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
       "digitalProductPassportId": "123",
       "productName": "Preview With Schema"
     };
@@ -265,7 +266,7 @@ test.describe('DPP Validator', () => {
   test('Preview HTML Without Schema generates HTML without JSON-LD', async ({ page, context }) => {
     // Load a simple example
     await page.locator('#json-input').fill(JSON.stringify({
-      "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+      "@context": `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
       "digitalProductPassportId": "123",
       "productName": "Preview No Schema"
     }));
@@ -294,7 +295,7 @@ test.describe('DPP Validator', () => {
   test('Preview Schema.org generates JSON-LD directly', async ({ page, context }) => {
     // Load a simple example with context
     const input = {
-      "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+      "@context": `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
       "digitalProductPassportId": "123",
       "productName": "Schema Only"
     };

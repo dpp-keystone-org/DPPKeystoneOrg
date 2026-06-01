@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 const PROJECT_ROOT = path.resolve(process.cwd(), '..'); // We are in the testing directory
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
@@ -38,11 +39,11 @@ describe('index.html generation', () => {
     expect(indexContent).toContain('<a href="util/">📦 Developer SDKs</a>');
 
     // Also check for a specific file to be reasonably sure the content is correct
-    expect(indexContent).toContain('<a href="spec/contexts/v1/dpp-core.context/index.html">Dpp Core Context</a>');
+    expect(indexContent).toContain(`<a href="spec/contexts/${KEYSTONE_VERSION}/dpp-core.context/index.html">Dpp Core Context</a>`);
     // The ontology link should now point to the generated module index page.
-    expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/index.html">Product</a>');
+    expect(indexContent).toContain(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/index.html">Product</a>`);
     // It should also contain a nested link to a class within that module.
-    expect(indexContent).toContain('<a href="spec/ontology/v1/core/Product/Product.html">Product or Material</a>');
+    expect(indexContent).toContain(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/Product.html">Product or Material</a>`);
     expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v2.json">Sock Dpp</a>');
     
     // Utilities are no longer listed directly in index.html, so we don't check for them here.

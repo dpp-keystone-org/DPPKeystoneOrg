@@ -13,7 +13,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Electronics",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Sector Ontology - Electronics and Electrical Equipment Definitions (v1)",
+  "dcterms:title": "DPP Sector Ontology - Electronics and Electrical Equipment Definitions ({{VERSION}})",
   "dcterms:description": "Defines concepts for Electronics and Electrical Equipment (EEE), aligning with regulations such as RoHS, WEEE, and Eco-Design requirements.",
   "owl:versionInfo": "1.0.0",
   // Import Core ontologies.

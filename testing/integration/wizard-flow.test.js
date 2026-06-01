@@ -73,7 +73,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
             "required": ["digitalProductPassportId", "uniqueProductIdentifier", "granularity"]
         };
         const mockConstructionSchema = {
-            "$id": "https://dpp.keystone.org/validation/v1/json-schema/construction.schema.json",
+            "$id": `https://dpp.keystone.org/validation/${KEYSTONE_VERSION}/json-schema/construction.schema.json`,
             "title": "Digital Product Passport for Construction Products",
             "type": "object",
             "properties": { "productName": { "title": "Product Name", "type": "string" } }
@@ -178,7 +178,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(finalDpp.digitalProductPassportId).toBe('urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4');
         expect(finalDpp.productName).toBe('Test Construction Product');
         expect(finalDpp.granularity).toBe('Batch');
-        expect(finalDpp.contentSpecificationIds).toEqual(['construction-product-dpp-v1']);
+        expect(finalDpp.contentSpecificationIds).toEqual([`construction-product-dpp-${KEYSTONE_VERSION}`]);
         expect(finalDpp['@context']).toBe(`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`);
     });
 

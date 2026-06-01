@@ -21,7 +21,7 @@ const SUPPORTED_CUSTOM_TYPES = [
     { label: 'Product Characteristic', schemaName: 'product-characteristic' }, // Maps to product-characteristic.schema.json (virtual or real)
     { label: 'Related Resource', schemaName: 'related-resource' }
 ];
-const STORAGE_KEY = 'dpp_wizard_state_v1';
+const STORAGE_KEY = `dpp_wizard_state_${KEYSTONE_VERSION}`;
 
 // --- DOM Element References ---
 let coreFormContainer, sectorsFormContainer, voluntaryModulesContainer, addVoluntaryFieldBtn,

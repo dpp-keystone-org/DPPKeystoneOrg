@@ -2,7 +2,7 @@
 // This example represents a Digital Product Passport for a pack of socks,
 // adhering strictly to the new Textile ESPR vocabulary.
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-textile.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   // --- Normative DPP Header ---
   "digitalProductPassportId": "urn:uuid:123e4567-e89b-12d3-a456-426614174001",

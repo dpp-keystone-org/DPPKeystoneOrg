@@ -7,6 +7,7 @@ import {
 import { join } from 'path';
 import { promises as fs } from 'fs';
 import { setupTestEnvironment } from '../scripts/test-helpers.mjs';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 describe('generate-spec-docs.mjs', () => {
 
@@ -27,7 +28,7 @@ describe('generate-spec-docs.mjs', () => {
 
     describe('Unit Tests', () => {
         it('should parse ontology metadata correctly', async () => {
-            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-core.jsonld'), 'utf-8');
+            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core.jsonld'), 'utf-8');
             const { title, description, classes, properties } = parseOntologyMetadata(content);
 
             expect(title).toBe('Mock Core Ontology');
@@ -82,9 +83,9 @@ describe('generate-spec-docs.mjs', () => {
         });
 
         it('should parse context metadata correctly', async () => {
-            const content = await fs.readFile(join(FIXTURES_DIR, 'contexts', 'v1', 'mock-core.context.jsonld'), 'utf-8');
+            const content = await fs.readFile(join(FIXTURES_DIR, 'contexts', KEYSTONE_VERSION, 'mock-core.context.jsonld'), 'utf-8');
             const mockTermDictionary = {
-                "https://dpp-keystone.org/spec/v1/terms#mockProperty": {
+                [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#mockProperty`]: {
                     description: "A test property for the Mock Product.",
                     module: "core",
                     fileName: "mock-core.jsonld"
@@ -93,15 +94,15 @@ describe('generate-spec-docs.mjs', () => {
             const { imports, localTerms } = parseContextMetadata(content, mockTermDictionary);
 
             expect(imports).toHaveLength(1);
-            expect(imports[0]).toBe('https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld');
+            expect(imports[0]).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/contexts/dpp-core.context.jsonld`);
             expect(localTerms).toHaveLength(2);
             expect(localTerms[1].term).toBe('mockProp');
-            expect(localTerms[1].uri).toBe('https://dpp-keystone.org/spec/v1/terms#mockProperty');
+            expect(localTerms[1].uri).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#mockProperty`);
             expect(localTerms[1].description).toBe('A test property for the Mock Product.');
         });
 
         it('should parse ontology metadata from the top level', async () => {
-            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-core-toplevel.jsonld'), 'utf-8');
+            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core-toplevel.jsonld'), 'utf-8');
             const { title, description } = parseOntologyMetadata(content);
 
             expect(title).toBe('Mock Toplevel Title');
@@ -109,26 +110,26 @@ describe('generate-spec-docs.mjs', () => {
         });
 
         it('should build a term dictionary with type and domain', async () => {
-            const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', 'v1');
+            const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION);
             const termDict = await buildTermDictionary(sourceOntologyDir);
             
-            const mockProperty = termDict['https://dpp-keystone.org/spec/v1/terms#mockProperty'];
+            const mockProperty = termDict[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#mockProperty`];
             expect(mockProperty).toBeDefined();
             expect(mockProperty.type).toContain('owl:DatatypeProperty');
             expect(mockProperty.domain['@id']).toBe('dppk:MockProduct');
         });
 
         it('should handle complex rdfs:comment values in term dictionary', async () => {
-            const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', 'v1');
+            const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION);
             const termDict = await buildTermDictionary(sourceOntologyDir);
 
-            const complexTerm = termDict['https://dpp-keystone.org/spec/v1/terms#ComplexTerm'];
+            const complexTerm = termDict[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#ComplexTerm`];
             expect(complexTerm).toBeDefined();
             expect(complexTerm.description).toBe('This is a complex comment.');
         });
 
         it('should handle complex rdfs:comment values in parseOntologyMetadata', async () => {
-            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-complex-comment.jsonld'), 'utf-8');
+            const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-complex-comment.jsonld'), 'utf-8');
             const { properties } = parseOntologyMetadata(content);
 
             expect(properties).toHaveLength(1);
@@ -146,20 +147,20 @@ describe('generate-spec-docs.mjs', () => {
             });
 
             // Check if the main directory index for 'core' was created
-            const ontologyDocPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'index.html');
+            const ontologyDocPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'index.html');
             await expect(fs.access(ontologyDocPath)).resolves.not.toThrow();
 
             // Check that the directory index now links to the module index
             const ontologyHtml = await fs.readFile(ontologyDocPath, 'utf-8');
-            expect(ontologyHtml).toContain('<h1>Ontology Modules in ontology/v1/core</h1>');
+            expect(ontologyHtml).toContain(`<h1>Ontology Modules in ontology/${KEYSTONE_VERSION}/core</h1>`);
             expect(ontologyHtml).toContain('<li><a href="./mock-core/index.html">Mock Core Ontology</a></li>');
 
             // Check if the context doc was created (this part of the generator hasn't changed)
-            const contextDocPath = join(TEMP_DIST_DIR, 'contexts', 'v1', 'index.html');
+            const contextDocPath = join(TEMP_DIST_DIR, 'contexts', KEYSTONE_VERSION, 'index.html');
             await expect(fs.access(contextDocPath)).resolves.not.toThrow();
             
             // Check if global index was created and contains the correct link
-            const globalIndexDocPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'index.html');
+            const globalIndexDocPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'index.html');
             await expect(fs.access(globalIndexDocPath)).resolves.not.toThrow();
             const globalIndexHtml = await fs.readFile(globalIndexDocPath, 'utf-8');
             expect(globalIndexHtml).toContain('<h3>All Classes & Concepts</h3>');
@@ -173,7 +174,7 @@ describe('generate-spec-docs.mjs', () => {
                 distDir: TEMP_DIST_DIR
             });
 
-            const moduleDirPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'mock-core');
+            const moduleDirPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core');
             
             // Check that the module's own index was created
             const moduleIndex = join(moduleDirPath, 'index.html');
@@ -218,14 +219,14 @@ describe('generate-spec-docs.mjs', () => {
             // generateSpecDocs reads from 'dist' for generation, and 'src' for term dictionary.
             // We need to ensure files exist in both or are copied.
             
-            const srcOntologyDir = join(TEMP_DIST_DIR, '..', '..', 'src', 'ontology', 'v1', 'core');
-            const distOntologyDir = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core');
+            const srcOntologyDir = join(TEMP_DIST_DIR, '..', '..', 'src', 'ontology', KEYSTONE_VERSION, 'core');
+            const distOntologyDir = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'core');
             
             await fs.mkdir(srcOntologyDir, { recursive: true });
             await fs.mkdir(distOntologyDir, { recursive: true });
 
             const mainClassContent = JSON.stringify({
-                "@context": { "dppk": "https://dpp-keystone.org/spec/v1/terms#", "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
+                "@context": { "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
                 "@graph": [{
                     "@id": "dppk:MainClass",
                     "@type": "rdfs:Class",
@@ -234,7 +235,7 @@ describe('generate-spec-docs.mjs', () => {
             });
 
             const subPropContent = JSON.stringify({
-                "@context": { "dppk": "https://dpp-keystone.org/spec/v1/terms#", "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
+                "@context": { "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
                 "@graph": [{
                     "@id": "dppk:subProperty",
                     "@type": "owl:DatatypeProperty",
@@ -251,7 +252,7 @@ describe('generate-spec-docs.mjs', () => {
             await fs.writeFile(join(distOntologyDir, 'mock-sub.jsonld'), subPropContent);
 
             // Ensure contexts directory exists to avoid console warning
-            await fs.mkdir(join(TEMP_DIST_DIR, '..', '..', 'src', 'contexts', 'v1'), { recursive: true });
+            await fs.mkdir(join(TEMP_DIST_DIR, '..', '..', 'src', 'contexts', KEYSTONE_VERSION), { recursive: true });
 
             // Run generation
             await generateSpecDocs({
@@ -260,7 +261,7 @@ describe('generate-spec-docs.mjs', () => {
             });
 
             // Verify
-            const mainClassHtmlPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'mock-main', 'MainClass.html');
+            const mainClassHtmlPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-main', 'MainClass.html');
             await expect(fs.access(mainClassHtmlPath)).resolves.not.toThrow();
             
             const html = await fs.readFile(mainClassHtmlPath, 'utf-8');

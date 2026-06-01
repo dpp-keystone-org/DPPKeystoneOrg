@@ -15,7 +15,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Product and Material Definitions (v1)",
+  "dcterms:title": "DPP Core Ontology - Product and Material Definitions ({{VERSION}})",
   "dcterms:description": "Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.",
   "owl:versionInfo": "1.0.0",
   // Import the Header ontology as it defines the DPP class.

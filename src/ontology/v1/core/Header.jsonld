@@ -13,7 +13,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Header.jsonld",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Header Definitions (v1)",
+  "dcterms:title": "DPP Core Ontology - Header Definitions ({{VERSION}})",
   "dcterms:description": "Defines the normative header fields required for the Digital Product Passport envelope.",
   "owl:versionInfo": "1.0.0",
 

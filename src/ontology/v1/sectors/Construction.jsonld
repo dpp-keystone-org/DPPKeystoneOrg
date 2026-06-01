@@ -14,7 +14,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Construction",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Sector Ontology - Construction and Heavy Industry Definitions (v1)",
+  "dcterms:title": "DPP Sector Ontology - Construction and Heavy Industry Definitions ({{VERSION}})",
   "dcterms:description": "Defines concepts for Construction Products (aligning with CPR) and related heavy industries such as steel and rail.",
   "owl:versionInfo": "1.0.0",
   "owl:imports": [
