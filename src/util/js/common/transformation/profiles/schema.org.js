@@ -599,8 +599,8 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
     const fibres = rootNode['https://dpp-keystone.org/spec/v1/terms#fibreComposition'];
     if (fibres && Array.isArray(fibres)) {
         const materialParts = fibres.map(f => {
-            const type = getValue(f, 'https://dpp-keystone.org/spec/v1/terms#fibreType');
-            const pct = getValue(f, 'https://dpp-keystone.org/spec/v1/terms#fibrePercentage');
+            const type = getValue(f, 'https://dpp-keystone.org/spec/v1/terms#componentName');
+            const pct = getValue(f, 'https://dpp-keystone.org/spec/v1/terms#componentPercentage');
             if (type && pct !== undefined) {
                 return `${pct}% ${type}`;
             }
@@ -621,12 +621,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode) {
 
     // 3. Generic Textile Properties
     const textileProps = [
-        { term: 'animalOriginNonTextile', label: 'Contains Non-Textile Parts of Animal Origin' },
-        { term: 'tearStrength', label: 'Tear Strength' },
-        { term: 'abrasionResistance', label: 'Abrasion Resistance' }, // Simple or object? If object, flattening handles if not root. If root simple:
-        { term: 'dimensionalStability', label: 'Dimensional Stability' },
-        { term: 'colorfastnessToWashing', label: 'Colorfastness to Washing' },
-        { term: 'microplasticRelease', label: 'Microplastic Release' }
+        { term: 'animalOriginNonTextile', label: 'Contains Non-Textile Parts of Animal Origin' }
     ];
 
     textileProps.forEach(prop => {

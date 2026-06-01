@@ -68,8 +68,7 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-dopc.context.jsonld'),
     "https://dpp-keystone.org/spec/contexts/v1/dpp-iron-steel.context.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-iron-steel.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-textile-espr.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-textile-espr.context.jsonld'),
+
 
     // --- Ontology Files ---
     "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld":
@@ -100,8 +99,6 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Electronics.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/sectors/IronSteel.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'IronSteel.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/sectors/TextileEspr.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'TextileEspr.jsonld'),
     "https://dpp-keystone.org/spec/ontology/v1/sectors/EUApparelSizeSystem.jsonld":
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EUApparelSizeSystem.jsonld'),
 

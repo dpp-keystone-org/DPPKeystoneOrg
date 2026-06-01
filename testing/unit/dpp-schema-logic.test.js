@@ -82,8 +82,8 @@ const fullExampleDpp = {
   // Textile Specific
   "fibreComposition": [
       {
-          "fibreType": "Cotton",
-          "fibrePercentage": 100
+          "name": "Cotton",
+          "percentage": 100
       }
   ],
   
@@ -509,13 +509,14 @@ describe('DPP Schema Logic (Unit)', () => {
             "digitalProductPassportId": "urn:uuid:text-test",
             "uniqueProductIdentifier": "urn:gtin:text-test",
             "fibreComposition": [
-                { "fibreType": "Cotton", "fibrePercentage": 80 },
-                { "fibreType": "Polyester", "fibrePercentage": 20 }
+                { "name": "Cotton", "percentage": 80 },
+                { "name": "Polyester", "percentage": 20 }
             ],
             "apparelSize": "L",
             "apparelSizeSystem": "EU",
             "animalOriginNonTextile": false,
-            "tearStrength": "50N"
+            "robustnessScore": 8.5,
+            "dimensionalChange": -2.0
         };
 
         const dictionary = {}; 
@@ -541,10 +542,15 @@ describe('DPP Schema Logic (Unit)', () => {
         expect(animal).toBeDefined();
         expect(animal.value).toBe(false);
 
-        // 4. Tear Strength -> additionalProperty
-        const tear = product.additionalProperty?.find(p => p.name === 'Tear Strength');
-        expect(tear).toBeDefined();
-        expect(tear.value).toBe('50N');
+        // 4. Robustness Score -> additionalProperty
+        const robustness = product.additionalProperty?.find(p => p.name === 'Robustness Score');
+        expect(robustness).toBeDefined();
+        expect(robustness.value).toBe(8.5);
+
+        // 5. Dimensional Change -> additionalProperty
+        const dimChange = product.additionalProperty?.find(p => p.name === 'Dimensional Change');
+        expect(dimChange).toBeDefined();
+        expect(dimChange.value).toBe(-2.0);
     });
 
     // --- Step 9.4: Textile ESPR Parity ---
@@ -552,7 +558,7 @@ describe('DPP Schema Logic (Unit)', () => {
         const textileEsprDpp = {
             "@context": [
                 "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-textile-espr.context.jsonld"
+                "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld"
             ],
             "@type": ["DigitalProductPassport", "TextileProduct"],
             "digitalProductPassportId": "urn:uuid:espr-test",
