@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,27 +15,27 @@ export async function setupTestEnvironment(testDirName) {
 
     const distSpecDir = path.join(TEMP_DIR, 'dist', 'spec');
 
-    const tempOntologyDir = path.join(distSpecDir, 'ontology', 'v1');
-    const tempContextsDir = path.join(distSpecDir, 'contexts', 'v1');
+    const tempOntologyDir = path.join(distSpecDir, 'ontology', KEYSTONE_VERSION);
+    const tempContextsDir = path.join(distSpecDir, 'contexts', KEYSTONE_VERSION);
     await fs.mkdir(path.join(tempOntologyDir, 'core'), { recursive: true });
     await fs.mkdir(path.join(tempOntologyDir, 'sectors'), { recursive: true });
     await fs.mkdir(tempContextsDir, { recursive: true });
 
     // Copy mock files
     await fs.copyFile(
-        path.join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-core.jsonld'),
+        path.join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core.jsonld'),
         path.join(tempOntologyDir, 'core', 'mock-core.jsonld')
     );
     await fs.copyFile(
-        path.join(FIXTURES_DIR, 'contexts', 'v1', 'mock-core.context.jsonld'),
+        path.join(FIXTURES_DIR, 'contexts', KEYSTONE_VERSION, 'mock-core.context.jsonld'),
         path.join(tempContextsDir, 'mock-core.context.jsonld')
     );
     await fs.copyFile(
-        path.join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-core-toplevel.jsonld'),
+        path.join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core-toplevel.jsonld'),
         path.join(tempOntologyDir, 'core', 'mock-core-toplevel.jsonld')
     );
     await fs.copyFile(
-        path.join(FIXTURES_DIR, 'ontology', 'v1', 'core', 'mock-complex-comment.jsonld'),
+        path.join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-complex-comment.jsonld'),
         path.join(tempOntologyDir, 'core', 'mock-complex-comment.jsonld')
     );
 
@@ -48,73 +49,73 @@ export async function setupTestEnvironment(testDirName) {
 
 // This map redirects requests for production URLs to local files in the 'dist' directory.
 export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-core.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-construction.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-electronics.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-battery.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-textile.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-general-product.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-packaging.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-epd.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-dopc.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-iron-steel.context.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1', 'dpp-iron-steel.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-core.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-construction.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-electronics.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-electronics.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-battery.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-textile.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-general-product.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-packaging.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-epd.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-epd.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-dopc.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-dopc.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-iron-steel.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-iron-steel.context.jsonld'),
 
 
     // --- Ontology Files ---
-    "https://dpp-keystone.org/spec/ontology/v1/dpp-ontology.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'dpp-ontology.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'dpp-ontology.jsonld'),
     // Core
-    "https://dpp-keystone.org/spec/ontology/v1/core/Header.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Header.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Organization.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Product.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Compliance.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'RelatedResource.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'EPD.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/core/DoPC.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'DoPC.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Header.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Header.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Organization.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Organization.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Product.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Product.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Compliance.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Compliance.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/RelatedResource.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'RelatedResource.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/EPD.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'EPD.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/DoPC.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'DoPC.jsonld'),
     // Sectors
-    "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Battery.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Textile.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Construction.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/sectors/Electronics.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'Electronics.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/sectors/IronSteel.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'IronSteel.jsonld'),
-    "https://dpp-keystone.org/spec/ontology/v1/sectors/EUApparelSizeSystem.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'sectors', 'EUApparelSizeSystem.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/Battery.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'Battery.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/Textile.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'Textile.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/Construction.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'Construction.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/Electronics.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'Electronics.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/IronSteel.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'IronSteel.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/EUApparelSizeSystem.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'EUApparelSizeSystem.jsonld'),
 
     // --- SHACL Shape Files ---
-    "https://dpp-keystone.org/spec/validation/v1/shacl/core-shapes.shacl.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld'),
-    "https://dpp-keystone.org/spec/validation/v1/shacl/battery-shapes.shacl.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'battery-shapes.shacl.jsonld'),
-    "https://dpp-keystone.org/spec/validation/v1/shacl/construction-shapes.shacl.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'construction-shapes.shacl.jsonld'),
-    "https://dpp-keystone.org/spec/validation/v1/shacl/electronics-shapes.shacl.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'electronics-shapes.shacl.jsonld'),
-    "https://dpp-keystone.org/spec/validation/v1/shacl/textile-shapes.shacl.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'textile-shapes.shacl.jsonld'),
-    "https://dpp-keystone.org/spec/validation/v1/shacl/iron-steel-shapes.shacl.jsonld":
-        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'iron-steel-shapes.shacl.jsonld'),
+    [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/core-shapes.shacl.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'core-shapes.shacl.jsonld'),
+    [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/battery-shapes.shacl.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'battery-shapes.shacl.jsonld'),
+    [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/construction-shapes.shacl.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'construction-shapes.shacl.jsonld'),
+    [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/electronics-shapes.shacl.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'electronics-shapes.shacl.jsonld'),
+    [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/textile-shapes.shacl.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'textile-shapes.shacl.jsonld'),
+    [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/iron-steel-shapes.shacl.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'iron-steel-shapes.shacl.jsonld'),
 };
 
 export async function fillRequiredFields(page, sector) {

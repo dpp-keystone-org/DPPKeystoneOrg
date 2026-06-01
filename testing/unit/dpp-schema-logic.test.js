@@ -1,5 +1,6 @@
 
-import { transform, buildDictionary } from '../../src/util/js/common/transformation/dpp-schema-logic.js';
+import { transform, buildDictionary } from '../../dist/util/js/common/transformation/dpp-schema-logic.js';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import * as jsonld from 'jsonld';
 import fs from 'fs/promises';
 import path from 'path';
@@ -99,7 +100,7 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 1.d: Smoke Test ---
     test('buildDictionary populates metadata from mock ontology', async () => {
         const dictionary = {};
-        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary);
+        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary, KEYSTONE_VERSION);
 
         expect(dictionary['https://dpp-keystone.org/spec/v1/terms#tearStrength']).toBeDefined();
         expect(dictionary['https://dpp-keystone.org/spec/v1/terms#tearStrength'].unit).toBe('N');
@@ -109,7 +110,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         expect(Array.isArray(result)).toBe(true);
@@ -121,7 +123,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         // Expectation: A single Product graph, not disjoint objects
@@ -134,7 +137,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -150,7 +154,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -169,7 +174,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -183,11 +189,12 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps generic generic/DOPC properties using dictionary', async () => {
         const dictionary = {};
         // Pre-load dictionary as the adapter wrapper normally handles this
-        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary);
+        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary, KEYSTONE_VERSION);
 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -220,7 +227,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(coreDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -278,7 +286,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(batteryDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -326,7 +335,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(constructionDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -367,7 +377,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(electronicsDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -409,7 +420,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(generalDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -475,7 +487,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(packagingDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -522,7 +535,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(textileDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -618,11 +632,12 @@ describe('DPP Schema Logic (Unit)', () => {
             throw new Error(`Mock ontology not found: ${path}`);
         };
 
-        await buildDictionary(['http://mock/ontology/product'], customMockLoader, customDocumentLoader, dictionary);
+        await buildDictionary(['http://mock/ontology/product'], customMockLoader, customDocumentLoader, dictionary, KEYSTONE_VERSION);
 
         const result = await transform(textileEsprDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];

@@ -7,6 +7,7 @@ import * as jsonld from 'jsonld'; // Import jsonld for the default loader
 import { loadOntology } from '../lib/ontology-loader.js';
 import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js';
 import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/v1/json-schema/
@@ -325,8 +326,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     // Point to the full ontology file. 
                     // Note: dpp-ontology.jsonld might be an aggregate or imports others.
                     // If imports are used, the documentLoader must handle them.
-                    ontologyPaths: ['../spec/ontology/v1/dpp-ontology.jsonld'],
-                    documentLoader
+                    ontologyPaths: [`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`],
+                    documentLoader,
+                    version: KEYSTONE_VERSION
                 };
 
                 const transformed = await transformDpp(dppData, options);

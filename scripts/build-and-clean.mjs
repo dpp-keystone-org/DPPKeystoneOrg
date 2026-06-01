@@ -4,6 +4,7 @@ import fse from 'fs-extra'; // For copy and ensureDir
 import { parse as jsoncParse, printParseErrorCode } from 'jsonc-parser';
 import { execSync } from 'child_process';
 import { generateSpecDocs } from './generate-spec-docs.mjs';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
 const PROJECT_ROOT = process.cwd();
 const SOURCE_DIR = path.join(PROJECT_ROOT, 'src');
@@ -13,7 +14,8 @@ const jsonFileExtensions = ['.json', '.jsonld'];
 
 async function cleanAndCopyJsonFile(sourcePath, targetPath) {
     try {
-        const content = await fs.readFile(sourcePath, 'utf-8');
+        let content = await fs.readFile(sourcePath, 'utf-8');
+        content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
         let errors = [];
         const cleanedContent = jsoncParse(content, errors, {
             allowTrailingComma: true,
@@ -49,6 +51,10 @@ async function processDirectory(sourceDir, targetDir) {
             await processDirectory(sourcePath, targetPath);
         } else if (jsonFileExtensions.includes(path.extname(entry.name))) {
             await cleanAndCopyJsonFile(sourcePath, targetPath);
+        } else if (entry.name.endsWith('.js') || entry.name.endsWith('.mjs')) {
+            let content = await fs.readFile(sourcePath, 'utf-8');
+            content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+            await fs.writeFile(targetPath, content, 'utf-8');
         } else {
             // Copy other files directly (e.g., .md, .html, .css)
             await fse.copy(sourcePath, targetPath);
@@ -171,6 +177,17 @@ async function addCacheBusting(targetDir) {
 async function build() {
     console.log('Starting build process: Cleaning and copying files...');
     
+    // Verify versioned directories exist
+    const expectedOntologyDir = path.join(SOURCE_DIR, 'ontology', KEYSTONE_VERSION);
+    const expectedContextsDir = path.join(SOURCE_DIR, 'contexts', KEYSTONE_VERSION);
+    
+    if (!await fse.pathExists(expectedOntologyDir)) {
+        throw new Error(`Noisy Failure: Expected ontology directory not found at ${expectedOntologyDir}`);
+    }
+    if (!await fse.pathExists(expectedContextsDir)) {
+        throw new Error(`Noisy Failure: Expected contexts directory not found at ${expectedContextsDir}`);
+    }
+    
     // Run vendor bundling first to ensure dependencies are ready
     console.log('Running vendor bundling...');
     execSync('npm run bundle:vendor', { stdio: 'inherit' });
@@ -183,7 +200,7 @@ async function build() {
 
     // Create version-less "latest" copies of context files
     console.log('Creating "latest" context file shadows...');
-    const latestContextsDir = path.join(specDir, 'contexts', 'v1');
+    const latestContextsDir = path.join(specDir, 'contexts', KEYSTONE_VERSION);
     const shadowContextsDir = path.join(specDir, 'contexts');
     if (await fse.pathExists(latestContextsDir)) {
         await fse.copy(latestContextsDir, shadowContextsDir, { overwrite: true });

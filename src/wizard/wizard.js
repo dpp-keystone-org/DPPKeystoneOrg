@@ -6,6 +6,7 @@ import { generateDpp } from './dpp-generator.js';
 import { generateHTML } from '../lib/html-generator.js';
 import { transformDpp } from '../util/js/client/dpp-schema-adapter.js';
 import * as jsonld from 'jsonld';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
@@ -605,8 +606,9 @@ export async function initializeWizard() {
 
                 const options = {
                     profile: 'schema.org',
-                    ontologyPaths: ['../spec/ontology/v1/dpp-ontology.jsonld'],
-                    documentLoader
+                    ontologyPaths: [`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`],
+                    documentLoader,
+                    version: KEYSTONE_VERSION
                 };
 
                 const transformed = await transformDpp(dppData, options);
