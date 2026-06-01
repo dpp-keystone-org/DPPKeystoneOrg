@@ -1,1 +1,1 @@
-export const KEYSTONE_VERSION = 'v1';
+export const KEYSTONE_VERSION = 'v2';

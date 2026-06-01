@@ -210,6 +210,9 @@ export async function updateIndexHtml({
   try {
     // Read from the template path now
     let indexContent = await fs.readFile(templatePath, 'utf-8');
+    
+    // Replace version placeholders
+    indexContent = indexContent.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
 
     // Generate and inject contexts list (non-recursive)
     const contextsPath = path.join(srcDir, 'contexts', KEYSTONE_VERSION);
