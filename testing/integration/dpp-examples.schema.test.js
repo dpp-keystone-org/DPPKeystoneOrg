@@ -13,7 +13,7 @@ const testCases = [
     'drill-dpp-v1.json',
     'drill-dpp-v1-private.json',
     'battery-dpp-v1.json',
-    'sock-dpp-v1.json',
+    'sock-dpp-v2.json',
     'rail-dpp-v1.json',
     'construction-product-dpp-v1.json',
 ];

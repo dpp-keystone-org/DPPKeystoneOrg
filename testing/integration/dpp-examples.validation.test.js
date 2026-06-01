@@ -100,14 +100,9 @@ describe('DPP SHACL Validation', () => {
             shapeFiles: ['battery-shapes.shacl.jsonld']
         },
         {
-            name: 'Textile DPP (sock-dpp-v1.json)',
-            exampleFile: 'sock-dpp-v1.json',
+            name: 'Textile DPP (sock-dpp-v2.json)',
+            exampleFile: 'sock-dpp-v2.json',
             shapeFiles: ['textile-shapes.shacl.jsonld']
-        },
-        {
-            name: 'Textile ESPR DPP (sock-espr-dpp-v1.json)',
-            exampleFile: 'sock-espr-dpp-v1.json',
-            shapeFiles: []
         },
         {
             name: 'Construction DPP (rail-dpp-v1.json)',

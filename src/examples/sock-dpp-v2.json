@@ -2,11 +2,11 @@
 // This example represents a Digital Product Passport for a pack of socks,
 // adhering strictly to the new Textile ESPR vocabulary.
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-textile-espr.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   // --- Normative DPP Header ---
   "digitalProductPassportId": "urn:uuid:123e4567-e89b-12d3-a456-426614174001",
-  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/sock-espr-dpp-v1.html",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/sock-dpp-v2.html",
   "granularity": "Model",
   "dppSchemaVersion": "ENXXX:v1.0",
   "dppStatus": "Active",
@@ -28,32 +28,31 @@
   "pefcrCategory": "Leggings, stockings, tights and socks",
   "fibreComposition": [
     {
-      "fibreType": "Cotton",
-      "fibrePercentage": 85.0
+      "name": "Cotton",
+      "percentage": 85.0
     },
     {
-      "fibreType": "Polyamide",
-      "fibrePercentage": 13.0
+      "name": "Polyamide",
+      "percentage": 13.0
     },
     {
-      "fibreType": "Elastane",
-      "fibrePercentage": 2.0
+      "name": "Elastane",
+      "percentage": 2.0
     }
   ],
   "color": "Black",
+  "animalOriginNonTextile": false,
   "euApparelSize": {
-      "sizeDesignation": "EU 42-45",
-      "primaryDimension": "Foot length",
-      "primaryDimensionValue": "26.5-28.5 cm"
+    "sizeDesignation": "EU 42-45",
+    "primaryDimension": "Foot length",
+    "primaryDimensionValue": "26.5-28.5 cm"
   },
-  "careInstructions": [
-      {
-          "@type": "RelatedResource",
-          "resourceTitle": "Washing and Care Guide",
-          "url": "https://example.com/care/socks"
-      }
-  ],
-  "recycledContentPercentage": 20.0,
+  "careInstructions": {
+    "@type": "RelatedResource",
+    "resourceTitle": "Washing and Care Guide",
+    "url": "https://example.com/care/socks"
+  },
+  "preConsumerRecycledContentPercentage": 20.0,
   "productionSteps": [
     {
       "step": "Spinning",

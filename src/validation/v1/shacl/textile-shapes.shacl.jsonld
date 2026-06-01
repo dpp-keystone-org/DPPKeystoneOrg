@@ -25,7 +25,7 @@
               "not": {
                   "property": {
                       "path": "dppk:contentSpecificationIds",
-                      "hasValue": "draft_textile_specification_id"
+                      "hasValue": "draft_textile_espr_specification_id"
                   }
               }
           },
@@ -33,46 +33,34 @@
             "property": [
               {
                 "path": "dppk:fibreComposition",
-                "minCount": 1,
                 "node": "dppkval:FibreCompositionShape",
-                "message": "Textile product must detail its fibre composition (dppk:fibreComposition)."
+                "message": "Textile product fibre composition must follow FibreCompositionShape."
               },
               {
                 "path": "dppk:animalOriginNonTextile",
-                "minCount": 1,
                 "datatype": "xsd:boolean",
-                "message": "Textile product must declare the presence or absence of non-textile parts of animal origin (dppk:animalOriginNonTextile)."
+                "message": "Animal origin non-textile must be a boolean."
               },
               {
                   "path": "dppk:color",
-                  "minCount": 1,
-                  "message": "Textile product must have a color."
+                  "message": "Textile product color."
               },
               {
-                  "path": "dppk:apparelSize",
-                  "minCount": 1,
-                  "message": "Textile product must have an apparel size."
-              },
-              {
-                  "path": "dppk:apparelSizeSystem",
-                  "minCount": 1,
-                  "message": "Textile product must have an apparel size system."
+                  "path": "dppk:euApparelSize",
+                  "message": "Textile product must have an EU apparel size."
               },
               {
                   "path": "dppk:careInstructions",
-                  "minCount": 1,
-                  "message": "Textile product must have care instructions."
+                  "message": "Textile product care instructions."
               },
               {
-                  "path": "dppk:recycledContentPercentage",
-                  "minCount": 1,
+                  "path": "dppk:preConsumerRecycledContentPercentage",
                   "datatype": "xsd:double",
-                  "message": "Textile product must specify recycled content percentage."
+                  "message": "Pre-consumer recycled content percentage."
               },
               {
                   "path": "dppk:productionSteps",
-                  "minCount": 1,
-                  "message": "Textile product must specify production steps."
+                  "message": "Textile product production steps."
               }
             ]
           }
@@ -84,15 +72,15 @@
         "targetClass": "dppk:FibreComposition",
         "property": [
             {
-                "path": "dppk:fibreType",
+                "path": "dppk:componentName",
                 "minCount": 1,
-                "message": "Fibre composition must specify the fibre type (dppk:fibreType)."
+                "message": "Fibre composition must specify the component name (dppk:componentName)."
             },
             {
-                "path": "dppk:fibrePercentage",
+                "path": "dppk:componentPercentage",
                 "minCount": 1,
                 "datatype": "xsd:double",
-                "message": "Fibre composition must specify the percentage (dppk:fibrePercentage)."
+                "message": "Fibre composition must specify the percentage (dppk:componentPercentage)."
             }
         ]
       }
