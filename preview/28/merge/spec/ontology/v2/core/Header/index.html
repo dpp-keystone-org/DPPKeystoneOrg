@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Module: DPP Core Ontology - Header Definitions (v2)</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">DPP Core Ontology - Header Definitions (v2)</h2>
+            </div>
+        </header>
+        <main>
+            <p>Defines the normative header fields required for the Digital Product Passport envelope.</p>
+            <p><strong>Source:</strong> <a href="../Header.jsonld">Header.jsonld</a></p>
+            <h3>Classes & Concepts</h3>
+            <ul>
+                <li><a href="DigitalProductPassport.html">Digital Product Passport (DPP)</a></li><li><a href="GranularityValue.html">Granularity Value</a></li><li><a href="Model.html">Model</a></li><li><a href="Batch.html">Batch</a></li><li><a href="Item.html">Item</a></li>
+            </ul>
+            <h3>Properties</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>governedBy</th><th>equivalentProperty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="digitalProductPassportId"><strong>DPP Identifier</strong> (dppk:digitalProductPassportId)</td>
+                            <td>The unique identifier for this specific Digital Product Passport instance. Should be a persistent, globally unique, and resolvable URI (e.g., URN UUID or HTTP URI). Implementation-specific identifier.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="uniqueProductIdentifier"><strong>Unique Product Identifier (UPI)</strong> (dppk:uniqueProductIdentifier)</td>
+                            <td>The globally resolvable URI for the product/DPP.</td>
+                            <td><a href="../Product/Component.html">dppk:Component</a>, <a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a>, <a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            <td>hEN18219</td><td><a href="https://ref.gs1.org/voc/productID">gs1:productID</a>, <a href="https://schema.org/productID">schema:productID</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="economicOperatorId"><strong>Economic Operator Identifier (EOI)</strong> (dppk:economicOperatorId)</td>
+                            <td>The unique identifier for the Economic Operator responsible for placing the product on the market.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="facilityId"><strong>Facility Identifier</strong> (dppk:facilityId)</td>
+                            <td>Optional. The unique identifier for the manufacturing or processing facility associated with the product.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="granularity"><strong>Granularity Level</strong> (dppk:granularity)</td>
+                            <td>Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit).</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="GranularityValue.html">dppk:GranularityValue</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="dppStatus"><strong>DPP Status</strong> (dppk:dppStatus)</td>
+                            <td>The current lifecycle status of the DPP instance (e.g., 'active', 'inactive').</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="lastUpdate"><strong>Last Update Timestamp</strong> (dppk:lastUpdate)</td>
+                            <td>The date and time when the DPP instance was last modified. Must be in ISO 8601 format (xsd:dateTime).</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="versionNumber"><strong>Version Number</strong> (dppk:versionNumber)</td>
+                            <td>The version number of the DPP instance.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="versionDate"><strong>Version Date</strong> (dppk:versionDate)</td>
+                            <td>The date of the version of the DPP instance.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="dppSchemaVersion"><strong>DPP Schema Version</strong> (dppk:dppSchemaVersion)</td>
+                            <td>The version of the horizontal (cross-sector) DPP schema used for this instance.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="contentSpecificationIds"><strong>Content Specification Identifiers</strong> (dppk:contentSpecificationIds)</td>
+                            <td>A set of identifiers for the delegated acts or sector-specific data models this DPP conforms to.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="hsCode"><strong>Harmonized System Code (HS Code) or TARIC</strong> (dppk:hsCode)</td>
+                            <td>The customs tariff number (e.g., HS Code, TARIC code) used for international trade classification.</td>
+                            <td><a href="DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td><td><a href="https://ref.gs1.org/voc/customsClassification">gs1:customsClassification</a>, <a href="https://schema.org/hscode">schema:hscode</a></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+</body>
+</html>
