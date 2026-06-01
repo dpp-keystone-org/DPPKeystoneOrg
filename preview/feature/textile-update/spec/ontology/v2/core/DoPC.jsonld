@@ -1,0 +1,6072 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/core/DoPC",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Declaration of Performance and Conformity (DoPC)",
+  "dcterms:description": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC).",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Declaration of Performance and Conformity (DoPC)"
+    }
+  ],
+  "rdfs:comment": [
+    {
+      "@language": "en",
+      "@value": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC)."
+    }
+  ],
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:DoPCBlock",
+      "@type": "rdfs:Class",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Блок данни за Декларация за експлоатационни показатели и съответствие."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datový blok pro prohlášení o vlastnostech a shodě."
+        },
+        {
+          "@language": "da",
+          "@value": "Datablok til ydeevnedeklaration og overensstemmelse."
+        },
+        {
+          "@language": "de",
+          "@value": "Datenblock für die Leistungs- und Konformitätserklärung."
+        },
+        {
+          "@language": "el",
+          "@value": "Μπλοκ δεδομένων για τη Δήλωση Επιδόσεων και Συμμόρφωσης."
+        },
+        {
+          "@language": "en",
+          "@value": "Data block for Declaration of Performance and Conformity."
+        },
+        {
+          "@language": "es",
+          "@value": "Bloque de datos para la Declaración de Prestaciones y Conformidad."
+        },
+        {
+          "@language": "et",
+          "@value": "Andmeplokk toimivus- ja vastavusdeklaratsiooni jaoks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tietolohko suoritustaso- ja vaatimustenmukaisuusvakuutusta varten."
+        },
+        {
+          "@language": "fr",
+          "@value": "Bloc de données pour la déclaration des performances et de la conformité."
+        },
+        {
+          "@language": "ga",
+          "@value": "Bloc sonraí don Dearbhú Feidhmíochta agus Comhréireachta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Podatkovni blok za Izjavu o svojstvima i sukladnosti."
+        },
+        {
+          "@language": "hu",
+          "@value": "Adatblokk a teljesítmény- és megfelelőségi nyilatkozathoz."
+        },
+        {
+          "@language": "it",
+          "@value": "Blocco dati per la Dichiarazione di Prestazione e Conformità."
+        },
+        {
+          "@language": "lt",
+          "@value": "Eksploatacinių savybių ir atitikties deklaracijos duomenų blokas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekspluatācijas īpašību un atbilstības deklarācijas datu bloks."
+        },
+        {
+          "@language": "mt",
+          "@value": "Blokk tad-dejta għad-Dikjarazzjoni ta' Prestazzjoni u Konformità."
+        },
+        {
+          "@language": "nl",
+          "@value": "Gegevensblok voor prestatie- en conformiteitsverklaring."
+        },
+        {
+          "@language": "pl",
+          "@value": "Blok danych dla deklaracji właściwości użytkowych i zgodności."
+        },
+        {
+          "@language": "pt",
+          "@value": "Bloco de dados para Declaração de Desempenho e Conformidade."
+        },
+        {
+          "@language": "ro",
+          "@value": "Bloc de date pentru Declarația de performanță și conformitate."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátový blok pre vyhlásenie o parametroch a zhode."
+        },
+        {
+          "@language": "sl",
+          "@value": "Podatkovni blok za izjavo o lastnostih in skladnosti."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datablock för prestandadeklaration och försäkran om överensstämmelse."
+        }
+      ],
+      "owl:equivalentClass": {
+        "@id": "schema:Certification"
+      },
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "DoPC Блок данни"
+        },
+        {
+          "@language": "cs",
+          "@value": "DoPC Datový blok"
+        },
+        {
+          "@language": "da",
+          "@value": "DoPC Datablok"
+        },
+        {
+          "@language": "de",
+          "@value": "DoPC-Datenblock"
+        },
+        {
+          "@language": "el",
+          "@value": "Μπλοκ δεδομένων DoPC"
+        },
+        {
+          "@language": "en",
+          "@value": "DoPC Data Block"
+        },
+        {
+          "@language": "es",
+          "@value": "Bloque de datos DoPC"
+        },
+        {
+          "@language": "et",
+          "@value": "DoPC andmeplokk"
+        },
+        {
+          "@language": "fi",
+          "@value": "DoPC-tietolohko"
+        },
+        {
+          "@language": "fr",
+          "@value": "Bloc de données DoPC"
+        },
+        {
+          "@language": "ga",
+          "@value": "Bloc Sonraí DoPC"
+        },
+        {
+          "@language": "hr",
+          "@value": "DoPC podatkovni blok"
+        },
+        {
+          "@language": "hu",
+          "@value": "DoPC Adatblokk"
+        },
+        {
+          "@language": "it",
+          "@value": "Blocco dati DoPC"
+        },
+        {
+          "@language": "lt",
+          "@value": "DoPC duomenų blokas"
+        },
+        {
+          "@language": "lv",
+          "@value": "DoPC datu bloks"
+        },
+        {
+          "@language": "mt",
+          "@value": "Blokk tad-Dejta DoPC"
+        },
+        {
+          "@language": "nl",
+          "@value": "DoPC-gegevensblok"
+        },
+        {
+          "@language": "pl",
+          "@value": "Blok danych DoPC"
+        },
+        {
+          "@language": "pt",
+          "@value": "Bloco de Dados DoPC"
+        },
+        {
+          "@language": "ro",
+          "@value": "Bloc de date DoPC"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátový blok DoPC"
+        },
+        {
+          "@language": "sl",
+          "@value": "Podatkovni blok DoPC"
+        },
+        {
+          "@language": "sv",
+          "@value": "DoPC-datablock"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:dopc",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "The Declaration of Performance and Conformity."
+      },
+      "dppk:governedBy": "Construction Products Regulation - CPR",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/eli/reg/2024/3110/oj/eng",
+        "rdfs:label": "Construction Products Regulation - CPR"
+      },
+      "rdfs:range": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The Declaration of Performance and Conformity."
+      }
+    },
+    {
+      "@id": "dppk:declarationCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Код на декларацията"
+        },
+        {
+          "@language": "cs",
+          "@value": "Kód prohlášení"
+        },
+        {
+          "@language": "da",
+          "@value": "Deklarationskode"
+        },
+        {
+          "@language": "de",
+          "@value": "Erklärungscode"
+        },
+        {
+          "@language": "el",
+          "@value": "Κωδικός δήλωσης"
+        },
+        {
+          "@language": "en",
+          "@value": "Declaration Code"
+        },
+        {
+          "@language": "es",
+          "@value": "Código de declaración"
+        },
+        {
+          "@language": "et",
+          "@value": "Deklaratsiooni kood"
+        },
+        {
+          "@language": "fi",
+          "@value": "Vakuutuskoodi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Code de déclaration"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cód Dearbhaithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Kod deklaracije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyilatkozat kódja"
+        },
+        {
+          "@language": "it",
+          "@value": "Codice dichiarazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Deklaracijos kodas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Deklarācijas kods"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kodiċi tad-Dikjarazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Verklaringscode"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kod deklaracji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Código da Declaração"
+        },
+        {
+          "@language": "ro",
+          "@value": "Cod declarație"
+        },
+        {
+          "@language": "sk",
+          "@value": "Kód vyhlásenia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Koda izjave"
+        },
+        {
+          "@language": "sv",
+          "@value": "Deklarationskod"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Уникален идентификатор на декларацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor prohlášení."
+        },
+        {
+          "@language": "da",
+          "@value": "Unik identifikator for deklarationen."
+        },
+        {
+          "@language": "de",
+          "@value": "Eindeutige Kennung der Erklärung."
+        },
+        {
+          "@language": "el",
+          "@value": "Μοναδικό αναγνωριστικό της δήλωσης."
+        },
+        {
+          "@language": "en",
+          "@value": "Unique identifier of the declaration."
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador único de la declaración."
+        },
+        {
+          "@language": "et",
+          "@value": "Deklaratsiooni unikaalne tunnuskood."
+        },
+        {
+          "@language": "fi",
+          "@value": "Vakuutuksen yksilöllinen tunniste."
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant unique de la déclaration."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir uathúil an dearbhaithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator deklaracije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A nyilatkozat egyedi azonosítója."
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore univoco della dichiarazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus deklaracijos identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Unikāls deklarācijas identifikators."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur uniku tad-dikjarazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Unieke identificatie van de verklaring."
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator deklaracji."
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador único da declaração."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator unic al declarației."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor vyhlásenia."
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstven identifikator izjave."
+        },
+        {
+          "@language": "sv",
+          "@value": "Unik identifierare för deklarationen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "dppk:dateOfIssue",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Дата на издаване"
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum vydání"
+        },
+        {
+          "@language": "da",
+          "@value": "Udstedelsesdato"
+        },
+        {
+          "@language": "de",
+          "@value": "Ausstellungsdatum"
+        },
+        {
+          "@language": "el",
+          "@value": "Ημερομηνία έκδοσης"
+        },
+        {
+          "@language": "en",
+          "@value": "Date of Issue"
+        },
+        {
+          "@language": "es",
+          "@value": "Fecha de emisión"
+        },
+        {
+          "@language": "et",
+          "@value": "Väljaandmise kuupäev"
+        },
+        {
+          "@language": "fi",
+          "@value": "Myöntämispäivä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Date de délivrance"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dáta Eisiúna"
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum izdavanja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kiállítás dátuma"
+        },
+        {
+          "@language": "it",
+          "@value": "Data di emissione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Išdavimo data"
+        },
+        {
+          "@language": "lv",
+          "@value": "Izdošanas datums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Data tal-Ħruġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Datum van uitgifte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Data wydania"
+        },
+        {
+          "@language": "pt",
+          "@value": "Data de emissão"
+        },
+        {
+          "@language": "ro",
+          "@value": "Data emiterii"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum vydania"
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum izdaje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Utfärdandedatum"
+        }
+      ],
+      "dppk:governedBy": "CPR (Regulation (EU) No 305/2011)",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Датата, на която е издадена декларацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum, kdy bylo prohlášení vydáno."
+        },
+        {
+          "@language": "da",
+          "@value": "Datoen for deklarationens udstedelse."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Datum, an dem die Erklärung ausgestellt wurde."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ημερομηνία έκδοσης της δήλωσης."
+        },
+        {
+          "@language": "en",
+          "@value": "The date the declaration was issued."
+        },
+        {
+          "@language": "es",
+          "@value": "La fecha en que se emitió la declaración."
+        },
+        {
+          "@language": "et",
+          "@value": "Deklaratsiooni väljaandmise kuupäev."
+        },
+        {
+          "@language": "fi",
+          "@value": "Päivämäärä, jolloin vakuutus on annettu."
+        },
+        {
+          "@language": "fr",
+          "@value": "La date à laquelle la déclaration a été délivrée."
+        },
+        {
+          "@language": "ga",
+          "@value": "An dáta a eisíodh an dearbhú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum kada je deklaracija izdana."
+        },
+        {
+          "@language": "hu",
+          "@value": "A nyilatkozat kiadásának dátuma."
+        },
+        {
+          "@language": "it",
+          "@value": "La data in cui è stata rilasciata la dichiarazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Data, kada deklaracija buvo išduota."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datums, kad deklarācija tika izdota."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-data meta nħarġet id-dikjarazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De datum waarop de verklaring is afgegeven."
+        },
+        {
+          "@language": "pl",
+          "@value": "Data wydania deklaracji."
+        },
+        {
+          "@language": "pt",
+          "@value": "A data em que a declaração foi emitida."
+        },
+        {
+          "@language": "ro",
+          "@value": "Data la care a fost emisă declarația."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum, kedy bolo vyhlásenie vydané."
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum, ko je bila izjava izdana."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datumet då deklarationen utfärdades."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": "xsd:date"
+    },
+    {
+      "@id": "dppk:chlorideContent",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Група Съдържание на хлориди"
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina Obsah chloridů"
+        },
+        {
+          "@language": "da",
+          "@value": "Kloridindhold gruppe"
+        },
+        {
+          "@language": "de",
+          "@value": "Chloridgehalt-Gruppe"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα σε χλώριο Ομάδα"
+        },
+        {
+          "@language": "en",
+          "@value": "Chloride Content Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo Contenido de cloruro"
+        },
+        {
+          "@language": "et",
+          "@value": "Kloriidisisaldus Grupp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kloridipitoisuusryhmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe Teneur en chlorure"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa Cion Clóiríde"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj klorida Grupa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kloridtartalom csoport"
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo Contenuto di cloruri"
+        },
+        {
+          "@language": "lt",
+          "@value": "Chloridų kiekis Grupė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Hlorīda saturs Grupa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' klorur Grupp"
+        },
+        {
+          "@language": "nl",
+          "@value": "Chloridegehaltegroep"
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa Zawartość chlorków"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo Teor de cloreto"
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup Conținut de cloruri"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah chloridov Skupina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost kloridov Skupina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kloridhaltgrupp"
+        }
+      ],
+      "dppk:governedBy": "EN 1015-17",
+      "dppk:unit": "%",
+      "rdfs:seeAlso": "dppk:21DegC",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Група свойства относно съдържанието на хлориди."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina vlastností týkajících se obsahu chloridů."
+        },
+        {
+          "@language": "da",
+          "@value": "Gruppe af egenskaber vedrørende kloridindhold."
+        },
+        {
+          "@language": "de",
+          "@value": "Eigenschaftsgruppe bezüglich Chloridgehalt."
+        },
+        {
+          "@language": "el",
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Περιεκτικότητα σε χλώριο."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding chloride content."
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo de propiedades relativas a Contenido de cloruro."
+        },
+        {
+          "@language": "et",
+          "@value": "Omaduste grupp seoses Kloriidisisaldus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisuusryhmä koskien Kloridipitoisuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe de propriétés concernant Teneur en chlorure."
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa airíonna maidir le Cion Clóiríde."
+        },
+        {
+          "@language": "hr",
+          "@value": "Grupa svojstava koja se odnose na Sadržaj klorida."
+        },
+        {
+          "@language": "hu",
+          "@value": "A kloridtartalomra vonatkozó tulajdonságok csoportja."
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo di proprietà relative a Contenuto di cloruri."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savybių grupė dėl Chloridų kiekis."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpašību grupa attiecībā uz Hlorīda saturs."
+        },
+        {
+          "@language": "mt",
+          "@value": "Grupp ta' proprjetajiet dwar Kontenut ta' klorur."
+        },
+        {
+          "@language": "nl",
+          "@value": "Groep eigenschappen betreffende Chloridegehalte."
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa właściwości dotyczących zawartości chlorków."
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo de propriedades relativas a Teor de cloreto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup de proprietăți privind conținutul de cloruri."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skupina vlastností týkajúcich sa Obsah chloridov."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupina lastnosti glede Vsebnost kloridov."
+        },
+        {
+          "@language": "sv",
+          "@value": "Grupp av egenskaper gällande Kloridhalt."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:21DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "21°C"
+      },
+      "dppk:governedBy": "EN 13295:2004",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized temperature for some measurements."
+      }
+    },
+    {
+      "@id": "dppk:bondStrength",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Група Якост на сцепление"
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina Přídržnost"
+        },
+        {
+          "@language": "da",
+          "@value": "Vedhæftningsstyrke gruppe"
+        },
+        {
+          "@language": "de",
+          "@value": "Haftfestigkeit-Gruppe"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντοχή συγκόλλησης Ομάδα"
+        },
+        {
+          "@language": "en",
+          "@value": "Bond Strength Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo Adherencia"
+        },
+        {
+          "@language": "et",
+          "@value": "Nakketugevus Grupp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tartuntalujuusryhmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe Adhérence"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa Neart Naisc"
+        },
+        {
+          "@language": "hr",
+          "@value": "Čvrstoća prionjivosti Grupa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tapadószilárdság csoport"
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo Aderenza"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sukibimo stipris Grupė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sasaistes stiprība Grupa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Saħħa tal-Bond Grupp"
+        },
+        {
+          "@language": "nl",
+          "@value": "Hechtsterktegroep"
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa Przyczepność"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo Aderência"
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup Aderență"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pevnosť v ťahu Skupina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Sprijemna trdnost Skupina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Vidhäftningshållfasthetgrupp"
+        }
+      ],
+      "dppk:governedBy": "EN 1542:1999",
+      "dppk:unit": "MPa",
+      "rdfs:seeAlso": "dppk:28Days",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Група свойства относно якостта на сцепление."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina vlastností týkajících se přídržnosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Gruppe af egenskaber vedrørende vedhæftningsstyrke."
+        },
+        {
+          "@language": "de",
+          "@value": "Eigenschaftsgruppe bezüglich Haftfestigkeit."
+        },
+        {
+          "@language": "el",
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Αντοχή συγκόλλησης."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding bond strength."
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo de propiedades relativas a Adherencia."
+        },
+        {
+          "@language": "et",
+          "@value": "Omaduste grupp seoses Nakketugevus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisuusryhmä koskien Tartuntalujuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe de propriétés concernant Adhérence."
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa airíonna maidir le Neart Naisc."
+        },
+        {
+          "@language": "hr",
+          "@value": "Grupa svojstava koja se odnose na Čvrstoća prionjivosti."
+        },
+        {
+          "@language": "hu",
+          "@value": "A tapadószilárdságra vonatkozó tulajdonságok csoportja."
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo di proprietà relative a Aderenza."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savybių grupė dėl Sukibimo stipris."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpašību grupa attiecībā uz Sasaistes stiprība."
+        },
+        {
+          "@language": "mt",
+          "@value": "Grupp ta' proprjetajiet dwar Saħħa tal-Bond."
+        },
+        {
+          "@language": "nl",
+          "@value": "Groep eigenschappen betreffende Hechtsterkte."
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa właściwości dotyczących przyczepności."
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo de propriedades relativas a Aderência."
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup de proprietăți privind aderența."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skupina vlastností týkajúcich sa Pevnosť v ťahu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupina lastnosti glede Sprijemna trdnost."
+        },
+        {
+          "@language": "sv",
+          "@value": "Grupp av egenskaper gällande Vidhäftningshållfasthet."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:28Days",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "28 Days"
+      },
+      "dppk:governedBy": "EN 1542:1999",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized interval for long term bond strength."
+      }
+    },
+    {
+      "@id": "dppk:thermalCompatibility",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Група Термична съвместимост"
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina Tepelná kompatibilita"
+        },
+        {
+          "@language": "da",
+          "@value": "Termisk kompatibilitet gruppe"
+        },
+        {
+          "@language": "de",
+          "@value": "Thermische Verträglichkeit-Gruppe"
+        },
+        {
+          "@language": "el",
+          "@value": "Θερμική συμβατότητα Ομάδα"
+        },
+        {
+          "@language": "en",
+          "@value": "Thermal Compatibility Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo Compatibilidad térmica"
+        },
+        {
+          "@language": "et",
+          "@value": "Termiline kokkusobivus Grupp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Lämpöyhteensopivuusryhmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe Compatibilité thermique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa Comhoiriúnacht Theirmeach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toplinska kompatibilnost Grupa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Hőkompatibilitás csoport"
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo Compatibilità termica"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šiluminis suderinamumas Grupė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Termiskā saderība Grupa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kompatibilità Termali Grupp"
+        },
+        {
+          "@language": "nl",
+          "@value": "Thermische verenigbaarheidgroep"
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa Kompatybilność termiczna"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo Compatibilidade térmica"
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup Compatibilitate termică"
+        },
+        {
+          "@language": "sk",
+          "@value": "Tepelná kompatibilita Skupina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toplotna združljivost Skupina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Termisk kompatibilitetgrupp"
+        }
+      ],
+      "dppk:governedBy": "EN 13687-1",
+      "dppk:unit": "MPa",
+      "rdfs:seeAlso": "dppk:wetSurface",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Група свойства относно термичната съвместимост."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina vlastností týkajících se tepelné kompatibility."
+        },
+        {
+          "@language": "da",
+          "@value": "Gruppe af egenskaber vedrørende termisk kompatibilitet."
+        },
+        {
+          "@language": "de",
+          "@value": "Eigenschaftsgruppe bezüglich Thermische Verträglichkeit."
+        },
+        {
+          "@language": "el",
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Θερμική συμβατότητα."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding thermal compatibility."
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo de propiedades relativas a Compatibilidad térmica."
+        },
+        {
+          "@language": "et",
+          "@value": "Omaduste grupp seoses Termiline kokkusobivus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisuusryhmä koskien Lämpöyhteensopivuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe de propriétés concernant Compatibilité thermique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa airíonna maidir le Comhoiriúnacht Theirmeach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Grupa svojstava koja se odnose na Toplinska kompatibilnost."
+        },
+        {
+          "@language": "hu",
+          "@value": "A hőkompatibilitásra vonatkozó tulajdonságok csoportja."
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo di proprietà relative a Compatibilità termica."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savybių grupė dėl Šiluminis suderinamumas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpašību grupa attiecībā uz Termiskā saderība."
+        },
+        {
+          "@language": "mt",
+          "@value": "Grupp ta' proprjetajiet dwar Kompatibilità Termali."
+        },
+        {
+          "@language": "nl",
+          "@value": "Groep eigenschappen betreffende Thermische verenigbaarheid."
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa właściwości dotyczących kompatybilności termicznej."
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo de propriedades relativas a Compatibilidade térmica."
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup de proprietăți privind compatibilitatea termică."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skupina vlastností týkajúcich sa Tepelná kompatibilita."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupina lastnosti glede Toplotna združljivost."
+        },
+        {
+          "@language": "sv",
+          "@value": "Grupp av egenskaper gällande Termisk kompatibilitet."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:wetSurface",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Wet Surface"
+      },
+      "dppk:governedBy": "EN 13687-1",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A test condition for dry/wet comparisions."
+      }
+    },
+    {
+      "@id": "dppk:resistanceToCarbonation",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Група Устойчивост на карбонизация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina Odolnost proti karbonataci"
+        },
+        {
+          "@language": "da",
+          "@value": "Karbonatiseringsmodstand gruppe"
+        },
+        {
+          "@language": "de",
+          "@value": "Widerstand gegen Karbonatisierung-Gruppe"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίσταση στην ενανθράκωση Ομάδα"
+        },
+        {
+          "@language": "en",
+          "@value": "Carbonation Resistance Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo Resistencia a la carbonatación"
+        },
+        {
+          "@language": "et",
+          "@value": "Karboniseerumiskindlus Grupp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Karbonatisoitumiskestävyysryhmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe Résistance à la carbonatation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa Friotaíocht in aghaidh Carbónú"
+        },
+        {
+          "@language": "hr",
+          "@value": "Otpornost na karbonatizaciju Grupa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Karbonátosodással szembeni ellenállás csoport"
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo Resistenza alla carbonatazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsparumas karbonizacijai Grupė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Izturība pret karbonizāciju Grupa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reżistenza għall-Karbonazzjoni Grupp"
+        },
+        {
+          "@language": "nl",
+          "@value": "Weerstand tegen carbonatatiegroep"
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa Odporność na karbonatyzację"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo Resistência à carbonatação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup Rezistența la carbonatare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Odolnosť proti karbonatácii Skupina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odpornost proti karbonatizaciji Skupina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Motstånd mot karbonatiseringgrupp"
+        }
+      ],
+      "dppk:governedBy": "ISO 1920-12:2015",
+      "dppk:unit": "mm",
+      "rdfs:seeAlso": "dppk:21DegC",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Група свойства относно устойчивостта на карбонизация."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina vlastností týkajících se odolnosti proti karbonataci."
+        },
+        {
+          "@language": "da",
+          "@value": "Gruppe af egenskaber vedrørende modstand mod karbonatisering."
+        },
+        {
+          "@language": "de",
+          "@value": "Eigenschaftsgruppe bezüglich Widerstand gegen Karbonatisierung."
+        },
+        {
+          "@language": "el",
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Αντίσταση στην ενανθράκωση."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding carbonation resistance."
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo de propiedades relativas a Resistencia a la carbonatación."
+        },
+        {
+          "@language": "et",
+          "@value": "Omaduste grupp seoses Karboniseerumiskindlus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisuusryhmä koskien Karbonatisoitumiskestävyys."
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe de propriétés concernant Résistance à la carbonatation."
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa airíonna maidir le Friotaíocht in aghaidh Carbónú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Grupa svojstava koja se odnose na Otpornost na karbonatizaciju."
+        },
+        {
+          "@language": "hu",
+          "@value": "A karbonátosodással szembeni ellenállásra vonatkozó tulajdonságok csoportja."
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo di proprietà relative a Resistenza alla carbonatazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savybių grupė dėl Atsparumas karbonizacijai."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpašību grupa attiecībā uz Izturība pret karbonizāciju."
+        },
+        {
+          "@language": "mt",
+          "@value": "Grupp ta' proprjetajiet dwar Reżistenza għall-Karbonazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Groep eigenschappen betreffende Weerstand tegen carbonatatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa właściwości dotyczących odporności na karbonatyzację."
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo de propriedades relativas a Resistência à carbonatação."
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup de proprietăți privind rezistența la carbonatare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skupina vlastností týkajúcich sa Odolnosť proti karbonatácii."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupina lastnosti glede Odpornost proti karbonatizaciji."
+        },
+        {
+          "@language": "sv",
+          "@value": "Grupp av egenskaper gällande Motstånd mot karbonatisering."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:reactionToFire",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Група Реакция на огън"
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina Reakce na oheň"
+        },
+        {
+          "@language": "da",
+          "@value": "Reaktion ved brand gruppe"
+        },
+        {
+          "@language": "de",
+          "@value": "Brandverhalten-Gruppe"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίδραση στη φωτιά Ομάδα"
+        },
+        {
+          "@language": "en",
+          "@value": "Reaction to Fire Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo Reacción al fuego"
+        },
+        {
+          "@language": "et",
+          "@value": "Tuletundlikkus Grupp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Palokäyttäytyminenryhmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe Réaction au feu"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa Imoibriú le Tine"
+        },
+        {
+          "@language": "hr",
+          "@value": "Reakcija na požar Grupa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tűzvédelmi osztály csoport"
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo Reazione al fuoco"
+        },
+        {
+          "@language": "lt",
+          "@value": "Degumas Grupė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Reakcija uz uguni Grupa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reazzjoni għan-Nar Grupp"
+        },
+        {
+          "@language": "nl",
+          "@value": "Brandgedraggroep"
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa Reakcja na ogień"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo Reação ao fogo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup Reacția la foc"
+        },
+        {
+          "@language": "sk",
+          "@value": "Reakcia na oheň Skupina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odziv na ogenj Skupina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Reaktion vid brandgrupp"
+        }
+      ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
+      "rdfs:seeAlso": [
+        "dppk:avcpSystem1",
+        "dppk:avcpSystem2",
+        "dppk:avcpSystem3",
+        "dppk:avcpSystem4"
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Група свойства относно реакцията на огън."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina vlastností týkajících se reakce na oheň."
+        },
+        {
+          "@language": "da",
+          "@value": "Gruppe af egenskaber vedrørende reaktion ved brand."
+        },
+        {
+          "@language": "de",
+          "@value": "Eigenschaftsgruppe bezüglich Brandverhalten."
+        },
+        {
+          "@language": "el",
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Αντίδραση στη φωτιά."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding reaction to fire."
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo de propiedades relativas a Reacción al fuego."
+        },
+        {
+          "@language": "et",
+          "@value": "Omaduste grupp seoses Tuletundlikkus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisuusryhmä koskien Palokäyttäytyminen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe de propriétés concernant Réaction au feu."
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa airíonna maidir le Imoibriú le Tine."
+        },
+        {
+          "@language": "hr",
+          "@value": "Grupa svojstava koja se odnose na Reakcija na požar."
+        },
+        {
+          "@language": "hu",
+          "@value": "A tűzvédelmi osztályra vonatkozó tulajdonságok csoportja."
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo di propriétés relative a Reazione al fuoco."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savybių grupė dėl Degumas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpašību grupa attiecībā uz Reakcija uz uguni."
+        },
+        {
+          "@language": "mt",
+          "@value": "Grupp ta' proprjetajiet dwar Reazzjoni għan-Nar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Groep eigenschappen betreffende Brandgedrag."
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa właściwości dotyczących reakcji na ogień."
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo de propriedades relativas a Reação ao fogo."
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup de proprietăți privind reacția la foc."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skupina vlastností týkajúcich sa Reakcia na oheň."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupina lastnosti glede Odziv na ogenj."
+        },
+        {
+          "@language": "sv",
+          "@value": "Grupp av egenskaper gällande Reaktion vid brand."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:avcpSystem1",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "AVCP System 1"
+      },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "System 1 for measuring reaction to fire."
+      }
+    },
+    {
+      "@id": "dppk:avcpSystem2",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "AVCP System 2"
+      },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "System 2 for measuring reaction to fire."
+      }
+    },
+    {
+      "@id": "dppk:avcpSystem3",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "AVCP System 3"
+      },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "System 3 for measuring reaction to fire."
+      }
+    },
+    {
+      "@id": "dppk:avcpSystem4",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "AVCP System 4"
+      },
+      "dppk:governedBy": "EN 13501-1",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "System 4 for measuring reaction to fire."
+      }
+    },
+    {
+      "@id": "dppk:elasticRecovery",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Група Еластично възстановяване"
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina Elastické zotavení"
+        },
+        {
+          "@language": "da",
+          "@value": "Elastisk tilbagegang gruppe"
+        },
+        {
+          "@language": "de",
+          "@value": "Rückstellvermögen-Gruppe"
+        },
+        {
+          "@language": "el",
+          "@value": "Ελαστική επαναφορά Ομάδα"
+        },
+        {
+          "@language": "en",
+          "@value": "Elastic Recovery Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo Recuperación elástica"
+        },
+        {
+          "@language": "et",
+          "@value": "Elastne taastumine Grupp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kimmoisuuden palautuminenryhmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe Reprise élastique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa Téarnamh Leaisteach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Elastični povrat Grupa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Rugalmas visszaalakulás csoport"
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo Ritorno elastico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Elastinis atsistatymas Grupė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Elastīgā atjaunošanās Grupa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Irkupru Elastiku Grupp"
+        },
+        {
+          "@language": "nl",
+          "@value": "Elastisch herstelgroep"
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa Powrót elastyczny"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo Recuperação elástica"
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup Recuperare elastică"
+        },
+        {
+          "@language": "sk",
+          "@value": "Elastické zotavenie Skupina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Elastična povratna deformacija Skupina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Elastisk återgånggrupp"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:seeAlso": [
+        "dppk:methodA",
+        "dppk:methodB",
+        "dppk:25Percent",
+        "dppk:60Percent",
+        "dppk:100Percent"
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Група свойства относно еластичното възстановяване."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina vlastností týkajících se elastického zotavení."
+        },
+        {
+          "@language": "da",
+          "@value": "Gruppe af egenskaber vedrørende elastisk tilbagegang."
+        },
+        {
+          "@language": "de",
+          "@value": "Eigenschaftsgruppe bezüglich Rückstellvermögen."
+        },
+        {
+          "@language": "el",
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Ελαστική επαναφορά."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding elastic recovery."
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo de propiedades relativas a Recuperación elástica."
+        },
+        {
+          "@language": "et",
+          "@value": "Omaduste grupp seoses Elastne taastumine."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisuusryhmä koskien Kimmoisuuden palautuminen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe de propriétés concernant Reprise élastique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa airíonna maidir le Téarnamh Leaisteach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Grupa svojstava koja se odnose na Elastični povrat."
+        },
+        {
+          "@language": "hu",
+          "@value": "A rugalmas visszaalakulásra vonatkozó tulajdonságok csoportja."
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo di proprietà relative a Ritorno elastico."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savybių grupė dėl Elastinis atsistatymas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpašību grupa attiecībā uz Elastīgā atjaunošanās."
+        },
+        {
+          "@language": "mt",
+          "@value": "Grupp ta' proprjetajiet dwar Irkupru Elastiku."
+        },
+        {
+          "@language": "nl",
+          "@value": "Groep eigenschappen betreffende Elastisch herstel."
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa właściwości dotyczących powrotu elastycznego."
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo de propriedades relativas a Recuperação elástica."
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup de proprietăți privind recuperarea elastică."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skupina vlastností týkajúcich sa Elastické zotavenie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupina lastnosti glede Elastična povratna deformacija."
+        },
+        {
+          "@language": "sv",
+          "@value": "Grupp av egenskaper gällande Elastisk återgång."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:methodA",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Метод А"
+        },
+        {
+          "@language": "cs",
+          "@value": "Metoda A"
+        },
+        {
+          "@language": "da",
+          "@value": "Metode A"
+        },
+        {
+          "@language": "de",
+          "@value": "Verfahren A"
+        },
+        {
+          "@language": "el",
+          "@value": "Μέθοδος A"
+        },
+        {
+          "@language": "en",
+          "@value": "Method A"
+        },
+        {
+          "@language": "es",
+          "@value": "Método A"
+        },
+        {
+          "@language": "et",
+          "@value": "Meetod A"
+        },
+        {
+          "@language": "fi",
+          "@value": "Menetelmä A"
+        },
+        {
+          "@language": "fr",
+          "@value": "Méthode A"
+        },
+        {
+          "@language": "ga",
+          "@value": "Modh A"
+        },
+        {
+          "@language": "hr",
+          "@value": "Metoda A"
+        },
+        {
+          "@language": "hu",
+          "@value": "A módszer"
+        },
+        {
+          "@language": "it",
+          "@value": "Metodo A"
+        },
+        {
+          "@language": "lt",
+          "@value": "Metodas A"
+        },
+        {
+          "@language": "lv",
+          "@value": "Metode A"
+        },
+        {
+          "@language": "mt",
+          "@value": "Metodu A"
+        },
+        {
+          "@language": "nl",
+          "@value": "Methode A"
+        },
+        {
+          "@language": "pl",
+          "@value": "Metoda A"
+        },
+        {
+          "@language": "pt",
+          "@value": "Método A"
+        },
+        {
+          "@language": "ro",
+          "@value": "Metoda A"
+        },
+        {
+          "@language": "sk",
+          "@value": "Metóda A"
+        },
+        {
+          "@language": "sl",
+          "@value": "Metoda A"
+        },
+        {
+          "@language": "sv",
+          "@value": "Metod A"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Препратка към Метод А."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na Metodu A."
+        },
+        {
+          "@language": "da",
+          "@value": "Henvisning til Metode A."
+        },
+        {
+          "@language": "de",
+          "@value": "Referenz auf Verfahren A."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά στη Μέθοδο A."
+        },
+        {
+          "@language": "en",
+          "@value": "Reference to Method A."
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia al Método A."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide meetodile A."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viittaus menetelmään A."
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence à la méthode A."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt do Mhodh A."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca na Metodu A."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás az A módszerre."
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento al Metodo A."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į metodą A."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce uz metodi A."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza għall-Metodu A."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verwijzing naar Methode A."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do Metody A."
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência ao Método A."
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință la Metoda A."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na metódu A."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sklic na metodo A."
+        },
+        {
+          "@language": "sv",
+          "@value": "Hänvisning till metod A."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:methodB",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Метод Б"
+        },
+        {
+          "@language": "cs",
+          "@value": "Metoda B"
+        },
+        {
+          "@language": "da",
+          "@value": "Metode B"
+        },
+        {
+          "@language": "de",
+          "@value": "Verfahren B"
+        },
+        {
+          "@language": "el",
+          "@value": "Μέθοδος B"
+        },
+        {
+          "@language": "en",
+          "@value": "Method B"
+        },
+        {
+          "@language": "es",
+          "@value": "Método B"
+        },
+        {
+          "@language": "et",
+          "@value": "Meetod B"
+        },
+        {
+          "@language": "fi",
+          "@value": "Menetelmä B"
+        },
+        {
+          "@language": "fr",
+          "@value": "Méthode B"
+        },
+        {
+          "@language": "ga",
+          "@value": "Modh B"
+        },
+        {
+          "@language": "hr",
+          "@value": "Metoda B"
+        },
+        {
+          "@language": "hu",
+          "@value": "B módszer"
+        },
+        {
+          "@language": "it",
+          "@value": "Metodo B"
+        },
+        {
+          "@language": "lt",
+          "@value": "Metodas B"
+        },
+        {
+          "@language": "lv",
+          "@value": "Metode B"
+        },
+        {
+          "@language": "mt",
+          "@value": "Metodu B"
+        },
+        {
+          "@language": "nl",
+          "@value": "Methode B"
+        },
+        {
+          "@language": "pl",
+          "@value": "Metoda B"
+        },
+        {
+          "@language": "pt",
+          "@value": "Método B"
+        },
+        {
+          "@language": "ro",
+          "@value": "Metoda B"
+        },
+        {
+          "@language": "sk",
+          "@value": "Metóda B"
+        },
+        {
+          "@language": "sl",
+          "@value": "Metoda B"
+        },
+        {
+          "@language": "sv",
+          "@value": "Metod B"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Препратка към Метод Б."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na Metodu B."
+        },
+        {
+          "@language": "da",
+          "@value": "Henvisning til Metode B."
+        },
+        {
+          "@language": "de",
+          "@value": "Referenz auf Verfahren B."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά στη Μέθοδο B."
+        },
+        {
+          "@language": "en",
+          "@value": "Reference to Method B."
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia al Método B."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide meetodile B."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viittaus menetelmään B."
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence à la méthode B."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt do Mhodh B."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca na Metodu B."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás a B módszerre."
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento al Metodo B."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į metodą B."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce uz metodi B."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza għall-Metodu B."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verwijzing naar Methode B."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do Metody B."
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência ao Método B."
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință la Metoda B."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na metódu B."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sklic na metodo B."
+        },
+        {
+          "@language": "sv",
+          "@value": "Hänvisning till metod B."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:25Percent",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "25%"
+      },
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized expansion factor to be recovered from in elastic material testing."
+      }
+    },
+    {
+      "@id": "dppk:60Percent",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "60%"
+      },
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized expansion factor to be recovered from in elastic material testing."
+      }
+    },
+    {
+      "@id": "dppk:100Percent",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "100%"
+      },
+      "dppk:governedBy": "ISO 7389:2002",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized expansion factor to be recovered from in elastic material testing."
+      }
+    },
+    {
+      "@id": "dppk:resistanceToFlow",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Група Устойчивост на свличане"
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina Odolnost proti stékání"
+        },
+        {
+          "@language": "da",
+          "@value": "Modstand mod flydning gruppe"
+        },
+        {
+          "@language": "de",
+          "@value": "Standvermögen-Gruppe"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίσταση στη ροή Ομάδα"
+        },
+        {
+          "@language": "en",
+          "@value": "Resistance to Flow Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo Resistencia al descolgamiento"
+        },
+        {
+          "@language": "et",
+          "@value": "Voolavuskindlus Grupp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Valumattomuusryhmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe Résistance au coulage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa Friotaíocht in aghaidh Sreabhadh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Otpornost na tečenje Grupa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megfolyással szembeni ellenállás csoport"
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo Resistenza alla colatura"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsparumas tekėjimui Grupė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Noturība pret notecēšanu Grupa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reżistenza għall-Fluss Grupp"
+        },
+        {
+          "@language": "nl",
+          "@value": "Weerstand tegen uitzakkengroep"
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa Odporność na spływanie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo Resistência ao escorrimento"
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup Rezistență la curgere"
+        },
+        {
+          "@language": "sk",
+          "@value": "Odolnosť proti stekaniu Skupina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odpornost proti tečenju Skupina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Motstånd mot rinninggrupp"
+        }
+      ],
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:seeAlso": [
+        "dppk:procedureA",
+        "dppk:procedureB",
+        "dppk:5DegC",
+        "dppk:50DegC",
+        "dppk:70DegC"
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Група свойства относно устойчивостта на свличане."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skupina vlastností týkajících se odolnosti proti stékání."
+        },
+        {
+          "@language": "da",
+          "@value": "Gruppe af egenskaber vedrørende modstand mod flydning."
+        },
+        {
+          "@language": "de",
+          "@value": "Eigenschaftsgruppe bezüglich Standvermögen."
+        },
+        {
+          "@language": "el",
+          "@value": "Ομάδα ιδιοτήτων σχετικά με Αντίσταση στη ροή."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding resistance to flow."
+        },
+        {
+          "@language": "es",
+          "@value": "Grupo de propiedades relativas a Resistencia al descolgamiento."
+        },
+        {
+          "@language": "et",
+          "@value": "Omaduste grupp seoses Voolavuskindlus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisuusryhmä koskien Valumattomuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Groupe de propriétés concernant Résistance au coulage."
+        },
+        {
+          "@language": "ga",
+          "@value": "Grúpa airíonna maidir le Friotaíocht in aghaidh Sreabhadh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Grupa svojstava koja se odnose na Otpornost na tečenje."
+        },
+        {
+          "@language": "hu",
+          "@value": "A megfolyással szembeni ellenállásra vonatkozó tulajdonságok csoportja."
+        },
+        {
+          "@language": "it",
+          "@value": "Gruppo di proprietà relative a Resistenza alla colatura."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savybių grupė dėl Atsparumas tekėjimui."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpašību grupa attiecībā uz Noturība pret notecēšanu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Grupp ta' proprjetajiet dwar Reżistenza għall-Fluss."
+        },
+        {
+          "@language": "nl",
+          "@value": "Groep eigenschappen betreffende Weerstand tegen uitzakken."
+        },
+        {
+          "@language": "pl",
+          "@value": "Grupa właściwości dotyczących odporności na spływanie."
+        },
+        {
+          "@language": "pt",
+          "@value": "Grupo de propriedades relativas a Resistência ao escorrimento."
+        },
+        {
+          "@language": "ro",
+          "@value": "Grup de proprietăți privind rezistența la curgere."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skupina vlastností týkajúcich sa Odolnosť proti stekaniu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupina lastnosti glede Odpornost proti tečenju."
+        },
+        {
+          "@language": "sv",
+          "@value": "Grupp av egenskaper gällande Motstånd mot rinning."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:5DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "For measurements taken at 5°C"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized temperature for resistance to flow testing."
+      }
+    },
+    {
+      "@id": "dppk:50DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "For measurements taken at 50°C"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized temperature for resistance to flow testing."
+      }
+    },
+    {
+      "@id": "dppk:70DegC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "For measurements taken at 70°C"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A standardized temperature for resistance to flow testing."
+      }
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureA5",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Flow Resistance (Proc A, 5°C)"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Flow resistance measured using Procedure A at 5°C."
+      }
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureA70",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Flow Resistance (Proc A, 70°C)"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Flow resistance measured using Procedure A at 70°C."
+      }
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureB5",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Flow Resistance (Proc B, 5°C)"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Flow resistance measured using Procedure B at 5°C."
+      }
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureB50",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Flow Resistance (Proc B, 50°C)"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Flow resistance measured using Procedure B at 50°C."
+      }
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureB70",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Flow Resistance (Proc B, 70°C)"
+      },
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Flow resistance measured using Procedure B at 70°C."
+      }
+    },
+    {
+      "@id": "dppk:procedureA",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Процедура А"
+        },
+        {
+          "@language": "cs",
+          "@value": "Postup A"
+        },
+        {
+          "@language": "da",
+          "@value": "Procedure A"
+        },
+        {
+          "@language": "de",
+          "@value": "Verfahren A"
+        },
+        {
+          "@language": "el",
+          "@value": "Διαδικασία A"
+        },
+        {
+          "@language": "en",
+          "@value": "Procedure A"
+        },
+        {
+          "@language": "es",
+          "@value": "Procedimiento A"
+        },
+        {
+          "@language": "et",
+          "@value": "Protseduur A"
+        },
+        {
+          "@language": "fi",
+          "@value": "Menettely A"
+        },
+        {
+          "@language": "fr",
+          "@value": "Procédure A"
+        },
+        {
+          "@language": "ga",
+          "@value": "Nós Imeachta A"
+        },
+        {
+          "@language": "hr",
+          "@value": "Postupak A"
+        },
+        {
+          "@language": "hu",
+          "@value": "A eljárás"
+        },
+        {
+          "@language": "it",
+          "@value": "Procedura A"
+        },
+        {
+          "@language": "lt",
+          "@value": "Procedūra A"
+        },
+        {
+          "@language": "lv",
+          "@value": "Procedūra A"
+        },
+        {
+          "@language": "mt",
+          "@value": "Proċedura A"
+        },
+        {
+          "@language": "nl",
+          "@value": "Procedure A"
+        },
+        {
+          "@language": "pl",
+          "@value": "Procedura A"
+        },
+        {
+          "@language": "pt",
+          "@value": "Procedimento A"
+        },
+        {
+          "@language": "ro",
+          "@value": "Procedura A"
+        },
+        {
+          "@language": "sk",
+          "@value": "Postup A"
+        },
+        {
+          "@language": "sl",
+          "@value": "Postopek A"
+        },
+        {
+          "@language": "sv",
+          "@value": "Procedur A"
+        }
+      ],
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Препратка към Процедура А."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na Postup A."
+        },
+        {
+          "@language": "da",
+          "@value": "Henvisning til Procedure A."
+        },
+        {
+          "@language": "de",
+          "@value": "Referenz auf Verfahren A."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά στη Διαδικασία A."
+        },
+        {
+          "@language": "en",
+          "@value": "Reference to Procedure A."
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia al Procedimiento A."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide protseduurile A."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viittaus menettelyyn A."
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence à la procédure A."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt do Nós Imeachta A."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca na Postupak A."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás az A eljárásra."
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento alla Procedura A."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į procedūrą A."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce uz procedūru A."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza għall-Proċedura A."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verwijzing naar Procedure A."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do Procedury A."
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência ao Procedimento A."
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință la Procedura A."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na postup A."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sklic na postopek A."
+        },
+        {
+          "@language": "sv",
+          "@value": "Hänvisning till procedur A."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:procedureB",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Процедура Б"
+        },
+        {
+          "@language": "cs",
+          "@value": "Postup B"
+        },
+        {
+          "@language": "da",
+          "@value": "Procedure B"
+        },
+        {
+          "@language": "de",
+          "@value": "Verfahren B"
+        },
+        {
+          "@language": "el",
+          "@value": "Διαδικασία B"
+        },
+        {
+          "@language": "en",
+          "@value": "Procedure B"
+        },
+        {
+          "@language": "es",
+          "@value": "Procedimiento B"
+        },
+        {
+          "@language": "et",
+          "@value": "Protseduur B"
+        },
+        {
+          "@language": "fi",
+          "@value": "Menettely B"
+        },
+        {
+          "@language": "fr",
+          "@value": "Procédure B"
+        },
+        {
+          "@language": "ga",
+          "@value": "Nós Imeachta B"
+        },
+        {
+          "@language": "hr",
+          "@value": "Postupak B"
+        },
+        {
+          "@language": "hu",
+          "@value": "B eljárás"
+        },
+        {
+          "@language": "it",
+          "@value": "Procedura B"
+        },
+        {
+          "@language": "lt",
+          "@value": "Procedūra B"
+        },
+        {
+          "@language": "lv",
+          "@value": "Procedūra B"
+        },
+        {
+          "@language": "mt",
+          "@value": "Proċedura B"
+        },
+        {
+          "@language": "nl",
+          "@value": "Procedure B"
+        },
+        {
+          "@language": "pl",
+          "@value": "Procedura B"
+        },
+        {
+          "@language": "pt",
+          "@value": "Procedimento B"
+        },
+        {
+          "@language": "ro",
+          "@value": "Procedura B"
+        },
+        {
+          "@language": "sk",
+          "@value": "Postup B"
+        },
+        {
+          "@language": "sl",
+          "@value": "Postopek B"
+        },
+        {
+          "@language": "sv",
+          "@value": "Procedur B"
+        }
+      ],
+      "dppk:governedBy": "ISO 7390:2002",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Препратка към Процедура Б."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na Postup B."
+        },
+        {
+          "@language": "da",
+          "@value": "Henvisning til Procedure B."
+        },
+        {
+          "@language": "de",
+          "@value": "Referenz на Verfahren B."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά στη Διαδικασία B."
+        },
+        {
+          "@language": "en",
+          "@value": "Reference to Procedure B."
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia al Procedimiento B."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide protseduurile B."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viittaus menettelyyn B."
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence à la procédure B."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt do Nós Imeachta B."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca na Postupak B."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás a B eljárásra."
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento alla Procedura B."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į procedūrą B."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce uz procedūru B."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza għall-Proċedura B."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verwijzing naar Procedure B."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do Procedury B."
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência ao Procedimento B."
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință la Procedura B."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na postup B."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sklic na postopek B."
+        },
+        {
+          "@language": "sv",
+          "@value": "Hänvisning till procedur B."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:shrinkageAndExpansion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Shrinkage and Expansion"
+      },
+      "dppk:governedBy": "EN 12617-4:2002",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The shrinkage and expansion of the material."
+      },
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "dppk:slipSkidResistance",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Slip/Skid Resistance Group"
+      },
+      "dppk:governedBy": "EN 13036-4:2011",
+      "rdfs:seeAlso": "dppk:laboratory",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Group of properties regarding slip/skid resistance."
+      }
+    },
+    {
+      "@id": "dppk:slipSkidResistanceLab",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Slip/Skid Resistance (Laboratory)"
+      },
+      "dppk:governedBy": "EN 13036-4:2011",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Measurements in the laboratory."
+      },
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "dppk:laboratory",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Laboratory Measurement"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Condition indicating measurements taken in a laboratory setting."
+      }
+    },
+    {
+      "@id": "dppk:modulusOfElasticityInCompression",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Модул на еластичност"
+        },
+        {
+          "@language": "cs",
+          "@value": "Modul pružnosti"
+        },
+        {
+          "@language": "da",
+          "@value": "Elasticitetsmodul"
+        },
+        {
+          "@language": "de",
+          "@value": "Elastizitätsmodul"
+        },
+        {
+          "@language": "el",
+          "@value": "Μέτρο ελαστικότητας"
+        },
+        {
+          "@language": "en",
+          "@value": "Modulus of Elasticity Group"
+        },
+        {
+          "@language": "es",
+          "@value": "Módulo de elasticidad"
+        },
+        {
+          "@language": "et",
+          "@value": "Elastsusmoodul"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kimmokerroin"
+        },
+        {
+          "@language": "fr",
+          "@value": "Module d'élasticité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Modúl Leaisteachais"
+        },
+        {
+          "@language": "hr",
+          "@value": "Modul elastičnosti"
+        },
+        {
+          "@language": "hu",
+          "@value": "Rugalmassági modulus"
+        },
+        {
+          "@language": "it",
+          "@value": "Modulo di elasticità"
+        },
+        {
+          "@language": "lt",
+          "@value": "Tamprumo modulis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Elastības modulis"
+        },
+        {
+          "@language": "mt",
+          "@value": "Modulu ta' Elastiċità"
+        },
+        {
+          "@language": "nl",
+          "@value": "Elasticiteitsmodulus"
+        },
+        {
+          "@language": "pl",
+          "@value": "Moduł sprężystości"
+        },
+        {
+          "@language": "pt",
+          "@value": "Módulo de elasticidade"
+        },
+        {
+          "@language": "ro",
+          "@value": "Modul de elasticitate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Modul pružnosti"
+        },
+        {
+          "@language": "sl",
+          "@value": "Modul elastičnosti"
+        },
+        {
+          "@language": "sv",
+          "@value": "Elasticitetsmodul"
+        }
+      ],
+      "dppk:governedBy": "EN 13412:2006",
+      "dppk:unit": "GPa",
+      "rdfs:seeAlso": "dppk:method1",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Модул на еластичност при натиск."
+        },
+        {
+          "@language": "cs",
+          "@value": "Modul pružnosti v tlaku."
+        },
+        {
+          "@language": "da",
+          "@value": "Elasticitetsmodul ved tryk."
+        },
+        {
+          "@language": "de",
+          "@value": "Elastizitätsmodul bei Druck."
+        },
+        {
+          "@language": "el",
+          "@value": "Μέτρο ελαστικότητας σε συμπίεση."
+        },
+        {
+          "@language": "en",
+          "@value": "Group of properties regarding modulus of elasticity in compression."
+        },
+        {
+          "@language": "es",
+          "@value": "Módulo de elasticidad en compresión."
+        },
+        {
+          "@language": "et",
+          "@value": "Surve elastsusmoodul."
+        },
+        {
+          "@language": "fi",
+          "@value": "Puristuskimmokerroin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Module d'élasticité en compression."
+        },
+        {
+          "@language": "ga",
+          "@value": "Modúl leaisteachais i gcomhbhrú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Modul elastičnosti pri kompresiji."
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyomó rugalmassági modulus."
+        },
+        {
+          "@language": "it",
+          "@value": "Modulo di elasticità a compressione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Tamprumo modulis gniuždant."
+        },
+        {
+          "@language": "lv",
+          "@value": "Elastības modulis saspiežot."
+        },
+        {
+          "@language": "mt",
+          "@value": "Modulu ta' elastiċità fil-kompressjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Elasticiteitsmodulus in compressie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Moduł sprężystości przy ściskaniu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Módulo de elasticidade na compressão."
+        },
+        {
+          "@language": "ro",
+          "@value": "Modul de elasticitate la compresiune."
+        },
+        {
+          "@language": "sk",
+          "@value": "Modul pružnosti v tlaku."
+        },
+        {
+          "@language": "sl",
+          "@value": "Modul elastičnosti pri stiskanju."
+        },
+        {
+          "@language": "sv",
+          "@value": "Elasticitetsmodul vid tryck."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": "xsd:double"
+    },
+    {
+      "@id": "dppk:modulusMethod1",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Modulus of Elasticity (Method 1)"
+      },
+      "dppk:governedBy": "EN 13412:2006",
+      "dppk:unit": "GPa",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Modulus of elasticity measured using Method 1."
+      }
+    },
+    {
+      "@id": "dppk:method1",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Method 1"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A reference to Method 1 for measuring modulus of elasticity."
+      }
+    },
+    {
+      "@id": "dppk:thermalExpansion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Топлинно разширение"
+        },
+        {
+          "@language": "cs",
+          "@value": "Tepelná roztažnost"
+        },
+        {
+          "@language": "da",
+          "@value": "Termisk udvidelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Wärmeausdehnung"
+        },
+        {
+          "@language": "el",
+          "@value": "Θερμική διαστολή"
+        },
+        {
+          "@language": "en",
+          "@value": "Thermal Expansion"
+        },
+        {
+          "@language": "es",
+          "@value": "Expansión térmica"
+        },
+        {
+          "@language": "et",
+          "@value": "Soojuspaisumine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Lämpölaajeneminen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Dilatation thermique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Fairsingiú Teirmeach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toplinsko širenje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Hőtágulás"
+        },
+        {
+          "@language": "it",
+          "@value": "Espansione termica"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šiluminis plėtimasis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Termiskā izplešanās"
+        },
+        {
+          "@language": "mt",
+          "@value": "Espansjoni Termali"
+        },
+        {
+          "@language": "nl",
+          "@value": "Thermische uitzetting"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rozszerzalność cieplna"
+        },
+        {
+          "@language": "pt",
+          "@value": "Expansão Térmica"
+        },
+        {
+          "@language": "ro",
+          "@value": "Expansiune termică"
+        },
+        {
+          "@language": "sk",
+          "@value": "Tepelná rozťažnosť"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toplotno raztezanje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Termisk expansion"
+        }
+      ],
+      "dppk:governedBy": "EN 1770:1998",
+      "dppk:unit": "K-1",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Change in volume in response to a change in temperature."
+        },
+        {
+          "@language": "bg",
+          "@value": "Промяна в обема в отговор на промяна в температурата."
+        },
+        {
+          "@language": "cs",
+          "@value": "Změna objemu v reakci na změnu teploty."
+        },
+        {
+          "@language": "da",
+          "@value": "Ændring i volumen som reaktion på en temperaturændring."
+        },
+        {
+          "@language": "de",
+          "@value": "Änderung des Volumens als Reaktion auf eine Temperaturänderung."
+        },
+        {
+          "@language": "el",
+          "@value": "Αλλαγή όγκου ως απόκριση σε αλλαγή θερμοκρασίας."
+        },
+        {
+          "@language": "es",
+          "@value": "Cambio de volumen en respuesta a un cambio de temperatura."
+        },
+        {
+          "@language": "et",
+          "@value": "Ruumi muutumine vastusena temperatuuri muutusele."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tilavuuden muutos lämpötilan muutoksen seurauksena."
+        },
+        {
+          "@language": "fr",
+          "@value": "Changement de volume en réponse à un changement de température."
+        },
+        {
+          "@language": "ga",
+          "@value": "Athrú ar thoirt mar fhreagra ar athrú teochta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Promjena volumena kao odgovor na promjenu temperature."
+        },
+        {
+          "@language": "hu",
+          "@value": "Térfogatváltozás hőmérséklet-változás hatására."
+        },
+        {
+          "@language": "it",
+          "@value": "Variazione di volume in risposta a una variazione di temperatura."
+        },
+        {
+          "@language": "lt",
+          "@value": "Tūrio pokytis reaguojant į temperatūros pokytį."
+        },
+        {
+          "@language": "lv",
+          "@value": "Tilpuma izmaiņas, reaģējot uz temperatūras izmaiņām."
+        },
+        {
+          "@language": "mt",
+          "@value": "Bidla fil-volum b'reazzjoni għal bidla fit-temperatura."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verandering in volume als reactie op een temperatuurverandering."
+        },
+        {
+          "@language": "pl",
+          "@value": "Zmiana objętości w odpowiedzi na zmianę temperatury."
+        },
+        {
+          "@language": "pt",
+          "@value": "Mudança de volume em resposta a uma mudança de temperatura."
+        },
+        {
+          "@language": "ro",
+          "@value": "Schimbarea volumului ca răspuns la o schimbare de temperatură."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmena objemu v reakcii na zmenu teploty."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sprememba prostornine kot odziv na spremembo temperature."
+        },
+        {
+          "@language": "sv",
+          "@value": "Förändring i volym som svar på en temperaturförändring."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "dppk:declaredUnit",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Declared Unit"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The quantity of a construction product for use as a reference unit in an EPD for an environmental impact assessment."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:functionalUnit",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Functional Unit"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The quantified performance of a product system for use as a reference unit."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:chlorideContentAt21DegC",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Съдържание на хлориди (21°C)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah chloridů (21°C)"
+        },
+        {
+          "@language": "da",
+          "@value": "Kloridindhold (21°C)"
+        },
+        {
+          "@language": "de",
+          "@value": "Chloridgehalt (21°C)"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα σε χλώριο (21°C)"
+        },
+        {
+          "@language": "en",
+          "@value": "Chloride Content (21°C)"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de cloruro (21°C)"
+        },
+        {
+          "@language": "et",
+          "@value": "Kloriidisisaldus (21°C)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kloridipitoisuus (21°C)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Teneur en chlorure (21°C)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cion Clóiríde (21°C)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj klorida (21°C)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kloridtartalom (21°C)"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di cloruri (21°C)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Chloridų kiekis (21°C)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Hlorīda saturs (21°C)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' Klorur (21°C)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Chloridegehalte (21°C)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość chlorków (21°C)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de cloreto (21°C)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de cloruri (21°C)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah chloridov (21°C)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost kloridov (21°C)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kloridhalt (21°C)"
+        }
+      ],
+      "dppk:governedBy": "EN 1015-17",
+      "dppk:unit": "%",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Максимален процент по маса."
+        },
+        {
+          "@language": "cs",
+          "@value": "Maximální procento hmotnosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Maksimal procentdel efter masse."
+        },
+        {
+          "@language": "de",
+          "@value": "Maximaler Massenanteil in Prozent."
+        },
+        {
+          "@language": "el",
+          "@value": "Μέγιστο ποσοστό κατά μάζα."
+        },
+        {
+          "@language": "en",
+          "@value": "Maximum percentage by mass."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje máximo en masa."
+        },
+        {
+          "@language": "et",
+          "@value": "Maksimaalne massiprotsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Enimmäisprosenttiosuus massasta."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage maximum en masse."
+        },
+        {
+          "@language": "ga",
+          "@value": "Uatchéatadán de réir maise."
+        },
+        {
+          "@language": "hr",
+          "@value": "Maksimalni postotak mase."
+        },
+        {
+          "@language": "hu",
+          "@value": "Maximális tömegszázalék."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale massima in massa."
+        },
+        {
+          "@language": "lt",
+          "@value": "Didžiausia procentinė dalis pagal masę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Maksimālais masas procents."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal massimu bil-massa."
+        },
+        {
+          "@language": "nl",
+          "@value": "Maximum percentage per massa."
+        },
+        {
+          "@language": "pl",
+          "@value": "Maksymalny procent masowy."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem máxima em massa."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procent maxim de masă."
+        },
+        {
+          "@language": "sk",
+          "@value": "Maximálne percento hmotnosti."
+        },
+        {
+          "@language": "sl",
+          "@value": "Največji odstotek mase."
+        },
+        {
+          "@language": "sv",
+          "@value": "Maximal procentandel av massan."
+        }
+      ],
+      "rdfs:range": "xsd:double"
+    },
+    {
+      "@id": "dppk:bondStrengthAt28Days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Якост на сцепление (28 дни)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Přídržnost (28 dní)"
+        },
+        {
+          "@language": "da",
+          "@value": "Vedhæftningsstyrke (28 dage)"
+        },
+        {
+          "@language": "de",
+          "@value": "Haftfestigkeit (28 Tage)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντοχή συγκόλλησης (28 ημέρες)"
+        },
+        {
+          "@language": "en",
+          "@value": "Bond Strength (28 Days)"
+        },
+        {
+          "@language": "es",
+          "@value": "Adherencia (28 días)"
+        },
+        {
+          "@language": "et",
+          "@value": "Nakketugevus (28 päeva)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tartuntalujuus (28 päivää)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Adhérence (28 jours)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Neart Naisc (28 Lá)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Čvrstoća prionjivosti (28 dana)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tapadószilárdság (28 nap)"
+        },
+        {
+          "@language": "it",
+          "@value": "Aderenza (28 giorni)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sukibimo stipris (28 d.)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sasaistes stiprība (28 d.)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Saħħa tal-Bond (28 Jum)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Hechtsterkte (28 dagen)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Przyczepność (28 dni)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Aderência (28 dias)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Aderență (28 zile)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pevnosť v ťahu (28 d.)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Sprijemna trdnost (28 dni)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Vidhäftningshållfasthet (28 dagar)"
+        }
+      ],
+      "dppk:governedBy": "EN 1542:1999",
+      "dppk:unit": "MPa",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Якост на сцепление, измерена след 28 дни."
+        },
+        {
+          "@language": "cs",
+          "@value": "Přídržnost měřená po 28 dnech."
+        },
+        {
+          "@language": "da",
+          "@value": "Vedhæftningsstyrke målt efter 28 dage."
+        },
+        {
+          "@language": "de",
+          "@value": "Haftfestigkeit gemessen nach 28 Tagen."
+        },
+        {
+          "@language": "el",
+          "@value": "Αντοχή συγκόλλησης μετρούμενη μετά από 28 ημέρες."
+        },
+        {
+          "@language": "en",
+          "@value": "Bond strength measured after 28 days."
+        },
+        {
+          "@language": "es",
+          "@value": "Adherencia medida después de 28 días."
+        },
+        {
+          "@language": "et",
+          "@value": "Nakketugevus mõõdetud 28 päeva pärast."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tartuntalujuus mitattu 28 päivän kuluttua."
+        },
+        {
+          "@language": "fr",
+          "@value": "Adhérence mesurée après 28 jours."
+        },
+        {
+          "@language": "ga",
+          "@value": "Neart naisc tomhaiste tar éis 28 lá."
+        },
+        {
+          "@language": "hr",
+          "@value": "Čvrstoća prionjivosti mjerena nakon 28 dana."
+        },
+        {
+          "@language": "hu",
+          "@value": "28 nap után mért tapadószilárdság."
+        },
+        {
+          "@language": "it",
+          "@value": "Aderenza misurata dopo 28 giorni."
+        },
+        {
+          "@language": "lt",
+          "@value": "Sukibimo stipris išmatuotas po 28 dienų."
+        },
+        {
+          "@language": "lv",
+          "@value": "Sasaistes stiprība mērīta pēc 28 dienām."
+        },
+        {
+          "@language": "mt",
+          "@value": "Saħħa tal-bond imkejla wara 28 jum."
+        },
+        {
+          "@language": "nl",
+          "@value": "Hechtsterkte gemeten na 28 dagen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Przyczepność mierzona po 28 dniach."
+        },
+        {
+          "@language": "pt",
+          "@value": "Aderência medida após 28 dias."
+        },
+        {
+          "@language": "ro",
+          "@value": "Aderența măsurată după 28 de zile."
+        },
+        {
+          "@language": "sk",
+          "@value": "Pevnosť v ťahu meraná po 28 dňoch."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sprijemna trdnost, izmerjena po 28 dneh."
+        },
+        {
+          "@language": "sv",
+          "@value": "Vidhäftningshållfasthet uppmätt efter 28 dagar."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:thermalCompatibilityWet",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Термична съвместимост (Мокра повърхност)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Tepelná kompatibilita (Mokrý povrch)"
+        },
+        {
+          "@language": "da",
+          "@value": "Termisk kompatibilitet (Våd overflade)"
+        },
+        {
+          "@language": "de",
+          "@value": "Thermische Verträglichkeit (Nasse Oberfläche)"
+        },
+        {
+          "@language": "el",
+          "@value": "Θερμική συμβατότητα (Υγρή επιφάνεια)"
+        },
+        {
+          "@language": "en",
+          "@value": "Thermal Compatibility (Wet Surface)"
+        },
+        {
+          "@language": "es",
+          "@value": "Compatibilidad térmica (Superficie húmeda)"
+        },
+        {
+          "@language": "et",
+          "@value": "Termiline kokkusobivus (Märg pind)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Lämpöyhteensopivuus (Märkä pinta)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Compatibilité thermique (Surface humide)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Comhoiriúnacht Theirmeach (Dromchla Fliuch)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toplinska kompatibilnost (Vlažna površina)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Hőkompatibilitás (Nedves felület)"
+        },
+        {
+          "@language": "it",
+          "@value": "Compatibilità termica (Superficie bagnata)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šiluminis suderinamumas (Šlapias paviršius)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Termiskā saderība (Mitra virsma)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kompatibilità Termali (Wiċċ Imxarrab)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Thermische verenigbaarheid (Nat oppervlak)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kompatybilność termiczna (Mokra powierzchnia)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Compatibilidade térmica (Superfície húmida)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Compatibilitate termică (Suprafață umedă)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Tepelná kompatibilita (Mokrý povrch)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toplotna združljivost (Mokra površina)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Termisk kompatibilitet (Våt yta)"
+        }
+      ],
+      "dppk:governedBy": "EN 13687-1",
+      "dppk:unit": "MPa",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Термична съвместимост, измерена върху мокра повърхност."
+        },
+        {
+          "@language": "cs",
+          "@value": "Tepelná kompatibilita měřená na mokrém povrchu."
+        },
+        {
+          "@language": "da",
+          "@value": "Termisk kompatibilitet målt på våd overflade."
+        },
+        {
+          "@language": "de",
+          "@value": "Thermische Verträglichkeit gemessen auf nasser Oberfläche."
+        },
+        {
+          "@language": "el",
+          "@value": "Θερμική συμβατότητα μετρημένη σε υγρή επιφάνεια."
+        },
+        {
+          "@language": "en",
+          "@value": "Thermal compatibility measured on wet surface."
+        },
+        {
+          "@language": "es",
+          "@value": "Compatibilidad térmica medida en superficie húmeda."
+        },
+        {
+          "@language": "et",
+          "@value": "Termiline kokkusobivus mõõdetud märjal pinnal."
+        },
+        {
+          "@language": "fi",
+          "@value": "Lämpöyhteensopivuus mitattu märällä pinnalla."
+        },
+        {
+          "@language": "fr",
+          "@value": "Compatibilité thermique mesurée sur surface humide."
+        },
+        {
+          "@language": "ga",
+          "@value": "Comhoiriúnacht theirmeach tomhaiste ar dhromchla fliuch."
+        },
+        {
+          "@language": "hr",
+          "@value": "Toplinska kompatibilnost mjerena na vlažnoj površini."
+        },
+        {
+          "@language": "hu",
+          "@value": "Nedves felületen mért hőkompatibilitás."
+        },
+        {
+          "@language": "it",
+          "@value": "Compatibilità termica misurata su superficie bagnata."
+        },
+        {
+          "@language": "lt",
+          "@value": "Šiluminis suderinamumas išmatuotas ant šlapio paviršiaus."
+        },
+        {
+          "@language": "lv",
+          "@value": "Termiskā saderība mērīta uz mitras virsmas."
+        },
+        {
+          "@language": "mt",
+          "@value": "Kompatibilità termali mkejla fuq wiċċ imxarrab."
+        },
+        {
+          "@language": "nl",
+          "@value": "Thermische verenigbaarheid gemeten op nat oppervlak."
+        },
+        {
+          "@language": "pl",
+          "@value": "Kompatybilność termiczna mierzona na mokrej powierzchni."
+        },
+        {
+          "@language": "pt",
+          "@value": "Compatibilidade térmica medida em superfície húmida."
+        },
+        {
+          "@language": "ro",
+          "@value": "Compatibilitate termică măsurată pe suprafață umedă."
+        },
+        {
+          "@language": "sk",
+          "@value": "Tepelná kompatibilita meraná na mokrom povrchu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Toplotna združljivost, izmerjena na mokri površini."
+        },
+        {
+          "@language": "sv",
+          "@value": "Termisk kompatibilitet uppmätt på våt yta."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:carbonationResistanceAt21DegC",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Устойчивост на карбонизация (21°C)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odolnost proti karbonataci (21°C)"
+        },
+        {
+          "@language": "da",
+          "@value": "Modstand mod karbonatisering (21°C)"
+        },
+        {
+          "@language": "de",
+          "@value": "Widerstand gegen Karbonatisierung (21°C)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίσταση στην ενανθράκωση (21°C)"
+        },
+        {
+          "@language": "en",
+          "@value": "Resistance to Carbonation (21°C)"
+        },
+        {
+          "@language": "es",
+          "@value": "Resistencia a la carbonatación (21°C)"
+        },
+        {
+          "@language": "et",
+          "@value": "Karboniseerumiskindlus (21°C)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Karbonatisoitumiskestävyys (21°C)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Résistance à la carbonatation (21°C)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Friotaíocht in aghaidh Carbónú (21°C)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Otpornost na karbonatizaciju (21°C)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Karbonátosodással szembeni ellenállás (21°C)"
+        },
+        {
+          "@language": "it",
+          "@value": "Resistenza alla carbonatazione (21°C)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsparumas karbonizacijai (21°C)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Izturība pret karbonizāciju (21°C)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reżistenza għall-Karbonazzjoni (21°C)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Weerstand tegen carbonatatie (21°C)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Odporność na karbonatyzację (21°C)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resistência à carbonatação (21°C)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rezistența la carbonatare (21°C)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Odolnosť proti karbonatácii (21°C)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odpornost proti karbonatizaciji (21°C)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Motstånd mot karbonatisering (21°C)"
+        }
+      ],
+      "dppk:governedBy": "EN 13295:2004",
+      "dppk:unit": "Pass/Fail",
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Устойчивост на карбонизация при 21 градуса по Целзий."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odolnost proti karbonataci při 21 stupních Celsia."
+        },
+        {
+          "@language": "da",
+          "@value": "Modstand mod karbonatisering ved 21 grader Celsius."
+        },
+        {
+          "@language": "de",
+          "@value": "Widerstand gegen Karbonatisierung bei 21 Grad Celsius."
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίσταση στην ενανθράκωση στους 21 βαθμούς Κελσίου."
+        },
+        {
+          "@language": "en",
+          "@value": "Resistance to carbonation at 21 degrees Celsius."
+        },
+        {
+          "@language": "es",
+          "@value": "Resistencia a la carbonatación a 21 grados Celsius."
+        },
+        {
+          "@language": "et",
+          "@value": "Karboniseerumiskindlus 21 kraadi juures."
+        },
+        {
+          "@language": "fi",
+          "@value": "Karbonatisoitumiskestävyys 21 celsiusasteessa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Résistance à la carbonatation à 21 degrés Celsius."
+        },
+        {
+          "@language": "ga",
+          "@value": "Friotaíocht in aghaidh carbónú ag 21 céim Celsius."
+        },
+        {
+          "@language": "hr",
+          "@value": "Otpornost na karbonatizaciju pri 21 stupanj Celzijusa."
+        },
+        {
+          "@language": "hu",
+          "@value": "Karbonátosodással szembeni ellenállás 21 Celsius-fokon."
+        },
+        {
+          "@language": "it",
+          "@value": "Resistenza alla carbonatazione a 21 gradi Celsius."
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsparumas karbonizacijai esant 21 laipsniui Celsijaus."
+        },
+        {
+          "@language": "lv",
+          "@value": "Izturība pret karbonizāciju 21 grādu temperatūrā."
+        },
+        {
+          "@language": "mt",
+          "@value": "Reżistenza għall-karbonazzjoni f'21 grad Celsius."
+        },
+        {
+          "@language": "nl",
+          "@value": "Weerstand tegen carbonatatie bij 21 graden Celsius."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odporność na karbonatyzację w temperaturze 21 stopni Celsjusza."
+        },
+        {
+          "@language": "pt",
+          "@value": "Resistência à carbonatação a 21 graus Celsius."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rezistența la carbonatare la 21 grade Celsius."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odolnosť proti karbonatácii pri 21 stupňoch Celzia."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odpornost proti karbonatizaciji pri 21 stopinjah Celzija."
+        },
+        {
+          "@language": "sv",
+          "@value": "Motstånd mot karbonatisering vid 21 grader Celsius."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:reactionToFireSystem1",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Реакция на огън (AVCP Система 1)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Reakce na oheň (AVCP Systém 1)"
+        },
+        {
+          "@language": "da",
+          "@value": "Reaktion ved brand (AVCP System 1)"
+        },
+        {
+          "@language": "de",
+          "@value": "Brandverhalten (AVCP System 1)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίδραση στη φωτιά (AVCP System 1)"
+        },
+        {
+          "@language": "en",
+          "@value": "Reaction to Fire (AVCP System 1)"
+        },
+        {
+          "@language": "es",
+          "@value": "Reacción al fuego (AVCP Sistema 1)"
+        },
+        {
+          "@language": "et",
+          "@value": "Tuletundlikkus (AVCP System 1)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Palokäyttäytyminen (AVCP Järjestelmä 1)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Réaction au feu (AVCP Système 1)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Imoibriú le Tine (AVCP System 1)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Reakcija na požar (AVCP Sustav 1)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tűzveszélyesség (AVCP 1. rendszer)"
+        },
+        {
+          "@language": "it",
+          "@value": "Reazione al fuoco (AVCP Sistema 1)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Degumas (AVCP System 1)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Reakcija uz uguni (AVCP System 1)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reazzjoni għan-Nar (AVCP System 1)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Brandgedrag (AVCP Systeem 1)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Reakcja na ogień (System AVCP 1)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Reação ao fogo (AVCP Sistema 1)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Reacția la foc (Sistem AVCP 1)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Reakcia na oheň (AVCP System 1)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odziv na ogenj (AVCP System 1)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Reaktion vid brand (AVCP System 1)"
+        }
+      ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Реакция на огън съгласно AVCP Система 1."
+        },
+        {
+          "@language": "cs",
+          "@value": "Reakce na oheň podle systému AVCP 1."
+        },
+        {
+          "@language": "da",
+          "@value": "Reaktion ved brand i henhold til AVCP-system 1."
+        },
+        {
+          "@language": "de",
+          "@value": "Brandverhalten gemäß AVCP System 1."
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίδραση στη φωτιά υπό το σύστημα AVCP 1."
+        },
+        {
+          "@language": "en",
+          "@value": "Reaction to fire under AVCP System 1."
+        },
+        {
+          "@language": "es",
+          "@value": "Reacción al fuego bajo el sistema AVCP 1."
+        },
+        {
+          "@language": "et",
+          "@value": "Tuletundlikkus vastavalt AVCP süsteemile 1."
+        },
+        {
+          "@language": "fi",
+          "@value": "Palokäyttäytyminen AVCP-järjestelmän 1 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Réaction au feu selon le système AVCP 1."
+        },
+        {
+          "@language": "ga",
+          "@value": "Imoibriú le tine faoi Chóras AVCP 1."
+        },
+        {
+          "@language": "hr",
+          "@value": "Reakcija na požar prema sustavu AVCP 1."
+        },
+        {
+          "@language": "hu",
+          "@value": "Tűzveszélyesség az AVCP 1. rendszer szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Reazione al fuoco secondo il sistema AVCP 1."
+        },
+        {
+          "@language": "lt",
+          "@value": "Degumas pagal AVCP 1 sistemą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Reakcija uz uguni saskaņā ar AVCP 1. sistēmu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Reazzjoni għan-nar taħt is-Sistema AVCP 1."
+        },
+        {
+          "@language": "nl",
+          "@value": "Brandgedrag onder AVCP-systeem 1."
+        },
+        {
+          "@language": "pl",
+          "@value": "Reakcja na ogień w systemie AVCP 1."
+        },
+        {
+          "@language": "pt",
+          "@value": "Reação ao fogo sob o Sistema AVCP 1."
+        },
+        {
+          "@language": "ro",
+          "@value": "Reacția la foc conform sistemului AVCP 1."
+        },
+        {
+          "@language": "sk",
+          "@value": "Reakcia na oheň podľa systému AVCP 1."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odziv na ogenj po sistemu AVCP 1."
+        },
+        {
+          "@language": "sv",
+          "@value": "Reaktion vid brand under AVCP System 1."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:reactionToFireSystem2",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Reaction to Fire (AVCP System 2)"
+        }
+      ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Reaction to fire under AVCP System 2."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:reactionToFireSystem3",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Реакция на огън (AVCP Система 3)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Reakce na oheň (AVCP Systém 3)"
+        },
+        {
+          "@language": "da",
+          "@value": "Reaktion ved brand (AVCP System 3)"
+        },
+        {
+          "@language": "de",
+          "@value": "Brandverhalten (AVCP System 3)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίδραση στη φωτιά (AVCP System 3)"
+        },
+        {
+          "@language": "en",
+          "@value": "Reaction to Fire (AVCP System 3)"
+        },
+        {
+          "@language": "es",
+          "@value": "Reacción al fuego (AVCP Sistema 3)"
+        },
+        {
+          "@language": "et",
+          "@value": "Tuletundlikkus (AVCP System 3)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Palokäyttäytyminen (AVCP Järjestelmä 3)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Réaction au feu (AVCP Système 3)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Imoibriú le Tine (AVCP System 3)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Reakcija na požar (AVCP Sustav 3)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tűzveszélyesség (AVCP 3. rendszer)"
+        },
+        {
+          "@language": "it",
+          "@value": "Reazione al fuoco (AVCP Sistema 3)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Degumas (AVCP System 3)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Reakcija uz uguni (AVCP System 3)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reazzjoni għan-Nar (AVCP System 3)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Brandgedrag (AVCP Systeem 3)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Reakcja na ogień (System AVCP 3)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Reação ao fogo (AVCP Sistema 3)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Reacția la foc (Sistem AVCP 3)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Reakcia na oheň (AVCP System 3)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odziv na ogenj (AVCP System 3)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Reaktion vid brand (AVCP System 3)"
+        }
+      ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Реакция на огън съгласно AVCP Система 3."
+        },
+        {
+          "@language": "cs",
+          "@value": "Reakce na oheň podle systému AVCP 3."
+        },
+        {
+          "@language": "da",
+          "@value": "Reaktion ved brand i henhold til AVCP-system 3."
+        },
+        {
+          "@language": "de",
+          "@value": "Brandverhalten gemäß AVCP System 3."
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίδραση στη φωτιά υπό το σύστημα AVCP 3."
+        },
+        {
+          "@language": "en",
+          "@value": "Reaction to fire under AVCP System 3."
+        },
+        {
+          "@language": "es",
+          "@value": "Reacción al fuego bajo el sistema AVCP 3."
+        },
+        {
+          "@language": "et",
+          "@value": "Tuletundlikkus vastavalt AVCP süsteemile 3."
+        },
+        {
+          "@language": "fi",
+          "@value": "Palokäyttäytyminen AVCP-järjestelmän 3 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Réaction au feu selon le système AVCP 3."
+        },
+        {
+          "@language": "ga",
+          "@value": "Imoibriú le tine faoi Chóras AVCP 3."
+        },
+        {
+          "@language": "hr",
+          "@value": "Reakcija na požar prema sustavu AVCP 3."
+        },
+        {
+          "@language": "hu",
+          "@value": "Tűzveszélyesség az AVCP 3. rendszer szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Reazione al fuoco secondo il sistema AVCP 3."
+        },
+        {
+          "@language": "lt",
+          "@value": "Degumas pagal AVCP 3 sistemą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Reakcija uz uguni saskaņā ar AVCP 3. sistēmu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Reazzjoni għan-nar taħt is-Sistema AVCP 3."
+        },
+        {
+          "@language": "nl",
+          "@value": "Brandgedrag onder AVCP-systeem 3."
+        },
+        {
+          "@language": "pl",
+          "@value": "Reakcja na ogień w systemie AVCP 3."
+        },
+        {
+          "@language": "pt",
+          "@value": "Reação ao fogo sob o Sistema AVCP 3."
+        },
+        {
+          "@language": "ro",
+          "@value": "Reacția la foc conform sistemului AVCP 3."
+        },
+        {
+          "@language": "sk",
+          "@value": "Reakcia na oheň podľa systému AVCP 3."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odziv na ogenj po sistemu AVCP 3."
+        },
+        {
+          "@language": "sv",
+          "@value": "Reaktion vid brand under AVCP System 3."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:reactionToFireSystem4",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Reaction to Fire (AVCP System 4)"
+        }
+      ],
+      "dppk:governedBy": "EN 13501-1",
+      "dppk:unit": "Euroclass",
+      "rdfs:range": "xsd:string",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Reaction to fire under AVCP System 4."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodA25",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Elastic Recovery (Method A, 25% Elongation)"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Elastic recovery using Method A at 25% elongation."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodA60",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Elastic Recovery (Method A, 60% Elongation)"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Elastic recovery using Method A at 60% elongation."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodA100",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Elastic Recovery (Method A, 100% Elongation)"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Elastic recovery using Method A at 25% elongation."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodB25",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Elastic Recovery (Method B, 25% Elongation)"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Elastic recovery using Method B at 25% elongation."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodB60",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Elastic Recovery (Method B, 60% Elongation)"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Elastic recovery using Method B at 60% elongation."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:elasticRecoveryMethodB100",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Elastic Recovery (Method B, 100% Elongation)"
+        }
+      ],
+      "dppk:governedBy": "ISO 7389:2002",
+      "dppk:unit": "%",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Elastic recovery using Method B at 100% elongation."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:flowResistanceProcedureA50",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Устойчивост на свличане (Процедура А, 50°C)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odolnost proti stékání (Postup A, 50°C)"
+        },
+        {
+          "@language": "da",
+          "@value": "Modstand mod nedløb (Procedure A, 50°C)"
+        },
+        {
+          "@language": "de",
+          "@value": "Standvermögen (Verfahren A, 50°C)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίσταση στη ροή (Διαδικασία A, 50°C)"
+        },
+        {
+          "@language": "en",
+          "@value": "Flow Resistance (Proc A, 50°C)"
+        },
+        {
+          "@language": "es",
+          "@value": "Resistencia al descolgamiento (Procedimiento A, 50°C)"
+        },
+        {
+          "@language": "et",
+          "@value": "Voolavuskindlus (Protseduur A, 50°C)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Valumattomuus (Menettely A, 50°C)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Résistance au coulage (Procédure A, 50°C)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Friotaíocht in aghaidh Sreabhadh (Nós Imeachta A, 50°C)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Otpornost na tečenje (Postupak A, 50°C)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megfolyással szembeni ellenállás (A eljárás, 50°C)"
+        },
+        {
+          "@language": "it",
+          "@value": "Resistenza alla colatura (Procedura A, 50°C)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsparumas tekėjimui (Procedūra A, 50°C)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Noturība pret notecēšanu (Procedūra A, 50°C)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reżistenza għall-Fluss (Proċedura A, 50°C)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Weerstand tegen uitzakken (Procedure A, 50°C)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Odporność na spływanie (Proc A, 50°C)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resistência ao escorrimento (Procedimento A, 50°C)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rezistența la curgere (Procedura A, 50°C)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Odolnosť proti stekaniu (Postup A, 50°C)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odpornost proti tečenju (Postopek A, 50°C)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Motstånd mot rinning (Procedur A, 50°C)"
+        }
+      ],
+      "dppk:governedBy": "ISO 7390:2002",
+      "dppk:unit": "mm",
+      "rdfs:range": "xsd:double",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Устойчивост на свличане чрез Процедура А при 50 градуса по Целзий."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odolnost proti stékání pomocí postupu A při 50 stupních Celsia."
+        },
+        {
+          "@language": "da",
+          "@value": "Modstand mod nedløb ved brug af procedure A ved 50 grader Celsius."
+        },
+        {
+          "@language": "de",
+          "@value": "Standvermögen unter Verwendung von Verfahren A bei 50 Grad Celsius."
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίσταση στη ροή χρησιμοποιώντας τη Διαδικασία Α στους 50 βαθμούς Κελσίου."
+        },
+        {
+          "@language": "en",
+          "@value": "Resistance to flow using Procedure A at 50 degrees Celsius."
+        },
+        {
+          "@language": "es",
+          "@value": "Resistencia al descolgamiento usando el Procedimiento A a 50 grados Celsius."
+        },
+        {
+          "@language": "et",
+          "@value": "Voolavuskindlus protseduuriga A 50 kraadi juures."
+        },
+        {
+          "@language": "fi",
+          "@value": "Valumattomuus menetelmällä A 50 celsiusasteessa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Résistance au coulage selon la procédure A à 50 degrés Celsius."
+        },
+        {
+          "@language": "ga",
+          "@value": "Friotaíocht in aghaidh sreabhadh ag úsáid Nós Imeachta A ag 50 céim Celsius."
+        },
+        {
+          "@language": "hr",
+          "@value": "Otpornost na tečenje korištenjem postupka A pri 50 stupnjeva Celzijusa."
+        },
+        {
+          "@language": "hu",
+          "@value": "Megfolyással szembeni ellenállás A eljárással 50 Celsius-fokon."
+        },
+        {
+          "@language": "it",
+          "@value": "Resistenza alla colatura utilizzando la Procedura A a 50 gradi Celsius."
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsparumas tekėjimui taikant A procedūrą 50 laipsnių Celsijaus temperatūroje."
+        },
+        {
+          "@language": "lv",
+          "@value": "Noturība pret notecēšanu, izmantojot procedūru A pie 50 grādiem pēc Celsija."
+        },
+        {
+          "@language": "mt",
+          "@value": "Reżistenza għall-fluss bl-użu tal-Proċedura A f'50 grad Celsius."
+        },
+        {
+          "@language": "nl",
+          "@value": "Weerstand tegen uitzakken met procedure A bij 50 graden Celsius."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odporność na spływanie przy użyciu procedury A w temperaturze 50 stopni Celsjusza."
+        },
+        {
+          "@language": "pt",
+          "@value": "Resistência ao escorrimento usando o Procedimento A a 50 graus Celsius."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rezistența la curgere utilizând Procedura A la 50 de grade Celsius."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odolnosť proti stekaniu postupom A pri 50 stupňoch Celzia."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odpornost proti tečenju po postopku A pri 50 stopinjah Celzija."
+        },
+        {
+          "@language": "sv",
+          "@value": "Motstånd mot rinning med procedur A vid 50 grader Celsius."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:tensileStrengthAdhesion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Клас на сцепление"
+        },
+        {
+          "@language": "cs",
+          "@value": "Třída přídržnosti"
+        },
+        {
+          "@language": "da",
+          "@value": "Vedhæftningsklasse"
+        },
+        {
+          "@language": "de",
+          "@value": "Haftzugfestigkeitsklasse"
+        },
+        {
+          "@language": "el",
+          "@value": "Κλάση Πρόσφυσης"
+        },
+        {
+          "@language": "en",
+          "@value": "Adhesion Class"
+        },
+        {
+          "@language": "es",
+          "@value": "Clase de adhesión"
+        },
+        {
+          "@language": "et",
+          "@value": "Nakkeklass"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tartuntaluokka"
+        },
+        {
+          "@language": "fr",
+          "@value": "Classe d'adhérence"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicme Greamaitheachta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Razred prianjanja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tapadási osztály"
+        },
+        {
+          "@language": "it",
+          "@value": "Classe di aderenza"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sukibimo klasė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Adhēzijas klase"
+        },
+        {
+          "@language": "mt",
+          "@value": "Klassi ta' Adeżjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Hechtingsklasse"
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasa przyczepności"
+        },
+        {
+          "@language": "pt",
+          "@value": "Classe de Aderência"
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasa de aderență"
+        },
+        {
+          "@language": "sk",
+          "@value": "Trieda priľnavosti"
+        },
+        {
+          "@language": "sl",
+          "@value": "Razred oprijema"
+        },
+        {
+          "@language": "sv",
+          "@value": "Vidhäftningsklass"
+        }
+      ],
+      "dppk:governedBy": "N 12618-2",
+      "dppk:unit": "Class",
+      "rdfs:range": "xsd:string",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Класификация на сцеплението."
+        },
+        {
+          "@language": "cs",
+          "@value": "Klasifikace přídržnosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Klassificering af vedhæftning."
+        },
+        {
+          "@language": "de",
+          "@value": "Klassifizierung der Haftung."
+        },
+        {
+          "@language": "el",
+          "@value": "Ταξινόμηση της πρόσφυσης."
+        },
+        {
+          "@language": "en",
+          "@value": "Classification of adhesion."
+        },
+        {
+          "@language": "es",
+          "@value": "Clasificación de la adhesión."
+        },
+        {
+          "@language": "et",
+          "@value": "Nakke klassifikatsioon."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tartuntaluokitus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Classification de l'adhérence."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicmiú greamaitheachta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Klasifikacija prianjanja."
+        },
+        {
+          "@language": "hu",
+          "@value": "A tapadás osztályozása."
+        },
+        {
+          "@language": "it",
+          "@value": "Classificazione dell'aderenza."
+        },
+        {
+          "@language": "lt",
+          "@value": "Sukibimo klasifikacija."
+        },
+        {
+          "@language": "lv",
+          "@value": "Adhēzijas klasifikācija."
+        },
+        {
+          "@language": "mt",
+          "@value": "Klassifikazzjoni tal-adeżjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Classificatie van hechting."
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasyfikacja przyczepności."
+        },
+        {
+          "@language": "pt",
+          "@value": "Classificação da aderência."
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasificarea aderenței."
+        },
+        {
+          "@language": "sk",
+          "@value": "Klasifikácia priľnavosti."
+        },
+        {
+          "@language": "sl",
+          "@value": "Razvrstitev oprijema."
+        },
+        {
+          "@language": "sv",
+          "@value": "Klassificering av vidhäftning."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:capillaryAbsorption",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Капилярна абсорбция"
+        },
+        {
+          "@language": "cs",
+          "@value": "Kapilární absorpce"
+        },
+        {
+          "@language": "da",
+          "@value": "Kapillær absorption"
+        },
+        {
+          "@language": "de",
+          "@value": "Kapillare Wasseraufnahme"
+        },
+        {
+          "@language": "el",
+          "@value": "Τριχοειδής απορρόφηση"
+        },
+        {
+          "@language": "en",
+          "@value": "Capillary Absorption"
+        },
+        {
+          "@language": "es",
+          "@value": "Absorción capilar"
+        },
+        {
+          "@language": "et",
+          "@value": "Kapillaarne imendumine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kapillaarinen imeytyminen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Absorption capillaire"
+        },
+        {
+          "@language": "ga",
+          "@value": "Súchán Ribeach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Kapilarno upijanje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kapilláris vízfelvétel"
+        },
+        {
+          "@language": "it",
+          "@value": "Assorbimento capillare"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kapiliarinis įgeriamumas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kapilārā uzsūce"
+        },
+        {
+          "@language": "mt",
+          "@value": "Assorbiment kapillari"
+        },
+        {
+          "@language": "nl",
+          "@value": "Capillaire absorptie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Absorpcja kapilarna"
+        },
+        {
+          "@language": "pt",
+          "@value": "Absorção capilar"
+        },
+        {
+          "@language": "ro",
+          "@value": "Absorbție capilară"
+        },
+        {
+          "@language": "sk",
+          "@value": "Kapilárna absorpcia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Kapilarna absorpcija"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kapillär absorption"
+        }
+      ],
+      "dppk:governedBy": "EN 13057:2002",
+      "dppk:unit": "kg/(m²·h^0.5)",
+      "rdfs:range": "xsd:double",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Скорост на капилярна абсорбция."
+        },
+        {
+          "@language": "cs",
+          "@value": "Rychlost kapilární absorpce."
+        },
+        {
+          "@language": "da",
+          "@value": "Hastighed for kapillær absorption."
+        },
+        {
+          "@language": "de",
+          "@value": "Kapillare Wasseraufnahmerate."
+        },
+        {
+          "@language": "el",
+          "@value": "Ρυθμός τριχοειδούς απορρόφησης."
+        },
+        {
+          "@language": "en",
+          "@value": "Capillary absorption rate."
+        },
+        {
+          "@language": "es",
+          "@value": "Tasa de absorción capilar."
+        },
+        {
+          "@language": "et",
+          "@value": "Kapillaarse imendumise kiirus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Kapillaarinen imeytymisnopeus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Taux d'absorption capillaire."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ráta súcháin ribeach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Brzina kapilarnog upijanja."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kapilláris vízfelvétel sebessége."
+        },
+        {
+          "@language": "it",
+          "@value": "Tasso di assorbimento capillare."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kapiliarinės absorbcijos greitis."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kapilārās absorbcijas ātrums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Rata ta' assorbiment kapillari."
+        },
+        {
+          "@language": "nl",
+          "@value": "Capillaire absorptiesnelheid."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wskaźnik absorpcji kapilarnej."
+        },
+        {
+          "@language": "pt",
+          "@value": "Taxa de absorção capilar."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rata de absorbție capilară."
+        },
+        {
+          "@language": "sk",
+          "@value": "Rýchlosť kapilárnej absorpcie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Stopnja kapilarne absorpcije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Hastighet för kapillär absorption."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:dangerousSubstances",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Опасни вещества"
+        },
+        {
+          "@language": "cs",
+          "@value": "Nebezpečné látky"
+        },
+        {
+          "@language": "da",
+          "@value": "Farlige stoffer"
+        },
+        {
+          "@language": "de",
+          "@value": "Gefährliche Stoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Επικίνδυνες ουσίες"
+        },
+        {
+          "@language": "en",
+          "@value": "Dangerous Substances"
+        },
+        {
+          "@language": "es",
+          "@value": "Sustancias peligrosas"
+        },
+        {
+          "@language": "et",
+          "@value": "Ohtlikud ained"
+        },
+        {
+          "@language": "fi",
+          "@value": "Vaaralliset aineet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Substances dangereuses"
+        },
+        {
+          "@language": "ga",
+          "@value": "Substaintí Contúirteacha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Opasne tvari"
+        },
+        {
+          "@language": "hu",
+          "@value": "Veszélyes anyagok"
+        },
+        {
+          "@language": "it",
+          "@value": "Sostanze pericolose"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pavojingos medžiagos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Bīstamās vielas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Sustanzi perikolużi"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gevaarlijke stoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Substancje niebezpieczne"
+        },
+        {
+          "@language": "pt",
+          "@value": "Substancias perigosas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Substanțe periculoase"
+        },
+        {
+          "@language": "sk",
+          "@value": "Nebezpečné látky"
+        },
+        {
+          "@language": "sl",
+          "@value": "Nevarne snovi"
+        },
+        {
+          "@language": "sv",
+          "@value": "Farliga ämnen"
+        }
+      ],
+      "dppk:unit": "Statement",
+      "rdfs:range": "xsd:string",
+      "rdfs:domain": {
+        "@id": "dppk:DoPCBlock"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Изявление относно опасни вещества."
+        },
+        {
+          "@language": "cs",
+          "@value": "Prohlášení o nebezpečných látkách."
+        },
+        {
+          "@language": "da",
+          "@value": "Erklæring om farlige stoffer."
+        },
+        {
+          "@language": "de",
+          "@value": "Erklärung zu gefährlichen Stoffen."
+        },
+        {
+          "@language": "el",
+          "@value": "Δήλωση για επικίνδυνες ουσίες."
+        },
+        {
+          "@language": "en",
+          "@value": "Statement on dangerous substances."
+        },
+        {
+          "@language": "es",
+          "@value": "Declaración sobre sustancias peligrosas."
+        },
+        {
+          "@language": "et",
+          "@value": "Avaldus ohtlike ainete kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Lausunto vaarallisista aineista."
+        },
+        {
+          "@language": "fr",
+          "@value": "Déclaration sur les substances dangereuses."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ráiteas maidir le substaintí contúirteacha."
+        },
+        {
+          "@language": "hr",
+          "@value": "Izjava o opasnim tvarima."
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyilatkozat a veszélyes anyagokról."
+        },
+        {
+          "@language": "it",
+          "@value": "Dichiarazione sulle sostanze pericolose."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pareiškimas dėl pavojingų medžiagų."
+        },
+        {
+          "@language": "lv",
+          "@value": "Paziņojums par bīstamām vielām."
+        },
+        {
+          "@language": "mt",
+          "@value": "Dikjarazzjoni dwar sustanzi perikolużi."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verklaring over gevaarlijke stoffen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Oświadczenie o substancjach niebezpiecznych."
+        },
+        {
+          "@language": "pt",
+          "@value": "Declaração sobre substâncias perigosas."
+        },
+        {
+          "@language": "ro",
+          "@value": "Declarație privind substanțele periculoase."
+        },
+        {
+          "@language": "sk",
+          "@value": "Vyhlásenie o nebezpečných látkach."
+        },
+        {
+          "@language": "sl",
+          "@value": "Izjava o nevarnih snoveh."
+        },
+        {
+          "@language": "sv",
+          "@value": "Uttalande om farliga ämnen."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:referenceServiceLife",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "bg",
+          "@value": "Референтен експлоатационен срок"
+        },
+        {
+          "@language": "cs",
+          "@value": "Referenční životnost"
+        },
+        {
+          "@language": "da",
+          "@value": "Referencelevetid"
+        },
+        {
+          "@language": "de",
+          "@value": "Referenznutzungsdauer"
+        },
+        {
+          "@language": "el",
+          "@value": "Διάρκεια ζωής αναφοράς"
+        },
+        {
+          "@language": "en",
+          "@value": "Reference Service Life"
+        },
+        {
+          "@language": "es",
+          "@value": "Vida útil de referencia"
+        },
+        {
+          "@language": "et",
+          "@value": "Viitekasutusiga"
+        },
+        {
+          "@language": "fi",
+          "@value": "Viitteellinen käyttöikä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Durée de vie de référence"
+        },
+        {
+          "@language": "ga",
+          "@value": "Saol Seirbhíse Tagartha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Referentni uporabni vijek"
+        },
+        {
+          "@language": "hu",
+          "@value": "Referencia élettartam"
+        },
+        {
+          "@language": "it",
+          "@value": "Vita di servizio di riferimento"
+        },
+        {
+          "@language": "lt",
+          "@value": "Numatomasis tarnavimo laikas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauces kalpošanas laiks"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ħajja tas-Servizz ta' Referenza"
+        },
+        {
+          "@language": "nl",
+          "@value": "Referentielevensduur"
+        },
+        {
+          "@language": "pl",
+          "@value": "Referencyjny okres użytkowania"
+        },
+        {
+          "@language": "pt",
+          "@value": "Vida útil de referência"
+        },
+        {
+          "@language": "ro",
+          "@value": "Durata de viață de referință"
+        },
+        {
+          "@language": "sk",
+          "@value": "Referenčná životnosť"
+        },
+        {
+          "@language": "sl",
+          "@value": "Referenčna življenjska doba"
+        },
+        {
+          "@language": "sv",
+          "@value": "Referenslivslängd"
+        }
+      ],
+      "dppk:unit": "Years",
+      "rdfs:range": "xsd:integer",
+      "rdfs:comment": [
+        {
+          "@language": "bg",
+          "@value": "Референтният експлоатационен срок в години."
+        },
+        {
+          "@language": "cs",
+          "@value": "Referenční životnost v letech."
+        },
+        {
+          "@language": "da",
+          "@value": "Referencelevetiden i år."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Referenznutzungsdauer in Jahren."
+        },
+        {
+          "@language": "el",
+          "@value": "Η διάρκεια ζωής αναφοράς σε έτη."
+        },
+        {
+          "@language": "en",
+          "@value": "The reference service life in years."
+        },
+        {
+          "@language": "es",
+          "@value": "La vida útil de referencia en años."
+        },
+        {
+          "@language": "et",
+          "@value": "Viitekasutusiga aastates."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viitteellinen käyttöikä vuosina."
+        },
+        {
+          "@language": "fr",
+          "@value": "La durée de vie de référence en années."
+        },
+        {
+          "@language": "ga",
+          "@value": "An saol seirbhíse tagartha i mblianta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referentni uporabni vijek u godinama."
+        },
+        {
+          "@language": "hu",
+          "@value": "A referencia élettartam években."
+        },
+        {
+          "@language": "it",
+          "@value": "La vita di servizio di riferimento in anni."
+        },
+        {
+          "@language": "lt",
+          "@value": "Numatomasis tarnavimo laikas metais."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauces kalpošanas laiks gados."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-ħajja tas-servizz ta' referenza fi snin."
+        },
+        {
+          "@language": "nl",
+          "@value": "De referentielevensduur in jaren."
+        },
+        {
+          "@language": "pl",
+          "@value": "Referencyjny okres użytkowania w latach."
+        },
+        {
+          "@language": "pt",
+          "@value": "A vida útil de referência em anos."
+        },
+        {
+          "@language": "ro",
+          "@value": "Durata de viață de referință în ani."
+        },
+        {
+          "@language": "sk",
+          "@value": "Referenčná životnosť v rokoch."
+        },
+        {
+          "@language": "sl",
+          "@value": "Referenčna življenjska doba v letih."
+        },
+        {
+          "@language": "sv",
+          "@value": "Referenslivslängden i år."
+        }
+      ]
+    }
+  ]
+}

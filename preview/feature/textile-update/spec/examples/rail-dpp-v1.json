@@ -1,5 +1,5 @@
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v2/dpp-construction.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "https://www.example.org/API/RAIL/4711",
   "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/rail-dpp-v1.html",

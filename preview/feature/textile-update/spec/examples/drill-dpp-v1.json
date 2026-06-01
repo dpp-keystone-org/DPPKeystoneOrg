@@ -1,5 +1,5 @@
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v2/dpp-electronics.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
   "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/drill-dpp-v1.html",

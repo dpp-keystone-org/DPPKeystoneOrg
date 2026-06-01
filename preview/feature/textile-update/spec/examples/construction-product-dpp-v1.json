@@ -1,5 +1,5 @@
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v2/dpp-construction.context.jsonld",
   "digitalProductPassportId": "https://www.example.org/dpp/1234545",
   "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/construction-product-dpp-v1.html",
   "granularity": "Model",

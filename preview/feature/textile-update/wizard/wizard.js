@@ -1,11 +1,12 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1779890678684';
-import { loadOntology } from '../lib/ontology-loader.js?v=1779890678684';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1779890678684';
-import { generateDpp } from './dpp-generator.js?v=1779890678684';
-import { generateHTML } from '../lib/html-generator.js?v=1779890678684';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779890678684';
+import { loadSchema } from '../lib/schema-loader.js?v=1780338975452';
+import { loadOntology } from '../lib/ontology-loader.js?v=1780338975452';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1780338975452';
+import { generateDpp } from './dpp-generator.js?v=1780338975452';
+import { generateHTML } from '../lib/html-generator.js?v=1780338975452';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1780338975452';
 import * as jsonld from 'jsonld';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1780338975452';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
@@ -20,7 +21,7 @@ const SUPPORTED_CUSTOM_TYPES = [
     { label: 'Product Characteristic', schemaName: 'product-characteristic' }, // Maps to product-characteristic.schema.json (virtual or real)
     { label: 'Related Resource', schemaName: 'related-resource' }
 ];
-const STORAGE_KEY = 'dpp_wizard_state_v1';
+const STORAGE_KEY = `dpp_wizard_state_${KEYSTONE_VERSION}`;
 
 // --- DOM Element References ---
 let coreFormContainer, sectorsFormContainer, voluntaryModulesContainer, addVoluntaryFieldBtn,
@@ -355,7 +356,7 @@ export async function initializeWizard() {
 
             const sectorDisplayNames = {
                 'general-product': 'General Product Information',
-                'textile-espr': 'Textile',
+                'textile': 'Textile',
                 'iron-steel': 'Iron or Steel'
             };
             const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
@@ -605,8 +606,9 @@ export async function initializeWizard() {
 
                 const options = {
                     profile: 'schema.org',
-                    ontologyPaths: ['../spec/ontology/v1/dpp-ontology.jsonld'],
-                    documentLoader
+                    ontologyPaths: [`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`],
+                    documentLoader,
+                    version: KEYSTONE_VERSION
                 };
 
                 const transformed = await transformDpp(dppData, options);

@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Module: DPP Core Ontology - Organization and Roles Definitions (v2)</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">DPP Core Ontology - Organization and Roles Definitions (v2)</h2>
+            </div>
+        </header>
+        <main>
+            <p>Defines concepts related to organizations, roles (Economic Operator, Manufacturer, Facility), identifiers, and contact information within the DPP ecosystem.</p>
+            <p><strong>Source:</strong> <a href="../Organization.jsonld">Organization.jsonld</a></p>
+            <h3>Classes & Concepts</h3>
+            <ul>
+                <li><a href="Organization.html">Organization</a></li><li><a href="PostalAddress.html">Postal Address</a></li><li><a href="EconomicOperatorRole.html">Economic Operator Role</a></li><li><a href="ManufacturerRole.html">Manufacturer Role</a></li><li><a href="ImporterRole.html">Importer Role</a></li><li><a href="FacilityRole.html">Facility Role</a></li><li><a href="ConformityAssessmentBodyRole.html">Conformity Assessment Body Role</a></li><li><a href="RepairServiceRole.html">Repair Service Role</a></li>
+            </ul>
+            <h3>Properties</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>equivalentProperty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="economicOperator"><strong>Economic Operator</strong> (dppk:economicOperator)</td>
+                            <td>Relates the DPP to the Economic Operator responsible for it.</td>
+                            <td><a href="../Header/DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="manufacturer"><strong>Manufacturer</strong> (dppk:manufacturer)</td>
+                            <td>Relates the DPP to the Manufacturer of the product.</td>
+                            <td><a href="../Header/DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="https://schema.org/manufacturer">schema:manufacturer</a>, <a href="https://ref.gs1.org/voc/manufacturer">gs1:manufacturer</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="importer"><strong>Importer</strong> (dppk:importer)</td>
+                            <td>Relates the DPP to the Importer of the product.</td>
+                            <td><a href="../Header/DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="manufacturingFacility"><strong>Manufacturing Facility</strong> (dppk:manufacturingFacility)</td>
+                            <td>Relates the DPP to the specific facility where the product (or a step) was manufactured.</td>
+                            <td><a href="../Header/DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="repairService"><strong>Repair Service</strong> (dppk:repairService)</td>
+                            <td>Relates the DPP to an authorized repair service.</td>
+                            <td><a href="../Header/DigitalProductPassport.html">dppk:DigitalProductPassport</a></td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="organizationName"><strong>Organization Name</strong> (dppk:organizationName)</td>
+                            <td>The official legal name of the organization.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/name">schema:name</a>, <a href="https://ref.gs1.org/voc/organizationName">gs1:organizationName</a>, <a href="https://vocabulary.uncefact.org/name">unece:name</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="tradingName"><strong>Trading Name</strong> (dppk:tradingName)</td>
+                            <td>The name under which the organization conducts business, if different from the legal name.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/organizationTradingName">gs1:organizationTradingName</a>, <a href="https://vocabulary.uncefact.org/tradingBusinessName">unece:tradingBusinessName</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="gln"><strong>Global Location Number (GLN)</strong> (dppk:gln)</td>
+                            <td>A GS1 standard identifier for legal entities, functional departments, or physical locations.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/globalLocationNumber">gs1:globalLocationNumber</a>, <a href="https://schema.org/globalLocationNumber">schema:globalLocationNumber</a>, <a href="https://vocabulary.uncefact.org/gLNId">unece:gLNId</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="leiCode"><strong>Legal Entity Identifier (LEI)</strong> (dppk:leiCode)</td>
+                            <td>A standardized global identifier for legal entities.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/leiCode">schema:leiCode</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="eori"><strong>Economic Operators Registration and Identification (EORI)</strong> (dppk:eori)</td>
+                            <td>A unique identifier assigned by a customs authority in the EU to economic operators.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="additionalOrganizationId"><strong>Additional Organization ID</strong> (dppk:additionalOrganizationId)</td>
+                            <td>An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIdType.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/additionalOrganizationIdentification">gs1:additionalOrganizationIdentification</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="additionalOrganizationIdType"><strong>Additional Organization ID Type</strong> (dppk:additionalOrganizationIdType)</td>
+                            <td>The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT').</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://ref.gs1.org/voc/additionalOrganizationIdentificationType">gs1:additionalOrganizationIdentificationType</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="address"><strong>Address</strong> (dppk:address)</td>
+                            <td>Relates an organization to its physical address.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="PostalAddress.html">dppk:PostalAddress</a></td>
+                            <td><a href="https://schema.org/address">schema:address</a>, <a href="https://ref.gs1.org/voc/address">gs1:address</a>, <a href="https://vocabulary.uncefact.org/postalAddress">unece:postalAddress</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="streetAddress"><strong>Street Address</strong> (dppk:streetAddress)</td>
+                            <td>Includes street name and number.</td>
+                            <td><a href="PostalAddress.html">dppk:PostalAddress</a></td>
+                            <td></td>
+                            <td><a href="https://schema.org/streetAddress">schema:streetAddress</a>, <a href="https://ref.gs1.org/voc/streetAddress">gs1:streetAddress</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="postalCode"><strong>Postal Code</strong> (dppk:postalCode)</td>
+                            <td>The postal code of the location.</td>
+                            <td><a href="PostalAddress.html">dppk:PostalAddress</a></td>
+                            <td></td>
+                            <td><a href="https://schema.org/postalCode">schema:postalCode</a>, <a href="https://ref.gs1.org/voc/postalCode">gs1:postalCode</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="addressLocality"><strong>City/Locality</strong> (dppk:addressLocality)</td>
+                            <td>The locality (e.g. city) of the address.</td>
+                            <td><a href="PostalAddress.html">dppk:PostalAddress</a></td>
+                            <td></td>
+                            <td><a href="https://schema.org/addressLocality">schema:addressLocality</a>, <a href="https://ref.gs1.org/voc/addressLocality">gs1:addressLocality</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="addressCountry"><strong>Country</strong> (dppk:addressCountry)</td>
+                            <td>The country component of the address.</td>
+                            <td><a href="PostalAddress.html">dppk:PostalAddress</a></td>
+                            <td></td>
+                            <td><a href="https://schema.org/addressCountry">schema:addressCountry</a>, <a href="https://ref.gs1.org/voc/addressCountry">gs1:addressCountry</a>, <a href="https://vocabulary.uncefact.org/countryName">unece:countryName</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="email"><strong>Email Address</strong> (dppk:email)</td>
+                            <td>The email address for contacting the organization.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                            <td><a href="https://schema.org/email">schema:email</a>, <a href="https://ref.gs1.org/voc/email">gs1:email</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="telephone"><strong>Telephone Number</strong> (dppk:telephone)</td>
+                            <td>The telephone number for contacting the organization.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td></td>
+                            <td><a href="https://schema.org/telephone">schema:telephone</a>, <a href="https://ref.gs1.org/voc/telephone">gs1:telephone</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="operatorEmail"><strong>Operator Email Address</strong> (dppk:operatorEmail)</td>
+                            <td>The email address for contacting the economic operator.</td>
+                            <td><a href="EconomicOperatorRole.html">dppk:EconomicOperatorRole</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="operatorTelephone"><strong>Operator Telephone Number</strong> (dppk:operatorTelephone)</td>
+                            <td>The telephone number for contacting the economic operator.</td>
+                            <td><a href="EconomicOperatorRole.html">dppk:EconomicOperatorRole</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="website"><strong>Website</strong> (dppk:website)</td>
+                            <td>The URL of the organization's website.</td>
+                            <td><a href="Organization.html">dppk:Organization</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            <td><a href="https://schema.org/url">schema:url</a></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+</body>
+</html>

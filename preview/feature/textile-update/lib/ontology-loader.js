@@ -1,3 +1,5 @@
+import { KEYSTONE_VERSION } from './keystone-version.js?v=1780338975452';
+
 /**
  * Robustly extracts a single string value from an RDFS property, preferring English.
  * @param {string|object|Array} property - The RDFS property from the JSON-LD graph.
@@ -94,7 +96,7 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
 
         // Extract module info from URL
         let definedIn = null;
-        const urlMatch = fetchUrl.match(/ontology\/v1\/(.+?)\/(.+?)\.jsonld/);
+        const urlMatch = fetchUrl.match(new RegExp(`ontology/${KEYSTONE_VERSION}/(.+?)/(.+?)\\.jsonld`));
         if (urlMatch) {
             definedIn = { type: urlMatch[1], name: urlMatch[2] };
         }
@@ -212,14 +214,14 @@ export async function loadOntology(sector) {
     let initialUrl;
 
     if (sector === 'dpp') {
-        initialUrl = '../spec/ontology/v1/dpp-ontology.jsonld';
+        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
     } else if (sector === 'general-product') {
-        initialUrl = '../spec/ontology/v1/core/Product.jsonld';
+        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/core/Product.jsonld`;
     } else if (sector === 'packaging') {
-        initialUrl = '../spec/ontology/v1/core/Compliance.jsonld';
+        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/core/Compliance.jsonld`;
     } else {
         const sectorPascalCase = sector.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
-        initialUrl = `../spec/ontology/v1/sectors/${sectorPascalCase}.jsonld`;
+        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/sectors/${sectorPascalCase}.jsonld`;
     }
 
     try {

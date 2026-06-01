@@ -1,23 +1,23 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1779890678684';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1780338975452';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1779890678684';
-import { generateHTML } from '../lib/html-generator.js?v=1779890678684';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1779890678684';
+import { EXAMPLES } from '../lib/example-registry.js?v=1780338975452';
+import { generateHTML } from '../lib/html-generator.js?v=1780338975452';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1780338975452';
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1779890678684';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1779890678684';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1779890678684';
+import { loadOntology } from '../lib/ontology-loader.js?v=1780338975452';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1780338975452';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1780338975452';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1780338975452';
 
 // Configuration: Map Spec IDs to Schema filenames
-// This assumes the schemas are available at ../spec/validation/v1/json-schema/
+// This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
 // NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
 const SECTOR_MAP = {
     'draft_battery_specification_id': 'sector/battery.schema.json',
     'draft_construction_specification_id': 'sector/construction.schema.json',
     'draft_electronics_specification_id': 'sector/electronics.schema.json',
     'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'draft_textile_specification_id': 'sector/textile.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile-espr.schema.json'
+    'draft_textile_espr_specification_id': 'sector/textile.schema.json'
 };
 
 // Common schemas that should always be loaded for $ref resolution
@@ -36,7 +36,7 @@ const COMMON_SCHEMAS = [
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
-const SCHEMA_BASE_URL = '../spec/validation/v1/json-schema/';
+const SCHEMA_BASE_URL = `../spec/validation/${KEYSTONE_VERSION}/json-schema/`;
 
 // State to hold loaded schemas
 const schemaContext = {
@@ -326,8 +326,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     // Point to the full ontology file. 
                     // Note: dpp-ontology.jsonld might be an aggregate or imports others.
                     // If imports are used, the documentLoader must handle them.
-                    ontologyPaths: ['../spec/ontology/v1/dpp-ontology.jsonld'],
-                    documentLoader
+                    ontologyPaths: [`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`],
+                    documentLoader,
+                    version: KEYSTONE_VERSION
                 };
 
                 const transformed = await transformDpp(dppData, options);
