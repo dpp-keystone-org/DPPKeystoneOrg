@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/shared/dopc.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/shared/dopc.schema.json",
     "title": "DPP DoPC (Declaration of Performance) Data Block",
     "description": "A dense, nested schema for Construction DoPC characteristics.",
     "type": "object",

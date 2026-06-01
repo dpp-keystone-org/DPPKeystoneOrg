@@ -4,15 +4,15 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDMetadata.jsonld",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - EPD Metadata",
   "owl:imports": [
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" }
   ],
   "dcterms:description": "Defines the core structural classes for Environmental Product Declarations (EPD).",
   "@graph": [

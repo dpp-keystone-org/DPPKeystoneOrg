@@ -6,10 +6,10 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "gs1": "https://ref.gs1.org/voc/",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/RelatedResource",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Related Resource",
   "dcterms:description": "Defines a class for linking to external resources, such as documents or websites, with associated metadata.",
@@ -19,7 +19,7 @@
   "rdfs:comment": [
     { "@language": "en", "@value": "Defines a class for linking to external resources, such as documents or websites, with associated metadata." }
   ],
-  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
+  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
   "@graph": [
     {
       "@id": "dppk:RelatedResource",

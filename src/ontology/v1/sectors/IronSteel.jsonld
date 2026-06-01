@@ -4,11 +4,11 @@
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "owl": "http://www.w3.org/2002/07/owl#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "dcterms": "http://purl.org/dc/terms/",
         "schema": "http://schema.org/"
     },
-    "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/IronSteel",
+    "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/IronSteel",
     "@type": "owl:Ontology",
     "dcterms:title": "DPP Iron & Steel Sector Ontology",
     "dcterms:description": "Defines the specific data model for the Iron and Steel Passport, covering ESPR and MTC attributes.",
@@ -19,11 +19,11 @@
         { "@language": "en", "@value": "Defines the specific data model for the Iron and Steel Passport, covering ESPR and Mill Test Certificate (MTC) attributes." }
     ],
     "owl:imports": [
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld" },
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/DoPC.jsonld" },
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Visibility.jsonld" },
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/MTC.jsonld" }
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPD.jsonld" },
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/DoPC.jsonld" },
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Visibility.jsonld" },
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/MTC.jsonld" }
     ],
     "@graph": [
         {

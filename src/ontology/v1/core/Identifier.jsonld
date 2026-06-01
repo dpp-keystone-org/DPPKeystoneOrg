@@ -1,16 +1,16 @@
 {
   "@context": {
-    "dppk": "https://keystone.digitalproductpassport.org/keystone/ontology/v1/",
+    "dppk": "https://keystone.digitalproductpassport.org/keystone/ontology/{{VERSION}}/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "schema": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Identifier",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Identifier",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Identifier",
+      "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Identifier",
       "@type": "owl:Ontology",
       "dcterms:title": "DPP Core Ontology - Identifier Definitions",
       "dcterms:description": "Defines a generic property for attaching identifiers to a resource.",

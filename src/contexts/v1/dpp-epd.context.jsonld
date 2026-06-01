@@ -1,6 +1,6 @@
 {
       "@context": {
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         // Term for EPD Data Block which holds an array of EPD Indicators

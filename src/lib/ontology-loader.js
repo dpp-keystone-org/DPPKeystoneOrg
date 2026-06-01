@@ -212,14 +212,14 @@ export async function loadOntology(sector) {
     let initialUrl;
 
     if (sector === 'dpp') {
-        initialUrl = '../spec/ontology/v1/dpp-ontology.jsonld';
+        initialUrl = '../spec/ontology/{{VERSION}}/dpp-ontology.jsonld';
     } else if (sector === 'general-product') {
-        initialUrl = '../spec/ontology/v1/core/Product.jsonld';
+        initialUrl = '../spec/ontology/{{VERSION}}/core/Product.jsonld';
     } else if (sector === 'packaging') {
-        initialUrl = '../spec/ontology/v1/core/Compliance.jsonld';
+        initialUrl = '../spec/ontology/{{VERSION}}/core/Compliance.jsonld';
     } else {
         const sectorPascalCase = sector.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
-        initialUrl = `../spec/ontology/v1/sectors/${sectorPascalCase}.jsonld`;
+        initialUrl = `../spec/ontology/{{VERSION}}/sectors/${sectorPascalCase}.jsonld`;
     }
 
     try {

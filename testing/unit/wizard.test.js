@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-import { buildForm, createVoluntaryFieldRow } from '../../src/wizard/form-builder.js';
-import { generateDpp } from '../../src/wizard/dpp-generator.js';
+import { buildForm, createVoluntaryFieldRow } from '../../dist/wizard/form-builder.js';
+import { generateDpp } from '../../dist/wizard/dpp-generator.js';
 
 // Since we are using the 'jsdom' environment via the docblock,
 // 'document' is available globally.

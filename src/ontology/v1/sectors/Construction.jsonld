@@ -6,24 +6,24 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "gs1": "https://ref.gs1.org/voc/",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "cencpr": "urn:cen:cpr:",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/v1/terms"
+    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Construction",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Construction",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Sector Ontology - Construction and Heavy Industry Definitions (v1)",
   "dcterms:description": "Defines concepts for Construction Products (aligning with CPR) and related heavy industries such as steel and rail.",
   "owl:versionInfo": "1.0.0",
   "owl:imports": [
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/DoPC.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Compliance.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Organization.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPD.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/RelatedResource.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/DoPC.jsonld" }
   ],
   "@graph": [
     {

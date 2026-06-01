@@ -113,11 +113,11 @@ export async function loadSchema(schemaName, schemaType) {
     
     let schemaPath;
     if (schemaType === 'header') {
-        schemaPath = `../spec/validation/v1/json-schema/${schemaName}.schema.json`;
+        schemaPath = `../spec/validation/{{VERSION}}/json-schema/${schemaName}.schema.json`;
     } else if (schemaType === 'shared') {
-        schemaPath = `../spec/validation/v1/json-schema/shared/${schemaName}.schema.json`;
+        schemaPath = `../spec/validation/{{VERSION}}/json-schema/shared/${schemaName}.schema.json`;
     } else if (schemaType === 'sector') {
-        schemaPath = `../spec/validation/v1/json-schema/sector/${schemaName}.schema.json`;
+        schemaPath = `../spec/validation/{{VERSION}}/json-schema/sector/${schemaName}.schema.json`;
     } else {
         throw new Error(`Unrecognized schema type: '${schemaType}'`);
     }

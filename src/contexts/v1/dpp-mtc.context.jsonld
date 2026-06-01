@@ -1,6 +1,6 @@
 {
     "@context": {
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "mtc": {
             "@id": "dppk:mtc",
@@ -66,5 +66,5 @@
             }
         }
     },
-    "@id": "https://dpp-keystone.org/spec/contexts/v1/dpp-mtc"
+    "@id": "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-mtc"
 }

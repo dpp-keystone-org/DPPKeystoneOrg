@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadOntology } from '../../../src/lib/ontology-loader.js';
+import { loadOntology } from '../../../dist/lib/ontology-loader.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();

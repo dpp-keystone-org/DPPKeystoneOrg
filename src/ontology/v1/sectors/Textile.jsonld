@@ -6,18 +6,18 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "schema": "https://schema.org/",
         "gs1": "https://ref.gs1.org/voc/",
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "dcterms": "http://purl.org/dc/terms/",
-        "@base": "https://dpp-keystone.org/spec/v1/terms"
+        "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms"
     },
-    "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Textile",
+    "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Textile",
     "@type": "owl:Ontology",
     "dcterms:title": { "@language": "en", "@value": "DPP Sector Ontology - Textile ESPR Compliant" },
     "dcterms:description": { "@language": "en", "@value": "Defines sector-specific concepts compliant with the upcoming ESPR Delegated Act for Textiles." },
     "owl:versionInfo": "Draft",
     "owl:imports": [
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Compliance.jsonld" },
-        { "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/EUApparelSizeSystem.jsonld" }
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Compliance.jsonld" },
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/EUApparelSizeSystem.jsonld" }
     ],
     "@graph": [
         {

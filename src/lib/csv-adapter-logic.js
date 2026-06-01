@@ -893,7 +893,7 @@ export function generateDPPsFromCsv(csvData, mapping, sector) {
 
     return csvData.map(row => {
         const dpp = {};
-        const contextBase = 'https://dpp-keystone.org/spec/contexts/v1/';
+        const contextBase = 'https://dpp-keystone.org/spec/contexts/{{VERSION}}/';
         const contexts = [contextBase + 'dpp-core.context.jsonld'];
         if (Array.isArray(sector)) {
             sector.forEach(s => contexts.push(`${contextBase}dpp-${s}.context.jsonld`));

@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadSchema, clearSchemaCache, flattenSchema } from '../../../src/lib/schema-loader.js';
+import { loadSchema, clearSchemaCache, flattenSchema } from '../../../dist/lib/schema-loader.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();

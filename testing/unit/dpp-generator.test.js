@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { generateDpp } from '../../src/wizard/dpp-generator.js';
+import { generateDpp } from '../../dist/wizard/dpp-generator.js';
 
 describe('DPP Generator', () => {
     let coreFormContainer;

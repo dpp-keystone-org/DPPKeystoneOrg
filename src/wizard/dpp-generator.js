@@ -90,7 +90,7 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
     
     // Add @context
     let contexts = [];
-    const baseUrl = 'https://dpp-keystone.org/spec/contexts/v1/';
+    const baseUrl = 'https://dpp-keystone.org/spec/contexts/{{VERSION}}/';
 
     if (sectors && sectors.length > 0) {
         contexts = sectors.map(sector => `${baseUrl}dpp-${sector}.context.jsonld`);

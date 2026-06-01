@@ -4,11 +4,11 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/sectors/Battery",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Battery",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Battery Sector Ontology",
   "dcterms:description": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information.",
@@ -65,11 +65,11 @@
     { "@language": "ga", "@value": "Sainmhíníonn sé an tsamhail sonraí shonrach do Phas Ceallraí an AE, lena n-áirítear airíonna, ábhair agus faisnéis rialála a bhaineann go sonrach le ceallraí." }
   ],
   "owl:imports": [
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/DoPC.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/RelatedResource.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Organization.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPD.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/DoPC.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/RelatedResource.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Organization.jsonld" }
   ],
   "@graph": [
     {

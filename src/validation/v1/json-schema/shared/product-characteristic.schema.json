@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/shared/product-characteristic.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/shared/product-characteristic.schema.json",
     "title": "Product Characteristic",
     "description": "A specific characteristic or feature of the product, often voluntary or supplemental.",
     "type": "object",

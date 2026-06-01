@@ -4,11 +4,11 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/DoPC",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/DoPC",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Declaration of Performance and Conformity (DoPC)",
   "dcterms:description": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC).",
@@ -18,7 +18,7 @@
   "rdfs:comment": [
     { "@language": "en", "@value": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC)." }
   ],
-  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
+  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
   "@graph": [
     {
       "@id": "dppk:DoPCBlock",

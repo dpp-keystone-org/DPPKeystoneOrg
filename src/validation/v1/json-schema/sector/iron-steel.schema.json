@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/v1/json-schema/sector/iron-steel.schema.json",
+    "$id": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/iron-steel.schema.json",
     "title": "Iron and Steel Sector Module",
     "description": "A conditional schema for the Iron and Steel sector.",
     "if": {

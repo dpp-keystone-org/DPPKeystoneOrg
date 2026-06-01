@@ -1,4 +1,4 @@
-import { generateDPPsFromCsv, findBestMatch, generateAutoMapping, findUsedIndices, generateIndexedSuggestions } from '../../src/lib/csv-adapter-logic.js';
+import { generateDPPsFromCsv, findBestMatch, generateAutoMapping, findUsedIndices, generateIndexedSuggestions } from '../../dist/lib/csv-adapter-logic.js';
 
 describe('CSV Adapter Logic', () => {
 

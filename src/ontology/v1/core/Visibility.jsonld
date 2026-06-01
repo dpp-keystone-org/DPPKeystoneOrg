@@ -4,11 +4,11 @@
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "owl": "http://www.w3.org/2002/07/owl#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "dcterms": "http://purl.org/dc/terms/",
         "schema": "http://schema.org/"
     },
-    "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Visibility",
+    "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Visibility",
     "@type": "owl:Ontology",
     "dcterms:title": "DPP Visibility Ontology",
     "dcterms:description": "Defines the allowable visibility tiers (enum) for data properties within a Digital Product Passport to dictate privacy serialization.",

@@ -4,11 +4,11 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPD",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPD",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - Environmental Product Declaration (EPD)",
   "dcterms:description": "A module that aggregates all components required for an Environmental Product Declaration (EPD), including metadata, lifecycle stages, and indicators.",
@@ -19,10 +19,10 @@
     { "@language": "en", "@value": "A module that aggregates all components required for an Environmental Product Declaration (EPD), including metadata, lifecycle stages, and indicators." }
   ],
   "owl:imports": [
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDMetadata.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDIndicators.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDLifecycle.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDIndicators.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDLifecycle.jsonld" }
   ],
   "@graph": []
 }

@@ -4,17 +4,17 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDIndicators.jsonld",
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDIndicators.jsonld",
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Core Ontology - EPD Indicators",
   "owl:imports": [
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDMetadata.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/v1/core/EPDLifecycle.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDLifecycle.jsonld" }
   ],
   "dcterms:description": "Defines the specific environmental impact indicators used in Environmental Product Declarations.",
   "@graph": [
