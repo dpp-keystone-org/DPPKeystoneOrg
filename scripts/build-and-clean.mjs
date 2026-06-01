@@ -66,10 +66,10 @@ async function processDirectory(sourceDir, targetDir) {
 async function createRedirects(targetDir) {
     console.log('Generating client-side redirects...');
 
-    const redirectPath = path.join(targetDir, 'spec', 'v1', 'terms', 'index.html');
+    const redirectPath = path.join(targetDir, 'spec', KEYSTONE_VERSION, 'terms', 'index.html');
     // The target URL should be an absolute path that factors in the preview deployment directory
     const branchPrefix = process.env.PREVIEW_BRANCH ? `/preview/${process.env.PREVIEW_BRANCH}` : '';
-    const redirectTarget = `${branchPrefix}/spec/ontology/v1/dpp-ontology.jsonld`;
+    const redirectTarget = `${branchPrefix}/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
     
     // This HTML file uses a meta refresh tag to immediately redirect the user.
     const redirectContent = `<!DOCTYPE html>
@@ -87,7 +87,7 @@ async function createRedirects(targetDir) {
 </html>`;
 
     await fse.outputFile(redirectPath, redirectContent);
-    console.log(`Created redirect: /spec/v1/terms/index.html -> ${redirectTarget}`);
+    console.log(`Created redirect: /spec/${KEYSTONE_VERSION}/terms/index.html -> ${redirectTarget}`);
 }
 
 async function addCacheBusting(targetDir) {

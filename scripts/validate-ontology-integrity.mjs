@@ -1,13 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.join(__dirname, '..');
 const ONTOLOGY_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology');
-const CONTEXT_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', 'v1');
-const SCHEMA_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'json-schema');
+const CONTEXT_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION);
+const SCHEMA_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'json-schema');
 
 // --- Reporter Class ---
 class IntegrityReporter {
@@ -143,7 +144,7 @@ function processContextBlock(ctxBlock) {
 
     // Handle object
     if (typeof ctxBlock === 'object') {
-        const dppkPrefix = ctxBlock['dppk'] || 'https://dpp-keystone.org/spec/v1/terms#';
+        const dppkPrefix = ctxBlock['dppk'] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`;
 
         for (const [term, mapping] of Object.entries(ctxBlock)) {
             // Skip keywords
@@ -295,7 +296,7 @@ function auditSchemaMappings(reporter) {
                 } else {
                     const iris = contextMap.get(propName);
                     iris.forEach(iri => {
-                        const compactIRI = iri.replace('https://dpp-keystone.org/spec/v1/terms#', 'dppk:');
+                        const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
                         
                         if (ontologyGraph.has(iri)) {
                             usedIRIs.add(iri);
@@ -452,7 +453,7 @@ async function run() {
     const reporter = new IntegrityReporter();
 
     // 1. Load Main Ontology
-    const entryPoint = path.join(ONTOLOGY_ROOT, 'v1', 'dpp-ontology.jsonld');
+    const entryPoint = path.join(ONTOLOGY_ROOT, KEYSTONE_VERSION, 'dpp-ontology.jsonld');
     console.log(`📂 Loading ontologies starting from: ${path.relative(PROJECT_ROOT, entryPoint)}`);
     loadOntologyFile(entryPoint);
     console.log(`   Loaded ${ontologyGraph.size} terms from ${loadedFiles.size} files.`);
@@ -473,7 +474,7 @@ async function run() {
     contextMap.forEach((iris) => {
         iris.forEach(iri => {
             contextMappedIRIs.add(iri);
-            const compactIRI = iri.replace('https://dpp-keystone.org/spec/v1/terms#', 'dppk:');
+            const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
             contextMappedIRIs.add(compactIRI);
         });
     });

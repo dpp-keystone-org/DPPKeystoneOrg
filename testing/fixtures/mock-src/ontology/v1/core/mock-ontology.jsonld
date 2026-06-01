@@ -2,7 +2,7 @@
     "@context": {
         "owl": "http://www.w3.org/2002/07/owl#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "dcterms": "http://purl.org/dc/terms/"
     },
     "@graph": [

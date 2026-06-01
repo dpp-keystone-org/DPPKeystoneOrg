@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
 import { join, basename, dirname, resolve, relative } from 'path';
 import { parse as jsoncParse } from 'jsonc-parser';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
 export const getFragment = (id) => {
     if (id.includes('#')) {
@@ -768,7 +769,7 @@ const expandCurie = (curie, context) => {
     return curie;
 };
 
-export async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src', 'ontology', 'v1')) {
+export async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src', 'ontology', KEYSTONE_VERSION)) {
     const termMap = {};
     const sourceOntologyDirs = ['core', 'sectors'];
 
@@ -848,10 +849,10 @@ export async function generateSpecDocs({
     srcDir = join(process.cwd(), 'src'),
     distDir = join(process.cwd(), 'dist', 'spec')
 } = {}) {
-    const ontologyDir = join(distDir, 'ontology', 'v1');
-    const contextDir = join(distDir, 'contexts', 'v1');
-    const sourceOntologyDir = join(srcDir, 'ontology', 'v1');
-    const sourceContextDir = join(srcDir, 'contexts', 'v1');
+    const ontologyDir = join(distDir, 'ontology', KEYSTONE_VERSION);
+    const contextDir = join(distDir, 'contexts', KEYSTONE_VERSION);
+    const sourceOntologyDir = join(srcDir, 'ontology', KEYSTONE_VERSION);
+    const sourceContextDir = join(srcDir, 'contexts', KEYSTONE_VERSION);
     
     const ontologyDirsToProcess = ['core', 'sectors'];
     const contextDirsToProcess = ['.']; // The root of the contexts/v1 dir
@@ -926,7 +927,7 @@ export async function generateSpecDocs({
 
     for (const [dirSuffix, fileMetadataList] of Object.entries(metadataByDir)) {
         const fullPath = join(ontologyDir, dirSuffix);
-        const directoryName = `ontology/v1/${dirSuffix}`;
+        const directoryName = `ontology/${KEYSTONE_VERSION}/${dirSuffix}`;
         
         // Create main index for the directory (e.g., /core/index.html)
         const directoryIndexPath = join(fullPath, 'index.html');
@@ -963,7 +964,7 @@ export async function generateSpecDocs({
     // 4. Process Contexts for HTML documentation
     for (const dirSuffix of contextDirsToProcess) {
         const fullPath = join(contextDir, dirSuffix);
-        const directoryName = `contexts/v1${dirSuffix === '.' ? '' : '/' + dirSuffix}`;
+        const directoryName = `contexts/${KEYSTONE_VERSION}${dirSuffix === '.' ? '' : '/' + dirSuffix}`;
 
         const files = await getJsonLdFiles(fullPath);
         if (files.length === 0) {

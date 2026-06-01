@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import jsonld from 'jsonld';
 import { fileURLToPath } from 'url';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 import SHACLValidator from '../testing/node_modules/rdf-validate-shacl/index.js';
 import datasetFactory from '../testing/node_modules/@rdfjs/dataset/index.js';
 import N3Parser from '../testing/node_modules/@rdfjs/parser-n3/index.js';
@@ -13,19 +14,19 @@ const PROJECT_ROOT = path.join(__dirname, '..');
 
 // Use dist to match the test environment
 const SPEC_DIR = path.join(PROJECT_ROOT, 'dist', 'spec');
-const CONTEXTS_DIR = path.join(SPEC_DIR, 'contexts', 'v1');
-const SHAPES_DIR = path.join(SPEC_DIR, 'validation', 'v1', 'shacl');
+const CONTEXTS_DIR = path.join(SPEC_DIR, 'contexts', KEYSTONE_VERSION);
+const SHAPES_DIR = path.join(SPEC_DIR, 'validation', KEYSTONE_VERSION, 'shacl');
 
 const CONTEXT_MAP = {
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-core.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-battery.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-epd.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-dopc.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-general-product.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-packaging.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-textile.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-electronics.context.jsonld'),
-    "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld": path.join(CONTEXTS_DIR, 'dpp-construction.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-core.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-battery.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-epd.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-epd.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-dopc.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-dopc.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-general-product.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-packaging.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-textile.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-electronics.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-electronics.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`]: path.join(CONTEXTS_DIR, 'dpp-construction.context.jsonld'),
 };
 
 const customLoader = async (url) => {
@@ -91,7 +92,7 @@ async function run() {
         const dataDataset = await loadRdfFile(examplePath);
 
         // Also load Header ontology as the test does
-        const headerOntologyPath = path.join(SPEC_DIR, 'ontology', 'v1', 'core', 'Header.jsonld');
+        const headerOntologyPath = path.join(SPEC_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'Header.jsonld');
         const headerOntologyDataset = await loadRdfFile(headerOntologyPath);
         
         const dataGraph = combineDatasets([dataDataset, headerOntologyDataset]);
@@ -120,7 +121,7 @@ async function run() {
 
         // --- DEBUG: Compare Predicates ---
         console.log('--- Debugging Predicate Matching ---');
-        const targetPredicate = 'https://dpp-keystone.org/spec/v1/terms#manufacturerInfo';
+        const targetPredicate = `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#manufacturerInfo`;
         
         const dataQuad = [...dataGraph].find(q => q.predicate.value === targetPredicate);
         const shapeQuad = [...shapesGraph].find(q => q.object.value === targetPredicate); // Usually sh:path points to the predicate
@@ -151,7 +152,7 @@ async function run() {
 
         // --- DEBUG: Check Battery Mass Datatype ---
         console.log('\n--- Debugging Battery Mass Datatype ---');
-        const massQuad = [...dataGraph].find(q => q.predicate.value === 'https://dpp-keystone.org/spec/v1/terms#batteryMass');
+        const massQuad = [...dataGraph].find(q => q.predicate.value === `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#batteryMass`);
         if (massQuad) {
             console.log(`Value: ${massQuad.object.value}`);
             console.log(`Datatype: ${massQuad.object.datatype.value}`);

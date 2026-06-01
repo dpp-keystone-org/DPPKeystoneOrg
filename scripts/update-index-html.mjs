@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 // Import the parser from the other script to read ontology files
 import { parseOntologyMetadata, getFragment } from './generate-spec-docs.mjs';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
 const PROJECT_ROOT = process.cwd();
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
@@ -211,8 +212,8 @@ export async function updateIndexHtml({
     let indexContent = await fs.readFile(templatePath, 'utf-8');
 
     // Generate and inject contexts list (non-recursive)
-    const contextsPath = path.join(srcDir, 'contexts', 'v1');
-    const contextsList = await generateFileList(contextsPath, 'spec/contexts/v1/', { isContext: true });
+    const contextsPath = path.join(srcDir, 'contexts', KEYSTONE_VERSION);
+    const contextsList = await generateFileList(contextsPath, `spec/contexts/${KEYSTONE_VERSION}/`, { isContext: true });
     indexContent = indexContent.replace(
       /<!-- CONTEXTS_LIST_START -->[\s\S]*<!-- CONTEXTS_LIST_END -->/,
       '<!-- CONTEXTS_LIST_START -->\n' + contextsList + '\n                            <!-- CONTEXTS_LIST_END -->'
@@ -228,24 +229,24 @@ export async function updateIndexHtml({
     );
 
     // Generate and inject ontology core list (non-recursive)
-    const ontologyCorePath = path.join(srcDir, 'ontology', 'v1', 'core');
-    const ontologyCoreList = await generateFileList(ontologyCorePath, 'spec/ontology/v1/core/', { isOntology: true });
+    const ontologyCorePath = path.join(srcDir, 'ontology', KEYSTONE_VERSION, 'core');
+    const ontologyCoreList = await generateFileList(ontologyCorePath, `spec/ontology/${KEYSTONE_VERSION}/core/`, { isOntology: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_CORE_LIST_START -->[\s\S]*<!-- ONTOLOGY_CORE_LIST_END -->/,
       '<!-- ONTOLOGY_CORE_LIST_START -->\n' + ontologyCoreList + '\n                                    <!-- ONTOLOGY_CORE_LIST_END -->'
     );
 
     // Generate and inject ontology sectors list (non-recursive)
-    const ontologySectorsPath = path.join(srcDir, 'ontology', 'v1', 'sectors');
-    const ontologySectorsList = await generateFileList(ontologySectorsPath, 'spec/ontology/v1/sectors/', { isOntology: true });
+    const ontologySectorsPath = path.join(srcDir, 'ontology', KEYSTONE_VERSION, 'sectors');
+    const ontologySectorsList = await generateFileList(ontologySectorsPath, `spec/ontology/${KEYSTONE_VERSION}/sectors/`, { isOntology: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_SECTORS_LIST_START -->[\s\S]*<!-- ONTOLOGY_SECTORS_LIST_END -->/,
       '<!-- ONTOLOGY_SECTORS_LIST_START -->\n' + ontologySectorsList + '\n                                    <!-- ONTOLOGY_SECTORS_LIST_END -->'
     );
 
     // Generate and inject schema lists
-    const schemasPath = path.join(srcDir, 'validation', 'v1', 'json-schema');
-    const { dppList, contentSpecList, auxList } = await generateSchemaLists(schemasPath, 'spec/validation/v1/json-schema/');
+    const schemasPath = path.join(srcDir, 'validation', KEYSTONE_VERSION, 'json-schema');
+    const { dppList, contentSpecList, auxList } = await generateSchemaLists(schemasPath, `spec/validation/${KEYSTONE_VERSION}/json-schema/`);
     
     indexContent = indexContent.replace(
         /<!-- DPP_SCHEMA_LIST_START -->[\s\S]*<!-- DPP_SCHEMA_LIST_END -->/,
@@ -261,8 +262,8 @@ export async function updateIndexHtml({
     );
 
     // Generate and inject SHACL shapes list
-    const shaclPath = path.join(srcDir, 'validation', 'v1', 'shacl');
-    const shaclList = await generateFileList(shaclPath, 'spec/validation/v1/shacl/', { recursive: false });
+    const shaclPath = path.join(srcDir, 'validation', KEYSTONE_VERSION, 'shacl');
+    const shaclList = await generateFileList(shaclPath, `spec/validation/${KEYSTONE_VERSION}/shacl/`, { recursive: false });
     indexContent = indexContent.replace(
       /<!-- SHACL_SHAPES_LIST_START -->[\s\S]*<!-- SHACL_SHAPES_LIST_END -->/,
       '<!-- SHACL_SHAPES_LIST_START -->\n' + shaclList + '\n                    <!-- SHACL_SHAPES_LIST_END -->'

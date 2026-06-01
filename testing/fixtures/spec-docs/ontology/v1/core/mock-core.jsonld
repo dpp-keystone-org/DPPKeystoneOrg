@@ -3,13 +3,13 @@
         "owl": "http://www.w3.org/2002/07/owl#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "dcterms": "http://purl.org/dc/terms/",
-        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "gs1": "https://ref.gs1.org/voc/",
         "schema": "https://schema.org/"
     },
     "@graph": [
         {
-            "@id": "https://dpp-keystone.org/spec/v1/terms/MockCoreOntology",
+            "@id": "https://dpp-keystone.org/spec/{{VERSION}}/terms/MockCoreOntology",
             "@type": "owl:Ontology",
             "dcterms:title": "Mock Core Ontology",
             "dcterms:description": "A mock ontology for testing purposes."

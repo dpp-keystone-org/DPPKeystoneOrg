@@ -4,6 +4,7 @@ import DatasetFactory from '@rdfjs/dataset/Factory.js';
 import Environment from '@rdfjs/environment';
 import ClownfaceFactory from 'clownface/Factory.js';
 import NamespaceFactory from '@rdfjs/namespace/Factory.js';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 const factory = new Environment([DataFactory, DatasetFactory, ClownfaceFactory, NamespaceFactory]);
 
@@ -18,12 +19,12 @@ async function testShaclLogic() {
     dataGraph.add(factory.quad(
         focusNode,
         factory.namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-        factory.namedNode('https://dpp-keystone.org/spec/v1/terms#DigitalProductPassport')
+        factory.namedNode(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#DigitalProductPassport`)
     ));
     
     dataGraph.add(factory.quad(
         focusNode,
-        factory.namedNode('https://dpp-keystone.org/spec/v1/terms#contentSpecificationIds'),
+        factory.namedNode(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#contentSpecificationIds`),
         factory.literal('draft_electronics_specification_id') // Value present
     ));
 
@@ -35,7 +36,7 @@ async function testShaclLogic() {
     batteryShapeGraph.add(factory.quad(
         batteryShapeNode,
         factory.namedNode('http://www.w3.org/ns/shacl#targetClass'),
-        factory.namedNode('https://dpp-keystone.org/spec/v1/terms#DigitalProductPassport')
+        factory.namedNode(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#DigitalProductPassport`)
     ));
 
     // Logic: OR ( NOT(HasID) , CheckProperties )
@@ -64,7 +65,7 @@ async function testShaclLogic() {
     // Inside NOT: Property hasValue 'draft_battery_specification_id'
     const propNode = factory.blankNode();
     batteryShapeGraph.add(factory.quad(notNode, factory.namedNode('http://www.w3.org/ns/shacl#property'), propNode));
-    batteryShapeGraph.add(factory.quad(propNode, factory.namedNode('http://www.w3.org/ns/shacl#path'), factory.namedNode('https://dpp-keystone.org/spec/v1/terms#contentSpecificationIds')));
+    batteryShapeGraph.add(factory.quad(propNode, factory.namedNode('http://www.w3.org/ns/shacl#path'), factory.namedNode(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#contentSpecificationIds`)));
     batteryShapeGraph.add(factory.quad(propNode, factory.namedNode('http://www.w3.org/ns/shacl#hasValue'), factory.literal('draft_electronics_specification_id')));
 
     // Option 2: Requirements (We'll just put a dummy failing check to ensure it skipped)
