@@ -153,9 +153,9 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   **[COMPLETED] Task 11.2.8**: Add `weightExcludingTrims` mass field to `textile-espr.schema.json`.
     *   **[COMPLETED] Task 11.2.9**: Add `eori` optional field to `organization.schema.json`.
 
-### [PENDING] Step 12: Ontology and Schema Versioning for Backward Compatibility
+### [COMPLETED] Step 12: Ontology and Schema Versioning for Backward Compatibility
 *   Plan: Plan how to handle versioning to ensure backward compatibility before pulling the textile project into the main branch.
-*   **[PENDING] Step 12.1: Strategy for Coexistence**
+*   **[COMPLETED] Step 12.1: Strategy for Coexistence**
     *   Determine how to supplant the legacy textile material while keeping v1 available.
     *   Design the structure for both versions to coexist in the repository and registry.
 
@@ -190,7 +190,7 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
     *   [x] Specialize them in `TextileEspr.jsonld` and update context mappings (to be subdivided later).
 
    
-### [PENDING] Step 15: Versioning Strategy Execution (Move to v2)
+### [COMPLETED] Step 15: Versioning Strategy Execution (Move to v2)
 *   **[COMPLETED] Step 15.1: Update GitHub Actions on `main`**
     *   [x] Modify workflow files to recognize the `legacy/v*` branch naming convention.
     *   [x] For `legacy/v*` branches, ensure the workflow pushes **only** the contents of the `dist/spec` directory to `gh-pages` (not the full `dist` folder), keeping existing files intact.
@@ -199,18 +199,18 @@ Reconciles the EU Joint Research Centre (JRC) Ecodesign presentation against ind
 *   **[COMPLETED] Step 15.3: Create and Push Legacy `legacy/v1` Branch**
     *   [x] Create a new branch named `legacy/v1` from the current state of `main` (which contains the legacy 1.0 definitions).
     *   [x] Push the `legacy/v1` branch to GitHub to trigger the deployment of legacy resources to `spec/.../v1`.
-*   **[PENDING] Step 15.4: Fix Broken Tests and Overwrite in Place**
+*   **[COMPLETED] Step 15.4: Fix Broken Tests and Overwrite in Place**
     *   [x] Fix any broken tests resulting from the annotation work.
     *   [x] Overwrite the old textile directories in place (in `v1` structure) with the new ESPR files and ensure the build is OK.
-*   **[PENDING] Step 15.5: Refactor Textile Branch to `v2`**
-    *   [ ] Move files from `v1` directories to `v2` (e.g., `src/ontology/v1` -> `src/ontology/v2`). This will naturally cause `npm build` to output to `dist/spec/.../v2`.
-    *   [ ] Update all URIs, context mappings, and schema references to use `/v2/` paths.
-    *   [ ] Rearrange textile files as needed for the clean ESPR profile.
-*   **[PENDING] Step 15.6: Submit Pull Request**
-    *   [ ] Open a pull request from the refactored `textile` branch to `main`.
-*   **[PENDING] Step 15.7: Implement latest version strategy**
-    *   [ ] Update `scripts/build-and-clean.mjs` to copy the files from the latest version directory (e.g., `v2`) to a `latest` directory in the build output without modifying the file content.
-    *   [ ] Plan for automatic testing of the "latest" fileset in integration tests (details to be discussed).
+*   **[COMPLETED] Step 15.5: Refactor Textile Branch to `v2`**
+    *   [x] Move files from `v1` directories to `v2` (e.g., `src/ontology/v1` -> `src/ontology/v2`). This will naturally cause `npm build` to output to `dist/spec/.../v2`.
+    *   [x] Update all URIs, context mappings, and schema references to use `/v2/` paths.
+    *   [x] Rearrange textile files as needed for the clean ESPR profile.
+*   **[COMPLETED] Step 15.6: Submit Pull Request**
+    *   [x] Open a pull request from the refactored `textile` branch to `main`.
+*   **[COMPLETED] Step 15.7: Implement latest version strategy**
+    *   [x] Update `scripts/build-and-clean.mjs` to copy the files from the latest version directory (e.g., `v2`) to a `latest` directory in the build output without modifying the file content.
+    *   [x] Plan for automatic testing of the "latest" fileset in integration tests (details to be discussed).
 
 ### [PENDING] Step 16: Translate Ontology Labels and Comments
 *   Plan: Translate the labels and comments in the textile ontology to support multi-lingual requirements when all other edits are done.
