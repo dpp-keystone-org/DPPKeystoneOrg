@@ -85,7 +85,7 @@ describe('generate-spec-docs.mjs', () => {
         it('should parse context metadata correctly', async () => {
             const content = await fs.readFile(join(FIXTURES_DIR, 'contexts', KEYSTONE_VERSION, 'mock-core.context.jsonld'), 'utf-8');
             const mockTermDictionary = {
-                [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#mockProperty`]: {
+                ['https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty']: {
                     description: "A test property for the Mock Product.",
                     module: "core",
                     fileName: "mock-core.jsonld"
@@ -94,10 +94,10 @@ describe('generate-spec-docs.mjs', () => {
             const { imports, localTerms } = parseContextMetadata(content, mockTermDictionary);
 
             expect(imports).toHaveLength(1);
-            expect(imports[0]).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/contexts/dpp-core.context.jsonld`);
+            expect(imports[0]).toBe('https://dpp-keystone.org/spec/{{VERSION}}/contexts/dpp-core.context.jsonld');
             expect(localTerms).toHaveLength(2);
             expect(localTerms[1].term).toBe('mockProp');
-            expect(localTerms[1].uri).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#mockProperty`);
+            expect(localTerms[1].uri).toBe('https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty');
             expect(localTerms[1].description).toBe('A test property for the Mock Product.');
         });
 
@@ -113,7 +113,7 @@ describe('generate-spec-docs.mjs', () => {
             const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION);
             const termDict = await buildTermDictionary(sourceOntologyDir);
             
-            const mockProperty = termDict[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#mockProperty`];
+            const mockProperty = termDict['https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty'];
             expect(mockProperty).toBeDefined();
             expect(mockProperty.type).toContain('owl:DatatypeProperty');
             expect(mockProperty.domain['@id']).toBe('dppk:MockProduct');
@@ -123,7 +123,7 @@ describe('generate-spec-docs.mjs', () => {
             const sourceOntologyDir = join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION);
             const termDict = await buildTermDictionary(sourceOntologyDir);
 
-            const complexTerm = termDict[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#ComplexTerm`];
+            const complexTerm = termDict['https://dpp-keystone.org/spec/{{VERSION}}/terms#ComplexTerm'];
             expect(complexTerm).toBeDefined();
             expect(complexTerm.description).toBe('This is a complex comment.');
         });
