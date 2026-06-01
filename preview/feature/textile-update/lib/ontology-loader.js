@@ -1,4 +1,4 @@
-import { KEYSTONE_VERSION } from './keystone-version.js?v=1780339788245';
+import { KEYSTONE_VERSION } from './keystone-version.js?v=1780341364624';
 
 /**
  * Robustly extracts a single string value from an RDFS property, preferring English.
