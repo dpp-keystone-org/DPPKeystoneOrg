@@ -10,7 +10,7 @@ describe('Server Adapter Loader Integration', () => {
                 contextUrl: null,
                 document: {
                     "@context": {
-                        "dppk": "https://dpp-keystone.org/spec/v1/terms#",
+                        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
                         "productName": "dppk:productName"
                     }
                 },

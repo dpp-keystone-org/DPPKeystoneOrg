@@ -2,6 +2,7 @@ import { jest } from '@jest/globals';
 import { promises as fs } from 'fs';
 import { Dirent } from 'fs'; // Import Dirent
 import { generateFileList } from '../../scripts/update-index-html.mjs';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import * as specDocs from '../../scripts/generate-spec-docs.mjs';
 
 
@@ -42,15 +43,15 @@ describe('generateFileList for ontologies', () => {
         readFileSpy.mockResolvedValue(mockOntologyContentWithClass);
 
 
-        const dirPath = '/fake/dir/ontology/v1/core';
-        const baseHref = 'spec/ontology/v1/core/';
+        const dirPath = `/fake/dir/ontology/${KEYSTONE_VERSION}/core`;
+        const baseHref = `spec/ontology/${KEYSTONE_VERSION}/core/`;
 
         // Act
         const htmlList = await generateFileList(dirPath, baseHref, { isOntology: true });
 
         // Assert
-        const expectedSummary = `<summary><a href="spec/ontology/v1/core/mock-ontology/index.html">Mock Ontology</a></summary>`;
-        const expectedClassLink = `<li><a href="spec/ontology/v1/core/mock-ontology/MockClass.html">Mock Class Label</a></li>`;
+        const expectedSummary = `<summary><a href="spec/ontology/${KEYSTONE_VERSION}/core/mock-ontology/index.html">Mock Ontology</a></summary>`;
+        const expectedClassLink = `<li><a href="spec/ontology/${KEYSTONE_VERSION}/core/mock-ontology/MockClass.html">Mock Class Label</a></li>`;
         const unexpectedText = `<details><summary>Classes</summary>`;
 
         expect(htmlList).toContain(expectedSummary);

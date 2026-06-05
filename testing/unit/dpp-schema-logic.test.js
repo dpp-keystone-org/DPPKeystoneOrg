@@ -1,5 +1,6 @@
 
-import { transform, buildDictionary } from '../../src/util/js/common/transformation/dpp-schema-logic.js';
+import { transform, buildDictionary } from '../../dist/util/js/common/transformation/dpp-schema-logic.js';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import * as jsonld from 'jsonld';
 import fs from 'fs/promises';
 import path from 'path';
@@ -16,12 +17,12 @@ const customDocumentLoader = localFileDocumentLoader;
 const mockOntologyStore = {
     'http://mock/ontology/product': {
         "@context": { 
-            "dppk": "https://dpp-keystone.org/spec/v1/terms#", 
+            "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 
             "rdfs": "http://www.w3.org/2000/01/rdf-schema#" 
         },
         "@graph": [
             {
-                "@id": "https://dpp-keystone.org/spec/v1/terms#tearStrength",
+                "@id": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`,
                 "dppk:unit": [{ "@value": "N" }],
                 "rdfs:label": [{ "@value": "Tear Strength", "@language": "en" }]
             }
@@ -39,11 +40,11 @@ const mockLoader = async (path) => {
 // --- Step 1.c: Define dpp-full-example fixture ---
 const fullExampleDpp = {
   "@context": [
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld",
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld",
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-epd.context.jsonld",
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-dopc.context.jsonld"
+      `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+      `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`,
+      `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`,
+      `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-epd.context.jsonld`,
+      `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-dopc.context.jsonld`
   ],
   "@type": "DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:1234-5678-90ab-cdef",
@@ -74,22 +75,22 @@ const fullExampleDpp = {
   
   // EPD Data
   "epd": {
-      "https://dpp-keystone.org/spec/v1/terms#gwp": {
-          "https://dpp-keystone.org/spec/v1/terms#a1-a3": 5.5
+      [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#gwp`]: {
+          [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#a1-a3`]: 5.5
       }
   },
 
   // Textile Specific
   "fibreComposition": [
       {
-          "fibreType": "Cotton",
-          "fibrePercentage": 100
+          "name": "Cotton",
+          "percentage": 100
       }
   ],
   
   // Generic / DOPC
   "dopc": {
-      "https://dpp-keystone.org/spec/v1/terms#tearStrength": 50
+      [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`]: 50
   }
 };
 
@@ -99,17 +100,18 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 1.d: Smoke Test ---
     test('buildDictionary populates metadata from mock ontology', async () => {
         const dictionary = {};
-        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary);
+        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary, KEYSTONE_VERSION);
 
-        expect(dictionary['https://dpp-keystone.org/spec/v1/terms#tearStrength']).toBeDefined();
-        expect(dictionary['https://dpp-keystone.org/spec/v1/terms#tearStrength'].unit).toBe('N');
+        expect(dictionary[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`]).toBeDefined();
+        expect(dictionary[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`].unit).toBe('N');
     });
 
     test('transform returns transformed objects (Basic Smoke Test)', async () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         expect(Array.isArray(result)).toBe(true);
@@ -121,7 +123,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         // Expectation: A single Product graph, not disjoint objects
@@ -134,7 +137,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -150,7 +154,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -169,7 +174,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -183,11 +189,12 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps generic generic/DOPC properties using dictionary', async () => {
         const dictionary = {};
         // Pre-load dictionary as the adapter wrapper normally handles this
-        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary);
+        await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary, KEYSTONE_VERSION);
 
         const result = await transform(fullExampleDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -203,7 +210,7 @@ describe('DPP Schema Logic (Unit)', () => {
     // --- Step 12: Core Parity (Design 019-b) ---
     test('Product maps extended Core fields (Components, Characteristics, Recycled, HSCode)', async () => {
         const coreDpp = {
-            "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
+            "@context": `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
             "@type": "DigitalProductPassport",
             "digitalProductPassportId": "urn:uuid:core-test",
             "uniqueProductIdentifier": "urn:gtin:core-test",
@@ -220,7 +227,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(coreDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -259,8 +267,8 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps Battery specific fields (Mass, Performance, Dates)', async () => {
         const batteryDpp = {
             "@context": [
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld"
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`
             ],
             "@type": ["DigitalProductPassport", "BatteryProduct"],
             "digitalProductPassportId": "urn:uuid:battery-test",
@@ -278,7 +286,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(batteryDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -310,8 +319,8 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps Construction specific fields (Notified Body, DoP ID)', async () => {
         const constructionDpp = {
             "@context": [
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld"
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`
             ],
             "@type": ["DigitalProductPassport", "ConstructionProduct"],
             "digitalProductPassportId": "urn:uuid:const-test",
@@ -326,7 +335,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(constructionDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -354,8 +364,8 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps Electronics specific fields (IP Rating, Voltage)', async () => {
         const electronicsDpp = {
             "@context": [
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld"
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-electronics.context.jsonld`
             ],
             "@type": ["DigitalProductPassport", "ElectronicDevice"],
             "digitalProductPassportId": "urn:uuid:elec-test",
@@ -367,7 +377,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(electronicsDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -387,8 +398,8 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps General Product specific fields (Color, Country, Length, Certs)', async () => {
         const generalDpp = {
             "@context": [
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld"
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`
             ],
             "@type": "DigitalProductPassport",
             "digitalProductPassportId": "urn:uuid:gen-test",
@@ -409,7 +420,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(generalDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -457,8 +469,8 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps Packaging details to hasPart', async () => {
         const packagingDpp = {
             "@context": [
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld"
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`
             ],
             "@type": "DigitalProductPassport",
             "digitalProductPassportId": "urn:uuid:pack-test",
@@ -475,7 +487,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {}; 
         const result = await transform(packagingDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -502,26 +515,28 @@ describe('DPP Schema Logic (Unit)', () => {
     test('Product maps Textile specific fields (Fibres, Size, Animal Origin)', async () => {
         const textileDpp = {
             "@context": [
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-                "https://dpp-keystone.org/spec/contexts/v1/dpp-textile.context.jsonld"
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`
             ],
             "@type": ["DigitalProductPassport", "TextileProduct"],
             "digitalProductPassportId": "urn:uuid:text-test",
             "uniqueProductIdentifier": "urn:gtin:text-test",
             "fibreComposition": [
-                { "fibreType": "Cotton", "fibrePercentage": 80 },
-                { "fibreType": "Polyester", "fibrePercentage": 20 }
+                { "name": "Cotton", "percentage": 80 },
+                { "name": "Polyester", "percentage": 20 }
             ],
             "apparelSize": "L",
             "apparelSizeSystem": "EU",
             "animalOriginNonTextile": false,
-            "tearStrength": "50N"
+            "robustnessScore": 8.5,
+            "dimensionalChange": -2.0
         };
 
         const dictionary = {}; 
         const result = await transform(textileDpp, { 
             profile: 'schema.org',
-            documentLoader: customDocumentLoader
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
         }, dictionary);
 
         const product = result[0];
@@ -541,10 +556,123 @@ describe('DPP Schema Logic (Unit)', () => {
         expect(animal).toBeDefined();
         expect(animal.value).toBe(false);
 
-        // 4. Tear Strength -> additionalProperty
-        const tear = product.additionalProperty?.find(p => p.name === 'Tear Strength');
-        expect(tear).toBeDefined();
-        expect(tear.value).toBe('50N');
+        // 4. Robustness Score -> additionalProperty
+        const robustness = product.additionalProperty?.find(p => p.name === 'Robustness Score');
+        expect(robustness).toBeDefined();
+        expect(robustness.value).toBe(8.5);
+
+        // 5. Dimensional Change -> additionalProperty
+        const dimChange = product.additionalProperty?.find(p => p.name === 'Dimensional Change');
+        expect(dimChange).toBeDefined();
+        expect(dimChange.value).toBe(-2.0);
+    });
+
+    // --- Step 9.4: Textile ESPR Parity ---
+    test('Product maps Textile ESPR specific fields (Apparel Size, Production Steps, Scores, Instructions)', async () => {
+        const textileEsprDpp = {
+            "@context": [
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`
+            ],
+            "@type": ["DigitalProductPassport", "TextileProduct"],
+            "digitalProductPassportId": "urn:uuid:espr-test",
+            "uniqueProductIdentifier": "urn:gtin:espr-test",
+            "brand": "Keystone Wear",
+            "color": "Midnight Blue",
+            "euApparelSize": {
+                "@type": "EuApparelSizeObject",
+                "sizeDesignation": "42",
+                "primaryDimension": "Chest girth",
+                "primaryDimensionValue": "100-104 cm",
+                "secondaryDimensions": [
+                    { "dimension": "Height", "value": "180-184 cm" }
+                ]
+            },
+            "productionSteps": [
+                { "@type": "ProductionStep", "step": "Spinning", "countryCode": "ITA" },
+                { "@type": "ProductionStep", "step": "Assembly", "countryCode": "PRT" }
+            ],
+            "careInstructions": [
+                {
+                    "@type": "RelatedResource",
+                    "resourceTitle": "Washing and Care Guide",
+                    "contentType": "application/pdf",
+                    "url": "https://example.com/care.pdf"
+                }
+            ],
+            "repairInstructions": [
+                {
+                    "@type": "RelatedResource",
+                    "resourceTitle": "Repair Guide",
+                    "url": "https://example.com/repair"
+                }
+            ],
+            "warrantyDuration": "P2Y",
+            "robustnessScore": 8.5,
+            "recyclabilityScore": 9.0,
+            "carbonFootprint": 12.5,
+            "spirality": 1.2,
+            "dimensionalChange": -2.0,
+            "visualInspection": "Pass"
+        };
+
+        const dictionary = {}; 
+        // Mocking the ontology so buildDictionary can find the labels
+        const customMockOntologyStore = {
+            'http://mock/ontology/product': {
+                "@context": { "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, "rdfs": "http://www.w3.org/2000/01/rdf-schema#" },
+                "@graph": [
+                    { "@id": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#robustnessScore`, "rdfs:label": [{ "@value": "Robustness Score", "@language": "en" }] },
+                    { "@id": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#recyclabilityScore`, "rdfs:label": [{ "@value": "Recyclability Score", "@language": "en" }] }
+                ]
+            }
+        };
+        const customMockLoader = async (path) => {
+            if (customMockOntologyStore[path]) return customMockOntologyStore[path];
+            throw new Error(`Mock ontology not found: ${path}`);
+        };
+
+        await buildDictionary(['http://mock/ontology/product'], customMockLoader, customDocumentLoader, dictionary, KEYSTONE_VERSION);
+
+        const result = await transform(textileEsprDpp, { 
+            profile: 'schema.org',
+            documentLoader: customDocumentLoader,
+            version: KEYSTONE_VERSION
+        }, dictionary);
+
+        const product = result[0];
+
+        // 1. Basic Fields
+        expect(product.brand).toBe('Keystone Wear');
+        expect(product.color).toBe('Midnight Blue');
+
+        // 2. Scores -> additionalProperty
+        const robustness = product.additionalProperty?.find(p => p.name === 'Robustness Score' || p.name === 'robustnessScore');
+        expect(robustness).toBeDefined();
+        expect(robustness.value).toBe(8.5);
+
+        const recyclability = product.additionalProperty?.find(p => p.name === 'Recyclability Score' || p.name === 'recyclabilityScore');
+        expect(recyclability).toBeDefined();
+        expect(recyclability.value).toBe(9.0);
+
+        // 3. Warranty
+        expect(product.warranty).toBeDefined();
+        expect(product.warranty).toBe('P2Y');
+
+        // 4. Instructions -> subjectOf (RelatedResource mapping in schema.org)
+        expect(product.subjectOf).toBeDefined();
+        expect(Array.isArray(product.subjectOf)).toBe(true);
+        const careGuide = product.subjectOf.find(s => s.name === 'Washing and Care Guide');
+        expect(careGuide).toBeDefined();
+        expect(careGuide.url).toBe('https://example.com/care.pdf');
+
+        // 5. Production Steps -> potential additional properties or hasPart
+        // Assuming the transformer handles nested arrays of objects (this will likely fail initially)
+        expect(product.additionalProperty?.some(p => p.name === 'productionSteps' || p.value === 'Spinning')).toBe(true);
+
+        // 6. Apparel Size -> size or SizeSpecification
+        // Assuming complex object maps to size property
+        expect(product.size).toBeDefined();
     });
 
 });

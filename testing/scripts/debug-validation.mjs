@@ -10,14 +10,15 @@ import ClownfaceFactory from 'clownface/Factory.js';
 import NamespaceFactory from '@rdfjs/namespace/Factory.js';
 
 import { PROJECT_ROOT, loadRdfFile, combineDatasets } from './shacl-helpers.mjs';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 const factory = new Environment([DataFactory, DatasetFactory, N3Parser, ClownfaceFactory, NamespaceFactory]);
 
 async function main() {
     console.log('Starting DEBUG SHACL validation...');
 
-    // Corrected Path: dist/spec/validation/v1/shacl
-    const shapesDir = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl');
+    // Corrected Path: dist/spec/validation/v1/shacl -> parameterized
+    const shapesDir = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl');
     console.log(`Loading shapes from: ${shapesDir}`);
     const shapeFiles = await fs.readdir(shapesDir);
 
@@ -38,7 +39,7 @@ async function main() {
         
         // We also need the ontology for "GranularityValue" or other classes if the shapes rely on checking instance types that are defined in ontology
         // The test helper loaded Header.jsonld. Let's do that too.
-        const headerOntologyPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Header.jsonld');
+        const headerOntologyPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Header.jsonld');
         const headerOntologyDataset = await loadRdfFile(headerOntologyPath, { factory });
 
         const dataDataset = await loadRdfFile(exampleFilePath, { factory });

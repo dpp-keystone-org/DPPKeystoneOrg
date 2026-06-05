@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 // Import the parser from the other script to read ontology files
 import { parseOntologyMetadata, getFragment } from './generate-spec-docs.mjs';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
 const PROJECT_ROOT = process.cwd();
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
@@ -52,9 +53,9 @@ export async function generateFileList(dirPath, baseHref, options = {}, rootPath
             .replace(/-/g, ' ')
             .replace(/\.context$/, ' Context')
             .replace(/\b\w/g, l => l.toUpperCase());
-          if (options.removeV1) {
-            linkText = linkText.replace(/ V1$/, '');
-          }
+          
+          // Automatically remove trailing version strings (e.g., " V1", " V2")
+          linkText = linkText.replace(/ V\d+$/, '');
         }
 
         if (options.isOntology) {
@@ -94,41 +95,49 @@ ${classLinks}
  * @returns {Promise<{dppList: string, contentSpecList: string, auxList: string}>}
  */
 async function generateSchemaLists(dirPath, baseHref) {
-  const entries = await fs.readdir(dirPath, { withFileTypes: true });
   const dppSchemas = [];
   const contentSpecSchemas = [];
   const auxSchemas = [];
 
-  for (const entry of entries) {
-    if (entry.isFile() && entry.name.endsWith('.json')) {
-      const fullPath = path.join(dirPath, entry.name);
-      try {
-        const content = await fs.readFile(fullPath, 'utf-8');
-        const json = JSON.parse(content);
-        const fileName = entry.name;
-        // Format link text: "battery.schema.json" -> "Battery Schema"
-        // But the user requested "named links". Let's format nicely.
-        // removing .schema.json and making Title Case
+  const processFile = (subDir, fileName, listArray) => {
         const linkText = fileName
             .replace('.schema.json', '')
             .replace(/-/g, ' ')
             .replace(/\b\w/g, l => l.toUpperCase()) + ' Schema';
             
-        const link = `<a href="${baseHref}${fileName}">${linkText}</a>`;
+        const link = `<a href="${baseHref}${subDir ? subDir + '/' : ''}${fileName}">${linkText}</a>`;
         const listItem = `                            <li>${link}</li>`;
+        listArray.push(listItem);
+  };
 
-        if (fileName === 'dpp.schema.json') {
-          dppSchemas.push(listItem);
-        } else if (json.if && json.if.properties && json.if.properties.contentSpecificationIds) {
-          contentSpecSchemas.push(listItem);
-        } else {
-          auxSchemas.push(listItem);
-        }
-      } catch (err) {
-        console.warn(`Skipping schema file ${entry.name} due to error: ${err.message}`);
+  try {
+      const rootEntries = await fs.readdir(dirPath, { withFileTypes: true });
+      for (const entry of rootEntries) {
+          if (entry.isFile() && entry.name.endsWith('.json')) {
+              processFile('', entry.name, dppSchemas);
+          }
       }
-    }
-  }
+  } catch (e) {}
+
+  try {
+      const sectorPath = path.join(dirPath, 'sector');
+      const sectorEntries = await fs.readdir(sectorPath, { withFileTypes: true });
+      for (const entry of sectorEntries) {
+          if (entry.isFile() && entry.name.endsWith('.json')) {
+              processFile('sector', entry.name, contentSpecSchemas);
+          }
+      }
+  } catch (e) {}
+
+  try {
+      const sharedPath = path.join(dirPath, 'shared');
+      const sharedEntries = await fs.readdir(sharedPath, { withFileTypes: true });
+      for (const entry of sharedEntries) {
+          if (entry.isFile() && entry.name.endsWith('.json')) {
+              processFile('shared', entry.name, auxSchemas);
+          }
+      }
+  } catch (e) {}
 
   // Sort lists alphabetically
   dppSchemas.sort();
@@ -201,10 +210,13 @@ export async function updateIndexHtml({
   try {
     // Read from the template path now
     let indexContent = await fs.readFile(templatePath, 'utf-8');
+    
+    // Replace version placeholders
+    indexContent = indexContent.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
 
     // Generate and inject contexts list (non-recursive)
-    const contextsPath = path.join(srcDir, 'contexts', 'v1');
-    const contextsList = await generateFileList(contextsPath, 'spec/contexts/v1/', { isContext: true });
+    const contextsPath = path.join(srcDir, 'contexts', KEYSTONE_VERSION);
+    const contextsList = await generateFileList(contextsPath, `spec/contexts/${KEYSTONE_VERSION}/`, { isContext: true });
     indexContent = indexContent.replace(
       /<!-- CONTEXTS_LIST_START -->[\s\S]*<!-- CONTEXTS_LIST_END -->/,
       '<!-- CONTEXTS_LIST_START -->\n' + contextsList + '\n                            <!-- CONTEXTS_LIST_END -->'
@@ -213,31 +225,31 @@ export async function updateIndexHtml({
     // Generate and inject LATEST contexts list (non-recursive)
     const latestContextsPath = path.join(DIST_DIR, 'spec', 'contexts');
     // We read from dist, which is where the shadow files are. We link to the raw files.
-    const latestContextsList = await generateFileList(latestContextsPath, 'spec/contexts/', { recursive: false, removeV1: true });
+    const latestContextsList = await generateFileList(latestContextsPath, 'spec/contexts/', { recursive: false });
     indexContent = indexContent.replace(
       /<!-- LATEST_CONTEXTS_LIST_START -->[\s\S]*<!-- LATEST_CONTEXTS_LIST_END -->/,
       '<!-- LATEST_CONTEXTS_LIST_START -->\n' + latestContextsList + '\n                            <!-- LATEST_CONTEXTS_LIST_END -->'
     );
 
     // Generate and inject ontology core list (non-recursive)
-    const ontologyCorePath = path.join(srcDir, 'ontology', 'v1', 'core');
-    const ontologyCoreList = await generateFileList(ontologyCorePath, 'spec/ontology/v1/core/', { isOntology: true });
+    const ontologyCorePath = path.join(srcDir, 'ontology', KEYSTONE_VERSION, 'core');
+    const ontologyCoreList = await generateFileList(ontologyCorePath, `spec/ontology/${KEYSTONE_VERSION}/core/`, { isOntology: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_CORE_LIST_START -->[\s\S]*<!-- ONTOLOGY_CORE_LIST_END -->/,
       '<!-- ONTOLOGY_CORE_LIST_START -->\n' + ontologyCoreList + '\n                                    <!-- ONTOLOGY_CORE_LIST_END -->'
     );
 
     // Generate and inject ontology sectors list (non-recursive)
-    const ontologySectorsPath = path.join(srcDir, 'ontology', 'v1', 'sectors');
-    const ontologySectorsList = await generateFileList(ontologySectorsPath, 'spec/ontology/v1/sectors/', { isOntology: true });
+    const ontologySectorsPath = path.join(srcDir, 'ontology', KEYSTONE_VERSION, 'sectors');
+    const ontologySectorsList = await generateFileList(ontologySectorsPath, `spec/ontology/${KEYSTONE_VERSION}/sectors/`, { isOntology: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_SECTORS_LIST_START -->[\s\S]*<!-- ONTOLOGY_SECTORS_LIST_END -->/,
       '<!-- ONTOLOGY_SECTORS_LIST_START -->\n' + ontologySectorsList + '\n                                    <!-- ONTOLOGY_SECTORS_LIST_END -->'
     );
 
     // Generate and inject schema lists
-    const schemasPath = path.join(srcDir, 'validation', 'v1', 'json-schema');
-    const { dppList, contentSpecList, auxList } = await generateSchemaLists(schemasPath, 'spec/validation/v1/json-schema/');
+    const schemasPath = path.join(srcDir, 'validation', KEYSTONE_VERSION, 'json-schema');
+    const { dppList, contentSpecList, auxList } = await generateSchemaLists(schemasPath, `spec/validation/${KEYSTONE_VERSION}/json-schema/`);
     
     indexContent = indexContent.replace(
         /<!-- DPP_SCHEMA_LIST_START -->[\s\S]*<!-- DPP_SCHEMA_LIST_END -->/,
@@ -253,8 +265,8 @@ export async function updateIndexHtml({
     );
 
     // Generate and inject SHACL shapes list
-    const shaclPath = path.join(srcDir, 'validation', 'v1', 'shacl');
-    const shaclList = await generateFileList(shaclPath, 'spec/validation/v1/shacl/', { recursive: false });
+    const shaclPath = path.join(srcDir, 'validation', KEYSTONE_VERSION, 'shacl');
+    const shaclList = await generateFileList(shaclPath, `spec/validation/${KEYSTONE_VERSION}/shacl/`, { recursive: false });
     indexContent = indexContent.replace(
       /<!-- SHACL_SHAPES_LIST_START -->[\s\S]*<!-- SHACL_SHAPES_LIST_END -->/,
       '<!-- SHACL_SHAPES_LIST_START -->\n' + shaclList + '\n                    <!-- SHACL_SHAPES_LIST_END -->'
@@ -262,7 +274,7 @@ export async function updateIndexHtml({
 
     // Generate and inject examples list (non-recursive)
     const examplesPath = path.join(srcDir, 'examples');
-    const examplesList = await generateFileList(examplesPath, 'spec/examples/', { recursive: false, removeV1: true });
+    const examplesList = await generateFileList(examplesPath, 'spec/examples/', { recursive: false });
     indexContent = indexContent.replace(
       /<!-- EXAMPLES_LIST_START -->[\s\S]*<!-- EXAMPLES_LIST_END -->/,
       '<!-- EXAMPLES_LIST_START -->\n' + examplesList + '\n                    <!-- EXAMPLES_LIST_END -->'

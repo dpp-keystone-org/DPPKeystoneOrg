@@ -1,6 +1,6 @@
 {
   // The context points to the external sector-specific definition.
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-construction.context.jsonld",
   // Utilizing the Classes defined in the ontology.
   "@type": "dppk:DigitalProductPassport",
   // --- DPP Headers (Aligned with Core Ontology) ---

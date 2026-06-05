@@ -1,9 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
 import stripJsonComments from 'strip-json-comments';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
-const SOURCE_DIR = 'src/ontology/v1';
-const TARGET_DIR = 'src/ontology/v1_stripped';
+const SOURCE_DIR = `src/ontology/${KEYSTONE_VERSION}`;
+const TARGET_DIR = `src/ontology/${KEYSTONE_VERSION}_stripped`;
 
 const stripAnnotations = (obj) => {
   if (Array.isArray(obj)) {

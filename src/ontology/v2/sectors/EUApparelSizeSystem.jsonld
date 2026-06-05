@@ -1,0 +1,170 @@
+{
+    "@context": {
+        "dppk": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "schema": "https://schema.org/",
+        "gs1": "https://gs1.org/voc/",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "dcterms": "http://purl.org/dc/terms/"
+    },
+    "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/EUApparelSizeSystem",
+    "@type": "owl:Ontology",
+    "dcterms:title": { "@language": "en", "@value": "DPP Ontology - EU Apparel Size System (EN 13402)" },
+    "dcterms:description": { "@language": "en", "@value": "Defines the structured representation of EU apparel sizing based on body dimensions as specified in EN 13402." },
+    "owl:versionInfo": "Draft",
+    "owl:imports": [
+        { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" }
+    ],
+    "@graph": [
+        {
+            "@id": "dppk:EuApparelSizeObject",
+            "@type": "rdfs:Class",
+            "rdfs:label": { "@language": "en", "@value": "EU Apparel Size Object" },
+            "rdfs:comment": { "@language": "en", "@value": "A structured representation of an EU size according to EN 13402." }
+        },
+        {
+            "@id": "dppk:euApparelSize",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "EU Apparel Size" },
+            "rdfs:comment": { "@language": "en", "@value": "The structured EU specific size of the product based on body dimensions (e.g., EN 13402)." },
+            "rdfs:domain": { "@id": "dppk:Product" },
+            "rdfs:range": { "@id": "dppk:EuApparelSizeObject" }
+        },
+        {
+            "@id": "dppk:sizeDesignation",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Size Designation" },
+            "rdfs:comment": { "@language": "en", "@value": "Identification of the clothing size by means of alphanumeric characters." },
+            "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
+            "rdfs:range": { "@id": "xsd:string" },
+            "owl:equivalentProperty": { "@id": "gs1:sizeCode" }
+        },
+        {
+            "@id": "dppk:cupSize",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Cup Size" },
+            "rdfs:comment": { "@language": "en", "@value": "Difference between bust girth and underbust girth." },
+            "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
+            "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
+            "@id": "dppk:primaryDimension",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Primary Dimension" },
+            "rdfs:comment": { "@language": "en", "@value": "The primary body measurement (e.g., chest girth)." },
+            "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
+            "rdfs:range": { "@id": "dppk:BodyDimensionValue" }
+        },
+        {
+            "@id": "dppk:primaryDimensionValue",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Primary Dimension Value" },
+            "rdfs:comment": { "@language": "en", "@value": "The range or value of the primary dimension." },
+            "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
+            "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
+            "@id": "dppk:secondaryDimensions",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Secondary Dimensions" },
+            "rdfs:comment": { "@language": "en", "@value": "Additional body measurements required for precision fit." },
+            "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" }
+        },
+        {
+            "@id": "dppk:dimensionName",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": { "@language": "en", "@value": "Dimension Name" },
+            "rdfs:comment": { "@language": "en", "@value": "The name of the secondary dimension (e.g., waist girth)." },
+            "rdfs:range": { "@id": "dppk:BodyDimensionValue" }
+        },
+        {
+            "@id": "dppk:dimensionValue",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": { "@language": "en", "@value": "Dimension Value" },
+            "rdfs:comment": { "@language": "en", "@value": "The value or range of the secondary dimension." },
+            "rdfs:range": { "@id": "xsd:string" }
+        },
+        {
+            "@id": "dppk:BodyDimensionValue",
+            "@type": "rdfs:Class",
+            "rdfs:label": { "@language": "en", "@value": "Body Dimension Value" },
+            "rdfs:comment": { "@language": "en", "@value": "An enumeration of allowed body dimensions for apparel sizing." },
+            "rdfs:subClassOf": { "@id": "rdfs:Resource" },
+            "owl:oneOf": [
+                { "@id": "dppk:BodyDimChestGirth" },
+                { "@id": "dppk:BodyDimNeckGirth" },
+                { "@id": "dppk:BodyDimWaistGirth" },
+                { "@id": "dppk:BodyDimHipGirth" },
+                { "@id": "dppk:BodyDimHeight" },
+                { "@id": "dppk:BodyDimBustGirth" },
+                { "@id": "dppk:BodyDimUnderbustGirth" },
+                { "@id": "dppk:BodyDimFootLength" },
+                { "@id": "dppk:BodyDimArmLength" },
+                { "@id": "dppk:BodyDimInsideLegLength" }
+            ]
+        },
+        {
+            "@id": "dppk:BodyDimChestGirth",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Chest girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the chest girth." }
+        },
+        {
+            "@id": "dppk:BodyDimNeckGirth",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Neck girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the neck girth." }
+        },
+        {
+            "@id": "dppk:BodyDimWaistGirth",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Waist girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the waist girth." }
+        },
+        {
+            "@id": "dppk:BodyDimHipGirth",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Hip girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the hip girth." }
+        },
+        {
+            "@id": "dppk:BodyDimHeight",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Height" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the body height." }
+        },
+        {
+            "@id": "dppk:BodyDimBustGirth",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Bust girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the bust girth." }
+        },
+        {
+            "@id": "dppk:BodyDimUnderbustGirth",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Underbust girth" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the underbust girth." }
+        },
+        {
+            "@id": "dppk:BodyDimFootLength",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Foot length" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the foot length." }
+        },
+        {
+            "@id": "dppk:BodyDimArmLength",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Arm length" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the arm length." }
+        },
+        {
+            "@id": "dppk:BodyDimInsideLegLength",
+            "@type": "dppk:BodyDimensionValue",
+            "rdfs:label": { "@language": "en", "@value": "Inside leg length" },
+            "rdfs:comment": { "@language": "en", "@value": "The measurement of the inside leg length." }
+        }
+    ]
+}

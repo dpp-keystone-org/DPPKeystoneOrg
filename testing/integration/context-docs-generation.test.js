@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import { generateSpecDocs } from '../../scripts/generate-spec-docs.mjs';
 import { setupTestEnvironment } from '../scripts/test-helpers.mjs';
 
@@ -21,19 +22,19 @@ describe('Context documentation page generation', () => {
     });
 
     it('should create a directory for the context file', async () => {
-        const contextDir = path.join(TEMP_DIST_SPEC_DIR, 'contexts', 'v1', 'mock-core.context');
+        const contextDir = path.join(TEMP_DIST_SPEC_DIR, 'contexts', KEYSTONE_VERSION, 'mock-core.context');
         const stats = await fs.stat(contextDir);
         expect(stats.isDirectory()).toBe(true);
     });
 
     it('should create an index.html file in the context directory', async () => {
-        const indexPath = path.join(TEMP_DIST_SPEC_DIR, 'contexts', 'v1', 'mock-core.context', 'index.html');
+        const indexPath = path.join(TEMP_DIST_SPEC_DIR, 'contexts', KEYSTONE_VERSION, 'mock-core.context', 'index.html');
         const stats = await fs.stat(indexPath);
         expect(stats.isFile()).toBe(true);
     });
 
     it('should contain a link to the raw jsonld file and display term information', async () => {
-        const indexPath = path.join(TEMP_DIST_SPEC_DIR, 'contexts', 'v1', 'mock-core.context', 'index.html');
+        const indexPath = path.join(TEMP_DIST_SPEC_DIR, 'contexts', KEYSTONE_VERSION, 'mock-core.context', 'index.html');
         const content = await fs.readFile(indexPath, 'utf-8');
         
         // Check for the link to the raw file
@@ -41,7 +42,7 @@ describe('Context documentation page generation', () => {
 
         // Check for imported contexts
         expect(content).toContain('<h4>Imports</h4>');
-        expect(content).toContain('<li><a href="https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld">https://dpp-keystone.org/spec/v1/contexts/dpp-core.context.jsonld</a></li>');
+        expect(content).toContain('<li><a href="https://dpp-keystone.org/spec/{{VERSION}}/contexts/dpp-core.context.jsonld">https://dpp-keystone.org/spec/{{VERSION}}/contexts/dpp-core.context.jsonld</a></li>');
 
         // Check for locally defined terms
         expect(content).toContain('<h4>Locally Defined Terms</h4>');

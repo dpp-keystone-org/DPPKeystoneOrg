@@ -1,6 +1,6 @@
 {
   // The context points to the external sector-specific definition, which imports the core.
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-electronics.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-electronics.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   // --- DPP Headers (Aligned with Core Ontology) ---
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",

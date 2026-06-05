@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import path from 'path';
 import fs from 'fs';
+import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 
 test.describe('CSV DPP Adapter E2E', () => {
 
@@ -256,7 +257,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         expect(dpps.length).toBeGreaterThan(0);
 
         const firstDPP = dpps[0];
-        expect(firstDPP['@context']).toContain('https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld');
+        expect(firstDPP['@context']).toContain(`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`);
         expect(firstDPP).toHaveProperty('digitalProductPassportId');
     });
 });

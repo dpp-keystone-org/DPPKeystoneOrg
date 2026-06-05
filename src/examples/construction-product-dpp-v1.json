@@ -1,5 +1,5 @@
 {
-    "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld",
+    "@context": "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-construction.context.jsonld",
     "digitalProductPassportId": "https://www.example.org/dpp/1234545",
     // Note: This example uses a direct HTML link for demonstrative purposes. 
     // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 

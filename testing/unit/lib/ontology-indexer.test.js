@@ -3,17 +3,18 @@
  */
 
 import { jest } from '@jest/globals';
+import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 
 // Define the mock factory
 const mockLoadOntology = jest.fn();
 
 // Mock the dependency using unstable_mockModule for ESM support
-jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
     loadOntology: mockLoadOntology
 }));
 
 // Dynamic import to ensure the mock is applied before the module is loaded
-const { buildIndex } = await import('../../../src/lib/ontology-indexer.js');
+const { buildIndex } = await import('../../../dist/lib/ontology-indexer.js');
 
 describe('Ontology Indexer', () => {
     beforeEach(() => {
@@ -42,14 +43,14 @@ describe('Ontology Indexer', () => {
         const classItem = index.find(i => i.id === 'TestClass');
         expect(classItem).toBeDefined();
         expect(classItem.contextLabel).toBe('Core / Product');
-        expect(classItem.contextDocUrl).toBe('../spec/ontology/v1/core/Product/index.html');
-        expect(classItem.docUrl).toBe('../spec/ontology/v1/core/Product/TestClass.html');
+        expect(classItem.contextDocUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/core/Product/index.html`);
+        expect(classItem.docUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/core/Product/TestClass.html`);
 
         const propItem = index.find(i => i.id === 'testProp');
         expect(propItem).toBeDefined();
         expect(propItem.contextLabel).toBe('Sectors / Battery');
-        expect(propItem.contextDocUrl).toBe('../spec/ontology/v1/sectors/Battery/index.html');
-        expect(propItem.docUrl).toBe('../spec/ontology/v1/sectors/Battery/index.html#testProp');
+        expect(propItem.contextDocUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Battery/index.html`);
+        expect(propItem.docUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Battery/index.html#testProp`);
     });
 
     it('should resolve domain documentation URLs', async () => {
@@ -74,7 +75,7 @@ describe('Ontology Indexer', () => {
         const propItem = index.find(i => i.id === 'hasCement');
 
         expect(propItem.domain).toBe('dppk:ConstructionProduct');
-        expect(propItem.domainDocUrl).toBe('../spec/ontology/v1/sectors/Construction/ConstructionProduct.html');
+        expect(propItem.domainDocUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Construction/ConstructionProduct.html`);
     });
 
     it('should handle terms without defined source context', async () => {
@@ -109,6 +110,6 @@ describe('Ontology Indexer', () => {
         const item = index[0];
 
         // Should be treated as a class
-        expect(item.docUrl).toBe('../spec/ontology/v1/core/Core/ComplexClass.html');
+        expect(item.docUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/core/Core/ComplexClass.html`);
     });
 });

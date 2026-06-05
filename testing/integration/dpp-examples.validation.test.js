@@ -1,4 +1,5 @@
 import path from 'path';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import SHACLValidator from 'rdf-validate-shacl';
 
 import {
@@ -19,10 +20,10 @@ function findHumanName(node, dataGraph) {
 
     // A list of common properties that serve as good human-readable names.
     const nameProperties = [
-        'https://dpp-keystone.org/spec/v1/terms#productName', // Using full IRIs for clarity
+        `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#productName`, // Using full IRIs for clarity
         'https://schema.org/name',
-        'https://dpp-keystone.org/spec/v1/terms#organizationName',
-        'https://dpp-keystone.org/spec/v1/terms#name' // For DigitalDocument, etc.
+        `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#organizationName`,
+        `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#name` // For DigitalDocument, etc.
     ];
 
     for (const prop of nameProperties) {
@@ -100,8 +101,8 @@ describe('DPP SHACL Validation', () => {
             shapeFiles: ['battery-shapes.shacl.jsonld']
         },
         {
-            name: 'Textile DPP (sock-dpp-v1.json)',
-            exampleFile: 'sock-dpp-v1.json',
+            name: 'Textile DPP (sock-dpp-v2.json)',
+            exampleFile: 'sock-dpp-v2.json',
             shapeFiles: ['textile-shapes.shacl.jsonld']
         },
         {
@@ -118,15 +119,15 @@ describe('DPP SHACL Validation', () => {
         const dataDataset = await loadRdfFile(exampleFilePath);
 
         // Load all shape files (core + sector-specific)
-        const coreShapesPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', 'core-shapes.shacl.jsonld');
-        const shapeFilePaths = [coreShapesPath, ...shapeFiles.map(file => path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', 'v1', 'shacl', file))];
+        const coreShapesPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'core-shapes.shacl.jsonld');
+        const shapeFilePaths = [coreShapesPath, ...shapeFiles.map(file => path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', file))];
         const allShapeDatasets = await Promise.all(shapeFilePaths.map(p => loadRdfFile(p)));
         const shapesGraph = combineDatasets(allShapeDatasets);
 
         // The new `granularity` shape requires its class definition to be in the data graph.
         // We load ONLY the Header.jsonld ontology, which contains this definition, to avoid
         // loading other ontologies that might expose unrelated data model inconsistencies.
-        const headerOntologyPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', 'v1', 'core', 'Header.jsonld');
+        const headerOntologyPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Header.jsonld');
         const headerOntologyDataset = await loadRdfFile(headerOntologyPath);
 
         // For validation, the data graph must contain both the instance data (from the example)

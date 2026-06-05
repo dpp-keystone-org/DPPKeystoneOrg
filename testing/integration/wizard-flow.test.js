@@ -8,6 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import { TextDecoder, TextEncoder } from 'util';
 import { ReadableStream } from 'stream/web';
 
@@ -46,8 +47,8 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
     beforeAll(async () => {
         // Load the real master schema for final validation
-        dppSchema = await loadJson('src/validation/v1/json-schema/dpp.schema.json');
-        wizardHtml = await loadFile('src/wizard/index.html');
+        dppSchema = await loadJson(`dist/spec/validation/${KEYSTONE_VERSION}/json-schema/dpp.schema.json`);
+        wizardHtml = await loadFile('dist/wizard/index.html');
         ajv = new Ajv2020({ allowMatchingProperties: true, allowUnionTypes: true });
         addFormats(ajv);
     });
@@ -72,7 +73,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
             "required": ["digitalProductPassportId", "uniqueProductIdentifier", "granularity"]
         };
         const mockConstructionSchema = {
-            "$id": "https://dpp.keystone.org/validation/v1/json-schema/construction.schema.json",
+            "$id": `https://dpp.keystone.org/validation/${KEYSTONE_VERSION}/json-schema/construction.schema.json`,
             "title": "Digital Product Passport for Construction Products",
             "type": "object",
             "properties": { "productName": { "title": "Product Name", "type": "string" } }
@@ -80,12 +81,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock the modules before importing them
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
 
         const loadOntologyMock = jest.fn();
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: loadOntologyMock,
         }));
 
@@ -103,7 +104,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         loadOntologyMock.mockResolvedValue(mockOntologyMap);
 
         // 3. Dynamically import the wizard's initializer function
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
 
         // 4. Manually initialize the wizard logic
         await initializeWizard();
@@ -177,8 +178,8 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(finalDpp.digitalProductPassportId).toBe('urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4');
         expect(finalDpp.productName).toBe('Test Construction Product');
         expect(finalDpp.granularity).toBe('Batch');
-        expect(finalDpp.contentSpecificationIds).toEqual(['construction-product-dpp-v1']);
-        expect(finalDpp['@context']).toBe('https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld');
+        expect(finalDpp.contentSpecificationIds).toEqual([`construction-product-dpp-${KEYSTONE_VERSION}`]);
+        expect(finalDpp['@context']).toBe(`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`);
     });
 
     it('should update labels and tooltips when the language is changed', async () => {
@@ -194,15 +195,15 @@ describe('DPP Wizard - Full Integration Flow', () => {
         ]);
 
         // 2. Mock the modules
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
         }));
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
         }));
 
         // 3. Initialize the wizard
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
         await initializeWizard();
 
         const coreContainer = document.getElementById('core-form-container');
@@ -257,10 +258,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -281,7 +282,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         document.body.appendChild(btnB);
 
         // 4. Initialize and Add sectors
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
         await initializeWizard();
         btnA.click();
         btnB.click();
@@ -318,10 +319,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -342,7 +343,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         document.body.appendChild(btnB);
 
         // 4. Initialize and Add sectors
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
         await initializeWizard();
         btnA.click();
         btnB.click();
@@ -377,8 +378,8 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // Check context array
         expect(generatedDpp['@context']).toEqual([
-            'https://dpp-keystone.org/spec/contexts/v1/dpp-sector-a.context.jsonld',
-            'https://dpp-keystone.org/spec/contexts/v1/dpp-sector-b.context.jsonld'
+            `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-sector-a.context.jsonld`,
+            `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-sector-b.context.jsonld`
         ]);
     });
 
@@ -394,10 +395,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -407,7 +408,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         });
 
         // 3. Initialize Wizard
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
         await initializeWizard();
 
         // 4. Add Voluntary Field
@@ -446,34 +447,35 @@ describe('DPP Wizard - Full Integration Flow', () => {
 
     it('should load the General Product module and generate valid JSON', async () => {
         // 1. Load the real General Product schema and its new dependency
-        const generalProductSchema = await loadJson('src/validation/v1/json-schema/general-product.schema.json');
-        const componentSchema = await loadJson('src/validation/v1/json-schema/component.schema.json');
+        const generalProductSchema = await loadJson(`dist/spec/validation/${KEYSTONE_VERSION}/json-schema/shared/general-product.schema.json`);
+        const componentSchema = await loadJson(`dist/spec/validation/${KEYSTONE_VERSION}/json-schema/shared/component.schema.json`);
 
         // Manually resolve the $ref for the test environment
         generalProductSchema.properties.components.items = componentSchema;
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
-        loadSchemaMock.mockImplementation((sector) => {
-            if (sector === 'general-product') return Promise.resolve(generalProductSchema);
+        loadSchemaMock.mockImplementation((sector, schemaType) => {
+            if (sector === 'general-product' && schemaType === 'shared') return Promise.resolve(generalProductSchema);
             return Promise.resolve({ type: 'object', properties: {} }); // Default
         });
 
         // 3. Inject button for General Product
         const btn = document.createElement('button');
         btn.dataset.sector = 'general-product';
+        btn.dataset.schemaType = 'shared';
         btn.className = 'sector-btn';
         document.body.appendChild(btn);
 
         // 4. Initialize Wizard
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
         await initializeWizard();
         btn.click();
 
@@ -508,19 +510,19 @@ describe('DPP Wizard - Full Integration Flow', () => {
             expect(generatedDpp.components[0].name).toBe('TestComponent');
         }
         // Check context
-        expect(generatedDpp['@context']).toContain('https://dpp-keystone.org/spec/contexts/v1/dpp-general-product.context.jsonld');
+        expect(generatedDpp['@context']).toContain(`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`);
     }, 30000);
 
     it('should load the Packaging module and generate valid JSON', async () => {
         // 1. Load the real Packaging schema
-        const packagingSchema = await loadJson('src/validation/v1/json-schema/packaging.schema.json');
+        const packagingSchema = await loadJson(`dist/spec/validation/${KEYSTONE_VERSION}/json-schema/shared/packaging.schema.json`);
 
         // 2. Mock modules
         const loadSchemaMock = jest.fn();
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: loadSchemaMock,
         }));
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
@@ -536,7 +538,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         document.body.appendChild(btn);
 
         // 4. Initialize Wizard
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
         await initializeWizard();
         btn.click();
 
@@ -563,20 +565,20 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(generatedDpp.packagingMaterials).toHaveLength(1);
         expect(generatedDpp.packagingMaterials[0].packagingMaterialType).toBe('Cardboard');
         // Check context
-        expect(generatedDpp['@context']).toContain('https://dpp-keystone.org/spec/contexts/v1/dpp-packaging.context.jsonld');
+        expect(generatedDpp['@context']).toContain(`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`);
     }, 30000);
 
     it('should display user-friendly labels in the error summary for custom fields', async () => {
         // 1. Mock minimal modules
-        jest.unstable_mockModule('@/src/lib/schema-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
             loadSchema: jest.fn().mockResolvedValue({ type: 'object', properties: {} }),
         }));
-        jest.unstable_mockModule('@/src/lib/ontology-loader.js', () => ({
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
         }));
 
         // 2. Initialize Wizard
-        const { initializeWizard } = await import('../../src/wizard/wizard.js');
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
         await initializeWizard();
 
         // 3. Add Voluntary Field

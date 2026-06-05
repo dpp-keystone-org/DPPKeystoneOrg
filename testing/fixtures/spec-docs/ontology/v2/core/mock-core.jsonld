@@ -1,0 +1,102 @@
+{
+    "@context": {
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
+        "gs1": "https://ref.gs1.org/voc/",
+        "schema": "https://schema.org/"
+    },
+    "@graph": [
+        {
+            "@id": "https://dpp-keystone.org/spec/{{VERSION}}/terms/MockCoreOntology",
+            "@type": "owl:Ontology",
+            "dcterms:title": "Mock Core Ontology",
+            "dcterms:description": "A mock ontology for testing purposes."
+        },
+        {
+            "@id": "dppk:MockBase",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Base",
+            "rdfs:comment": "A base class for testing."
+        },
+        {
+            "@id": "dppk:MockThing",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Thing",
+            "rdfs:comment": "Another base class for testing multiple inheritance."
+        },
+        {
+            "@id": "dppk:genericIndicator",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": "Generic Indicator",
+            "rdfs:comment": "A generic indicator for testing sub-property relationships."
+        },
+        {
+            "@id": "dppk:domainIncludesProperty",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": "Domain Includes Property",
+            "rdfs:comment": "A test property using schema:domainIncludes.",
+            "schema:domainIncludes": {
+                "@id": "dppk:MockProduct"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "dppk:MockProduct",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Product",
+            "rdfs:comment": "Represents a generic product for testing.",
+            "rdfs:subClassOf": [
+                { "@id": "dppk:MockBase" },
+                { "@id": "dppk:MockThing" }
+            ],
+            "owl:equivalentClass": [
+                { "@id": "schema:Product" },
+                { "@id": "gs1:Product" }
+            ]
+        },
+        {
+            "@id": "dppk:mockProperty",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:label": "Mock Property",
+            "rdfs:comment": "A test property for the Mock Product.",
+            "rdfs:subPropertyOf": { "@id": "dppk:genericIndicator" },
+            "rdfs:domain": {
+                "@id": "dppk:MockProduct"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "owl:equivalentProperty": { "@id": "schema:name" }
+        },
+        {
+            "@id": "dppk:ownerOf",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": "Owner Of",
+            "dppk:governedBy": "ISO 9001",
+            "rdfs:domain": {
+                "@id": "dppk:MockPerson"
+            },
+            "rdfs:range": {
+                "@id": "dppk:MockProduct"
+            }
+        },
+        {
+            "@id": "dppk:MockEnumCategory",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Enum Category",
+            "owl:oneOf": [
+                { "@id": "dppk:MockEnumValue1" }
+            ]
+        },
+        {
+            "@id": "dppk:MockEnumValue1",
+            "@type": "dppk:MockEnumCategory",
+            "rdfs:label": "Mock Enum Value 1",
+            "rdfs:comment": "The first mock enum value."
+        }
+    ]
+}

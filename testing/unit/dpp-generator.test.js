@@ -2,7 +2,8 @@
  * @jest-environment jsdom
  */
 
-import { generateDpp } from '../../src/wizard/dpp-generator.js';
+import { generateDpp } from '../../dist/wizard/dpp-generator.js';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 describe('DPP Generator', () => {
     let coreFormContainer;
@@ -258,8 +259,8 @@ describe('DPP Generator', () => {
         const dpp = generateDpp(['battery', 'construction'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
 
         expect(dpp['@context']).toEqual([
-            'https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld',
-            'https://dpp-keystone.org/spec/contexts/v1/dpp-construction.context.jsonld'
+            `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`,
+            `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`
         ]);
     });
 });

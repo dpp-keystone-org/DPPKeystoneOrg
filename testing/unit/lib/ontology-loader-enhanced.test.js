@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadOntology } from '../../../src/lib/ontology-loader.js';
+import { loadOntology } from '../../../dist/lib/ontology-loader.js';
 
 global.fetch = jest.fn();
 
@@ -30,7 +30,7 @@ describe('Ontology Loader - Enhanced Metadata', () => {
             json: async () => mockOntology
         });
 
-        // Calling loadOntology('test') triggers a fetch to '../spec/ontology/v1/sectors/Test.jsonld'
+        // Calling loadOntology('test') triggers a fetch to `../spec/ontology/${KEYSTONE_VERSION}/sectors/Test.jsonld`
         const ontologyMap = await loadOntology('test');
         const term = ontologyMap.get('TestTerm');
 

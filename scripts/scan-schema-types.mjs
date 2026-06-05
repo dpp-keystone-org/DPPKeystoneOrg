@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
-const schemaDir = 'dist/spec/validation/v1/json-schema';
+const schemaDir = `dist/spec/validation/${KEYSTONE_VERSION}/json-schema`;
 
 // Helper to recursively scan a schema object
 function scanSchema(schema, types, formats) {

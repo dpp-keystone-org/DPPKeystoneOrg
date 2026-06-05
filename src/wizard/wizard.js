@@ -6,6 +6,7 @@ import { generateDpp } from './dpp-generator.js';
 import { generateHTML } from '../lib/html-generator.js';
 import { transformDpp } from '../util/js/client/dpp-schema-adapter.js';
 import * as jsonld from 'jsonld';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
 
 // --- Module-level state ---
 let currentLanguage = 'en';
@@ -20,7 +21,7 @@ const SUPPORTED_CUSTOM_TYPES = [
     { label: 'Product Characteristic', schemaName: 'product-characteristic' }, // Maps to product-characteristic.schema.json (virtual or real)
     { label: 'Related Resource', schemaName: 'related-resource' }
 ];
-const STORAGE_KEY = 'dpp_wizard_state_v1';
+const STORAGE_KEY = `dpp_wizard_state_${KEYSTONE_VERSION}`;
 
 // --- DOM Element References ---
 let coreFormContainer, sectorsFormContainer, voluntaryModulesContainer, addVoluntaryFieldBtn,
@@ -178,7 +179,7 @@ export async function initializeWizard() {
     async function initializeCoreForm() {
         try {
             // Load from network or use cache
-            if (!coreSchema) coreSchema = await loadSchema('dpp');
+            if (!coreSchema) coreSchema = await loadSchema('dpp', 'header');
             if (!coreOntologyMap) coreOntologyMap = await loadOntology('dpp');
 
             const formFragment = buildForm(coreSchema, coreOntologyMap, currentLanguage);
@@ -355,9 +356,12 @@ export async function initializeWizard() {
 
             const sectorDisplayNames = {
                 'general-product': 'General Product Information',
-                // Add other specific mappings if needed, otherwise fallback to capitalization
+                'textile': 'Textile',
+                'iron-steel': 'Iron or Steel'
             };
             const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
+
+            const schemaType = button.dataset.schemaType || 'sector';
 
             if (existingContainer) {
                 // The MutationObserver will handle clearing validation errors when the container is removed.
@@ -369,7 +373,7 @@ export async function initializeWizard() {
                 try {
                     let data = sectorDataCache.get(sector);
                     if (!data) {
-                        const schema = await loadSchema(sector);
+                        const schema = await loadSchema(sector, schemaType);
                         const ontologyMap = await loadOntology(sector);
                         data = { schema, ontologyMap };
                         sectorDataCache.set(sector, data);
@@ -381,6 +385,7 @@ export async function initializeWizard() {
                     const sectorContainer = document.createElement('div');
                     sectorContainer.id = sectorContainerId;
                     sectorContainer.className = 'sector-form-container';
+                    sectorContainer.dataset.schemaType = schemaType;
 
                     const sectorHeader = document.createElement('h3');
                     sectorHeader.textContent = displayName;
@@ -388,7 +393,7 @@ export async function initializeWizard() {
 
                     sectorContainer.appendChild(formFragment);
 
-                    if (sector === 'general-product' || sector === 'packaging') {
+                    if (schemaType === 'shared') {
                         voluntaryModulesContainer.appendChild(sectorContainer);
                     } else {
                         sectorsFormContainer.appendChild(sectorContainer);
@@ -401,7 +406,7 @@ export async function initializeWizard() {
                     button.classList.add('remove-btn-active');
 
                 } catch (error) {
-                    const targetContainer = (sector === 'general-product' || sector === 'packaging') ? voluntaryModulesContainer : sectorsFormContainer;
+                    const targetContainer = (schemaType === 'shared') ? voluntaryModulesContainer : sectorsFormContainer;
                     targetContainer.innerHTML += `<p class="error">Could not load the form for the ${sector} sector.</p>`;
                     console.error(`Failed to build form for sector ${sector}:`, error);
                 }
@@ -441,14 +446,15 @@ export async function initializeWizard() {
             conflicts.push('Core');
         }
 
-        const activeSectors = [...document.querySelectorAll('.sector-form-container')]
-            .map(c => c.id.replace('sector-form-', ''));
+        const activeContainers = document.querySelectorAll('.sector-form-container');
 
-        for (const sector of activeSectors) {
+        for (const container of activeContainers) {
+            const sector = container.id.replace('sector-form-', '');
+            const schemaType = container.dataset.schemaType || 'sector';
             let data = sectorDataCache.get(sector);
             if (!data) {
                 try {
-                    const schema = await loadSchema(sector);
+                    const schema = await loadSchema(sector, schemaType);
                     const ontologyMap = await loadOntology(sector);
                     data = { schema, ontologyMap };
                     sectorDataCache.set(sector, data);
@@ -600,8 +606,9 @@ export async function initializeWizard() {
 
                 const options = {
                     profile: 'schema.org',
-                    ontologyPaths: ['../spec/ontology/v1/dpp-ontology.jsonld'],
-                    documentLoader
+                    ontologyPaths: [`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`],
+                    documentLoader,
+                    version: KEYSTONE_VERSION
                 };
 
                 const transformed = await transformDpp(dppData, options);

@@ -228,6 +228,41 @@ for (const sector of sectors) {
       case 'textile':
         // For array fields, the form builder creates an "Add" button
         await expect(page.locator('button[data-array-name="fibreComposition"]')).toBeVisible();
+        
+        // --- Textile ESPR Fields ---
+        // Test Apparel Size Object
+        await page.locator('button[data-optional-object="euApparelSize"]').click();
+        const primaryDimSelect = page.locator('select[name="euApparelSize.primaryDimension"]');
+        await expect(primaryDimSelect).toBeVisible();
+        
+        // Select an enum option
+        await primaryDimSelect.selectOption('Chest girth');
+        await expect(primaryDimSelect).toHaveValue('Chest girth');
+        
+        // Test Production Steps Array
+        const addProdStepBtn = page.locator('button[data-array-name="productionSteps"]');
+        await expect(addProdStepBtn).toBeVisible();
+        
+        await addProdStepBtn.click();
+        const stepSelect = page.locator('select[name="productionSteps.0.step"]');
+        const countryInput = page.locator('input[name="productionSteps.0.countryCode"]');
+        await expect(stepSelect).toBeVisible();
+        await expect(countryInput).toBeVisible();
+        
+        await stepSelect.selectOption('Spinning');
+        await countryInput.fill('ITA');
+        
+        // Test Instructions (RelatedResource or String)
+        const addCareInstBtn = page.locator('button[data-optional-object="careInstructions"]');
+        await expect(addCareInstBtn).toBeVisible();
+        
+        await addCareInstBtn.click();
+        
+        // Select the Related Resource type from the dropdown
+        await page.locator('.type-selector').selectOption({ label: 'Related Resource' });
+        
+        await expect(page.locator('input[name="careInstructions.resourceTitle"]')).toBeVisible();
+        await expect(page.locator('input[name="careInstructions.url"]')).toBeVisible();
         break;
     }
   });
@@ -297,6 +332,64 @@ test('should allow adding and removing sector forms', async ({ page }) => {
   // 6. Assert that the button has reverted to an "Add" button
   await expect(addBatteryBtn).toHaveText('Add Battery');
   await expect(addBatteryBtn).not.toHaveClass(/remove-btn-active/);
+});
+
+test('should correctly format complex sector button names on toggle', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+
+  const ironSteelBtn = page.locator('button[data-sector="iron-steel"]');
+  const textileBtn = page.locator('button[data-sector="textile"]');
+
+  // Assert initial state
+  await expect(ironSteelBtn).toHaveText('Add Iron or Steel');
+  await expect(textileBtn).toHaveText('Add Textile');
+
+  // Click and assert "Remove" state uses correct mapping
+  await ironSteelBtn.click();
+  await expect(ironSteelBtn).toHaveText('Remove Iron or Steel');
+
+  await textileBtn.click();
+  await expect(textileBtn).toHaveText('Remove Textile');
+
+  // Click again and assert it reverts to the correctly mapped "Add" state
+  await ironSteelBtn.click();
+  await expect(ironSteelBtn).toHaveText('Add Iron or Steel');
+
+  await textileBtn.click();
+  await expect(textileBtn).toHaveText('Add Textile');
+});
+
+test('should not duplicate error messages when array items are removed and re-indexed', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  
+  const addSectorBtn = page.locator('button[data-sector="textile"]');
+  await addSectorBtn.click();
+  
+  // Add two components
+  const addComponentBtn = page.locator('button[data-array-name="components"]');
+  await addComponentBtn.click();
+  await addComponentBtn.click();
+
+  const comp0Name = page.locator('input[name="components.0.name"]');
+  const comp1Name = page.locator('input[name="components.1.name"]');
+  
+  // Force blur to trigger validation
+  await comp0Name.focus();
+  await comp0Name.blur();
+  
+  await comp1Name.focus();
+  await comp1Name.blur();
+
+  // Assert both initially have their errors
+  await expect(page.locator('#components-0-name-error')).toBeVisible();
+  await expect(page.locator('#components-1-name-error')).toBeVisible();
+
+  // Remove the first item
+  const removeButtons = page.locator('.array-item-control-row[data-array-group^="components."] button:text("Remove")');
+  await removeButtons.nth(0).click();
+
+  // The second item becomes the first. It should have EXACTLY one error message sibling.
+  await expect(page.locator('input[name="components.0.name"] ~ .error-message')).toHaveCount(1);
 });
 
 test('should manage multiple sector forms independently', async ({ page }) => {

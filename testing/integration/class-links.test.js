@@ -4,6 +4,7 @@ import {
 import { join } from 'path';
 import { promises as fs } from 'fs';
 import { setupTestEnvironment } from '../scripts/test-helpers.mjs';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 describe('class-links', () => {
 
@@ -29,13 +30,13 @@ describe('class-links', () => {
             distDir: TEMP_DIST_DIR
         });
 
-        const moduleDirPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'core', 'mock-core');
+        const moduleDirPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core');
         
         // Check that the module's own index was created
         const moduleIndex = join(moduleDirPath, 'index.html');
         await expect(fs.access(moduleIndex)).resolves.not.toThrow();
         const moduleIndexHtml = await fs.readFile(moduleIndex, 'utf-8');
-        expect(moduleIndexHtml).toContain('<h3>Classes</h3>');
+        expect(moduleIndexHtml).toContain('<h3>Classes & Concepts</h3>');
         // The link should NOT have the dppk_ prefix
         expect(moduleIndexHtml).toContain('<li><a href="MockProduct.html">Mock Product</a></li>');
         
@@ -44,10 +45,10 @@ describe('class-links', () => {
         await expect(fs.access(classFilePath)).resolves.not.toThrow();
 
         // Check if global index was created and contains the correct link
-        const globalIndexDocPath = join(TEMP_DIST_DIR, 'ontology', 'v1', 'index.html');
+        const globalIndexDocPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'index.html');
         await expect(fs.access(globalIndexDocPath)).resolves.not.toThrow();
         const globalIndexHtml = await fs.readFile(globalIndexDocPath, 'utf-8');
-        expect(globalIndexHtml).toContain('<h3>All Classes</h3>');
+        expect(globalIndexHtml).toContain('<h3>All Classes & Concepts</h3>');
         // The link in the global index should also NOT have the prefix
         expect(globalIndexHtml).toContain('<a href="./core/mock-core/MockProduct.html">dppk:MockProduct</a>');
     });

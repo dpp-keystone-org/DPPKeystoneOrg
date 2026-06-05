@@ -1,0 +1,195 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-general-product.context.jsonld",
+    "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-packaging.context.jsonld",
+    {
+    // ==================================================================
+    // Namespaces
+    // ==================================================================
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    // While the ontology defines equivalencies, we primarily map to the harmonized prEN18223 terms here.
+    // GS1 and Schema.org namespaces are included for potential direct use if needed.
+    "gs1": "https://ref.gs1.org/voc/",
+    "schema": "https://schema.org/",
+    "unece": "https://vocabulary.uncefact.org/",
+
+    // ==================================================================
+    // Core Classes (for use in @type)
+    // ==================================================================
+    "DigitalProductPassport": "dppk:DigitalProductPassport",
+    "Organization": "dppk:Organization",
+    "PostalAddress": "dppk:PostalAddress",
+    "Product": "dppk:Product",
+    "QuantitativeValue": "dppk:QuantitativeValue",
+    "RelatedResource": "dppk:RelatedResource",
+    "Certification": "dppk:Certification",
+    "Component": "dppk:Component",
+    "SubstanceOfConcern": "dppk:SubstanceOfConcern",
+
+    "Packaging": "dppk:Packaging",
+    "ProductionStep": "dppk:ProductionStep",
+    "ProductCharacteristic": "dppk:ProductCharacteristic",
+
+    // Roles (for co-typing)
+    "EconomicOperatorRole": "dppk:EconomicOperatorRole",
+    "ManufacturerRole": "dppk:ManufacturerRole",
+    "FacilityRole": "dppk:FacilityRole",
+    "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
+    "RepairServiceRole": "dppk:RepairServiceRole",
+    "ISO6523": "dppk:ISO6523",
+
+    // ==================================================================
+    // Enumeration Members
+    // ==================================================================
+    "Item": { "@id": "dppk:Item" },
+    "Batch": { "@id": "dppk:Batch" },
+    "Model": { "@id": "dppk:Model" },
+
+    // ==================================================================
+    // Properties: DPP Header (camelCase)
+    // ==================================================================
+    "digitalProductPassportId": { "@id": "dppk:digitalProductPassportId", "@type": "@id" },
+    "uniqueProductIdentifier": { "@id": "dppk:uniqueProductIdentifier", "@type": "@id" },
+    "economicOperatorId": { "@id": "dppk:economicOperatorId", "@type": "@id" },
+    "facilityId": { "@id": "dppk:facilityId", "@type": "@id" },
+    "granularity": { "@id": "dppk:granularity", "@type": "@vocab" },
+    "dppStatus": "dppk:dppStatus",
+    "lastUpdate": { "@id": "dppk:lastUpdate", "@type": "xsd:dateTime" },
+    "dppSchemaVersion": "dppk:dppSchemaVersion",
+    "versionNumber": "dppk:versionNumber",
+    "versionDate": { "@id": "dppk:versionDate", "@type": "xsd:date" },
+    "contentSpecificationIds": {
+      "@id": "dppk:contentSpecificationIds",
+      "@container": "@set"
+    },
+    "verifiableCredential": "dppk:verifiableCredential",
+    "hsCode": "dppk:hsCode",
+
+    // ==================================================================
+    // Properties: Organization and Roles (camelCase)
+    // ==================================================================
+    
+    // Relationships
+    "economicOperator": { "@id": "dppk:economicOperator" },
+    "manufacturer": { "@id": "dppk:manufacturer" },
+    "importer": { "@id": "dppk:importer" },
+    "repairService": { "@id": "dppk:repairService" },
+    // We may want to revisit if we need a facility type
+    "manufacturingFacilityId": { "@id": "dppk:manufacturingFacility", "@type": "@id" },
+
+    // Details
+    "organizationName": "dppk:organizationName",
+    "tradingName": "dppk:tradingName",
+    "gln": "dppk:gln",
+    "leiCode": "dppk:leiCode",
+    "eori": "dppk:eori",
+    "organizationRole": "dppk:organizationRole", // Moved from redundant block
+    "additionalOrganizationId": "dppk:additionalOrganizationId",
+    "additionalOrganizationIdType": "dppk:additionalOrganizationIdType",
+    "iso6523": "dppk:iso6523",
+    "icd": "dppk:icd",
+    "iso6523Value": "dppk:iso6523Value",
+
+    // Address and Contact
+    "address": "dppk:address",
+    "streetAddress": "dppk:streetAddress",
+    "postalCode": "dppk:postalCode",
+    "addressLocality": "dppk:addressLocality",
+    "addressCountry": "dppk:addressCountry",
+    "email": "dppk:email",
+    "telephone": "dppk:telephone",
+    "operatorEmail": "dppk:operatorEmail",
+    "operatorTelephone": "dppk:operatorTelephone",
+    "website": { "@id": "dppk:website", "@type": "@id" },
+
+    // ==================================================================
+    // ==================================================================
+    // Properties: Product Materials
+    // ==================================================================
+    
+    // BOM and Materials
+    "components": {
+      "@id": "dppk:components",
+      "@container": "@set",
+      "@context": {
+        "name": "dppk:componentName",
+        "percentage": "dppk:componentPercentage",
+        "uniqueProductIdentifier": "dppk:componentIdentifier",
+        "casNumber": "dppk:componentCasNumber",
+        "ecNumber": "dppk:componentEcNumber",
+        "iupacName": "dppk:componentIupacName",
+        "locationInProduct": "dppk:componentLocationInProduct"
+      }
+    },
+    "recycledContentPercentage": {
+      "@id": "dppk:recycledContentPercentage",
+      "@type": "xsd:double"
+    },
+
+    // ==================================================================
+    // Properties: Product Characteristics
+    // ==================================================================
+    "productCharacteristics": { "@id": "dppk:productCharacteristics", "@container": "@set" },
+    "characteristicName": "dppk:characteristicName",
+    "characteristicValue": "dppk:characteristicValue",
+    "testMethod": "dppk:testMethod",
+
+    // Quantitative Values
+    // Define custom datatypes (typed literals) for measurements with implicit units.
+    // This allows simple values in JSON (e.g., "netWeight": 4968) to be semantically tagged.
+
+    "KgWeightLiteral": "dppk:KgWeightLiteral",
+    "MetersLengthLiteral": "dppk:MetersLengthLiteral",
+
+    // Coerce properties to use these custom datatypes.
+    "value": { "@id": "dppk:value", "@type": "xsd:double" },
+    "unitCode": "dppk:unitCode",
+    "unitText": "dppk:unitText",
+
+    // ==================================================================
+    // Properties: Compliance and Regulatory
+    // ==================================================================
+
+    // Relationships (Data Clusters)
+    "documents": { "@id": "dppk:documents", "@container": "@set" },
+    "substancesOfConcern": { "@id": "dppk:substancesOfConcern", "@container": "@set" },
+
+    //Properties: Linked Resources
+    // ==================================================================
+    "instructionsForUse": { "@id": "dppk:instructionsForUse", "@type": "@id" },
+    "safetyDataSheet": { "@id": "dppk:safetyDataSheet", "@type": "@id" },
+    "resourceTitle": "dppk:resourceTitle",
+    "contentType": "dppk:contentType",
+    "language": "dppk:language",
+
+    "dateOfManufacture": {
+      "@id": "dppk:dateOfManufacture",
+      "@type": "xsd:date"
+    },
+    "apparelSize": {
+      "@id": "dppk:apparelSize",
+      "@type": "xsd:string"
+    },
+    "apparelSizeSystem": {
+      "@id": "dppk:apparelSizeSystem",
+      "@type": "xsd:string"
+    },
+
+    // ==================================================================
+    // General Purpose Aliases (Used across multiple classes)
+    // ==================================================================
+    "name": {
+      "@id": "dppk:name",
+      "@container": "@language"
+    },
+    // Using our own DPPK identifier, which is equivalent to schema:identifier.
+    "identifier": "dppk:identifier",
+    "url": {
+      "@id": "dppk:url",
+      "@type": "xsd:anyURI"
+    }
+
+  }
+  ]
+}

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 
 test('has title', async ({ page }) => {
   await page.goto('/explorer/index.html');
@@ -37,5 +38,5 @@ test('loads ontology index and performs search', async ({ page }) => {
   // Verify the ID is a link to documentation
   const idLink = firstCard.locator('a.term-id');
   await expect(idLink).toBeVisible();
-  await expect(idLink).toHaveAttribute('href', /\.\.\/spec\/ontology\/v1\//);
+  await expect(idLink).toHaveAttribute('href', new RegExp(`\\.\\./spec/ontology/${KEYSTONE_VERSION}/`));
 });

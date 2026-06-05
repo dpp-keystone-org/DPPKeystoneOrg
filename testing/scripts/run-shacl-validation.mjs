@@ -10,6 +10,7 @@ import ClownfaceFactory from 'clownface/Factory.js';
 import NamespaceFactory from '@rdfjs/namespace/Factory.js';
 
 import { PROJECT_ROOT, loadRdfFile, combineDatasets } from './shacl-helpers.mjs';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 // Create a pre-configured RDF/JS environment
 // This bundles a factory, dataset, parser, and clownface support
@@ -21,7 +22,7 @@ async function main() {
     console.log('Starting SHACL validation...');
 
     // --- 1. Dynamically Load All SHACL Shapes ---
-    const shapesDir = path.join(PROJECT_ROOT, 'dist', 'validation', 'v1', 'shacl');
+    const shapesDir = path.join(PROJECT_ROOT, 'dist', 'validation', KEYSTONE_VERSION, 'shacl');
     const shapeFiles = await fs.readdir(shapesDir);
 
     const shapeDatasets = await Promise.all(

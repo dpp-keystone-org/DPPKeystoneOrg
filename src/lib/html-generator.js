@@ -1,4 +1,5 @@
 import { renderProductPage, detectTableStructure } from '../util/js/common/rendering/dpp-html-renderer.js';
+import { KEYSTONE_VERSION } from './keystone-version.js';
 
 // Re-export for testing compatibility
 export { detectTableStructure };
@@ -43,11 +44,11 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
       const { transformDpp } = await import('../util/js/client/dpp-schema-adapter.js');
 
       // Determine correct ontology path
-      let ontologyPath = '../ontology/v1/dpp-ontology.jsonld';
+      let ontologyPath = `../ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
       try {
-        const specCheck = await fetch('../spec/ontology/v1/dpp-ontology.jsonld', { method: 'HEAD' });
+        const specCheck = await fetch(`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`, { method: 'HEAD' });
         if (specCheck.ok) {
-          ontologyPath = '../spec/ontology/v1/dpp-ontology.jsonld';
+          ontologyPath = `../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
         }
       } catch (ignore) { }
 
@@ -81,7 +82,8 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
       const transformed = await transformDpp(dppJson, {
         profile: 'schema.org',
         ontologyPaths: ontologyPaths,
-        documentLoader: localDocumentLoader
+        documentLoader: localDocumentLoader,
+        version: KEYSTONE_VERSION
       });
       console.log("DPP HTML Generator Debug: Result from transformDpp:", transformed);
 
