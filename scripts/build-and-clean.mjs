@@ -41,7 +41,7 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
-        if (entry.name === 'desktop.ini' || entry.name === 'branding' || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator' || entry.name === 'explorer' || entry.name === 'csv-dpp-adapter'))) {
+        if (entry.name === 'desktop.ini' || entry.name === 'branding' || entry.name.includes('stripped') || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator' || entry.name === 'explorer' || entry.name === 'csv-dpp-adapter'))) {
             continue;
         }
         const sourcePath = path.join(sourceDir, entry.name);
@@ -207,6 +207,17 @@ async function build() {
         console.log(`Shadowed latest context files to dist/spec/contexts`);
     } else {
         console.warn(`Warning: Latest contexts directory not found at ${latestContextsDir}. Skipping shadow creation.`);
+    }
+
+    // Create version-less "latest" copies of ontology files
+    console.log('Creating "latest" ontology file shadows...');
+    const latestOntologyDir = path.join(specDir, 'ontology', KEYSTONE_VERSION);
+    const shadowOntologyDir = path.join(specDir, 'ontology');
+    if (await fse.pathExists(latestOntologyDir)) {
+        await fse.copy(latestOntologyDir, shadowOntologyDir, { overwrite: true });
+        console.log(`Shadowed latest ontology files to dist/spec/ontology`);
+    } else {
+        console.warn(`Warning: Latest ontology directory not found at ${latestOntologyDir}. Skipping shadow creation.`);
     }
 
     // Copy branding to the root of dist
