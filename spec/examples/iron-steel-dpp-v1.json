@@ -1,5 +1,5 @@
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v1/dpp-iron-steel.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v2/dpp-iron-steel.context.jsonld",
   "digitalProductPassportId": "https://dpp.example.com/dpp/iron-steel-1234",
   "uniqueProductIdentifier": "https://pid.example.com/gtin/1234567890123",
   "granularity": "Batch",

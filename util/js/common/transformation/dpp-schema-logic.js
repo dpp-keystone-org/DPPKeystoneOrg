@@ -17,7 +17,7 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1780066658723';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1780667998764';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
@@ -31,8 +31,10 @@ const profiles = {
  * @param {Function} documentLoader - The JSON-LD document loader.
  * @param {object} dictionary - The dictionary object to populate.
  */
-export async function buildDictionary(ontologyPaths, loader, documentLoader, dictionary) {
+export async function buildDictionary(ontologyPaths, loader, documentLoader, dictionary, version) {
     if (Object.keys(dictionary).length > 0) return;
+
+    const termsBase = `https://dpp-keystone.org/spec/${version}/terms#`;
 
     for (const ontologyPath of ontologyPaths) {
         const ontology = await loader(ontologyPath);
@@ -43,7 +45,7 @@ export async function buildDictionary(ontologyPaths, loader, documentLoader, dic
         nodes.forEach(node => {
             const id = node['@id'];
             if (!id) return;
-            const unitArr = node['https://dpp-keystone.org/spec/v1/terms#unit'];
+            const unitArr = node[`${termsBase}unit`];
             const labelArr = node['http://www.w3.org/2000/01/rdf-schema#label'];
 
             if (unitArr) {
@@ -71,14 +73,15 @@ export async function buildDictionary(ontologyPaths, loader, documentLoader, dic
  * @returns {Promise<Array>} A promise that resolves to an array of transformed objects.
  */
 export async function transform(dpp, options, dictionary) {
-    const { profile: profileName, documentLoader } = options;
+    const { profile: profileName, documentLoader, version } = options;
+    const termsBase = `https://dpp-keystone.org/spec/${version}/terms#`;
 
     // --- Start: Type Inference Logic ---
     const specIdToType = {
-        'draft_construction_specification_id': 'https://dpp-keystone.org/spec/v1/terms#ConstructionProduct',
+        'draft_construction_specification_id': `${termsBase}ConstructionProduct`,
         // Future sector-specific IDs can be added here
     };
-    const DPP_BASE_TYPE = 'https://dpp-keystone.org/spec/v1/terms#DigitalProductPassport';
+    const DPP_BASE_TYPE = `${termsBase}DigitalProductPassport`;
 
     // Ensure dpp['@type'] is an array and contains the base DPP type.
     // This allows data providers to omit the @type property if a contentSpecificationId is present.
@@ -119,9 +122,10 @@ export async function transform(dpp, options, dictionary) {
     
     let results = [];
     for (const transformation of profile.transformations) {
-        const sourceData = rootNode[transformation.source]?.[0];
+        const sourceUri = transformation.source.startsWith('http') ? transformation.source : `${termsBase}${transformation.source}`;
+        const sourceData = rootNode[sourceUri]?.[0];
         if (sourceData) {
-            const transformedData = transformation.transformer(sourceData, dictionary, rootNode);
+            const transformedData = transformation.transformer(sourceData, dictionary, rootNode, version);
             results = results.concat(transformedData);
         }
     }

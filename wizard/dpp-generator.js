@@ -1,7 +1,8 @@
 // Cache-busting comment to force re-evaluation.
 // src/wizard/dpp-generator.js
 
-import { setProperty } from '../lib/dpp-data-utils.js?v=1780066658723';
+import { setProperty } from '../lib/dpp-data-utils.js?v=1780667998764';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1780667998764';
 
 /**
  * Recursively scrapes voluntary fields from a container, handling Groups and Types.
@@ -90,7 +91,7 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
     
     // Add @context
     let contexts = [];
-    const baseUrl = 'https://dpp-keystone.org/spec/contexts/v1/';
+    const baseUrl = `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/`;
 
     if (sectors && sectors.length > 0) {
         contexts = sectors.map(sector => `${baseUrl}dpp-${sector}.context.jsonld`);
@@ -176,7 +177,7 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
                     return data.schema.if.properties.contentSpecificationIds.contains.const;
                 }
             }
-            return `${sector}-product-dpp-v1`;
+            return `${sector}-product-dpp-${KEYSTONE_VERSION}`;
         });
     }
 

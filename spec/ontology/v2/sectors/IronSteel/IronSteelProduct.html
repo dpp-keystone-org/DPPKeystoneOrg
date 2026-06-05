@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Iron and Steel Product</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Iron & Steel Sector Ontology</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: Iron and Steel Product (dppk:IronSteelProduct)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="IronSteelProduct">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class IronSteelProduct
+  Product <|-- IronSteelProduct
+  IronSteelProduct : +heatNumber
+  IronSteelProduct : +productNumber
+  IronSteelProduct : +manufacturingDate
+  IronSteelProduct : +castNumber
+  IronSteelProduct : +lotNumber
+  IronSteelProduct : +purchaserOrder
+  IronSteelProduct : +steelGradeClassification
+  IronSteelProduct : +steelDesignation
+  IronSteelProduct : +technologyRoute
+  IronSteelProduct : +meltAndPourCountry
+  IronSteelProduct : +recycledContentPercentage
+  IronSteelProduct : +preConsumerRecycledContent
+  IronSteelProduct : +postConsumerRecycledContent
+  IronSteelProduct : +recycledContentConformity
+  IronSteelProduct : +cbamReportId
+  IronSteelProduct : +reachDocumentation
+  IronSteelProduct --|> RelatedResource : reachDocumentation
+  click Product href "../../core/Product/Product.html" "dppk:Product"
+  style Product stroke:#2962ff,color:#2962ff
+  click RelatedResource href "../../core/RelatedResource/RelatedResource.html" "dppk:RelatedResource"
+  style RelatedResource stroke:#2962ff,color:#2962ff
+
+                </pre>
+
+                <h4>Description</h4>
+                <p>Data model for the Iron and Steel Passport according to EU ESPR.</p>
+                <p><strong>subClassOf:</strong> <a href="../../core/Product/Product.html">dppk:Product</a></p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>governedBy</th><th>equivalentProperty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td><a href="index.html#heatNumber">Heat Number</a> (dppk:heatNumber)</td>
+                                    <td>The heat number for iron and steel to serve as a lot-level identifier.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td>EN 10168</td><td><a href="gs1:batchLot">gs1:batchLot</a>, <a href="http://schema.org/sku">schema:sku</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#productNumber">Product Number</a> (dppk:productNumber)</td>
+                                    <td>An internal identifier at the article level.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td>EN 10168</td><td><a href="http://schema.org/productID">schema:productID</a>, <a href="http://schema.org/model">schema:model</a>, <a href="gs1:globalModelNumber">gs1:globalModelNumber</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#manufacturingDate">Manufacturing Date</a> (dppk:manufacturingDate)</td>
+                                    <td>The date on which the product was manufactured.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+                                    <td></td><td><a href="http://schema.org/productionDate">schema:productionDate</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#castNumber">Cast Number</a> (dppk:castNumber)</td>
+                                    <td>Optional batch-level identifier representing the specific cast.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td>EN 10168</td><td><a href="gs1:batchLot">gs1:batchLot</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#lotNumber">Lot Number</a> (dppk:lotNumber)</td>
+                                    <td>Optional batch-level identifier representing the specific manufacturing lot.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td>EN 10168</td><td><a href="gs1:batchLot">gs1:batchLot</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#purchaserOrder">Purchaser Order</a> (dppk:purchaserOrder)</td>
+                                    <td>Associated purchase order identifier.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td><td><a href="http://schema.org/orderNumber">schema:orderNumber</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#steelGradeClassification">Steel Grade Classification</a> (dppk:steelGradeClassification)</td>
+                                    <td>The classification of the steel grade.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td>EN 10020</td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#steelDesignation">Steel Designation</a> (dppk:steelDesignation)</td>
+                                    <td>The specific designation or name of the steel.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td>EN 10027</td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#technologyRoute">Technology Route</a> (dppk:technologyRoute)</td>
+                                    <td>The primary manufacturing route (e.g. EAF, BF-BOF).</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#meltAndPourCountry">Melt and Pour Country</a> (dppk:meltAndPourCountry)</td>
+                                    <td>The country where the steel was originally melted and poured.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td><td><a href="http://schema.org/countryOfOrigin">schema:countryOfOrigin</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#recycledContentPercentage">Recycled Content Percentage</a> (dppk:recycledContentPercentage)</td>
+                                    <td>Total recycled content percentage in the steel.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#preConsumerRecycledContent">Pre-Consumer Recycled Content</a> (dppk:preConsumerRecycledContent)</td>
+                                    <td>Percentage of pre-consumer recycled material.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#postConsumerRecycledContent">Post-Consumer Recycled Content</a> (dppk:postConsumerRecycledContent)</td>
+                                    <td>Percentage of post-consumer recycled material.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                                    <td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#recycledContentConformity">Recycled Content Conformity</a> (dppk:recycledContentConformity)</td>
+                                    <td>Reference or URI to the conformity declaration of the recycled content calculation.</td>
+                                    <td></td>
+                                    <td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#cbamReportId">CBAM Report ID</a> (dppk:cbamReportId)</td>
+                                    <td>Identifier for the Carbon Border Adjustment Mechanism (CBAM) report.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td><td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#reachDocumentation">REACH Documentation</a> (dppk:reachDocumentation)</td>
+                                    <td>URI link to the REACH regulatory documentation if applicable.</td>
+                                    <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                                    <td></td><td></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

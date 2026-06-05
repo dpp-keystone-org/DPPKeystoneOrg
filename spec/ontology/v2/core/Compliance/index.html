@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Module: DPP Core Ontology - Compliance and Regulatory Definitions (v2)</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">DPP Core Ontology - Compliance and Regulatory Definitions (v2)</h2>
+            </div>
+        </header>
+        <main>
+            <p>Defines horizontal concepts related to Documents, Certifications, Substances of Concern, Eco-Design, Packaging, and Production Steps.</p>
+            <p><strong>Source:</strong> <a href="../Compliance.jsonld">Compliance.jsonld</a></p>
+            <h3>Classes & Concepts</h3>
+            <ul>
+                <li><a href="Certification.html">Certification</a></li><li><a href="Packaging.html">Packaging</a></li><li><a href="ProductionStep.html">Production Step</a></li>
+            </ul>
+            <h3>Properties</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>equivalentProperty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="documents"><strong>Documents</strong> (dppk:documents)</td>
+                            <td>Relates the product to associated digital documents.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="../RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td><a href="https://ref.gs1.org/voc/referencedFile">gs1:referencedFile</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certifications"><strong>Certifications</strong> (dppk:certifications)</td>
+                            <td>Relates the product to its certifications.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="https://schema.org/hasCertification">schema:hasCertification</a>, <a href="https://ref.gs1.org/voc/certification">gs1:certification</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="substancesOfConcern"><strong>Substances of Concern</strong> (dppk:substancesOfConcern)</td>
+                            <td>Relates the product to any substances of concern it contains.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="../Product/Component.html">dppk:Component</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="packaging"><strong>Packaging</strong> (dppk:packaging)</td>
+                            <td>A list of packaging elements associated with the product.</td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="Packaging.html">dppk:Packaging</a></td>
+                            <td><a href="https://ref.gs1.org/voc/packaging">gs1:packaging</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productionSteps"><strong>Production Steps</strong> (dppk:productionSteps)</td>
+                            <td></td>
+                            <td><a href="../Product/Product.html">dppk:Product</a></td>
+                            <td><a href="ProductionStep.html">dppk:ProductionStep</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationName"><strong>Certification Name</strong> (dppk:certificationName)</td>
+                            <td>The name of the certification.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/name">schema:name</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationId"><strong>Certification Identifier</strong> (dppk:certificationId)</td>
+                            <td>The unique identifier or number of the certification.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td><a href="https://schema.org/identifier">schema:identifier</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationUrl"><strong>Certification URL</strong> (dppk:certificationUrl)</td>
+                            <td>A web link to the certification details or registry.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+                            <td><a href="https://schema.org/url">schema:url</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationBodyName"><strong>Certifying Body Name</strong> (dppk:certificationBodyName)</td>
+                            <td>The name of the body that issued the certification.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td></td>
+                            <td><a href="https://ref.gs1.org/voc/certificationAgency">gs1:certificationAgency</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationBodyId"><strong>Certifying Body ID</strong> (dppk:certificationBodyId)</td>
+                            <td>The unique identifier of the certifying body.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationStartDate"><strong>Start of Certificate Validity</strong> (dppk:certificationStartDate)</td>
+                            <td>The date when the certification became valid.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+                            <td><a href="https://ref.gs1.org/voc/certificationStartDate">gs1:certificationStartDate</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationEndDate"><strong>End of Certificate Validity</strong> (dppk:certificationEndDate)</td>
+                            <td>The date when the certification expires.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certificationBodyRole"><strong>Certifying Body Role</strong> (dppk:certificationBodyRole)</td>
+                            <td>The role or capacity in which the certifying body issued the certification.</td>
+                            <td><a href="Certification.html">dppk:Certification</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="packagingMaterialType"><strong>Packaging Material Type</strong> (dppk:packagingMaterialType)</td>
+                            <td>The type of material used for the packaging (e.g., 'Cardboard', 'Plastic').</td>
+                            <td><a href="Packaging.html">dppk:Packaging</a></td>
+                            <td></td>
+                            <td><a href="https://ref.gs1.org/voc/packagingMaterialType">gs1:packagingMaterialType</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="packagingMaterialCompositionQuantity"><strong>Packaging Material Composition Quantity</strong> (dppk:packagingMaterialCompositionQuantity)</td>
+                            <td>The percentage of the material in the packaging.</td>
+                            <td><a href="Packaging.html">dppk:Packaging</a></td>
+                            <td></td>
+                            <td><a href="https://ref.gs1.org/voc/packagingMaterialCompositionQuantity">gs1:packagingMaterialCompositionQuantity</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="packagingRecyclingProcessType"><strong>Packaging Recycling Process Type</strong> (dppk:packagingRecyclingProcessType)</td>
+                            <td>Indicates if the packaging is RECYCLABLE, REUSABLE, or COMPOSTABLE.</td>
+                            <td><a href="Packaging.html">dppk:Packaging</a></td>
+                            <td></td>
+                            <td><a href="https://ref.gs1.org/voc/packagingRecyclingProcessType">gs1:packagingRecyclingProcessType</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="packagingRecycledContent"><strong>Packaging Recycled Content</strong> (dppk:packagingRecycledContent)</td>
+                            <td>The percentage of recycled content in the packaging material.</td>
+                            <td><a href="Packaging.html">dppk:Packaging</a></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="packagingSubstanceOfConcern"><strong>Packaging Substance of Concern Present</strong> (dppk:packagingSubstanceOfConcern)</td>
+                            <td>Indicates if any substances of concern are present in the packaging.</td>
+                            <td><a href="Packaging.html">dppk:Packaging</a></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productionStepType"><strong>Production Step Type</strong> (dppk:productionStepType)</td>
+                            <td>The name or description of the production step (e.g., Assembly, Weaving, Smelting).</td>
+                            <td><a href="ProductionStep.html">dppk:ProductionStep</a></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="productionLocationCountry"><strong>Production Location Country</strong> (dppk:productionLocationCountry)</td>
+                            <td>The country where the production step took place. Recommended to use ISO 3166-1 alpha-3 codes.</td>
+                            <td><a href="ProductionStep.html">dppk:ProductionStep</a></td>
+                            <td></td>
+                            <td><a href="https://ref.gs1.org/voc/countryCode">gs1:countryCode</a></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+</body>
+</html>

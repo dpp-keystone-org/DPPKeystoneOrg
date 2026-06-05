@@ -1,8 +1,8 @@
 [
   {
     "@context": [
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-core.context.jsonld",
-      "https://dpp-keystone.org/spec/contexts/v1/dpp-battery.context.jsonld"
+      "https://dpp-keystone.org/spec/contexts/v2/dpp-core.context.jsonld",
+      "https://dpp-keystone.org/spec/contexts/v2/dpp-battery.context.jsonld"
     ],
     "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
     "uniqueProductIdentifier": "urn:gtin:01234567890123",

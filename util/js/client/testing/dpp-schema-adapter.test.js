@@ -1,5 +1,6 @@
 import { jest } from '@jest/globals';
-import { transformDpp } from '../dpp-schema-adapter.js?v=1780066658723';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1780667998764';
+import { KEYSTONE_VERSION } from '../../../../lib/keystone-version.js?v=1780667998764';
 
 describe('Client Adapter Loader Integration', () => {
     
@@ -10,7 +11,7 @@ describe('Client Adapter Loader Integration', () => {
     it('should correctly pass the fetch-based loader to the buildDictionary logic', async () => {
         // Arrange
         const mockOntology = {
-            "@context": { "dppk": "https://dpp-keystone.org/spec/v1/terms#" },
+            "@context": { "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#` },
             "@graph": []
         };
         
@@ -36,7 +37,8 @@ describe('Client Adapter Loader Integration', () => {
         const options = {
             profile: 'schema.org',
             documentLoader: mockDocLoader,
-            ontologyPaths: ['https://example.com/ontology.jsonld']
+            ontologyPaths: ['https://example.com/ontology.jsonld'],
+            version: KEYSTONE_VERSION
         };
 
         // Act
