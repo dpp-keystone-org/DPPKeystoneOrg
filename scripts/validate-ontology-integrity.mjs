@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import { validateTermTranslations } from '../src/util/js/common/validation/ontology-validator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -447,6 +448,26 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
     });
 }
 
+function auditTranslations(reporter) {
+    ontologyGraph.forEach((term, id) => {
+        // Only validate our own terms
+        if (id.startsWith('dppk:')) {
+            const result = validateTermTranslations(term);
+            if (!result.valid) {
+                const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
+                result.errors.forEach(err => {
+                    reporter.report(
+                        'Translation Integrity',
+                        'WARN',
+                        `Term '${id}' has translation issue: ${err}`,
+                        relativePath
+                    );
+                });
+            }
+        }
+    });
+}
+
 // --- Main Execution ---
 async function run() {
     console.log('🚀 Starting Ontology Integrity Suite...');
@@ -480,6 +501,7 @@ async function run() {
     });
 
     auditDocumentation(reporter);
+    auditTranslations(reporter);
     auditDeadCode(reporter, usedIRIs, contextMappedIRIs);
 
     // 4. Report
