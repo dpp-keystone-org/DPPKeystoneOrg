@@ -32,6 +32,7 @@
         { "@language": "et", "@value": "Indikaator" },
         { "@language": "fi", "@value": "Indikaattori" },
         { "@language": "fr", "@value": "Indicateur" },
+        { "@language": "ga", "@value": "Táscaire" },
         { "@language": "hr", "@value": "Pokazatelj" },
         { "@language": "hu", "@value": "Indikátor" },
         { "@language": "it", "@value": "Indicatore" },
@@ -44,8 +45,7 @@
         { "@language": "ro", "@value": "Indicator" },
         { "@language": "sk", "@value": "Ukazovateľ" },
         { "@language": "sl", "@value": "Kazalnik" },
-        { "@language": "sv", "@value": "Indikator" },
-        { "@language": "ga", "@value": "Táscaire" }
+        { "@language": "sv", "@value": "Indikator" }
       ],
       "rdfs:comment": [
         { "@language": "en", "@value": "A generic property representing an environmental impact indicator." },
@@ -58,6 +58,7 @@
         { "@language": "et", "@value": "Üldine omadus, mis esindab keskkonnamõju indikaatorit." },
         { "@language": "fi", "@value": "Yleinen ominaisuus, joka edustaa ympäristövaikutusindikaattoria." },
         { "@language": "fr", "@value": "Une propriété générique représentant un indicateur d'impact environnemental." },
+        { "@language": "ga", "@value": "Airí ginearálta a léiríonn táscaire tionchair comhshaoil." },
         { "@language": "hr", "@value": "Generičko svojstvo koje predstavlja pokazatelj utjecaja na okoliš." },
         { "@language": "hu", "@value": "Egy általános tulajdonság, amely egy környezeti hatásmutatót képvisel." },
         { "@language": "it", "@value": "Una proprietà generica che rappresenta un indicatore di impatto ambientale." },
@@ -70,8 +71,7 @@
         { "@language": "ro", "@value": "O proprietate generică reprezentând un indicator de impact asupra mediului." },
         { "@language": "sk", "@value": "Všeobecná vlastnosť predstavujúca ukazovateľ vplyvu na životné prostredie." },
         { "@language": "sl", "@value": "Splošna lastnost, ki predstavlja kazalnik vpliva na okolje." },
-        { "@language": "sv", "@value": "En generisk egenskap som representerar en miljöpåverkansindikator." },
-        { "@language": "ga", "@value": "Airí ginearálta a léiríonn táscaire tionchair comhshaoil." }
+        { "@language": "sv", "@value": "En generisk egenskap som representerar en miljöpåverkansindikator." }
       ],
       "rdfs:domain": { "@id": "dppk:EPDBlock" }
     },
@@ -89,6 +89,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale" },
@@ -101,8 +102,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential" }
       ],
       "dppk:unit": "kg CO₂ eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -120,6 +120,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale" },
@@ -132,8 +133,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential" }
       ]
     },
     {
@@ -150,6 +150,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, fossiilne" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, fossiilinen" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, fossile" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Fósil" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, fosilni" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, fosszilis" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, fossile" },
@@ -162,8 +163,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, fosil" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, fosílne" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, fosilni" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, fossil" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Fósil" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, fossil" }
       ],
       "dppk:unit": "kg CO₂ eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -181,6 +181,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, fossiilne" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, fossiilinen" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, fossile" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Fósil" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, fosilni" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, fosszilis" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, fossile" },
@@ -193,8 +194,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, fosil" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, fosílne" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, fosilni" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, fossil" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Fósil" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, fossil" }
       ]
     },
     {
@@ -211,6 +211,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, biogeenne" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, biogeeninen" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, biogénique" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Bithigineach" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, biogeni" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, biogén" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, biogenico" },
@@ -223,8 +224,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, biogenic" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, biogénny" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, biogen" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, biogen" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Bithigineach" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, biogen" }
       ],
       "dppk:unit": "kg CO₂ eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -242,6 +242,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, biogeenne" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, biogeeninen" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, biogénique" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Bithigineach" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, biogeni" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, biogén" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, biogenico" },
@@ -254,8 +255,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, biogenic" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, biogénny" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, biogen" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, biogen" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Bithigineach" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, biogen" }
       ]
     },
     {
@@ -272,6 +272,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, maakasutus ja maakasutuse muutus" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, maa- ja maankäytön muutos" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, utilisation et changement de l'utilisation des terres" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, korištenje zemljišta i promjena korištenja zemljišta" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, földhasználat és földhasználat változás" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, uso e cambiamento del suolo" },
@@ -284,8 +285,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, utilizarea și schimbarea utilizării terenurilor" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, využívanie pôdy a zmena využívania pôdy" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, raba tal in spremembe rabe tal" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, markanvändning och markanvändningsförändring" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, markanvändning och markanvändningsförändring" }
       ],
       "dppk:unit": "kg CO₂ eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -303,6 +303,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, maakasutus ja maakasutuse muutus" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, maa- ja maankäytön muutos" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, utilisation et changement de l'utilisation des terres" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, korištenje zemljišta i promjena korištenja zemljišta" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, földhasználat és földhasználat változás" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, uso e cambiamento del suolo" },
@@ -315,8 +316,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, utilizarea și schimbarea utilizării terenurilor" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, využívanie pôdy a zmena využívania pôdy" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, raba tal in spremembe rabe tal" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, markanvändning och markanvändningsförändring" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, markanvändning och markanvändningsförändring" }
       ]
     },
     {
@@ -333,6 +333,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, kasvuhoonegaasid" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, kasvihuonekaasut" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, gaz à effet de serre" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, staklenički plinovi" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, üvegházhatású gázok" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, gas serra" },
@@ -345,8 +346,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, gaze cu efect de seră" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, skleníkové plyny" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, toplogredni plini" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, växthusgaser" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, växthusgaser" }
       ],
       "dppk:unit": "kg CO₂ eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -364,6 +364,7 @@
         { "@language": "et", "@value": "Globaalse soojenemise potentsiaal, kasvuhoonegaasid" },
         { "@language": "fi", "@value": "Ilmaston lämmitysvaikutuspotentiaali, kasvihuonekaasut" },
         { "@language": "fr", "@value": "Potentiel de réchauffement global, gaz à effet de serre" },
+        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa" },
         { "@language": "hr", "@value": "Potencijal globalnog zagrijavanja, staklenički plinovi" },
         { "@language": "hu", "@value": "Globális felmelegedési potenciál, üvegházhatású gázok" },
         { "@language": "it", "@value": "Potenziale di riscaldamento globale, gas serra" },
@@ -376,8 +377,7 @@
         { "@language": "ro", "@value": "Potențial de încălzire globală, gaze cu efect de seră" },
         { "@language": "sk", "@value": "Potenciál globálneho otepľovania, skleníkové plyny" },
         { "@language": "sl", "@value": "Potencial globalnega segrevanja, toplogredni plini" },
-        { "@language": "sv", "@value": "Global uppvärmningspotential, växthusgaser" },
-        { "@language": "ga", "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa" }
+        { "@language": "sv", "@value": "Global uppvärmningspotential, växthusgaser" }
       ]
     },
     {
@@ -394,6 +394,7 @@
         { "@language": "et", "@value": "Osoonikihi kadumise potentsiaal" },
         { "@language": "fi", "@value": "Otsonikerroksen heikkenemispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d’appauvrissement de la couche d’ozone" },
+        { "@language": "ga", "@value": "Féidearthacht Laghdaithe Ózóin" },
         { "@language": "hr", "@value": "Potencijal za uništavanje ozonskog omotača" },
         { "@language": "hu", "@value": "Ózonréteg károsodási potenciál" },
         { "@language": "it", "@value": "Potenziale di esaurimento dello strato di ozono" },
@@ -406,8 +407,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare a ozonului" },
         { "@language": "sk", "@value": "Potenciál poškodzovania ozónovej vrstvy" },
         { "@language": "sl", "@value": "Potencial za zmanjšanje ozonskega plašča" },
-        { "@language": "sv", "@value": "Potential för nedbrytning av ozonskiktet" },
-        { "@language": "ga", "@value": "Féidearthacht Laghdaithe Ózóin" }
+        { "@language": "sv", "@value": "Potential för nedbrytning av ozonskiktet" }
       ],
       "dppk:unit": "kg CFC11 eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -425,6 +425,7 @@
         { "@language": "et", "@value": "Osoonikihi kadumise potentsiaal" },
         { "@language": "fi", "@value": "Otsonikerroksen heikkenemispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d’appauvrissement de la couche d’ozone" },
+        { "@language": "ga", "@value": "Féidearthacht Laghdaithe Ózóin" },
         { "@language": "hr", "@value": "Potencijal za uništavanje ozonskog omotača" },
         { "@language": "hu", "@value": "Ózonréteg károsodási potenciál" },
         { "@language": "it", "@value": "Potenziale di esaurimento dello strato di ozono" },
@@ -437,8 +438,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare a ozonului" },
         { "@language": "sk", "@value": "Potenciál poškodzovania ozónovej vrstvy" },
         { "@language": "sl", "@value": "Potencial za zmanjšanje ozonskega plašča" },
-        { "@language": "sv", "@value": "Potential för nedbrytning av ozonskiktet" },
-        { "@language": "ga", "@value": "Féidearthacht Laghdaithe Ózóin" }
+        { "@language": "sv", "@value": "Potential för nedbrytning av ozonskiktet" }
       ]
     },
     {
@@ -455,6 +455,7 @@
         { "@language": "et", "@value": "Happestumise potentsiaal" },
         { "@language": "fi", "@value": "Happamoitumispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'acidification" },
+        { "@language": "ga", "@value": "Féidearthacht Aigéadú" },
         { "@language": "hr", "@value": "Potencijal zakiseljavanja" },
         { "@language": "hu", "@value": "Savanyodási potenciál" },
         { "@language": "it", "@value": "Potenziale di acidificazione" },
@@ -467,8 +468,7 @@
         { "@language": "ro", "@value": "Potențial de acidifiere" },
         { "@language": "sk", "@value": "Potenciál acidifikácie" },
         { "@language": "sl", "@value": "Potencial zakisanosti" },
-        { "@language": "sv", "@value": "Försurningspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Aigéadú" }
+        { "@language": "sv", "@value": "Försurningspotential" }
       ],
       "dppk:unit": "mol H+ eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -486,6 +486,7 @@
         { "@language": "et", "@value": "Happestumise potentsiaal" },
         { "@language": "fi", "@value": "Happamoitumispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'acidification" },
+        { "@language": "ga", "@value": "Féidearthacht Aigéadú" },
         { "@language": "hr", "@value": "Potencijal zakiseljavanja" },
         { "@language": "hu", "@value": "Savanyodási potenciál" },
         { "@language": "it", "@value": "Potenziale di acidificazione" },
@@ -498,8 +499,7 @@
         { "@language": "ro", "@value": "Potențial de acidifiere" },
         { "@language": "sk", "@value": "Potenciál acidifikácie" },
         { "@language": "sl", "@value": "Potencial zakisanosti" },
-        { "@language": "sv", "@value": "Försurningspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Aigéadú" }
+        { "@language": "sv", "@value": "Försurningspotential" }
       ]
     },
     {
@@ -516,6 +516,7 @@
         { "@language": "et", "@value": "Eutrofeerimise potentsiaal, magevesi" },
         { "@language": "fi", "@value": "Eutrofikointipotentiaali, makea vesi" },
         { "@language": "fr", "@value": "Potentiel d'eutrophisation, eau douce" },
+        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, fionnuisce" },
         { "@language": "hr", "@value": "Potencijal eutrofikacije, slatka voda" },
         { "@language": "hu", "@value": "Eutrofizációs potenciál, édesvíz" },
         { "@language": "it", "@value": "Potenziale di eutrofizzazione, acqua dolce" },
@@ -528,8 +529,7 @@
         { "@language": "ro", "@value": "Potențial de eutrofizare, apă dulce" },
         { "@language": "sk", "@value": "Potenciál eutrofikácie, sladká voda" },
         { "@language": "sl", "@value": "Potencial eutrofikacije, sladka voda" },
-        { "@language": "sv", "@value": "Eutrofieringspotential, sötvatten" },
-        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, fionnuisce" }
+        { "@language": "sv", "@value": "Eutrofieringspotential, sötvatten" }
       ],
       "dppk:unit": "kg P eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -547,6 +547,7 @@
         { "@language": "et", "@value": "Eutrofeerimise potentsiaal, magevesi" },
         { "@language": "fi", "@value": "Eutrofikointipotentiaali, makea vesi" },
         { "@language": "fr", "@value": "Potentiel d'eutrophisation, eau douce" },
+        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, fionnuisce" },
         { "@language": "hr", "@value": "Potencijal eutrofikacije, slatka voda" },
         { "@language": "hu", "@value": "Eutrofizációs potenciál, édesvíz" },
         { "@language": "it", "@value": "Potenziale di eutrofizzazione, acqua dolce" },
@@ -559,8 +560,7 @@
         { "@language": "ro", "@value": "Potențial de eutrofizare, apă dulce" },
         { "@language": "sk", "@value": "Potenciál eutrofikácie, sladká voda" },
         { "@language": "sl", "@value": "Potencial eutrofikacije, sladka voda" },
-        { "@language": "sv", "@value": "Eutrofieringspotential, sötvatten" },
-        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, fionnuisce" }
+        { "@language": "sv", "@value": "Eutrofieringspotential, sötvatten" }
       ]
     },
     {
@@ -577,6 +577,7 @@
         { "@language": "et", "@value": "Eutrofeerimise potentsiaal, merevesi" },
         { "@language": "fi", "@value": "Eutrofikointipotentiaali, merivesi" },
         { "@language": "fr", "@value": "Potentiel d'eutrophisation, eau marine" },
+        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Uisce Muirí" },
         { "@language": "hr", "@value": "Potencijal eutrofikacije, morska voda" },
         { "@language": "hu", "@value": "Eutrofizációs potenciál, tengervíz" },
         { "@language": "it", "@value": "Potenziale di eutrofizzazione, acqua marina" },
@@ -589,8 +590,7 @@
         { "@language": "ro", "@value": "Potențial de eutrofizare, apă marină" },
         { "@language": "sk", "@value": "Potenciál eutrofikácie, morská voda" },
         { "@language": "sl", "@value": "Potencial eutrofikacije, morska voda" },
-        { "@language": "sv", "@value": "Eutrofieringspotential, havsvatten" },
-        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Uisce Muirí" }
+        { "@language": "sv", "@value": "Eutrofieringspotential, havsvatten" }
       ],
       "dppk:unit": "kg N eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -608,6 +608,7 @@
         { "@language": "et", "@value": "Eutrofeerimise potentsiaal, merevesi" },
         { "@language": "fi", "@value": "Eutrofikointipotentiaali, merivesi" },
         { "@language": "fr", "@value": "Potentiel d'eutrophisation, eau marine" },
+        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Uisce Muirí" },
         { "@language": "hr", "@value": "Potencijal eutrofikacije, morska voda" },
         { "@language": "hu", "@value": "Eutrofizációs potenciál, tengervíz" },
         { "@language": "it", "@value": "Potenziale di eutrofizzazione, acqua marina" },
@@ -620,8 +621,7 @@
         { "@language": "ro", "@value": "Potențial de eutrofizare, apă marină" },
         { "@language": "sk", "@value": "Potenciál eutrofikácie, morská voda" },
         { "@language": "sl", "@value": "Potencial eutrofikacije, morska voda" },
-        { "@language": "sv", "@value": "Eutrofieringspotential, havsvatten" },
-        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Uisce Muirí" }
+        { "@language": "sv", "@value": "Eutrofieringspotential, havsvatten" }
       ]
     },
     {
@@ -638,6 +638,7 @@
         { "@language": "et", "@value": "Eutrofeerimise potentsiaal, maismaa" },
         { "@language": "fi", "@value": "Eutrofikointipotentiaali, maaperä" },
         { "@language": "fr", "@value": "Potentiel d'eutrophisation, terrestre" },
+        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Talún" },
         { "@language": "hr", "@value": "Potencijal eutrofikacije, kopneni" },
         { "@language": "hu", "@value": "Eutrofizációs potenciál, szárazföldi" },
         { "@language": "it", "@value": "Potenziale di eutrofizzazione, terrestre" },
@@ -650,8 +651,7 @@
         { "@language": "ro", "@value": "Potențial de eutrofizare, terestru" },
         { "@language": "sk", "@value": "Potenciál eutrofikácie, terestrický" },
         { "@language": "sl", "@value": "Potencial eutrofikacije, kopenski" },
-        { "@language": "sv", "@value": "Eutrofieringspotential, mark" },
-        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Talún" }
+        { "@language": "sv", "@value": "Eutrofieringspotential, mark" }
       ],
       "dppk:unit": "mol N eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -669,6 +669,7 @@
         { "@language": "et", "@value": "Eutrofeerimise potentsiaal, maismaa" },
         { "@language": "fi", "@value": "Eutrofikointipotentiaali, maaperä" },
         { "@language": "fr", "@value": "Potentiel d'eutrophisation, terrestre" },
+        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Talún" },
         { "@language": "hr", "@value": "Potencijal eutrofikacije, kopneni" },
         { "@language": "hu", "@value": "Eutrofizációs potenciál, szárazföldi" },
         { "@language": "it", "@value": "Potenziale di eutrofizzazione, terrestre" },
@@ -681,8 +682,7 @@
         { "@language": "ro", "@value": "Potențial de eutrofizare, terestru" },
         { "@language": "sk", "@value": "Potenciál eutrofikácie, terestrický" },
         { "@language": "sl", "@value": "Potencial eutrofikacije, kopenski" },
-        { "@language": "sv", "@value": "Eutrofieringspotential, mark" },
-        { "@language": "ga", "@value": "Féidearthacht Eutrófachta, Talún" }
+        { "@language": "sv", "@value": "Eutrofieringspotential, mark" }
       ]
     },
     {
@@ -699,6 +699,7 @@
         { "@language": "et", "@value": "Foto-keemilise osooni teke potentsiaal" },
         { "@language": "fi", "@value": "Valokemiallisen otsonin muodostumispotentiaali" },
         { "@language": "fr", "@value": "Potentiel de création d’ozone photochimique" },
+        { "@language": "ga", "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla" },
         { "@language": "hr", "@value": "Potencijal za stvaranje fotokemijskog ozona" },
         { "@language": "hu", "@value": "Fotokémiai ózonképződési potenciál" },
         { "@language": "it", "@value": "Potenziale di formazione di ozono fotochimico" },
@@ -711,8 +712,7 @@
         { "@language": "ro", "@value": "Potențial de creare a ozonului fotochimic" },
         { "@language": "sk", "@value": "Potenciál fotochemickej tvorby ozónu" },
         { "@language": "sl", "@value": "Potencial za nastanek fotokemijskega ozona" },
-        { "@language": "sv", "@value": "Potential för fotokemisk ozonbildning" },
-        { "@language": "ga", "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla" }
+        { "@language": "sv", "@value": "Potential för fotokemisk ozonbildning" }
       ],
       "dppk:unit": "kg NMVOC eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -730,6 +730,7 @@
         { "@language": "et", "@value": "Foto-keemilise osooni teke potentsiaal" },
         { "@language": "fi", "@value": "Valokemiallisen otsonin muodostumispotentiaali" },
         { "@language": "fr", "@value": "Potentiel de création d’ozone photochimique" },
+        { "@language": "ga", "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla" },
         { "@language": "hr", "@value": "Potencijal za stvaranje fotokemijskog ozona" },
         { "@language": "hu", "@value": "Fotokémiai ózonképződési potenciál" },
         { "@language": "it", "@value": "Potenziale di formazione di ozono fotochimico" },
@@ -742,8 +743,7 @@
         { "@language": "ro", "@value": "Potențial de creare a ozonului fotochimic" },
         { "@language": "sk", "@value": "Potenciál fotochemickej tvorby ozónu" },
         { "@language": "sl", "@value": "Potencial za nastanek fotokemijskega ozona" },
-        { "@language": "sv", "@value": "Potential för fotokemisk ozonbildning" },
-        { "@language": "ga", "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla" }
+        { "@language": "sv", "@value": "Potential för fotokemisk ozonbildning" }
       ]
     },
     {
@@ -760,6 +760,7 @@
         { "@language": "et", "@value": "Abiootiliste elementide ammendumispotentsiaal" },
         { "@language": "fi", "@value": "Abioottisten alkuaineiden ehtymispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'épuisement abiotiques (éléments)" },
+        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)" },
         { "@language": "hr", "@value": "Potencijal iscrpljivanja abiotičkih elemenata" },
         { "@language": "hu", "@value": "Abiotikus kimerülési potenciál (elemek)" },
         { "@language": "it", "@value": "Potenziale di esaurimento abiotico (elementi)" },
@@ -772,8 +773,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare abiotică (elemente)" },
         { "@language": "sk", "@value": "Potenciál vyčerpania abiotických prvkov" },
         { "@language": "sl", "@value": "Potencial izčrpanja abiotičnih elementov" },
-        { "@language": "sv", "@value": "Abiotisk uttömningspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)" }
+        { "@language": "sv", "@value": "Abiotisk uttömningspotential" }
       ],
       "dppk:unit": "kg Sb eq",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -791,6 +791,7 @@
         { "@language": "et", "@value": "Abiootiliste elementide ammendumispotentsiaal" },
         { "@language": "fi", "@value": "Abioottisten alkuaineiden ehtymispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'épuisement abiotiques (éléments)" },
+        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)" },
         { "@language": "hr", "@value": "Potencijal iscrpljivanja abiotičkih elemenata" },
         { "@language": "hu", "@value": "Abiotikus kimerülési potenciál (elemek)" },
         { "@language": "it", "@value": "Potenziale di esaurimento abiotico (elementi)" },
@@ -803,8 +804,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare abiotică (elemente)" },
         { "@language": "sk", "@value": "Potenciál vyčerpania abiotických prvkov" },
         { "@language": "sl", "@value": "Potencial izčrpanja abiotičnih elementov" },
-        { "@language": "sv", "@value": "Abiotisk uttömningspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)" }
+        { "@language": "sv", "@value": "Abiotisk uttömningspotential" }
       ]
     },
     {
@@ -821,6 +821,7 @@
         { "@language": "et", "@value": "Abiootiliste fossiilkütuste ammendumispotentsiaal" },
         { "@language": "fi", "@value": "Abioottisten fossiilisten polttoaineiden ehtymispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'épuisement abiotiques (combustibles fossiles)" },
+        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)" },
         { "@language": "hr", "@value": "Potencijal iscrpljivanja abiotičkih goriva" },
         { "@language": "hu", "@value": "Abiotikus kimerülési potenciál (fosszilis tüzelőanyagok)" },
         { "@language": "it", "@value": "Potenziale di esaurimento abiotico (combustibili fossili)" },
@@ -833,8 +834,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare abiotică (combustibili fosili)" },
         { "@language": "sk", "@value": "Potenciál vyčerpania abiotických palív" },
         { "@language": "sl", "@value": "Potencial izčrpanja abiotičnih goriv" },
-        { "@language": "sv", "@value": "Abiotisk uttömningspotential (fossila bränslen)" },
-        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)" }
+        { "@language": "sv", "@value": "Abiotisk uttömningspotential (fossila bränslen)" }
       ],
       "dppk:unit": "MJ",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -852,6 +852,7 @@
         { "@language": "et", "@value": "Abiootiliste fossiilkütuste ammendumispotentsiaal" },
         { "@language": "fi", "@value": "Abioottisten fossiilisten polttoaineiden ehtymispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'épuisement abiotiques (combustibles fossiles)" },
+        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)" },
         { "@language": "hr", "@value": "Potencijal iscrpljivanja abiotičkih goriva" },
         { "@language": "hu", "@value": "Abiotikus kimerülési potenciál (fosszilis tüzelőanyagok)" },
         { "@language": "it", "@value": "Potenziale di esaurimento abiotico (combustibili fossili)" },
@@ -864,8 +865,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare abiotică (combustibili fosili)" },
         { "@language": "sk", "@value": "Potenciál vyčerpania abiotických palív" },
         { "@language": "sl", "@value": "Potencial izčrpanja abiotičnih goriv" },
-        { "@language": "sv", "@value": "Abiotisk uttömningspotential (fossila bränslen)" },
-        { "@language": "ga", "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)" }
+        { "@language": "sv", "@value": "Abiotisk uttömningspotential (fossila bränslen)" }
       ]
     },
     {
@@ -882,6 +882,7 @@
         { "@language": "et", "@value": "Vee ammendumispotentsiaal" },
         { "@language": "fi", "@value": "Veden ehtymispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'épuisement de l'eau" },
+        { "@language": "ga", "@value": "Féidearthacht Díothaithe Uisce" },
         { "@language": "hr", "@value": "Potencijal iscrpljivanja vode" },
         { "@language": "hu", "@value": "Vízfelhasználási potenciál" },
         { "@language": "it", "@value": "Potenziale di esaurimento dell'acqua" },
@@ -894,8 +895,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare a apei" },
         { "@language": "sk", "@value": "Potenciál vyčerpania vody" },
         { "@language": "sl", "@value": "Potencial izčrpanja vode" },
-        { "@language": "sv", "@value": "Vattenuttagspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Díothaithe Uisce" }
+        { "@language": "sv", "@value": "Vattenuttagspotential" }
       ],
       "dppk:unit": "m³",
       "dppk:governedBy": "EN 15804:2012+A2:2019",
@@ -913,6 +913,7 @@
         { "@language": "et", "@value": "Vee ammendumispotentsiaal" },
         { "@language": "fi", "@value": "Veden ehtymispotentiaali" },
         { "@language": "fr", "@value": "Potentiel d'épuisement de l'eau" },
+        { "@language": "ga", "@value": "Féidearthacht Díothaithe Uisce" },
         { "@language": "hr", "@value": "Potencijal iscrpljivanja vode" },
         { "@language": "hu", "@value": "Vízfelhasználási potenciál" },
         { "@language": "it", "@value": "Potenziale di esaurimento dell'acqua" },
@@ -925,8 +926,7 @@
         { "@language": "ro", "@value": "Potențial de epuizare a apei" },
         { "@language": "sk", "@value": "Potenciál vyčerpania vody" },
         { "@language": "sl", "@value": "Potencial izčrpanja vode" },
-        { "@language": "sv", "@value": "Vattenuttagspotential" },
-        { "@language": "ga", "@value": "Féidearthacht Díothaithe Uisce" }
+        { "@language": "sv", "@value": "Vattenuttagspotential" }
       ]
     }
   ]
