@@ -1,0 +1,1212 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "@base": "https://dpp-keystone.org/spec/v2/terms"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/Textile",
+  "@type": "owl:Ontology",
+  "dcterms:title": {
+    "@language": "en",
+    "@value": "DPP Sector Ontology - Textile ESPR Compliant"
+  },
+  "dcterms:description": {
+    "@language": "en",
+    "@value": "Defines sector-specific concepts compliant with the upcoming ESPR Delegated Act for Textiles."
+  },
+  "owl:versionInfo": "Draft",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Compliance.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/EUApparelSizeSystem.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:TextileProduct",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Textile Product",
+      "rdfs:comment": "Any raw, semi-worked, or worked product which is exclusively composed of textile fibres, regardless of the mixing or assembly process employed.",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
+        "rdfs:label": "Regulation (EU) No 1007/2011 (Textile Fibre Names)"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "dppk:Product"
+        },
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Clothing"
+        }
+      ],
+      "rdfs:seeAlso": {
+        "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles"
+      }
+    },
+    {
+      "@id": "dppk:pefcrCategory",
+      "@type": "owl:ObjectProperty",
+      "dppk:governedBy": "Apparel and Footwear PEFCR v3.1",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Scope of the DA"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "PEFCR Category"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The Product Environmental Footprint Category Rules (PEFCR) category to which the product belongs."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:PefcrCategoryValue"
+      }
+    },
+    {
+      "@id": "dppk:PefcrCategoryValue",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "PEFCR Category Value"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An enumeration of the allowed PEFCR categories for apparel and footwear."
+      },
+      "rdfs:subClassOf": {
+        "@id": "rdfs:Resource"
+      },
+      "owl:oneOf": [
+        {
+          "@id": "dppk:PefcrTShirts"
+        },
+        {
+          "@id": "dppk:PefcrShirtsAndBlouses"
+        },
+        {
+          "@id": "dppk:PefcrSweatersAndMidlayers"
+        },
+        {
+          "@id": "dppk:PefcrJacketsAndCoats"
+        },
+        {
+          "@id": "dppk:PefcrPantsAndShorts"
+        },
+        {
+          "@id": "dppk:PefcrDressesSkirtsAndJumpsuits"
+        },
+        {
+          "@id": "dppk:PefcrLeggingsStockingsTightsAndSocks"
+        },
+        {
+          "@id": "dppk:PefcrUnderwear"
+        },
+        {
+          "@id": "dppk:PefcrSwimwear"
+        },
+        {
+          "@id": "dppk:PefcrApparelAccessories"
+        },
+        {
+          "@id": "dppk:PefcrOpenToedShoes"
+        },
+        {
+          "@id": "dppk:PefcrClosedToedShoes"
+        },
+        {
+          "@id": "dppk:PefcrBoots"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:PefcrTShirts",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "T-shirts"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garment to cover the upper body to the elbow. Typical products included: Singlets, t-shirts, polo shirts, other short-sleeved shirts."
+      }
+    },
+    {
+      "@id": "dppk:PefcrShirtsAndBlouses",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Shirts and blouses"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garment to cover the upper body including the entire arm. Typical products included: Long-sleeved shirts, blouses, tunics, base layers."
+      }
+    },
+    {
+      "@id": "dppk:PefcrSweatersAndMidlayers",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Sweaters and midlayers"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garment to keep the upper body warm and covered. Typical products included: Pullovers, cardigans, hoodies, jerseys, sweatshirts, knitted and wool sweaters, vests."
+      }
+    },
+    {
+      "@id": "dppk:PefcrJacketsAndCoats",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Jackets and coats"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garment to put on top of a shirt or sweater or to protect from the elements. Typical products included: Blazers, suit jackets, overcoats, other light jackets, rain jackets, outdoor winter jackets, parkas, down jackets, fur jackets, outdoor vests, leather jackets."
+      }
+    },
+    {
+      "@id": "dppk:PefcrPantsAndShorts",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Pants and shorts"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garment to cover the lower body, may protect from the elements. Typical products included: Casual pants, outdoor pants, dress pants, jeans, sports pants, capri pants, shorts."
+      }
+    },
+    {
+      "@id": "dppk:PefcrDressesSkirtsAndJumpsuits",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Dresses, skirts and jumpsuits"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "One-piece garment that covers both the upper and lower body, or the lower body only, other than pants and shorts. Typical products included: Short- and long-sleeved, strapless, wrap, long and short, one-piece suits."
+      }
+    },
+    {
+      "@id": "dppk:PefcrLeggingsStockingsTightsAndSocks",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Leggings, stockings, tights and socks"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Tight garment to cover the legs and/or feet. Typical products included: Opaque and sheer tights, pantyhose, fishnets, ankle socks, knee socks, low-cut socks."
+      }
+    },
+    {
+      "@id": "dppk:PefcrUnderwear",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Underwear"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garment worn under clothes, often next to the skin of the upper or lower body. Typical products included: Boxers, briefs, panties, bras, body-shaping suits."
+      }
+    },
+    {
+      "@id": "dppk:PefcrSwimwear",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Swimwear"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garment worn for water-based or sunbased activities. Typical products included: Bikinis, bathing suits, racing-style swimwear, board shorts."
+      }
+    },
+    {
+      "@id": "dppk:PefcrApparelAccessories",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Apparel Accessories"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Garments for the head, neck, waist, or hands to protect from elements or secure clothing. Typical products included: Hats (Caps, flat caps, woollen hats/beanies, fedoras, panamas, bowlers, newsboys, berets), Scarves and ties (Warm and light scarves, buffs, neckerchiefs, headscarves, shawls, bowties), Belts (Dress belts, casual belts, buckle belts, tie-up belts, suspenders), Gloves and mittens (fingerless gloves, fashion gloves, outdoor sports gloves, mittens)."
+      }
+    },
+    {
+      "@id": "dppk:PefcrOpenToedShoes",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Open-toed shoes"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Open-toed shoes, providing protection from the ground. Used in pairs. Typical products included: Flip-flops, casual /fashion sandals, sports sandals, slippers."
+      }
+    },
+    {
+      "@id": "dppk:PefcrClosedToedShoes",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Closed-toed shoes"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Closed-toed shoes, providing protection from the ground. They may protect against water, the elements and/or heavy objects. Used in pairs. Typical products included: Slippers, tennis shoes, moccasins, espadrilles, sneakers, cleats, athletic shoes, dress shoes, protective toecap – toed shoes."
+      }
+    },
+    {
+      "@id": "dppk:PefcrBoots",
+      "@type": "dppk:PefcrCategoryValue",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Boots"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Boots that cover the ankle, providing protection from the ground. They may protect against water, the elements, heavy objects and/or ankle injuries. Used in pairs. Typical products included: Polymer boots, winter boots, hiking boots, dress boots, protective toecap - toed boots."
+      }
+    },
+    {
+      "@id": "dppk:textileCertifications",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Textile ESPR Conformity Certifications"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Certifications specifically verifying ESPR textile claims (e.g. recycled content, recyclability, mechanical properties)."
+      },
+      "dppk:governedBy": "ESPR DA of textiles",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "schema:hasCertification"
+      }
+    },
+    {
+      "@id": "dppk:euDeclarationOfConformity",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EU Declaration of Conformity"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A reference to the EU Declaration of Conformity for the product."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:AuthorityOnly"
+      },
+      "dppk:governedBy": "ESPR DA of textiles",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      }
+    },
+    {
+      "@id": "dppk:carbonFootprint",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Carbon Footprint"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The carbon footprint of the product."
+      },
+      "dppk:unit": "kg CO₂ eq/kg",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "PEFCR climate change category",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(n), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:carbonFootprintBenchmarkPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Carbon Footprint Benchmark Percentage"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The product's carbon footprint performance compared to the established benchmark, expressed as a percentage."
+      },
+      "dppk:unit": "%",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "PEFCR benchmark",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(n), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:carbonFootprintClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Carbon Footprint Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The performance class of the product's carbon footprint."
+      },
+      "dppk:unit": "unitless",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "PEFCR climate change impact category",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(n)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      }
+    },
+    {
+      "@id": "dppk:environmentalFootprint",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Environmental Footprint"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The absolute value of the product's environmental footprint."
+      },
+      "dppk:unit": "Pt / kg",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "PEFCR single score",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(n), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:environmentalFootprintBenchmarkPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Environmental Footprint Benchmark Percentage"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The product's environmental footprint performance compared to the established benchmark, expressed as a percentage."
+      },
+      "dppk:unit": "%",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "PEFCR benchmark (single score)",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(n), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:environmentalFootprintClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Environmental Footprint Class"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The performance class of the product's environmental footprint."
+      },
+      "dppk:unit": "unitless",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "PEFCR single score",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(n)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      }
+    },
+    {
+      "@id": "dppk:textileWeight",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Textile Weight"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The average final product weight including trims, in kilograms."
+      },
+      "dppk:unit": "kg",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "EN ISO 80000-1 / PEFCR",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:carbonFootprintCalculationParameters",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Carbon Footprint Calculation Parameters"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A reference to the document or resource describing the parameters used for the carbon footprint calculation."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "PEFCR",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(n)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      }
+    },
+    {
+      "@id": "dppk:robustnessScore",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Robustness Score"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A numeric score representing the product's robustness (typically 0-10 scale)."
+      },
+      "dppk:unit": "unitless",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ESPR DA of textiles",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(a)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:recyclabilityScore",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Recyclability Score"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A numeric score representing the product's recyclability (typically 0-10 scale)."
+      },
+      "dppk:unit": "unitless",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ESPR DA of textiles",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(d), III(a)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:spirality",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Spirality"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measured spirality of the textile product."
+      },
+      "dppk:unit": "%",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ISO 16322-3",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(a), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:dimensionalChange",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Dimensional Change"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The dimensional change (shrinkage or expansion) after testing."
+      },
+      "dppk:unit": "%",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ISO 3759",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(a), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:visualInspection",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Visual Inspection Result"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The result of the visual inspection (e.g. Pass/Fail or notes)."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ISO 15487",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(a), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:animalOriginNonTextile",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Contains Non-Textile Parts of Animal Origin"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Indicates whether the product contains non-textile parts of animal origin, as required by the EU Textile Labelling Regulation."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "Textiles Labelling Regulation (EU) No 1007/2011",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
+        "rdfs:label": "Source: ESPR - Annex III (a)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "dppk:euEcolabel",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EU Ecolabel"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Indicates whether the product has been awarded the EU Ecolabel. The label should be found in the certifications array as well, if present."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "EU Ecolabel Certification",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex III (a)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "dppk:weightExcludingTrims",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Weight Excluding Trims"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The weight of the product excluding non-textile trims (e.g. buttons, zippers), used as a base for calculations."
+      },
+      "dppk:unit": "kg",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "EN ISO 80000-1",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R1007",
+        "rdfs:label": "Source: ESPR - Annex III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:organicContentPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Organic Content Percentage"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The percentage of organic material in the product."
+      },
+      "dppk:unit": "%",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "Organic Regulation (EU) 2018/848",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex III (a)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:organicContentMass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Organic Content Mass"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The absolute mass of organic material in the product."
+      },
+      "dppk:unit": "kg",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "Organic Regulation (EU) 2018/848",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex III (e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:preConsumerRecycledContentPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Pre-consumer Recycled Content"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The percentage of pre-consumer recycled material in the product."
+      },
+      "dppk:unit": "%",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ISO 14021:2016",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(h)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:preConsumerRecycledContentMass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Pre-consumer Recycled Content Mass"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The absolute mass of pre-consumer recycled material in the product."
+      },
+      "dppk:unit": "kg",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "ISO 14021:2016",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(h), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:preConsumerTypeOfWaste",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Pre-consumer Type of Waste"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The classification or source of the pre-consumer waste used for recycled content."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ISO 14021:2016",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(h)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:postConsumerRecycledContentPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Post-consumer Recycled Content"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The percentage of post-consumer recycled material in the product."
+      },
+      "dppk:unit": "%",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ISO 14021:2016",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(h)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:postConsumerRecycledContentMass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Post-consumer Recycled Content Mass"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The absolute mass of post-consumer recycled material in the product."
+      },
+      "dppk:unit": "kg",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterestOrAuthority"
+      },
+      "dppk:governedBy": "ISO 14021:2016",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(h), III(e)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      }
+    },
+    {
+      "@id": "dppk:postConsumerTypeOfWaste",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Post-consumer Type of Waste"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The classification or source of the post-consumer waste used for recycled content."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "ISO 14021:2016",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(h)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:ProductionStep",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Production Step"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific step in the manufacturing process of the product."
+      }
+    },
+    {
+      "@id": "dppk:productionSteps",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Production Steps"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The sequence of major production steps that occurred for this product."
+      },
+      "dppk:visibility": {
+        "@id": "dppk:AuthorityOnly"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ProductionStep"
+      }
+    },
+    {
+      "@id": "dppk:productionStepType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Production Step Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The type of activity performed (e.g., Spinning, Weaving, Dyeing)."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:ProductionStep"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:productionLocationCountry",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Production Location Country"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The country code (ISO 3166-1 alpha-3) where the production step took place."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:ProductionStep"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:textileCareInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Textile Care Instructions"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Instructions and manuals for the care, washing, and maintenance of the textile product."
+      },
+      "dppk:governedBy": "Textiles Labelling Regulation (ISO 21600:2019)",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex III(a)(f)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:careInstructions"
+      }
+    },
+    {
+      "@id": "dppk:textileSafeUseInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Textile Safe Use Instructions"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Instructions and guidelines for the safe use and maintenance of the textile product."
+      },
+      "dppk:governedBy": "Best Practice",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art 7(5), Annex I(f)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:safeUseInstructions"
+      }
+    },
+    {
+      "@id": "dppk:textileEndOfLifeInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Textile End of Life Instructions"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Instructions for the proper disassembly, recycling, or disposal of the textile product at the end of its life."
+      },
+      "dppk:governedBy": "Best Practice",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art 7(5), Annex I(f)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:endOfLifeInstructions"
+      }
+    },
+    {
+      "@id": "dppk:textileRepairInstructions",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Textile Repair Instructions"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Instructions on how to repair or replace components of the textile product."
+      },
+      "dppk:governedBy": "Best Practice",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(b)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:repairInstructions"
+      }
+    },
+    {
+      "@id": "dppk:fibreComposition",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fibre Composition"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Relates the textile product to its constituent fibres and their proportions."
+      },
+      "dppk:governedBy": "Textiles Labelling Regulation (EU) No 1007/2011",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex I(d), Annex III(a)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      }
+    },
+    {
+      "@id": "dppk:textileSubstancesOfConcern",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Textile Substances of Concern"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Substances of concern present in the textile product."
+      },
+      "dppk:governedBy": "REACH / ESPR",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art 7(5), Annex I(f)"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:substancesOfConcern"
+      }
+    }
+  ]
+}
