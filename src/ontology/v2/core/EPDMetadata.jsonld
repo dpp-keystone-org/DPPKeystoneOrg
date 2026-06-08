@@ -30,6 +30,7 @@
         { "@language": "et", "@value": "Keskkonnadeklaratsioon" },
         { "@language": "fi", "@value": "Ympäristöseloste" },
         { "@language": "fr", "@value": "Déclaration Environnementale de Produit" },
+        { "@language": "ga", "@value": "Dearbhú Táirge Comhshaoil" },
         { "@language": "hr", "@value": "Izjava o ekološkim svojstvima proizvoda" },
         { "@language": "hu", "@value": "Környezetvédelmi terméknyilatkozat" },
         { "@language": "it", "@value": "Dichiarazione Ambientale di Prodotto" },
@@ -42,8 +43,7 @@
         { "@language": "ro", "@value": "Declarația de mediu a produsului" },
         { "@language": "sk", "@value": "Environmentálne vyhlásenie o produkte" },
         { "@language": "sl", "@value": "Okoljska deklaracija proizvoda" },
-        { "@language": "sv", "@value": "Miljövarudeklaration" },
-        { "@language": "ga", "@value": "Dearbhú Táirge Comhshaoil" }
+        { "@language": "sv", "@value": "Miljövarudeklaration" }
       ],
       "rdfs:comment": [
         { "@language": "en", "@value": "A class to hold all environmental impact categories in a compact dictionary format." },
@@ -56,6 +56,7 @@
         { "@language": "et", "@value": "Klass, mis sisaldab kõiki keskkonnamõju kategooriaid kompaktses sõnastiku vormingus." },
         { "@language": "fi", "@value": "Luokka, joka sisältää kaikki ympäristövaikutusluokat tiiviissä sanakirjamuodossa." },
         { "@language": "fr", "@value": "Une classe pour contenir toutes les catégories d'impact environnemental dans un format de dictionnaire compact." },
+        { "@language": "ga", "@value": "Aicme chun gach catagóir tionchair comhshaoil a choinneáil i bhformáid dhlúth foclóra." },
         { "@language": "hr", "@value": "Klasa koja sadrži sve kategorije utjecaja na okoliš u kompaktnom rječničkom formatu." },
         { "@language": "hu", "@value": "Egy osztály, amely az összes környezeti hatáskategóriát kompakt szótár formátumban tartalmazza." },
         { "@language": "it", "@value": "Una classe per contenere tutte le categorie di impatto ambientale in un formato dizionario compatto." },
@@ -68,8 +69,7 @@
         { "@language": "ro", "@value": "O clasă care conține toate categoriile de impact asupra mediului într-un format de dicționar compact." },
         { "@language": "sk", "@value": "Trieda na uchovávanie všetkých kategórií vplyvu na životné prostredie v kompaktnom slovníkovom formáte." },
         { "@language": "sl", "@value": "Razred, ki vsebuje vse kategorije vplivov na okolje v kompaktnem slovarskem formatu." },
-        { "@language": "sv", "@value": "En klass för att hålla alla miljöpåverkanskategorier i ett kompakt ordboksformat." },
-        { "@language": "ga", "@value": "Aicme chun gach catagóir tionchair comhshaoil a choinneáil i bhformáid dhlúth foclóra." }
+        { "@language": "sv", "@value": "En klass för att hålla alla miljöpåverkanskategorier i ett kompakt ordboksformat." }
       ],
       "owl:equivalentClass": { "@id": "schema:Certification" }
     },
@@ -87,6 +87,7 @@
         { "@language": "et", "@value": "Mõju väärtused" },
         { "@language": "fi", "@value": "Vaikutusarvot" },
         { "@language": "fr", "@value": "Valeurs d'impact" },
+        { "@language": "ga", "@value": "Luachanna Tionchair" },
         { "@language": "hr", "@value": "Vrijednosti utjecaja" },
         { "@language": "hu", "@value": "Hatásértékek" },
         { "@language": "it", "@value": "Valori di impatto" },
@@ -99,8 +100,7 @@
         { "@language": "ro", "@value": "Valori de impact" },
         { "@language": "sk", "@value": "Hodnoty vplyvu" },
         { "@language": "sl", "@value": "Vrednosti vpliva" },
-        { "@language": "sv", "@value": "Påverkansvärden" },
-        { "@language": "ga", "@value": "Luachanna Tionchair" }
+        { "@language": "sv", "@value": "Påverkansvärden" }
       ],
       "rdfs:comment": [
         { "@language": "en", "@value": "A class to hold the values for a single environmental impact indicator across different life cycle stages." },
@@ -113,6 +113,7 @@
         { "@language": "et", "@value": "Klass, mis sisaldab ühe keskkonnamõju indikaatori väärtusi erinevates olelusringi etappides." },
         { "@language": "fi", "@value": "Luokka, joka sisältää yhden ympäristövaikutusindikaattorin arvot elinkaaren eri vaiheissa." },
         { "@language": "fr", "@value": "Une classe pour contenir les valeurs d'un seul indicateur d'impact environnemental à travers différentes étapes du cycle de vie." },
+        { "@language": "ga", "@value": "Aicme chun na luachanna a choinneáil do tháscaire tionchair comhshaoil amháin thar chéimeanna éagsúla den saolré." },
         { "@language": "hr", "@value": "Klasa koja sadrži vrijednosti za jedan pokazatelj utjecaja na okoliš kroz različite faze životnog ciklusa." },
         { "@language": "hu", "@value": "Egy osztály, amely egyetlen környezeti hatásmutató értékeit tartalmazza a különböző életciklus-szakaszokban." },
         { "@language": "it", "@value": "Una classe per contenere i valori per un singolo indicatore di impatto ambientale attraverso diverse fasi del ciclo di vita." },
@@ -125,8 +126,7 @@
         { "@language": "ro", "@value": "O clasă care conține valorile pentru un singur indicator de impact asupra mediului în diferite etape ale ciclului de viață." },
         { "@language": "sk", "@value": "Trieda na uchovávanie hodnôt pre jeden ukazovateľ vplyvu na životné prostredie v rôznych fázach životného cyklu." },
         { "@language": "sl", "@value": "Razred, ki vsebuje vrednosti za en kazalnik vpliva na okolje v različnih fazah življenjskega cikla." },
-        { "@language": "sv", "@value": "En klass för att hålla värdena för en enda miljöpåverkansindikator över olika livscykelstadier." },
-        { "@language": "ga", "@value": "Aicme chun na luachanna a choinneáil do tháscaire tionchair comhshaoil amháin thar chéimeanna éagsúla den saolré." }
+        { "@language": "sv", "@value": "En klass för att hålla värdena för en enda miljöpåverkansindikator över olika livscykelstadier." }
       ]
     },
     {
@@ -143,6 +143,7 @@
         { "@language": "et", "@value": "Keskkonnadeklaratsioon" },
         { "@language": "fi", "@value": "Ympäristöseloste" },
         { "@language": "fr", "@value": "Déclaration Environnementale de Produit" },
+        { "@language": "ga", "@value": "Dearbhú Táirge Comhshaoil" },
         { "@language": "hr", "@value": "Izjava o ekološkim svojstvima proizvoda" },
         { "@language": "hu", "@value": "Környezetvédelmi terméknyilatkozat" },
         { "@language": "it", "@value": "Dichiarazione Ambientale di Prodotto" },
@@ -155,8 +156,7 @@
         { "@language": "ro", "@value": "Declarația de mediu a produsului" },
         { "@language": "sk", "@value": "Environmentálne vyhlásenie o produkte" },
         { "@language": "sl", "@value": "Okoljska deklaracija proizvoda" },
-        { "@language": "sv", "@value": "Miljövarudeklaration" },
-        { "@language": "ga", "@value": "Dearbhú Táirge Comhshaoil" }
+        { "@language": "sv", "@value": "Miljövarudeklaration" }
       ],
       "rdfs:comment": [
         { "@language": "en", "@value": "A dictionary of environmental impact indicators and their values across different life cycle stages." },
@@ -169,6 +169,7 @@
         { "@language": "et", "@value": "Keskkonnamõju indikaatorite ja nende väärtuste sõnastik erinevates olelusringi etappides." },
         { "@language": "fi", "@value": "Sanakirja ympäristövaikutusindikaattoreista ja niiden arvoista elinkaaren eri vaiheissa." },
         { "@language": "fr", "@value": "Un dictionnaire d'indicateurs d'impact environnemental et de leurs valeurs à travers différentes étapes du cycle de vie." },
+        { "@language": "ga", "@value": "Foclóir de tháscairí tionchair comhshaoil agus a luachanna thar chéimeanna éagsúla den saolré." },
         { "@language": "hr", "@value": "Rječnik pokazatelja utjecaja na okoliš i njihovih vrijednosti kroz različite faze životnog ciklusa." },
         { "@language": "hu", "@value": "Környezeti hatásmutatók és értékeik szótára a különböző életciklus-szakaszokban." },
         { "@language": "it", "@value": "Un dizionario di indicatori di impatto ambientale e i loro valori attraverso diverse fasi del ciclo di vita." },
@@ -181,8 +182,7 @@
         { "@language": "ro", "@value": "Un dicționar de indicatori de impact asupra mediului și valorile lor în diferite etape ale ciclului de viață." },
         { "@language": "sk", "@value": "Slovník ukazovateľov vplyvu na životné prostredie a ich hodnôt v rôznych fázach životného cyklu." },
         { "@language": "sl", "@value": "Slovar kazalnikov vpliva na okolje in njihovih vrednosti v različnih fazah življenjskega cikla." },
-        { "@language": "sv", "@value": "En ordbok över miljöpåverkansindikatorer och deras värden över olika livscykelstadier." },
-        { "@language": "ga", "@value": "Foclóir de tháscairí tionchair comhshaoil agus a luachanna thar chéimeanna éagsúla den saolré." }
+        { "@language": "sv", "@value": "En ordbok över miljöpåverkansindikatorer och deras värden över olika livscykelstadier." }
       ],
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:domain": { "@id": "dppk:Product" },

@@ -23,6 +23,7 @@
     { "@language": "et", "@value": "DPP patareide sektori ontoloogia" },
     { "@language": "fi", "@value": "DPP-akkualan ontologia" },
     { "@language": "fr", "@value": "Ontologie du secteur des batteries DPP" },
+    { "@language": "ga", "@value": "Teangeolaíocht Earnáil na gCeallraí DPP" },
     { "@language": "hr", "@value": "Ontologija sektora baterija DPP-a" },
     { "@language": "hu", "@value": "DPP akkumulátor ágazati ontológia" },
     { "@language": "it", "@value": "Ontologia del settore delle batterie DPP" },
@@ -35,8 +36,7 @@
     { "@language": "ro", "@value": "Ontologia sectorului de baterii DPP" },
     { "@language": "sk", "@value": "Ontológia odvetvia batérií DPP" },
     { "@language": "sl", "@value": "Ontologija sektorja baterij DPP" },
-    { "@language": "sv", "@value": "DPP-batterisektorns ontologi" },
-    { "@language": "ga", "@value": "Teangeolaíocht Earnáil na gCeallraí DPP" }
+    { "@language": "sv", "@value": "DPP-batterisektorns ontologi" }
   ],
   "rdfs:comment": [
     { "@language": "en", "@value": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information." },
@@ -49,6 +49,7 @@
     { "@language": "et", "@value": "Määratleb ELi akupassi spetsiifilise andmemudeli, sealhulgas akuspetsiifilised omadused, materjalid ja regulatiivse teabe." },
     { "@language": "fi", "@value": "Määrittelee EU:n akupassin erityisen tietomallin, mukaan lukien akkukohtaiset ominaisuudet, materiaalit ja sääntelytiedot." },
     { "@language": "fr", "@value": "Définit le modèle de données spécifique pour le passeport européen des batteries, y compris les propriétés, les matériaux et les informations réglementaires spécifiques aux batteries." },
+    { "@language": "ga", "@value": "Sainmhíníonn sé an tsamhail sonraí shonrach do Phas Ceallraí an AE, lena n-áirítear airíonna, ábhair agus faisnéis rialála a bhaineann go sonrach le ceallraí." },
     { "@language": "hr", "@value": "Definira specifični podatkovni model za putovnicu za baterije EU-a, uključujući svojstva, materijale i regulatorne informacije specifične za baterije." },
     { "@language": "hu", "@value": "Meghatározza az uniós akkumulátor-útlevél egyedi adatmodelljét, beleértve az akkumulátor-specifikus tulajdonságokat, anyagokat és szabályozási információkat." },
     { "@language": "it", "@value": "Definisce il modello di dati specifico per il passaporto delle batterie dell'UE, comprese le proprietà, i materiali e le informazioni normative specifiche delle batterie." },
@@ -61,8 +62,7 @@
     { "@language": "ro", "@value": "Definește modelul de date specific pentru pașaportul european pentru baterii, inclusiv proprietățile, materialele și informațiile de reglementare specifice bateriilor." },
     { "@language": "sk", "@value": "Definuje špecifický dátový model pre pas batérie EÚ vrátane vlastností, materiálov a regulačných informácií špecifických pre batérie." },
     { "@language": "sl", "@value": "Določa posebni podatkovni model za potni list EU za baterije, vključno z lastnostmi, materiali in regulativnimi informacijami, specifičnimi za baterije." },
-    { "@language": "sv", "@value": "Definierar den specifika datamodellen för EU:s batteripass, inklusive batterispecifika egenskaper, material och lagstadgad information." },
-    { "@language": "ga", "@value": "Sainmhíníonn sé an tsamhail sonraí shonrach do Phas Ceallraí an AE, lena n-áirítear airíonna, ábhair agus faisnéis rialála a bhaineann go sonrach le ceallraí." }
+    { "@language": "sv", "@value": "Definierar den specifika datamodellen för EU:s batteripass, inklusive batterispecifika egenskaper, material och lagstadgad information." }
   ],
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
@@ -87,6 +87,7 @@
         { "@language": "et", "@value": "Akutoode" },
         { "@language": "fi", "@value": "Akkutuote" },
         { "@language": "fr", "@value": "Produit de batterie" },
+        { "@language": "ga", "@value": "Táirge Ceallraí" },
         { "@language": "hr", "@value": "Baterijski proizvod" },
         { "@language": "hu", "@value": "Akkumulátor termék" },
         { "@language": "it", "@value": "Prodotto a batteria" },
@@ -99,8 +100,7 @@
         { "@language": "ro", "@value": "Produs de baterie" },
         { "@language": "sk", "@value": "Batériový produkt" },
         { "@language": "sl", "@value": "Baterijski izdelek" },
-        { "@language": "sv", "@value": "Batteriprodukt" },
-        { "@language": "ga", "@value": "Táirge Ceallraí" }
+        { "@language": "sv", "@value": "Batteriprodukt" }
       ],
       "rdfs:comment": [
         { "@language": "en", "@value": "Data model for the Battery Passport according to EU Battery Regulation." },
@@ -113,6 +113,7 @@
         { "@language": "et", "@value": "Akupassi andmemudel vastavalt ELi akumäärustikule." },
         { "@language": "fi", "@value": "Akkupassin tietomalli EU:n akkuasetuksen mukaisesti." },
         { "@language": "fr", "@value": "Modèle de données pour le passeport des batteries conformément au règlement de l'UE sur les batteries." },
+        { "@language": "ga", "@value": "Mionsamhail sonraí don Phas Ceallraí de réir Rialachán an AE maidir le Ceallraí." },
         { "@language": "hr", "@value": "Podatkovni model za putovnicu za baterije u skladu s Uredbom EU-a o baterijama." },
         { "@language": "hu", "@value": "Az akkumulátor-útlevél adatmodellje az EU akkumulátor-rendelete szerint." },
         { "@language": "it", "@value": "Modello di dati per il passaporto delle batterie secondo il regolamento UE sulle batterie." },
@@ -125,8 +126,7 @@
         { "@language": "ro", "@value": "Model de date pentru pașaportul pentru baterii în conformitate cu Regulamentul UE privind bateriile." },
         { "@language": "sk", "@value": "Dátový model pre pas batérie podľa nariadenia EÚ o batériách." },
         { "@language": "sl", "@value": "Podatkovni model za potni list za baterije v skladu z uredbo EU o baterijah." },
-        { "@language": "sv", "@value": "Datamodell för batteripasset enligt EU:s batteriförordning." },
-        { "@language": "ga", "@value": "Mionsamhail sonraí don Phas Ceallraí de réir Rialachán an AE maidir le Ceallraí." }
+        { "@language": "sv", "@value": "Datamodell för batteripasset enligt EU:s batteriförordning." }
       ]
     },
     

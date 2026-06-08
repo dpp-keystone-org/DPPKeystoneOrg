@@ -36,6 +36,26 @@ function processFile(filePath) {
         // the JSON structure, and rely on the RegEx below to be flexible
         // enough to handle JSON that is not "perfectly" formatted.
 
+        // Expand Language Arrays, sort them (en first, then alphabetical), and align indentation
+        content = content.replace(/^([ \t]*)"([^"]+)"\s*:\s*\[\s*(\{\s*"@language"[\s\S]*?)\s*\]/gm, (match, indent, key, inner) => {
+            // Split inner into individual objects by comma (ensuring we split only between objects)
+            let items = inner.split(/(?<=\})\s*,\s*(?=\{)/).map(s => s.trim());
+            
+            // Sort items
+            items.sort((a, b) => {
+                let langA = (a.match(/"@language"\s*:\s*"([^"]+)"/) || [])[1] || '';
+                let langB = (b.match(/"@language"\s*:\s*"([^"]+)"/) || [])[1] || '';
+                
+                if (langA === 'en') return -1;
+                if (langB === 'en') return 1;
+                
+                return langA.localeCompare(langB);
+            });
+            
+            let expanded = items.join(`,\n${indent}  `);
+            return `${indent}"${key}": [\n${indent}  ${expanded}\n${indent}]`;
+        });
+
         // Collapse Language Objects
         // Case A: @language first
         // Matches: { "@language": "...", "@value": ... }
