@@ -245,6 +245,37 @@ describe('DPP Wizard - Full Integration Flow', () => {
         await waitFor(() => !document.querySelector('.tooltip-modal'));
     });
 
+    it('should persist language selection across wizard sessions using localStorage', async () => {
+        localStorage.setItem('dpp_keystone_preferred_language', 'fr');
+
+        const mockDppSchema = {
+            "properties": { "multiLangProp": { "title": "Multi-Language Prop", "type": "string" } }
+        };
+        const mockOntologyMap = new Map([
+            ['multiLangProp', {
+                label: { en: 'English Label', fr: 'Label Français' }
+            }]
+        ]);
+
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
+            loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
+        }));
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
+        }));
+
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
+        await initializeWizard();
+
+        const coreContainer = document.getElementById('core-form-container');
+        await waitFor(() => coreContainer.querySelector('.grid-cell:nth-child(4)')?.textContent === 'Label Français');
+
+        const selector = document.getElementById('language-selector');
+        expect(selector).not.toBeNull();
+        expect(selector.value).toBe('fr');
+    });
+
+
     it('should synchronize fields with the same name across different sectors', async () => {
         // 1. Define mock schemas with a shared field 'manufacturer'
         const mockSectorASchema = {

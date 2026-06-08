@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+import { jest } from '@jest/globals';
 import { LanguageManager } from '../../../src/lib/language-manager.js';
 
 describe('LanguageManager', () => {

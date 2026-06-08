@@ -8,6 +8,7 @@ import { loadOntology } from '../lib/ontology-loader.js';
 import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js';
 import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js';
 import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
+import { LanguageManager } from '../lib/language-manager.js';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
@@ -54,6 +55,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const jsonInput = document.getElementById('json-input');
     const resultBox = document.getElementById('validation-result');
     const exampleSelector = document.getElementById('example-selector');
+
+    const langWrapper = document.getElementById('language-widget-wrapper');
+    if (langWrapper) {
+        langWrapper.appendChild(LanguageManager.renderSelectorWidget());
+    }
 
     // 1. Load Schemas
     try {
@@ -245,7 +251,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             const customCssUrl = cssUrlInput ? cssUrlInput.value.trim() : '';
-            const html = await generateHTML(dppData, { customCssUrl, includeSchema });
+            const html = await generateHTML(dppData, { 
+                customCssUrl, 
+                includeSchema, 
+                language: LanguageManager.getPreferredLanguage() 
+            });
 
             // Open in new tab
             const blob = new Blob([html], { type: 'text/html' });

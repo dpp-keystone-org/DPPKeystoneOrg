@@ -37,11 +37,17 @@
                 <h2>JSON DPP Validator</h2>
                 <p>Paste a DPP JSON file below to validate it against the official schemas (Core + Sectors) or try it out with one of our examples.</p>
                 
-                <div class="input-group" style="margin-bottom: 10px; display: flex; gap: 10px; align-items: center;">
-                    <label for="example-selector">Load Example:</label>
-                    <select id="example-selector">
-                        <option value="">-- Select an example --</option>
-                    </select>
+                <div class="input-group" style="margin-bottom: 15px; display: flex; gap: 20px; align-items: center;">
+                    <div>
+                        <label for="example-selector" style="margin-right: 5px;">Load Example:</label>
+                        <select id="example-selector">
+                            <option value="">-- Select an example --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="margin-right: 5px;">Language:</label>
+                        <div id="language-widget-wrapper" style="display: inline-block;"></div>
+                    </div>
                 </div>
 
                 <textarea id="json-input" placeholder='{"digitalProductPassportId": "..."}'></textarea>
