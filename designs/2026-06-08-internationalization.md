@@ -28,17 +28,20 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
     *   **[COMPLETED] Step 2.3: Test and verify localized HTML generation in Wizard**
         *   **[COMPLETED] Task 2.3.1:** Add integration test coverage verifying localized HTML DPP previews generated directly from Wizard sessions.
 
-### [IN PROGRESS] Feature 3: Add a check to the presubmit validator that checks for missing languages
+### [PENDING] Feature 3: Translate all remaining ontological items
+*   **Plan:** Add translated labels and comments to all ontology files (`dist/spec/ontology/...`) that currently only have English strings, using subagents to farm out the work to prevent hallucination.
+
+### [COMPLETED] Feature 4: Add a check to the presubmit validator that checks for missing languages
 *   **Plan:** 
     1. Add a new audit function inside `validate-ontology-integrity.mjs` called `auditTranslations(reporter)`.
     2. It will loop through every term in our `ontologyGraph` that defines an `rdfs:label` or `rdfs:comment`.
     3. It will strictly verify that the label/comment is an array of language-tagged strings (e.g. `[ { "@language": "en", "@value": "Color" }, { "@language": "de", "@value": "Farbe" } ]`).
     4. If a term is missing a translation for a required language, it will log a `WARN` or `FAIL` violation.
-    *   **[IN PROGRESS] Step 3.1: Implement validation logic and test coverage**
-        *   **[PENDING] Task 3.1.1:** Add core translation validation logic to `src/util/js/common/validation/ontology-validator.js` and tests to `ontology-validator.test.js`.
-        *   **[PENDING] Task 3.1.2:** Integrate the check into `scripts/validate-ontology-integrity.mjs` as `auditTranslations`.
+    *   **[COMPLETED] Step 4.1: Implement validation logic and test coverage**
+        *   **[COMPLETED] Task 4.1.1:** Add core translation validation logic to `src/util/js/common/validation/ontology-validator.js` and tests to `ontology-validator.test.js`.
+        *   **[COMPLETED] Task 4.1.2:** Integrate the check into `scripts/validate-ontology-integrity.mjs` as `auditTranslations`.
 
-### [PENDING] Feature 4: Internationalize the dpp-keystone pages themselves
+### [PENDING] Feature 5: Internationalize the dpp-keystone pages themselves
 *   Plan: Enable full multi-language support and localized UI text across the main site index (`index.html`) and generated technical documentation pages.
-    *   **[PENDING] Step 4.1: Embed LanguageManager across all core tool pages**
-        *   **[PENDING] Task 4.1.1:** Add the universal language selection widget to main `index.html`, Ontology Explorer (`src/explorer/index.html`), and CSV Adapter (`src/csv-dpp-adapter/index.html`) for domain-wide preference persistence.
+    *   **[PENDING] Step 5.1: Embed LanguageManager across all core tool pages**
+        *   **[PENDING] Task 5.1.1:** Add the universal language selection widget to main `index.html`, Ontology Explorer (`src/explorer/index.html`), and CSV Adapter (`src/csv-dpp-adapter/index.html`) for domain-wide preference persistence.
