@@ -18,12 +18,13 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
 
 ### [PENDING] Feature 2: Generated HTML DPPs should use the language-specific labels for the DPP fields
 *   Plan: Ensure that when HTML DPPs are generated, field labels correctly resolve and render localized strings based on the selected language.
-    *   **[PENDING] Step 2.1: Update core HTML renderer with multi-language resolution**
-        *   **[PENDING] Task 2.1.1:** Implement `getDisplayLabel` helper in `src/util/js/common/rendering/dpp-html-renderer.js`.
-        *   **[PENDING] Task 2.1.2:** Update `renderValue` and `renderProductPage` to render localized labels across metadata and product attributes.
-        *   **[PENDING] Task 2.1.3:** Update `src/lib/html-generator.js` to pass `language` parameter to the renderer.
-    *   **[PENDING] Step 2.2: Test and verify localized HTML generation in Validator**
-        *   **[PENDING] Task 2.2.1:** Add unit/integration test coverage verifying localized HTML DPP previews from validated JSON.
+    *   **[COMPLETED] Step 2.1: Update core HTML renderer with multi-language resolution**
+        *   **[COMPLETED] Task 2.1.1:** Implement `getDisplayLabel` helper in `src/util/js/common/rendering/dpp-html-renderer.js`.
+        *   **[COMPLETED] Task 2.1.2:** Update `renderValue` and `renderProductPage` to render localized labels across metadata and product attributes.
+        *   **[COMPLETED] Task 2.1.3:** Update `src/lib/html-generator.js` to pass `language` parameter to the renderer.
+        *   **[COMPLETED] Task 2.1.4:** Create standalone SDK test suite `src/util/js/server/testing/dpp-html-renderer.test.js` to verify decoupled, public-facing localization behavior.
+    *   **[COMPLETED] Step 2.2: Test and verify localized HTML generation in Validator**
+        *   **[COMPLETED] Task 2.2.1:** Add unit/integration test coverage verifying localized HTML DPP previews from validated JSON (`testing/integration/validator-flow.test.js`).
     *   **[PENDING] Step 2.3: Test and verify localized HTML generation in Wizard**
         *   **[PENDING] Task 2.3.1:** Add integration test coverage verifying localized HTML DPP previews generated directly from Wizard sessions.
 
