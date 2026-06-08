@@ -552,7 +552,7 @@ export async function initializeWizard() {
 
             const dppObject = getDppData();
             const customCssUrl = document.getElementById('custom-css-url')?.value?.trim();
-            const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema });
+            const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema, language: currentLanguage });
 
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
