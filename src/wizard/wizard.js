@@ -7,9 +7,10 @@ import { generateHTML } from '../lib/html-generator.js';
 import { transformDpp } from '../util/js/client/dpp-schema-adapter.js';
 import * as jsonld from 'jsonld';
 import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
+import { LanguageManager } from '../lib/language-manager.js';
 
 // --- Module-level state ---
-let currentLanguage = 'en';
+let currentLanguage = LanguageManager.getPreferredLanguage();
 
 // Caches for holding loaded schemas and ontologies to avoid re-fetching
 let coreSchema = null;
@@ -133,7 +134,15 @@ export async function initializeWizard() {
     errorCountBadge = document.getElementById('error-count-badge');
     jsonOutput = document.getElementById('json-output');
     sectorButtons = document.querySelectorAll('.sector-btn');
-    languageSelector = document.getElementById('language-selector');
+    const langWrapper = document.getElementById('language-widget-wrapper');
+    if (langWrapper) {
+        langWrapper.innerHTML = '';
+        languageSelector = LanguageManager.renderSelectorWidget(async (newLang) => {
+            currentLanguage = newLang;
+            await rerenderAllForms();
+        });
+        langWrapper.appendChild(languageSelector);
+    }
 
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
     const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
@@ -343,10 +352,6 @@ export async function initializeWizard() {
         saveSession();
     });
 
-    languageSelector.addEventListener('change', async (event) => {
-        currentLanguage = event.target.value;
-        await rerenderAllForms();
-    });
 
     sectorButtons.forEach(button => {
         button.addEventListener('click', async () => {

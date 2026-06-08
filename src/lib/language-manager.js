@@ -63,6 +63,7 @@ export class LanguageManager {
      */
     static renderSelectorWidget(onChangeCallback) {
         const select = document.createElement('select');
+        select.id = 'language-selector';
         select.className = 'keystone-language-selector';
         const current = this.getPreferredLanguage();
 
