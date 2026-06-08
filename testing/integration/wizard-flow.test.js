@@ -16,6 +16,7 @@ global.TextDecoder = TextDecoder;
 global.TextEncoder = TextEncoder;
 global.ReadableStream = ReadableStream;
 global.setImmediate = global.setImmediate || ((fn, ...args) => global.setTimeout(fn, 0, ...args));
+global.URL.createObjectURL = jest.fn(() => 'blob:mock-url');
 
 // NOTE: We do not import the modules to be mocked or tested at the top level.
 // They will be imported dynamically within the test.
@@ -273,6 +274,41 @@ describe('DPP Wizard - Full Integration Flow', () => {
         const selector = document.getElementById('language-selector');
         expect(selector).not.toBeNull();
         expect(selector.value).toBe('fr');
+    });
+
+
+    it('should pass selected language to generateHTML when previewing HTML', async () => {
+        const mockDppSchema = { "properties": { "prop": { "type": "string" } } };
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
+            loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
+        }));
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+        }));
+        const mockGenerateHTML = jest.fn().mockResolvedValue('<html></html>');
+        jest.unstable_mockModule('../dist/lib/html-generator.js', () => ({
+            generateHTML: mockGenerateHTML
+        }));
+
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
+        await initializeWizard();
+
+        // Change language
+        const languageSelector = document.getElementById('language-selector');
+        languageSelector.value = 'de';
+        languageSelector.dispatchEvent(new Event('change'));
+
+        // Click HTML Preview
+        window.open = jest.fn();
+        const htmlBtn = document.getElementById('preview-no-schema-btn');
+        htmlBtn.click();
+
+        await waitFor(() => mockGenerateHTML.mock.calls.length > 0);
+
+        expect(mockGenerateHTML).toHaveBeenCalledWith(
+            expect.any(Object),
+            expect.objectContaining({ language: 'de' })
+        );
     });
 
 
