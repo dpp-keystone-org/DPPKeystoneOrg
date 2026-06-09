@@ -88,17 +88,74 @@ export class LanguageManager {
     }
 
     /**
+     * Internal generic function to find the right language string from a JSON-LD array
+     */
+    static getBestTranslation(dataArray, targetLang) {
+        if (!Array.isArray(dataArray)) return null;
+        const match = dataArray.find(t => t['@language'] === targetLang);
+        if (match) return match['@value'];
+        const fallback = dataArray.find(t => t['@language'] === 'en');
+        if (fallback) return fallback['@value'];
+        return dataArray[0]?.['@value'] || null;
+    }
+
+    /**
+     * Translates all elements on the page based on the current language.
+     * Handles both inline JSON (`data-i18n`) and external keys (`data-i18n-key`).
+     */
+    static localizeDOM(lang, externalTranslations = {}) {
+        // 1. Process inline JSON-LD translations (used by generated spec docs)
+        document.querySelectorAll('.i18n-text[data-i18n]').forEach(el => {
+            try {
+                const data = JSON.parse(el.dataset.i18n);
+                const translatedText = this.getBestTranslation(data, lang);
+                if (translatedText) el.textContent = translatedText;
+            } catch (err) {
+                console.warn('Failed to parse inline i18n data', err);
+            }
+        });
+
+        // 2. Process external key-based translations (used by static UI HTML)
+        document.querySelectorAll('[data-i18n-key]').forEach(el => {
+            const key = el.getAttribute('data-i18n-key');
+            if (externalTranslations && externalTranslations[key]) {
+                const translatedText = this.getBestTranslation(externalTranslations[key], lang);
+                if (translatedText) el.textContent = translatedText;
+            }
+        });
+    }
+
+    /**
      * Initializes LanguageManager on a page.
      * Looks for an element with ID 'language-widget-wrapper' and appends the widget.
      * Dispatches a custom 'languageChanged' event on document when the language changes.
+     * @param {string} [resourcePath] Optional path to a ui-translations JSON file to fetch.
      */
-    static init() {
+    static async init(resourcePath = null) {
+        let externalTranslations = {};
+        if (resourcePath) {
+            try {
+                const response = await fetch(resourcePath);
+                if (response.ok) {
+                    externalTranslations = await response.json();
+                }
+            } catch (err) {
+                console.warn(`Failed to fetch translations from ${resourcePath}`, err);
+            }
+        }
+
         const wrapper = document.getElementById('language-widget-wrapper');
         if (wrapper) {
             wrapper.appendChild(this.renderSelectorWidget((lang) => {
                 document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
             }));
         }
+
+        // Global listener that handles all DOM updates
+        document.addEventListener('languageChanged', (e) => {
+            this.localizeDOM(e.detail.language, externalTranslations);
+        });
+
         // Fire it initially so the page can localize itself on load
         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: this.getPreferredLanguage() } }));
     }
