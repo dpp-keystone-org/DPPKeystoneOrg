@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Keystone (Harmonizing Data Dictionary)</title>
@@ -62,86 +59,86 @@
         <header>
             <img src="branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
             <div>
-                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
-                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the
+                <h1 style="margin-bottom: 0; font-size: 2.2em;" data-i18n-key="dpp-keystone">DPP Keystone</h1>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);" data-i18n-key="harmonizing-data-for-the-digital">Harmonizing Data for the
                     Digital Product Passport</p>
             </div>
             <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
 
         <div class="warning-banner">
-            <h2>Proof of Concept - Not for Production Use</h2>
-            <p>The DPP standardization process is ongoing. Utilities on this website are for demonstration and
+            <h2 data-i18n-key="proof-of-concept-not-for">Proof of Concept - Not for Production Use</h2>
+            <p data-i18n-key="the-dpp-standardization-process-is">The DPP standardization process is ongoing. Utilities on this website are for demonstration and
                 proof-of-concept purposes only.</p>
         </div>
 
         <main>
             <section>
-                <h2>About This Project</h2>
-                <p>This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies
+                <h2 data-i18n-key="about-this-project">About This Project</h2>
+                <p data-i18n-key="this-repository-provides-a-centralized">This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies
                     between various standards (ISO, GS1, etc.) to any exact schemas that are required for the DPP. Our
                     goal is to ensure interoperability and lower the barrier for implementation, especially for SMEs.
                 </p>
-                <p>In addition, this site provides a suite of in-browser tools to assist with DPP generation (manually
+                <p data-i18n-key="in-addition-this-site-provides">In addition, this site provides a suite of in-browser tools to assist with DPP generation (manually
                     and in bulk) and validation of JSON files against DPP standards.</p>
-                <p>For more details on the approach, please read the <a href="docs/methodology.md">Methodology
+                <p data-i18n-key="for-more-details-on-the">For more details on the approach, please read the <a href="docs/methodology.md">Methodology
                         documentation</a>.</p>
             </section>
 
             <section>
-                <h2>DPP Toolkit</h2>
-                <p>Interactive tools and libraries to build, validate, and visualize Digital Product Passports.</p>
+                <h2 data-i18n-key="dpp-toolkit">DPP Toolkit</h2>
+                <p data-i18n-key="interactive-tools-and-libraries-to">Interactive tools and libraries to build, validate, and visualize Digital Product Passports.</p>
 
                 <div class="toolkit-grid">
                     <div class="toolkit-card">
-                        <h3><a href="wizard/">🚀 DPP Wizard</a></h3>
-                        <p>An interactive web-based form to generate valid JSON-LD Digital Product Passports for
+                        <h3><a href="wizard/" data-i18n-key="dpp-wizard">🚀 DPP Wizard</a></h3>
+                        <p data-i18n-key="an-interactive-web-based-form">An interactive web-based form to generate valid JSON-LD Digital Product Passports for
                             Battery, Construction, Electronics and Textile sectors. Validate your data in real-time.</p>
                     </div>
                     <div class="toolkit-card">
-                        <h3><a href="validator/">✅ DPP Validator</a></h3>
-                        <p>Standalone tool to validate DPP JSON files against the {{VERSION}} schemas. Supports both strict JSON
+                        <h3><a href="validator/" data-i18n-key="dpp-validator">✅ DPP Validator</a></h3>
+                        <p data-i18n-key="standalone-tool-to-validate-dpp">Standalone tool to validate DPP JSON files against the {{VERSION}} schemas. Supports both strict JSON
                             and JSONC (with comments).</p>
                     </div>
                     <div class="toolkit-card">
-                        <h3><a href="csv-dpp-adapter/">📊 CSV Adapter</a></h3>
-                        <p>Batch convert CSV data to DPP JSON files in your browser. Map columns to schema fields and
+                        <h3><a href="csv-dpp-adapter/" data-i18n-key="csv-adapter">📊 CSV Adapter</a></h3>
+                        <p data-i18n-key="batch-convert-csv-data-to">Batch convert CSV data to DPP JSON files in your browser. Map columns to schema fields and
                             export.</p>
                     </div>
                     <div class="toolkit-card">
-                        <h3><a href="explorer/">🔍 Ontology Explorer</a></h3>
-                        <p>Searchable index of all DPP definitions. Find terms, units, and semantic mappings across all
+                        <h3><a href="explorer/" data-i18n-key="ontology-explorer">🔍 Ontology Explorer</a></h3>
+                        <p data-i18n-key="searchable-index-of-all-dpp">Searchable index of all DPP definitions. Find terms, units, and semantic mappings across all
                             sectors.</p>
                     </div>
                     <div class="toolkit-card">
-                        <h3><a href="util/">📦 Developer SDKs</a></h3>
-                        <p>JavaScript utilities and reference implementations for schema validation, HTML generation,
+                        <h3><a href="util/" data-i18n-key="developer-sdks">📦 Developer SDKs</a></h3>
+                        <p data-i18n-key="javascript-utilities-and-reference-implementations">JavaScript utilities and reference implementations for schema validation, HTML generation,
                             and ontology indexing. Includes adapter examples for converting between formats.</p>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2>{{VERSION}} Specifications (The "Standard")</h2>
-                <p>The canonical data models, vocabulary definitions, and validation rules for Version {{VERSION}}.</p>
+                <h2 data-i18n-key="version-specifications-the-standard">{{VERSION}} Specifications (The "Standard")</h2>
+                <p data-i18n-key="the-canonical-data-models-vocabulary">The canonical data models, vocabulary definitions, and validation rules for Version {{VERSION}}.</p>
 
                 <div class="spec-section">
-                    <h3>Semantics & Vocabulary</h3>
-                    <p>The semantic definitions (Ontology) and JSON-LD mappings (Contexts) that define the meaning of
+                    <h3 data-i18n-key="semantics-amp-vocabulary">Semantics &amp; Vocabulary</h3>
+                    <p data-i18n-key="the-semantic-definitions-ontology-and">The semantic definitions (Ontology) and JSON-LD mappings (Contexts) that define the meaning of
                         data.</p>
 
-                    <h4>Ontology (Semantic Definitions)</h4>
+                    <h4 data-i18n-key="ontology-semantic-definitions">Ontology (Semantic Definitions)</h4>
                     <ul>
-                        <li><strong>Browse Modules:</strong>
+                        <li><strong data-i18n-key="browse-modules">Browse Modules:</strong>
                             <ul>
-                                <li><a href="spec/ontology/{{VERSION}}/core/index.html">Browse Core Modules (HTML Docs)</a></li>
-                                <li><a href="spec/ontology/{{VERSION}}/sectors/index.html">Browse Sector Modules (HTML Docs)</a>
+                                <li><a href="spec/ontology/{{VERSION}}/core/index.html" data-i18n-key="browse-core-modules-html-docs">Browse Core Modules (HTML Docs)</a></li>
+                                <li><a href="spec/ontology/{{VERSION}}/sectors/index.html" data-i18n-key="browse-sector-modules-html-docs">Browse Sector Modules (HTML Docs)</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><strong>Individual Classes:</strong>
+                        <li><strong data-i18n-key="individual-classes">Individual Classes:</strong>
                             <ul>
-                                <li><a href="spec/ontology/{{VERSION}}/dpp-ontology.jsonld">{{VERSION}} Ontology Entry Point</a></li>
+                                <li><a href="spec/ontology/{{VERSION}}/dpp-ontology.jsonld" data-i18n-key="version-ontology-entry-point">{{VERSION}} Ontology Entry Point</a></li>
                                 <li>Core:
                                     <ul>
                                         <!-- ONTOLOGY_CORE_LIST_START -->
@@ -158,17 +155,17 @@
                         </li>
                     </ul>
 
-                    <h4>Contexts (Implementation Vocabularies)</h4>
+                    <h4 data-i18n-key="contexts-implementation-vocabularies">Contexts (Implementation Vocabularies)</h4>
                     <ul>
-                        <li><a href="spec/contexts/index.html">Index of "Latest" Context Files</a></li>
-                        <li><a href="spec/contexts/{{VERSION}}/index.html">Version {{VERSION}} Context Documentation</a></li>
-                        <li><strong>Direct Links to "Latest" Files:</strong>
+                        <li><a href="spec/contexts/index.html" data-i18n-key="index-of-latest-context-files">Index of "Latest" Context Files</a></li>
+                        <li><a href="spec/contexts/{{VERSION}}/index.html" data-i18n-key="version-version-context-documentation">Version {{VERSION}} Context Documentation</a></li>
+                        <li><strong data-i18n-key="direct-links-to-latest-files">Direct Links to "Latest" Files:</strong>
                             <ul>
                                 <!-- LATEST_CONTEXTS_LIST_START -->
                                 <!-- LATEST_CONTEXTS_LIST_END -->
                             </ul>
                         </li>
-                        <li><strong>Browse Version {{VERSION}} Documentation:</strong>
+                        <li><strong data-i18n-key="browse-version-version-documentation">Browse Version {{VERSION}} Documentation:</strong>
                             <ul>
                                 <!-- CONTEXTS_LIST_START -->
                                 <!-- CONTEXTS_LIST_END -->
@@ -178,24 +175,24 @@
                 </div>
 
                 <div class="spec-section">
-                    <h3>Validation Rules</h3>
-                    <p>The structural and constraint validation rules ensuring data quality.</p>
+                    <h3 data-i18n-key="validation-rules">Validation Rules</h3>
+                    <p data-i18n-key="the-structural-and-constraint-validation">The structural and constraint validation rules ensuring data quality.</p>
 
-                    <h4>DPP JSON Schemas</h4>
+                    <h4 data-i18n-key="dpp-json-schemas">DPP JSON Schemas</h4>
                     <ul>
-                        <li><strong>DPP Schema (Root)</strong>
+                        <li><strong data-i18n-key="dpp-schema-root">DPP Schema (Root)</strong>
                             <ul>
                                 <!-- DPP_SCHEMA_LIST_START -->
                                 <!-- DPP_SCHEMA_LIST_END -->
                             </ul>
                         </li>
-                        <li><strong>Content Specification Schemas</strong>
+                        <li><strong data-i18n-key="content-specification-schemas">Content Specification Schemas</strong>
                             <ul>
                                 <!-- CONTENT_SPEC_SCHEMAS_LIST_START -->
                                 <!-- CONTENT_SPEC_SCHEMAS_LIST_END -->
                             </ul>
                         </li>
-                        <li><strong>Auxiliary Schemas</strong>
+                        <li><strong data-i18n-key="auxiliary-schemas">Auxiliary Schemas</strong>
                             <ul>
                                 <!-- AUX_SCHEMAS_LIST_START -->
                                 <!-- AUX_SCHEMAS_LIST_END -->
@@ -203,7 +200,7 @@
                         </li>
                     </ul>
 
-                    <h4>SHACL Shapes</h4>
+                    <h4 data-i18n-key="shacl-shapes">SHACL Shapes</h4>
                     <ul>
                         <!-- SHACL_SHAPES_LIST_START -->
                         <!-- SHACL_SHAPES_LIST_END -->
@@ -212,43 +209,41 @@
             </section>
 
             <section>
-                <h2>Other Implementation Resources</h2>
-                <p>Examples and guides to help you implement the DPP.</p>
+                <h2 data-i18n-key="other-implementation-resources">Other Implementation Resources</h2>
+                <p data-i18n-key="examples-and-guides-to-help">Examples and guides to help you implement the DPP.</p>
 
-                <h3>Examples (Proof of Concept)</h3>
-                <p>Illustrative JSON-LD examples for various products.</p>
+                <h3 data-i18n-key="examples-proof-of-concept">Examples (Proof of Concept)</h3>
+                <p data-i18n-key="illustrative-json-ld-examples-for">Illustrative JSON-LD examples for various products.</p>
                 <ul>
                     <!-- EXAMPLES_LIST_START -->
                     <!-- EXAMPLES_LIST_END -->
                 </ul>
 
-                <h3>EPCIS Integration</h3>
-                <p>Example of how a DPP can be shared via EPCIS 2.0.</p>
+                <h3 data-i18n-key="epcis-integration">EPCIS Integration</h3>
+                <p data-i18n-key="example-of-how-a-dpp">Example of how a DPP can be shared via EPCIS 2.0.</p>
                 <ul>
-                    <li><a href="spec/examples/epcis/epcis-publishing-event.json" target="_blank"
-                            rel="noopener noreferrer">EPCIS 2.0 Example Event (JSON-LD)</a></li>
-                    <li><a href="https://gs1-epcis-reg.org/const/examples/dpp_rail_example_V3dhu_dh_mit%20URI.json"
-                            target="_blank" rel="noopener noreferrer">Event Subject DPP JSON</a></li>
+                    <li><a href="spec/examples/epcis/epcis-publishing-event.json" target="_blank" rel="noopener noreferrer" data-i18n-key="epcis-2-0-example-event">EPCIS 2.0 Example Event (JSON-LD)</a></li>
+                    <li><a href="https://gs1-epcis-reg.org/const/examples/dpp_rail_example_V3dhu_dh_mit%20URI.json" target="_blank" rel="noopener noreferrer" data-i18n-key="event-subject-dpp-json">Event Subject DPP JSON</a></li>
                 </ul>
             </section>
 
             <section>
-                <h2>Contributing and Governance</h2>
-                <p>Contributions are welcome. Please review the <a href="CONTRIBUTING.md">Contribution Guidelines</a>
+                <h2 data-i18n-key="contributing-and-governance">Contributing and Governance</h2>
+                <p data-i18n-key="contributions-are-welcome-please-review">Contributions are welcome. Please review the <a href="CONTRIBUTING.md">Contribution Guidelines</a>
                     and the <a href="docs/governance.md">Governance Model</a>.</p>
-                <p>This project is hosted on <a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg">GitHub</a>.
+                <p data-i18n-key="this-project-is-hosted-on">This project is hosted on <a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg">GitHub</a>.
                 </p>
             </section>
         </main>
 
         <footer>
-            <p><small>Licensed under the <a href="LICENSE">CC0 1.0 Universal</a>. | <a href="impressum.html">Impressum / Legal Notice</a></small></p>
+            <p><small data-i18n-key="licensed-under-the-cc0-1">Licensed under the <a href="LICENSE">CC0 1.0 Universal</a>. | <a href="impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
     <script type="module">
         import { LanguageManager } from './src/lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('./index.i18n.json');
     </script>
-</body>
 
-</html>
+
+</body></html>
