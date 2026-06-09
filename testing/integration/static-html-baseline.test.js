@@ -10,7 +10,7 @@ const BASELINE_DIR = path.join(__dirname, 'baseline-data');
 
 // Helper to strip dynamic cache-busting ?v=1234567 strings so the HTML compares cleanly
 function stripDynamicContent(html) {
-    return html.replace(/\?v=\d+/g, '?v=TIMESTAMP')
+    return html.replace(/\?v=\d+/g, '')
                .replace(/\s*data-i18n-key="[^"]+"/g, '')
                .replace(/LanguageManager\.init\([^)]*\)/g, 'LanguageManager.init()');
 }
