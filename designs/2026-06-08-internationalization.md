@@ -46,4 +46,20 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
     *   **[COMPLETED] Step 5.1: Embed LanguageManager across all core tool pages**
         *   **[COMPLETED] Task 5.1.1:** Add the universal language selection widget to main `index.html`, Ontology Explorer (`src/explorer/index.html`), and CSV Adapter (`src/csv-dpp-adapter/index.html`) for domain-wide preference persistence.
     *   **[COMPLETED] Step 5.2: Localize the Schema, Context and Ontology generated pages**
-        *   **[COMPLETED] Task 5.2.1:** Update `scripts/generate-spec-docs.mjs` to generate localized schema, context and ontology pages.
+### [PENDING] Feature 6: Internationalize Static HTML Pages
+*   **Plan:** Extract the English strings from all static HTML pages into dedicated JSON resource files (using our standard `rdfs:label` JSON-LD array format), translate them into all 24 EU languages, and wire up `LanguageManager` to dynamically swap the text on the client-side.
+    *   **[PENDING] Step 6.0: Pre-work Baseline Tests**
+        *   Create integration tests that snapshot/compare the currently generated `dist/` HTML pages (e.g., `index.html`, `explorer/index.html`, `csv-dpp-adapter/index.html`, `validator/index.html`, `wizard/index.html`). This ensures our refactor doesn't inadvertently break the DOM structure or baseline English text.
+    *   **[PENDING] Step 6.1: Factor out JSON resource files & Refactor LanguageManager**
+        *   Move the inline `<script>` parsing logic from `generate-spec-docs.mjs` directly into `LanguageManager.js` as a unified `localizeDOM()` function.
+        *   Create `*.i18n.json` files for each static HTML page, initially populated with just English.
+        *   Tag the relevant HTML elements in `src/` with a special attribute (e.g., `data-i18n-key`) and add logic to `LanguageManager` to fetch the JSON and inject the English text.
+        *   *Note on SEO/No-JS:* We will keep the default English text hardcoded in the raw HTML so the baseline HTML output remains identical. `LanguageManager` will only override the text when a language other than English is selected.
+    *   **[PENDING] Step 6.2: Ensure Baseline Passes**
+        *   Verify that the `dist/` HTML output perfectly passes the integration tests established in Step 6.0, proving our `data-i18n-key` additions didn't disrupt the page.
+    *   **[PENDING] Step 6.3: Translate JSON files**
+        *   Translate all English strings in the `*.i18n.json` files into the other 23 official EU languages.
+    *   **[PENDING] Step 6.4: Add Playwright Tests**
+        *   Add separate Playwright tests that load the static pages, switch the language widget, and assert that the text dynamically updates to the new language (similar to what we did for the spec docs).
+    *   **[PENDING] Step 6.5: Cleanup**
+        *   Delete the baseline HTML snapshot integration tests from Step 6.0, as they have fulfilled their purpose of ensuring a safe refactor.
