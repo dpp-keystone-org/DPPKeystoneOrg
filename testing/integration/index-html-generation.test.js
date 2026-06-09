@@ -43,7 +43,7 @@ describe('index.html generation', () => {
     // The ontology link should now point to the generated module index page.
     expect(indexContent).toContain(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/index.html">Product</a>`);
     // It should also contain a nested link to a class within that module.
-    expect(indexContent).toContain(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/Product.html">Product or Material</a>`);
+    expect(indexContent).toMatch(new RegExp(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/Product\\.html"><span class="i18n-text".*?>Product or Material</span></a>`));
     expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v2.json">Sock Dpp</a>');
     
     // Utilities are no longer listed directly in index.html, so we don't check for them here.

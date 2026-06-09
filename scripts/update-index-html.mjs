@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 // Import the parser from the other script to read ontology files
-import { parseOntologyMetadata, getFragment } from './generate-spec-docs.mjs';
+import { parseOntologyMetadata, getFragment, renderI18nSpan } from './generate-spec-docs.mjs';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
 const PROJECT_ROOT = process.cwd();
@@ -66,7 +66,7 @@ export async function generateFileList(dirPath, baseHref, options = {}, rootPath
           if (classes.length > 0) {
             const classLinks = classes.map(c => {
               const classLinkHref = `${baseHref}${fileName}/${getFragment(c.id)}.html`;
-              return `                                        <li><a href="${classLinkHref}">${c.label}</a></li>`;
+              return `                                        <li><a href="${classLinkHref}">${renderI18nSpan(c.label)}</a></li>`;
             }).join('\n');
             listItems.push(`                            <li class="expandable"><details><summary><a href="${linkHref}">${linkText}</a></summary><ul>
 ${classLinks}
@@ -290,6 +290,8 @@ export async function updateIndexHtml({
     );
 
     await generateUtilIndex(utilsPath, path.join(path.dirname(outputPath), 'util', 'index.html'));
+
+    indexContent = indexContent.replace('./src/lib/language-manager.js', './lib/language-manager.js');
 
     // Write to the output path now
     await fs.writeFile(outputPath, indexContent, 'utf-8');

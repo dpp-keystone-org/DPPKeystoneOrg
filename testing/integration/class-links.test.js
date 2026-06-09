@@ -38,7 +38,7 @@ describe('class-links', () => {
         const moduleIndexHtml = await fs.readFile(moduleIndex, 'utf-8');
         expect(moduleIndexHtml).toContain('<h3>Classes & Concepts</h3>');
         // The link should NOT have the dppk_ prefix
-        expect(moduleIndexHtml).toContain('<li><a href="MockProduct.html">Mock Product</a></li>');
+        expect(moduleIndexHtml).toContain('<li><a href="MockProduct.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Product&quot;}]">Mock Product</span></a></li>');
         
         // Check for the individual class file, using the name derived from its ID without the prefix
         const classFilePath = join(moduleDirPath, 'MockProduct.html');

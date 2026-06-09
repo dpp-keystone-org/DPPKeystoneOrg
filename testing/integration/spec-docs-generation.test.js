@@ -3,6 +3,8 @@ import {
     parseOntologyMetadata,
     parseContextMetadata,
     buildTermDictionary,
+    getI18nData,
+    renderI18nSpan
 } from '../../scripts/generate-spec-docs.mjs';
 import { join } from 'path';
 import { promises as fs } from 'fs';
@@ -31,62 +33,62 @@ describe('generate-spec-docs.mjs', () => {
             const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core.jsonld'), 'utf-8');
             const { title, description, classes, properties } = parseOntologyMetadata(content);
 
-            expect(title).toBe('Mock Core Ontology');
-            expect(description).toBe('A mock ontology for testing purposes.');
+            expect(title.text).toBe('Mock Core Ontology');
+            expect(description.text).toBe('A mock ontology for testing purposes.');
             expect(classes).toHaveLength(5);
             expect(properties).toHaveLength(4);
 
-            const mockProduct = classes.find(c => c.label === 'Mock Product');
+            const mockProduct = classes.find(c => c.label.text === 'Mock Product');
             expect(mockProduct).toBeDefined();
             // Mock Product has 'Mock Property' (explicit domain), 'Generic Indicator' (no domain), and 'Domain Includes Property'
             expect(mockProduct.properties).toHaveLength(3);
             
-            const mockProperty = mockProduct.properties.find(p => p.label === 'Mock Property');
+            const mockProperty = mockProduct.properties.find(p => p.label.text === 'Mock Property');
             expect(mockProperty).toBeDefined();
             expect(mockProperty.annotations['owl:equivalentProperty']['@id']).toBe('schema:name');
             expect(mockProperty.annotations['rdfs:subPropertyOf']['@id']).toBe('dppk:genericIndicator');
-            expect(mockProperty.comment).toBe('A test property for the Mock Product.');
+            expect(mockProperty.comment.text).toBe('A test property for the Mock Product.');
 
-            const genericIndicator = mockProduct.properties.find(p => p.label === 'Generic Indicator');
+            const genericIndicator = mockProduct.properties.find(p => p.label.text === 'Generic Indicator');
             expect(genericIndicator).toBeDefined();
-            expect(genericIndicator.comment).toBe('A generic indicator for testing sub-property relationships.');
+            expect(genericIndicator.comment.text).toBe('A generic indicator for testing sub-property relationships.');
 
-            const domainIncludesProperty = mockProduct.properties.find(p => p.label === 'Domain Includes Property');
+            const domainIncludesProperty = mockProduct.properties.find(p => p.label.text === 'Domain Includes Property');
             expect(domainIncludesProperty).toBeDefined();
-            expect(domainIncludesProperty.comment).toBe('A test property using schema:domainIncludes.');
+            expect(domainIncludesProperty.comment.text).toBe('A test property using schema:domainIncludes.');
 
             expect(mockProduct.attributes['rdfs:subClassOf']).toHaveLength(2);
             expect(mockProduct.attributes['owl:equivalentClass']).toHaveLength(2);
             expect(mockProduct.attributes['dppk:governedBy']).toEqual(['ISO 9001']);
 
-            const mockBase = classes.find(c => c.label === 'Mock Base');
+            const mockBase = classes.find(c => c.label.text === 'Mock Base');
             expect(mockBase).toBeDefined();
             // Mock Base should inherit the domain-less 'Generic Indicator'
             expect(mockBase.properties).toHaveLength(1);
-            expect(mockBase.properties[0].label).toBe('Generic Indicator');
+            expect(mockBase.properties[0].label.text).toBe('Generic Indicator');
 
-            const mockThing = classes.find(c => c.label === 'Mock Thing');
+            const mockThing = classes.find(c => c.label.text === 'Mock Thing');
             expect(mockThing).toBeDefined();
             // Mock Thing should inherit the domain-less 'Generic Indicator'
             expect(mockThing.properties).toHaveLength(1);
-            expect(mockThing.properties[0].label).toBe('Generic Indicator');
+            expect(mockThing.properties[0].label.text).toBe('Generic Indicator');
 
             // Check for enum and concepts
-            const mockEnumCat = classes.find(c => c.label === 'Mock Enum Category');
+            const mockEnumCat = classes.find(c => c.label.text === 'Mock Enum Category');
             expect(mockEnumCat).toBeDefined();
             expect(mockEnumCat.attributes['owl:oneOf']).toEqual([{ "@id": "dppk:MockEnumValue1" }]);
 
-            const mockEnumValue1 = classes.find(c => c.label === 'Mock Enum Value 1');
+            const mockEnumValue1 = classes.find(c => c.label.text === 'Mock Enum Value 1');
             expect(mockEnumValue1).toBeDefined();
             expect(mockEnumValue1.attributes['type']).toBe('dppk:MockEnumCategory');
-            expect(mockEnumValue1.comment).toBe('The first mock enum value.');
+            expect(mockEnumValue1.comment.text).toBe('The first mock enum value.');
         });
 
         it('should parse context metadata correctly', async () => {
             const content = await fs.readFile(join(FIXTURES_DIR, 'contexts', KEYSTONE_VERSION, 'mock-core.context.jsonld'), 'utf-8');
             const mockTermDictionary = {
                 ['https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty']: {
-                    description: "A test property for the Mock Product.",
+                    description: { text: "A test property for the Mock Product." },
                     module: "core",
                     fileName: "mock-core.jsonld"
                 }
@@ -98,15 +100,15 @@ describe('generate-spec-docs.mjs', () => {
             expect(localTerms).toHaveLength(2);
             expect(localTerms[1].term).toBe('mockProp');
             expect(localTerms[1].uri).toBe('https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty');
-            expect(localTerms[1].description).toBe('A test property for the Mock Product.');
+            expect(localTerms[1].description.text).toBe('A test property for the Mock Product.');
         });
 
         it('should parse ontology metadata from the top level', async () => {
             const content = await fs.readFile(join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'core', 'mock-core-toplevel.jsonld'), 'utf-8');
             const { title, description } = parseOntologyMetadata(content);
 
-            expect(title).toBe('Mock Toplevel Title');
-            expect(description).toBe('Mock Toplevel Description.');
+            expect(title.text).toBe('Mock Toplevel Title');
+            expect(description.text).toBe('Mock Toplevel Description.');
         });
 
         it('should build a term dictionary with type and domain', async () => {
@@ -125,7 +127,7 @@ describe('generate-spec-docs.mjs', () => {
 
             const complexTerm = termDict['https://dpp-keystone.org/spec/{{VERSION}}/terms#ComplexTerm'];
             expect(complexTerm).toBeDefined();
-            expect(complexTerm.description).toBe('This is a complex comment.');
+            expect(complexTerm.description.text).toBe('This is a complex comment.');
         });
 
         it('should handle complex rdfs:comment values in parseOntologyMetadata', async () => {
@@ -134,11 +136,48 @@ describe('generate-spec-docs.mjs', () => {
 
             expect(properties).toHaveLength(1);
             expect(properties[0].id).toBe('dppk:ComplexTerm');
-            expect(properties[0].comment).toBe('This is a complex comment.');
+            expect(properties[0].comment.text).toBe('This is a complex comment.');
+        });
+
+        describe('i18n helpers', () => {
+            it('should extract plain string correctly', () => {
+                const result = getI18nData('Plain English');
+                expect(result.text).toBe('Plain English');
+                expect(result.raw).toEqual([{ "@language": "en", "@value": "Plain English" }]);
+            });
+
+            it('should extract single language object correctly', () => {
+                const label = { "@language": "de", "@value": "Farbe" };
+                const result = getI18nData(label);
+                expect(result.text).toBe('Farbe');
+                expect(result.raw).toEqual([{ "@language": "de", "@value": "Farbe" }]);
+            });
+
+            it('should extract array and fallback to English text correctly', () => {
+                const label = [
+                    { "@language": "de", "@value": "Farbe" },
+                    { "@language": "en", "@value": "Color" }
+                ];
+                const result = getI18nData(label);
+                expect(result.text).toBe('Color');
+                expect(result.raw).toEqual(label); // should preserve full array
+            });
+
+            it('should render HTML span with escaped JSON', () => {
+                const data = {
+                    text: 'Color',
+                    raw: [
+                        { "@language": "de", "@value": "Farbe" },
+                        { "@language": "en", "@value": "Color" }
+                    ]
+                };
+                const html = renderI18nSpan(data);
+                expect(html).toBe('<span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Farbe&quot;},{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Color&quot;}]">Color</span>');
+            });
         });
     });
 
-   describe('Integration Test', () => {
+    describe('Integration Test', () => {
         it('should generate correct module and global index files', async () => {
             // Run the script with our test directories
             await generateSpecDocs({
@@ -153,7 +192,7 @@ describe('generate-spec-docs.mjs', () => {
             // Check that the directory index now links to the module index
             const ontologyHtml = await fs.readFile(ontologyDocPath, 'utf-8');
             expect(ontologyHtml).toContain(`<h1>Ontology Modules in ontology/${KEYSTONE_VERSION}/core</h1>`);
-            expect(ontologyHtml).toContain('<li><a href="./mock-core/index.html">Mock Core Ontology</a></li>');
+            expect(ontologyHtml).toContain('<li><a href="./mock-core/index.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Core Ontology&quot;}]">Mock Core Ontology</span></a></li>');
 
             // Check if the context doc was created (this part of the generator hasn't changed)
             const contextDocPath = join(TEMP_DIST_DIR, 'contexts', KEYSTONE_VERSION, 'index.html');
@@ -181,11 +220,11 @@ describe('generate-spec-docs.mjs', () => {
             await expect(fs.access(moduleIndex)).resolves.not.toThrow();
             const moduleIndexHtml = await fs.readFile(moduleIndex, 'utf-8');
             expect(moduleIndexHtml).toContain('<h3>Classes & Concepts</h3>');
-            expect(moduleIndexHtml).toContain('<li><a href="MockProduct.html">Mock Product</a></li>');
+            expect(moduleIndexHtml).toContain('<li><a href="MockProduct.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Product&quot;}]">Mock Product</span></a></li>');
             
             // Check that the title and description are correctly displayed
-            expect(moduleIndexHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Mock Core Ontology</h2>');
-            expect(moduleIndexHtml).toContain('<p>A mock ontology for testing purposes.</p>');
+            expect(moduleIndexHtml).toContain('<h2 style="margin: 0; color: var(--text-light);"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Core Ontology&quot;}]">Mock Core Ontology</span></h2>');
+            expect(moduleIndexHtml).toContain('<p><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;A mock ontology for testing purposes.&quot;}]">A mock ontology for testing purposes.</span></p>');
 
 
             // Check for the individual class file, using the name derived from its ID
@@ -194,13 +233,13 @@ describe('generate-spec-docs.mjs', () => {
 
             // Check for key content in the class file
             const classHtml = await fs.readFile(classFilePath, 'utf-8');
-            expect(classHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Class: Mock Product (dppk:MockProduct)</h2>');
-            expect(classHtml).toContain('<p>Represents a generic product for testing.</p>');
+            expect(classHtml).toContain('<h2 style="margin: 0; color: var(--text-light);">Class: <span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Product&quot;}]">Mock Product</span> (dppk:MockProduct)</h2>');
+            expect(classHtml).toContain('<p><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Represents a generic product for testing.&quot;}]">Represents a generic product for testing.</span></p>');
             expect(classHtml).toContain('<p><strong>subClassOf:</strong> <a href="MockBase.html">dppk:MockBase</a>, <a href="MockThing.html">dppk:MockThing</a></p>')
             
             // Check for properties
-            expect(classHtml).toContain('<a href="index.html#mockProperty">Mock Property</a> (dppk:mockProperty)');
-            expect(classHtml).toContain('<a href="index.html#genericIndicator">Generic Indicator</a> (dppk:genericIndicator)');
+            expect(classHtml).toContain('<a href="index.html#mockProperty"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Property&quot;}]">Mock Property</span></a> (dppk:mockProperty)');
+            expect(classHtml).toContain('<a href="index.html#genericIndicator"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Generic Indicator&quot;}]">Generic Indicator</span></a> (dppk:genericIndicator)');
 
             // Check for correct CSS path
             expect(classHtml).toContain('<link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">');
@@ -211,7 +250,7 @@ describe('generate-spec-docs.mjs', () => {
             const enumHtml = await fs.readFile(enumHtmlPath, 'utf-8');
             expect(enumHtml).toContain('<h4>Enum Values (oneOf)</h4>');
             expect(enumHtml).toContain('<th>Value ID</th><th>Label</th>');
-            expect(enumHtml).toContain('<td>Mock Enum Value 1</td>');
+            expect(enumHtml).toContain('<td><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Enum Value 1&quot;}]">Mock Enum Value 1</span></td>');
         });
 
         it('should include properties defined in other modules in the class documentation', async () => {
@@ -268,7 +307,7 @@ describe('generate-spec-docs.mjs', () => {
             expect(html).toContain('Main Class');
             // 'Sub Property' is defined in 'mock-sub.jsonld' but shown on 'MainClass' page.
             // It should be linked back to the mock-sub module index.
-            expect(html).toContain('<a href="../mock-sub/index.html#subProperty">Sub Property</a>');
+            expect(html).toContain('<a href="../mock-sub/index.html#subProperty"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Sub Property&quot;}]">Sub Property</span></a>');
         });
     });
 });

@@ -86,4 +86,20 @@ export class LanguageManager {
 
         return select;
     }
+
+    /**
+     * Initializes LanguageManager on a page.
+     * Looks for an element with ID 'language-widget-wrapper' and appends the widget.
+     * Dispatches a custom 'languageChanged' event on document when the language changes.
+     */
+    static init() {
+        const wrapper = document.getElementById('language-widget-wrapper');
+        if (wrapper) {
+            wrapper.appendChild(this.renderSelectorWidget((lang) => {
+                document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+            }));
+        }
+        // Fire it initially so the page can localize itself on load
+        document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: this.getPreferredLanguage() } }));
+    }
 }
