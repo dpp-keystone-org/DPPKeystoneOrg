@@ -109,7 +109,7 @@ export class LanguageManager {
             try {
                 const data = JSON.parse(el.dataset.i18n);
                 const translatedText = this.getBestTranslation(data, lang);
-                if (translatedText) el.textContent = translatedText;
+                if (translatedText) el.innerHTML = translatedText;
             } catch (err) {
                 console.warn('Failed to parse inline i18n data', err);
             }
@@ -120,7 +120,13 @@ export class LanguageManager {
             const key = el.getAttribute('data-i18n-key');
             if (externalTranslations && externalTranslations[key]) {
                 const translatedText = this.getBestTranslation(externalTranslations[key], lang);
-                if (translatedText) el.textContent = translatedText;
+                if (translatedText) {
+                    if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
+                        el.setAttribute('placeholder', translatedText);
+                    } else {
+                        el.innerHTML = translatedText;
+                    }
+                }
             }
         });
     }

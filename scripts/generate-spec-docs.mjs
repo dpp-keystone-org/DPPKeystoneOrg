@@ -497,15 +497,6 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
         mermaid.initialize({ startOnLoad: true });
 
-        document.addEventListener('languageChanged', (e) => {
-            const lang = e.detail.language;
-            document.querySelectorAll('.i18n-text').forEach(el => {
-                const translations = JSON.parse(el.getAttribute('data-i18n'));
-                const match = translations.find(t => t['@language'] === lang) || translations.find(t => t['@language'] === 'en');
-                if (match) el.innerText = match['@value'];
-            });
-        });
-        
         LanguageManager.init();
     </script>
 </body>
@@ -588,14 +579,6 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
     </div>
     <script type="module">
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
-        document.addEventListener('languageChanged', (e) => {
-            const lang = e.detail.language;
-            document.querySelectorAll('.i18n-text').forEach(el => {
-                const translations = JSON.parse(el.getAttribute('data-i18n'));
-                const match = translations.find(t => t['@language'] === lang) || translations.find(t => t['@language'] === 'en');
-                if (match) el.innerText = match['@value'];
-            });
-        });
         LanguageManager.init();
     </script>
 </body>
