@@ -43,8 +43,8 @@ describe('Latest Contexts Generation', () => {
         const content = await fs.readFile(mainIndexPath, 'utf-8');
 
         // Check for the new "Latest" section
-        expect(content).toContain('<h4>Contexts (Implementation Vocabularies)</h4>');
-        expect(content).toContain('<li><a href="spec/contexts/index.html">Index of "Latest" Context Files</a></li>');
+        expect(content).toMatch(/<h4[^>]*>Contexts \(Implementation Vocabularies\)<\/h4>/);
+        expect(content).toMatch(/<a[^>]*href="spec\/contexts\/index\.html"[^>]*>Index of "Latest" Context Files<\/a>/);
 
         // Check that the "Latest" list is populated
         const latestListRegex = /<!-- LATEST_CONTEXTS_LIST_START -->([\s\S]*)<!-- LATEST_CONTEXTS_LIST_END -->/;

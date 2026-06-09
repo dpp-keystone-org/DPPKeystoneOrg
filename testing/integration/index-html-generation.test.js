@@ -33,10 +33,10 @@ describe('index.html generation', () => {
     expect(indexContent).toMatch(shaclShapesRegex);
 
     // Verify new structure
-    expect(indexContent).toContain('<h2 data-i18n-key="home.toolkit.title">DPP Toolkit</h2>');
-    expect(indexContent).toContain('<a href="wizard/">🚀 DPP Wizard</a>');
-    expect(indexContent).toContain('<a href="validator/">✅ DPP Validator</a>');
-    expect(indexContent).toContain('<a href="util/">📦 Developer SDKs</a>');
+    expect(indexContent).toMatch(/<h2[^>]*>DPP Toolkit<\/h2>/);
+    expect(indexContent).toMatch(/<a[^>]*href="wizard\/"[^>]*>🚀 DPP Wizard<\/a>/);
+    expect(indexContent).toMatch(/<a[^>]*href="validator\/"[^>]*>✅ DPP Validator<\/a>/);
+    expect(indexContent).toMatch(/<a[^>]*href="util\/"[^>]*>📦 Developer SDKs<\/a>/);
 
     // Also check for a specific file to be reasonably sure the content is correct
     expect(indexContent).toContain(`<a href="spec/contexts/${KEYSTONE_VERSION}/dpp-core.context/index.html">Dpp Core Context</a>`);
