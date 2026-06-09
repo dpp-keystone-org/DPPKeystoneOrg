@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Ontology Explorer</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1781019581691">
-    <link rel="stylesheet" href="explorer.css?v=1781019581691">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css">
+    <link rel="stylesheet" href="explorer.css">
 </head>
 <body>
     <div class="container">
         <header>
             <img src="../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
             <div>
-                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Ontology Explorer</h1>
-                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Search and browse definitions across all DPP sectors.</p>
+                <h1 style="margin-bottom: 0; font-size: 2.2em;" data-i18n-key="dpp-ontology-explorer">DPP Ontology Explorer</h1>
+                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);" data-i18n-key="search-and-browse-definitions-across">Search and browse definitions across all DPP sectors.</p>
             </div>
             <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
 
-        <nav style="margin-bottom: 20px;">
+        <nav style="margin-bottom: 20px;" data-i18n-key="home-wizard-validator">
             <a href="../index.html" class="nav-link">Home</a> | 
             <a href="../wizard/index.html" class="nav-link">Wizard</a> |
             <a href="../validator/index.html" class="nav-link">Validator</a>
@@ -26,7 +24,7 @@
 
         <div id="explorer-container">
             <section class="card">
-                <input type="text" id="search-box" placeholder="Search for terms (e.g., 'GTIN', 'Carbon', 'Battery')..." autofocus>
+                <input type="text" id="search-box" placeholder="Search for terms (e.g., 'GTIN', 'Carbon', 'Battery')..." autofocus="" data-i18n-key="search-for-terms-e-g">
                 <div id="results-area">
                     <p id="results-count"></p>
                     <div id="results-grid" class="results-grid"></div>
@@ -35,13 +33,14 @@
         </div>
 
         <footer>
-            <p><small>Part of the <a href="../index.html">DPP Keystone</a> project. | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
+            <p><small data-i18n-key="part-of-the-dpp-keystone">Part of the <a href="../index.html">DPP Keystone</a> project. | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
-    <script type="module" src="explorer.js?v=1781019581691"></script>
+    <script type="module" src="explorer.js"></script>
     <script type="module">
         import { LanguageManager } from '../lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('./index.i18n.json');
     </script>
-</body>
-</html>
+
+
+</body></html>
