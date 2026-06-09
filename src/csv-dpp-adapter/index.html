@@ -15,6 +15,7 @@
                 <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
                 <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the Digital Product Passport</p>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
 
         <div class="card">
@@ -99,5 +100,9 @@
     
     <!-- Application Logic -->
     <script type="module" src="csv-dpp-adapter.js"></script>
+    <script type="module">
+        import { LanguageManager } from '../lib/language-manager.js';
+        LanguageManager.init();
+    </script>
 </body>
 </html>

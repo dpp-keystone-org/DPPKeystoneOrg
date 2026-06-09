@@ -16,7 +16,7 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   **[COMPLETED] Task 1.3.1:** Add `#language-widget-wrapper` to `src/validator/index.html`.
         *   **[COMPLETED] Task 1.3.2:** Update `src/validator/validator.js` to render `LanguageManager.renderSelectorWidget()` and pass the selected language to `generateHTML`.
 
-### [PENDING] Feature 2: Generated HTML DPPs should use the language-specific labels for the DPP fields
+### [COMPLETED] Feature 2: Generated HTML DPPs should use the language-specific labels for the DPP fields
 *   Plan: Ensure that when HTML DPPs are generated, field labels correctly resolve and render localized strings based on the selected language.
     *   **[COMPLETED] Step 2.1: Update core HTML renderer with multi-language resolution**
         *   **[COMPLETED] Task 2.1.1:** Implement `getDisplayLabel` helper in `src/util/js/common/rendering/dpp-html-renderer.js`.
@@ -28,7 +28,7 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
     *   **[COMPLETED] Step 2.3: Test and verify localized HTML generation in Wizard**
         *   **[COMPLETED] Task 2.3.1:** Add integration test coverage verifying localized HTML DPP previews generated directly from Wizard sessions.
 
-### [PENDING] Feature 3: Translate all remaining ontological items
+### [COMPLETED] Feature 3: Translate all remaining ontological items
 *   **Plan:** Add translated labels and comments to all ontology files (`dist/spec/ontology/...`) that currently only have English strings, using subagents to farm out the work to prevent hallucination.
 
 ### [COMPLETED] Feature 4: Add a check to the presubmit validator that checks for missing languages
@@ -41,7 +41,9 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   **[COMPLETED] Task 4.1.1:** Add core translation validation logic to `src/util/js/common/validation/ontology-validator.js` and tests to `ontology-validator.test.js`.
         *   **[COMPLETED] Task 4.1.2:** Integrate the check into `scripts/validate-ontology-integrity.mjs` as `auditTranslations`.
 
-### [PENDING] Feature 5: Internationalize the dpp-keystone pages themselves
+### [COMPLETED] Feature 5: Internationalize the dpp-keystone pages themselves
 *   Plan: Enable full multi-language support and localized UI text across the main site index (`index.html`) and generated technical documentation pages.
-    *   **[PENDING] Step 5.1: Embed LanguageManager across all core tool pages**
-        *   **[PENDING] Task 5.1.1:** Add the universal language selection widget to main `index.html`, Ontology Explorer (`src/explorer/index.html`), and CSV Adapter (`src/csv-dpp-adapter/index.html`) for domain-wide preference persistence.
+    *   **[COMPLETED] Step 5.1: Embed LanguageManager across all core tool pages**
+        *   **[COMPLETED] Task 5.1.1:** Add the universal language selection widget to main `index.html`, Ontology Explorer (`src/explorer/index.html`), and CSV Adapter (`src/csv-dpp-adapter/index.html`) for domain-wide preference persistence.
+    *   **[COMPLETED] Step 5.2: Localize the Schema, Context and Ontology generated pages**
+        *   **[COMPLETED] Task 5.2.1:** Update `scripts/generate-spec-docs.mjs` to generate localized schema, context and ontology pages.

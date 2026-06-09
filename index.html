@@ -66,6 +66,7 @@
                 <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the
                     Digital Product Passport</p>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
 
         <div class="warning-banner">
@@ -244,6 +245,10 @@
             <p><small>Licensed under the <a href="LICENSE">CC0 1.0 Universal</a>. | <a href="impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from './src/lib/language-manager.js';
+        LanguageManager.init();
+    </script>
 </body>
 
 </html>
