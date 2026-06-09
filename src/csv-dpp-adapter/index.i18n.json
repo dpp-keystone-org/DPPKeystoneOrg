@@ -18,22 +18,22 @@
     { "@language": "en", "@value": "Target Sector(s):" }
   ],
   "battery": [
-    { "@language": "en", "@value": "<input type=\"checkbox\" name=\"sector\" value=\"battery\"> Battery" }
+    { "@language": "en", "@value": "Battery" }
   ],
   "construction": [
-    { "@language": "en", "@value": "<input type=\"checkbox\" name=\"sector\" value=\"construction\"> Construction" }
+    { "@language": "en", "@value": "Construction" }
   ],
   "electronics": [
-    { "@language": "en", "@value": "<input type=\"checkbox\" name=\"sector\" value=\"electronics\"> Electronics" }
+    { "@language": "en", "@value": "Electronics" }
   ],
   "iron-amp-steel": [
-    { "@language": "en", "@value": "<input type=\"checkbox\" name=\"sector\" value=\"iron-steel\"> Iron &amp; Steel" }
+    { "@language": "en", "@value": "Iron &amp; Steel" }
   ],
   "textile": [
-    { "@language": "en", "@value": "<input type=\"checkbox\" name=\"sector\" value=\"textile\"> Textile" }
+    { "@language": "en", "@value": "Textile" }
   ],
   "packaging-add-on": [
-    { "@language": "en", "@value": "<input type=\"checkbox\" name=\"sector\" value=\"packaging\"> Packaging (Add-on)" }
+    { "@language": "en", "@value": "Packaging (Add-on)" }
   ],
   "select-a-csv-file-containing": [
     { "@language": "en", "@value": "Select a CSV file containing your product data. The first row must contain headers." }
@@ -54,7 +54,7 @@
     { "@language": "en", "@value": "Save Mapping Config" }
   ],
   "show-incompatible-fields": [
-    { "@language": "en", "@value": "<input type=\"checkbox\" id=\"show-incompatible-toggle\"> Show incompatible fields" }
+    { "@language": "en", "@value": "Show incompatible fields" }
   ],
   "csv-header": [
     { "@language": "en", "@value": "CSV Header" }
