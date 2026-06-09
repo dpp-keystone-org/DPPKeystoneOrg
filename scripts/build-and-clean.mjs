@@ -282,6 +282,12 @@ async function build() {
         console.log(`Copied docs to dist/docs`);
     }
 
+    // Copy root level i18n files
+    if (await fse.pathExists(path.join(PROJECT_ROOT, 'index.i18n.json'))) {
+        await fse.copy(path.join(PROJECT_ROOT, 'index.i18n.json'), path.join(BUILD_DIR, 'index.i18n.json'));
+        console.log('Copied index.i18n.json to dist/');
+    }
+
     // Call the new redirect function
     await createRedirects(BUILD_DIR);
 
