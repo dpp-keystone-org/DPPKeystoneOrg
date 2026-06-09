@@ -1,0 +1,424 @@
+{
+  "@context": {
+    "dppk": "https://keystone.digitalproductpassport.org/keystone/ontology/v2/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Identifier",
+  "@graph": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Identifier",
+      "@type": "owl:Ontology",
+      "dcterms:title": "DPP Core Ontology - Identifier Definitions",
+      "dcterms:description": "Defines a generic property for attaching identifiers to a resource.",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "DPP Core Ontology - Identifier Definitions"
+        },
+        {
+          "@language": "bg",
+          "@value": "Базова онтология на ЦПП - Дефиниции на идентификатори"
+        },
+        {
+          "@language": "cs",
+          "@value": "Základní ontologie DPP - Definice identifikátorů"
+        },
+        {
+          "@language": "da",
+          "@value": "DPP Core Ontology - Identifikationsdefinitioner"
+        },
+        {
+          "@language": "de",
+          "@value": "DPP-Kernontologie - Identifikatordefinitionen"
+        },
+        {
+          "@language": "el",
+          "@value": "Βασική Οντολογία DPP - Ορισμοί Αναγνωριστικών"
+        },
+        {
+          "@language": "es",
+          "@value": "Ontología Principal de DPP - Definiciones de Identificadores"
+        },
+        {
+          "@language": "et",
+          "@value": "DPP tuumikontoloogia - identifikaatorite definitsioonid"
+        },
+        {
+          "@language": "fi",
+          "@value": "DPP-ydinontologia - Tunnisteiden määritelmät"
+        },
+        {
+          "@language": "fr",
+          "@value": "Ontologie de base DPP - Définitions d'identifiants"
+        },
+        {
+          "@language": "ga",
+          "@value": "Croí-Ointeolaíocht DPP - Sainmhínithe Aitheantóirí"
+        },
+        {
+          "@language": "hr",
+          "@value": "Osnovna ontologija DPP-a - Definicije identifikatora"
+        },
+        {
+          "@language": "hu",
+          "@value": "DPP alapontológia - Azonosító definíciók"
+        },
+        {
+          "@language": "it",
+          "@value": "Ontologia principale DPP - Definizioni degli identificatori"
+        },
+        {
+          "@language": "lt",
+          "@value": "DPP pagrindinė ontologija - Identifikatorių apibrėžimai"
+        },
+        {
+          "@language": "lv",
+          "@value": "DPP pamata ontoloģija - Identifikatoru definīcijas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet ta' Identifikaturi"
+        },
+        {
+          "@language": "nl",
+          "@value": "DPP-kernontologie - Identificatiedefinities"
+        },
+        {
+          "@language": "pl",
+          "@value": "Podstawowa ontologia DPP - Definicje identyfikatorów"
+        },
+        {
+          "@language": "pt",
+          "@value": "Ontologia Principal do DPP - Definições de Identificadores"
+        },
+        {
+          "@language": "ro",
+          "@value": "Ontologia de bază DPP - Definiții de identificatori"
+        },
+        {
+          "@language": "sk",
+          "@value": "Základná ontológia DPP - Definície identifikátorov"
+        },
+        {
+          "@language": "sl",
+          "@value": "Osnovna ontologija DPP - Definicije identifikatorjev"
+        },
+        {
+          "@language": "sv",
+          "@value": "DPP-kärnontologi - Identifierardefinitioner"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Defines a generic property for attaching identifiers to a resource."
+        },
+        {
+          "@language": "bg",
+          "@value": "Дефинира общо свойство за прикачване на идентификатори към ресурс."
+        },
+        {
+          "@language": "cs",
+          "@value": "Definuje obecnou vlastnost pro připojení identifikátorů ke zdroji."
+        },
+        {
+          "@language": "da",
+          "@value": "Definerer en generisk egenskab til at vedhæfte identifikatorer til en ressource."
+        },
+        {
+          "@language": "de",
+          "@value": "Definiert eine generische Eigenschaft zum Anhängen von Identifikatoren an eine Ressource."
+        },
+        {
+          "@language": "el",
+          "@value": "Ορίζει μια γενική ιδιότητα για την επισύναψη αναγνωριστικών σε έναν πόρο."
+        },
+        {
+          "@language": "es",
+          "@value": "Define una propiedad genérica para adjuntar identificadores a un recurso."
+        },
+        {
+          "@language": "et",
+          "@value": "Määratleb üldise omaduse identifikaatorite ressursile lisamiseks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Määrittää yleisen ominaisuuden tunnisteiden liittämiseksi resurssiin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Définit une propriété générique pour attacher des identifiants à une ressource."
+        },
+        {
+          "@language": "ga",
+          "@value": "Sainmhíníonn sé airí cineálach chun aitheantóirí a cheangal le hacmhainn."
+        },
+        {
+          "@language": "hr",
+          "@value": "Definira generičko svojstvo za dodavanje identifikatora resursu."
+        },
+        {
+          "@language": "hu",
+          "@value": "Általános tulajdonságot határoz meg az azonosítók erőforráshoz való csatolásához."
+        },
+        {
+          "@language": "it",
+          "@value": "Definisce una proprietà generica per associare identificatori a una risorsa."
+        },
+        {
+          "@language": "lt",
+          "@value": "Apibrėžia bendrąją savybę, skirtą identifikatoriams prie ištekliaus pridėti."
+        },
+        {
+          "@language": "lv",
+          "@value": "Definē vispārīgu rekvizītu identifikatoru pievienošanai resursam."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jiddefinixxi proprjetà ġenerika għat-twaħħil ta' identifikaturi ma' riżors."
+        },
+        {
+          "@language": "nl",
+          "@value": "Definieert een generieke eigenschap voor het koppelen van identificatiecodes aan een bron."
+        },
+        {
+          "@language": "pl",
+          "@value": "Definiuje ogólną właściwość służącą do dołączania identyfikatorów do zasobu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Define uma propriedade genérica para anexar identificadores a um recurso."
+        },
+        {
+          "@language": "ro",
+          "@value": "Definește o proprietate generică pentru atașarea identificatorilor la o resursă."
+        },
+        {
+          "@language": "sk",
+          "@value": "Definuje všeobecnú vlastnosť na pripojenie identifikátorov k zdroju."
+        },
+        {
+          "@language": "sl",
+          "@value": "Določa splošno lastnost za pripenjanje identifikatorjev viru."
+        },
+        {
+          "@language": "sv",
+          "@value": "Definierar en generisk egenskap för att fästa identifierare till en resurs."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:identifier",
+      "@type": [
+        "owl:DatatypeProperty",
+        "rdf:Property"
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A generic identifier for a resource. It is equivalent to schema:identifier."
+        },
+        {
+          "@language": "bg",
+          "@value": "Общ идентификатор за ресурс. Той е еквивалентен на schema:identifier."
+        },
+        {
+          "@language": "cs",
+          "@value": "Obecný identifikátor pro zdroj. Je ekvivalentní se schema:identifier."
+        },
+        {
+          "@language": "da",
+          "@value": "En generisk identifikator for en ressource. Den svarer til schema:identifier."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein generischer Identifikator für eine Ressource. Er entspricht schema:identifier."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα γενικό αναγνωριστικό για έναν πόρο. Είναι ισοδύναμο με το schema:identifier."
+        },
+        {
+          "@language": "es",
+          "@value": "Un identificador genérico para un recurso. Es equivalente a schema:identifier."
+        },
+        {
+          "@language": "et",
+          "@value": "Üldine identifikaator ressursi jaoks. See on samaväärne omadusega schema:identifier."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yleinen tunniste resurssille. Se vastaa ominaisuutta schema:identifier."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un identifiant générique pour une ressource. Il est équivalent à schema:identifier."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir cineálach d'acmhainn. Tá sé coibhéiseach le schema:identifier."
+        },
+        {
+          "@language": "hr",
+          "@value": "Generički identifikator za resurs. Ekvivalentan je schema:identifier."
+        },
+        {
+          "@language": "hu",
+          "@value": "Általános azonosító egy erőforráshoz. Egyenértékű a schema:identifier tulajdonsággal."
+        },
+        {
+          "@language": "it",
+          "@value": "Un identificatore generico per una risorsa. È equivalente a schema:identifier."
+        },
+        {
+          "@language": "lt",
+          "@value": "Bendrasis ištekliaus identifikatorius. Jis atitinka schema:identifier."
+        },
+        {
+          "@language": "lv",
+          "@value": "Vispārīgs resursa identifikators. Tas ir līdzvērtīgs schema:identifier."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur ġeneriku għal riżors. Huwa ekwivalenti għal schema:identifier."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een generieke identificatiecode voor een bron. Het is equivalent aan schema:identifier."
+        },
+        {
+          "@language": "pl",
+          "@value": "Ogólny identyfikator zasobu. Jest tożsamym z schema:identifier."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um identificador genérico para um recurso. É equivalente a schema:identifier."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un identificator generic pentru o resursă. Este echivalent cu schema:identifier."
+        },
+        {
+          "@language": "sk",
+          "@value": "Všeobecný identifikátor pre zdroj. Je ekvivalentný k schema:identifier."
+        },
+        {
+          "@language": "sl",
+          "@value": "Splošni identifikator za vir. Enakovreden je schema:identifier."
+        },
+        {
+          "@language": "sv",
+          "@value": "En generisk identifierare för en resurs. Den motsvarar schema:identifier."
+        }
+      ],
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Identifier"
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor"
+        },
+        {
+          "@language": "da",
+          "@value": "Identifikator"
+        },
+        {
+          "@language": "de",
+          "@value": "Identifikator"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador"
+        },
+        {
+          "@language": "et",
+          "@value": "Identifikaator"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tunniste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator"
+        },
+        {
+          "@language": "hu",
+          "@value": "Azonosító"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore"
+        },
+        {
+          "@language": "lt",
+          "@value": "Identifikatorius"
+        },
+        {
+          "@language": "lv",
+          "@value": "Identifikators"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Identificatiecode"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator"
+        },
+        {
+          "@language": "sv",
+          "@value": "Identifierare"
+        }
+      ],
+      "owl:equivalentProperty": {
+        "@id": "schema:identifier"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    }
+  ]
+}

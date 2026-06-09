@@ -1,0 +1,110 @@
+{
+  "dpp-validator": [
+    {
+      "@language": "en",
+      "@value": "DPP Validator"
+    }
+  ],
+  "official-json-schema-validation-tool": [
+    {
+      "@language": "en",
+      "@value": "Official JSON Schema Validation Tool"
+    }
+  ],
+  "home-wizard": [
+    {
+      "@language": "en",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Home</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Wizard</a>"
+    }
+  ],
+  "json-dpp-validator": [
+    {
+      "@language": "en",
+      "@value": "JSON DPP Validator"
+    }
+  ],
+  "paste-a-dpp-json-file": [
+    {
+      "@language": "en",
+      "@value": "Paste a DPP JSON file below to validate it against the official schemas (Core + Sectors) or try it out with one of our examples."
+    }
+  ],
+  "load-example": [
+    {
+      "@language": "en",
+      "@value": "Load Example:"
+    }
+  ],
+  "select-an-example": [
+    {
+      "@language": "en",
+      "@value": "-- Select an example --"
+    }
+  ],
+  "language": [
+    {
+      "@language": "en",
+      "@value": "Language:"
+    }
+  ],
+  "validate": [
+    {
+      "@language": "en",
+      "@value": "Validate"
+    }
+  ],
+  "visualization": [
+    {
+      "@language": "en",
+      "@value": "Visualization"
+    }
+  ],
+  "preview-html-with-schema-org": [
+    {
+      "@language": "en",
+      "@value": "Preview HTML With Schema.org"
+    }
+  ],
+  "preview-html-without-schema": [
+    {
+      "@language": "en",
+      "@value": "Preview HTML Without Schema"
+    }
+  ],
+  "preview-schema-org": [
+    {
+      "@language": "en",
+      "@value": "Preview Schema.org"
+    }
+  ],
+  "about-these-tools": [
+    {
+      "@language": "en",
+      "@value": "About these tools:"
+    }
+  ],
+  "html-preview-renders-your-json": [
+    {
+      "@language": "en",
+      "@value": "<strong>HTML Preview:</strong> Renders your JSON data into a user-friendly web page. This feature uses code freely available in our Developer SDKs and is intended to serve as inspiration for how a legally compliant JSON DPP can be visualized."
+    }
+  ],
+  "schema-org-generation-transforms-your": [
+    {
+      "@language": "en",
+      "@value": "<strong>Schema.org Generation:</strong> Transforms your DPP data into <a href=\"https://schema.org/Product\" target=\"_blank\">Schema.org Product</a> structured data (JSON-LD). This format is optimized for search engines (Google, Bing) and e-commerce integration, making your product data machine-readable and discoverable."
+    }
+  ],
+  "part-of-the-dpp-keystone": [
+    {
+      "@language": "en",
+      "@value": "Part of the <a href=\"../index.html\">DPP Keystone</a> project. | <a href=\"../impressum.html\">Impressum / Legal Notice</a>"
+    }
+  ],
+  "custom-css-url-optional": [
+    {
+      "@language": "en",
+      "@value": "Custom CSS URL (optional)"
+    }
+  ]
+}

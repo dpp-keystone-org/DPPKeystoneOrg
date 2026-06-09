@@ -1,0 +1,164 @@
+{
+  "dpp-keystone": [
+    {
+      "@language": "en",
+      "@value": "DPP Keystone"
+    }
+  ],
+  "harmonizing-data-for-the-digital": [
+    {
+      "@language": "en",
+      "@value": "Harmonizing Data for the Digital Product Passport"
+    }
+  ],
+  "dpp-csv-adapter": [
+    {
+      "@language": "en",
+      "@value": "DPP CSV Adapter"
+    }
+  ],
+  "back-to-home": [
+    {
+      "@language": "en",
+      "@value": "← Back to Home"
+    }
+  ],
+  "1-load-data": [
+    {
+      "@language": "en",
+      "@value": "1. Load Data"
+    }
+  ],
+  "target-sector-s": [
+    {
+      "@language": "en",
+      "@value": "Target Sector(s):"
+    }
+  ],
+  "battery": [
+    {
+      "@language": "en",
+      "@value": "Battery"
+    }
+  ],
+  "construction": [
+    {
+      "@language": "en",
+      "@value": "Construction"
+    }
+  ],
+  "electronics": [
+    {
+      "@language": "en",
+      "@value": "Electronics"
+    }
+  ],
+  "iron-amp-steel": [
+    {
+      "@language": "en",
+      "@value": "Iron &amp; Steel"
+    }
+  ],
+  "textile": [
+    {
+      "@language": "en",
+      "@value": "Textile"
+    }
+  ],
+  "packaging-add-on": [
+    {
+      "@language": "en",
+      "@value": "Packaging (Add-on)"
+    }
+  ],
+  "select-a-csv-file-containing": [
+    {
+      "@language": "en",
+      "@value": "Select a CSV file containing your product data. The first row must contain headers."
+    }
+  ],
+  "drag-amp-drop-csv-here": [
+    {
+      "@language": "en",
+      "@value": "Drag &amp; Drop CSV here or"
+    }
+  ],
+  "2-map-fields": [
+    {
+      "@language": "en",
+      "@value": "2. Map Fields"
+    }
+  ],
+  "map-your-csv-columns-to": [
+    {
+      "@language": "en",
+      "@value": "Map your CSV columns to standard DPP fields. Unmapped columns will be ignored. <strong>You must confirm every row (mapped or ignored) by checking the box on the right.</strong> Once reviewed, you can \"Save Mapping Config\" for later or \"Generate DPPs\" using the button at the bottom."
+    }
+  ],
+  "load-mapping-config": [
+    {
+      "@language": "en",
+      "@value": "Load Mapping Config"
+    }
+  ],
+  "save-mapping-config": [
+    {
+      "@language": "en",
+      "@value": "Save Mapping Config"
+    }
+  ],
+  "show-incompatible-fields": [
+    {
+      "@language": "en",
+      "@value": "Show incompatible fields"
+    }
+  ],
+  "csv-header": [
+    {
+      "@language": "en",
+      "@value": "CSV Header"
+    }
+  ],
+  "sample-value": [
+    {
+      "@language": "en",
+      "@value": "Sample Value"
+    }
+  ],
+  "target-dpp-field": [
+    {
+      "@language": "en",
+      "@value": "Target DPP Field"
+    }
+  ],
+  "review": [
+    {
+      "@language": "en",
+      "@value": "Review"
+    }
+  ],
+  "3-generate": [
+    {
+      "@language": "en",
+      "@value": "3. Generate"
+    }
+  ],
+  "generate-a-single-json-file": [
+    {
+      "@language": "en",
+      "@value": "Generate a single JSON file containing an array of all Digital Product Passports based on your mapping. <i>Note: This batch export format is designed for portability. Future updates may include options for direct API uploads or segmented file generation to align with emerging DPP infrastructure standards.</i>"
+    }
+  ],
+  "generate-dpps": [
+    {
+      "@language": "en",
+      "@value": "Generate DPPs"
+    }
+  ],
+  "part-of-the-dpp-keystone": [
+    {
+      "@language": "en",
+      "@value": "Part of the <a href=\"../index.html\">DPP Keystone</a> project. | <a href=\"../impressum.html\">Impressum / Legal Notice</a>"
+    }
+  ]
+}

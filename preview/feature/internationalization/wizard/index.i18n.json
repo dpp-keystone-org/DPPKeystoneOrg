@@ -1,0 +1,188 @@
+{
+  "dpp-keystone": [
+    {
+      "@language": "en",
+      "@value": "DPP Keystone"
+    }
+  ],
+  "harmonizing-data-for-the-digital": [
+    {
+      "@language": "en",
+      "@value": "Harmonizing Data for the Digital Product Passport"
+    }
+  ],
+  "dpp-wizard": [
+    {
+      "@language": "en",
+      "@value": "DPP Wizard"
+    }
+  ],
+  "language": [
+    {
+      "@language": "en",
+      "@value": "Language:"
+    }
+  ],
+  "1-select-applicable-sectors": [
+    {
+      "@language": "en",
+      "@value": "1. Select Applicable Sectors"
+    }
+  ],
+  "add-battery": [
+    {
+      "@language": "en",
+      "@value": "Add Battery"
+    }
+  ],
+  "add-construction": [
+    {
+      "@language": "en",
+      "@value": "Add Construction"
+    }
+  ],
+  "add-electronics": [
+    {
+      "@language": "en",
+      "@value": "Add Electronics"
+    }
+  ],
+  "add-iron-or-steel": [
+    {
+      "@language": "en",
+      "@value": "Add Iron or Steel"
+    }
+  ],
+  "add-textile": [
+    {
+      "@language": "en",
+      "@value": "Add Textile"
+    }
+  ],
+  "2-add-voluntary-information-amp": [
+    {
+      "@language": "en",
+      "@value": "2. Add Voluntary Information &amp; Contexts"
+    }
+  ],
+  "add-general-product-information": [
+    {
+      "@language": "en",
+      "@value": "Add General Product Information"
+    }
+  ],
+  "add-packaging": [
+    {
+      "@language": "en",
+      "@value": "Add Packaging"
+    }
+  ],
+  "external-contexts": [
+    {
+      "@language": "en",
+      "@value": "External Contexts"
+    }
+  ],
+  "add-external-json-ld-contexts": [
+    {
+      "@language": "en",
+      "@value": "Add external JSON-LD contexts or namespaces to use custom prefixes (e.g. <code>ex:myField</code>)."
+    }
+  ],
+  "add-context": [
+    {
+      "@language": "en",
+      "@value": "Add Context"
+    }
+  ],
+  "custom-fields": [
+    {
+      "@language": "en",
+      "@value": "Custom Fields"
+    }
+  ],
+  "add-field": [
+    {
+      "@language": "en",
+      "@value": "Add Field"
+    }
+  ],
+  "3-generate-passport": [
+    {
+      "@language": "en",
+      "@value": "3. Generate Passport"
+    }
+  ],
+  "generate-dpp": [
+    {
+      "@language": "en",
+      "@value": "Generate DPP"
+    }
+  ],
+  "generated-json": [
+    {
+      "@language": "en",
+      "@value": "Generated JSON"
+    }
+  ],
+  "visualization": [
+    {
+      "@language": "en",
+      "@value": "Visualization"
+    }
+  ],
+  "custom-css-url-optional": [
+    {
+      "@language": "en",
+      "@value": "Custom CSS URL (optional):"
+    }
+  ],
+  "preview-html-with-schema-org": [
+    {
+      "@language": "en",
+      "@value": "Preview HTML With Schema.org"
+    }
+  ],
+  "preview-html-without-schema": [
+    {
+      "@language": "en",
+      "@value": "Preview HTML Without Schema"
+    }
+  ],
+  "preview-schema-org": [
+    {
+      "@language": "en",
+      "@value": "Preview Schema.org"
+    }
+  ],
+  "about-these-tools": [
+    {
+      "@language": "en",
+      "@value": "About these tools:"
+    }
+  ],
+  "html-preview-renders-your-json": [
+    {
+      "@language": "en",
+      "@value": "<strong>HTML Preview:</strong> Renders your JSON data into a user-friendly web page. This feature uses code freely available in our Developer SDKs and is intended to serve as inspiration for how a legally compliant JSON DPP can be visualized."
+    }
+  ],
+  "schema-org-generation-transforms-your": [
+    {
+      "@language": "en",
+      "@value": "<strong>Schema.org Generation:</strong> Transforms your DPP data into <a href=\"https://schema.org/Product\" target=\"_blank\">Schema.org Product</a> structured data (JSON-LD). This format is optimized for search engines (Google, Bing) and e-commerce integration, making your product data machine-readable and discoverable."
+    }
+  ],
+  "part-of-the-dpp-keystone": [
+    {
+      "@language": "en",
+      "@value": "Part of the <a href=\"../index.html\">DPP Keystone</a> project. | <a href=\"../impressum.html\">Impressum / Legal Notice</a>"
+    }
+  ],
+  "https-example-com-style-css": [
+    {
+      "@language": "en",
+      "@value": "https://example.com/style.css"
+    }
+  ]
+}

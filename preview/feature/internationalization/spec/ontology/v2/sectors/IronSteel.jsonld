@@ -1,0 +1,3806 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/IronSteel",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Iron & Steel Sector Ontology",
+  "dcterms:description": "Defines the specific data model for the Iron and Steel Passport, covering ESPR and MTC attributes.",
+  "rdfs:label": [
+    {
+      "@language": "en",
+      "@value": "DPP Iron & Steel Sector Ontology"
+    },
+    {
+      "@language": "bg",
+      "@value": "Онтология на сектора на желязото и стоманата на ЦПП"
+    },
+    {
+      "@language": "cs",
+      "@value": "Ontologie odvětví železa a oceli DPP"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Jern- og stålsektorontologi"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP Eisen- und Stahlsektor-Ontologie"
+    },
+    {
+      "@language": "el",
+      "@value": "Οντολογία τομέα σιδήρου και χάλυβα DPP"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología del sector del hierro y el acero del DPP"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP raua- ja terasesektori ontoloogia"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP:n rauta- ja teräsalan ontologia"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie du secteur du fer et de l'acier du DPP"
+    },
+    {
+      "@language": "ga",
+      "@value": "Ointeolaíocht Earnáil Iarainn agus Cruach DPP"
+    },
+    {
+      "@language": "hr",
+      "@value": "Ontologija sektora željeza i čelika DPP-a"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP vas- és acélágazati ontológia"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia del settore siderurgico del DPP"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP geležies ir plieno sektoriaus ontologija"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP dzelzs un tērauda nozares ontoloģija"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija tas-Settur tal-Ħadid u l-Azzar tad-DPP"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP IJzer- en staalsectorontologie"
+    },
+    {
+      "@language": "pl",
+      "@value": "Ontologia sektora żelaza i stali DPP"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia do Setor do Ferro e do Aço do DPP"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia sectorului siderurgic al DPP"
+    },
+    {
+      "@language": "sk",
+      "@value": "Ontológia odvetvia železa a ocele DPP"
+    },
+    {
+      "@language": "sl",
+      "@value": "Ontologija sektorja železa in jekla DPP"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP järn- och stålsektorontologi"
+    }
+  ],
+  "rdfs:comment": [
+    {
+      "@language": "en",
+      "@value": "Defines the specific data model for the Iron and Steel Passport, covering ESPR and Mill Test Certificate (MTC) attributes."
+    },
+    {
+      "@language": "bg",
+      "@value": "Определя специфичния модел на данни за паспорта за желязо и стомана, обхващащ атрибутите на ESPR и сертификата за изпитване на прокатното производство (MTC)."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje specifický datový model pro pas železa a oceli, pokrývající atributy ESPR a certifikátu zkoušky válcovny (MTC)."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer den specifikke datamodel for jern- og stålpasset, der dækker attributter for ESPR og valseværkscertifikat (MTC)."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert das spezifische Datenmodell für den Eisen- und Stahlpass, das die Attribute von ESPR und des Werkszeugnisses (MTC) abdeckt."
+    },
+    {
+      "@language": "el",
+      "@value": "Καθορίζει το συγκεκριμένο μοντέλο δεδομένων για το Διαβατήριο Σιδήρου και Χάλυβα, καλύπτοντας τα χαρακτηριστικά ESPR και Πιστοποιητικού Δοκιμής Μύλου (MTC)."
+    },
+    {
+      "@language": "es",
+      "@value": "Define el modelo de datos específico para el Pasaporte de Hierro y Acero, cubriendo los atributos de ESPR y del Certificado de Prueba de Molino (MTC)."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb raua- ja terasepassi spetsiifilise andmemudeli, hõlmates ESPR-i ja valtsimistehase katsetunnistuse (MTC) atribuute."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää rauta- ja teräspassin tietomallin, joka kattaa ESPR:n ja tehdas- tai ainestodistuksen (MTC) ominaisuudet."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit le modèle de données spécifique pour le passeport pour le fer et l'acier, couvrant les attributs ESPR et le certificat de contrôle d'usine (MTC)."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé an tsamhail sonraí sainiúil don Phas Iarainn agus Cruach, a chlúdaíonn tréithe ESPR agus Teastais Tástála Muilinn (MTC)."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira specifični model podataka za putovnicu za željezo i čelik, pokrivajući atribute ESPR-a i certifikata o ispitivanju u valjaonici (MTC)."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a vas- és acélútlevél specifikus adatmodelljét, kiterjedve az ESPR és a műbizonylat (MTC) attribútumaira."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce il modello di dati specifico per il passaporto per ferro e acciaio, coprendo gli attributi ESPR e del certificato di prova del laminatoio (MTC)."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia specifinį geležies ir plieno paso duomenų modelį, apimantį ESPR ir gamyklos bandymų sertifikato (MTC) atributus."
+    },
+    {
+      "@language": "lv",
+      "@value": "Nosaka specifisko datu modeli dzelzs un tērauda pasei, ietverot ESPR un rūpnīcas pārbaudes sertifikāta (MTC) atribūtus."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-mudell ta' data speċifiku għall-Passaport tal-Ħadid u l-Azzar, li jkopri l-attributi tal-ESPR u taċ-Ċertifikat tat-Test tal-Mitħna (MTC)."
+    },
+    {
+      "@language": "nl",
+      "@value": "Bepaalt het specifieke datamodel voor het ijzer- en staalpaspoort, waarbij ESPR- en walserijtestcertificaat (MTC)-attributen worden gedekt."
+    },
+    {
+      "@language": "pl",
+      "@value": "Określa specyficzny model danych dla paszportu dla żelaza i stali, obejmujący atrybuty ESPR i świadectwa odbioru (MTC)."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define o modelo de dados específico para o Passaporte de Ferro e Aço, cobrindo os atributos do ESPR e do Certificado de Teste de Fábrica (MTC)."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește modelul specific de date pentru Pașaportul pentru fier și oțel, acoperind atributele ESPR și ale certificatului de testare a fabricii (MTC)."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje špecifický dátový model pre pas pre železo a oceľ, ktorý pokrýva atribúty ESPR a osvedčenia o skúške z valcovne (MTC)."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa specifičen podatkovni model za potni list za železo in jeklo, ki zajema atribute ESPR in potrdila o tovarniškem preskusu (MTC)."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar den specifika datamodellen för järn- och stålpasset, som täcker attribut för ESPR och verktygsintyg (MTC)."
+    }
+  ],
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPD.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/DoPC.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Visibility.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/MTC.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:IronSteelProduct",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Iron and Steel Product"
+        },
+        {
+          "@language": "bg",
+          "@value": "Железен и стоманен продукт"
+        },
+        {
+          "@language": "cs",
+          "@value": "Výrobek ze železa a oceli"
+        },
+        {
+          "@language": "da",
+          "@value": "Jern- og stålprodukt"
+        },
+        {
+          "@language": "de",
+          "@value": "Eisen- und Stahlprodukt"
+        },
+        {
+          "@language": "el",
+          "@value": "Προϊόν σιδήρου και χάλυβα"
+        },
+        {
+          "@language": "es",
+          "@value": "Producto de hierro y acero"
+        },
+        {
+          "@language": "et",
+          "@value": "Raua- ja terasetoode"
+        },
+        {
+          "@language": "fi",
+          "@value": "Rauta- ja terästuote"
+        },
+        {
+          "@language": "fr",
+          "@value": "Produit en fer et en acier"
+        },
+        {
+          "@language": "ga",
+          "@value": "Táirge Iarainn agus Cruach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Proizvod od željeza i čelika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Vas- és acéltermék"
+        },
+        {
+          "@language": "it",
+          "@value": "Prodotto in ferro e acciaio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Geležies ir plieno produktas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Dzelzs un tērauda izstrādājums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Prodott tal-Ħadid u l-Azzar"
+        },
+        {
+          "@language": "nl",
+          "@value": "IJzer- en staalproduct"
+        },
+        {
+          "@language": "pl",
+          "@value": "Produkt z żelaza i stali"
+        },
+        {
+          "@language": "pt",
+          "@value": "Produto de ferro e aço"
+        },
+        {
+          "@language": "ro",
+          "@value": "Produs din fier și oțel"
+        },
+        {
+          "@language": "sk",
+          "@value": "Výrobok zo železa a ocele"
+        },
+        {
+          "@language": "sl",
+          "@value": "Izdelek iz železa in jekla"
+        },
+        {
+          "@language": "sv",
+          "@value": "Järn- och stålprodukt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Data model for the Iron and Steel Passport according to EU ESPR."
+        },
+        {
+          "@language": "bg",
+          "@value": "Модел на данни за паспорта за желязо и стомана съгласно ESPR на ЕС."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datový model pro pas železa a oceli podle nařízení EU ESPR."
+        },
+        {
+          "@language": "da",
+          "@value": "Datamodel for jern- og stålpasset i henhold til EU ESPR."
+        },
+        {
+          "@language": "de",
+          "@value": "Datenmodell für den Eisen- und Stahlpass gemäß EU-ESPR."
+        },
+        {
+          "@language": "el",
+          "@value": "Μοντέλο δεδομένων για το διαβατήριο σιδήρου και χάλυβα σύμφωνα με το ESPR της ΕΕ."
+        },
+        {
+          "@language": "es",
+          "@value": "Modelo de datos para el pasaporte de hierro y acero de acuerdo con el ESPR de la UE."
+        },
+        {
+          "@language": "et",
+          "@value": "Raua- ja terasepassi andmemudel vastavalt ELi ESPR-ile."
+        },
+        {
+          "@language": "fi",
+          "@value": "EU:n ESPR-asetuksen mukainen rauta- ja teräspassin tietomalli."
+        },
+        {
+          "@language": "fr",
+          "@value": "Modèle de données pour le passeport pour le fer et l'acier selon l'ESPR de l'UE."
+        },
+        {
+          "@language": "ga",
+          "@value": "Samhail sonraí don Phas Iarainn agus Cruach de réir ESPR an AE."
+        },
+        {
+          "@language": "hr",
+          "@value": "Model podataka za putovnicu za željezo i čelik u skladu s EU ESPR-om."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az EU ESPR szerinti vas- és acélútlevél adatmodellje."
+        },
+        {
+          "@language": "it",
+          "@value": "Modello di dati per il passaporto per ferro e acciaio secondo l'ESPR dell'UE."
+        },
+        {
+          "@language": "lt",
+          "@value": "Geležies ir plieno paso duomenų modelis pagal ES ESPR."
+        },
+        {
+          "@language": "lv",
+          "@value": "Dzelzs un tērauda pases datu modelis saskaņā ar ES ESPR."
+        },
+        {
+          "@language": "mt",
+          "@value": "Mudell ta' data għall-Passaport tal-Ħadid u l-Azzar skont l-ESPR tal-UE."
+        },
+        {
+          "@language": "nl",
+          "@value": "Datamodel voor het ijzer- en staalpaspoort volgens EU ESPR."
+        },
+        {
+          "@language": "pl",
+          "@value": "Model danych dla paszportu dla żelaza i stali zgodnie z unijnym rozporządzeniem ESPR."
+        },
+        {
+          "@language": "pt",
+          "@value": "Modelo de dados para o passaporte de ferro e aço de acordo com o ESPR da UE."
+        },
+        {
+          "@language": "ro",
+          "@value": "Model de date pentru pașaportul pentru fier și oțel conform ESPR al UE."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátový model pre pas pre železo a oceľ podľa nariadenia EÚ ESPR."
+        },
+        {
+          "@language": "sl",
+          "@value": "Podatkovni model za potni list za železo in jeklo v skladu z uredbo EU ESPR."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datamodell för järn- och stålpasset enligt EU:s ESPR."
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:heatNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Heat Number"
+        },
+        {
+          "@language": "bg",
+          "@value": "Номер на топене"
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo tavby"
+        },
+        {
+          "@language": "da",
+          "@value": "Heat-nummer"
+        },
+        {
+          "@language": "de",
+          "@value": "Chargennummer"
+        },
+        {
+          "@language": "el",
+          "@value": "Αριθμός χύτευσης"
+        },
+        {
+          "@language": "es",
+          "@value": "Número de colada"
+        },
+        {
+          "@language": "et",
+          "@value": "Sulatusnumber"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sulatusnumero"
+        },
+        {
+          "@language": "fr",
+          "@value": "Numéro de coulée"
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir Leáite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj taline"
+        },
+        {
+          "@language": "hu",
+          "@value": "Adagszám"
+        },
+        {
+          "@language": "it",
+          "@value": "Numero di colata"
+        },
+        {
+          "@language": "lt",
+          "@value": "Lydymo numeris"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kausējuma numurs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Numru tal-Funderija"
+        },
+        {
+          "@language": "nl",
+          "@value": "Chargenummer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer wytopu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Número da corrida"
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul șarjei"
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo tavby"
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka taline"
+        },
+        {
+          "@language": "sv",
+          "@value": "Charge-nummer"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The heat number for iron and steel to serve as a lot-level identifier."
+        },
+        {
+          "@language": "bg",
+          "@value": "Номерът на топене на желязото и стоманата, който служи като идентификатор на партида."
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo tavby pro železo a ocel sloužící jako identifikátor na úrovni šarže."
+        },
+        {
+          "@language": "da",
+          "@value": "Heat-nummeret for jern og stål, der fungerer som en lot-identifikator."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Chargennummer für Eisen und Stahl, die als Identifikator auf Los-Ebene dient."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο αριθμός χύτευσης για σίδηρο και χάλυβα που χρησιμεύει ως αναγνωριστικό επιπέδου παρτίδας."
+        },
+        {
+          "@language": "es",
+          "@value": "El número de colada para el hierro y el acero que sirve como identificador a nivel de lote."
+        },
+        {
+          "@language": "et",
+          "@value": "Raua ja terase sulatusnumber, mis toimib partii taseme identifikaatorina."
+        },
+        {
+          "@language": "fi",
+          "@value": "Raudan ja teräksen sulatusnumero, joka toimii erätason tunnisteena."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le numéro de coulée pour le fer et l'acier servant d'identifiant au niveau du lot."
+        },
+        {
+          "@language": "ga",
+          "@value": "An uimhir leáite d'iarann agus cruach chun feidhmiú mar aitheantóir ag leibhéal an bhais."
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj taline za željezo i čelik koji služi kao identifikator na razini serije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A vas és acél adagszáma, amely tételszintű azonosítóként szolgál."
+        },
+        {
+          "@language": "it",
+          "@value": "Il numero di colata per ferro e acciaio che funge da identificatore a livello di lotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Geležies ir plieno lydymo numeris, naudojamas kaip partijos lygio identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Dzelzs un tērauda kausējuma numurs, kas kalpo kā partijas līmeņa identifikators."
+        },
+        {
+          "@language": "mt",
+          "@value": "In-numru tal-funderija għall-ħadid u l-azzar biex iservi bħala identifikatur fil-livell tal-lott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het chargenummer voor ijzer en staal dat dient als identificatie op partijniveau."
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer wytopu żelaza i stali służący jako identyfikator na poziomie partii."
+        },
+        {
+          "@language": "pt",
+          "@value": "O número da corrida para ferro e aço para servir como um identificador ao nível do lote."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul șarjei pentru fier și oțel care servește drept identificator la nivel de lot."
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo tavby pre železo a oceľ slúžiace ako identifikátor na úrovni šarže."
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka taline za železo in jeklo, ki služi kot identifikator na ravni serije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Charge-numret för järn och stål som fungerar som en lot-identifierare."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:batchLot"
+        },
+        {
+          "@id": "schema:sku"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:productNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Product Number"
+        },
+        {
+          "@language": "bg",
+          "@value": "Номер на продукта"
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo výrobku"
+        },
+        {
+          "@language": "da",
+          "@value": "Produktnummer"
+        },
+        {
+          "@language": "de",
+          "@value": "Produktnummer"
+        },
+        {
+          "@language": "el",
+          "@value": "Αριθμός προϊόντος"
+        },
+        {
+          "@language": "es",
+          "@value": "Número de producto"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootenumber"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotenumero"
+        },
+        {
+          "@language": "fr",
+          "@value": "Numéro de produit"
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir an Táirge"
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj proizvoda"
+        },
+        {
+          "@language": "hu",
+          "@value": "Termékszám"
+        },
+        {
+          "@language": "it",
+          "@value": "Numero di prodotto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Produkto numeris"
+        },
+        {
+          "@language": "lv",
+          "@value": "Produkta numurs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Numru tal-Prodott"
+        },
+        {
+          "@language": "nl",
+          "@value": "Productnummer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer produktu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Número do produto"
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul produsului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo výrobku"
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka izdelka"
+        },
+        {
+          "@language": "sv",
+          "@value": "Produktnummer"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "An internal identifier at the article level."
+        },
+        {
+          "@language": "bg",
+          "@value": "Вътрешен идентификатор на ниво артикул."
+        },
+        {
+          "@language": "cs",
+          "@value": "Interní identifikátor na úrovni položky."
+        },
+        {
+          "@language": "da",
+          "@value": "En intern identifikator på artikelniveau."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein interner Identifikator auf Artikelebene."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα εσωτερικό αναγνωριστικό σε επίπεδο άρθρου."
+        },
+        {
+          "@language": "es",
+          "@value": "Un identificador interno a nivel de artículo."
+        },
+        {
+          "@language": "et",
+          "@value": "Sisemine identifikaator artikli tasemel."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sisäinen tunniste artikkelitasolla."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un identifiant interne au niveau de l'article."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir inmheánach ag leibhéal an ailt."
+        },
+        {
+          "@language": "hr",
+          "@value": "Interni identifikator na razini artikla."
+        },
+        {
+          "@language": "hu",
+          "@value": "Belső azonosító cikkszinten."
+        },
+        {
+          "@language": "it",
+          "@value": "Un identificatore interno a livello di articolo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Vidinis identifikatorius prekės lygmeniu."
+        },
+        {
+          "@language": "lv",
+          "@value": "Iekšējais identifikators preces līmenī."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur intern fil-livell tal-artikolu."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een interne identificatiecode op artikelniveau."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wewnętrzny identyfikator na poziomie artykułu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um identificador interno ao nível do artigo."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un identificator intern la nivel de articol."
+        },
+        {
+          "@language": "sk",
+          "@value": "Interný identifikátor na úrovni položky."
+        },
+        {
+          "@language": "sl",
+          "@value": "Notranji identifikator na ravni artikla."
+        },
+        {
+          "@language": "sv",
+          "@value": "En intern identifierare på artikelnivå."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:productID"
+        },
+        {
+          "@id": "schema:model"
+        },
+        {
+          "@id": "gs1:globalModelNumber"
+        }
+      ],
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:manufacturingDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Manufacturing Date"
+        },
+        {
+          "@language": "bg",
+          "@value": "Дата на производство"
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum výroby"
+        },
+        {
+          "@language": "da",
+          "@value": "Fremstillingsdato"
+        },
+        {
+          "@language": "de",
+          "@value": "Herstellungsdatum"
+        },
+        {
+          "@language": "el",
+          "@value": "Ημερομηνία κατασκευής"
+        },
+        {
+          "@language": "es",
+          "@value": "Fecha de fabricación"
+        },
+        {
+          "@language": "et",
+          "@value": "Valmistamise kuupäev"
+        },
+        {
+          "@language": "fi",
+          "@value": "Valmistuspäivä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Date de fabrication"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dáta Déantúsaíochta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum proizvodnje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártási dátum"
+        },
+        {
+          "@language": "it",
+          "@value": "Data di produzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pagaminimo data"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražošanas datums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Data tal-Manifattura"
+        },
+        {
+          "@language": "nl",
+          "@value": "Productiedatum"
+        },
+        {
+          "@language": "pl",
+          "@value": "Data produkcji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Data de fabrico"
+        },
+        {
+          "@language": "ro",
+          "@value": "Data fabricației"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum výroby"
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum proizvodnje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Tillverkningsdatum"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The date on which the product was manufactured."
+        },
+        {
+          "@language": "bg",
+          "@value": "Датата, на която е произведен продуктът."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum, kdy byl produkt vyroben."
+        },
+        {
+          "@language": "da",
+          "@value": "Datoen for fremstilling af produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Datum, an dem das Produkt hergestellt wurde."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ημερομηνία κατασκευής του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "La fecha en la que se fabricó el producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Kuupäev, millal toode valmistati."
+        },
+        {
+          "@language": "fi",
+          "@value": "Päivämäärä, jolloin tuote valmistettiin."
+        },
+        {
+          "@language": "fr",
+          "@value": "La date à laquelle le produit a été fabriqué."
+        },
+        {
+          "@language": "ga",
+          "@value": "An dáta ar a ndearnadh an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum kada je proizvod proizveden."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termék gyártásának dátuma."
+        },
+        {
+          "@language": "it",
+          "@value": "La data in cui il prodotto è stato fabbricato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Data, kada produktas buvo pagamintas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datums, kurā produkts tika ražots."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-data li fiha ġie mmanifatturat il-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "De datum waarop het product is vervaardigd."
+        },
+        {
+          "@language": "pl",
+          "@value": "Data wyprodukowania produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "A data em que o produto foi fabricado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Data la care a fost fabricat produsul."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum, kedy bol výrobok vyrobený."
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum proizvodnje izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datumet då produkten tillverkades."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:date",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:productionDate"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:castNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Cast Number"
+        },
+        {
+          "@language": "bg",
+          "@value": "Номер на отливката"
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo odlitku"
+        },
+        {
+          "@language": "da",
+          "@value": "Støbenummer"
+        },
+        {
+          "@language": "de",
+          "@value": "Gussnummer"
+        },
+        {
+          "@language": "el",
+          "@value": "Αριθμός χύτευσης"
+        },
+        {
+          "@language": "es",
+          "@value": "Número de fundición"
+        },
+        {
+          "@language": "et",
+          "@value": "Valunumber"
+        },
+        {
+          "@language": "fi",
+          "@value": "Valunumero"
+        },
+        {
+          "@language": "fr",
+          "@value": "Numéro de coulée (Cast)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir Theilgthe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj odljevka"
+        },
+        {
+          "@language": "hu",
+          "@value": "Öntésszám"
+        },
+        {
+          "@language": "it",
+          "@value": "Numero di colata (Cast)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Liejimo numeris"
+        },
+        {
+          "@language": "lv",
+          "@value": "Lējuma numurs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Numru tal-Kastjar"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gietnummer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer odlewu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Número de fundição"
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul turnării"
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo odliatku"
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka ulitka"
+        },
+        {
+          "@language": "sv",
+          "@value": "Gjutnummer"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Optional batch-level identifier representing the specific cast."
+        },
+        {
+          "@language": "bg",
+          "@value": "Незадължителен идентификатор на ниво партида, представляващ специфичната отливка."
+        },
+        {
+          "@language": "cs",
+          "@value": "Volitelný identifikátor na úrovni šarže představující konkrétní odlitek."
+        },
+        {
+          "@language": "da",
+          "@value": "Valgfri identifikator på batch-niveau, der repræsenterer den specifikke støbning."
+        },
+        {
+          "@language": "de",
+          "@value": "Optionaler Identifikator auf Chargenebene, der den spezifischen Guss darstellt."
+        },
+        {
+          "@language": "el",
+          "@value": "Προαιρετικό αναγνωριστικό επιπέδου παρτίδας που αντιπροσωπεύει τη συγκεκριμένη χύτευση."
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador opcional a nivel de lote que representa la fundición específica."
+        },
+        {
+          "@language": "et",
+          "@value": "Valikuline partii taseme identifikaator, mis tähistab konkreetset valu."
+        },
+        {
+          "@language": "fi",
+          "@value": "Valinnainen erätason tunniste, joka edustaa tiettyä valua."
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant optionnel au niveau du lot représentant la coulée spécifique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir roghnach ag leibhéal an bhais a léiríonn an teilgean sainiúil."
+        },
+        {
+          "@language": "hr",
+          "@value": "Izborni identifikator na razini serije koji predstavlja specifični odljevak."
+        },
+        {
+          "@language": "hu",
+          "@value": "Opcionális tételszintű azonosító, amely a konkrét öntést képviseli."
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore opzionale a livello di lotto che rappresenta la colata specifica."
+        },
+        {
+          "@language": "lt",
+          "@value": "Neprivalomas partijos lygio identifikatorius, atspindintis konkretų liejimą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Neobligāts partijas līmeņa identifikators, kas norāda uz konkrēto lējumu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur fakultattiv fil-livell tal-lott li jirrappreżenta l-kastjar speċifiku."
+        },
+        {
+          "@language": "nl",
+          "@value": "Optionele identificatie op batchniveau die de specifieke gieting vertegenwoordigt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Opcjonalny identyfikator na poziomie partii reprezentujący konkretny odlew."
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador opcional ao nível do lote que representa a fundição específica."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator opțional la nivel de lot reprezentând turnarea specifică."
+        },
+        {
+          "@language": "sk",
+          "@value": "Voliteľný identifikátor na úrovni šarže predstavujúci konkrétny odliatok."
+        },
+        {
+          "@language": "sl",
+          "@value": "Izbirni identifikator na ravni serije, ki predstavlja specifičen ulitek."
+        },
+        {
+          "@language": "sv",
+          "@value": "Valfri identifierare på batch-nivå som representerar den specifika gjutningen."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:batchLot"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:lotNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Lot Number"
+        },
+        {
+          "@language": "bg",
+          "@value": "Номер на партида"
+        },
+        {
+          "@language": "cs",
+          "@value": "Číslo šarže"
+        },
+        {
+          "@language": "da",
+          "@value": "Lot-nummer"
+        },
+        {
+          "@language": "de",
+          "@value": "Losnummer"
+        },
+        {
+          "@language": "el",
+          "@value": "Αριθμός παρτίδας"
+        },
+        {
+          "@language": "es",
+          "@value": "Número de lote"
+        },
+        {
+          "@language": "et",
+          "@value": "Partii number"
+        },
+        {
+          "@language": "fi",
+          "@value": "Eränumero"
+        },
+        {
+          "@language": "fr",
+          "@value": "Numéro de lot"
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir Bhaisc"
+        },
+        {
+          "@language": "hr",
+          "@value": "Broj serije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tételszám"
+        },
+        {
+          "@language": "it",
+          "@value": "Numero di lotto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Partijos numeris"
+        },
+        {
+          "@language": "lv",
+          "@value": "Partijas numurs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Numru tal-Lott"
+        },
+        {
+          "@language": "nl",
+          "@value": "Partijnummer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer partii"
+        },
+        {
+          "@language": "pt",
+          "@value": "Número do lote"
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul lotului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Číslo šarže"
+        },
+        {
+          "@language": "sl",
+          "@value": "Številka serije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Lot-nummer"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Optional batch-level identifier representing the specific manufacturing lot."
+        },
+        {
+          "@language": "bg",
+          "@value": "Незадължителен идентификатор на ниво партида, представляващ конкретната производствена партида."
+        },
+        {
+          "@language": "cs",
+          "@value": "Volitelný identifikátor na úrovni šarže představující konkrétní výrobní šarži."
+        },
+        {
+          "@language": "da",
+          "@value": "Valgfri identifikator på batch-niveau, der repræsenterer den specifikke fremstillings-lot."
+        },
+        {
+          "@language": "de",
+          "@value": "Optionaler Identifikator auf Chargenebene, der das spezifische Fertigungslos darstellt."
+        },
+        {
+          "@language": "el",
+          "@value": "Προαιρετικό αναγνωριστικό επιπέδου παρτίδας που αντιπροσωπεύει τη συγκεκριμένη παρτίδα παραγωγής."
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador opcional a nivel de lote que representa el lote de fabricación específico."
+        },
+        {
+          "@language": "et",
+          "@value": "Valikuline partii taseme identifikaator, mis tähistab konkreetset tootmispartiid."
+        },
+        {
+          "@language": "fi",
+          "@value": "Valinnainen erätason tunniste, joka edustaa tiettyä valmistuserää."
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant optionnel au niveau du lot représentant le lot de fabrication spécifique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir roghnach ag leibhéal an bhais a léiríonn an baisc dhéantúsaíochta sainiúil."
+        },
+        {
+          "@language": "hr",
+          "@value": "Izborni identifikator na razini serije koji predstavlja specifičnu proizvodnu seriju."
+        },
+        {
+          "@language": "hu",
+          "@value": "Opcionális tételszintű azonosító, amely a konkrét gyártási tételt képviseli."
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore opzionale a livello di lotto che rappresenta lo specifico lotto di produzione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Neprivalomas partijos lygio identifikatorius, atspindintis konkrečią gamybos partiją."
+        },
+        {
+          "@language": "lv",
+          "@value": "Neobligāts partijas līmeņa identifikators, kas norāda uz konkrēto ražošanas partiju."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur fakultattiv fil-livell tal-lott li jirrappreżenta l-lott speċifiku tal-manifattura."
+        },
+        {
+          "@language": "nl",
+          "@value": "Optionele identificatie op batchniveau die de specifieke productiepartij vertegenwoordigt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Opcjonalny identyfikator na poziomie partii reprezentujący konkretną partię produkcyjną."
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador opcional ao nível do lote que representa o lote de fabrico específico."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator opțional la nivel de lot reprezentând lotul de fabricație specific."
+        },
+        {
+          "@language": "sk",
+          "@value": "Voliteľný identifikátor na úrovni šarže predstavujúci konkrétnu výrobnú šaržu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Izbirni identifikator na ravni serije, ki predstavlja specifično proizvodno serijo."
+        },
+        {
+          "@language": "sv",
+          "@value": "Valfri identifierare på batch-nivå som representerar den specifika tillverknings-lotten."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:batchLot"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:purchaserOrder",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Purchaser Order"
+        },
+        {
+          "@language": "bg",
+          "@value": "Поръчка на купувача"
+        },
+        {
+          "@language": "cs",
+          "@value": "Objednávka kupujícího"
+        },
+        {
+          "@language": "da",
+          "@value": "Købsordre"
+        },
+        {
+          "@language": "de",
+          "@value": "Kaufauftrag"
+        },
+        {
+          "@language": "el",
+          "@value": "Παραγγελία αγοραστή"
+        },
+        {
+          "@language": "es",
+          "@value": "Pedido del comprador"
+        },
+        {
+          "@language": "et",
+          "@value": "Ostja tellimus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ostotilaus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Commande de l'acheteur"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ordú Ceannaitheora"
+        },
+        {
+          "@language": "hr",
+          "@value": "Narudžba kupca"
+        },
+        {
+          "@language": "hu",
+          "@value": "Vevői megrendelés"
+        },
+        {
+          "@language": "it",
+          "@value": "Ordine dell'acquirente"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pirkėjo užsakymas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pircēja pasūtījums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ordni tax-Xerrej"
+        },
+        {
+          "@language": "nl",
+          "@value": "Kopersorder"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zamówienie kupującego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Ordem do comprador"
+        },
+        {
+          "@language": "ro",
+          "@value": "Comanda cumpărătorului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Objednávka kupujúceho"
+        },
+        {
+          "@language": "sl",
+          "@value": "Naročilo kupca"
+        },
+        {
+          "@language": "sv",
+          "@value": "Inköpsorder"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Associated purchase order identifier."
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на свързаната поръчка за покупка."
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor přidružené nákupní objednávky."
+        },
+        {
+          "@language": "da",
+          "@value": "Tilknyttet købsordreidentifikator."
+        },
+        {
+          "@language": "de",
+          "@value": "Zugehöriger Identifikator für die Bestellung."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό σχετικής παραγγελίας αγοράς."
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador de la orden de compra asociada."
+        },
+        {
+          "@language": "et",
+          "@value": "Seotud ostutellimuse identifikaator."
+        },
+        {
+          "@language": "fi",
+          "@value": "Liittyvän ostotilauksen tunniste."
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant du bon de commande associé."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir an ordaithe ceannaigh gaolmhair."
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator povezane narudžbenice."
+        },
+        {
+          "@language": "hu",
+          "@value": "A kapcsolódó beszerzési megrendelés azonosítója."
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore dell'ordine di acquisto associato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susijusio pirkimo užsakymo identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saistītā pirkuma pasūtījuma identifikators."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur tal-ordni tax-xiri assoċjat."
+        },
+        {
+          "@language": "nl",
+          "@value": "Bijbehorende inkooporderidentificatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator powiązanego zamówienia zakupu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador da nota de encomenda associada."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul comenzii de achiziție asociate."
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor pridruženej nákupnej objednávky."
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator povezanega nabavnega naročila."
+        },
+        {
+          "@language": "sv",
+          "@value": "Tillhörande inköpsorderidentifierare."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:orderNumber"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:steelGradeClassification",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Steel Grade Classification"
+        },
+        {
+          "@language": "bg",
+          "@value": "Класификация на марката стомана"
+        },
+        {
+          "@language": "cs",
+          "@value": "Klasifikace třídy oceli"
+        },
+        {
+          "@language": "da",
+          "@value": "Stålkvalitetsklassificering"
+        },
+        {
+          "@language": "de",
+          "@value": "Stahlsortenklassifizierung"
+        },
+        {
+          "@language": "el",
+          "@value": "Ταξινόμηση ποιότητας χάλυβα"
+        },
+        {
+          "@language": "es",
+          "@value": "Clasificación del grado de acero"
+        },
+        {
+          "@language": "et",
+          "@value": "Teraseklassi klassifikatsioon"
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräslaadun luokitus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Classification de la nuance d'acier"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicmiú Grád Cruach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Klasifikacija kvalitete čelika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Acélminőség osztályozása"
+        },
+        {
+          "@language": "it",
+          "@value": "Classificazione del grado di acciaio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Plieno markės klasifikacija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tērauda markas klasifikācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Klassifikazzjoni tal-Grad tal-Azzar"
+        },
+        {
+          "@language": "nl",
+          "@value": "Staalkwaliteitclassificatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasyfikacja gatunku stali"
+        },
+        {
+          "@language": "pt",
+          "@value": "Classificação do grau de aço"
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasificarea mărcii de oțel"
+        },
+        {
+          "@language": "sk",
+          "@value": "Klasifikácia triedy ocele"
+        },
+        {
+          "@language": "sl",
+          "@value": "Klasifikacija kakovosti jekla"
+        },
+        {
+          "@language": "sv",
+          "@value": "Stålkvalitetsklassificering"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The classification of the steel grade."
+        },
+        {
+          "@language": "bg",
+          "@value": "Класификацията на марката стомана."
+        },
+        {
+          "@language": "cs",
+          "@value": "Klasifikace třídy oceli."
+        },
+        {
+          "@language": "da",
+          "@value": "Klassificeringen af stålkvaliteten."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Klassifizierung der Stahlsorte."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ταξινόμηση της ποιότητας του χάλυβα."
+        },
+        {
+          "@language": "es",
+          "@value": "La clasificación del grado de acero."
+        },
+        {
+          "@language": "et",
+          "@value": "Teraseklassi klassifikatsioon."
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräslaadun luokitus."
+        },
+        {
+          "@language": "fr",
+          "@value": "La classification de la nuance d'acier."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicmiú an ghrád cruach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Klasifikacija kvalitete čelika."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az acélminőség osztályozása."
+        },
+        {
+          "@language": "it",
+          "@value": "La classificazione del grado di acciaio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Plieno markės klasifikacija."
+        },
+        {
+          "@language": "lv",
+          "@value": "Tērauda markas klasifikācija."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-klassifikazzjoni tal-grad tal-azzar."
+        },
+        {
+          "@language": "nl",
+          "@value": "De classificatie van de staalkwaliteit."
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasyfikacja gatunku stali."
+        },
+        {
+          "@language": "pt",
+          "@value": "A classificação do grau de aço."
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasificarea mărcii de oțel."
+        },
+        {
+          "@language": "sk",
+          "@value": "Klasifikácia triedy ocele."
+        },
+        {
+          "@language": "sl",
+          "@value": "Klasifikacija kakovosti jekla."
+        },
+        {
+          "@language": "sv",
+          "@value": "Klassificeringen av stålkvaliteten."
+        }
+      ],
+      "dppk:governedBy": "EN 10020",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:steelDesignation",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Steel Designation"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обозначение на стоманата"
+        },
+        {
+          "@language": "cs",
+          "@value": "Označení oceli"
+        },
+        {
+          "@language": "da",
+          "@value": "Stålbetegnelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Stahlbezeichnung"
+        },
+        {
+          "@language": "el",
+          "@value": "Ονομασία χάλυβα"
+        },
+        {
+          "@language": "es",
+          "@value": "Designación del acero"
+        },
+        {
+          "@language": "et",
+          "@value": "Terase tähis"
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräksen nimike"
+        },
+        {
+          "@language": "fr",
+          "@value": "Désignation de l'acier"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainmniú Cruach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Oznaka čelika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Acél megnevezése"
+        },
+        {
+          "@language": "it",
+          "@value": "Designazione dell'acciaio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Plieno žymėjimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tērauda apzīmējums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Deżinjazzjoni tal-Azzar"
+        },
+        {
+          "@language": "nl",
+          "@value": "Staalaanduiding"
+        },
+        {
+          "@language": "pl",
+          "@value": "Oznaczenie stali"
+        },
+        {
+          "@language": "pt",
+          "@value": "Designação do aço"
+        },
+        {
+          "@language": "ro",
+          "@value": "Denumirea oțelului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Označenie ocele"
+        },
+        {
+          "@language": "sl",
+          "@value": "Oznaka jekla"
+        },
+        {
+          "@language": "sv",
+          "@value": "Stålbeteckning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The specific designation or name of the steel."
+        },
+        {
+          "@language": "bg",
+          "@value": "Специфичното обозначение или име на стоманата."
+        },
+        {
+          "@language": "cs",
+          "@value": "Specifické označení nebo název oceli."
+        },
+        {
+          "@language": "da",
+          "@value": "Den specifikke betegnelse eller navnet på stålet."
+        },
+        {
+          "@language": "de",
+          "@value": "Die spezifische Bezeichnung oder der Name des Stahls."
+        },
+        {
+          "@language": "el",
+          "@value": "Η συγκεκριμένη ονομασία ή το όνομα του χάλυβα."
+        },
+        {
+          "@language": "es",
+          "@value": "La designación o nombre específico del acero."
+        },
+        {
+          "@language": "et",
+          "@value": "Terase konkreetne tähis või nimi."
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräksen erityinen nimike tai nimi."
+        },
+        {
+          "@language": "fr",
+          "@value": "La désignation ou le nom spécifique de l'acier."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainmniú nó ainm sainiúil na cruach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Specifična oznaka ili naziv čelika."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az acél konkrét megnevezése vagy neve."
+        },
+        {
+          "@language": "it",
+          "@value": "La designazione o il nome specifico dell'acciaio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Konkretus plieno žymėjimas arba pavadinimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Konkrētais tērauda apzīmējums vai nosaukums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-deżinjazzjoni jew l-isem speċifiku tal-azzar."
+        },
+        {
+          "@language": "nl",
+          "@value": "De specifieke aanduiding of naam van het staal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Konkretne oznaczenie lub nazwa stali."
+        },
+        {
+          "@language": "pt",
+          "@value": "A designação ou nome específico do aço."
+        },
+        {
+          "@language": "ro",
+          "@value": "Denumirea sau numele specific al oțelului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Špecifické označenie alebo názov ocele."
+        },
+        {
+          "@language": "sl",
+          "@value": "Specifična oznaka ali ime jekla."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den specifika beteckningen eller namnet på stålet."
+        }
+      ],
+      "dppk:governedBy": "EN 10027",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:technologyRoute",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Technology Route"
+        },
+        {
+          "@language": "bg",
+          "@value": "Технологичен маршрут"
+        },
+        {
+          "@language": "cs",
+          "@value": "Technologická trasa"
+        },
+        {
+          "@language": "da",
+          "@value": "Teknologirute"
+        },
+        {
+          "@language": "de",
+          "@value": "Technologieroute"
+        },
+        {
+          "@language": "el",
+          "@value": "Τεχνολογική διαδρομή"
+        },
+        {
+          "@language": "es",
+          "@value": "Ruta tecnológica"
+        },
+        {
+          "@language": "et",
+          "@value": "Tehnoloogiline marsruut"
+        },
+        {
+          "@language": "fi",
+          "@value": "Teknologiareitti"
+        },
+        {
+          "@language": "fr",
+          "@value": "Route technologique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Bealach Teicneolaíochta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Tehnološka ruta"
+        },
+        {
+          "@language": "hu",
+          "@value": "Technológiai útvonal"
+        },
+        {
+          "@language": "it",
+          "@value": "Percorso tecnologico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Technologinis maršrutas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tehnoloģiskais maršruts"
+        },
+        {
+          "@language": "mt",
+          "@value": "Rotta tat-Teknoloġija"
+        },
+        {
+          "@language": "nl",
+          "@value": "Technologische route"
+        },
+        {
+          "@language": "pl",
+          "@value": "Ścieżka technologiczna"
+        },
+        {
+          "@language": "pt",
+          "@value": "Rota tecnológica"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rută tehnologică"
+        },
+        {
+          "@language": "sk",
+          "@value": "Technologická trasa"
+        },
+        {
+          "@language": "sl",
+          "@value": "Tehnološka pot"
+        },
+        {
+          "@language": "sv",
+          "@value": "Teknikrutt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The primary manufacturing route (e.g. EAF, BF-BOF)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Основният производствен маршрут (напр. EAF, BF-BOF)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Hlavní výrobní postup (např. EAF, BF-BOF)."
+        },
+        {
+          "@language": "da",
+          "@value": "Den primære fremstillingsrute (f.eks. EAF, BF-BOF)."
+        },
+        {
+          "@language": "de",
+          "@value": "Der primäre Fertigungsweg (z. B. EAF, BF-BOF)."
+        },
+        {
+          "@language": "el",
+          "@value": "Η κύρια διαδρομή παραγωγής (π.χ. EAF, BF-BOF)."
+        },
+        {
+          "@language": "es",
+          "@value": "La ruta de fabricación principal (p. ej. EAF, BF-BOF)."
+        },
+        {
+          "@language": "et",
+          "@value": "Peamine tootmismarsruut (nt EAF, BF-BOF)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ensisijainen valmistusreitti (esim. EAF, BF-BOF)."
+        },
+        {
+          "@language": "fr",
+          "@value": "La principale voie de fabrication (par ex. EAF, BF-BOF)."
+        },
+        {
+          "@language": "ga",
+          "@value": "An príomhbhealach déantúsaíochta (m.sh. EAF, BF-BOF)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Glavna proizvodna ruta (npr. EAF, BF-BOF)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az elsődleges gyártási útvonal (pl. EAF, BF-BOF)."
+        },
+        {
+          "@language": "it",
+          "@value": "Il percorso di produzione primario (ad es. EAF, BF-BOF)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pagrindinis gamybos maršrutas (pvz., EAF, BF-BOF)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Galvenais ražošanas maršruts (piem., EAF, BF-BOF)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ir-rotta ewlenija tal-manifattura (eż. EAF, BF-BOF)."
+        },
+        {
+          "@language": "nl",
+          "@value": "De primaire productieroute (bijv. EAF, BF-BOF)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Główny proces produkcyjny (np. EAF, BF-BOF)."
+        },
+        {
+          "@language": "pt",
+          "@value": "A principal rota de fabrico (p. ex. EAF, BF-BOF)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ruta principală de fabricație (de ex. EAF, BF-BOF)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Hlavný výrobný postup (napr. EAF, BF-BOF)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Glavna proizvodna pot (npr. EAF, BF-BOF)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den primära tillverkningsvägen (t.ex. EAF, BF-BOF)."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:meltAndPourCountry",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Melt and Pour Country"
+        },
+        {
+          "@language": "bg",
+          "@value": "Държава на топене и леене"
+        },
+        {
+          "@language": "cs",
+          "@value": "Země tavení a lití"
+        },
+        {
+          "@language": "da",
+          "@value": "Smelte- og hældeland"
+        },
+        {
+          "@language": "de",
+          "@value": "Land des Schmelzens und Gießens"
+        },
+        {
+          "@language": "el",
+          "@value": "Χώρα τήξης και έγχυσης"
+        },
+        {
+          "@language": "es",
+          "@value": "País de fusión y vertido"
+        },
+        {
+          "@language": "et",
+          "@value": "Sulatamise ja valamise riik"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sulatus- ja valumaa"
+        },
+        {
+          "@language": "fr",
+          "@value": "Pays de fusion et de coulée"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tír Leáite agus Doirte"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zemlja taljenja i ulijevanja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Olvasztás és öntés országa"
+        },
+        {
+          "@language": "it",
+          "@value": "Paese di fusione e colata"
+        },
+        {
+          "@language": "lt",
+          "@value": "Lydymo ir pilstymo šalis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kausēšanas un liešanas valsts"
+        },
+        {
+          "@language": "mt",
+          "@value": "Pajjiż tat-Tidwib u l-Ferra"
+        },
+        {
+          "@language": "nl",
+          "@value": "Land van smelten en gieten"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kraj wytapiania i odlewania"
+        },
+        {
+          "@language": "pt",
+          "@value": "País de fusão e vazamento"
+        },
+        {
+          "@language": "ro",
+          "@value": "Țara de topire și turnare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Krajina tavenia a liatia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Država taljenja in vlivanja"
+        },
+        {
+          "@language": "sv",
+          "@value": "Smält- och hällningsland"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The country where the steel was originally melted and poured."
+        },
+        {
+          "@language": "bg",
+          "@value": "Държавата, в която стоманата е била първоначално разтопена и излята."
+        },
+        {
+          "@language": "cs",
+          "@value": "Země, kde byla ocel původně roztavena a odlita."
+        },
+        {
+          "@language": "da",
+          "@value": "Det land, hvor stålet oprindeligt blev smeltet og hældt."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Land, in dem der Stahl ursprünglich geschmolzen und gegossen wurde."
+        },
+        {
+          "@language": "el",
+          "@value": "Η χώρα όπου ο χάλυβας λιώθηκε και χύθηκε αρχικά."
+        },
+        {
+          "@language": "es",
+          "@value": "El país donde el acero se fundió y vertió originalmente."
+        },
+        {
+          "@language": "et",
+          "@value": "Riik, kus teras algselt sulatati ja valati."
+        },
+        {
+          "@language": "fi",
+          "@value": "Maa, jossa teräs alun perin sulatettiin ja valettiin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le pays où l'acier a été originellement fondu et coulé."
+        },
+        {
+          "@language": "ga",
+          "@value": "An tír inar leádh agus inar doirteadh an chruach ar dtús."
+        },
+        {
+          "@language": "hr",
+          "@value": "Zemlja u kojoj je čelik izvorno otopljen i uliven."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az az ország, ahol az acélt eredetileg megolvasztották és öntötték."
+        },
+        {
+          "@language": "it",
+          "@value": "Il paese in cui l'acciaio è stato originariamente fuso e colato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalis, kurioje plienas buvo iš pradžių išlydytas ir išpilstytas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Valsts, kurā tērauds sākotnēji tika izkausēts un izliets."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-pajjiż fejn l-azzar kien oriġinarjament imdewweb u mferra."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het land waar het staal oorspronkelijk is gesmolten en gegoten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Kraj, w którym stal została pierwotnie stopiona i odlana."
+        },
+        {
+          "@language": "pt",
+          "@value": "O país onde o aço foi originalmente fundido e vazado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Țara în care oțelul a fost topit și turnat inițial."
+        },
+        {
+          "@language": "sk",
+          "@value": "Krajina, kde bola oceľ pôvodne roztavená a odliata."
+        },
+        {
+          "@language": "sl",
+          "@value": "Država, v kateri je bilo jeklo prvotno stopljeno in vlito."
+        },
+        {
+          "@language": "sv",
+          "@value": "Det land där stålet ursprungligen smältes och hälldes."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:countryOfOrigin"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:recycledContentPercentage",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Recycled Content Percentage"
+        },
+        {
+          "@language": "bg",
+          "@value": "Процент на рециклирано съдържание"
+        },
+        {
+          "@language": "cs",
+          "@value": "Procento recyklovaného obsahu"
+        },
+        {
+          "@language": "da",
+          "@value": "Procentdel af genanvendt indhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentsatz des recycelten Inhalts"
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό ανακυκλωμένου περιεχομένου"
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de contenido reciclado"
+        },
+        {
+          "@language": "et",
+          "@value": "Ringlussevõetud sisu protsent"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kierrätetyn materiaalin prosenttiosuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de contenu recyclé"
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán an Ábhair Athchúrsáilte"
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak recikliranog sadržaja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Újrahasznosított tartalom százaléka"
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di contenuto riciclato"
+        },
+        {
+          "@language": "lt",
+          "@value": "Perdirbto turinio procentas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pārstrādātā satura procentuālā daļa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal ta' Kontenut Riċiklat"
+        },
+        {
+          "@language": "nl",
+          "@value": "Percentage gerecycled materiaal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość materiałów z recyklingu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de conteúdo reciclado"
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentul de conținut reciclat"
+        },
+        {
+          "@language": "sk",
+          "@value": "Percento recyklovaného obsahu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek reciklirane vsebine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentandel återvunnet material"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Total recycled content percentage in the steel."
+        },
+        {
+          "@language": "bg",
+          "@value": "Общ процент на рециклираното съдържание в стоманата."
+        },
+        {
+          "@language": "cs",
+          "@value": "Celkové procento recyklovaného obsahu v oceli."
+        },
+        {
+          "@language": "da",
+          "@value": "Samlet procentdel af genanvendt indhold i stålet."
+        },
+        {
+          "@language": "de",
+          "@value": "Gesamtprozentsatz des recycelten Inhalts im Stahl."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνολικό ποσοστό ανακυκλωμένου περιεχομένου στον χάλυβα."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje total de contenido reciclado en el acero."
+        },
+        {
+          "@language": "et",
+          "@value": "Ringlussevõetud sisu koguprotsent terases."
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräksen kierrätetyn materiaalin kokonaisprosenttiosuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage total de contenu recyclé dans l'acier."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán iomlán an ábhair athchúrsáilte sa chruach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Ukupni postotak recikliranog sadržaja u čeliku."
+        },
+        {
+          "@language": "hu",
+          "@value": "A teljes újrahasznosított tartalom százaléka az acélban."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale totale di contenuto riciclato nell'acciaio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Bendra perdirbto turinio procentinė dalis pliene."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kopējā pārstrādātā satura procentuālā daļa tēraudā."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal totali ta' kontenut riċiklat fl-azzar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Totaal percentage gerecycled materiaal in het staal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Całkowity procent materiałów z recyklingu w stali."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem total de conteúdo reciclado no aço."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentul total de conținut reciclat din oțel."
+        },
+        {
+          "@language": "sk",
+          "@value": "Celkové percento recyklovaného obsahu v oceli."
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupni odstotek reciklirane vsebine v jeklu."
+        },
+        {
+          "@language": "sv",
+          "@value": "Total procentandel återvunnet material i stålet."
+        }
+      ],
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:preConsumerRecycledContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Pre-Consumer Recycled Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Рециклирано съдържание преди потребление"
+        },
+        {
+          "@language": "cs",
+          "@value": "Recyklovaný obsah z předspotřebitelské fáze"
+        },
+        {
+          "@language": "da",
+          "@value": "Præ-forbruger genanvendt indhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Pre-Consumer-Recyclinganteil"
+        },
+        {
+          "@language": "el",
+          "@value": "Ανακυκλωμένο περιεχόμενο πριν από την κατανάλωση"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido reciclado preconsumo"
+        },
+        {
+          "@language": "et",
+          "@value": "Tarbimiseelne ringlussevõetud sisu"
+        },
+        {
+          "@language": "fi",
+          "@value": "Teollisuusjäteperäinen kierrätysmateriaali"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contenu recyclé pré-consommation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhar Athchúrsáilte Réamh-Tomhaltóra"
+        },
+        {
+          "@language": "hr",
+          "@value": "Reciklirani sadržaj prije potrošnje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Fogyasztás előtti újrahasznosított tartalom"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto riciclato pre-consumo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Prieš vartojimą perdirbtas turinys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pirms patērētāja pārstrādāts saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut Riċiklat Pre-Konsumatur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Pre-consumer gerecycled materiaal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Materiały z recyklingu przedkonsumenckiego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Conteúdo reciclado pré-consumo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut reciclat pre-consumator"
+        },
+        {
+          "@language": "sk",
+          "@value": "Recyklovaný obsah z predspotrebiteľskej fázy"
+        },
+        {
+          "@language": "sl",
+          "@value": "Predpotrošniška reciklirana vsebina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Pre-consumer återvunnet material"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Percentage of pre-consumer recycled material."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процент на рециклираните материали преди потребление."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procento recyklovaného materiálu z předspotřebitelské fáze."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentdel af præ-forbruger genanvendt materiale."
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentsatz an Pre-Consumer-Recyclingmaterial."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό ανακυκλωμένου υλικού πριν από την κατανάλωση."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de material reciclado preconsumo."
+        },
+        {
+          "@language": "et",
+          "@value": "Tarbimiseelse ringlussevõetud materjali protsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Teollisuusjäteperäisen kierrätysmateriaalin prosenttiosuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de matériau recyclé pré-consommation."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán an ábhair athchúrsáilte réamh-tomhaltóra."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak recikliranog materijala prije potrošnje."
+        },
+        {
+          "@language": "hu",
+          "@value": "Fogyasztás előtti újrahasznosított anyag százaléka."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di materiale riciclato pre-consumo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Prieš vartojimą perdirbtos medžiagos procentas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Pirms patērētāja pārstrādāta materiāla procentuālā daļa."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal ta' materjal riċiklat pre-konsumatur."
+        },
+        {
+          "@language": "nl",
+          "@value": "Percentage pre-consumer gerecycled materiaal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procent materiałów z recyklingu przedkonsumenckiego."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de material reciclado pré-consumo."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentul de material reciclat pre-consumator."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percento recyklovaného materiálu z predspotrebiteľskej fázy."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek predpotrošniškega recikliranega materiala."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentandel pre-consumer återvunnet material."
+        }
+      ],
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:postConsumerRecycledContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Post-Consumer Recycled Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Рециклирано съдържание след потребление"
+        },
+        {
+          "@language": "cs",
+          "@value": "Recyklovaný obsah po spotřebě"
+        },
+        {
+          "@language": "da",
+          "@value": "Post-forbruger genanvendt indhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Post-Consumer-Recyclinganteil"
+        },
+        {
+          "@language": "el",
+          "@value": "Ανακυκλωμένο περιεχόμενο μετά την κατανάλωση"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido reciclado posconsumo"
+        },
+        {
+          "@language": "et",
+          "@value": "Tarbimisjärgne ringlussevõetud sisu"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kuluttajajäteperäinen kierrätysmateriaali"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contenu recyclé post-consommation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhar Athchúrsáilte Iar-Tomhaltóra"
+        },
+        {
+          "@language": "hr",
+          "@value": "Reciklirani sadržaj nakon potrošnje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Fogyasztás utáni újrahasznosított tartalom"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto riciclato post-consumo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Po vartojimo perdirbtas turinys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pēc patērētāja pārstrādāts saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut Riċiklat Post-Konsumatur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Post-consumer gerecycled materiaal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Materiały z recyklingu pokonsumenckiego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Conteúdo reciclado pós-consumo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut reciclat post-consumator"
+        },
+        {
+          "@language": "sk",
+          "@value": "Recyklovaný obsah po spotrebe"
+        },
+        {
+          "@language": "sl",
+          "@value": "Popotrošniška reciklirana vsebina"
+        },
+        {
+          "@language": "sv",
+          "@value": "Post-consumer återvunnet material"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Percentage of post-consumer recycled material."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процент на рециклираните материали след потребление."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procento recyklovaného materiálu po spotřebě."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentdel af post-forbruger genanvendt materiale."
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentsatz an Post-Consumer-Recyclingmaterial."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό ανακυκλωμένου υλικού μετά την κατανάλωση."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de material reciclado posconsumo."
+        },
+        {
+          "@language": "et",
+          "@value": "Tarbimisjärgse ringlussevõetud materjali protsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Kuluttajajäteperäisen kierrätysmateriaalin prosenttiosuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de matériau recyclé post-consommation."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán an ábhair athchúrsáilte iar-tomhaltóra."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak recikliranog materijala nakon potrošnje."
+        },
+        {
+          "@language": "hu",
+          "@value": "Fogyasztás utáni újrahasznosított anyag százaléka."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di materiale riciclato post-consumo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Po vartojimo perdirbtos medžiagos procentas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Pēc patērētāja pārstrādāta materiāla procentuālā daļa."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal ta' materjal riċiklat post-konsumatur."
+        },
+        {
+          "@language": "nl",
+          "@value": "Percentage post-consumer gerecycled materiaal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procent materiałów z recyklingu pokonsumenckiego."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de material reciclado pós-consumo."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentul de material reciclat post-consumator."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percento recyklovaného materiálu po spotrebe."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek popotrošniškega recikliranega materiala."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentandel post-consumer återvunnet material."
+        }
+      ],
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:recycledContentConformity",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Recycled Content Conformity"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съответствие на рециклираното съдържание"
+        },
+        {
+          "@language": "cs",
+          "@value": "Shoda recyklovaného obsahu"
+        },
+        {
+          "@language": "da",
+          "@value": "Overensstemmelse for genanvendt indhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Konformität des recycelten Inhalts"
+        },
+        {
+          "@language": "el",
+          "@value": "Συμμόρφωση ανακυκλωμένου περιεχομένου"
+        },
+        {
+          "@language": "es",
+          "@value": "Conformidad del contenido reciclado"
+        },
+        {
+          "@language": "et",
+          "@value": "Ringlussevõetud sisu vastavus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kierrätetyn materiaalin vaatimustenmukaisuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Conformité du contenu recyclé"
+        },
+        {
+          "@language": "ga",
+          "@value": "Comhréireacht Ábhair Athchúrsáilte"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sukladnost recikliranog sadržaja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Újrahasznosított tartalom megfelelősége"
+        },
+        {
+          "@language": "it",
+          "@value": "Conformità del contenuto riciclato"
+        },
+        {
+          "@language": "lt",
+          "@value": "Perdirbto turinio atitiktis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pārstrādātā satura atbilstība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Konformità tal-Kontenut Riċiklat"
+        },
+        {
+          "@language": "nl",
+          "@value": "Conformiteit van gerecycled materiaal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zgodność materiałów z recyklingu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Conformidade do conteúdo reciclado"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conformitatea conținutului reciclat"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zhoda recyklovaného obsahu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Skladnost reciklirane vsebine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Överensstämmelse för återvunnet material"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Reference or URI to the conformity declaration of the recycled content calculation."
+        },
+        {
+          "@language": "bg",
+          "@value": "Справка или URI към декларацията за съответствие на изчислението на рециклираното съдържание."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz nebo URI na prohlášení o shodě výpočtu recyklovaného obsahu."
+        },
+        {
+          "@language": "da",
+          "@value": "Reference eller URI til overensstemmelseserklæringen for beregningen af genanvendt indhold."
+        },
+        {
+          "@language": "de",
+          "@value": "Referenz oder URI zur Konformitätserklärung der Berechnung des recycelten Inhalts."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά ή URI στη δήλωση συμμόρφωσης του υπολογισμού του ανακυκλωμένου περιεχομένου."
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia o URI a la declaración de conformidad del cálculo del contenido reciclado."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide või URI ringlussevõetud sisu arvutamise vastavusdeklaratsioonile."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viite tai URI kierrätetyn sisällön laskennan vaatimustenmukaisuusvakuutukseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence ou URI de la déclaration de conformité du calcul du contenu recyclé."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt nó URI don dearbhú comhréireachta ar ríomh an ábhair athchúrsáilte."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca ili URI na izjavu o sukladnosti izračuna recikliranog sadržaja."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás vagy URI az újrahasznosított tartalom kiszámításának megfelelőségi nyilatkozatára."
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento o URI alla dichiarazione di conformità del calcolo del contenuto riciclato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda arba URI į perdirbto turinio skaičiavimo atitikties deklaraciją."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce vai URI uz pārstrādātā satura aprēķina atbilstības deklarāciju."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza jew URI għad-dikjarazzjoni tal-konformità tal-kalkolu tal-kontenut riċiklat."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verwijzing of URI naar de conformiteitsverklaring van de berekening van het gerecyclede materiaal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie lub URI do deklaracji zgodności obliczeń zawartości z recyklingu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência ou URI à declaração de conformidade do cálculo do conteúdo reciclado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință sau URI la declarația de conformitate a calculului conținutului reciclat."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz alebo URI na vyhlásenie o zhode výpočtu recyklovaného obsahu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sklic ali URI na izjavo o skladnosti izračuna reciklirane vsebine."
+        },
+        {
+          "@language": "sv",
+          "@value": "Referens eller URI till försäkran om överensstämmelse för beräkningen av återvunnet material."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "dppk:visibility": {
+        "@id": "dppk:AuthorityOnly"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:cbamReportId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CBAM Report ID"
+        },
+        {
+          "@language": "bg",
+          "@value": "ИД на доклад за МКОВ"
+        },
+        {
+          "@language": "cs",
+          "@value": "ID zprávy CBAM"
+        },
+        {
+          "@language": "da",
+          "@value": "CBAM-rapport-id"
+        },
+        {
+          "@language": "de",
+          "@value": "CBAM-Berichts-ID"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό αναφοράς CBAM"
+        },
+        {
+          "@language": "es",
+          "@value": "ID del informe CBAM"
+        },
+        {
+          "@language": "et",
+          "@value": "CBAMi aruande ID"
+        },
+        {
+          "@language": "fi",
+          "@value": "CBAM-raportin tunnus"
+        },
+        {
+          "@language": "fr",
+          "@value": "ID du rapport MACF"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantas Tuairisce CBAM"
+        },
+        {
+          "@language": "hr",
+          "@value": "ID izvješća CBAM"
+        },
+        {
+          "@language": "hu",
+          "@value": "CBAM jelentésazonosító"
+        },
+        {
+          "@language": "it",
+          "@value": "ID rapporto CBAM"
+        },
+        {
+          "@language": "lt",
+          "@value": "CBAM ataskaitos ID"
+        },
+        {
+          "@language": "lv",
+          "@value": "CBAM ziņojuma ID"
+        },
+        {
+          "@language": "mt",
+          "@value": "ID tar-Rapport tas-CBAM"
+        },
+        {
+          "@language": "nl",
+          "@value": "CBAM-rapport-ID"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator raportu CBAM"
+        },
+        {
+          "@language": "pt",
+          "@value": "ID do relatório CBAM"
+        },
+        {
+          "@language": "ro",
+          "@value": "ID-ul raportului CBAM"
+        },
+        {
+          "@language": "sk",
+          "@value": "ID správy CBAM"
+        },
+        {
+          "@language": "sl",
+          "@value": "ID poročila CBAM"
+        },
+        {
+          "@language": "sv",
+          "@value": "CBAM-rapport-ID"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Identifier for the Carbon Border Adjustment Mechanism (CBAM) report."
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор за доклада за Механизма за корекция на въглеродните емисии по границите (МКОВ)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor pro zprávu o mechanismu uhlíkového vyrovnání na hranicích (CBAM)."
+        },
+        {
+          "@language": "da",
+          "@value": "Identifikator for CBAM-rapporten (Carbon Border Adjustment Mechanism)."
+        },
+        {
+          "@language": "de",
+          "@value": "Identifikator für den Bericht zum CO2-Grenzausgleichssystem (CBAM)."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό για την αναφορά Μηχανισμού Συνοριακής Προσαρμογής Άνθρακα (CBAM)."
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador del informe del Mecanismo de Ajuste en Frontera por Carbono (CBAM)."
+        },
+        {
+          "@language": "et",
+          "@value": "Süsiniku piirimehhanismi (CBAM) aruande identifikaator."
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiilirajamekanismin (CBAM) raportin tunniste."
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant du rapport sur le mécanisme d'ajustement carbone aux frontières (MACF)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir don tuarascáil ar an Sásra Coigeartaithe Teorann Carbóin (CBAM)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator za izvješće o mehanizmu za prilagodbu ugljika na granicama (CBAM)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az importáruk karbonintenzitását ellensúlyozó mechanizmus (CBAM) jelentésének azonosítója."
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore per il rapporto sul meccanismo di adeguamento del carbonio alle frontiere (CBAM)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasienio anglies dioksido koregavimo mechanizmo (CBAM) ataskaitos identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Oglekļa ievedkorekcijas mehānisma (CBAM) ziņojuma identifikators."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur għar-rapport tal-Mekkaniżmu ta' Aġġustament tal-Karbonju fil-Fruntieri (CBAM)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Identificatie voor het rapport betreffende het mechanisme voor koolstofgrenscorrectie (CBAM)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator raportu mechanizmu dostosowywania cen na granicach z uwzględnieniem emisji CO2 (CBAM)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador para o relatório do Mecanismo de Ajuste Fronteiriço de Carbono (CBAM)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator pentru raportul Mecanismului de ajustare la frontieră în funcție de carbon (CBAM)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor pre správu o mechanizme uhlíkovej kompenzácie na hraniciach (CBAM)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator za poročilo o mehanizmu za ogljično prilagoditev na mejah (CBAM)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Identifierare för CBAM-rapporten (mekanismen för koldioxidjustering vid gränserna)."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:reachDocumentation",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "REACH Documentation"
+        },
+        {
+          "@language": "bg",
+          "@value": "Документация по REACH"
+        },
+        {
+          "@language": "cs",
+          "@value": "Dokumentace REACH"
+        },
+        {
+          "@language": "da",
+          "@value": "REACH-dokumentation"
+        },
+        {
+          "@language": "de",
+          "@value": "REACH-Dokumentation"
+        },
+        {
+          "@language": "el",
+          "@value": "Τεκμηρίωση REACH"
+        },
+        {
+          "@language": "es",
+          "@value": "Documentación REACH"
+        },
+        {
+          "@language": "et",
+          "@value": "REACHi dokumentatsioon"
+        },
+        {
+          "@language": "fi",
+          "@value": "REACH-dokumentaatio"
+        },
+        {
+          "@language": "fr",
+          "@value": "Documentation REACH"
+        },
+        {
+          "@language": "ga",
+          "@value": "Doiciméadúchán REACH"
+        },
+        {
+          "@language": "hr",
+          "@value": "REACH dokumentacija"
+        },
+        {
+          "@language": "hu",
+          "@value": "REACH dokumentáció"
+        },
+        {
+          "@language": "it",
+          "@value": "Documentazione REACH"
+        },
+        {
+          "@language": "lt",
+          "@value": "REACH dokumentacija"
+        },
+        {
+          "@language": "lv",
+          "@value": "REACH dokumentācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dokumentazzjoni REACH"
+        },
+        {
+          "@language": "nl",
+          "@value": "REACH-documentatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Dokumentacja REACH"
+        },
+        {
+          "@language": "pt",
+          "@value": "Documentação REACH"
+        },
+        {
+          "@language": "ro",
+          "@value": "Documentație REACH"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dokumentácia REACH"
+        },
+        {
+          "@language": "sl",
+          "@value": "Dokumentacija REACH"
+        },
+        {
+          "@language": "sv",
+          "@value": "REACH-dokumentation"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "URI link to the REACH regulatory documentation if applicable."
+        },
+        {
+          "@language": "bg",
+          "@value": "URI връзка към регулаторната документация по REACH, ако е приложимо."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz URI na regulační dokumentaci REACH, pokud je to relevantní."
+        },
+        {
+          "@language": "da",
+          "@value": "URI-link til den lovgivningsmæssige REACH-dokumentation, hvis det er relevant."
+        },
+        {
+          "@language": "de",
+          "@value": "URI-Link zur REACH-Richtliniendokumentation, falls zutreffend."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνδεσμος URI για την κανονιστική τεκμηρίωση REACH, εάν υπάρχει."
+        },
+        {
+          "@language": "es",
+          "@value": "Enlace URI a la documentación reglamentaria REACH, si corresponde."
+        },
+        {
+          "@language": "et",
+          "@value": "URI link REACHi regulatiivsele dokumentatsioonile, kui see on kohaldatav."
+        },
+        {
+          "@language": "fi",
+          "@value": "URI-linkki REACH-sääntelyasiakirjoihin, jos sovellettavissa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Lien URI vers la documentation réglementaire REACH le cas échéant."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nasc URI chuig an doiciméadúchán rialála REACH más infheidhme."
+        },
+        {
+          "@language": "hr",
+          "@value": "URI poveznica na regulatornu dokumentaciju REACH ako je primjenjivo."
+        },
+        {
+          "@language": "hu",
+          "@value": "URI link a REACH szabályozási dokumentációhoz, ha alkalmazható."
+        },
+        {
+          "@language": "it",
+          "@value": "Collegamento URI alla documentazione normativa REACH, se applicabile."
+        },
+        {
+          "@language": "lt",
+          "@value": "URI nuoroda į REACH reguliavimo dokumentaciją, jei taikoma."
+        },
+        {
+          "@language": "lv",
+          "@value": "URI saite uz REACH normatīvo dokumentāciju, ja piemērojams."
+        },
+        {
+          "@language": "mt",
+          "@value": "Link tal-URI għad-dokumentazzjoni regolatorja ta' REACH jekk applikabbli."
+        },
+        {
+          "@language": "nl",
+          "@value": "URI-link naar de REACH-regelgevingsdocumentatie indien van toepassing."
+        },
+        {
+          "@language": "pl",
+          "@value": "Link URI do dokumentacji prawnej REACH, jeśli dotyczy."
+        },
+        {
+          "@language": "pt",
+          "@value": "Ligação URI à documentação regulamentar REACH, se aplicável."
+        },
+        {
+          "@language": "ro",
+          "@value": "Link URI la documentația de reglementare REACH, dacă este cazul."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz URI na regulačnú dokumentáciu REACH, ak je to relevantné."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezava URI do regulativne dokumentacije REACH, če je primerno."
+        },
+        {
+          "@language": "sv",
+          "@value": "URI-länk till REACH-regleringsdokumentationen i tillämpliga fall."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:IronSteelProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    }
+  ]
+}

@@ -1,0 +1,3138 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "cencpr": "urn:cen:cpr:",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/spec/v2/terms"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/Construction",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Sector Ontology - Construction and Heavy Industry Definitions (v2)",
+  "dcterms:description": "Defines concepts for Construction Products (aligning with CPR) and related heavy industries such as steel and rail.",
+  "owl:versionInfo": "1.0.0",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Compliance.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Organization.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPD.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/RelatedResource.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/DoPC.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:ConstructionProduct",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Construction Product"
+        },
+        {
+          "@language": "bg",
+          "@value": "Строителен продукт"
+        },
+        {
+          "@language": "cs",
+          "@value": "Stavební výrobek"
+        },
+        {
+          "@language": "da",
+          "@value": "Byggevare"
+        },
+        {
+          "@language": "de",
+          "@value": "Bauprodukt"
+        },
+        {
+          "@language": "el",
+          "@value": "Δομικό προϊόν"
+        },
+        {
+          "@language": "es",
+          "@value": "Producto de construcción"
+        },
+        {
+          "@language": "et",
+          "@value": "Ehitustoode"
+        },
+        {
+          "@language": "fi",
+          "@value": "Rakennustuote"
+        },
+        {
+          "@language": "fr",
+          "@value": "Produit de construction"
+        },
+        {
+          "@language": "ga",
+          "@value": "Táirge Tógála"
+        },
+        {
+          "@language": "hr",
+          "@value": "Građevni proizvod"
+        },
+        {
+          "@language": "hu",
+          "@value": "Építési termék"
+        },
+        {
+          "@language": "it",
+          "@value": "Prodotto da costruzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Statybos produktas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Būvizstrādājums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Prodott tal-kostruzzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Bouwproduct"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wyrób budowlany"
+        },
+        {
+          "@language": "pt",
+          "@value": "Produto de construção"
+        },
+        {
+          "@language": "ro",
+          "@value": "Produs pentru construcții"
+        },
+        {
+          "@language": "sk",
+          "@value": "Stavebný výrobok"
+        },
+        {
+          "@language": "sl",
+          "@value": "Gradbeni proizvod"
+        },
+        {
+          "@language": "sv",
+          "@value": "Byggprodukt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Any product or kit which is produced and placed on the market for incorporation in a permanent manner in construction works or parts thereof, as defined by the Construction Products Regulation (CPR)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Всякакъв продукт или комплект, който е произведен и пуснат на пазара за трайно влагане в строежи или части от тях, както е определено в Регламента за строителните продукти (CPR)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jakýkoli výrobek nebo sestava, které jsou vyrobeny a uvedeny na trh za účelem trvalého zabudování do stavby nebo její části, jak je definováno v nařízení o stavebních výrobcích (CPR)."
+        },
+        {
+          "@language": "da",
+          "@value": "Enhver byggevare eller et sæt af byggevarer, der fremstilles og bringes i omsætning med henblik på at indgå varigt i bygværker eller dele heraf, som defineret i byggevareforordningen (CPR)."
+        },
+        {
+          "@language": "de",
+          "@value": "Jedes Produkt oder jeder Bausatz, das bzw. der hergestellt und in Verkehr gebracht wird, um dauerhaft in Bauwerke oder Teile davon eingebaut zu werden, wie in der Bauproduktenverordnung (CPR) definiert."
+        },
+        {
+          "@language": "el",
+          "@value": "Κάθε προϊόν ή κιτ που παράγεται και διατίθεται στην αγορά για να ενσωματωθεί με μόνιμο τρόπο σε δομικά έργα ή μέρη αυτών, όπως ορίζεται στον Κανονισμό για τα Δομικά Προϊόντα (CPR)."
+        },
+        {
+          "@language": "es",
+          "@value": "Cualquier producto o kit fabricado y comercializado para su incorporación permanente en obras de construcción o partes de las mismas, tal como se define en el Reglamento de Productos de Construcción (CPR)."
+        },
+        {
+          "@language": "et",
+          "@value": "Mis tahes toode või komplekt, mis on toodetud ja turule lastud eesmärgiga see püsivalt ehitistesse või nende osadesse paigaldada, nagu on määratletud ehitustoodete määruses (CPR)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Mikä tahansa tuote tai sarja, joka on valmistettu ja saatettu markkinoille tarkoituksena asentaa se pysyvästi rakennuskohteisiin tai niiden osiin rakennustuoteasetuksen (CPR) mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Tout produit ou kit fabriqué et mis sur le marché en vue d'être incorporé de façon permanente dans des ouvrages de construction ou des parties d'ouvrages, tel que défini par le règlement sur les produits de construction (RPC)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aon táirge nó trealamh a tháirgtear agus a chuirtear ar an margadh lena chorprú go buan in oibreacha foirgníochta nó i gcodanna díobh, mar a shainítear sa Rialachán maidir le Táirgí Foirgníochta (CPR)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Bilo koji proizvod ili sklop proizveden i stavljen na tržište radi trajne ugradnje u građevine ili njihove dijelove, kako je definirano Uredbom o građevnim proizvodima (CPR)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Minden olyan termék vagy készlet, amelyet azért gyártanak és forgalmaznak, hogy tartósan beépítsék építményekbe vagy azok részeibe, az építési termékekről szóló rendelet (CPR) meghatározása szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Qualsiasi prodotto o kit fabbricato e immesso sul mercato per essere incorporato in modo permanente in opere di costruzione o in parti di esse, come definito dal regolamento sui prodotti da costruzione (CPR)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Bet koks gaminys ar rinkinys, pagamintas ir pateiktas į rinką siekiant jį nuolatiniam naudojimui įmontuoti į statinius ar jų dalis, kaip apibrėžta Statybos produktų reglamente (CPR)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Jebkurš izstrādājums vai komplekts, kas ražots un laists tirgū, lai to pastāvīgi iestrādātu būvēs vai to daļās, kā noteikts Būvizstrādājumu regulā (CPR)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Kwalunkwe prodott jew kitt li jkun prodott u mqiegħed fis-suq għal inkorporazzjoni b'mod permanenti f'xogħlijiet ta' kostruzzjoni jew partijiet minnhom, kif definit fir-Regolament dwar il-Prodotti għall-Kostruzzjoni (CPR)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Elk product of elke kit die is geproduceerd en in de handel is gebracht om permanent in bouwwerken of delen daarvan te worden verwerkt, zoals gedefinieerd in de bouwproductenverordening (CPR)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Każdy wyrób lub zestaw wyprodukowany i wprowadzony do obrotu w celu trwałego wbudowania w obiekty budowlane lub ich części, zgodnie z definicją w rozporządzeniu w sprawie wyrobów budowlanych (CPR)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Qualquer produto ou kit fabricado e colocado no mercado para ser incorporado de forma permanente em obras de construção ou partes destas, conforme definido no Regulamento dos Produtos de Construção (CPR)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Orice produs sau kit fabricat și introdus pe piață pentru a fi încorporat în mod permanent în construcții sau părți ale acestora, așa cum este definit în Regulamentul privind produsele pentru construcții (CPR)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Akýkoľvek výrobok alebo zostava, ktoré sú vyrobené a uvedené na trh s cieľom ich trvalého zabudovania do stavieb alebo ich častí, ako je definované v nariadení o stavebných výrobkoch (CPR)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Kateri koli proizvod ali komplet, ki je proizveden in dan na trg z namenom trajne vgradnje v gradbene objekte ali njihove dele, kot je opredeljeno v Uredbi o gradbenih proizvodih (CPR)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Varje produkt eller byggsats som tillverkas och släpps ut på marknaden för att varaktigt ingå i byggnadsverk eller delar därav, enligt definitionen i byggproduktförordningen (CPR)."
+        }
+      ],
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
+        "rdfs:label": "Regulation (EU) No 305/2011 (Construction Products Regulation - CPR)"
+      },
+      "rdfs:subClassOf": {
+        "@id": "dppk:Product"
+      }
+    },
+    {
+      "@id": "dppk:DeclarationOfPerformance",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Declaration of Performance (DoP)"
+        },
+        {
+          "@language": "bg",
+          "@value": "Декларация за експлоатационни показатели (DoP)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Prohlášení o vlastnostech (DoP)"
+        },
+        {
+          "@language": "da",
+          "@value": "Ydeevnedeklaration (DoP)"
+        },
+        {
+          "@language": "de",
+          "@value": "Leistungserklärung (DoP)"
+        },
+        {
+          "@language": "el",
+          "@value": "Δήλωση Επιδόσεων (DoP)"
+        },
+        {
+          "@language": "es",
+          "@value": "Declaración de prestaciones (DoP)"
+        },
+        {
+          "@language": "et",
+          "@value": "Toimivusdeklaratsioon (DoP)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Suoritustasoilmoitus (DoP)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déclaration des performances (DoP)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dearbhú Feidhmíochta (DoP)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Izjava o svojstvima (DoP)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Teljesítménynyilatkozat (DoP)"
+        },
+        {
+          "@language": "it",
+          "@value": "Dichiarazione di prestazione (DoP)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Eksploatacinių savybių deklaracija (DoP)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekspluatācijas īpašību deklarācija (DoP)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dikjarazzjoni ta' Prestazzjoni (DoP)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Prestatieverklaring (DoP)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Deklaracja właściwości użytkowych (DoP)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Declaração de Desempenho (DoP)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Declarația de performanță (DoP)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Vyhlásenie o parametroch (DoP)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Izjava o lastnostih (DoP)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Prestandadeklaration (DoP)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A document drawn up by the manufacturer expressing the performance of a construction product in relation to the essential characteristics of that product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Документ, изготвен от производителя, изразяващ експлоатационните показатели на строителен продукт във връзка със съществените характеристики на този продукт."
+        },
+        {
+          "@language": "cs",
+          "@value": "Dokument vypracovaný výrobcem vyjadřující vlastnosti stavebního výrobku ve vztahu k základním charakteristikám tohoto výrobku."
+        },
+        {
+          "@language": "da",
+          "@value": "Et dokument udarbejdet af fabrikanten, der angiver en byggevares ydeevne i relation til dennes væsentlige egenskaber."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein vom Hersteller erstelltes Dokument, das die Leistung eines Bauprodukts in Bezug auf die wesentlichen Merkmale dieses Produkts zum Ausdruck bringt."
+        },
+        {
+          "@language": "el",
+          "@value": "Έγγραφο που συντάσσεται από τον κατασκευαστή και εκφράζει την επίδοση ενός δομικού προϊόντος σε σχέση με τα ουσιώδη χαρακτηριστικά του εν λόγω προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Documento elaborado por el fabricante que expresa las prestaciones de un producto de construcción en relación con las características esenciales de dicho producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Tootja koostatud dokument, mis väljendab ehitustoote toimivust seoses selle toote põhiomadustega."
+        },
+        {
+          "@language": "fi",
+          "@value": "Valmistajan laatima asiakirja, joka ilmaisee rakennustuotteen suoritustason suhteessa kyseisen tuotteen perusominaisuuksiin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Document établi par le fabricant exprimant les performances d'un produit de construction par rapport aux caractéristiques essentielles de ce produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Doiciméad a tharraingíonn an monaróir suas lena gcuirtear in iúl feidhmíocht táirge foirgníochta maidir le saintréithe bunriachtanacha an táirge sin."
+        },
+        {
+          "@language": "hr",
+          "@value": "Dokument koji izrađuje proizvođač, a u kojem se izražavaju svojstva građevnog proizvoda u odnosu na bitne značajke tog proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "A gyártó által kiállított dokumentum, amely kifejezi az építési termék teljesítményét annak alapvető jellemzői tekintetében."
+        },
+        {
+          "@language": "it",
+          "@value": "Un documento redatto dal fabbricante che esprime le prestazioni di un prodotto da costruzione in relazione alle caratteristiche essenziali di tale prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamintojo parengtas dokumentas, kuriame nurodomos statybos produkto eksploatacinės savybės, susijusios su esminėmis to produkto charakteristikomis."
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražotāja sagatavots dokuments, kurā izteiktas būvizstrādājuma ekspluatācijas īpašības attiecībā uz šā izstrādājuma pamatīpašībām."
+        },
+        {
+          "@language": "mt",
+          "@value": "Dokument imfassal mill-manifattur li jesprimi l-prestazzjoni ta' prodott għall-kostruzzjoni b'rabta mal-karatteristiċi essenzjali ta' dak il-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een door de fabrikant opgesteld document waarin de prestaties van een bouwproduct worden uitgedrukt met betrekking tot de essentiële kenmerken van dat product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Dokument sporządzony przez producenta, wyrażający właściwości użytkowe wyrobu budowlanego w odniesieniu do jego zasadniczych charakterystyk."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um documento elaborado pelo fabricante que expressa o desempenho de um produto de construção em relação às características essenciais desse produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un document elaborat de producător care exprimă performanța unui produs pentru construcții în raport cu caracteristicile esențiale ale produsului respectiv."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dokument vypracovaný výrobcom vyjadrujúci parametre stavebného výrobku vo vzťahu k jeho podstatným vlastnostiam."
+        },
+        {
+          "@language": "sl",
+          "@value": "Dokument, ki ga pripravi proizvajalec in izraža lastnosti gradbenega proizvoda v zvezi z bistvenimi značilnostmi tega proizvoda."
+        },
+        {
+          "@language": "sv",
+          "@value": "Ett dokument som upprättas av tillverkaren och som anger en byggprodukts prestanda i förhållande till produktens väsentliga egenskaper."
+        }
+      ],
+      "rdfs:subClassOf": {
+        "@id": "dppk:DigitalDocument"
+      }
+    },
+    {
+      "@id": "dppk:hasDoP",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Has Declaration of Performance"
+        },
+        {
+          "@language": "bg",
+          "@value": "Има декларация за експлоатационни показатели"
+        },
+        {
+          "@language": "cs",
+          "@value": "Má prohlášení o vlastnostech"
+        },
+        {
+          "@language": "da",
+          "@value": "Har ydeevnedeklaration"
+        },
+        {
+          "@language": "de",
+          "@value": "Hat Leistungserklärung"
+        },
+        {
+          "@language": "el",
+          "@value": "Διαθέτει Δήλωση Επιδόσεων"
+        },
+        {
+          "@language": "es",
+          "@value": "Tiene declaración de prestaciones"
+        },
+        {
+          "@language": "et",
+          "@value": "Omab toimivusdeklaratsiooni"
+        },
+        {
+          "@language": "fi",
+          "@value": "On suoritustasoilmoitus"
+        },
+        {
+          "@language": "fr",
+          "@value": "A une déclaration des performances"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tá Dearbhú Feidhmíochta aige"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ima izjavu o svojstvima"
+        },
+        {
+          "@language": "hu",
+          "@value": "Rendelkezik teljesítménynyilatkozattal"
+        },
+        {
+          "@language": "it",
+          "@value": "Ha una dichiarazione di prestazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Turi eksploatacinių savybių deklaraciją"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ir ekspluatācijas īpašību deklarācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Għandu Dikjarazzjoni ta' Prestazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Heeft prestatieverklaring"
+        },
+        {
+          "@language": "pl",
+          "@value": "Posiada deklarację właściwości użytkowych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tem Declaração de Desempenho"
+        },
+        {
+          "@language": "ro",
+          "@value": "Are declarație de performanță"
+        },
+        {
+          "@language": "sk",
+          "@value": "Má vyhlásenie o parametroch"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ima izjavo o lastnostih"
+        },
+        {
+          "@language": "sv",
+          "@value": "Har prestandadeklaration"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the construction product to its Declaration of Performance."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва строителния продукт с неговата Декларация за експлоатационни показатели."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje stavební výrobek s jeho prohlášením o vlastnostech."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer byggevaren til dens ydeevnedeklaration."
+        },
+        {
+          "@language": "de",
+          "@value": "Setzt das Bauprodukt in Beziehung zu seiner Leistungserklärung."
+        },
+        {
+          "@language": "el",
+          "@value": "Συσχετίζει το δομικό προϊόν με τη Δήλωση Επιδόσεών του."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el producto de construcción con su declaración de prestaciones."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob ehitustoote selle toimivusdeklaratsiooniga."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää rakennustuotteen sen suoritustasoilmoitukseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le produit de construction à sa déclaration des performances."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann an táirge foirgníochta lena Dhearbhú Feidhmíochta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje građevni proizvod s njegovom izjavom o svojstvima."
+        },
+        {
+          "@language": "hu",
+          "@value": "Összekapcsolja az építési terméket a teljesítménynyilatkozatával."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il prodotto da costruzione con la sua dichiarazione di prestazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja statybos produktą su jo eksploatacinių savybių deklaracija."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista būvizstrādājumu ar tā ekspluatācijas īpašību deklarāciju."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jirrelata l-prodott għall-kostruzzjoni mad-Dikjarazzjoni ta' Prestazzjoni tiegħu."
+        },
+        {
+          "@language": "nl",
+          "@value": "Relateert het bouwproduct aan zijn prestatieverklaring."
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązuje wyrób budowlany z jego deklaracją właściwości użytkowych."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o produto de construção com a sua Declaração de Desempenho."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează produsul pentru construcții cu declarația sa de performanță."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája stavebný výrobok s jeho vyhlásením o parametroch."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje gradbeni proizvod z njegovo izjavo o lastnostih."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar byggprodukten till dess prestandadeklaration."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:DeclarationOfPerformance"
+      }
+    },
+    {
+      "@id": "dppk:dopIdentifier",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "DoP Identifier"
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на DoP"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor DoP"
+        },
+        {
+          "@language": "da",
+          "@value": "DoP-identifikator"
+        },
+        {
+          "@language": "de",
+          "@value": "DoP-Kennung"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό DoP"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador DoP"
+        },
+        {
+          "@language": "et",
+          "@value": "DoP identifikaator"
+        },
+        {
+          "@language": "fi",
+          "@value": "DoP-tunniste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant DoP"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir DoP"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator DoP-a"
+        },
+        {
+          "@language": "hu",
+          "@value": "DoP azonosító"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore DoP"
+        },
+        {
+          "@language": "lt",
+          "@value": "DoP identifikatorius"
+        },
+        {
+          "@language": "lv",
+          "@value": "DoP identifikators"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur DoP"
+        },
+        {
+          "@language": "nl",
+          "@value": "DoP-identificatiecode"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator DoP"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador DoP"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator DoP"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor DoP"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator DoP"
+        },
+        {
+          "@language": "sv",
+          "@value": "DoP-identifierare"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The unique identification code of the Declaration of Performance."
+        },
+        {
+          "@language": "bg",
+          "@value": "Уникалният идентификационен код на Декларацията за експлоатационни показатели."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikační kód prohlášení o vlastnostech."
+        },
+        {
+          "@language": "da",
+          "@value": "Den unikke identifikationskode for ydeevnedeklarationen."
+        },
+        {
+          "@language": "de",
+          "@value": "Der eindeutige Kenncode der Leistungserklärung."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο μοναδικός κωδικός ταυτοποίησης της Δήλωσης Επιδόσεων."
+        },
+        {
+          "@language": "es",
+          "@value": "El código de identificación única de la declaración de prestaciones."
+        },
+        {
+          "@language": "et",
+          "@value": "Toimivusdeklaratsiooni kordumatu identifitseerimiskood."
+        },
+        {
+          "@language": "fi",
+          "@value": "Suoritustasoilmoituksen yksilöllinen tunniste."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le code d'identification unique de la déclaration des performances."
+        },
+        {
+          "@language": "ga",
+          "@value": "Cód uathúil aitheantais an Dearbhaithe Feidhmíochta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstvena identifikacijska oznaka izjave o svojstvima."
+        },
+        {
+          "@language": "hu",
+          "@value": "A teljesítménynyilatkozat egyedi azonosító kódja."
+        },
+        {
+          "@language": "it",
+          "@value": "Il codice di identificazione unico della dichiarazione di prestazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus eksploatacinių savybių deklaracijos identifikavimo kodas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekspluatācijas īpašību deklarācijas unikālais identifikācijas kods."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-kodiċi ta' identifikazzjoni uniku tad-Dikjarazzjoni ta' Prestazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De unieke identificatiecode van de prestatieverklaring."
+        },
+        {
+          "@language": "pl",
+          "@value": "Niepowtarzalny kod identyfikacyjny deklaracji właściwości użytkowych."
+        },
+        {
+          "@language": "pt",
+          "@value": "O código de identificação único da Declaração de Desempenho."
+        },
+        {
+          "@language": "ro",
+          "@value": "Codul unic de identificare al declarației de performanță."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikačný kód vyhlásenia o parametroch."
+        },
+        {
+          "@language": "sl",
+          "@value": "Enotna identifikacijska oznaka izjave o lastnostih."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den unika identifikationskoden för prestandadeklarationen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DeclarationOfPerformance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:harmonisedStandardReference",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Harmonised European Standard (hEN)"
+        },
+        {
+          "@language": "bg",
+          "@value": "Хармонизиран европейски стандарт (hEN)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Harmonizovaná evropská norma (hEN)"
+        },
+        {
+          "@language": "da",
+          "@value": "Harmoniseret europæisk standard (hEN)"
+        },
+        {
+          "@language": "de",
+          "@value": "Harmonisierte Europäische Norm (hEN)"
+        },
+        {
+          "@language": "el",
+          "@value": "Εναρμονισμένο ευρωπαϊκό πρότυπο (hEN)"
+        },
+        {
+          "@language": "es",
+          "@value": "Norma europea armonizada (hEN)"
+        },
+        {
+          "@language": "et",
+          "@value": "Harmoneeritud Euroopa standard (hEN)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdenmukaistettu eurooppalainen standardi (hEN)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Norme européenne harmonisée (hEN)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Caighdeán Eorpach Comhchuibhithe (hEN)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Usklađena europska norma (hEN)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Harmonizált európai szabvány (hEN)"
+        },
+        {
+          "@language": "it",
+          "@value": "Norma europea armonizzata (hEN)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Darnusis Europos standartas (hEN)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Saskaņotais Eiropas standarts (hEN)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Standard Ewropew Armonizzat (hEN)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Geharmoniseerde Europese norm (hEN)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zharmonizowana norma europejska (hEN)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Norma Europeia Harmonizada (hEN)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Standard european armonizat (hEN)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Harmonizovaná európska norma (hEN)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Harmonizirani evropski standard (hEN)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Harmoniserad europeisk standard (hEN)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A reference (URI or identifier) to the applicable Harmonised European Standard (hEN) used for assessing the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Препратка (URI или идентификатор) към приложимия Хармонизиран европейски стандарт (hEN), използван за оценка на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz (URI nebo identifikátor) na příslušnou harmonizovanou evropskou normu (hEN) použitou k posouzení výrobku."
+        },
+        {
+          "@language": "da",
+          "@value": "En reference (URI eller identifikator) til den gældende harmoniserede europæiske standard (hEN), der er brugt til at vurdere produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Verweis (URI oder Kennung) auf die anwendbare harmonisierte europäische Norm (hEN), die zur Bewertung des Produkts herangezogen wird."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά (URI ή αναγνωριστικό) στο ισχύον Εναρμονισμένο Ευρωπαϊκό Πρότυπο (hEN) που χρησιμοποιείται για την αξιολόγηση του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Una referencia (URI o identificador) a la norma europea armonizada (hEN) aplicable utilizada para evaluar el producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide (URI või identifikaator) toote hindamiseks kasutatavale asjakohasele harmoneeritud Euroopa standardile (hEN)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viite (URI tai tunniste) sovellettavaan yhdenmukaistettuun eurooppalaiseen standardiin (hEN), jota käytetään tuotteen arvioinnissa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une référence (URI ou identifiant) à la norme européenne harmonisée (hEN) applicable utilisée pour évaluer le produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt (URI nó aitheantóir) don Chaighdeán Eorpach Comhchuibhithe (hEN) is infheidhme a úsáidtear chun an táirge a mheasúnú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca (URI ili identifikator) na primjenjivu usklađenu europsku normu (hEN) koja se upotrebljava za ocjenjivanje proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás (URI vagy azonosító) a termék értékeléséhez használt vonatkozó harmonizált európai szabványra (hEN)."
+        },
+        {
+          "@language": "it",
+          "@value": "Un riferimento (URI o identificatore) alla norma europea armonizzata (hEN) applicabile utilizzata per valutare il prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda (URI arba identifikatorius) į taikomą darnųjį Europos standartą (hEN), naudojamą produktui vertinti."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce (URI vai identifikators) uz piemērojamo saskaņoto Eiropas standartu (hEN), ko izmanto izstrādājuma novērtēšanai."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza (URI jew identifikatur) għall-Istandard Ewropew Armonizzat (hEN) applikabbli użat għall-valutazzjoni tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een referentie (URI of identificatiecode) naar de toepasselijke geharmoniseerde Europese norm (hEN) die is gebruikt voor de beoordeling van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie (URI lub identyfikator) do odpowiedniej zharmonizowanej normy europejskiej (hEN) użytej do oceny wyrobu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma referência (URI ou identificador) à Norma Europeia Harmonizada (hEN) aplicável utilizada para avaliar o produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "O referință (URI sau identificator) la standardul european armonizat (hEN) aplicabil utilizat pentru evaluarea produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz (URI alebo identifikátor) na príslušnú harmonizovanú európsku normu (hEN) použitú na posúdenie výrobku."
+        },
+        {
+          "@language": "sl",
+          "@value": "Referenca (URI ali identifikator) na veljavni harmonizirani evropski standard (hEN), ki se uporablja za ocenjevanje proizvoda."
+        },
+        {
+          "@language": "sv",
+          "@value": "En referens (URI eller identifierare) till den tillämpliga harmoniserade europeiska standarden (hEN) som används för att bedöma produkten."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      }
+    },
+    {
+      "@id": "dppk:avsSystem",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "AVCP System"
+        },
+        {
+          "@language": "bg",
+          "@value": "Система за AVCP"
+        },
+        {
+          "@language": "cs",
+          "@value": "Systém AVCP"
+        },
+        {
+          "@language": "da",
+          "@value": "AVCP-system"
+        },
+        {
+          "@language": "de",
+          "@value": "AVCP-System"
+        },
+        {
+          "@language": "el",
+          "@value": "Σύστημα AVCP"
+        },
+        {
+          "@language": "es",
+          "@value": "Sistema EVCP"
+        },
+        {
+          "@language": "et",
+          "@value": "AVCP süsteem"
+        },
+        {
+          "@language": "fi",
+          "@value": "AVCP-järjestelmä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Système EVCP"
+        },
+        {
+          "@language": "ga",
+          "@value": "Córas AVCP"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sustav AVCP"
+        },
+        {
+          "@language": "hu",
+          "@value": "AVCP rendszer"
+        },
+        {
+          "@language": "it",
+          "@value": "Sistema VVCP"
+        },
+        {
+          "@language": "lt",
+          "@value": "AVCP sistema"
+        },
+        {
+          "@language": "lv",
+          "@value": "AVCP sistēma"
+        },
+        {
+          "@language": "mt",
+          "@value": "Sistema AVCP"
+        },
+        {
+          "@language": "nl",
+          "@value": "AVCP-systeem"
+        },
+        {
+          "@language": "pl",
+          "@value": "System AVCP"
+        },
+        {
+          "@language": "pt",
+          "@value": "Sistema AVCP"
+        },
+        {
+          "@language": "ro",
+          "@value": "Sistemul AVCP"
+        },
+        {
+          "@language": "sk",
+          "@value": "Systém AVCP"
+        },
+        {
+          "@language": "sl",
+          "@value": "Sistem AVCP"
+        },
+        {
+          "@language": "sv",
+          "@value": "AVCP-system"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The system for Assessment and Verification of Constancy of Performance (e.g., System 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Системата за оценяване и проверка на постоянството на експлоатационните показатели (напр. Система 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Systém posuzování a ověřování stálosti vlastností (např. systém 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "da",
+          "@value": "Systemet til vurdering og kontrol af ydeevnens konstans (f.eks. system 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "de",
+          "@value": "Das System zur Bewertung und Überprüfung der Leistungsbeständigkeit (z. B. System 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "el",
+          "@value": "Το σύστημα αξιολόγησης και επαλήθευσης της σταθερότητας της επίδοσης (π.χ. Σύστημα 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "es",
+          "@value": "El sistema de evaluación y verificación de la constancia de las prestaciones (por ejemplo, Sistema 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "et",
+          "@value": "Toimivuse püsivuse hindamise ja kontrollimise süsteem (nt süsteem 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Suoritustason pysyvyyden arviointi- ja varmennusjärjestelmä (esim. järjestelmä 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le système d'évaluation et de vérification de la constance des performances (par exemple, Système 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "ga",
+          "@value": "An córas um Measúnú agus Fíorú ar Sheasmhacht Feidhmíochta (e.g., Córas 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Sustav ocjenjivanja i provjere stalnosti svojstava (npr. sustav 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "hu",
+          "@value": "A teljesítmény állandóságának értékelésére és ellenőrzésére szolgáló rendszer (pl. 1., 1+., 2+., 3., 4. rendszer)."
+        },
+        {
+          "@language": "it",
+          "@value": "Il sistema per la valutazione e la verifica della costanza della prestazione (es. Sistema 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Eksploatacinių savybių pastovumo vertinimo ir tikrinimo sistema (pvz., 1, 1+, 2+, 3, 4 sistema)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekspluatācijas īpašību noturības novērtējuma un pārbaudes sistēma (piem., 1., 1.+, 2.+, 3., 4. sistēma)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Is-sistema għall-Valutazzjoni u l-Verifika tal-Kostanza tal-Prestazzjoni (eż., Sistema 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het systeem voor beoordeling en verificatie van de prestatiebestendigheid (bijv. systeem 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "pl",
+          "@value": "System oceny i weryfikacji stałości właściwości użytkowych (np. system 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "pt",
+          "@value": "O sistema de Avaliação e Verificação da Regularidade do Desempenho (por exemplo, Sistema 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Sistemul de evaluare și verificare a constanței performanței (de ex., Sistemul 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Systém posudzovania a overovania nemennosti parametrov (napr. systém 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sistem ocenjevanja in preverjanja nespremenljivosti lastnosti (npr. sistem 1, 1+, 2+, 3, 4)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Systemet för bedömning och fortlöpande kontroll av prestanda (t.ex. system 1, 1+, 2+, 3, 4)."
+        }
+      ],
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
+        "rdfs:label": "CPR - Annex V"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:notifiedBody",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Notified Body (NB) Details"
+        },
+        {
+          "@language": "bg",
+          "@value": "Подробности за нотифицирания орган (NB)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Podrobnosti o oznámeném subjektu (NB)"
+        },
+        {
+          "@language": "da",
+          "@value": "Oplysninger om bemyndiget organ (NB)"
+        },
+        {
+          "@language": "de",
+          "@value": "Angaben zur notifizierten Stelle (NB)"
+        },
+        {
+          "@language": "el",
+          "@value": "Στοιχεία κοινοποιημένου οργανισμού (NB)"
+        },
+        {
+          "@language": "es",
+          "@value": "Detalles del Organismo Notificado (NB)"
+        },
+        {
+          "@language": "et",
+          "@value": "Teavitatud asutuse (NB) üksikasjad"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ilmoitetun laitoksen (NB) tiedot"
+        },
+        {
+          "@language": "fr",
+          "@value": "Détails de l'organisme notifié (ON)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Sonraí an Chomhlachta a dtugtar Fógra dó (NB)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Pojedinosti o prijavljenom tijelu (NB)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Bejelentett szervezet (NB) adatai"
+        },
+        {
+          "@language": "it",
+          "@value": "Dettagli dell'organismo notificato (ON)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Notifikuotosios įstaigos (NB) duomenys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Informācija par paziņoto iestādi (NB)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dettalji tal-Korp Notifikat (NB)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gegevens aangemelde instantie (NB)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Szczegóły jednostki notyfikowanej (NB)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Detalhes do Organismo Notificado (ON)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Detalii organism notificat (ON)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Podrobnosti o notifikovanej osobe (NB)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Podrobnosti o priglašenem organu (NB)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Information om anmält organ (NB)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The EU-recognized notified body that verifies a product's conformance to European regulations"
+        },
+        {
+          "@language": "bg",
+          "@value": "Признатият в ЕС нотифициран орган, който проверява съответствието на продукта с европейските регламенти"
+        },
+        {
+          "@language": "cs",
+          "@value": "Oznámený subjekt uznaný EU, který ověřuje shodu výrobku s evropskými předpisy"
+        },
+        {
+          "@language": "da",
+          "@value": "Det EU-anerkendte bemyndigede organ, der bekræfter et produkts overensstemmelse med europæiske forordninger"
+        },
+        {
+          "@language": "de",
+          "@value": "Die EU-anerkannte notifizierte Stelle, die die Konformität eines Produkts mit europäischen Vorschriften überprüft"
+        },
+        {
+          "@language": "el",
+          "@value": "Ο αναγνωρισμένος από την ΕΕ κοινοποιημένος οργανισμός που επαληθεύει τη συμμόρφωση ενός προϊόντος με τους ευρωπαϊκούς κανονισμούς"
+        },
+        {
+          "@language": "es",
+          "@value": "El organismo notificado reconocido por la UE que verifica la conformidad de un producto con las normativas europeas"
+        },
+        {
+          "@language": "et",
+          "@value": "ELi poolt tunnustatud teavitatud asutus, mis kontrollib toote vastavust Euroopa eeskirjadele"
+        },
+        {
+          "@language": "fi",
+          "@value": "EU:n tunnustama ilmoitettu laitos, joka varmentaa tuotteen vaatimustenmukaisuuden eurooppalaisten säännösten suhteen"
+        },
+        {
+          "@language": "fr",
+          "@value": "L'organisme notifié reconnu par l'UE qui vérifie la conformité d'un produit aux réglementations européennes"
+        },
+        {
+          "@language": "ga",
+          "@value": "An comhlacht a dtugtar fógra dó atá aitheanta ag an AE a fhíoraíonn comhréireacht táirge le rialacháin na hEorpa"
+        },
+        {
+          "@language": "hr",
+          "@value": "Prijavljeno tijelo priznato u EU-u koje provjerava sukladnost proizvoda s europskim propisima"
+        },
+        {
+          "@language": "hu",
+          "@value": "Az EU által elismert bejelentett szervezet, amely ellenőrzi a termék európai előírásoknak való megfelelését"
+        },
+        {
+          "@language": "it",
+          "@value": "L'organismo notificato riconosciuto dall'UE che verifica la conformità di un prodotto alle normative europee"
+        },
+        {
+          "@language": "lt",
+          "@value": "ES pripažinta notifikuotoji įstaiga, kuri tikrina produkto atitiktį Europos reglamentams"
+        },
+        {
+          "@language": "lv",
+          "@value": "ES atzītā paziņotā iestāde, kas pārbauda izstrādājuma atbilstību Eiropas regulām"
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-korp notifikat rikonoxxut mill-UE li jivverifika l-konformità ta' prodott mar-regolamenti Ewropej"
+        },
+        {
+          "@language": "nl",
+          "@value": "De door de EU erkende aangemelde instantie die controleert of een product voldoet aan de Europese regelgeving"
+        },
+        {
+          "@language": "pl",
+          "@value": "Uznana w UE jednostka notyfikowana, która weryfikuje zgodność wyrobu z przepisami europejskimi"
+        },
+        {
+          "@language": "pt",
+          "@value": "O organismo notificado reconhecido pela UE que verifica a conformidade de um produto com os regulamentos europeus"
+        },
+        {
+          "@language": "ro",
+          "@value": "Organismul notificat recunoscut de UE care verifică conformitatea unui produs cu reglementările europene"
+        },
+        {
+          "@language": "sk",
+          "@value": "Notifikovaná osoba uznaná EÚ, ktorá overuje zhodu výrobku s európskymi predpismi"
+        },
+        {
+          "@language": "sl",
+          "@value": "Priglašeni organ, priznan v EU, ki preverja skladnost proizvoda z evropskimi predpisi"
+        },
+        {
+          "@language": "sv",
+          "@value": "Det EU-erkända anmälda organet som verifierar en produkts överensstämmelse med europeiska förordningar"
+        }
+      ],
+      "dcterms:source": {
+        "@id": "https://single-market-economy.ec.europa.eu/sectors/construction/construction-products-regulation-cpr/notified-bodies_en",
+        "rdfs:label": "Notified bodies - Internal Market, Industry, Entrepreneurship and SMEs"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:technicalAssessmentBody",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Technical Assessment Body (TAB) Details"
+        },
+        {
+          "@language": "bg",
+          "@value": "Подробности за органа за техническа оценка (TAB)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Podrobnosti o subjektu pro technické posuzování (TAB)"
+        },
+        {
+          "@language": "da",
+          "@value": "Oplysninger om teknisk vurderingsorgan (TAB)"
+        },
+        {
+          "@language": "de",
+          "@value": "Angaben zur Technischen Bewertungsstelle (TAB)"
+        },
+        {
+          "@language": "el",
+          "@value": "Στοιχεία οργανισμού τεχνικής αξιολόγησης (TAB)"
+        },
+        {
+          "@language": "es",
+          "@value": "Detalles del Organismo de Evaluación Técnica (TAB)"
+        },
+        {
+          "@language": "et",
+          "@value": "Tehnilise hindamise asutuse (TAB) üksikasjad"
+        },
+        {
+          "@language": "fi",
+          "@value": "Teknisestä arviointilaitoksesta (TAB) annettavat tiedot"
+        },
+        {
+          "@language": "fr",
+          "@value": "Détails de l'organisme d'évaluation technique (OET)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Sonraí an Chomhlachta um Measúnú Teicniúil (TAB)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Pojedinosti o tijelu za tehničko ocjenjivanje (TAB)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Műszaki értékelő szervezet (TAB) adatai"
+        },
+        {
+          "@language": "it",
+          "@value": "Dettagli dell'organismo di valutazione tecnica (TAB)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Techninio vertinimo įstaigos (TAB) duomenys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Informācija par tehniskā novērtējuma iestādi (TAB)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dettalji tal-Korp tal-Valutazzjoni Teknika (TAB)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gegevens technische beoordelingsinstantie (TAB)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Szczegóły jednostki oceny technicznej (JOT)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Detalhes do Organismo de Avaliação Técnica (OET)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Detalii organism de evaluare tehnică (TAB)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Podrobnosti o orgáne pre technické posudzovanie (TAB)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Podrobnosti o organu za tehnično ocenjevanje (TAB)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Information om tekniskt bedömningsorgan (TAB)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The technical assessment body that independently evaluates a product's technical characteristics"
+        },
+        {
+          "@language": "bg",
+          "@value": "Органът за техническа оценка, който независимо оценява техническите характеристики на продукта"
+        },
+        {
+          "@language": "cs",
+          "@value": "Subjekt pro technické posuzování, který nezávisle hodnotí technické vlastnosti výrobku"
+        },
+        {
+          "@language": "da",
+          "@value": "Det tekniske vurderingsorgan, der uafhængigt evaluerer et produkts tekniske egenskaber"
+        },
+        {
+          "@language": "de",
+          "@value": "Die technische Bewertungsstelle, die die technischen Merkmale eines Produkts unabhängig bewertet"
+        },
+        {
+          "@language": "el",
+          "@value": "Ο οργανισμός τεχνικής αξιολόγησης που αξιολογεί ανεξάρτητα τα τεχνικά χαρακτηριστικά ενός προϊόντος"
+        },
+        {
+          "@language": "es",
+          "@value": "El organismo de evaluación técnica que evalúa de forma independiente las características técnicas de un producto"
+        },
+        {
+          "@language": "et",
+          "@value": "Tehnilise hindamise asutus, mis hindab sõltumatult toote tehnilisi omadusi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tekninen arviointilaitos, joka arvioi riippumattomasti tuotteen teknisiä ominaisuuksia"
+        },
+        {
+          "@language": "fr",
+          "@value": "L'organisme d'évaluation technique qui évalue de manière indépendante les caractéristiques techniques d'un produit"
+        },
+        {
+          "@language": "ga",
+          "@value": "An comhlacht um measúnú teicniúil a dhéanann meastóireacht neamhspleách ar shaintréithe teicniúla táirge"
+        },
+        {
+          "@language": "hr",
+          "@value": "Tijelo za tehničko ocjenjivanje koje neovisno ocjenjuje tehničke značajke proizvoda"
+        },
+        {
+          "@language": "hu",
+          "@value": "A műszaki értékelő szervezet, amely függetlenül értékeli a termék műszaki jellemzőit"
+        },
+        {
+          "@language": "it",
+          "@value": "L'organismo di valutazione tecnica che valuta in modo indipendente le caratteristiche tecniche di un prodotto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Techninio vertinimo įstaiga, kuri nepriklausomai vertina produkto technines charakteristikas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tehniskā novērtējuma iestāde, kas neatkarīgi novērtē izstrādājuma tehniskās īpašības"
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-korp tal-valutazzjoni teknika li jevalwa b'mod indipendenti l-karatteristiċi tekniċi ta' prodott"
+        },
+        {
+          "@language": "nl",
+          "@value": "De technische beoordelingsinstantie die onafhankelijk de technische kenmerken van een product evalueert"
+        },
+        {
+          "@language": "pl",
+          "@value": "Jednostka oceny technicznej, która niezależnie ocenia właściwości techniczne wyrobu"
+        },
+        {
+          "@language": "pt",
+          "@value": "O organismo de avaliação técnica que avalia de forma independente as características técnicas de um produto"
+        },
+        {
+          "@language": "ro",
+          "@value": "Organismul de evaluare tehnică care evaluează independent caracteristicile tehnice ale unui produs"
+        },
+        {
+          "@language": "sk",
+          "@value": "Orgán pre technické posudzovanie, ktorý nezávisle hodnotí technické vlastnosti výrobku"
+        },
+        {
+          "@language": "sl",
+          "@value": "Organ za tehnično ocenjevanje, ki neodvisno ocenjuje tehnične značilnosti proizvoda"
+        },
+        {
+          "@language": "sv",
+          "@value": "Det tekniska bedömningsorganet som oberoende utvärderar en produkts tekniska egenskaper"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:validationReports",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Validation Reports Reference"
+        },
+        {
+          "@language": "bg",
+          "@value": "Референтни доклади за валидиране"
+        },
+        {
+          "@language": "cs",
+          "@value": "Reference na validační zprávy"
+        },
+        {
+          "@language": "da",
+          "@value": "Reference til valideringsrapporter"
+        },
+        {
+          "@language": "de",
+          "@value": "Verweis auf Validierungsberichte"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά εκθέσεων επικύρωσης"
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia de informes de validación"
+        },
+        {
+          "@language": "et",
+          "@value": "Valideerimisaruannete viide"
+        },
+        {
+          "@language": "fi",
+          "@value": "Validointiraporttien viite"
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence des rapports de validation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt Tuarascálacha Bailíochtaithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca izvješća o validaciji"
+        },
+        {
+          "@language": "hu",
+          "@value": "Érvényesítési jelentések hivatkozása"
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento ai rapporti di convalida"
+        },
+        {
+          "@language": "lt",
+          "@value": "Patvirtinimo ataskaitų nuoroda"
+        },
+        {
+          "@language": "lv",
+          "@value": "Validācijas ziņojumu atsauce"
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza tar-Rapporti ta' Validazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Referentie validatierapporten"
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do raportów walidacyjnych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência dos relatórios de validação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință rapoarte de validare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na validačné správy"
+        },
+        {
+          "@language": "sl",
+          "@value": "Referenca poročil o validaciji"
+        },
+        {
+          "@language": "sv",
+          "@value": "Referens till valideringsrapporter"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Reference to reports validating the performance or conformity of the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Препратка към доклади, валидиращи експлоатационните показатели или съответствието на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na zprávy potvrzující vlastnosti nebo shodu výrobku."
+        },
+        {
+          "@language": "da",
+          "@value": "Reference til rapporter, der validerer produktets ydeevne eller overensstemmelse."
+        },
+        {
+          "@language": "de",
+          "@value": "Verweis auf Berichte zur Validierung der Leistung oder Konformität des Produkts."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά σε εκθέσεις που επικυρώνουν την επίδοση ή τη συμμόρφωση του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia a los informes que validan las prestaciones o la conformidad del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide aruannetele, mis kinnitavad toote toimivust või vastavust."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viittaus raportteihin, joilla vahvistetaan tuotteen suoritustaso tai vaatimustenmukaisuus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence aux rapports validant les performances ou la conformité du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt do thuarascálacha a bhailíochtaíonn feidhmíocht nó comhréireacht an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca na izvješća kojima se potvrđuju svojstva ili sukladnost proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás a termék teljesítményét vagy megfelelőségét igazoló jelentésekre."
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento ai rapporti che convalidano le prestazioni o la conformità del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į ataskaitas, patvirtinančias produkto eksploatacines savybes arba atitiktį."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce uz ziņojumiem, kuros apstiprinātas izstrādājuma ekspluatācijas īpašības vai atbilstība."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza għal rapporti li jivalidaw il-prestazzjoni jew il-konformità tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Referentie naar rapporten die de prestaties of conformiteit van het product valideren."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do raportów potwierdzających właściwości użytkowe lub zgodność wyrobu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência aos relatórios que validam o desempenho ou a conformidade do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință la rapoartele care validează performanța sau conformitatea produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na správy potvrdzujúce parametre alebo zhodu výrobku."
+        },
+        {
+          "@language": "sl",
+          "@value": "Referenca na poročila, ki potrjujejo lastnosti ali skladnost proizvoda."
+        },
+        {
+          "@language": "sv",
+          "@value": "Referens till rapporter som validerar produktens prestanda eller överensstämmelse."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      }
+    },
+    {
+      "@id": "dppk:europeanAssessmentDocument",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "European Assessment Document (EAD) Reference"
+        },
+        {
+          "@language": "bg",
+          "@value": "Референтен европейски документ за оценяване (EAD)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Reference na evropský dokument pro posuzování (EAD)"
+        },
+        {
+          "@language": "da",
+          "@value": "Reference til europæisk vurderingsdokument (EAD)"
+        },
+        {
+          "@language": "de",
+          "@value": "Verweis auf Europäisches Bewertungsdokument (EAD)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά ευρωπαϊκού εγγράφου αξιολόγησης (EAD)"
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia del Documento de Evaluación Europeo (EAD)"
+        },
+        {
+          "@language": "et",
+          "@value": "Euroopa hindamisdokumendi (EAD) viide"
+        },
+        {
+          "@language": "fi",
+          "@value": "Eurooppalaisen arviointiasiakirjan (EAD) viite"
+        },
+        {
+          "@language": "fr",
+          "@value": "Référence du document d'évaluation européen (DEE)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt an Doiciméid Measúnaithe Eorpaigh (EAD)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca europskog dokumenta za ocjenjivanje (EAD)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Európai értékelési dokumentum (EAD) hivatkozása"
+        },
+        {
+          "@language": "it",
+          "@value": "Riferimento al documento per la valutazione europea (EAD)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Europos vertinimo dokumento (EAD) nuoroda"
+        },
+        {
+          "@language": "lv",
+          "@value": "Eiropas novērtējuma dokumenta (EAD) atsauce"
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza tad-Dokument ta' Valutazzjoni Ewropew (EAD)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Referentie Europees beoordelingsdocument (EAD)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do europejskiego dokumentu oceny (EAD)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Referência do Documento de Avaliação Europeu (EAD)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Referință document de evaluare european (EAD)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na európsky hodnotiaci dokument (EAD)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Referenca evropskega ocenjevalnega dokumenta (EAD)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Referens till europeiskt bedömningsdokument (EAD)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A reference to the European Assessment Document (EAD) relevant to the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Препратка към европейския документ за оценяване (EAD), свързан с продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na evropský dokument pro posuzování (EAD) týkající se výrobku."
+        },
+        {
+          "@language": "da",
+          "@value": "En reference til det europæiske vurderingsdokument (EAD), der er relevant for produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Verweis auf das für das Produkt relevante Europäische Bewertungsdokument (EAD)."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά στο Ευρωπαϊκό Έγγραφο Αξιολόγησης (EAD) που σχετίζεται με το προϊόν."
+        },
+        {
+          "@language": "es",
+          "@value": "Referencia al Documento de Evaluación Europeo (EAD) pertinente para el producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide tootega seotud Euroopa hindamisdokumendile (EAD)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viittaus tuotetta koskevaan eurooppalaiseen arviointiasiakirjaan (EAD)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une référence au document d'évaluation européen (DEE) pertinent pour le produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt don Doiciméad Measúnaithe Eorpach (EAD) atá ábhartha don táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca na europski dokument za ocjenjivanje (EAD) koji se odnosi na proizvod."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás a termékre vonatkozó európai értékelési dokumentumra (EAD)."
+        },
+        {
+          "@language": "it",
+          "@value": "Un riferimento al documento per la valutazione europea (EAD) pertinente per il prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į su produktu susijusį Europos vertinimo dokumentą (EAD)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce uz Eiropas novērtējuma dokumentu (EAD), kas attiecas uz izstrādājumu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza għad-Dokument ta' Valutazzjoni Ewropew (EAD) rilevanti għall-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een referentie naar het Europees beoordelingsdocument (EAD) dat relevant is voor het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do europejskiego dokumentu oceny (EAD) właściwego dla wyrobu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma referência ao Documento de Avaliação Europeu (EAD) relevante para o produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "O referință la documentul de evaluare european (EAD) relevant pentru produs."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na európsky hodnotiaci dokument (EAD) týkajúci sa výrobku."
+        },
+        {
+          "@language": "sl",
+          "@value": "Referenca na evropski ocenjevalni dokument (EAD), ki se nanaša na proizvod."
+        },
+        {
+          "@language": "sv",
+          "@value": "En referens till det europeiska bedömningsdokumentet (EAD) som är relevant för produkten."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      }
+    },
+    {
+      "@id": "dppk:reactionToFire",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Reaction to Fire"
+        },
+        {
+          "@language": "bg",
+          "@value": "Реакция на огън"
+        },
+        {
+          "@language": "cs",
+          "@value": "Reakce na oheň"
+        },
+        {
+          "@language": "da",
+          "@value": "Reaktion ved brand"
+        },
+        {
+          "@language": "de",
+          "@value": "Brandverhalten"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντίδραση στη φωτιά"
+        },
+        {
+          "@language": "es",
+          "@value": "Reacción al fuego"
+        },
+        {
+          "@language": "et",
+          "@value": "Tuletundlikkus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Palotekninen käyttäytyminen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Réaction au feu"
+        },
+        {
+          "@language": "ga",
+          "@value": "Imoibriú le Tine"
+        },
+        {
+          "@language": "hr",
+          "@value": "Reakcija na požar"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tűzvédelmi osztály"
+        },
+        {
+          "@language": "it",
+          "@value": "Reazione al fuoco"
+        },
+        {
+          "@language": "lt",
+          "@value": "Reakcija į ugnį"
+        },
+        {
+          "@language": "lv",
+          "@value": "Reakcija uz uguni"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reazzjoni għan-Nar"
+        },
+        {
+          "@language": "nl",
+          "@value": "Brandreactie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Reakcja na ogień"
+        },
+        {
+          "@language": "pt",
+          "@value": "Reação ao fogo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Reacția la foc"
+        },
+        {
+          "@language": "sk",
+          "@value": "Reakcia na oheň"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odziv na ogenj"
+        },
+        {
+          "@language": "sv",
+          "@value": "Reaktion vid brand"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The classification of the product's contribution to fire (Euroclass)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Класификацията на приноса на продукта към пожар (Евроклас)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Klasifikace příspěvku výrobku k požáru (Eurotřída)."
+        },
+        {
+          "@language": "da",
+          "@value": "Klassificering af produktets bidrag til brand (Euroclass)."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Klassifizierung des Beitrags des Produkts zum Brand (Euroklasse)."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ταξινόμηση της συμβολής του προϊόντος στη φωτιά (Ευρωκατηγορία)."
+        },
+        {
+          "@language": "es",
+          "@value": "La clasificación de la contribución del producto al fuego (Euroclase)."
+        },
+        {
+          "@language": "et",
+          "@value": "Toote tuletundlikkuse klassifikatsioon (Euroklass)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotteen palonkehityksen luokitus (Euroluokka)."
+        },
+        {
+          "@language": "fr",
+          "@value": "La classification de la contribution du produit au feu (Euroclasse)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicmiú rannchuidiú an táirge le tine (Aicme Eorpach)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Klasifikacija doprinosa proizvoda požaru (Euroklasa)."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termék tűzhöz való hozzájárulásának osztályozása (Euroosztály)."
+        },
+        {
+          "@language": "it",
+          "@value": "La classificazione del contributo del prodotto al fuoco (Euroclasse)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Produkto indėlio į gaisrą klasifikacija (Euroklasė)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Izstrādājuma ugunsreakcijas klasifikācija (Eiroklase)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-klassifikazzjoni tal-kontribuzzjoni tal-prodott għan-nar (Euroclass)."
+        },
+        {
+          "@language": "nl",
+          "@value": "De classificatie van de bijdrage van het product aan brand (Euroklasse)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasyfikacja wkładu wyrobu w rozwój pożaru (Euroklasa)."
+        },
+        {
+          "@language": "pt",
+          "@value": "A classificação da contribuição do produto para o fogo (Euroclasse)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasificarea contribuției produsului la foc (Euroclasa)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Klasifikácia príspevku výrobku k požiaru (Eurotrieda)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Klasifikacija prispevka proizvoda k požaru (Evrorazred)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Klassificering av produktens brandegenskaper (Euroklass)."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:thermalConductivity",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Thermal Conductivity (Lambda)"
+        },
+        {
+          "@language": "bg",
+          "@value": "Топлопроводимост (ламбда)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Tepelná vodivost (Lambda)"
+        },
+        {
+          "@language": "da",
+          "@value": "Varmeledningsevne (Lambda)"
+        },
+        {
+          "@language": "de",
+          "@value": "Wärmeleitfähigkeit (Lambda)"
+        },
+        {
+          "@language": "el",
+          "@value": "Θερμική αγωγιμότητα (Λάμδα)"
+        },
+        {
+          "@language": "es",
+          "@value": "Conductividad térmica (Lambda)"
+        },
+        {
+          "@language": "et",
+          "@value": "Soojusjuhtivus (Lambda)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Lämmönjohtavuus (Lambda)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Conductivité thermique (Lambda)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Seoltacht Theirmeach (Lambda)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toplinska provodljivost (Lambda)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Hővezetési tényező (Lambda)"
+        },
+        {
+          "@language": "it",
+          "@value": "Conducibilità termica (Lambda)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šilumos laidumas (Lambda)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Siltumvadītspēja (Lambda)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Konduttività Termali (Lambda)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Warmtegeleidingscoëfficiënt (Lambda)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Przewodność cieplna (Lambda)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Condutividade Térmica (Lambda)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conductivitate termică (Lambda)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Tepelná vodivosť (Lambda)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toplotna prevodnost (Lambda)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Värmeledningsförmåga (Lambda)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The property of a material to conduct heat."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свойството на материала да провежда топлина."
+        },
+        {
+          "@language": "cs",
+          "@value": "Schopnost materiálu vést teplo."
+        },
+        {
+          "@language": "da",
+          "@value": "Et materiales egenskab til at lede varme."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Eigenschaft eines Materials, Wärme zu leiten."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ιδιότητα ενός υλικού να άγει τη θερμότητα."
+        },
+        {
+          "@language": "es",
+          "@value": "La propiedad de un material para conducir el calor."
+        },
+        {
+          "@language": "et",
+          "@value": "Materjali omadus juhtida soojust."
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalin ominaisuus johtaa lämpöä."
+        },
+        {
+          "@language": "fr",
+          "@value": "La propriété d'un matériau à conduire la chaleur."
+        },
+        {
+          "@language": "ga",
+          "@value": "An t-airí atá ag ábhar chun teas a sheoladh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Svojstvo materijala da provodi toplinu."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az anyag hővezető képessége."
+        },
+        {
+          "@language": "it",
+          "@value": "La proprietà di un materiale di condurre calore."
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagos savybė praleisti šilumą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiāla īpašība vadīt siltumu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-proprjetà ta' materjal li jmexxi s-sħana."
+        },
+        {
+          "@language": "nl",
+          "@value": "De eigenschap van een materiaal om warmte te geleiden."
+        },
+        {
+          "@language": "pl",
+          "@value": "Właściwość materiału do przewodzenia ciepła."
+        },
+        {
+          "@language": "pt",
+          "@value": "A propriedade de um material para conduzir calor."
+        },
+        {
+          "@language": "ro",
+          "@value": "Proprietatea unui material de a conduce căldura."
+        },
+        {
+          "@language": "sk",
+          "@value": "Schopnosť materiálu viesť teplo."
+        },
+        {
+          "@language": "sl",
+          "@value": "Lastnost materiala, da prevaja toploto."
+        },
+        {
+          "@language": "sv",
+          "@value": "Ett materials förmåga att leda värme."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      }
+    },
+    {
+      "@id": "dppk:compressiveStrength",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Compressive Strength"
+        },
+        {
+          "@language": "bg",
+          "@value": "Якост на натиск"
+        },
+        {
+          "@language": "cs",
+          "@value": "Pevnost v tlaku"
+        },
+        {
+          "@language": "da",
+          "@value": "Trykstyrke"
+        },
+        {
+          "@language": "de",
+          "@value": "Druckfestigkeit"
+        },
+        {
+          "@language": "el",
+          "@value": "Θλιπτική αντοχή"
+        },
+        {
+          "@language": "es",
+          "@value": "Resistencia a la compresión"
+        },
+        {
+          "@language": "et",
+          "@value": "Survetugevus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Puristuslujuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Résistance à la compression"
+        },
+        {
+          "@language": "ga",
+          "@value": "Neart Comhbhrú"
+        },
+        {
+          "@language": "hr",
+          "@value": "Tlačna čvrstoća"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyomószilárdság"
+        },
+        {
+          "@language": "it",
+          "@value": "Resistenza alla compressione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gniuždymo stipris"
+        },
+        {
+          "@language": "lv",
+          "@value": "Spiedes stiprība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Saħħa Kompressiva"
+        },
+        {
+          "@language": "nl",
+          "@value": "Druksterkte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wytrzymałość na ściskanie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resistência à compressão"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rezistență la compresiune"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pevnosť v tlaku"
+        },
+        {
+          "@language": "sl",
+          "@value": "Tlačna trdnost"
+        },
+        {
+          "@language": "sv",
+          "@value": "Tryckhållfasthet"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The capacity of a material or structure to withstand loads tending to reduce size."
+        },
+        {
+          "@language": "bg",
+          "@value": "Способността на материал или конструкция да издържа на натоварвания, които имат за цел да намалят размера."
+        },
+        {
+          "@language": "cs",
+          "@value": "Schopnost materiálu nebo konstrukce odolávat zatížení směřujícímu ke zmenšení velikosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Et materiales eller en strukturs evne til at modstå belastninger, der har tendens til at reducere størrelsen."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Fähigkeit eines Materials oder einer Struktur, Belastungen standzuhalten, die dazu neigen, die Größe zu verringern."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ικανότητα ενός υλικού ή δομής να αντέχει σε φορτία που τείνουν να μειώσουν το μέγεθος."
+        },
+        {
+          "@language": "es",
+          "@value": "La capacidad de un material o estructura para soportar cargas que tienden a reducir su tamaño."
+        },
+        {
+          "@language": "et",
+          "@value": "Materjali või konstruktsiooni võime taluda koormusi, mis kipuvad suurust vähendama."
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalin tai rakenteen kyky kestää kuormituksia, jotka pyrkivät pienentämään sen kokoa."
+        },
+        {
+          "@language": "fr",
+          "@value": "La capacité d'un matériau ou d'une structure à résister à des charges tendant à réduire sa taille."
+        },
+        {
+          "@language": "ga",
+          "@value": "Cumas ábhair nó struchtúir chun ualaí a sheasamh a d'fhéadfadh a mhéid a laghdú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Sposobnost materijala ili konstrukcije da izdrži opterećenja koja teže smanjenju veličine."
+        },
+        {
+          "@language": "hu",
+          "@value": "Egy anyag vagy szerkezet képessége, hogy ellenálljon a méretcsökkenést előidéző terheléseknek."
+        },
+        {
+          "@language": "it",
+          "@value": "La capacità di un materiale o di una struttura di resistere a carichi che tendono a ridurne le dimensioni."
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagos ar konstrukcijos gebėjimas atlaikyti apkrovas, kurios linkusios sumažinti dydį."
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiāla vai konstrukcijas spēja izturēt slodzi, kas tiecas samazināt izmēru."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-kapaċità ta' materjal jew struttura li tiflaħ tagħbijiet li jxaqilbu biex inaqqsu d-daqs."
+        },
+        {
+          "@language": "nl",
+          "@value": "De capaciteit van een materiaal of constructie om weerstand te bieden aan belastingen die de neiging hebben de omvang te verkleinen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Zdolność materiału lub konstrukcji do wytrzymywania obciążeń zmierzających do zmniejszenia rozmiaru."
+        },
+        {
+          "@language": "pt",
+          "@value": "A capacidade de um material ou estrutura para suportar cargas que tendem a reduzir o tamanho."
+        },
+        {
+          "@language": "ro",
+          "@value": "Capacitatea unui material sau a unei structuri de a rezista la sarcini care tind să reducă dimensiunea."
+        },
+        {
+          "@language": "sk",
+          "@value": "Schopnosť materiálu alebo konštrukcie odolávať zaťaženiu, ktoré má tendenciu zmenšovať veľkosť."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sposobnost materiala ali konstrukcije, da vzdrži obremenitve, ki težijo k zmanjšanju velikosti."
+        },
+        {
+          "@language": "sv",
+          "@value": "Förmågan hos ett material eller en struktur att motstå belastningar som tenderar att minska storleken."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ConstructionProduct"
+      },
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      }
+    },
+    {
+      "@id": "dppk:steelGrade",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Steel Grade"
+        },
+        {
+          "@language": "bg",
+          "@value": "Клас на стоманата"
+        },
+        {
+          "@language": "cs",
+          "@value": "Třída oceli"
+        },
+        {
+          "@language": "da",
+          "@value": "Stålkvalitet"
+        },
+        {
+          "@language": "de",
+          "@value": "Stahlsorte"
+        },
+        {
+          "@language": "el",
+          "@value": "Κατηγορία χάλυβα"
+        },
+        {
+          "@language": "es",
+          "@value": "Grado de acero"
+        },
+        {
+          "@language": "et",
+          "@value": "Terase klass"
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräsluokka"
+        },
+        {
+          "@language": "fr",
+          "@value": "Nuance d'acier"
+        },
+        {
+          "@language": "ga",
+          "@value": "Grád Cruach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta čelika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Acélminőség"
+        },
+        {
+          "@language": "it",
+          "@value": "Grado di acciaio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Plieno markė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tērauda marka"
+        },
+        {
+          "@language": "mt",
+          "@value": "Grad tal-Azzar"
+        },
+        {
+          "@language": "nl",
+          "@value": "Staalkwaliteit"
+        },
+        {
+          "@language": "pl",
+          "@value": "Gatunek stali"
+        },
+        {
+          "@language": "pt",
+          "@value": "Grau de aço"
+        },
+        {
+          "@language": "ro",
+          "@value": "Calitatea oțelului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Akosť ocele"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta jekla"
+        },
+        {
+          "@language": "sv",
+          "@value": "Stålsort"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The classification of the steel based on its composition and physical properties (e.g., R260, S355)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Класификацията на стоманата въз основа на нейния състав и физични свойства (напр. R260, S355)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Klasifikace oceli na základě jejího složení a fyzikálních vlastností (např. R260, S355)."
+        },
+        {
+          "@language": "da",
+          "@value": "Klassificeringen af stålet baseret på dets sammensætning og fysiske egenskaber (f.eks. R260, S355)."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Klassifizierung des Stahls basierend auf seiner Zusammensetzung und seinen physikalischen Eigenschaften (z. B. R260, S355)."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ταξινόμηση του χάλυβα με βάση τη σύνθεση και τις φυσικές του ιδιότητες (π.χ. R260, S355)."
+        },
+        {
+          "@language": "es",
+          "@value": "La clasificación del acero en función de su composición y propiedades físicas (por ejemplo, R260, S355)."
+        },
+        {
+          "@language": "et",
+          "@value": "Terase klassifikatsioon selle koostise ja füüsikaliste omaduste põhjal (nt R260, S355)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräksen luokitus sen koostumuksen ja fysikaalisten ominaisuuksien perusteella (esim. R260, S355)."
+        },
+        {
+          "@language": "fr",
+          "@value": "La classification de l'acier en fonction de sa composition et de ses propriétés physiques (par exemple, R260, S355)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicmiú na cruach bunaithe ar a comhdhéanamh agus ar a hairíonna fisiceacha (e.g., R260, S355)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Klasifikacija čelika na temelju njegova sastava i fizičkih svojstava (npr. R260, S355)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az acél osztályozása összetétele és fizikai tulajdonságai alapján (pl. R260, S355)."
+        },
+        {
+          "@language": "it",
+          "@value": "La classificazione dell'acciaio in base alla sua composizione e alle sue proprietà fisiche (es. R260, S355)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Plieno klasifikacija pagal jo sudėtį ir fizikines savybes (pvz., R260, S355)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Tērauda klasifikācija, pamatojoties uz tā sastāvu un fizikālajām īpašībām (piem., R260, S355)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-klassifikazzjoni tal-azzar ibbażata fuq il-kompożizzjoni u l-proprjetajiet fiżiċi tiegħu (eż., R260, S355)."
+        },
+        {
+          "@language": "nl",
+          "@value": "De classificatie van het staal op basis van de samenstelling en fysieke eigenschappen (bijv. R260, S355)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasyfikacja stali na podstawie jej składu i właściwości fizycznych (np. R260, S355)."
+        },
+        {
+          "@language": "pt",
+          "@value": "A classificação do aço com base na sua composição e propriedades físicas (por exemplo, R260, S355)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasificarea oțelului pe baza compoziției și a proprietăților sale fizice (de ex., R260, S355)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Klasifikácia ocele na základe jej zloženia a fyzikálnych vlastností (napr. R260, S355)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Klasifikacija jekla glede na njegovo sestavo in fizikalne lastnosti (npr. R260, S355)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Klassificeringen av stålet baserat på dess sammansättning och fysikaliska egenskaper (t.ex. R260, S355)."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:railProfile",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Rail Profile"
+        },
+        {
+          "@language": "bg",
+          "@value": "Профил на релсата"
+        },
+        {
+          "@language": "cs",
+          "@value": "Profil kolejnice"
+        },
+        {
+          "@language": "da",
+          "@value": "Skinneprofil"
+        },
+        {
+          "@language": "de",
+          "@value": "Schienenprofil"
+        },
+        {
+          "@language": "el",
+          "@value": "Προφίλ σιδηροτροχιάς"
+        },
+        {
+          "@language": "es",
+          "@value": "Perfil de carril"
+        },
+        {
+          "@language": "et",
+          "@value": "Rööpa profiil"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kiskoprofiili"
+        },
+        {
+          "@language": "fr",
+          "@value": "Profil de rail"
+        },
+        {
+          "@language": "ga",
+          "@value": "Próifíl Iarnróid"
+        },
+        {
+          "@language": "hr",
+          "@value": "Profil tračnice"
+        },
+        {
+          "@language": "hu",
+          "@value": "Sínprofil"
+        },
+        {
+          "@language": "it",
+          "@value": "Profilo della rotaia"
+        },
+        {
+          "@language": "lt",
+          "@value": "Bėgio profilis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sliežu profils"
+        },
+        {
+          "@language": "mt",
+          "@value": "Profil tal-Ferrovija"
+        },
+        {
+          "@language": "nl",
+          "@value": "Railprofiel"
+        },
+        {
+          "@language": "pl",
+          "@value": "Profil szyny"
+        },
+        {
+          "@language": "pt",
+          "@value": "Perfil do carril"
+        },
+        {
+          "@language": "ro",
+          "@value": "Profilul șinei"
+        },
+        {
+          "@language": "sk",
+          "@value": "Profil koľajnice"
+        },
+        {
+          "@language": "sl",
+          "@value": "Profil tirnice"
+        },
+        {
+          "@language": "sv",
+          "@value": "Rälsprofil"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The standardized cross-section design of a railway rail (e.g., 46E1)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Стандартизираният дизайн на напречното сечение на железопътна релса (напр. 46E1)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Standardizovaný návrh průřezu železniční kolejnice (např. 46E1)."
+        },
+        {
+          "@language": "da",
+          "@value": "Det standardiserede tværsnitsdesign af en jernbaneskinne (f.eks. 46E1)."
+        },
+        {
+          "@language": "de",
+          "@value": "Das standardisierte Querschnittsdesign einer Eisenbahnschiene (z. B. 46E1)."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο τυποποιημένος σχεδιασμός διατομής μιας σιδηροτροχιάς (π.χ. 46E1)."
+        },
+        {
+          "@language": "es",
+          "@value": "El diseño estandarizado de la sección transversal de un carril ferroviario (por ejemplo, 46E1)."
+        },
+        {
+          "@language": "et",
+          "@value": "Raudteerööpa standardne ristlõike kujundus (nt 46E1)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Rautatiekiskon standardoitu poikkileikkaussuunnittelu (esim. 46E1)."
+        },
+        {
+          "@language": "fr",
+          "@value": "La conception transversale standardisée d'un rail de chemin de fer (par exemple, 46E1)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Dearadh trasghearrtha caighdeánaithe do ráille iarnróid (e.g., 46E1)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Standardizirani dizajn poprečnog presjeka željezničke tračnice (npr. 46E1)."
+        },
+        {
+          "@language": "hu",
+          "@value": "A vasúti sín szabványos keresztmetszeti kialakítása (pl. 46E1)."
+        },
+        {
+          "@language": "it",
+          "@value": "Il design standardizzato della sezione trasversale di una rotaia ferroviaria (es. 46E1)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Standartizuotas geležinkelio bėgio skerspjūvio dizainas (pvz., 46E1)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Standartizēts dzelzceļa sliedes šķērsgriezuma dizains (piem., 46E1)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-disinn tas-sezzjoni trasversali standardizzat ta' ferrovija ferrovjarja (eż., 46E1)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het gestandaardiseerde dwarsdoorsnede-ontwerp van een spoorstaaf (bijv. 46E1)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Znormalizowany projekt przekroju poprzecznego szyny kolejowej (np. 46E1)."
+        },
+        {
+          "@language": "pt",
+          "@value": "O design da secção transversal padronizada de um carril ferroviário (por exemplo, 46E1)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Proiectarea secțiunii transversale standardizate a unei șine de cale ferată (de ex., 46E1)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Štandardizovaný návrh prierezu železničnej koľajnice (napr. 46E1)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Standardizirana zasnova prečnega prereza železniške tirnice (npr. 46E1)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den standardiserade tvärsnittsdesignen av en järnvägsräls (t.ex. 46E1)."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    }
+  ]
+}
