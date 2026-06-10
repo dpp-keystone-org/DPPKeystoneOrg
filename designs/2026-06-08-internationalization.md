@@ -63,10 +63,10 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   **[COMPLETED] Task 6.4.1:** Update `scripts/build-and-clean.mjs` to intercept `.html` files in subdirectories during `processDirectory`, load their adjacent `.i18n.json` file, and inject the `en` string into `[data-i18n-key]` elements using `cheerio`.
         *   **[COMPLETED] Task 6.4.2:** Update `scripts/update-index-html.mjs` to perform the same `cheerio` injection for the root `index.html` using `index.i18n.json`.
         *   **[COMPLETED] Task 6.4.3:** Strip the raw inner text out of all `[data-i18n-key]` elements in the `src/` HTML files to establish the JSON files as the single source of truth.
-    *   **[PENDING] Step 6.5: Add Playwright Tests**
+    *   **[COMPLETED] Step 6.5: Add Playwright Tests**
         *   Add separate Playwright tests that load the static pages, switch the language widget, and assert that the text dynamically updates to the new language (similar to what we did for the spec docs).
         *   **[COMPLETED] Task 6.5.1:** Write a test that checks all HTML files for at least one language change (e.g., German) and checks at least one HTML file for all 24 languages.
-        *   **[PENDING] Task 6.5.2:** Write a test that verifies that *every single string* in the translation resource for an HTML page is successfully rendered on the page in a target language (to prevent missing strings).
+        *   **[COMPLETED] Task 6.5.2:** Write a test that verifies that *every single string* in the translation resource for an HTML page is successfully rendered on the page in a target language (to prevent missing strings).
     *   **[PENDING] Step 6.6: Cleanup**
         *   Delete the baseline HTML snapshot integration tests from Step 6.0, as they have fulfilled their purpose of ensuring a safe refactor.
 
