@@ -24,6 +24,7 @@
     { "@language": "et", "@value": "DPP tuumontoloogia - Vastavuse ja regulatiivsed definitsioonid ({{VERSION}})" },
     { "@language": "fi", "@value": "DPP-ydinontologia - Vaatimustenmukaisuuden ja sääntelyn määritykset ({{VERSION}})" },
     { "@language": "fr", "@value": "Ontologie de base DPP - Définitions de conformité et de réglementation ({{VERSION}})" },
+    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Sainmhínithe Comhlíonta agus Rialála ({{VERSION}})" },
     { "@language": "hr", "@value": "Osnovna ontologija DPP-a - Definicije sukladnosti i propisa ({{VERSION}})" },
     { "@language": "hu", "@value": "DPP alapontológia - Megfelelőségi és szabályozási definíciók ({{VERSION}})" },
     { "@language": "it", "@value": "Ontologia di base DPP - Definizioni di conformità e normative ({{VERSION}})" },
@@ -36,8 +37,7 @@
     { "@language": "ro", "@value": "Ontologia de bază DPP - Definiții de conformitate și reglementare ({{VERSION}})" },
     { "@language": "sk", "@value": "Základná ontológia DPP - Definície zhody a regulácií ({{VERSION}})" },
     { "@language": "sl", "@value": "Osnovna ontologija DPP - Definicije skladnosti in predpisov ({{VERSION}})" },
-    { "@language": "sv", "@value": "DPP-kärnontologi - Efterlevnad och regulatoriska definitioner ({{VERSION}})" },
-    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Sainmhínithe Comhlíonta agus Rialála ({{VERSION}})" }
+    { "@language": "sv", "@value": "DPP-kärnontologi - Efterlevnad och regulatoriska definitioner ({{VERSION}})" }
   ],
   "dcterms:description": [
     { "@language": "en", "@value": "Defines horizontal concepts related to Documents, Certifications, Substances of Concern, Eco-Design, Packaging, and Production Steps." },
@@ -50,6 +50,7 @@
     { "@language": "et", "@value": "Määratleb horisontaalsed kontseptsioonid seoses dokumentide, sertifikaatide, murettekitavate ainete, ökodisaini, pakendite ja tootmissammudega." },
     { "@language": "fi", "@value": "Määrittää horisontaalisia käsitteitä, jotka liittyvät asiakirjoihin, sertifiointeihin, huolta aiheuttaviin aineisiin, ekosuunnitteluun, pakkauksiin ja tuotantovaiheisiin." },
     { "@language": "fr", "@value": "Définit les concepts horizontaux liés aux documents, certifications, substances extrêmement préoccupantes, écoconception, emballage et étapes de production." },
+    { "@language": "ga", "@value": "Sainmhíníonn sé coincheapa cothrománacha abhaineann le Doiciméid, Deimhnithe, Substaintí is Ábhar Imní, Éicidhearthóireacht, Pacáistiú, agus Céimeanna Táirgthe." },
     { "@language": "hr", "@value": "Definira horizontalne koncepte povezane s dokumentima, certifikatima, zabrinjavajućim tvarima, ekološkim dizajnom, ambalažom i proizvodnim koracima." },
     { "@language": "hu", "@value": "Meghatározza a dokumentumokhoz, tanúsítványokhoz, különös aggodalomra okot adó anyagokhoz, környezettudatos tervezéshez, csomagoláshoz és gyártási lépésekhez kapcsolódó horizontális fogalmakat." },
     { "@language": "it", "@value": "Definisce concetti orizzontali relativi a documenti, certificazioni, sostanze estremamente problematiche, progettazione ecocompatibile, imballaggio e fasi di produzione." },
@@ -62,8 +63,7 @@
     { "@language": "ro", "@value": "Definește concepte orizontale referitoare la documente, certificări, substanțe care prezintă motive de îngrijorare, proiectare ecologică, ambalaje și etape de producție." },
     { "@language": "sk", "@value": "Definuje horizontálne koncepty týkajúce sa dokumentov, certifikácií, látok vzbudzujúcich obavy, ekodizajnu, obalov a výrobných krokov." },
     { "@language": "sl", "@value": "Določa horizontalne koncepte, povezane z dokumenti, certifikati, snovmi, ki vzbujajo skrb, okoljsko primerno zasnovo, embalažo in proizvodnimi koraki." },
-    { "@language": "sv", "@value": "Definierar horisontella begrepp relaterade till dokument, certifieringar, särskilt farliga ämnen, ekodesign, förpackningar och produktionssteg." },
-    { "@language": "ga", "@value": "Sainmhíníonn sé coincheapa cothrománacha abhaineann le Doiciméid, Deimhnithe, Substaintí is Ábhar Imní, Éicidhearthóireacht, Pacáistiú, agus Céimeanna Táirgthe." }
+    { "@language": "sv", "@value": "Definierar horisontella begrepp relaterade till dokument, certifieringar, särskilt farliga ämnen, ekodesign, förpackningar och produktionssteg." }
   ],
   "owl:versionInfo": "1.0.0",
   // Import Product and Organization ontologies as they are used in the domain/range of properties here.
