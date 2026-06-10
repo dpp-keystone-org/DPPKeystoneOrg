@@ -1,4 +1,7 @@
+import { loadHeader } from '../branding/header.js';
 import { buildIndex } from '../lib/ontology-indexer.js';
+
+loadHeader('dpp-header-container', '..');
 
 let fullIndex = [];
 

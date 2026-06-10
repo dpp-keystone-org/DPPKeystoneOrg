@@ -1,4 +1,6 @@
 // src/wizard/wizard.js
+import { loadHeader } from '../branding/header.js';
+loadHeader('dpp-header-container', '..');
 import { loadSchema } from '../lib/schema-loader.js';
 import { loadOntology } from '../lib/ontology-loader.js';
 import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
