@@ -18,6 +18,10 @@ test.describe('Feature 6: Static HTML Internationalization', () => {
     // 1. Check all pages for at least one language (German)
     test('dynamic language switching works across all static HTML pages (German)', async ({ page }) => {
         for (const target of PAGES_TO_TEST) {
+            // Clear local storage to ensure the language defaults to English for the test
+            await page.addInitScript(() => {
+                window.localStorage.clear();
+            });
             await page.goto(target.path);
 
             const element = page.locator(`[data-i18n-key="${target.key}"]`).first();

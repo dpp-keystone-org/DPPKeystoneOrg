@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const langWrapper = document.getElementById('language-widget-wrapper');
     if (langWrapper) {
-        langWrapper.appendChild(LanguageManager.renderSelectorWidget());
+        langWrapper.innerHTML = '';
+        LanguageManager.init('index.i18n.json');
     }
 
     // 1. Load Schemas
