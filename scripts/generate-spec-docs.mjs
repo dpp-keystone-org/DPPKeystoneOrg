@@ -661,6 +661,10 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, 
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init();
+    </script>
 </body>
 </html>`;
 }
@@ -686,9 +690,25 @@ export function generateOntologyHtml(directoryName, files, distDir, currentHtmlP
 </head>
 <body>
     <div class="container">
-        <h1>Ontology Modules in ${directoryName}</h1>
-        <ul>${fileLinks}</ul>
+        <header>
+            <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1>Ontology Explorer</h1>
+                <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
+            </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
+        </header>
+        <main>
+            <ul>${fileLinks}</ul>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init();
+    </script>
 </body>
 </html>`;
 }
@@ -734,6 +754,10 @@ export function generateContextHtml(directoryName, files, distDir, currentHtmlPa
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init();
+    </script>
 </body>
 </html>`;
 }
@@ -779,6 +803,10 @@ function generateTopLevelContextIndexHtml(directoryName, files, distDir, current
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init();
+    </script>
 </body>
 </html>`;
 }
@@ -1098,6 +1126,10 @@ function generateGlobalOntologyIndex(allMetadata, currentHtmlPath, ontologyDir) 
             <p><small>Part of the <a href="/">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '../../lib/language-manager.js';
+        LanguageManager.init();
+    </script>
 </body>
 </html>`;
 }
