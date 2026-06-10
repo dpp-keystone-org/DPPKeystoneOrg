@@ -72,7 +72,7 @@ describe('index.html generation', () => {
     
     // Check title and header
     expect(content).toContain('<title>DPP Utilities</title>');
-    expect(content).toContain('<h1>DPP Keystone Utilities</h1>');
+    expect(content).toContain('<h1 data-i18n-key="developer-sdks">DPP Keystone Utilities</h1>');
     
     // Check for links (relative paths)
     // In dist/util/index.html, the link to js/client/dpp-adapter.js is just "js/client/dpp-adapter.js"

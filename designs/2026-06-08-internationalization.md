@@ -67,7 +67,7 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   Add separate Playwright tests that load the static pages, switch the language widget, and assert that the text dynamically updates to the new language (similar to what we did for the spec docs).
         *   **[COMPLETED] Task 6.5.1:** Write a test that checks all HTML files for at least one language change (e.g., German) and checks at least one HTML file for all 24 languages.
         *   **[COMPLETED] Task 6.5.2:** Write a test that verifies that *every single string* in the translation resource for an HTML page is successfully rendered on the page in a target language (to prevent missing strings).
-    *   **[PENDING] Step 6.6: Cleanup**
+    *   **[COMPLETED] Step 6.6: Cleanup**
         *   Delete the baseline HTML snapshot integration tests from Step 6.0, as they have fulfilled their purpose of ensuring a safe refactor.
 
 ### [IN PROGRESS] Feature 7: Bug-Bash & Quality Assurance

@@ -1091,13 +1091,13 @@ function generateGlobalOntologyIndex(allMetadata, currentHtmlPath, ontologyDir) 
         </header>
         <main>
             <div class="index-section">
-                <h3>All Classes & Concepts</h3>
+                <h3><span data-i18n-key="classes-and-concepts">All Classes &amp; Concepts</span></h3>
                 <ul>
                     ${allClasses.map(c => `<li><a href="./${c.module}/${c.moduleName}/${getFragment(c.id)}.html">${c.id}</a> (${c.label})</li>`).join('')}
                 </ul>
             </div>
             <div class="index-section">
-                <h3>All Properties</h3>
+                <h3><span data-i18n-key="properties-header">All Properties</span></h3>
                 <table>
                     <thead>
                         <tr>
