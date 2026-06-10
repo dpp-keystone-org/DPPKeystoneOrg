@@ -24,6 +24,7 @@
     { "@language": "et", "@value": "DPP tuumontoloogia - Organisatsiooni ja rollide definitsioonid ({{VERSION}})" },
     { "@language": "fi", "@value": "DPP-ydinontologia - Organisaation ja roolien määritykset ({{VERSION}})" },
     { "@language": "fr", "@value": "Ontologie de base DPP - Définitions d'organisation et de rôles ({{VERSION}})" },
+    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Sainmhínithe Eagraíochta agus Rólanna ({{VERSION}})" },
     { "@language": "hr", "@value": "Osnovna ontologija DPP-a - Definicije organizacija i uloga ({{VERSION}})" },
     { "@language": "hu", "@value": "DPP alapontológia - Szervezet és szerepkörök definíciói ({{VERSION}})" },
     { "@language": "it", "@value": "Ontologia di base DPP - Definizioni di organizzazione e ruoli ({{VERSION}})" },
@@ -36,8 +37,7 @@
     { "@language": "ro", "@value": "Ontologia de bază DPP - Definiții pentru organizații și roluri ({{VERSION}})" },
     { "@language": "sk", "@value": "Základná ontológia DPP - Definície organizácií a úloh ({{VERSION}})" },
     { "@language": "sl", "@value": "Osnovna ontologija DPP - Definicije organizacij in vlog ({{VERSION}})" },
-    { "@language": "sv", "@value": "DPP-kärnontologi - Organisation och rolldefinitioner ({{VERSION}})" },
-    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Sainmhínithe Eagraíochta agus Rólanna ({{VERSION}})" }
+    { "@language": "sv", "@value": "DPP-kärnontologi - Organisation och rolldefinitioner ({{VERSION}})" }
   ],
   "dcterms:description": [
     { "@language": "en", "@value": "Defines concepts related to organizations, roles (Economic Operator, Manufacturer, Facility), identifiers, and contact information within the DPP ecosystem." },
@@ -50,6 +50,7 @@
     { "@language": "et", "@value": "Määratleb mõisted, mis on seotud organisatsioonide, rollide (Majandustegevuses osaleja, Tootja, Rajatis), identifikaatorite ja kontaktteabega DPP ökosüsteemis." },
     { "@language": "fi", "@value": "Määrittää organisaatioihin, rooleihin (Talouden toimija, Valmistaja, Laitos), tunnisteisiin ja yhteystietoihin liittyviä käsitteitä DPP-ekosysteemissä." },
     { "@language": "fr", "@value": "Définit les concepts liés aux organisations, aux rôles (Opérateur économique, Fabricant, Installation), aux identifiants et aux coordonnées dans l'écosystème DPP." },
+    { "@language": "ga", "@value": "Sainmhíníonn sé coincheapa a bhaineann le heagraíochtaí, rólanna (Oibreoir Eacnamaíoch, Déantóir, Saoráid), aitheantóirí, agus faisnéis teagmhála laistigh d'éiceachóras DPP." },
     { "@language": "hr", "@value": "Definira koncepte povezane s organizacijama, ulogama (Gospodarski subjekt, Proizvođač, Postrojenje), identifikatorima i podacima za kontakt unutar DPP ekosustava." },
     { "@language": "hu", "@value": "Meghatározza a szervezetekhez, szerepkörökhöz (Gazdasági szereplő, Gyártó, Létesítmény), azonosítókhoz és kapcsolattartási adatokhoz kapcsolódó fogalmakat a DPP ökoszisztémában." },
     { "@language": "it", "@value": "Definisce concetti relativi a organizzazioni, ruoli (Operatore economico, Fabbricante, Impianto), identificatori e informazioni di contatto all'interno dell'ecosistema DPP." },
@@ -62,8 +63,7 @@
     { "@language": "ro", "@value": "Definește concepte referitoare la organizații, roluri (Operator economic, Producător, Instalație), identificatori și informații de contact în cadrul ecosistemului DPP." },
     { "@language": "sk", "@value": "Definuje pojmy súvisiace s organizáciami, úlohami (Hospodársky subjekt, Výrobca, Zariadenie), identifikátormi a kontaktnými informáciami v rámci ekosystému DPP." },
     { "@language": "sl", "@value": "Določa koncepte, povezane z organizacijami, vlogami (Gospodarski subjekt, Proizvajalec, Obrat), identifikatorji in kontaktnimi podatki v ekosistemu DPP." },
-    { "@language": "sv", "@value": "Definierar begrepp relaterade till organisationer, roller (Ekonomisk aktör, Tillverkare, Anläggning), identifierare och kontaktinformation inom DPP-ekosystemet." },
-    { "@language": "ga", "@value": "Sainmhíníonn sé coincheapa a bhaineann le heagraíochtaí, rólanna (Oibreoir Eacnamaíoch, Déantóir, Saoráid), aitheantóirí, agus faisnéis teagmhála laistigh d'éiceachóras DPP." }
+    { "@language": "sv", "@value": "Definierar begrepp relaterade till organisationer, roller (Ekonomisk aktör, Tillverkare, Anläggning), identifierare och kontaktinformation inom DPP-ekosystemet." }
   ],
   "owl:versionInfo": "1.0.0",
   // Import the Header ontology as it defines the DPP class used in the domain of properties here.

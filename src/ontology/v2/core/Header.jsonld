@@ -24,6 +24,7 @@
     { "@language": "et", "@value": "DPP tuumontoloogia - Päise definitsioonid ({{VERSION}})" },
     { "@language": "fi", "@value": "DPP-ydinontologia - Otsikkotietojen määritykset ({{VERSION}})" },
     { "@language": "fr", "@value": "Ontologie de base DPP - Définitions d'en-tête ({{VERSION}})" },
+    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Sainmhínithe Cinn ({{VERSION}})" },
     { "@language": "hr", "@value": "Osnovna ontologija DPP-a - Definicije zaglavlja ({{VERSION}})" },
     { "@language": "hu", "@value": "DPP alapontológia - Fejléc definíciók ({{VERSION}})" },
     { "@language": "it", "@value": "Ontologia di base DPP - Definizioni dell'intestazione ({{VERSION}})" },
@@ -36,8 +37,7 @@
     { "@language": "ro", "@value": "Ontologia de bază DPP - Definiții antet ({{VERSION}})" },
     { "@language": "sk", "@value": "Základná ontológia DPP - Definície hlavičky ({{VERSION}})" },
     { "@language": "sl", "@value": "Osnovna ontologija DPP - Definicije glave ({{VERSION}})" },
-    { "@language": "sv", "@value": "DPP-kärnontologi - Header-definitioner ({{VERSION}})" },
-    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Sainmhínithe Cinn ({{VERSION}})" }
+    { "@language": "sv", "@value": "DPP-kärnontologi - Header-definitioner ({{VERSION}})" }
   ],
   "dcterms:description": [
     { "@language": "en", "@value": "Defines the normative header fields required for the Digital Product Passport envelope." },
@@ -50,6 +50,7 @@
     { "@language": "et", "@value": "Määrab kindlaks normatiivsed päiseväljad, mida nõutakse digitaalse tootepassi ümbriku jaoks." },
     { "@language": "fi", "@value": "Määrittää normatiiviset otsikkokentät, joita vaaditaan digitaalisen tuotepassin kirjekuoreen." },
     { "@language": "fr", "@value": "Définit les champs d'en-tête normatifs requis pour l'enveloppe du passeport numérique du produit." },
+    { "@language": "ga", "@value": "Sainmhíníonn sé na réimsí cinn normatacha a theastaíonn do chlúdach an Phas Táirge Dhiigitigh." },
     { "@language": "hr", "@value": "Definira normativna polja zaglavlja potrebna za omotnicu digitalne putovnice proizvoda." },
     { "@language": "hu", "@value": "Meghatározza a digitális termékútlevél borítékjához szükséges normatív fejlécmezőket." },
     { "@language": "it", "@value": "Definisce i campi normativi dell'intestazione richiesti per la busta del passaporto digitale del prodotto." },
@@ -62,8 +63,7 @@
     { "@language": "ro", "@value": "Definește câmpurile normative ale antetului necesare pentru plicul pașaportului digital al produsului." },
     { "@language": "sk", "@value": "Definuje normatívne polia hlavičky, ktoré sa vyžadujú pre obálku digitálneho pasu výrobku." },
     { "@language": "sl", "@value": "Določa normativna polja glave, ki so potrebna za ovojnico digitalnega potnega lista izdelka." },
-    { "@language": "sv", "@value": "Definierar de normativa header-fält som krävs för det digitala produktpassets omslag." },
-    { "@language": "ga", "@value": "Sainmhíníonn sé na réimsí cinn normatacha a theastaíonn do chlúdach an Phas Táirge Dhiigitigh." }
+    { "@language": "sv", "@value": "Definierar de normativa header-fält som krävs för det digitala produktpassets omslag." }
   ],
   "owl:versionInfo": "1.0.0",
 
