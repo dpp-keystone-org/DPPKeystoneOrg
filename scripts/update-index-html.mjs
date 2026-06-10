@@ -188,7 +188,7 @@ async function generateUtilIndex(srcUtilDir, outputHtmlPath) {
             <h1 data-i18n-key="developer-sdks">DPP Keystone Utilities</h1>
             <p>Public-facing libraries and reference implementations.</p>
             <ul>
-\${fileListHtml}
+${fileListHtml}
             </ul>
         </main>
         <footer>

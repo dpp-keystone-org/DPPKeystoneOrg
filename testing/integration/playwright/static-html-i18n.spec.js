@@ -14,7 +14,7 @@ const EU_LANGUAGES = [
 const PAGES_TO_TEST = [
     { path: '/index.html', key: 'about-this-project', enText: 'About This Project', deText: 'Über dieses Projekt' },
     { path: '/wizard/index.html', key: '1-select-applicable-sectors', enText: '1. Select Applicable Sectors', deText: '1. Relevante Sektoren auswählen' },
-    { path: '/validator/index.html', key: 'official-json-schema-validation-tool', enText: 'Official JSON Schema Validation Tool', deText: 'Offizielles JSON-Schema-Validierungstool' },
+    { path: '/validator/index.html', key: 'json-dpp-validator', enText: 'JSON DPP Validator', deText: 'JSON DPP-Validator' },
     { path: '/explorer/index.html', key: 'search-and-browse-definitions-across', enText: 'Search and browse definitions across all DPP sectors.', deText: 'Suchen und durchstöbern Sie Definitionen in allen DPP-Sektoren.' },
     { path: '/csv-dpp-adapter/index.html', key: '1-load-data', enText: '1. Load Data', deText: '1. Daten laden' }
 ];
