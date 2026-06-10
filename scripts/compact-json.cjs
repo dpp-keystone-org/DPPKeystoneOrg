@@ -31,6 +31,9 @@ function processFile(filePath) {
         const rawContent = fs.readFileSync(filePath, 'utf8');
         let content = rawContent;
 
+        // Protect {{VERSION}} from regex matches that might incorrectly match its closing braces
+        content = content.replaceAll('{{VERSION}}', '__DPP_VERSION_TOKEN__');
+
         // The original script would JSON.parse and then JSON.stringify here.
         // That would strip comments. By operating on the raw text, we can
         // preserve comments. This means, however, that we cannot re-format
@@ -85,6 +88,9 @@ function processFile(filePath) {
             /\{\s*"@type":\s*"([^"]+)"\s*\}/gs,
             (match, type) => `{ "@type": "${type}" }`
         );
+
+        // Restore {{VERSION}}
+        content = content.replaceAll('__DPP_VERSION_TOKEN__', '{{VERSION}}');
 
         fs.writeFileSync(filePath, content);
         console.log(`Compacted: ${filePath}`);
