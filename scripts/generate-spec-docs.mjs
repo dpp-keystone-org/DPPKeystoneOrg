@@ -447,17 +447,17 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
                     ${mermaidDiagram}
                 </pre>
 
-                <h4>Description</h4>
+                <h4><span data-i18n-key="description-column">Description</span></h4>
                 <p>${renderI18nSpan(c.comment)}</p>
                 ${attributesHtml}
 
                 ${c.properties.length > 0 ? `
-                    <h4>Properties</h4>
+                    <h4><span data-i18n-key="properties-header">Properties</span></h4>
                     <table>
                         <thead>
                             <tr>
-                                <th>Property</th>
-                                <th>Description</th>
+                                <th><span data-i18n-key="property-column">Property</span></th>
+                                <th><span data-i18n-key="description-column">Description</span></th>
                                 <th>Type</th>
                                 ${extraColumns.map(col => `<th>${col.replace('dppk:', '').replace('owl:','').replace('rdfs:','')}</th>`).join('')}
                             </tr>
@@ -497,7 +497,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
         mermaid.initialize({ startOnLoad: true });
 
-        LanguageManager.init();
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
     </script>
 </body>
 </html>`;
@@ -579,7 +579,7 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
     </div>
     <script type="module">
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
     </script>
 </body>
 </html>`;
@@ -623,16 +623,16 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, 
         <main>
             <p>${renderI18nSpan(description)}</p>
             <p><strong>Source:</strong> <a href="${sourceFileLink}">${fileName}</a></p>
-            <h3>Classes & Concepts</h3>
+            <h3><span data-i18n-key="classes-and-concepts">Classes &amp; Concepts</span></h3>
             <ul>
                 ${classes.map(c => `<li><a href="${getFragment(c.id)}.html">${renderI18nSpan(c.label)}</a></li>`).join('')}
             </ul>
-            <h3>Properties</h3>
+            <h3><span data-i18n-key="properties-header">Properties</span></h3>
             <table>
                 <thead>
                     <tr>
-                        <th>Property</th>
-                        <th>Description</th>
+                        <th><span data-i18n-key="property-column">Property</span></th>
+                        <th><span data-i18n-key="description-column">Description</span></th>
                         <th>Domain</th>
                         <th>Range</th>
                         ${extraColumns.map(col => `<th>${col.replace('dppk:', '').replace('owl:','').replace('rdfs:','')}</th>`).join('')}
@@ -663,7 +663,7 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, 
     </div>
     <script type="module">
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
     </script>
 </body>
 </html>`;
@@ -707,7 +707,7 @@ export function generateOntologyHtml(directoryName, files, distDir, currentHtmlP
     </div>
     <script type="module">
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
     </script>
 </body>
 </html>`;
@@ -756,7 +756,7 @@ export function generateContextHtml(directoryName, files, distDir, currentHtmlPa
     </div>
     <script type="module">
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
     </script>
 </body>
 </html>`;
@@ -805,7 +805,7 @@ function generateTopLevelContextIndexHtml(directoryName, files, distDir, current
     </div>
     <script type="module">
         import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
     </script>
 </body>
 </html>`;
@@ -1101,8 +1101,8 @@ function generateGlobalOntologyIndex(allMetadata, currentHtmlPath, ontologyDir) 
                 <table>
                     <thead>
                         <tr>
-                            <th>Property</th>
-                            <th>Description</th>
+                            <th><span data-i18n-key="property-column">Property</span></th>
+                            <th><span data-i18n-key="description-column">Description</span></th>
                             <th>Domain</th>
                             <th>Range</th>
                             <th>Defined In</th>
@@ -1128,7 +1128,7 @@ function generateGlobalOntologyIndex(allMetadata, currentHtmlPath, ontologyDir) 
     </div>
     <script type="module">
         import { LanguageManager } from '../../lib/language-manager.js';
-        LanguageManager.init();
+        LanguageManager.init('../../index.i18n.json');
     </script>
 </body>
 </html>`;
