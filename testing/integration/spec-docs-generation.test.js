@@ -191,7 +191,7 @@ describe('generate-spec-docs.mjs', () => {
 
             // Check that the directory index now links to the module index
             const ontologyHtml = await fs.readFile(ontologyDocPath, 'utf-8');
-            expect(ontologyHtml).toContain(`<h1>Ontology Modules in ontology/${KEYSTONE_VERSION}/core</h1>`);
+            expect(ontologyHtml).toContain(`<h2 style="margin: 0; color: var(--text-light);">ontology/${KEYSTONE_VERSION}/core</h2>`);
             expect(ontologyHtml).toContain('<li><a href="./mock-core/index.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Mock Core Ontology&quot;}]">Mock Core Ontology</span></a></li>');
 
             // Check if the context doc was created (this part of the generator hasn't changed)
