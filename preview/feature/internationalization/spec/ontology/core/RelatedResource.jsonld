@@ -11,16 +11,14 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/RelatedResource",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Related Resource",
-  "dcterms:description": "Defines a class for linking to external resources, such as documents or websites, with associated metadata.",
-  "rdfs:label": [
+  "dcterms:title": [
     {
       "@language": "en",
       "@value": "DPP Core Ontology - Related Resource"
     },
     {
       "@language": "bg",
-      "@value": "Основна онтология на ЦПП - Свързан ресурс"
+      "@value": "Основна онтология на DPP - Свързан ресурс"
     },
     {
       "@language": "cs",
@@ -111,7 +109,7 @@
       "@value": "DPP-kärnontologi - Relaterad resurs"
     }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     {
       "@language": "en",
       "@value": "Defines a class for linking to external resources, such as documents or websites, with associated metadata."

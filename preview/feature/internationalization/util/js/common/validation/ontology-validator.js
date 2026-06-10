@@ -159,7 +159,7 @@ const EU_LANGUAGES = [
     'hu', 'it', 'lt', 'lv', 'mt', 'nl', 'pl', 'pt', 'ro', 'sk', 'sl', 'sv', 'ga'
 ];
 
-export function validateTermTranslations(term, requiredLanguages = EU_LANGUAGES) {
+export function validateTermTranslations(term, requiredLanguages = EU_LANGUAGES, fieldsToCheck = ['rdfs:label', 'rdfs:comment']) {
     const errors = [];
     
     if (!term || typeof term !== 'object') {
@@ -190,8 +190,7 @@ export function validateTermTranslations(term, requiredLanguages = EU_LANGUAGES)
         }
     };
 
-    checkField('rdfs:label');
-    checkField('rdfs:comment');
+    fieldsToCheck.forEach(checkField);
 
     return {
         valid: errors.length === 0,

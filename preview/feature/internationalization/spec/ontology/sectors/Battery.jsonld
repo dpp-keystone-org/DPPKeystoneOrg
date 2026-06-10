@@ -10,9 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/Battery",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Battery Sector Ontology",
-  "dcterms:description": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information.",
-  "rdfs:label": [
+  "dcterms:title": [
     {
       "@language": "en",
       "@value": "DPP Battery Sector Ontology"
@@ -110,7 +108,7 @@
       "@value": "DPP-batterisektorns ontologi"
     }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     {
       "@language": "en",
       "@value": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information."

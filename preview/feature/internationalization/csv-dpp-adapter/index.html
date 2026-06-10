@@ -2,19 +2,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP CSV Adapter</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1781094914270">
-    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1781094914270">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1781103415808">
+    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1781103415808">
 </head>
 <body>
     <div class="container">
-        <header>
-            <img src="../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
-            <div>
-                <h1 style="margin-bottom: 0; font-size: 2.2em;" data-i18n-key="dpp-keystone">DPP Keystone</h1>
-                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);" data-i18n-key="harmonizing-data-for-the-digital">Harmonizing Data for the Digital Product Passport</p>
-            </div>
-            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
-        </header>
+        <div id="dpp-header-container"></div>
 
         <div class="card">
             <h1 data-i18n-key="dpp-csv-adapter">DPP CSV Adapter</h1>
@@ -97,7 +90,7 @@
     <!-- Removed manual script tag for papaparse, will import in module -->
     
     <!-- Application Logic -->
-    <script type="module" src="csv-dpp-adapter.js?v=1781094914270"></script>
+    <script type="module" src="csv-dpp-adapter.js?v=1781103415808"></script>
     <script type="module">
         import { LanguageManager } from '../lib/language-manager.js';
         LanguageManager.init('./index.i18n.json');

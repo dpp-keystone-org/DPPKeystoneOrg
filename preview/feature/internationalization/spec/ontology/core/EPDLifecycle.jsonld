@@ -10,8 +10,202 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDLifecycle",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - EPD Lifecycle Stages",
-  "dcterms:description": "Defines the lifecycle stages (A1-D) used in Environmental Product Declarations.",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - EPD Lifecycle Stages"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Етапи на жизнения цикъл на EPD"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Fáze životního cyklu EPD"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP-kerneontologi - EPD-livscyklusfaser"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - EPD-Lebenszyklusphasen"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική Οντολογία DPP - Στάδια κύκλου ζωής EPD"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología principal de DPP - Etapas del ciclo de vida de EPD"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP põhi-ontoloogia - EPD olelusringi etapid"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - EPD-elinkaaren vaiheet"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Étapes du cycle de vie EPD"
+    },
+    {
+      "@language": "ga",
+      "@value": "Croí-Ointeolaíocht DPP - Céimeanna Saolré EPD"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Faze životnog ciklusa EPD-a"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - EPD életciklus szakaszok"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Fasi del ciclo di vita EPD"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - EPD gyvavimo ciklo etapai"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamatontoloģija - EPD dzīves cikla posmi"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Stadji taċ-Ċiklu tal-Ħajja EPD"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP-kernontologie - EPD-levenscyclusfasen"
+    },
+    {
+      "@language": "pl",
+      "@value": "Podstawowa ontologia DPP - Fazy cyklu życia EPD"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia principal do DPP - Fases do ciclo de vida da EPD"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Etapele ciclului de viață EPD"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Fázy životného cyklu EPD"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Faze življenjskega cikla EPD"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - EPD-livscykelfaser"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the lifecycle stages (A1-D) used in Environmental Product Declarations."
+    },
+    {
+      "@language": "bg",
+      "@value": "Дефинира етапите на жизнения цикъл (A1-D), използвани в Екологичните продуктови декларации."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje fáze životního cyklu (A1-D) používané v Environmentálních prohlášeních o produktu."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer livscyklusfaserne (A1-D), der anvendes i miljøvaredeklarationer."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die Lebenszyklusphasen (A1-D), die in Umweltproduktdeklarationen verwendet werden."
+    },
+    {
+      "@language": "el",
+      "@value": "Ορίζει τα στάδια κύκλου ζωής (A1-D) που χρησιμοποιούνται στις Περιβαλλοντικές Δηλώσεις Προϊόντων."
+    },
+    {
+      "@language": "es",
+      "@value": "Define las etapas del ciclo de vida (A1-D) utilizadas en las Declaraciones Ambientales de Producto."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb olelusringi etapid (A1-D), mida kasutatakse keskkonnadeklaratsioonides."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää elinkaaren vaiheet (A1-D), joita käytetään ympäristöselosteissa."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les étapes du cycle de vie (A1-D) utilisées dans les déclarations environnementales de produit."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé na céimeanna saolré (A1-D) a úsáidtear i nDearbhuithe Comhshaoil Táirge."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira faze životnog ciklusa (A1-D) koje se koriste u Izjavama o ekološkim svojstvima proizvoda."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a környezetvédelmi terméknyilatkozatokban használt életciklus szakaszokat (A1-D)."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce le fasi del ciclo di vita (A1-D) utilizzate nelle Dichiarazioni ambientali di prodotto."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia gyvavimo ciklo etapus (A1-D), naudojamus poveikio aplinkai deklaracijose."
+    },
+    {
+      "@language": "lv",
+      "@value": "Definē dzīves cikla posmus (A1-D), ko izmanto produkta vides deklarācijās."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-istadji taċ-ċiklu tal-ħajja (A1-D) użati fid-Dikjarazzjonijiet Ambjentali tal-Prodott."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de levenscyclusfasen (A1-D) die worden gebruikt in milieuproductverklaringen."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje fazy cyklu życia (A1-D) stosowane w deklaracjach środowiskowych produktu."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define as fases do ciclo de vida (A1-D) utilizadas nas Declarações Ambientais do Produto."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește etapele ciclului de viață (A1-D) utilizate în Declarațiile de mediu ale produsului."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje fázy životného cyklu (A1-D) používané v environmentálnych vyhláseniach o produkte."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa faze življenjskega cikla (A1-D), ki se uporabljajo v okoljskih deklaracijah proizvoda."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar livscykelfaserna (A1-D) som används i miljövarudeklarationer."
+    }
+  ],
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"

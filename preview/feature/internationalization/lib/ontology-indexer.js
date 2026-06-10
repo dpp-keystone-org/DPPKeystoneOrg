@@ -1,4 +1,4 @@
-import { loadOntology } from './ontology-loader.js?v=1781094914270';
+import { loadOntology } from './ontology-loader.js?v=1781103415808';
 
 /**
  * Builds a flat, searchable index of all ontology terms.
@@ -61,6 +61,8 @@ export async function buildIndex() {
             // Prefer English, fall back to first available, or empty string
             label: value.label?.en || (value.label ? Object.values(value.label)[0] : '') || key,
             comment: value.comment?.en || (value.comment ? Object.values(value.comment)[0] : '') || '',
+            labelMap: value.label || {},
+            commentMap: value.comment || {},
             unit: value.unit,
             source: value.source,
             domain: domainLabel,

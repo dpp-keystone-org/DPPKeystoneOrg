@@ -15,8 +15,202 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Product and Material Definitions (v2)",
-  "dcterms:description": "Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements.",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Product and Material Definitions (v2)"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Определения на продукти и материали (v2)"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Definice produktů a materiálů (v2)"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Kerneontologi - Produkt- og materialedefinitioner (v2)"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - Produkt- und Materialdefinitionen (v2)"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική οντολογία DPP - Ορισμοί προϊόντων και υλικών (v2)"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología central de DPP - Definiciones de productos y materiales (v2)"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP tuumontoloogia - Toote ja materjali definitsioonid (v2)"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - Tuote- ja materiaalimääritykset (v2)"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Définitions des produits et matériaux (v2)"
+    },
+    {
+      "@language": "ga",
+      "@value": "Príomhointeolaíocht DPP - Sainmhínithe Táirge agus Ábhair (v2)"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Definicije proizvoda i materijala (v2)"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - Termék és anyag definíciók (v2)"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Definizioni di prodotti e materiali (v2)"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - Produktų ir medžiagų apibrėžimai (v2)"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamata ontoloģija - Produktu un materiālu definīcijas (v2)"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet ta' Prodotti u Materjali (v2)"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP Kernontologie - Product- en materiaaldefinities (v2)"
+    },
+    {
+      "@language": "pl",
+      "@value": "Główna ontologia DPP - Definicje produktów i materiałów (v2)"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia Central do DPP - Definições de Produtos e Materiais (v2)"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Definiții pentru produse și materiale (v2)"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Definície produktov a materiálov (v2)"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Definicije izdelkov in materialov (v2)"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - Produkt- och materialdefinitioner (v2)"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines horizontal concepts related to the product description, Bill of Materials (BOM), materials, and quantitative measurements."
+    },
+    {
+      "@language": "bg",
+      "@value": "Определя хоризонтални концепции, свързани с описанието на продукта, Списъка на материалите (BOM), материалите и количествените измервания."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje horizontální koncepty související s popisem produktu, kusovníkem (BOM), materiály a kvantitativními měřeními."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer horisontale koncepter relateret til produktbeskrivelsen, styklisten (BOM), materialer og kvantitative målinger."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert horizontale Konzepte in Bezug auf die Produktbeschreibung, Stückliste (BOM), Materialien und quantitative Messungen."
+    },
+    {
+      "@language": "el",
+      "@value": "Καθορίζει οριζόντιες έννοιες που σχετίζονται με την περιγραφή του προϊόντος, το Πιστοποιητικό υλικών (BOM), τα υλικά και τις ποσοτικές μετρήσεις."
+    },
+    {
+      "@language": "es",
+      "@value": "Define conceptos horizontales relacionados con la descripción del producto, la Lista de Materiales (BOM), materiales y mediciones cuantitativas."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb horisontaalsed kontseptsioonid, mis on seotud tootekirjelduse, materjalide loetelu (BOM), materjalide ja kvantitatiivsete mõõtmistega."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää horisontaalisia käsitteitä, jotka liittyvät tuotekuvaukseen, osaluetteloon (BOM), materiaaleihin ja määrällisiin mittauksiin."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit des concepts horizontaux liés à la description du produit, à la nomenclature (BOM), aux matériaux et aux mesures quantitatives."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé coincheapa cothrománacha a bhaineann leis an gcur síos ar an táirge, Bille Ábhar (BOM), ábhair, agus tomhais chainníochtúla."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira horizontalne koncepte povezane s opisom proizvoda, sastavnicom (BOM), materijalima i kvantitativnim mjerenjima."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a termékleíráshoz, az anyagjegyzékhez (BOM), az anyagokhoz és a mennyiségi mérésekhez kapcsolódó horizontális fogalmakat."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce concetti orizzontali relativi alla descrizione del prodotto, alla distinta base (BOM), ai materiali e alle misurazioni quantitative."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia horizontalias koncepcijas, susijusias su produkto aprašymu, medžiagų žiniaraščiu (BOM), medžiagomis ir kiekybiniais matavimais."
+    },
+    {
+      "@language": "lv",
+      "@value": "Nosaka horizontālus jēdzienus, kas saistīti ar produkta aprakstu, materiālu sarakstu (BOM), materiāliem un kvantitatīviem mērījumiem."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi kunċetti orizzontali relatati mad-deskrizzjoni tal-prodott, il-Kont tal-Materjali (BOM), il-materjali, u l-kejl kwantitattiv."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert horizontale concepten met betrekking tot de productbeschrijving, stuklijst (BOM), materialen en kwantitatieve metingen."
+    },
+    {
+      "@language": "pl",
+      "@value": "Określa poziome pojęcia związane z opisem produktu, zestawieniem materiałów (BOM), materiałami i pomiarami ilościowymi."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define conceitos horizontais relacionados com a descrição do produto, Lista de Materiais (BOM), materiais e medições quantitativas."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește concepte orizontale referitoare la descrierea produsului, lista de materiale (BOM), materiale și măsurători cantitative."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje horizontálne koncepty súvisiace s popisom produktu, kusovníkom (BOM), materiálmi a kvantitatívnymi meraniami."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa horizontalne koncepte, povezane z opisom izdelka, kosovnico (BOM), materiali in kvantitativnimi meritvami."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar horisontella begrepp relaterade till produktbeskrivningen, stycklistan (BOM), material och kvantitativa mätningar."
+    }
+  ],
   "owl:versionInfo": "1.0.0",
   "owl:imports": [
     {

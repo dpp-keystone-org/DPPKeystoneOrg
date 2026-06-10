@@ -10,13 +10,207 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDMetadata.jsonld",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - EPD Metadata",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - EPD Metadata"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Метаданни за EPD"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Metadata EPD"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP-kerneontologi - EPD-metadata"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - EPD-Metadaten"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική Οντολογία DPP - Μεταδεδομένα EPD"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología principal de DPP - Metadatos de EPD"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP põhi-ontoloogia - EPD metaandmed"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - EPD-metatiedot"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Métadonnées EPD"
+    },
+    {
+      "@language": "ga",
+      "@value": "Croí-Ointeolaíocht DPP - Meiteasonraí EPD"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - EPD metapodaci"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - EPD metaadatok"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Metadati EPD"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - EPD metaduomenys"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamatontoloģija - EPD metadati"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Metadejta EPD"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP-kernontologie - EPD-metadata"
+    },
+    {
+      "@language": "pl",
+      "@value": "Podstawowa ontologia DPP - Metadane EPD"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia principal do DPP - Metadados de EPD"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Metadate EPD"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Metadáta EPD"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Metapodatki EPD"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - EPD-metadata"
+    }
+  ],
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
     }
   ],
-  "dcterms:description": "Defines the core structural classes for Environmental Product Declarations (EPD).",
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the core structural classes for Environmental Product Declarations (EPD)."
+    },
+    {
+      "@language": "bg",
+      "@value": "Дефинира основните структурни класове за Екологични продуктови декларации (EPD)."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje základní strukturální třídy pro Environmentální prohlášení o produktu (EPD)."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer de grundlæggende strukturelle klasser for miljøvaredeklarationer (EPD)."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die grundlegenden Strukturklassen für Umweltproduktdeklarationen (EPD)."
+    },
+    {
+      "@language": "el",
+      "@value": "Ορίζει τις βασικές δομικές κλάσεις για τις Περιβαλλοντικές Δηλώσεις Προϊόντων (EPD)."
+    },
+    {
+      "@language": "es",
+      "@value": "Define las clases estructurales centrales para las Declaraciones Ambientales de Producto (EPD)."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb keskkonnadeklaratsioonide (EPD) peamised struktuuriklassid."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää ympäristöselosteiden (EPD) keskeiset rakenneluokat."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les classes structurelles de base pour les déclarations environnementales de produit (EPD)."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé na croíaicmí struchtúracha do Dhearbhuithe Comhshaoil Táirge (EPD)."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira osnovne strukturne klase za Izjave o ekološkim svojstvima proizvoda (EPD)."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a környezetvédelmi terméknyilatkozatok (EPD) alapvető szerkezeti osztályait."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce le classi strutturali di base per le Dichiarazioni ambientali di prodotto (EPD)."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia pagrindines struktūrines klases poveikio aplinkai deklaracijoms (EPD)."
+    },
+    {
+      "@language": "lv",
+      "@value": "Definē galvenās strukturālās klases produkta vides deklarācijām (EPD)."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-klassijiet strutturali ewlenin għad-Dikjarazzjonijiet Ambjentali tal-Prodott (EPD)."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de structurele kernklassen voor milieuproductverklaringen (EPD)."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje podstawowe klasy strukturalne dla deklaracji środowiskowych produktu (EPD)."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define as classes estruturais centrais para as Declarações Ambientais do Produto (EPD)."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește clasele structurale de bază pentru Declarațiile de mediu ale produsului (EPD)."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje základné štrukturálne triedy pre environmentálne vyhlásenia o produkte (EPD)."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa osnovne strukturne razrede za okoljske deklaracije proizvoda (EPD)."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar de grundläggande strukturella klasserna för miljövarudeklarationer (EPD)."
+    }
+  ],
   "@graph": [
     {
       "@id": "dppk:EPDBlock",

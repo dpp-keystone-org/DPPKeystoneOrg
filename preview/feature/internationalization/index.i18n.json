@@ -5290,5 +5290,397 @@
       "@language": "sv",
       "@value": "Licensierad under <a href=\"LICENSE\">CC0 1.0 Universal</a>. | <a href=\"impressum.html\">Impressum / Juridiskt meddelande</a>"
     }
+  ],
+  "classes-and-concepts": [
+    {
+      "@language": "en",
+      "@value": "Classes & Concepts"
+    },
+    {
+      "@language": "bg",
+      "@value": "Класове и концепции"
+    },
+    {
+      "@language": "cs",
+      "@value": "Třídy a koncepty"
+    },
+    {
+      "@language": "da",
+      "@value": "Klasser og koncepter"
+    },
+    {
+      "@language": "de",
+      "@value": "Klassen & Konzepte"
+    },
+    {
+      "@language": "el",
+      "@value": "Κλάσεις & Έννοιες"
+    },
+    {
+      "@language": "es",
+      "@value": "Clases y Conceptos"
+    },
+    {
+      "@language": "et",
+      "@value": "Klassid ja mõisted"
+    },
+    {
+      "@language": "fi",
+      "@value": "Luokat ja käsitteet"
+    },
+    {
+      "@language": "fr",
+      "@value": "Classes et concepts"
+    },
+    {
+      "@language": "ga",
+      "@value": "Aicmí agus Coincheapa"
+    },
+    {
+      "@language": "hr",
+      "@value": "Klase i koncepti"
+    },
+    {
+      "@language": "hu",
+      "@value": "Osztályok és fogalmak"
+    },
+    {
+      "@language": "it",
+      "@value": "Classi e concetti"
+    },
+    {
+      "@language": "lt",
+      "@value": "Klasės ir sąvokos"
+    },
+    {
+      "@language": "lv",
+      "@value": "Klases un jēdzieni"
+    },
+    {
+      "@language": "mt",
+      "@value": "Klassijiet u Kunċetti"
+    },
+    {
+      "@language": "nl",
+      "@value": "Klassen & Concepten"
+    },
+    {
+      "@language": "pl",
+      "@value": "Klasy i pojęcia"
+    },
+    {
+      "@language": "pt",
+      "@value": "Classes e Conceitos"
+    },
+    {
+      "@language": "ro",
+      "@value": "Clase și concepte"
+    },
+    {
+      "@language": "sk",
+      "@value": "Triedy a koncepty"
+    },
+    {
+      "@language": "sl",
+      "@value": "Razredi in koncepti"
+    },
+    {
+      "@language": "sv",
+      "@value": "Klasser och koncept"
+    }
+  ],
+  "properties-header": [
+    {
+      "@language": "en",
+      "@value": "Properties"
+    },
+    {
+      "@language": "bg",
+      "@value": "Свойства"
+    },
+    {
+      "@language": "cs",
+      "@value": "Vlastnosti"
+    },
+    {
+      "@language": "da",
+      "@value": "Egenskaber"
+    },
+    {
+      "@language": "de",
+      "@value": "Eigenschaften"
+    },
+    {
+      "@language": "el",
+      "@value": "Ιδιότητες"
+    },
+    {
+      "@language": "es",
+      "@value": "Propiedades"
+    },
+    {
+      "@language": "et",
+      "@value": "Omadused"
+    },
+    {
+      "@language": "fi",
+      "@value": "Ominaisuudet"
+    },
+    {
+      "@language": "fr",
+      "@value": "Propriétés"
+    },
+    {
+      "@language": "ga",
+      "@value": "Airíonna"
+    },
+    {
+      "@language": "hr",
+      "@value": "Svojstva"
+    },
+    {
+      "@language": "hu",
+      "@value": "Tulajdonságok"
+    },
+    {
+      "@language": "it",
+      "@value": "Proprietà"
+    },
+    {
+      "@language": "lt",
+      "@value": "Savybės"
+    },
+    {
+      "@language": "lv",
+      "@value": "Īpašības"
+    },
+    {
+      "@language": "mt",
+      "@value": "Proprjetajiet"
+    },
+    {
+      "@language": "nl",
+      "@value": "Eigenschappen"
+    },
+    {
+      "@language": "pl",
+      "@value": "Właściwości"
+    },
+    {
+      "@language": "pt",
+      "@value": "Propriedades"
+    },
+    {
+      "@language": "ro",
+      "@value": "Proprietăți"
+    },
+    {
+      "@language": "sk",
+      "@value": "Vlastnosti"
+    },
+    {
+      "@language": "sl",
+      "@value": "Lastnosti"
+    },
+    {
+      "@language": "sv",
+      "@value": "Egenskaper"
+    }
+  ],
+  "property-column": [
+    {
+      "@language": "en",
+      "@value": "Property"
+    },
+    {
+      "@language": "bg",
+      "@value": "Свойство"
+    },
+    {
+      "@language": "cs",
+      "@value": "Vlastnost"
+    },
+    {
+      "@language": "da",
+      "@value": "Egenskab"
+    },
+    {
+      "@language": "de",
+      "@value": "Eigenschaft"
+    },
+    {
+      "@language": "el",
+      "@value": "Ιδιότητα"
+    },
+    {
+      "@language": "es",
+      "@value": "Propiedad"
+    },
+    {
+      "@language": "et",
+      "@value": "Omadus"
+    },
+    {
+      "@language": "fi",
+      "@value": "Ominaisuus"
+    },
+    {
+      "@language": "fr",
+      "@value": "Propriété"
+    },
+    {
+      "@language": "ga",
+      "@value": "Airí"
+    },
+    {
+      "@language": "hr",
+      "@value": "Svojstvo"
+    },
+    {
+      "@language": "hu",
+      "@value": "Tulajdonság"
+    },
+    {
+      "@language": "it",
+      "@value": "Proprietà"
+    },
+    {
+      "@language": "lt",
+      "@value": "Savybė"
+    },
+    {
+      "@language": "lv",
+      "@value": "Īpašība"
+    },
+    {
+      "@language": "mt",
+      "@value": "Proprjetà"
+    },
+    {
+      "@language": "nl",
+      "@value": "Eigenschap"
+    },
+    {
+      "@language": "pl",
+      "@value": "Właściwość"
+    },
+    {
+      "@language": "pt",
+      "@value": "Propriedade"
+    },
+    {
+      "@language": "ro",
+      "@value": "Proprietate"
+    },
+    {
+      "@language": "sk",
+      "@value": "Vlastnosť"
+    },
+    {
+      "@language": "sl",
+      "@value": "Lastnost"
+    },
+    {
+      "@language": "sv",
+      "@value": "Egenskap"
+    }
+  ],
+  "description-column": [
+    {
+      "@language": "en",
+      "@value": "Description"
+    },
+    {
+      "@language": "bg",
+      "@value": "Описание"
+    },
+    {
+      "@language": "cs",
+      "@value": "Popis"
+    },
+    {
+      "@language": "da",
+      "@value": "Beskrivelse"
+    },
+    {
+      "@language": "de",
+      "@value": "Beschreibung"
+    },
+    {
+      "@language": "el",
+      "@value": "Περιγραφή"
+    },
+    {
+      "@language": "es",
+      "@value": "Descripción"
+    },
+    {
+      "@language": "et",
+      "@value": "Kirjeldus"
+    },
+    {
+      "@language": "fi",
+      "@value": "Kuvaus"
+    },
+    {
+      "@language": "fr",
+      "@value": "Description"
+    },
+    {
+      "@language": "ga",
+      "@value": "Cur Síos"
+    },
+    {
+      "@language": "hr",
+      "@value": "Opis"
+    },
+    {
+      "@language": "hu",
+      "@value": "Leírás"
+    },
+    {
+      "@language": "it",
+      "@value": "Descrizione"
+    },
+    {
+      "@language": "lt",
+      "@value": "Aprašymas"
+    },
+    {
+      "@language": "lv",
+      "@value": "Apraksts"
+    },
+    {
+      "@language": "mt",
+      "@value": "Deskrizzjoni"
+    },
+    {
+      "@language": "nl",
+      "@value": "Beschrijving"
+    },
+    {
+      "@language": "pl",
+      "@value": "Opis"
+    },
+    {
+      "@language": "pt",
+      "@value": "Descrição"
+    },
+    {
+      "@language": "ro",
+      "@value": "Descriere"
+    },
+    {
+      "@language": "sk",
+      "@value": "Popis"
+    },
+    {
+      "@language": "sl",
+      "@value": "Opis"
+    },
+    {
+      "@language": "sv",
+      "@value": "Beskrivning"
+    }
   ]
 }

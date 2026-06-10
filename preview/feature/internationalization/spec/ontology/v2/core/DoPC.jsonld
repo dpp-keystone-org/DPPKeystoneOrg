@@ -10,9 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/DoPC",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Declaration of Performance and Conformity (DoPC)",
-  "dcterms:description": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC).",
-  "rdfs:label": [
+  "dcterms:title": [
     {
       "@language": "en",
       "@value": "DPP Core Ontology - Declaration of Performance and Conformity (DoPC)"
@@ -110,7 +108,7 @@
       "@value": "DPP Core Ontology - Prestandadeklaration och försäkran om överensstämmelse (DoPC)"
     }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     {
       "@language": "en",
       "@value": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC)."

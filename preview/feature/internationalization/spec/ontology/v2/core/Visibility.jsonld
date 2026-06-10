@@ -10,9 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Visibility",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Visibility Ontology",
-  "dcterms:description": "Defines the allowable visibility tiers (enum) for data properties within a Digital Product Passport to dictate privacy serialization.",
-  "rdfs:label": [
+  "dcterms:title": [
     {
       "@language": "en",
       "@value": "DPP Visibility Ontology"
@@ -108,6 +106,104 @@
     {
       "@language": "sv",
       "@value": "DPP-synlighetsontologi"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the allowable visibility tiers (enum) for data properties within a Digital Product Passport to dictate privacy serialization."
+    },
+    {
+      "@language": "bg",
+      "@value": "Определя допустимите нива на видимост (enum) за свойства на данни в рамките на Digital Product Passport, за да диктува сериализацията на поверителността."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje povolené úrovně viditelnosti (enum) pro vlastnosti dat v rámci Digital Product Passport, které diktují serializaci soukromí."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer de tilladte synlighedsniveauer (enum) for dataegenskaber i et Digital Product Passport for at diktere privatlivsserialisering."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die zulässigen Sichtbarkeitsebenen (enum) für Dateneigenschaften innerhalb eines Digital Product Passport, um die Privatsphäre-Serialisierung vorzugeben."
+    },
+    {
+      "@language": "el",
+      "@value": "Καθορίζει τα επιτρεπόμενα επίπεδα ορατότητας (enum) για τις ιδιότητες δεδομένων εντός ενός Digital Product Passport προκειμένου να υπαγορεύει τη σειριοποίηση απορρήτου."
+    },
+    {
+      "@language": "es",
+      "@value": "Define los niveles de visibilidad permitidos (enum) para las propiedades de datos dentro de un Digital Product Passport para dictar la serialización de la privacidad."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb andmeomaduste lubatud nähtavustasemed (enum) Digital Product Passport'is, et dikteerida privaatsuse serialiseerimist."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittelee sallitut näkyvyystasot (enum) dataominaisuuksille Digital Product Passportissa yksityisyyden sarjoittamisen sanelemiseksi."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les niveaux de visibilité autorisés (enum) pour les propriétés de données au sein d'un Digital Product Passport afin de dicter la sérialisation de la confidentialité."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhínítear na sraitheanna infheictheachta incheadaithe (enum) do shonraí laistigh de Digital Product Passport chun sraitheáil príobháideachais a threorú."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira dopuštene razine vidljivosti (enum) za svojstva podataka unutar Digital Product Passport za diktiranje serijalizacije privatnosti."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a megengedett láthatósági szinteket (enum) az adatulajdonságokhoz a Digital Product Passport-on belül az adatvédelmi szerializáció meghatározásához."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce i livelli di visibilità consentiti (enum) per le proprietà dei dati all'interno di un Digital Product Passport per dettare la serializzazione della privacy."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia leistinus matomumo lygius (enum) duomenų savybėms Digital Product Passport, kad būtų galima diktuoti privatumo serializavimą."
+    },
+    {
+      "@language": "lv",
+      "@value": "Nosaka pieļaujamos redzamības līmeņus (enum) datu īpašībām Digital Product Passport ietvaros, lai diktētu privātuma serializāciju."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-livelli ta' viżibilità permissibbli (enum) għall-proprjetajiet tad-dejta fi ħdan Digital Product Passport biex jiddetta s-serjalizzazzjoni tal-privatezza."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de toegestane zichtbaarheidsniveaus (enum) voor gegevenseigenschappen binnen een Digital Product Passport om privacy-serialisatie te dicteren."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje dozwolone poziomy widoczności (enum) dla właściwości danych w ramach Digital Product Passport w celu dyktowania serializacji prywatności."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define os níveis de visibilidade permitidos (enum) para propriedades de dados num Digital Product Passport para ditar a serialização de privacidade."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește nivelurile de vizibilitate permise (enum) pentru proprietățile datelor din cadrul unui Digital Product Passport pentru a dicta serializarea confidențialității."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje povolené úrovne viditeľnosti (enum) pre vlastnosti údajov v rámci Digital Product Passport, ktoré diktujú serializáciu súkromia."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa dovoljene ravni vidljivosti (enum) za lastnosti podatkov v Digital Product Passport, da se narekuje serializacija zasebnosti."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar tillåtna synlighetsnivåer (enum) för dataegenskaper inom ett Digital Product Passport för att diktera integritetsserialisering."
     }
   ],
   "@graph": [

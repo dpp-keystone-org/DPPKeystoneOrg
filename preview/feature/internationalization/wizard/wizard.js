@@ -1,13 +1,15 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1781094914270';
-import { loadOntology } from '../lib/ontology-loader.js?v=1781094914270';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781094914270';
-import { generateDpp } from './dpp-generator.js?v=1781094914270';
-import { generateHTML } from '../lib/html-generator.js?v=1781094914270';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781094914270';
+import { loadHeader } from '../branding/header.js?v=1781103415808';
+loadHeader('dpp-header-container', '..');
+import { loadSchema } from '../lib/schema-loader.js?v=1781103415808';
+import { loadOntology } from '../lib/ontology-loader.js?v=1781103415808';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781103415808';
+import { generateDpp } from './dpp-generator.js?v=1781103415808';
+import { generateHTML } from '../lib/html-generator.js?v=1781103415808';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781103415808';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781094914270';
-import { LanguageManager } from '../lib/language-manager.js?v=1781094914270';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781103415808';
+import { LanguageManager } from '../lib/language-manager.js?v=1781103415808';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();

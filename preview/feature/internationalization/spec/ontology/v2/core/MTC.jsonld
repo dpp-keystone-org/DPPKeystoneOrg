@@ -10,9 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/MTC",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Material Test Certificate (MTC)",
-  "dcterms:description": "Defines the base class and properties for a Material Test Certificate (e.g., EN 10204).",
-  "rdfs:label": [
+  "dcterms:title": [
     {
       "@language": "en",
       "@value": "DPP Core Ontology - Material Test Certificate (MTC)"
@@ -110,7 +108,7 @@
       "@value": "DPP Kärnontologi - Materialprovningsintyg (MTC)"
     }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     {
       "@language": "en",
       "@value": "Defines the base class and properties for a Material Test Certificate (e.g., EN 10204)."
