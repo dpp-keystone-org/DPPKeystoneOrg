@@ -3,6 +3,7 @@ import path from 'path';
 import fse from 'fs-extra'; // For copy and ensureDir
 import { parse as jsoncParse, printParseErrorCode } from 'jsonc-parser';
 import { execSync } from 'child_process';
+import * as cheerio from 'cheerio';
 import { generateSpecDocs } from './generate-spec-docs.mjs';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 
@@ -55,8 +56,43 @@ async function processDirectory(sourceDir, targetDir) {
             let content = await fs.readFile(sourcePath, 'utf-8');
             content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
             await fs.writeFile(targetPath, content, 'utf-8');
+        } else if (entry.name.endsWith('.html')) {
+            let content = await fs.readFile(sourcePath, 'utf-8');
+            const i18nPath = sourcePath.replace(/\.html$/, '.i18n.json');
+            
+            if (await fse.pathExists(i18nPath)) {
+                try {
+                    const translations = JSON.parse(await fs.readFile(i18nPath, 'utf-8'));
+                    const $ = cheerio.load(content, { recognizeSelfClosing: true });
+                    let injected = false;
+                    
+                    $('[data-i18n-key]').each((i, el) => {
+                        const $el = $(el);
+                        const key = $el.attr('data-i18n-key');
+                        if (translations[key]) {
+                            const enTranslation = translations[key].find(t => t['@language'] === 'en');
+                            if (enTranslation) {
+                                if (el.tagName.toLowerCase() === 'input' && $el.attr('placeholder') !== undefined) {
+                                    $el.attr('placeholder', enTranslation['@value']);
+                                } else {
+                                    $el.html(enTranslation['@value']);
+                                }
+                                injected = true;
+                            }
+                        }
+                    });
+                    
+                    if (injected) {
+                        content = $.html();
+                    }
+                } catch (error) {
+                    console.warn(`Warning: Could not process translations for ${sourcePath}: ${error.message}`);
+                }
+            }
+            
+            await fs.writeFile(targetPath, content, 'utf-8');
         } else {
-            // Copy other files directly (e.g., .md, .html, .css)
+            // Copy other files directly (e.g., .md, .css)
             await fse.copy(sourcePath, targetPath);
             //console.log(`Copied static file: ${sourcePath} -> ${targetPath}`);
         }

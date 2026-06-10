@@ -3,6 +3,7 @@ import path from 'path';
 // Import the parser from the other script to read ontology files
 import { parseOntologyMetadata, getFragment, renderI18nSpan } from './generate-spec-docs.mjs';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import * as cheerio from 'cheerio';
 
 const PROJECT_ROOT = process.cwd();
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
@@ -292,6 +293,38 @@ export async function updateIndexHtml({
     await generateUtilIndex(utilsPath, path.join(path.dirname(outputPath), 'util', 'index.html'));
 
     indexContent = indexContent.replace('./src/lib/language-manager.js', './lib/language-manager.js');
+
+    const i18nPath = path.join(PROJECT_ROOT, 'index.i18n.json');
+    try {
+        const translations = JSON.parse(await fs.readFile(i18nPath, 'utf-8'));
+        const $ = cheerio.load(indexContent, { recognizeSelfClosing: true });
+        let injected = false;
+        
+        $('[data-i18n-key]').each((i, el) => {
+            const $el = $(el);
+            const key = $el.attr('data-i18n-key');
+            if (translations[key]) {
+                const enTranslation = translations[key].find(t => t['@language'] === 'en');
+                if (enTranslation) {
+                    if (el.tagName.toLowerCase() === 'input' && $el.attr('placeholder') !== undefined) {
+                        $el.attr('placeholder', enTranslation['@value']);
+                    } else {
+                        $el.html(enTranslation['@value']);
+                    }
+                    injected = true;
+                }
+            }
+        });
+        
+        if (injected) {
+            indexContent = $.html();
+        }
+    } catch (error) {
+        console.warn(`Warning: Could not process translations for index.html: ${error.message}`);
+    }
+
+    // Replace any {{VERSION}} placeholders that were injected from the i18n JSON
+    indexContent = indexContent.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
 
     // Write to the output path now
     await fs.writeFile(outputPath, indexContent, 'utf-8');
