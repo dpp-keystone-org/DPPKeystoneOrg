@@ -56,7 +56,7 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   Tag the relevant HTML elements in `src/` with a special attribute (e.g., `data-i18n-key`) and add logic to `LanguageManager` to fetch the JSON and inject the English text.
     *   **[COMPLETED] Step 6.2: Ensure Baseline Passes**
         *   Verify that the `dist/` HTML output perfectly passes the integration tests established in Step 6.0, proving our `data-i18n-key` additions didn't disrupt the page.
-    *   **[PENDING] Step 6.3: Translate JSON files**
+    *   **[COMPLETED] Step 6.3: Translate JSON files**
         *   Translate all English strings in the `*.i18n.json` files into the other 23 official EU languages.
     *   **[COMPLETED] Step 6.4: Implement Build-Time English Injection**
         *   Update build scripts to automatically read the `.i18n.json` files and inject the default English text into the `dist/` HTML files. This allows us to strip hardcoded text from the `src/` HTML files for cleaner code, while preserving immediate, No-JS/SEO-friendly English rendering in production.
@@ -65,7 +65,7 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   **[COMPLETED] Task 6.4.3:** Strip the raw inner text out of all `[data-i18n-key]` elements in the `src/` HTML files to establish the JSON files as the single source of truth.
     *   **[PENDING] Step 6.5: Add Playwright Tests**
         *   Add separate Playwright tests that load the static pages, switch the language widget, and assert that the text dynamically updates to the new language (similar to what we did for the spec docs).
-        *   **[PENDING] Task 6.5.1:** Write a test that checks all HTML files for at least one language change (e.g., German) and checks at least one HTML file for all 24 languages.
+        *   **[COMPLETED] Task 6.5.1:** Write a test that checks all HTML files for at least one language change (e.g., German) and checks at least one HTML file for all 24 languages.
         *   **[PENDING] Task 6.5.2:** Write a test that verifies that *every single string* in the translation resource for an HTML page is successfully rendered on the page in a target language (to prevent missing strings).
     *   **[PENDING] Step 6.6: Cleanup**
         *   Delete the baseline HTML snapshot integration tests from Step 6.0, as they have fulfilled their purpose of ensuring a safe refactor.
