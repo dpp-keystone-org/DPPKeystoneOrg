@@ -115,7 +115,7 @@
     { "@language": "fi", "@value": "1. Lataa tiedot" },
     { "@language": "fr", "@value": "1. Charger les données" },
     { "@language": "ga", "@value": "1. Lódáil Sonraí" },
-    { "@language": "hr", "@value": "1. Učitaj podatke" },
+    { "@language": "hr", "@value": "1. Učitajte podatke" },
     { "@language": "hu", "@value": "1. Adatok betöltése" },
     { "@language": "it", "@value": "1. Carica dati" },
     { "@language": "lt", "@value": "1. Įkelti duomenis" },
@@ -126,7 +126,7 @@
     { "@language": "pt", "@value": "1. Carregar dados" },
     { "@language": "ro", "@value": "1. Încărcare date" },
     { "@language": "sk", "@value": "1. Načítať údaje" },
-    { "@language": "sl", "@value": "1. Naloži podatke" },
+    { "@language": "sl", "@value": "1. Naložite podatke" },
     { "@language": "sv", "@value": "1. Ladda data" }
   ],
   "target-sector-s": [
@@ -375,7 +375,7 @@
     { "@language": "fi", "@value": "2. Yhdistä kentät" },
     { "@language": "fr", "@value": "2. Mapper les champs" },
     { "@language": "ga", "@value": "2. Léarscáiligh Réimsí" },
-    { "@language": "hr", "@value": "2. Mapiranje polja" },
+    { "@language": "hr", "@value": "2. Mapirajte polja" },
     { "@language": "hu", "@value": "2. Mezők leképezése" },
     { "@language": "it", "@value": "2. Mappa campi" },
     { "@language": "lt", "@value": "2. Susieti laukus" },
@@ -386,7 +386,7 @@
     { "@language": "pt", "@value": "2. Mapear campos" },
     { "@language": "ro", "@value": "2. Mapare câmpuri" },
     { "@language": "sk", "@value": "2. Priradiť polia" },
-    { "@language": "sl", "@value": "2. Preslikava polj" },
+    { "@language": "sl", "@value": "2. Preslikajte polja" },
     { "@language": "sv", "@value": "2. Mappa fält" }
   ],
   "map-your-csv-columns-to": [
@@ -401,7 +401,7 @@
     { "@language": "fi", "@value": "Yhdistä CSV-sarakkeet standardeihin DPP-kenttiin. Yhdistämättömät sarakkeet ohitetaan. <strong>Sinun on vahvistettava jokainen rivi (yhdistetty tai ohitettu) valitsemalla oikealla oleva valintaruutu.</strong> Kun olet tarkistanut, voit valita \"Tallenna yhdistämismääritys\" myöhempää käyttöä varten tai \"Luo DPP:t\" alareunassa olevasta painikkeesta." },
     { "@language": "fr", "@value": "Mappez vos colonnes CSV aux champs DPP standard. Les colonnes non mappées seront ignorées. <strong>Vous devez confirmer chaque ligne (mappée ou ignorée) en cochant la case à droite.</strong> Une fois la vérification terminée, vous pouvez \"Enregistrer la configuration de mappage\" pour plus tard ou \"Générer des DPP\" via le bouton en bas." },
     { "@language": "ga", "@value": "Léarscáiligh do cholúin CSV go réimsí caighdeánacha DPP. Déanfar neamhaird de cholúin nach bhfuil léarscáilithe. <strong>Ní mór duit gach sraith a dheimhniú (léarscáilithe nó a dtugtar neamhaird air) tríd an mbosca ar dheis a sheiceáil.</strong> Tar éis duit athbhreithniú a dhéanamh, is féidir leat \"Sábháil Cumraíocht Léarscáilithe\" níos déanaí nó \"Gin DPPanna\" a úsáid ag an mbun." },
-    { "@language": "hr", "@value": "Mapirajte svoje CSV stupce sa standardnim DPP poljima. Nemapirani stupci će se zanemariti. <strong>Morate potvrditi svaki redak (mapiran ili zanemaren) označavanjem okvira s desne strane.</strong> Nakon pregleda, možete kliknuti \"Spremi konfiguraciju mapiranja\" za kasnije ili \"Generiraj DPP-ove\" pomoću gumba na dnu." },
+    { "@language": "hr", "@value": "Mapirajte svoje CSV stupce sa standardnim DPP poljima. Nemapirani stupci će se zanemariti. <strong>Morate potvrditi svaki redak (mapiran ili zanemaren) označavanjem okvira s desne strane.</strong> Nakon pregleda, možete kliknuti \"Spremite konfiguraciju mapiranja\" za kasnije ili \"Generirajte DPP-ove\" pomoću gumba na dnu." },
     { "@language": "hu", "@value": "Képezze le CSV oszlopait szabványos DPP mezőkre. A nem leképezett oszlopokat a rendszer figyelmen kívül hagyja. <strong>Minden sort (leképezett vagy figyelmen kívül hagyott) meg kell erősítenie a jobb oldali jelölőnégyzet bejelölésével.</strong> Az áttekintés után választhatja a „Leképezési konfiguráció mentése” lehetőséget későbbre, vagy a „DPP-k generálása” gombot az alján." },
     { "@language": "it", "@value": "Mappa le colonne del file CSV nei campi DPP standard. Le colonne non mappate verranno ignorate. <strong>Devi confermare ogni riga (mappata o ignorata) selezionando la casella a destra.</strong> Una volta verificato, puoi fare clic su \"Salva configurazione mappatura\" per dopo o su \"Genera DPP\" tramite il pulsante in basso." },
     { "@language": "lt", "@value": "Susiekite CSV stulpelius su standartiniais DPP laukais. Nesusieti stulpeliai bus ignoruojami. <strong>Turite patvirtinti kiekvieną eilutę (susietą arba ignoruojamą) pažymėdami langelį dešinėje.</strong> Peržiūrėję galite „Išsaugoti susiejimo konfigūraciją“ vėlesniam laikui arba „Generuoti DPP“ pasinaudoję mygtuku apačioje." },
@@ -410,10 +410,10 @@
     { "@language": "nl", "@value": "Wijs uw CSV-kolommen toe aan standaard DPP-velden. Niet-toegewezen kolommen worden genegeerd. <strong>U moet elke rij (toegewezen of genegeerd) bevestigen door het vakje aan de rechterkant aan te vinken.</strong> Na controle kunt u \"Toewijzingsconfiguratie opslaan\" voor later of \"DPP's genereren\" met de knop onderaan." },
     { "@language": "pl", "@value": "Mapuj kolumny CSV na standardowe pola DPP. Niemapowane kolumny zostaną zignorowane. <strong>Musisz potwierdzić każdy wiersz (mapowany lub zignorowany), zaznaczając pole po prawej stronie.</strong> Po sprawdzeniu możesz kliknąć „Zapisz konfigurację mapowania” na później lub „Generuj DPP” za pomocą przycisku na dole." },
     { "@language": "pt", "@value": "Mapeie as suas colunas CSV para os campos DPP padrão. As colunas não mapeadas serão ignoradas. <strong>Deve confirmar cada linha (mapeada ou ignorada) marcando a caixa à direita.</strong> Uma vez revisto, pode clicar em \"Guardar Configuração de Mapeamento\" para mais tarde ou em \"Gerar DPPs\" através do botão na parte inferior." },
-    { "@language": "ro", "@value": "Maparea coloanelor CSV la câmpurile DPP standard. Coloanele nemapate vor fi ignorate. <strong>Trebuie să confirmați fiecare rând (mapat sau ignorat) bifând caseta din dreapta.</strong> După examinare, puteți alege „Salvare configurare mapare” pentru mai târziu sau „Generare DPP” folosind butonul din partea de jos." },
-    { "@language": "sk", "@value": "Priradte svoje stĺpce CSV k štandardným poliam DPP. Nepriradené stĺpce budú ignorované. <strong>Musíte potvrdiť každý riadok (priradený alebo ignorovaný) začiarknutím políčka vpravo.</strong> Po kontrole môžete „Uložiť konfiguráciu priradenia“ na neskôr alebo „Generovať DPP“ pomocou tlačidla dole." },
-    { "@language": "sl", "@value": "Preslikajte stolpce CSV v standardna polja DPP. Nepreslikani stolpci bodo prezrti. <strong>Vsako vrstico (preslikano ali prezrto) morate potrditi s potrditvenim poljem na desni.</strong> Po pregledu lahko izberete »Shrani konfiguracijo preslikave« za pozneje ali »Ustvari DPP-je« s pomočjo gumba na dnu." },
-    { "@language": "sv", "@value": "Mappa dina CSV-kolumner till standard-DPP-fält. O-mappade kolumner kommer att ignoreras. <strong>Du måste bekräfta varje rad (mappad eller ignorerad) genom att markera rutan till höger.</strong> När den har granskats kan du \"Spara mappningskonfiguration\" för senare eller \"Generera DPP:er\" med knappen längst ner." }
+    { "@language": "ro", "@value": "Mapați coloanele CSV la câmpurile DPP standard. Coloanele nemapate vor fi ignorate. <strong>Trebuie să confirmați fiecare rând (mapat sau ignorat) bifând caseta din dreapta.</strong> După examinare, puteți alege „Salvare configurare mapare” pentru mai târziu sau „Generare DPP” folosind butonul din partea de jos." },
+    { "@language": "sk", "@value": "Priraďte svoje stĺpce CSV k štandardným poliam DPP. Nepriradené stĺpce budú ignorované. <strong>Musíte potvrdiť každý riadok (priradený alebo ignorovaný) začiarknutím políčka vpravo.</strong> Po kontrole môžete „Uložiť konfiguráciu priradenia“ na neskôr alebo „Generovať DPP“ pomocou tlačidla dole." },
+    { "@language": "sl", "@value": "Preslikajte stolpce CSV v standardna polja DPP. Nepreslikani stolpci bodo prezrti. <strong>Vsako vrstico (preslikano ali prezrto) morate potrditi s potrditvenim poljem na desni.</strong> Po pregledu lahko izberete »Shranite konfiguracijo preslikave« za pozneje ali »Ustvarite DPP-je« s pomočjo gumba na dnu." },
+    { "@language": "sv", "@value": "Mappa dina CSV-kolumner till standard-DPP-fält. Omappade kolumner kommer att ignoreras. <strong>Du måste bekräfta varje rad (mappad eller ignorerad) genom att markera rutan till höger.</strong> När den har granskats kan du \"Spara mappningskonfiguration\" för senare eller \"Generera DPP:er\" med knappen längst ner." }
   ],
   "load-mapping-config": [
     { "@language": "en", "@value": "Load Mapping Config" },
@@ -427,7 +427,7 @@
     { "@language": "fi", "@value": "Lataa yhdistämismääritys" },
     { "@language": "fr", "@value": "Charger la configuration de mappage" },
     { "@language": "ga", "@value": "Lódáil Cumraíocht Léarscáilithe" },
-    { "@language": "hr", "@value": "Učitaj konfiguraciju mapiranja" },
+    { "@language": "hr", "@value": "Učitajte konfiguraciju mapiranja" },
     { "@language": "hu", "@value": "Leképezési konfiguráció betöltése" },
     { "@language": "it", "@value": "Carica configurazione mappatura" },
     { "@language": "lt", "@value": "Įkelti susiejimo konfigūraciją" },
@@ -438,7 +438,7 @@
     { "@language": "pt", "@value": "Carregar Configuração de Mapeamento" },
     { "@language": "ro", "@value": "Încărcare configurare mapare" },
     { "@language": "sk", "@value": "Načítať konfiguráciu priradenia" },
-    { "@language": "sl", "@value": "Naloži konfiguracijo preslikave" },
+    { "@language": "sl", "@value": "Naložite konfiguracijo preslikave" },
     { "@language": "sv", "@value": "Ladda mappningskonfiguration" }
   ],
   "save-mapping-config": [
@@ -453,7 +453,7 @@
     { "@language": "fi", "@value": "Tallenna yhdistämismääritys" },
     { "@language": "fr", "@value": "Enregistrer la configuration de mappage" },
     { "@language": "ga", "@value": "Sábháil Cumraíocht Léarscáilithe" },
-    { "@language": "hr", "@value": "Spremi konfiguraciju mapiranja" },
+    { "@language": "hr", "@value": "Spremite konfiguraciju mapiranja" },
     { "@language": "hu", "@value": "Leképezési konfiguráció mentése" },
     { "@language": "it", "@value": "Salva configurazione mappatura" },
     { "@language": "lt", "@value": "Išsaugoti susiejimo konfigūraciją" },
@@ -464,7 +464,7 @@
     { "@language": "pt", "@value": "Guardar Configuração de Mapeamento" },
     { "@language": "ro", "@value": "Salvare configurare mapare" },
     { "@language": "sk", "@value": "Uložiť konfiguráciu priradenia" },
-    { "@language": "sl", "@value": "Shrani konfiguracijo preslikave" },
+    { "@language": "sl", "@value": "Shranite konfiguracijo preslikave" },
     { "@language": "sv", "@value": "Spara mappningskonfiguration" }
   ],
   "show-incompatible-fields": [
@@ -479,7 +479,7 @@
     { "@language": "fi", "@value": "Näytä yhteensopimattomat kentät" },
     { "@language": "fr", "@value": "Afficher les champs incompatibles" },
     { "@language": "ga", "@value": "Taispeáin réimsí neamh-chomhoiriúnacha" },
-    { "@language": "hr", "@value": "Prikaži nekompatibilna polja" },
+    { "@language": "hr", "@value": "Prikažite nekompatibilna polja" },
     { "@language": "hu", "@value": "Nem kompatibilis mezők megjelenítése" },
     { "@language": "it", "@value": "Mostra campi incompatibili" },
     { "@language": "lt", "@value": "Rodyti nesuderinamus laukus" },
@@ -490,7 +490,7 @@
     { "@language": "pt", "@value": "Mostrar campos incompatíveis" },
     { "@language": "ro", "@value": "Afișați câmpurile incompatibile" },
     { "@language": "sk", "@value": "Zobraziť nekompatibilné polia" },
-    { "@language": "sl", "@value": "Prikaži nezdružljiva polja" },
+    { "@language": "sl", "@value": "Prikažite nezdružljiva polja" },
     { "@language": "sv", "@value": "Visa inkompatibla fält" }
   ],
   "csv-header": [
@@ -609,7 +609,7 @@
     { "@language": "fi", "@value": "3. Luo" },
     { "@language": "fr", "@value": "3. Générer" },
     { "@language": "ga", "@value": "3. Gin" },
-    { "@language": "hr", "@value": "3. Generiraj" },
+    { "@language": "hr", "@value": "3. Generirajte" },
     { "@language": "hu", "@value": "3. Generálás" },
     { "@language": "it", "@value": "3. Genera" },
     { "@language": "lt", "@value": "3. Generuoti" },
@@ -620,7 +620,7 @@
     { "@language": "pt", "@value": "3. Gerar" },
     { "@language": "ro", "@value": "3. Generare" },
     { "@language": "sk", "@value": "3. Generovať" },
-    { "@language": "sl", "@value": "3. Ustvari" },
+    { "@language": "sl", "@value": "3. Ustvarite" },
     { "@language": "sv", "@value": "3. Generera" }
   ],
   "generate-a-single-json-file": [
@@ -661,7 +661,7 @@
     { "@language": "fi", "@value": "Luo DPP:t" },
     { "@language": "fr", "@value": "Générer des DPP" },
     { "@language": "ga", "@value": "Gin DPPanna" },
-    { "@language": "hr", "@value": "Generiraj DPP-ove" },
+    { "@language": "hr", "@value": "Generirajte DPP-ove" },
     { "@language": "hu", "@value": "DPP-k generálása" },
     { "@language": "it", "@value": "Genera DPP" },
     { "@language": "lt", "@value": "Generuoti DPP" },
@@ -672,7 +672,7 @@
     { "@language": "pt", "@value": "Gerar DPPs" },
     { "@language": "ro", "@value": "Generare DPP-uri" },
     { "@language": "sk", "@value": "Generovať DPP" },
-    { "@language": "sl", "@value": "Ustvari DPP-je" },
+    { "@language": "sl", "@value": "Ustvarite DPP-je" },
     { "@language": "sv", "@value": "Generera DPP:er" }
   ],
   "part-of-the-dpp-keystone": [
