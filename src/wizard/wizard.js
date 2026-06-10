@@ -137,11 +137,24 @@ export async function initializeWizard() {
     const langWrapper = document.getElementById('language-widget-wrapper');
     if (langWrapper) {
         langWrapper.innerHTML = '';
+        
+        let externalTranslations = {};
+        try {
+            const response = await fetch('index.i18n.json');
+            if (response.ok) {
+                externalTranslations = await response.json();
+            }
+        } catch (err) { }
+
         languageSelector = LanguageManager.renderSelectorWidget(async (newLang) => {
             currentLanguage = newLang;
+            LanguageManager.localizeDOM(newLang, externalTranslations);
             await rerenderAllForms();
         });
         langWrapper.appendChild(languageSelector);
+        
+        // Initial localization for static UI elements
+        LanguageManager.localizeDOM(currentLanguage, externalTranslations);
     }
 
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
