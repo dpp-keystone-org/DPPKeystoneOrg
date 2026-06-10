@@ -3,6 +3,8 @@ import stripJsonComments from 'strip-json-comments';
 import { EXAMPLES } from '../lib/example-registry.js';
 import { generateHTML } from '../lib/html-generator.js';
 import { transformDpp } from '../util/js/client/dpp-schema-adapter.js';
+import { loadHeader } from '../branding/header.js';
+loadHeader('dpp-header-container', '..');
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
 import { loadOntology } from '../lib/ontology-loader.js';
 import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js';

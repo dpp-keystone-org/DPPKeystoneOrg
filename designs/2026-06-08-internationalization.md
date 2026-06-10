@@ -82,15 +82,15 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   **[COMPLETED] Task 7.1.3 (Template Update):** Update `generate-spec-docs.mjs` to wrap the UI headers in `<span data-i18n-key="...">` and update the `LanguageManager.init()` call to point to the root `index.i18n.json` resource path.
     *   **[PENDING] Issue 7.2 (Explorer):** Fix Ontology Explorer (`explorer/index.html`).
         *   The ontology cards display raw English text instead of using translated strings.
-    *   **[PENDING] Issue 7.3 (Wizard):** Clean up the Wizard app (`wizard/index.html`).
+    *   **[COMPLETED] Issue 7.3 (Wizard):** Clean up the Wizard app (`wizard/index.html`).
         *   The main Keystone page header is missing the unified language switcher.
         *   The duplicate language switcher inside the "DPP Wizard" section is redundant and needs to be removed.
         *   Inconsistent naming: called "DPP Assistent" on the main index page, but "DPP Wizard" on its own page.
-    *   **[PENDING] Issue 7.4 (Validator):** Clean up the Validator app (`validator/index.html`).
+    *   **[COMPLETED] Issue 7.4 (Validator):** Clean up the Validator app (`validator/index.html`).
         *   Does not use the standard unified DPP Keystone page header.
         *   Missing the global language switcher at the top, but still has the redundant subpage switcher.
         *   Redundantly titled "DPP-Validator" and "JSON DPP-Validator".
-    *   **[PENDING] Issue 7.5 (SDKs):** Modernize the Developer SDKs page (e.g. `src/sdks/index.html`).
+    *   **[COMPLETED] Issue 7.5 (SDKs):** Modernize the Developer SDKs page (e.g. `src/sdks/index.html`).
         *   Does not use the standard DPP Keystone page header or footer.
         *   Missing the global language selector.
         *   The page title is not translated.

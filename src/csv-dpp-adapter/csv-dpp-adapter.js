@@ -1,3 +1,5 @@
+import { loadHeader } from '../branding/header.js';
+loadHeader('dpp-header-container', '..');
 import Papa from '../lib/vendor/papaparse.js';
 import { loadSchema, flattenSchema } from '../lib/schema-loader.js';
 import { loadOntology } from '../lib/ontology-loader.js';
