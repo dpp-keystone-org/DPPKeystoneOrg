@@ -3,7 +3,8 @@ const path = require('path');
 
 // Default directories to process if no arguments are provided
 const DEFAULT_PATHS = [
-    path.join('src')
+    path.join('src'),
+    'index.i18n.json'
 ];
 
 function getAllFiles(dirPath, arrayOfFiles) {

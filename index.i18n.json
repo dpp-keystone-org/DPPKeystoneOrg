@@ -1,326 +1,170 @@
 {
   "dpp-keystone": [
-    {
-      "@language": "en",
-      "@value": "DPP Keystone"
-    }
+    { "@language": "en", "@value": "DPP Keystone" }
   ],
   "harmonizing-data-for-the-digital": [
-    {
-      "@language": "en",
-      "@value": "Harmonizing Data for the\n                    Digital Product Passport"
-    }
+    { "@language": "en", "@value": "Harmonizing Data for the\n                    Digital Product Passport" }
   ],
   "proof-of-concept-not-for": [
-    {
-      "@language": "en",
-      "@value": "Proof of Concept - Not for Production Use"
-    }
+    { "@language": "en", "@value": "Proof of Concept - Not for Production Use" }
   ],
   "the-dpp-standardization-process-is": [
-    {
-      "@language": "en",
-      "@value": "The DPP standardization process is ongoing. Utilities on this website are for demonstration and\n                proof-of-concept purposes only."
-    }
+    { "@language": "en", "@value": "The DPP standardization process is ongoing. Utilities on this website are for demonstration and\n                proof-of-concept purposes only." }
   ],
   "about-this-project": [
-    {
-      "@language": "en",
-      "@value": "About This Project"
-    }
+    { "@language": "en", "@value": "About This Project" }
   ],
   "this-repository-provides-a-centralized": [
-    {
-      "@language": "en",
-      "@value": "This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies\n                    between various standards (ISO, GS1, etc.) to any exact schemas that are required for the DPP. Our\n                    goal is to ensure interoperability and lower the barrier for implementation, especially for SMEs."
-    }
+    { "@language": "en", "@value": "This repository provides a centralized, harmonized vocabulary that maps the semantic equivalencies\n                    between various standards (ISO, GS1, etc.) to any exact schemas that are required for the DPP. Our\n                    goal is to ensure interoperability and lower the barrier for implementation, especially for SMEs." }
   ],
   "in-addition-this-site-provides": [
-    {
-      "@language": "en",
-      "@value": "In addition, this site provides a suite of in-browser tools to assist with DPP generation (manually\n                    and in bulk) and validation of JSON files against DPP standards."
-    }
+    { "@language": "en", "@value": "In addition, this site provides a suite of in-browser tools to assist with DPP generation (manually\n                    and in bulk) and validation of JSON files against DPP standards." }
   ],
   "for-more-details-on-the": [
-    {
-      "@language": "en",
-      "@value": "For more details on the approach, please read the <a href=\"docs/methodology.md\">Methodology\n                        documentation</a>."
-    }
+    { "@language": "en", "@value": "For more details on the approach, please read the <a href=\"docs/methodology.md\">Methodology\n                        documentation</a>." }
   ],
   "dpp-toolkit": [
-    {
-      "@language": "en",
-      "@value": "DPP Toolkit"
-    }
+    { "@language": "en", "@value": "DPP Toolkit" }
   ],
   "interactive-tools-and-libraries-to": [
-    {
-      "@language": "en",
-      "@value": "Interactive tools and libraries to build, validate, and visualize Digital Product Passports."
-    }
+    { "@language": "en", "@value": "Interactive tools and libraries to build, validate, and visualize Digital Product Passports." }
   ],
   "dpp-wizard": [
-    {
-      "@language": "en",
-      "@value": "🚀 DPP Wizard"
-    }
+    { "@language": "en", "@value": "🚀 DPP Wizard" }
   ],
   "an-interactive-web-based-form": [
-    {
-      "@language": "en",
-      "@value": "An interactive web-based form to generate valid JSON-LD Digital Product Passports for\n                            Battery, Construction, Electronics and Textile sectors. Validate your data in real-time."
-    }
+    { "@language": "en", "@value": "An interactive web-based form to generate valid JSON-LD Digital Product Passports for\n                            Battery, Construction, Electronics and Textile sectors. Validate your data in real-time." }
   ],
   "dpp-validator": [
-    {
-      "@language": "en",
-      "@value": "✅ DPP Validator"
-    }
+    { "@language": "en", "@value": "✅ DPP Validator" }
   ],
   "standalone-tool-to-validate-dpp": [
-    {
-      "@language": "en",
-      "@value": "Standalone tool to validate DPP JSON files against the {{VERSION}} schemas. Supports both strict JSON\n                            and JSONC (with comments)."
+    { "@language": "en", "@value": "Standalone tool to validate DPP JSON files against the {{VERSION }} schemas. Supports both strict JSON\n                            and JSONC (with comments)."
     }
   ],
   "csv-adapter": [
-    {
-      "@language": "en",
-      "@value": "📊 CSV Adapter"
-    }
+    { "@language": "en", "@value": "📊 CSV Adapter" }
   ],
   "batch-convert-csv-data-to": [
-    {
-      "@language": "en",
-      "@value": "Batch convert CSV data to DPP JSON files in your browser. Map columns to schema fields and\n                            export."
-    }
+    { "@language": "en", "@value": "Batch convert CSV data to DPP JSON files in your browser. Map columns to schema fields and\n                            export." }
   ],
   "ontology-explorer": [
-    {
-      "@language": "en",
-      "@value": "🔍 Ontology Explorer"
-    }
+    { "@language": "en", "@value": "🔍 Ontology Explorer" }
   ],
   "searchable-index-of-all-dpp": [
-    {
-      "@language": "en",
-      "@value": "Searchable index of all DPP definitions. Find terms, units, and semantic mappings across all\n                            sectors."
-    }
+    { "@language": "en", "@value": "Searchable index of all DPP definitions. Find terms, units, and semantic mappings across all\n                            sectors." }
   ],
   "developer-sdks": [
-    {
-      "@language": "en",
-      "@value": "📦 Developer SDKs"
-    }
+    { "@language": "en", "@value": "📦 Developer SDKs" }
   ],
   "javascript-utilities-and-reference-implementations": [
-    {
-      "@language": "en",
-      "@value": "JavaScript utilities and reference implementations for schema validation, HTML generation,\n                            and ontology indexing. Includes adapter examples for converting between formats."
-    }
+    { "@language": "en", "@value": "JavaScript utilities and reference implementations for schema validation, HTML generation,\n                            and ontology indexing. Includes adapter examples for converting between formats." }
   ],
   "version-specifications-the-standard": [
-    {
-      "@language": "en",
-      "@value": "{{VERSION}} Specifications (The \"Standard\")"
+    { "@language": "en", "@value": "{{VERSION }} Specifications (The \"Standard\")"
     }
   ],
   "the-canonical-data-models-vocabulary": [
-    {
-      "@language": "en",
-      "@value": "The canonical data models, vocabulary definitions, and validation rules for Version {{VERSION}}."
+    { "@language": "en", "@value": "The canonical data models, vocabulary definitions, and validation rules for Version {{VERSION }}."
     }
   ],
   "semantics-amp-vocabulary": [
-    {
-      "@language": "en",
-      "@value": "Semantics &amp; Vocabulary"
-    }
+    { "@language": "en", "@value": "Semantics &amp; Vocabulary" }
   ],
   "the-semantic-definitions-ontology-and": [
-    {
-      "@language": "en",
-      "@value": "The semantic definitions (Ontology) and JSON-LD mappings (Contexts) that define the meaning of\n                        data."
-    }
+    { "@language": "en", "@value": "The semantic definitions (Ontology) and JSON-LD mappings (Contexts) that define the meaning of\n                        data." }
   ],
   "ontology-semantic-definitions": [
-    {
-      "@language": "en",
-      "@value": "Ontology (Semantic Definitions)"
-    }
+    { "@language": "en", "@value": "Ontology (Semantic Definitions)" }
   ],
   "browse-modules": [
-    {
-      "@language": "en",
-      "@value": "Browse Modules:"
-    }
+    { "@language": "en", "@value": "Browse Modules:" }
   ],
   "browse-core-modules-html-docs": [
-    {
-      "@language": "en",
-      "@value": "Browse Core Modules (HTML Docs)"
-    }
+    { "@language": "en", "@value": "Browse Core Modules (HTML Docs)" }
   ],
   "browse-sector-modules-html-docs": [
-    {
-      "@language": "en",
-      "@value": "Browse Sector Modules (HTML Docs)"
-    }
+    { "@language": "en", "@value": "Browse Sector Modules (HTML Docs)" }
   ],
   "individual-classes": [
-    {
-      "@language": "en",
-      "@value": "Individual Classes:"
-    }
+    { "@language": "en", "@value": "Individual Classes:" }
   ],
   "version-ontology-entry-point": [
-    {
-      "@language": "en",
-      "@value": "{{VERSION}} Ontology Entry Point"
+    { "@language": "en", "@value": "{{VERSION }} Ontology Entry Point"
     }
   ],
   "contexts-implementation-vocabularies": [
-    {
-      "@language": "en",
-      "@value": "Contexts (Implementation Vocabularies)"
-    }
+    { "@language": "en", "@value": "Contexts (Implementation Vocabularies)" }
   ],
   "index-of-latest-context-files": [
-    {
-      "@language": "en",
-      "@value": "Index of \"Latest\" Context Files"
-    }
+    { "@language": "en", "@value": "Index of \"Latest\" Context Files" }
   ],
   "version-version-context-documentation": [
-    {
-      "@language": "en",
-      "@value": "Version {{VERSION}} Context Documentation"
+    { "@language": "en", "@value": "Version {{VERSION }} Context Documentation"
     }
   ],
   "direct-links-to-latest-files": [
-    {
-      "@language": "en",
-      "@value": "Direct Links to \"Latest\" Files:"
-    }
+    { "@language": "en", "@value": "Direct Links to \"Latest\" Files:" }
   ],
   "browse-version-version-documentation": [
-    {
-      "@language": "en",
-      "@value": "Browse Version {{VERSION}} Documentation:"
+    { "@language": "en", "@value": "Browse Version {{VERSION }} Documentation:"
     }
   ],
   "validation-rules": [
-    {
-      "@language": "en",
-      "@value": "Validation Rules"
-    }
+    { "@language": "en", "@value": "Validation Rules" }
   ],
   "the-structural-and-constraint-validation": [
-    {
-      "@language": "en",
-      "@value": "The structural and constraint validation rules ensuring data quality."
-    }
+    { "@language": "en", "@value": "The structural and constraint validation rules ensuring data quality." }
   ],
   "dpp-json-schemas": [
-    {
-      "@language": "en",
-      "@value": "DPP JSON Schemas"
-    }
+    { "@language": "en", "@value": "DPP JSON Schemas" }
   ],
   "dpp-schema-root": [
-    {
-      "@language": "en",
-      "@value": "DPP Schema (Root)"
-    }
+    { "@language": "en", "@value": "DPP Schema (Root)" }
   ],
   "content-specification-schemas": [
-    {
-      "@language": "en",
-      "@value": "Content Specification Schemas"
-    }
+    { "@language": "en", "@value": "Content Specification Schemas" }
   ],
   "auxiliary-schemas": [
-    {
-      "@language": "en",
-      "@value": "Auxiliary Schemas"
-    }
+    { "@language": "en", "@value": "Auxiliary Schemas" }
   ],
   "shacl-shapes": [
-    {
-      "@language": "en",
-      "@value": "SHACL Shapes"
-    }
+    { "@language": "en", "@value": "SHACL Shapes" }
   ],
   "other-implementation-resources": [
-    {
-      "@language": "en",
-      "@value": "Other Implementation Resources"
-    }
+    { "@language": "en", "@value": "Other Implementation Resources" }
   ],
   "examples-and-guides-to-help": [
-    {
-      "@language": "en",
-      "@value": "Examples and guides to help you implement the DPP."
-    }
+    { "@language": "en", "@value": "Examples and guides to help you implement the DPP." }
   ],
   "examples-proof-of-concept": [
-    {
-      "@language": "en",
-      "@value": "Examples (Proof of Concept)"
-    }
+    { "@language": "en", "@value": "Examples (Proof of Concept)" }
   ],
   "illustrative-json-ld-examples-for": [
-    {
-      "@language": "en",
-      "@value": "Illustrative JSON-LD examples for various products."
-    }
+    { "@language": "en", "@value": "Illustrative JSON-LD examples for various products." }
   ],
   "epcis-integration": [
-    {
-      "@language": "en",
-      "@value": "EPCIS Integration"
-    }
+    { "@language": "en", "@value": "EPCIS Integration" }
   ],
   "example-of-how-a-dpp": [
-    {
-      "@language": "en",
-      "@value": "Example of how a DPP can be shared via EPCIS 2.0."
-    }
+    { "@language": "en", "@value": "Example of how a DPP can be shared via EPCIS 2.0." }
   ],
   "epcis-2-0-example-event": [
-    {
-      "@language": "en",
-      "@value": "EPCIS 2.0 Example Event (JSON-LD)"
-    }
+    { "@language": "en", "@value": "EPCIS 2.0 Example Event (JSON-LD)" }
   ],
   "event-subject-dpp-json": [
-    {
-      "@language": "en",
-      "@value": "Event Subject DPP JSON"
-    }
+    { "@language": "en", "@value": "Event Subject DPP JSON" }
   ],
   "contributing-and-governance": [
-    {
-      "@language": "en",
-      "@value": "Contributing and Governance"
-    }
+    { "@language": "en", "@value": "Contributing and Governance" }
   ],
   "contributions-are-welcome-please-review": [
-    {
-      "@language": "en",
-      "@value": "Contributions are welcome. Please review the <a href=\"CONTRIBUTING.md\">Contribution Guidelines</a>\n                    and the <a href=\"docs/governance.md\">Governance Model</a>."
-    }
+    { "@language": "en", "@value": "Contributions are welcome. Please review the <a href=\"CONTRIBUTING.md\">Contribution Guidelines</a>\n                    and the <a href=\"docs/governance.md\">Governance Model</a>." }
   ],
   "this-project-is-hosted-on": [
-    {
-      "@language": "en",
-      "@value": "This project is hosted on <a href=\"https://github.com/dpp-keystone-org/DPPKeystoneOrg\">GitHub</a>."
-    }
+    { "@language": "en", "@value": "This project is hosted on <a href=\"https://github.com/dpp-keystone-org/DPPKeystoneOrg\">GitHub</a>." }
   ],
   "licensed-under-the-cc0-1": [
-    {
-      "@language": "en",
-      "@value": "Licensed under the <a href=\"LICENSE\">CC0 1.0 Universal</a>. | <a href=\"impressum.html\">Impressum / Legal Notice</a>"
-    }
+    { "@language": "en", "@value": "Licensed under the <a href=\"LICENSE\">CC0 1.0 Universal</a>. | <a href=\"impressum.html\">Impressum / Legal Notice</a>" }
   ]
 }
