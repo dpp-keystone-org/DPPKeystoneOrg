@@ -72,14 +72,14 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
 
 ### [IN PROGRESS] Feature 7: Bug-Bash & Quality Assurance
 *   **Plan:** Iteratively log, analyze, and fix visual or functional bugs uncovered during manual site navigation and integration testing of the new i18n features.
-    *   **[PENDING] Issue 7.1 (Spec Docs):** Fix generated ontology sector summary pages (e.g., `spec/ontology/v2/sectors/Textile/index.html`).
-        *   **[PENDING] Task 7.1.1 (Ontology Root Metadata Localization):** The main module descriptions are missing translations or improperly rendered.
+    *   **[COMPLETED] Issue 7.1 (Spec Docs):** Fix generated ontology sector summary pages (e.g., `spec/ontology/v2/sectors/Textile/index.html`).
+        *   **[COMPLETED] Task 7.1.1 (Ontology Root Metadata Localization):** The main module descriptions are missing translations or improperly rendered.
             *   **[COMPLETED] Sub-Task 7.1.1.1 (Convention):** Establish a consistent standard across all `.jsonld` files for `dcterms:title` and `dcterms:description` (they must be arrays of `{@language, @value}` objects across all 24 EU languages).
             *   **[COMPLETED] Sub-Task 7.1.1.2 (Validation):** Update the `scripts/validate-ontology-integrity.mjs` script to enforce this standard for ontology roots, just like it already does for `rdfs:label` and `rdfs:comment` on classes/properties.
-            *   **[IN PROGRESS] Sub-Task 7.1.1.3 (Translation):** Deploy subagents to backfill missing translations for `dcterms:title` and `dcterms:description` across all ontology files.
-            *   **[PENDING] Sub-Task 7.1.1.4 (Data Binding):** Update `generate-spec-docs.mjs` to properly route the `dcterms:description` array through `renderI18nSpan()`.
-        *   **[PENDING] Task 7.1.2 (Dictionary Expansion):** Add static UI header strings ("classes-and-concepts", "properties-header", "property-column", "description-column") to the root `index.i18n.json` with all 24 translations.
-        *   **[PENDING] Task 7.1.3 (Template Update):** Update `generate-spec-docs.mjs` to wrap the UI headers in `<span data-i18n-key="...">` and update the `LanguageManager.init()` call to point to the root `index.i18n.json` resource path.
+            *   **[COMPLETED] Sub-Task 7.1.1.3 (Translation):** Deploy subagents to backfill missing translations for `dcterms:title` and `dcterms:description` across all ontology files.
+            *   **[COMPLETED] Sub-Task 7.1.1.4 (Data Binding):** Update `generate-spec-docs.mjs` to properly route the `dcterms:description` array through `renderI18nSpan()`.
+        *   **[COMPLETED] Task 7.1.2 (Dictionary Expansion):** Add static UI header strings ("classes-and-concepts", "properties-header", "property-column", "description-column") to the root `index.i18n.json` with all 24 translations.
+        *   **[COMPLETED] Task 7.1.3 (Template Update):** Update `generate-spec-docs.mjs` to wrap the UI headers in `<span data-i18n-key="...">` and update the `LanguageManager.init()` call to point to the root `index.i18n.json` resource path.
     *   **[PENDING] Issue 7.2 (Explorer):** Fix Ontology Explorer (`explorer/index.html`).
         *   The ontology cards display raw English text instead of using translated strings.
     *   **[PENDING] Issue 7.3 (Wizard):** Clean up the Wizard app (`wizard/index.html`).
