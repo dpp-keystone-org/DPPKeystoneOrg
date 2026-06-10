@@ -10,9 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/DoPC",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Declaration of Performance and Conformity (DoPC)",
-  "dcterms:description": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC).",
-  "rdfs:label": [
+  "dcterms:title": [
     { "@language": "en", "@value": "DPP Core Ontology - Declaration of Performance and Conformity (DoPC)" },
     { "@language": "bg", "@value": "Основна онтология на DPP - Декларация за експлоатационни показатели и съответствие (DoPC)" },
     { "@language": "cs", "@value": "Základní ontologie DPP - Prohlášení o vlastnostech a shodě (DoPC)" },
@@ -38,7 +36,7 @@
     { "@language": "sl", "@value": "Osnovna ontologija DPP - Izjava o lastnostih in skladnosti (DoPC)" },
     { "@language": "sv", "@value": "DPP Core Ontology - Prestandadeklaration och försäkran om överensstämmelse (DoPC)" }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     { "@language": "en", "@value": "Defines the classes and properties required for representing a Declaration of Performance and Conformity (DoPC)." },
     { "@language": "bg", "@value": "Определя класовете и свойствата, необходими за представяне на Декларация за експлоатационни показатели и съответствие (DoPC)." },
     { "@language": "cs", "@value": "Definuje třídy a vlastnosti požadované pro reprezentaci Prohlášení o vlastnostech a shodě (DoPC)." },
