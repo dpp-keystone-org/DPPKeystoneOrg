@@ -7,37 +7,34 @@
     "schema": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Identifier",
-  "@graph": [
-    {
-      "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Identifier",
-      "@type": "owl:Ontology",
-      "dcterms:title": [
-        { "@language": "en", "@value": "DPP Core Ontology - Identifier Definitions" },
-        { "@language": "bg", "@value": "Базова онтология на DPP - Дефиниции на идентификатори" },
-        { "@language": "cs", "@value": "Základní ontologie DPP - Definice identifikátorů" },
-        { "@language": "da", "@value": "DPP Core Ontology - Identifikationsdefinitioner" },
-        { "@language": "de", "@value": "DPP-Kernontologie - Identifikatordefinitionen" },
-        { "@language": "el", "@value": "Βασική Οντολογία DPP - Ορισμοί Αναγνωριστικών" },
-        { "@language": "es", "@value": "Ontología Principal de DPP - Definiciones de Identificadores" },
-        { "@language": "et", "@value": "DPP tuumikontoloogia - identifikaatorite definitsioonid" },
-        { "@language": "fi", "@value": "DPP-ydinontologia - Tunnisteiden määritelmät" },
-        { "@language": "fr", "@value": "Ontologie de base DPP - Définitions d'identifiants" },
-        { "@language": "ga", "@value": "Croí-Ointeolaíocht DPP - Sainmhínithe Aitheantóirí" },
-        { "@language": "hr", "@value": "Osnovna ontologija DPP-a - Definicije identifikatora" },
-        { "@language": "hu", "@value": "DPP alapontológia - Azonosító definíciók" },
-        { "@language": "it", "@value": "Ontologia principale DPP - Definizioni degli identificatori" },
-        { "@language": "lt", "@value": "DPP pagrindinė ontologija - Identifikatorių apibrėžimai" },
-        { "@language": "lv", "@value": "DPP pamata ontoloģija - Identifikatoru definīcijas" },
-        { "@language": "mt", "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet ta' Identifikaturi" },
-        { "@language": "nl", "@value": "DPP-kernontologie - Identificatiedefinities" },
-        { "@language": "pl", "@value": "Podstawowa ontologia DPP - Definicje identyfikatorów" },
-        { "@language": "pt", "@value": "Ontologia Principal do DPP - Definições de Identificadores" },
-        { "@language": "ro", "@value": "Ontologia de bază DPP - Definiții de identificatori" },
-        { "@language": "sk", "@value": "Základná ontológia DPP - Definície identifikátorov" },
-        { "@language": "sl", "@value": "Osnovna ontologija DPP - Definicije identifikatorjev" },
-        { "@language": "sv", "@value": "DPP-kärnontologi - Identifierardefinitioner" }
-      ],
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Identifier.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": [
+    { "@language": "en", "@value": "DPP Core Ontology - Identifier Definitions" },
+    { "@language": "bg", "@value": "Базова онтология на DPP - Дефиниции на идентификатори" },
+    { "@language": "cs", "@value": "Základní ontologie DPP - Definice identifikátorů" },
+    { "@language": "da", "@value": "DPP Core Ontology - Identifikationsdefinitioner" },
+    { "@language": "de", "@value": "DPP-Kernontologie - Identifikatordefinitionen" },
+    { "@language": "el", "@value": "Βασική Οντολογία DPP - Ορισμοί Αναγνωριστικών" },
+    { "@language": "es", "@value": "Ontología Principal de DPP - Definiciones de Identificadores" },
+    { "@language": "et", "@value": "DPP tuumikontoloogia - identifikaatorite definitsioonid" },
+    { "@language": "fi", "@value": "DPP-ydinontologia - Tunnisteiden määritelmät" },
+    { "@language": "fr", "@value": "Ontologie de base DPP - Définitions d'identifiants" },
+    { "@language": "ga", "@value": "Croí-Ointeolaíocht DPP - Sainmhínithe Aitheantóirí" },
+    { "@language": "hr", "@value": "Osnovna ontologija DPP-a - Definicije identifikatora" },
+    { "@language": "hu", "@value": "DPP alapontológia - Azonosító definíciók" },
+    { "@language": "it", "@value": "Ontologia principale DPP - Definizioni degli identificatori" },
+    { "@language": "lt", "@value": "DPP pagrindinė ontologija - Identifikatorių apibrėžimai" },
+    { "@language": "lv", "@value": "DPP pamata ontoloģija - Identifikatoru definīcijas" },
+    { "@language": "mt", "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet ta' Identifikaturi" },
+    { "@language": "nl", "@value": "DPP-kernontologie - Identificatiedefinities" },
+    { "@language": "pl", "@value": "Podstawowa ontologia DPP - Definicje identyfikatorów" },
+    { "@language": "pt", "@value": "Ontologia Principal do DPP - Definições de Identificadores" },
+    { "@language": "ro", "@value": "Ontologia de bază DPP - Definiții de identificatori" },
+    { "@language": "sk", "@value": "Základná ontológia DPP - Definície identifikátorov" },
+    { "@language": "sl", "@value": "Osnovna ontologija DPP - Definicije identifikatorjev" },
+    { "@language": "sv", "@value": "DPP-kärnontologi - Identifierardefinitioner" }
+  ],
       "dcterms:description": [
         { "@language": "en", "@value": "Defines a generic property for attaching identifiers to a resource." },
         { "@language": "bg", "@value": "Дефинира общо свойство за прикачване на идентификатори към ресурс." },
@@ -63,8 +60,8 @@
         { "@language": "sk", "@value": "Definuje všeobecnú vlastnosť na pripojenie identifikátorov k zdroju." },
         { "@language": "sl", "@value": "Določa splošno lastnost za pripenjanje identifikatorjev viru." },
         { "@language": "sv", "@value": "Definierar en generisk egenskap för att fästa identifierare till en resurs." }
-      ]
-    },
+      ],
+  "@graph": [
     {
       "@id": "dppk:identifier",
       "@type": [
