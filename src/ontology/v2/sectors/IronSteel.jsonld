@@ -10,9 +10,7 @@
     },
     "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/IronSteel",
     "@type": "owl:Ontology",
-    "dcterms:title": "DPP Iron & Steel Sector Ontology",
-    "dcterms:description": "Defines the specific data model for the Iron and Steel Passport, covering ESPR and MTC attributes.",
-    "rdfs:label": [
+    "dcterms:title": [
       { "@language": "en", "@value": "DPP Iron & Steel Sector Ontology" },
       { "@language": "bg", "@value": "Онтология на сектора на желязото и стоманата на ЦПП" },
       { "@language": "cs", "@value": "Ontologie odvětví železa a oceli DPP" },
@@ -38,7 +36,7 @@
       { "@language": "sl", "@value": "Ontologija sektorja železa in jekla DPP" },
       { "@language": "sv", "@value": "DPP järn- och stålsektorontologi" }
     ],
-    "rdfs:comment": [
+    "dcterms:description": [
       { "@language": "en", "@value": "Defines the specific data model for the Iron and Steel Passport, covering ESPR and Mill Test Certificate (MTC) attributes." },
       { "@language": "bg", "@value": "Определя специфичния модел на данни за паспорта за желязо и стомана, обхващащ атрибутите на ESPR и сертификата за изпитване на прокатното производство (MTC)." },
       { "@language": "cs", "@value": "Definuje specifický datový model pro pas železa a oceli, pokrývající atributy ESPR a certifikátu zkoušky válcovny (MTC)." },

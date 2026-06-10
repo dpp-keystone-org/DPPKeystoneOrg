@@ -10,9 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Battery",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Battery Sector Ontology",
-  "dcterms:description": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information.",
-  "rdfs:label": [
+  "dcterms:title": [
     { "@language": "en", "@value": "DPP Battery Sector Ontology" },
     { "@language": "bg", "@value": "Онтология на сектора на батериите по DPP" },
     { "@language": "cs", "@value": "Ontologie odvětví baterií DPP" },
@@ -38,7 +36,7 @@
     { "@language": "sl", "@value": "Ontologija sektorja baterij DPP" },
     { "@language": "sv", "@value": "DPP-batterisektorns ontologi" }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     { "@language": "en", "@value": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information." },
     { "@language": "bg", "@value": "Определя специфичния модел на данните за паспорта на батерията на ЕС, включително специфични за батерията свойства, материали и регулаторна информация." },
     { "@language": "cs", "@value": "Definuje specifický datový model pro pas baterie EU, včetně vlastností specifických pro baterii, materiálů a regulačních informací." },
