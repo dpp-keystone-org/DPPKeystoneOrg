@@ -54,13 +54,25 @@ function renderResults(items) {
             ? `<span class="context-badge">${term.contextLabel}</span>` 
             : '';
 
+        const labelArray = Object.entries(term.labelMap || {}).map(([lang, val]) => ({ "@language": lang, "@value": val }));
+        const commentArray = Object.entries(term.commentMap || {}).map(([lang, val]) => ({ "@language": lang, "@value": val }));
+
+        // Escape JSON correctly by replacing quotes
+        const labelHtml = labelArray.length > 0 
+            ? `<span class="i18n-text" data-i18n="${JSON.stringify(labelArray).replace(/"/g, '&quot;')}">${term.label}</span>`
+            : term.label;
+
+        const commentHtml = commentArray.length > 0
+            ? `<span class="i18n-text" data-i18n="${JSON.stringify(commentArray).replace(/"/g, '&quot;')}">${term.comment}</span>`
+            : term.comment;
+
         card.innerHTML = `
             <div class="term-header">
                 ${idHtml}
                 ${badgeHtml}
             </div>
-            <div class="term-label">${term.label}</div>
-            <div class="term-comment">${term.comment}</div>
+            <div class="term-label">${labelHtml}</div>
+            <div class="term-comment">${commentHtml}</div>
             <div class="term-meta">
                 ${metaHtml}
             </div>
@@ -77,6 +89,9 @@ function renderResults(items) {
         more.textContent = `...and ${items.length - 50} more. Refine your search to see them.`;
         grid.appendChild(more);
     }
+    
+    // Apply current language to the newly rendered results
+    LanguageManager.localizeDOM(LanguageManager.getPreferredLanguage());
 }
 
 /**
