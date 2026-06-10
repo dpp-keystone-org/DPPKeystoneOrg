@@ -10,9 +10,7 @@
     },
     "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/MTC",
     "@type": "owl:Ontology",
-    "dcterms:title": "DPP Core Ontology - Material Test Certificate (MTC)",
-    "dcterms:description": "Defines the base class and properties for a Material Test Certificate (e.g., EN 10204).",
-    "rdfs:label": [
+    "dcterms:title": [
       { "@language": "en", "@value": "DPP Core Ontology - Material Test Certificate (MTC)" },
       { "@language": "bg", "@value": "DPP Основна онтология - Сертификат за изпитване на материали (MTC)" },
       { "@language": "cs", "@value": "Základní ontologie DPP - Certifikát o zkoušce materiálu (MTC)" },
@@ -38,7 +36,7 @@
       { "@language": "sl", "@value": "Osnovna ontologija DPP - Potrdilo o preskusu materiala (MTC)" },
       { "@language": "sv", "@value": "DPP Kärnontologi - Materialprovningsintyg (MTC)" }
     ],
-    "rdfs:comment": [
+    "dcterms:description": [
       { "@language": "en", "@value": "Defines the base class and properties for a Material Test Certificate (e.g., EN 10204)." },
       { "@language": "bg", "@value": "Дефинира базовия клас и свойствата за Сертификат за изпитване на материали (напр. EN 10204)." },
       { "@language": "cs", "@value": "Definuje základní třídu a vlastnosti pro Certifikát o zkoušce materiálu (např. EN 10204)." },
