@@ -11,11 +11,9 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/RelatedResource",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Related Resource",
-  "dcterms:description": "Defines a class for linking to external resources, such as documents or websites, with associated metadata.",
-  "rdfs:label": [
+  "dcterms:title": [
     { "@language": "en", "@value": "DPP Core Ontology - Related Resource" },
-    { "@language": "bg", "@value": "Основна онтология на ЦПП - Свързан ресурс" },
+    { "@language": "bg", "@value": "Основна онтология на DPP - Свързан ресурс" },
     { "@language": "cs", "@value": "Základní ontologie DPP - Související zdroj" },
     { "@language": "da", "@value": "DPP Kerneontologi - Relateret ressource" },
     { "@language": "de", "@value": "DPP-Kernontologie - Verwandte Ressource" },
@@ -24,7 +22,6 @@
     { "@language": "et", "@value": "DPP tuumontoloogia - Seotud ressurss" },
     { "@language": "fi", "@value": "DPP-ydinontologia - Liittyvä resurssi" },
     { "@language": "fr", "@value": "Ontologie de base DPP - Ressource liée" },
-    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Acmhainn Ghaolmhar" },
     { "@language": "hr", "@value": "Osnovna ontologija DPP-a - Povezani resurs" },
     { "@language": "hu", "@value": "DPP alapontológia - Kapcsolódó erőforrás" },
     { "@language": "it", "@value": "Ontologia di base DPP - Risorsa correlata" },
@@ -37,9 +34,10 @@
     { "@language": "ro", "@value": "Ontologia de bază DPP - Resursă asociată" },
     { "@language": "sk", "@value": "Základná ontológia DPP - Súvisiaci zdroj" },
     { "@language": "sl", "@value": "Osnovna ontologija DPP - Povezan vir" },
-    { "@language": "sv", "@value": "DPP-kärnontologi - Relaterad resurs" }
+    { "@language": "sv", "@value": "DPP-kärnontologi - Relaterad resurs" },
+    { "@language": "ga", "@value": "Príomhointeolaíocht DPP - Acmhainn Ghaolmhar" }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     { "@language": "en", "@value": "Defines a class for linking to external resources, such as documents or websites, with associated metadata." },
     { "@language": "bg", "@value": "Определя клас за свързване към външни ресурси, като документи или уебсайтове, със свързани метаданни." },
     { "@language": "cs", "@value": "Definuje třídu pro odkazování na externí zdroje, jako jsou dokumenty nebo webové stránky, s přidruženými metadaty." },
@@ -50,7 +48,6 @@
     { "@language": "et", "@value": "Määratleb klassi välistele ressurssidele, nagu dokumendid või veebisaidid, viitamiseks koos seotud metaandmetega." },
     { "@language": "fi", "@value": "Määrittää luokan ulkoisiin resursseihin, kuten asiakirjoihin tai verkkosivustoihin, linkittämistä varten niihin liittyvillä metatiedoilla." },
     { "@language": "fr", "@value": "Définit une classe pour lier des ressources externes, telles que des documents ou des sites Web, avec des métadonnées associées." },
-    { "@language": "ga", "@value": "Sainmhíníonn sé aicme chun nascadh le hacmhainní seachtracha, amhail cáipéisí nó suíomhanna gréasáin, le meiteashonraí gaolmhara." },
     { "@language": "hr", "@value": "Definira klasu za povezivanje s vanjskim resursima, kao što su dokumenti ili web stranice, s pripadajućim metapodacima." },
     { "@language": "hu", "@value": "Egy osztályt határoz meg külső erőforrásokra, például dokumentumokra vagy weboldalakra való hivatkozáshoz a kapcsolódó metaadatokkal." },
     { "@language": "it", "@value": "Definisce una classe per il collegamento a risorse esterne, come documenti o siti web, con i relativi metadati." },
@@ -63,7 +60,8 @@
     { "@language": "ro", "@value": "Definește o clasă pentru conectarea la resurse externe, cum ar fi documente sau site-uri web, cu metadate asociate." },
     { "@language": "sk", "@value": "Definuje triedu na prepájanie s externými zdrojmi, ako sú dokumenty alebo webové stránky, s priradenými metadátami." },
     { "@language": "sl", "@value": "Določa razred za povezovanje z zunanjimi viri, kot so dokumenti ali spletna mesta, s povezanimi metapodatki." },
-    { "@language": "sv", "@value": "Definierar en klass för att länka till externa resurser, såsom dokument eller webbplatser, med tillhörande metadata." }
+    { "@language": "sv", "@value": "Definierar en klass för att länka till externa resurser, såsom dokument eller webbplatser, med tillhörande metadata." },
+    { "@language": "ga", "@value": "Sainmhíníonn sé aicme chun nascadh le hacmhainní seachtracha, amhail cáipéisí nó suíomhanna gréasáin, le meiteashonraí gaolmhara." }
   ],
   "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
   "@graph": [

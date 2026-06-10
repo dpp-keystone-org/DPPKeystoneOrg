@@ -12,11 +12,9 @@
     {
       "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Identifier",
       "@type": "owl:Ontology",
-      "dcterms:title": "DPP Core Ontology - Identifier Definitions",
-      "dcterms:description": "Defines a generic property for attaching identifiers to a resource.",
-      "rdfs:label": [
+      "dcterms:title": [
         { "@language": "en", "@value": "DPP Core Ontology - Identifier Definitions" },
-        { "@language": "bg", "@value": "Базова онтология на ЦПП - Дефиниции на идентификатори" },
+        { "@language": "bg", "@value": "Базова онтология на DPP - Дефиниции на идентификатори" },
         { "@language": "cs", "@value": "Základní ontologie DPP - Definice identifikátorů" },
         { "@language": "da", "@value": "DPP Core Ontology - Identifikationsdefinitioner" },
         { "@language": "de", "@value": "DPP-Kernontologie - Identifikatordefinitionen" },
@@ -40,7 +38,7 @@
         { "@language": "sl", "@value": "Osnovna ontologija DPP - Definicije identifikatorjev" },
         { "@language": "sv", "@value": "DPP-kärnontologi - Identifierardefinitioner" }
       ],
-      "rdfs:comment": [
+      "dcterms:description": [
         { "@language": "en", "@value": "Defines a generic property for attaching identifiers to a resource." },
         { "@language": "bg", "@value": "Дефинира общо свойство за прикачване на идентификатори към ресурс." },
         { "@language": "cs", "@value": "Definuje obecnou vlastnost pro připojení identifikátorů ke zdroji." },
