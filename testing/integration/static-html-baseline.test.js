@@ -14,6 +14,7 @@ function stripDynamicContent(html) {
                .replace(/\s*data-i18n-key="[^"]+"/g, '')
                .replace(/LanguageManager\.init\([^)]*\)/g, 'LanguageManager.init()')
                .replace(/&amp;/g, '&')
+               .replace(/&#39;/g, "'")
                .replace(/\b(hidden|disabled|autofocus)=""/g, '$1')
                .replace(/<!DOCTYPE html>\s*<html lang="en">\s*<head>/, '<!DOCTYPE html><html lang="en"><head>')
                .replace(/\s*<\/body>\s*<\/html>\s*$/, '</body></html>')
@@ -21,7 +22,13 @@ function stripDynamicContent(html) {
                .replace(/placeholder="\{&quot;digitalProductPassportId&quot;: &quot;\.\.\.&quot;\}"/g, 'placeholder=\'{"digitalProductPassportId": "..."}\'')
                .replace(/"\s*\n\s*rel="noopener noreferrer"/g, '" rel="noopener noreferrer"')
                .replace(/"\s*\n\s*target="_blank"/g, '" target="_blank"')
-               .replace(/<span>(.*?)<\/span>/g, '$1');
+               .replace(/<span>(.*?)<\/span>/g, '$1')
+               .replace(/<li([^>]*)>\s+/g, '<li$1>')
+               .replace(/\s+<\/li>/g, '</li>')
+               .replace(/<nav([^>]*)>\s+/g, '<nav$1>')
+               .replace(/\s+<\/nav>/g, '</nav>')
+               .replace(/<p([^>]*)>\s+/g, '<p$1>')
+               .replace(/\s+<\/p>/g, '</p>');
 }
 
 describe('Feature 6: Static HTML Baseline Tests', () => {
