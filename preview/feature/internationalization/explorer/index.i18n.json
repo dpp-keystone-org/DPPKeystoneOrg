@@ -3,30 +3,490 @@
     {
       "@language": "en",
       "@value": "DPP Ontology Explorer"
+    },
+    {
+      "@language": "bg",
+      "@value": "Експлорер на онтологията на DPP"
+    },
+    {
+      "@language": "cs",
+      "@value": "Průzkumník ontologie DPP"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP-ontologiudforsker"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Ontologie-Explorer"
+    },
+    {
+      "@language": "el",
+      "@value": "Εξερευνητής Οντολογίας DPP"
+    },
+    {
+      "@language": "es",
+      "@value": "Explorador de Ontología DPP"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP ontoloogia uurija"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ontologiaselain"
+    },
+    {
+      "@language": "fr",
+      "@value": "Explorateur d'ontologie DPP"
+    },
+    {
+      "@language": "ga",
+      "@value": "Taiscéalaí Ointeolaíochta DPP"
+    },
+    {
+      "@language": "hr",
+      "@value": "Istraživač DPP ontologije"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP ontológia-felfedező"
+    },
+    {
+      "@language": "it",
+      "@value": "Esploratore di ontologia DPP"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP ontologijos naršyklė"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP ontoloģijas pētnieks"
+    },
+    {
+      "@language": "mt",
+      "@value": "Esploratur tal-Ontoloġija DPP"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP-ontologieverkenner"
+    },
+    {
+      "@language": "pl",
+      "@value": "Eksplorator ontologii DPP"
+    },
+    {
+      "@language": "pt",
+      "@value": "Explorador de Ontologia DPP"
+    },
+    {
+      "@language": "ro",
+      "@value": "Explorator de ontologie DPP"
+    },
+    {
+      "@language": "sk",
+      "@value": "Prieskumník ontológie DPP"
+    },
+    {
+      "@language": "sl",
+      "@value": "Raziskovalec ontologije DPP"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-ontologiutforskare"
     }
   ],
   "search-and-browse-definitions-across": [
     {
       "@language": "en",
       "@value": "Search and browse definitions across all DPP sectors."
+    },
+    {
+      "@language": "bg",
+      "@value": "Търсете и разглеждайте дефиниции във всички сектори на DPP."
+    },
+    {
+      "@language": "cs",
+      "@value": "Vyhledávejte a procházejte definice napříč všemi sektory DPP."
+    },
+    {
+      "@language": "da",
+      "@value": "Søg og gennemse definitioner på tværs af alle DPP-sektorer."
+    },
+    {
+      "@language": "de",
+      "@value": "Suchen und durchstöbern Sie Definitionen in allen DPP-Sektoren."
+    },
+    {
+      "@language": "el",
+      "@value": "Αναζήτηση και περιήγηση σε ορισμούς σε όλους τους τομείς DPP."
+    },
+    {
+      "@language": "es",
+      "@value": "Busque y explore definiciones en todos los sectores de DPP."
+    },
+    {
+      "@language": "et",
+      "@value": "Otsige ja sirvige definitsioone kõigis DPP-sektorites."
+    },
+    {
+      "@language": "fi",
+      "@value": "Etsi ja selaa määritelmiä kaikilla DPP-sektoreilla."
+    },
+    {
+      "@language": "fr",
+      "@value": "Recherchez et parcourez les définitions dans tous les secteurs DPP."
+    },
+    {
+      "@language": "ga",
+      "@value": "Cuardaigh agus brabhsáil sainmhínithe thar gach earnáil DPP."
+    },
+    {
+      "@language": "hr",
+      "@value": "Pretražujte i pregledavajte definicije u svim DPP sektorima."
+    },
+    {
+      "@language": "hu",
+      "@value": "Keressen és böngésszen a definíciók között az összes DPP-szektorban."
+    },
+    {
+      "@language": "it",
+      "@value": "Cerca e sfoglia le definizioni in tutti i settori DPP."
+    },
+    {
+      "@language": "lt",
+      "@value": "Ieškokite ir naršykite apibrėžimus visuose DPP sektoriuose."
+    },
+    {
+      "@language": "lv",
+      "@value": "Meklējiet un pārlūkojiet definīcijas visās DPP nozarēs."
+    },
+    {
+      "@language": "mt",
+      "@value": "Fittex u bbrawżja definizzjonijiet madwar is-setturi kollha tad-DPP."
+    },
+    {
+      "@language": "nl",
+      "@value": "Zoek en blader door definities in alle DPP-sectoren."
+    },
+    {
+      "@language": "pl",
+      "@value": "Wyszukuj i przeglądaj definicje we wszystkich sektorach DPP."
+    },
+    {
+      "@language": "pt",
+      "@value": "Pesquise e navegue por definições em todos os setores DPP."
+    },
+    {
+      "@language": "ro",
+      "@value": "Căutați și răsfoiți definiții în toate sectoarele DPP."
+    },
+    {
+      "@language": "sk",
+      "@value": "Vyhľadávajte a prehľadávajte definície vo všetkých sektoroch DPP."
+    },
+    {
+      "@language": "sl",
+      "@value": "Iščite in brskajte po definicijah v vseh sektorjih DPP."
+    },
+    {
+      "@language": "sv",
+      "@value": "Sök och bläddra bland definitioner i alla DPP-sektorer."
     }
   ],
   "home-wizard-validator": [
     {
       "@language": "en",
       "@value": "<a href=\"../index.html\" class=\"nav-link\">Home</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Wizard</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
+    },
+    {
+      "@language": "bg",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Начало</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Съветник</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Валидатор</a>"
+    },
+    {
+      "@language": "cs",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Domů</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Průvodce</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validátor</a>"
+    },
+    {
+      "@language": "da",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Hjem</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Guide</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
+    },
+    {
+      "@language": "de",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Startseite</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Assistent</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
+    },
+    {
+      "@language": "el",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Αρχική</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Οδηγός</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Επικυρωτής</a>"
+    },
+    {
+      "@language": "es",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Inicio</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Asistente</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validador</a>"
+    },
+    {
+      "@language": "et",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Avaleht</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Nõustaja</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validaator</a>"
+    },
+    {
+      "@language": "fi",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Etusivu</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Ohjattu toiminto</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validaattori</a>"
+    },
+    {
+      "@language": "fr",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Accueil</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Assistant</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validateur</a>"
+    },
+    {
+      "@language": "ga",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Baile</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Treoraí</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Bailíochtóir</a>"
+    },
+    {
+      "@language": "hr",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Početna</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Čarobnjak</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
+    },
+    {
+      "@language": "hu",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Kezdőlap</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Varázsló</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Érvényesítő</a>"
+    },
+    {
+      "@language": "it",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Home</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Procedura guidata</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validatore</a>"
+    },
+    {
+      "@language": "lt",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Pradžia</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Vedlys</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validatorius</a>"
+    },
+    {
+      "@language": "lv",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Sākums</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Vednis</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Pārbaudītājs</a>"
+    },
+    {
+      "@language": "mt",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Paġna ewlenija</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Wizard</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validatur</a>"
+    },
+    {
+      "@language": "nl",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Startpagina</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Wizard</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
+    },
+    {
+      "@language": "pl",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Strona główna</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Kreator</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Walidator</a>"
+    },
+    {
+      "@language": "pt",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Início</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Assistente</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validador</a>"
+    },
+    {
+      "@language": "ro",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Acasă</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Expert</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
+    },
+    {
+      "@language": "sk",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Domov</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Sprievodca</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validátor</a>"
+    },
+    {
+      "@language": "sl",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Domov</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Čarovnik</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
+    },
+    {
+      "@language": "sv",
+      "@value": "<a href=\"../index.html\" class=\"nav-link\">Hem</a> | \n            <a href=\"../wizard/index.html\" class=\"nav-link\">Guide</a> |\n            <a href=\"../validator/index.html\" class=\"nav-link\">Validator</a>"
     }
   ],
   "part-of-the-dpp-keystone": [
     {
       "@language": "en",
       "@value": "Part of the <a href=\"../index.html\">DPP Keystone</a> project. | <a href=\"../impressum.html\">Impressum / Legal Notice</a>"
+    },
+    {
+      "@language": "bg",
+      "@value": "Част от проекта <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Импресум / Правна информация</a>"
+    },
+    {
+      "@language": "cs",
+      "@value": "Součást projektu <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Tiráž / Právní upozornění</a>"
+    },
+    {
+      "@language": "da",
+      "@value": "En del af <a href=\"../index.html\">DPP Keystone</a>-projektet. | <a href=\"../impressum.html\">Impressum / Juridisk meddelelse</a>"
+    },
+    {
+      "@language": "de",
+      "@value": "Teil des <a href=\"../index.html\">DPP Keystone</a>-Projekts. | <a href=\"../impressum.html\">Impressum / Rechtliche Hinweise</a>"
+    },
+    {
+      "@language": "el",
+      "@value": "Μέρος του έργου <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Impressum / Νομική σημείωση</a>"
+    },
+    {
+      "@language": "es",
+      "@value": "Parte del proyecto <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Aviso legal</a>"
+    },
+    {
+      "@language": "et",
+      "@value": "Osa <a href=\"../index.html\">DPP Keystone</a> projektist. | <a href=\"../impressum.html\">Impressum / Juriidiline teadaanne</a>"
+    },
+    {
+      "@language": "fi",
+      "@value": "Osa <a href=\"../index.html\">DPP Keystone</a> -projektia. | <a href=\"../impressum.html\">Julkaisutiedot / Oikeudellinen huomautus</a>"
+    },
+    {
+      "@language": "fr",
+      "@value": "Fait partie du projet <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Mentions légales</a>"
+    },
+    {
+      "@language": "ga",
+      "@value": "Cuid de thionscadal <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Fógra Dlíthiúil</a>"
+    },
+    {
+      "@language": "hr",
+      "@value": "Dio projekta <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Impresum / Pravna napomena</a>"
+    },
+    {
+      "@language": "hu",
+      "@value": "A <a href=\"../index.html\">DPP Keystone</a> projekt része. | <a href=\"../impressum.html\">Impresszum / Jogi nyilatkozat</a>"
+    },
+    {
+      "@language": "it",
+      "@value": "Parte del progetto <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Note legali</a>"
+    },
+    {
+      "@language": "lt",
+      "@value": "<a href=\"../index.html\">DPP Keystone</a> projekto dalis. | <a href=\"../impressum.html\">Impresumas / Teisinis pranešimas</a>"
+    },
+    {
+      "@language": "lv",
+      "@value": "Projekta <a href=\"../index.html\">DPP Keystone</a> daļa. | <a href=\"../impressum.html\">Impresums / Juridisks paziņojums</a>"
+    },
+    {
+      "@language": "mt",
+      "@value": "Parti mill-proġett <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Avviż Legali</a>"
+    },
+    {
+      "@language": "nl",
+      "@value": "Onderdeel van het <a href=\"../index.html\">DPP Keystone</a>-project. | <a href=\"../impressum.html\">Impressum / Juridische kennisgeving</a>"
+    },
+    {
+      "@language": "pl",
+      "@value": "Część projektu <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Nota prawna</a>"
+    },
+    {
+      "@language": "pt",
+      "@value": "Parte do projeto <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Ficha técnica / Aviso legal</a>"
+    },
+    {
+      "@language": "ro",
+      "@value": "Parte a proiectului <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Imprint / Notificare legală</a>"
+    },
+    {
+      "@language": "sk",
+      "@value": "Súčasť projektu <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Tiráž / Právne oznámenie</a>"
+    },
+    {
+      "@language": "sl",
+      "@value": "Del projekta <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Impresum / Pravno obvestilo</a>"
+    },
+    {
+      "@language": "sv",
+      "@value": "En del av projektet <a href=\"../index.html\">DPP Keystone</a>. | <a href=\"../impressum.html\">Impressum / Juridiskt meddelande</a>"
     }
   ],
   "search-for-terms-e-g": [
     {
       "@language": "en",
       "@value": "Search for terms (e.g., 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "bg",
+      "@value": "Търсене на термини (напр. „GTIN“, „Carbon“, „Battery“)..."
+    },
+    {
+      "@language": "cs",
+      "@value": "Hledat termíny (např. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "da",
+      "@value": "Søg efter termer (f.eks. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "de",
+      "@value": "Suche nach Begriffen (z. B. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "el",
+      "@value": "Αναζήτηση όρων (π.χ. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "es",
+      "@value": "Buscar términos (p. ej., 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "et",
+      "@value": "Otsi termineid (nt 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "fi",
+      "@value": "Etsi termejä (esim. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "fr",
+      "@value": "Rechercher des termes (par ex. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "ga",
+      "@value": "Cuardaigh téarmaí (m.sh., 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "hr",
+      "@value": "Pretraži pojmove (npr. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "hu",
+      "@value": "Kifejezések keresése (pl. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "it",
+      "@value": "Cerca termini (es. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "lt",
+      "@value": "Ieškoti terminų (pvz., „GTIN“, „Carbon“, „Battery“)..."
+    },
+    {
+      "@language": "lv",
+      "@value": "Meklēt terminus (piem., 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "mt",
+      "@value": "Fittex termini (eż., 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "nl",
+      "@value": "Zoek naar termen (bijv. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "pl",
+      "@value": "Szukaj terminów (np. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "pt",
+      "@value": "Pesquisar termos (ex., 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "ro",
+      "@value": "Căutați termeni (de exemplu, „GTIN”, „Carbon”, „Battery”)..."
+    },
+    {
+      "@language": "sk",
+      "@value": "Hľadať termíny (napr. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "sl",
+      "@value": "Iskanje izrazov (npr. 'GTIN', 'Carbon', 'Battery')..."
+    },
+    {
+      "@language": "sv",
+      "@value": "Sök efter termer (t.ex. 'GTIN', 'Carbon', 'Battery')..."
     }
   ]
 }

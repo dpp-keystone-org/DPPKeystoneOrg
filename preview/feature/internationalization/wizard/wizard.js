@@ -1,13 +1,13 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1781030714546';
-import { loadOntology } from '../lib/ontology-loader.js?v=1781030714546';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781030714546';
-import { generateDpp } from './dpp-generator.js?v=1781030714546';
-import { generateHTML } from '../lib/html-generator.js?v=1781030714546';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781030714546';
+import { loadSchema } from '../lib/schema-loader.js?v=1781094914270';
+import { loadOntology } from '../lib/ontology-loader.js?v=1781094914270';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781094914270';
+import { generateDpp } from './dpp-generator.js?v=1781094914270';
+import { generateHTML } from '../lib/html-generator.js?v=1781094914270';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781094914270';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781030714546';
-import { LanguageManager } from '../lib/language-manager.js?v=1781030714546';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781094914270';
+import { LanguageManager } from '../lib/language-manager.js?v=1781094914270';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();
@@ -137,11 +137,24 @@ export async function initializeWizard() {
     const langWrapper = document.getElementById('language-widget-wrapper');
     if (langWrapper) {
         langWrapper.innerHTML = '';
+        
+        let externalTranslations = {};
+        try {
+            const response = await fetch('index.i18n.json');
+            if (response.ok) {
+                externalTranslations = await response.json();
+            }
+        } catch (err) { }
+
         languageSelector = LanguageManager.renderSelectorWidget(async (newLang) => {
             currentLanguage = newLang;
+            LanguageManager.localizeDOM(newLang, externalTranslations);
             await rerenderAllForms();
         });
         langWrapper.appendChild(languageSelector);
+        
+        // Initial localization for static UI elements
+        LanguageManager.localizeDOM(currentLanguage, externalTranslations);
     }
 
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
