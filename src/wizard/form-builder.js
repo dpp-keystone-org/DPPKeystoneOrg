@@ -1425,6 +1425,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 row.insertBefore(unitContainer, removeBtn);
             }
         }
+        triggerLocalization();
     });
 
     row.appendChild(nameContainer);

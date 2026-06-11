@@ -159,6 +159,10 @@ export async function initializeWizard() {
         });
         langWrapper.appendChild(languageSelector);
         
+        document.addEventListener('languageChanged', (e) => {
+            LanguageManager.localizeDOM(e.detail.language, externalTranslations);
+        });
+
         // Initial localization for static UI elements
         LanguageManager.localizeDOM(currentLanguage, externalTranslations);
     }
@@ -517,6 +521,7 @@ export async function initializeWizard() {
     function addVoluntaryField() {
         const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap, getDefinedPrefixes);
         voluntaryFieldsWrapper.appendChild(fieldRow);
+        triggerLocalization();
     }
 
     function addExternalContext() {
@@ -545,6 +550,7 @@ export async function initializeWizard() {
         row.appendChild(removeBtn);
 
         externalContextsWrapper.appendChild(row);
+        triggerLocalization();
     }
 
     if (addExternalContextBtn && externalContextsWrapper) {
