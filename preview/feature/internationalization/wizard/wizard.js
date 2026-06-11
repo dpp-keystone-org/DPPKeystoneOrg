@@ -1,18 +1,22 @@
 // src/wizard/wizard.js
-import { loadHeader } from '../branding/header.js?v=1781103415808';
+import { loadHeader } from '../branding/header.js?v=1781183419615';
 loadHeader('dpp-header-container', '..');
-import { loadSchema } from '../lib/schema-loader.js?v=1781103415808';
-import { loadOntology } from '../lib/ontology-loader.js?v=1781103415808';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781103415808';
-import { generateDpp } from './dpp-generator.js?v=1781103415808';
-import { generateHTML } from '../lib/html-generator.js?v=1781103415808';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781103415808';
+import { loadSchema } from '../lib/schema-loader.js?v=1781183419615';
+import { loadOntology } from '../lib/ontology-loader.js?v=1781183419615';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781183419615';
+import { generateDpp } from './dpp-generator.js?v=1781183419615';
+import { generateHTML } from '../lib/html-generator.js?v=1781183419615';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781183419615';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781103415808';
-import { LanguageManager } from '../lib/language-manager.js?v=1781103415808';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781183419615';
+import { LanguageManager } from '../lib/language-manager.js?v=1781183419615';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();
+
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
 
 // Caches for holding loaded schemas and ontologies to avoid re-fetching
 let coreSchema = null;
@@ -48,6 +52,31 @@ function saveFormState(container) {
             state.set(input.name, input.value);
         }
     });
+
+    // Save structurally expanded optional objects so they aren't lost on rerender
+    const removeBtns = container.querySelectorAll('[data-remove-optional-object]');
+    const expandedObjects = Array.from(removeBtns).map(btn => btn.dataset.removeOptionalObject);
+    if (expandedObjects.length > 0) {
+        state.set('__EXPANDED_OPTIONAL_OBJECTS__', expandedObjects);
+    }
+
+    // Save expanded array indexes
+    const arrayItemControls = container.querySelectorAll('.array-item-control-row');
+    const arrayIndexes = {};
+    arrayItemControls.forEach(row => {
+        const group = row.dataset.arrayGroup;
+        if (!group) return;
+        const lastDot = group.lastIndexOf('.');
+        const arrayName = group.substring(0, lastDot);
+        const index = parseInt(group.substring(lastDot + 1), 10);
+        
+        if (!arrayIndexes[arrayName]) arrayIndexes[arrayName] = [];
+        arrayIndexes[arrayName].push(index);
+    });
+    if (Object.keys(arrayIndexes).length > 0) {
+        state.set('__EXPANDED_ARRAY_INDEXES__', arrayIndexes);
+    }
+
     return state;
 }
 
@@ -59,7 +88,45 @@ function saveFormState(container) {
 function restoreFormState(container, state) {
     if (!container || !state) return;
 
+    // 1. Restore structural expansions first
+    if (state.has('__EXPANDED_OPTIONAL_OBJECTS__')) {
+        const expandedObjects = state.get('__EXPANDED_OPTIONAL_OBJECTS__');
+        if (Array.isArray(expandedObjects)) {
+            expandedObjects.forEach(key => {
+                const addBtn = container.querySelector(`button[data-optional-object="${key}"]`);
+                if (addBtn) addBtn.click();
+            });
+        }
+    }
+
+    // 1.5 Restore array expansions
+    if (state.has('__EXPANDED_ARRAY_INDEXES__')) {
+        const arrayIndexes = state.get('__EXPANDED_ARRAY_INDEXES__');
+        Object.entries(arrayIndexes).forEach(([arrayName, indexes]) => {
+            if (!Array.isArray(indexes) || indexes.length === 0) return;
+            
+            const addBtn = container.querySelector(`button.add-array-item-btn[data-array-name="${arrayName}"]`);
+            if (addBtn) {
+                const maxIndex = Math.max(...indexes);
+                // Create all indexes from 0 to maxIndex
+                for (let i = 0; i <= maxIndex; i++) {
+                    addBtn.click();
+                }
+                // Remove the ones that shouldn't exist
+                for (let i = 0; i <= maxIndex; i++) {
+                    if (!indexes.includes(i)) {
+                        const removeBtn = container.querySelector(`.array-item-control-row[data-array-group="${arrayName}.${i}"] button`);
+                        if (removeBtn) removeBtn.click();
+                    }
+                }
+            }
+        });
+    }
+
+    // 2. Restore all standard data inputs
     state.forEach((value, name) => {
+        if (name === '__EXPANDED_OPTIONAL_OBJECTS__' || name === '__EXPANDED_ARRAY_INDEXES__') return;
+        
         const input = container.querySelector(`[name="${name}"]`);
         if (input) {
             if (input.type === 'checkbox') {
@@ -152,9 +219,22 @@ export async function initializeWizard() {
             currentLanguage = newLang;
             LanguageManager.localizeDOM(newLang, externalTranslations);
             await rerenderAllForms();
+            
+            // Re-validate everything because rerender wiped DOM and MutationObserver cleared errors
+            validateAllFields(coreFormContainer);
+            validateAllFields(sectorsFormContainer);
+            validateAllFields(voluntaryModulesContainer);
+            validateAllFields(voluntaryFieldsWrapper);
+            validateAllFields(externalContextsWrapper);
+
+            triggerLocalization();
         });
         langWrapper.appendChild(languageSelector);
         
+        document.addEventListener('languageChanged', (e) => {
+            LanguageManager.localizeDOM(e.detail.language, externalTranslations);
+        });
+
         // Initial localization for static UI elements
         LanguageManager.localizeDOM(currentLanguage, externalTranslations);
     }
@@ -386,8 +466,9 @@ export async function initializeWizard() {
             if (existingContainer) {
                 // The MutationObserver will handle clearing validation errors when the container is removed.
                 existingContainer.remove();
-                button.textContent = `Add ${displayName}`;
+                button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('remove-', 'add-'));
                 button.classList.remove('remove-btn-active');
+                triggerLocalization();
             } else {
                 // Add Sector
                 try {
@@ -422,8 +503,9 @@ export async function initializeWizard() {
                     // Trigger validation for the new sector form
                     validateAllFields(sectorContainer);
 
-                    button.textContent = `Remove ${displayName}`;
+                    button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('add-', 'remove-'));
                     button.classList.add('remove-btn-active');
+                    triggerLocalization();
 
                 } catch (error) {
                     const targetContainer = (schemaType === 'shared') ? voluntaryModulesContainer : sectorsFormContainer;
@@ -511,6 +593,7 @@ export async function initializeWizard() {
     function addVoluntaryField() {
         const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap, getDefinedPrefixes);
         voluntaryFieldsWrapper.appendChild(fieldRow);
+        triggerLocalization();
     }
 
     function addExternalContext() {
@@ -531,7 +614,7 @@ export async function initializeWizard() {
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
-        removeBtn.textContent = 'Remove';
+        removeBtn.setAttribute('data-i18n-key', 'remove');
         removeBtn.addEventListener('click', () => row.remove());
 
         row.appendChild(prefixInput);
@@ -539,6 +622,7 @@ export async function initializeWizard() {
         row.appendChild(removeBtn);
 
         externalContextsWrapper.appendChild(row);
+        triggerLocalization();
     }
 
     if (addExternalContextBtn && externalContextsWrapper) {

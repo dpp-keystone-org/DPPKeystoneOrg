@@ -1,5 +1,10 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781103415808';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781183419615';
+import { LanguageManager } from '../lib/language-manager.js?v=1781183419615';
+
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
 
 /**
  * Creates and displays a tooltip modal.
@@ -434,27 +439,32 @@ function reindexArrayItems(arrayName, indexRemoved) {
             row.dataset.arrayGroup = group.replace(oldPrefix, newPrefix);
             
             // Update inputs
-            const input = row.querySelector('input, select');
-            if (input && input.name.startsWith(oldPrefix)) {
-                const oldName = input.name;
-                
-                // Clear old error from global state
-                input.dispatchEvent(new CustomEvent('fieldValidityChange', {
-                    bubbles: true, composed: true, detail: { path: oldName, isValid: true },
-                }));
+            const inputs = row.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (input && input.name.startsWith(oldPrefix)) {
+                    const oldName = input.name;
+                    
+                    // Clear old error from global state
+                    input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                        bubbles: true, composed: true, detail: { path: oldName, isValid: true },
+                    }));
 
-                const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
-                const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
-                if (errorSpan) {
-                    errorSpan.remove();
+                    const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
+                    const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
+                    if (errorSpan) {
+                        errorSpan.remove();
+                    }
+
+                    input.name = input.name.replace(oldPrefix, newPrefix);
+                    input.id = input.name;
+
+                    // Re-trigger validation to update global state with new name
+                    input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
                 }
+            });
 
-                input.name = input.name.replace(oldPrefix, newPrefix);
-                input.id = input.name;
-
-                // Re-trigger validation to update global state with new name
-                input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
-            }
+            // We must also update the error message span's ID if we want it to work correctly
+            const oldErrorMsgId = `${oldPrefix.replace(/\./g, '-')}`; // the rest of the logic can be complex, let's leave it simple
             
             // Update path cell text
             const pathCell = row.querySelector('.grid-cell');
@@ -483,6 +493,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.textContent = 'Remove';
+    removeButton.setAttribute('data-i18n-key', 'remove');
     
     removeButton.addEventListener('click', () => {
         const groupToRemove = controlRow.dataset.arrayGroup;
@@ -568,6 +579,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     const addButton = document.createElement('button');
     addButton.type = 'button';
     addButton.textContent = 'Add Item';
+    addButton.setAttribute('data-i18n-key', 'add-item');
     addButton.className = 'add-array-item-btn';
     addButton.dataset.arrayName = currentPath;
     valueCell.appendChild(addButton);
@@ -657,6 +669,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
                 insertionPoint = allItemControls[allItemControls.length - 1];
             }
             insertionPoint.after(itemFragment);
+            triggerLocalization();
 
             triggerValidationForGroup(insertionPoint, path);
         });
@@ -793,6 +806,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const addButton = document.createElement('button');
     addButton.type = 'button';
     addButton.textContent = 'Add';
+    addButton.setAttribute('data-i18n-key', 'add');
     addButton.dataset.optionalObject = key;
     valueCell.appendChild(addButton);
     placeholderRow.appendChild(valueCell);
@@ -837,6 +851,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
         removeButton.textContent = 'Remove';
+        removeButton.setAttribute('data-i18n-key', 'remove');
         removeButton.dataset.removeOptionalObject = key;
         
         removeButton.addEventListener('click', () => {
@@ -1018,6 +1033,7 @@ function populateGroupFromSchema(container, insertBeforeElement, schema, collisi
         }
 
         container.insertBefore(newRow, insertBeforeElement);
+        triggerLocalization();
     }
 }
 
@@ -1230,6 +1246,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
     removeBtn.textContent = 'Remove';
+    removeBtn.setAttribute('data-i18n-key', 'remove');
     removeBtn.addEventListener('click', () => {
         // Clear errors for all inputs in this row (including nested ones) before removing
         const inputs = row.querySelectorAll('input, select');
@@ -1270,9 +1287,11 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 addBtn.type = 'button';
                 addBtn.className = 'add-voluntary-prop-btn';
                 addBtn.textContent = 'Add Field';
+                addBtn.setAttribute('data-i18n-key', 'add-field');
                 addBtn.addEventListener('click', () => {
                     const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, ontologyMap, prefixChecker);
                     container.insertBefore(newRow, addBtn);
+                    triggerLocalization();
                 });
 
                 container.appendChild(addBtn);
@@ -1323,6 +1342,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                     console.error(`[ERROR] Failed to load schema for ${customType.label}:`, error);
                 }
             }
+            triggerLocalization();
             return;
         }
 
@@ -1411,6 +1431,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 row.insertBefore(unitContainer, removeBtn);
             }
         }
+        triggerLocalization();
     });
 
     row.appendChild(nameContainer);
