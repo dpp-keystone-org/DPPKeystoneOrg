@@ -626,6 +626,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
                 insertionPoint = allItemControls[allItemControls.length - 1];
             }
             insertionPoint.after(newObjectFragment);
+            triggerLocalization();
 
             triggerValidationForGroup(insertionPoint, newObjectPath);
         });
@@ -898,6 +899,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
 
         // Insert the new rows after the transformed header row.
         placeholderRow.after(newFieldsFragment);
+        triggerLocalization();
 
         // 5z-h: Now that the new elements are in the DOM, find their inputs and trigger validation.
         const newInputs = placeholderRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${key}"] input:not([type="checkbox"]), [data-optional-object-groups~="${key}"] select`);
