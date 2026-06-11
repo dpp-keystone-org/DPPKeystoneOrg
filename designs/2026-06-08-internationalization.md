@@ -70,7 +70,7 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
     *   **[COMPLETED] Step 6.6: Cleanup**
         *   Delete the baseline HTML snapshot integration tests from Step 6.0, as they have fulfilled their purpose of ensuring a safe refactor.
 
-### [COMPLETED] Feature 7: Bug-Bash & Quality Assurance
+### [IN PROGRESS] Feature 7: Bug-Bash & Quality Assurance
 *   **Plan:** Iteratively log, analyze, and fix visual or functional bugs uncovered during manual site navigation and integration testing of the new i18n features.
     *   **[COMPLETED] Issue 7.1 (Spec Docs):** Fix generated ontology sector summary pages (e.g., `spec/ontology/v2/sectors/Textile/index.html`).
         *   **[COMPLETED] Task 7.1.1 (Ontology Root Metadata Localization):** The main module descriptions are missing translations or improperly rendered.
@@ -95,3 +95,11 @@ Implements core internationalization (i18n) features across the DPP Keystone pla
         *   Missing the global language selector.
         *   The page title is not translated.
         *   The JSON file links lack standard styling (they don't show up in blue).
+    *   **[COMPLETED] Issue 7.6 (Wizard State Translation):** Fix dynamic button text translations in the Wizard app.
+        *   "add", "add item", and "remove" buttons are not translated.
+        *   Sector selection buttons revert to English when toggled (e.g., clicking "Elektronik hinzufügen" makes it "Remove Electronics", and clicking again makes it "Add Electronics").
+        *   This toggle issue also affects module buttons like "Allgemeine Produktinformationen hinzufügen".
+        *   The "Show Errors" button is not translated.
+        *   **[COMPLETED] Task 7.6.1 (Dictionary Backfill):** Spawn subagent to generate translations for missing keys (`remove-battery`, `remove-construction`, `remove-electronics`, `remove-iron-or-steel`, `remove-textile`, `remove-general-product-information`, `remove-packaging`, `remove-context`, `remove-field`, `add`, `add-item`, `remove`, `show-errors`).
+        *   **[COMPLETED] Task 7.6.2 (Component Attribute Binding):** Update `wizard.js` and `form-builder.js` to swap `data-i18n-key` attributes rather than overriding `button.textContent`. Wrap "Show Errors" inside an inner `<span data-i18n-key="show-errors">` to preserve the dynamic error badge.
+        *   **[COMPLETED] Task 7.6.3 (Dynamic Triggering):** Dispatch `languageChanged` event dynamically after DOM insertions to force `LanguageManager` to do a sweep.

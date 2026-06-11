@@ -1,5 +1,10 @@
 // src/wizard/form-builder.js
 import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js';
+import { LanguageManager } from '../lib/language-manager.js';
+
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
 
 /**
  * Creates and displays a tooltip modal.
@@ -482,7 +487,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
     removeCell.className = 'grid-cell';
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
-    removeButton.textContent = 'Remove';
+    removeButton.setAttribute('data-i18n-key', 'remove');
     
     removeButton.addEventListener('click', () => {
         const groupToRemove = controlRow.dataset.arrayGroup;
@@ -567,7 +572,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     valueCell.className = 'grid-cell';
     const addButton = document.createElement('button');
     addButton.type = 'button';
-    addButton.textContent = 'Add Item';
+    addButton.setAttribute('data-i18n-key', 'add-item');
     addButton.className = 'add-array-item-btn';
     addButton.dataset.arrayName = currentPath;
     valueCell.appendChild(addButton);
@@ -657,6 +662,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
                 insertionPoint = allItemControls[allItemControls.length - 1];
             }
             insertionPoint.after(itemFragment);
+            triggerLocalization();
 
             triggerValidationForGroup(insertionPoint, path);
         });
@@ -836,7 +842,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         headerValueCell.innerHTML = ''; // Clear any existing buttons/selects
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
-        removeButton.textContent = 'Remove';
+        removeButton.setAttribute('data-i18n-key', 'remove');
         removeButton.dataset.removeOptionalObject = key;
         
         removeButton.addEventListener('click', () => {
@@ -1018,6 +1024,7 @@ function populateGroupFromSchema(container, insertBeforeElement, schema, collisi
         }
 
         container.insertBefore(newRow, insertBeforeElement);
+        triggerLocalization();
     }
 }
 
@@ -1229,7 +1236,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
 
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
-    removeBtn.textContent = 'Remove';
+    removeBtn.setAttribute('data-i18n-key', 'remove');
     removeBtn.addEventListener('click', () => {
         // Clear errors for all inputs in this row (including nested ones) before removing
         const inputs = row.querySelectorAll('input, select');
@@ -1269,10 +1276,11 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 const addBtn = document.createElement('button');
                 addBtn.type = 'button';
                 addBtn.className = 'add-voluntary-prop-btn';
-                addBtn.textContent = 'Add Field';
+                addBtn.setAttribute('data-i18n-key', 'add-field');
                 addBtn.addEventListener('click', () => {
                     const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, ontologyMap, prefixChecker);
                     container.insertBefore(newRow, addBtn);
+                    triggerLocalization();
                 });
 
                 container.appendChild(addBtn);
