@@ -798,7 +798,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     valueCell.className = 'grid-cell';
     const addButton = document.createElement('button');
     addButton.type = 'button';
-    addButton.textContent = 'Add';
+    addButton.setAttribute('data-i18n-key', 'add');
     addButton.dataset.optionalObject = key;
     valueCell.appendChild(addButton);
     placeholderRow.appendChild(valueCell);

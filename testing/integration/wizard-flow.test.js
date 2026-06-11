@@ -341,10 +341,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 3. Inject buttons for mock sectors
         const btnA = document.createElement('button');
         btnA.dataset.sector = 'sector-a';
+        btnA.setAttribute('data-i18n-key', 'add-sector-a');
         btnA.className = 'sector-btn';
         document.body.appendChild(btnA);
         const btnB = document.createElement('button');
         btnB.dataset.sector = 'sector-b';
+        btnB.setAttribute('data-i18n-key', 'add-sector-b');
         btnB.className = 'sector-btn';
         document.body.appendChild(btnB);
 
@@ -402,10 +404,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 3. Inject buttons
         const btnA = document.createElement('button');
         btnA.dataset.sector = 'sector-a';
+        btnA.setAttribute('data-i18n-key', 'add-sector-a');
         btnA.className = 'sector-btn';
         document.body.appendChild(btnA);
         const btnB = document.createElement('button');
         btnB.dataset.sector = 'sector-b';
+        btnB.setAttribute('data-i18n-key', 'add-sector-b');
         btnB.className = 'sector-btn';
         document.body.appendChild(btnB);
 
@@ -538,6 +542,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         const btn = document.createElement('button');
         btn.dataset.sector = 'general-product';
         btn.dataset.schemaType = 'shared';
+        btn.setAttribute('data-i18n-key', 'add-general-product');
         btn.className = 'sector-btn';
         document.body.appendChild(btn);
 
@@ -601,6 +606,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 3. Inject button for Packaging
         const btn = document.createElement('button');
         btn.dataset.sector = 'packaging';
+        btn.setAttribute('data-i18n-key', 'add-packaging');
         btn.className = 'sector-btn';
         document.body.appendChild(btn);
 
