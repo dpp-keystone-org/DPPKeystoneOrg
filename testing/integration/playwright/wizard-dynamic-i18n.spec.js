@@ -52,6 +52,22 @@ test.describe('Wizard Dynamic Translation', () => {
         await expect(plainAddBtn).not.toHaveText('Add');
         await expect(removeBtns.last()).not.toHaveText('Remove');
         await expect(showErrorsBtn).not.toContainText('Show Errors');
+
+        // 9. Click "Hinzufügen" to expand an optional object and ensure its new Remove button translates immediately
+        await plainAddBtn.click();
+        const expandedRemoveBtn = page.locator('button[data-remove-optional-object]').last();
+        await expect(expandedRemoveBtn).toHaveText('Entfernen');
+        await expect(expandedRemoveBtn).not.toHaveText('Remove');
+
+        // 10. Click "Element hinzufügen" to add an array item and ensure its new Remove button translates immediately
+        const addItemBtn = page.locator('button[data-i18n-key="add-item"]').first();
+        // Check that the add item button is translated
+        await expect(addItemBtn).toHaveText('Element hinzufügen');
+        await addItemBtn.click();
+        // The array item adds a new row with a generic remove button
+        const arrayRemoveBtn = page.locator('button[data-i18n-key="remove"]').last();
+        await expect(arrayRemoveBtn).toHaveText('Entfernen');
+        await expect(arrayRemoveBtn).not.toHaveText('Remove');
     });
 
     test('nested dynamic group components trigger localization correctly', async ({ page }) => {
