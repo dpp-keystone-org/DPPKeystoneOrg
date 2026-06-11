@@ -52,6 +52,31 @@ function saveFormState(container) {
             state.set(input.name, input.value);
         }
     });
+
+    // Save structurally expanded optional objects so they aren't lost on rerender
+    const removeBtns = container.querySelectorAll('[data-remove-optional-object]');
+    const expandedObjects = Array.from(removeBtns).map(btn => btn.dataset.removeOptionalObject);
+    if (expandedObjects.length > 0) {
+        state.set('__EXPANDED_OPTIONAL_OBJECTS__', expandedObjects);
+    }
+
+    // Save expanded array indexes
+    const arrayItemControls = container.querySelectorAll('.array-item-control-row');
+    const arrayIndexes = {};
+    arrayItemControls.forEach(row => {
+        const group = row.dataset.arrayGroup;
+        if (!group) return;
+        const lastDot = group.lastIndexOf('.');
+        const arrayName = group.substring(0, lastDot);
+        const index = parseInt(group.substring(lastDot + 1), 10);
+        
+        if (!arrayIndexes[arrayName]) arrayIndexes[arrayName] = [];
+        arrayIndexes[arrayName].push(index);
+    });
+    if (Object.keys(arrayIndexes).length > 0) {
+        state.set('__EXPANDED_ARRAY_INDEXES__', arrayIndexes);
+    }
+
     return state;
 }
 
@@ -63,7 +88,45 @@ function saveFormState(container) {
 function restoreFormState(container, state) {
     if (!container || !state) return;
 
+    // 1. Restore structural expansions first
+    if (state.has('__EXPANDED_OPTIONAL_OBJECTS__')) {
+        const expandedObjects = state.get('__EXPANDED_OPTIONAL_OBJECTS__');
+        if (Array.isArray(expandedObjects)) {
+            expandedObjects.forEach(key => {
+                const addBtn = container.querySelector(`button[data-optional-object="${key}"]`);
+                if (addBtn) addBtn.click();
+            });
+        }
+    }
+
+    // 1.5 Restore array expansions
+    if (state.has('__EXPANDED_ARRAY_INDEXES__')) {
+        const arrayIndexes = state.get('__EXPANDED_ARRAY_INDEXES__');
+        Object.entries(arrayIndexes).forEach(([arrayName, indexes]) => {
+            if (!Array.isArray(indexes) || indexes.length === 0) return;
+            
+            const addBtn = container.querySelector(`button.add-array-item-btn[data-array-name="${arrayName}"]`);
+            if (addBtn) {
+                const maxIndex = Math.max(...indexes);
+                // Create all indexes from 0 to maxIndex
+                for (let i = 0; i <= maxIndex; i++) {
+                    addBtn.click();
+                }
+                // Remove the ones that shouldn't exist
+                for (let i = 0; i <= maxIndex; i++) {
+                    if (!indexes.includes(i)) {
+                        const removeBtn = container.querySelector(`.array-item-control-row[data-array-group="${arrayName}.${i}"] button`);
+                        if (removeBtn) removeBtn.click();
+                    }
+                }
+            }
+        });
+    }
+
+    // 2. Restore all standard data inputs
     state.forEach((value, name) => {
+        if (name === '__EXPANDED_OPTIONAL_OBJECTS__' || name === '__EXPANDED_ARRAY_INDEXES__') return;
+        
         const input = container.querySelector(`[name="${name}"]`);
         if (input) {
             if (input.type === 'checkbox') {
@@ -156,6 +219,15 @@ export async function initializeWizard() {
             currentLanguage = newLang;
             LanguageManager.localizeDOM(newLang, externalTranslations);
             await rerenderAllForms();
+            
+            // Re-validate everything because rerender wiped DOM and MutationObserver cleared errors
+            validateAllFields(coreFormContainer);
+            validateAllFields(sectorsFormContainer);
+            validateAllFields(voluntaryModulesContainer);
+            validateAllFields(voluntaryFieldsWrapper);
+            validateAllFields(externalContextsWrapper);
+
+            triggerLocalization();
         });
         langWrapper.appendChild(languageSelector);
         

@@ -439,27 +439,32 @@ function reindexArrayItems(arrayName, indexRemoved) {
             row.dataset.arrayGroup = group.replace(oldPrefix, newPrefix);
             
             // Update inputs
-            const input = row.querySelector('input, select');
-            if (input && input.name.startsWith(oldPrefix)) {
-                const oldName = input.name;
-                
-                // Clear old error from global state
-                input.dispatchEvent(new CustomEvent('fieldValidityChange', {
-                    bubbles: true, composed: true, detail: { path: oldName, isValid: true },
-                }));
+            const inputs = row.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (input && input.name.startsWith(oldPrefix)) {
+                    const oldName = input.name;
+                    
+                    // Clear old error from global state
+                    input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                        bubbles: true, composed: true, detail: { path: oldName, isValid: true },
+                    }));
 
-                const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
-                const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
-                if (errorSpan) {
-                    errorSpan.remove();
+                    const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
+                    const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
+                    if (errorSpan) {
+                        errorSpan.remove();
+                    }
+
+                    input.name = input.name.replace(oldPrefix, newPrefix);
+                    input.id = input.name;
+
+                    // Re-trigger validation to update global state with new name
+                    input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
                 }
+            });
 
-                input.name = input.name.replace(oldPrefix, newPrefix);
-                input.id = input.name;
-
-                // Re-trigger validation to update global state with new name
-                input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
-            }
+            // We must also update the error message span's ID if we want it to work correctly
+            const oldErrorMsgId = `${oldPrefix.replace(/\./g, '-')}`; // the rest of the logic can be complex, let's leave it simple
             
             // Update path cell text
             const pathCell = row.querySelector('.grid-cell');
@@ -1337,6 +1342,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                     console.error(`[ERROR] Failed to load schema for ${customType.label}:`, error);
                 }
             }
+            triggerLocalization();
             return;
         }
 
