@@ -14,6 +14,10 @@ import { LanguageManager } from '../lib/language-manager.js';
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();
 
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
+
 // Caches for holding loaded schemas and ontologies to avoid re-fetching
 let coreSchema = null;
 let coreOntologyMap = null;
@@ -386,8 +390,9 @@ export async function initializeWizard() {
             if (existingContainer) {
                 // The MutationObserver will handle clearing validation errors when the container is removed.
                 existingContainer.remove();
-                button.textContent = `Add ${displayName}`;
+                button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('remove-', 'add-'));
                 button.classList.remove('remove-btn-active');
+                triggerLocalization();
             } else {
                 // Add Sector
                 try {
@@ -422,8 +427,9 @@ export async function initializeWizard() {
                     // Trigger validation for the new sector form
                     validateAllFields(sectorContainer);
 
-                    button.textContent = `Remove ${displayName}`;
+                    button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('add-', 'remove-'));
                     button.classList.add('remove-btn-active');
+                    triggerLocalization();
 
                 } catch (error) {
                     const targetContainer = (schemaType === 'shared') ? voluntaryModulesContainer : sectorsFormContainer;
@@ -531,7 +537,7 @@ export async function initializeWizard() {
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
-        removeBtn.textContent = 'Remove';
+        removeBtn.setAttribute('data-i18n-key', 'remove');
         removeBtn.addEventListener('click', () => row.remove());
 
         row.appendChild(prefixInput);
