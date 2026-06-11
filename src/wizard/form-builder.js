@@ -487,6 +487,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
     removeCell.className = 'grid-cell';
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
+    removeButton.textContent = 'Remove';
     removeButton.setAttribute('data-i18n-key', 'remove');
     
     removeButton.addEventListener('click', () => {
@@ -572,6 +573,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     valueCell.className = 'grid-cell';
     const addButton = document.createElement('button');
     addButton.type = 'button';
+    addButton.textContent = 'Add Item';
     addButton.setAttribute('data-i18n-key', 'add-item');
     addButton.className = 'add-array-item-btn';
     addButton.dataset.arrayName = currentPath;
@@ -798,6 +800,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     valueCell.className = 'grid-cell';
     const addButton = document.createElement('button');
     addButton.type = 'button';
+    addButton.textContent = 'Add';
     addButton.setAttribute('data-i18n-key', 'add');
     addButton.dataset.optionalObject = key;
     valueCell.appendChild(addButton);
@@ -842,6 +845,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         headerValueCell.innerHTML = ''; // Clear any existing buttons/selects
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
+        removeButton.textContent = 'Remove';
         removeButton.setAttribute('data-i18n-key', 'remove');
         removeButton.dataset.removeOptionalObject = key;
         
@@ -1236,6 +1240,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
 
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
+    removeBtn.textContent = 'Remove';
     removeBtn.setAttribute('data-i18n-key', 'remove');
     removeBtn.addEventListener('click', () => {
         // Clear errors for all inputs in this row (including nested ones) before removing
@@ -1276,6 +1281,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 const addBtn = document.createElement('button');
                 addBtn.type = 'button';
                 addBtn.className = 'add-voluntary-prop-btn';
+                addBtn.textContent = 'Add Field';
                 addBtn.setAttribute('data-i18n-key', 'add-field');
                 addBtn.addEventListener('click', () => {
                     const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, ontologyMap, prefixChecker);
