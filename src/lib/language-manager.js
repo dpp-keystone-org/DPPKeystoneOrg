@@ -141,7 +141,8 @@ export class LanguageManager {
         let externalTranslations = {};
         if (resourcePath) {
             try {
-                const response = await fetch(resourcePath);
+                // Append cache-buster to prevent HTTP-server caching during development
+                const response = await fetch(`${resourcePath}?v=${Date.now()}`);
                 if (response.ok) {
                     externalTranslations = await response.json();
                 }
