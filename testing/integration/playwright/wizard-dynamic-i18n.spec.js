@@ -146,6 +146,53 @@ test.describe('Wizard Dynamic Translation', () => {
         // 11. Assert the sector button correctly swaps back
         await expect(addBatteryBtn).toHaveText('Add Battery');
         await expect(showErrorsBtn).toContainText('Show Errors (3)');
+
+        // 12. Add Textile Sector for array torture test
+        const addTextileBtn = page.locator('button[data-sector="textile"]');
+        await addTextileBtn.click();
+        const textileFormContainer = page.locator('#sector-form-textile');
+        await expect(textileFormContainer).toBeAttached();
+
+        // 13. Add two items to fibreComposition array
+        const addFibreBtn = page.locator('button.add-array-item-btn[data-array-name="fibreComposition"]');
+        await addFibreBtn.click();
+        await addFibreBtn.click();
+
+        // 14. Remove index 0 to test exact index preservation
+        const firstRemoveBtn = page.locator('.array-item-control-row[data-array-group="fibreComposition.0"] button');
+        await firstRemoveBtn.click();
+        
+        // Add one more so we have indexes 0 and 1 (since 1 shifted to 0)
+        await addFibreBtn.click();
+
+        // 15. Fill out the fibre composition inputs for index 0 and 1
+        const fibre0Name = page.locator('input[name="fibreComposition.0.name"]');
+        await fibre0Name.fill('Cotton');
+        const fibre1Name = page.locator('input[name="fibreComposition.1.name"]');
+        await fibre1Name.fill('Polyester');
+        await fibre1Name.blur(); // Trigger validation for the last field
+
+        // Capture error count before language swap
+        const preSwapErrorText = await showErrorsBtn.textContent();
+
+        // 16. Switch to German
+        await languageSelector.selectOption('de');
+
+        // 17. Verify structural preservation and text persistence
+        await expect(fibre0Name).toHaveValue('Cotton');
+        await expect(fibre1Name).toHaveValue('Polyester');
+
+        // 18. Verify Remove buttons are translated and structural indices match
+        const removeFibre0Btn = page.locator('.array-item-control-row[data-array-group="fibreComposition.0"] button');
+        const removeFibre1Btn = page.locator('.array-item-control-row[data-array-group="fibreComposition.1"] button');
+        await expect(removeFibre0Btn).toHaveText('Entfernen');
+        await expect(removeFibre1Btn).toHaveText('Entfernen');
+
+        // 19. Check error count stayed exactly the same after translation swap
+        const postSwapErrorText = await showErrorsBtn.textContent();
+        const preMatch = preSwapErrorText.match(/\((\d+)\)/);
+        const postMatch = postSwapErrorText.match(/\((\d+)\)/);
+        expect(preMatch[1]).toBe(postMatch[1]);
     });
 
 });
