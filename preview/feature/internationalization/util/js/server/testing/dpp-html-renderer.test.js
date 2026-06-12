@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { getDisplayLabel, renderProductPage } from '../../common/rendering/dpp-html-renderer.js?v=1781302788638';
+import { getDisplayLabel, renderProductPage } from '../../common/rendering/dpp-html-renderer.js?v=1781303948764';
 
 describe('DPP HTML Renderer - Pure Localization', () => {
     const mockOntologyMap = new Map([
