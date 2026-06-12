@@ -65,14 +65,7 @@
         "additionalCertifications": {
             "type": "array",
             "items": {
-                "oneOf": [
-                    {
-                        "$ref": "certification.schema.json"
-                    },
-                    {
-                        "$ref": "related-resource.schema.json"
-                    }
-                ]
+                "$ref": "certification.schema.json"
             }
         }
     }
