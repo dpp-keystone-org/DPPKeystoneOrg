@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781185220363';
-import { LanguageManager } from '../lib/language-manager.js?v=1781185220363';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781267171562';
+import { LanguageManager } from '../lib/language-manager.js?v=1781267171562';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
@@ -878,6 +878,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
              // Insert before and remove old
              headerRow.before(newPlaceholder);
              rowsToRemove.forEach(row => row.remove());
+             triggerLocalization();
         });
         
         headerValueCell.appendChild(removeButton);
@@ -1195,6 +1196,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const nameInput = document.createElement('input');
     nameInput.type = 'text';
     nameInput.placeholder = 'Property Name';
+    nameInput.setAttribute('data-i18n-key', 'custom-property-name');
     nameInput.className = 'voluntary-name';
     nameInput.name = `custom-key-${rowId}`;
     attachCustomValidator(nameInput, 'key');
@@ -1214,10 +1216,12 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     typeContainer.className = 'voluntary-type-container';
     const typeSelect = document.createElement('select');
     typeSelect.className = 'voluntary-type';
+    const keyMap = { 'Text': 'type-text', 'Number': 'type-number', 'True/False': 'type-boolean', 'Group': 'type-group' };
     ['Text', 'Number', 'True/False', 'Group'].forEach(type => {
         const option = document.createElement('option');
         option.value = type;
         option.textContent = type;
+        option.setAttribute('data-i18n-key', keyMap[type]);
         typeSelect.appendChild(option);
     });
     typeContainer.appendChild(typeSelect);
@@ -1231,6 +1235,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
             const option = document.createElement('option');
             option.value = ct.label;
             option.textContent = ct.label;
+            option.setAttribute('data-i18n-key', `custom-type-${ct.label.toLowerCase().replace(/\s+/g, '-')}`);
             typeSelect.appendChild(option);
         });
     }
@@ -1240,6 +1245,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const valueInput = document.createElement('input');
     valueInput.type = 'text';
     valueInput.placeholder = 'Property Value';
+    valueInput.setAttribute('data-i18n-key', 'custom-property-value');
     valueInput.className = 'voluntary-value';
     valueInput.name = `custom-value-${rowId}`;
     attachCustomValidator(valueInput, 'value');
@@ -1327,7 +1333,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                         currentKey = parentPath;
 
                         // Generate rows using the standard form generator, passing required fields from the schema
-                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, 'en');
+                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, LanguageManager.getPreferredLanguage());
                         
                         grid.appendChild(fragment);
                         container.appendChild(grid);

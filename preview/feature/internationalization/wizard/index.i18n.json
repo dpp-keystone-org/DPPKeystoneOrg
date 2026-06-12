@@ -4310,5 +4310,887 @@
       "@language": "sv",
       "@value": "Visa fel"
     }
+  ],
+  "custom-property-name": [
+    {
+      "@language": "en",
+      "@value": "Property Name"
+    },
+    {
+      "@language": "bg",
+      "@value": "Име на свойството"
+    },
+    {
+      "@language": "cs",
+      "@value": "Název vlastnosti"
+    },
+    {
+      "@language": "da",
+      "@value": "Egenskabsnavn"
+    },
+    {
+      "@language": "de",
+      "@value": "Eigenschaftsname"
+    },
+    {
+      "@language": "el",
+      "@value": "Όνομα ιδιότητας"
+    },
+    {
+      "@language": "es",
+      "@value": "Nombre de la propiedad"
+    },
+    {
+      "@language": "et",
+      "@value": "Omaduse nimi"
+    },
+    {
+      "@language": "fi",
+      "@value": "Ominaisuuden nimi"
+    },
+    {
+      "@language": "fr",
+      "@value": "Nom de la propriété"
+    },
+    {
+      "@language": "ga",
+      "@value": "Ainm na hAirí"
+    },
+    {
+      "@language": "hr",
+      "@value": "Naziv svojstva"
+    },
+    {
+      "@language": "hu",
+      "@value": "Tulajdonság neve"
+    },
+    {
+      "@language": "it",
+      "@value": "Nome della proprietà"
+    },
+    {
+      "@language": "lt",
+      "@value": "Savybės pavadinimas"
+    },
+    {
+      "@language": "lv",
+      "@value": "Rekvizīta nosaukums"
+    },
+    {
+      "@language": "mt",
+      "@value": "Isem il-Proprjetà"
+    },
+    {
+      "@language": "nl",
+      "@value": "Eigenschapsnaam"
+    },
+    {
+      "@language": "pl",
+      "@value": "Nazwa właściwości"
+    },
+    {
+      "@language": "pt",
+      "@value": "Nome da propriedade"
+    },
+    {
+      "@language": "ro",
+      "@value": "Numele proprietății"
+    },
+    {
+      "@language": "sk",
+      "@value": "Názov vlastnosti"
+    },
+    {
+      "@language": "sl",
+      "@value": "Ime lastnosti"
+    },
+    {
+      "@language": "sv",
+      "@value": "Egenskapsnamn"
+    }
+  ],
+  "custom-property-value": [
+    {
+      "@language": "en",
+      "@value": "Property Value"
+    },
+    {
+      "@language": "bg",
+      "@value": "Стойност на свойството"
+    },
+    {
+      "@language": "cs",
+      "@value": "Hodnota vlastnosti"
+    },
+    {
+      "@language": "da",
+      "@value": "Egenskabsværdi"
+    },
+    {
+      "@language": "de",
+      "@value": "Eigenschaftswert"
+    },
+    {
+      "@language": "el",
+      "@value": "Τιμή ιδιότητας"
+    },
+    {
+      "@language": "es",
+      "@value": "Valor de la propiedad"
+    },
+    {
+      "@language": "et",
+      "@value": "Omaduse väärtus"
+    },
+    {
+      "@language": "fi",
+      "@value": "Ominaisuuden arvo"
+    },
+    {
+      "@language": "fr",
+      "@value": "Valeur de la propriété"
+    },
+    {
+      "@language": "ga",
+      "@value": "Luach na hAirí"
+    },
+    {
+      "@language": "hr",
+      "@value": "Vrijednost svojstva"
+    },
+    {
+      "@language": "hu",
+      "@value": "Tulajdonság értéke"
+    },
+    {
+      "@language": "it",
+      "@value": "Valore della proprietà"
+    },
+    {
+      "@language": "lt",
+      "@value": "Savybės reikšmė"
+    },
+    {
+      "@language": "lv",
+      "@value": "Rekvizīta vērtība"
+    },
+    {
+      "@language": "mt",
+      "@value": "Valur tal-Proprjetà"
+    },
+    {
+      "@language": "nl",
+      "@value": "Eigenschapswaarde"
+    },
+    {
+      "@language": "pl",
+      "@value": "Wartość właściwości"
+    },
+    {
+      "@language": "pt",
+      "@value": "Valor da propriedade"
+    },
+    {
+      "@language": "ro",
+      "@value": "Valoarea proprietății"
+    },
+    {
+      "@language": "sk",
+      "@value": "Hodnota vlastnosti"
+    },
+    {
+      "@language": "sl",
+      "@value": "Vrednost lastnosti"
+    },
+    {
+      "@language": "sv",
+      "@value": "Egenskapsvärde"
+    }
+  ],
+  "type-text": [
+    {
+      "@language": "en",
+      "@value": "Text"
+    },
+    {
+      "@language": "bg",
+      "@value": "Текст"
+    },
+    {
+      "@language": "cs",
+      "@value": "Text"
+    },
+    {
+      "@language": "da",
+      "@value": "Tekst"
+    },
+    {
+      "@language": "de",
+      "@value": "Text"
+    },
+    {
+      "@language": "el",
+      "@value": "Κείμενο"
+    },
+    {
+      "@language": "es",
+      "@value": "Texto"
+    },
+    {
+      "@language": "et",
+      "@value": "Tekst"
+    },
+    {
+      "@language": "fi",
+      "@value": "Teksti"
+    },
+    {
+      "@language": "fr",
+      "@value": "Texte"
+    },
+    {
+      "@language": "ga",
+      "@value": "Téacs"
+    },
+    {
+      "@language": "hr",
+      "@value": "Tekst"
+    },
+    {
+      "@language": "hu",
+      "@value": "Szöveg"
+    },
+    {
+      "@language": "it",
+      "@value": "Testo"
+    },
+    {
+      "@language": "lt",
+      "@value": "Tekstas"
+    },
+    {
+      "@language": "lv",
+      "@value": "Teksts"
+    },
+    {
+      "@language": "mt",
+      "@value": "Test"
+    },
+    {
+      "@language": "nl",
+      "@value": "Tekst"
+    },
+    {
+      "@language": "pl",
+      "@value": "Tekst"
+    },
+    {
+      "@language": "pt",
+      "@value": "Texto"
+    },
+    {
+      "@language": "ro",
+      "@value": "Text"
+    },
+    {
+      "@language": "sk",
+      "@value": "Text"
+    },
+    {
+      "@language": "sl",
+      "@value": "Besedilo"
+    },
+    {
+      "@language": "sv",
+      "@value": "Text"
+    }
+  ],
+  "type-number": [
+    {
+      "@language": "en",
+      "@value": "Number"
+    },
+    {
+      "@language": "bg",
+      "@value": "Число"
+    },
+    {
+      "@language": "cs",
+      "@value": "Číslo"
+    },
+    {
+      "@language": "da",
+      "@value": "Tal"
+    },
+    {
+      "@language": "de",
+      "@value": "Zahl"
+    },
+    {
+      "@language": "el",
+      "@value": "Αριθμός"
+    },
+    {
+      "@language": "es",
+      "@value": "Número"
+    },
+    {
+      "@language": "et",
+      "@value": "Arv"
+    },
+    {
+      "@language": "fi",
+      "@value": "Luku"
+    },
+    {
+      "@language": "fr",
+      "@value": "Nombre"
+    },
+    {
+      "@language": "ga",
+      "@value": "Uimhir"
+    },
+    {
+      "@language": "hr",
+      "@value": "Broj"
+    },
+    {
+      "@language": "hu",
+      "@value": "Szám"
+    },
+    {
+      "@language": "it",
+      "@value": "Numero"
+    },
+    {
+      "@language": "lt",
+      "@value": "Skaičius"
+    },
+    {
+      "@language": "lv",
+      "@value": "Skaitlis"
+    },
+    {
+      "@language": "mt",
+      "@value": "Numru"
+    },
+    {
+      "@language": "nl",
+      "@value": "Getal"
+    },
+    {
+      "@language": "pl",
+      "@value": "Liczba"
+    },
+    {
+      "@language": "pt",
+      "@value": "Número"
+    },
+    {
+      "@language": "ro",
+      "@value": "Număr"
+    },
+    {
+      "@language": "sk",
+      "@value": "Číslo"
+    },
+    {
+      "@language": "sl",
+      "@value": "Število"
+    },
+    {
+      "@language": "sv",
+      "@value": "Tal"
+    }
+  ],
+  "type-boolean": [
+    {
+      "@language": "en",
+      "@value": "True/False"
+    },
+    {
+      "@language": "bg",
+      "@value": "Вярно/Невярно"
+    },
+    {
+      "@language": "cs",
+      "@value": "Pravda/Nepravda"
+    },
+    {
+      "@language": "da",
+      "@value": "Sand/Falsk"
+    },
+    {
+      "@language": "de",
+      "@value": "Wahr/Falsch"
+    },
+    {
+      "@language": "el",
+      "@value": "Αληθές/Ψευδές"
+    },
+    {
+      "@language": "es",
+      "@value": "Verdadero/Falso"
+    },
+    {
+      "@language": "et",
+      "@value": "Tõene/Väär"
+    },
+    {
+      "@language": "fi",
+      "@value": "Tosi/Epätosi"
+    },
+    {
+      "@language": "fr",
+      "@value": "Vrai/Faux"
+    },
+    {
+      "@language": "ga",
+      "@value": "Fíor/Bréagach"
+    },
+    {
+      "@language": "hr",
+      "@value": "Istina/Laž"
+    },
+    {
+      "@language": "hu",
+      "@value": "Igaz/Hamis"
+    },
+    {
+      "@language": "it",
+      "@value": "Vero/Falso"
+    },
+    {
+      "@language": "lt",
+      "@value": "Tiesa/Melas"
+    },
+    {
+      "@language": "lv",
+      "@value": "Patiess/Nepatiess"
+    },
+    {
+      "@language": "mt",
+      "@value": "Veru/Falz"
+    },
+    {
+      "@language": "nl",
+      "@value": "Waar/Onwaar"
+    },
+    {
+      "@language": "pl",
+      "@value": "Prawda/Fałsz"
+    },
+    {
+      "@language": "pt",
+      "@value": "Verdadeiro/Falso"
+    },
+    {
+      "@language": "ro",
+      "@value": "Adevărat/Fals"
+    },
+    {
+      "@language": "sk",
+      "@value": "Pravda/Nepravda"
+    },
+    {
+      "@language": "sl",
+      "@value": "Resnično/Neresnično"
+    },
+    {
+      "@language": "sv",
+      "@value": "Sant/Falskt"
+    }
+  ],
+  "type-group": [
+    {
+      "@language": "en",
+      "@value": "Group"
+    },
+    {
+      "@language": "bg",
+      "@value": "Група"
+    },
+    {
+      "@language": "cs",
+      "@value": "Skupina"
+    },
+    {
+      "@language": "da",
+      "@value": "Gruppe"
+    },
+    {
+      "@language": "de",
+      "@value": "Gruppe"
+    },
+    {
+      "@language": "el",
+      "@value": "Ομάδα"
+    },
+    {
+      "@language": "es",
+      "@value": "Grupo"
+    },
+    {
+      "@language": "et",
+      "@value": "Grupp"
+    },
+    {
+      "@language": "fi",
+      "@value": "Ryhmä"
+    },
+    {
+      "@language": "fr",
+      "@value": "Groupe"
+    },
+    {
+      "@language": "ga",
+      "@value": "Grúpa"
+    },
+    {
+      "@language": "hr",
+      "@value": "Grupa"
+    },
+    {
+      "@language": "hu",
+      "@value": "Csoport"
+    },
+    {
+      "@language": "it",
+      "@value": "Gruppo"
+    },
+    {
+      "@language": "lt",
+      "@value": "Grupė"
+    },
+    {
+      "@language": "lv",
+      "@value": "Grupa"
+    },
+    {
+      "@language": "mt",
+      "@value": "Grupp"
+    },
+    {
+      "@language": "nl",
+      "@value": "Groep"
+    },
+    {
+      "@language": "pl",
+      "@value": "Grupa"
+    },
+    {
+      "@language": "pt",
+      "@value": "Grupo"
+    },
+    {
+      "@language": "ro",
+      "@value": "Grup"
+    },
+    {
+      "@language": "sk",
+      "@value": "Skupina"
+    },
+    {
+      "@language": "sl",
+      "@value": "Skupina"
+    },
+    {
+      "@language": "sv",
+      "@value": "Grupp"
+    }
+  ],
+  "custom-type-organization": [
+    {
+      "@language": "en",
+      "@value": "Organization"
+    },
+    {
+      "@language": "bg",
+      "@value": "Организация"
+    },
+    {
+      "@language": "cs",
+      "@value": "Organizace"
+    },
+    {
+      "@language": "da",
+      "@value": "Organisation"
+    },
+    {
+      "@language": "de",
+      "@value": "Organisation"
+    },
+    {
+      "@language": "el",
+      "@value": "Οργανισμός"
+    },
+    {
+      "@language": "es",
+      "@value": "Organización"
+    },
+    {
+      "@language": "et",
+      "@value": "Organisatsioon"
+    },
+    {
+      "@language": "fi",
+      "@value": "Organisaatio"
+    },
+    {
+      "@language": "fr",
+      "@value": "Organisation"
+    },
+    {
+      "@language": "ga",
+      "@value": "Eagraíocht"
+    },
+    {
+      "@language": "hr",
+      "@value": "Organizacija"
+    },
+    {
+      "@language": "hu",
+      "@value": "Szervezet"
+    },
+    {
+      "@language": "it",
+      "@value": "Organizzazione"
+    },
+    {
+      "@language": "lt",
+      "@value": "Organizacija"
+    },
+    {
+      "@language": "lv",
+      "@value": "Organizācija"
+    },
+    {
+      "@language": "mt",
+      "@value": "Organizzazzjoni"
+    },
+    {
+      "@language": "nl",
+      "@value": "Organisatie"
+    },
+    {
+      "@language": "pl",
+      "@value": "Organizacja"
+    },
+    {
+      "@language": "pt",
+      "@value": "Organização"
+    },
+    {
+      "@language": "ro",
+      "@value": "Organizație"
+    },
+    {
+      "@language": "sk",
+      "@value": "Organizácia"
+    },
+    {
+      "@language": "sl",
+      "@value": "Organizacija"
+    },
+    {
+      "@language": "sv",
+      "@value": "Organisation"
+    }
+  ],
+  "custom-type-product-characteristic": [
+    {
+      "@language": "en",
+      "@value": "Product Characteristic"
+    },
+    {
+      "@language": "bg",
+      "@value": "Характеристика на продукта"
+    },
+    {
+      "@language": "cs",
+      "@value": "Charakteristika produktu"
+    },
+    {
+      "@language": "da",
+      "@value": "Produktegenskab"
+    },
+    {
+      "@language": "de",
+      "@value": "Produkteigenschaft"
+    },
+    {
+      "@language": "el",
+      "@value": "Χαρακτηριστικό προϊόντος"
+    },
+    {
+      "@language": "es",
+      "@value": "Característica del producto"
+    },
+    {
+      "@language": "et",
+      "@value": "Toote omadus"
+    },
+    {
+      "@language": "fi",
+      "@value": "Tuotteen ominaisuus"
+    },
+    {
+      "@language": "fr",
+      "@value": "Caractéristique du produit"
+    },
+    {
+      "@language": "ga",
+      "@value": "Tréith an Táirge"
+    },
+    {
+      "@language": "hr",
+      "@value": "Karakteristika proizvoda"
+    },
+    {
+      "@language": "hu",
+      "@value": "Termékjellemző"
+    },
+    {
+      "@language": "it",
+      "@value": "Caratteristica del prodotto"
+    },
+    {
+      "@language": "lt",
+      "@value": "Produkto savybė"
+    },
+    {
+      "@language": "lv",
+      "@value": "Produkta īpašība"
+    },
+    {
+      "@language": "mt",
+      "@value": "Karatteristika tal-Prodott"
+    },
+    {
+      "@language": "nl",
+      "@value": "Productkenmerk"
+    },
+    {
+      "@language": "pl",
+      "@value": "Charakterystyka produktu"
+    },
+    {
+      "@language": "pt",
+      "@value": "Característica do produto"
+    },
+    {
+      "@language": "ro",
+      "@value": "Caracteristica produsului"
+    },
+    {
+      "@language": "sk",
+      "@value": "Charakteristika produktu"
+    },
+    {
+      "@language": "sl",
+      "@value": "Značilnost izdelka"
+    },
+    {
+      "@language": "sv",
+      "@value": "Produktegenskap"
+    }
+  ],
+  "custom-type-related-resource": [
+    {
+      "@language": "en",
+      "@value": "Related Resource"
+    },
+    {
+      "@language": "bg",
+      "@value": "Свързан ресурс"
+    },
+    {
+      "@language": "cs",
+      "@value": "Související zdroj"
+    },
+    {
+      "@language": "da",
+      "@value": "Relateret ressource"
+    },
+    {
+      "@language": "de",
+      "@value": "Zugehörige Ressource"
+    },
+    {
+      "@language": "el",
+      "@value": "Σχετικός πόρος"
+    },
+    {
+      "@language": "es",
+      "@value": "Recurso relacionado"
+    },
+    {
+      "@language": "et",
+      "@value": "Seotud ressurss"
+    },
+    {
+      "@language": "fi",
+      "@value": "Liittyvä resurssi"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ressource associée"
+    },
+    {
+      "@language": "ga",
+      "@value": "Acmhainn Ghaolmhar"
+    },
+    {
+      "@language": "hr",
+      "@value": "Povezani resurs"
+    },
+    {
+      "@language": "hu",
+      "@value": "Kapcsolódó erőforrás"
+    },
+    {
+      "@language": "it",
+      "@value": "Risorsa correlata"
+    },
+    {
+      "@language": "lt",
+      "@value": "Susijęs išteklius"
+    },
+    {
+      "@language": "lv",
+      "@value": "Saistītais resurss"
+    },
+    {
+      "@language": "mt",
+      "@value": "Riżorsa Relatata"
+    },
+    {
+      "@language": "nl",
+      "@value": "Gerelateerde bron"
+    },
+    {
+      "@language": "pl",
+      "@value": "Powiązany zasób"
+    },
+    {
+      "@language": "pt",
+      "@value": "Recurso relacionado"
+    },
+    {
+      "@language": "ro",
+      "@value": "Resursă conexă"
+    },
+    {
+      "@language": "sk",
+      "@value": "Súvisiaci zdroj"
+    },
+    {
+      "@language": "sl",
+      "@value": "Povezan vir"
+    },
+    {
+      "@language": "sv",
+      "@value": "Relaterad resurs"
+    }
   ]
 }
