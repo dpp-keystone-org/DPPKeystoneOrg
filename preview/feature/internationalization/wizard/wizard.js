@@ -1,15 +1,15 @@
 // src/wizard/wizard.js
-import { loadHeader } from '../branding/header.js?v=1781267171562';
+import { loadHeader } from '../branding/header.js?v=1781302788638';
 loadHeader('dpp-header-container', '..');
-import { loadSchema } from '../lib/schema-loader.js?v=1781267171562';
-import { loadOntology } from '../lib/ontology-loader.js?v=1781267171562';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781267171562';
-import { generateDpp } from './dpp-generator.js?v=1781267171562';
-import { generateHTML } from '../lib/html-generator.js?v=1781267171562';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781267171562';
+import { loadSchema } from '../lib/schema-loader.js?v=1781302788638';
+import { loadOntology } from '../lib/ontology-loader.js?v=1781302788638';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781302788638';
+import { generateDpp } from './dpp-generator.js?v=1781302788638';
+import { generateHTML } from '../lib/html-generator.js?v=1781302788638';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781302788638';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781267171562';
-import { LanguageManager } from '../lib/language-manager.js?v=1781267171562';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781302788638';
+import { LanguageManager } from '../lib/language-manager.js?v=1781302788638';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();
@@ -54,8 +54,22 @@ function saveFormState(container) {
     });
 
     // Save structurally expanded optional objects so they aren't lost on rerender
-    const removeBtns = container.querySelectorAll('[data-remove-optional-object]');
-    const expandedObjects = Array.from(removeBtns).map(btn => btn.dataset.removeOptionalObject);
+    const expandedElements = container.querySelectorAll('[data-remove-optional-object], [data-pending-optional-object]');
+    const expandedObjects = Array.from(expandedElements).map(el => {
+        const key = el.dataset.removeOptionalObject || el.dataset.pendingOptionalObject;
+        
+        // When expanded, the data-oneof-selection attribute is on the parent grid-row
+        const row = el.closest('.grid-row');
+        if (row && row.hasAttribute('data-oneof-selection')) {
+            return `${key}:${row.dataset.oneofSelection}`;
+        }
+        
+        // Fallback for unexpanded pending states (the select itself might have it, though usually not)
+        if (el.hasAttribute('data-oneof-selection')) {
+            return `${key}:${el.dataset.oneofSelection}`;
+        }
+        return key;
+    });
     if (expandedObjects.length > 0) {
         state.set('__EXPANDED_OPTIONAL_OBJECTS__', expandedObjects);
     }
@@ -92,9 +106,22 @@ function restoreFormState(container, state) {
     if (state.has('__EXPANDED_OPTIONAL_OBJECTS__')) {
         const expandedObjects = state.get('__EXPANDED_OPTIONAL_OBJECTS__');
         if (Array.isArray(expandedObjects)) {
-            expandedObjects.forEach(key => {
+            expandedObjects.forEach(entry => {
+                const parts = entry.split(':');
+                const key = parts[0];
+                const oneOfSelection = parts.length > 1 ? parts[1] : undefined;
+
                 const addBtn = container.querySelector(`button[data-optional-object="${key}"]`);
-                if (addBtn) addBtn.click();
+                if (addBtn) {
+                    addBtn.click();
+                    if (oneOfSelection !== undefined) {
+                        const select = container.querySelector(`select[data-pending-optional-object="${key}"]`);
+                        if (select) {
+                            select.value = oneOfSelection;
+                            select.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                    }
+                }
             });
         }
     }
@@ -204,40 +231,6 @@ export async function initializeWizard() {
     jsonOutput = document.getElementById('json-output');
     sectorButtons = document.querySelectorAll('.sector-btn');
     const langWrapper = document.getElementById('language-widget-wrapper');
-    if (langWrapper) {
-        langWrapper.innerHTML = '';
-        
-        let externalTranslations = {};
-        try {
-            const response = await fetch('index.i18n.json');
-            if (response.ok) {
-                externalTranslations = await response.json();
-            }
-        } catch (err) { }
-
-        languageSelector = LanguageManager.renderSelectorWidget(async (newLang) => {
-            currentLanguage = newLang;
-            LanguageManager.localizeDOM(newLang, externalTranslations);
-            await rerenderAllForms();
-            
-            // Re-validate everything because rerender wiped DOM and MutationObserver cleared errors
-            validateAllFields(coreFormContainer);
-            validateAllFields(sectorsFormContainer);
-            validateAllFields(voluntaryModulesContainer);
-            validateAllFields(voluntaryFieldsWrapper);
-            validateAllFields(externalContextsWrapper);
-
-            triggerLocalization();
-        });
-        langWrapper.appendChild(languageSelector);
-        
-        document.addEventListener('languageChanged', (e) => {
-            LanguageManager.localizeDOM(e.detail.language, externalTranslations);
-        });
-
-        // Initial localization for static UI elements
-        LanguageManager.localizeDOM(currentLanguage, externalTranslations);
-    }
 
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
     const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
@@ -798,6 +791,27 @@ export async function initializeWizard() {
     // Initial setup
     await initializeCoreForm();
     await restoreSession();
+
+    if (langWrapper) {
+        langWrapper.innerHTML = '';
+        
+        // Initialize Language Manager with both files
+        await LanguageManager.init(['index.i18n.json', '../lib/validation-errors.i18n.json']);
+
+        document.addEventListener('languageChanged', async (e) => {
+            if (e.detail.language !== currentLanguage) {
+                currentLanguage = e.detail.language;
+                await rerenderAllForms();
+                
+                // Re-validate everything because rerender wiped DOM and MutationObserver cleared errors
+                validateAllFields(coreFormContainer);
+                validateAllFields(sectorsFormContainer);
+                validateAllFields(voluntaryModulesContainer);
+                validateAllFields(voluntaryFieldsWrapper);
+                validateAllFields(externalContextsWrapper);
+            }
+        });
+    }
 
     // Expose schemas for the testing environment
     window.testing = {

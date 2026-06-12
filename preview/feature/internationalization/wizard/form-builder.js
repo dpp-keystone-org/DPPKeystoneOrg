@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781267171562';
-import { LanguageManager } from '../lib/language-manager.js?v=1781267171562';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781302788638';
+import { LanguageManager } from '../lib/language-manager.js?v=1781302788638';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
@@ -108,10 +108,14 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
     tooltipCell.className = 'grid-cell';
 
     let commentText = '';
+    let commentData = null;
     if (ontologyInfo?.comment) {
-        commentText = (typeof ontologyInfo.comment === 'object')
-            ? (ontologyInfo.comment[lang] || ontologyInfo.comment.en || '')
-            : ontologyInfo.comment;
+        if (typeof ontologyInfo.comment === 'object') {
+            commentData = ontologyInfo.comment;
+            commentText = ontologyInfo.comment[lang] || ontologyInfo.comment.en || '';
+        } else {
+            commentText = ontologyInfo.comment;
+        }
     }
 
     if (commentText || governedBy || source) {
@@ -119,7 +123,17 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
         tooltipButton.className = 'tooltip-button';
         tooltipButton.textContent = '?';
         tooltipButton.type = 'button';
-        tooltipButton.addEventListener('click', () => createTooltipModal(commentText, governedBy, source));
+        
+        if (commentData) {
+            tooltipButton.classList.add('i18n-ontology');
+            tooltipButton.dataset.i18n = JSON.stringify(commentData);
+            tooltipButton.setAttribute('data-i18n-tooltip', commentText);
+        }
+        
+        tooltipButton.addEventListener('click', () => {
+            const currentText = tooltipButton.getAttribute('data-i18n-tooltip') || commentText;
+            createTooltipModal(currentText, governedBy, source);
+        });
         tooltipCell.appendChild(tooltipButton);
     }
 
@@ -195,33 +209,33 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
         let validationResult = { isValid: true };
 
         if ((prop.type === 'number' || prop.type === 'integer') && !target.validity.valid && value === '') {
-            validationResult = { isValid: false, message: 'Must be a valid number' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number' };
         } else if (value === '') {
             if (isRequired) {
-                validationResult = { isValid: false, message: 'This field is required' };
+                validationResult = { isValid: false, key: 'error-required', message: 'This field is required' };
             }
         } else if (prop.type === 'string' && !validateText(value).isValid) {
-            validationResult = validateText(value);
+            validationResult = { isValid: false, key: 'error-invalid-chars', message: 'Invalid characters detected' };
         } else if (prop.format === 'uri' && !isURI(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid URI (e.g., http://example.com)' };
+            validationResult = { isValid: false, key: 'error-valid-uri', message: 'Must be a valid URI (e.g., http://example.com)' };
         } else if ((ontologyInfo?.range === 'decimal' || ontologyInfo?.range === 'double' || ontologyInfo?.range === 'float') && !isNumber(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid number.' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number.' };
         } else if (ontologyInfo?.range === 'integer' && !isInteger(value)) {
-            validationResult = { isValid: false, message: 'Must be a whole number.' };
+            validationResult = { isValid: false, key: 'error-whole-number', message: 'Must be a whole number.' };
         } else if (target.name.endsWith('countryOfOrigin') || target.name.endsWith('addressCountry') || target.name.endsWith('productionLocationCountry')) {
             if (!isCountryCode(value)) {
-                validationResult = { isValid: false, message: 'Must be a valid 2 or 3-letter country code' };
+                validationResult = { isValid: false, key: 'error-country-code', message: 'Must be a valid 2 or 3-letter country code' };
             }
         } else if (ontologyInfo?.validation) {
             const { min, max } = ontologyInfo.validation;
             const num = parseFloat(value);
             if (isNaN(num) || num < min || num > max) {
-                validationResult = { isValid: false, message: `Must be between ${min} and ${max}` };
+                validationResult = { isValid: false, key: 'error-out-of-range', message: `Must be between ${min} and ${max}` };
             }
         } else if (prop.type === 'number' && !isNumber(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid number' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number' };
         } else if (prop.type === 'integer' && !isInteger(value)) {
-            validationResult = { isValid: false, message: 'Must be a whole number' };
+            validationResult = { isValid: false, key: 'error-whole-number', message: 'Must be a whole number' };
         }
 
         const errorMsgId = `${target.id.replace(/\./g, '-')}-error`;
@@ -239,6 +253,10 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
                 target.parentElement.appendChild(errorSpan);
             }
             errorSpan.textContent = validationResult.message;
+            if (validationResult.key) {
+                errorSpan.setAttribute('data-i18n-key', validationResult.key);
+                triggerLocalization();
+            }
         }
 
         target.dispatchEvent(new CustomEvent('fieldValidityChange', {
@@ -363,6 +381,10 @@ function renderSimpleInputProperty(fragment, { prop, currentPath, isRequired, in
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -596,6 +618,10 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -606,17 +632,24 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
 
     fragment.appendChild(row);
 
-    if (prop.items?.type === 'object' && prop.items?.properties) {
-        // Array of Objects
+    if ((prop.items?.type === 'object' && prop.items?.properties) || prop.items?.oneOf || prop.items?.anyOf) {
+        // Array of Objects or Optional/OneOf Objects
         addButton.addEventListener('click', () => {
             const arrayName = currentPath;
             const itemIndex = getNextArrayItemIndex(arrayName);
             const newObjectPath = `${arrayName}.${itemIndex}`;
             
             const newObjectFragment = document.createDocumentFragment();
-            generateRows(newObjectFragment, prop.items.properties, ontologyMap, prop.items.required || [], newObjectPath, indentationLevel + 1, lang);
-            
-            [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
+
+            if (prop.items.oneOf || prop.items.anyOf) {
+                const itemProp = { ...prop.items }; 
+                const placeholder = createOptionalObjectPlaceholderRow(newObjectPath, itemProp, newObjectPath, indentationLevel + 1, ontologyMap, lang);
+                placeholder.dataset.arrayGroup = newObjectPath;
+                newObjectFragment.appendChild(placeholder);
+            } else {
+                generateRows(newObjectFragment, prop.items.properties, ontologyMap, prop.items.required || [], newObjectPath, indentationLevel + 1, lang);
+                [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
+            }
             
             newObjectFragment.appendChild(createArrayItemControlRow(arrayName, newObjectPath));
             
@@ -626,8 +659,13 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
                 insertionPoint = allItemControls[allItemControls.length - 1];
             }
             insertionPoint.after(newObjectFragment);
-            triggerLocalization();
 
+            if (prop.items.oneOf || prop.items.anyOf) {
+                const addBtn = document.querySelector(`button[data-optional-object="${newObjectPath}"]`);
+                if (addBtn) addBtn.click();
+            }
+
+            triggerLocalization();
             triggerValidationForGroup(insertionPoint, newObjectPath);
         });
     } else {
@@ -698,6 +736,10 @@ function populateHeaderRow(rowElement, { currentPath, indentationLevel, ontology
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -823,6 +865,10 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -918,23 +964,31 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
 
              const select = document.createElement('select');
              select.className = 'type-selector';
+             select.dataset.pendingOptionalObject = key;
              const defaultOpt = document.createElement('option');
              defaultOpt.text = 'Select Type...';
              defaultOpt.value = '';
+             defaultOpt.setAttribute('data-i18n-key', 'select-type');
              select.appendChild(defaultOpt);
 
              prop.oneOf.forEach((opt, idx) => {
                  const option = document.createElement('option');
                  option.value = idx;
                  option.text = opt.title || `Option ${idx + 1}`;
+                 if (opt.title) {
+                     const key = 'custom-type-' + opt.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                     option.setAttribute('data-i18n-key', key);
+                 }
                  select.appendChild(option);
              });
 
              valueCell.appendChild(select);
+             triggerLocalization();
              
              // Handle selection
              select.addEventListener('change', () => {
                  if (select.value === '') return;
+                 placeholderRow.dataset.oneofSelection = select.value;
                  const selectedSchema = prop.oneOf[parseInt(select.value, 10)];
                  expandRow(selectedSchema); 
              });
