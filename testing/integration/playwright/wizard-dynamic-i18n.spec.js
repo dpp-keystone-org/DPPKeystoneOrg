@@ -301,5 +301,122 @@ test.describe('Wizard Dynamic Translation', () => {
         expect(optionsText).toContain('Número');
         expect(optionsText).toContain('Grupo');
     });
+    test('validation errors and oneOf dropdowns are translated', async ({ page }) => {
+        await page.goto('/wizard/index.html');
+        
+        // Select German
+        const languageSelector = page.locator('#language-selector');
+        await languageSelector.selectOption('de');
 
+        // Add Construction sector to get complex fields (like additionalCertifications)
+        const addConstructionBtn = page.locator('button[data-sector="construction"]');
+        await addConstructionBtn.click();
+
+        // Check validation error: trigger an error by clicking Show Errors
+        const showErrorsBtn = page.locator('#show-errors-btn');
+        await showErrorsBtn.click();
+
+        // The error for required fields should be "Dieses Feld ist erforderlich"
+        const errorsText = await page.locator('.error-message').first().innerText();
+        expect(errorsText).toContain('erforderlich');
+        expect(errorsText).not.toContain('required');
+
+        // Close the modal that "Show Errors" opened so we can interact with the rest of the page
+        await page.click('.modal-close-btn');
+
+        // Now test oneOf dropdown. In Construction, `dopc` is an optional object of oneOf schemas.
+        const addDopcBtn = page.locator('button[data-optional-object="dopc"]');
+        await addDopcBtn.click();
+
+        // A type selector should appear
+        const typeSelector = page.locator('select.type-selector').last();
+        const optionsText = await typeSelector.innerText();
+
+        // Check for German translations in the oneOf dropdown
+        expect(optionsText).toContain('Typ auswählen'); // "Select Type..."
+        expect(optionsText).toContain('Leistungs- und Konformitätserklärung'); // "Declaration of Performance and Conformity"
+        expect(optionsText).not.toContain('Select Type');
+        
+        // Change language to Spanish
+        await languageSelector.selectOption('es');
+        
+        // Validation errors should instantly translate
+        const esErrorsText = await page.locator('.error-message').first().innerText();
+        expect(esErrorsText).toContain('obligatorio');
+        expect(esErrorsText).not.toContain('erforderlich');
+        
+        // OneOf selector should instantly translate
+        // CRUCIAL: This also asserts that the unpopulated `oneOf` dropdown SURVIVED the state-preserving
+        // language swap re-render without collapsing back into an "Add" button!
+        await expect(typeSelector).toBeVisible();
+        const esOptionsText = await typeSelector.innerText();
+        expect(esOptionsText).toContain('Seleccionar tipo');
+        expect(esOptionsText).toContain('Declaración de prestaciones y conformidad');
+    });
+
+    test('expanded custom object labels and tooltips update on language swap', async ({ page }) => {
+        await page.goto('/wizard/index.html');
+        
+        // Wait for the core schema and ontology to finish loading
+        await expect(page.locator('#core-form-container input').first()).toBeVisible();
+
+        // 1. Add a custom field
+        const addVoluntaryFieldBtn = page.locator('#add-voluntary-field-btn');
+        await addVoluntaryFieldBtn.click();
+        
+        // 2. Set type to Organization
+        page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+        page.on('pageerror', err => console.log('PAGE ERROR:', err.message));
+
+        const typeSelector = page.locator('select.voluntary-type').last();
+        await typeSelector.selectOption({ label: 'Organization' });
+        
+        // 3. Verify English labels are present using auto-retrying expect
+        const customFieldRow = page.locator('.voluntary-field-row').last();
+        await expect(customFieldRow).toContainText('Organization Name');
+        await expect(customFieldRow).toContainText('Trading Name');
+        
+        // 4. Swap language to Spanish
+        const languageSelector = page.locator('#language-selector');
+        await languageSelector.selectOption('es');
+        
+        // 5. Verify labels instantly translate to Spanish
+        await expect(customFieldRow).not.toContainText('Organization Name');
+        await expect(customFieldRow).toContainText('Nombre de la Organización');
+        await expect(customFieldRow).toContainText('Nombre comercial');
+    });
+
+    test('oneOf form data is preserved across language swap', async ({ page }) => {
+        await page.goto('/wizard/index.html');
+        
+        // Wait for the core schema and ontology to finish loading
+        await expect(page.locator('#core-form-container input').first()).toBeVisible();
+
+        // 1. Add Construction sector
+        const addConstructionBtn = page.locator('button[data-sector="construction"]');
+        await addConstructionBtn.click();
+
+        // 2. Add dopc
+        const addDopcBtn = page.locator('button[data-optional-object="dopc"]');
+        await addDopcBtn.click();
+
+        // 3. Select actual dopc type
+        const typeSelector = page.locator('select.type-selector').last();
+        // Index 1 because Index 0 is the default placeholder "Select Type..."
+        await typeSelector.selectOption({ label: 'Declaration of Performance and Conformity' });
+
+        // Wait for the first field of dopc to render and set it
+        const firstDopcInput = page.locator('input[name^="dopc."]').first();
+        await expect(firstDopcInput).toBeVisible();
+        await firstDopcInput.fill('flibbertygibbet');
+
+        // 4. Swap language to German
+        const languageSelector = page.locator('#language-selector');
+        await languageSelector.selectOption('de');
+
+        // 5. Verify the input value survived the swap
+        const restoredInput = page.locator('input[name^="dopc."]').first();
+        await expect(restoredInput).toBeVisible();
+        await expect(restoredInput).toHaveValue('flibbertygibbet');
+    });
 });

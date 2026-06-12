@@ -64,14 +64,14 @@ function processFile(filePath) {
         // Case A: @language first
         // Matches: { "@language": "...", "@value": ... }
         content = content.replace(
-            /\{\s*"@language":\s*"([^"]+)",\s*"@value":\s*(.*?)\s*\}/gs,
+            /\{\s*"@language":\s*"([^"]+)",\s*"@value":\s*("(?:[^"\\]|\\.)*"|[^}]+?)\s*\}/gs,
             (match, lang, val) => `{ "@language": "${lang}", "@value": ${val} }`
         );
 
         // Case B: @value first (Handle inconsistent key order from JSON.stringify)
         // Matches: { "@value": ..., "@language": "..." }
         content = content.replace(
-            /\{\s*"@value":\s*(.*?),\s*"@language":\s*"([^"]+)"\s*\}/gs,
+            /\{\s*"@value":\s*("(?:[^"\\]|\\.)*"|[^,]+?)\s*,\s*"@language":\s*"([^"]+)"\s*\}/gs,
             (match, val, lang) => `{ "@language": "${lang}", "@value": ${val} }`
         );
 

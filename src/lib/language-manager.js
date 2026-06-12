@@ -115,6 +115,23 @@ export class LanguageManager {
             }
         });
 
+        // 1.5 Process inline ontology labels and tooltips (used by dynamically retained form fields)
+        document.querySelectorAll('.i18n-ontology[data-i18n]').forEach(el => {
+            try {
+                const data = JSON.parse(el.dataset.i18n);
+                const translatedText = data[lang] || data.en || '';
+                if (translatedText) {
+                    if (el.hasAttribute('data-i18n-tooltip')) {
+                        el.setAttribute('data-i18n-tooltip', translatedText);
+                    } else {
+                        el.innerHTML = translatedText;
+                    }
+                }
+            } catch (err) {
+                console.warn('Failed to parse inline ontology i18n data', err);
+            }
+        });
+
         // 2. Process external key-based translations (used by static UI HTML)
         document.querySelectorAll('[data-i18n-key]').forEach(el => {
             const key = el.getAttribute('data-i18n-key');
@@ -131,23 +148,30 @@ export class LanguageManager {
         });
     }
 
+    static translations = {};
+
     /**
      * Initializes LanguageManager on a page.
      * Looks for an element with ID 'language-widget-wrapper' and appends the widget.
      * Dispatches a custom 'languageChanged' event on document when the language changes.
-     * @param {string} [resourcePath] Optional path to a ui-translations JSON file to fetch.
+     * @param {string|string[]} [resourcePaths] Optional path(s) to ui-translations JSON file(s) to fetch and merge.
      */
-    static async init(resourcePath = null) {
-        let externalTranslations = {};
-        if (resourcePath) {
-            try {
-                // Append cache-buster to prevent HTTP-server caching during development
-                const response = await fetch(`${resourcePath}?v=${Date.now()}`);
-                if (response.ok) {
-                    externalTranslations = await response.json();
+    static async init(resourcePaths = null) {
+        this.translations = {};
+        
+        if (resourcePaths) {
+            const paths = Array.isArray(resourcePaths) ? resourcePaths : [resourcePaths];
+            for (const path of paths) {
+                try {
+                    // Append cache-buster to prevent HTTP-server caching during development
+                    const response = await fetch(`${path}?v=${Date.now()}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        Object.assign(this.translations, data);
+                    }
+                } catch (err) {
+                    console.warn(`Failed to fetch translations from ${path}`, err);
                 }
-            } catch (err) {
-                console.warn(`Failed to fetch translations from ${resourcePath}`, err);
             }
         }
 
@@ -160,10 +184,22 @@ export class LanguageManager {
 
         // Global listener that handles all DOM updates
         document.addEventListener('languageChanged', (e) => {
-            this.localizeDOM(e.detail.language, externalTranslations);
+            this.localizeDOM(e.detail.language, this.translations);
         });
 
         // Fire it initially so the page can localize itself on load
         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: this.getPreferredLanguage() } }));
+    }
+
+    /**
+     * Helper to programmatically translate a key based on current language.
+     */
+    static t(key, defaultText = '') {
+        if (this.translations && this.translations[key]) {
+            const lang = this.getPreferredLanguage();
+            const translated = this.getBestTranslation(this.translations[key], lang);
+            if (translated) return translated;
+        }
+        return defaultText || key;
     }
 }
