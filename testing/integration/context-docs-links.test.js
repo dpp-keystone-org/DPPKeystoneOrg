@@ -29,13 +29,13 @@ describe('Context documentation page link generation', () => {
 
     it('should link a Class term to its own page', async () => {
         const expectedLink = `../../../ontology/${KEYSTONE_VERSION}/core/mock-core/MockProduct.html`;
-        const expectedHtml = `<li><a href="${expectedLink}"><strong>mockProduct</strong></a> - <em>Represents a generic product for testing.</em></li>`;
+        const expectedHtml = `<li><a href="${expectedLink}"><strong>mockProduct</strong></a> - <em><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Represents a generic product for testing.&quot;}]">Represents a generic product for testing.</span></em></li>`;
         expect(content).toContain(expectedHtml);
     });
 
     it('should link a Property term to its parent Class page', async () => {
         const expectedLink = `../../../ontology/${KEYSTONE_VERSION}/core/mock-core/MockProduct.html`;
-        const expectedHtml = `<li><a href="${expectedLink}"><strong>mockProp</strong></a> - <em>A test property for the Mock Product.</em></li>`;
+        const expectedHtml = `<li><a href="${expectedLink}"><strong>mockProp</strong></a> - <em><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;A test property for the Mock Product.&quot;}]">A test property for the Mock Product.</span></em></li>`;
         expect(content).toContain(expectedHtml);
     });
 });

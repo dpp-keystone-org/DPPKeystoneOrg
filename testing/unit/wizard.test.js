@@ -936,7 +936,7 @@ describe('DPP Wizard - Form Builder', () => {
         expect(document.querySelector('input[name="epd.gwp"]')).toBeNull();
         const addButton = document.querySelector('button[data-optional-object="epd"]');
         expect(addButton).not.toBeNull();
-        expect(addButton.textContent).toBe('Add');
+        expect(addButton.getAttribute('data-i18n-key')).toBe('add');
     });
 
     it('should render fields for an optional object when its "Add" button is clicked', () => {
@@ -970,7 +970,7 @@ describe('DPP Wizard - Form Builder', () => {
         expect(document.querySelector('button[data-optional-object="epd"]')).toBeNull();
         const removeButton = document.querySelector('button[data-remove-optional-object="epd"]');
         expect(removeButton).not.toBeNull();
-        expect(removeButton.textContent).toBe('Remove');
+        expect(removeButton.getAttribute('data-i18n-key')).toBe('remove');
     });
 
     it('should remove an optional object when its "Remove" button is clicked', () => {
@@ -1100,7 +1100,7 @@ describe('DPP Wizard - Form Builder', () => {
         const addButton = document.querySelector('button[data-optional-object="notifiedBody"]');
         expect(addButton).not.toBeNull();
         // This will fail because the current text is "Add NOTIFIEDBODY"
-        expect(addButton.textContent).toBe('Add');
+        expect(addButton.getAttribute('data-i18n-key')).toBe('add');
     });
 
     it('should display a generic "Remove" label for optional object buttons', () => {
@@ -1118,7 +1118,7 @@ describe('DPP Wizard - Form Builder', () => {
         const removeButton = document.querySelector('button[data-remove-optional-object="notifiedBody"]');
         expect(removeButton).not.toBeNull();
         // This will fail because the current text is "Remove NOTIFIEDBODY"
-        expect(removeButton.textContent).toBe('Remove');
+        expect(removeButton.getAttribute('data-i18n-key')).toBe('remove');
     });
 });
 
@@ -1341,7 +1341,7 @@ describe('DPP Wizard - Custom Fields', () => {
         // Check for Add Property button
         const addPropBtn = groupContainer.querySelector('button.add-voluntary-prop-btn');
         expect(addPropBtn).not.toBeNull();
-        expect(addPropBtn.textContent).toBe('Add Field');
+        expect(addPropBtn.getAttribute('data-i18n-key')).toBe('add-field');
     });
 
     it('should include complex types from the registry in the Type selector', () => {

@@ -37,8 +37,22 @@ describe('HTML Generator', () => {
             text: async () => "",
             json: async () => ({
                 "@graph": [
-                    { "@id": "dppk:weight", "dppk:unit": "kg" },
-                    { "@id": "dppk:gwp", "dppk:unit": "kg CO2 eq" }
+                    { 
+                        "@id": "dppk:weight", 
+                        "dppk:unit": "kg",
+                        "rdfs:label": { "@language": "en", "@value": "Weight" }
+                    },
+                    { 
+                        "@id": "dppk:gwp", 
+                        "dppk:unit": "kg CO2 eq",
+                        "rdfs:label": { "@language": "en", "@value": "Global Warning Potential" }
+                    },
+                    { "@id": "dppk:color", "rdfs:label": { "@language": "en", "@value": "Color" } },
+                    { "@id": "dppk:isRecyclable", "rdfs:label": { "@language": "en", "@value": "Is Recyclable" } },
+                    { "@id": "dppk:dimensions", "rdfs:label": { "@language": "en", "@value": "Dimensions" } },
+                    { "@id": "dppk:width", "rdfs:label": { "@language": "en", "@value": "Width" } },
+                    { "@id": "dppk:customAttribute", "rdfs:label": { "@language": "en", "@value": "Custom Attribute" } },
+                    { "@id": "dppk:anotherAttribute", "rdfs:label": { "@language": "en", "@value": "Another Attribute" } }
                 ]
             })
         });
@@ -379,5 +393,34 @@ describe('HTML Generator', () => {
         expect(html).toContain('<script type="application/ld+json">');
         expect(html).toContain('"@type": "Product"');
         expect(html).toContain('</script>');
+    });
+
+    test('should pass language option to renderProductPage for localized HTML', async () => {
+        const mockDpp = {
+            productName: "Test Phone",
+            dppStatus: "Active"
+        };
+
+        fetch.mockImplementation(async (url) => {
+            if (url && url.toString().includes('.css')) return { ok: true, text: async () => "" };
+            return {
+                ok: true,
+                json: async () => ({
+                    "@graph": [
+                        {
+                            "@id": "dppk:dppStatus",
+                            "rdfs:label": [
+                                { "@language": "en", "@value": "Passport Status" },
+                                { "@language": "fr", "@value": "Statut du Passeport" }
+                            ]
+                        }
+                    ]
+                })
+            };
+        });
+
+        const html = await generateHTML(mockDpp, { language: 'fr' });
+        expect(html).toContain('Statut du Passeport');
+        expect(html).not.toContain('Passport Status');
     });
 });

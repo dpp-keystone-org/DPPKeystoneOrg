@@ -604,7 +604,7 @@ test('should show an error for non-numeric text in a number field', async ({ pag
 
   // 5. Verify specific validation error message
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
-  await expect(page.locator('#batteryMass-error')).toHaveText('Must be a valid number.');
+  await expect(page.locator('#batteryMass-error')).toHaveText('Must be a valid number');
 
   // 6. Correct the input
   await batteryMassInput.fill('100');
@@ -729,7 +729,7 @@ test('validation should not create duplicate error messages', async ({ page }) =
     await expect(epdInput).toHaveClass(/invalid/);
     await expect(page.locator(errorSpanSelector)).toBeVisible();
     await expect(page.locator(errorSpanSelector)).toHaveCount(1);
-    await expect(page.locator(errorSpanSelector)).toHaveText('Must be a valid number.');
+    await expect(page.locator(errorSpanSelector)).toHaveText('Must be a valid number');
 
     // 3. Trigger the same validation error again.
     await epdInput.fill('still not a number');

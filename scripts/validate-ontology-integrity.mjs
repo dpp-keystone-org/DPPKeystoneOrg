@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import { validateTermTranslations } from '../src/util/js/common/validation/ontology-validator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -207,7 +208,16 @@ function auditOntologyMetadata(reporter) {
             return; // Skip to the next file
         }
 
-        if (!ontologyInfo['dcterms:title'] || String(ontologyInfo['dcterms:title']).trim() === '') {
+        if (ontologyInfo['rdfs:label'] || ontologyInfo['rdfs:comment']) {
+            reporter.report(
+                'Ontology Metadata',
+                'FAIL',
+                `Ontology root uses 'rdfs:label' or 'rdfs:comment'. Use 'dcterms:title' and 'dcterms:description' instead.`,
+                relativePath
+            );
+        }
+
+        if (!ontologyInfo['dcterms:title'] || (typeof ontologyInfo['dcterms:title'] === 'string' && String(ontologyInfo['dcterms:title']).trim() === '')) {
             reporter.report(
                 'Ontology Metadata',
                 'FAIL',
@@ -216,13 +226,25 @@ function auditOntologyMetadata(reporter) {
             );
         }
         
-        if (!ontologyInfo['dcterms:description'] || String(ontologyInfo['dcterms:description']).trim() === '') {
+        if (!ontologyInfo['dcterms:description'] || (typeof ontologyInfo['dcterms:description'] === 'string' && String(ontologyInfo['dcterms:description']).trim() === '')) {
             reporter.report(
                 'Ontology Metadata',
                 'WARN',
                 `The 'owl:Ontology' declaration is missing a 'dcterms:description'.`,
                 relativePath
             );
+        }
+
+        const transResult = validateTermTranslations(ontologyInfo, undefined, ['dcterms:title', 'dcterms:description']);
+        if (!transResult.valid) {
+            transResult.errors.forEach(err => {
+                reporter.report(
+                    'Ontology Metadata Translation',
+                    'FAIL',
+                    `Ontology root translation issue: ${err}`,
+                    relativePath
+                );
+            });
         }
     });
 }
@@ -447,6 +469,26 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
     });
 }
 
+function auditTranslations(reporter) {
+    ontologyGraph.forEach((term, id) => {
+        // Only validate our own terms
+        if (id.startsWith('dppk:')) {
+            const result = validateTermTranslations(term);
+            if (!result.valid) {
+                const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
+                result.errors.forEach(err => {
+                    reporter.report(
+                        'Translation Integrity',
+                        'WARN',
+                        `Term '${id}' has translation issue: ${err}`,
+                        relativePath
+                    );
+                });
+            }
+        }
+    });
+}
+
 // --- Main Execution ---
 async function run() {
     console.log('🚀 Starting Ontology Integrity Suite...');
@@ -480,6 +522,7 @@ async function run() {
     });
 
     auditDocumentation(reporter);
+    auditTranslations(reporter);
     auditDeadCode(reporter, usedIRIs, contextMappedIRIs);
 
     // 4. Report

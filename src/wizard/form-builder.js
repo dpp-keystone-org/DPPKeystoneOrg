@@ -1,5 +1,10 @@
 // src/wizard/form-builder.js
 import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js';
+import { LanguageManager } from '../lib/language-manager.js';
+
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
 
 /**
  * Creates and displays a tooltip modal.
@@ -103,10 +108,14 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
     tooltipCell.className = 'grid-cell';
 
     let commentText = '';
+    let commentData = null;
     if (ontologyInfo?.comment) {
-        commentText = (typeof ontologyInfo.comment === 'object')
-            ? (ontologyInfo.comment[lang] || ontologyInfo.comment.en || '')
-            : ontologyInfo.comment;
+        if (typeof ontologyInfo.comment === 'object') {
+            commentData = ontologyInfo.comment;
+            commentText = ontologyInfo.comment[lang] || ontologyInfo.comment.en || '';
+        } else {
+            commentText = ontologyInfo.comment;
+        }
     }
 
     if (commentText || governedBy || source) {
@@ -114,7 +123,17 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
         tooltipButton.className = 'tooltip-button';
         tooltipButton.textContent = '?';
         tooltipButton.type = 'button';
-        tooltipButton.addEventListener('click', () => createTooltipModal(commentText, governedBy, source));
+        
+        if (commentData) {
+            tooltipButton.classList.add('i18n-ontology');
+            tooltipButton.dataset.i18n = JSON.stringify(commentData);
+            tooltipButton.setAttribute('data-i18n-tooltip', commentText);
+        }
+        
+        tooltipButton.addEventListener('click', () => {
+            const currentText = tooltipButton.getAttribute('data-i18n-tooltip') || commentText;
+            createTooltipModal(currentText, governedBy, source);
+        });
         tooltipCell.appendChild(tooltipButton);
     }
 
@@ -190,33 +209,33 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
         let validationResult = { isValid: true };
 
         if ((prop.type === 'number' || prop.type === 'integer') && !target.validity.valid && value === '') {
-            validationResult = { isValid: false, message: 'Must be a valid number' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number' };
         } else if (value === '') {
             if (isRequired) {
-                validationResult = { isValid: false, message: 'This field is required' };
+                validationResult = { isValid: false, key: 'error-required', message: 'This field is required' };
             }
         } else if (prop.type === 'string' && !validateText(value).isValid) {
-            validationResult = validateText(value);
+            validationResult = { isValid: false, key: 'error-invalid-chars', message: 'Invalid characters detected' };
         } else if (prop.format === 'uri' && !isURI(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid URI (e.g., http://example.com)' };
+            validationResult = { isValid: false, key: 'error-valid-uri', message: 'Must be a valid URI (e.g., http://example.com)' };
         } else if ((ontologyInfo?.range === 'decimal' || ontologyInfo?.range === 'double' || ontologyInfo?.range === 'float') && !isNumber(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid number.' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number.' };
         } else if (ontologyInfo?.range === 'integer' && !isInteger(value)) {
-            validationResult = { isValid: false, message: 'Must be a whole number.' };
+            validationResult = { isValid: false, key: 'error-whole-number', message: 'Must be a whole number.' };
         } else if (target.name.endsWith('countryOfOrigin') || target.name.endsWith('addressCountry') || target.name.endsWith('productionLocationCountry')) {
             if (!isCountryCode(value)) {
-                validationResult = { isValid: false, message: 'Must be a valid 2 or 3-letter country code' };
+                validationResult = { isValid: false, key: 'error-country-code', message: 'Must be a valid 2 or 3-letter country code' };
             }
         } else if (ontologyInfo?.validation) {
             const { min, max } = ontologyInfo.validation;
             const num = parseFloat(value);
             if (isNaN(num) || num < min || num > max) {
-                validationResult = { isValid: false, message: `Must be between ${min} and ${max}` };
+                validationResult = { isValid: false, key: 'error-out-of-range', message: `Must be between ${min} and ${max}` };
             }
         } else if (prop.type === 'number' && !isNumber(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid number' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number' };
         } else if (prop.type === 'integer' && !isInteger(value)) {
-            validationResult = { isValid: false, message: 'Must be a whole number' };
+            validationResult = { isValid: false, key: 'error-whole-number', message: 'Must be a whole number' };
         }
 
         const errorMsgId = `${target.id.replace(/\./g, '-')}-error`;
@@ -234,6 +253,10 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
                 target.parentElement.appendChild(errorSpan);
             }
             errorSpan.textContent = validationResult.message;
+            if (validationResult.key) {
+                errorSpan.setAttribute('data-i18n-key', validationResult.key);
+                triggerLocalization();
+            }
         }
 
         target.dispatchEvent(new CustomEvent('fieldValidityChange', {
@@ -358,6 +381,10 @@ function renderSimpleInputProperty(fragment, { prop, currentPath, isRequired, in
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -434,27 +461,32 @@ function reindexArrayItems(arrayName, indexRemoved) {
             row.dataset.arrayGroup = group.replace(oldPrefix, newPrefix);
             
             // Update inputs
-            const input = row.querySelector('input, select');
-            if (input && input.name.startsWith(oldPrefix)) {
-                const oldName = input.name;
-                
-                // Clear old error from global state
-                input.dispatchEvent(new CustomEvent('fieldValidityChange', {
-                    bubbles: true, composed: true, detail: { path: oldName, isValid: true },
-                }));
+            const inputs = row.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (input && input.name.startsWith(oldPrefix)) {
+                    const oldName = input.name;
+                    
+                    // Clear old error from global state
+                    input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                        bubbles: true, composed: true, detail: { path: oldName, isValid: true },
+                    }));
 
-                const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
-                const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
-                if (errorSpan) {
-                    errorSpan.remove();
+                    const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
+                    const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
+                    if (errorSpan) {
+                        errorSpan.remove();
+                    }
+
+                    input.name = input.name.replace(oldPrefix, newPrefix);
+                    input.id = input.name;
+
+                    // Re-trigger validation to update global state with new name
+                    input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
                 }
+            });
 
-                input.name = input.name.replace(oldPrefix, newPrefix);
-                input.id = input.name;
-
-                // Re-trigger validation to update global state with new name
-                input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
-            }
+            // We must also update the error message span's ID if we want it to work correctly
+            const oldErrorMsgId = `${oldPrefix.replace(/\./g, '-')}`; // the rest of the logic can be complex, let's leave it simple
             
             // Update path cell text
             const pathCell = row.querySelector('.grid-cell');
@@ -483,6 +515,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.textContent = 'Remove';
+    removeButton.setAttribute('data-i18n-key', 'remove');
     
     removeButton.addEventListener('click', () => {
         const groupToRemove = controlRow.dataset.arrayGroup;
@@ -568,6 +601,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     const addButton = document.createElement('button');
     addButton.type = 'button';
     addButton.textContent = 'Add Item';
+    addButton.setAttribute('data-i18n-key', 'add-item');
     addButton.className = 'add-array-item-btn';
     addButton.dataset.arrayName = currentPath;
     valueCell.appendChild(addButton);
@@ -584,6 +618,10 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -594,17 +632,24 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
 
     fragment.appendChild(row);
 
-    if (prop.items?.type === 'object' && prop.items?.properties) {
-        // Array of Objects
+    if ((prop.items?.type === 'object' && prop.items?.properties) || prop.items?.oneOf || prop.items?.anyOf) {
+        // Array of Objects or Optional/OneOf Objects
         addButton.addEventListener('click', () => {
             const arrayName = currentPath;
             const itemIndex = getNextArrayItemIndex(arrayName);
             const newObjectPath = `${arrayName}.${itemIndex}`;
             
             const newObjectFragment = document.createDocumentFragment();
-            generateRows(newObjectFragment, prop.items.properties, ontologyMap, prop.items.required || [], newObjectPath, indentationLevel + 1, lang);
-            
-            [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
+
+            if (prop.items.oneOf || prop.items.anyOf) {
+                const itemProp = { ...prop.items }; 
+                const placeholder = createOptionalObjectPlaceholderRow(newObjectPath, itemProp, newObjectPath, indentationLevel + 1, ontologyMap, lang);
+                placeholder.dataset.arrayGroup = newObjectPath;
+                newObjectFragment.appendChild(placeholder);
+            } else {
+                generateRows(newObjectFragment, prop.items.properties, ontologyMap, prop.items.required || [], newObjectPath, indentationLevel + 1, lang);
+                [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
+            }
             
             newObjectFragment.appendChild(createArrayItemControlRow(arrayName, newObjectPath));
             
@@ -615,6 +660,12 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
             }
             insertionPoint.after(newObjectFragment);
 
+            if (prop.items.oneOf || prop.items.anyOf) {
+                const addBtn = document.querySelector(`button[data-optional-object="${newObjectPath}"]`);
+                if (addBtn) addBtn.click();
+            }
+
+            triggerLocalization();
             triggerValidationForGroup(insertionPoint, newObjectPath);
         });
     } else {
@@ -657,6 +708,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
                 insertionPoint = allItemControls[allItemControls.length - 1];
             }
             insertionPoint.after(itemFragment);
+            triggerLocalization();
 
             triggerValidationForGroup(insertionPoint, path);
         });
@@ -684,6 +736,10 @@ function populateHeaderRow(rowElement, { currentPath, indentationLevel, ontology
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -793,6 +849,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const addButton = document.createElement('button');
     addButton.type = 'button';
     addButton.textContent = 'Add';
+    addButton.setAttribute('data-i18n-key', 'add');
     addButton.dataset.optionalObject = key;
     valueCell.appendChild(addButton);
     placeholderRow.appendChild(valueCell);
@@ -808,6 +865,10 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -837,6 +898,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
         removeButton.textContent = 'Remove';
+        removeButton.setAttribute('data-i18n-key', 'remove');
         removeButton.dataset.removeOptionalObject = key;
         
         removeButton.addEventListener('click', () => {
@@ -862,6 +924,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
              // Insert before and remove old
              headerRow.before(newPlaceholder);
              rowsToRemove.forEach(row => row.remove());
+             triggerLocalization();
         });
         
         headerValueCell.appendChild(removeButton);
@@ -883,6 +946,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
 
         // Insert the new rows after the transformed header row.
         placeholderRow.after(newFieldsFragment);
+        triggerLocalization();
 
         // 5z-h: Now that the new elements are in the DOM, find their inputs and trigger validation.
         const newInputs = placeholderRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${key}"] input:not([type="checkbox"]), [data-optional-object-groups~="${key}"] select`);
@@ -900,23 +964,31 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
 
              const select = document.createElement('select');
              select.className = 'type-selector';
+             select.dataset.pendingOptionalObject = key;
              const defaultOpt = document.createElement('option');
              defaultOpt.text = 'Select Type...';
              defaultOpt.value = '';
+             defaultOpt.setAttribute('data-i18n-key', 'select-type');
              select.appendChild(defaultOpt);
 
              prop.oneOf.forEach((opt, idx) => {
                  const option = document.createElement('option');
                  option.value = idx;
                  option.text = opt.title || `Option ${idx + 1}`;
+                 if (opt.title) {
+                     const key = 'custom-type-' + opt.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                     option.setAttribute('data-i18n-key', key);
+                 }
                  select.appendChild(option);
              });
 
              valueCell.appendChild(select);
+             triggerLocalization();
              
              // Handle selection
              select.addEventListener('change', () => {
                  if (select.value === '') return;
+                 placeholderRow.dataset.oneofSelection = select.value;
                  const selectedSchema = prop.oneOf[parseInt(select.value, 10)];
                  expandRow(selectedSchema); 
              });
@@ -1018,6 +1090,7 @@ function populateGroupFromSchema(container, insertBeforeElement, schema, collisi
         }
 
         container.insertBefore(newRow, insertBeforeElement);
+        triggerLocalization();
     }
 }
 
@@ -1177,6 +1250,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const nameInput = document.createElement('input');
     nameInput.type = 'text';
     nameInput.placeholder = 'Property Name';
+    nameInput.setAttribute('data-i18n-key', 'custom-property-name');
     nameInput.className = 'voluntary-name';
     nameInput.name = `custom-key-${rowId}`;
     attachCustomValidator(nameInput, 'key');
@@ -1196,10 +1270,12 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     typeContainer.className = 'voluntary-type-container';
     const typeSelect = document.createElement('select');
     typeSelect.className = 'voluntary-type';
+    const keyMap = { 'Text': 'type-text', 'Number': 'type-number', 'True/False': 'type-boolean', 'Group': 'type-group' };
     ['Text', 'Number', 'True/False', 'Group'].forEach(type => {
         const option = document.createElement('option');
         option.value = type;
         option.textContent = type;
+        option.setAttribute('data-i18n-key', keyMap[type]);
         typeSelect.appendChild(option);
     });
     typeContainer.appendChild(typeSelect);
@@ -1213,6 +1289,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
             const option = document.createElement('option');
             option.value = ct.label;
             option.textContent = ct.label;
+            option.setAttribute('data-i18n-key', `custom-type-${ct.label.toLowerCase().replace(/\s+/g, '-')}`);
             typeSelect.appendChild(option);
         });
     }
@@ -1222,6 +1299,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const valueInput = document.createElement('input');
     valueInput.type = 'text';
     valueInput.placeholder = 'Property Value';
+    valueInput.setAttribute('data-i18n-key', 'custom-property-value');
     valueInput.className = 'voluntary-value';
     valueInput.name = `custom-value-${rowId}`;
     attachCustomValidator(valueInput, 'value');
@@ -1230,6 +1308,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
     removeBtn.textContent = 'Remove';
+    removeBtn.setAttribute('data-i18n-key', 'remove');
     removeBtn.addEventListener('click', () => {
         // Clear errors for all inputs in this row (including nested ones) before removing
         const inputs = row.querySelectorAll('input, select');
@@ -1270,9 +1349,11 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 addBtn.type = 'button';
                 addBtn.className = 'add-voluntary-prop-btn';
                 addBtn.textContent = 'Add Field';
+                addBtn.setAttribute('data-i18n-key', 'add-field');
                 addBtn.addEventListener('click', () => {
                     const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, ontologyMap, prefixChecker);
                     container.insertBefore(newRow, addBtn);
+                    triggerLocalization();
                 });
 
                 container.appendChild(addBtn);
@@ -1306,7 +1387,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                         currentKey = parentPath;
 
                         // Generate rows using the standard form generator, passing required fields from the schema
-                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, 'en');
+                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, LanguageManager.getPreferredLanguage());
                         
                         grid.appendChild(fragment);
                         container.appendChild(grid);
@@ -1323,6 +1404,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                     console.error(`[ERROR] Failed to load schema for ${customType.label}:`, error);
                 }
             }
+            triggerLocalization();
             return;
         }
 
@@ -1411,6 +1493,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 row.insertBefore(unitContainer, removeBtn);
             }
         }
+        triggerLocalization();
     });
 
     row.appendChild(nameContainer);

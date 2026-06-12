@@ -118,6 +118,7 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
     css: cssContent,
     jsonLd: jsonLdString,
     customCssUrl: customCssUrl,
-    ontologyMap: ontologyMap
+    ontologyMap: ontologyMap,
+    language: options.language || 'en'
   });
 }

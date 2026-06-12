@@ -1,4 +1,6 @@
 // src/wizard/wizard.js
+import { loadHeader } from '../branding/header.js';
+loadHeader('dpp-header-container', '..');
 import { loadSchema } from '../lib/schema-loader.js';
 import { loadOntology } from '../lib/ontology-loader.js';
 import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
@@ -7,9 +9,14 @@ import { generateHTML } from '../lib/html-generator.js';
 import { transformDpp } from '../util/js/client/dpp-schema-adapter.js';
 import * as jsonld from 'jsonld';
 import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
+import { LanguageManager } from '../lib/language-manager.js';
 
 // --- Module-level state ---
-let currentLanguage = 'en';
+let currentLanguage = LanguageManager.getPreferredLanguage();
+
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
 
 // Caches for holding loaded schemas and ontologies to avoid re-fetching
 let coreSchema = null;
@@ -45,6 +52,45 @@ function saveFormState(container) {
             state.set(input.name, input.value);
         }
     });
+
+    // Save structurally expanded optional objects so they aren't lost on rerender
+    const expandedElements = container.querySelectorAll('[data-remove-optional-object], [data-pending-optional-object]');
+    const expandedObjects = Array.from(expandedElements).map(el => {
+        const key = el.dataset.removeOptionalObject || el.dataset.pendingOptionalObject;
+        
+        // When expanded, the data-oneof-selection attribute is on the parent grid-row
+        const row = el.closest('.grid-row');
+        if (row && row.hasAttribute('data-oneof-selection')) {
+            return `${key}:${row.dataset.oneofSelection}`;
+        }
+        
+        // Fallback for unexpanded pending states (the select itself might have it, though usually not)
+        if (el.hasAttribute('data-oneof-selection')) {
+            return `${key}:${el.dataset.oneofSelection}`;
+        }
+        return key;
+    });
+    if (expandedObjects.length > 0) {
+        state.set('__EXPANDED_OPTIONAL_OBJECTS__', expandedObjects);
+    }
+
+    // Save expanded array indexes
+    const arrayItemControls = container.querySelectorAll('.array-item-control-row');
+    const arrayIndexes = {};
+    arrayItemControls.forEach(row => {
+        const group = row.dataset.arrayGroup;
+        if (!group) return;
+        const lastDot = group.lastIndexOf('.');
+        const arrayName = group.substring(0, lastDot);
+        const index = parseInt(group.substring(lastDot + 1), 10);
+        
+        if (!arrayIndexes[arrayName]) arrayIndexes[arrayName] = [];
+        arrayIndexes[arrayName].push(index);
+    });
+    if (Object.keys(arrayIndexes).length > 0) {
+        state.set('__EXPANDED_ARRAY_INDEXES__', arrayIndexes);
+    }
+
     return state;
 }
 
@@ -56,7 +102,58 @@ function saveFormState(container) {
 function restoreFormState(container, state) {
     if (!container || !state) return;
 
+    // 1. Restore structural expansions first
+    if (state.has('__EXPANDED_OPTIONAL_OBJECTS__')) {
+        const expandedObjects = state.get('__EXPANDED_OPTIONAL_OBJECTS__');
+        if (Array.isArray(expandedObjects)) {
+            expandedObjects.forEach(entry => {
+                const parts = entry.split(':');
+                const key = parts[0];
+                const oneOfSelection = parts.length > 1 ? parts[1] : undefined;
+
+                const addBtn = container.querySelector(`button[data-optional-object="${key}"]`);
+                if (addBtn) {
+                    addBtn.click();
+                    if (oneOfSelection !== undefined) {
+                        const select = container.querySelector(`select[data-pending-optional-object="${key}"]`);
+                        if (select) {
+                            select.value = oneOfSelection;
+                            select.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // 1.5 Restore array expansions
+    if (state.has('__EXPANDED_ARRAY_INDEXES__')) {
+        const arrayIndexes = state.get('__EXPANDED_ARRAY_INDEXES__');
+        Object.entries(arrayIndexes).forEach(([arrayName, indexes]) => {
+            if (!Array.isArray(indexes) || indexes.length === 0) return;
+            
+            const addBtn = container.querySelector(`button.add-array-item-btn[data-array-name="${arrayName}"]`);
+            if (addBtn) {
+                const maxIndex = Math.max(...indexes);
+                // Create all indexes from 0 to maxIndex
+                for (let i = 0; i <= maxIndex; i++) {
+                    addBtn.click();
+                }
+                // Remove the ones that shouldn't exist
+                for (let i = 0; i <= maxIndex; i++) {
+                    if (!indexes.includes(i)) {
+                        const removeBtn = container.querySelector(`.array-item-control-row[data-array-group="${arrayName}.${i}"] button`);
+                        if (removeBtn) removeBtn.click();
+                    }
+                }
+            }
+        });
+    }
+
+    // 2. Restore all standard data inputs
     state.forEach((value, name) => {
+        if (name === '__EXPANDED_OPTIONAL_OBJECTS__' || name === '__EXPANDED_ARRAY_INDEXES__') return;
+        
         const input = container.querySelector(`[name="${name}"]`);
         if (input) {
             if (input.type === 'checkbox') {
@@ -133,7 +230,7 @@ export async function initializeWizard() {
     errorCountBadge = document.getElementById('error-count-badge');
     jsonOutput = document.getElementById('json-output');
     sectorButtons = document.querySelectorAll('.sector-btn');
-    languageSelector = document.getElementById('language-selector');
+    const langWrapper = document.getElementById('language-widget-wrapper');
 
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
     const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
@@ -343,10 +440,6 @@ export async function initializeWizard() {
         saveSession();
     });
 
-    languageSelector.addEventListener('change', async (event) => {
-        currentLanguage = event.target.value;
-        await rerenderAllForms();
-    });
 
     sectorButtons.forEach(button => {
         button.addEventListener('click', async () => {
@@ -366,8 +459,9 @@ export async function initializeWizard() {
             if (existingContainer) {
                 // The MutationObserver will handle clearing validation errors when the container is removed.
                 existingContainer.remove();
-                button.textContent = `Add ${displayName}`;
+                button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('remove-', 'add-'));
                 button.classList.remove('remove-btn-active');
+                triggerLocalization();
             } else {
                 // Add Sector
                 try {
@@ -402,8 +496,9 @@ export async function initializeWizard() {
                     // Trigger validation for the new sector form
                     validateAllFields(sectorContainer);
 
-                    button.textContent = `Remove ${displayName}`;
+                    button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('add-', 'remove-'));
                     button.classList.add('remove-btn-active');
+                    triggerLocalization();
 
                 } catch (error) {
                     const targetContainer = (schemaType === 'shared') ? voluntaryModulesContainer : sectorsFormContainer;
@@ -491,6 +586,7 @@ export async function initializeWizard() {
     function addVoluntaryField() {
         const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap, getDefinedPrefixes);
         voluntaryFieldsWrapper.appendChild(fieldRow);
+        triggerLocalization();
     }
 
     function addExternalContext() {
@@ -511,7 +607,7 @@ export async function initializeWizard() {
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
-        removeBtn.textContent = 'Remove';
+        removeBtn.setAttribute('data-i18n-key', 'remove');
         removeBtn.addEventListener('click', () => row.remove());
 
         row.appendChild(prefixInput);
@@ -519,6 +615,7 @@ export async function initializeWizard() {
         row.appendChild(removeBtn);
 
         externalContextsWrapper.appendChild(row);
+        triggerLocalization();
     }
 
     if (addExternalContextBtn && externalContextsWrapper) {
@@ -547,7 +644,7 @@ export async function initializeWizard() {
 
             const dppObject = getDppData();
             const customCssUrl = document.getElementById('custom-css-url')?.value?.trim();
-            const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema });
+            const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema, language: currentLanguage });
 
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
@@ -694,6 +791,27 @@ export async function initializeWizard() {
     // Initial setup
     await initializeCoreForm();
     await restoreSession();
+
+    if (langWrapper) {
+        langWrapper.innerHTML = '';
+        
+        // Initialize Language Manager with both files
+        await LanguageManager.init(['index.i18n.json', '../lib/validation-errors.i18n.json']);
+
+        document.addEventListener('languageChanged', async (e) => {
+            if (e.detail.language !== currentLanguage) {
+                currentLanguage = e.detail.language;
+                await rerenderAllForms();
+                
+                // Re-validate everything because rerender wiped DOM and MutationObserver cleared errors
+                validateAllFields(coreFormContainer);
+                validateAllFields(sectorsFormContainer);
+                validateAllFields(voluntaryModulesContainer);
+                validateAllFields(voluntaryFieldsWrapper);
+                validateAllFields(externalContextsWrapper);
+            }
+        });
+    }
 
     // Expose schemas for the testing environment
     window.testing = {

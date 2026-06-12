@@ -1,8 +1,9 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 // Import the parser from the other script to read ontology files
-import { parseOntologyMetadata, getFragment } from './generate-spec-docs.mjs';
+import { parseOntologyMetadata, getFragment, renderI18nSpan } from './generate-spec-docs.mjs';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import * as cheerio from 'cheerio';
 
 const PROJECT_ROOT = process.cwd();
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
@@ -66,7 +67,7 @@ export async function generateFileList(dirPath, baseHref, options = {}, rootPath
           if (classes.length > 0) {
             const classLinks = classes.map(c => {
               const classLinkHref = `${baseHref}${fileName}/${getFragment(c.id)}.html`;
-              return `                                        <li><a href="${classLinkHref}">${c.label}</a></li>`;
+              return `                                        <li><a href="${classLinkHref}">${renderI18nSpan(c.label)}</a></li>`;
             }).join('\n');
             listItems.push(`                            <li class="expandable"><details><summary><a href="${linkHref}">${linkText}</a></summary><ul>
 ${classLinks}
@@ -173,26 +174,33 @@ async function generateUtilIndex(srcUtilDir, outputHtmlPath) {
         .container { max-width: 800px; margin: 0 auto; padding: 20px; }
         ul { list-style-type: none; padding: 0; }
         li { margin: 10px 0; }
-        a { text-decoration: none; color: var(--primary-color); }
+        a { text-decoration: none; color: var(--keystone-blue); }
         a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <a href="../index.html">← Back to Main Index</a>
-            <h1>DPP Keystone Utilities</h1>
+        <div id="dpp-header-container"></div>
+        <nav style="margin-bottom: 20px;">
+            <a href="../index.html" data-i18n-key="back-to-home">← Back to Main Index</a>
+        </nav>
+        <main class="card">
+            <h1 data-i18n-key="developer-sdks">DPP Keystone Utilities</h1>
             <p>Public-facing libraries and reference implementations.</p>
-        </header>
-        <main>
             <ul>
 ${fileListHtml}
             </ul>
         </main>
         <footer>
-            <p><small>DPP Keystone Project | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
+            <p><small data-i18n-key="part-of-the-dpp-keystone">DPP Keystone Project | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { loadHeader } from '../branding/header.js';
+        import { LanguageManager } from '../lib/language-manager.js';
+        loadHeader('dpp-header-container', '..');
+        LanguageManager.init('../index.i18n.json');
+    </script>
 </body>
 </html>`;
 
@@ -290,6 +298,40 @@ export async function updateIndexHtml({
     );
 
     await generateUtilIndex(utilsPath, path.join(path.dirname(outputPath), 'util', 'index.html'));
+
+    indexContent = indexContent.replace('./src/lib/language-manager.js', './lib/language-manager.js');
+
+    const i18nPath = path.join(PROJECT_ROOT, 'index.i18n.json');
+    try {
+        const translations = JSON.parse(await fs.readFile(i18nPath, 'utf-8'));
+        const $ = cheerio.load(indexContent, { recognizeSelfClosing: true });
+        let injected = false;
+        
+        $('[data-i18n-key]').each((i, el) => {
+            const $el = $(el);
+            const key = $el.attr('data-i18n-key');
+            if (translations[key]) {
+                const enTranslation = translations[key].find(t => t['@language'] === 'en');
+                if (enTranslation) {
+                    if (el.tagName.toLowerCase() === 'input' && $el.attr('placeholder') !== undefined) {
+                        $el.attr('placeholder', enTranslation['@value']);
+                    } else {
+                        $el.html(enTranslation['@value']);
+                    }
+                    injected = true;
+                }
+            }
+        });
+        
+        if (injected) {
+            indexContent = $.html();
+        }
+    } catch (error) {
+        console.warn(`Warning: Could not process translations for index.html: ${error.message}`);
+    }
+
+    // Replace any {{VERSION}} placeholders that were injected from the i18n JSON
+    indexContent = indexContent.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
 
     // Write to the output path now
     await fs.writeFile(outputPath, indexContent, 'utf-8');

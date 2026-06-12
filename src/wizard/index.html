@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Wizard</title>
@@ -16,58 +14,22 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <img src="../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
-            <div>
-                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
-                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the Digital Product Passport</p>
-            </div>
-        </header>
+        <div id="dpp-header-container"></div>
 
         <div id="wizard-container" class="card">
-            <h1>DPP Wizard</h1>
-            <div id="global-form-controls">
-                <div class="form-group">
-                    <label for="language-selector">Language:</label>
-                    <select id="language-selector">
-                        <option value="bg">Български (Bulgarian)</option>
-                        <option value="hr">Hrvatski (Croatian)</option>
-                        <option value="cs">Čeština (Czech)</option>
-                        <option value="da">Dansk (Danish)</option>
-                        <option value="nl">Nederlands (Dutch)</option>
-                        <option value="en" selected>English</option>
-                        <option value="et">Eesti (Estonian)</option>
-                        <option value="fi">Suomi (Finnish)</option>
-                        <option value="fr">Français (French)</option>
-                        <option value="de">Deutsch (German)</option>
-                        <option value="el">Ελληνικά (Greek)</option>
-                        <option value="hu">Magyar (Hungarian)</option>
-                        <option value="ga">Gaeilge (Irish)</option>
-                        <option value="it">Italiano (Italian)</option>
-                        <option value="lv">Latviešu (Latvian)</option>
-                        <option value="lt">Lietuvių (Lithuanian)</option>
-                        <option value="mt">Malti (Maltese)</option>
-                        <option value="pl">Polski (Polish)</option>
-                        <option value="pt">Português (Portuguese)</option>
-                        <option value="ro">Română (Romanian)</option>
-                        <option value="sk">Slovenčina (Slovak)</option>
-                        <option value="sl">Slovenščina (Slovenian)</option>
-                        <option value="es">Español (Spanish)</option>
-                        <option value="sv">Svenska (Swedish)</option>
-                    </select>
-                </div>
-            </div>
+            <h1 data-i18n-key="dpp-wizard"></h1>
+
             <div id="core-form-container">
                 <!-- Core DPP form fields will be generated here -->
             </div>
             <div id="sector-selection">
-                <h2>1. Select Applicable Sectors</h2>
+                <h2 data-i18n-key="1-select-applicable-sectors"></h2>
                 <div id="sector-buttons">
-                    <button class="sector-btn" data-sector="battery">Add Battery</button>
-                    <button class="sector-btn" data-sector="construction">Add Construction</button>
-                    <button class="sector-btn" data-sector="electronics">Add Electronics</button>
-                    <button class="sector-btn" data-sector="iron-steel">Add Iron or Steel</button>
-                    <button class="sector-btn" data-sector="textile">Add Textile</button>
+                    <button class="sector-btn" data-sector="battery" data-i18n-key="add-battery"></button>
+                    <button class="sector-btn" data-sector="construction" data-i18n-key="add-construction"></button>
+                    <button class="sector-btn" data-sector="electronics" data-i18n-key="add-electronics"></button>
+                    <button class="sector-btn" data-sector="iron-steel" data-i18n-key="add-iron-or-steel"></button>
+                    <button class="sector-btn" data-sector="textile" data-i18n-key="add-textile"></button>
                 </div>
             </div>
             <div id="sectors-form-container">
@@ -75,64 +37,60 @@
             </div>
     
             <div id="voluntary-info-container">
-                <h2>2. Add Voluntary Information & Contexts</h2>
+                <h2 data-i18n-key="2-add-voluntary-information-amp"></h2>
                 <div style="margin-bottom: 15px;">
-                    <button class="sector-btn" data-sector="general-product" data-schema-type="shared">Add General Product Information</button>
-                    <button class="sector-btn" data-sector="packaging" data-schema-type="shared">Add Packaging</button>
+                    <button class="sector-btn" data-sector="general-product" data-schema-type="shared" data-i18n-key="add-general-product-information"></button>
+                    <button class="sector-btn" data-sector="packaging" data-schema-type="shared" data-i18n-key="add-packaging"></button>
                 </div>
                 <div id="voluntary-modules-container">
                     <!-- Voluntary module forms (General Info, Packaging) will be generated here -->
                 </div>
                 
-                <h3>External Contexts</h3>
-                <p class="help-text">Add external JSON-LD contexts or namespaces to use custom prefixes (e.g. <code>ex:myField</code>).</p>
+                <h3 data-i18n-key="external-contexts"></h3>
+                <p class="help-text" data-i18n-key="add-external-json-ld-contexts"></p>
                 <div id="external-contexts-wrapper">
                     <!-- External context rows will be added here -->
                 </div>
-                <button type="button" id="add-external-context-btn" style="margin-bottom: 20px;">Add Context</button>
+                <button type="button" id="add-external-context-btn" style="margin-bottom: 20px;" data-i18n-key="add-context"></button>
 
-                <h3>Custom Fields</h3>
+                <h3 data-i18n-key="custom-fields"></h3>
                 <div id="voluntary-fields-wrapper">
                     <!-- Dynamic name-value fields will be added here -->
                 </div>
-                <button type="button" id="add-voluntary-field-btn">Add Field</button>
+                <button type="button" id="add-voluntary-field-btn" data-i18n-key="add-field"></button>
             </div>
     
             <hr>
 
             <div id="dpp-generation-section">
-                <h2>3. Generate Passport</h2>
+                <h2 data-i18n-key="3-generate-passport"></h2>
                 <div class="button-group">
-                    <button id="generate-dpp-btn">Generate DPP</button>
-                    <button id="show-errors-btn" class="remove-btn-active" hidden>Show Errors (<span id="error-count-badge">0</span>)</button>
+                    <button id="generate-dpp-btn" data-i18n-key="generate-dpp"></button>
+                    <button id="show-errors-btn" class="remove-btn-active" hidden=""><span data-i18n-key="show-errors">Show Errors</span> (<span id="error-count-badge">0</span>)</button>
                 </div>
 
                 <div id="output-container" style="margin-top: 30px;">
-                    <h3>Generated JSON</h3>
+                    <h3 data-i18n-key="generated-json"></h3>
                     <pre id="json-output"></pre>
                 </div>
                 
                 <div id="html-generation-wrapper" style="margin-top: 20px;">
-                    <h3>Visualization</h3>
+                    <h3 data-i18n-key="visualization"></h3>
                     <div class="form-group">
-                        <label for="custom-css-url">Custom CSS URL (optional):</label>
-                        <input type="text" id="custom-css-url" placeholder="https://example.com/style.css" style="width: 100%; max-width: 400px;">
+                        <label for="custom-css-url" data-i18n-key="custom-css-url-optional"></label>
+                        <input type="text" id="custom-css-url" placeholder="" style="width: 100%; max-width: 400px;" data-i18n-key="https-example-com-style-css">
                     </div>
                     <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                        <button id="preview-schema-btn" style="background-color: #005f9e; color: white;">Preview HTML With Schema.org</button>
-                        <button id="preview-no-schema-btn" class="secondary">Preview HTML Without Schema</button>
-                        <button id="schema-btn" class="secondary">Preview Schema.org</button>
+                        <button id="preview-schema-btn" style="background-color: #005f9e; color: white;" data-i18n-key="preview-html-with-schema-org"></button>
+                        <button id="preview-no-schema-btn" class="secondary" data-i18n-key="preview-html-without-schema"></button>
+                        <button id="schema-btn" class="secondary" data-i18n-key="preview-schema-org"></button>
                     </div>
 
                     <div style="font-size: 0.9em; color: #666; background: #f9f9f9; padding: 10px; border-radius: 4px;">
-                        <p style="margin-top: 0;"><strong>About these tools:</strong></p>
+                        <p style="margin-top: 0;"><strong data-i18n-key="about-these-tools"></strong></p>
                         <ul style="padding-left: 20px; margin-bottom: 0;">
-                            <li style="margin-bottom: 5px;">
-                                <strong>HTML Preview:</strong> Renders your JSON data into a user-friendly web page. This feature uses code freely available in our Developer SDKs and is intended to serve as inspiration for how a legally compliant JSON DPP can be visualized.
-                            </li>
-                            <li>
-                                <strong>Schema.org Generation:</strong> Transforms your DPP data into <a href="https://schema.org/Product" target="_blank">Schema.org Product</a> structured data (JSON-LD). This format is optimized for search engines (Google, Bing) and e-commerce integration, making your product data machine-readable and discoverable.
-                            </li>
+                            <li style="margin-bottom: 5px;" data-i18n-key="html-preview-renders-your-json"></li>
+                            <li data-i18n-key="schema-org-generation-transforms-your"></li>
                         </ul>
                     </div>
                 </div>
@@ -140,9 +98,10 @@
         </div>
 
         <footer>
-            <p><small>Part of the <a href="../index.html">DPP Keystone</a> project. | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
+            <p><small data-i18n-key="part-of-the-dpp-keystone"></small></p>
         </footer>
     </div>
     <script type="module" src="wizard.js"></script>
-</body>
-</html>
+
+
+</body></html>
