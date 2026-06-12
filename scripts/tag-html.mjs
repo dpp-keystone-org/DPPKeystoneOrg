@@ -16,7 +16,7 @@ const filesToProcess = [
 ];
 
 function generateKey(text, existingKeys) {
-    const cleanText = text.replace(/<[^>]+>/g, '').trim();
+    const cleanText = text.replace(/<[^>]*>/g, '').replace(/[<>]/g, '').trim();
     const words = cleanText.split(/[^a-zA-Z0-9]+/).filter(w => w.length > 0).slice(0, 5);
     let baseKey = words.map(w => w.toLowerCase()).join('-');
     
