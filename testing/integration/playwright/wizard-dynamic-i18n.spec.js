@@ -211,4 +211,95 @@ test.describe('Wizard Dynamic Translation', () => {
         expect(preMatch[1]).toBe(postMatch[1]);
     });
 
+    test('deep un-translated regressions on custom fields and objects', async ({ page }) => {
+        // Clear storage to start clean
+        await page.addInitScript(() => {
+            window.localStorage.clear();
+        });
+
+        await page.goto('/wizard/index.html');
+        const languageSelector = page.locator('#language-selector');
+
+        // 1. notifiedBody: click "Hinzufügen", click "Entfernen", button should say "Hinzufügen" again
+        await languageSelector.selectOption('de');
+        
+        // Add construction sector which contains notifiedBody
+        const addConstructionBtn = page.locator('button[data-sector="construction"]');
+        await addConstructionBtn.click();
+
+        const addNotifiedBodyBtn = page.locator('button[data-optional-object="notifiedBody"]');
+        await expect(addNotifiedBodyBtn).toHaveText('Hinzufügen'); // Initial translated state
+        await addNotifiedBodyBtn.click();
+        
+        const removeNotifiedBodyBtn = page.locator('button[data-remove-optional-object="notifiedBody"]');
+        await removeNotifiedBodyBtn.click();
+
+        // Should say "Hinzufügen" again, NOT "Add"
+        await expect(addNotifiedBodyBtn).toHaveText('Hinzufügen');
+        await expect(addNotifiedBodyBtn).not.toHaveText('Add');
+
+        // 2. Custom fields placeholders
+        const addVoluntaryFieldBtn = page.locator('#add-voluntary-field-btn');
+        await addVoluntaryFieldBtn.click();
+
+        const propNameInput = page.locator('input.voluntary-name').last();
+        const propValueInput = page.locator('input.voluntary-value').last();
+        
+        // Assert placeholders are translated
+        await expect(propNameInput).not.toHaveAttribute('placeholder', 'Property Name');
+        await expect(propValueInput).not.toHaveAttribute('placeholder', 'Property Value');
+
+        // 3. Type selector options shouldn't be hardcoded English
+        const typeSelector = page.locator('select.voluntary-type').last();
+        // Check that the dropdown options themselves are translated
+        const optionsText = await typeSelector.innerText();
+        // 'Text' is omitted because the German translation for 'Text' is also 'Text'
+        expect(optionsText).not.toContain('Number');
+        expect(optionsText).not.toContain('Group');
+
+        // 4. Select "Organization" and verify fields are not called "Organization Name"
+        // Organization is one of the schema types added to the customTypeRegistry
+        // We select by value because value usually stays as the underlying schema ID/label
+        await typeSelector.selectOption({ label: 'Organisation' });
+        
+        // Check if English properties leak into the UI
+        const customFieldRow = page.locator('.voluntary-field-row').last();
+        const customFieldText = await customFieldRow.innerText();
+        expect(customFieldText).not.toContain('Organization Name');
+
+        // 5. Click "Hinzufügen" on the address inside Organization. Click "Entfernen". Verify it reverts to "Hinzufügen".
+        const addAddressBtn = customFieldRow.locator('button[data-optional-object="address"]').last();
+        await expect(addAddressBtn).toHaveText('Hinzufügen');
+        await addAddressBtn.click();
+        
+        const removeAddressBtn = customFieldRow.locator('button[data-remove-optional-object="address"]').last();
+        await removeAddressBtn.click();
+        
+        await expect(addAddressBtn).toHaveText('Hinzufügen');
+        await expect(addAddressBtn).not.toHaveText('Add');
+    });
+
+    test('type selector options are correctly translated (Spanish)', async ({ page }) => {
+        await page.goto('/wizard/index.html');
+        
+        // Select Spanish
+        const languageSelector = page.locator('#language-selector');
+        await languageSelector.selectOption('es');
+
+        const addVoluntaryFieldBtn = page.locator('#add-voluntary-field-btn');
+        await addVoluntaryFieldBtn.click();
+
+        const typeSelector = page.locator('select.voluntary-type').last();
+        const optionsText = await typeSelector.innerText();
+        
+        // Assert English is gone
+        expect(optionsText).not.toContain('Number');
+        expect(optionsText).not.toContain('Group');
+        
+        // Assert Spanish is present
+        expect(optionsText).toContain('Texto');
+        expect(optionsText).toContain('Número');
+        expect(optionsText).toContain('Grupo');
+    });
+
 });
