@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const langWrapper = document.getElementById('language-widget-wrapper');
     if (langWrapper) {
         langWrapper.innerHTML = '';
-        LanguageManager.init('index.i18n.json');
+        LanguageManager.init(['index.i18n.json', '../lib/validation-errors.i18n.json']);
     }
 
     // 1. Load Schemas
@@ -74,9 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (schemaBtn) schemaBtn.disabled = false;
     } catch (error) {
         console.error('Failed to load schemas:', error);
-        resultBox.hidden = false;
-        resultBox.className = 'result-box error';
-        resultBox.textContent = 'System Error: Failed to load validation schemas. Check console for details.';
+        showError(LanguageManager.t('error-load-schema', 'System Error: Failed to load validation schemas. Check console for details.'));
         validateBtn.disabled = true;
         return;
     }
@@ -125,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         resultBox.className = 'result-box';
 
         if (!inputStr) {
-            showError('Please paste a JSON object to validate.');
+            showError(LanguageManager.t('error-no-json', 'Please paste a JSON object to validate.'));
             return;
         }
 
@@ -141,7 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 isJsonc = true;
             } catch (jsoncError) {
                 // If both fail, show the original error (or maybe the JSONC one if it's cleaner, but original is safer)
-                showError('Invalid JSON format: ' + e.message);
+                showError(`${LanguageManager.t('error-invalid-json', 'Invalid JSON format:')} ${e.message}`);
                 return;
             }
         }
@@ -202,17 +200,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             if (isValid) {
+                const msg = LanguageManager.t('validation-successful-msg', 'The DPP data conforms to all schemas and strict ontology logic.');
                 if (isJsonc) {
-                    showSuccessWithWarning('Validation Successful! (Note: Comments were stripped from valid JSONC)', 'The DPP data conforms to all schemas and strict ontology logic.');
+                    showSuccessWithWarning(LanguageManager.t('validation-successful-comments', 'Validation Successful! (Note: Comments were stripped from valid JSONC)'), msg);
                 } else {
-                    showSuccess('Validation Successful! The DPP data conforms to all schemas and strict ontology logic.');
+                    showSuccess(`${LanguageManager.t('validation-successful', 'Validation Successful!')} ${msg}`);
                 }
             } else {
                 showValidationErrors(allErrors, isJsonc);
             }
         } catch (e) {
             console.error(e);
-            showError('An unexpected error occurred during validation: ' + e.message);
+            showError(`${LanguageManager.t('error-unexpected', 'An unexpected error occurred during validation:')} ${e.message}`);
         } finally {
             validateBtn.disabled = false;
         }
@@ -224,7 +223,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         resultBox.hidden = true;
 
         if (!inputStr) {
-            showError('Please paste a JSON object to preview.');
+            showError(LanguageManager.t('error-no-json', 'Please paste a JSON object to preview.'));
             return;
         }
 
@@ -377,7 +376,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function showSuccessWithWarning(title, msg) {
         resultBox.hidden = false;
         resultBox.className = 'result-box success';
-
+        
         const strong = document.createElement('strong');
         strong.textContent = title;
         resultBox.appendChild(strong);
@@ -394,14 +393,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         resultBox.className = 'result-box error';
 
         const heading = document.createElement('h3');
-        heading.textContent = `Validation Failed (${errors.length} errors)`;
+        const countText = LanguageManager.t('errors-count', '({count} errors)').replace('{count}', errors.length);
+        heading.textContent = `${LanguageManager.t('validation-failed', 'Validation Failed')} ${countText}`;
         resultBox.appendChild(heading);
 
         if (isJsonc) {
             const note = document.createElement('p');
             note.style.fontSize = '0.9em';
             note.style.fontStyle = 'italic';
-            note.textContent = '(Note: Input was parsed as JSONC. Line numbers in errors refer to the structure, not the original text lines.)';
+            note.textContent = LanguageManager.t('validation-failed-note', '(Note: Input was parsed as JSONC. Line numbers in errors refer to the structure, not the original text lines.)');
             resultBox.appendChild(note);
         }
 
@@ -411,7 +411,38 @@ document.addEventListener('DOMContentLoaded', async () => {
             const strong = document.createElement('strong');
             strong.textContent = err.instancePath || 'root';
             li.appendChild(strong);
-            li.appendChild(document.createTextNode(`: ${err.message}`));
+
+            let translatedMsg = err.message;
+            if (err.keyword === 'required' && err.params && err.params.missingProperty) {
+                translatedMsg = `${LanguageManager.t('error-required', 'Missing required property')}: '${err.params.missingProperty}'`;
+            } else if (err.keyword === 'type' && err.params && err.params.type) {
+                if (err.params.type === 'integer') {
+                    translatedMsg = LanguageManager.t('error-whole-number', 'Must be a whole number');
+                } else if (err.params.type === 'number' || err.params.type === 'decimal') {
+                    translatedMsg = LanguageManager.t('error-valid-number', 'Must be a valid number');
+                } else {
+                    translatedMsg = `Must be of type ${err.params.type}`;
+                }
+            } else if (err.keyword === 'format' && err.params && err.params.format) {
+                if (err.params.format === 'uri') {
+                    translatedMsg = LanguageManager.t('error-valid-uri', 'Must be a valid URI');
+                } else if (err.params.format === 'date' || err.params.format === 'dateTime') {
+                    // Fallback to English for date formats if no specific translation available
+                    translatedMsg = `Must be a valid ${err.params.format}`; 
+                } else {
+                    translatedMsg = `Must match format ${err.params.format}`;
+                }
+            } else if (err.keyword === 'pattern' && err.params && err.params.pattern) {
+                if (err.params.pattern === 'country code') {
+                    translatedMsg = LanguageManager.t('error-country-code', 'Must be a valid 2 or 3-letter country code');
+                } else if (err.params.pattern === 'no control characters') {
+                    translatedMsg = LanguageManager.t('error-invalid-chars', 'Invalid characters detected');
+                } else {
+                    translatedMsg = err.message;
+                }
+            }
+
+            li.appendChild(document.createTextNode(`: ${translatedMsg}`));
             ul.appendChild(li);
         });
         resultBox.appendChild(ul);

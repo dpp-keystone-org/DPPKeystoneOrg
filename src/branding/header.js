@@ -12,7 +12,9 @@ export function loadHeader(containerId, pathToRoot = '') {
                     <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);" data-i18n-key="harmonizing-data-for-the-digital">Harmonizing Data for the Digital Product Passport</p>
                 </div>
             </a>
-            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
+            <div style="margin-left: auto; display: flex; align-items: center;">
+                <div id="language-widget-wrapper"></div>
+            </div>
         </header>
     `;
 }

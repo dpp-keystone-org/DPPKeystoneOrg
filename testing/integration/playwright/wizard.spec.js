@@ -434,6 +434,32 @@ test('should manage multiple sector forms independently', async ({ page }) => {
   await expect(constructionFormContainer).toBeVisible();
 });
 
+test('should render oneOf choices for array items with oneOf definitions', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+
+  // Add General Product Information module
+  const addGeneralProductBtn = page.locator('button[data-sector="general-product"]');
+  await addGeneralProductBtn.click();
+  
+  // Wait for the form to be visible
+  await expect(page.locator('#sector-form-general-product')).toBeVisible();
+
+  // Add an item to additionalCertifications array
+  const addCertificationBtn = page.locator('button[data-array-name="additionalCertifications"]');
+  await addCertificationBtn.click();
+
+  // A type selector should appear since the items are a oneOf choice
+  const typeSelector = page.locator('select.type-selector').last();
+  await expect(typeSelector).toBeVisible();
+
+  // Select the Certification option
+  await typeSelector.selectOption({ label: 'Certification' });
+
+  // Expanding the choice should show the Certification fields, e.g., name
+  const certNameInput = page.locator('input[name="additionalCertifications.0.name"]');
+  await expect(certNameInput).toBeVisible();
+});
+
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
       await page.goto('/wizard/index.html');
 
@@ -604,7 +630,7 @@ test('should show an error for non-numeric text in a number field', async ({ pag
 
   // 5. Verify specific validation error message
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
-  await expect(page.locator('#batteryMass-error')).toHaveText('Must be a valid number.');
+  await expect(page.locator('#batteryMass-error')).toHaveText('Must be a valid number');
 
   // 6. Correct the input
   await batteryMassInput.fill('100');
@@ -729,7 +755,7 @@ test('validation should not create duplicate error messages', async ({ page }) =
     await expect(epdInput).toHaveClass(/invalid/);
     await expect(page.locator(errorSpanSelector)).toBeVisible();
     await expect(page.locator(errorSpanSelector)).toHaveCount(1);
-    await expect(page.locator(errorSpanSelector)).toHaveText('Must be a valid number.');
+    await expect(page.locator(errorSpanSelector)).toHaveText('Must be a valid number');
 
     // 3. Trigger the same validation error again.
     await epdInput.fill('still not a number');
