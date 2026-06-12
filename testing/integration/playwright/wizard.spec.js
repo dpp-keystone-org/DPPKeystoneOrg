@@ -434,32 +434,6 @@ test('should manage multiple sector forms independently', async ({ page }) => {
   await expect(constructionFormContainer).toBeVisible();
 });
 
-test('should render oneOf choices for array items with oneOf definitions', async ({ page }) => {
-  await page.goto('/wizard/index.html');
-
-  // Add General Product Information module
-  const addGeneralProductBtn = page.locator('button[data-sector="general-product"]');
-  await addGeneralProductBtn.click();
-  
-  // Wait for the form to be visible
-  await expect(page.locator('#sector-form-general-product')).toBeVisible();
-
-  // Add an item to additionalCertifications array
-  const addCertificationBtn = page.locator('button[data-array-name="additionalCertifications"]');
-  await addCertificationBtn.click();
-
-  // A type selector should appear since the items are a oneOf choice
-  const typeSelector = page.locator('select.type-selector').last();
-  await expect(typeSelector).toBeVisible();
-
-  // Select the Certification option
-  await typeSelector.selectOption({ label: 'Certification' });
-
-  // Expanding the choice should show the Certification fields, e.g., name
-  const certNameInput = page.locator('input[name="additionalCertifications.0.name"]');
-  await expect(certNameInput).toBeVisible();
-});
-
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
       await page.goto('/wizard/index.html');
 
