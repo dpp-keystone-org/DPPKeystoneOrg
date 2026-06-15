@@ -434,6 +434,64 @@ test('should manage multiple sector forms independently', async ({ page }) => {
   await expect(constructionFormContainer).toBeVisible();
 });
 
+test('should fully clean up nested fields when removing a parent item (certification)', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  await expect(page.locator('#sector-form-textile')).toBeVisible();
+
+  // Add textileCertifications
+  await page.click('button[data-array-name="textileCertifications"]');
+  
+  // Add nested related resource (document) - document is an optional object, not an array
+  // We can find the add button within the placeholder row for this path
+  const docPlaceholder = page.locator('.grid-row[data-object-path="textileCertifications.0.document"]');
+  await docPlaceholder.locator('button[data-optional-object="document"]').click();
+
+  // Verify the document fields are visible
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).toBeVisible();
+  await expect(page.locator('input[name="textileCertifications.0.document.url"]')).toBeVisible();
+
+  // Remove the parent certification
+  await page.click('.array-item-control-row[data-array-group="textileCertifications.0"] button');
+
+  // Verify that the nested document fields are NO LONGER visible in the DOM
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).not.toBeAttached();
+  await expect(page.locator('input[name="textileCertifications.0.document.url"]')).not.toBeAttached();
+});
+
+test('should fully clean up nested fields when removing a collapsed related resource and then its parent', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  await expect(page.locator('#sector-form-textile')).toBeVisible();
+
+  // Add textileCertifications
+  await page.click('button[data-array-name="textileCertifications"]');
+  
+  // Add nested related resource (document)
+  const docPlaceholder = page.locator('.grid-row[data-object-path="textileCertifications.0.document"]');
+  await docPlaceholder.locator('button[data-optional-object="document"]').click();
+
+  // Verify the document fields are visible
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).toBeVisible();
+
+  // Remove the nested document
+  const removeDocBtn = page.locator('button[data-remove-optional-object="document"]');
+  await removeDocBtn.click();
+
+  // Verify it collapsed
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).not.toBeAttached();
+
+  // Now remove the parent certification
+  await page.click('.array-item-control-row[data-array-group="textileCertifications.0"] button');
+
+  // Verify no lingering fields are left under the certification
+  await expect(page.locator('input[name="textileCertifications.0.name"]')).not.toBeAttached();
+  
+  // The bug was that the document container or path might still linger somewhere, let's just make sure nothing starting with textileCertifications.0 is in the DOM
+  const lingeringInputs = page.locator('input[name^="textileCertifications.0."]');
+  await expect(lingeringInputs).toHaveCount(0);
+});
+
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
       await page.goto('/wizard/index.html');
 

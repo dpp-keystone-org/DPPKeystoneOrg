@@ -524,7 +524,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
         const suffix = groupToRemove.slice(arrayName.length + 1);
         const indexToRemove = parseInt(suffix.split('.')[0], 10);
 
-        const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"]`);
+        const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"], [data-array-group^="${groupToRemove}."]`);
         
         // Robustly clear errors for all inputs associated with this group
         // We look for exact match (simple array) or prefix match (object array)
@@ -942,6 +942,9 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         [...newFieldsFragment.children].forEach(row => {
             // Add the new group and preserve any existing parent groups.
             row.dataset.optionalObjectGroups = newGroup;
+            if (placeholderRow.dataset.arrayGroup) {
+                row.dataset.arrayGroup = placeholderRow.dataset.arrayGroup;
+            }
         });
 
         // Insert the new rows after the transformed header row.
