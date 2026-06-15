@@ -1,4 +1,4 @@
-import { validateAgainstOntology, validateTermTranslations } from '../ontology-validator.js?v=1781526840057';
+import { validateAgainstOntology, validateTermTranslations } from '../ontology-validator.js?v=1781535402746';
 
 describe('Ontology Validator', () => {
     // 1. Basic Primitive Checks

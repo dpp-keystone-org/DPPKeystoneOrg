@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781526840057';
-import { LanguageManager } from '../lib/language-manager.js?v=1781526840057';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1781535402746';
+import { LanguageManager } from '../lib/language-manager.js?v=1781535402746';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
@@ -44,8 +44,29 @@ function createTooltipModal(commentText, governedBy, source) {
         let url = null;
 
         if (typeof source === 'object') {
-            // Try to find a label (English preferred or raw string)
-            label = source['rdfs:label'] || source.label;
+            // Try to find a label
+            let rawLabel = source['rdfs:label'] || source.label;
+            
+            if (Array.isArray(rawLabel)) {
+                const lang = typeof LanguageManager !== 'undefined' ? LanguageManager.getPreferredLanguage() : 'en';
+                const langMatch = rawLabel.find(item => item['@language'] === lang);
+                const enMatch = rawLabel.find(item => item['@language'] === 'en');
+                
+                if (langMatch && langMatch['@value']) {
+                    label = langMatch['@value'];
+                } else if (enMatch && enMatch['@value']) {
+                    label = enMatch['@value'];
+                } else if (rawLabel[0] && rawLabel[0]['@value']) {
+                    label = rawLabel[0]['@value'];
+                } else {
+                    label = rawLabel;
+                }
+            } else if (rawLabel && typeof rawLabel === 'object' && rawLabel['@value']) {
+                label = rawLabel['@value'];
+            } else {
+                label = rawLabel;
+            }
+
             // Try to find an ID/URL
             url = source['@id'] || source.id || source.url;
             
@@ -147,6 +168,7 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
  * @returns {{ontologyInfo: object, unit: string, governedBy: string, source: any}} The inherited info.
  */
 function getInheritedOntologyInfo(currentPath, ontologyMap) {
+    const contextMap = ontologyMap ? ontologyMap.contextMap : null;
     const pathParts = currentPath.split('.');
     let ontologyInfo = null;
     let unit = '';
@@ -156,10 +178,49 @@ function getInheritedOntologyInfo(currentPath, ontologyMap) {
     const checkInfo = (info) => {
         if (!info) return;
         if (!unit && info.unit) unit = info.unit;
+        
+        // If there's no direct unit but there's a range (like KgWeightLiteral), look it up in the ontology
+        if (!unit && info.range && ontologyMap) {
+            let rangeId = info.range;
+            if (rangeId.includes(':')) rangeId = rangeId.split(':')[1];
+            
+            if (ontologyMap.has(rangeId)) {
+                const rangeInfo = ontologyMap.get(rangeId);
+                if (rangeInfo.unit) unit = rangeInfo.unit;
+            }
+        }
+        
         if (!governedBy && info.governedBy) governedBy = info.governedBy;
         if (!source) source = info.source || info['dcterms:source'];
     };
 
+    // First, try resolving via context mapping.
+    // The context map uses normalized paths without array indices (e.g. 'substancesOfConcern.casNumber' instead of 'substancesOfConcern.0.casNumber')
+    if (contextMap) {
+        // Strip array indices from the path
+        const normalizedPath = pathParts.filter(p => isNaN(p)).join('.');
+        if (contextMap.has(normalizedPath)) {
+            const ontologyId = contextMap.get(normalizedPath);
+            const mappedInfo = ontologyMap.get(ontologyId);
+            if (mappedInfo) {
+                ontologyInfo = mappedInfo;
+                checkInfo(mappedInfo);
+            }
+        }
+        
+        // Also check if just the property name itself is mapped in the context (global mapping)
+        const leafKey = pathParts[pathParts.length - 1];
+        if (!ontologyInfo && contextMap.has(leafKey)) {
+            const leafOntologyId = contextMap.get(leafKey);
+            const leafMappedInfo = ontologyMap.get(leafOntologyId);
+            if (leafMappedInfo) {
+                ontologyInfo = leafMappedInfo;
+                checkInfo(leafMappedInfo);
+            }
+        }
+    }
+
+    // Fall back to the original method: walking backwards through the raw path keys
     for (let i = pathParts.length - 1; i >= 0; i--) {
         const info = ontologyMap.get(pathParts[i]);
         if (info) {
@@ -373,13 +434,13 @@ function renderSimpleInputProperty(fragment, { prop, currentPath, isRequired, in
 
     // --- 3. Unit Cell ---
     const unitCell = document.createElement('div');
-    unitCell.className = 'grid-cell';
+    unitCell.className = 'grid-cell unit-cell';
     unitCell.textContent = unit || '';
     row.appendChild(unitCell);
 
     // --- 4. Ontology Cell (Label) ---
     const ontologyCell = document.createElement('div');
-    ontologyCell.className = 'grid-cell';
+    ontologyCell.className = 'grid-cell label-cell';
     if (ontologyInfo?.label) {
         if (typeof ontologyInfo.label === 'object') {
             ontologyCell.classList.add('i18n-ontology');
@@ -1037,10 +1098,19 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
  * Generates an HTML form from a JSON schema using a 3-column grid layout.
  * @param {object} schema - The JSON schema object.
  * @param {Map<string, {label: string, comment: string}>} [ontologyMap=new Map()] - A map of ontology terms.
+ * @param {Map<string, string>} [contextMap=new Map()] - A map of context paths.
  * @param {string} [lang='en'] - The current language code.
  * @returns {DocumentFragment} A document fragment containing the generated form elements.
  */
-export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
+export function buildForm(schema, ontologyMap = new Map(), contextMap = new Map(), lang = 'en') {
+    // Backward compatibility for tests calling buildForm(schema, ontologyMap, lang)
+    if (typeof contextMap === 'string') {
+        lang = contextMap;
+        contextMap = new Map();
+    }
+    
+    // Attach contextMap to ontologyMap so we don't have to pass it through all recursive functions
+    ontologyMap.contextMap = contextMap;
     // console.log('[FormBuilder] buildForm received schema:', JSON.stringify(schema, null, 2));
     const fragment = document.createDocumentFragment();
     let properties = null;
