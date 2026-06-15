@@ -87,8 +87,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
 
         const loadOntologyMock = jest.fn();
+        const loadContextMock = jest.fn();
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: loadOntologyMock,
+            loadContext: loadContextMock,
         }));
 
         // Setup the mock implementations
@@ -201,6 +203,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         // 3. Initialize the wizard
@@ -263,6 +266,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         const { initializeWizard } = await import('../../dist/wizard/wizard.js');
@@ -284,6 +288,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
         const mockGenerateHTML = jest.fn().mockResolvedValue('<html></html>');
         jest.unstable_mockModule('../dist/lib/html-generator.js', () => ({
@@ -330,6 +335,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector) => {
@@ -393,6 +399,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector) => {
@@ -471,6 +478,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((name) => {
@@ -531,6 +539,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector, schemaType) => {
@@ -596,6 +605,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector) => {
@@ -648,6 +658,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         // 2. Initialize Wizard

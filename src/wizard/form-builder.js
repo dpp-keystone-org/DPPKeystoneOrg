@@ -1070,6 +1070,12 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
  * @returns {DocumentFragment} A document fragment containing the generated form elements.
  */
 export function buildForm(schema, ontologyMap = new Map(), contextMap = new Map(), lang = 'en') {
+    // Backward compatibility for tests calling buildForm(schema, ontologyMap, lang)
+    if (typeof contextMap === 'string') {
+        lang = contextMap;
+        contextMap = new Map();
+    }
+    
     // Attach contextMap to ontologyMap so we don't have to pass it through all recursive functions
     ontologyMap.contextMap = contextMap;
     // console.log('[FormBuilder] buildForm received schema:', JSON.stringify(schema, null, 2));
