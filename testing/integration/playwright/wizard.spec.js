@@ -628,31 +628,29 @@ test('should map ontology data correctly for nested components (e.g. substancesO
   await page.click('button[data-array-name="substancesOfConcern"]');
 
   // Verify that the ontology correctly provided the detailed labels instead of raw property names
-  const casCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.casNumber"]) .grid-cell').first();
+  const casCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.casNumber"]) .label-cell');
   await expect(casCell).toHaveText(/CAS Number/i);
 
-  const nameCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.name"]) .grid-cell').first();
+  const nameCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.name"]) .label-cell');
   await expect(nameCell).toHaveText(/Component Name/i);
 
-  const ecCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.ecNumber"]) .grid-cell').first();
+  const ecCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.ecNumber"]) .label-cell');
   await expect(ecCell).toHaveText(/EC Number/i);
 
-  const iupacCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.iupacName"]) .grid-cell').first();
+  const iupacCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.iupacName"]) .label-cell');
   await expect(iupacCell).toHaveText(/IUPAC Name/i);
 });
 
 test('should display units for physical dimensions in general product information', async ({ page }) => {
   await page.goto('/wizard/index.html');
-  await page.click('button[data-sector="textile"]');
+  await page.click('button[data-sector="general-product"]');
   
-  // Physical dimensions are direct properties in the textile schema
+  // Physical dimensions are direct properties in the general-product schema
   const fields = ['netWeight', 'grossWeight', 'length', 'width', 'height', 'depth'];
   
   for (const field of fields) {
-    // The unit is typically displayed in a .tooltip-button or a separate span, but let's check for any text indicating a unit like "kg" or "cm"
-    // For now we check if there's a span with the class 'unit-label' or if the unit is included in the tooltip or value cell
-    // Let's assert that a unit span exists next to the input
-    const unitSpan = page.locator(`.grid-row:has(input[name="${field}"]) .unit-label`);
+    // The unit is typically displayed in the .unit-cell
+    const unitSpan = page.locator(`.grid-row:has(input[name="${field}"]) .unit-cell`);
     await expect(unitSpan).toBeVisible({ timeout: 2000 });
     await expect(unitSpan).not.toBeEmpty();
   }

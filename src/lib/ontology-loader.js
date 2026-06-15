@@ -273,7 +273,7 @@ export async function loadContext(sector) {
             if (!response.ok) return;
             const data = await response.json();
 
-            async function flattenContext(ctxObj) {
+            async function flattenContext(ctxObj, prefix = '') {
                 if (!ctxObj) return;
 
                 // If @context is an array, process each item
@@ -282,7 +282,7 @@ export async function loadContext(sector) {
                         if (typeof item === 'string') {
                             await processContext(item);
                         } else if (typeof item === 'object') {
-                            await flattenContext(item);
+                            await flattenContext(item, prefix);
                         }
                     }
                     return;
@@ -294,25 +294,29 @@ export async function loadContext(sector) {
                         if (typeof value === 'string') {
                             await processContext(value);
                         } else {
-                            await flattenContext(value);
+                            await flattenContext(value, prefix);
                         }
                         continue;
                     }
                     if (key.startsWith('@')) continue;
 
+                    const fullKey = prefix ? `${prefix}.${key}` : key;
+
                     if (typeof value === 'string') {
                         let ontologyId = value;
                         if (ontologyId.includes(':')) ontologyId = ontologyId.split(':')[1];
-                        contextMap.set(key, ontologyId);
+                        contextMap.set(fullKey, ontologyId);
+                        if (!contextMap.has(key)) contextMap.set(key, ontologyId); // global fallback if not set
                     } else if (typeof value === 'object') {
                         if (value['@id']) {
                             let ontologyId = value['@id'];
                             if (ontologyId.includes(':')) ontologyId = ontologyId.split(':')[1];
-                            contextMap.set(key, ontologyId);
+                            contextMap.set(fullKey, ontologyId);
+                            if (!contextMap.has(key)) contextMap.set(key, ontologyId); // global fallback if not set
                         }
                         // Recurse into scoped contexts
                         if (value['@context']) {
-                            await flattenContext(value['@context']);
+                            await flattenContext(value['@context'], fullKey);
                         }
                     }
                 }

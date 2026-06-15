@@ -157,6 +157,18 @@ function getInheritedOntologyInfo(currentPath, ontologyMap) {
     const checkInfo = (info) => {
         if (!info) return;
         if (!unit && info.unit) unit = info.unit;
+        
+        // If there's no direct unit but there's a range (like KgWeightLiteral), look it up in the ontology
+        if (!unit && info.range && ontologyMap) {
+            let rangeId = info.range;
+            if (rangeId.includes(':')) rangeId = rangeId.split(':')[1];
+            
+            if (ontologyMap.has(rangeId)) {
+                const rangeInfo = ontologyMap.get(rangeId);
+                if (rangeInfo.unit) unit = rangeInfo.unit;
+            }
+        }
+        
         if (!governedBy && info.governedBy) governedBy = info.governedBy;
         if (!source) source = info.source || info['dcterms:source'];
     };
@@ -401,13 +413,13 @@ function renderSimpleInputProperty(fragment, { prop, currentPath, isRequired, in
 
     // --- 3. Unit Cell ---
     const unitCell = document.createElement('div');
-    unitCell.className = 'grid-cell';
+    unitCell.className = 'grid-cell unit-cell';
     unitCell.textContent = unit || '';
     row.appendChild(unitCell);
 
     // --- 4. Ontology Cell (Label) ---
     const ontologyCell = document.createElement('div');
-    ontologyCell.className = 'grid-cell';
+    ontologyCell.className = 'grid-cell label-cell';
     if (ontologyInfo?.label) {
         if (typeof ontologyInfo.label === 'object') {
             ontologyCell.classList.add('i18n-ontology');

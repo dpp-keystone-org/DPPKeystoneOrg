@@ -263,7 +263,8 @@
           { "@language": "sl", "@value": "Dobesedna vrednost, ki predstavlja težo v kilogramih. Sklepalnik lahko to razširi v polno dppk:QuantitativeValue." },
           { "@language": "sv", "@value": "Ett bokstavligt värde som representerar en vikt i kilogram. En resonerare kan utöka detta till ett fullständigt dppk:QuantitativeValue." }
         ],
-        "rdfs:subClassOf": { "@id": "xsd:double" }
+        "rdfs:subClassOf": { "@id": "xsd:double" },
+        "dppk:unit": "kg"
     },
     {
         "@id": "dppk:MetersLengthLiteral",
@@ -320,7 +321,8 @@
           { "@language": "sl", "@value": "Dobesedna vrednost, ki predstavlja dolžino v metrih. Sklepalnik lahko to razširi v polno dppk:QuantitativeValue." },
           { "@language": "sv", "@value": "Ett bokstavligt värde som representerar en längd i meter. En resonerare kan utöka detta till ett fullständigt dppk:QuantitativeValue." }
         ],
-        "rdfs:subClassOf": { "@id": "xsd:double" }
+        "rdfs:subClassOf": { "@id": "xsd:double" },
+        "dppk:unit": "m"
     },
 
     {
@@ -1696,8 +1698,8 @@
           { "@language": "sv", "@value": "Vikten av produkten eller materialet, inklusive förpackning, uttryckt som ett QuantitativeValue." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "rdfs:Literal" },
-                "owl:equivalentProperty": [
+        "rdfs:range": { "@id": "dppk:KgWeightLiteral" },
+        "owl:equivalentProperty": [
             { "@id": "gs1:grossWeight" },
             { "@id": "unece:grossWeightMeasure" }
         ]
