@@ -543,6 +543,82 @@ test('should fully clean up collapsed placeholder row when parent is removed', a
   await expect(lingeringPlaceholderBtn).not.toBeAttached();
 });
 
+test('should correctly re-index nested optional objects when a previous array item is removed', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  await expect(page.locator('#sector-form-textile')).toBeVisible();
+
+  // Add TWO textileCertifications
+  await page.click('button[data-array-name="textileCertifications"]');
+  await page.click('button[data-array-name="textileCertifications"]');
+
+  // Verify we have index 0 and index 1
+  await expect(page.locator('input[name="textileCertifications.0.name"]')).toBeVisible();
+  await expect(page.locator('input[name="textileCertifications.1.name"]')).toBeVisible();
+
+  // Expand the document on index 1
+  const doc1Placeholder = page.locator('.grid-row[data-object-path="textileCertifications.1.document"]');
+  await doc1Placeholder.locator('button[data-optional-object="document"]').click();
+
+  // Verify document fields for index 1 are visible
+  await expect(page.locator('input[name="textileCertifications.1.document.resourceTitle"]')).toBeVisible();
+
+  // Now, REMOVE index 0. This causes index 1 to shift to index 0.
+  await page.click('.array-item-control-row[data-array-group="textileCertifications.0"] button');
+
+  // Verify the old index 1 document has shifted to index 0
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).toBeVisible();
+  await expect(page.locator('input[name="textileCertifications.1.document.resourceTitle"]')).not.toBeAttached();
+
+  // Now remove the document from the new index 0 to verify the remove button's path was correctly updated
+  await page.click('button[data-remove-optional-object="document"]');
+
+  // Verify the document fields collapsed
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).not.toBeAttached();
+
+  // Finally, expand the document again on index 0 to verify the placeholder's Add button path was updated
+  const doc0Placeholder = page.locator('.grid-row[data-object-path="textileCertifications.0.document"]');
+  await doc0Placeholder.locator('button[data-optional-object="document"]').click();
+  
+  // Verify it added to index 0, NOT index 1
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).toBeVisible();
+  await expect(page.locator('input[name="textileCertifications.1.document.resourceTitle"]')).not.toBeAttached();
+});
+
+test('should isolate optional object deletion and not remove sibling objects with the same key', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  await expect(page.locator('#sector-form-textile')).toBeVisible();
+
+  // Add TWO textileCertifications
+  await page.click('button[data-array-name="textileCertifications"]');
+  await page.click('button[data-array-name="textileCertifications"]');
+
+  // Expand the document on BOTH index 0 and index 1
+  const doc0Placeholder = page.locator('.grid-row[data-object-path="textileCertifications.0.document"]');
+  await doc0Placeholder.locator('button[data-optional-object="document"]').click();
+  
+  const doc1Placeholder = page.locator('.grid-row[data-object-path="textileCertifications.1.document"]');
+  await doc1Placeholder.locator('button[data-optional-object="document"]').click();
+
+  // Verify document fields for BOTH are visible
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).toBeVisible();
+  await expect(page.locator('input[name="textileCertifications.1.document.resourceTitle"]')).toBeVisible();
+
+  // Now remove the document from index 0 ONLY.
+  // Because both remove buttons use data-remove-optional-object="document", we need to specifically click the one in index 0.
+  const doc0Header = page.locator('.grid-row-header[data-object-path="textileCertifications.0.document"]');
+  await doc0Header.locator('button[data-remove-optional-object="document"]').click();
+
+  // Verify the document on index 0 collapsed (Add button is back, inputs are gone)
+  await expect(page.locator('.grid-row[data-object-path="textileCertifications.0.document"] button[data-optional-object="document"]')).toBeVisible();
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).not.toBeAttached();
+
+  // Verify the document on index 1 is STILL EXPANDED (inputs are visible, Remove button is still there)
+  await expect(page.locator('input[name="textileCertifications.1.document.resourceTitle"]')).toBeVisible();
+  const doc1Header = page.locator('.grid-row-header[data-object-path="textileCertifications.1.document"]');
+  await expect(doc1Header.locator('button[data-remove-optional-object="document"]')).toBeVisible();
+});
 
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
       await page.goto('/wizard/index.html');

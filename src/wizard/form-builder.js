@@ -460,6 +460,31 @@ function reindexArrayItems(arrayName, indexRemoved) {
             // Update data-array-group
             row.dataset.arrayGroup = group.replace(oldPrefix, newPrefix);
             
+            // Update data-object-path on the row itself if it exists
+            if (row.dataset.objectPath) {
+                row.dataset.objectPath = row.dataset.objectPath.replace(oldPrefix, newPrefix);
+            }
+            
+            // Update any child elements with data-object-path
+            row.querySelectorAll('[data-object-path]').forEach(child => {
+                child.dataset.objectPath = child.dataset.objectPath.replace(oldPrefix, newPrefix);
+            });
+
+            // Update any add-array-item-btn buttons
+            row.querySelectorAll('.add-array-item-btn').forEach(btn => {
+                if (btn.dataset.arrayName) {
+                    btn.dataset.arrayName = btn.dataset.arrayName.replace(oldPrefix, newPrefix);
+                }
+            });
+            
+            // Update optional object groups
+            if (row.dataset.optionalObjectGroups) {
+                row.dataset.optionalObjectGroups = row.dataset.optionalObjectGroups.replace(new RegExp(`\\b${oldPrefix.replace(/\./g, '\\.')}`, 'g'), newPrefix);
+            }
+            row.querySelectorAll('[data-optional-object-groups]').forEach(child => {
+                child.dataset.optionalObjectGroups = child.dataset.optionalObjectGroups.replace(new RegExp(`\\b${oldPrefix.replace(/\./g, '\\.')}`, 'g'), newPrefix);
+            });
+
             // Update inputs
             const inputs = row.querySelectorAll('input, select');
             inputs.forEach(input => {
@@ -485,9 +510,6 @@ function reindexArrayItems(arrayName, indexRemoved) {
                 }
             });
 
-            // We must also update the error message span's ID if we want it to work correctly
-            const oldErrorMsgId = `${oldPrefix.replace(/\./g, '-')}`; // the rest of the logic can be complex, let's leave it simple
-            
             // Update path cell text
             const pathCell = row.querySelector('.grid-cell');
             if (pathCell && pathCell.textContent.startsWith(oldPrefix)) {
@@ -884,7 +906,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const existingGroups = placeholderRow.dataset.optionalObjectGroups || '';
 
         const newFieldsFragment = document.createDocumentFragment();
-        const newGroup = `${existingGroups} ${key}`.trim();
+        const newGroup = `${existingGroups} ${dynamicPath}`.trim();
 
         // 1. Transform the placeholder row into a header row.
         placeholderRow.classList.add('grid-row-header');
@@ -908,15 +930,18 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
              // The row containing the button is the header row
              const headerRow = removeButton.closest('.grid-row');
              
+             // Use the current path from the header row (it may have changed due to array reindexing)
+             const currentDynamicPath = headerRow.dataset.objectPath || dynamicPath;
+
              // Find all rows belonging to this specific group
-             const rowsToRemove = grid.querySelectorAll(`[data-optional-object-groups~="${key}"]`);
+             const rowsToRemove = grid.querySelectorAll(`[data-optional-object-groups~="${currentDynamicPath}"]`);
              
              // Calculate parent groups
              const allGroups = headerRow.dataset.optionalObjectGroups || '';
-             const parentGroups = allGroups.replace(new RegExp(`\\b${key}\\b`), '').trim();
+             const parentGroups = allGroups.split(' ').filter(g => g !== currentDynamicPath).join(' ').trim();
 
              // Re-create placeholder
-             const newPlaceholder = createOptionalObjectPlaceholderRow(key, prop, dynamicPath, indentationLevel, ontologyMap, lang);
+             const newPlaceholder = createOptionalObjectPlaceholderRow(key, prop, currentDynamicPath, indentationLevel, ontologyMap, lang);
              if (parentGroups) {
                  newPlaceholder.dataset.optionalObjectGroups = parentGroups;
              }
@@ -955,7 +980,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         triggerLocalization();
 
         // 5z-h: Now that the new elements are in the DOM, find their inputs and trigger validation.
-        const newInputs = placeholderRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${key}"] input:not([type="checkbox"]), [data-optional-object-groups~="${key}"] select`);
+        const newInputs = placeholderRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${dynamicPath}"] input:not([type="checkbox"]), [data-optional-object-groups~="${dynamicPath}"] select`);
         newInputs.forEach(input => {
             // Dispatch a 'blur' event to trigger the existing validation handler.
             input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
