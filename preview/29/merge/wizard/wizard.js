@@ -1,15 +1,15 @@
 // src/wizard/wizard.js
-import { loadHeader } from '../branding/header.js?v=1781304568661';
+import { loadHeader } from '../branding/header.js?v=1781526840057';
 loadHeader('dpp-header-container', '..');
-import { loadSchema } from '../lib/schema-loader.js?v=1781304568661';
-import { loadOntology } from '../lib/ontology-loader.js?v=1781304568661';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781304568661';
-import { generateDpp } from './dpp-generator.js?v=1781304568661';
-import { generateHTML } from '../lib/html-generator.js?v=1781304568661';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781304568661';
+import { loadSchema } from '../lib/schema-loader.js?v=1781526840057';
+import { loadOntology } from '../lib/ontology-loader.js?v=1781526840057';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1781526840057';
+import { generateDpp } from './dpp-generator.js?v=1781526840057';
+import { generateHTML } from '../lib/html-generator.js?v=1781526840057';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1781526840057';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781304568661';
-import { LanguageManager } from '../lib/language-manager.js?v=1781304568661';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1781526840057';
+import { LanguageManager } from '../lib/language-manager.js?v=1781526840057';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();
@@ -53,28 +53,7 @@ function saveFormState(container) {
         }
     });
 
-    // Save structurally expanded optional objects so they aren't lost on rerender
-    const expandedElements = container.querySelectorAll('[data-remove-optional-object], [data-pending-optional-object]');
-    const expandedObjects = Array.from(expandedElements).map(el => {
-        const key = el.dataset.removeOptionalObject || el.dataset.pendingOptionalObject;
-        
-        // When expanded, the data-oneof-selection attribute is on the parent grid-row
-        const row = el.closest('.grid-row');
-        if (row && row.hasAttribute('data-oneof-selection')) {
-            return `${key}:${row.dataset.oneofSelection}`;
-        }
-        
-        // Fallback for unexpanded pending states (the select itself might have it, though usually not)
-        if (el.hasAttribute('data-oneof-selection')) {
-            return `${key}:${el.dataset.oneofSelection}`;
-        }
-        return key;
-    });
-    if (expandedObjects.length > 0) {
-        state.set('__EXPANDED_OPTIONAL_OBJECTS__', expandedObjects);
-    }
-
-    // Save expanded array indexes
+    // Save structurally expanded arrays and optional objects
     const arrayItemControls = container.querySelectorAll('.array-item-control-row');
     const arrayIndexes = {};
     arrayItemControls.forEach(row => {
@@ -84,12 +63,36 @@ function saveFormState(container) {
         const arrayName = group.substring(0, lastDot);
         const index = parseInt(group.substring(lastDot + 1), 10);
         
-        if (!arrayIndexes[arrayName]) arrayIndexes[arrayName] = [];
-        arrayIndexes[arrayName].push(index);
+        if (!arrayIndexes[arrayName]) {
+            arrayIndexes[arrayName] = { indexes: [], depth: (arrayName.match(/\./g) || []).length };
+        }
+        arrayIndexes[arrayName].indexes.push(index);
     });
-    if (Object.keys(arrayIndexes).length > 0) {
-        state.set('__EXPANDED_ARRAY_INDEXES__', arrayIndexes);
-    }
+
+    const expandedElements = container.querySelectorAll('[data-remove-optional-object], [data-pending-optional-object]');
+    const optionalObjects = [];
+    expandedElements.forEach(el => {
+        const key = el.dataset.removeOptionalObject || el.dataset.pendingOptionalObject;
+        const row = el.closest('.grid-row');
+        if (!row || !row.dataset.objectPath) return;
+
+        let oneOfSelection = undefined;
+        if (row.hasAttribute('data-oneof-selection')) {
+            oneOfSelection = row.dataset.oneofSelection;
+        } else if (el.hasAttribute('data-oneof-selection')) {
+            oneOfSelection = el.dataset.oneofSelection;
+        }
+
+        optionalObjects.push({
+            path: row.dataset.objectPath,
+            key: key,
+            oneOfSelection: oneOfSelection,
+            depth: (row.dataset.objectPath.match(/\./g) || []).length
+        });
+    });
+
+    if (Object.keys(arrayIndexes).length > 0) state.set('__EXPANDED_ARRAYS__', arrayIndexes);
+    if (optionalObjects.length > 0) state.set('__EXPANDED_OPTIONAL_OBJECTS__', optionalObjects);
 
     return state;
 }
@@ -102,53 +105,64 @@ function saveFormState(container) {
 function restoreFormState(container, state) {
     if (!container || !state) return;
 
-    // 1. Restore structural expansions first
-    if (state.has('__EXPANDED_OPTIONAL_OBJECTS__')) {
-        const expandedObjects = state.get('__EXPANDED_OPTIONAL_OBJECTS__');
-        if (Array.isArray(expandedObjects)) {
-            expandedObjects.forEach(entry => {
-                const parts = entry.split(':');
-                const key = parts[0];
-                const oneOfSelection = parts.length > 1 ? parts[1] : undefined;
-
-                const addBtn = container.querySelector(`button[data-optional-object="${key}"]`);
-                if (addBtn) {
-                    addBtn.click();
-                    if (oneOfSelection !== undefined) {
-                        const select = container.querySelector(`select[data-pending-optional-object="${key}"]`);
-                        if (select) {
-                            select.value = oneOfSelection;
-                            select.dispatchEvent(new Event('change', { bubbles: true }));
-                        }
-                    }
-                }
+    // 1. Restore structural expansions (arrays and optional objects) interleaved by depth
+    const tasks = [];
+    
+    if (state.has('__EXPANDED_ARRAYS__')) {
+        const arrayIndexes = state.get('__EXPANDED_ARRAYS__');
+        Object.entries(arrayIndexes).forEach(([arrayName, data]) => {
+            tasks.push({
+                type: 'array',
+                name: arrayName,
+                indexes: data.indexes,
+                depth: data.depth
             });
-        }
+        });
     }
 
-    // 1.5 Restore array expansions
-    if (state.has('__EXPANDED_ARRAY_INDEXES__')) {
-        const arrayIndexes = state.get('__EXPANDED_ARRAY_INDEXES__');
-        Object.entries(arrayIndexes).forEach(([arrayName, indexes]) => {
-            if (!Array.isArray(indexes) || indexes.length === 0) return;
-            
-            const addBtn = container.querySelector(`button.add-array-item-btn[data-array-name="${arrayName}"]`);
+    if (state.has('__EXPANDED_OPTIONAL_OBJECTS__')) {
+        const optionalObjects = state.get('__EXPANDED_OPTIONAL_OBJECTS__');
+        optionalObjects.forEach(obj => tasks.push({ type: 'optional', ...obj }));
+    }
+
+    tasks.sort((a, b) => a.depth - b.depth);
+
+    tasks.forEach(task => {
+        if (task.type === 'array') {
+            const addBtn = container.querySelector(`button.add-array-item-btn[data-array-name="${task.name}"]`);
             if (addBtn) {
-                const maxIndex = Math.max(...indexes);
-                // Create all indexes from 0 to maxIndex
+                const maxIndex = Math.max(...task.indexes);
+                // Create all indexes up to maxIndex
                 for (let i = 0; i <= maxIndex; i++) {
                     addBtn.click();
                 }
-                // Remove the ones that shouldn't exist
+                // Remove the ones that were deleted by the user
                 for (let i = 0; i <= maxIndex; i++) {
-                    if (!indexes.includes(i)) {
-                        const removeBtn = container.querySelector(`.array-item-control-row[data-array-group="${arrayName}.${i}"] button`);
+                    if (!task.indexes.includes(i)) {
+                        const removeBtn = container.querySelector(`.array-item-control-row[data-array-group="${task.name}.${i}"] button`);
                         if (removeBtn) removeBtn.click();
                     }
                 }
             }
-        });
-    }
+        } else if (task.type === 'optional') {
+            // Find the specific row for this optional object
+            const row = container.querySelector(`.grid-row[data-object-path="${task.path}"]`);
+            if (row) {
+                // Find the specific add button within that row
+                const addBtn = row.querySelector(`button[data-optional-object="${task.key}"]`);
+                if (addBtn) {
+                    addBtn.click();
+                    if (task.oneOfSelection !== undefined) {
+                        const select = row.querySelector(`select[data-pending-optional-object="${task.key}"]`);
+                        if (select) {
+                            select.value = task.oneOfSelection;
+                            select.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                    }
+                }
+            }
+        }
+    });
 
     // 2. Restore all standard data inputs
     state.forEach((value, name) => {

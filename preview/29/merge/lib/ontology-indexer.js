@@ -1,4 +1,4 @@
-import { loadOntology } from './ontology-loader.js?v=1781304568661';
+import { loadOntology } from './ontology-loader.js?v=1781526840057';
 
 /**
  * Builds a flat, searchable index of all ontology terms.
