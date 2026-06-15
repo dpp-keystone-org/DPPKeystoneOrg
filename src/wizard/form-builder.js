@@ -920,6 +920,9 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
              if (parentGroups) {
                  newPlaceholder.dataset.optionalObjectGroups = parentGroups;
              }
+             if (headerRow.dataset.arrayGroup) {
+                 newPlaceholder.dataset.arrayGroup = headerRow.dataset.arrayGroup;
+             }
 
              // Insert before and remove old
              headerRow.before(newPlaceholder);

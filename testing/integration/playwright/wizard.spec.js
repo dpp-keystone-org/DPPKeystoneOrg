@@ -492,6 +492,58 @@ test('should fully clean up nested fields when removing a collapsed related reso
   await expect(lingeringInputs).toHaveCount(0);
 });
 
+test('should preserve nested optional object state when changing languages', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  await expect(page.locator('#sector-form-textile')).toBeVisible();
+
+  // Add textileCertifications
+  await page.click('button[data-array-name="textileCertifications"]');
+  
+  // Add nested related resource (document)
+  const docPlaceholder = page.locator('.grid-row[data-object-path="textileCertifications.0.document"]');
+  await docPlaceholder.locator('button[data-optional-object="document"]').click();
+
+  // Verify the document fields are visible
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).toBeVisible();
+
+  // Change language
+  const languageSelector = page.locator('#language-selector');
+  await languageSelector.selectOption('de');
+
+  // Verify the document fields are STILL visible (this will fail until fixed)
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).toBeVisible();
+});
+
+test('should fully clean up collapsed placeholder row when parent is removed', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  await expect(page.locator('#sector-form-textile')).toBeVisible();
+
+  // Add textileCertifications
+  await page.click('button[data-array-name="textileCertifications"]');
+  
+  // Add nested related resource (document)
+  const docPlaceholder = page.locator('.grid-row[data-object-path="textileCertifications.0.document"]');
+  await docPlaceholder.locator('button[data-optional-object="document"]').click();
+
+  // Remove the nested document (collapses back to a placeholder row)
+  const removeDocBtn = page.locator('button[data-remove-optional-object="document"]');
+  await removeDocBtn.click();
+
+  // Verify it collapsed
+  await expect(page.locator('input[name="textileCertifications.0.document.resourceTitle"]')).not.toBeAttached();
+
+  // Now remove the parent certification
+  await page.click('.array-item-control-row[data-array-group="textileCertifications.0"] button');
+
+  // Verify the "textileCertifications.0.document" placeholder row also disappears from screen
+  // We check that the Add button for it is gone
+  const lingeringPlaceholderBtn = page.locator('.grid-row[data-object-path="textileCertifications.0.document"] button[data-optional-object="document"]');
+  await expect(lingeringPlaceholderBtn).not.toBeAttached();
+});
+
+
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
       await page.goto('/wizard/index.html');
 
