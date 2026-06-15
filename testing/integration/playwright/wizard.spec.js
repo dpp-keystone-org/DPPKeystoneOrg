@@ -656,6 +656,34 @@ test('should display units for physical dimensions in general product informatio
   }
 });
 
+test('should display clean tooltips for complex ontology references like dopc', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="construction"]');
+  
+  // Find and click the Add button for dopc
+  await page.click('button[data-optional-object="dopc"]');
+  
+  // Select the correct type (Option 0 is the DoPC schema)
+  await page.locator('.type-selector').selectOption('0');
+  
+  // Click the tooltip button for Declaration Code
+  const tooltipBtn = page.locator('.grid-row:has(input[name="dopc.declarationCode"]) .tooltip-button');
+  await tooltipBtn.click();
+  
+  // Verify the modal content
+  const modal = page.locator('.tooltip-modal');
+  await expect(modal).toBeVisible();
+  
+  await expect(modal).toContainText('Unique identifier of the declaration.');
+  await expect(modal).toContainText('Standard: Construction Products Regulation - CPR');
+  
+  // Ensure it doesn't contain the raw object string
+  await expect(modal).not.toContainText('[object Object]');
+  
+  // Close the modal
+  await page.click('.modal-close-btn');
+});
+
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
       await page.goto('/wizard/index.html');
 

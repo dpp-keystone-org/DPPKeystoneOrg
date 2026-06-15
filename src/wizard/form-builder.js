@@ -44,8 +44,29 @@ function createTooltipModal(commentText, governedBy, source) {
         let url = null;
 
         if (typeof source === 'object') {
-            // Try to find a label (English preferred or raw string)
-            label = source['rdfs:label'] || source.label;
+            // Try to find a label
+            let rawLabel = source['rdfs:label'] || source.label;
+            
+            if (Array.isArray(rawLabel)) {
+                const lang = typeof LanguageManager !== 'undefined' ? LanguageManager.getPreferredLanguage() : 'en';
+                const langMatch = rawLabel.find(item => item['@language'] === lang);
+                const enMatch = rawLabel.find(item => item['@language'] === 'en');
+                
+                if (langMatch && langMatch['@value']) {
+                    label = langMatch['@value'];
+                } else if (enMatch && enMatch['@value']) {
+                    label = enMatch['@value'];
+                } else if (rawLabel[0] && rawLabel[0]['@value']) {
+                    label = rawLabel[0]['@value'];
+                } else {
+                    label = rawLabel;
+                }
+            } else if (rawLabel && typeof rawLabel === 'object' && rawLabel['@value']) {
+                label = rawLabel['@value'];
+            } else {
+                label = rawLabel;
+            }
+
             // Try to find an ID/URL
             url = source['@id'] || source.id || source.url;
             
