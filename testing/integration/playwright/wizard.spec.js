@@ -620,6 +620,44 @@ test('should isolate optional object deletion and not remove sibling objects wit
   await expect(doc1Header.locator('button[data-remove-optional-object="document"]')).toBeVisible();
 });
 
+test('should map ontology data correctly for nested components (e.g. substancesOfConcern)', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  
+  // Expand substancesOfConcern
+  await page.click('button[data-array-name="substancesOfConcern"]');
+
+  // Verify that the ontology correctly provided the detailed labels instead of raw property names
+  const casCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.casNumber"]) .grid-cell').first();
+  await expect(casCell).toHaveText(/CAS Number/i);
+
+  const nameCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.name"]) .grid-cell').first();
+  await expect(nameCell).toHaveText(/Component Name/i);
+
+  const ecCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.ecNumber"]) .grid-cell').first();
+  await expect(ecCell).toHaveText(/EC Number/i);
+
+  const iupacCell = page.locator('.grid-row:has(input[name="substancesOfConcern.0.iupacName"]) .grid-cell').first();
+  await expect(iupacCell).toHaveText(/IUPAC Name/i);
+});
+
+test('should display units for physical dimensions in general product information', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+  await page.click('button[data-sector="textile"]');
+  
+  // Physical dimensions are direct properties in the textile schema
+  const fields = ['netWeight', 'grossWeight', 'length', 'width', 'height', 'depth'];
+  
+  for (const field of fields) {
+    // The unit is typically displayed in a .tooltip-button or a separate span, but let's check for any text indicating a unit like "kg" or "cm"
+    // For now we check if there's a span with the class 'unit-label' or if the unit is included in the tooltip or value cell
+    // Let's assert that a unit span exists next to the input
+    const unitSpan = page.locator(`.grid-row:has(input[name="${field}"]) .unit-label`);
+    await expect(unitSpan).toBeVisible({ timeout: 2000 });
+    await expect(unitSpan).not.toBeEmpty();
+  }
+});
+
 test('should generate a DPP containing data from multiple sectors', async ({ page }) => {
       await page.goto('/wizard/index.html');
 

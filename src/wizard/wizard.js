@@ -2,7 +2,7 @@
 import { loadHeader } from '../branding/header.js';
 loadHeader('dpp-header-container', '..');
 import { loadSchema } from '../lib/schema-loader.js';
-import { loadOntology } from '../lib/ontology-loader.js';
+import { loadOntology, loadContext } from '../lib/ontology-loader.js';
 import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
 import { generateDpp } from './dpp-generator.js';
 import { generateHTML } from '../lib/html-generator.js';
@@ -21,7 +21,8 @@ function triggerLocalization() {
 // Caches for holding loaded schemas and ontologies to avoid re-fetching
 let coreSchema = null;
 let coreOntologyMap = null;
-const sectorDataCache = new Map(); // sector -> { schema, ontologyMap }
+let coreContextMap = null;
+const sectorDataCache = new Map(); // sector -> { schema, ontologyMap, contextMap }
 
 const SUPPORTED_CUSTOM_TYPES = [
     { label: 'Organization', schemaName: 'organization' },
@@ -194,7 +195,7 @@ async function rerenderAllForms() {
 
     // Re-render core form
     coreFormContainer.innerHTML = '';
-    const coreFormFragment = buildForm(coreSchema, coreOntologyMap, currentLanguage);
+    const coreFormFragment = buildForm(coreSchema, coreOntologyMap, coreContextMap, currentLanguage);
     coreFormContainer.appendChild(coreFormFragment);
     restoreFormState(coreFormContainer, coreState);
 
@@ -205,8 +206,8 @@ async function rerenderAllForms() {
     for (const sector of activeSectors) {
         const data = sectorDataCache.get(sector);
         if (data) {
-            const { schema, ontologyMap } = data;
-            const formFragment = buildForm(schema, ontologyMap, currentLanguage);
+            const { schema, ontologyMap, contextMap } = data;
+            const formFragment = buildForm(schema, ontologyMap, contextMap, currentLanguage);
 
             const sectorContainer = document.createElement('div');
             sectorContainer.id = `sector-form-${sector}`;
@@ -292,8 +293,9 @@ export async function initializeWizard() {
             // Load from network or use cache
             if (!coreSchema) coreSchema = await loadSchema('dpp', 'header');
             if (!coreOntologyMap) coreOntologyMap = await loadOntology('dpp');
+            if (!coreContextMap) coreContextMap = await loadContext('dpp');
 
-            const formFragment = buildForm(coreSchema, coreOntologyMap, currentLanguage);
+            const formFragment = buildForm(coreSchema, coreOntologyMap, coreContextMap, currentLanguage);
             coreFormContainer.innerHTML = ''; // Clear previous content
             coreFormContainer.appendChild(formFragment);
 
@@ -483,12 +485,13 @@ export async function initializeWizard() {
                     if (!data) {
                         const schema = await loadSchema(sector, schemaType);
                         const ontologyMap = await loadOntology(sector);
-                        data = { schema, ontologyMap };
+                        const contextMap = await loadContext(sector);
+                        data = { schema, ontologyMap, contextMap };
                         sectorDataCache.set(sector, data);
                     }
 
-                    const { schema, ontologyMap } = data;
-                    const formFragment = buildForm(schema, ontologyMap, currentLanguage);
+                    const { schema, ontologyMap, contextMap } = data;
+                    const formFragment = buildForm(schema, ontologyMap, contextMap, currentLanguage);
 
                     const sectorContainer = document.createElement('div');
                     sectorContainer.id = sectorContainerId;
@@ -565,7 +568,8 @@ export async function initializeWizard() {
                 try {
                     const schema = await loadSchema(sector, schemaType);
                     const ontologyMap = await loadOntology(sector);
-                    data = { schema, ontologyMap };
+                    const contextMap = await loadContext(sector);
+                    data = { schema, ontologyMap, contextMap };
                     sectorDataCache.set(sector, data);
                 } catch (error) {
                     console.warn(`Failed to load schema for sector ${sector} during collision check`, error);

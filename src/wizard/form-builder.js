@@ -147,6 +147,7 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
  * @returns {{ontologyInfo: object, unit: string, governedBy: string, source: any}} The inherited info.
  */
 function getInheritedOntologyInfo(currentPath, ontologyMap) {
+    const contextMap = ontologyMap ? ontologyMap.contextMap : null;
     const pathParts = currentPath.split('.');
     let ontologyInfo = null;
     let unit = '';
@@ -160,6 +161,33 @@ function getInheritedOntologyInfo(currentPath, ontologyMap) {
         if (!source) source = info.source || info['dcterms:source'];
     };
 
+    // First, try resolving via context mapping.
+    // The context map uses normalized paths without array indices (e.g. 'substancesOfConcern.casNumber' instead of 'substancesOfConcern.0.casNumber')
+    if (contextMap) {
+        // Strip array indices from the path
+        const normalizedPath = pathParts.filter(p => isNaN(p)).join('.');
+        if (contextMap.has(normalizedPath)) {
+            const ontologyId = contextMap.get(normalizedPath);
+            const mappedInfo = ontologyMap.get(ontologyId);
+            if (mappedInfo) {
+                ontologyInfo = mappedInfo;
+                checkInfo(mappedInfo);
+            }
+        }
+        
+        // Also check if just the property name itself is mapped in the context (global mapping)
+        const leafKey = pathParts[pathParts.length - 1];
+        if (!ontologyInfo && contextMap.has(leafKey)) {
+            const leafOntologyId = contextMap.get(leafKey);
+            const leafMappedInfo = ontologyMap.get(leafOntologyId);
+            if (leafMappedInfo) {
+                ontologyInfo = leafMappedInfo;
+                checkInfo(leafMappedInfo);
+            }
+        }
+    }
+
+    // Fall back to the original method: walking backwards through the raw path keys
     for (let i = pathParts.length - 1; i >= 0; i--) {
         const info = ontologyMap.get(pathParts[i]);
         if (info) {
@@ -1037,10 +1065,13 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
  * Generates an HTML form from a JSON schema using a 3-column grid layout.
  * @param {object} schema - The JSON schema object.
  * @param {Map<string, {label: string, comment: string}>} [ontologyMap=new Map()] - A map of ontology terms.
+ * @param {Map<string, string>} [contextMap=new Map()] - A map of context paths.
  * @param {string} [lang='en'] - The current language code.
  * @returns {DocumentFragment} A document fragment containing the generated form elements.
  */
-export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
+export function buildForm(schema, ontologyMap = new Map(), contextMap = new Map(), lang = 'en') {
+    // Attach contextMap to ontologyMap so we don't have to pass it through all recursive functions
+    ontologyMap.contextMap = contextMap;
     // console.log('[FormBuilder] buildForm received schema:', JSON.stringify(schema, null, 2));
     const fragment = document.createDocumentFragment();
     let properties = null;
