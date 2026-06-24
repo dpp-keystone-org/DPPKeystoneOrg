@@ -1,4 +1,4 @@
-import { KEYSTONE_VERSION } from './keystone-version.js?v=1781526816419';
+import { KEYSTONE_VERSION } from './keystone-version.js?v=1782293585562';
 
 /**
  * Robustly extracts a single string value from an RDFS property, preferring English.
@@ -231,4 +231,105 @@ export async function loadOntology(sector) {
         console.error(`Failed to execute ontology loading for sector: ${sector}`, error);
         return null;
     }
+}
+
+/**
+ * Fetches and parses JSON-LD contexts to build a property-to-ontology-ID mapping.
+ * @param {string} sector - The sector whose context needs to be loaded.
+ * @returns {Promise<Map<string, string>>} A map of schema property paths to ontology IDs.
+ */
+export async function loadContext(sector) {
+    if (!sector) return new Map();
+
+    const contextMap = new Map();
+    const loadedUrls = new Set();
+    
+    let initialUrl;
+    if (sector === 'dpp') {
+        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`;
+    } else if (sector === 'general-product') {
+        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`;
+    } else if (sector === 'packaging') {
+        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`;
+    } else {
+        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-${sector}.context.jsonld`;
+    }
+
+    async function processContext(url) {
+        if (loadedUrls.has(url)) return;
+        loadedUrls.add(url);
+
+        try {
+            // Rewrite URL for local relative path
+            let fetchUrl = url;
+            if (url.startsWith('https://dpp-keystone.org/spec/contexts/')) {
+                fetchUrl = url.replace('https://dpp-keystone.org/spec/contexts/', '../spec/contexts/');
+            }
+            
+            // Handle v2 replacement
+            fetchUrl = fetchUrl.replace('v2', KEYSTONE_VERSION);
+
+            const response = await fetch(fetchUrl);
+            if (!response.ok) return;
+            const data = await response.json();
+
+            async function flattenContext(ctxObj, prefix = '') {
+                if (!ctxObj) return;
+
+                // If @context is an array, process each item
+                if (Array.isArray(ctxObj)) {
+                    for (const item of ctxObj) {
+                        if (typeof item === 'string') {
+                            await processContext(item);
+                        } else if (typeof item === 'object') {
+                            await flattenContext(item, prefix);
+                        }
+                    }
+                    return;
+                }
+
+                // If it's a standard object context
+                for (const [key, value] of Object.entries(ctxObj)) {
+                    if (key === '@context') {
+                        if (typeof value === 'string') {
+                            await processContext(value);
+                        } else {
+                            await flattenContext(value, prefix);
+                        }
+                        continue;
+                    }
+                    if (key.startsWith('@')) continue;
+
+                    const fullKey = prefix ? `${prefix}.${key}` : key;
+
+                    if (typeof value === 'string') {
+                        let ontologyId = value;
+                        if (ontologyId.includes(':')) ontologyId = ontologyId.split(':')[1];
+                        contextMap.set(fullKey, ontologyId);
+                        if (!contextMap.has(key)) contextMap.set(key, ontologyId); // global fallback if not set
+                    } else if (typeof value === 'object') {
+                        if (value['@id']) {
+                            let ontologyId = value['@id'];
+                            if (ontologyId.includes(':')) ontologyId = ontologyId.split(':')[1];
+                            contextMap.set(fullKey, ontologyId);
+                            if (!contextMap.has(key)) contextMap.set(key, ontologyId); // global fallback if not set
+                        }
+                        // Recurse into scoped contexts
+                        if (value['@context']) {
+                            await flattenContext(value['@context'], fullKey);
+                        }
+                    }
+                }
+            }
+
+            if (data['@context']) {
+                await flattenContext(data['@context']);
+            }
+        } catch (error) {
+            console.error(`Failed to load context: ${url}`, error);
+        }
+    }
+
+    await processContext(initialUrl);
+    return contextMap;
 }

@@ -850,7 +850,8 @@
       ],
       "rdfs:subClassOf": {
         "@id": "xsd:double"
-      }
+      },
+      "dppk:unit": "kg"
     },
     {
       "@id": "dppk:MetersLengthLiteral",
@@ -1053,7 +1054,8 @@
       ],
       "rdfs:subClassOf": {
         "@id": "xsd:double"
-      }
+      },
+      "dppk:unit": "m"
     },
     {
       "@id": "dppk:ProductCharacteristic",
@@ -5701,7 +5703,7 @@
         "@id": "dppk:Product"
       },
       "rdfs:range": {
-        "@id": "rdfs:Literal"
+        "@id": "dppk:KgWeightLiteral"
       },
       "owl:equivalentProperty": [
         {
