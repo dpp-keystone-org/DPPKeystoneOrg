@@ -10,6 +10,9 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld",
   "@type": "owl:Ontology",
+  "owl:imports": [
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" }
+  ],
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Core Ontology - EPD Metadata" },
     { "@language": "bg", "@value": "Основна онтология на DPP - Метаданни за EPD" },
@@ -35,9 +38,6 @@
     { "@language": "sk", "@value": "Základná ontológia DPP - Metadáta EPD" },
     { "@language": "sl", "@value": "Osnovna ontologija DPP - Metapodatki EPD" },
     { "@language": "sv", "@value": "DPP-kärnontologi - EPD-metadata" }
-  ],
-  "owl:imports": [
-    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" }
   ],
   "dcterms:description": [
     { "@language": "en", "@value": "Defines the core structural classes for Environmental Product Declarations (EPD)." },
@@ -65,6 +65,7 @@
     { "@language": "sl", "@value": "Določa osnovne strukturne razrede za okoljske deklaracije proizvoda (EPD)." },
     { "@language": "sv", "@value": "Definierar de grundläggande strukturella klasserna för miljövarudeklarationer (EPD)." }
   ],
+  "owl:versionInfo": "{{VERSION}}",
   "@graph": [
     {
       "@id": "dppk:EPDBlock",

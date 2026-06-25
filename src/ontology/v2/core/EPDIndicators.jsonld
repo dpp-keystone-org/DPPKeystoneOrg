@@ -10,6 +10,11 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDIndicators.jsonld",
   "@type": "owl:Ontology",
+  "owl:imports": [
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDLifecycle.jsonld" }
+  ],
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Core Ontology - EPD Indicators" },
     { "@language": "bg", "@value": "Основна онтология на DPP - Показатели за EPD" },
@@ -35,11 +40,6 @@
     { "@language": "sk", "@value": "Základná ontológia DPP - Indikátory EPD" },
     { "@language": "sl", "@value": "Osnovna ontologija DPP - Kazalniki EPD" },
     { "@language": "sv", "@value": "DPP-kärnontologi - EPD-indikatorer" }
-  ],
-  "owl:imports": [
-    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDLifecycle.jsonld" }
   ],
   "dcterms:description": [
     { "@language": "en", "@value": "Defines the specific environmental impact indicators used in Environmental Product Declarations." },
@@ -67,6 +67,7 @@
     { "@language": "sl", "@value": "Določa posebne kazalnike vpliva na okolje, ki se uporabljajo v okoljskih deklaracijah proizvoda." },
     { "@language": "sv", "@value": "Definierar de specifika miljöpåverkansindikatorer som används i miljövarudeklarationer." }
   ],
+  "owl:versionInfo": "{{VERSION}}",
   "@graph": [
     {
       "@id": "dppk:indicator",

@@ -61,6 +61,8 @@ const ontologyGraph = new Map();
 const loadedFiles = new Set();
 const ontologyFileContents = new Map();
 const contextMap = new Map(); // term -> expanded IRI
+const fileImports = new Map(); // filePath -> Set of imported filePaths
+const fileDefinedTerms = new Map(); // filePath -> Set of term IDs defined in it
 
 function resolveImportPath(currentFile, importUrl) {
     // Handle standard project URLs
@@ -88,6 +90,9 @@ function loadOntologyFile(filePath) {
     ontologyFileContents.set(filePath, content);
     const json = JSON.parse(content);
     
+    fileDefinedTerms.set(filePath, new Set());
+    fileImports.set(filePath, new Set());
+    
     // Process Graph
     const graph = json['@graph'] || [];
     graph.forEach(term => {
@@ -96,6 +101,7 @@ function loadOntologyFile(filePath) {
                 ...term,
                 _definedIn: filePath // Metadata for reporting
             });
+            fileDefinedTerms.get(filePath).add(term['@id']);
         }
     });
 
@@ -106,6 +112,7 @@ function loadOntologyFile(filePath) {
             const importUrl = typeof imp === 'string' ? imp : imp['@id'];
             const resolvedPath = resolveImportPath(filePath, importUrl);
             if (resolvedPath) {
+                fileImports.get(filePath).add(resolvedPath);
                 loadOntologyFile(resolvedPath);
             }
         });
@@ -124,16 +131,16 @@ function loadContexts() {
         const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
         const ctx = content['@context'];
         
-        processContextBlock(ctx);
+        processContextBlock(ctx, filePath);
     });
 }
 
-function processContextBlock(ctxBlock) {
+function processContextBlock(ctxBlock, filePath) {
     if (!ctxBlock) return;
 
     // Handle array of contexts
     if (Array.isArray(ctxBlock)) {
-        ctxBlock.forEach(part => processContextBlock(part));
+        ctxBlock.forEach(part => processContextBlock(part, filePath));
         return;
     }
 
@@ -150,8 +157,8 @@ function processContextBlock(ctxBlock) {
         for (const [term, mapping] of Object.entries(ctxBlock)) {
             // Skip keywords
             if (term.startsWith('@')) continue;
-            // Skip prefixes (simple heuristic)
-            if (term === 'dppk' || term === 'xsd' || term === 'gs1' || term === 'schema' || term === 'unece') continue;
+            // Skip prefix definitions (values starting with http/urn)
+            if (typeof mapping === 'string' && (mapping.startsWith('http://') || mapping.startsWith('https://') || mapping.startsWith('urn:'))) continue;
 
             let id = null;
             let nestedContext = null;
@@ -173,14 +180,14 @@ function processContextBlock(ctxBlock) {
                     contextMap.set(term, []);
                 }
                 const list = contextMap.get(term);
-                if (!list.includes(id)) {
-                    list.push(id);
+                if (!list.find(m => m.iri === id && m.file === filePath)) {
+                    list.push({ iri: id, file: filePath });
                 }
             }
 
             // Recurse into scoped context if present
             if (nestedContext) {
-                processContextBlock(nestedContext);
+                processContextBlock(nestedContext, filePath);
             }
         }
     }
@@ -245,6 +252,15 @@ function auditOntologyMetadata(reporter) {
                     relativePath
                 );
             });
+        }
+
+        if (!ontologyInfo['owl:versionInfo']) {
+            reporter.report(
+                'Ontology Metadata',
+                'FAIL',
+                `The 'owl:Ontology' declaration is missing an 'owl:versionInfo'.`,
+                relativePath
+            );
         }
     });
 }
@@ -316,8 +332,9 @@ function auditSchemaMappings(reporter) {
                         path.relative(PROJECT_ROOT, schemaFile)
                     );
                 } else {
-                    const iris = contextMap.get(propName);
-                    iris.forEach(iri => {
+                    const mappings = contextMap.get(propName);
+                    mappings.forEach(mapping => {
+                        const iri = mapping.iri;
                         const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
                         
                         if (ontologyGraph.has(iri)) {
@@ -489,6 +506,102 @@ function auditTranslations(reporter) {
     });
 }
 
+function getTransitiveImports(filePath, visited = new Set()) {
+    if (visited.has(filePath)) return visited;
+    visited.add(filePath);
+    const imports = fileImports.get(filePath) || new Set();
+    imports.forEach(imp => {
+        getTransitiveImports(imp, visited);
+    });
+    return visited;
+}
+
+function extractReferences(termObj, refs = new Set()) {
+    for (const [key, value] of Object.entries(termObj)) {
+        if (key.startsWith('@') && key !== '@type') continue;
+
+        if (key.startsWith('dppk:') || key.startsWith('https://dpp-keystone.org/')) {
+            refs.add(key);
+        }
+
+        const values = Array.isArray(value) ? value : [value];
+        values.forEach(item => {
+            if (typeof item === 'string') {
+                if (item.startsWith('dppk:') || item.startsWith('https://dpp-keystone.org/')) {
+                    refs.add(item);
+                }
+            } else if (typeof item === 'object' && item !== null) {
+                if (item['@id'] && (item['@id'].startsWith('dppk:') || item['@id'].startsWith('https://dpp-keystone.org/'))) {
+                    refs.add(item['@id']);
+                }
+                extractReferences(item, refs);
+            }
+        });
+    }
+    return refs;
+}
+
+function auditSelfContainedImports(reporter) {
+    ontologyFileContents.forEach((content, filePath) => {
+        const json = JSON.parse(content);
+        const relativePath = path.relative(PROJECT_ROOT, filePath);
+        
+        const allowedFiles = getTransitiveImports(filePath, new Set());
+        
+        const allowedTerms = new Set();
+        allowedFiles.forEach(file => {
+            const definedHere = fileDefinedTerms.get(file);
+            if (definedHere) {
+                definedHere.forEach(t => allowedTerms.add(t));
+            }
+        });
+
+        const graph = json['@graph'] || [];
+        graph.forEach(term => {
+            const termId = term['@id'] || 'unknown';
+            const refs = new Set();
+            extractReferences(term, refs);
+
+            refs.forEach(ref => {
+                const expanded = ref.startsWith('dppk:') ? ref.replace('dppk:', `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`) : ref;
+                const compact = expanded.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+                
+                if (ontologyGraph.has(expanded) || ontologyGraph.has(compact)) {
+                    if (!allowedTerms.has(expanded) && !allowedTerms.has(compact)) {
+                        const definingFile = (ontologyGraph.get(expanded) || ontologyGraph.get(compact))._definedIn;
+                        const definingFileName = definingFile ? path.basename(definingFile) : 'an unknown file';
+                        
+                        reporter.report(
+                            'Self-Contained Imports',
+                            'FAIL',
+                            `Term '${termId}' references '${ref}' but it is not defined locally or in any imported ontology. Please add an owl:import for ${definingFileName}.`,
+                            relativePath
+                        );
+                    }
+                }
+            });
+        });
+    });
+}
+
+function auditContextMappings(reporter) {
+    contextMap.forEach((mappings, term) => {
+        mappings.forEach(mapping => {
+            const iri = mapping.iri;
+            const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+            
+            if (!ontologyGraph.has(iri) && !ontologyGraph.has(compactIRI)) {
+                reporter.report(
+                    'Context Mapping Integrity',
+                    'FAIL',
+                    `Context maps term '${term}' to '${compactIRI}', but this IRI is NOT defined anywhere in the Ontology.`,
+                    path.relative(PROJECT_ROOT, mapping.file)
+                );
+            }
+        });
+    });
+}
+
 // --- Main Execution ---
 async function run() {
     console.log('🚀 Starting Ontology Integrity Suite...');
@@ -513,8 +626,9 @@ async function run() {
     
     // Collect all IRIs mapped in Contexts
     const contextMappedIRIs = new Set();
-    contextMap.forEach((iris) => {
-        iris.forEach(iri => {
+    contextMap.forEach((mappings) => {
+        mappings.forEach(mapping => {
+            const iri = mapping.iri;
             contextMappedIRIs.add(iri);
             const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
             contextMappedIRIs.add(compactIRI);
@@ -524,6 +638,8 @@ async function run() {
     auditDocumentation(reporter);
     auditTranslations(reporter);
     auditDeadCode(reporter, usedIRIs, contextMappedIRIs);
+    auditSelfContainedImports(reporter);
+    auditContextMappings(reporter);
 
     // 4. Report
     reporter.printSummary();

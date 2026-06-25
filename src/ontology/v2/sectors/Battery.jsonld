@@ -10,6 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Battery",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "{{VERSION}}",
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Battery Sector Ontology" },
     { "@language": "bg", "@value": "Онтология на сектора на батериите по DPP" },

@@ -62,6 +62,7 @@
     { "@language": "sl", "@value": "Določa faze življenjskega cikla (A1-D), ki se uporabljajo v okoljskih deklaracijah proizvoda." },
     { "@language": "sv", "@value": "Definierar livscykelfaserna (A1-D) som används i miljövarudeklarationer." }
   ],
+  "owl:versionInfo": "{{VERSION}}",
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld" }

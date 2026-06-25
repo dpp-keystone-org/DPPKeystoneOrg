@@ -191,7 +191,7 @@
                 "@type": "xsd:string"
             },
             "repairServices": {
-                "@id": "dppk:repairServices",
+                "@id": "dppk:repairService",
                 "@container": "@set"
             },
             "carbonFootprint": {
