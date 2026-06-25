@@ -66,8 +66,7 @@
     { "@language": "sk", "@value": "Definuje horizontálne koncepty súvisiace s popisom produktu, kusovníkom (BOM), materiálmi a kvantitatívnymi meraniami." },
     { "@language": "sl", "@value": "Določa horizontalne koncepte, povezane z opisom izdelka, kosovnico (BOM), materiali in kvantitativnimi meritvami." },
     { "@language": "sv", "@value": "Definierar horisontella begrepp relaterade till produktbeskrivningen, stycklistan (BOM), material och kvantitativa mätningar." }
-  ],
-  "owl:versionInfo": "1.0.0",
+  ],  "owl:versionInfo": "{{VERSION}}",
   // Import the Header ontology as it defines the DPP class.
   "owl:imports": [
       { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Header.jsonld" },

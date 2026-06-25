@@ -14,6 +14,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Construction",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "{{VERSION}}",
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Sector Ontology - Construction and Heavy Industry Definitions ({{VERSION}})" },
     { "@language": "bg", "@value": "Онтология на сектора на DPP - Определения за строителството и тежката промишленост ({{VERSION}})" },
@@ -66,7 +67,6 @@
     { "@language": "sl", "@value": "Določa koncepte za gradbene proizvode (v skladu s CPR) in povezane težke industrije, kot sta jeklo in železnice." },
     { "@language": "sv", "@value": "Definierar koncept för byggprodukter (i linje med CPR) och relaterade tunga industrier som stål och järnväg." }
   ],
-  "owl:versionInfo": "1.0.0",
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Compliance.jsonld" },

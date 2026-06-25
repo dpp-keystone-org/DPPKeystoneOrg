@@ -77,13 +77,10 @@
 
   // --- Manufacturer Details (Aligned with Core Ontology) ---
   "manufacturer": {
-    "@id": "urn:lei:ABCDE123456789012345",
-    "@type": ["Organization", "ManufacturerRole"],
     "organizationName": "Drills R Us SE",
     "leiCode": "ABCDE123456789012345",
     "gln": "5012345100036",
     "address": {
-      "@type": "PostalAddress",
       "streetAddress": "4 Black Street",
       "postalCode": "12345",
       "addressLocality": "London",
@@ -179,11 +176,10 @@
   // --- Compliance (Aligned with Core Ontology) ---
   "additionalCertifications": [
     {
-      "@type": "Certification",
       "resourceTitle": "CE Mark",
       "identifier": "CE-2024-98765",
       "certificationBodyName": "Self-declared",
-      "organizationRole": "ManufacturerRole",
+      "certificationBodyRole": "ManufacturerRole",
       "certificationStartDate": "2024-01-01",
       "url": "https://example.com/dop/GSB451"
     }

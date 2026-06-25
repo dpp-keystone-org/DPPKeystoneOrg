@@ -65,7 +65,7 @@
     { "@language": "sl", "@value": "Določa horizontalne koncepte, povezane z dokumenti, certifikati, snovmi, ki vzbujajo skrb, okoljsko primerno zasnovo, embalažo in proizvodnimi koraki." },
     { "@language": "sv", "@value": "Definierar horisontella begrepp relaterade till dokument, certifieringar, särskilt farliga ämnen, ekodesign, förpackningar och produktionssteg." }
   ],
-  "owl:versionInfo": "1.0.0",
+  "owl:versionInfo": "{{VERSION}}",
   // Import Product and Organization ontologies as they are used in the domain/range of properties here.
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
@@ -381,6 +381,15 @@
             { "@id": "schema:hasCertification" },
             { "@id": "gs1:certification" }
         ]
+    },
+    {
+        "@id": "dppk:additionalCertification",
+        "@type": "owl:ObjectProperty",
+        "rdfs:label": "Additional Certification",
+        "rdfs:comment": "Relates the product to any additional voluntary or secondary certifications.",
+        "rdfs:domain": { "@id": "dppk:Product" },
+        "rdfs:range": { "@id": "dppk:Certification" },
+        "rdfs:subPropertyOf": { "@id": "dppk:certifications" }
     },
     {
         "@id": "dppk:substancesOfConcern",
@@ -950,7 +959,7 @@
     },
     {
         "@id": "dppk:certificationBodyRole",
-        "@type": "owl:DatatypeProperty",
+        "@type": "owl:ObjectProperty",
         "rdfs:label": [
           { "@language": "en", "@value": "Certifying Body Role" },
           { "@language": "bg", "@value": "Роля на сертифициращия орган" },
@@ -1004,7 +1013,46 @@
           { "@language": "sv", "@value": "Den roll eller egenskap i vilken certifieringsorganet utfärdade certifieringen." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": { "@id": "dppk:CertificationBodyRoleType" }
+    },
+
+    // --- Enumeration for Certification Body Roles ---
+    {
+        "@id": "dppk:CertificationBodyRoleType",
+        "@type": "rdfs:Class",
+        "rdfs:subClassOf": { "@id": "rdfs:Resource" },
+        "rdfs:label": "Certification Body Role Type",
+        "rdfs:comment": "An enumeration of roles that an organization can assume when issuing a certification.",
+        "owl:oneOf": [
+            { "@id": "dppk:EconomicOperatorRole" },
+            { "@id": "dppk:ManufacturerRole" },
+            { "@id": "dppk:ImporterRole" },
+            { "@id": "dppk:NotifiedBodyRole" }
+        ]
+    },
+    {
+        "@id": "dppk:EconomicOperatorRole",
+        "@type": "dppk:CertificationBodyRoleType",
+        "rdfs:label": "Economic Operator Role",
+        "rdfs:comment": "The role of an entity responsible for placing the product on the market, as defined by ESPR."
+    },
+    {
+        "@id": "dppk:ManufacturerRole",
+        "@type": "dppk:CertificationBodyRoleType",
+        "rdfs:label": "Manufacturer Role",
+        "rdfs:comment": "The role of an entity responsible for the production of the finished goods."
+    },
+    {
+        "@id": "dppk:ImporterRole",
+        "@type": "dppk:CertificationBodyRoleType",
+        "rdfs:label": "Importer Role",
+        "rdfs:comment": "The role of an entity responsible for importing the product into the market."
+    },
+    {
+        "@id": "dppk:NotifiedBodyRole",
+        "@type": "dppk:CertificationBodyRoleType",
+        "rdfs:label": "Notified Body Role",
+        "rdfs:comment": "The role of an entity that performs conformity assessment activities and is officially designated by a notifying authority."
     },
 
 

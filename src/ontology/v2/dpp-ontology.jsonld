@@ -63,7 +63,7 @@
     { "@language": "sl", "@value": "Glavna vstopna točka za DPP Harmonizacijski slovar podatkov (Keystone). Ta datoteka uvozi vse osnovne module in sektorsko specifične definicije za različico 1." },
     { "@language": "sv", "@value": "Huvudingångspunkten för DPP Harmoniserande dataordbok (Keystone). Denna fil importerar alla kärnmoduler och sektorspecifika definitioner för version 1." }
   ],
-  "owl:versionInfo": "1.0.0",
+  "owl:versionInfo": "{{VERSION}}",
 
   "owl:imports": [
     // Core Modules

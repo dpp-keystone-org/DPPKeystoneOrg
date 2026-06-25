@@ -58,10 +58,7 @@
             },
             "maximumRatedSpeed": { "@id": "dppk:maximumRatedSpeed", "@type": "dppk:QuantitativeValue" },
             "ratedPower": { "@id": "dppk:ratedPower", "@type": "dppk:QuantitativeValue" },
-            "voltage": { "@id": "dppk:voltage", "@type": "dppk:QuantitativeValue" },
-            "maximumDrillingDiameter": { "@id": "dppk:maximumDrillingDiameter", "@type": "dppk:QuantitativeValue" },
-            "chargingTime": { "@id": "dppk:chargingTime", "@type": "dppk:QuantitativeValue" },
-            "warranty": { "@id": "dppk:warranty", "@type": "dppk:QuantitativeValue" }
+            "voltage": { "@id": "dppk:voltage", "@type": "dppk:QuantitativeValue" }
         }
     ]
 }

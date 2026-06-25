@@ -13,6 +13,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Electronics",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "{{VERSION}}",
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Sector Ontology - Electronics and Electrical Equipment Definitions ({{VERSION}})" },
     { "@language": "bg", "@value": "Онтология на сектора на DPP - Определения за електроника и електрическо оборудване ({{VERSION}})" },
@@ -65,7 +66,6 @@
     { "@language": "sl", "@value": "Določa koncepte za električno in elektronsko opremo (EEE), ki so usklajeni s predpisi, kot so RoHS, OEEO in zahteve za okoljsko primerno zasnovo." },
     { "@language": "sv", "@value": "Definierar koncept för elektronik och elektrisk utrustning (EEE), i linje med regler som RoHS, WEEE och krav på ekodesign." }
   ],
-  "owl:versionInfo": "1.0.0",
   // Import Core ontologies.
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },

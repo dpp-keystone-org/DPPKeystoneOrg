@@ -62,6 +62,7 @@
     { "@language": "sl", "@value": "Določa razrede in lastnosti, potrebne za predstavitev Izjave o lastnostih in skladnosti (DoPC)." },
     { "@language": "sv", "@value": "Definierar de klasser och egenskaper som krävs för att representera en prestandadeklaration och försäkran om överensstämmelse (DoPC)." }
   ],
+  "owl:versionInfo": "{{VERSION}}",
   "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
   "@graph": [
     {

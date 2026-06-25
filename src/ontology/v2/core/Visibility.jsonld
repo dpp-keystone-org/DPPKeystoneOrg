@@ -10,6 +10,7 @@
     },
     "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Visibility",
     "@type": "owl:Ontology",
+    "owl:versionInfo": "{{VERSION}}",
     "dcterms:title": [
       { "@language": "en", "@value": "DPP Visibility Ontology" },
       { "@language": "bg", "@value": "DPP Онтология за видимост" },

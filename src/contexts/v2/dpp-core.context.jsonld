@@ -15,7 +15,7 @@
     "unece": "https://vocabulary.uncefact.org/",
 
     // ==================================================================
-    // Core Classes (for use in @type)
+    // Core Classes
     // ==================================================================
     "DigitalProductPassport": "dppk:DigitalProductPassport",
     "Organization": "dppk:Organization",
@@ -24,23 +24,27 @@
     "QuantitativeValue": "dppk:QuantitativeValue",
     "RelatedResource": "dppk:RelatedResource",
     "Certification": "dppk:Certification",
+
+
     "Component": "dppk:Component",
-    "SubstanceOfConcern": "dppk:SubstanceOfConcern",
 
     "Packaging": "dppk:Packaging",
     "ProductionStep": "dppk:ProductionStep",
     "ProductCharacteristic": "dppk:ProductCharacteristic",
 
-    // Roles (for co-typing)
-    "EconomicOperatorRole": "dppk:EconomicOperatorRole",
-    "ManufacturerRole": "dppk:ManufacturerRole",
-    "FacilityRole": "dppk:FacilityRole",
-    "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
-    "RepairServiceRole": "dppk:RepairServiceRole",
-    "ISO6523": "dppk:ISO6523",
-
     // ==================================================================
-    // Enumeration Members
+    // Certifcation Related Roles
+    // ==================================================================
+    "certificationBodyRole": {
+      "@id": "dppk:certificationBodyRole",
+      "@type": "@vocab"
+    },
+    "EconomicOperatorRole": { "@id": "dppk:EconomicOperatorRole" },
+    "ManufacturerRole": { "@id": "dppk:ManufacturerRole" },
+    "ImporterRole": { "@id": "dppk:ImporterRole" },
+    "NotifiedBodyRole": { "@id": "dppk:NotifiedBodyRole" },
+    // ==================================================================
+    // DPP Granularities
     // ==================================================================
     "Item": { "@id": "dppk:Item" },
     "Batch": { "@id": "dppk:Batch" },
@@ -63,7 +67,6 @@
       "@id": "dppk:contentSpecificationIds",
       "@container": "@set"
     },
-    "verifiableCredential": "dppk:verifiableCredential",
     "hsCode": "dppk:hsCode",
 
     // ==================================================================
@@ -84,12 +87,8 @@
     "gln": "dppk:gln",
     "leiCode": "dppk:leiCode",
     "eori": "dppk:eori",
-    "organizationRole": "dppk:organizationRole", // Moved from redundant block
     "additionalOrganizationId": "dppk:additionalOrganizationId",
     "additionalOrganizationIdType": "dppk:additionalOrganizationIdType",
-    "iso6523": "dppk:iso6523",
-    "icd": "dppk:icd",
-    "iso6523Value": "dppk:iso6523Value",
 
     // Address and Contact
     "address": "dppk:address",
@@ -163,10 +162,6 @@
     "contentType": "dppk:contentType",
     "language": "dppk:language",
 
-    "dateOfManufacture": {
-      "@id": "dppk:dateOfManufacture",
-      "@type": "xsd:date"
-    },
     "apparelSize": {
       "@id": "dppk:apparelSize",
       "@type": "xsd:string"

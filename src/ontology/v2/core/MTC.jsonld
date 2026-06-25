@@ -10,6 +10,8 @@
     },
     "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/MTC",
     "@type": "owl:Ontology",
+    "owl:versionInfo": "{{VERSION}}",
+    "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
     "dcterms:title": [
       { "@language": "en", "@value": "DPP Core Ontology - Material Test Certificate (MTC)" },
       { "@language": "bg", "@value": "DPP Основна онтология - Сертификат за изпитване на материали (MTC)" },
@@ -62,7 +64,6 @@
       { "@language": "sl", "@value": "Določa osnovni razred in lastnosti za Potrdilo o preskusu materiala (npr. EN 10204)." },
       { "@language": "sv", "@value": "Definierar basklassen och egenskaperna för ett materialprovningsintyg (t.ex. EN 10204)." }
     ],
-    "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
     "@graph": [
         {
             "@id": "dppk:MaterialTestCertificate",

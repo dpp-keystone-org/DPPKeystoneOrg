@@ -522,7 +522,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode, version) {
     }
 
     // 6. Additional Certifications -> hasCertification
-    const addCerts = rootNode[`${termsBase}additionalCertifications`];
+    const addCerts = rootNode[`${termsBase}additionalCertification`];
     if (addCerts && Array.isArray(addCerts)) {
         const newCerts = addCerts.map(c => ({
             "@type": "Certification",

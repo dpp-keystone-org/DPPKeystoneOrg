@@ -11,6 +11,8 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/RelatedResource",
   "@type": "owl:Ontology",
+  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
+  "owl:versionInfo": "{{VERSION}}",
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Core Ontology - Related Resource" },
     { "@language": "bg", "@value": "Основна онтология на DPP - Свързан ресурс" },
@@ -63,7 +65,6 @@
     { "@language": "sl", "@value": "Določa razred za povezovanje z zunanjimi viri, kot so dokumenti ali spletna mesta, s povezanimi metapodatki." },
     { "@language": "sv", "@value": "Definierar en klass för att länka till externa resurser, såsom dokument eller webbplatser, med tillhörande metadata." }
   ],
-  "owl:imports": { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
   "@graph": [
     {
       "@id": "dppk:RelatedResource",

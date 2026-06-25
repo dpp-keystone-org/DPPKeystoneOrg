@@ -10,6 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPD",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "{{VERSION}}",
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Core Ontology - Environmental Product Declaration (EPD)" },
     { "@language": "bg", "@value": "Основна онтология на DPP - Екологична продуктова декларация (EPD)" },
