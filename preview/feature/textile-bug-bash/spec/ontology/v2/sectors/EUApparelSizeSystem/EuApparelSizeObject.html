@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: EU Apparel Size Object</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a> / <a href="index.html">DPP Ontology - EU Apparel Size System (EN 13402)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: EU Apparel Size Object (dppk:EuApparelSizeObject)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="EuApparelSizeObject">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class EuApparelSizeObject
+  EuApparelSizeObject : +sizeDesignation
+  EuApparelSizeObject : +cupSize
+  EuApparelSizeObject : +primaryDimension
+  EuApparelSizeObject --|> BodyDimensionValue : primaryDimension
+  EuApparelSizeObject : +primaryDimensionValue
+  EuApparelSizeObject : +secondaryDimensions
+  EuApparelSizeObject : +dimensionName
+  EuApparelSizeObject --|> BodyDimensionValue : dimensionName
+  EuApparelSizeObject : +dimensionValue
+  click BodyDimensionValue href "BodyDimensionValue.html" "dppk:BodyDimensionValue"
+  style BodyDimensionValue stroke:#2962ff,color:#2962ff
+
+                </pre>
+
+                <h4>Description</h4>
+                <p>A structured representation of an EU size according to EN 13402.</p>
+                
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>equivalentProperty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td><a href="index.html#sizeDesignation">Size Designation</a> (dppk:sizeDesignation)</td>
+                                    <td>Identification of the clothing size by means of alphanumeric characters.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td><a href="https://gs1.org/voc/sizeCode">gs1:sizeCode</a></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#cupSize">Cup Size</a> (dppk:cupSize)</td>
+                                    <td>Difference between bust girth and underbust girth.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#primaryDimension">Primary Dimension</a> (dppk:primaryDimension)</td>
+                                    <td>The primary body measurement (e.g., chest girth).</td>
+                                    <td><a href="BodyDimensionValue.html">dppk:BodyDimensionValue</a></td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#primaryDimensionValue">Primary Dimension Value</a> (dppk:primaryDimensionValue)</td>
+                                    <td>The range or value of the primary dimension.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#secondaryDimensions">Secondary Dimensions</a> (dppk:secondaryDimensions)</td>
+                                    <td>Additional body measurements required for precision fit.</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#dimensionName">Dimension Name</a> (dppk:dimensionName)</td>
+                                    <td>The name of the secondary dimension (e.g., waist girth).</td>
+                                    <td><a href="BodyDimensionValue.html">dppk:BodyDimensionValue</a></td>
+                                    <td></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="index.html#dimensionValue">Dimension Value</a> (dppk:dimensionValue)</td>
+                                    <td>The value or range of the secondary dimension.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    <td></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

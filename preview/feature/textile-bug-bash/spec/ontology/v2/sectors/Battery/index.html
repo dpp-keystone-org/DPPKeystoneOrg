@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Module: DPP Battery Sector Ontology</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: sectors</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">DPP Battery Sector Ontology</h2>
+            </div>
+        </header>
+        <main>
+            <p>Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information.</p>
+            <p><strong>Source:</strong> <a href="../Battery.jsonld">Battery.jsonld</a></p>
+            <h3>Classes & Concepts</h3>
+            <ul>
+                <li><a href="BatteryProduct.html">Battery Product</a></li><li><a href="BatteryPerformance.html">Performance and Durability</a></li><li><a href="CapacityInfo.html">Capacity, Energy and Voltage</a></li><li><a href="PowerInfo.html">Power Capability</a></li><li><a href="EfficiencyInfo.html">Round Trip Efficiency and Self-Discharge</a></li><li><a href="InternalResistanceInfo.html">Internal Resistance</a></li><li><a href="LifetimeInfo.html">Battery Lifetime</a></li><li><a href="TemperatureInfo.html">Temperature Conditions</a></li><li><a href="NegativeEventsInfo.html">Negative Events and Accidents</a></li>
+            </ul>
+            <h3>Properties</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Domain</th>
+                        <th>Range</th>
+                        <th>governedBy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td id="manufacturingPlace"><strong>Manufacturing place</strong> (dppk:manufacturingPlace)</td>
+                            <td>A battery passport must include the manufacturing place (geographical location of a battery manufacturing plant). The manufacturing place must also be provided on the battery label.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1a)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="manufacturingDate"><strong>Manufacturing date</strong> (dppk:manufacturingDate)</td>
+                            <td>A battery passport must include the date of manufacture (month and year). The manufacturing date must also be provided on the battery label. Format YYYY-MM-DD (ISO 8601).</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+                            <td>Annex XIII (1a)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="serviceDate"><strong>Date of putting the battery into service</strong> (dppk:serviceDate)</td>
+                            <td>Where appropriate, the battery passport must include information on the date of putting the battery into service. Format YYYY-MM-DD (ISO 8601).</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+                            <td>Annex VII Part B (1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="warrantyPeriod"><strong>Warranty period of the battery</strong> (dppk:warrantyPeriod)</td>
+                            <td>The battery passport must include information about the period for which the commercial warranty applies.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1m)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="batteryCategory"><strong>Battery category</strong> (dppk:batteryCategory)</td>
+                            <td>A battery passport must include the battery category. The battery category must be provided on the battery label. Categories: LMT battery, electric vehicle battery, or industrial battery.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1a); Annex VI Part A (2)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="batteryMass"><strong>Battery mass</strong> (dppk:batteryMass)</td>
+                            <td>A battery passport must include the battery mass. The battery mass must also be provided on the battery label.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1a); Annex VI Part A (5)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="batteryStatus"><strong>Battery status</strong> (dppk:batteryStatus)</td>
+                            <td>A battery passport must include information on the status of the battery. Statuses: original, repurposed, re-used, remanufactured, or waste.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII 4(c)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="separateCollectionSymbol"><strong>Separate collection symbol</strong> (dppk:separateCollectionSymbol)</td>
+                            <td>The battery passport must include the symbol for separate collection. The symbol should be translated into text to ensure machine readability.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (1s); Art. 13(4); Annex VI Part B</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="heavyMetalSymbols"><strong>Symbols for cadmium and lead</strong> (dppk:heavyMetalSymbols)</td>
+                            <td>Batteries containing more than 0.002% cadmium or 0.004% lead must be marked with the chemical symbol (Cd or Pb).</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (1s); Art. 13(5)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="carbonFootprintLabel"><strong>Carbon footprint label</strong> (dppk:carbonFootprintLabel)</td>
+                            <td>EV and rechargeable industrial batteries > 2 kWh and LMT batteries must bear a label indicating the carbon footprint and performance class.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Article 7(2) via Annex XIII (1c)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="extinguishingAgent"><strong>Extinguishing agent</strong> (dppk:extinguishingAgent)</td>
+                            <td>A battery passport must include the usable extinguishing agent. The information should be related to their possible area of application as regulated in DIN EN 2.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex VI Part A (9)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="labelMeaning"><strong>Meaning of labels and symbols</strong> (dppk:labelMeaning)</td>
+                            <td>Information regarding the prevention and management of waste batteries including the meaning of the labels and symbols.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1s); Art. 74 1(e)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="testReports"><strong>Results of test reports proving compliance</strong> (dppk:testReports)</td>
+                            <td>A battery passport must include the test report results that can prove the compliance with the requirements stated in the battery regulation.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (3); Annex VIII Part A 2(h)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="carbonFootprintClass"><strong>Carbon footprint performance class</strong> (dppk:carbonFootprintClass)</td>
+                            <td>The battery passport must include the carbon footprint performance class in accordance with the delegated and implementing acts.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1c); Art. 7(2)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="carbonFootprintStudy"><strong>Web link to public carbon footprint study</strong> (dppk:carbonFootprintStudy)</td>
+                            <td>The battery passport must include a web link to the carbon footprint study accompanying the battery carbon footprint declaration.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (1c); Art. 7 1(g)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="carbonFootprintGeneralInfo"><strong>General battery and manufacturer information</strong> (dppk:carbonFootprintGeneralInfo)</td>
+                            <td>The battery passport must contain general battery and manufacturer information in relation to the battery carbon footprint.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII, Article 7(1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="carbonFootprintAbsolute"><strong>Absolute battery carbon footprint</strong> (dppk:carbonFootprintAbsolute)</td>
+                            <td>The battery passport should include the battery carbon footprint in absolute terms (kg CO2e).</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="dueDiligenceReport"><strong>Information of due diligence report</strong> (dppk:dueDiligenceReport)</td>
+                            <td>The battery passport must include information on responsible sourcing as indicated in the report on its due diligence policy.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Art. 52(3)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="supplyChainAssurances"><strong>Third party assurances of recognised schemes</strong> (dppk:supplyChainAssurances)</td>
+                            <td>The battery passport should contain information on third-party supply chain assurances such as certifications.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Art. 49(d)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="supplyChainIndices"><strong>Supply chain indices</strong> (dppk:supplyChainIndices)</td>
+                            <td>The battery passport should contain supply chain indices to allow easy assessment for consumers on level of responsible sourcing.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="batteryChemistry"><strong>Battery chemistry</strong> (dppk:batteryChemistry)</td>
+                            <td>The battery passport must contain information on the battery chemistry (cathode, anode, electrolyte).</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1b); Annex VI Part A (7)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="criticalRawMaterials"><strong>Critical raw materials</strong> (dppk:criticalRawMaterials)</td>
+                            <td>The battery passport must contain information on the critical raw materials present in the battery in a concentration of more than 0.1%.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1b); Annex VI Part A (10)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="materialComposition"><strong>Materials used in cathode, anode and electrolyte</strong> (dppk:materialComposition)</td>
+                            <td>The battery passport must contain information on the detailed composition of the battery, including materials used in the cathode, anode and electrolyte. Reuses dppk:Component.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/Product/Component.html">dppk:Component</a></td>
+                            <td>Annex XIII (2a)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="hazardousSubstances"><strong>Hazardous substances</strong> (dppk:hazardousSubstances)</td>
+                            <td>The battery passport must contain information on hazardous substances other than mercury, cadmium, or lead. Reuses dppk:Component.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/Product/Component.html">dppk:Component</a></td>
+                            <td>Annex XIII (1b); Annex VI Part A (8)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="hazardousSubstancesImpact"><strong>Impact of substances on environment, human health, safety, persons</strong> (dppk:hazardousSubstancesImpact)</td>
+                            <td>The battery passport must contain information on the impact of substances, in particular hazardous substances, on the environment and human health.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1s); Art. 74 1(f)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="dismantlingInformation"><strong>Dismantling information</strong> (dppk:dismantlingInformation)</td>
+                            <td>A battery passport must include dismantling information, including exploded diagrams, disassembly sequences, and tools required.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (2c)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="partNumbers"><strong>Part numbers for components</strong> (dppk:partNumbers)</td>
+                            <td>A battery passport must include part numbers for components, provided together with contact details of sources for spare parts.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (2b)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="sparePartsSources"><strong>Information on sources of spare parts</strong> (dppk:sparePartsSources)</td>
+                            <td>A battery passport must include contact details of sources for spare parts.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (2b)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="safetyMeasures"><strong>Safety measures</strong> (dppk:safetyMeasures)</td>
+                            <td>A battery passport must include safety measures, provided via the instruction manual.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Annex XIII (2d); Art. 74(2)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="wastePreventionInfo"><strong>Information on waste prevention and management</strong> (dppk:wastePreventionInfo)</td>
+                            <td>Information on the role of end-users in waste prevention, separate collection, and information on battery collection and treatment.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/RelatedResource/RelatedResource.html">dppk:RelatedResource</a></td>
+                            <td>Art. 74(1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="preConsumerRecycledMaterialComposition"><strong>Pre-consumer recycled material shares</strong> (dppk:preConsumerRecycledMaterialComposition)</td>
+                            <td>The percentage shares of Nickel, Cobalt, Lithium, and Lead recovered from battery manufacturing waste (pre-consumer).</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/Product/Component.html">dppk:Component</a></td>
+                            <td>Annex XIII (1e); Art. 8(1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="postConsumerRecycledMaterialComposition"><strong>Post-consumer recycled material shares</strong> (dppk:postConsumerRecycledMaterialComposition)</td>
+                            <td>The percentage shares of Nickel, Cobalt, Lithium, and Lead recovered from waste (post-consumer).</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="../../core/Product/Component.html">dppk:Component</a></td>
+                            <td>Annex XIII (1e); Art. 8(1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="renewableContent"><strong>Renewable content share</strong> (dppk:renewableContent)</td>
+                            <td>A battery passport must include information about the share of renewable content.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1f)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="performance"><strong>Performance and durability parameters</strong> (dppk:performance)</td>
+                            <td>A battery passport must include information on the performance and durability of the battery.</td>
+                            <td><a href="BatteryProduct.html">dppk:BatteryProduct</a></td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td>Annex XIII (1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="capacity"><strong>Capacity, energy, and voltage</strong> (dppk:capacity)</td>
+                            <td>Sub-section for capacity, energy, state of charge, and voltage limits.</td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td>Annex XIII (1g, 1h, 4d)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="power"><strong>Power capability</strong> (dppk:power)</td>
+                            <td>Sub-section for power capability, fade, and limits.</td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td><a href="PowerInfo.html">dppk:PowerInfo</a></td>
+                            <td>Annex XIII (1i); Art. 10</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="efficiency"><strong>Round trip energy efficiency and self-discharge</strong> (dppk:efficiency)</td>
+                            <td>Sub-section for round trip efficiency and self-discharge.</td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td>Annex XIII (1n); Art. 10</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="internalResistance"><strong>Internal resistance</strong> (dppk:internalResistance)</td>
+                            <td>Sub-section for internal resistance.</td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td><a href="InternalResistanceInfo.html">dppk:InternalResistanceInfo</a></td>
+                            <td>Annex XIII (1o); Art. 10</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="lifetime"><strong>Battery lifetime</strong> (dppk:lifetime)</td>
+                            <td>Sub-section for battery lifetime in years and cycles.</td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td>Annex XIII (1j, 1k, 4a); Annex IV</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="temperature"><strong>Temperature conditions</strong> (dppk:temperature)</td>
+                            <td>Sub-section for temperature conditions and time in extreme temperatures.</td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td><a href="TemperatureInfo.html">dppk:TemperatureInfo</a></td>
+                            <td>Annex XIII (1l); Annex VII Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="negativeEvents"><strong>Negative events and accidents</strong> (dppk:negativeEvents)</td>
+                            <td>Sub-section for negative events and accidents.</td>
+                            <td><a href="BatteryPerformance.html">dppk:BatteryPerformance</a></td>
+                            <td><a href="NegativeEventsInfo.html">dppk:NegativeEventsInfo</a></td>
+                            <td>Annex XIII (4d); Annex VII Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="ratedCapacity"><strong>Rated capacity</strong> (dppk:ratedCapacity)</td>
+                            <td>The total number of ampere-hours (Ah) that can be withdrawn from a fully charged battery under reference conditions.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1g); Annex IV Part A (1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="remainingCapacity"><strong>Remaining capacity</strong> (dppk:remainingCapacity)</td>
+                            <td>The corresponding in-use data attribute to rated capacity, as information on the state of health of the battery.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part A (1)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="capacityFade"><strong>Capacity fade</strong> (dppk:capacityFade)</td>
+                            <td>The decrease over time and upon usage in the amount of charge that a battery can deliver at the rated voltage, with respect to the original rated capacity.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex IV Part A (2)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="certifiedUsableEnergy"><strong>Certified usable battery energy</strong> (dppk:certifiedUsableEnergy)</td>
+                            <td>The usable battery energy according to the procedure in the UN GTR No 22 as determined during the certification.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="remainingUsableEnergy"><strong>Remaining usable battery energy</strong> (dppk:remainingUsableEnergy)</td>
+                            <td>The usable battery energy at the present point in the lifetime of a battery.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="soce"><strong>State of certified energy (SOCE)</strong> (dppk:soce)</td>
+                            <td>The measured or on-board usable battery energy performance at a specific point in its lifetime, expressed as a percentage of the certified usable battery energy.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part A (EV)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="stateOfCharge"><strong>State of Charge (SoC)</strong> (dppk:stateOfCharge)</td>
+                            <td>The available energy or charge in a battery expressed as a percentage of rated capacity.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (4d); Article 3 1(27)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="voltageMinimum"><strong>Minimum voltage</strong> (dppk:voltageMinimum)</td>
+                            <td>The lower voltage limit that the safe operation of the battery is rated for.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1h)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="voltageMaximum"><strong>Maximum voltage</strong> (dppk:voltageMaximum)</td>
+                            <td>The upper voltage limit that the safe operation of the battery is rated for.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1h)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="voltageNominal"><strong>Nominal voltage</strong> (dppk:voltageNominal)</td>
+                            <td>The suitable approximate value of the voltage used to designate or identify the battery.</td>
+                            <td><a href="CapacityInfo.html">dppk:CapacityInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1h)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="powerOriginal"><strong>Original power capability</strong> (dppk:powerOriginal)</td>
+                            <td>The amount of energy that a battery is capable to provide over a given period of time under reference conditions.</td>
+                            <td><a href="PowerInfo.html">dppk:PowerInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1i); Art. 10; Annex IV Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="powerRemaining"><strong>Remaining power capability</strong> (dppk:powerRemaining)</td>
+                            <td>Information on the remaining power capability as information on the state of health of the battery.</td>
+                            <td><a href="PowerInfo.html">dppk:PowerInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Art. 10; Annex IV (3); Annex VII Part A (2)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="powerFade"><strong>Power fade</strong> (dppk:powerFade)</td>
+                            <td>The decrease over time and upon usage in the amount of power that a battery can deliver at the rated voltage.</td>
+                            <td><a href="PowerInfo.html">dppk:PowerInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex IV Part A (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="powerMaximumPermitted"><strong>Maximum permitted battery power</strong> (dppk:powerMaximumPermitted)</td>
+                            <td>The value of maximum permitted power the battery is rated for.</td>
+                            <td><a href="PowerInfo.html">dppk:PowerInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1i)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="powerEnergyRatio"><strong>Ratio between nominal battery power and battery energy</strong> (dppk:powerEnergyRatio)</td>
+                            <td>Provides an indication of the applicable discharge and charge rate in terms of rated capacity (C-rate).</td>
+                            <td><a href="PowerInfo.html">dppk:PowerInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex IV Part B (2)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="roundTripEfficiencyInitial"><strong>Initial round trip energy efficiency</strong> (dppk:roundTripEfficiencyInitial)</td>
+                            <td>The ratio of the net energy delivered by a battery during a discharge test to the total energy required to restore the initial state of charge.</td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1n); Art. 10; Annex IV (6)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="roundTripEfficiencyAt50Cycles"><strong>Round trip energy efficiency at 50% of cycle life</strong> (dppk:roundTripEfficiencyAt50Cycles)</td>
+                            <td>Round trip energy efficiency measured at 50% of cycle-life.</td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII 1(n); Annex IV (6)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="roundTripEfficiencyRemaining"><strong>Remaining round trip energy efficiency</strong> (dppk:roundTripEfficiencyRemaining)</td>
+                            <td>The in-use analogy to the initial roundtrip energy efficiency.</td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Art. 10; Annex VII Part A (3)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="roundTripEfficiencyFade"><strong>Energy round trip efficiency fade</strong> (dppk:roundTripEfficiencyFade)</td>
+                            <td>The decrease of round trip energy efficiency as percentage.</td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex IV Part A (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="selfDischargeInitial"><strong>Initial self-discharge rate</strong> (dppk:selfDischargeInitial)</td>
+                            <td>The self-discharge-rate in an idle state of the battery in reference conditions at begin of life.</td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="selfDischargeCurrent"><strong>Current self-discharge rate</strong> (dppk:selfDischargeCurrent)</td>
+                            <td>The change of the self-discharge rate in an idle state of the battery.</td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="selfDischargeEvolution"><strong>Evolution of self-discharge rates</strong> (dppk:selfDischargeEvolution)</td>
+                            <td>The change of self-discharge over time and usage, calculated from the initial and current self-discharge rate.</td>
+                            <td><a href="EfficiencyInfo.html">dppk:EfficiencyInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Art. 14: Annex VII Part A (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="internalResistanceInitial"><strong>Initial internal resistance of battery cell and pack</strong> (dppk:internalResistanceInitial)</td>
+                            <td>The opposition to the flow of current within a cell or a battery under reference conditions.</td>
+                            <td><a href="InternalResistanceInfo.html">dppk:InternalResistanceInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1o); Art. 10: Annex IV Part A (3)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="internalResistanceIncrease"><strong>Internal resistance increase of pack</strong> (dppk:internalResistanceIncrease)</td>
+                            <td>The increase over time and upon usage of internal resistance.</td>
+                            <td><a href="InternalResistanceInfo.html">dppk:InternalResistanceInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex IV, Part A(3)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="expectedLifetimeYears"><strong>Expected lifetime in calendar years</strong> (dppk:expectedLifetimeYears)</td>
+                            <td>The expected life-time under the reference conditions for which they have been designed in calendar years.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex IV, Part A(5); Annex XIII (1); Annex XIII (4a)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="expectedLifetimeCycles"><strong>Expected lifetime: Number of charge-discharge cycles</strong> (dppk:expectedLifetimeCycles)</td>
+                            <td>The expected life-time under the reference conditions for which they have been designed in terms of cycles.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                            <td>Annex IV A(5)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="cycleCountFull"><strong>Number of full charging and discharging cycles</strong> (dppk:cycleCountFull)</td>
+                            <td>The value for the number of full charging and discharging cycles should result from the aggregation of partial cycles occurring in the use phase.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                            <td>Annex XIII (4d); Art. 14: Annex VII Part B (5)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="referenceTestCycleLife"><strong>Cycle-life reference test</strong> (dppk:referenceTestCycleLife)</td>
+                            <td>The reference test used for determining the expected battery lifetime in cycles.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (1j)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="cRateCycleTest"><strong>C-rate of relevant cycle-life test</strong> (dppk:cRateCycleTest)</td>
+                            <td>Applied charge and discharge rate in terms of rated capacity (C-rate) of relevant cycle-life reference test.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1p)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="energyThroughput"><strong>Energy throughput</strong> (dppk:energyThroughput)</td>
+                            <td>The overall sum of the energy throughput over the battery lifetime at a specific time during usage.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part B (2)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="capacityThroughput"><strong>Capacity throughput</strong> (dppk:capacityThroughput)</td>
+                            <td>The overall sum of the capacity throughput over the battery lifetime at a specific time during usage.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part B (3)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="exhaustionCapacityThreshold"><strong>Capacity threshold for exhaustion</strong> (dppk:exhaustionCapacityThreshold)</td>
+                            <td>The percentage of SOCE, above which the battery is still considered operational.</td>
+                            <td><a href="LifetimeInfo.html">dppk:LifetimeInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1k)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="temperatureIdleLower"><strong>Temperature range idle state, lower boundary</strong> (dppk:temperatureIdleLower)</td>
+                            <td>The lower boundary of the surrounding temperature range the battery can withstand when not in use.</td>
+                            <td><a href="TemperatureInfo.html">dppk:TemperatureInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1l)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="temperatureIdleUpper"><strong>Temperature range idle state, upper boundary</strong> (dppk:temperatureIdleUpper)</td>
+                            <td>The upper boundary of the surrounding temperature range the battery can withstand when not in use.</td>
+                            <td><a href="TemperatureInfo.html">dppk:TemperatureInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex XIII (1l)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="timeExtremeTempUpper"><strong>Time spent in extreme temperatures above boundary</strong> (dppk:timeExtremeTempUpper)</td>
+                            <td>The aggregated time in which temperatures above the upper boundary of the temperature range are prevalent.</td>
+                            <td><a href="TemperatureInfo.html">dppk:TemperatureInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="timeExtremeTempLower"><strong>Time spent in extreme temperatures below boundary</strong> (dppk:timeExtremeTempLower)</td>
+                            <td>The aggregated time in which temperatures below the lower boundary of the temperature range are prevalent.</td>
+                            <td><a href="TemperatureInfo.html">dppk:TemperatureInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="timeChargingTempUpper"><strong>Time spent charging during extreme temperatures above boundary</strong> (dppk:timeChargingTempUpper)</td>
+                            <td>The aggregated time in which the battery is charged while temperatures above the upper boundary are prevalent.</td>
+                            <td><a href="TemperatureInfo.html">dppk:TemperatureInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="timeChargingTempLower"><strong>Time spent charging during extreme temperatures below boundary</strong> (dppk:timeChargingTempLower)</td>
+                            <td>The aggregated time in which the battery is charged while temperatures below the lower boundary are prevalent.</td>
+                            <td><a href="TemperatureInfo.html">dppk:TemperatureInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+                            <td>Annex VII Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="eventsDeepDischarge"><strong>Number of deep discharge events</strong> (dppk:eventsDeepDischarge)</td>
+                            <td>The number of occasions in which voltage has dropped below the lower operational limit.</td>
+                            <td><a href="NegativeEventsInfo.html">dppk:NegativeEventsInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                            <td>Annex VII Part B (4)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="eventsOvercharge"><strong>Number of overcharge events</strong> (dppk:eventsOvercharge)</td>
+                            <td>The number of occasions in which voltage has increased above the upper operational limit.</td>
+                            <td><a href="NegativeEventsInfo.html">dppk:NegativeEventsInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+                            <td></td>
+                        </tr>
+                    
+                        <tr>
+                            <td id="eventsAccidents"><strong>Information on accidents</strong> (dppk:eventsAccidents)</td>
+                            <td>Information and data resulting from use such as accidents, based on measuring abrupt positive or negative acceleration.</td>
+                            <td><a href="NegativeEventsInfo.html">dppk:NegativeEventsInfo</a></td>
+                            <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                            <td>Annex XIII (4d)</td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+</body>
+</html>

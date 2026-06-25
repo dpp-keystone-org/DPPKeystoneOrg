@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CertificationBodyRoleType: Economic Operator Role</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html">DPP Core Ontology - Compliance and Regulatory Definitions (v2)</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">CertificationBodyRoleType: Economic Operator Role (dppk:EconomicOperatorRole)</h2>
+            </div>
+        </header>
+        <main>
+            <div class="class-section" id="EconomicOperatorRole">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class EconomicOperatorRole
+  EconomicOperatorRole : +operatorEmail
+  EconomicOperatorRole : +operatorTelephone
+
+                </pre>
+
+                <h4>Description</h4>
+                <p>The role of an entity responsible for placing the product on the market, as defined by ESPR.</p>
+                <p><strong>type:</strong> dppk:CertificationBodyRoleType</p>
+
+                
+                    <h4>Properties</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td><a href="../Organization/index.html#operatorEmail">Operator Email Address</a> (dppk:operatorEmail)</td>
+                                    <td>The email address for contacting the economic operator.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    
+                                </tr>
+                            
+                                <tr>
+                                    <td><a href="../Organization/index.html#operatorTelephone">Operator Telephone Number</a> (dppk:operatorTelephone)</td>
+                                    <td>The telephone number for contacting the economic operator.</td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

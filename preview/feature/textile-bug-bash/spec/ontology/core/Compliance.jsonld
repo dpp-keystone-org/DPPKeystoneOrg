@@ -1,0 +1,418 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/spec/v2/terms"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Compliance",
+  "@type": "owl:Ontology",
+  "dcterms:title": "DPP Core Ontology - Compliance and Regulatory Definitions (v2)",
+  "dcterms:description": "Defines horizontal concepts related to Documents, Certifications, Substances of Concern, Eco-Design, Packaging, and Production Steps.",
+  "owl:versionInfo": "v2",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Organization.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/RelatedResource.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:Certification",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Certification",
+      "rdfs:comment": "A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD).",
+      "rdfs:subClassOf": {
+        "@id": "dppk:RelatedResource"
+      },
+      "owl:equivalentClass": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        },
+        {
+          "@id": "unece:certificationEvidenceDocument"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:Packaging",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Packaging",
+      "rdfs:comment": "Information about the materials and properties of the product's packaging.",
+      "owl:equivalentClass": [
+        {
+          "@id": "gs1:PackagingMaterialDetails"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:ProductionStep",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Production Step",
+      "rdfs:comment": "A significant step in the manufacturing or processing chain of the product, including its location."
+    },
+    {
+      "@id": "dppk:documents",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Documents",
+      "rdfs:comment": "Relates the product to associated digital documents.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:referencedFile"
+      }
+    },
+    {
+      "@id": "dppk:certifications",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Certifications",
+      "rdfs:comment": "Relates the product to its certifications.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Certification"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:hasCertification"
+        },
+        {
+          "@id": "gs1:certification"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:additionalCertification",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Additional Certification",
+      "rdfs:comment": "Relates the product to any additional voluntary or secondary certifications.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:certifications"
+      }
+    },
+    {
+      "@id": "dppk:substancesOfConcern",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Substances of Concern",
+      "rdfs:comment": "Relates the product to any substances of concern it contains.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      }
+    },
+    {
+      "@id": "dppk:packaging",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Packaging",
+      "rdfs:comment": "A list of packaging elements associated with the product.",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packaging"
+      }
+    },
+    {
+      "@id": "dppk:productionSteps",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "Production Steps",
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ProductionStep"
+      }
+    },
+    {
+      "@id": "dppk:certificationName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certification Name"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The name of the certification."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:name"
+      }
+    },
+    {
+      "@id": "dppk:certificationId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certification Identifier"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The unique identifier or number of the certification."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:identifier"
+      }
+    },
+    {
+      "@id": "dppk:certificationUrl",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certification URL"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A web link to the certification details or registry."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:url"
+      }
+    },
+    {
+      "@id": "dppk:certificationBodyName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Certifying Body Name",
+      "rdfs:comment": "The name of the body that issued the certification.",
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:certificationAgency"
+      }
+    },
+    {
+      "@id": "dppk:certificationBodyId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Certifying Body ID",
+      "rdfs:comment": "The unique identifier of the certifying body.",
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:certificationStartDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Start of Certificate Validity",
+      "rdfs:comment": "The date when the certification became valid.",
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:certificationStartDate"
+      }
+    },
+    {
+      "@id": "dppk:certificationEndDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "End of Certificate Validity"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The date when the certification expires."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      }
+    },
+    {
+      "@id": "dppk:certificationBodyRole",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Certifying Body Role"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The role or capacity in which the certifying body issued the certification."
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "dppk:CertificationBodyRoleType"
+      }
+    },
+    {
+      "@id": "dppk:CertificationBodyRoleType",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": {
+        "@id": "rdfs:Resource"
+      },
+      "rdfs:label": "Certification Body Role Type",
+      "rdfs:comment": "An enumeration of roles that an organization can assume when issuing a certification.",
+      "owl:oneOf": [
+        {
+          "@id": "dppk:EconomicOperatorRole"
+        },
+        {
+          "@id": "dppk:ManufacturerRole"
+        },
+        {
+          "@id": "dppk:ImporterRole"
+        },
+        {
+          "@id": "dppk:NotifiedBodyRole"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:EconomicOperatorRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": "Economic Operator Role",
+      "rdfs:comment": "The role of an entity responsible for placing the product on the market, as defined by ESPR."
+    },
+    {
+      "@id": "dppk:ManufacturerRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": "Manufacturer Role",
+      "rdfs:comment": "The role of an entity responsible for the production of the finished goods."
+    },
+    {
+      "@id": "dppk:ImporterRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": "Importer Role",
+      "rdfs:comment": "The role of an entity responsible for importing the product into the market."
+    },
+    {
+      "@id": "dppk:NotifiedBodyRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": "Notified Body Role",
+      "rdfs:comment": "The role of an entity that performs conformity assessment activities and is officially designated by a notifying authority."
+    },
+    {
+      "@id": "dppk:packagingMaterialType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Packaging Material Type",
+      "rdfs:comment": "The type of material used for the packaging (e.g., 'Cardboard', 'Plastic').",
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packagingMaterialType"
+      }
+    },
+    {
+      "@id": "dppk:packagingMaterialCompositionQuantity",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Packaging Material Composition Quantity",
+      "rdfs:comment": "The percentage of the material in the packaging.",
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packagingMaterialCompositionQuantity"
+      },
+      "dppk:unit": "%"
+    },
+    {
+      "@id": "dppk:packagingRecyclingProcessType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Packaging Recycling Process Type",
+      "rdfs:comment": "Indicates if the packaging is RECYCLABLE, REUSABLE, or COMPOSTABLE.",
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packagingRecyclingProcessType"
+      }
+    },
+    {
+      "@id": "dppk:packagingRecycledContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Packaging Recycled Content",
+      "rdfs:comment": "The percentage of recycled content in the packaging material.",
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      }
+    },
+    {
+      "@id": "dppk:packagingSubstanceOfConcern",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Packaging Substance of Concern Present",
+      "rdfs:comment": "Indicates if any substances of concern are present in the packaging.",
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      }
+    },
+    {
+      "@id": "dppk:productionStepType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Production Step Type",
+      "rdfs:comment": "The name or description of the production step (e.g., Assembly, Weaving, Smelting).",
+      "rdfs:domain": {
+        "@id": "dppk:ProductionStep"
+      }
+    },
+    {
+      "@id": "dppk:productionLocationCountry",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Production Location Country",
+      "rdfs:comment": "The country where the production step took place. Recommended to use ISO 3166-1 alpha-3 codes.",
+      "rdfs:domain": {
+        "@id": "dppk:ProductionStep"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:countryCode"
+      }
+    }
+  ]
+}
