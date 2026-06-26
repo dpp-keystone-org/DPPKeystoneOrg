@@ -1,12 +1,12 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1780908281128';
-import { loadOntology } from '../lib/ontology-loader.js?v=1780908281128';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1780908281128';
-import { generateDpp } from './dpp-generator.js?v=1780908281128';
-import { generateHTML } from '../lib/html-generator.js?v=1780908281128';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1780908281128';
+import { loadSchema } from '../lib/schema-loader.js?v=1782482118716';
+import { loadOntology } from '../lib/ontology-loader.js?v=1782482118716';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1782482118716';
+import { generateDpp } from './dpp-generator.js?v=1782482118716';
+import { generateHTML } from '../lib/html-generator.js?v=1782482118716';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1782482118716';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1780908281128';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1782482118716';
 
 // --- Module-level state ---
 let currentLanguage = 'en';

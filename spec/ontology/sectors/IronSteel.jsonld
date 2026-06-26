@@ -12,6 +12,8 @@
   "@type": "owl:Ontology",
   "dcterms:title": "DPP Iron & Steel Sector Ontology",
   "dcterms:description": "Defines the specific data model for the Iron and Steel Passport, covering ESPR and MTC attributes.",
+  "owl:versionInfo": "v2",
+  "dcterms:source": "Based on 'Study on DPP content for iron and steel products under ESPR' by the European Commission Joint Research Centre (JRC), 2026. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
   "rdfs:label": [
     {
       "@language": "en",

@@ -20,7 +20,8 @@
     "@language": "en",
     "@value": "Defines sector-specific concepts compliant with the upcoming ESPR Delegated Act for Textiles."
   },
-  "owl:versionInfo": "Draft",
+  "owl:versionInfo": "v2",
+  "dcterms:source": "Based on 'Preparatory study on textiles for product policy instruments (3rd milestone)' by the European Commission Joint Research Centre (JRC), 2024. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Compliance.jsonld"
