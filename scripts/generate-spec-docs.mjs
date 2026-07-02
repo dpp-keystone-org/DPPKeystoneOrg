@@ -14,25 +14,36 @@ export const getFragment = (id) => {
     return id.replace(/:/g, '_');
 };
 
-function getDisplayLabel(label, fallback) {
+export function getI18nData(label, fallback) {
+    let text = fallback || (label && label['@id']) || (typeof label === 'string' ? label : JSON.stringify(label));
+    let raw = null;
+
     if (typeof label === 'string') {
-        return label;
-    }
-    if (Array.isArray(label)) {
+        text = label;
+        raw = [{ "@language": "en", "@value": label }];
+    } else if (Array.isArray(label)) {
+        raw = label;
         const enLabel = label.find(l => l['@language'] === 'en');
         if (enLabel) {
-            return enLabel['@value'];
-        }
-        // Fallback to the first available language-tagged value
-        if (label.length > 0 && label[0]['@value']) {
-            return label[0]['@value'];
+            text = enLabel['@value'];
+        } else if (label.length > 0 && label[0]['@value']) {
+            text = label[0]['@value'];
         }
     } else if (typeof label === 'object' && label !== null && label['@value']) {
-        // Handle single language-tagged object
-        return label['@value'];
+        text = label['@value'];
+        raw = [label];
     }
-    // Fallback for other cases or if no suitable value is found
-    return fallback || (label && label['@id']) || JSON.stringify(label);
+    return { text, raw };
+}
+
+export function renderI18nSpan(i18nData) {
+    if (!i18nData) return '';
+    if (typeof i18nData === 'string') return i18nData; // Fallback
+    if (!i18nData.raw) return i18nData.text || '';
+    
+    // Escape quotes for data attribute
+    const jsonStr = JSON.stringify(i18nData.raw).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return `<span class="i18n-text" data-i18n="${jsonStr}">${i18nData.text}</span>`;
 }
 
 async function getJsonLdFiles(dir) {
@@ -64,13 +75,13 @@ export function parseOntologyMetadata(content) {
         ontologyInfo = data;
     }
 
-    const title = getDisplayLabel(ontologyInfo?.['dcterms:title'], 'No title found');
-    const description = getDisplayLabel(ontologyInfo?.['dcterms:description'], 'No description found.');
+    const title = getI18nData(ontologyInfo?.['dcterms:title'], 'No title found');
+    const description = getI18nData(ontologyInfo?.['dcterms:description'], 'No description found.');
 
     const properties = graph
         .filter(p => p['@type'] && (p['@type'].includes('owl:ObjectProperty') || p['@type'].includes('owl:DatatypeProperty')))
         .map(p => {
-            const label = getDisplayLabel(p['rdfs:label'], p['@id']);
+            const label = getI18nData(p['rdfs:label'], p['@id']);
 
             const annotations = {};
             const annotationKeys = ['dppk:governedBy', 'owl:equivalentProperty', 'rdfs:subPropertyOf'];
@@ -96,7 +107,7 @@ export function parseOntologyMetadata(content) {
             return {
                 id: p['@id'],
                 label: label,
-                comment: getDisplayLabel(p['rdfs:comment'], ''),
+                comment: getI18nData(p['rdfs:comment'], ''),
                 domains: [...new Set(domains)], // Ensure uniqueness
                 range: p['rdfs:range'] ? (p['rdfs:range']['@id'] || p['rdfs:range']) : '',
                 annotations: annotations
@@ -140,8 +151,8 @@ export function parseOntologyMetadata(content) {
 
             return {
                 id: classId,
-                label: getDisplayLabel(node['rdfs:label'], classId),
-                comment: getDisplayLabel(node['rdfs:comment'], ''),
+                label: getI18nData(node['rdfs:label'], classId),
+                comment: getI18nData(node['rdfs:comment'], ''),
                 type: node['@type'],
                 // Find properties whose domain includes this class OR properties with NO domain (assumed to belong to the module/class)
                 properties: properties.filter(p => {
@@ -324,6 +335,13 @@ function resolveClassUrl(classId, allMetadata, currentHtmlPath, ontologyDir) {
 }
 
 const processValue = (val, context, currentHtmlPath, ontologyDir, allMetadata) => {
+    if (val == null) return '';
+    if (Array.isArray(val)) {
+        if (val.length > 0 && val[0]['@language']) {
+            return renderI18nSpan(getI18nData(val));
+        }
+        return val.map(v => processValue(v, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
+    }
     if (typeof val === 'object' && val !== null) {
         // If it has an @id, it's a link to another entity.
         if (val['@id']) {
@@ -347,7 +365,7 @@ const processValue = (val, context, currentHtmlPath, ontologyDir, allMetadata) =
         }
         // If it has a @value, it's a language-tagged string literal.
         if (val['@value']) {
-            return val['@value'];
+            return renderI18nSpan(getI18nData(val));
         }
         // If it's some other kind of object, stringify it.
         return JSON.stringify(val);
@@ -372,7 +390,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
                     for (const m of allMetadata) {
                         const entity = m.classes.find(e => e.id === id);
                         if (entity && entity.label) {
-                            label = entity.label;
+                            label = renderI18nSpan(entity.label);
                             break;
                         }
                     }
@@ -389,12 +407,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
             `;
         }
 
-        let displayValue;
-        if (Array.isArray(value)) {
-            displayValue = value.map(val => processValue(val, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
-        } else {
-            displayValue = processValue(value, context, currentHtmlPath, ontologyDir, allMetadata);
-        }
+        const displayValue = processValue(value, context, currentHtmlPath, ontologyDir, allMetadata);
         return `<p><strong>${key.replace('dppk:', '').replace('rdfs:', '').replace('owl:', '')}:</strong> ${displayValue}</p>`;
     }).join('');
 
@@ -409,7 +422,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${displayType}: ${c.label}</title>
+    <title>${displayType}: ${c.label.text || c.label}</title>
     <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
@@ -422,9 +435,10 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
         <header>
             <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
-                <h1><a href="../index.html">Ontology: ${moduleDirName}</a> / <a href="index.html">${moduleTitle}</a></h1>
-                <h2 style="margin: 0; color: var(--text-light);">${displayType}: ${c.label} (${c.id})</h2>
+                <h1><a href="../index.html">Ontology: ${moduleDirName}</a> / <a href="index.html">${renderI18nSpan(moduleTitle)}</a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">${displayType}: ${renderI18nSpan(c.label)} (${c.id})</h2>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
         <main>
             <div class="class-section" id="${getFragment(c.id)}">
@@ -433,17 +447,17 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
                     ${mermaidDiagram}
                 </pre>
 
-                <h4>Description</h4>
-                <p>${c.comment}</p>
+                <h4><span data-i18n-key="description-column">Description</span></h4>
+                <p>${renderI18nSpan(c.comment)}</p>
                 ${attributesHtml}
 
                 ${c.properties.length > 0 ? `
-                    <h4>Properties</h4>
+                    <h4><span data-i18n-key="properties-header">Properties</span></h4>
                     <table>
                         <thead>
                             <tr>
-                                <th>Property</th>
-                                <th>Description</th>
+                                <th><span data-i18n-key="property-column">Property</span></th>
+                                <th><span data-i18n-key="description-column">Description</span></th>
                                 <th>Type</th>
                                 ${extraColumns.map(col => `<th>${col.replace('dppk:', '').replace('owl:','').replace('rdfs:','')}</th>`).join('')}
                             </tr>
@@ -451,20 +465,19 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
                         <tbody>
                             ${c.properties.map(p => {
                                 const annotationsHtml = extraColumns.map(col => {
-                                    const values = Array.isArray(p.annotations[col]) ? p.annotations[col] : [p.annotations[col]];
-                                    const renderedValues = values.map(val => processValue(val, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
-                                    return `<td>${renderedValues || ''}</td>`;
+                                    const renderedValues = processValue(p.annotations[col], context, currentHtmlPath, ontologyDir, allMetadata) || '';
+                                    return `<td>${renderedValues}</td>`;
                                 }).join('');
 
                                 const targetPath = join(ontologyDir, p.definedInModule, p.definedInDirName, 'index.html');
                                 const relativeLink = relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
                                 const link = `${relativeLink}#${getFragment(p.id)}`;
-                                const propLabelHtml = `<a href="${link}">${p.label}</a> (${p.id})`;
+                                const propLabelHtml = `<a href="${link}">${renderI18nSpan(p.label)}</a> (${p.id})`;
 
                                 return `
                                 <tr>
                                     <td>${propLabelHtml}</td>
-                                    <td>${p.comment || ''}</td>
+                                    <td>${renderI18nSpan(p.comment)}</td>
                                     <td>${p.range ? processValue({"@id": p.range}, context, currentHtmlPath, ontologyDir, allMetadata) : ''}</td>
                                     ${annotationsHtml}
                                 </tr>
@@ -478,9 +491,13 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
         mermaid.initialize({ startOnLoad: true });
+
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
     </script>
 </body>
 </html>`;
@@ -498,7 +515,7 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
         if (!terms || terms.length === 0) return '';
         return `<ul>\n${terms.map(t => {
             const termName = `<strong>${t.term}</strong>`;
-            const description = t.description ? ` - <em>${t.description}</em>` : '';
+            const description = t.description ? ` - <em>${renderI18nSpan(t.description)}</em>` : '';
             let link = null;
 
             if (t.uri) {
@@ -549,6 +566,7 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
             <div>
                 <h1><a href="../index.html">Contexts</a> / ${name}</h1>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
         <main>
             <p><strong>Source:</strong> <a href="../${name}">${name}</a></p>
@@ -559,6 +577,10 @@ function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontolo
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
+    </script>
 </body>
 </html>`;
 }
@@ -580,7 +602,7 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ontology Module: ${title}</title>
+    <title>Ontology Module: ${title.text || title}</title>
     <link rel="stylesheet" href="${relativePathToRoot}/branding/css/keystone-style.css">
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 1em; }
@@ -594,22 +616,23 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, 
             <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
             <div>
                 <h1><a href="${parentIndexLink}">Ontology: ${moduleDirName}</a></h1>
-                <h2 style="margin: 0; color: var(--text-light);">${title}</h2>
+                <h2 style="margin: 0; color: var(--text-light);">${renderI18nSpan(title)}</h2>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
         <main>
-            <p>${description}</p>
+            <p>${renderI18nSpan(description)}</p>
             <p><strong>Source:</strong> <a href="${sourceFileLink}">${fileName}</a></p>
-            <h3>Classes & Concepts</h3>
+            <h3><span data-i18n-key="classes-and-concepts">Classes &amp; Concepts</span></h3>
             <ul>
-                ${classes.map(c => `<li><a href="${getFragment(c.id)}.html">${c.label}</a></li>`).join('')}
+                ${classes.map(c => `<li><a href="${getFragment(c.id)}.html">${renderI18nSpan(c.label)}</a></li>`).join('')}
             </ul>
-            <h3>Properties</h3>
+            <h3><span data-i18n-key="properties-header">Properties</span></h3>
             <table>
                 <thead>
                     <tr>
-                        <th>Property</th>
-                        <th>Description</th>
+                        <th><span data-i18n-key="property-column">Property</span></th>
+                        <th><span data-i18n-key="description-column">Description</span></th>
                         <th>Domain</th>
                         <th>Range</th>
                         ${extraColumns.map(col => `<th>${col.replace('dppk:', '').replace('owl:','').replace('rdfs:','')}</th>`).join('')}
@@ -618,15 +641,14 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, 
                 <tbody>
                     ${properties.map(p => {
                         const annotationsHtml = extraColumns.map(col => {
-                            const values = Array.isArray(p.annotations[col]) ? p.annotations[col] : (p.annotations[col] != null ? [p.annotations[col]] : []);
-                            const renderedValues = values.map(val => processValue(val, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ');
-                            return `<td>${renderedValues || ''}</td>`;
+                            const renderedValues = processValue(p.annotations[col], context, currentHtmlPath, ontologyDir, allMetadata) || '';
+                            return `<td>${renderedValues}</td>`;
                         }).join('');
 
                         return `
                         <tr>
-                            <td id="${getFragment(p.id)}"><strong>${p.label}</strong> (${p.id})</td>
-                            <td>${p.comment || ''}</td>
+                            <td id="${getFragment(p.id)}"><strong>${renderI18nSpan(p.label)}</strong> (${p.id})</td>
+                            <td>${renderI18nSpan(p.comment)}</td>
                             <td>${p.domains ? p.domains.map(d => processValue({"@id": d}, context, currentHtmlPath, ontologyDir, allMetadata)).join(', ') : ''}</td>
                             <td>${p.range ? processValue({"@id": p.range}, context, currentHtmlPath, ontologyDir, allMetadata) : ''}</td>
                             ${annotationsHtml}
@@ -639,6 +661,10 @@ export function generateModuleIndexHtml(fileMetadata, currentHtmlPath, distDir, 
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
+    </script>
 </body>
 </html>`;
 }
@@ -648,7 +674,7 @@ export function generateOntologyHtml(directoryName, files, distDir, currentHtmlP
     // It will be replaced by more specific index generators.
     const fileLinks = files.map(file => {
         const moduleName = basename(file.name, '.jsonld');
-        return `<li><a href="./${moduleName}/index.html">${file.title}</a></li>`;
+        return `<li><a href="./${moduleName}/index.html">${renderI18nSpan(file.title)}</a></li>`;
     }).join('');
 
     const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
@@ -664,9 +690,25 @@ export function generateOntologyHtml(directoryName, files, distDir, currentHtmlP
 </head>
 <body>
     <div class="container">
-        <h1>Ontology Modules in ${directoryName}</h1>
-        <ul>${fileLinks}</ul>
+        <header>
+            <a href="${relativePathToRoot}/index.html"><img src="${relativePathToRoot}/branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1>Ontology Explorer</h1>
+                <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
+            </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
+        </header>
+        <main>
+            <ul>${fileLinks}</ul>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
+    </script>
 </body>
 </html>`;
 }
@@ -701,6 +743,7 @@ export function generateContextHtml(directoryName, files, distDir, currentHtmlPa
                 <h1>Context Explorer</h1>
                 <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
         <main>
             <ul>
@@ -711,6 +754,10 @@ export function generateContextHtml(directoryName, files, distDir, currentHtmlPa
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
+    </script>
 </body>
 </html>`;
 }
@@ -744,6 +791,7 @@ function generateTopLevelContextIndexHtml(directoryName, files, distDir, current
                 <h1>Context Explorer</h1>
                 <h2 style="margin: 0; color: var(--text-light);">${directoryName}</h2>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
         <main>
             <p>These context files point to the latest version of the DPP Keystone contexts.</p>
@@ -755,6 +803,10 @@ function generateTopLevelContextIndexHtml(directoryName, files, distDir, current
             <p><small>Part of the <a href="${relativePathToRoot}/index.html">DPP Keystone</a> project. | <a href="${relativePathToRoot}/impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '${relativePathToRoot}/lib/language-manager.js';
+        LanguageManager.init('${relativePathToRoot}/index.i18n.json');
+    </script>
 </body>
 </html>`;
 }
@@ -791,7 +843,7 @@ export async function buildTermDictionary(sourceOntologyDir = join(process.cwd()
                     if (node['@id'] && node['rdfs:comment']) {
                         const expandedId = expandCurie(node['@id'], context);
                         termMap[expandedId] = {
-                            description: getDisplayLabel(node['rdfs:comment'], ''),
+                            description: getI18nData(node['rdfs:comment'], ''),
                             module: dirSuffix,
                             fileName: basename(file),
                             type: node['@type'],
@@ -1035,21 +1087,22 @@ function generateGlobalOntologyIndex(allMetadata, currentHtmlPath, ontologyDir) 
                 <h1>DPP Keystone Ontology</h1>
                 <h2 style="margin: 0; color: var(--text-light);">Global Index</h2>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
         <main>
             <div class="index-section">
-                <h3>All Classes & Concepts</h3>
+                <h3><span data-i18n-key="classes-and-concepts">All Classes &amp; Concepts</span></h3>
                 <ul>
                     ${allClasses.map(c => `<li><a href="./${c.module}/${c.moduleName}/${getFragment(c.id)}.html">${c.id}</a> (${c.label})</li>`).join('')}
                 </ul>
             </div>
             <div class="index-section">
-                <h3>All Properties</h3>
+                <h3><span data-i18n-key="properties-header">All Properties</span></h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Property</th>
-                            <th>Description</th>
+                            <th><span data-i18n-key="property-column">Property</span></th>
+                            <th><span data-i18n-key="description-column">Description</span></th>
                             <th>Domain</th>
                             <th>Range</th>
                             <th>Defined In</th>
@@ -1073,6 +1126,10 @@ function generateGlobalOntologyIndex(allMetadata, currentHtmlPath, ontologyDir) 
             <p><small>Part of the <a href="/">DPP Keystone</a> project.</small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '../../lib/language-manager.js';
+        LanguageManager.init('../../index.i18n.json');
+    </script>
 </body>
 </html>`;
 }

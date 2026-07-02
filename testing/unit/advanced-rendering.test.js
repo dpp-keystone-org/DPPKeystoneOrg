@@ -30,8 +30,44 @@ describe('Advanced Rendering Logic', () => {
             text: async () => "",
             json: async () => ({
                 "@graph": [
-                    { "@id": "dppk:gwp", "dppk:unit": "kg CO2 eq" },
-                    { "@id": "dppk:weight", "dppk:unit": "kg" }
+                    { 
+                        "@id": "dppk:gwp", 
+                        "dppk:unit": "kg CO2 eq",
+                        "rdfs:label": { "@language": "en", "@value": "Global Warming Potential" }
+                    },
+                    { 
+                        "@id": "dppk:odp", 
+                        "rdfs:label": { "@language": "en", "@value": "odp" }
+                    },
+                    { 
+                        "@id": "dppk:weight", 
+                        "dppk:unit": "kg",
+                        "rdfs:label": { "@language": "en", "@value": "Weight" }
+                    },
+                    {
+                        "@id": "dppk:environmentalProfile",
+                        "rdfs:label": { "@language": "en", "@value": "Environmental Profile" }
+                    },
+                    {
+                        "@id": "dppk:components",
+                        "rdfs:label": { "@language": "en", "@value": "Components" }
+                    },
+                    {
+                        "@id": "dppk:level1",
+                        "rdfs:label": { "@language": "en", "@value": "Level 1" }
+                    },
+                    {
+                        "@id": "dppk:level2",
+                        "rdfs:label": { "@language": "en", "@value": "Level 2" }
+                    },
+                    {
+                        "@id": "dppk:level3",
+                        "rdfs:label": { "@language": "en", "@value": "Level 3" }
+                    },
+                    {
+                        "@id": "dppk:value",
+                        "rdfs:label": { "@language": "en", "@value": "Value" }
+                    }
                 ]
             })
         });

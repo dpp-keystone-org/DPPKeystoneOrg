@@ -114,7 +114,7 @@ test.describe('DPP Validator', () => {
     // Check for specific error (AJV error structure)
     // required property 'digitalProductPassportId'
     await expect(page.locator('.result-box.error')).toContainText('digitalProductPassportId');
-    await expect(page.locator('.result-box.error')).toContainText('must have required property');
+    await expect(page.locator('.result-box.error')).toContainText('This field is required');
   });
 
   test('Sector specific validation (Battery)', async ({ page }) => {
@@ -182,7 +182,7 @@ test.describe('DPP Validator', () => {
     expect(innerHTML).not.toContain('<img src=x onerror=alert(\'XSS\')>');
 
     // Verify it contains the validation error message (safe text)
-    expect(innerHTML).toContain('must match format "uri"');
+    expect(innerHTML).toContain('Must be a valid URI');
   });
 
   test('Ontology metadata strictly enforces xsd:date strings in the UI', async ({ page }) => {
@@ -212,7 +212,7 @@ test.describe('DPP Validator', () => {
 
     // Ensure that dynamic ontology validation natively flags format failures in the DOM
     await expect(page.locator('.result-box.error')).toBeVisible();
-    await expect(page.locator('.result-box.error')).toContainText('versionDate must be a valid date');
+    await expect(page.locator('.result-box.error')).toContainText('Must be a valid date');
   });
 
   test('Example Loader populates input', async ({ page }) => {

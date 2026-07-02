@@ -16,6 +16,13 @@ global.TextDecoder = TextDecoder;
 global.TextEncoder = TextEncoder;
 global.ReadableStream = ReadableStream;
 global.setImmediate = global.setImmediate || ((fn, ...args) => global.setTimeout(fn, 0, ...args));
+global.URL.createObjectURL = jest.fn(() => 'blob:mock-url');
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve({}),
+  })
+);
 
 // NOTE: We do not import the modules to be mocked or tested at the top level.
 // They will be imported dynamically within the test.
@@ -86,8 +93,10 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
 
         const loadOntologyMock = jest.fn();
+        const loadContextMock = jest.fn();
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: loadOntologyMock,
+            loadContext: loadContextMock,
         }));
 
         // Setup the mock implementations
@@ -200,6 +209,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         // 3. Initialize the wizard
@@ -245,6 +255,74 @@ describe('DPP Wizard - Full Integration Flow', () => {
         await waitFor(() => !document.querySelector('.tooltip-modal'));
     });
 
+    it('should persist language selection across wizard sessions using localStorage', async () => {
+        localStorage.setItem('dpp_keystone_preferred_language', 'fr');
+
+        const mockDppSchema = {
+            "properties": { "multiLangProp": { "title": "Multi-Language Prop", "type": "string" } }
+        };
+        const mockOntologyMap = new Map([
+            ['multiLangProp', {
+                label: { en: 'English Label', fr: 'Label Français' }
+            }]
+        ]);
+
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
+            loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
+        }));
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(mockOntologyMap),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
+        }));
+
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
+        await initializeWizard();
+
+        const coreContainer = document.getElementById('core-form-container');
+        await waitFor(() => coreContainer.querySelector('.grid-cell:nth-child(4)')?.textContent === 'Label Français');
+
+        const selector = document.getElementById('language-selector');
+        expect(selector).not.toBeNull();
+        expect(selector.value).toBe('fr');
+    });
+
+
+    it('should pass selected language to generateHTML when previewing HTML', async () => {
+        const mockDppSchema = { "properties": { "prop": { "type": "string" } } };
+        jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
+            loadSchema: jest.fn().mockResolvedValue(mockDppSchema),
+        }));
+        jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
+            loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
+        }));
+        const mockGenerateHTML = jest.fn().mockResolvedValue('<html></html>');
+        jest.unstable_mockModule('../dist/lib/html-generator.js', () => ({
+            generateHTML: mockGenerateHTML
+        }));
+
+        const { initializeWizard } = await import('../../dist/wizard/wizard.js');
+        await initializeWizard();
+
+        // Change language
+        const languageSelector = document.getElementById('language-selector');
+        languageSelector.value = 'de';
+        languageSelector.dispatchEvent(new Event('change'));
+
+        // Click HTML Preview
+        window.open = jest.fn();
+        const htmlBtn = document.getElementById('preview-no-schema-btn');
+        htmlBtn.click();
+
+        await waitFor(() => mockGenerateHTML.mock.calls.length > 0);
+
+        expect(mockGenerateHTML).toHaveBeenCalledWith(
+            expect.any(Object),
+            expect.objectContaining({ language: 'de' })
+        );
+    });
+
+
     it('should synchronize fields with the same name across different sectors', async () => {
         // 1. Define mock schemas with a shared field 'manufacturer'
         const mockSectorASchema = {
@@ -263,6 +341,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector) => {
@@ -274,10 +353,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 3. Inject buttons for mock sectors
         const btnA = document.createElement('button');
         btnA.dataset.sector = 'sector-a';
+        btnA.setAttribute('data-i18n-key', 'add-sector-a');
         btnA.className = 'sector-btn';
         document.body.appendChild(btnA);
         const btnB = document.createElement('button');
         btnB.dataset.sector = 'sector-b';
+        btnB.setAttribute('data-i18n-key', 'add-sector-b');
         btnB.className = 'sector-btn';
         document.body.appendChild(btnB);
 
@@ -324,6 +405,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector) => {
@@ -335,10 +417,12 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 3. Inject buttons
         const btnA = document.createElement('button');
         btnA.dataset.sector = 'sector-a';
+        btnA.setAttribute('data-i18n-key', 'add-sector-a');
         btnA.className = 'sector-btn';
         document.body.appendChild(btnA);
         const btnB = document.createElement('button');
         btnB.dataset.sector = 'sector-b';
+        btnB.setAttribute('data-i18n-key', 'add-sector-b');
         btnB.className = 'sector-btn';
         document.body.appendChild(btnB);
 
@@ -400,6 +484,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((name) => {
@@ -460,6 +545,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector, schemaType) => {
@@ -471,6 +557,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         const btn = document.createElement('button');
         btn.dataset.sector = 'general-product';
         btn.dataset.schemaType = 'shared';
+        btn.setAttribute('data-i18n-key', 'add-general-product');
         btn.className = 'sector-btn';
         document.body.appendChild(btn);
 
@@ -524,6 +611,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         loadSchemaMock.mockImplementation((sector) => {
@@ -534,6 +622,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         // 3. Inject button for Packaging
         const btn = document.createElement('button');
         btn.dataset.sector = 'packaging';
+        btn.setAttribute('data-i18n-key', 'add-packaging');
         btn.className = 'sector-btn';
         document.body.appendChild(btn);
 
@@ -575,6 +664,7 @@ describe('DPP Wizard - Full Integration Flow', () => {
         }));
         jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
             loadOntology: jest.fn().mockResolvedValue(new Map()),
+            loadContext: jest.fn().mockResolvedValue(new Map()),
         }));
 
         // 2. Initialize Wizard

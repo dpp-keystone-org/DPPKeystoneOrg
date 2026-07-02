@@ -10,9 +10,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Battery",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Battery Sector Ontology",
-  "dcterms:description": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information.",
-  "rdfs:label": [
+  "dcterms:title": [
     { "@language": "en", "@value": "DPP Battery Sector Ontology" },
     { "@language": "bg", "@value": "Онтология на сектора на батериите по DPP" },
     { "@language": "cs", "@value": "Ontologie odvětví baterií DPP" },
@@ -23,6 +21,7 @@
     { "@language": "et", "@value": "DPP patareide sektori ontoloogia" },
     { "@language": "fi", "@value": "DPP-akkualan ontologia" },
     { "@language": "fr", "@value": "Ontologie du secteur des batteries DPP" },
+    { "@language": "ga", "@value": "Teangeolaíocht Earnáil na gCeallraí DPP" },
     { "@language": "hr", "@value": "Ontologija sektora baterija DPP-a" },
     { "@language": "hu", "@value": "DPP akkumulátor ágazati ontológia" },
     { "@language": "it", "@value": "Ontologia del settore delle batterie DPP" },
@@ -35,10 +34,9 @@
     { "@language": "ro", "@value": "Ontologia sectorului de baterii DPP" },
     { "@language": "sk", "@value": "Ontológia odvetvia batérií DPP" },
     { "@language": "sl", "@value": "Ontologija sektorja baterij DPP" },
-    { "@language": "sv", "@value": "DPP-batterisektorns ontologi" },
-    { "@language": "ga", "@value": "Teangeolaíocht Earnáil na gCeallraí DPP" }
+    { "@language": "sv", "@value": "DPP-batterisektorns ontologi" }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     { "@language": "en", "@value": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information." },
     { "@language": "bg", "@value": "Определя специфичния модел на данните за паспорта на батерията на ЕС, включително специфични за батерията свойства, материали и регулаторна информация." },
     { "@language": "cs", "@value": "Definuje specifický datový model pro pas baterie EU, včetně vlastností specifických pro baterii, materiálů a regulačních informací." },
@@ -49,6 +47,7 @@
     { "@language": "et", "@value": "Määratleb ELi akupassi spetsiifilise andmemudeli, sealhulgas akuspetsiifilised omadused, materjalid ja regulatiivse teabe." },
     { "@language": "fi", "@value": "Määrittelee EU:n akupassin erityisen tietomallin, mukaan lukien akkukohtaiset ominaisuudet, materiaalit ja sääntelytiedot." },
     { "@language": "fr", "@value": "Définit le modèle de données spécifique pour le passeport européen des batteries, y compris les propriétés, les matériaux et les informations réglementaires spécifiques aux batteries." },
+    { "@language": "ga", "@value": "Sainmhíníonn sé an tsamhail sonraí shonrach do Phas Ceallraí an AE, lena n-áirítear airíonna, ábhair agus faisnéis rialála a bhaineann go sonrach le ceallraí." },
     { "@language": "hr", "@value": "Definira specifični podatkovni model za putovnicu za baterije EU-a, uključujući svojstva, materijale i regulatorne informacije specifične za baterije." },
     { "@language": "hu", "@value": "Meghatározza az uniós akkumulátor-útlevél egyedi adatmodelljét, beleértve az akkumulátor-specifikus tulajdonságokat, anyagokat és szabályozási információkat." },
     { "@language": "it", "@value": "Definisce il modello di dati specifico per il passaporto delle batterie dell'UE, comprese le proprietà, i materiali e le informazioni normative specifiche delle batterie." },
@@ -61,8 +60,7 @@
     { "@language": "ro", "@value": "Definește modelul de date specific pentru pașaportul european pentru baterii, inclusiv proprietățile, materialele și informațiile de reglementare specifice bateriilor." },
     { "@language": "sk", "@value": "Definuje špecifický dátový model pre pas batérie EÚ vrátane vlastností, materiálov a regulačných informácií špecifických pre batérie." },
     { "@language": "sl", "@value": "Določa posebni podatkovni model za potni list EU za baterije, vključno z lastnostmi, materiali in regulativnimi informacijami, specifičnimi za baterije." },
-    { "@language": "sv", "@value": "Definierar den specifika datamodellen för EU:s batteripass, inklusive batterispecifika egenskaper, material och lagstadgad information." },
-    { "@language": "ga", "@value": "Sainmhíníonn sé an tsamhail sonraí shonrach do Phas Ceallraí an AE, lena n-áirítear airíonna, ábhair agus faisnéis rialála a bhaineann go sonrach le ceallraí." }
+    { "@language": "sv", "@value": "Definierar den specifika datamodellen för EU:s batteripass, inklusive batterispecifika egenskaper, material och lagstadgad information." }
   ],
   "owl:imports": [
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld" },
@@ -87,6 +85,7 @@
         { "@language": "et", "@value": "Akutoode" },
         { "@language": "fi", "@value": "Akkutuote" },
         { "@language": "fr", "@value": "Produit de batterie" },
+        { "@language": "ga", "@value": "Táirge Ceallraí" },
         { "@language": "hr", "@value": "Baterijski proizvod" },
         { "@language": "hu", "@value": "Akkumulátor termék" },
         { "@language": "it", "@value": "Prodotto a batteria" },
@@ -99,8 +98,7 @@
         { "@language": "ro", "@value": "Produs de baterie" },
         { "@language": "sk", "@value": "Batériový produkt" },
         { "@language": "sl", "@value": "Baterijski izdelek" },
-        { "@language": "sv", "@value": "Batteriprodukt" },
-        { "@language": "ga", "@value": "Táirge Ceallraí" }
+        { "@language": "sv", "@value": "Batteriprodukt" }
       ],
       "rdfs:comment": [
         { "@language": "en", "@value": "Data model for the Battery Passport according to EU Battery Regulation." },
@@ -113,6 +111,7 @@
         { "@language": "et", "@value": "Akupassi andmemudel vastavalt ELi akumäärustikule." },
         { "@language": "fi", "@value": "Akkupassin tietomalli EU:n akkuasetuksen mukaisesti." },
         { "@language": "fr", "@value": "Modèle de données pour le passeport des batteries conformément au règlement de l'UE sur les batteries." },
+        { "@language": "ga", "@value": "Mionsamhail sonraí don Phas Ceallraí de réir Rialachán an AE maidir le Ceallraí." },
         { "@language": "hr", "@value": "Podatkovni model za putovnicu za baterije u skladu s Uredbom EU-a o baterijama." },
         { "@language": "hu", "@value": "Az akkumulátor-útlevél adatmodellje az EU akkumulátor-rendelete szerint." },
         { "@language": "it", "@value": "Modello di dati per il passaporto delle batterie secondo il regolamento UE sulle batterie." },
@@ -125,8 +124,7 @@
         { "@language": "ro", "@value": "Model de date pentru pașaportul pentru baterii în conformitate cu Regulamentul UE privind bateriile." },
         { "@language": "sk", "@value": "Dátový model pre pas batérie podľa nariadenia EÚ o batériách." },
         { "@language": "sl", "@value": "Podatkovni model za potni list za baterije v skladu z uredbo EU o baterijah." },
-        { "@language": "sv", "@value": "Datamodell för batteripasset enligt EU:s batteriförordning." },
-        { "@language": "ga", "@value": "Mionsamhail sonraí don Phas Ceallraí de réir Rialachán an AE maidir le Ceallraí." }
+        { "@language": "sv", "@value": "Datamodell för batteripasset enligt EU:s batteriförordning." }
       ]
     },
     
@@ -134,8 +132,11 @@
     {
       "@id": "dppk:BatteryPerformance",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Performance and Durability" },
         { "@language": "bg", "@value": "Производителност и издръжливост" },
@@ -192,8 +193,11 @@
     {
       "@id": "dppk:CapacityInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1g, 1h, 4d)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1g, 1h, 4d)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Capacity, Energy and Voltage" },
         { "@language": "bg", "@value": "Капацитет, енергия и напрежение" },
@@ -250,8 +254,11 @@
     {
       "@id": "dppk:PowerInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1i); Art. 10",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i); Art. 10"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Power Capability" },
         { "@language": "bg", "@value": "Мощност" },
@@ -308,8 +315,11 @@
     {
       "@id": "dppk:EfficiencyInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1n); Art. 10",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1n); Art. 10"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Round Trip Efficiency and Self-Discharge" },
         { "@language": "bg", "@value": "Ефективност на двупосочен цикъл и саморазреждане" },
@@ -366,8 +376,11 @@
     {
       "@id": "dppk:InternalResistanceInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1o); Art. 10",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o); Art. 10"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Internal Resistance" },
         { "@language": "bg", "@value": "Вътрешно съпротивление" },
@@ -424,8 +437,11 @@
     {
       "@id": "dppk:LifetimeInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1j, 1k, 4a); Annex IV",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1j, 1k, 4a); Annex IV"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Battery Lifetime" },
         { "@language": "bg", "@value": "Живот на батерията" },
@@ -482,8 +498,11 @@
     {
       "@id": "dppk:TemperatureInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1l); Annex VII Part B (4)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l); Annex VII Part B (4)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Temperature Conditions" },
         { "@language": "bg", "@value": "Температурни условия" },
@@ -540,8 +559,11 @@
     {
       "@id": "dppk:NegativeEventsInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (4d); Annex VII Part B (4)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Annex VII Part B (4)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Negative Events and Accidents" },
         { "@language": "bg", "@value": "Негативни събития и инциденти" },
@@ -600,8 +622,11 @@
     {
       "@id": "dppk:manufacturingPlace",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Manufacturing place" },
         { "@language": "bg", "@value": "Място на производство" },
@@ -660,8 +685,11 @@
     {
       "@id": "dppk:manufacturingDate",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Manufacturing date" },
         { "@language": "bg", "@value": "Дата на производство" },
@@ -720,8 +748,11 @@
     {
       "@id": "dppk:serviceDate",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (1)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Date of putting the battery into service" },
         { "@language": "bg", "@value": "Дата на въвеждане на батерията в експлоатация" },
@@ -780,8 +811,11 @@
     {
       "@id": "dppk:warrantyPeriod",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1m)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1m)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Warranty period of the battery" },
         { "@language": "bg", "@value": "Гаранционен срок на батерията" },
@@ -840,8 +874,11 @@
     {
       "@id": "dppk:batteryCategory",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a); Annex VI Part A (2)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a); Annex VI Part A (2)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Battery category" },
         { "@language": "bg", "@value": "Категория батерии" },
@@ -961,8 +998,11 @@
     {
       "@id": "dppk:batteryStatus",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII 4(c)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII 4(c)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Battery status" },
         { "@language": "bg", "@value": "Състояние на батерията" },
@@ -1023,8 +1063,11 @@
     {
       "@id": "dppk:separateCollectionSymbol",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 13(4); Annex VI Part B",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 13(4); Annex VI Part B"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Separate collection symbol" },
         { "@language": "bg", "@value": "Символ за разделно събиране" },
@@ -1083,8 +1126,11 @@
     {
       "@id": "dppk:heavyMetalSymbols",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 13(5)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 13(5)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Symbols for cadmium and lead" },
         { "@language": "bg", "@value": "Символи за кадмий и олово" },
@@ -1143,8 +1189,11 @@
     {
       "@id": "dppk:carbonFootprintLabel",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Article 7(2) via Annex XIII (1c)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Article 7(2) via Annex XIII (1c)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Carbon footprint label" },
         { "@language": "bg", "@value": "Етикет за въглероден отпечатък" },
@@ -1203,8 +1252,11 @@
     {
       "@id": "dppk:extinguishingAgent",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VI Part A (9)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VI Part A (9)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Extinguishing agent" },
         { "@language": "bg", "@value": "Пожарогасителен агент" },
@@ -1263,8 +1315,11 @@
     {
       "@id": "dppk:labelMeaning",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 74 1(e)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 74 1(e)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Meaning of labels and symbols" },
         { "@language": "bg", "@value": "Значение на етикетите и символите" },
@@ -1325,8 +1380,11 @@
     {
       "@id": "dppk:testReports",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (3); Annex VIII Part A 2(h)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (3); Annex VIII Part A 2(h)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Results of test reports proving compliance" },
         { "@language": "bg", "@value": "Резултати от протоколи от изпитвания, доказващи съответствие" },
@@ -1385,8 +1443,11 @@
     {
       "@id": "dppk:carbonFootprintClass",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1c); Art. 7(2)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1c); Art. 7(2)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Carbon footprint performance class" },
         { "@language": "bg", "@value": "Клас на ефективност по отношение на въглеродния отпечатък" },
@@ -1445,8 +1506,11 @@
     {
       "@id": "dppk:carbonFootprintStudy",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1c); Art. 7 1(g)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1c); Art. 7 1(g)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Web link to public carbon footprint study" },
         { "@language": "bg", "@value": "Уеб връзка към публично проучване на въглеродния отпечатък" },
@@ -1505,8 +1569,11 @@
     {
       "@id": "dppk:carbonFootprintGeneralInfo",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII, Article 7(1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII, Article 7(1)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "General battery and manufacturer information" },
         { "@language": "bg", "@value": "Обща информация за батерията и производителя" },
@@ -1627,8 +1694,11 @@
     {
       "@id": "dppk:dueDiligenceReport",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Art. 52(3)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 52(3)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Information of due diligence report" },
         { "@language": "bg", "@value": "Информация от доклада за надлежна проверка" },
@@ -1687,8 +1757,11 @@
     {
       "@id": "dppk:supplyChainAssurances",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Art. 49(d)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 49(d)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Third party assurances of recognised schemes" },
         { "@language": "bg", "@value": "Гаранции от трети страни по признати схеми" },
@@ -1808,8 +1881,11 @@
     {
       "@id": "dppk:batteryChemistry",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1b); Annex VI Part A (7)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1b); Annex VI Part A (7)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Battery chemistry" },
         { "@language": "bg", "@value": "Химичен състав на батерията" },
@@ -1868,8 +1944,11 @@
     {
       "@id": "dppk:criticalRawMaterials",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1b); Annex VI Part A (10)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1b); Annex VI Part A (10)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Critical raw materials" },
         { "@language": "bg", "@value": "Критични суровини" },
@@ -1928,8 +2007,11 @@
     {
       "@id": "dppk:materialComposition",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2a)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2a)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Materials used in cathode, anode and electrolyte" },
         { "@language": "bg", "@value": "Материали, използвани в катода, анода и електролита" },
@@ -1988,8 +2070,11 @@
     {
       "@id": "dppk:hazardousSubstances",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1b); Annex VI Part A (8)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1b); Annex VI Part A (8)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Hazardous substances" },
         { "@language": "bg", "@value": "Опасни вещества" },
@@ -2048,8 +2133,11 @@
     {
       "@id": "dppk:hazardousSubstancesImpact",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 74 1(f)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 74 1(f)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Impact of substances on environment, human health, safety, persons" },
         { "@language": "bg", "@value": "Въздействие на веществата върху околната среда, човешкото здраве, безопасността, хората" },
@@ -2110,8 +2198,11 @@
     {
       "@id": "dppk:dismantlingInformation",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2c)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2c)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Dismantling information" },
         { "@language": "bg", "@value": "Информация за демонтаж" },
@@ -2170,8 +2261,11 @@
     {
       "@id": "dppk:partNumbers",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2b)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2b)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Part numbers for components" },
         { "@language": "bg", "@value": "Номера на части за компоненти" },
@@ -2230,8 +2324,11 @@
     {
       "@id": "dppk:sparePartsSources",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2b)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2b)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Information on sources of spare parts" },
         { "@language": "bg", "@value": "Информация за източници на резервни части" },
@@ -2290,8 +2387,11 @@
     {
       "@id": "dppk:safetyMeasures",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2d); Art. 74(2)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2d); Art. 74(2)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Safety measures" },
         { "@language": "bg", "@value": "Мерки за безопасност" },
@@ -2350,8 +2450,11 @@
     {
       "@id": "dppk:wastePreventionInfo",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Art. 74(1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 74(1)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Information on waste prevention and management" },
         { "@language": "bg", "@value": "Информация за предотвратяване и управление на отпадъците" },
@@ -2412,8 +2515,11 @@
     {
       "@id": "dppk:preConsumerRecycledMaterialComposition",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1e); Art. 8(1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1e); Art. 8(1)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Pre-consumer recycled material shares" },
         { "@language": "bg", "@value": "Дялове на рециклирани материали преди потребление" },
@@ -2472,8 +2578,11 @@
     {
       "@id": "dppk:postConsumerRecycledMaterialComposition",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1e); Art. 8(1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1e); Art. 8(1)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Post-consumer recycled material shares" },
         { "@language": "bg", "@value": "Дялове на рециклирани материали след потребление" },
@@ -2595,8 +2704,11 @@
     {
       "@id": "dppk:performance",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Performance and durability parameters" },
         { "@language": "bg", "@value": "Параметри за производителност и издръжливост" },
@@ -2655,8 +2767,11 @@
     {
       "@id": "dppk:capacity",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1g, 1h, 4d)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1g, 1h, 4d)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Capacity, energy, and voltage" },
         { "@language": "bg", "@value": "Капацитет, енергия и напрежение" },
@@ -2715,8 +2830,11 @@
     {
       "@id": "dppk:power",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1i); Art. 10",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i); Art. 10"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Power capability" },
         { "@language": "bg", "@value": "Капацитет на мощността" },
@@ -2775,8 +2893,11 @@
     {
       "@id": "dppk:efficiency",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1n); Art. 10",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1n); Art. 10"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Round trip energy efficiency and self-discharge" },
         { "@language": "bg", "@value": "Енергийна ефективност при двупосочен цикъл и саморазреждане" },
@@ -2835,8 +2956,11 @@
     {
       "@id": "dppk:internalResistance",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1o); Art. 10",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o); Art. 10"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Internal resistance" },
         { "@language": "bg", "@value": "Вътрешно съпротивление" },
@@ -2895,8 +3019,11 @@
     {
       "@id": "dppk:lifetime",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1j, 1k, 4a); Annex IV",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1j, 1k, 4a); Annex IV"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Battery lifetime" },
         { "@language": "bg", "@value": "Живот на батерията" },
@@ -2955,8 +3082,11 @@
     {
       "@id": "dppk:temperature",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1l); Annex VII Part B (4)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l); Annex VII Part B (4)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Temperature conditions" },
         { "@language": "bg", "@value": "Температурни условия" },
@@ -3015,8 +3145,11 @@
     {
       "@id": "dppk:negativeEvents",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (4d); Annex VII Part B (4)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Annex VII Part B (4)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Negative events and accidents" },
         { "@language": "bg", "@value": "Отрицателни събития и инциденти" },
@@ -4728,8 +4861,11 @@
     {
       "@id": "dppk:referenceTestCycleLife",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1j)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1j)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Cycle-life reference test" },
         { "@language": "bg", "@value": "Референтен тест за живот на цикъла" },
@@ -5523,8 +5659,11 @@
     {
       "@id": "dppk:eventsAccidents",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (4d)",
-      "dcterms:source": { "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321" },
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d)"
+      },
       "rdfs:label": [
         { "@language": "en", "@value": "Information on accidents" },
         { "@language": "bg", "@value": "Информация за произшествия" },

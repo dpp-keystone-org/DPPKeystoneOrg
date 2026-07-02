@@ -33,17 +33,17 @@ describe('index.html generation', () => {
     expect(indexContent).toMatch(shaclShapesRegex);
 
     // Verify new structure
-    expect(indexContent).toContain('<h2>DPP Toolkit</h2>');
-    expect(indexContent).toContain('<a href="wizard/">🚀 DPP Wizard</a>');
-    expect(indexContent).toContain('<a href="validator/">✅ DPP Validator</a>');
-    expect(indexContent).toContain('<a href="util/">📦 Developer SDKs</a>');
+    expect(indexContent).toMatch(/<h2[^>]*>DPP Toolkit<\/h2>/);
+    expect(indexContent).toMatch(/<a[^>]*href="wizard\/"[^>]*>🚀 DPP Wizard<\/a>/);
+    expect(indexContent).toMatch(/<a[^>]*href="validator\/"[^>]*>✅ DPP Validator<\/a>/);
+    expect(indexContent).toMatch(/<a[^>]*href="util\/"[^>]*>📦 Developer SDKs<\/a>/);
 
     // Also check for a specific file to be reasonably sure the content is correct
     expect(indexContent).toContain(`<a href="spec/contexts/${KEYSTONE_VERSION}/dpp-core.context/index.html">Dpp Core Context</a>`);
     // The ontology link should now point to the generated module index page.
     expect(indexContent).toContain(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/index.html">Product</a>`);
     // It should also contain a nested link to a class within that module.
-    expect(indexContent).toContain(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/Product.html">Product or Material</a>`);
+    expect(indexContent).toMatch(new RegExp(`<a href="spec/ontology/${KEYSTONE_VERSION}/core/Product/Product\\.html"><span class="i18n-text".*?>Product or Material</span></a>`));
     expect(indexContent).toContain('<a href="spec/examples/sock-dpp-v2.json">Sock Dpp</a>');
     
     // Utilities are no longer listed directly in index.html, so we don't check for them here.
@@ -72,7 +72,7 @@ describe('index.html generation', () => {
     
     // Check title and header
     expect(content).toContain('<title>DPP Utilities</title>');
-    expect(content).toContain('<h1>DPP Keystone Utilities</h1>');
+    expect(content).toContain('<h1 data-i18n-key="developer-sdks">DPP Keystone Utilities</h1>');
     
     // Check for links (relative paths)
     // In dist/util/index.html, the link to js/client/dpp-adapter.js is just "js/client/dpp-adapter.js"

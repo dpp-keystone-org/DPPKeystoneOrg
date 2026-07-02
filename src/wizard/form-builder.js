@@ -1,5 +1,10 @@
 // src/wizard/form-builder.js
 import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js';
+import { LanguageManager } from '../lib/language-manager.js';
+
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
 
 /**
  * Creates and displays a tooltip modal.
@@ -39,8 +44,29 @@ function createTooltipModal(commentText, governedBy, source) {
         let url = null;
 
         if (typeof source === 'object') {
-            // Try to find a label (English preferred or raw string)
-            label = source['rdfs:label'] || source.label;
+            // Try to find a label
+            let rawLabel = source['rdfs:label'] || source.label;
+            
+            if (Array.isArray(rawLabel)) {
+                const lang = typeof LanguageManager !== 'undefined' ? LanguageManager.getPreferredLanguage() : 'en';
+                const langMatch = rawLabel.find(item => item['@language'] === lang);
+                const enMatch = rawLabel.find(item => item['@language'] === 'en');
+                
+                if (langMatch && langMatch['@value']) {
+                    label = langMatch['@value'];
+                } else if (enMatch && enMatch['@value']) {
+                    label = enMatch['@value'];
+                } else if (rawLabel[0] && rawLabel[0]['@value']) {
+                    label = rawLabel[0]['@value'];
+                } else {
+                    label = rawLabel;
+                }
+            } else if (rawLabel && typeof rawLabel === 'object' && rawLabel['@value']) {
+                label = rawLabel['@value'];
+            } else {
+                label = rawLabel;
+            }
+
             // Try to find an ID/URL
             url = source['@id'] || source.id || source.url;
             
@@ -103,10 +129,14 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
     tooltipCell.className = 'grid-cell';
 
     let commentText = '';
+    let commentData = null;
     if (ontologyInfo?.comment) {
-        commentText = (typeof ontologyInfo.comment === 'object')
-            ? (ontologyInfo.comment[lang] || ontologyInfo.comment.en || '')
-            : ontologyInfo.comment;
+        if (typeof ontologyInfo.comment === 'object') {
+            commentData = ontologyInfo.comment;
+            commentText = ontologyInfo.comment[lang] || ontologyInfo.comment.en || '';
+        } else {
+            commentText = ontologyInfo.comment;
+        }
     }
 
     if (commentText || governedBy || source) {
@@ -114,7 +144,17 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
         tooltipButton.className = 'tooltip-button';
         tooltipButton.textContent = '?';
         tooltipButton.type = 'button';
-        tooltipButton.addEventListener('click', () => createTooltipModal(commentText, governedBy, source));
+        
+        if (commentData) {
+            tooltipButton.classList.add('i18n-ontology');
+            tooltipButton.dataset.i18n = JSON.stringify(commentData);
+            tooltipButton.setAttribute('data-i18n-tooltip', commentText);
+        }
+        
+        tooltipButton.addEventListener('click', () => {
+            const currentText = tooltipButton.getAttribute('data-i18n-tooltip') || commentText;
+            createTooltipModal(currentText, governedBy, source);
+        });
         tooltipCell.appendChild(tooltipButton);
     }
 
@@ -128,6 +168,7 @@ function createTooltipCell(ontologyInfo, governedBy, source, lang) {
  * @returns {{ontologyInfo: object, unit: string, governedBy: string, source: any}} The inherited info.
  */
 function getInheritedOntologyInfo(currentPath, ontologyMap) {
+    const contextMap = ontologyMap ? ontologyMap.contextMap : null;
     const pathParts = currentPath.split('.');
     let ontologyInfo = null;
     let unit = '';
@@ -137,10 +178,49 @@ function getInheritedOntologyInfo(currentPath, ontologyMap) {
     const checkInfo = (info) => {
         if (!info) return;
         if (!unit && info.unit) unit = info.unit;
+        
+        // If there's no direct unit but there's a range (like KgWeightLiteral), look it up in the ontology
+        if (!unit && info.range && ontologyMap) {
+            let rangeId = info.range;
+            if (rangeId.includes(':')) rangeId = rangeId.split(':')[1];
+            
+            if (ontologyMap.has(rangeId)) {
+                const rangeInfo = ontologyMap.get(rangeId);
+                if (rangeInfo.unit) unit = rangeInfo.unit;
+            }
+        }
+        
         if (!governedBy && info.governedBy) governedBy = info.governedBy;
         if (!source) source = info.source || info['dcterms:source'];
     };
 
+    // First, try resolving via context mapping.
+    // The context map uses normalized paths without array indices (e.g. 'substancesOfConcern.casNumber' instead of 'substancesOfConcern.0.casNumber')
+    if (contextMap) {
+        // Strip array indices from the path
+        const normalizedPath = pathParts.filter(p => isNaN(p)).join('.');
+        if (contextMap.has(normalizedPath)) {
+            const ontologyId = contextMap.get(normalizedPath);
+            const mappedInfo = ontologyMap.get(ontologyId);
+            if (mappedInfo) {
+                ontologyInfo = mappedInfo;
+                checkInfo(mappedInfo);
+            }
+        }
+        
+        // Also check if just the property name itself is mapped in the context (global mapping)
+        const leafKey = pathParts[pathParts.length - 1];
+        if (!ontologyInfo && contextMap.has(leafKey)) {
+            const leafOntologyId = contextMap.get(leafKey);
+            const leafMappedInfo = ontologyMap.get(leafOntologyId);
+            if (leafMappedInfo) {
+                ontologyInfo = leafMappedInfo;
+                checkInfo(leafMappedInfo);
+            }
+        }
+    }
+
+    // Fall back to the original method: walking backwards through the raw path keys
     for (let i = pathParts.length - 1; i >= 0; i--) {
         const info = ontologyMap.get(pathParts[i]);
         if (info) {
@@ -190,33 +270,33 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
         let validationResult = { isValid: true };
 
         if ((prop.type === 'number' || prop.type === 'integer') && !target.validity.valid && value === '') {
-            validationResult = { isValid: false, message: 'Must be a valid number' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number' };
         } else if (value === '') {
             if (isRequired) {
-                validationResult = { isValid: false, message: 'This field is required' };
+                validationResult = { isValid: false, key: 'error-required', message: 'This field is required' };
             }
         } else if (prop.type === 'string' && !validateText(value).isValid) {
-            validationResult = validateText(value);
+            validationResult = { isValid: false, key: 'error-invalid-chars', message: 'Invalid characters detected' };
         } else if (prop.format === 'uri' && !isURI(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid URI (e.g., http://example.com)' };
+            validationResult = { isValid: false, key: 'error-valid-uri', message: 'Must be a valid URI (e.g., http://example.com)' };
         } else if ((ontologyInfo?.range === 'decimal' || ontologyInfo?.range === 'double' || ontologyInfo?.range === 'float') && !isNumber(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid number.' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number.' };
         } else if (ontologyInfo?.range === 'integer' && !isInteger(value)) {
-            validationResult = { isValid: false, message: 'Must be a whole number.' };
+            validationResult = { isValid: false, key: 'error-whole-number', message: 'Must be a whole number.' };
         } else if (target.name.endsWith('countryOfOrigin') || target.name.endsWith('addressCountry') || target.name.endsWith('productionLocationCountry')) {
             if (!isCountryCode(value)) {
-                validationResult = { isValid: false, message: 'Must be a valid 2 or 3-letter country code' };
+                validationResult = { isValid: false, key: 'error-country-code', message: 'Must be a valid 2 or 3-letter country code' };
             }
         } else if (ontologyInfo?.validation) {
             const { min, max } = ontologyInfo.validation;
             const num = parseFloat(value);
             if (isNaN(num) || num < min || num > max) {
-                validationResult = { isValid: false, message: `Must be between ${min} and ${max}` };
+                validationResult = { isValid: false, key: 'error-out-of-range', message: `Must be between ${min} and ${max}` };
             }
         } else if (prop.type === 'number' && !isNumber(value)) {
-            validationResult = { isValid: false, message: 'Must be a valid number' };
+            validationResult = { isValid: false, key: 'error-valid-number', message: 'Must be a valid number' };
         } else if (prop.type === 'integer' && !isInteger(value)) {
-            validationResult = { isValid: false, message: 'Must be a whole number' };
+            validationResult = { isValid: false, key: 'error-whole-number', message: 'Must be a whole number' };
         }
 
         const errorMsgId = `${target.id.replace(/\./g, '-')}-error`;
@@ -234,6 +314,10 @@ function attachValidationHandlers(input, prop, isRequired, ontologyInfo) {
                 target.parentElement.appendChild(errorSpan);
             }
             errorSpan.textContent = validationResult.message;
+            if (validationResult.key) {
+                errorSpan.setAttribute('data-i18n-key', validationResult.key);
+                triggerLocalization();
+            }
         }
 
         target.dispatchEvent(new CustomEvent('fieldValidityChange', {
@@ -350,14 +434,18 @@ function renderSimpleInputProperty(fragment, { prop, currentPath, isRequired, in
 
     // --- 3. Unit Cell ---
     const unitCell = document.createElement('div');
-    unitCell.className = 'grid-cell';
+    unitCell.className = 'grid-cell unit-cell';
     unitCell.textContent = unit || '';
     row.appendChild(unitCell);
 
     // --- 4. Ontology Cell (Label) ---
     const ontologyCell = document.createElement('div');
-    ontologyCell.className = 'grid-cell';
+    ontologyCell.className = 'grid-cell label-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -433,29 +521,56 @@ function reindexArrayItems(arrayName, indexRemoved) {
             // Update data-array-group
             row.dataset.arrayGroup = group.replace(oldPrefix, newPrefix);
             
-            // Update inputs
-            const input = row.querySelector('input, select');
-            if (input && input.name.startsWith(oldPrefix)) {
-                const oldName = input.name;
-                
-                // Clear old error from global state
-                input.dispatchEvent(new CustomEvent('fieldValidityChange', {
-                    bubbles: true, composed: true, detail: { path: oldName, isValid: true },
-                }));
-
-                const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
-                const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
-                if (errorSpan) {
-                    errorSpan.remove();
-                }
-
-                input.name = input.name.replace(oldPrefix, newPrefix);
-                input.id = input.name;
-
-                // Re-trigger validation to update global state with new name
-                input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+            // Update data-object-path on the row itself if it exists
+            if (row.dataset.objectPath) {
+                row.dataset.objectPath = row.dataset.objectPath.replace(oldPrefix, newPrefix);
             }
             
+            // Update any child elements with data-object-path
+            row.querySelectorAll('[data-object-path]').forEach(child => {
+                child.dataset.objectPath = child.dataset.objectPath.replace(oldPrefix, newPrefix);
+            });
+
+            // Update any add-array-item-btn buttons
+            row.querySelectorAll('.add-array-item-btn').forEach(btn => {
+                if (btn.dataset.arrayName) {
+                    btn.dataset.arrayName = btn.dataset.arrayName.replace(oldPrefix, newPrefix);
+                }
+            });
+            
+            // Update optional object groups
+            if (row.dataset.optionalObjectGroups) {
+                row.dataset.optionalObjectGroups = row.dataset.optionalObjectGroups.replace(new RegExp(`\\b${oldPrefix.replace(/\./g, '\\.')}`, 'g'), newPrefix);
+            }
+            row.querySelectorAll('[data-optional-object-groups]').forEach(child => {
+                child.dataset.optionalObjectGroups = child.dataset.optionalObjectGroups.replace(new RegExp(`\\b${oldPrefix.replace(/\./g, '\\.')}`, 'g'), newPrefix);
+            });
+
+            // Update inputs
+            const inputs = row.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (input && input.name.startsWith(oldPrefix)) {
+                    const oldName = input.name;
+                    
+                    // Clear old error from global state
+                    input.dispatchEvent(new CustomEvent('fieldValidityChange', {
+                        bubbles: true, composed: true, detail: { path: oldName, isValid: true },
+                    }));
+
+                    const oldErrorMsgId = `${input.id.replace(/\./g, '-')}-error`;
+                    const errorSpan = input.parentElement.querySelector(`#${oldErrorMsgId}`);
+                    if (errorSpan) {
+                        errorSpan.remove();
+                    }
+
+                    input.name = input.name.replace(oldPrefix, newPrefix);
+                    input.id = input.name;
+
+                    // Re-trigger validation to update global state with new name
+                    input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+                }
+            });
+
             // Update path cell text
             const pathCell = row.querySelector('.grid-cell');
             if (pathCell && pathCell.textContent.startsWith(oldPrefix)) {
@@ -483,6 +598,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.textContent = 'Remove';
+    removeButton.setAttribute('data-i18n-key', 'remove');
     
     removeButton.addEventListener('click', () => {
         const groupToRemove = controlRow.dataset.arrayGroup;
@@ -491,7 +607,7 @@ function createArrayItemControlRow(arrayName, itemPath) {
         const suffix = groupToRemove.slice(arrayName.length + 1);
         const indexToRemove = parseInt(suffix.split('.')[0], 10);
 
-        const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"]`);
+        const rowsToRemove = document.querySelectorAll(`[data-array-group="${groupToRemove}"], [data-array-group^="${groupToRemove}."]`);
         
         // Robustly clear errors for all inputs associated with this group
         // We look for exact match (simple array) or prefix match (object array)
@@ -568,6 +684,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     const addButton = document.createElement('button');
     addButton.type = 'button';
     addButton.textContent = 'Add Item';
+    addButton.setAttribute('data-i18n-key', 'add-item');
     addButton.className = 'add-array-item-btn';
     addButton.dataset.arrayName = currentPath;
     valueCell.appendChild(addButton);
@@ -584,6 +701,10 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -594,17 +715,24 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
 
     fragment.appendChild(row);
 
-    if (prop.items?.type === 'object' && prop.items?.properties) {
-        // Array of Objects
+    if ((prop.items?.type === 'object' && prop.items?.properties) || prop.items?.oneOf || prop.items?.anyOf) {
+        // Array of Objects or Optional/OneOf Objects
         addButton.addEventListener('click', () => {
             const arrayName = currentPath;
             const itemIndex = getNextArrayItemIndex(arrayName);
             const newObjectPath = `${arrayName}.${itemIndex}`;
             
             const newObjectFragment = document.createDocumentFragment();
-            generateRows(newObjectFragment, prop.items.properties, ontologyMap, prop.items.required || [], newObjectPath, indentationLevel + 1, lang);
-            
-            [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
+
+            if (prop.items.oneOf || prop.items.anyOf) {
+                const itemProp = { ...prop.items }; 
+                const placeholder = createOptionalObjectPlaceholderRow(newObjectPath, itemProp, newObjectPath, indentationLevel + 1, ontologyMap, lang);
+                placeholder.dataset.arrayGroup = newObjectPath;
+                newObjectFragment.appendChild(placeholder);
+            } else {
+                generateRows(newObjectFragment, prop.items.properties, ontologyMap, prop.items.required || [], newObjectPath, indentationLevel + 1, lang);
+                [...newObjectFragment.children].forEach(r => { r.dataset.arrayGroup = newObjectPath; });
+            }
             
             newObjectFragment.appendChild(createArrayItemControlRow(arrayName, newObjectPath));
             
@@ -615,6 +743,12 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
             }
             insertionPoint.after(newObjectFragment);
 
+            if (prop.items.oneOf || prop.items.anyOf) {
+                const addBtn = document.querySelector(`button[data-optional-object="${newObjectPath}"]`);
+                if (addBtn) addBtn.click();
+            }
+
+            triggerLocalization();
             triggerValidationForGroup(insertionPoint, newObjectPath);
         });
     } else {
@@ -657,6 +791,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
                 insertionPoint = allItemControls[allItemControls.length - 1];
             }
             insertionPoint.after(itemFragment);
+            triggerLocalization();
 
             triggerValidationForGroup(insertionPoint, path);
         });
@@ -684,6 +819,10 @@ function populateHeaderRow(rowElement, { currentPath, indentationLevel, ontology
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -793,6 +932,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const addButton = document.createElement('button');
     addButton.type = 'button';
     addButton.textContent = 'Add';
+    addButton.setAttribute('data-i18n-key', 'add');
     addButton.dataset.optionalObject = key;
     valueCell.appendChild(addButton);
     placeholderRow.appendChild(valueCell);
@@ -808,6 +948,10 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
     const ontologyCell = document.createElement('div');
     ontologyCell.className = 'grid-cell';
     if (ontologyInfo?.label) {
+        if (typeof ontologyInfo.label === 'object') {
+            ontologyCell.classList.add('i18n-ontology');
+            ontologyCell.dataset.i18n = JSON.stringify(ontologyInfo.label);
+        }
         ontologyCell.textContent = (typeof ontologyInfo.label === 'string')
             ? ontologyInfo.label
             : (ontologyInfo.label[lang] || ontologyInfo.label.en || '');
@@ -823,7 +967,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const existingGroups = placeholderRow.dataset.optionalObjectGroups || '';
 
         const newFieldsFragment = document.createDocumentFragment();
-        const newGroup = `${existingGroups} ${key}`.trim();
+        const newGroup = `${existingGroups} ${dynamicPath}`.trim();
 
         // 1. Transform the placeholder row into a header row.
         placeholderRow.classList.add('grid-row-header');
@@ -837,6 +981,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
         removeButton.textContent = 'Remove';
+        removeButton.setAttribute('data-i18n-key', 'remove');
         removeButton.dataset.removeOptionalObject = key;
         
         removeButton.addEventListener('click', () => {
@@ -846,22 +991,29 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
              // The row containing the button is the header row
              const headerRow = removeButton.closest('.grid-row');
              
+             // Use the current path from the header row (it may have changed due to array reindexing)
+             const currentDynamicPath = headerRow.dataset.objectPath || dynamicPath;
+
              // Find all rows belonging to this specific group
-             const rowsToRemove = grid.querySelectorAll(`[data-optional-object-groups~="${key}"]`);
+             const rowsToRemove = grid.querySelectorAll(`[data-optional-object-groups~="${currentDynamicPath}"]`);
              
              // Calculate parent groups
              const allGroups = headerRow.dataset.optionalObjectGroups || '';
-             const parentGroups = allGroups.replace(new RegExp(`\\b${key}\\b`), '').trim();
+             const parentGroups = allGroups.split(' ').filter(g => g !== currentDynamicPath).join(' ').trim();
 
              // Re-create placeholder
-             const newPlaceholder = createOptionalObjectPlaceholderRow(key, prop, dynamicPath, indentationLevel, ontologyMap, lang);
+             const newPlaceholder = createOptionalObjectPlaceholderRow(key, prop, currentDynamicPath, indentationLevel, ontologyMap, lang);
              if (parentGroups) {
                  newPlaceholder.dataset.optionalObjectGroups = parentGroups;
+             }
+             if (headerRow.dataset.arrayGroup) {
+                 newPlaceholder.dataset.arrayGroup = headerRow.dataset.arrayGroup;
              }
 
              // Insert before and remove old
              headerRow.before(newPlaceholder);
              rowsToRemove.forEach(row => row.remove());
+             triggerLocalization();
         });
         
         headerValueCell.appendChild(removeButton);
@@ -879,13 +1031,17 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         [...newFieldsFragment.children].forEach(row => {
             // Add the new group and preserve any existing parent groups.
             row.dataset.optionalObjectGroups = newGroup;
+            if (placeholderRow.dataset.arrayGroup) {
+                row.dataset.arrayGroup = placeholderRow.dataset.arrayGroup;
+            }
         });
 
         // Insert the new rows after the transformed header row.
         placeholderRow.after(newFieldsFragment);
+        triggerLocalization();
 
         // 5z-h: Now that the new elements are in the DOM, find their inputs and trigger validation.
-        const newInputs = placeholderRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${key}"] input:not([type="checkbox"]), [data-optional-object-groups~="${key}"] select`);
+        const newInputs = placeholderRow.parentElement.querySelectorAll(`[data-optional-object-groups~="${dynamicPath}"] input:not([type="checkbox"]), [data-optional-object-groups~="${dynamicPath}"] select`);
         newInputs.forEach(input => {
             // Dispatch a 'blur' event to trigger the existing validation handler.
             input.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
@@ -900,23 +1056,31 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
 
              const select = document.createElement('select');
              select.className = 'type-selector';
+             select.dataset.pendingOptionalObject = key;
              const defaultOpt = document.createElement('option');
              defaultOpt.text = 'Select Type...';
              defaultOpt.value = '';
+             defaultOpt.setAttribute('data-i18n-key', 'select-type');
              select.appendChild(defaultOpt);
 
              prop.oneOf.forEach((opt, idx) => {
                  const option = document.createElement('option');
                  option.value = idx;
                  option.text = opt.title || `Option ${idx + 1}`;
+                 if (opt.title) {
+                     const key = 'custom-type-' + opt.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                     option.setAttribute('data-i18n-key', key);
+                 }
                  select.appendChild(option);
              });
 
              valueCell.appendChild(select);
+             triggerLocalization();
              
              // Handle selection
              select.addEventListener('change', () => {
                  if (select.value === '') return;
+                 placeholderRow.dataset.oneofSelection = select.value;
                  const selectedSchema = prop.oneOf[parseInt(select.value, 10)];
                  expandRow(selectedSchema); 
              });
@@ -934,10 +1098,19 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
  * Generates an HTML form from a JSON schema using a 3-column grid layout.
  * @param {object} schema - The JSON schema object.
  * @param {Map<string, {label: string, comment: string}>} [ontologyMap=new Map()] - A map of ontology terms.
+ * @param {Map<string, string>} [contextMap=new Map()] - A map of context paths.
  * @param {string} [lang='en'] - The current language code.
  * @returns {DocumentFragment} A document fragment containing the generated form elements.
  */
-export function buildForm(schema, ontologyMap = new Map(), lang = 'en') {
+export function buildForm(schema, ontologyMap = new Map(), contextMap = new Map(), lang = 'en') {
+    // Backward compatibility for tests calling buildForm(schema, ontologyMap, lang)
+    if (typeof contextMap === 'string') {
+        lang = contextMap;
+        contextMap = new Map();
+    }
+    
+    // Attach contextMap to ontologyMap so we don't have to pass it through all recursive functions
+    ontologyMap.contextMap = contextMap;
     // console.log('[FormBuilder] buildForm received schema:', JSON.stringify(schema, null, 2));
     const fragment = document.createDocumentFragment();
     let properties = null;
@@ -1018,6 +1191,7 @@ function populateGroupFromSchema(container, insertBeforeElement, schema, collisi
         }
 
         container.insertBefore(newRow, insertBeforeElement);
+        triggerLocalization();
     }
 }
 
@@ -1177,6 +1351,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const nameInput = document.createElement('input');
     nameInput.type = 'text';
     nameInput.placeholder = 'Property Name';
+    nameInput.setAttribute('data-i18n-key', 'custom-property-name');
     nameInput.className = 'voluntary-name';
     nameInput.name = `custom-key-${rowId}`;
     attachCustomValidator(nameInput, 'key');
@@ -1196,10 +1371,12 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     typeContainer.className = 'voluntary-type-container';
     const typeSelect = document.createElement('select');
     typeSelect.className = 'voluntary-type';
+    const keyMap = { 'Text': 'type-text', 'Number': 'type-number', 'True/False': 'type-boolean', 'Group': 'type-group' };
     ['Text', 'Number', 'True/False', 'Group'].forEach(type => {
         const option = document.createElement('option');
         option.value = type;
         option.textContent = type;
+        option.setAttribute('data-i18n-key', keyMap[type]);
         typeSelect.appendChild(option);
     });
     typeContainer.appendChild(typeSelect);
@@ -1213,6 +1390,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
             const option = document.createElement('option');
             option.value = ct.label;
             option.textContent = ct.label;
+            option.setAttribute('data-i18n-key', `custom-type-${ct.label.toLowerCase().replace(/\s+/g, '-')}`);
             typeSelect.appendChild(option);
         });
     }
@@ -1222,6 +1400,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const valueInput = document.createElement('input');
     valueInput.type = 'text';
     valueInput.placeholder = 'Property Value';
+    valueInput.setAttribute('data-i18n-key', 'custom-property-value');
     valueInput.className = 'voluntary-value';
     valueInput.name = `custom-value-${rowId}`;
     attachCustomValidator(valueInput, 'value');
@@ -1230,6 +1409,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
     removeBtn.textContent = 'Remove';
+    removeBtn.setAttribute('data-i18n-key', 'remove');
     removeBtn.addEventListener('click', () => {
         // Clear errors for all inputs in this row (including nested ones) before removing
         const inputs = row.querySelectorAll('input, select');
@@ -1270,9 +1450,11 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 addBtn.type = 'button';
                 addBtn.className = 'add-voluntary-prop-btn';
                 addBtn.textContent = 'Add Field';
+                addBtn.setAttribute('data-i18n-key', 'add-field');
                 addBtn.addEventListener('click', () => {
                     const newRow = createVoluntaryFieldRow(collisionChecker, customTypeRegistry, schemaLoader, ontologyMap, prefixChecker);
                     container.insertBefore(newRow, addBtn);
+                    triggerLocalization();
                 });
 
                 container.appendChild(addBtn);
@@ -1306,7 +1488,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                         currentKey = parentPath;
 
                         // Generate rows using the standard form generator, passing required fields from the schema
-                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, 'en');
+                        generateRows(fragment, schema.properties, ontologyMap, schema.required || [], parentPath, 0, LanguageManager.getPreferredLanguage());
                         
                         grid.appendChild(fragment);
                         container.appendChild(grid);
@@ -1323,6 +1505,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                     console.error(`[ERROR] Failed to load schema for ${customType.label}:`, error);
                 }
             }
+            triggerLocalization();
             return;
         }
 
@@ -1411,6 +1594,7 @@ export function createVoluntaryFieldRow(collisionChecker, customTypeRegistry = [
                 row.insertBefore(unitContainer, removeBtn);
             }
         }
+        triggerLocalization();
     });
 
     row.appendChild(nameContainer);
