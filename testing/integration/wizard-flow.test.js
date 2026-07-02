@@ -17,6 +17,12 @@ global.TextEncoder = TextEncoder;
 global.ReadableStream = ReadableStream;
 global.setImmediate = global.setImmediate || ((fn, ...args) => global.setTimeout(fn, 0, ...args));
 global.URL.createObjectURL = jest.fn(() => 'blob:mock-url');
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve({}),
+  })
+);
 
 // NOTE: We do not import the modules to be mocked or tested at the top level.
 // They will be imported dynamically within the test.
