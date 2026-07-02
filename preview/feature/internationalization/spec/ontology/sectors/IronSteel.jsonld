@@ -10,6 +10,8 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/IronSteel",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "v2",
+  "dcterms:source": "Based on 'Study on DPP content for iron and steel products under ESPR' by the European Commission Joint Research Centre (JRC), 2026. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
   "dcterms:title": [
     {
       "@language": "en",
