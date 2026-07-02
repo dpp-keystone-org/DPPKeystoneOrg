@@ -1,45 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP CSV Adapter</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1782482118716">
-    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1782482118716">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1783018380601">
+    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1783018380601">
 </head>
 <body>
     <div class="container">
-        <header>
-            <img src="../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 80px;">
-            <div>
-                <h1 style="margin-bottom: 0; font-size: 2.2em;">DPP Keystone</h1>
-                <p style="margin-top: 0.5em; font-size: 1.1em; color: var(--text-light);">Harmonizing Data for the Digital Product Passport</p>
-            </div>
-        </header>
+        <div id="dpp-header-container"></div>
 
         <div class="card">
-            <h1>DPP CSV Adapter</h1>
+            <h1 data-i18n-key="dpp-csv-adapter">DPP CSV Adapter</h1>
             <nav style="margin-bottom: 20px;">
-                <a href="../../index.html">← Back to Home</a>
+                <a href="../../index.html" data-i18n-key="back-to-home">← Back to Home</a>
             </nav>
 
             <section id="source-section">
-                <h2>1. Load Data</h2>
+                <h2 data-i18n-key="1-load-data">1. Load Data</h2>
                 <div style="margin-bottom: 1rem;">
-                    <label style="display: block; margin-bottom: 0.5rem;"><strong>Target Sector(s):</strong></label>
+                    <label style="display: block; margin-bottom: 0.5rem;"><strong data-i18n-key="target-sector-s">Target Sector(s):</strong></label>
                     <div id="sector-select" class="checkbox-group">
-                        <label><input type="checkbox" name="sector" value="battery"> Battery</label>
-                        <label><input type="checkbox" name="sector" value="construction"> Construction</label>
-                        <label><input type="checkbox" name="sector" value="electronics"> Electronics</label>
-                        <label><input type="checkbox" name="sector" value="iron-steel"> Iron & Steel</label>
-                        <label><input type="checkbox" name="sector" value="textile"> Textile</label>
-                        <label><input type="checkbox" name="sector" value="packaging"> Packaging (Add-on)</label>
+                        <label><input type="checkbox" name="sector" value="battery"> <span data-i18n-key="battery">Battery</span></label>
+                        <label><input type="checkbox" name="sector" value="construction"> <span data-i18n-key="construction">Construction</span></label>
+                        <label><input type="checkbox" name="sector" value="electronics"> <span data-i18n-key="electronics">Electronics</span></label>
+                        <label><input type="checkbox" name="sector" value="iron-steel"> <span data-i18n-key="iron-amp-steel">Iron &amp; Steel</span></label>
+                        <label><input type="checkbox" name="sector" value="textile"> <span data-i18n-key="textile">Textile</span></label>
+                        <label><input type="checkbox" name="sector" value="packaging"> <span data-i18n-key="packaging-add-on">Packaging (Add-on)</span></label>
                     </div>
                 </div>
-                <p>Select a CSV file containing your product data. The first row must contain headers.</p>
+                <p data-i18n-key="select-a-csv-file-containing">Select a CSV file containing your product data. The first row must contain headers.</p>
                 <div class="file-drop-area" id="drop-area">
-                    <p>Drag & Drop CSV here or</p>
-                    <input type="file" id="csv-file-input" accept=".csv" />
+                    <p data-i18n-key="drag-amp-drop-csv-here">Drag &amp; Drop CSV here or</p>
+                    <input type="file" id="csv-file-input" accept=".csv">
                 </div>
                 <div id="file-info" class="hidden">
                     <p>Loaded: <strong id="file-name"></strong> (<span id="row-count"></span> rows)</p>
@@ -47,17 +39,17 @@
             </section>
 
             <section id="mapping-section" class="hidden" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-                <h2>2. Map Fields</h2>
-                <p>Map your CSV columns to standard DPP fields. Unmapped columns will be ignored. <strong>You must confirm every row (mapped or ignored) by checking the box on the right.</strong> Once reviewed, you can "Save Mapping Config" for later or "Generate DPPs" using the button at the bottom.</p>
+                <h2 data-i18n-key="2-map-fields">2. Map Fields</h2>
+                <p data-i18n-key="map-your-csv-columns-to">Map your CSV columns to standard DPP fields. Unmapped columns will be ignored. <strong>You must confirm every row (mapped or ignored) by checking the box on the right.</strong> Once reviewed, you can "Save Mapping Config" for later or "Generate DPPs" using the button at the bottom.</p>
                 
                 <div class="toolbar" style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
-                    <button id="load-config-btn">Load Mapping Config</button>
-                    <button id="save-config-btn">Save Mapping Config</button>
+                    <button id="load-config-btn" data-i18n-key="load-mapping-config">Load Mapping Config</button>
+                    <button id="save-config-btn" data-i18n-key="save-mapping-config">Save Mapping Config</button>
                     <input type="file" id="config-file-input" accept=".json" style="display: none;">
                     
                     <div style="margin-left: auto;">
                         <label style="cursor: pointer; user-select: none;">
-                            <input type="checkbox" id="show-incompatible-toggle"> Show incompatible fields
+                            <input type="checkbox" id="show-incompatible-toggle"> <span data-i18n-key="show-incompatible-fields">Show incompatible fields</span>
                         </label>
                     </div>
                 </div>
@@ -66,10 +58,10 @@
                     <table id="mapping-table" style="width: 100%; border-collapse: collapse;">
                         <thead>
                             <tr style="background: #f5f5f5; text-align: left;">
-                                <th style="padding: 10px;">CSV Header</th>
-                                <th style="padding: 10px;">Sample Value</th>
-                                <th style="padding: 10px;">Target DPP Field</th>
-                                <th style="padding: 10px; width: 60px; text-align: center;">Review</th>
+                                <th style="padding: 10px;" data-i18n-key="csv-header">CSV Header</th>
+                                <th style="padding: 10px;" data-i18n-key="sample-value">Sample Value</th>
+                                <th style="padding: 10px;" data-i18n-key="target-dpp-field">Target DPP Field</th>
+                                <th style="padding: 10px; width: 60px; text-align: center;" data-i18n-key="review">Review</th>
                             </tr>
                         </thead>
                         <tbody id="mapping-tbody">
@@ -80,17 +72,17 @@
             </section>
 
             <section id="action-section" class="hidden" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-                <h2>3. Generate</h2>
-                <p>Generate a single JSON file containing an array of all Digital Product Passports based on your mapping. <i>Note: This batch export format is designed for portability. Future updates may include options for direct API uploads or segmented file generation to align with emerging DPP infrastructure standards.</i></p>
+                <h2 data-i18n-key="3-generate">3. Generate</h2>
+                <p data-i18n-key="generate-a-single-json-file">Generate a single JSON file containing an array of all Digital Product Passports based on your mapping. <i>Note: This batch export format is designed for portability. Future updates may include options for direct API uploads or segmented file generation to align with emerging DPP infrastructure standards.</i></p>
                 <div class="actions">
-                    <button id="generate-btn" class="primary-btn">Generate DPPs</button>
+                    <button id="generate-btn" class="primary-btn" data-i18n-key="generate-dpps">Generate DPPs</button>
                 </div>
                 <div id="output-area" style="margin-top: 15px;"></div>
             </section>
         </div>
 
         <footer>
-            <p><small>Part of the <a href="../index.html">DPP Keystone</a> project. | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
+            <p><small data-i18n-key="part-of-the-dpp-keystone">Part of the <a href="../index.html">DPP Keystone</a> project. | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
 
@@ -98,6 +90,11 @@
     <!-- Removed manual script tag for papaparse, will import in module -->
     
     <!-- Application Logic -->
-    <script type="module" src="csv-dpp-adapter.js?v=1782482118716"></script>
-</body>
-</html>
+    <script type="module" src="csv-dpp-adapter.js?v=1783018380601"></script>
+    <script type="module">
+        import { LanguageManager } from '../lib/language-manager.js';
+        LanguageManager.init('./index.i18n.json');
+    </script>
+
+
+</body></html>

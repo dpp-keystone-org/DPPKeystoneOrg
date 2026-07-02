@@ -1,4 +1,4 @@
-import { validateAgainstOntology } from '../ontology-validator.js?v=1782482118716';
+import { validateAgainstOntology, validateTermTranslations } from '../ontology-validator.js?v=1783018380601';
 
 describe('Ontology Validator', () => {
     // 1. Basic Primitive Checks
@@ -272,6 +272,76 @@ describe('Ontology Validator', () => {
 
             expect(validateAgainstOntology(data1, ontologyMap).valid).toBe(false);
             expect(validateAgainstOntology(data2, ontologyMap).valid).toBe(false);
+        });
+    });
+
+    describe('Term Translations Validation', () => {
+        test('should reject plain string labels', () => {
+            const term = {
+                "@id": "dppk:test",
+                "rdfs:label": "Plain String Label"
+            };
+            const result = validateTermTranslations(term);
+            expect(result.valid).toBe(false);
+            expect(result.errors[0]).toContain("plain string");
+        });
+
+        test('should allow properly translated labels', () => {
+            const term = {
+                "@id": "dppk:test",
+                "rdfs:label": [
+                    { "@language": "en", "@value": "English" },
+                    { "@language": "bg", "@value": "Bulgarian" },
+                    { "@language": "cs", "@value": "Czech" },
+                    { "@language": "da", "@value": "Danish" },
+                    { "@language": "de", "@value": "German" },
+                    { "@language": "el", "@value": "Greek" },
+                    { "@language": "es", "@value": "Spanish" },
+                    { "@language": "et", "@value": "Estonian" },
+                    { "@language": "fi", "@value": "Finnish" },
+                    { "@language": "fr", "@value": "French" },
+                    { "@language": "hr", "@value": "Croatian" },
+                    { "@language": "hu", "@value": "Hungarian" },
+                    { "@language": "it", "@value": "Italian" },
+                    { "@language": "lt", "@value": "Lithuanian" },
+                    { "@language": "lv", "@value": "Latvian" },
+                    { "@language": "mt", "@value": "Maltese" },
+                    { "@language": "nl", "@value": "Dutch" },
+                    { "@language": "pl", "@value": "Polish" },
+                    { "@language": "pt", "@value": "Portuguese" },
+                    { "@language": "ro", "@value": "Romanian" },
+                    { "@language": "sk", "@value": "Slovak" },
+                    { "@language": "sl", "@value": "Slovenian" },
+                    { "@language": "sv", "@value": "Swedish" },
+                    { "@language": "ga", "@value": "Irish" }
+                ]
+            };
+            const result = validateTermTranslations(term);
+            expect(result.valid).toBe(true);
+            expect(result.errors).toEqual([]);
+        });
+
+        test('should reject missing required languages', () => {
+            const term = {
+                "@id": "dppk:test",
+                "rdfs:label": [
+                    { "@language": "en", "@value": "English" },
+                    { "@language": "de", "@value": "German" }
+                ]
+            };
+            const result = validateTermTranslations(term);
+            expect(result.valid).toBe(false);
+            // It should say "missing 22 required languages"
+            expect(result.errors[0]).toContain("missing 22 required languages");
+        });
+
+        test('should skip translation check if label is entirely omitted', () => {
+            const term = {
+                "@id": "dppk:test",
+                "@type": "owl:Class"
+            };
+            const result = validateTermTranslations(term);
+            expect(result.valid).toBe(true);
         });
     });
 });
