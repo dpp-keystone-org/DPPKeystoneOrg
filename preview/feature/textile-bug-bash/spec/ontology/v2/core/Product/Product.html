@@ -83,10 +83,10 @@
   Product --|> RelatedResource : repairInstructions
   Product : +careInstructions
   Product --|> RelatedResource : careInstructions
-  Product : +steelGrade
-  Product : +railProfile
   Product : +euApparelSize
   Product --|> EuApparelSizeObject : euApparelSize
+  Product : +steelGrade
+  Product : +railProfile
   click RelatedResource href "../RelatedResource/RelatedResource.html" "dppk:RelatedResource"
   style RelatedResource stroke:#2962ff,color:#2962ff
   click Component href "Component.html" "dppk:Component"
@@ -369,6 +369,13 @@
                                 </tr>
                             
                                 <tr>
+                                    <td><a href="../../sectors/EUApparelSizeSystem/index.html#euApparelSize">EU Apparel Size</a> (dppk:euApparelSize)</td>
+                                    <td>The structured EU specific size of the product based on body dimensions (e.g., EN 13402).</td>
+                                    <td><a href="../../sectors/EUApparelSizeSystem/EuApparelSizeObject.html">dppk:EuApparelSizeObject</a></td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                            
+                                <tr>
                                     <td><a href="../../sectors/Construction/index.html#steelGrade">Steel Grade</a> (dppk:steelGrade)</td>
                                     <td>The classification of the steel based on its composition and physical properties (e.g., R260, S355).</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
@@ -379,13 +386,6 @@
                                     <td><a href="../../sectors/Construction/index.html#railProfile">Rail Profile</a> (dppk:railProfile)</td>
                                     <td>The standardized cross-section design of a railway rail (e.g., 46E1).</td>
                                     <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
-                                    <td></td><td></td><td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td><a href="../../sectors/EUApparelSizeSystem/index.html#euApparelSize">EU Apparel Size</a> (dppk:euApparelSize)</td>
-                                    <td>The structured EU specific size of the product based on body dimensions (e.g., EN 13402).</td>
-                                    <td><a href="../../sectors/EUApparelSizeSystem/EuApparelSizeObject.html">dppk:EuApparelSizeObject</a></td>
                                     <td></td><td></td><td></td>
                                 </tr>
                             
