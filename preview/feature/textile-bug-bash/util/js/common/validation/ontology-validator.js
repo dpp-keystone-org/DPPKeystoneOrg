@@ -147,3 +147,53 @@ export function validateAgainstOntology(dppData, ontologyMap) {
         errors
     };
 }
+
+/**
+ * Validates that a raw JSON-LD ontology term contains translations for the required languages.
+ * @param {object} term The JSON-LD node
+ * @param {string[]} requiredLanguages The required language codes
+ * @returns {object} { valid: boolean, errors: string[] }
+ */
+const EU_LANGUAGES = [
+    'en', 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hr', 
+    'hu', 'it', 'lt', 'lv', 'mt', 'nl', 'pl', 'pt', 'ro', 'sk', 'sl', 'sv', 'ga'
+];
+
+export function validateTermTranslations(term, requiredLanguages = EU_LANGUAGES, fieldsToCheck = ['rdfs:label', 'rdfs:comment']) {
+    const errors = [];
+    
+    if (!term || typeof term !== 'object') {
+        return { valid: true, errors: [] };
+    }
+
+    const checkField = (fieldName) => {
+        const value = term[fieldName];
+        if (!value) return; 
+        
+        if (typeof value === 'string') {
+            errors.push(`'${fieldName}' is a plain string, missing language tags. Required: ${requiredLanguages.length} languages.`);
+            return;
+        }
+        
+        const values = Array.isArray(value) ? value : [value];
+        const foundLangs = new Set();
+        
+        values.forEach(val => {
+            if (val && typeof val === 'object' && val['@language']) {
+                foundLangs.add(val['@language']);
+            }
+        });
+        
+        const missingLangs = requiredLanguages.filter(lang => !foundLangs.has(lang));
+        if (missingLangs.length > 0) {
+            errors.push(`'${fieldName}' is missing ${missingLangs.length} required languages (e.g., ${missingLangs.slice(0, 3).join(', ')}...)`);
+        }
+    };
+
+    fieldsToCheck.forEach(checkField);
+
+    return {
+        valid: errors.length === 0,
+        errors
+    };
+}

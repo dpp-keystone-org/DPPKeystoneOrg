@@ -1,20 +1,28 @@
 // src/wizard/wizard.js
-import { loadSchema } from '../lib/schema-loader.js?v=1783020757494';
-import { loadOntology } from '../lib/ontology-loader.js?v=1783020757494';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1783020757494';
-import { generateDpp } from './dpp-generator.js?v=1783020757494';
-import { generateHTML } from '../lib/html-generator.js?v=1783020757494';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1783020757494';
+import { loadHeader } from '../branding/header.js?v=1783063956381';
+loadHeader('dpp-header-container', '..');
+import { loadSchema } from '../lib/schema-loader.js?v=1783063956381';
+import { loadOntology, loadContext } from '../lib/ontology-loader.js?v=1783063956381';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1783063956381';
+import { generateDpp } from './dpp-generator.js?v=1783063956381';
+import { generateHTML } from '../lib/html-generator.js?v=1783063956381';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1783063956381';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1783020757494';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1783063956381';
+import { LanguageManager } from '../lib/language-manager.js?v=1783063956381';
 
 // --- Module-level state ---
-let currentLanguage = 'en';
+let currentLanguage = LanguageManager.getPreferredLanguage();
+
+function triggerLocalization() {
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
+}
 
 // Caches for holding loaded schemas and ontologies to avoid re-fetching
 let coreSchema = null;
 let coreOntologyMap = null;
-const sectorDataCache = new Map(); // sector -> { schema, ontologyMap }
+let coreContextMap = null;
+const sectorDataCache = new Map(); // sector -> { schema, ontologyMap, contextMap }
 
 const SUPPORTED_CUSTOM_TYPES = [
     { label: 'Organization', schemaName: 'organization' },
@@ -45,6 +53,48 @@ function saveFormState(container) {
             state.set(input.name, input.value);
         }
     });
+
+    // Save structurally expanded arrays and optional objects
+    const arrayItemControls = container.querySelectorAll('.array-item-control-row');
+    const arrayIndexes = {};
+    arrayItemControls.forEach(row => {
+        const group = row.dataset.arrayGroup;
+        if (!group) return;
+        const lastDot = group.lastIndexOf('.');
+        const arrayName = group.substring(0, lastDot);
+        const index = parseInt(group.substring(lastDot + 1), 10);
+        
+        if (!arrayIndexes[arrayName]) {
+            arrayIndexes[arrayName] = { indexes: [], depth: (arrayName.match(/\./g) || []).length };
+        }
+        arrayIndexes[arrayName].indexes.push(index);
+    });
+
+    const expandedElements = container.querySelectorAll('[data-remove-optional-object], [data-pending-optional-object]');
+    const optionalObjects = [];
+    expandedElements.forEach(el => {
+        const key = el.dataset.removeOptionalObject || el.dataset.pendingOptionalObject;
+        const row = el.closest('.grid-row');
+        if (!row || !row.dataset.objectPath) return;
+
+        let oneOfSelection = undefined;
+        if (row.hasAttribute('data-oneof-selection')) {
+            oneOfSelection = row.dataset.oneofSelection;
+        } else if (el.hasAttribute('data-oneof-selection')) {
+            oneOfSelection = el.dataset.oneofSelection;
+        }
+
+        optionalObjects.push({
+            path: row.dataset.objectPath,
+            key: key,
+            oneOfSelection: oneOfSelection,
+            depth: (row.dataset.objectPath.match(/\./g) || []).length
+        });
+    });
+
+    if (Object.keys(arrayIndexes).length > 0) state.set('__EXPANDED_ARRAYS__', arrayIndexes);
+    if (optionalObjects.length > 0) state.set('__EXPANDED_OPTIONAL_OBJECTS__', optionalObjects);
+
     return state;
 }
 
@@ -56,7 +106,69 @@ function saveFormState(container) {
 function restoreFormState(container, state) {
     if (!container || !state) return;
 
+    // 1. Restore structural expansions (arrays and optional objects) interleaved by depth
+    const tasks = [];
+    
+    if (state.has('__EXPANDED_ARRAYS__')) {
+        const arrayIndexes = state.get('__EXPANDED_ARRAYS__');
+        Object.entries(arrayIndexes).forEach(([arrayName, data]) => {
+            tasks.push({
+                type: 'array',
+                name: arrayName,
+                indexes: data.indexes,
+                depth: data.depth
+            });
+        });
+    }
+
+    if (state.has('__EXPANDED_OPTIONAL_OBJECTS__')) {
+        const optionalObjects = state.get('__EXPANDED_OPTIONAL_OBJECTS__');
+        optionalObjects.forEach(obj => tasks.push({ type: 'optional', ...obj }));
+    }
+
+    tasks.sort((a, b) => a.depth - b.depth);
+
+    tasks.forEach(task => {
+        if (task.type === 'array') {
+            const addBtn = container.querySelector(`button.add-array-item-btn[data-array-name="${task.name}"]`);
+            if (addBtn) {
+                const maxIndex = Math.max(...task.indexes);
+                // Create all indexes up to maxIndex
+                for (let i = 0; i <= maxIndex; i++) {
+                    addBtn.click();
+                }
+                // Remove the ones that were deleted by the user
+                for (let i = 0; i <= maxIndex; i++) {
+                    if (!task.indexes.includes(i)) {
+                        const removeBtn = container.querySelector(`.array-item-control-row[data-array-group="${task.name}.${i}"] button`);
+                        if (removeBtn) removeBtn.click();
+                    }
+                }
+            }
+        } else if (task.type === 'optional') {
+            // Find the specific row for this optional object
+            const row = container.querySelector(`.grid-row[data-object-path="${task.path}"]`);
+            if (row) {
+                // Find the specific add button within that row
+                const addBtn = row.querySelector(`button[data-optional-object="${task.key}"]`);
+                if (addBtn) {
+                    addBtn.click();
+                    if (task.oneOfSelection !== undefined) {
+                        const select = row.querySelector(`select[data-pending-optional-object="${task.key}"]`);
+                        if (select) {
+                            select.value = task.oneOfSelection;
+                            select.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // 2. Restore all standard data inputs
     state.forEach((value, name) => {
+        if (name === '__EXPANDED_OPTIONAL_OBJECTS__' || name === '__EXPANDED_ARRAY_INDEXES__') return;
+        
         const input = container.querySelector(`[name="${name}"]`);
         if (input) {
             if (input.type === 'checkbox') {
@@ -83,7 +195,7 @@ async function rerenderAllForms() {
 
     // Re-render core form
     coreFormContainer.innerHTML = '';
-    const coreFormFragment = buildForm(coreSchema, coreOntologyMap, currentLanguage);
+    const coreFormFragment = buildForm(coreSchema, coreOntologyMap, coreContextMap, currentLanguage);
     coreFormContainer.appendChild(coreFormFragment);
     restoreFormState(coreFormContainer, coreState);
 
@@ -94,8 +206,8 @@ async function rerenderAllForms() {
     for (const sector of activeSectors) {
         const data = sectorDataCache.get(sector);
         if (data) {
-            const { schema, ontologyMap } = data;
-            const formFragment = buildForm(schema, ontologyMap, currentLanguage);
+            const { schema, ontologyMap, contextMap } = data;
+            const formFragment = buildForm(schema, ontologyMap, contextMap, currentLanguage);
 
             const sectorContainer = document.createElement('div');
             sectorContainer.id = `sector-form-${sector}`;
@@ -133,7 +245,7 @@ export async function initializeWizard() {
     errorCountBadge = document.getElementById('error-count-badge');
     jsonOutput = document.getElementById('json-output');
     sectorButtons = document.querySelectorAll('.sector-btn');
-    languageSelector = document.getElementById('language-selector');
+    const langWrapper = document.getElementById('language-widget-wrapper');
 
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
     const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
@@ -181,8 +293,9 @@ export async function initializeWizard() {
             // Load from network or use cache
             if (!coreSchema) coreSchema = await loadSchema('dpp', 'header');
             if (!coreOntologyMap) coreOntologyMap = await loadOntology('dpp');
+            if (!coreContextMap) coreContextMap = await loadContext('dpp');
 
-            const formFragment = buildForm(coreSchema, coreOntologyMap, currentLanguage);
+            const formFragment = buildForm(coreSchema, coreOntologyMap, coreContextMap, currentLanguage);
             coreFormContainer.innerHTML = ''; // Clear previous content
             coreFormContainer.appendChild(formFragment);
 
@@ -343,10 +456,6 @@ export async function initializeWizard() {
         saveSession();
     });
 
-    languageSelector.addEventListener('change', async (event) => {
-        currentLanguage = event.target.value;
-        await rerenderAllForms();
-    });
 
     sectorButtons.forEach(button => {
         button.addEventListener('click', async () => {
@@ -366,8 +475,9 @@ export async function initializeWizard() {
             if (existingContainer) {
                 // The MutationObserver will handle clearing validation errors when the container is removed.
                 existingContainer.remove();
-                button.textContent = `Add ${displayName}`;
+                button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('remove-', 'add-'));
                 button.classList.remove('remove-btn-active');
+                triggerLocalization();
             } else {
                 // Add Sector
                 try {
@@ -375,12 +485,13 @@ export async function initializeWizard() {
                     if (!data) {
                         const schema = await loadSchema(sector, schemaType);
                         const ontologyMap = await loadOntology(sector);
-                        data = { schema, ontologyMap };
+                        const contextMap = await loadContext(sector);
+                        data = { schema, ontologyMap, contextMap };
                         sectorDataCache.set(sector, data);
                     }
 
-                    const { schema, ontologyMap } = data;
-                    const formFragment = buildForm(schema, ontologyMap, currentLanguage);
+                    const { schema, ontologyMap, contextMap } = data;
+                    const formFragment = buildForm(schema, ontologyMap, contextMap, currentLanguage);
 
                     const sectorContainer = document.createElement('div');
                     sectorContainer.id = sectorContainerId;
@@ -402,8 +513,9 @@ export async function initializeWizard() {
                     // Trigger validation for the new sector form
                     validateAllFields(sectorContainer);
 
-                    button.textContent = `Remove ${displayName}`;
+                    button.setAttribute('data-i18n-key', button.getAttribute('data-i18n-key').replace('add-', 'remove-'));
                     button.classList.add('remove-btn-active');
+                    triggerLocalization();
 
                 } catch (error) {
                     const targetContainer = (schemaType === 'shared') ? voluntaryModulesContainer : sectorsFormContainer;
@@ -456,7 +568,8 @@ export async function initializeWizard() {
                 try {
                     const schema = await loadSchema(sector, schemaType);
                     const ontologyMap = await loadOntology(sector);
-                    data = { schema, ontologyMap };
+                    const contextMap = await loadContext(sector);
+                    data = { schema, ontologyMap, contextMap };
                     sectorDataCache.set(sector, data);
                 } catch (error) {
                     console.warn(`Failed to load schema for sector ${sector} during collision check`, error);
@@ -491,6 +604,7 @@ export async function initializeWizard() {
     function addVoluntaryField() {
         const fieldRow = createVoluntaryFieldRow(getConflictingSectors, SUPPORTED_CUSTOM_TYPES, loadSchema, coreOntologyMap, getDefinedPrefixes);
         voluntaryFieldsWrapper.appendChild(fieldRow);
+        triggerLocalization();
     }
 
     function addExternalContext() {
@@ -511,7 +625,7 @@ export async function initializeWizard() {
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
-        removeBtn.textContent = 'Remove';
+        removeBtn.setAttribute('data-i18n-key', 'remove');
         removeBtn.addEventListener('click', () => row.remove());
 
         row.appendChild(prefixInput);
@@ -519,6 +633,7 @@ export async function initializeWizard() {
         row.appendChild(removeBtn);
 
         externalContextsWrapper.appendChild(row);
+        triggerLocalization();
     }
 
     if (addExternalContextBtn && externalContextsWrapper) {
@@ -547,7 +662,7 @@ export async function initializeWizard() {
 
             const dppObject = getDppData();
             const customCssUrl = document.getElementById('custom-css-url')?.value?.trim();
-            const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema });
+            const htmlContent = await generateHTML(dppObject, { customCssUrl, includeSchema, language: currentLanguage });
 
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
@@ -694,6 +809,27 @@ export async function initializeWizard() {
     // Initial setup
     await initializeCoreForm();
     await restoreSession();
+
+    if (langWrapper) {
+        langWrapper.innerHTML = '';
+        
+        // Initialize Language Manager with both files
+        await LanguageManager.init(['index.i18n.json', '../lib/validation-errors.i18n.json']);
+
+        document.addEventListener('languageChanged', async (e) => {
+            if (e.detail.language !== currentLanguage) {
+                currentLanguage = e.detail.language;
+                await rerenderAllForms();
+                
+                // Re-validate everything because rerender wiped DOM and MutationObserver cleared errors
+                validateAllFields(coreFormContainer);
+                validateAllFields(sectorsFormContainer);
+                validateAllFields(voluntaryModulesContainer);
+                validateAllFields(voluntaryFieldsWrapper);
+                validateAllFields(externalContextsWrapper);
+            }
+        });
+    }
 
     // Expose schemas for the testing environment
     window.testing = {

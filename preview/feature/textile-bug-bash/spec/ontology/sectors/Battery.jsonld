@@ -10,10 +10,8 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/Battery",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Battery Sector Ontology",
-  "dcterms:description": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information.",
   "owl:versionInfo": "v2",
-  "rdfs:label": [
+  "dcterms:title": [
     {
       "@language": "en",
       "@value": "DPP Battery Sector Ontology"
@@ -53,6 +51,10 @@
     {
       "@language": "fr",
       "@value": "Ontologie du secteur des batteries DPP"
+    },
+    {
+      "@language": "ga",
+      "@value": "Teangeolaíocht Earnáil na gCeallraí DPP"
     },
     {
       "@language": "hr",
@@ -105,13 +107,9 @@
     {
       "@language": "sv",
       "@value": "DPP-batterisektorns ontologi"
-    },
-    {
-      "@language": "ga",
-      "@value": "Teangeolaíocht Earnáil na gCeallraí DPP"
     }
   ],
-  "rdfs:comment": [
+  "dcterms:description": [
     {
       "@language": "en",
       "@value": "Defines the specific data model for the EU Battery Passport, including battery-specific properties, materials, and regulatory information."
@@ -151,6 +149,10 @@
     {
       "@language": "fr",
       "@value": "Définit le modèle de données spécifique pour le passeport européen des batteries, y compris les propriétés, les matériaux et les informations réglementaires spécifiques aux batteries."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé an tsamhail sonraí shonrach do Phas Ceallraí an AE, lena n-áirítear airíonna, ábhair agus faisnéis rialála a bhaineann go sonrach le ceallraí."
     },
     {
       "@language": "hr",
@@ -203,10 +205,6 @@
     {
       "@language": "sv",
       "@value": "Definierar den specifika datamodellen för EU:s batteripass, inklusive batterispecifika egenskaper, material och lagstadgad information."
-    },
-    {
-      "@language": "ga",
-      "@value": "Sainmhíníonn sé an tsamhail sonraí shonrach do Phas Ceallraí an AE, lena n-áirítear airíonna, ábhair agus faisnéis rialála a bhaineann go sonrach le ceallraí."
     }
   ],
   "owl:imports": [
@@ -275,6 +273,10 @@
           "@value": "Produit de batterie"
         },
         {
+          "@language": "ga",
+          "@value": "Táirge Ceallraí"
+        },
+        {
           "@language": "hr",
           "@value": "Baterijski proizvod"
         },
@@ -325,10 +327,6 @@
         {
           "@language": "sv",
           "@value": "Batteriprodukt"
-        },
-        {
-          "@language": "ga",
-          "@value": "Táirge Ceallraí"
         }
       ],
       "rdfs:comment": [
@@ -371,6 +369,10 @@
         {
           "@language": "fr",
           "@value": "Modèle de données pour le passeport des batteries conformément au règlement de l'UE sur les batteries."
+        },
+        {
+          "@language": "ga",
+          "@value": "Mionsamhail sonraí don Phas Ceallraí de réir Rialachán an AE maidir le Ceallraí."
         },
         {
           "@language": "hr",
@@ -423,19 +425,16 @@
         {
           "@language": "sv",
           "@value": "Datamodell för batteripasset enligt EU:s batteriförordning."
-        },
-        {
-          "@language": "ga",
-          "@value": "Mionsamhail sonraí don Phas Ceallraí de réir Rialachán an AE maidir le Ceallraí."
         }
       ]
     },
     {
       "@id": "dppk:BatteryPerformance",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1)"
       },
       "rdfs:label": [
         {
@@ -637,9 +636,10 @@
     {
       "@id": "dppk:CapacityInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1g, 1h, 4d)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1g, 1h, 4d)"
       },
       "rdfs:label": [
         {
@@ -841,9 +841,10 @@
     {
       "@id": "dppk:PowerInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1i); Art. 10",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i); Art. 10"
       },
       "rdfs:label": [
         {
@@ -1045,9 +1046,10 @@
     {
       "@id": "dppk:EfficiencyInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1n); Art. 10",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1n); Art. 10"
       },
       "rdfs:label": [
         {
@@ -1249,9 +1251,10 @@
     {
       "@id": "dppk:InternalResistanceInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1o); Art. 10",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o); Art. 10"
       },
       "rdfs:label": [
         {
@@ -1453,9 +1456,10 @@
     {
       "@id": "dppk:LifetimeInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1j, 1k, 4a); Annex IV",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1j, 1k, 4a); Annex IV"
       },
       "rdfs:label": [
         {
@@ -1657,9 +1661,10 @@
     {
       "@id": "dppk:TemperatureInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (1l); Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l); Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -1861,9 +1866,10 @@
     {
       "@id": "dppk:NegativeEventsInfo",
       "@type": "rdfs:Class",
-      "dppk:governedBy": "Annex XIII (4d); Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -2065,9 +2071,10 @@
     {
       "@id": "dppk:manufacturingPlace",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a)"
       },
       "rdfs:label": [
         {
@@ -2273,9 +2280,10 @@
     {
       "@id": "dppk:manufacturingDate",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a)"
       },
       "rdfs:label": [
         {
@@ -2481,9 +2489,10 @@
     {
       "@id": "dppk:serviceDate",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (1)"
       },
       "rdfs:label": [
         {
@@ -2689,9 +2698,10 @@
     {
       "@id": "dppk:warrantyPeriod",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1m)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1m)"
       },
       "rdfs:label": [
         {
@@ -2897,9 +2907,10 @@
     {
       "@id": "dppk:batteryCategory",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a); Annex VI Part A (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a); Annex VI Part A (2)"
       },
       "rdfs:label": [
         {
@@ -3314,9 +3325,10 @@
     {
       "@id": "dppk:batteryStatus",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII 4(c)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII 4(c)"
       },
       "rdfs:label": [
         {
@@ -3522,9 +3534,10 @@
     {
       "@id": "dppk:separateCollectionSymbol",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 13(4); Annex VI Part B",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 13(4); Annex VI Part B"
       },
       "rdfs:label": [
         {
@@ -3732,9 +3745,10 @@
     {
       "@id": "dppk:heavyMetalSymbols",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 13(5)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 13(5)"
       },
       "rdfs:label": [
         {
@@ -3942,9 +3956,10 @@
     {
       "@id": "dppk:carbonFootprintLabel",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Article 7(2) via Annex XIII (1c)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Article 7(2) via Annex XIII (1c)"
       },
       "rdfs:label": [
         {
@@ -4152,9 +4167,10 @@
     {
       "@id": "dppk:extinguishingAgent",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VI Part A (9)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VI Part A (9)"
       },
       "rdfs:label": [
         {
@@ -4360,9 +4376,10 @@
     {
       "@id": "dppk:labelMeaning",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 74 1(e)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 74 1(e)"
       },
       "rdfs:label": [
         {
@@ -4568,9 +4585,10 @@
     {
       "@id": "dppk:testReports",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (3); Annex VIII Part A 2(h)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (3); Annex VIII Part A 2(h)"
       },
       "rdfs:label": [
         {
@@ -4778,9 +4796,10 @@
     {
       "@id": "dppk:carbonFootprintClass",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1c); Art. 7(2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1c); Art. 7(2)"
       },
       "rdfs:label": [
         {
@@ -4986,9 +5005,10 @@
     {
       "@id": "dppk:carbonFootprintStudy",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1c); Art. 7 1(g)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1c); Art. 7 1(g)"
       },
       "rdfs:label": [
         {
@@ -5196,9 +5216,10 @@
     {
       "@id": "dppk:carbonFootprintGeneralInfo",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII, Article 7(1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII, Article 7(1)"
       },
       "rdfs:label": [
         {
@@ -5614,9 +5635,10 @@
     {
       "@id": "dppk:dueDiligenceReport",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Art. 52(3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 52(3)"
       },
       "rdfs:label": [
         {
@@ -5824,9 +5846,10 @@
     {
       "@id": "dppk:supplyChainAssurances",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Art. 49(d)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 49(d)"
       },
       "rdfs:label": [
         {
@@ -6243,9 +6266,10 @@
     {
       "@id": "dppk:batteryChemistry",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1b); Annex VI Part A (7)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1b); Annex VI Part A (7)"
       },
       "rdfs:label": [
         {
@@ -6451,9 +6475,10 @@
     {
       "@id": "dppk:criticalRawMaterials",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1b); Annex VI Part A (10)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1b); Annex VI Part A (10)"
       },
       "rdfs:label": [
         {
@@ -6659,9 +6684,10 @@
     {
       "@id": "dppk:materialComposition",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2a)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2a)"
       },
       "rdfs:label": [
         {
@@ -6869,9 +6895,10 @@
     {
       "@id": "dppk:hazardousSubstances",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1b); Annex VI Part A (8)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1b); Annex VI Part A (8)"
       },
       "rdfs:label": [
         {
@@ -7079,9 +7106,10 @@
     {
       "@id": "dppk:hazardousSubstancesImpact",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1s); Art. 74 1(f)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1s); Art. 74 1(f)"
       },
       "rdfs:label": [
         {
@@ -7287,9 +7315,10 @@
     {
       "@id": "dppk:dismantlingInformation",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2c)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2c)"
       },
       "rdfs:label": [
         {
@@ -7497,9 +7526,10 @@
     {
       "@id": "dppk:partNumbers",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2b)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2b)"
       },
       "rdfs:label": [
         {
@@ -7707,9 +7737,10 @@
     {
       "@id": "dppk:sparePartsSources",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2b)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2b)"
       },
       "rdfs:label": [
         {
@@ -7917,9 +7948,10 @@
     {
       "@id": "dppk:safetyMeasures",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (2d); Art. 74(2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (2d); Art. 74(2)"
       },
       "rdfs:label": [
         {
@@ -8127,9 +8159,10 @@
     {
       "@id": "dppk:wastePreventionInfo",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Art. 74(1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 74(1)"
       },
       "rdfs:label": [
         {
@@ -8337,9 +8370,10 @@
     {
       "@id": "dppk:preConsumerRecycledMaterialComposition",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1e); Art. 8(1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1e); Art. 8(1)"
       },
       "rdfs:label": [
         {
@@ -8547,9 +8581,10 @@
     {
       "@id": "dppk:postConsumerRecycledMaterialComposition",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1e); Art. 8(1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1e); Art. 8(1)"
       },
       "rdfs:label": [
         {
@@ -8966,9 +9001,10 @@
     {
       "@id": "dppk:performance",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1)"
       },
       "rdfs:label": [
         {
@@ -9176,9 +9212,10 @@
     {
       "@id": "dppk:capacity",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1g, 1h, 4d)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1g, 1h, 4d)"
       },
       "rdfs:label": [
         {
@@ -9386,9 +9423,10 @@
     {
       "@id": "dppk:power",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1i); Art. 10",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i); Art. 10"
       },
       "rdfs:label": [
         {
@@ -9596,9 +9634,10 @@
     {
       "@id": "dppk:efficiency",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1n); Art. 10",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1n); Art. 10"
       },
       "rdfs:label": [
         {
@@ -9806,9 +9845,10 @@
     {
       "@id": "dppk:internalResistance",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1o); Art. 10",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o); Art. 10"
       },
       "rdfs:label": [
         {
@@ -10016,9 +10056,10 @@
     {
       "@id": "dppk:lifetime",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1j, 1k, 4a); Annex IV",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1j, 1k, 4a); Annex IV"
       },
       "rdfs:label": [
         {
@@ -10226,9 +10267,10 @@
     {
       "@id": "dppk:temperature",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (1l); Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l); Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -10436,9 +10478,10 @@
     {
       "@id": "dppk:negativeEvents",
       "@type": "owl:ObjectProperty",
-      "dppk:governedBy": "Annex XIII (4d); Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -16285,9 +16328,10 @@
     {
       "@id": "dppk:referenceTestCycleLife",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1j)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1j)"
       },
       "rdfs:label": [
         {
@@ -19000,9 +19044,10 @@
     {
       "@id": "dppk:eventsAccidents",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (4d)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d)"
       },
       "rdfs:label": [
         {

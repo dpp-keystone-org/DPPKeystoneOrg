@@ -11,30 +11,406 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/RelatedResource",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - Related Resource",
-  "dcterms:description": "Defines a class for linking to external resources, such as documents or websites, with associated metadata.",
-  "owl:versionInfo": "v2",
-  "rdfs:label": [
-    {
-      "@language": "en",
-      "@value": "DPP Core Ontology - Related Resource"
-    }
-  ],
-  "rdfs:comment": [
-    {
-      "@language": "en",
-      "@value": "Defines a class for linking to external resources, such as documents or websites, with associated metadata."
-    }
-  ],
   "owl:imports": {
     "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
   },
+  "owl:versionInfo": "v2",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Related Resource"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Свързан ресурс"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Související zdroj"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Kerneontologi - Relateret ressource"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - Verwandte Ressource"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική οντολογία DPP - Σχετικός πόρος"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología central de DPP - Recurso relacionado"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP tuumontoloogia - Seotud ressurss"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - Liittyvä resurssi"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Ressource liée"
+    },
+    {
+      "@language": "ga",
+      "@value": "Príomhointeolaíocht DPP - Acmhainn Ghaolmhar"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Povezani resurs"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - Kapcsolódó erőforrás"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Risorsa correlata"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - Susijęs išteklius"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamata ontoloģija - Saistītais resurss"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Riżors Relatat"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP Kernontologie - Gerelateerde bron"
+    },
+    {
+      "@language": "pl",
+      "@value": "Główna ontologia DPP - Powiązany zasób"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia Central do DPP - Recurso Relacionado"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Resursă asociată"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Súvisiaci zdroj"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Povezan vir"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - Relaterad resurs"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines a class for linking to external resources, such as documents or websites, with associated metadata."
+    },
+    {
+      "@language": "bg",
+      "@value": "Определя клас за свързване към външни ресурси, като документи или уебсайтове, със свързани метаданни."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje třídu pro odkazování na externí zdroje, jako jsou dokumenty nebo webové stránky, s přidruženými metadaty."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer en klasse til at linke til eksterne ressourcer, såsom dokumenter eller websteder, med tilhørende metadata."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert eine Klasse zur Verknüpfung mit externen Ressourcen wie Dokumenten oder Websites mit zugehörigen Metadaten."
+    },
+    {
+      "@language": "el",
+      "@value": "Ορίζει μια κλάση για σύνδεση με εξωτερικούς πόρους, όπως έγγραφα ή ιστότοπους, με σχετικά μεταδεδομένα."
+    },
+    {
+      "@language": "es",
+      "@value": "Define una clase para enlazar con recursos externos, como documentos o sitios web, con metadatos asociados."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb klassi välistele ressurssidele, nagu dokumendid või veebisaidid, viitamiseks koos seotud metaandmetega."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää luokan ulkoisiin resursseihin, kuten asiakirjoihin tai verkkosivustoihin, linkittämistä varten niihin liittyvillä metatiedoilla."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit une classe pour lier des ressources externes, telles que des documents ou des sites Web, avec des métadonnées associées."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé aicme chun nascadh le hacmhainní seachtracha, amhail cáipéisí nó suíomhanna gréasáin, le meiteashonraí gaolmhara."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira klasu za povezivanje s vanjskim resursima, kao što su dokumenti ili web stranice, s pripadajućim metapodacima."
+    },
+    {
+      "@language": "hu",
+      "@value": "Egy osztályt határoz meg külső erőforrásokra, például dokumentumokra vagy weboldalakra való hivatkozáshoz a kapcsolódó metaadatokkal."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce una classe per il collegamento a risorse esterne, come documenti o siti web, con i relativi metadati."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia klasę susieti su išoriniais ištekliais, tokiais kaip dokumentai ar svetainės, su susijusiais metaduomenimis."
+    },
+    {
+      "@language": "lv",
+      "@value": "Definē klasi, lai izveidotu saiti uz ārējiem resursiem, piemēram, dokumentiem vai tīmekļa vietnēm, ar saistītiem metadatiem."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi klassi għall-irbit ma' riżorsi esterni, bħal dokumenti jew websajts, b'metadata assoċjata."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert een klasse voor het koppelen aan externe bronnen, zoals documenten of websites, met bijbehorende metadata."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje klasę służącą do tworzenia łączy do zasobów zewnętrznych, takich jak dokumenty lub witryny internetowe, wraz z powiązanymi metadanymi."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define uma classe para ligação a recursos externos, como documentos ou sites, com metadados associados."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește o clasă pentru conectarea la resurse externe, cum ar fi documente sau site-uri web, cu metadate asociate."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje triedu na prepájanie s externými zdrojmi, ako sú dokumenty alebo webové stránky, s priradenými metadátami."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa razred za povezovanje z zunanjimi viri, kot so dokumenti ali spletna mesta, s povezanimi metapodatki."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar en klass för att länka till externa resurser, såsom dokument eller webbplatser, med tillhörande metadata."
+    }
+  ],
   "@graph": [
     {
       "@id": "dppk:RelatedResource",
       "@type": "rdfs:Class",
-      "rdfs:label": "Related Resource",
-      "rdfs:comment": "A resource identified by a URL, with additional metadata such as title, content type, and language.",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Related Resource"
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързан ресурс"
+        },
+        {
+          "@language": "cs",
+          "@value": "Související zdroj"
+        },
+        {
+          "@language": "da",
+          "@value": "Relateret ressource"
+        },
+        {
+          "@language": "de",
+          "@value": "Verwandte Ressource"
+        },
+        {
+          "@language": "el",
+          "@value": "Σχετικός πόρος"
+        },
+        {
+          "@language": "es",
+          "@value": "Recurso relacionado"
+        },
+        {
+          "@language": "et",
+          "@value": "Seotud ressurss"
+        },
+        {
+          "@language": "fi",
+          "@value": "Liittyvä resurssi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Ressource liée"
+        },
+        {
+          "@language": "ga",
+          "@value": "Acmhainn Ghaolmhar"
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezani resurs"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kapcsolódó erőforrás"
+        },
+        {
+          "@language": "it",
+          "@value": "Risorsa correlata"
+        },
+        {
+          "@language": "lt",
+          "@value": "Susijęs išteklius"
+        },
+        {
+          "@language": "lv",
+          "@value": "Saistītais resurss"
+        },
+        {
+          "@language": "mt",
+          "@value": "Riżors Relatat"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gerelateerde bron"
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązany zasób"
+        },
+        {
+          "@language": "pt",
+          "@value": "Recurso Relacionado"
+        },
+        {
+          "@language": "ro",
+          "@value": "Resursă asociată"
+        },
+        {
+          "@language": "sk",
+          "@value": "Súvisiaci zdroj"
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezan vir"
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterad resurs"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A resource identified by a URL, with additional metadata such as title, content type, and language."
+        },
+        {
+          "@language": "bg",
+          "@value": "Ресурс, идентифициран чрез URL адрес, с допълнителни метаданни като заглавие, тип съдържание и език."
+        },
+        {
+          "@language": "cs",
+          "@value": "Zdroj identifikovaný adresou URL s dalšími metadaty, jako je název, typ obsahu a jazyk."
+        },
+        {
+          "@language": "da",
+          "@value": "En ressource identificeret af en URL med yderligere metadata såsom titel, indholdstype og sprog."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine durch eine URL identifizierte Ressource mit zusätzlichen Metadaten wie Titel, Inhaltstyp und Sprache."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένας πόρος που προσδιορίζεται από ένα URL, με πρόσθετα μεταδεδομένα όπως τίτλος, τύπος περιεχομένου και γλώσσα."
+        },
+        {
+          "@language": "es",
+          "@value": "Un recurso identificado por una URL, con metadatos adicionales como título, tipo de contenido e idioma."
+        },
+        {
+          "@language": "et",
+          "@value": "URL-iga tuvastatud ressurss täiendavate metaandmetega, nagu pealkiri, sisutüüp ja keel."
+        },
+        {
+          "@language": "fi",
+          "@value": "URL-osoitteella yksilöity resurssi, jolla on lisämetatietoja, kuten otsikko, sisältötyyppi ja kieli."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une ressource identifiée par une URL, avec des métadonnées supplémentaires telles que le titre, le type de contenu et la langue."
+        },
+        {
+          "@language": "ga",
+          "@value": "Acmhainn arna sainaithint ag URL, le meiteashonraí breise amhail teideal, cineál ábhair agus teanga."
+        },
+        {
+          "@language": "hr",
+          "@value": "Resurs identificiran URL-om, s dodatnim metapodacima kao što su naslov, vrsta sadržaja i jezik."
+        },
+        {
+          "@language": "hu",
+          "@value": "URL-lel azonosított erőforrás további metaadatokkal, például címmel, tartalomtípussal és nyelvvel."
+        },
+        {
+          "@language": "it",
+          "@value": "Una risorsa identificata da un URL, con metadati aggiuntivi come titolo, tipo di contenuto e lingua."
+        },
+        {
+          "@language": "lt",
+          "@value": "Išteklius, identifikuojamas pagal URL, su papildomais metaduomenimis, tokiais kaip pavadinimas, turinio tipas ir kalba."
+        },
+        {
+          "@language": "lv",
+          "@value": "Resurss, ko identificē ar URL, ar papildu metadatiem, piemēram, virsrakstu, satura tipu un valodu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Riżors identifikat minn URL, b'metadata addizzjonali bħat-titlu, it-tip ta' kontenut u l-lingwa."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een bron geïdentificeerd door een URL, met aanvullende metadata zoals titel, inhoudstype en taal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Zasób zidentyfikowany za pomocą adresu URL, z dodatkowymi metadanymi, takimi jak tytuł, typ zawartości i język."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um recurso identificado por um URL, com metadados adicionais, como título, tipo de conteúdo e idioma."
+        },
+        {
+          "@language": "ro",
+          "@value": "O resursă identificată printr-un URL, cu metadate suplimentare, cum ar fi titlul, tipul de conținut și limba."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zdroj identifikovaný adresou URL s ďalšími metadátami, ako je názov, typ obsahu a jazyk."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vir, ki ga določa URL, z dodatnimi metapodatki, kot so naslov, vrsta vsebine in jezik."
+        },
+        {
+          "@language": "sv",
+          "@value": "En resurs identifierad av en URL, med ytterligare metadata som titel, innehållstyp och språk."
+        }
+      ],
       "owl:equivalentClass": [
         {
           "@id": "schema:DigitalDocument"
@@ -47,8 +423,202 @@
     {
       "@id": "dppk:resourceTitle",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Resource Title",
-      "rdfs:comment": "The title of the related resource.",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Resource Title"
+        },
+        {
+          "@language": "bg",
+          "@value": "Заглавие на ресурса"
+        },
+        {
+          "@language": "cs",
+          "@value": "Název zdroje"
+        },
+        {
+          "@language": "da",
+          "@value": "Ressourcetitel"
+        },
+        {
+          "@language": "de",
+          "@value": "Ressourcentitel"
+        },
+        {
+          "@language": "el",
+          "@value": "Τίτλος πόρου"
+        },
+        {
+          "@language": "es",
+          "@value": "Título del recurso"
+        },
+        {
+          "@language": "et",
+          "@value": "Ressursi pealkiri"
+        },
+        {
+          "@language": "fi",
+          "@value": "Resurssin otsikko"
+        },
+        {
+          "@language": "fr",
+          "@value": "Titre de la ressource"
+        },
+        {
+          "@language": "ga",
+          "@value": "Teideal na hAcmhainne"
+        },
+        {
+          "@language": "hr",
+          "@value": "Naslov resursa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Erőforrás címe"
+        },
+        {
+          "@language": "it",
+          "@value": "Titolo della risorsa"
+        },
+        {
+          "@language": "lt",
+          "@value": "Ištekliaus pavadinimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Resursa virsraksts"
+        },
+        {
+          "@language": "mt",
+          "@value": "Titlu tar-Riżors"
+        },
+        {
+          "@language": "nl",
+          "@value": "Brontitel"
+        },
+        {
+          "@language": "pl",
+          "@value": "Tytuł zasobu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Título do Recurso"
+        },
+        {
+          "@language": "ro",
+          "@value": "Titlul resursei"
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov zdroja"
+        },
+        {
+          "@language": "sl",
+          "@value": "Naslov vira"
+        },
+        {
+          "@language": "sv",
+          "@value": "Resurstitel"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The title of the related resource."
+        },
+        {
+          "@language": "bg",
+          "@value": "Заглавието на свързания ресурс."
+        },
+        {
+          "@language": "cs",
+          "@value": "Název souvisejícího zdroje."
+        },
+        {
+          "@language": "da",
+          "@value": "Titlen på den relaterede ressource."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Titel der verwandten Ressource."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο τίτλος του σχετικού πόρου."
+        },
+        {
+          "@language": "es",
+          "@value": "El título del recurso relacionado."
+        },
+        {
+          "@language": "et",
+          "@value": "Seotud ressursi pealkiri."
+        },
+        {
+          "@language": "fi",
+          "@value": "Liittyvän resurssin otsikko."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le titre de la ressource liée."
+        },
+        {
+          "@language": "ga",
+          "@value": "Teideal na hacmhainne gaolmhaire."
+        },
+        {
+          "@language": "hr",
+          "@value": "Naslov povezanog resursa."
+        },
+        {
+          "@language": "hu",
+          "@value": "A kapcsolódó erőforrás címe."
+        },
+        {
+          "@language": "it",
+          "@value": "Il titolo della risorsa correlata."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susijusio ištekliaus pavadinimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saistītā resursa virsraksts."
+        },
+        {
+          "@language": "mt",
+          "@value": "It-titlu tar-riżors relatat."
+        },
+        {
+          "@language": "nl",
+          "@value": "De titel van de gerelateerde bron."
+        },
+        {
+          "@language": "pl",
+          "@value": "Tytuł powiązanego zasobu."
+        },
+        {
+          "@language": "pt",
+          "@value": "O título do recurso relacionado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Titlul resursei asociate."
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov súvisiaceho zdroja."
+        },
+        {
+          "@language": "sl",
+          "@value": "Naslov povezanega vira."
+        },
+        {
+          "@language": "sv",
+          "@value": "Titeln på den relaterade resursen."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -59,8 +629,202 @@
     {
       "@id": "dppk:contentType",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Content Type",
-      "rdfs:comment": "The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg').",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Content Type"
+        },
+        {
+          "@language": "bg",
+          "@value": "Тип съдържание"
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ obsahu"
+        },
+        {
+          "@language": "da",
+          "@value": "Indholdstype"
+        },
+        {
+          "@language": "de",
+          "@value": "Inhaltstyp"
+        },
+        {
+          "@language": "el",
+          "@value": "Τύπος περιεχομένου"
+        },
+        {
+          "@language": "es",
+          "@value": "Tipo de contenido"
+        },
+        {
+          "@language": "et",
+          "@value": "Sisu tüüp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sisältötyyppi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Type de contenu"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál Ábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta sadržaja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tartalomtípus"
+        },
+        {
+          "@language": "it",
+          "@value": "Tipo di contenuto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Turinio tipas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Satura tips"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tip ta' Kontenut"
+        },
+        {
+          "@language": "nl",
+          "@value": "Inhoudstype"
+        },
+        {
+          "@language": "pl",
+          "@value": "Typ zawartości"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tipo de Conteúdo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Tip de conținut"
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ obsahu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta vsebine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Innehållstyp"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The media type (MIME type) of the resource (e.g., 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "bg",
+          "@value": "Медийният тип (MIME тип) на ресурса (напр. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ média (typ MIME) zdroje (např. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "da",
+          "@value": "Medietypen (MIME-type) for ressourcen (f.eks. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Medientyp (MIME-Typ) der Ressource (z. B. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο τύπος μέσου (τύπος MIME) του πόρου (π.χ. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "es",
+          "@value": "El tipo de medio (tipo MIME) del recurso (por ejemplo, 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "et",
+          "@value": "Ressursi meediumitüüp (MIME-tüüp) (nt 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "fi",
+          "@value": "Resurssin mediatyyppi (MIME-tyyppi) (esim. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le type de média (type MIME) de la ressource (par exemple, 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál meán (cineál MIME) na hacmhainne (e.g., 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta medija (MIME vrsta) resursa (npr. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az erőforrás médiatípusa (MIME-típus) (pl. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "it",
+          "@value": "Il tipo di supporto (tipo MIME) della risorsa (ad esempio, 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "lt",
+          "@value": "Ištekliaus medijos tipas (MIME tipas) (pvz., 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "lv",
+          "@value": "Resursa multivides tips (MIME tips) (piemēram, 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "mt",
+          "@value": "It-tip tal-midja (tip MIME) tar-riżors (eż., 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het mediatype (MIME-type) van de bron (bijv. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "pl",
+          "@value": "Typ nośnika (typ MIME) zasobu (np. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "pt",
+          "@value": "O tipo de mídia (tipo MIME) do recurso (por exemplo, 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "ro",
+          "@value": "Tipul media (tipul MIME) al resursei (de exemplu, 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ média (typ MIME) zdroja (napr. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta predstavnosti (vrsta MIME) vira (npr. 'application/pdf', 'image/jpeg')."
+        },
+        {
+          "@language": "sv",
+          "@value": "Mediatypen (MIME-typ) för resursen (t.ex. 'application/pdf', 'image/jpeg')."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -74,8 +838,202 @@
     {
       "@id": "dppk:language",
       "@type": "owl:DatatypeProperty",
-      "rdfs:label": "Language",
-      "rdfs:comment": "The language of the resource content (e.g., 'en', 'fr').",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Language"
+        },
+        {
+          "@language": "bg",
+          "@value": "Език"
+        },
+        {
+          "@language": "cs",
+          "@value": "Jazyk"
+        },
+        {
+          "@language": "da",
+          "@value": "Sprog"
+        },
+        {
+          "@language": "de",
+          "@value": "Sprache"
+        },
+        {
+          "@language": "el",
+          "@value": "Γλώσσα"
+        },
+        {
+          "@language": "es",
+          "@value": "Idioma"
+        },
+        {
+          "@language": "et",
+          "@value": "Keel"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kieli"
+        },
+        {
+          "@language": "fr",
+          "@value": "Langue"
+        },
+        {
+          "@language": "ga",
+          "@value": "Teanga"
+        },
+        {
+          "@language": "hr",
+          "@value": "Jezik"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyelv"
+        },
+        {
+          "@language": "it",
+          "@value": "Lingua"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kalba"
+        },
+        {
+          "@language": "lv",
+          "@value": "Valoda"
+        },
+        {
+          "@language": "mt",
+          "@value": "Lingwa"
+        },
+        {
+          "@language": "nl",
+          "@value": "Taal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Język"
+        },
+        {
+          "@language": "pt",
+          "@value": "Idioma"
+        },
+        {
+          "@language": "ro",
+          "@value": "Limbă"
+        },
+        {
+          "@language": "sk",
+          "@value": "Jazyk"
+        },
+        {
+          "@language": "sl",
+          "@value": "Jezik"
+        },
+        {
+          "@language": "sv",
+          "@value": "Språk"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The language of the resource content (e.g., 'en', 'fr')."
+        },
+        {
+          "@language": "bg",
+          "@value": "Езикът на съдържанието на ресурса (напр. 'en', 'fr')."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jazyk obsahu zdroje (např. 'en', 'fr')."
+        },
+        {
+          "@language": "da",
+          "@value": "Sproget for ressourceindholdet (f.eks. 'en', 'fr')."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Sprache des Ressourceninhalts (z. B. 'en', 'fr')."
+        },
+        {
+          "@language": "el",
+          "@value": "Η γλώσσα του περιεχομένου του πόρου (π.χ. 'en', 'fr')."
+        },
+        {
+          "@language": "es",
+          "@value": "El idioma del contenido del recurso (por ejemplo, 'en', 'fr')."
+        },
+        {
+          "@language": "et",
+          "@value": "Ressursi sisu keel (nt 'en', 'fr')."
+        },
+        {
+          "@language": "fi",
+          "@value": "Resurssin sisällön kieli (esim. 'en', 'fr')."
+        },
+        {
+          "@language": "fr",
+          "@value": "La langue du contenu de la ressource (par exemple, 'en', 'fr')."
+        },
+        {
+          "@language": "ga",
+          "@value": "Teanga inneachar na hacmhainne (e.g., 'en', 'fr')."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jezik sadržaja resursa (npr. 'en', 'fr')."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az erőforrás tartalmának nyelve (pl. 'en', 'fr')."
+        },
+        {
+          "@language": "it",
+          "@value": "La lingua del contenuto della risorsa (ad esempio, 'en', 'fr')."
+        },
+        {
+          "@language": "lt",
+          "@value": "Ištekliaus turinio kalba (pvz., 'en', 'fr')."
+        },
+        {
+          "@language": "lv",
+          "@value": "Resursa satura valoda (piemēram, 'en', 'fr')."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-lingwa tal-kontenut tar-riżors (eż., 'en', 'fr')."
+        },
+        {
+          "@language": "nl",
+          "@value": "De taal van de broninhoud (bijv. 'en', 'fr')."
+        },
+        {
+          "@language": "pl",
+          "@value": "Język zawartości zasobu (np. 'en', 'fr')."
+        },
+        {
+          "@language": "pt",
+          "@value": "O idioma do conteúdo do recurso (por exemplo, 'en', 'fr')."
+        },
+        {
+          "@language": "ro",
+          "@value": "Limba conținutului resursei (de exemplu, 'en', 'fr')."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jazyk obsahu zdroja (napr. 'en', 'fr')."
+        },
+        {
+          "@language": "sl",
+          "@value": "Jezik vsebine vira (npr. 'en', 'fr')."
+        },
+        {
+          "@language": "sv",
+          "@value": "Språket för resursinnehållet (t.ex. 'en', 'fr')."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -89,8 +1047,202 @@
     {
       "@id": "dppk:url",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "URL",
-      "rdfs:comment": "The location of the resource.",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "URL"
+        },
+        {
+          "@language": "bg",
+          "@value": "URL"
+        },
+        {
+          "@language": "cs",
+          "@value": "URL"
+        },
+        {
+          "@language": "da",
+          "@value": "URL"
+        },
+        {
+          "@language": "de",
+          "@value": "URL"
+        },
+        {
+          "@language": "el",
+          "@value": "URL"
+        },
+        {
+          "@language": "es",
+          "@value": "URL"
+        },
+        {
+          "@language": "et",
+          "@value": "URL"
+        },
+        {
+          "@language": "fi",
+          "@value": "URL"
+        },
+        {
+          "@language": "fr",
+          "@value": "URL"
+        },
+        {
+          "@language": "ga",
+          "@value": "URL"
+        },
+        {
+          "@language": "hr",
+          "@value": "URL"
+        },
+        {
+          "@language": "hu",
+          "@value": "URL"
+        },
+        {
+          "@language": "it",
+          "@value": "URL"
+        },
+        {
+          "@language": "lt",
+          "@value": "URL"
+        },
+        {
+          "@language": "lv",
+          "@value": "URL"
+        },
+        {
+          "@language": "mt",
+          "@value": "URL"
+        },
+        {
+          "@language": "nl",
+          "@value": "URL"
+        },
+        {
+          "@language": "pl",
+          "@value": "URL"
+        },
+        {
+          "@language": "pt",
+          "@value": "URL"
+        },
+        {
+          "@language": "ro",
+          "@value": "URL"
+        },
+        {
+          "@language": "sk",
+          "@value": "URL"
+        },
+        {
+          "@language": "sl",
+          "@value": "URL"
+        },
+        {
+          "@language": "sv",
+          "@value": "URL"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The location of the resource."
+        },
+        {
+          "@language": "bg",
+          "@value": "Местоположението на ресурса."
+        },
+        {
+          "@language": "cs",
+          "@value": "Umístění zdroje."
+        },
+        {
+          "@language": "da",
+          "@value": "Placeringen af ressourcen."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Speicherort der Ressource."
+        },
+        {
+          "@language": "el",
+          "@value": "Η τοποθεσία του πόρου."
+        },
+        {
+          "@language": "es",
+          "@value": "La ubicación del recurso."
+        },
+        {
+          "@language": "et",
+          "@value": "Ressursi asukoht."
+        },
+        {
+          "@language": "fi",
+          "@value": "Resurssin sijainti."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'emplacement de la ressource."
+        },
+        {
+          "@language": "ga",
+          "@value": "Suíomh na hacmhainne."
+        },
+        {
+          "@language": "hr",
+          "@value": "Lokacija resursa."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az erőforrás helye."
+        },
+        {
+          "@language": "it",
+          "@value": "La posizione della risorsa."
+        },
+        {
+          "@language": "lt",
+          "@value": "Ištekliaus vieta."
+        },
+        {
+          "@language": "lv",
+          "@value": "Resursa atrašanās vieta."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-post tar-riżors."
+        },
+        {
+          "@language": "nl",
+          "@value": "De locatie van de bron."
+        },
+        {
+          "@language": "pl",
+          "@value": "Lokalizacja zasobu."
+        },
+        {
+          "@language": "pt",
+          "@value": "A localização do recurso."
+        },
+        {
+          "@language": "ro",
+          "@value": "Locația resursei."
+        },
+        {
+          "@language": "sk",
+          "@value": "Umiestnenie zdroja."
+        },
+        {
+          "@language": "sl",
+          "@value": "Lokacija vira."
+        },
+        {
+          "@language": "sv",
+          "@value": "Platsen för resursen."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:RelatedResource"
       },
@@ -104,8 +1256,202 @@
     {
       "@id": "dppk:instructionsForUse",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Instructions for Use",
-      "rdfs:comment": "A link to the instructions for use or user manual for the product.",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Instructions for Use"
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции за употреба"
+        },
+        {
+          "@language": "cs",
+          "@value": "Návod k použití"
+        },
+        {
+          "@language": "da",
+          "@value": "Brugsanvisning"
+        },
+        {
+          "@language": "de",
+          "@value": "Gebrauchsanweisung"
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες χρήσης"
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones de uso"
+        },
+        {
+          "@language": "et",
+          "@value": "Kasutusjuhend"
+        },
+        {
+          "@language": "fi",
+          "@value": "Käyttöohjeet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions d'utilisation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha Úsáide"
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute za uporabu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Használati útmutató"
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni per l'uso"
+        },
+        {
+          "@language": "lt",
+          "@value": "Naudojimo instrukcija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Lietošanas instrukcija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet għall-Użu"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruiksaanwijzing"
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcja obsługi"
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções de Uso"
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni de utilizare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Návod na použitie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila za uporabo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Bruksanvisning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A link to the instructions for use or user manual for the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Връзка към инструкциите за употреба или ръководството за потребителя на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na návod k použití nebo uživatelskou příručku k produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Et link til brugsanvisningen eller brugermanualen til produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Link zur Gebrauchsanweisung oder Bedienungsanleitung für das Produkt."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένας σύνδεσμος προς τις οδηγίες χρήσης ή το εγχειρίδιο χρήσης του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Un enlace a las instrucciones de uso o manual de usuario del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Link toote kasutusjuhendile või kasutajakäsiraamatule."
+        },
+        {
+          "@language": "fi",
+          "@value": "Linkki tuotteen käyttöohjeisiin tai käyttöoppaaseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un lien vers les instructions d'utilisation ou le manuel d'utilisation du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nasc chuig na treoracha úsáide nó lámhleabhar úsáideora don táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Poveznica na upute za uporabu ili korisnički priručnik za proizvod."
+        },
+        {
+          "@language": "hu",
+          "@value": "Link a termék használati útmutatójához vagy felhasználói kézikönyvéhez."
+        },
+        {
+          "@language": "it",
+          "@value": "Un collegamento alle istruzioni per l'uso o al manuale utente del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į gaminio naudojimo instrukciją ar vartotojo vadovą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saite uz produkta lietošanas instrukciju vai lietotāja rokasgrāmatu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Link għall-istruzzjonijiet għall-użu jew manwal tal-utent għall-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een link naar de gebruiksaanwijzing of gebruikershandleiding van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Link do instrukcji obsługi lub podręcznika użytkownika produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um link para as instruções de uso ou manual do usuário do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un link către instrucțiunile de utilizare sau manualul de utilizare al produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na návod na použitie alebo používateľskú príručku k produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezava do navodil za uporabo ali uporabniškega priročnika za izdelek."
+        },
+        {
+          "@language": "sv",
+          "@value": "En länk till bruksanvisningen eller användarmanualen för produkten."
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
@@ -116,11 +1462,205 @@
     {
       "@id": "dppk:safetyDataSheet",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": "Safety Data Sheet",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Safety Data Sheet"
+        },
+        {
+          "@language": "bg",
+          "@value": "Информационен лист за безопасност"
+        },
+        {
+          "@language": "cs",
+          "@value": "Bezpečnostní list"
+        },
+        {
+          "@language": "da",
+          "@value": "Sikkerhedsdatablad"
+        },
+        {
+          "@language": "de",
+          "@value": "Sicherheitsdatenblatt"
+        },
+        {
+          "@language": "el",
+          "@value": "Δελτίο δεδομένων ασφαλείας"
+        },
+        {
+          "@language": "es",
+          "@value": "Ficha de datos de seguridad"
+        },
+        {
+          "@language": "et",
+          "@value": "Ohutuskaart"
+        },
+        {
+          "@language": "fi",
+          "@value": "Käyttöturvallisuustiedote"
+        },
+        {
+          "@language": "fr",
+          "@value": "Fiche de données de sécurité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Bileog Sonraí Sábháilteachta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sigurnosno-tehnički list"
+        },
+        {
+          "@language": "hu",
+          "@value": "Biztonsági adatlap"
+        },
+        {
+          "@language": "it",
+          "@value": "Scheda di dati di sicurezza"
+        },
+        {
+          "@language": "lt",
+          "@value": "Saugos duomenų lapas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Drošības datu lapa"
+        },
+        {
+          "@language": "mt",
+          "@value": "Skeda ta' Dejta dwar is-Sigurtà"
+        },
+        {
+          "@language": "nl",
+          "@value": "Veiligheidsinformatieblad"
+        },
+        {
+          "@language": "pl",
+          "@value": "Karta charakterystyki"
+        },
+        {
+          "@language": "pt",
+          "@value": "Ficha de Dados de Segurança"
+        },
+        {
+          "@language": "ro",
+          "@value": "Fișă cu date de securitate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Karta bezpečnostných údajov"
+        },
+        {
+          "@language": "sl",
+          "@value": "Varnostni list"
+        },
+        {
+          "@language": "sv",
+          "@value": "Säkerhetsdatablad"
+        }
+      ],
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
-      "rdfs:comment": "A link to the safety data sheet (SDS) for the product.",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A link to the safety data sheet (SDS) for the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Връзка към информационния лист за безопасност (ИЛБ) на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na bezpečnostní list (BL) k produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Et link til sikkerhedsdatabladet (SDS) for produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Link zum Sicherheitsdatenblatt (SDB) für das Produkt."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένας σύνδεσμος προς το δελτίο δεδομένων ασφαλείας (ΔΔΑ) του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Un enlace a la ficha de datos de seguridad (FDS) del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Link toote ohutuskaardile (SDS)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Linkki tuotteen käyttöturvallisuustiedotteeseen (KTT)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un lien vers la fiche de données de sécurité (FDS) du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nasc chuig bileog sonraí sábháilteachta (BSS) an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Poveznica na sigurnosno-tehnički list (STL) za proizvod."
+        },
+        {
+          "@language": "hu",
+          "@value": "Link a termék biztonsági adatlapjához (SDS)."
+        },
+        {
+          "@language": "it",
+          "@value": "Un collegamento alla scheda di dati di sicurezza (SDS) del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į gaminio saugos duomenų lapą (SDL)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saite uz produkta drošības datu lapu (DDL)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Link għall-iskeda ta' dejta dwar is-sigurtà (SDS) għall-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een link naar het veiligheidsinformatieblad (VIB) van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Link do karty charakterystyki (SDS) produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um link para a ficha de dados de segurança (FDS) do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un link către fișa cu date de securitate (FDS) a produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na kartu bezpečnostných údajov (KBÚ) k produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezava do varnostnega lista (VL) za izdelek."
+        },
+        {
+          "@language": "sv",
+          "@value": "En länk till säkerhetsdatabladet (SDB) för produkten."
+        }
+      ],
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
       }
@@ -128,14 +1668,202 @@
     {
       "@id": "dppk:safeUseInstructions",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": {
-        "@language": "en",
-        "@value": "Safe Use Instructions"
-      },
-      "rdfs:comment": {
-        "@language": "en",
-        "@value": "Instructions and guidelines for the safe use and maintenance of the product."
-      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Safe Use Instructions"
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции за безопасна употреба"
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny pro bezpečné použití"
+        },
+        {
+          "@language": "da",
+          "@value": "Instruktioner til sikker brug"
+        },
+        {
+          "@language": "de",
+          "@value": "Anweisungen zur sicheren Verwendung"
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες ασφαλούς χρήσης"
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones de uso seguro"
+        },
+        {
+          "@language": "et",
+          "@value": "Ohutu kasutamise juhised"
+        },
+        {
+          "@language": "fi",
+          "@value": "Turvallisen käytön ohjeet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions d'utilisation en toute sécurité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha um Úsáid Shábháilte"
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute za sigurnu uporabu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Biztonságos használatra vonatkozó utasítások"
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni per l'uso sicuro"
+        },
+        {
+          "@language": "lt",
+          "@value": "Saugaus naudojimo instrukcijos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Drošas lietošanas instrukcijas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet għal Użu Sikur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Instructies voor veilig gebruik"
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje bezpiecznego użytkowania"
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções de Uso Seguro"
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni de utilizare în siguranță"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny na bezpečné používanie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila za varno uporabo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Instruktioner för säker användning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Instructions and guidelines for the safe use and maintenance of the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции и насоки за безопасно използване и поддръжка на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny a směrnice pro bezpečné používání a údržbu produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Instruktioner og retningslinjer for sikker brug og vedligeholdelse af produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Anweisungen und Richtlinien für die sichere Verwendung und Wartung des Produkts."
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες και κατευθυντήριες γραμμές για την ασφαλή χρήση και συντήρηση του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones y pautas para el uso y mantenimiento seguros del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Juhised ja suunised toote ohutuks kasutamiseks ja hooldamiseks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ohjeet ja suuntaviivat tuotteen turvalliseen käyttöön ja huoltoon."
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions et directives pour l'utilisation et l'entretien en toute sécurité du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha agus treoirlínte d'úsáid agus do chothabháil shábháilte an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute i smjernice za sigurnu uporabu i održavanje proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Utasítások és irányelvek a termék biztonságos használatához és karbantartásához."
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni e linee guida per l'uso e la manutenzione sicuri del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Gaminio saugaus naudojimo ir priežiūros instrukcijos ir gairės."
+        },
+        {
+          "@language": "lv",
+          "@value": "Instrukcijas un vadlīnijas produkta drošai lietošanai un apkopei."
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet u linji gwida għall-użu u l-manutenzjoni sikuri tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Instructies en richtlijnen voor veilig gebruik en onderhoud van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje i wytyczne dotyczące bezpiecznego użytkowania i konserwacji produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções e diretrizes para o uso e manutenção seguros do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni și orientări pentru utilizarea și întreținerea în siguranță a produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny a usmernenia na bezpečné používanie a údržbu produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila in smernice za varno uporabo in vzdrževanje izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Instruktioner och riktlinjer för säker användning och underhåll av produkten."
+        }
+      ],
       "dppk:visibility": {
         "@id": "dppk:Public"
       },
@@ -152,14 +1880,202 @@
     {
       "@id": "dppk:endOfLifeInstructions",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": {
-        "@language": "en",
-        "@value": "End of Life Instructions"
-      },
-      "rdfs:comment": {
-        "@language": "en",
-        "@value": "Instructions for the proper disassembly, recycling, or disposal of the product at the end of its life."
-      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "End of Life Instructions"
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции за края на жизнения цикъл"
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny pro konec životnosti"
+        },
+        {
+          "@language": "da",
+          "@value": "Instruktioner for endt levetid"
+        },
+        {
+          "@language": "de",
+          "@value": "Anweisungen zum Ende der Lebensdauer"
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες τέλους κύκλου ζωής"
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones de fin de vida útil"
+        },
+        {
+          "@language": "et",
+          "@value": "Kasutuselt kõrvaldamise juhised"
+        },
+        {
+          "@language": "fi",
+          "@value": "Elinkaaren lopun ohjeet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions de fin de vie"
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha ag Deireadh a Ré"
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute za kraj životnog vijeka"
+        },
+        {
+          "@language": "hu",
+          "@value": "Életciklus végi utasítások"
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni per il fine vita"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gyvavimo ciklo pabaigos instrukcijos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Norādījumi par ekspluatācijas laika beigām"
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet dwar it-Tmiem tal-Ħajja"
+        },
+        {
+          "@language": "nl",
+          "@value": "Instructies voor het einde van de levensduur"
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje wycofania z eksploatacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções de Fim de Vida"
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni pentru sfârșitul ciclului de viață"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny na konci životnosti"
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila za konec življenjske dobe"
+        },
+        {
+          "@language": "sv",
+          "@value": "Instruktioner för uttjänta produkter"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Instructions for the proper disassembly, recycling, or disposal of the product at the end of its life."
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции за правилното разглобяване, рециклиране или изхвърляне на продукта в края на неговия живот."
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny pro správnou demontáž, recyklaci nebo likvidaci produktu na konci jeho životnosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Instruktioner til korrekt adskillelse, genbrug eller bortskaffelse af produktet ved slutningen af dets levetid."
+        },
+        {
+          "@language": "de",
+          "@value": "Anweisungen für die ordnungsgemäße Demontage, das Recycling oder die Entsorgung des Produkts am Ende seiner Lebensdauer."
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες για τη σωστή αποσυναρμολόγηση, ανακύκλωση ή απόρριψη του προϊόντος στο τέλος της ζωής του."
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones para el correcto desmontaje, reciclaje o eliminación del producto al final de su vida útil."
+        },
+        {
+          "@language": "et",
+          "@value": "Juhised toote nõuetekohaseks lahtivõtmiseks, ringlussevõtuks või kõrvaldamiseks selle eluea lõpus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ohjeet tuotteen asianmukaiseen purkamiseen, kierrätykseen tai hävittämiseen sen elinkaaren lopussa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions pour le démontage, le recyclage ou l'élimination appropriés du produit à la fin de sa vie."
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha chun an táirge a dhíchóimeáil, a athchúrsáil nó a dhiúscairt i gceart ag deireadh a shaoil."
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute za pravilno rastavljanje, recikliranje ili zbrinjavanje proizvoda na kraju njegovog životnog vijeka."
+        },
+        {
+          "@language": "hu",
+          "@value": "Utasítások a termék megfelelő szétszereléséhez, újrahasznosításához vagy ártalmatlanításához az élettartama végén."
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni per il corretto smontaggio, riciclaggio o smaltimento del prodotto alla fine della sua vita."
+        },
+        {
+          "@language": "lt",
+          "@value": "Tinkamo gaminio išmontavimo, perdirbimo ar šalinimo instrukcijos pasibaigus jo tarnavimo laikui."
+        },
+        {
+          "@language": "lv",
+          "@value": "Norādījumi par produkta pareizu izjaukšanu, pārstrādi vai iznīcināšanu tā kalpošanas laika beigās."
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet għaż-żarmar, ir-riċiklaġġ jew ir-rimi xieraq tal-prodott fi tmiem il-ħajja tiegħu."
+        },
+        {
+          "@language": "nl",
+          "@value": "Instructies voor de juiste demontage, recycling of verwijdering van het product aan het einde van de levensduur."
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje dotyczące właściwego demontażu, recyklingu lub utylizacji produktu pod koniec jego okresu użytkowania."
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções para a correta desmontagem, reciclagem ou descarte do produto no final de sua vida útil."
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni pentru dezasamblarea, reciclarea sau eliminarea corespunzătoare a produsului la sfârșitul duratei sale de viață."
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny na správnu demontáž, recykláciu alebo likvidáciu produktu na konci jeho životnosti."
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila za pravilno razstavljanje, recikliranje ali odstranjevanje izdelka ob koncu njegove življenjske dobe."
+        },
+        {
+          "@language": "sv",
+          "@value": "Instruktioner för korrekt demontering, återvinning eller kassering av produkten vid slutet av dess livslängd."
+        }
+      ],
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
@@ -176,14 +2092,202 @@
     {
       "@id": "dppk:repairInstructions",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": {
-        "@language": "en",
-        "@value": "Repair Instructions"
-      },
-      "rdfs:comment": {
-        "@language": "en",
-        "@value": "Instructions on how to repair or replace components of the product."
-      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Repair Instructions"
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции за ремонт"
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny k opravě"
+        },
+        {
+          "@language": "da",
+          "@value": "Reparationsvejledning"
+        },
+        {
+          "@language": "de",
+          "@value": "Reparaturanleitung"
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες επισκευής"
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones de reparación"
+        },
+        {
+          "@language": "et",
+          "@value": "Remondijuhised"
+        },
+        {
+          "@language": "fi",
+          "@value": "Korjausohjeet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions de réparation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha Deisiúcháin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute za popravak"
+        },
+        {
+          "@language": "hu",
+          "@value": "Javítási útmutató"
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni per la riparazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Taisymo instrukcijos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Remonta instrukcijas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet għat-Tiswija"
+        },
+        {
+          "@language": "nl",
+          "@value": "Reparatie-instructies"
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje naprawy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções de Reparo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni de reparație"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny na opravu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila za popravilo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Reparationsanvisningar"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Instructions on how to repair or replace components of the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции за това как да ремонтирате или замените компоненти на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny k opravě nebo výměně součástí produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Instruktioner om, hvordan man reparerer eller udskifter komponenter i produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Anweisungen zur Reparatur oder zum Austausch von Komponenten des Produkts."
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες για τον τρόπο επισκευής ή αντικατάστασης εξαρτημάτων του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones sobre cómo reparar o reemplazar componentes del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Juhised toote komponentide parandamiseks või asendamiseks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ohjeet tuotteen osien korjaamiseen tai vaihtamiseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions sur la façon de réparer ou de remplacer les composants du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha maidir le conas comhpháirteanna den táirge a dheisiú nó a athsholáthar."
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute za popravak ili zamjenu komponenti proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Utasítások a termék alkatrészeinek javítására vagy cseréjére vonatkozóan."
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni su come riparare o sostituire i componenti del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Instrukcijos, kaip taisyti ar pakeisti gaminio komponentus."
+        },
+        {
+          "@language": "lv",
+          "@value": "Norādījumi par produkta sastāvdaļu remontu vai nomaiņu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet dwar kif isewwi jew tissostitwixxi l-komponenti tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Instructies voor het repareren of vervangen van onderdelen van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje dotyczące naprawy lub wymiany elementów produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções sobre como reparar ou substituir componentes do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni despre cum să reparați sau să înlocuiți componentele produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny na opravu alebo výmenu komponentov produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila za popravilo ali zamenjavo sestavnih delov izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Instruktioner om hur man reparerar eller byter ut komponenter i produkten."
+        }
+      ],
       "dppk:visibility": {
         "@id": "dppk:Public"
       },
@@ -200,14 +2304,202 @@
     {
       "@id": "dppk:careInstructions",
       "@type": "owl:ObjectProperty",
-      "rdfs:label": {
-        "@language": "en",
-        "@value": "Care Instructions"
-      },
-      "rdfs:comment": {
-        "@language": "en",
-        "@value": "Instructions and manuals for the care, washing, and maintenance of the product."
-      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Care Instructions"
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции за грижа"
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny pro péči"
+        },
+        {
+          "@language": "da",
+          "@value": "Plejevejledning"
+        },
+        {
+          "@language": "de",
+          "@value": "Pflegehinweise"
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες φροντίδας"
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones de cuidado"
+        },
+        {
+          "@language": "et",
+          "@value": "Hooldusjuhised"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hoito-ohjeet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions d'entretien"
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha Cúraim"
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute za njegu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kezelési útmutató"
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni per la cura"
+        },
+        {
+          "@language": "lt",
+          "@value": "Priežiūros instrukcijos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kopšanas norādījumi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet għall-Kura"
+        },
+        {
+          "@language": "nl",
+          "@value": "Onderhoudsinstructies"
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje pielęgnacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções de Cuidados"
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni de îngrijire"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny na starostlivosť"
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila za nego"
+        },
+        {
+          "@language": "sv",
+          "@value": "Skötselråd"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Instructions and manuals for the care, washing, and maintenance of the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Инструкции и ръководства за грижа, пране и поддръжка на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Pokyny a manuály pro péči, praní a údržbu produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Instruktioner og manualer til pleje, vask og vedligeholdelse af produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Anweisungen und Handbücher für die Pflege, das Waschen und die Wartung des Produkts."
+        },
+        {
+          "@language": "el",
+          "@value": "Οδηγίες και εγχειρίδια για τη φροντίδα, το πλύσιμο και τη συντήρηση του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Instrucciones y manuales para el cuidado, lavado y mantenimiento del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Juhised ja käsiraamatud toote hooldamiseks, pesemiseks ja korrashoiuks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ohjeet ja oppaat tuotteen hoitoon, pesuun ja huoltoon."
+        },
+        {
+          "@language": "fr",
+          "@value": "Instructions et manuels pour l'entretien, le lavage et la maintenance du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Treoracha agus lámhleabhair do chúram, do níochán, agus do chothabháil an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Upute i priručnici za njegu, pranje i održavanje proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Utasítások és kézikönyvek a termék ápolásához, mosásához és karbantartásához."
+        },
+        {
+          "@language": "it",
+          "@value": "Istruzioni e manuali per la cura, il lavaggio e la manutenzione del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Gaminio priežiūros, plovimo ir techninės priežiūros instrukcijos bei vadovai."
+        },
+        {
+          "@language": "lv",
+          "@value": "Instrukcijas un rokasgrāmatas produkta kopšanai, mazgāšanai un apkopei."
+        },
+        {
+          "@language": "mt",
+          "@value": "Struzzjonijiet u manwali għall-kura, il-ħasil, u l-manutenzjoni tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Instructies en handleidingen voor de verzorging, het wassen en het onderhoud van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Instrukcje i podręczniki dotyczące pielęgnacji, prania i konserwacji produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Instruções e manuais para o cuidado, lavagem e manutenção do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Instrucțiuni și manuale pentru îngrijirea, spălarea și întreținerea produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Pokyny a manuály na starostlivosť, pranie a údržbu produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Navodila in priročniki za nego, pranje in vzdrževanje izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Instruktioner och manualer för skötsel, tvätt och underhåll av produkten."
+        }
+      ],
       "dppk:visibility": {
         "@id": "dppk:Public"
       },

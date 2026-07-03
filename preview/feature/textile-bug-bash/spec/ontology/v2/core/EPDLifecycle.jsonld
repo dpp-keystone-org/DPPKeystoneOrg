@@ -10,8 +10,202 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDLifecycle",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - EPD Lifecycle Stages",
-  "dcterms:description": "Defines the lifecycle stages (A1-D) used in Environmental Product Declarations.",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - EPD Lifecycle Stages"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Етапи на жизнения цикъл на EPD"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Fáze životního cyklu EPD"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP-kerneontologi - EPD-livscyklusfaser"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - EPD-Lebenszyklusphasen"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική Οντολογία DPP - Στάδια κύκλου ζωής EPD"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología principal de DPP - Etapas del ciclo de vida de EPD"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP põhi-ontoloogia - EPD olelusringi etapid"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - EPD-elinkaaren vaiheet"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Étapes du cycle de vie EPD"
+    },
+    {
+      "@language": "ga",
+      "@value": "Croí-Ointeolaíocht DPP - Céimeanna Saolré EPD"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Faze životnog ciklusa EPD-a"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - EPD életciklus szakaszok"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Fasi del ciclo di vita EPD"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - EPD gyvavimo ciklo etapai"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamatontoloģija - EPD dzīves cikla posmi"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Stadji taċ-Ċiklu tal-Ħajja EPD"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP-kernontologie - EPD-levenscyclusfasen"
+    },
+    {
+      "@language": "pl",
+      "@value": "Podstawowa ontologia DPP - Fazy cyklu życia EPD"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia principal do DPP - Fases do ciclo de vida da EPD"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Etapele ciclului de viață EPD"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Fázy životného cyklu EPD"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Faze življenjskega cikla EPD"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - EPD-livscykelfaser"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the lifecycle stages (A1-D) used in Environmental Product Declarations."
+    },
+    {
+      "@language": "bg",
+      "@value": "Дефинира етапите на жизнения цикъл (A1-D), използвани в Екологичните продуктови декларации."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje fáze životního cyklu (A1-D) používané v Environmentálních prohlášeních o produktu."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer livscyklusfaserne (A1-D), der anvendes i miljøvaredeklarationer."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die Lebenszyklusphasen (A1-D), die in Umweltproduktdeklarationen verwendet werden."
+    },
+    {
+      "@language": "el",
+      "@value": "Ορίζει τα στάδια κύκλου ζωής (A1-D) που χρησιμοποιούνται στις Περιβαλλοντικές Δηλώσεις Προϊόντων."
+    },
+    {
+      "@language": "es",
+      "@value": "Define las etapas del ciclo de vida (A1-D) utilizadas en las Declaraciones Ambientales de Producto."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb olelusringi etapid (A1-D), mida kasutatakse keskkonnadeklaratsioonides."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää elinkaaren vaiheet (A1-D), joita käytetään ympäristöselosteissa."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les étapes du cycle de vie (A1-D) utilisées dans les déclarations environnementales de produit."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé na céimeanna saolré (A1-D) a úsáidtear i nDearbhuithe Comhshaoil Táirge."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira faze životnog ciklusa (A1-D) koje se koriste u Izjavama o ekološkim svojstvima proizvoda."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a környezetvédelmi terméknyilatkozatokban használt életciklus szakaszokat (A1-D)."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce le fasi del ciclo di vita (A1-D) utilizzate nelle Dichiarazioni ambientali di prodotto."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia gyvavimo ciklo etapus (A1-D), naudojamus poveikio aplinkai deklaracijose."
+    },
+    {
+      "@language": "lv",
+      "@value": "Definē dzīves cikla posmus (A1-D), ko izmanto produkta vides deklarācijās."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-istadji taċ-ċiklu tal-ħajja (A1-D) użati fid-Dikjarazzjonijiet Ambjentali tal-Prodott."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de levenscyclusfasen (A1-D) die worden gebruikt in milieuproductverklaringen."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje fazy cyklu życia (A1-D) stosowane w deklaracjach środowiskowych produktu."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define as fases do ciclo de vida (A1-D) utilizadas nas Declarações Ambientais do Produto."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește etapele ciclului de viață (A1-D) utilizate în Declarațiile de mediu ale produsului."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje fázy životného cyklu (A1-D) používané v environmentálnych vyhláseniach o produkte."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa faze življenjskega cikla (A1-D), ki se uporabljajo v okoljskih deklaracijah proizvoda."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar livscykelfaserna (A1-D) som används i miljövarudeklarationer."
+    }
+  ],
   "owl:versionInfo": "v2",
   "owl:imports": [
     {
@@ -67,6 +261,10 @@
           "@value": "A1: Approvisionnement en matières premières"
         },
         {
+          "@language": "ga",
+          "@value": "A1: Soláthar amhábhar"
+        },
+        {
           "@language": "hr",
           "@value": "A1: Dobava sirovina"
         },
@@ -117,10 +315,6 @@
         {
           "@language": "sv",
           "@value": "A1: Råvaruförsörjning"
-        },
-        {
-          "@language": "ga",
-          "@value": "A1: Soláthar amhábhar"
         }
       ],
       "rdfs:domain": {
@@ -173,6 +367,10 @@
           "@value": "Amont A1 (Approvisionnement en matières premières)"
         },
         {
+          "@language": "ga",
+          "@value": "Réamhréimse A1 (Soláthar amhábhar)"
+        },
+        {
           "@language": "hr",
           "@value": "Uzvodno A1 (Dobava sirovina)"
         },
@@ -223,10 +421,6 @@
         {
           "@language": "sv",
           "@value": "Uppströms A1 (Råvaruförsörjning)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Réamhréimse A1 (Soláthar amhábhar)"
         }
       ]
     },
@@ -273,6 +467,10 @@
         {
           "@language": "fr",
           "@value": "A2: Transport"
+        },
+        {
+          "@language": "ga",
+          "@value": "A2: Iompar"
         },
         {
           "@language": "hr",
@@ -325,10 +523,6 @@
         {
           "@language": "sv",
           "@value": "A2: Transport"
-        },
-        {
-          "@language": "ga",
-          "@value": "A2: Iompar"
         }
       ],
       "rdfs:domain": {
@@ -381,6 +575,10 @@
           "@value": "Processus central A2 (Transport vers la fabrication)"
         },
         {
+          "@language": "ga",
+          "@value": "Próiseas Lárnach A2 (Iompar chuig déantúsaíocht)"
+        },
+        {
           "@language": "hr",
           "@value": "Osnovni proces A2 (Transport do proizvodnje)"
         },
@@ -431,10 +629,6 @@
         {
           "@language": "sv",
           "@value": "Kärnprocess A2 (Transport till tillverkning)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Próiseas Lárnach A2 (Iompar chuig déantúsaíocht)"
         }
       ]
     },
@@ -481,6 +675,10 @@
         {
           "@language": "fr",
           "@value": "A3: Fabrication"
+        },
+        {
+          "@language": "ga",
+          "@value": "A3: Déantúsaíocht"
         },
         {
           "@language": "hr",
@@ -533,10 +731,6 @@
         {
           "@language": "sv",
           "@value": "A3: Tillverkning"
-        },
-        {
-          "@language": "ga",
-          "@value": "A3: Déantúsaíocht"
         }
       ],
       "rdfs:domain": {
@@ -589,6 +783,10 @@
           "@value": "Processus central A3 (Fabrication)"
         },
         {
+          "@language": "ga",
+          "@value": "Próiseas Lárnach A3 (Déantúsaíocht)"
+        },
+        {
           "@language": "hr",
           "@value": "Osnovni proces A3 (Proizvodnja)"
         },
@@ -639,10 +837,6 @@
         {
           "@language": "sv",
           "@value": "Kärnprocess A3 (Tillverkning)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Próiseas Lárnach A3 (Déantúsaíocht)"
         }
       ]
     },
@@ -689,6 +883,10 @@
         {
           "@language": "fr",
           "@value": "A4: Transport"
+        },
+        {
+          "@language": "ga",
+          "@value": "A4: Iompar"
         },
         {
           "@language": "hr",
@@ -741,10 +939,6 @@
         {
           "@language": "sv",
           "@value": "A4: Transport"
-        },
-        {
-          "@language": "ga",
-          "@value": "A4: Iompar"
         }
       ],
       "rdfs:domain": {
@@ -797,6 +991,10 @@
           "@value": "Aval A4 (Transport vers le site)"
         },
         {
+          "@language": "ga",
+          "@value": "Iar-réimse A4 (Iompar chuig an suíomh)"
+        },
+        {
           "@language": "hr",
           "@value": "Nizvodno A4 (Transport do gradilišta)"
         },
@@ -847,10 +1045,6 @@
         {
           "@language": "sv",
           "@value": "Nedströms A4 (Transport till plats)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Iar-réimse A4 (Iompar chuig an suíomh)"
         }
       ]
     },
@@ -897,6 +1091,10 @@
         {
           "@language": "fr",
           "@value": "A5: Installation sur le chantier"
+        },
+        {
+          "@language": "ga",
+          "@value": "A5: Suiteáil tógála"
         },
         {
           "@language": "hr",
@@ -949,10 +1147,6 @@
         {
           "@language": "sv",
           "@value": "A5: Bygg- och installationsprocessen"
-        },
-        {
-          "@language": "ga",
-          "@value": "A5: Suiteáil tógála"
         }
       ],
       "rdfs:domain": {
@@ -1005,6 +1199,10 @@
           "@value": "Processus central A5 (Installation sur le chantier)"
         },
         {
+          "@language": "ga",
+          "@value": "Próiseas Lárnach A5 (Suiteáil tógála)"
+        },
+        {
           "@language": "hr",
           "@value": "Osnovni proces A5 (Ugradnja)"
         },
@@ -1055,10 +1253,6 @@
         {
           "@language": "sv",
           "@value": "Kärnprocess A5 (Bygg- och installationsprocessen)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Próiseas Lárnach A5 (Suiteáil tógála)"
         }
       ]
     },
@@ -1105,6 +1299,10 @@
         {
           "@language": "fr",
           "@value": "B1: Usage"
+        },
+        {
+          "@language": "ga",
+          "@value": "B1: Úsáid"
         },
         {
           "@language": "hr",
@@ -1157,10 +1355,6 @@
         {
           "@language": "sv",
           "@value": "B1: Användning"
-        },
-        {
-          "@language": "ga",
-          "@value": "B1: Úsáid"
         }
       ],
       "rdfs:domain": {
@@ -1213,6 +1407,10 @@
           "@value": "Usage B1 (Usage)"
         },
         {
+          "@language": "ga",
+          "@value": "Úsáid B1 (Úsáid)"
+        },
+        {
           "@language": "hr",
           "@value": "Uporaba B1 (Uporaba)"
         },
@@ -1263,10 +1461,6 @@
         {
           "@language": "sv",
           "@value": "Användning B1 (Användning)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Úsáid B1 (Úsáid)"
         }
       ]
     },
@@ -1313,6 +1507,10 @@
         {
           "@language": "fr",
           "@value": "B2: Maintenance"
+        },
+        {
+          "@language": "ga",
+          "@value": "B2: Cothabháil"
         },
         {
           "@language": "hr",
@@ -1365,10 +1563,6 @@
         {
           "@language": "sv",
           "@value": "B2: Underhåll"
-        },
-        {
-          "@language": "ga",
-          "@value": "B2: Cothabháil"
         }
       ],
       "rdfs:domain": {
@@ -1421,6 +1615,10 @@
           "@value": "Usage B2 (Maintenance)"
         },
         {
+          "@language": "ga",
+          "@value": "Úsáid B2 (Cothabháil)"
+        },
+        {
           "@language": "hr",
           "@value": "Uporaba B2 (Održavanje)"
         },
@@ -1471,10 +1669,6 @@
         {
           "@language": "sv",
           "@value": "Användning B2 (Underhåll)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Úsáid B2 (Cothabháil)"
         }
       ]
     },
@@ -1521,6 +1715,10 @@
         {
           "@language": "fr",
           "@value": "B3: Réparation"
+        },
+        {
+          "@language": "ga",
+          "@value": "B3: Deisiú"
         },
         {
           "@language": "hr",
@@ -1573,10 +1771,6 @@
         {
           "@language": "sv",
           "@value": "B3: Reparation"
-        },
-        {
-          "@language": "ga",
-          "@value": "B3: Deisiú"
         }
       ],
       "rdfs:domain": {
@@ -1629,6 +1823,10 @@
           "@value": "Usage B3 (Réparation)"
         },
         {
+          "@language": "ga",
+          "@value": "Úsáid B3 (Deisiú)"
+        },
+        {
           "@language": "hr",
           "@value": "Uporaba B3 (Popravak)"
         },
@@ -1679,10 +1877,6 @@
         {
           "@language": "sv",
           "@value": "Användning B3 (Reparation)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Úsáid B3 (Deisiú)"
         }
       ]
     },
@@ -1729,6 +1923,10 @@
         {
           "@language": "fr",
           "@value": "B4: Remplacement"
+        },
+        {
+          "@language": "ga",
+          "@value": "B4: Athsholáthar"
         },
         {
           "@language": "hr",
@@ -1781,10 +1979,6 @@
         {
           "@language": "sv",
           "@value": "B4: Utbyte"
-        },
-        {
-          "@language": "ga",
-          "@value": "B4: Athsholáthar"
         }
       ],
       "rdfs:domain": {
@@ -1837,6 +2031,10 @@
           "@value": "Usage B4 (Remplacement)"
         },
         {
+          "@language": "ga",
+          "@value": "Úsáid B4 (Athsholáthar)"
+        },
+        {
           "@language": "hr",
           "@value": "Uporaba B4 (Zamjena)"
         },
@@ -1887,10 +2085,6 @@
         {
           "@language": "sv",
           "@value": "Användning B4 (Utbyte)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Úsáid B4 (Athsholáthar)"
         }
       ]
     },
@@ -1937,6 +2131,10 @@
         {
           "@language": "fr",
           "@value": "B5: Réhabilitation"
+        },
+        {
+          "@language": "ga",
+          "@value": "B5: Athchóiriú"
         },
         {
           "@language": "hr",
@@ -1989,10 +2187,6 @@
         {
           "@language": "sv",
           "@value": "B5: Renovering"
-        },
-        {
-          "@language": "ga",
-          "@value": "B5: Athchóiriú"
         }
       ],
       "rdfs:domain": {
@@ -2045,6 +2239,10 @@
           "@value": "Usage B5 (Réhabilitation)"
         },
         {
+          "@language": "ga",
+          "@value": "Úsáid B5 (Athchóiriú)"
+        },
+        {
           "@language": "hr",
           "@value": "Uporaba B5 (Poboljšanje)"
         },
@@ -2095,10 +2293,6 @@
         {
           "@language": "sv",
           "@value": "Användning B5 (Renovering)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Úsáid B5 (Athchóiriú)"
         }
       ]
     },
@@ -2145,6 +2339,10 @@
         {
           "@language": "fr",
           "@value": "B6: Utilisation de l'énergie opérationnelle"
+        },
+        {
+          "@language": "ga",
+          "@value": "B6: Úsáid fuinnimh oibriúcháin"
         },
         {
           "@language": "hr",
@@ -2197,10 +2395,6 @@
         {
           "@language": "sv",
           "@value": "B6: Energianvändning under drift"
-        },
-        {
-          "@language": "ga",
-          "@value": "B6: Úsáid fuinnimh oibriúcháin"
         }
       ],
       "rdfs:domain": {
@@ -2253,6 +2447,10 @@
           "@value": "Usage B6 (Utilisation de l'énergie opérationnelle)"
         },
         {
+          "@language": "ga",
+          "@value": "Úsáid B6 (Úsáid fuinnimh oibriúcháin)"
+        },
+        {
           "@language": "hr",
           "@value": "Uporaba B6 (Utrošak energije pri uporabi)"
         },
@@ -2303,10 +2501,6 @@
         {
           "@language": "sv",
           "@value": "Användning B6 (Energianvändning under drift)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Úsáid B6 (Úsáid fuinnimh oibriúcháin)"
         }
       ]
     },
@@ -2353,6 +2547,10 @@
         {
           "@language": "fr",
           "@value": "B7: Utilisation de l'eau opérationnelle"
+        },
+        {
+          "@language": "ga",
+          "@value": "B7: Úsáid uisce oibriúcháin"
         },
         {
           "@language": "hr",
@@ -2405,10 +2603,6 @@
         {
           "@language": "sv",
           "@value": "B7: Vattenanvändning under drift"
-        },
-        {
-          "@language": "ga",
-          "@value": "B7: Úsáid uisce oibriúcháin"
         }
       ],
       "rdfs:domain": {
@@ -2461,6 +2655,10 @@
           "@value": "Usage B7 (Utilisation de l'eau opérationnelle)"
         },
         {
+          "@language": "ga",
+          "@value": "Úsáid B7 (Úsáid uisce oibriúcháin)"
+        },
+        {
           "@language": "hr",
           "@value": "Uporaba B7 (Utrošak vode pri uporabi)"
         },
@@ -2511,10 +2709,6 @@
         {
           "@language": "sv",
           "@value": "Användning B7 (Vattenanvändning under drift)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Úsáid B7 (Úsáid uisce oibriúcháin)"
         }
       ]
     },
@@ -2561,6 +2755,10 @@
         {
           "@language": "fr",
           "@value": "C1: Déconstruction / Démolition"
+        },
+        {
+          "@language": "ga",
+          "@value": "C1: Díchóimeáil / Leagadh"
         },
         {
           "@language": "hr",
@@ -2613,10 +2811,6 @@
         {
           "@language": "sv",
           "@value": "C1: Demontering / Rivning"
-        },
-        {
-          "@language": "ga",
-          "@value": "C1: Díchóimeáil / Leagadh"
         }
       ],
       "rdfs:domain": {
@@ -2669,6 +2863,10 @@
           "@value": "Aval C1 (Déconstruction / Démolition)"
         },
         {
+          "@language": "ga",
+          "@value": "Iar-réimse C1 (Díchóimeáil / Leagadh)"
+        },
+        {
           "@language": "hr",
           "@value": "Nizvodno C1 (Dekonstrukcija / Rušenje)"
         },
@@ -2719,10 +2917,6 @@
         {
           "@language": "sv",
           "@value": "Nedströms C1 (Demontering / Rivning)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Iar-réimse C1 (Díchóimeáil / Leagadh)"
         }
       ]
     },
@@ -2769,6 +2963,10 @@
         {
           "@language": "fr",
           "@value": "C2: Transport"
+        },
+        {
+          "@language": "ga",
+          "@value": "C2: Iompar"
         },
         {
           "@language": "hr",
@@ -2821,10 +3019,6 @@
         {
           "@language": "sv",
           "@value": "C2: Transport"
-        },
-        {
-          "@language": "ga",
-          "@value": "C2: Iompar"
         }
       ],
       "rdfs:domain": {
@@ -2877,6 +3071,10 @@
           "@value": "Aval C2 (Transport)"
         },
         {
+          "@language": "ga",
+          "@value": "Iar-réimse C2 (Iompar)"
+        },
+        {
           "@language": "hr",
           "@value": "Nizvodno C2 (Transport)"
         },
@@ -2927,10 +3125,6 @@
         {
           "@language": "sv",
           "@value": "Nedströms C2 (Transport)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Iar-réimse C2 (Iompar)"
         }
       ]
     },
@@ -2977,6 +3171,10 @@
         {
           "@language": "fr",
           "@value": "C3: Traitement des déchets"
+        },
+        {
+          "@language": "ga",
+          "@value": "C3: Próiseáil dramhaíola"
         },
         {
           "@language": "hr",
@@ -3029,10 +3227,6 @@
         {
           "@language": "sv",
           "@value": "C3: Avfallsbehandling"
-        },
-        {
-          "@language": "ga",
-          "@value": "C3: Próiseáil dramhaíola"
         }
       ],
       "rdfs:domain": {
@@ -3085,6 +3279,10 @@
           "@value": "Aval C3 (Traitement des déchets)"
         },
         {
+          "@language": "ga",
+          "@value": "Iar-réimse C3 (Próiseáil dramhaíola)"
+        },
+        {
           "@language": "hr",
           "@value": "Nizvodno C3 (Obrada otpada)"
         },
@@ -3135,10 +3333,6 @@
         {
           "@language": "sv",
           "@value": "Nedströms C3 (Avfallsbehandling)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Iar-réimse C3 (Próiseáil dramhaíola)"
         }
       ]
     },
@@ -3185,6 +3379,10 @@
         {
           "@language": "fr",
           "@value": "C4: Élimination"
+        },
+        {
+          "@language": "ga",
+          "@value": "C4: Diúscairt"
         },
         {
           "@language": "hr",
@@ -3237,10 +3435,6 @@
         {
           "@language": "sv",
           "@value": "C4: Deponering"
-        },
-        {
-          "@language": "ga",
-          "@value": "C4: Diúscairt"
         }
       ],
       "rdfs:domain": {
@@ -3293,6 +3487,10 @@
           "@value": "Aval C4 (Élimination)"
         },
         {
+          "@language": "ga",
+          "@value": "Iar-réimse C4 (Diúscairt)"
+        },
+        {
           "@language": "hr",
           "@value": "Nizvodno C4 (Odlaganje)"
         },
@@ -3343,10 +3541,6 @@
         {
           "@language": "sv",
           "@value": "Nedströms C4 (Deponering)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Iar-réimse C4 (Diúscairt)"
         }
       ]
     },
@@ -3393,6 +3587,10 @@
         {
           "@language": "fr",
           "@value": "D: Potentiel de réutilisation, de récupération et de recyclage"
+        },
+        {
+          "@language": "ga",
+          "@value": "D: Acmhainneacht athúsáide, aisghabhála agus athchúrsála"
         },
         {
           "@language": "hr",
@@ -3445,10 +3643,6 @@
         {
           "@language": "sv",
           "@value": "D: Potential för återanvändning, återvinning och materialåtervinning"
-        },
-        {
-          "@language": "ga",
-          "@value": "D: Acmhainneacht athúsáide, aisghabhála agus athchúrsála"
         }
       ],
       "rdfs:domain": {
@@ -3501,6 +3695,10 @@
           "@value": "Potentiel de réutilisation, de récupération et de recyclage"
         },
         {
+          "@language": "ga",
+          "@value": "Acmhainneacht athúsáide, aisghabhála agus athchúrsála"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal ponovne uporabe, oporabe i recikliranja"
         },
@@ -3551,10 +3749,6 @@
         {
           "@language": "sv",
           "@value": "Potential för återanvändning, återvinning och materialåtervinning"
-        },
-        {
-          "@language": "ga",
-          "@value": "Acmhainneacht athúsáide, aisghabhála agus athchúrsála"
         }
       ]
     },
@@ -3601,6 +3795,10 @@
         {
           "@language": "fr",
           "@value": "Total"
+        },
+        {
+          "@language": "ga",
+          "@value": "Iomlán"
         },
         {
           "@language": "hr",
@@ -3653,10 +3851,6 @@
         {
           "@language": "sv",
           "@value": "Total"
-        },
-        {
-          "@language": "ga",
-          "@value": "Iomlán"
         }
       ],
       "rdfs:domain": {
@@ -3709,6 +3903,10 @@
           "@value": "Total"
         },
         {
+          "@language": "ga",
+          "@value": "Iomlán"
+        },
+        {
           "@language": "hr",
           "@value": "Ukupno"
         },
@@ -3759,10 +3957,6 @@
         {
           "@language": "sv",
           "@value": "Total"
-        },
-        {
-          "@language": "ga",
-          "@value": "Iomlán"
         }
       ]
     }

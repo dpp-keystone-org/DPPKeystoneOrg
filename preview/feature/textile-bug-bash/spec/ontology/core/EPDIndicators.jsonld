@@ -10,7 +10,6 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDIndicators.jsonld",
   "@type": "owl:Ontology",
-  "dcterms:title": "DPP Core Ontology - EPD Indicators",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
@@ -22,7 +21,202 @@
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDLifecycle.jsonld"
     }
   ],
-  "dcterms:description": "Defines the specific environmental impact indicators used in Environmental Product Declarations.",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - EPD Indicators"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Показатели за EPD"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Indikátory EPD"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP-kerneontologi - EPD-indikatorer"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - EPD-Indikatoren"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική Οντολογία DPP - Δείκτες EPD"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología principal de DPP - Indicadores de EPD"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP põhi-ontoloogia - EPD indikaatorid"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - EPD-indikaattorit"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Indicateurs EPD"
+    },
+    {
+      "@language": "ga",
+      "@value": "Croí-Ointeolaíocht DPP - Táscairí EPD"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - EPD pokazatelji"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - EPD mutatók"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Indicatori EPD"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - EPD rodikliai"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamatontoloģija - EPD rādītāji"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Indikaturi EPD"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP-kernontologie - EPD-indicatoren"
+    },
+    {
+      "@language": "pl",
+      "@value": "Podstawowa ontologia DPP - Wskaźniki EPD"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia principal do DPP - Indicadores de EPD"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Indicatori EPD"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Indikátory EPD"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Kazalniki EPD"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - EPD-indikatorer"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the specific environmental impact indicators used in Environmental Product Declarations."
+    },
+    {
+      "@language": "bg",
+      "@value": "Дефинира специфичните показатели за въздействие върху околната среда, използвани в Екологичните продуктови декларации."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje specifické indikátory dopadu na životní prostředí používané v Environmentálních prohlášeních o produktu."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer de specifikke miljøpåvirkningsindikatorer, der anvendes i miljøvaredeklarationer."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die spezifischen Umweltwirkungsindikatoren, die in Umweltproduktdeklarationen verwendet werden."
+    },
+    {
+      "@language": "el",
+      "@value": "Ορίζει τους ειδικούς δείκτες περιβαλλοντικών επιπτώσεων που χρησιμοποιούνται στις Περιβαλλοντικές Δηλώσεις Προϊόντων."
+    },
+    {
+      "@language": "es",
+      "@value": "Define los indicadores específicos de impacto ambiental utilizados en las Declaraciones Ambientales de Producto."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb konkreetsed keskkonnamõju indikaatorid, mida kasutatakse keskkonnadeklaratsioonides."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää erityiset ympäristövaikutusindikaattorit, joita käytetään ympäristöselosteissa."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les indicateurs spécifiques d'impact environnemental utilisés dans les déclarations environnementales de produit."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé na táscairí sainráite don tionchar ar an gcomhshaol a úsáidtear i nDearbhuithe Comhshaoil Táirge."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira specifične pokazatelje utjecaja na okoliš koji se koriste u Izjavama o ekološkim svojstvima proizvoda."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a környezetvédelmi terméknyilatkozatokban használt konkrét környezeti hatásmutatókat."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce gli specifici indicatori di impatto ambientale utilizzati nelle Dichiarazioni ambientali di prodotto."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia specifinius poveikio aplinkai rodiklius, naudojamus poveikio aplinkai deklaracijose."
+    },
+    {
+      "@language": "lv",
+      "@value": "Definē konkrētus ietekmes uz vidi rādītājus, ko izmanto produkta vides deklarācijās."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-indikaturi speċifiċi tal-impatt ambjentali użati fid-Dikjarazzjonijiet Ambjentali tal-Prodott."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de specifieke milieueffectindicatoren die worden gebruikt in milieuproductverklaringen."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje specyficzne wskaźniki wpływu na środowisko stosowane w deklaracjach środowiskowych produktu."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define os indicadores específicos de impacto ambiental utilizados nas Declarações Ambientais do Produto."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește indicatorii specifici de impact asupra mediului utilizați în Declarațiile de mediu ale produsului."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje špecifické indikátory vplyvu na životné prostredie používané v environmentálnych vyhláseniach o produkte."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa posebne kazalnike vpliva na okolje, ki se uporabljajo v okoljskih deklaracijah proizvoda."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar de specifika miljöpåverkansindikatorer som används i miljövarudeklarationer."
+    }
+  ],
   "owl:versionInfo": "v2",
   "@graph": [
     {
@@ -68,6 +262,10 @@
         {
           "@language": "fr",
           "@value": "Indicateur"
+        },
+        {
+          "@language": "ga",
+          "@value": "Táscaire"
         },
         {
           "@language": "hr",
@@ -120,10 +318,6 @@
         {
           "@language": "sv",
           "@value": "Indikator"
-        },
-        {
-          "@language": "ga",
-          "@value": "Táscaire"
         }
       ],
       "rdfs:comment": [
@@ -166,6 +360,10 @@
         {
           "@language": "fr",
           "@value": "Une propriété générique représentant un indicateur d'impact environnemental."
+        },
+        {
+          "@language": "ga",
+          "@value": "Airí ginearálta a léiríonn táscaire tionchair comhshaoil."
         },
         {
           "@language": "hr",
@@ -218,10 +416,6 @@
         {
           "@language": "sv",
           "@value": "En generisk egenskap som representerar en miljöpåverkansindikator."
-        },
-        {
-          "@language": "ga",
-          "@value": "Airí ginearálta a léiríonn táscaire tionchair comhshaoil."
         }
       ],
       "rdfs:domain": {
@@ -273,6 +467,10 @@
           "@value": "Potentiel de réchauffement global"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja"
         },
@@ -323,10 +521,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda"
         }
       ],
       "dppk:unit": "kg CO₂ eq",
@@ -382,6 +576,10 @@
           "@value": "Potentiel de réchauffement global"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja"
         },
@@ -432,10 +630,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda"
         }
       ]
     },
@@ -484,6 +678,10 @@
           "@value": "Potentiel de réchauffement global, fossile"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Fósil"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja, fosilni"
         },
@@ -534,10 +732,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, fossil"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Fósil"
         }
       ],
       "dppk:unit": "kg CO₂ eq",
@@ -593,6 +787,10 @@
           "@value": "Potentiel de réchauffement global, fossile"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Fósil"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja, fosilni"
         },
@@ -643,10 +841,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, fossil"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Fósil"
         }
       ]
     },
@@ -695,6 +889,10 @@
           "@value": "Potentiel de réchauffement global, biogénique"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Bithigineach"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja, biogeni"
         },
@@ -745,10 +943,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, biogen"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Bithigineach"
         }
       ],
       "dppk:unit": "kg CO₂ eq",
@@ -804,6 +998,10 @@
           "@value": "Potentiel de réchauffement global, biogénique"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Bithigineach"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja, biogeni"
         },
@@ -854,10 +1052,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, biogen"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Bithigineach"
         }
       ]
     },
@@ -906,6 +1100,10 @@
           "@value": "Potentiel de réchauffement global, utilisation et changement de l'utilisation des terres"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja, korištenje zemljišta i promjena korištenja zemljišta"
         },
@@ -956,10 +1154,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, markanvändning och markanvändningsförändring"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún"
         }
       ],
       "dppk:unit": "kg CO₂ eq",
@@ -1015,6 +1209,10 @@
           "@value": "Potentiel de réchauffement global, utilisation et changement de l'utilisation des terres"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja, korištenje zemljišta i promjena korištenja zemljišta"
         },
@@ -1065,10 +1263,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, markanvändning och markanvändningsförändring"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Úsáid Talún agus Athrú ar Úsáid Talún"
         }
       ]
     },
@@ -1115,6 +1309,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel de réchauffement global, gaz à effet de serre"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa"
         },
         {
           "@language": "hr",
@@ -1167,10 +1365,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, växthusgaser"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa"
         }
       ],
       "dppk:unit": "kg CO₂ eq",
@@ -1226,6 +1420,10 @@
           "@value": "Potentiel de réchauffement global, gaz à effet de serre"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal globalnog zagrijavanja, staklenički plinovi"
         },
@@ -1276,10 +1474,6 @@
         {
           "@language": "sv",
           "@value": "Global uppvärmningspotential, växthusgaser"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Teasa Domhanda, Gáis Cheapacháin Teasa"
         }
       ]
     },
@@ -1326,6 +1520,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d’appauvrissement de la couche d’ozone"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Laghdaithe Ózóin"
         },
         {
           "@language": "hr",
@@ -1378,10 +1576,6 @@
         {
           "@language": "sv",
           "@value": "Potential för nedbrytning av ozonskiktet"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Laghdaithe Ózóin"
         }
       ],
       "dppk:unit": "kg CFC11 eq",
@@ -1437,6 +1631,10 @@
           "@value": "Potentiel d’appauvrissement de la couche d’ozone"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Laghdaithe Ózóin"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal za uništavanje ozonskog omotača"
         },
@@ -1487,10 +1685,6 @@
         {
           "@language": "sv",
           "@value": "Potential för nedbrytning av ozonskiktet"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Laghdaithe Ózóin"
         }
       ]
     },
@@ -1537,6 +1731,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d'acidification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Aigéadú"
         },
         {
           "@language": "hr",
@@ -1589,10 +1787,6 @@
         {
           "@language": "sv",
           "@value": "Försurningspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Aigéadú"
         }
       ],
       "dppk:unit": "mol H+ eq",
@@ -1648,6 +1842,10 @@
           "@value": "Potentiel d'acidification"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Aigéadú"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal zakiseljavanja"
         },
@@ -1698,10 +1896,6 @@
         {
           "@language": "sv",
           "@value": "Försurningspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Aigéadú"
         }
       ]
     },
@@ -1748,6 +1942,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d'eutrophisation, eau douce"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Eutrófachta, fionnuisce"
         },
         {
           "@language": "hr",
@@ -1800,10 +1998,6 @@
         {
           "@language": "sv",
           "@value": "Eutrofieringspotential, sötvatten"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Eutrófachta, fionnuisce"
         }
       ],
       "dppk:unit": "kg P eq",
@@ -1859,6 +2053,10 @@
           "@value": "Potentiel d'eutrophisation, eau douce"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Eutrófachta, fionnuisce"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal eutrofikacije, slatka voda"
         },
@@ -1909,10 +2107,6 @@
         {
           "@language": "sv",
           "@value": "Eutrofieringspotential, sötvatten"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Eutrófachta, fionnuisce"
         }
       ]
     },
@@ -1959,6 +2153,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d'eutrophisation, eau marine"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Eutrófachta, Uisce Muirí"
         },
         {
           "@language": "hr",
@@ -2011,10 +2209,6 @@
         {
           "@language": "sv",
           "@value": "Eutrofieringspotential, havsvatten"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Eutrófachta, Uisce Muirí"
         }
       ],
       "dppk:unit": "kg N eq",
@@ -2070,6 +2264,10 @@
           "@value": "Potentiel d'eutrophisation, eau marine"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Eutrófachta, Uisce Muirí"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal eutrofikacije, morska voda"
         },
@@ -2120,10 +2318,6 @@
         {
           "@language": "sv",
           "@value": "Eutrofieringspotential, havsvatten"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Eutrófachta, Uisce Muirí"
         }
       ]
     },
@@ -2170,6 +2364,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d'eutrophisation, terrestre"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Eutrófachta, Talún"
         },
         {
           "@language": "hr",
@@ -2222,10 +2420,6 @@
         {
           "@language": "sv",
           "@value": "Eutrofieringspotential, mark"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Eutrófachta, Talún"
         }
       ],
       "dppk:unit": "mol N eq",
@@ -2281,6 +2475,10 @@
           "@value": "Potentiel d'eutrophisation, terrestre"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Eutrófachta, Talún"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal eutrofikacije, kopneni"
         },
@@ -2331,10 +2529,6 @@
         {
           "@language": "sv",
           "@value": "Eutrofieringspotential, mark"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Eutrófachta, Talún"
         }
       ]
     },
@@ -2381,6 +2575,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel de création d’ozone photochimique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla"
         },
         {
           "@language": "hr",
@@ -2433,10 +2631,6 @@
         {
           "@language": "sv",
           "@value": "Potential för fotokemisk ozonbildning"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla"
         }
       ],
       "dppk:unit": "kg NMVOC eq",
@@ -2492,6 +2686,10 @@
           "@value": "Potentiel de création d’ozone photochimique"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal za stvaranje fotokemijskog ozona"
         },
@@ -2542,10 +2740,6 @@
         {
           "@language": "sv",
           "@value": "Potential för fotokemisk ozonbildning"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Cruthaithe Ózóin Fótaimiúla"
         }
       ]
     },
@@ -2592,6 +2786,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d'épuisement abiotiques (éléments)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)"
         },
         {
           "@language": "hr",
@@ -2644,10 +2842,6 @@
         {
           "@language": "sv",
           "@value": "Abiotisk uttömningspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)"
         }
       ],
       "dppk:unit": "kg Sb eq",
@@ -2703,6 +2897,10 @@
           "@value": "Potentiel d'épuisement abiotiques (éléments)"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal iscrpljivanja abiotičkih elemenata"
         },
@@ -2753,10 +2951,6 @@
         {
           "@language": "sv",
           "@value": "Abiotisk uttömningspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Aibitheach (eilimintí)"
         }
       ]
     },
@@ -2803,6 +2997,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d'épuisement abiotiques (combustibles fossiles)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)"
         },
         {
           "@language": "hr",
@@ -2855,10 +3053,6 @@
         {
           "@language": "sv",
           "@value": "Abiotisk uttömningspotential (fossila bränslen)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)"
         }
       ],
       "dppk:unit": "MJ",
@@ -2914,6 +3108,10 @@
           "@value": "Potentiel d'épuisement abiotiques (combustibles fossiles)"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal iscrpljivanja abiotičkih goriva"
         },
@@ -2964,10 +3162,6 @@
         {
           "@language": "sv",
           "@value": "Abiotisk uttömningspotential (fossila bränslen)"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Aibitheach (breoslaí iontaise)"
         }
       ]
     },
@@ -3014,6 +3208,10 @@
         {
           "@language": "fr",
           "@value": "Potentiel d'épuisement de l'eau"
+        },
+        {
+          "@language": "ga",
+          "@value": "Féidearthacht Díothaithe Uisce"
         },
         {
           "@language": "hr",
@@ -3066,10 +3264,6 @@
         {
           "@language": "sv",
           "@value": "Vattenuttagspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Uisce"
         }
       ],
       "dppk:unit": "m³",
@@ -3125,6 +3319,10 @@
           "@value": "Potentiel d'épuisement de l'eau"
         },
         {
+          "@language": "ga",
+          "@value": "Féidearthacht Díothaithe Uisce"
+        },
+        {
           "@language": "hr",
           "@value": "Potencijal iscrpljivanja vode"
         },
@@ -3175,10 +3373,6 @@
         {
           "@language": "sv",
           "@value": "Vattenuttagspotential"
-        },
-        {
-          "@language": "ga",
-          "@value": "Féidearthacht Díothaithe Uisce"
         }
       ]
     }

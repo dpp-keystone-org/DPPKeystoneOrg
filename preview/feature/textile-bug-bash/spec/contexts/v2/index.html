@@ -15,6 +15,7 @@
                 <h1>Context Explorer</h1>
                 <h2 style="margin: 0; color: var(--text-light);">contexts/v2</h2>
             </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
         </header>
         <main>
             <ul>
@@ -79,5 +80,9 @@
             <p><small>Part of the <a href="../../../index.html">DPP Keystone</a> project. | <a href="../../../impressum.html">Impressum / Legal Notice</a></small></p>
         </footer>
     </div>
+    <script type="module">
+        import { LanguageManager } from '../../../lib/language-manager.js';
+        LanguageManager.init('../../../index.i18n.json');
+    </script>
 </body>
 </html>

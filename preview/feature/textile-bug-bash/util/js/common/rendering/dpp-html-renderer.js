@@ -71,18 +71,38 @@ export function detectTableStructure(obj) {
 }
 
 /**
+ * Resolves a human-readable display label for a property key.
+ * Prioritizes localized ontology labels matching the specified language.
+ * @param {string} key Property path or key.
+ * @param {Map} [ontologyMap] Map of ontology definitions.
+ * @param {string} [language] 2-letter language code.
+ * @returns {string}
+ */
+export function getDisplayLabel(key, ontologyMap = null, language = 'en', defaultFallback = null) {
+    if (ontologyMap && ontologyMap.has(key)) {
+        const info = ontologyMap.get(key);
+        if (info && info.label) {
+            if (typeof info.label === 'object') {
+                if (info.label[language]) return info.label[language];
+                if (info.label['en']) return info.label['en'];
+            } else if (typeof info.label === 'string') {
+                return info.label;
+            }
+        }
+    }
+    return defaultFallback !== null ? defaultFallback : key;
+}
+
+/**
  * Recursive helper to render a single value.
  * @param {string} key 
  * @param {any} value 
  * @returns {string} HTML string
  */
-function renderValue(key, value, ontologyMap = null) {
+function renderValue(key, value, ontologyMap = null, language = 'en') {
     if (value === null || value === undefined) return '';
 
-    const label = key.replace(/([A-Z])/g, ' $1') // CamelCase to Title Case (rough)
-        .replace(/([a-zA-Z])(\d)/g, '$1 $2') // Space before numbers
-        .trim();
-    const displayLabel = label.charAt(0).toUpperCase() + label.slice(1);
+    const displayLabel = getDisplayLabel(key, ontologyMap, language);
 
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
         let displayValue = value;
@@ -134,7 +154,7 @@ function renderValue(key, value, ontologyMap = null) {
         let childContent = '';
         Object.keys(value).forEach(k => {
             if (!k.startsWith('@')) {
-                childContent += renderValue(k, value[k], ontologyMap);
+                childContent += renderValue(k, value[k], ontologyMap, language);
             }
         });
 
@@ -219,7 +239,7 @@ function renderValue(key, value, ontologyMap = null) {
  * @param {string} [options.customCssUrl] - Optional external CSS URL.
  * @returns {string} The full HTML document.
  */
-export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap }) {
+export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en' }) {
     if (!dppData) throw new Error("DPP JSON is required");
 
     const jsonLdScript = jsonLd
@@ -335,13 +355,13 @@ ${jsonLd}
 
     const metadataHtml = `
       <section class="dpp-metadata">
-          <div class="dpp-field"><span class="dpp-label">Passport Status:</span> <span class="dpp-value">${dppStatus}</span></div>
-          <div class="dpp-field"><span class="dpp-label">Last Updated:</span> <span class="dpp-value">${lastUpdate}</span></div>
-          <div class="dpp-field"><span class="dpp-label">Passport ID:</span> <span class="dpp-value">${dppData.digitalProductPassportId || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">Schema Version:</span> <span class="dpp-value">${dppData.dppSchemaVersion || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">Economic Operator ID:</span> <span class="dpp-value">${dppData.economicOperatorId || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">Granularity:</span> <span class="dpp-value">${dppData.granularity || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">Content Specification IDs:</span> <span class="dpp-value">${(dppData.contentSpecificationIds || []).join(', ') || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('dppStatus', ontologyMap, language, 'Passport Status')}:</span> <span class="dpp-value">${dppStatus}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('lastUpdate', ontologyMap, language, 'Last Updated')}:</span> <span class="dpp-value">${lastUpdate}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('digitalProductPassportId', ontologyMap, language, 'Passport ID')}:</span> <span class="dpp-value">${dppData.digitalProductPassportId || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('dppSchemaVersion', ontologyMap, language, 'Schema Version')}:</span> <span class="dpp-value">${dppData.dppSchemaVersion || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('economicOperatorId', ontologyMap, language, 'Economic Operator ID')}:</span> <span class="dpp-value">${dppData.economicOperatorId || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('granularity', ontologyMap, language, 'Granularity')}:</span> <span class="dpp-value">${dppData.granularity || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('contentSpecificationIds', ontologyMap, language, 'Content Specification IDs')}:</span> <span class="dpp-value">${(dppData.contentSpecificationIds || []).join(', ') || "N/A"}</span></div>
       </section>
     `;
 
@@ -355,7 +375,7 @@ ${jsonLd}
     let contentHtml = '';
     Object.keys(dppData).forEach(key => {
         if (!EXCLUDED_KEYS.has(key)) {
-            contentHtml += renderValue(key, dppData[key], ontologyMap);
+            contentHtml += renderValue(key, dppData[key], ontologyMap, language);
         }
     });
 
