@@ -1,0 +1,224 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPD",
+  "@type": "owl:Ontology",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Environmental Product Declaration (EPD)"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Екологична продуктова декларация (EPD)"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Environmentální prohlášení o produktu (EPD)"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP-kerneontologi - Miljøvaredeklaration (EPD)"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - Umweltproduktdeklaration (EPD)"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική Οντολογία DPP - Περιβαλλοντική Δήλωση Προϊόντος (EPD)"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología principal de DPP - Declaración Ambiental de Producto (EPD)"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP põhi-ontoloogia - Keskkonnadeklaratsioon (EPD)"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - Ympäristöseloste (EPD)"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Déclaration environnementale de produit (EPD)"
+    },
+    {
+      "@language": "ga",
+      "@value": "Croí-Ointeolaíocht DPP - Dearbhú Comhshaoil Táirge (EPD)"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Izjava o ekološkim svojstvima proizvoda (EPD)"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - Környezetvédelmi terméknyilatkozat (EPD)"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Dichiarazione ambientale di prodotto (EPD)"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - Poveikio aplinkai deklaracija (EPD)"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamatontoloģija - Produkta vides deklarācija (EPD)"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Dikjarazzjoni Ambjentali tal-Prodott (EPD)"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP-kernontologie - Milieuproductverklaring (EPD)"
+    },
+    {
+      "@language": "pl",
+      "@value": "Podstawowa ontologia DPP - Deklaracja środowiskowa produktu (EPD)"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia principal do DPP - Declaração Ambiental do Produto (EPD)"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Declarația de mediu a produsului (EPD)"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Environmentálne vyhlásenie o produkte (EPD)"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Okoljska deklaracija proizvoda (EPD)"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - Miljövarudeklaration (EPD)"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "A module that aggregates all components required for an Environmental Product Declaration (EPD), including metadata, lifecycle stages, and indicators."
+    },
+    {
+      "@language": "bg",
+      "@value": "Модул, който обединява всички компоненти, необходими за Екологична продуктова декларация (EPD), включително метаданни, етапи на жизнения цикъл и показатели."
+    },
+    {
+      "@language": "cs",
+      "@value": "Modul, který sdružuje všechny komponenty potřebné pro Environmentální prohlášení o produktu (EPD), včetně metadat, fází životního cyklu a indikátorů."
+    },
+    {
+      "@language": "da",
+      "@value": "Et modul, der samler alle komponenter, der kræves til en miljøvaredeklaration (EPD), herunder metadata, livscyklusfaser og indikatorer."
+    },
+    {
+      "@language": "de",
+      "@value": "Ein Modul, das alle für eine Umweltproduktdeklaration (EPD) erforderlichen Komponenten zusammenfasst, einschließlich Metadaten, Lebenszyklusphasen und Indikatoren."
+    },
+    {
+      "@language": "el",
+      "@value": "Μια ενότητα που συγκεντρώνει όλα τα στοιχεία που απαιτούνται για μια Περιβαλλοντική Δήλωση Προϊόντος (EPD), συμπεριλαμβανομένων μεταδεδομένων, σταδίων κύκλου ζωής και δεικτών."
+    },
+    {
+      "@language": "es",
+      "@value": "Un módulo que agrega todos los componentes requeridos para una Declaración Ambiental de Producto (EPD), incluyendo metadatos, etapas del ciclo de vida e indicadores."
+    },
+    {
+      "@language": "et",
+      "@value": "Moodul, mis koondab kõik keskkonnadeklaratsiooni (EPD) jaoks vajalikud komponendid, sealhulgas metaandmed, olelusringi etapid ja indikaatorid."
+    },
+    {
+      "@language": "fi",
+      "@value": "Moduuli, joka kokoaa kaikki ympäristöselosteen (EPD) edellyttämät osat, mukaan lukien metatiedot, elinkaaren vaiheet ja indikaattorit."
+    },
+    {
+      "@language": "fr",
+      "@value": "Un module qui regroupe tous les composants requis pour une déclaration environnementale de produit (EPD), y compris les métadonnées, les étapes du cycle de vie et les indicateurs."
+    },
+    {
+      "@language": "ga",
+      "@value": "Modúl a bhailíonn na comhpháirteanna go léir a theastaíonn le haghaidh Dearbhú Comhshaoil Táirge (EPD), lena n-áirítear meiteasonraí, céimeanna saolré, agus táscairí."
+    },
+    {
+      "@language": "hr",
+      "@value": "Modul koji objedinjuje sve komponente potrebne za Izjavu o ekološkim svojstvima proizvoda (EPD), uključujući metapodatke, faze životnog ciklusa i pokazatelje."
+    },
+    {
+      "@language": "hu",
+      "@value": "Egy modul, amely összesíti a környezetvédelmi terméknyilatkozathoz (EPD) szükséges összes komponenst, beleértve a metaadatokat, az életciklus szakaszait és a mutatókat."
+    },
+    {
+      "@language": "it",
+      "@value": "Un modulo che aggrega tutti i componenti richiesti per una Dichiarazione ambientale di prodotto (EPD), inclusi metadati, fasi del ciclo di vita e indicatori."
+    },
+    {
+      "@language": "lt",
+      "@value": "Modulis, sujungiantis visus komponentus, reikalingus poveikio aplinkai deklaracijai (EPD), įskaitant metaduomenis, gyvavimo ciklo etapus ir rodiklius."
+    },
+    {
+      "@language": "lv",
+      "@value": "Modulis, kas apkopo visus komponentus, kas nepieciešami produkta vides deklarācijai (EPD), tostarp metadatus, dzīves cikla posmus un rādītājus."
+    },
+    {
+      "@language": "mt",
+      "@value": "Modulu li jiġbor l-komponenti kollha meħtieġa għal Dikjarazzjoni Ambjentali tal-Prodott (EPD), inklużi metadejta, stadji taċ-ċiklu tal-ħajja, u indikaturi."
+    },
+    {
+      "@language": "nl",
+      "@value": "Een module die alle componenten samenvoegt die nodig zijn voor een milieuproductverklaring (EPD), inclusief metadata, levenscyclusfasen en indicatoren."
+    },
+    {
+      "@language": "pl",
+      "@value": "Moduł agregujący wszystkie komponenty wymagane dla deklaracji środowiskowej produktu (EPD), w tym metadane, fazy cyklu życia i wskaźniki."
+    },
+    {
+      "@language": "pt",
+      "@value": "Um módulo que agrega todos os componentes necessários para uma Declaração Ambiental do Produto (EPD), incluindo metadados, fases do ciclo de vida e indicadores."
+    },
+    {
+      "@language": "ro",
+      "@value": "Un modul care reunește toate componentele necesare pentru o Declarație de mediu a produsului (EPD), inclusiv metadate, etape ale ciclului de viață și indicatori."
+    },
+    {
+      "@language": "sk",
+      "@value": "Modul, ktorý združuje všetky komponenty potrebné pre environmentálne vyhlásenie o produkte (EPD), vrátane metadát, fáz životného cyklu a indikátorov."
+    },
+    {
+      "@language": "sl",
+      "@value": "Modul, ki združuje vse komponente, potrebne za okoljsko deklaracijo proizvoda (EPD), vključno z metapodatki, fazami življenjskega cikla in kazalniki."
+    },
+    {
+      "@language": "sv",
+      "@value": "En modul som samlar alla komponenter som krävs för en miljövarudeklaration (EPD), inklusive metadata, livscykelfaser och indikatorer."
+    }
+  ],
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDMetadata.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDIndicators.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDLifecycle.jsonld"
+    }
+  ],
+  "@graph": []
+}
