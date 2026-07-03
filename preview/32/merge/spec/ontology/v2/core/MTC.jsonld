@@ -1,0 +1,3973 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/core/MTC",
+  "@type": "owl:Ontology",
+  "owl:versionInfo": "v2",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+  },
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Material Test Certificate (MTC)"
+    },
+    {
+      "@language": "bg",
+      "@value": "DPP Основна онтология - Сертификат за изпитване на материали (MTC)"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Certifikát o zkoušce materiálu (MTC)"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Kerneontologi - Materialeprøvningscertifikat (MTC)"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - Werkstoffprüfzeugnis (MTC)"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική Οντολογία DPP - Πιστοποιητικό Δοκιμής Υλικών (MTC)"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología Central DPP - Certificado de Prueba de Material (MTC)"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP tuumontoloogia - materjali katsetunnistus (MTC)"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - Materiaalitestaustodistus (MTC)"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Certificat d'essai de matériaux (MTC)"
+    },
+    {
+      "@language": "ga",
+      "@value": "Ointeolaíocht Chroí DPP - Teastas Tástála Ábhair (MTC)"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP - Potvrda o ispitivanju materijala (MTC)"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP Alap Ontológia - Anyagvizsgálati Tanúsítvány (MTC)"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di Base DPP - Certificato di Prova dei Materiali (MTC)"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - Medžiagų bandymų sertifikatas (MTC)"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamata ontoloģija - Materiālu testēšanas sertifikāts (MTC)"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija DPP - Ċertifikat tat-Test tal-Materjal (MTC)"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP Kernontologie - Materiaaltestcertificaat (MTC)"
+    },
+    {
+      "@language": "pl",
+      "@value": "Podstawowa ontologia DPP - Certyfikat badania materiału (MTC)"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia Central DPP - Certificado de Teste de Material (MTC)"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologie de Bază DPP - Certificat de testare a materialelor (MTC)"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Certifikát o skúške materiálu (MTC)"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Potrdilo o preskusu materiala (MTC)"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP Kärnontologi - Materialprovningsintyg (MTC)"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the base class and properties for a Material Test Certificate (e.g., EN 10204)."
+    },
+    {
+      "@language": "bg",
+      "@value": "Дефинира базовия клас и свойствата за Сертификат за изпитване на материали (напр. EN 10204)."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje základní třídu a vlastnosti pro Certifikát o zkoušce materiálu (např. EN 10204)."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer basisklassen og egenskaber for et materialeprøvningscertifikat (f.eks. EN 10204)."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die Basisklasse und Eigenschaften für ein Werkstoffprüfzeugnis (z. B. EN 10204)."
+    },
+    {
+      "@language": "el",
+      "@value": "Ορίζει τη βασική κλάση και τις ιδιότητες για ένα Πιστοποιητικό Δοκιμής Υλικών (π.χ. EN 10204)."
+    },
+    {
+      "@language": "es",
+      "@value": "Define la clase base y las propiedades para un Certificado de Prueba de Material (por ejemplo, EN 10204)."
+    },
+    {
+      "@language": "et",
+      "@value": "Määrab materjali katsetunnistuse põhiklassi ja omadused (nt EN 10204)."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää perusluokan ja ominaisuudet materiaalitestaustodistukselle (esim. EN 10204)."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit la classe de base et les propriétés d'un certificat d'essai de matériaux (par ex. EN 10204)."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé an aicme bhunaidh agus airíonna do Theastas Tástála Ábhair (m.sh. EN 10204)."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira osnovnu klasu i svojstva za Potvrdu o ispitivanju materijala (npr. EN 10204)."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza az anyagvizsgálati tanúsítvány alaposztályát és tulajdonságait (pl. EN 10204)."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce la classe di base e le proprietà per un Certificato di Prova dei Materiali (es. EN 10204)."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia bazinę klasę ir savybes medžiagų bandymų sertifikatui (pvz., EN 10204)."
+    },
+    {
+      "@language": "lv",
+      "@value": "Definē pamatklasi un rekvizītus materiālu testēšanas sertifikātam (piemēram, EN 10204)."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-klassi bażi u l-proprjetajiet għal Ċertifikat tat-Test tal-Materjal (eż., EN 10204)."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de basisklasse en eigenschappen voor een materiaaltestcertificaat (bijv. EN 10204)."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje klasę bazową i właściwości Certyfikatu badania materiału (np. EN 10204)."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define a classe base e as propriedades para um Certificado de Teste de Material (por exemplo, EN 10204)."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește clasa de bază și proprietățile pentru un Certificat de testare a materialelor (de ex. EN 10204)."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje základnú triedu a vlastnosti pre Certifikát o skúške materiálu (napr. EN 10204)."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa osnovni razred in lastnosti za Potrdilo o preskusu materiala (npr. EN 10204)."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar basklassen och egenskaperna för ett materialprovningsintyg (t.ex. EN 10204)."
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:MaterialTestCertificate",
+      "@type": "rdfs:Class",
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A certificate detailing the results of tests performed on a material, such as those defined in EN 10204."
+        },
+        {
+          "@language": "bg",
+          "@value": "Сертификат, описващ подробно резултатите от тестовете, извършени върху материал, като тези, дефинирани в EN 10204."
+        },
+        {
+          "@language": "cs",
+          "@value": "Certifikát podrobně popisující výsledky zkoušek provedených na materiálu, jako jsou zkoušky definované v EN 10204."
+        },
+        {
+          "@language": "da",
+          "@value": "Et certifikat, der beskriver resultaterne af test udført på et materiale, såsom dem, der er defineret i EN 10204."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Zeugnis, in dem die Ergebnisse der an einem Material durchgeführten Prüfungen aufgeführt sind, wie sie beispielsweise in der EN 10204 definiert sind."
+        },
+        {
+          "@language": "el",
+          "@value": "Πιστοποιητικό που περιγράφει λεπτομερώς τα αποτελέσματα των δοκιμών που πραγματοποιήθηκαν σε ένα υλικό, όπως αυτά που ορίζονται στο EN 10204."
+        },
+        {
+          "@language": "es",
+          "@value": "Un certificado que detalla los resultados de las pruebas realizadas en un material, como las definidas en la norma EN 10204."
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaat, milles on esitatud materjali suhtes tehtud katsete tulemused, näiteks standardis EN 10204 määratletud katsete tulemused."
+        },
+        {
+          "@language": "fi",
+          "@value": "Todistus, jossa on yksityiskohtaiset tiedot materiaalille suoritetuista testeistä, kuten standardissa EN 10204 määritellyistä."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un certificat détaillant les résultats des essais effectués sur un matériau, tels que ceux définis dans la norme EN 10204."
+        },
+        {
+          "@language": "ga",
+          "@value": "Deimhniú ina sonraítear torthaí tástálacha a dhéantar ar ábhar, amhail na cinn a shainítear in EN 10204."
+        },
+        {
+          "@language": "hr",
+          "@value": "Potvrda u kojoj se navode rezultati ispitivanja provedenih na materijalu, kao što su oni definirani u EN 10204."
+        },
+        {
+          "@language": "hu",
+          "@value": "Olyan tanúsítvány, amely részletezi az anyagon elvégzett vizsgálatok eredményeit, mint például az EN 10204 szabványban meghatározottakat."
+        },
+        {
+          "@language": "it",
+          "@value": "Un certificato che descrive i risultati delle prove effettuate su un materiale, come quelle definite nella norma EN 10204."
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikatas, kuriame išsamiai aprašomi su medžiaga atliktų bandymų rezultatai, pvz., apibrėžti EN 10204."
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikāts, kurā sīki aprakstīti materiālam veikto testu rezultāti, piemēram, tie, kas noteikti EN 10204."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ċertifikat li jagħti dettalji dwar ir-riżultati tat-testijiet imwettqa fuq materjal, bħal dawk definiti f'EN 10204."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een certificaat met de resultaten van tests die op een materiaal zijn uitgevoerd, zoals gedefinieerd in EN 10204."
+        },
+        {
+          "@language": "pl",
+          "@value": "Certyfikat wyszczególniający wyniki badań przeprowadzonych na materiale, takich jak te zdefiniowane w EN 10204."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um certificado que detalha os resultados dos testes realizados num material, como os definidos na norma EN 10204."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un certificat care detaliază rezultatele testelor efectuate pe un material, cum ar fi cele definite în EN 10204."
+        },
+        {
+          "@language": "sk",
+          "@value": "Certifikát podrobne opisujúci výsledky skúšok vykonaných na materiáli, ako sú skúšky definované v EN 10204."
+        },
+        {
+          "@language": "sl",
+          "@value": "Potrdilo, v katerem so podrobno opisani rezultati preskusov, opravljenih na materialu, kot so tisti, opredeljeni v EN 10204."
+        },
+        {
+          "@language": "sv",
+          "@value": "Ett intyg som beskriver resultaten av tester som utförts på ett material, såsom de som definieras i EN 10204."
+        }
+      ],
+      "owl:equivalentClass": {
+        "@id": "schema:Certification"
+      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Material Test Certificate (MTC)"
+        },
+        {
+          "@language": "bg",
+          "@value": "Сертификат за изпитване на материали (MTC)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Certifikát o zkoušce materiálu (MTC)"
+        },
+        {
+          "@language": "da",
+          "@value": "Materialeprøvningscertifikat (MTC)"
+        },
+        {
+          "@language": "de",
+          "@value": "Werkstoffprüfzeugnis (MTC)"
+        },
+        {
+          "@language": "el",
+          "@value": "Πιστοποιητικό Δοκιμής Υλικών (MTC)"
+        },
+        {
+          "@language": "es",
+          "@value": "Certificado de Prueba de Material (MTC)"
+        },
+        {
+          "@language": "et",
+          "@value": "Materjali katsetunnistus (MTC)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalitestaustodistus (MTC)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Certificat d'essai de matériaux (MTC)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Teastas Tástála Ábhair (MTC)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Potvrda o ispitivanju materijala (MTC)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Anyagvizsgálati Tanúsítvány (MTC)"
+        },
+        {
+          "@language": "it",
+          "@value": "Certificato di Prova dei Materiali (MTC)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagų bandymų sertifikatas (MTC)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiālu testēšanas sertifikāts (MTC)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ċertifikat tat-Test tal-Materjal (MTC)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Materiaaltestcertificaat (MTC)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Certyfikat badania materiału (MTC)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Certificado de Teste de Material (MTC)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Certificat de testare a materialelor (MTC)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Certifikát o skúške materiálu (MTC)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Potrdilo o preskusu materiala (MTC)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Materialprovningsintyg (MTC)"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:mtc",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "The Material Test Certificate."
+        },
+        {
+          "@language": "bg",
+          "@value": "Сертификатът за изпитване на материали."
+        },
+        {
+          "@language": "cs",
+          "@value": "Certifikát o zkoušce materiálu."
+        },
+        {
+          "@language": "da",
+          "@value": "Materialeprøvningscertifikatet."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Werkstoffprüfzeugnis."
+        },
+        {
+          "@language": "el",
+          "@value": "Το Πιστοποιητικό Δοκιμής Υλικών."
+        },
+        {
+          "@language": "es",
+          "@value": "El Certificado de Prueba de Material."
+        },
+        {
+          "@language": "et",
+          "@value": "Materjali katsetunnistus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalitestaustodistus."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le certificat d'essai de matériaux."
+        },
+        {
+          "@language": "ga",
+          "@value": "An Teastas Tástála Ábhair."
+        },
+        {
+          "@language": "hr",
+          "@value": "Potvrda o ispitivanju materijala."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az anyagvizsgálati tanúsítvány."
+        },
+        {
+          "@language": "it",
+          "@value": "Il Certificato di Prova dei Materiali."
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagų bandymų sertifikatas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiālu testēšanas sertifikāts."
+        },
+        {
+          "@language": "mt",
+          "@value": "Iċ-Ċertifikat tat-Test tal-Materjal."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het materiaaltestcertificaat."
+        },
+        {
+          "@language": "pl",
+          "@value": "Certyfikat badania materiału."
+        },
+        {
+          "@language": "pt",
+          "@value": "O Certificado de Teste de Material."
+        },
+        {
+          "@language": "ro",
+          "@value": "Certificatul de testare a materialelor."
+        },
+        {
+          "@language": "sk",
+          "@value": "Certifikát o skúške materiálu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Potrdilo o preskusu materiala."
+        },
+        {
+          "@language": "sv",
+          "@value": "Materialprovningsintyget."
+        }
+      ],
+      "dppk:governedBy": "EN 10204",
+      "rdfs:range": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A link to the Material Test Certificate associated with this product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Връзка към Сертификата за изпитване на материали, свързан с този продукт."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na Certifikát o zkoušce materiálu spojený s tímto produktem."
+        },
+        {
+          "@language": "da",
+          "@value": "Et link til materialeprøvningscertifikatet tilknyttet dette produkt."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Link zum Werkstoffprüfzeugnis, das mit diesem Produkt verbunden ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνδεσμος προς το Πιστοποιητικό Δοκιμής Υλικών που σχετίζεται με αυτό το προϊόν."
+        },
+        {
+          "@language": "es",
+          "@value": "Un enlace al Certificado de Prueba de Material asociado con este producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Link selle tootega seotud materjali katsetunnistusele."
+        },
+        {
+          "@language": "fi",
+          "@value": "Linkki tähän tuotteeseen liittyvään materiaalitestaustodistukseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un lien vers le certificat d'essai de matériaux associé à ce produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nasc leis an Teastas Tástála Ábhair a bhaineann leis an táirge seo."
+        },
+        {
+          "@language": "hr",
+          "@value": "Poveznica na Potvrdu o ispitivanju materijala povezanu s ovim proizvodom."
+        },
+        {
+          "@language": "hu",
+          "@value": "Link a termékhez kapcsolódó anyagvizsgálati tanúsítványhoz."
+        },
+        {
+          "@language": "it",
+          "@value": "Un link al Certificato di Prova dei Materiali associato a questo prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į su šiuo produktu susijusį medžiagų bandymų sertifikatą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saite uz materiālu testēšanas sertifikātu, kas saistīts ar šo produktu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Link għaċ-Ċertifikat tat-Test tal-Materjal assoċjat ma' dan il-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een link naar het materiaaltestcertificaat dat aan dit product is gekoppeld."
+        },
+        {
+          "@language": "pl",
+          "@value": "Link do Certyfikatu badania materiału powiązanego z tym produktem."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma ligação para o Certificado de Teste de Material associado a este produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un link către Certificatul de testare a materialelor asociat cu acest produs."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na Certifikát o skúške materiálu spojený s týmto produktom."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezava do potrdila o preskusu materiala, povezanega s tem izdelkom."
+        },
+        {
+          "@language": "sv",
+          "@value": "En länk till materialprovningsintyget som är kopplat till denna produkt."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:sourceDocument",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Source Document"
+        },
+        {
+          "@language": "bg",
+          "@value": "Изходен документ"
+        },
+        {
+          "@language": "cs",
+          "@value": "Zdrojový dokument"
+        },
+        {
+          "@language": "da",
+          "@value": "Kildedokument"
+        },
+        {
+          "@language": "de",
+          "@value": "Quelldokument"
+        },
+        {
+          "@language": "el",
+          "@value": "Έγγραφο προέλευσης"
+        },
+        {
+          "@language": "es",
+          "@value": "Documento de origen"
+        },
+        {
+          "@language": "et",
+          "@value": "Lähtedokument"
+        },
+        {
+          "@language": "fi",
+          "@value": "Lähdeasiakirja"
+        },
+        {
+          "@language": "fr",
+          "@value": "Document source"
+        },
+        {
+          "@language": "ga",
+          "@value": "Bundoiciméad"
+        },
+        {
+          "@language": "hr",
+          "@value": "Izvorni dokument"
+        },
+        {
+          "@language": "hu",
+          "@value": "Forrásdokumentum"
+        },
+        {
+          "@language": "it",
+          "@value": "Documento sorgente"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šaltinio dokumentas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Avota dokuments"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dokument Sors"
+        },
+        {
+          "@language": "nl",
+          "@value": "Brondocument"
+        },
+        {
+          "@language": "pl",
+          "@value": "Dokument źródłowy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Documento de Origem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Document sursă"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zdrojový dokument"
+        },
+        {
+          "@language": "sl",
+          "@value": "Izvorni dokument"
+        },
+        {
+          "@language": "sv",
+          "@value": "Källdokument"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A reference to the original digital document or file representing this certificate."
+        },
+        {
+          "@language": "bg",
+          "@value": "Препратка към оригиналния цифров документ или файл, представляващ този сертификат."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na původní digitální dokument nebo soubor představující tento certifikát."
+        },
+        {
+          "@language": "da",
+          "@value": "En henvisning til det originale digitale dokument eller fil, der repræsenterer dette certifikat."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Verweis auf das ursprüngliche digitale Dokument oder die Datei, die dieses Zertifikat darstellt."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναφορά στο αρχικό ψηφιακό έγγραφο ή αρχείο που αντιπροσωπεύει αυτό το πιστοποιητικό."
+        },
+        {
+          "@language": "es",
+          "@value": "Una referencia al documento digital original o archivo que representa este certificado."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide algsele digitaalsele dokumendile või failile, mis esindab seda sertifikaati."
+        },
+        {
+          "@language": "fi",
+          "@value": "Viittaus alkuperäiseen digitaaliseen asiakirjaan tai tiedostoon, joka edustaa tätä todistusta."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une référence au document numérique ou fichier original représentant ce certificat."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tagairt don doiciméad nó don chomhad digiteach bunaidh a sheasann don deimhniú seo."
+        },
+        {
+          "@language": "hr",
+          "@value": "Referenca na izvorni digitalni dokument ili datoteku koja predstavlja ovu potvrdu."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás a tanúsítványt képviselő eredeti digitális dokumentumra vagy fájlra."
+        },
+        {
+          "@language": "it",
+          "@value": "Un riferimento al documento digitale originale o al file che rappresenta questo certificato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į originalų skaitmeninį dokumentą ar failą, atstovaujantį šiam sertifikatui."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atsauce uz oriģinālo digitālo dokumentu vai failu, kas pārstāv šo sertifikātu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Referenza għad-dokument diġitali oriġinali jew fajl li jirrappreżenta dan iċ-ċertifikat."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een verwijzing naar het originele digitale document of bestand dat dit certificaat vertegenwoordigt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Odniesienie do oryginalnego cyfrowego dokumentu lub pliku reprezentującego ten certyfikat."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma referência ao documento digital ou ficheiro original que representa este certificado."
+        },
+        {
+          "@language": "ro",
+          "@value": "O referință la documentul digital sau fișierul original care reprezintă acest certificat."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na pôvodný digitálny dokument alebo súbor predstavujúci tento certifikát."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sklic na izvirni digitalni dokument ali datoteko, ki predstavlja to potrdilo."
+        },
+        {
+          "@language": "sv",
+          "@value": "En hänvisning till det ursprungliga digitala dokumentet eller filen som representerar detta certifikat."
+        }
+      ],
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      }
+    },
+    {
+      "@id": "dppk:mtcNominalSize",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Nominal Size"
+        },
+        {
+          "@language": "bg",
+          "@value": "Номинален размер"
+        },
+        {
+          "@language": "cs",
+          "@value": "Jmenovitý rozměr"
+        },
+        {
+          "@language": "da",
+          "@value": "Nominel størrelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Nenngröße"
+        },
+        {
+          "@language": "el",
+          "@value": "Ονομαστικό μέγεθος"
+        },
+        {
+          "@language": "es",
+          "@value": "Tamaño nominal"
+        },
+        {
+          "@language": "et",
+          "@value": "Nimimõõt"
+        },
+        {
+          "@language": "fi",
+          "@value": "Nimelliskoko"
+        },
+        {
+          "@language": "fr",
+          "@value": "Taille nominale"
+        },
+        {
+          "@language": "ga",
+          "@value": "Méid Ainmniúil"
+        },
+        {
+          "@language": "hr",
+          "@value": "Nazivna veličina"
+        },
+        {
+          "@language": "hu",
+          "@value": "Névleges méret"
+        },
+        {
+          "@language": "it",
+          "@value": "Dimensione nominale"
+        },
+        {
+          "@language": "lt",
+          "@value": "Nominalusis dydis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Nominālais izmērs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Daqs Nominali"
+        },
+        {
+          "@language": "nl",
+          "@value": "Nominale grootte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rozmiar nominalny"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tamanho Nominal"
+        },
+        {
+          "@language": "ro",
+          "@value": "Dimensiune nominală"
+        },
+        {
+          "@language": "sk",
+          "@value": "Menovitý rozmer"
+        },
+        {
+          "@language": "sl",
+          "@value": "Nazivna velikost"
+        },
+        {
+          "@language": "sv",
+          "@value": "Nominell storlek"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Nominal dimensional size of the steel product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Номинален размер на стоманения продукт."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jmenovitá velikost ocelového výrobku."
+        },
+        {
+          "@language": "da",
+          "@value": "Nominel dimensionel størrelse af stålproduktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Nennabmessung des Stahlerzeugnisses."
+        },
+        {
+          "@language": "el",
+          "@value": "Ονομαστικό μέγεθος διαστάσεων του προϊόντος χάλυβα."
+        },
+        {
+          "@language": "es",
+          "@value": "Tamaño dimensional nominal del producto de acero."
+        },
+        {
+          "@language": "et",
+          "@value": "Terastoote nimimõõt."
+        },
+        {
+          "@language": "fi",
+          "@value": "Terästuotteen nimelliskoko."
+        },
+        {
+          "@language": "fr",
+          "@value": "Taille dimensionnelle nominale du produit en acier."
+        },
+        {
+          "@language": "ga",
+          "@value": "Méid toisí ainmniúil an táirge cruach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Nazivna dimenzionalna veličina čeličnog proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az acéltermék névleges mérete."
+        },
+        {
+          "@language": "it",
+          "@value": "Dimensione nominale del prodotto in acciaio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nominalus plieno gaminio dydis."
+        },
+        {
+          "@language": "lv",
+          "@value": "Tērauda izstrādājuma nominālais izmērs."
+        },
+        {
+          "@language": "mt",
+          "@value": "Daqs dimensjonali nominali tal-prodott tal-azzar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Nominale afmeting van het staalproduct."
+        },
+        {
+          "@language": "pl",
+          "@value": "Nominalny wymiar produktu stalowego."
+        },
+        {
+          "@language": "pt",
+          "@value": "Tamanho dimensional nominal do produto de aço."
+        },
+        {
+          "@language": "ro",
+          "@value": "Dimensiunea nominală a produsului din oțel."
+        },
+        {
+          "@language": "sk",
+          "@value": "Menovitá veľkosť oceľového výrobku."
+        },
+        {
+          "@language": "sl",
+          "@value": "Nazivna velikost jeklenega izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Nominell dimensionell storlek på stålprodukten."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "mm",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcWeightTolerance",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Weight Tolerance"
+        },
+        {
+          "@language": "bg",
+          "@value": "Допуск на теглото"
+        },
+        {
+          "@language": "cs",
+          "@value": "Tolerance hmotnosti"
+        },
+        {
+          "@language": "da",
+          "@value": "Vægttolerance"
+        },
+        {
+          "@language": "de",
+          "@value": "Gewichtstoleranz"
+        },
+        {
+          "@language": "el",
+          "@value": "Ανοχή βάρους"
+        },
+        {
+          "@language": "es",
+          "@value": "Tolerancia de peso"
+        },
+        {
+          "@language": "et",
+          "@value": "Kaalutolerants"
+        },
+        {
+          "@language": "fi",
+          "@value": "Painotoleranssi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Tolérance de poids"
+        },
+        {
+          "@language": "ga",
+          "@value": "Lamháltas Meáchain"
+        },
+        {
+          "@language": "hr",
+          "@value": "Tolerancija težine"
+        },
+        {
+          "@language": "hu",
+          "@value": "Súlytűrés"
+        },
+        {
+          "@language": "it",
+          "@value": "Tolleranza di peso"
+        },
+        {
+          "@language": "lt",
+          "@value": "Svorio tolerancija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Svara pielaide"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tolleranza tal-Piż"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gewichtstolerantie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Tolerancja wagi"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tolerância de Peso"
+        },
+        {
+          "@language": "ro",
+          "@value": "Toleranță la greutate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Tolerancia hmotnosti"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toleranca teže"
+        },
+        {
+          "@language": "sv",
+          "@value": "Vikttolerans"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Tolerated deviation in weight as per EN 10168."
+        },
+        {
+          "@language": "bg",
+          "@value": "Допустимо отклонение в теглото съгласно EN 10168."
+        },
+        {
+          "@language": "cs",
+          "@value": "Tolerovaná odchylka hmotnosti podle EN 10168."
+        },
+        {
+          "@language": "da",
+          "@value": "Toloreret afvigelse i vægt i henhold til EN 10168."
+        },
+        {
+          "@language": "de",
+          "@value": "Zulässige Gewichtsabweichung nach EN 10168."
+        },
+        {
+          "@language": "el",
+          "@value": "Ανεκτή απόκλιση βάρους σύμφωνα με το EN 10168."
+        },
+        {
+          "@language": "es",
+          "@value": "Desviación tolerada en peso según EN 10168."
+        },
+        {
+          "@language": "et",
+          "@value": "Lubatud kaaluhälve vastavalt standardile EN 10168."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sallittu painopoikkeama standardin EN 10168 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Écart de poids toléré selon la norme EN 10168."
+        },
+        {
+          "@language": "ga",
+          "@value": "Diall meáchain ceadaithe de réir EN 10168."
+        },
+        {
+          "@language": "hr",
+          "@value": "Dopušteno odstupanje u težini prema EN 10168."
+        },
+        {
+          "@language": "hu",
+          "@value": "Megengedett súlyeltérés az EN 10168 szabvány szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Deviazione di peso tollerata secondo EN 10168."
+        },
+        {
+          "@language": "lt",
+          "@value": "Leidžiamas svorio nuokrypis pagal EN 10168."
+        },
+        {
+          "@language": "lv",
+          "@value": "Pieļaujamā svara novirze saskaņā ar EN 10168."
+        },
+        {
+          "@language": "mt",
+          "@value": "Devjazzjoni ttollerata fil-piż skont EN 10168."
+        },
+        {
+          "@language": "nl",
+          "@value": "Toegestane gewichtsafwijking volgens EN 10168."
+        },
+        {
+          "@language": "pl",
+          "@value": "Dopuszczalne odchylenie masy zgodnie z EN 10168."
+        },
+        {
+          "@language": "pt",
+          "@value": "Desvio de peso tolerado de acordo com a EN 10168."
+        },
+        {
+          "@language": "ro",
+          "@value": "Abaterea tolerată a greutății conform EN 10168."
+        },
+        {
+          "@language": "sk",
+          "@value": "Tolerovaná odchýlka hmotnosti podľa EN 10168."
+        },
+        {
+          "@language": "sl",
+          "@value": "Dovoljeno odstopanje v teži v skladu z EN 10168."
+        },
+        {
+          "@language": "sv",
+          "@value": "Tillåten viktavvikelse enligt EN 10168."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcYieldStrength",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Yield Strength"
+        },
+        {
+          "@language": "bg",
+          "@value": "Граница на провлачване"
+        },
+        {
+          "@language": "cs",
+          "@value": "Mez kluzu"
+        },
+        {
+          "@language": "da",
+          "@value": "Flydespænding"
+        },
+        {
+          "@language": "de",
+          "@value": "Streckgrenze"
+        },
+        {
+          "@language": "el",
+          "@value": "Όριο διαρροής"
+        },
+        {
+          "@language": "es",
+          "@value": "Límite elástico"
+        },
+        {
+          "@language": "et",
+          "@value": "Voolavuspiir"
+        },
+        {
+          "@language": "fi",
+          "@value": "Myötölujuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Limite d'élasticité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Neart Toradh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Granica razvlačenja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Folyáshatár"
+        },
+        {
+          "@language": "it",
+          "@value": "Carico di snervamento"
+        },
+        {
+          "@language": "lt",
+          "@value": "Takumo riba"
+        },
+        {
+          "@language": "lv",
+          "@value": "Teces robeža"
+        },
+        {
+          "@language": "mt",
+          "@value": "Saħħa ta' Rendiment"
+        },
+        {
+          "@language": "nl",
+          "@value": "Vloeigrens"
+        },
+        {
+          "@language": "pl",
+          "@value": "Granica plastyczności"
+        },
+        {
+          "@language": "pt",
+          "@value": "Limite de Escoamento"
+        },
+        {
+          "@language": "ro",
+          "@value": "Limita de curgere"
+        },
+        {
+          "@language": "sk",
+          "@value": "Medza klzu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Meja tečenja"
+        },
+        {
+          "@language": "sv",
+          "@value": "Sträckgräns"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Yield strength parameter from the Mill Test Certificate."
+        },
+        {
+          "@language": "bg",
+          "@value": "Параметър за граница на провлачване от сертификата от завода."
+        },
+        {
+          "@language": "cs",
+          "@value": "Parametr meze kluzu z hutního atestu."
+        },
+        {
+          "@language": "da",
+          "@value": "Flydespændingsparameter fra materialeprøvningscertifikatet."
+        },
+        {
+          "@language": "de",
+          "@value": "Streckgrenzenparameter aus dem Werkstoffprüfzeugnis."
+        },
+        {
+          "@language": "el",
+          "@value": "Παράμετρος ορίου διαρροής από το πιστοποιητικό δοκιμής εργοστασίου."
+        },
+        {
+          "@language": "es",
+          "@value": "Parámetro de límite elástico del certificado de prueba del molino."
+        },
+        {
+          "@language": "et",
+          "@value": "Voolavuspiiri parameeter tehasesertifikaadist."
+        },
+        {
+          "@language": "fi",
+          "@value": "Myötölujuusparametri tehtaan testaustodistuksesta."
+        },
+        {
+          "@language": "fr",
+          "@value": "Paramètre de limite d'élasticité du certificat de réception de l'usine."
+        },
+        {
+          "@language": "ga",
+          "@value": "Paraiméadar neart toradh ón Teastas Tástála Muilinn."
+        },
+        {
+          "@language": "hr",
+          "@value": "Parametar granice razvlačenja iz tvorničke potvrde o ispitivanju."
+        },
+        {
+          "@language": "hu",
+          "@value": "Folyáshatár paraméter a műbizonylatból."
+        },
+        {
+          "@language": "it",
+          "@value": "Parametro del carico di snervamento dal certificato di prova del laminatoio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Takumo ribos parametras iš gamyklos bandymų sertifikato."
+        },
+        {
+          "@language": "lv",
+          "@value": "Teces robežas parametrs no rūpnīcas pārbaudes sertifikāta."
+        },
+        {
+          "@language": "mt",
+          "@value": "Parametru tas-saħħa tar-rendiment miċ-Ċertifikat tat-Test tal-Fabbrika."
+        },
+        {
+          "@language": "nl",
+          "@value": "Vloeigrensparameter uit het fabriekstestcertificaat."
+        },
+        {
+          "@language": "pl",
+          "@value": "Parametr granicy plastyczności z atestu hutniczego."
+        },
+        {
+          "@language": "pt",
+          "@value": "Parâmetro de limite de escoamento do certificado de teste do moinho."
+        },
+        {
+          "@language": "ro",
+          "@value": "Parametrul limitei de curgere din certificatul de testare al fabricii."
+        },
+        {
+          "@language": "sk",
+          "@value": "Parameter medze klzu z hutníckeho atestu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Parameter meje tečenja iz tovarniškega potrdila o preskusu."
+        },
+        {
+          "@language": "sv",
+          "@value": "Sträckgränsparameter från materialintyget."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "MPa",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcYieldStrengthRatio",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Yield Strength Ratio"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съотношение на границата на провлачване"
+        },
+        {
+          "@language": "cs",
+          "@value": "Poměr meze kluzu"
+        },
+        {
+          "@language": "da",
+          "@value": "Flydespændingsforhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Streckgrenzenverhältnis"
+        },
+        {
+          "@language": "el",
+          "@value": "Λόγος ορίου διαρροής"
+        },
+        {
+          "@language": "es",
+          "@value": "Relación de límite elástico"
+        },
+        {
+          "@language": "et",
+          "@value": "Voolavuspiiri suhe"
+        },
+        {
+          "@language": "fi",
+          "@value": "Myötölujuussuhde"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rapport de limite d'élasticité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cóimheas Neart Toradh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Omjer granice razvlačenja"
+        },
+        {
+          "@language": "hu",
+          "@value": "Folyáshatár arány"
+        },
+        {
+          "@language": "it",
+          "@value": "Rapporto di snervamento"
+        },
+        {
+          "@language": "lt",
+          "@value": "Takumo ribos santykis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Teces robežas attiecība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Proporzjon tas-Saħħa ta' Rendiment"
+        },
+        {
+          "@language": "nl",
+          "@value": "Vloeigrensverhouding"
+        },
+        {
+          "@language": "pl",
+          "@value": "Stosunek granicy plastyczności"
+        },
+        {
+          "@language": "pt",
+          "@value": "Relação de Limite de Escoamento"
+        },
+        {
+          "@language": "ro",
+          "@value": "Raportul limitei de curgere"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pomer medze klzu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Razmerje meje tečenja"
+        },
+        {
+          "@language": "sv",
+          "@value": "Sträckgränsförhållande"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Ratio of yield strength to tensile strength (Re/Rm)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Съотношение на границата на провлачване към якостта на опън (Re/Rm)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Poměr meze kluzu k mezi pevnosti v tahu (Re/Rm)."
+        },
+        {
+          "@language": "da",
+          "@value": "Forholdet mellem flydespænding og trækstyrke (Re/Rm)."
+        },
+        {
+          "@language": "de",
+          "@value": "Verhältnis von Streckgrenze zu Zugfestigkeit (Re/Rm)."
+        },
+        {
+          "@language": "el",
+          "@value": "Λόγος ορίου διαρροής προς αντοχή εφελκυσμού (Re/Rm)."
+        },
+        {
+          "@language": "es",
+          "@value": "Relación entre el límite elástico y la resistencia a la tracción (Re/Rm)."
+        },
+        {
+          "@language": "et",
+          "@value": "Voolavuspiiri ja tõmbetugevuse suhe (Re/Rm)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Myötölujuuden ja vetolujuuden suhde (Re/Rm)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Rapport entre la limite d'élasticité et la résistance à la traction (Re/Rm)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Cóimheas neart toradh le neart teanntachta (Re/Rm)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Omjer granice razvlačenja i vlačne čvrstoće (Re/Rm)."
+        },
+        {
+          "@language": "hu",
+          "@value": "A folyáshatár és a szakítószilárdság aránya (Re/Rm)."
+        },
+        {
+          "@language": "it",
+          "@value": "Rapporto tra limite di snervamento e resistenza alla trazione (Re/Rm)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Takumo ribos ir atsparumo tempimui santykis (Re/Rm)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Teces robežas un stiepes stiprības attiecība (Re/Rm)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Proporzjon tas-saħħa tar-rendiment għas-saħħa tat-tensjoni (Re/Rm)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Verhouding tussen vloeigrens en treksterkte (Re/Rm)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Stosunek granicy plastyczności do wytrzymałości na rozciąganie (Re/Rm)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relação entre o limite de escoamento e a resistência à tração (Re/Rm)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Raportul dintre limita de curgere și rezistența la tracțiune (Re/Rm)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Pomer medze klzu k medzi pevnosti v ťahu (Re/Rm)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Razmerje med mejo tečenja in natezno trdnostjo (Re/Rm)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Förhållandet mellan sträckgräns och draghållfasthet (Re/Rm)."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "unitless",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcElongation",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Elongation"
+        },
+        {
+          "@language": "bg",
+          "@value": "Удължение"
+        },
+        {
+          "@language": "cs",
+          "@value": "Tažnost"
+        },
+        {
+          "@language": "da",
+          "@value": "Forlængelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Bruchdehnung"
+        },
+        {
+          "@language": "el",
+          "@value": "Επιμήκυνση"
+        },
+        {
+          "@language": "es",
+          "@value": "Alargamiento"
+        },
+        {
+          "@language": "et",
+          "@value": "Pikenemine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Murtovenymä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Allongement"
+        },
+        {
+          "@language": "ga",
+          "@value": "Fadú"
+        },
+        {
+          "@language": "hr",
+          "@value": "Istezanje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Szakadási nyúlás"
+        },
+        {
+          "@language": "it",
+          "@value": "Allungamento"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pailgėjimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pagarinājums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Titwil"
+        },
+        {
+          "@language": "nl",
+          "@value": "Rek"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wydłużenie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Alongamento"
+        },
+        {
+          "@language": "ro",
+          "@value": "Alungire"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ťažnosť"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raztezek"
+        },
+        {
+          "@language": "sv",
+          "@value": "Förlängning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Percentage elongation at fracture."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентно удължение при разрушаване."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procentní prodloužení při přetržení."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentvis forlængelse ved brud."
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentuale Bruchdehnung."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό επιμήκυνσης κατά τη θραύση."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de alargamiento a la rotura."
+        },
+        {
+          "@language": "et",
+          "@value": "Pikenemisprotsent purunemisel."
+        },
+        {
+          "@language": "fi",
+          "@value": "Prosentuaalinen murtovenymä."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage d'allongement à la rupture."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán fadú ag bristeadh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak istezanja pri lomu."
+        },
+        {
+          "@language": "hu",
+          "@value": "Százalékos szakadási nyúlás."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di allungamento a rottura."
+        },
+        {
+          "@language": "lt",
+          "@value": "Procentinis pailgėjimas lūžio metu."
+        },
+        {
+          "@language": "lv",
+          "@value": "Pagarinājums procentos lūzuma brīdī."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal ta' titwil fil-ksur."
+        },
+        {
+          "@language": "nl",
+          "@value": "Percentage rek bij breuk."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wydłużenie procentowe przy zerwaniu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de alongamento na fratura."
+        },
+        {
+          "@language": "ro",
+          "@value": "Alungirea procentuală la rupere."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálne predĺženie pri zlome."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek raztezka pri pretrgu."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentuell förlängning vid brott."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcRelativeRibArea",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Relative Rib Area"
+        },
+        {
+          "@language": "bg",
+          "@value": "Относителна площ на ребрата"
+        },
+        {
+          "@language": "cs",
+          "@value": "Relativní plocha žeber"
+        },
+        {
+          "@language": "da",
+          "@value": "Relativt ribbeareal"
+        },
+        {
+          "@language": "de",
+          "@value": "Bezogene Rippenfläche"
+        },
+        {
+          "@language": "el",
+          "@value": "Σχετική επιφάνεια νευρώσεων"
+        },
+        {
+          "@language": "es",
+          "@value": "Área relativa de corrugas"
+        },
+        {
+          "@language": "et",
+          "@value": "Suhteline ribi pindala"
+        },
+        {
+          "@language": "fi",
+          "@value": "Suhteellinen harja-ala"
+        },
+        {
+          "@language": "fr",
+          "@value": "Surface relative des nervures"
+        },
+        {
+          "@language": "ga",
+          "@value": "Achar Coibhneasta na nEas"
+        },
+        {
+          "@language": "hr",
+          "@value": "Relativna površina rebara"
+        },
+        {
+          "@language": "hu",
+          "@value": "Relatív bordafelület"
+        },
+        {
+          "@language": "it",
+          "@value": "Area relativa della nervatura"
+        },
+        {
+          "@language": "lt",
+          "@value": "Santykinis rumbų plotas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Relatīvais rievu laukums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Erja Relattiva tal-Kustilja"
+        },
+        {
+          "@language": "nl",
+          "@value": "Relatief riboppervlak"
+        },
+        {
+          "@language": "pl",
+          "@value": "Względna powierzchnia żeber"
+        },
+        {
+          "@language": "pt",
+          "@value": "Área relativa de nervuras"
+        },
+        {
+          "@language": "ro",
+          "@value": "Aria relativă a nervurilor"
+        },
+        {
+          "@language": "sk",
+          "@value": "Relatívna plocha rebier"
+        },
+        {
+          "@language": "sl",
+          "@value": "Relativna površina reber"
+        },
+        {
+          "@language": "sv",
+          "@value": "Relativ kamarea"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relative rib area on reinforcing steel products."
+        },
+        {
+          "@language": "bg",
+          "@value": "Относителна площ на ребрата върху продукти от армировъчна стомана."
+        },
+        {
+          "@language": "cs",
+          "@value": "Relativní plocha žeber na výrobcích z betonářské oceli."
+        },
+        {
+          "@language": "da",
+          "@value": "Relativt ribbeareal på armeringsstålprodukter."
+        },
+        {
+          "@language": "de",
+          "@value": "Bezogene Rippenfläche bei Betonstahlprodukten."
+        },
+        {
+          "@language": "el",
+          "@value": "Σχετική επιφάνεια νευρώσεων σε προϊόντα χάλυβα οπλισμού."
+        },
+        {
+          "@language": "es",
+          "@value": "Área relativa de corrugas en productos de acero para armaduras."
+        },
+        {
+          "@language": "et",
+          "@value": "Sarrusterasetoodete suhteline ribi pindala."
+        },
+        {
+          "@language": "fi",
+          "@value": "Suhteellinen harja-ala betoniterästuotteissa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Surface relative des nervures sur les produits en acier d'armature."
+        },
+        {
+          "@language": "ga",
+          "@value": "Achar coibhneasta na neas ar tháirgí cruach athneartaithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Relativna površina rebara na proizvodima od armaturnog čelika."
+        },
+        {
+          "@language": "hu",
+          "@value": "Relatív bordafelület a betonacél termékeken."
+        },
+        {
+          "@language": "it",
+          "@value": "Area relativa della nervatura sui prodotti in acciaio per cemento armato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Santykinis rumbų plotas armatūros plieno gaminiuose."
+        },
+        {
+          "@language": "lv",
+          "@value": "Relatīvais rievu laukums stiegrojuma tērauda izstrādājumiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Erja relattiva tal-kustilja fuq prodotti tal-azzar tar-rinfurzar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Relatief riboppervlak op wapeningsstaalproducten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Względna powierzchnia żeber na wyrobach ze stali zbrojeniowej."
+        },
+        {
+          "@language": "pt",
+          "@value": "Área relativa de nervuras em produtos de aço para armaduras."
+        },
+        {
+          "@language": "ro",
+          "@value": "Aria relativă a nervurilor pe produsele din oțel beton."
+        },
+        {
+          "@language": "sk",
+          "@value": "Relatívna plocha rebier na výrobkoch z betonárskej ocele."
+        },
+        {
+          "@language": "sl",
+          "@value": "Relativna površina reber na izdelkih iz armaturnega jekla."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relativ kamarea på armeringsstålprodukter."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "unitless",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcCarbonContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Carbon Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на въглерод"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah uhlíku"
+        },
+        {
+          "@language": "da",
+          "@value": "Kulstofindhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Kohlenstoffgehalt"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα σε άνθρακα"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de carbono"
+        },
+        {
+          "@language": "et",
+          "@value": "Süsinikusisaldus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiilipitoisuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Teneur en carbone"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cion Carbóin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj ugljika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Széntartalom"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di carbonio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Anglies kiekis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Oglekļa saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' Karbonju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Koolstofgehalte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość węgla"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de Carbono"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de carbon"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah uhlíka"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost ogljika"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kolhalt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Carbon (C) content percentage defined in the MTC."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентно съдържание на въглерод (C), дефинирано в MTC."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procentní obsah uhlíku (C) definovaný v MTC."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentvis indhold af kulstof (C) defineret i MTC."
+        },
+        {
+          "@language": "de",
+          "@value": "Im Werkstoffprüfzeugnis festgelegter prozentualer Kohlenstoffgehalt (C)."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό περιεκτικότητας σε άνθρακα (C) που ορίζεται στο MTC."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de contenido de carbono (C) definido en el MTC."
+        },
+        {
+          "@language": "et",
+          "@value": "MTC-s määratletud süsiniku (C) sisalduse protsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "MTC:ssä määritelty hiilen (C) pitoisuusprosentti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de teneur en carbone (C) défini dans le MTC."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán cion carbóin (C) atá sainithe sa MTC."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak sadržaja ugljika (C) definiran u MTC-u."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az MTC-ben meghatározott szén (C) tartalom százalékban."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di contenuto di carbonio (C) definita nel MTC."
+        },
+        {
+          "@language": "lt",
+          "@value": "Anglies (C) kiekio procentas, apibrėžtas MTC."
+        },
+        {
+          "@language": "lv",
+          "@value": "Oglekļa (C) satura procentuālais daudzums, kas noteikts MTC."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal tal-kontenut ta' karbonju (C) definit fl-MTC."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koolstofgehalte (C) in procenten zoals gedefinieerd in het MTC."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość węgla (C) określona w MTC."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de teor de carbono (C) definida no MTC."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentajul conținutului de carbon (C) definit în MTC."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálny obsah uhlíka (C) definovaný v MTC."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek vsebnosti ogljika (C), določen v MTC."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentuell kolhalt (C) definierad i MTC."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcPhosphorusContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Phosphorus Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на фосфор"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah fosforu"
+        },
+        {
+          "@language": "da",
+          "@value": "Fosforindhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Phosphorgehalt"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα σε φώσφορο"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de fósforo"
+        },
+        {
+          "@language": "et",
+          "@value": "Fosforisisaldus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Fosforipitoisuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Teneur en phosphore"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cion Fosfair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj fosfora"
+        },
+        {
+          "@language": "hu",
+          "@value": "Foszfortartalom"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di fosforo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Fosforo kiekis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Fosfora saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' Fosfru"
+        },
+        {
+          "@language": "nl",
+          "@value": "Fosforgehalte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość fosforu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de Fósforo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de fosfor"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah fosforu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost fosforja"
+        },
+        {
+          "@language": "sv",
+          "@value": "Fosforhalt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Phosphorus (P) content percentage."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентно съдържание на фосфор (P)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procentní obsah fosforu (P)."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentvis indhold af fosfor (P)."
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentualer Phosphorgehalt (P)."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό περιεκτικότητας σε φώσφορο (P)."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de contenido de fósforo (P)."
+        },
+        {
+          "@language": "et",
+          "@value": "Fosfori (P) sisalduse protsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Fosforin (P) pitoisuusprosentti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de teneur en phosphore (P)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán cion fosfair (P)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak sadržaja fosfora (P)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Foszfor (P) tartalom százalékban."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di contenuto di fosforo (P)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Fosforo (P) kiekio procentas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Fosfora (P) satura procentuālais daudzums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal tal-kontenut ta' fosfru (P)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Fosforgehalte (P) in procenten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość fosforu (P)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de teor de fósforo (P)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentajul conținutului de fosfor (P)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálny obsah fosforu (P)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek vsebnosti fosforja (P)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentuell fosforhalt (P)."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcSulfurContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Sulfur Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на сяра"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah síry"
+        },
+        {
+          "@language": "da",
+          "@value": "Svovlindhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Schwefelgehalt"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα σε θείο"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de azufre"
+        },
+        {
+          "@language": "et",
+          "@value": "Väävlisisaldus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Rikkipitoisuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Teneur en soufre"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cion Sulfair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj sumpora"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kéntartalom"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di zolfo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sieros kiekis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sēra saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' Kubrit"
+        },
+        {
+          "@language": "nl",
+          "@value": "Zwavelgehalte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość siarki"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de Enxofre"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de sulf"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah síry"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost žvepla"
+        },
+        {
+          "@language": "sv",
+          "@value": "Svavelhalt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Sulfur (S) content percentage."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентно съдържание на сяра (S)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procentní obsah síry (S)."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentvis indhold af svovl (S)."
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentualer Schwefelgehalt (S)."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό περιεκτικότητας σε θείο (S)."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de contenido de azufre (S)."
+        },
+        {
+          "@language": "et",
+          "@value": "Väävli (S) sisalduse protsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Rikin (S) pitoisuusprosentti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de teneur en soufre (S)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán cion sulfair (S)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak sadržaja sumpora (S)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kén (S) tartalom százalékban."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di contenuto di zolfo (S)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Sieros (S) kiekio procentas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Sēra (S) satura procentuālais daudzums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal tal-kontenut ta' kubrit (S)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Zwavelgehalte (S) in procenten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość siarki (S)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de teor de enxofre (S)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentajul conținutului de sulf (S)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálny obsah síry (S)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek vsebnosti žvepla (S)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentuell svavelhalt (S)."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcCopperContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Copper Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на мед"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah mědi"
+        },
+        {
+          "@language": "da",
+          "@value": "Kobberindhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Kupfergehalt"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα σε χαλκό"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de cobre"
+        },
+        {
+          "@language": "et",
+          "@value": "Vasesisaldus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kuparipitoisuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Teneur en cuivre"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cion Copair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj bakra"
+        },
+        {
+          "@language": "hu",
+          "@value": "Réztartalom"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di rame"
+        },
+        {
+          "@language": "lt",
+          "@value": "Vario kiekis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Vara saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' Ram"
+        },
+        {
+          "@language": "nl",
+          "@value": "Kopergehalte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość miedzi"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de Cobre"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de cupru"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah medi"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost bakra"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kopparhalt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Copper (Cu) content percentage."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентно съдържание на мед (Cu)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procentní obsah mědi (Cu)."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentvis indhold af kobber (Cu)."
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentualer Kupfergehalt (Cu)."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό περιεκτικότητας σε χαλκό (Cu)."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de contenido de cobre (Cu)."
+        },
+        {
+          "@language": "et",
+          "@value": "Vase (Cu) sisalduse protsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Kuparin (Cu) pitoisuusprosentti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de teneur en cuivre (Cu)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán cion copair (Cu)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak sadržaja bakra (Cu)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Réz (Cu) tartalom százalékban."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di contenuto di rame (Cu)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Vario (Cu) kiekio procentas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Vara (Cu) satura procentuālais daudzums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal tal-kontenut ta' ram (Cu)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Kopergehalte (Cu) in procenten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość miedzi (Cu)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de teor de cobre (Cu)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentajul conținutului de cupru (Cu)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálny obsah medi (Cu)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek vsebnosti bakra (Cu)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentuell kopparhalt (Cu)."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcNitrogenContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Nitrogen Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на азот"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah dusíku"
+        },
+        {
+          "@language": "da",
+          "@value": "Kvælstofindhold"
+        },
+        {
+          "@language": "de",
+          "@value": "Stickstoffgehalt"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα σε άζωτο"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de nitrógeno"
+        },
+        {
+          "@language": "et",
+          "@value": "Lämmastikusisaldus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Typpipitoisuus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Teneur en azote"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cion Nítrigine"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj dušika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nitrogéntartalom"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di azoto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Azoto kiekis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Slāpekļa saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' Nitroġenu"
+        },
+        {
+          "@language": "nl",
+          "@value": "Stikstofgehalte"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość azotu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de Nitrogénio"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de azot"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah dusíka"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost dušika"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kvävehalt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Nitrogen (N) content percentage."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентно съдържание на азот (N)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procentní obsah dusíku (N)."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentvis indhold af kvælstof (N)."
+        },
+        {
+          "@language": "de",
+          "@value": "Prozentualer Stickstoffgehalt (N)."
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσοστό περιεκτικότητας σε άζωτο (N)."
+        },
+        {
+          "@language": "es",
+          "@value": "Porcentaje de contenido de nitrógeno (N)."
+        },
+        {
+          "@language": "et",
+          "@value": "Lämmastiku (N) sisalduse protsent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Typen (N) pitoisuusprosentti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Pourcentage de teneur en azote (N)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán cion nítrigine (N)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak sadržaja dušika (N)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Nitrogén (N) tartalom százalékban."
+        },
+        {
+          "@language": "it",
+          "@value": "Percentuale di contenuto di azoto (N)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Azoto (N) kiekio procentas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Slāpekļa (N) satura procentuālais daudzums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Perċentwal tal-kontenut ta' nitroġenu (N)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Stikstofgehalte (N) in procenten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość azotu (N)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Percentagem de teor de nitrogénio (N)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentajul conținutului de azot (N)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálny obsah dusíka (N)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek vsebnosti dušika (N)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentuell kvävehalt (N)."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcCarbonEquivalent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Carbon Equivalent"
+        },
+        {
+          "@language": "bg",
+          "@value": "Въглероден еквивалент"
+        },
+        {
+          "@language": "cs",
+          "@value": "Uhlíkový ekvivalent"
+        },
+        {
+          "@language": "da",
+          "@value": "Kulstofækvivalent"
+        },
+        {
+          "@language": "de",
+          "@value": "Kohlenstoffäquivalent"
+        },
+        {
+          "@language": "el",
+          "@value": "Ισοδύναμο άνθρακα"
+        },
+        {
+          "@language": "es",
+          "@value": "Carbono equivalente"
+        },
+        {
+          "@language": "et",
+          "@value": "Süsinikekvivalent"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiiliekvivalentti"
+        },
+        {
+          "@language": "fr",
+          "@value": "Carbone équivalent"
+        },
+        {
+          "@language": "ga",
+          "@value": "Coibhéis Charbóin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ekvivalent ugljika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Szénegyenérték"
+        },
+        {
+          "@language": "it",
+          "@value": "Carbonio equivalente"
+        },
+        {
+          "@language": "lt",
+          "@value": "Anglies ekvivalentas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Oglekļa ekvivalents"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ekwivalenti tal-Karbonju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Koolstofequivalent"
+        },
+        {
+          "@language": "pl",
+          "@value": "Równoważnik węgla"
+        },
+        {
+          "@language": "pt",
+          "@value": "Carbono Equivalente"
+        },
+        {
+          "@language": "ro",
+          "@value": "Carbon echivalent"
+        },
+        {
+          "@language": "sk",
+          "@value": "Uhlíkový ekvivalent"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ogljikov ekvivalent"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kolekvivalent"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Carbon equivalent value (CEV) for assessing weldability."
+        },
+        {
+          "@language": "bg",
+          "@value": "Стойност на въглеродния еквивалент (CEV) за оценка на заваряемостта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Hodnota uhlíkového ekvivalentu (CEV) pro posouzení svařitelnosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Kulstofækvivalentværdi (CEV) til vurdering af svejsbarhed."
+        },
+        {
+          "@language": "de",
+          "@value": "Kohlenstoffäquivalentwert (CEV) zur Beurteilung der Schweißbarkeit."
+        },
+        {
+          "@language": "el",
+          "@value": "Τιμή ισοδύναμου άνθρακα (CEV) για την αξιολόγηση της συγκολλησιμότητας."
+        },
+        {
+          "@language": "es",
+          "@value": "Valor de carbono equivalente (CEV) para evaluar la soldabilidad."
+        },
+        {
+          "@language": "et",
+          "@value": "Süsinikekvivalendi väärtus (CEV) keevitatavuse hindamiseks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiiliekvivalenttiarvo (CEV) hitsattavuuden arvioimiseksi."
+        },
+        {
+          "@language": "fr",
+          "@value": "Valeur en carbone équivalent (CEV) pour l'évaluation de la soudabilité."
+        },
+        {
+          "@language": "ga",
+          "@value": "Luach coibhéise carbóin (CEV) chun táthaitheacht a mheas."
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrijednost ekvivalenta ugljika (CEV) za procjenu zavarljivosti."
+        },
+        {
+          "@language": "hu",
+          "@value": "Szénegyenérték (CEV) a hegeszthetőség értékeléséhez."
+        },
+        {
+          "@language": "it",
+          "@value": "Valore di carbonio equivalente (CEV) per valutare la saldabilità."
+        },
+        {
+          "@language": "lt",
+          "@value": "Anglies ekvivalento vertė (CEV) suvirinamumui vertinti."
+        },
+        {
+          "@language": "lv",
+          "@value": "Oglekļa ekvivalenta vērtība (CEV) metināmības novērtēšanai."
+        },
+        {
+          "@language": "mt",
+          "@value": "Valur tal-ekwivalenti tal-karbonju (CEV) biex tiġi vvalutata l-iwweldjabbiltà."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koolstofequivalentwaarde (CEV) voor het beoordelen van de lasbaarheid."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wartość równoważnika węgla (CEV) do oceny spawalności."
+        },
+        {
+          "@language": "pt",
+          "@value": "Valor de carbono equivalente (CEV) para avaliar a soldabilidade."
+        },
+        {
+          "@language": "ro",
+          "@value": "Valoarea carbonului echivalent (CEV) pentru evaluarea sudabilității."
+        },
+        {
+          "@language": "sk",
+          "@value": "Hodnota uhlíkového ekvivalentu (CEV) na posúdenie zvariteľnosti."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrednost ogljikovega ekvivalenta (CEV) za presojo varivosti."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kolekvivalentvärde (CEV) för bedömning av svetsbarhet."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "%",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcSteelProcess",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Steel Process"
+        },
+        {
+          "@language": "bg",
+          "@value": "Процес на производство на стомана"
+        },
+        {
+          "@language": "cs",
+          "@value": "Proces výroby oceli"
+        },
+        {
+          "@language": "da",
+          "@value": "Stålproces"
+        },
+        {
+          "@language": "de",
+          "@value": "Stahlherstellungsprozess"
+        },
+        {
+          "@language": "el",
+          "@value": "Διαδικασία χάλυβα"
+        },
+        {
+          "@language": "es",
+          "@value": "Proceso de acero"
+        },
+        {
+          "@language": "et",
+          "@value": "Terasprotsess"
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräsprosessi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Processus d'acier"
+        },
+        {
+          "@language": "ga",
+          "@value": "Próiseas Cruach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Proces proizvodnje čelika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Acélgyártási folyamat"
+        },
+        {
+          "@language": "it",
+          "@value": "Processo di produzione dell'acciaio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Plieno gamybos procesas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tērauda ražošanas process"
+        },
+        {
+          "@language": "mt",
+          "@value": "Proċess tal-Azzar"
+        },
+        {
+          "@language": "nl",
+          "@value": "Staalproces"
+        },
+        {
+          "@language": "pl",
+          "@value": "Proces produkcji stali"
+        },
+        {
+          "@language": "pt",
+          "@value": "Processo de Aço"
+        },
+        {
+          "@language": "ro",
+          "@value": "Proces de producție a oțelului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Proces výroby ocele"
+        },
+        {
+          "@language": "sl",
+          "@value": "Postopek izdelave jekla"
+        },
+        {
+          "@language": "sv",
+          "@value": "Stålprocess"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Details of the steelmaking or casting process."
+        },
+        {
+          "@language": "bg",
+          "@value": "Подробности за процеса на производство на стомана или леене."
+        },
+        {
+          "@language": "cs",
+          "@value": "Podrobnosti o procesu výroby oceli nebo odlévání."
+        },
+        {
+          "@language": "da",
+          "@value": "Detaljer om stålfremstillings- eller støbeprocessen."
+        },
+        {
+          "@language": "de",
+          "@value": "Einzelheiten zum Stahlherstellungs- oder Gießprozess."
+        },
+        {
+          "@language": "el",
+          "@value": "Λεπτομέρειες για τη διαδικασία χαλυβουργίας ή χύτευσης."
+        },
+        {
+          "@language": "es",
+          "@value": "Detalles del proceso de fabricación de acero o fundición."
+        },
+        {
+          "@language": "et",
+          "@value": "Terase tootmise või valamisprotsessi üksikasjad."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tietoja teräksenvalmistus- tai valuprosessista."
+        },
+        {
+          "@language": "fr",
+          "@value": "Détails du processus d'élaboration ou de coulée de l'acier."
+        },
+        {
+          "@language": "ga",
+          "@value": "Sonraí maidir leis an bpróiseas déanta cruach nó réitigh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Pojedinosti o procesu proizvodnje čelika ili lijevanja."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az acélgyártási vagy öntési folyamat részletei."
+        },
+        {
+          "@language": "it",
+          "@value": "Dettagli del processo di produzione dell'acciaio o di colata."
+        },
+        {
+          "@language": "lt",
+          "@value": "Informacija apie plieno gamybos arba liejimo procesą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Sīkāka informācija par tērauda ražošanas vai liešanas procesu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Dettalji tal-proċess tal-produzzjoni tal-azzar jew tal-ikkastjar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Details van het staalproductie- of gietproces."
+        },
+        {
+          "@language": "pl",
+          "@value": "Szczegóły procesu produkcji stali lub odlewania."
+        },
+        {
+          "@language": "pt",
+          "@value": "Detalhes do processo de fabrico de aço ou fundição."
+        },
+        {
+          "@language": "ro",
+          "@value": "Detalii privind procesul de producție a oțelului sau de turnare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Podrobnosti o procese výroby ocele alebo odlievania."
+        },
+        {
+          "@language": "sl",
+          "@value": "Podrobnosti o postopku izdelave jekla ali litja."
+        },
+        {
+          "@language": "sv",
+          "@value": "Detaljer om ståltillverknings- eller gjutningsprocessen."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcFinishing",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Finishing"
+        },
+        {
+          "@language": "bg",
+          "@value": "Довършителни работи"
+        },
+        {
+          "@language": "cs",
+          "@value": "Povrchová úprava"
+        },
+        {
+          "@language": "da",
+          "@value": "Færdigbehandling"
+        },
+        {
+          "@language": "de",
+          "@value": "Oberflächenausführung"
+        },
+        {
+          "@language": "el",
+          "@value": "Φινίρισμα"
+        },
+        {
+          "@language": "es",
+          "@value": "Acabado"
+        },
+        {
+          "@language": "et",
+          "@value": "Viimistlus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Viimeistely"
+        },
+        {
+          "@language": "fr",
+          "@value": "Finition"
+        },
+        {
+          "@language": "ga",
+          "@value": "Bailchríoch"
+        },
+        {
+          "@language": "hr",
+          "@value": "Završna obrada"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kikészítés"
+        },
+        {
+          "@language": "it",
+          "@value": "Finitura"
+        },
+        {
+          "@language": "lt",
+          "@value": "Apdaila"
+        },
+        {
+          "@language": "lv",
+          "@value": "Apdare"
+        },
+        {
+          "@language": "mt",
+          "@value": "Irfinar"
+        },
+        {
+          "@language": "nl",
+          "@value": "Afwerking"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wykończenie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Acabamento"
+        },
+        {
+          "@language": "ro",
+          "@value": "Finisare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Povrchová úprava"
+        },
+        {
+          "@language": "sl",
+          "@value": "Končna obdelava"
+        },
+        {
+          "@language": "sv",
+          "@value": "Ytbehandling"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Information regarding the surface finish or condition."
+        },
+        {
+          "@language": "bg",
+          "@value": "Информация относно повърхностното покритие или състояние."
+        },
+        {
+          "@language": "cs",
+          "@value": "Informace týkající se povrchové úpravy nebo stavu."
+        },
+        {
+          "@language": "da",
+          "@value": "Information vedrørende overfladefinish eller tilstand."
+        },
+        {
+          "@language": "de",
+          "@value": "Informationen zur Oberflächenbeschaffenheit oder zum Zustand."
+        },
+        {
+          "@language": "el",
+          "@value": "Πληροφορίες σχετικά με το φινίρισμα ή την κατάσταση της επιφάνειας."
+        },
+        {
+          "@language": "es",
+          "@value": "Información sobre el acabado o estado de la superficie."
+        },
+        {
+          "@language": "et",
+          "@value": "Teave pinnaviimistluse või seisukorra kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tietoja pinnan viimeistelystä tai kunnosta."
+        },
+        {
+          "@language": "fr",
+          "@value": "Informations concernant la finition ou l'état de la surface."
+        },
+        {
+          "@language": "ga",
+          "@value": "Faisnéis maidir le bailchríoch nó riocht an dromchla."
+        },
+        {
+          "@language": "hr",
+          "@value": "Informacije o završnoj obradi ili stanju površine."
+        },
+        {
+          "@language": "hu",
+          "@value": "A felületkezelésre vagy állapotra vonatkozó információk."
+        },
+        {
+          "@language": "it",
+          "@value": "Informazioni riguardanti la finitura superficiale o le condizioni."
+        },
+        {
+          "@language": "lt",
+          "@value": "Informacija apie paviršiaus apdailą ar būklę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Informācija par virsmas apdari vai stāvokli."
+        },
+        {
+          "@language": "mt",
+          "@value": "Informazzjoni rigward il-finitura tal-wiċċ jew il-kundizzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Informatie over de oppervlakteafwerking of -conditie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Informacje dotyczące wykończenia powierzchni lub stanu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Informação relativa ao acabamento ou estado da superfície."
+        },
+        {
+          "@language": "ro",
+          "@value": "Informații privind finisajul sau starea suprafeței."
+        },
+        {
+          "@language": "sk",
+          "@value": "Informácie týkajúce sa povrchovej úpravy alebo stavu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Informacije o končni obdelavi ali stanju površine."
+        },
+        {
+          "@language": "sv",
+          "@value": "Information om ytfinishen eller tillståndet."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:string",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    },
+    {
+      "@id": "dppk:mtcRadiometricControl",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Radiometric Control"
+        },
+        {
+          "@language": "bg",
+          "@value": "Радиометричен контрол"
+        },
+        {
+          "@language": "cs",
+          "@value": "Radiometrická kontrola"
+        },
+        {
+          "@language": "da",
+          "@value": "Radiometrisk kontrol"
+        },
+        {
+          "@language": "de",
+          "@value": "Radiometrische Kontrolle"
+        },
+        {
+          "@language": "el",
+          "@value": "Ραδιομετρικός έλεγχος"
+        },
+        {
+          "@language": "es",
+          "@value": "Control radiométrico"
+        },
+        {
+          "@language": "et",
+          "@value": "Radiomeetriline kontroll"
+        },
+        {
+          "@language": "fi",
+          "@value": "Radiometrinen valvonta"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contrôle radiométrique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Rialú Raidioméadrach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Radiometrijska kontrola"
+        },
+        {
+          "@language": "hu",
+          "@value": "Radiometrikus ellenőrzés"
+        },
+        {
+          "@language": "it",
+          "@value": "Controllo radiometrico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Radiometrinė kontrolė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Radiometriskā kontrole"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontroll Radjometriku"
+        },
+        {
+          "@language": "nl",
+          "@value": "Radiometrische controle"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kontrola radiometryczna"
+        },
+        {
+          "@language": "pt",
+          "@value": "Controlo Radiométrico"
+        },
+        {
+          "@language": "ro",
+          "@value": "Control radiometric"
+        },
+        {
+          "@language": "sk",
+          "@value": "Rádiometrická kontrola"
+        },
+        {
+          "@language": "sl",
+          "@value": "Radiometrična kontrola"
+        },
+        {
+          "@language": "sv",
+          "@value": "Radiometrisk kontroll"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Values associated with radiometric testing of the steel."
+        },
+        {
+          "@language": "bg",
+          "@value": "Стойности, свързани с радиометричното изпитване на стоманата."
+        },
+        {
+          "@language": "cs",
+          "@value": "Hodnoty spojené s radiometrickým testováním oceli."
+        },
+        {
+          "@language": "da",
+          "@value": "Værdier forbundet med radiometrisk testning af stålet."
+        },
+        {
+          "@language": "de",
+          "@value": "Mit der radiometrischen Prüfung des Stahls verbundene Werte."
+        },
+        {
+          "@language": "el",
+          "@value": "Τιμές που σχετίζονται με τις ραδιομετρικές δοκιμές του χάλυβα."
+        },
+        {
+          "@language": "es",
+          "@value": "Valores asociados con las pruebas radiométricas del acero."
+        },
+        {
+          "@language": "et",
+          "@value": "Terase radiomeetrilise testimisega seotud väärtused."
+        },
+        {
+          "@language": "fi",
+          "@value": "Teräksen radiometriseen testaukseen liittyvät arvot."
+        },
+        {
+          "@language": "fr",
+          "@value": "Valeurs associées aux essais radiométriques de l'acier."
+        },
+        {
+          "@language": "ga",
+          "@value": "Luachanna a bhaineann le tástáil raidioméadrach na cruach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrijednosti povezane s radiometrijskim ispitivanjem čelika."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az acél radiometrikus vizsgálatához kapcsolódó értékek."
+        },
+        {
+          "@language": "it",
+          "@value": "Valori associati alle prove radiometriche dell'acciaio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Vertės, susijusios su radiometriniu plieno testavimu."
+        },
+        {
+          "@language": "lv",
+          "@value": "Vērtības, kas saistītas ar tērauda radiometrisko testēšanu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Valuri assoċjati mal-ittestjar radjometriku tal-azzar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Waarden gerelateerd aan radiometrische tests van het staal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wartości związane z badaniami radiometrycznymi stali."
+        },
+        {
+          "@language": "pt",
+          "@value": "Valores associados aos testes radiométricos do aço."
+        },
+        {
+          "@language": "ro",
+          "@value": "Valori asociate testării radiometrice a oțelului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Hodnoty spojené s rádiometrickým testovaním ocele."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrednosti, povezane z radiometričnim preskušanjem jekla."
+        },
+        {
+          "@language": "sv",
+          "@value": "Värden i samband med radiometrisk provning av stålet."
+        }
+      ],
+      "dppk:governedBy": "EN 10168",
+      "dppk:unit": "Bq/g",
+      "rdfs:domain": {
+        "@id": "dppk:MaterialTestCertificate"
+      },
+      "rdfs:range": "xsd:double",
+      "dppk:visibility": {
+        "@id": "dppk:LegitimateInterest"
+      },
+      "rdfs:term_status": "unstable"
+    }
+  ]
+}

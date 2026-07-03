@@ -1,0 +1,54 @@
+{
+  "@context": [
+    "https://gs1-epcis-reg.org/rail/voc/data/gs1RailVoc.jsonld"
+  ],
+  "type": "EPCISDocument",
+  "schemaVersion": "2.0",
+  "creationDate": "2025-10-27T18:34:21.05Z",
+  "epcisBody": {
+    "eventList": [
+      {
+        "type": "ObjectEvent",
+        "eventTime": "2025-10-27T18:34:21.05+01:00",
+        "eventTimeZoneOffset": "+01:00",
+        "epcList": [
+          "https://id.gs1.org/01/07649997749702/10/4711"
+        ],
+        "action": "ADD",
+        "bizStep": "commissioning",
+        "readPoint": {
+          "id": "https://id.gs1.org/417/9010788000001"
+        },
+        "bizTransactionList": [
+          {
+            "type": "prodorder",
+            "bizTransaction": "https://www.example.org/1234567"
+          }
+        ],
+        "gs1:masterDataAvailableFor": [
+          {
+            "id": "https://id.gs1.org/01/07649997749702/10/4711",
+            "schema:target": [
+              {
+                "schema:name": "DPP Mock-Up API Endpoint",
+                "gs1:linkType": "gs1:dpp",
+                "schema:contentType": "application/ld+json",
+                "schema:inLanguage": "en",
+                "schema:httpMethod": "GET",
+                "schema:url": "https://www.example.org/API-endpoint_as_JSON_LD"
+              },
+              {
+                "schema:name": "DPP Mock-Up Web",
+                "gs1:linkType": "gs1:dpp",
+                "schema:contentType": "text/html",
+                "schema:inLanguage": "en",
+                "schema:httpMethod": "GET",
+                "schema:url": "https://www.example.org/DPP_web_en"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

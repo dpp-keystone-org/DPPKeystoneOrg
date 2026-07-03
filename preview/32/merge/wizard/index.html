@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Wizard</title>
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1783063966348">
+    <link rel="stylesheet" href="wizard.css?v=1783063966348">
+    <script type="importmap">
+    {
+        "imports": {
+            "jsonld": "../lib/vendor/jsonld.esm.min.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="dpp-header-container"></div>
+
+        <div id="wizard-container" class="card">
+            <h1 data-i18n-key="dpp-wizard">DPP Wizard</h1>
+
+            <div id="core-form-container">
+                <!-- Core DPP form fields will be generated here -->
+            </div>
+            <div id="sector-selection">
+                <h2 data-i18n-key="1-select-applicable-sectors">1. Select Applicable Sectors</h2>
+                <div id="sector-buttons">
+                    <button class="sector-btn" data-sector="battery" data-i18n-key="add-battery">Add Battery</button>
+                    <button class="sector-btn" data-sector="construction" data-i18n-key="add-construction">Add Construction</button>
+                    <button class="sector-btn" data-sector="electronics" data-i18n-key="add-electronics">Add Electronics</button>
+                    <button class="sector-btn" data-sector="iron-steel" data-i18n-key="add-iron-or-steel">Add Iron or Steel</button>
+                    <button class="sector-btn" data-sector="textile" data-i18n-key="add-textile">Add Textile</button>
+                </div>
+            </div>
+            <div id="sectors-form-container">
+                <!-- Sector-specific form fields will be generated here -->
+            </div>
+    
+            <div id="voluntary-info-container">
+                <h2 data-i18n-key="2-add-voluntary-information-amp">2. Add Voluntary Information &amp; Contexts</h2>
+                <div style="margin-bottom: 15px;">
+                    <button class="sector-btn" data-sector="general-product" data-schema-type="shared" data-i18n-key="add-general-product-information">Add General Product Information</button>
+                    <button class="sector-btn" data-sector="packaging" data-schema-type="shared" data-i18n-key="add-packaging">Add Packaging</button>
+                </div>
+                <div id="voluntary-modules-container">
+                    <!-- Voluntary module forms (General Info, Packaging) will be generated here -->
+                </div>
+                
+                <h3 data-i18n-key="external-contexts">External Contexts</h3>
+                <p class="help-text" data-i18n-key="add-external-json-ld-contexts">Add external JSON-LD contexts or namespaces to use custom prefixes (e.g. <code>ex:myField</code>).</p>
+                <div id="external-contexts-wrapper">
+                    <!-- External context rows will be added here -->
+                </div>
+                <button type="button" id="add-external-context-btn" style="margin-bottom: 20px;" data-i18n-key="add-context">Add Context</button>
+
+                <h3 data-i18n-key="custom-fields">Custom Fields</h3>
+                <div id="voluntary-fields-wrapper">
+                    <!-- Dynamic name-value fields will be added here -->
+                </div>
+                <button type="button" id="add-voluntary-field-btn" data-i18n-key="add-field">Add Field</button>
+            </div>
+    
+            <hr>
+
+            <div id="dpp-generation-section">
+                <h2 data-i18n-key="3-generate-passport">3. Generate Passport</h2>
+                <div class="button-group">
+                    <button id="generate-dpp-btn" data-i18n-key="generate-dpp">Generate DPP</button>
+                    <button id="show-errors-btn" class="remove-btn-active" hidden=""><span data-i18n-key="show-errors">Show Errors</span> (<span id="error-count-badge">0</span>)</button>
+                </div>
+
+                <div id="output-container" style="margin-top: 30px;">
+                    <h3 data-i18n-key="generated-json">Generated JSON</h3>
+                    <pre id="json-output"></pre>
+                </div>
+                
+                <div id="html-generation-wrapper" style="margin-top: 20px;">
+                    <h3 data-i18n-key="visualization">Visualization</h3>
+                    <div class="form-group">
+                        <label for="custom-css-url" data-i18n-key="custom-css-url-optional">Custom CSS URL (optional):</label>
+                        <input type="text" id="custom-css-url" placeholder="https://example.com/style.css" style="width: 100%; max-width: 400px;" data-i18n-key="https-example-com-style-css">
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <button id="preview-schema-btn" style="background-color: #005f9e; color: white;" data-i18n-key="preview-html-with-schema-org">Preview HTML With Schema.org</button>
+                        <button id="preview-no-schema-btn" class="secondary" data-i18n-key="preview-html-without-schema">Preview HTML Without Schema</button>
+                        <button id="schema-btn" class="secondary" data-i18n-key="preview-schema-org">Preview Schema.org</button>
+                    </div>
+
+                    <div style="font-size: 0.9em; color: #666; background: #f9f9f9; padding: 10px; border-radius: 4px;">
+                        <p style="margin-top: 0;"><strong data-i18n-key="about-these-tools">About these tools:</strong></p>
+                        <ul style="padding-left: 20px; margin-bottom: 0;">
+                            <li style="margin-bottom: 5px;" data-i18n-key="html-preview-renders-your-json"><strong>HTML Preview:</strong> Renders your JSON data into a user-friendly web page. This feature uses code freely available in our Developer SDKs and is intended to serve as inspiration for how a legally compliant JSON DPP can be visualized.</li>
+                            <li data-i18n-key="schema-org-generation-transforms-your"><strong>Schema.org Generation:</strong> Transforms your DPP data into <a href="https://schema.org/Product" target="_blank">Schema.org Product</a> structured data (JSON-LD). This format is optimized for search engines (Google, Bing) and e-commerce integration, making your product data machine-readable and discoverable.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><small data-i18n-key="part-of-the-dpp-keystone">Part of the <a href="../index.html">DPP Keystone</a> project. | <a href="../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+    <script type="module" src="wizard.js?v=1783063966348"></script>
+
+
+</body></html>

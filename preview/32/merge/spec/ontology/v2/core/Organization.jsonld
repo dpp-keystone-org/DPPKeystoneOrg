@@ -1,0 +1,4932 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/spec/v2/terms"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Organization.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Organization and Roles Definitions (v2)"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Определения на организации и роли (v2)"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Definice organizací a rolí (v2)"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Kerneontologi - Organisation og rolledefinitioner (v2)"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - Definitionen von Organisationen und Rollen (v2)"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική οντοлогия DPP - Ορισμοί οργανισμών και ρόλων (v2)"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología central de DPP - Definiciones de organización y roles (v2)"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP tuumontoloogia - Organisatsiooni ja rollide definitsioonid (v2)"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - Organisaation ja roolien määritykset (v2)"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Définitions d'organisation et de rôles (v2)"
+    },
+    {
+      "@language": "ga",
+      "@value": "Príomhointeolaíocht DPP - Sainmhínithe Eagraíochta agus Rólanna (v2)"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Definicije organizacija i uloga (v2)"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - Szervezet és szerepkörök definíciói (v2)"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Definizioni di organizzazione e ruoli (v2)"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - Organizacijų ir vaidmenų apibrėžimai (v2)"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamata ontoloģija - Organizācijas un lomu definīcijas (v2)"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet ta' Organizzazzjoni u Rwoli (v2)"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP Kernontologie - Definities van organisatie en rollen (v2)"
+    },
+    {
+      "@language": "pl",
+      "@value": "Główna ontologia DPP - Definicje organizacji i ról (v2)"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia Central do DPP - Definições de Organização e Papéis (v2)"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Definiții pentru organizații și roluri (v2)"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Definície organizácií a úloh (v2)"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Definicije organizacij in vlog (v2)"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - Organisation och rolldefinitioner (v2)"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines concepts related to organizations, roles (Economic Operator, Manufacturer, Facility), identifiers, and contact information within the DPP ecosystem."
+    },
+    {
+      "@language": "bg",
+      "@value": "Определя понятия, свързани с организации, роли (Икономически оператор, Производител, Съоръжение), идентификатори и информация за контакт в екосистемата на DPP."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje pojmy související s organizacemi, rolemi (Hospodářský subjekt, Výrobce, Zařízení), identifikátory a kontaktními informacemi v rámci ekosystému DPP."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer begreber relateret til organisationer, roller (Økonomisk operatør, Producent, Facilitet), identifikatorer og kontaktoplysninger inden for DPP-økosystemet."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert Konzepte in Bezug auf Organisationen, Rollen (Wirtschaftsakteur, Hersteller, Einrichtung), Kennungen und Kontaktinformationen innerhalb des DPP-Ökosystems."
+    },
+    {
+      "@language": "el",
+      "@value": "Καθορίζει έννοιες που σχετίζονται με οργανισμούς, ρόλους (Οικονομικός φορέας, Κατασκευαστής, Εγκατάσταση), αναγνωριστικά και στοιχεία επικοινωνίας στο οικοσύστημα DPP."
+    },
+    {
+      "@language": "es",
+      "@value": "Define conceptos relacionados con organizaciones, roles (Operador Económico, Fabricante, Instalación), identificadores e información de contacto dentro del ecosistema DPP."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb mõisted, mis on seotud organisatsioonide, rollide (Majandustegevuses osaleja, Tootja, Rajatis), identifikaatorite ja kontaktteabega DPP ökosüsteemis."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää organisaatioihin, rooleihin (Talouden toimija, Valmistaja, Laitos), tunnisteisiin ja yhteystietoihin liittyviä käsitteitä DPP-ekosysteemissä."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les concepts liés aux organisations, aux rôles (Opérateur économique, Fabricant, Installation), aux identifiants et aux coordonnées dans l'écosystème DPP."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé coincheapa a bhaineann le heagraíochtaí, rólanna (Oibreoir Eacnamaíoch, Déantóir, Saoráid), aitheantóirí, agus faisnéis teagmhála laistigh d'éiceachóras DPP."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira koncepte povezane s organizacijama, ulogama (Gospodarski subjekt, Proizvođač, Postrojenje), identifikatorima i podacima za kontakt unutar DPP ekosustava."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a szervezetekhez, szerepkörökhöz (Gazdasági szereplő, Gyártó, Létesítmény), azonosítókhoz és kapcsolattartási adatokhoz kapcsolódó fogalmakat a DPP ökoszisztémában."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce concetti relativi a organizzazioni, ruoli (Operatore economico, Fabbricante, Impianto), identificatori e informazioni di contatto all'interno dell'ecosistema DPP."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia sąvokas, susijusias su organizacijomis, vaidmenimis (Ekonominės veiklos vykdytojas, Gamintojas, Objektas), identifikatoriais ir kontaktine informacija DPP ekosistemoje."
+    },
+    {
+      "@language": "lv",
+      "@value": "Nosaka jēdzienus, kas saistīti ar organizācijām, lomām (Ekonomikas dalībnieks, Ražotājs, Iekārta), identifikatoriem un kontaktinformāciju DPP ekosistēmā."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi kunċetti relatati ma' organizzazzjonijiet, rwoli (Operatur Ekonomiku, Manifattur, Faċilità), identifikaturi, u informazzjoni ta' kuntatt fl-ekosistema tad-DPP."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert concepten met betrekking tot organisaties, rollen (Marktdeelnemer, Fabrikant, Faciliteit), identificaties en contactgegevens binnen het DPP-ecosysteem."
+    },
+    {
+      "@language": "pl",
+      "@value": "Określa pojęcia związane z organizacjami, rolami (Podmiot gospodarczy, Producent, Obiekt), identyfikatorami i danymi kontaktowymi w ekosystemie DPP."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define conceitos relacionados com organizações, papéis (Operador Económico, Fabricante, Instalação), identificadores e informações de contacto dentro do ecossistema DPP."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește concepte referitoare la organizații, roluri (Operator economic, Producător, Instalație), identificatori și informații de contact în cadrul ecosistemului DPP."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje pojmy súvisiace s organizáciami, úlohami (Hospodársky subjekt, Výrobca, Zariadenie), identifikátormi a kontaktnými informáciami v rámci ekosystému DPP."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa koncepte, povezane z organizacijami, vlogami (Gospodarski subjekt, Proizvajalec, Obrat), identifikatorji in kontaktnimi podatki v ekosistemu DPP."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar begrepp relaterade till organisationer, roller (Ekonomisk aktör, Tillverkare, Anläggning), identifierare och kontaktinformation inom DPP-ekosystemet."
+    }
+  ],
+  "owl:versionInfo": "v2",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Header.jsonld"
+  },
+  "@graph": [
+    {
+      "@id": "dppk:Organization",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Organization"
+        },
+        {
+          "@language": "bg",
+          "@value": "Организация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Organizace"
+        },
+        {
+          "@language": "da",
+          "@value": "Organisation"
+        },
+        {
+          "@language": "de",
+          "@value": "Organisation"
+        },
+        {
+          "@language": "el",
+          "@value": "Οργανισμός"
+        },
+        {
+          "@language": "es",
+          "@value": "Organización"
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsioon"
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaatio"
+        },
+        {
+          "@language": "fr",
+          "@value": "Organisation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Eagraíocht"
+        },
+        {
+          "@language": "hr",
+          "@value": "Organizacija"
+        },
+        {
+          "@language": "hu",
+          "@value": "Szervezet"
+        },
+        {
+          "@language": "it",
+          "@value": "Organizzazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Organizacija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Organizācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Organizzazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Organisatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Organizacja"
+        },
+        {
+          "@language": "pt",
+          "@value": "Organização"
+        },
+        {
+          "@language": "ro",
+          "@value": "Organizație"
+        },
+        {
+          "@language": "sk",
+          "@value": "Organizácia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Organizacija"
+        },
+        {
+          "@language": "sv",
+          "@value": "Organisation"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A general concept for any organization or legal entity involved in the product lifecycle."
+        },
+        {
+          "@language": "bg",
+          "@value": "Общо понятие за всяка организация или юридическо лице, участващо в жизнения цикъл на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Obecný koncept pro jakoukoli organizaci nebo právnickou osobu zapojenou do životního cyklu produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Et generelt begreb for enhver organisation eller juridisk enhed involveret i produktets livscyklus."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein allgemeines Konzept für jede Organisation oder juristische Person, die am Produktlebenszyklus beteiligt ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια γενική έννοια για κάθε οργανισμό ή νομικό πρόσωπο που συμμετέχει στον κύκλο ζωής του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Un concepto general para cualquier organización o entidad legal involucrada en el ciclo de vida del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Üldine mõiste mis tahes toote olelusringis osaleva organisatsiooni või juriidilise isiku kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yleinen käsite mille tahansa organisaatiolle tai oikeushenkilölle, joka on mukana tuotteen elinkaaressa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un concept général pour toute organisation ou entité légale impliquée dans le cycle de vie du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Coincheap ginearálta d’aon eagraíocht nó d’aon eintiteas dlíthiúil a bhfuil baint acu le saolré an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Opći koncept za svaku organizaciju ili pravnu osobu uključenu u životni ciklus proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Általános fogalom a termék életciklusában részt vevő bármely szervezetre vagy jogi személyre."
+        },
+        {
+          "@language": "it",
+          "@value": "Un concetto generale per qualsiasi organizzazione o entità legale coinvolta nel ciclo di vita del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Bendra sąvoka, apibūdinanti bet kurią organizaciją ar juridinį asmenį, dalyvaujantį produkto gyvavimo cikle."
+        },
+        {
+          "@language": "lv",
+          "@value": "Vispārīgs jēdziens jebkurai organizācijai vai juridiskai personai, kas iesaistīta produkta aprites ciklā."
+        },
+        {
+          "@language": "mt",
+          "@value": "Kunċett ġenerali għal kwalunkwe organizzazzjoni jew entità legali involuta fiċ-ċiklu tal-ħajja tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een algemeen concept voor elke organisatie of juridische entiteit die betrokken is bij de levenscyclus van een product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Ogólne pojęcie określające dowolną organizację lub osobę prawną zaangażowaną w cykl życia produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um conceito geral para qualquer organização ou entidade legal envolvida no ciclo de vida do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un concept general pentru orice organizație sau entitate legală implicată în ciclul de viață al produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Všeobecný pojem pre akúkoľvek organizáciu alebo právnickú osobu zapojenú do životného cyklu produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Splošen koncept za katero koli organizacijo ali pravno osebo, vključeno v življenjski cikel izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Ett allmänt begrepp för alla organisationer eller juridiska personer som är involverade i produktens livscykel."
+        }
+      ],
+      "owl:equivalentClass": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "gs1:Organization"
+        },
+        {
+          "@id": "unece:TradeParty"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:PostalAddress",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Postal Address"
+        },
+        {
+          "@language": "bg",
+          "@value": "Пощенски адрес"
+        },
+        {
+          "@language": "cs",
+          "@value": "Poštovní adresa"
+        },
+        {
+          "@language": "da",
+          "@value": "Postadresse"
+        },
+        {
+          "@language": "de",
+          "@value": "Postanschrift"
+        },
+        {
+          "@language": "el",
+          "@value": "Ταχυδρομική Διεύθυνση"
+        },
+        {
+          "@language": "es",
+          "@value": "Dirección postal"
+        },
+        {
+          "@language": "et",
+          "@value": "Postiaadress"
+        },
+        {
+          "@language": "fi",
+          "@value": "Postiosoite"
+        },
+        {
+          "@language": "fr",
+          "@value": "Adresse postale"
+        },
+        {
+          "@language": "ga",
+          "@value": "Seoladh Poist"
+        },
+        {
+          "@language": "hr",
+          "@value": "Poštanska adresa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Postacím"
+        },
+        {
+          "@language": "it",
+          "@value": "Indirizzo postale"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pašto adresas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pasta adrese"
+        },
+        {
+          "@language": "mt",
+          "@value": "Indirizz Postali"
+        },
+        {
+          "@language": "nl",
+          "@value": "Postadres"
+        },
+        {
+          "@language": "pl",
+          "@value": "Adres pocztowy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Endereço postal"
+        },
+        {
+          "@language": "ro",
+          "@value": "Adresă poștală"
+        },
+        {
+          "@language": "sk",
+          "@value": "Poštová adresa"
+        },
+        {
+          "@language": "sl",
+          "@value": "Poštni naslov"
+        },
+        {
+          "@language": "sv",
+          "@value": "Postadress"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The physical mailing address of an organization or location."
+        },
+        {
+          "@language": "bg",
+          "@value": "Физическият пощенски адрес на организация или местоположение."
+        },
+        {
+          "@language": "cs",
+          "@value": "Fyzická poštovní adresa organizace nebo místa."
+        },
+        {
+          "@language": "da",
+          "@value": "Den fysiske postadresse for en organisation eller placering."
+        },
+        {
+          "@language": "de",
+          "@value": "Die physische Postanschrift einer Organisation oder eines Standorts."
+        },
+        {
+          "@language": "el",
+          "@value": "Η φυσική ταχυδρομική διεύθυνση ενός οργανισμού ή τοποθεσίας."
+        },
+        {
+          "@language": "es",
+          "@value": "La dirección postal física de una organización o ubicación."
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsiooni või asukoha füüsiline postiaadress."
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaation tai sijainnin fyysinen postiosoite."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'adresse postale physique d'une organisation ou d'un lieu."
+        },
+        {
+          "@language": "ga",
+          "@value": "Seoladh poist fisiciúil eagraíochta nó láithreach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Fizička poštanska adresa organizacije ili lokacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "Szervezet vagy helyszín fizikai levelezési címe."
+        },
+        {
+          "@language": "it",
+          "@value": "L'indirizzo postale fisico di un'organizzazione o luogo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Fizinis organizacijos ar vietos pašto adresas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Organizācijas vai atrašanās vietas fiziskā pasta adrese."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-indirizz postali fiżiku ta’ organizzazzjoni jew post."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het fysieke postadres van een organisatie of locatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Fizyczny adres pocztowy organizacji lub lokalizacji."
+        },
+        {
+          "@language": "pt",
+          "@value": "O endereço postal físico de uma organização ou local."
+        },
+        {
+          "@language": "ro",
+          "@value": "Adresa poștală fizică a unei organizații sau locații."
+        },
+        {
+          "@language": "sk",
+          "@value": "Fyzická poštová adresa organizácie alebo miesta."
+        },
+        {
+          "@language": "sl",
+          "@value": "Fizični poštni naslov organizacije ali lokacije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den fysiska postadressen till en organisation eller plats."
+        }
+      ],
+      "owl:equivalentClass": [
+        {
+          "@id": "schema:PostalAddress"
+        },
+        {
+          "@id": "gs1:Address"
+        },
+        {
+          "@id": "unece:TradeAddress"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:economicOperator",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Economic Operator"
+        },
+        {
+          "@language": "bg",
+          "@value": "Икономически оператор"
+        },
+        {
+          "@language": "cs",
+          "@value": "Hospodářský subjekt"
+        },
+        {
+          "@language": "da",
+          "@value": "Økonomisk operatør"
+        },
+        {
+          "@language": "de",
+          "@value": "Wirtschaftsakteur"
+        },
+        {
+          "@language": "el",
+          "@value": "Οικονομικός Φορέας"
+        },
+        {
+          "@language": "es",
+          "@value": "Operador Económico"
+        },
+        {
+          "@language": "et",
+          "@value": "Majandustegevuses osaleja"
+        },
+        {
+          "@language": "fi",
+          "@value": "Talouden toimija"
+        },
+        {
+          "@language": "fr",
+          "@value": "Opérateur économique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Oibreoir Eacnamaíoch"
+        },
+        {
+          "@language": "hr",
+          "@value": "Gospodarski subjekt"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gazdasági szereplő"
+        },
+        {
+          "@language": "it",
+          "@value": "Operatore economico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Ekonominės veiklos vykdytojas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekonomikas dalībnieks"
+        },
+        {
+          "@language": "mt",
+          "@value": "Operatur Ekonomiku"
+        },
+        {
+          "@language": "nl",
+          "@value": "Marktdeelnemer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Podmiot gospodarczy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Operador Económico"
+        },
+        {
+          "@language": "ro",
+          "@value": "Operator economic"
+        },
+        {
+          "@language": "sk",
+          "@value": "Hospodársky subjekt"
+        },
+        {
+          "@language": "sl",
+          "@value": "Gospodarski subjekt"
+        },
+        {
+          "@language": "sv",
+          "@value": "Ekonomisk aktör"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the DPP to the Economic Operator responsible for it."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва ЦПП с отговорния за него икономически оператор."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje DPP s hospodářským subjektem za něj odpovědným."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer DPP til den økonomiske operatør, der er ansvarlig for det."
+        },
+        {
+          "@language": "de",
+          "@value": "Bezieht den DPP auf den dafür verantwortlichen Wirtschaftsakteuer."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το DPP με τον υπεύθυνο Οικονομικό Φορέα για αυτό."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el DPP con el Operador Económico responsable de él."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob DPP-i selle eest vastutava majandustegevuses osalejaga."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää DPP:n siitä vastaavaan talouden toimijaan."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le DPP à l'opérateur économique qui en est responsable."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann sé an PTP leis an Oibreoir Eacnamaíoch atá freagrach as."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje DPP s gospodarskim subjektom odgovornim za njega."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-t a termékért felelős gazdasági szereplőhöz kapcsolja."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il DPP con l'operatore economico che ne è responsabile."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja DPP su už jį atsakingu ekonominės veiklos vykdytoju."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista DPP ar par to atbildīgo ekonomikas dalībnieku."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jirrelata d-DPP mal-Operatur Ekonomiku responsabbli għalih."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het DPP aan de marktdeelnemer die er verantwoordelijk voor is."
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązuje DPP z odpowiedzialnym za niego podmiotem gospodarczym."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o DPP com o Operador Económico responsável por ele."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează DPP-ul cu operatorul economic responsabil pentru acesta."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája DPP s hospodárskym subjektom zaň zodpovedným."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje DPP z gospodarskim subjektom, ki je zanj odgovoren."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar DPP till den ekonomiska aktör som ansvarar för det."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DigitalProductPassport"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:manufacturer",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Manufacturer"
+        },
+        {
+          "@language": "bg",
+          "@value": "Производител"
+        },
+        {
+          "@language": "cs",
+          "@value": "Výrobce"
+        },
+        {
+          "@language": "da",
+          "@value": "Producent"
+        },
+        {
+          "@language": "de",
+          "@value": "Hersteller"
+        },
+        {
+          "@language": "el",
+          "@value": "Κατασκευαστής"
+        },
+        {
+          "@language": "es",
+          "@value": "Fabricante"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootja"
+        },
+        {
+          "@language": "fi",
+          "@value": "Valmistaja"
+        },
+        {
+          "@language": "fr",
+          "@value": "Fabricant"
+        },
+        {
+          "@language": "ga",
+          "@value": "Déantóir"
+        },
+        {
+          "@language": "hr",
+          "@value": "Proizvođač"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártó"
+        },
+        {
+          "@language": "it",
+          "@value": "Fabbricante"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamintojas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražotājs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Manifattur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Fabrikant"
+        },
+        {
+          "@language": "pl",
+          "@value": "Producent"
+        },
+        {
+          "@language": "pt",
+          "@value": "Fabricante"
+        },
+        {
+          "@language": "ro",
+          "@value": "Producător"
+        },
+        {
+          "@language": "sk",
+          "@value": "Výrobca"
+        },
+        {
+          "@language": "sl",
+          "@value": "Proizvajalec"
+        },
+        {
+          "@language": "sv",
+          "@value": "Tillverkare"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the DPP to the Manufacturer of the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва ЦПП с производителя на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje DPP s výrobcem produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer DPP til producenten af produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Bezieht den DPP auf den Hersteller des Produkts."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το DPP με τον Κατασκευαστή του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el DPP con el Fabricante del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob DPP-i toote tootjaga."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää DPP:n tuotteen valmistajaan."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le DPP au fabricant du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann sé an PTP le Déantóir an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje DPP s proizvođačem proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-t a termék gyártójához kapcsolja."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il DPP con il fabbricante del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja DPP su gaminio gamintoju."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista DPP ar produkta ražotāju."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jirrelata d-DPP mal-Manifattur tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het DPP aan de fabrikant van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązuje DPP z producentem produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o DPP com o Fabricante do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează DPP-ul cu producătorul produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája DPP s výrobcom produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje DPP s proizvajalcem izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar DPP till tillverkaren av produkten."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DigitalProductPassport"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:manufacturer"
+        },
+        {
+          "@id": "gs1:manufacturer"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:importer",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Importer"
+        },
+        {
+          "@language": "bg",
+          "@value": "Вносител"
+        },
+        {
+          "@language": "cs",
+          "@value": "Dovozce"
+        },
+        {
+          "@language": "da",
+          "@value": "Importør"
+        },
+        {
+          "@language": "de",
+          "@value": "Importeur"
+        },
+        {
+          "@language": "el",
+          "@value": "Εισαγωγέας"
+        },
+        {
+          "@language": "es",
+          "@value": "Importador"
+        },
+        {
+          "@language": "et",
+          "@value": "Importija"
+        },
+        {
+          "@language": "fi",
+          "@value": "Maahantuoja"
+        },
+        {
+          "@language": "fr",
+          "@value": "Importateur"
+        },
+        {
+          "@language": "ga",
+          "@value": "Iompórtálaí"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uvoznik"
+        },
+        {
+          "@language": "hu",
+          "@value": "Importőr"
+        },
+        {
+          "@language": "it",
+          "@value": "Importatore"
+        },
+        {
+          "@language": "lt",
+          "@value": "Importuotojas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Importētājs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Importatur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Importeur"
+        },
+        {
+          "@language": "pl",
+          "@value": "Importer"
+        },
+        {
+          "@language": "pt",
+          "@value": "Importador"
+        },
+        {
+          "@language": "ro",
+          "@value": "Importator"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dovozca"
+        },
+        {
+          "@language": "sl",
+          "@value": "Uvoznik"
+        },
+        {
+          "@language": "sv",
+          "@value": "Importör"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the DPP to the Importer of the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва ЦПП с вносителя на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje DPP s dovozcem produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer DPP til importøren af produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Bezieht den DPP auf den Importeur des Produkts."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το DPP με τον Εισαγωγέα του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el DPP con el Importador del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob DPP-i toote importijaga."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää DPP:n tuotteen maahantuojaan."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le DPP à l'importateur du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann sé an PTP le hIompórtálaí an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje DPP s uvoznikom proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-t a termék importőréhez kapcsolja."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il DPP con l'importatore del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja DPP su gaminio importuotoju."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista DPP ar produkta importētāju."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jirrelata d-DPP mal-Importatur tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het DPP aan de importeur van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązuje DPP z importerem produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o DPP com o Importador do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează DPP-ul cu importatorul produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája DPP s dovozcom produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje DPP z uvoznikom izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar DPP till importören av produkten."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DigitalProductPassport"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:manufacturingFacility",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Manufacturing Facility"
+        },
+        {
+          "@language": "bg",
+          "@value": "Производствено съоръжение"
+        },
+        {
+          "@language": "cs",
+          "@value": "Výrobní zařízení"
+        },
+        {
+          "@language": "da",
+          "@value": "Produktionsanlæg"
+        },
+        {
+          "@language": "de",
+          "@value": "Produktionsstätte"
+        },
+        {
+          "@language": "el",
+          "@value": "Εγκατάσταση Κατασκευής"
+        },
+        {
+          "@language": "es",
+          "@value": "Instalación de Fabricación"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootmisrajatis"
+        },
+        {
+          "@language": "fi",
+          "@value": "Valmistuslaitos"
+        },
+        {
+          "@language": "fr",
+          "@value": "Installation de fabrication"
+        },
+        {
+          "@language": "ga",
+          "@value": "Saoráid Mhonaraíochta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Proizvodno postrojenje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártólétesítmény"
+        },
+        {
+          "@language": "it",
+          "@value": "Impianto di produzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamybos objektas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražošanas iekārta"
+        },
+        {
+          "@language": "mt",
+          "@value": "Faċilità tal-Manifattura"
+        },
+        {
+          "@language": "nl",
+          "@value": "Productiefaciliteit"
+        },
+        {
+          "@language": "pl",
+          "@value": "Obiekt produkcyjny"
+        },
+        {
+          "@language": "pt",
+          "@value": "Instalação de Fabricação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Instalație de fabricație"
+        },
+        {
+          "@language": "sk",
+          "@value": "Výrobné zariadenie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Proizvodni obrat"
+        },
+        {
+          "@language": "sv",
+          "@value": "Tillverkningsanläggning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the DPP to the specific facility where the product (or a step) was manufactured."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва ЦПП със специфичното съоръжение, където е произведен продуктът (или стъпка от него)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje DPP s konkrétním zařízením, kde byl produkt (nebo jeho část) vyroben."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer DPP til det specifikke anlæg, hvor produktet (eller et trin) blev fremstillet."
+        },
+        {
+          "@language": "de",
+          "@value": "Bezieht den DPP auf die spezifische Einrichtung, in der das Produkt (oder ein Schritt) hergestellt wurde."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το DPP με τη συγκεκριμένη εγκατάσταση όπου κατασκευάστηκε το προϊόν (ή ένα στάδιο)."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el DPP con la instalación específica donde se fabricó el producto (o un paso)."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob DPP-i konkreetse rajatisega, kus toode (või selle etapp) valmistati."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää DPP:n tiettyyn laitokseen, jossa tuote (tai sen vaihe) valmistettiin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le DPP à l'installation spécifique où le produit (ou une étape) a été fabriqué."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann sé an PTP leis an tsaoráid shainiúil ina ndearnadh an táirge (nó céim de)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje DPP sa specifičnim postrojenjem gdje je proizvod (ili jedan korak) proizveden."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-t ahhoz az adott létesítményhez kapcsolja, ahol a terméket (vagy egy lépését) gyártották."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il DPP con lo specifico impianto in cui il prodotto (o una fase) è stato fabbricato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja DPP su konkrečiu objektu, kuriame buvo pagamintas produktas (arba atliktas etapas)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista DPP ar konkrēto iekārtu, kurā produkts (vai tā posms) tika ražots."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jirrelata d-DPP mal-faċilità speċifika fejn il-prodott (jew pass) ġie mmanifatturat."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het DPP aan de specifieke faciliteit waar het product (of een stap) is vervaardigd."
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązuje DPP z konkretnym obiektem, w którym wyprodukowano produkt (lub jego etap)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o DPP com a instalação específica onde o produto (ou uma etapa) foi fabricado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează DPP-ul cu instalația specifică în care a fost fabricat produsul (sau o etapă)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája DPP s konkrétnym zariadením, kde bol produkt (alebo jeho krok) vyrobený."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje DPP s specifičnim obratom, kjer je bil izdelek (ali korak) proizveden."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar DPP till den specifika anläggning där produkten (eller ett steg) tillverkades."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DigitalProductPassport"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:repairService",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Repair Service"
+        },
+        {
+          "@language": "bg",
+          "@value": "Ремонтен сервиз"
+        },
+        {
+          "@language": "cs",
+          "@value": "Servisní služba"
+        },
+        {
+          "@language": "da",
+          "@value": "Reparationsservice"
+        },
+        {
+          "@language": "de",
+          "@value": "Reparaturdienst"
+        },
+        {
+          "@language": "el",
+          "@value": "Υπηρεσία Επισκευής"
+        },
+        {
+          "@language": "es",
+          "@value": "Servicio de Reparación"
+        },
+        {
+          "@language": "et",
+          "@value": "Remonditeenus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Korjauspalvelu"
+        },
+        {
+          "@language": "fr",
+          "@value": "Service de réparation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Seirbhís Deisiúcháin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Usluga popravka"
+        },
+        {
+          "@language": "hu",
+          "@value": "Javítási szolgáltatás"
+        },
+        {
+          "@language": "it",
+          "@value": "Servizio di riparazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Remonto paslauga"
+        },
+        {
+          "@language": "lv",
+          "@value": "Remonta pakalpojums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Servizz tat-Tiswija"
+        },
+        {
+          "@language": "nl",
+          "@value": "Reparatiedienst"
+        },
+        {
+          "@language": "pl",
+          "@value": "Usługa naprawy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Serviço de Reparação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Serviciu de reparații"
+        },
+        {
+          "@language": "sk",
+          "@value": "Opravárenská služba"
+        },
+        {
+          "@language": "sl",
+          "@value": "Storitev popravila"
+        },
+        {
+          "@language": "sv",
+          "@value": "Reparationstjänst"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the DPP to an authorized repair service."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва ЦПП с оторизиран ремонтен сервиз."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje DPP s autorizovanou servisní službou."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer DPP til en autoriseret reparationstjeneste."
+        },
+        {
+          "@language": "de",
+          "@value": "Bezieht den DPP auf einen autorisierten Reparaturdienst."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το DPP με μια εξουσιοδοτημένη υπηρεσία επισκευής."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el DPP con un servicio de reparación autorizado."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob DPP-i volitatud remonditeenusega."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää DPP:n valtuutettuun korjauspalveluun."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le DPP à un service de réparation autorisé."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann sé an PTP le seirbhís deisiúcháin údaraithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje DPP s ovlaštenom uslugom popravka."
+        },
+        {
+          "@language": "hu",
+          "@value": "A DPP-t egy felhatalmazott javítási szolgáltatáshoz kapcsolja."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il DPP con un servizio di riparazione autorizzato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja DPP su įgaliota remonto paslauga."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista DPP ar autorizētu remonta pakalpojumu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jirrelata d-DPP ma' servizz ta' tiswija awtorizzat."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het DPP aan een geautoriseerde reparatiedienst."
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązuje DPP z autoryzowaną usługą naprawy."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o DPP com um serviço de reparação autorizado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează DPP-ul cu un serviciu de reparații autorizat."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája DPP s autorizovanou opravárenskou službou."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje DPP s pooblaščeno storitvijo popravila."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar DPP till en auktoriserad reparationstjänst."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:DigitalProductPassport"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      }
+    },
+    {
+      "@id": "dppk:organizationName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Organization Name"
+        },
+        {
+          "@language": "bg",
+          "@value": "Име на организацията"
+        },
+        {
+          "@language": "cs",
+          "@value": "Název organizace"
+        },
+        {
+          "@language": "da",
+          "@value": "Organisationsnavn"
+        },
+        {
+          "@language": "de",
+          "@value": "Name der Organisation"
+        },
+        {
+          "@language": "el",
+          "@value": "Όνομα Οργανισμού"
+        },
+        {
+          "@language": "es",
+          "@value": "Nombre de la Organización"
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsiooni nimi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaation nimi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Nom de l'organisation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm na hEagraíochta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Naziv organizacije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Szervezet neve"
+        },
+        {
+          "@language": "it",
+          "@value": "Nome dell'organizzazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Organizacijos pavadinimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Organizācijas nosaukums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Isem tal-Organizzazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Naam van de organisatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa organizacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Nome da Organização"
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele organizației"
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov organizácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime organizacije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Organisationsnamn"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The official legal name of the organization."
+        },
+        {
+          "@language": "bg",
+          "@value": "Официалното юридическо име на организацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Oficiální právní název organizace."
+        },
+        {
+          "@language": "da",
+          "@value": "Det officielle juridiske navn på organisationen."
+        },
+        {
+          "@language": "de",
+          "@value": "Der offizielle rechtliche Name der Organisation."
+        },
+        {
+          "@language": "el",
+          "@value": "Το επίσημο νομικό όνομα του οργανισμού."
+        },
+        {
+          "@language": "es",
+          "@value": "El nombre legal oficial de la organización."
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsiooni ametlik juriidiline nimi."
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaation virallinen oikeudellinen nimi."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le nom légal officiel de l'organisation."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm dlíthiúil oifigiúil na heagraíochta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Službeni pravni naziv organizacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A szervezet hivatalos jogi neve."
+        },
+        {
+          "@language": "it",
+          "@value": "Il nome legale ufficiale dell'organizzazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Oficialus juridinis organizacijos pavadinimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Organizācijas oficiālais juridiskais nosaukums."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-isem legali uffiċjali tal-organizzazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De officiële wettelijke naam van de organisatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Oficjalna nazwa prawna organizacji."
+        },
+        {
+          "@language": "pt",
+          "@value": "O nome legal oficial da organização."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele legal oficial al organizației."
+        },
+        {
+          "@language": "sk",
+          "@value": "Oficiálny právny názov organizácie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Uradno pravno ime organizacije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Organisationens officiella juridiska namn."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:name"
+        },
+        {
+          "@id": "gs1:organizationName"
+        },
+        {
+          "@id": "unece:name"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:tradingName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Trading Name"
+        },
+        {
+          "@language": "bg",
+          "@value": "Търговско наименование"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obchodní název"
+        },
+        {
+          "@language": "da",
+          "@value": "Handelsnavn"
+        },
+        {
+          "@language": "de",
+          "@value": "Handelsname"
+        },
+        {
+          "@language": "el",
+          "@value": "Εμπορική Επωνυμία"
+        },
+        {
+          "@language": "es",
+          "@value": "Nombre comercial"
+        },
+        {
+          "@language": "et",
+          "@value": "Ärinimi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kauppanimi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Nom commercial"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm Trádála"
+        },
+        {
+          "@language": "hr",
+          "@value": "Trgovački naziv"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kereskedelmi név"
+        },
+        {
+          "@language": "it",
+          "@value": "Denominazione commerciale"
+        },
+        {
+          "@language": "lt",
+          "@value": "Prekinis pavadinimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tirdzniecības nosaukums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Isem Kummerċjali"
+        },
+        {
+          "@language": "nl",
+          "@value": "Handelsnaam"
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa handlowa"
+        },
+        {
+          "@language": "pt",
+          "@value": "Nome Comercial"
+        },
+        {
+          "@language": "ro",
+          "@value": "Denumire comercială"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obchodný názov"
+        },
+        {
+          "@language": "sl",
+          "@value": "Trgovsko ime"
+        },
+        {
+          "@language": "sv",
+          "@value": "Handelsnamn"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The name under which the organization conducts business, if different from the legal name."
+        },
+        {
+          "@language": "bg",
+          "@value": "Името, под което организацията извършва дейност, ако е различно от юридическото име."
+        },
+        {
+          "@language": "cs",
+          "@value": "Název, pod kterým organizace podniká, pokud se liší od právního názvu."
+        },
+        {
+          "@language": "da",
+          "@value": "Det navn, hvorunder organisationen driver virksomhed, hvis det adskiller sig fra det juridiske navn."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Name, unter dem die Organisation geschäftlich tätig ist, falls abweichend vom rechtlichen Namen."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ονομασία με την οποία ο οργανισμός διεξάγει τις εργασίες του, εάν διαφέρει από το νομικό όνομα."
+        },
+        {
+          "@language": "es",
+          "@value": "El nombre bajo el cual la organización hace negocios, si difiere del nombre legal."
+        },
+        {
+          "@language": "et",
+          "@value": "Nimi, mille all organisatsioon tegutseb, kui see erineb juriidilisest nimest."
+        },
+        {
+          "@language": "fi",
+          "@value": "Nimi, jolla organisaatio harjoittaa liiketoimintaa, jos se eroaa oikeudellisesta nimestä."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le nom sous lequel l'organisation exerce ses activités, s'il est différent du nom légal."
+        },
+        {
+          "@language": "ga",
+          "@value": "An t-ainm faoina ndéanann an eagraíocht gnó, más difriúil ón ainm dlíthiúil é."
+        },
+        {
+          "@language": "hr",
+          "@value": "Naziv pod kojim organizacija posluje, ako se razlikuje od pravnog naziva."
+        },
+        {
+          "@language": "hu",
+          "@value": "A név, amely alatt a szervezet üzleti tevékenységet folytat, ha eltér a jogi névtől."
+        },
+        {
+          "@language": "it",
+          "@value": "Il nome con cui l'organizzazione svolge le proprie attività, se diverso dal nome legale."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pavadinimas, kuriuo organizacija vykdo veiklą, jei skiriasi nuo juridinio pavadinimo."
+        },
+        {
+          "@language": "lv",
+          "@value": "Nosaukums, ar kuru organizācija veic uzņēmējdarbību, ja tas atšķiras no juridiskā nosaukuma."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-isem li taħtu l-organizzazzjoni twettaq in-negozju, jekk differenti mill-isem legali."
+        },
+        {
+          "@language": "nl",
+          "@value": "De naam waaronder de organisatie zaken doet, indien verschillend van de wettelijke naam."
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa, pod którą organizacja prowadzi działalność, jeśli inna niż nazwa prawna."
+        },
+        {
+          "@language": "pt",
+          "@value": "O nome sob o qual a organização realiza negócios, se diferente do nome legal."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele sub care organizația desfășoară afaceri, dacă este diferit de numele legal."
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov, pod ktorým organizácia podniká, ak sa líši od právneho názvu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime, pod katerim organizacija posluje, če se razlikuje od pravnega imena."
+        },
+        {
+          "@language": "sv",
+          "@value": "Det namn under vilket organisationen bedriver verksamhet, om det skiljer sig från det juridiska namnet."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:organizationTradingName"
+        },
+        {
+          "@id": "unece:tradingBusinessName"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:gln",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Global Location Number (GLN)"
+        },
+        {
+          "@language": "bg",
+          "@value": "Глобален номер на локация (GLN)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Globální lokační číslo (GLN)"
+        },
+        {
+          "@language": "da",
+          "@value": "Globalt lokationsnummer (GLN)"
+        },
+        {
+          "@language": "de",
+          "@value": "Globale Lokationsnummer (GLN)"
+        },
+        {
+          "@language": "el",
+          "@value": "Παγκόσμιος Αριθμός Τοποθεσίας (GLN)"
+        },
+        {
+          "@language": "es",
+          "@value": "Número Global de Localización (GLN)"
+        },
+        {
+          "@language": "et",
+          "@value": "Ülemaailmne asukohanumber (GLN)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Globaali sijaintinumero (GLN)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Numéro mondial de lieu (GLN)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir Suímh Dhomhanda (GLN)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Globalni lokacijski broj (GLN)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Globális Helyazonosító Szám (GLN)"
+        },
+        {
+          "@language": "it",
+          "@value": "Numero globale di localizzazione (GLN)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasaulinis vietos numeris (GLN)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Globālais vietas numurs (GLN)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Numru tal-Post Globali (GLN)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Wereldwijd locatienummer (GLN)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Globalny Numer Lokalizacyjny (GLN)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Número Global de Localização (GLN)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Număr global de locație (GLN)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Globálne lokalizačné číslo (GLN)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Globalna lokacijska številka (GLN)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Globalt lokaliseringsnummer (GLN)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A GS1 standard identifier for legal entities, functional departments, or physical locations."
+        },
+        {
+          "@language": "bg",
+          "@value": "Стандартен идентификатор на GS1 за юридически лица, функционални отдели или физически местоположения."
+        },
+        {
+          "@language": "cs",
+          "@value": "Standardní identifikátor GS1 pro právnické osoby, funkční oddělení nebo fyzická místa."
+        },
+        {
+          "@language": "da",
+          "@value": "En GS1-standardidentifikator for juridiske enheder, funktionelle afdelinger eller fysiske placeringer."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein GS1-Standard-Identifikator für juristische Personen, funktionale Abteilungen oder physische Standorte."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα τυπικό αναγνωριστικό GS1 για νομικά πρόσωπα, λειτουργικά τμήματα ή φυσικές τοποθεσίες."
+        },
+        {
+          "@language": "es",
+          "@value": "Un identificador estándar de GS1 para entidades legales, departamentos funcionales o ubicaciones físicas."
+        },
+        {
+          "@language": "et",
+          "@value": "GS1 standardne identifikaator juriidiliste isikute, funktsionaalsete osakondade või füüsiliste asukohtade jaoks."
+        },
+        {
+          "@language": "fi",
+          "@value": "GS1-standardin mukainen tunniste oikeushenkilöille, toiminnallisille osastoille tai fyysisille sijainneille."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un identifiant standard GS1 pour les entités légales, les départements fonctionnels ou les lieux physiques."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir caighdeánach GS1 d'eintitis dhlíthiúla, ranna feidhmiúla, nó láithreacha fisiciúla."
+        },
+        {
+          "@language": "hr",
+          "@value": "Standardni GS1 identifikator za pravne osobe, funkcionalne odjele ili fizičke lokacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "Egy GS1 szabványos azonosító jogi személyek, funkcionális részlegek vagy fizikai helyszínek számára."
+        },
+        {
+          "@language": "it",
+          "@value": "Un identificatore standard GS1 per entità legali, dipartimenti funzionali o luoghi fisici."
+        },
+        {
+          "@language": "lt",
+          "@value": "GS1 standarto identifikatorius juridiniams asmenims, funkciniams skyriams ar fizinėms vietoms."
+        },
+        {
+          "@language": "lv",
+          "@value": "GS1 standarta identifikators juridiskām personām, funkcionālām nodaļām vai fiziskām atrašanās vietām."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur standard GS1 għal entitajiet legali, dipartimenti funzjonali, jew postijiet fiżiċi."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een GS1-standaardidentificatie voor juridische entiteiten, functionele afdelingen of fysieke locaties."
+        },
+        {
+          "@language": "pl",
+          "@value": "Standardowy identyfikator GS1 dla podmiotów prawnych, działów funkcjonalnych lub lokalizacji fizycznych."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um identificador padrão GS1 para entidades legais, departamentos funcionais ou locais físicos."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un identificator standard GS1 pentru entități legale, departamente funcționale sau locații fizice."
+        },
+        {
+          "@language": "sk",
+          "@value": "Štandardný identifikátor GS1 pre právnické osoby, funkčné oddelenia alebo fyzické miesta."
+        },
+        {
+          "@language": "sl",
+          "@value": "Standardni identifikator GS1 za pravne osebe, funkcionalne oddelke ali fizične lokacije."
+        },
+        {
+          "@language": "sv",
+          "@value": "En GS1-standardidentifierare för juridiska personer, funktionella avdelningar eller fysiska platser."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:globalLocationNumber"
+        },
+        {
+          "@id": "schema:globalLocationNumber"
+        },
+        {
+          "@id": "unece:gLNId"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:leiCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Legal Entity Identifier (LEI)"
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на юридическо лице (LEI)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor právnické osoby (LEI)"
+        },
+        {
+          "@language": "da",
+          "@value": "Juridisk enhedsidentifikator (LEI)"
+        },
+        {
+          "@language": "de",
+          "@value": "Legal Entity Identifier (LEI)"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό Νομικού Προσώπου (LEI)"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador de Entidad Legal (LEI)"
+        },
+        {
+          "@language": "et",
+          "@value": "Juriidilise isiku tunnus (LEI)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Oikeushenkilötunnus (LEI)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant d'entité légale (LEI)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir Eintitis Dhlíthiúil (LEI)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator pravne osobe (LEI)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Jogalany-azonosító (LEI)"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificativo della persona giuridica (LEI)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Juridinio asmens identifikatorius (LEI)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Juridiskās personas identifikators (LEI)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur tal-Entità Legali (LEI)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Identificatiecode voor juridische entiteiten (LEI)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator podmiotu prawnego (LEI)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador de Entidade Legal (LEI)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul entității legale (LEI)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor právnickej osoby (LEI)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator pravne osebe (LEI)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Identifierare för juridisk person (LEI)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A standardized global identifier for legal entities."
+        },
+        {
+          "@language": "bg",
+          "@value": "Стандартизиран глобален идентификатор за юридически лица."
+        },
+        {
+          "@language": "cs",
+          "@value": "Standardizovaný globální identifikátor pro právnické osoby."
+        },
+        {
+          "@language": "da",
+          "@value": "En standardiseret global identifikator for juridiske enheder."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein standardisierter globaler Identifikator für juristische Personen."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα τυποποιημένο παγκόσμιο αναγνωριστικό για νομικά πρόσωπα."
+        },
+        {
+          "@language": "es",
+          "@value": "Un identificador global estandarizado para entidades legales."
+        },
+        {
+          "@language": "et",
+          "@value": "Standardiseeritud globaalne identifikaator juriidiliste isikute jaoks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Standardoitu globaali tunniste oikeushenkilöille."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un identifiant mondial standardisé pour les entités légales."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir domhanda caighdeánaithe d'eintitis dhlíthiúla."
+        },
+        {
+          "@language": "hr",
+          "@value": "Standardizirani globalni identifikator za pravne osobe."
+        },
+        {
+          "@language": "hu",
+          "@value": "Szabványosított globális azonosító jogi személyek számára."
+        },
+        {
+          "@language": "it",
+          "@value": "Un identificatore globale standardizzato per le entità legali."
+        },
+        {
+          "@language": "lt",
+          "@value": "Standartizuotas pasaulinis identifikatorius juridiniams asmenims."
+        },
+        {
+          "@language": "lv",
+          "@value": "Standartizēts globāls identifikators juridiskām personām."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur globali standardizzat għal entitajiet legali."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een gestandaardiseerde wereldwijde identificatie voor juridische entiteiten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Standaryzowany globalny identyfikator dla podmiotów prawnych."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um identificador global padronizado para entidades legais."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un identificator global standardizat pentru entități legale."
+        },
+        {
+          "@language": "sk",
+          "@value": "Štandardizovaný globálny identifikátor pre právnické osoby."
+        },
+        {
+          "@language": "sl",
+          "@value": "Standardiziran globalni identifikator za pravne osebe."
+        },
+        {
+          "@language": "sv",
+          "@value": "En standardiserad global identifierare för juridiska personer."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:leiCode"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:eori",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Economic Operators Registration and Identification (EORI)"
+        },
+        {
+          "@language": "bg",
+          "@value": "Регистрация и идентификация на икономическите оператори (EORI)"
+        },
+        {
+          "@language": "cs",
+          "@value": "Registrace a identifikace hospodářských subjektů (EORI)"
+        },
+        {
+          "@language": "da",
+          "@value": "Økonomiske operatørers registrering og identifikation (EORI)"
+        },
+        {
+          "@language": "de",
+          "@value": "Registrierung und Identifizierung von Wirtschaftsakteuren (EORI)"
+        },
+        {
+          "@language": "el",
+          "@value": "Εγγραφή και Αναγνώριση Οικονομικών Φορέων (EORI)"
+        },
+        {
+          "@language": "es",
+          "@value": "Registro e Identificación de Operadores Económicos (EORI)"
+        },
+        {
+          "@language": "et",
+          "@value": "Majandustegevuses osalejate registreerimine ja identifitseerimine (EORI)"
+        },
+        {
+          "@language": "fi",
+          "@value": "Talouden toimijoiden rekisteröinti- ja tunnistenumero (EORI)"
+        },
+        {
+          "@language": "fr",
+          "@value": "Enregistrement et identification des opérateurs économiques (EORI)"
+        },
+        {
+          "@language": "ga",
+          "@value": "Clárú agus Aithint Oibreoirí Eacnamaíocha (EORI)"
+        },
+        {
+          "@language": "hr",
+          "@value": "Registracija i identifikacija gospodarskih subjekata (EORI)"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gazdasági Szereplők Nyilvántartása és Azonosítása (EORI)"
+        },
+        {
+          "@language": "it",
+          "@value": "Registrazione e identificazione degli operatori economici (EORI)"
+        },
+        {
+          "@language": "lt",
+          "@value": "Ekonominės veiklos vykdytojų registracija ir identifikavimas (EORI)"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekonomikas dalībnieku reģistrācijas un identifikācijas numurs (EORI)"
+        },
+        {
+          "@language": "mt",
+          "@value": "Reġistrazzjoni u Identifikazzjoni tal-Operaturi Ekonomiċi (EORI)"
+        },
+        {
+          "@language": "nl",
+          "@value": "Registratie en identificatie van marktdeelnemers (EORI)"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wspólnotowy System Rejestracji i Identyfikacji Podmiotów Gospodarczych (EORI)"
+        },
+        {
+          "@language": "pt",
+          "@value": "Registo e Identificação de Operadores Económicos (EORI)"
+        },
+        {
+          "@language": "ro",
+          "@value": "Înregistrarea și identificarea operatorilor economici (EORI)"
+        },
+        {
+          "@language": "sk",
+          "@value": "Registrácia a identifikácia hospodárskych subjektov (EORI)"
+        },
+        {
+          "@language": "sl",
+          "@value": "Registracija in identifikacija gospodarskih subjektov (EORI)"
+        },
+        {
+          "@language": "sv",
+          "@value": "Registrering och identifiering av ekonomiska aktörer (EORI)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A unique identifier assigned by a customs authority in the EU to economic operators."
+        },
+        {
+          "@language": "bg",
+          "@value": "Уникален идентификатор, определен от митнически орган в ЕС на икономически оператори."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor přidělený celním orgánem v EU hospodářským subjektům."
+        },
+        {
+          "@language": "da",
+          "@value": "En unik identifikator tildelt af en toldmyndighed i EU til økonomiske operatører."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein eindeutiger Identifikator, der von einer Zollbehörde in der EU an Wirtschaftsakteure vergeben wird."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα μοναδικό αναγνωριστικό που εκχωρείται από μια τελωνειακή αρχή στην ΕΕ σε οικονομικούς φορείς."
+        },
+        {
+          "@language": "es",
+          "@value": "Un identificador único asignado por una autoridad aduanera en la UE a los operadores económicos."
+        },
+        {
+          "@language": "et",
+          "@value": "Ainulaadne identifikaator, mille ELi tolliasutus on majandustegevuses osalejatele määranud."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yksilöllinen tunniste, jonka EU:n tulliviranomainen antaa talouden toimijoille."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un identifiant unique attribué par une autorité douanière de l'UE aux opérateurs économiques."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir uathúil arna shannadh ag údarás custaim san AE d'oibreoirí eacnamaíocha."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator koji carinsko tijelo u EU-u dodjeljuje gospodarskim subjektima."
+        },
+        {
+          "@language": "hu",
+          "@value": "Egy egyedi azonosító, amelyet egy uniós vámhatóság rendel a gazdasági szereplőkhöz."
+        },
+        {
+          "@language": "it",
+          "@value": "Un identificatore unico assegnato da un'autorità doganale nell'UE agli operatori economici."
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus identifikatorius, kurį ES muitinė suteikia ekonominės veiklos vykdytojams."
+        },
+        {
+          "@language": "lv",
+          "@value": "Unikāls identifikators, ko ES muitas iestāde piešķir ekonomikas dalībniekiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur uniku assenjat minn awtorità doganali fl-UE lill-operaturi ekonomiċi."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een unieke identificatie toegekend door een douaneautoriteit in de EU aan marktdeelnemers."
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator nadawany przez organy celne w UE podmiotom gospodarczym."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um identificador único atribuído por uma autoridade aduaneira na UE aos operadores económicos."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un identificator unic atribuit de o autoritate vamală din UE operatorilor economici."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor pridelený colným orgánom v EÚ hospodárskym subjektom."
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstven identifikator, ki ga carinski organ v EU dodeli gospodarskim subjektom."
+        },
+        {
+          "@language": "sv",
+          "@value": "En unik identifierare tilldelad av en tullmyndighet i EU till ekonomiska aktörer."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:additionalOrganizationId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Additional Organization ID"
+        },
+        {
+          "@language": "bg",
+          "@value": "Допълнителен идентификатор на организация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Další ID organizace"
+        },
+        {
+          "@language": "da",
+          "@value": "Yderligere organisations-id"
+        },
+        {
+          "@language": "de",
+          "@value": "Zusätzliche Organisations-ID"
+        },
+        {
+          "@language": "el",
+          "@value": "Πρόσθετο Αναγνωριστικό Οργανισμού"
+        },
+        {
+          "@language": "es",
+          "@value": "ID Adicional de Organización"
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsiooni lisatunnus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaation lisätunnus"
+        },
+        {
+          "@language": "fr",
+          "@value": "ID d'organisation supplémentaire"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantas Breise Eagraíochta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Dodatni ID organizacije"
+        },
+        {
+          "@language": "hu",
+          "@value": "További szervezeti azonosító"
+        },
+        {
+          "@language": "it",
+          "@value": "ID organizzazione aggiuntivo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Papildomas organizacijos ID"
+        },
+        {
+          "@language": "lv",
+          "@value": "Papildu organizācijas ID"
+        },
+        {
+          "@language": "mt",
+          "@value": "ID Addizzjonali tal-Organizzazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Aanvullende organisatie-ID"
+        },
+        {
+          "@language": "pl",
+          "@value": "Dodatkowy identyfikator organizacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "ID Adicional da Organização"
+        },
+        {
+          "@language": "ro",
+          "@value": "ID suplimentar al organizației"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ďalšie ID organizácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Dodatni ID organizacije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Ytterligare organisations-ID"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "An identifier for the organization other than GLN or LEI (e.g., EORI, VAT ID). Must be used in conjunction with additionalOrganizationIdType."
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на организацията, различен от GLN или LEI (напр. EORI, ДДС номер). Трябва да се използва заедно с additionalOrganizationIdType."
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor organizace jiný než GLN nebo LEI (např. EORI, DIČ). Musí být použit ve spojení s additionalOrganizationIdType."
+        },
+        {
+          "@language": "da",
+          "@value": "En identifikator for organisationen ud over GLN eller LEI (f.eks. EORI, momsnummer). Skal bruges sammen med additionalOrganizationIdType."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine andere Kennung für die Organisation als GLN oder LEI (z. B. EORI, USt-IdNr.). Muss in Verbindung mit additionalOrganizationIdType verwendet werden."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα αναγνωριστικό για τον οργανισμό εκτός από το GLN ή το LEI (π.χ. EORI, ΑΦΜ). Πρέπει να χρησιμοποιείται σε συνδυασμό με το additionalOrganizationIdType."
+        },
+        {
+          "@language": "es",
+          "@value": "Un identificador para la organización que no sea GLN o LEI (p. ej., EORI, NIF). Debe utilizarse junto con additionalOrganizationIdType."
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsiooni identifikaator peale GLN-i või LEI (nt EORI, käibemaksukohustuslase number). Tuleb kasutada koos atribuudiga additionalOrganizationIdType."
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaation tunniste, joka ei ole GLN tai LEI (esim. EORI, ALV-numero). On käytettävä yhdessä additionalOrganizationIdType-määritteen kanssa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un identifiant pour l'organisation autre que GLN ou LEI (par ex., EORI, numéro de TVA). Doit être utilisé conjointement avec additionalOrganizationIdType."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir don eagraíocht seachas GLN nó LEI (m.sh., EORI, Uimhir CBL). Ní mór é a úsáid i gcomhar le additionalOrganizationIdType."
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator za organizaciju koji nije GLN ili LEI (npr. EORI, PDV ID). Mora se koristiti zajedno s additionalOrganizationIdType."
+        },
+        {
+          "@language": "hu",
+          "@value": "A szervezet azonosítója a GLN-en vagy LEI-n kívül (pl. EORI, adószám). Az additionalOrganizationIdType attribútummal együtt kell használni."
+        },
+        {
+          "@language": "it",
+          "@value": "Un identificatore per l'organizzazione diverso da GLN o LEI (es. EORI, partita IVA). Deve essere utilizzato insieme a additionalOrganizationIdType."
+        },
+        {
+          "@language": "lt",
+          "@value": "Organizacijos identifikatorius, kuris nėra GLN arba LEI (pvz., EORI, PVM mokėtojo kodas). Turi būti naudojamas kartu su additionalOrganizationIdType."
+        },
+        {
+          "@language": "lv",
+          "@value": "Organizācijas identifikators, kas nav GLN vai LEI (piemēram, EORI, PVN maksātāja numurs). Jāizmanto kopā ar additionalOrganizationIdType."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur għall-organizzazzjoni għajr GLN jew LEI (eż., EORI, numru tal-VAT). Għandu jintuża flimkien ma' additionalOrganizationIdType."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een identificatie voor de organisatie anders dan GLN of LEI (bijv. EORI, btw-nummer). Moet worden gebruikt in combinatie met additionalOrganizationIdType."
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator organizacji inny niż GLN lub LEI (np. EORI, NIP). Musi być używany w połączeniu z additionalOrganizationIdType."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um identificador para a organização que não seja GLN ou LEI (por exemplo, EORI, NIF). Deve ser utilizado em conjunto com additionalOrganizationIdType."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un identificator pentru organizație, altul decât GLN sau LEI (de ex. EORI, cod de TVA). Trebuie utilizat împreună cu additionalOrganizationIdType."
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor organizácie iný ako GLN alebo LEI (napr. EORI, IČ DPH). Musí sa použiť v spojení s additionalOrganizationIdType."
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator za organizacijo, ki ni GLN ali LEI (npr. EORI, davčna številka). Uporabljati se mora skupaj z additionalOrganizationIdType."
+        },
+        {
+          "@language": "sv",
+          "@value": "En identifierare för organisationen annan än GLN eller LEI (t.ex. EORI, momsregistreringsnummer). Måste användas i kombination med additionalOrganizationIdType."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:additionalOrganizationIdentification"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:additionalOrganizationIdType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Additional Organization ID Type"
+        },
+        {
+          "@language": "bg",
+          "@value": "Тип допълнителен идентификатор на организация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ dalšího ID organizace"
+        },
+        {
+          "@language": "da",
+          "@value": "Yderligere organisations-id-type"
+        },
+        {
+          "@language": "de",
+          "@value": "Art der zusätzlichen Organisations-ID"
+        },
+        {
+          "@language": "el",
+          "@value": "Τύπος Πρόσθετου Αναγνωριστικού Οργανισμού"
+        },
+        {
+          "@language": "es",
+          "@value": "Tipo de ID Adicional de Organización"
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsiooni lisatunnuse tüüp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaation lisätunnuksen tyyppi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Type d'ID d'organisation supplémentaire"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál Aitheantais Bhreise Eagraíochta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta dodatnog ID-a organizacije"
+        },
+        {
+          "@language": "hu",
+          "@value": "További szervezeti azonosító típusa"
+        },
+        {
+          "@language": "it",
+          "@value": "Tipo di ID organizzazione aggiuntivo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Papildomo organizacijos ID tipas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Papildu organizācijas ID tips"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tip ta' ID Addizzjonali tal-Organizzazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Type aanvullende organisatie-ID"
+        },
+        {
+          "@language": "pl",
+          "@value": "Typ dodatkowego identyfikatora organizacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tipo de ID Adicional da Organização"
+        },
+        {
+          "@language": "ro",
+          "@value": "Tipul ID-ului suplimentar al organizației"
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ ďalšieho ID organizácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta dodatnega ID-ja organizacije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Typ av ytterligare organisations-ID"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The type of the identifier provided in additionalOrganizationId (e.g., 'EORI', 'VAT')."
+        },
+        {
+          "@language": "bg",
+          "@value": "Типът на идентификатора, предоставен в additionalOrganizationId (напр. „EORI“, „ДДС“)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ identifikátoru uvedeného v additionalOrganizationId (např. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "da",
+          "@value": "Typen af identifikatoren angivet i additionalOrganizationId (f.eks. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Typ des in additionalOrganizationId angegebenen Identifikators (z. B. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο τύπος του αναγνωριστικού που παρέχεται στο additionalOrganizationId (π.χ. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "es",
+          "@value": "El tipo del identificador proporcionado en additionalOrganizationId (p. ej., 'EORI', 'VAT')."
+        },
+        {
+          "@language": "et",
+          "@value": "Atribuudis additionalOrganizationId esitatud identifikaatori tüüp (nt 'EORI', 'VAT')."
+        },
+        {
+          "@language": "fi",
+          "@value": "Määritteessä additionalOrganizationId annetun tunnisteen tyyppi (esim. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le type de l'identifiant fourni dans additionalOrganizationId (par ex., 'EORI', 'TVA')."
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál an aitheantóra a sholáthraítear in additionalOrganizationId (m.sh., 'EORI', 'CBL')."
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta identifikatora navedenog u additionalOrganizationId (npr. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az additionalOrganizationId mezőben megadott azonosító típusa (pl. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "it",
+          "@value": "Il tipo dell'identificatore fornito in additionalOrganizationId (es. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "lt",
+          "@value": "Identifikatoriaus, nurodyto additionalOrganizationId, tipas (pvz., 'EORI', 'PVM')."
+        },
+        {
+          "@language": "lv",
+          "@value": "Identifikatora tips, kas norādīts additionalOrganizationId (piemēram, 'EORI', 'VAT')."
+        },
+        {
+          "@language": "mt",
+          "@value": "It-tip tal-identifikatur ipprovdut f'additionalOrganizationId (eż., 'EORI', 'VAT')."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het type identificatie dat is opgegeven in additionalOrganizationId (bijv. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "pl",
+          "@value": "Typ identyfikatora podanego w additionalOrganizationId (np. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "pt",
+          "@value": "O tipo de identificador fornecido em additionalOrganizationId (por exemplo, 'EORI', 'VAT')."
+        },
+        {
+          "@language": "ro",
+          "@value": "Tipul identificatorului furnizat în additionalOrganizationId (de ex. 'EORI', 'TVA')."
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ identifikátora uvedeného v additionalOrganizationId (napr. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta identifikatorja, navedenega v additionalOrganizationId (npr. 'EORI', 'VAT')."
+        },
+        {
+          "@language": "sv",
+          "@value": "Typen av identifierare som anges i additionalOrganizationId (t.ex. 'EORI', 'VAT')."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "gs1:additionalOrganizationIdentificationType"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:address",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Address"
+        },
+        {
+          "@language": "bg",
+          "@value": "Адрес"
+        },
+        {
+          "@language": "cs",
+          "@value": "Adresa"
+        },
+        {
+          "@language": "da",
+          "@value": "Adresse"
+        },
+        {
+          "@language": "de",
+          "@value": "Adresse"
+        },
+        {
+          "@language": "el",
+          "@value": "Διεύθυνση"
+        },
+        {
+          "@language": "es",
+          "@value": "Dirección"
+        },
+        {
+          "@language": "et",
+          "@value": "Aadress"
+        },
+        {
+          "@language": "fi",
+          "@value": "Osoite"
+        },
+        {
+          "@language": "fr",
+          "@value": "Adresse"
+        },
+        {
+          "@language": "ga",
+          "@value": "Seoladh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Adresa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Cím"
+        },
+        {
+          "@language": "it",
+          "@value": "Indirizzo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Adresas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Adrese"
+        },
+        {
+          "@language": "mt",
+          "@value": "Indirizz"
+        },
+        {
+          "@language": "nl",
+          "@value": "Adres"
+        },
+        {
+          "@language": "pl",
+          "@value": "Adres"
+        },
+        {
+          "@language": "pt",
+          "@value": "Endereço"
+        },
+        {
+          "@language": "ro",
+          "@value": "Adresă"
+        },
+        {
+          "@language": "sk",
+          "@value": "Adresa"
+        },
+        {
+          "@language": "sl",
+          "@value": "Naslov"
+        },
+        {
+          "@language": "sv",
+          "@value": "Adress"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates an organization to its physical address."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва организация с нейния физически адрес."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje organizaci s její fyzickou adresou."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer en organisation til dens fysiske adresse."
+        },
+        {
+          "@language": "de",
+          "@value": "Bezieht eine Organisation auf ihre physische Adresse."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει έναν οργανισμό με τη φυσική του διεύθυνση."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona una organización con su dirección física."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob organisatsiooni selle füüsilise aadressiga."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää organisaation sen fyysiseen osoitteeseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie une organisation à son adresse physique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann sé eagraíocht lena seoladh fisiciúil."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje organizaciju s njezinom fizičkom adresom."
+        },
+        {
+          "@language": "hu",
+          "@value": "Egy szervezetet a fizikai címéhez kapcsol."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione un'organizzazione con il suo indirizzo fisico."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja organizaciją su jos fiziniu adresu."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista organizāciju ar tās fizisko adresi."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jirrelata organizzazzjoni mal-indirizz fiżiku tagħha."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt een organisatie aan haar fysieke adres."
+        },
+        {
+          "@language": "pl",
+          "@value": "Powiązuje organizację z jej adresem fizyczym."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona uma organização com o seu endereço físico."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează o organizație cu adresa sa fizică."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája organizáciu s jej fyzickou adresou."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje organizacijo z njenim fizičnim naslovom."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar en organisation till dess fysiska adress."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "dppk:PostalAddress"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:address"
+        },
+        {
+          "@id": "gs1:address"
+        },
+        {
+          "@id": "unece:postalAddress"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:streetAddress",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Street Address"
+        },
+        {
+          "@language": "bg",
+          "@value": "Уличен адрес"
+        },
+        {
+          "@language": "cs",
+          "@value": "Adresa ulice"
+        },
+        {
+          "@language": "da",
+          "@value": "Gadeadresse"
+        },
+        {
+          "@language": "de",
+          "@value": "Straßenanschrift"
+        },
+        {
+          "@language": "el",
+          "@value": "Διεύθυνση Οδού"
+        },
+        {
+          "@language": "es",
+          "@value": "Dirección de la calle"
+        },
+        {
+          "@language": "et",
+          "@value": "Tänava-aadress"
+        },
+        {
+          "@language": "fi",
+          "@value": "Katuosoite"
+        },
+        {
+          "@language": "fr",
+          "@value": "Adresse postale"
+        },
+        {
+          "@language": "ga",
+          "@value": "Seoladh Sráide"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ulična adresa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Utcacím"
+        },
+        {
+          "@language": "it",
+          "@value": "Indirizzo stradale"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gatvės adresas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ielas adrese"
+        },
+        {
+          "@language": "mt",
+          "@value": "Indirizz tat-Triq"
+        },
+        {
+          "@language": "nl",
+          "@value": "Straatadres"
+        },
+        {
+          "@language": "pl",
+          "@value": "Adres ulicy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Endereço da rua"
+        },
+        {
+          "@language": "ro",
+          "@value": "Adresa străzii"
+        },
+        {
+          "@language": "sk",
+          "@value": "Adresa ulice"
+        },
+        {
+          "@language": "sl",
+          "@value": "Naslov ulice"
+        },
+        {
+          "@language": "sv",
+          "@value": "Gatuadress"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Includes street name and number."
+        },
+        {
+          "@language": "bg",
+          "@value": "Включва име и номер на улица."
+        },
+        {
+          "@language": "cs",
+          "@value": "Zahrnuje název ulice a číslo popisné."
+        },
+        {
+          "@language": "da",
+          "@value": "Inkluderer gadenavn og husnummer."
+        },
+        {
+          "@language": "de",
+          "@value": "Gibt den Straßennamen und die Hausnummer an."
+        },
+        {
+          "@language": "el",
+          "@value": "Περιλαμβάνει το όνομα και τον αριθμό της οδού."
+        },
+        {
+          "@language": "es",
+          "@value": "Incluye el nombre de la calle y el número."
+        },
+        {
+          "@language": "et",
+          "@value": "Sisaldab tänava nime ja maja numbrit."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sisältää kadun nimen ja numeron."
+        },
+        {
+          "@language": "fr",
+          "@value": "Comprend le nom et le numéro de la rue."
+        },
+        {
+          "@language": "ga",
+          "@value": "Folaíonn ainm agus uimhir na sráide."
+        },
+        {
+          "@language": "hr",
+          "@value": "Uključuje naziv ulice i kućni broj."
+        },
+        {
+          "@language": "hu",
+          "@value": "Tartalmazza az utcanevet és a házszámot."
+        },
+        {
+          "@language": "it",
+          "@value": "Include il nome della via e il numero civico."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nurodo gatvės pavadinimą ir numerį."
+        },
+        {
+          "@language": "lv",
+          "@value": "Ietver ielas nosaukumu un ēkas numuru."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jinkludi isem it-triq u numru."
+        },
+        {
+          "@language": "nl",
+          "@value": "Bevat de straatnaam en het huisnummer."
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawiera nazwę ulicy i numer budynku."
+        },
+        {
+          "@language": "pt",
+          "@value": "Inclui o nome da rua e o número."
+        },
+        {
+          "@language": "ro",
+          "@value": "Include numele și numărul străzii."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zahŕňa názov ulice a číslo domu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vključuje ime ulice in hišno številko."
+        },
+        {
+          "@language": "sv",
+          "@value": "Inkluderar gatunamn och husnummer."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:PostalAddress"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:streetAddress"
+        },
+        {
+          "@id": "gs1:streetAddress"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:postalCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Postal Code"
+        },
+        {
+          "@language": "bg",
+          "@value": "Пощенски код"
+        },
+        {
+          "@language": "cs",
+          "@value": "PSČ"
+        },
+        {
+          "@language": "da",
+          "@value": "Postnummer"
+        },
+        {
+          "@language": "de",
+          "@value": "Postleitzahl"
+        },
+        {
+          "@language": "el",
+          "@value": "Ταχυδρομικός Κώδικας"
+        },
+        {
+          "@language": "es",
+          "@value": "Código postal"
+        },
+        {
+          "@language": "et",
+          "@value": "Postiindeks"
+        },
+        {
+          "@language": "fi",
+          "@value": "Postinumero"
+        },
+        {
+          "@language": "fr",
+          "@value": "Code postal"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cód Poist"
+        },
+        {
+          "@language": "hr",
+          "@value": "Poštanski broj"
+        },
+        {
+          "@language": "hu",
+          "@value": "Irányítószám"
+        },
+        {
+          "@language": "it",
+          "@value": "Codice postale"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pašto kodas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pasta indekss"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kodiċi Postali"
+        },
+        {
+          "@language": "nl",
+          "@value": "Postcode"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kod pocztowy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Código Postal"
+        },
+        {
+          "@language": "ro",
+          "@value": "Cod poștal"
+        },
+        {
+          "@language": "sk",
+          "@value": "PSČ"
+        },
+        {
+          "@language": "sl",
+          "@value": "Poštna številka"
+        },
+        {
+          "@language": "sv",
+          "@value": "Postnummer"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The postal code of the location."
+        },
+        {
+          "@language": "bg",
+          "@value": "Пощенският код на местоположението."
+        },
+        {
+          "@language": "cs",
+          "@value": "Poštovní směrovací číslo místa."
+        },
+        {
+          "@language": "da",
+          "@value": "Placeringens postnummer."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Postleitzahl des Standorts."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο ταχυδρομικός κώδικας της τοποθεσίας."
+        },
+        {
+          "@language": "es",
+          "@value": "El código postal de la ubicación."
+        },
+        {
+          "@language": "et",
+          "@value": "Asukoha postiindeks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sijainnin postinumero."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le code postal du lieu."
+        },
+        {
+          "@language": "ga",
+          "@value": "Cód poist an láithreach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Poštanski broj lokacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A helyszín irányítószáma."
+        },
+        {
+          "@language": "it",
+          "@value": "Il codice postale del luogo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Vietos pašto kodas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atrašanās vietas pasta indekss."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-kodiċi postali tal-post."
+        },
+        {
+          "@language": "nl",
+          "@value": "De postcode van de locatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Kod pocztowy lokalizacji."
+        },
+        {
+          "@language": "pt",
+          "@value": "O código postal do local."
+        },
+        {
+          "@language": "ro",
+          "@value": "Codul poștal al locației."
+        },
+        {
+          "@language": "sk",
+          "@value": "Poštové smerovacie číslo miesta."
+        },
+        {
+          "@language": "sl",
+          "@value": "Poštna številka lokacije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Platsens postnummer."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:PostalAddress"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:postalCode"
+        },
+        {
+          "@id": "gs1:postalCode"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:addressLocality",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "City/Locality"
+        },
+        {
+          "@language": "bg",
+          "@value": "Град/Населено място"
+        },
+        {
+          "@language": "cs",
+          "@value": "Město/Obec"
+        },
+        {
+          "@language": "da",
+          "@value": "By/Lokalitet"
+        },
+        {
+          "@language": "de",
+          "@value": "Stadt/Ort"
+        },
+        {
+          "@language": "el",
+          "@value": "Πόλη/Τοποθεσία"
+        },
+        {
+          "@language": "es",
+          "@value": "Ciudad/Localidad"
+        },
+        {
+          "@language": "et",
+          "@value": "Linn/Asula"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kaupunki/Paikkakunta"
+        },
+        {
+          "@language": "fr",
+          "@value": "Ville/Localité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cathair/Pobal"
+        },
+        {
+          "@language": "hr",
+          "@value": "Grad/Mjesto"
+        },
+        {
+          "@language": "hu",
+          "@value": "Város/Helység"
+        },
+        {
+          "@language": "it",
+          "@value": "Città/Località"
+        },
+        {
+          "@language": "lt",
+          "@value": "Miestas/Vietovė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Pilsēta/Apdzīvota vieta"
+        },
+        {
+          "@language": "mt",
+          "@value": "Belt/Lokalità"
+        },
+        {
+          "@language": "nl",
+          "@value": "Stad/Plaats"
+        },
+        {
+          "@language": "pl",
+          "@value": "Miasto/Miejscowość"
+        },
+        {
+          "@language": "pt",
+          "@value": "Cidade/Localidade"
+        },
+        {
+          "@language": "ro",
+          "@value": "Oraș/Localitate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Mesto/Obec"
+        },
+        {
+          "@language": "sl",
+          "@value": "Mesto/Kraj"
+        },
+        {
+          "@language": "sv",
+          "@value": "Stad/Ort"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The locality (e.g. city) of the address."
+        },
+        {
+          "@language": "bg",
+          "@value": "Населеното място (напр. град) на адреса."
+        },
+        {
+          "@language": "cs",
+          "@value": "Obec (např. město) v adrese."
+        },
+        {
+          "@language": "da",
+          "@value": "Lokaliteten (f.eks. by) i adressen."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Ortschaft (z. B. Stadt) der Adresse."
+        },
+        {
+          "@language": "el",
+          "@value": "Η τοποθεσία (π.χ. πόλη) της διεύθυνσης."
+        },
+        {
+          "@language": "es",
+          "@value": "La localidad (p. ej., ciudad) de la dirección."
+        },
+        {
+          "@language": "et",
+          "@value": "Aadressi asula (nt linn)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Osoitteen paikkakunta (esim. kaupunki)."
+        },
+        {
+          "@language": "fr",
+          "@value": "La localité (par ex., la ville) de l'adresse."
+        },
+        {
+          "@language": "ga",
+          "@value": "Pobal (m.sh. cathair) an tseolta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Mjesto (npr. grad) na adresi."
+        },
+        {
+          "@language": "hu",
+          "@value": "A cím helysége (pl. város)."
+        },
+        {
+          "@language": "it",
+          "@value": "La località (es. città) dell'indirizzo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Adreso vietovė (pvz., miestas)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Adreses apdzīvotā vieta (piemēram, pilsēta)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-lokalità (eż. belt) tal-indirizz."
+        },
+        {
+          "@language": "nl",
+          "@value": "De plaats (bijv. stad) van het adres."
+        },
+        {
+          "@language": "pl",
+          "@value": "Miejscowość (np. miasto) w adresie."
+        },
+        {
+          "@language": "pt",
+          "@value": "A localidade (por exemplo, cidade) do endereço."
+        },
+        {
+          "@language": "ro",
+          "@value": "Localitatea (de ex. orașul) din adresă."
+        },
+        {
+          "@language": "sk",
+          "@value": "Obec (napr. mesto) v adrese."
+        },
+        {
+          "@language": "sl",
+          "@value": "Kraj (npr. mesto) v naslovu."
+        },
+        {
+          "@language": "sv",
+          "@value": "Ort (t.ex. stad) för adressen."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:PostalAddress"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:addressLocality"
+        },
+        {
+          "@id": "gs1:addressLocality"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:addressCountry",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Country"
+        },
+        {
+          "@language": "bg",
+          "@value": "Държава"
+        },
+        {
+          "@language": "cs",
+          "@value": "Země"
+        },
+        {
+          "@language": "da",
+          "@value": "Land"
+        },
+        {
+          "@language": "de",
+          "@value": "Land"
+        },
+        {
+          "@language": "el",
+          "@value": "Χώρα"
+        },
+        {
+          "@language": "es",
+          "@value": "País"
+        },
+        {
+          "@language": "et",
+          "@value": "Riik"
+        },
+        {
+          "@language": "fi",
+          "@value": "Maa"
+        },
+        {
+          "@language": "fr",
+          "@value": "Pays"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tír"
+        },
+        {
+          "@language": "hr",
+          "@value": "Država"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ország"
+        },
+        {
+          "@language": "it",
+          "@value": "Paese"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Valsts"
+        },
+        {
+          "@language": "mt",
+          "@value": "Pajjiż"
+        },
+        {
+          "@language": "nl",
+          "@value": "Land"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kraj"
+        },
+        {
+          "@language": "pt",
+          "@value": "País"
+        },
+        {
+          "@language": "ro",
+          "@value": "Țară"
+        },
+        {
+          "@language": "sk",
+          "@value": "Krajina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Država"
+        },
+        {
+          "@language": "sv",
+          "@value": "Land"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The country component of the address."
+        },
+        {
+          "@language": "bg",
+          "@value": "Компонентът за държава от адреса."
+        },
+        {
+          "@language": "cs",
+          "@value": "Složka země v adrese."
+        },
+        {
+          "@language": "da",
+          "@value": "Landekomponenten i adressen."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Länderkomponente der Adresse."
+        },
+        {
+          "@language": "el",
+          "@value": "Το στοιχείο χώρας της διεύθυνσης."
+        },
+        {
+          "@language": "es",
+          "@value": "El componente de país de la dirección."
+        },
+        {
+          "@language": "et",
+          "@value": "Aadressi riigi komponent."
+        },
+        {
+          "@language": "fi",
+          "@value": "Osoitteen maaosa."
+        },
+        {
+          "@language": "fr",
+          "@value": "La composante pays de l'adresse."
+        },
+        {
+          "@language": "ga",
+          "@value": "Comhpháirt tíre an tseolta."
+        },
+        {
+          "@language": "hr",
+          "@value": "Komponenta države u adresi."
+        },
+        {
+          "@language": "hu",
+          "@value": "A cím ország komponense."
+        },
+        {
+          "@language": "it",
+          "@value": "Il componente paese dell'indirizzo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Adreso šalies komponentas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Adreses valsts komponents."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-komponent tal-pajjiż tal-indirizz."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het landonderdeel van het adres."
+        },
+        {
+          "@language": "pl",
+          "@value": "Składnik kraju w adresie."
+        },
+        {
+          "@language": "pt",
+          "@value": "A componente do país do endereço."
+        },
+        {
+          "@language": "ro",
+          "@value": "Componenta de țară a adresei."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zložka krajiny v adrese."
+        },
+        {
+          "@language": "sl",
+          "@value": "Državna komponenta naslova."
+        },
+        {
+          "@language": "sv",
+          "@value": "Landskomponenten i adressen."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:PostalAddress"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:addressCountry"
+        },
+        {
+          "@id": "gs1:addressCountry"
+        },
+        {
+          "@id": "unece:countryName"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:email",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Email Address"
+        },
+        {
+          "@language": "bg",
+          "@value": "Имейл адрес"
+        },
+        {
+          "@language": "cs",
+          "@value": "E-mailová adresa"
+        },
+        {
+          "@language": "da",
+          "@value": "E-mailadresse"
+        },
+        {
+          "@language": "de",
+          "@value": "E-Mail-Adresse"
+        },
+        {
+          "@language": "el",
+          "@value": "Διεύθυνση Ηλεκτρονικού Ταχυδρομείου"
+        },
+        {
+          "@language": "es",
+          "@value": "Dirección de correo electrónico"
+        },
+        {
+          "@language": "et",
+          "@value": "E-posti aadress"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sähköpostiosoite"
+        },
+        {
+          "@language": "fr",
+          "@value": "Adresse e-mail"
+        },
+        {
+          "@language": "ga",
+          "@value": "Seoladh Ríomhphoist"
+        },
+        {
+          "@language": "hr",
+          "@value": "Adresa e-pošte"
+        },
+        {
+          "@language": "hu",
+          "@value": "E-mail cím"
+        },
+        {
+          "@language": "it",
+          "@value": "Indirizzo e-mail"
+        },
+        {
+          "@language": "lt",
+          "@value": "El. pašto adresas"
+        },
+        {
+          "@language": "lv",
+          "@value": "E-pasta adrese"
+        },
+        {
+          "@language": "mt",
+          "@value": "Indirizz tal-Email"
+        },
+        {
+          "@language": "nl",
+          "@value": "E-mailadres"
+        },
+        {
+          "@language": "pl",
+          "@value": "Adres e-mail"
+        },
+        {
+          "@language": "pt",
+          "@value": "Endereço de e-mail"
+        },
+        {
+          "@language": "ro",
+          "@value": "Adresă de e-mail"
+        },
+        {
+          "@language": "sk",
+          "@value": "E-mailová adresa"
+        },
+        {
+          "@language": "sl",
+          "@value": "E-poštni naslov"
+        },
+        {
+          "@language": "sv",
+          "@value": "E-postadress"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The email address for contacting the organization."
+        },
+        {
+          "@language": "bg",
+          "@value": "Имейл адресът за връзка с организацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "E-mailová adresa pro kontaktování organizace."
+        },
+        {
+          "@language": "da",
+          "@value": "E-mailadressen til at kontakte organisationen."
+        },
+        {
+          "@language": "de",
+          "@value": "Die E-Mail-Adresse für die Kontaktaufnahme mit der Organisation."
+        },
+        {
+          "@language": "el",
+          "@value": "Η διεύθυνση ηλεκτρονικού ταχυδρομείου για επικοινωνία με τον οργανισμό."
+        },
+        {
+          "@language": "es",
+          "@value": "La dirección de correo electrónico para contactar a la organización."
+        },
+        {
+          "@language": "et",
+          "@value": "E-posti aadress organisatsiooniga ühenduse võtmiseks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sähköpostiosoite organisaatioon yhteydenottoa varten."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'adresse e-mail pour contacter l'organisation."
+        },
+        {
+          "@language": "ga",
+          "@value": "An seoladh ríomhphoist chun teagmháil a dhéanamh leis an eagraíocht."
+        },
+        {
+          "@language": "hr",
+          "@value": "Adresa e-pošte za kontaktiranje organizacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A szervezet kapcsolattartási e-mail címe."
+        },
+        {
+          "@language": "it",
+          "@value": "L'indirizzo e-mail per contattare l'organizzazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "El. pašto adresas susisiekti su organizacija."
+        },
+        {
+          "@language": "lv",
+          "@value": "E-pasta adrese saziņai ar organizāciju."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-indirizz tal-email biex tikkuntattja l-organizzazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het e-mailadres om contact op te nemen met de organisatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Adres e-mail do kontaktu z organizacją."
+        },
+        {
+          "@language": "pt",
+          "@value": "O endereço de e-mail para contactar a organização."
+        },
+        {
+          "@language": "ro",
+          "@value": "Adresa de e-mail pentru a contacta organizația."
+        },
+        {
+          "@language": "sk",
+          "@value": "E-mailová adresa na kontaktovanie organizácie."
+        },
+        {
+          "@language": "sl",
+          "@value": "E-poštni naslov za stik z organizacijo."
+        },
+        {
+          "@language": "sv",
+          "@value": "E-postadressen för att kontakta organisationen."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:email"
+        },
+        {
+          "@id": "gs1:email"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:telephone",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Telephone Number"
+        },
+        {
+          "@language": "bg",
+          "@value": "Телефонен номер"
+        },
+        {
+          "@language": "cs",
+          "@value": "Telefonní číslo"
+        },
+        {
+          "@language": "da",
+          "@value": "Telefonnummer"
+        },
+        {
+          "@language": "de",
+          "@value": "Telefonnummer"
+        },
+        {
+          "@language": "el",
+          "@value": "Αριθμός Τηλεφώνου"
+        },
+        {
+          "@language": "es",
+          "@value": "Número de teléfono"
+        },
+        {
+          "@language": "et",
+          "@value": "Telefoninumber"
+        },
+        {
+          "@language": "fi",
+          "@value": "Puhelinnumero"
+        },
+        {
+          "@language": "fr",
+          "@value": "Numéro de téléphone"
+        },
+        {
+          "@language": "ga",
+          "@value": "Uimhir Theileafóin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Telefonski broj"
+        },
+        {
+          "@language": "hu",
+          "@value": "Telefonszám"
+        },
+        {
+          "@language": "it",
+          "@value": "Numero di telefono"
+        },
+        {
+          "@language": "lt",
+          "@value": "Telefono numeris"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tālruņa numurs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Numru tat-Telefon"
+        },
+        {
+          "@language": "nl",
+          "@value": "Telefoonnummer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer telefonu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Número de telefone"
+        },
+        {
+          "@language": "ro",
+          "@value": "Număr de telefon"
+        },
+        {
+          "@language": "sk",
+          "@value": "Telefónne číslo"
+        },
+        {
+          "@language": "sl",
+          "@value": "Telefonska številka"
+        },
+        {
+          "@language": "sv",
+          "@value": "Telefonnummer"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The telephone number for contacting the organization."
+        },
+        {
+          "@language": "bg",
+          "@value": "Телефонният номер за връзка с организацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Telefonní číslo pro kontaktování organizace."
+        },
+        {
+          "@language": "da",
+          "@value": "Telefonnummeret til at kontakte organisationen."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Telefonnummer für die Kontaktaufnahme mit der Organisation."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο αριθμός τηλεφώνου για επικοινωνία με τον οργανισμό."
+        },
+        {
+          "@language": "es",
+          "@value": "El número de teléfono para contactar a la organización."
+        },
+        {
+          "@language": "et",
+          "@value": "Telefoninumber organisatsiooniga ühenduse võtmiseks."
+        },
+        {
+          "@language": "fi",
+          "@value": "Puhelinnumero organisaatioon yhteydenottoa varten."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le numéro de téléphone pour contacter l'organisation."
+        },
+        {
+          "@language": "ga",
+          "@value": "An uimhir theileafóin chun teagmháil a dhéanamh leis an eagraíocht."
+        },
+        {
+          "@language": "hr",
+          "@value": "Telefonski broj za kontaktiranje organizacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A szervezet kapcsolattartási telefonszáma."
+        },
+        {
+          "@language": "it",
+          "@value": "Il numero di telefono per contattare l'organizzazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Telefono numeris susisiekti su organizacija."
+        },
+        {
+          "@language": "lv",
+          "@value": "Tālruņa numurs saziņai ar organizāciju."
+        },
+        {
+          "@language": "mt",
+          "@value": "In-numru tat-telefon biex tikkuntattja l-organizzazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het telefoonnummer om contact op te nemen met de organisatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Numer telefonu do kontaktu z organizacją."
+        },
+        {
+          "@language": "pt",
+          "@value": "O número de telefone para contactar a organização."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numărul de telefon pentru a contacta organizația."
+        },
+        {
+          "@language": "sk",
+          "@value": "Telefónne číslo na kontaktovanie organizácie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Telefonska številka za stik z organizacijo."
+        },
+        {
+          "@language": "sv",
+          "@value": "Telefonnumret för att kontakta organisationen."
+        }
+      ],
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:telephone"
+        },
+        {
+          "@id": "gs1:telephone"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:operatorEmail",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Operator Email Address",
+      "rdfs:comment": "The email address for contacting the economic operator.",
+      "dppk:visibility": {
+        "@id": "dppk:AuthorityOnly"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:EconomicOperatorRole"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:operatorTelephone",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "Operator Telephone Number",
+      "rdfs:comment": "The telephone number for contacting the economic operator.",
+      "dppk:visibility": {
+        "@id": "dppk:AuthorityOnly"
+      },
+      "rdfs:domain": {
+        "@id": "dppk:EconomicOperatorRole"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:website",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Website"
+        },
+        {
+          "@language": "bg",
+          "@value": "Уебсайт"
+        },
+        {
+          "@language": "cs",
+          "@value": "Webová stránka"
+        },
+        {
+          "@language": "da",
+          "@value": "Hjemmeside"
+        },
+        {
+          "@language": "de",
+          "@value": "Website"
+        },
+        {
+          "@language": "el",
+          "@value": "Ιστότοπος"
+        },
+        {
+          "@language": "es",
+          "@value": "Sitio web"
+        },
+        {
+          "@language": "et",
+          "@value": "Veebisait"
+        },
+        {
+          "@language": "fi",
+          "@value": "Verkkosivusto"
+        },
+        {
+          "@language": "fr",
+          "@value": "Site web"
+        },
+        {
+          "@language": "ga",
+          "@value": "Suíomh Gréasáin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Web stranica"
+        },
+        {
+          "@language": "hu",
+          "@value": "Weboldal"
+        },
+        {
+          "@language": "it",
+          "@value": "Sito web"
+        },
+        {
+          "@language": "lt",
+          "@value": "Svetainė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tīmekļa vietne"
+        },
+        {
+          "@language": "mt",
+          "@value": "Sit elettroniku"
+        },
+        {
+          "@language": "nl",
+          "@value": "Website"
+        },
+        {
+          "@language": "pl",
+          "@value": "Strona internetowa"
+        },
+        {
+          "@language": "pt",
+          "@value": "Sítio web"
+        },
+        {
+          "@language": "ro",
+          "@value": "Site web"
+        },
+        {
+          "@language": "sk",
+          "@value": "Webová stránka"
+        },
+        {
+          "@language": "sl",
+          "@value": "Spletna stran"
+        },
+        {
+          "@language": "sv",
+          "@value": "Webbplats"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The URL of the organization's website."
+        },
+        {
+          "@language": "bg",
+          "@value": "URL адресът на уебсайта на организацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "URL adresa webové stránky organizace."
+        },
+        {
+          "@language": "da",
+          "@value": "URL'en til organisationens hjemmeside."
+        },
+        {
+          "@language": "de",
+          "@value": "Die URL der Website der Organisation."
+        },
+        {
+          "@language": "el",
+          "@value": "Το URL του ιστότοπου του οργανισμού."
+        },
+        {
+          "@language": "es",
+          "@value": "La URL del sitio web de la organización."
+        },
+        {
+          "@language": "et",
+          "@value": "Organisatsiooni veebisaidi URL."
+        },
+        {
+          "@language": "fi",
+          "@value": "Organisaation verkkosivuston URL-osoite."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'URL du site web de l'organisation."
+        },
+        {
+          "@language": "ga",
+          "@value": "URL shuíomh gréasáin na heagraíochta."
+        },
+        {
+          "@language": "hr",
+          "@value": "URL web stranice organizacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A szervezet weboldalának URL-je."
+        },
+        {
+          "@language": "it",
+          "@value": "L'URL del sito web dell'organizzazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Organizacijos svetainės URL."
+        },
+        {
+          "@language": "lv",
+          "@value": "Organizācijas tīmekļa vietnes URL."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-URL tas-sit elettroniku tal-organizzazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De URL van de website van de organisatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Adres URL strony internetowej organizacji."
+        },
+        {
+          "@language": "pt",
+          "@value": "O URL do sítio web da organização."
+        },
+        {
+          "@language": "ro",
+          "@value": "Adresa URL a site-ului web al organizației."
+        },
+        {
+          "@language": "sk",
+          "@value": "URL adresa webovej stránky organizácie."
+        },
+        {
+          "@language": "sl",
+          "@value": "URL spletne strani organizacije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Webbadressen till organisationens webbplats."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Organization"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:url"
+      }
+    }
+  ]
+}
