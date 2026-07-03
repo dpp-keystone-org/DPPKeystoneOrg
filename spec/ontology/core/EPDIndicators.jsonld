@@ -10,6 +10,17 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDIndicators.jsonld",
   "@type": "owl:Ontology",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDMetadata.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDLifecycle.jsonld"
+    }
+  ],
   "dcterms:title": [
     {
       "@language": "en",
@@ -106,17 +117,6 @@
     {
       "@language": "sv",
       "@value": "DPP-kärnontologi - EPD-indikatorer"
-    }
-  ],
-  "owl:imports": [
-    {
-      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
-    },
-    {
-      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDMetadata.jsonld"
-    },
-    {
-      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDLifecycle.jsonld"
     }
   ],
   "dcterms:description": [
@@ -217,6 +217,7 @@
       "@value": "Definierar de specifika miljöpåverkansindikatorer som används i miljövarudeklarationer."
     }
   ],
+  "owl:versionInfo": "v2",
   "@graph": [
     {
       "@id": "dppk:indicator",

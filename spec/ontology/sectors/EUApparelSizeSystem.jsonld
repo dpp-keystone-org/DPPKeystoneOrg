@@ -12,6 +12,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/EUApparelSizeSystem",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "v2",
   "dcterms:title": [
     {
       "@language": "en",
@@ -208,7 +209,6 @@
       "@value": "Definierar den strukturerade representationen av EU:s klädstorlekar baserat på kroppsmått enligt EN 13402."
     }
   ],
-  "owl:versionInfo": "Draft",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"

@@ -16,99 +16,99 @@
   "dcterms:title": [
     {
       "@language": "en",
-      "@value": "DPP Core Ontology - Header Definitions (v2)"
+      "@value": "DPP Core Ontology - Header Definitions"
     },
     {
       "@language": "bg",
-      "@value": "Основна онтология на DPP - Определения на заглавните части (v2)"
+      "@value": "Основна онтология на DPP - Определения на заглавните части"
     },
     {
       "@language": "cs",
-      "@value": "Základní ontologie DPP - Definice hlavičky (v2)"
+      "@value": "Základní ontologie DPP - Definice hlavičky"
     },
     {
       "@language": "da",
-      "@value": "DPP Kerneontologi - Header-definitioner (v2)"
+      "@value": "DPP Kerneontologi - Header-definitioner"
     },
     {
       "@language": "de",
-      "@value": "DPP-Kernontologie - Header-Definitionen (v2)"
+      "@value": "DPP-Kernontologie - Header-Definitionen"
     },
     {
       "@language": "el",
-      "@value": "Βασική οντολογία DPP - Ορισμοί κεφαλίδας (v2)"
+      "@value": "Βασική οντολογία DPP - Ορισμοί κεφαλίδας"
     },
     {
       "@language": "es",
-      "@value": "Ontología central de DPP - Definiciones de encabezado (v2)"
+      "@value": "Ontología central de DPP - Definiciones de encabezado"
     },
     {
       "@language": "et",
-      "@value": "DPP tuumontoloogia - Päise definitsioonid (v2)"
+      "@value": "DPP tuumontoloogia - Päise definitsioonid"
     },
     {
       "@language": "fi",
-      "@value": "DPP-ydinontologia - Otsikkotietojen määritykset (v2)"
+      "@value": "DPP-ydinontologia - Otsikkotietojen määritykset"
     },
     {
       "@language": "fr",
-      "@value": "Ontologie de base DPP - Définitions d'en-tête (v2)"
+      "@value": "Ontologie de base DPP - Définitions d'en-tête"
     },
     {
       "@language": "ga",
-      "@value": "Príomhointeolaíocht DPP - Sainmhínithe Cinn (v2)"
+      "@value": "Príomhointeolaíocht DPP - Sainmhínithe Cinn"
     },
     {
       "@language": "hr",
-      "@value": "Osnovna ontologija DPP-a - Definicije zaglavlja (v2)"
+      "@value": "Osnovna ontologija DPP-a - Definicije zaglavlja"
     },
     {
       "@language": "hu",
-      "@value": "DPP alapontológia - Fejléc definíciók (v2)"
+      "@value": "DPP alapontológia - Fejléc definíciók"
     },
     {
       "@language": "it",
-      "@value": "Ontologia di base DPP - Definizioni dell'intestazione (v2)"
+      "@value": "Ontologia di base DPP - Definizioni dell'intestazione"
     },
     {
       "@language": "lt",
-      "@value": "DPP pagrindinė ontologija - Antraštės apibrėžimai (v2)"
+      "@value": "DPP pagrindinė ontologija - Antraštės apibrėžimai"
     },
     {
       "@language": "lv",
-      "@value": "DPP pamata ontoloģija - Galvenes definīcijas (v2)"
+      "@value": "DPP pamata ontoloģija - Galvenes definīcijas"
     },
     {
       "@language": "mt",
-      "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet tal-Header (v2)"
+      "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet tal-Header"
     },
     {
       "@language": "nl",
-      "@value": "DPP Kernontologie - Header-definities (v2)"
+      "@value": "DPP Kernontologie - Header-definities"
     },
     {
       "@language": "pl",
-      "@value": "Główna ontologia DPP - Definicje nagłówka (v2)"
+      "@value": "Główna ontologia DPP - Definicje nagłówka"
     },
     {
       "@language": "pt",
-      "@value": "Ontologia Central do DPP - Definições de Cabeçalho (v2)"
+      "@value": "Ontologia Central do DPP - Definições de Cabeçalho"
     },
     {
       "@language": "ro",
-      "@value": "Ontologia de bază DPP - Definiții antet (v2)"
+      "@value": "Ontologia de bază DPP - Definiții antet"
     },
     {
       "@language": "sk",
-      "@value": "Základná ontológia DPP - Definície hlavičky (v2)"
+      "@value": "Základná ontológia DPP - Definície hlavičky"
     },
     {
       "@language": "sl",
-      "@value": "Osnovna ontologija DPP - Definicije glave (v2)"
+      "@value": "Osnovna ontologija DPP - Definicije glave"
     },
     {
       "@language": "sv",
-      "@value": "DPP-kärnontologi - Header-definitioner (v2)"
+      "@value": "DPP-kärnontologi - Header-definitioner"
     }
   ],
   "dcterms:description": [
@@ -209,7 +209,15 @@
       "@value": "Definierar de normativa header-fält som krävs för det digitala produktpassets omslag."
     }
   ],
-  "owl:versionInfo": "1.0.0",
+  "owl:versionInfo": "v2",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Visibility.jsonld"
+    }
+  ],
   "@graph": [
     {
       "@id": "dppk:DigitalProductPassport",

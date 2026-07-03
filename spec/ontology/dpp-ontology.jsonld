@@ -207,7 +207,7 @@
       "@value": "Huvudingångspunkten för DPP Harmoniserande dataordbok (Keystone). Denna fil importerar alla kärnmoduler och sektorspecifika definitioner för version 1."
     }
   ],
-  "owl:versionInfo": "1.0.0",
+  "owl:versionInfo": "v2",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Header.jsonld"

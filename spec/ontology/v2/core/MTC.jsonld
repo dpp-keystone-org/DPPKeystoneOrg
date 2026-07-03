@@ -10,6 +10,10 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/MTC",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "v2",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+  },
   "dcterms:title": [
     {
       "@language": "en",
@@ -206,9 +210,6 @@
       "@value": "Definierar basklassen och egenskaperna för ett materialprovningsintyg (t.ex. EN 10204)."
     }
   ],
-  "owl:imports": {
-    "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
-  },
   "@graph": [
     {
       "@id": "dppk:MaterialTestCertificate",

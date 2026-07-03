@@ -10,6 +10,11 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/EPDMetadata.jsonld",
   "@type": "owl:Ontology",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+    }
+  ],
   "dcterms:title": [
     {
       "@language": "en",
@@ -106,11 +111,6 @@
     {
       "@language": "sv",
       "@value": "DPP-kärnontologi - EPD-metadata"
-    }
-  ],
-  "owl:imports": [
-    {
-      "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
     }
   ],
   "dcterms:description": [
@@ -211,6 +211,7 @@
       "@value": "Definierar de grundläggande strukturella klasserna för miljövarudeklarationer (EPD)."
     }
   ],
+  "owl:versionInfo": "v2",
   "@graph": [
     {
       "@id": "dppk:EPDBlock",

@@ -14,6 +14,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/Construction",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "v2",
   "dcterms:title": [
     {
       "@language": "en",
@@ -210,7 +211,6 @@
       "@value": "Definierar koncept för byggprodukter (i linje med CPR) och relaterade tunga industrier som stål och järnväg."
     }
   ],
-  "owl:versionInfo": "1.0.0",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"

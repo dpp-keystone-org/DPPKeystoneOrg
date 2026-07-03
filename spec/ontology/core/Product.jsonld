@@ -211,7 +211,7 @@
       "@value": "Definierar horisontella begrepp relaterade till produktbeskrivningen, stycklistan (BOM), material och kvantitativa mätningar."
     }
   ],
-  "owl:versionInfo": "1.0.0",
+  "owl:versionInfo": "v2",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Header.jsonld"

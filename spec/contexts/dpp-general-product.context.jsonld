@@ -38,7 +38,7 @@
       "@container": "@set"
     },
     "additionalCertifications": {
-      "@id": "dppk:additionalCertifications",
+      "@id": "dppk:additionalCertification",
       "@container": "@set",
       "@context": {
         "name": "dppk:certificationName",

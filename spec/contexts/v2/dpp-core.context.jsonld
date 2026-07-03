@@ -16,16 +16,25 @@
       "RelatedResource": "dppk:RelatedResource",
       "Certification": "dppk:Certification",
       "Component": "dppk:Component",
-      "SubstanceOfConcern": "dppk:SubstanceOfConcern",
       "Packaging": "dppk:Packaging",
       "ProductionStep": "dppk:ProductionStep",
       "ProductCharacteristic": "dppk:ProductCharacteristic",
-      "EconomicOperatorRole": "dppk:EconomicOperatorRole",
-      "ManufacturerRole": "dppk:ManufacturerRole",
-      "FacilityRole": "dppk:FacilityRole",
-      "ConformityAssessmentBodyRole": "dppk:ConformityAssessmentBodyRole",
-      "RepairServiceRole": "dppk:RepairServiceRole",
-      "ISO6523": "dppk:ISO6523",
+      "certificationBodyRole": {
+        "@id": "dppk:certificationBodyRole",
+        "@type": "@vocab"
+      },
+      "EconomicOperatorRole": {
+        "@id": "dppk:EconomicOperatorRole"
+      },
+      "ManufacturerRole": {
+        "@id": "dppk:ManufacturerRole"
+      },
+      "ImporterRole": {
+        "@id": "dppk:ImporterRole"
+      },
+      "NotifiedBodyRole": {
+        "@id": "dppk:NotifiedBodyRole"
+      },
       "Item": {
         "@id": "dppk:Item"
       },
@@ -70,7 +79,6 @@
         "@id": "dppk:contentSpecificationIds",
         "@container": "@set"
       },
-      "verifiableCredential": "dppk:verifiableCredential",
       "hsCode": "dppk:hsCode",
       "economicOperator": {
         "@id": "dppk:economicOperator"
@@ -93,12 +101,8 @@
       "gln": "dppk:gln",
       "leiCode": "dppk:leiCode",
       "eori": "dppk:eori",
-      "organizationRole": "dppk:organizationRole",
       "additionalOrganizationId": "dppk:additionalOrganizationId",
       "additionalOrganizationIdType": "dppk:additionalOrganizationIdType",
-      "iso6523": "dppk:iso6523",
-      "icd": "dppk:icd",
-      "iso6523Value": "dppk:iso6523Value",
       "address": "dppk:address",
       "streetAddress": "dppk:streetAddress",
       "postalCode": "dppk:postalCode",
@@ -163,10 +167,6 @@
       "resourceTitle": "dppk:resourceTitle",
       "contentType": "dppk:contentType",
       "language": "dppk:language",
-      "dateOfManufacture": {
-        "@id": "dppk:dateOfManufacture",
-        "@type": "xsd:date"
-      },
       "apparelSize": {
         "@id": "dppk:apparelSize",
         "@type": "xsd:string"

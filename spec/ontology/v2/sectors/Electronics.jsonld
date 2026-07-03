@@ -13,6 +13,7 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/sectors/Electronics",
   "@type": "owl:Ontology",
+  "owl:versionInfo": "v2",
   "dcterms:title": [
     {
       "@language": "en",
@@ -209,7 +210,6 @@
       "@value": "Definierar koncept för elektronik och elektrisk utrustning (EEE), i linje med regler som RoHS, WEEE och krav på ekodesign."
     }
   ],
-  "owl:versionInfo": "1.0.0",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"

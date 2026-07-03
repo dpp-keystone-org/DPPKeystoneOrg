@@ -11,6 +11,10 @@
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v2/core/RelatedResource",
   "@type": "owl:Ontology",
+  "owl:imports": {
+    "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
+  },
+  "owl:versionInfo": "v2",
   "dcterms:title": [
     {
       "@language": "en",
@@ -207,9 +211,6 @@
       "@value": "Definierar en klass för att länka till externa resurser, såsom dokument eller webbplatser, med tillhörande metadata."
     }
   ],
-  "owl:imports": {
-    "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
-  },
   "@graph": [
     {
       "@id": "dppk:RelatedResource",

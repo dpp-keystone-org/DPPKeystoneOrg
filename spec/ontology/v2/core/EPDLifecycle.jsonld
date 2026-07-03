@@ -206,6 +206,7 @@
       "@value": "Definierar livscykelfaserna (A1-D) som används i miljövarudeklarationer."
     }
   ],
+  "owl:versionInfo": "v2",
   "owl:imports": [
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v2/core/Product.jsonld"
