@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit: Pass/Fail</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;DPP Core Ontology - Units (v3)&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;DPP Основна онтология - Единици (v3)&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Základní ontologie DPP - Jednotky (v3)&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;DPP Kerneontologi - Enheder (v3)&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;DPP Kernontologie - Einheiten (v3)&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Βασική Οντολογία DPP - Μονάδες (v3)&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Ontología Central DPP - Unidades (v3)&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;DPP põhiontoloogia - Ühikud (v3)&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;DPP-ydinontologia - Yksiköt (v3)&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Ontologie de Base DPP - Unités (v3)&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Príomhointeolaíocht DPP - Aonaid (v3)&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;DPP Osnovna ontologija - Jedinice (v3)&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;DPP Alapontológia - Mértékegységek (v3)&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Ontologia Principale DPP - Unità (v3)&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;DPP pagrindinė ontologija - Vienetai (v3)&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;DPP pamatontoloģija - Vienības (v3)&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Ontoloġija Ewlenija DPP - Unitajiet (v3)&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;DPP Kernontologie - Eenheden (v3)&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Podstawowa ontologia DPP - Jednostki (v3)&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Ontologia Principal DPP - Unidades (v3)&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Ontologia de bază DPP - Unități (v3)&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Základná ontológia DPP - Jednotky (v3)&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Osnovna ontologija DPP - Enote (v3)&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;DPP Kärnontologi - Enheter (v3)&quot;}]">DPP Core Ontology - Units (v3)</span></a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Unit: <span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Pass/Fail&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Издържал/Неиздържал&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Prospěl/Neprospěl&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Bestået/Ikke bestået&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Bestanden/Nicht bestanden&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Επιτυχία/Αποτυχία&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Aprobado/Suspendido&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Arvestatud/Mittearvestatud&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Hyväksytty/Hylätty&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Réussite/Échec&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Pas/Teip&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Prolaz/Pad&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Megfelelt/Nem felelt meg&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Idoneo/Non idoneo&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Išlaikyta/Neišlaikyta&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Nokārtots/Nav nokārtots&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Għadda/M&#39;għaddiex&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Geslaagd/Gezakt&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Zaliczony/Niezaliczony&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Aprovado/Reprovado&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Admis/Respins&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Prospel/Neprospel&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Opravil/Ni opravil&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Godkänd/Underkänd&quot;}]">Pass/Fail</span> (dppk-unit:PassFail)</h2>
+            </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
+        </header>
+        <main>
+            <div class="class-section" id="PassFail">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class PassFail
+
+                </pre>
+
+                <h4><span data-i18n-key="description-column">Description</span></h4>
+                <p><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;A binary unit indicating success or failure of a test or assessment.&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Двоична единица, указваща успех или неуспех на тест или оценка.&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Binární jednotka označující úspěch nebo neúspěch testu nebo hodnocení.&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;En binær enhed, der angiver succes eller fiasko for en test eller vurdering.&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Eine binäre Einheit, die den Erfolg oder Misserfolg eines Tests oder einer Bewertung anzeigt.&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Δυαδική μονάδα που υποδεικνύει επιτυχία ή αποτυχία μιας δοκιμής ή αξιολόγησης.&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Una unidad binaria que indica el éxito o fracaso de una prueba o evaluación.&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Binaarne ühik, mis näitab testi või hindamise õnnestumist või ebaõnnestumist.&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Binäärinen yksikkö, joka osoittaa testin tai arvioinnin onnistumisen tai epäonnistumisen.&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Une unité binaire indiquant le succès ou l&#39;échec d&#39;un test ou d&#39;une évaluation.&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Aonad dénártha a léiríonn rath nó teip ar thástáil nó ar mheasúnú.&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Binarna jedinica koja ukazuje na uspjeh ili neuspjeh testa ili procjene.&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Egy teszt vagy értékelés sikerességét vagy kudarcát jelző bináris egység.&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Un&#39;unità binaria che indica il successo o il fallimento di un test o di una valutazione.&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Dvejetainis vienetas, rodantis testo ar vertinimo sėkmę ar nesėkmę.&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Bināra vienība, kas norāda testa vai novērtējuma panākumus vai neveiksmi.&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Unità binarja li tindika s-suċċess jew il-falliment ta&#39; test jew valutazzjoni.&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Een binaire eenheid die het succes of falen van een test of beoordeling aangeeft.&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Jednostka binarna wskazująca sukces lub niepowodzenie testu lub oceny.&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Uma unidade binária que indica o sucesso ou fracasso de um teste ou avaliação.&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;O unitate binară care indică succesul sau eșecul unui test sau al unei evaluări.&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Binárna jednotka označujúca úspech alebo neúspech testu alebo hodnotenia.&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Binarna enota, ki označuje uspeh ali neuspeh preskusa ali ocene.&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;En binär enhet som anger om ett test eller en bedömning har godkänts eller underkänts.&quot;}]">A binary unit indicating success or failure of a test or assessment.</span></p>
+                <p><strong>type:</strong> dppk:Unit</p>
+
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import { LanguageManager } from '../../../../../lib/language-manager.js';
+        mermaid.initialize({ startOnLoad: true });
+
+        LanguageManager.init('../../../../../index.i18n.json');
+    </script>
+</body>
+</html>

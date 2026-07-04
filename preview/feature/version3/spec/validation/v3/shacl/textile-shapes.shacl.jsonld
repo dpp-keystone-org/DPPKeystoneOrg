@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppkval": "https://dpp-keystone.org/spec/validation/v3/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "or": {
+      "@id": "sh:or",
+      "@container": "@list"
+    },
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
+  },
+  "@id": "dppkval:TextileShapes",
+  "@type": "ShapesGraph",
+  "@graph": [
+    {
+      "@id": "dppkval:TextileProductShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:DigitalProductPassport",
+      "or": [
+        {
+          "not": {
+            "property": {
+              "path": "dppk:contentSpecificationIds",
+              "hasValue": "draft_textile_espr_specification_id"
+            }
+          }
+        },
+        {
+          "property": [
+            {
+              "path": "dppk:fibreComposition",
+              "node": "dppkval:FibreCompositionShape",
+              "message": "Textile product fibre composition must follow FibreCompositionShape."
+            },
+            {
+              "path": "dppk:animalOriginNonTextile",
+              "datatype": "xsd:boolean",
+              "message": "Animal origin non-textile must be a boolean."
+            },
+            {
+              "path": "dppk:color",
+              "message": "Textile product color."
+            },
+            {
+              "path": "dppk:euApparelSize",
+              "message": "Textile product must have an EU apparel size."
+            },
+            {
+              "path": "dppk:careInstructions",
+              "message": "Textile product care instructions."
+            },
+            {
+              "path": "dppk:preConsumerRecycledContentPercentage",
+              "datatype": "xsd:double",
+              "message": "Pre-consumer recycled content percentage."
+            },
+            {
+              "path": "dppk:productionSteps",
+              "message": "Textile product production steps."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "dppkval:FibreCompositionShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:FibreComposition",
+      "property": [
+        {
+          "path": "dppk:componentName",
+          "minCount": 1,
+          "message": "Fibre composition must specify the component name (dppk:componentName)."
+        },
+        {
+          "path": "dppk:componentPercentage",
+          "minCount": 1,
+          "datatype": "xsd:double",
+          "message": "Fibre composition must specify the percentage (dppk:componentPercentage)."
+        }
+      ]
+    }
+  ]
+}

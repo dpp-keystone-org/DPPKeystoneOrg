@@ -1,0 +1,109 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk-epd": "https://dpp-keystone.org/spec/v3/terms/epd#",
+    "dppk-dopc": "https://dpp-keystone.org/spec/v3/terms/dopc#",
+    "dppkval": "https://dpp-keystone.org/spec/validation/v3/shacl/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "or": {
+      "@id": "sh:or",
+      "@container": "@list"
+    },
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
+  },
+  "@id": "dppkval:ConstructionShapes",
+  "@type": "ShapesGraph",
+  "@graph": [
+    {
+      "@id": "dppkval:ConstructionProductShape",
+      "@type": "NodeShape",
+      "targetClass": "dppk:DigitalProductPassport",
+      "or": [
+        {
+          "not": {
+            "property": {
+              "path": "dppk:contentSpecificationIds",
+              "hasValue": "draft_construction_specification_id"
+            }
+          }
+        },
+        {
+          "property": [
+            {
+              "path": "dppk:versionNumber",
+              "minCount": 0,
+              "datatype": "xsd:string"
+            },
+            {
+              "path": "dppk:versionDate",
+              "minCount": 0,
+              "datatype": "xsd:date"
+            },
+            {
+              "path": "dppk:instructionsForUse",
+              "node": "dppkval:RelatedResourceShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:safetyDataSheet",
+              "node": "dppkval:RelatedResourceShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:notifiedBody",
+              "node": "dppkval:OrganizationShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:technicalAssessmentBody",
+              "node": "dppkval:OrganizationShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:validationReports",
+              "node": "dppkval:RelatedResourceShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:harmonisedStandardReference",
+              "datatype": "xsd:string",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:europeanAssessmentDocument",
+              "node": "dppkval:RelatedResourceShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk-dopc:DoPCBlock",
+              "node": "dppkval:DoPCShape",
+              "minCount": 0
+            },
+            {
+              "path": "dppk:epd",
+              "node": "dppkval:EPDShape",
+              "minCount": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

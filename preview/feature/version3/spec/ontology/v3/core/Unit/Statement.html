@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit: Statement</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;DPP Core Ontology - Units (v3)&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;DPP Основна онтология - Единици (v3)&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Základní ontologie DPP - Jednotky (v3)&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;DPP Kerneontologi - Enheder (v3)&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;DPP Kernontologie - Einheiten (v3)&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Βασική Οντολογία DPP - Μονάδες (v3)&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Ontología Central DPP - Unidades (v3)&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;DPP põhiontoloogia - Ühikud (v3)&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;DPP-ydinontologia - Yksiköt (v3)&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Ontologie de Base DPP - Unités (v3)&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Príomhointeolaíocht DPP - Aonaid (v3)&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;DPP Osnovna ontologija - Jedinice (v3)&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;DPP Alapontológia - Mértékegységek (v3)&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Ontologia Principale DPP - Unità (v3)&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;DPP pagrindinė ontologija - Vienetai (v3)&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;DPP pamatontoloģija - Vienības (v3)&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Ontoloġija Ewlenija DPP - Unitajiet (v3)&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;DPP Kernontologie - Eenheden (v3)&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Podstawowa ontologia DPP - Jednostki (v3)&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Ontologia Principal DPP - Unidades (v3)&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Ontologia de bază DPP - Unități (v3)&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Základná ontológia DPP - Jednotky (v3)&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Osnovna ontologija DPP - Enote (v3)&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;DPP Kärnontologi - Enheter (v3)&quot;}]">DPP Core Ontology - Units (v3)</span></a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Unit: <span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Statement&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Изявление&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Prohlášení&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Erklæring&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Erklärung&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Δήλωση&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Declaración&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Avaldus&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Lausunto&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Déclaration&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Ráiteas&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Izjava&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Nyilatkozat&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Dichiarazione&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Pareiškimas&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Paziņojums&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Dikjarazzjoni&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Verklaring&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Oświadczenie&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Declaração&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Declarație&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Vyhlásenie&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Izjava&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Uttalande&quot;}]">Statement</span> (dppk-unit:Statement)</h2>
+            </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
+        </header>
+        <main>
+            <div class="class-section" id="Statement">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class Statement
+
+                </pre>
+
+                <h4><span data-i18n-key="description-column">Description</span></h4>
+                <p><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;A unit indicating that the value is a textual or formal statement.&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Единица, указваща, че стойността е текстово или официално изявление.&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Jednotka označující, že hodnota je textové nebo formální prohlášení.&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;En enhed, der angiver, at værdien er en tekstuel eller formel erklæring.&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Eine Einheit, die angibt, dass der Wert eine textuelle oder formelle Erklärung ist.&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Μια μονάδα που υποδεικνύει ότι η τιμή είναι μια κειμενική ή επίσημη δήλωση.&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Una unidad que indica que el valor es una declaración textual o formal.&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Ühik, mis näitab, et väärtus on tekstiline või ametlik avaldus.&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Yksikkö, joka osoittaa, että arvo on tekstimuotoinen tai muodollinen lausunto.&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Une unité indiquant que la valeur est une déclaration textuelle ou formelle.&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Aonad a léiríonn gur ráiteas téacsúil nó foirmiúil é an luach.&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Jedinica koja označava da je vrijednost tekstualna ili formalna izjava.&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Olyan egység, amely jelzi, hogy az érték egy szöveges vagy hivatalos nyilatkozat.&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Un&#39;unità che indica che il valore è una dichiarazione testuale o formale.&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Vienetas, nurodantis, kad vertė yra tekstinis ar oficialus pareiškimas.&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Vienība, kas norāda, ka vērtība ir tekstuāls vai formāls paziņojums.&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Unità li tindika li l-valur huwa dikjarazzjoni testwali jew formali.&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Een eenheid die aangeeft dat de waarde een tekstuele of formele verklaring is.&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Jednostka wskazująca, że wartość jest oświadczeniem tekstowym lub formalnym.&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Uma unidade que indica que o valor é uma declaração textual ou formal.&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;O unitate care indică faptul că valoarea este o declarație textuală sau formală.&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Jednotka označujúca, že hodnota je textové alebo formálne vyhlásenie.&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Enota, ki označuje, da je vrednost besedilna ali formalna izjava.&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;En enhet som anger att värdet är ett textuellt eller formellt uttalande.&quot;}]">A unit indicating that the value is a textual or formal statement.</span></p>
+                <p><strong>type:</strong> dppk:Unit</p>
+
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import { LanguageManager } from '../../../../../lib/language-manager.js';
+        mermaid.initialize({ startOnLoad: true });
+
+        LanguageManager.init('../../../../../index.i18n.json');
+    </script>
+</body>
+</html>
