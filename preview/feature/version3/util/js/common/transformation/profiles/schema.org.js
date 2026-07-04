@@ -242,7 +242,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode, version) {
     }
 
     const dopcTermsBase = `https://dpp-keystone.org/spec/${version}/terms/dopc#`;
-    const dopcNode = getNode(rootNode, `${dopcTermsBase}dopc`);
+    const dopcNode = getNode(rootNode, `${termsBase}dopc`);
 
     if (dopcNode) {
         // 1. DoP Identifier

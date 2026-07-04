@@ -29,7 +29,7 @@
     {
       "@id": "dppkval:DoPCShape",
       "@type": "NodeShape",
-      "targetClass": "dppk-dopc:DoPCBlock",
+      "targetClass": "dppk:DoPCBlock",
       "property": [
         {
           "path": "dppk-dopc:declarationCode",

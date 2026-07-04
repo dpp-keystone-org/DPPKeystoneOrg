@@ -213,7 +213,7 @@
   },
   "@graph": [
     {
-      "@id": "dppk-dopc:DoPCBlock",
+      "@id": "dppk:DoPCBlock",
       "@type": "rdfs:Class",
       "rdfs:comment": [
         {
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "@id": "dppk-dopc:dopc",
+      "@id": "dppk:dopc",
       "@type": "owl:ObjectProperty",
       "rdfs:label": [
         {
@@ -619,7 +619,7 @@
         ]
       },
       "rdfs:range": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:comment": [
         {
@@ -920,7 +920,7 @@
         }
       ],
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:range": "xsd:string"
     },
@@ -1125,7 +1125,7 @@
         }
       ],
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:range": "xsd:date"
     },
@@ -8034,7 +8034,7 @@
         }
       ],
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:range": "xsd:double"
     },
@@ -8647,7 +8647,7 @@
         }
       ],
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:range": "xsd:string"
     },
@@ -8851,7 +8851,7 @@
         }
       ],
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -9057,7 +9057,7 @@
         }
       ],
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -12245,7 +12245,7 @@
       },
       "rdfs:range": "xsd:string",
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:comment": [
         {
@@ -12453,7 +12453,7 @@
       },
       "rdfs:range": "xsd:double",
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:comment": [
         {
@@ -12660,7 +12660,7 @@
       },
       "rdfs:range": "xsd:string",
       "rdfs:domain": {
-        "@id": "dppk-dopc:DoPCBlock"
+        "@id": "dppk:DoPCBlock"
       },
       "rdfs:comment": [
         {
