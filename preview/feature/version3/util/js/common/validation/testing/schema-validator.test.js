@@ -1,4 +1,4 @@
-import { validateDpp } from '../schema-validator.js?v=1783194298999';
+import { validateDpp } from '../schema-validator.js?v=1783197266074';
 
 describe('validateDpp', () => {
     // Mock Schemas

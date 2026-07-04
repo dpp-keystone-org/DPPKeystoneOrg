@@ -2654,9 +2654,6 @@
         }
       ],
       "dppk:governedBy": "EN 13501-1",
-      "dppk:unit": {
-        "@id": "dppk-unit:Euroclass"
-      },
       "rdfs:seeAlso": [
         "dppk-dopc:avcpSystem1",
         "dppk-dopc:avcpSystem2",
@@ -9780,9 +9777,6 @@
         }
       ],
       "dppk:governedBy": "EN 13295:2004",
-      "dppk:unit": {
-        "@id": "dppk-unit:PassFail"
-      },
       "rdfs:range": "xsd:string",
       "rdfs:comment": [
         {
@@ -9985,9 +9979,6 @@
         }
       ],
       "dppk:governedBy": "EN 13501-1",
-      "dppk:unit": {
-        "@id": "dppk-unit:Euroclass"
-      },
       "rdfs:range": "xsd:string",
       "rdfs:comment": [
         {
@@ -10190,9 +10181,6 @@
         }
       ],
       "dppk:governedBy": "EN 13501-1",
-      "dppk:unit": {
-        "@id": "dppk-unit:Euroclass"
-      },
       "rdfs:range": "xsd:string",
       "rdfs:comment": [
         {
@@ -10395,9 +10383,6 @@
         }
       ],
       "dppk:governedBy": "EN 13501-1",
-      "dppk:unit": {
-        "@id": "dppk-unit:Euroclass"
-      },
       "rdfs:range": "xsd:string",
       "rdfs:comment": [
         {
@@ -10600,9 +10585,6 @@
         }
       ],
       "dppk:governedBy": "EN 13501-1",
-      "dppk:unit": {
-        "@id": "dppk-unit:Euroclass"
-      },
       "rdfs:range": "xsd:string",
       "rdfs:comment": [
         {
@@ -12655,9 +12637,6 @@
           "@value": "Farliga ämnen"
         }
       ],
-      "dppk:unit": {
-        "@id": "dppk-unit:Statement"
-      },
       "rdfs:range": "xsd:string",
       "rdfs:domain": {
         "@id": "dppk:DoPCBlock"
