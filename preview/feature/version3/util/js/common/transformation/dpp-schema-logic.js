@@ -17,7 +17,7 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1783197266074';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1783267207606';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
