@@ -232,10 +232,10 @@
       "@id": "https://dpp-keystone.org/spec/ontology/v3/core/EPD.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Battery.jsonld"
+      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Signature.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Textile.jsonld"
+      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Battery.jsonld"
     },
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Textile.jsonld"
@@ -248,6 +248,12 @@
     },
     {
       "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/IronSteel.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Cement.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/cement/DoPC.jsonld"
     }
   ]
 }

@@ -922,7 +922,8 @@
       "rdfs:domain": {
         "@id": "dppk:DoPCBlock"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "dcterms:source": "http://data.europa.eu/eli/reg/2024/3110/oj"
     },
     {
       "@id": "dppk-dopc:dateOfIssue",
@@ -1127,7 +1128,8 @@
       "rdfs:domain": {
         "@id": "dppk:DoPCBlock"
       },
-      "rdfs:range": "xsd:date"
+      "rdfs:range": "xsd:date",
+      "dcterms:source": "http://data.europa.eu/eli/reg/2024/3110/oj"
     },
     {
       "@id": "dppk-dopc:chlorideContent",
@@ -12537,8 +12539,8 @@
       ]
     },
     {
-      "@id": "dppk-dopc:dangerousSubstances",
-      "@type": "owl:DatatypeProperty",
+      "@id": "dppk-dopc:dangerousSubstance",
+      "@type": "owl:ObjectProperty",
       "rdfs:label": [
         {
           "@language": "en",
@@ -12637,7 +12639,9 @@
           "@value": "Farliga ämnen"
         }
       ],
-      "rdfs:range": "xsd:string",
+      "rdfs:range": {
+        "@id": "dppk-dopc:DangerousSubstanceComponent"
+      },
       "rdfs:domain": {
         "@id": "dppk:DoPCBlock"
       },

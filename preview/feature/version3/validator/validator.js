@@ -1,16 +1,16 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1783267426364';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1783367125372';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1783267426364';
-import { generateHTML } from '../lib/html-generator.js?v=1783267426364';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1783267426364';
-import { loadHeader } from '../branding/header.js?v=1783267426364';
+import { EXAMPLES } from '../lib/example-registry.js?v=1783367125372';
+import { generateHTML } from '../lib/html-generator.js?v=1783367125372';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1783367125372';
+import { loadHeader } from '../branding/header.js?v=1783367125372';
 loadHeader('dpp-header-container', '..');
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1783267426364';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1783267426364';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1783267426364';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1783267426364';
-import { LanguageManager } from '../lib/language-manager.js?v=1783267426364';
+import { loadOntology } from '../lib/ontology-loader.js?v=1783367125372';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1783367125372';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1783367125372';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1783367125372';
+import { LanguageManager } from '../lib/language-manager.js?v=1783367125372';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
@@ -20,7 +20,8 @@ const SECTOR_MAP = {
     'draft_construction_specification_id': 'sector/construction.schema.json',
     'draft_electronics_specification_id': 'sector/electronics.schema.json',
     'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile.schema.json'
+    'draft_textile_espr_specification_id': 'sector/textile.schema.json',
+    [`dpp_EN_197_${KEYSTONE_VERSION}`]: 'sector/cement.schema.json'
 };
 
 // Common schemas that should always be loaded for $ref resolution
@@ -35,7 +36,8 @@ const COMMON_SCHEMAS = [
     'shared/general-product.schema.json',
     'shared/component.schema.json',
     'shared/mtc.schema.json',
-    'shared/certification.schema.json'
+    'shared/certification.schema.json',
+    'sector/cement/dopc.schema.json'
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
@@ -452,7 +454,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadSchemas() {
     // Helper to fetch JSON
     const fetchJson = async (filename) => {
-        const res = await fetch(SCHEMA_BASE_URL + filename);
+        const bust = '?v=' + Date.now();
+        const res = await fetch(SCHEMA_BASE_URL + filename + bust);
         if (!res.ok) throw new Error(`Failed to fetch ${filename}: ${res.statusText}`);
         return res.json();
     };

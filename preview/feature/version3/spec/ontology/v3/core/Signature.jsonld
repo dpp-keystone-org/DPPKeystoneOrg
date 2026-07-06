@@ -1,0 +1,2641 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk-signature": "https://dpp-keystone.org/spec/v3/terms/signature#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Signature",
+  "@type": "owl:Ontology",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Signature"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Подпис"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Podpis"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Kerneontologi - Signatur"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - Signatur"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική οντολογία DPP - Υπογραφή"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología central de DPP - Firma"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP tuumontoloogia - Allkiri"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - Allekirjoitus"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base du DPP - Signature"
+    },
+    {
+      "@language": "ga",
+      "@value": "Bunteangeolaíocht DPP - Síniú"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Potpis"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - Aláírás"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia centrale DPP - Firma"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - Parašas"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamata ontoloģija - Paraksts"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija DPP - Firma"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP kernontologie - Handtekening"
+    },
+    {
+      "@language": "pl",
+      "@value": "Główna ontologia DPP - Podpis"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia principal do DPP - Assinatura"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia centrală DPP - Semnătură"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Podpis"
+    },
+    {
+      "@language": "sl",
+      "@value": "Jedrna ontologija DPP - Podpis"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP kärnontologi - Signatur"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the classes and properties required for representing legal and cryptographic signatures."
+    },
+    {
+      "@language": "bg",
+      "@value": "Дефинира класовете и свойствата, необходими за представяне на правни и криптографски подписи."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje třídy a vlastnosti požadované pro reprezentaci právních a kryptografických podpisů."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer de klasser og egenskaber, der kræves for at repræsentere juridiske og kryptografiske signaturer."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die Klassen und Eigenschaften, die zur Darstellung von rechtlichen und kryptografischen Signaturen erforderlich sind."
+    },
+    {
+      "@language": "el",
+      "@value": "Ορίζει τις κλάσεις και τις ιδιότητες που απαιτούνται για την αναπαράσταση νομικών και κρυπτογραφικών υπογραφών."
+    },
+    {
+      "@language": "es",
+      "@value": "Define las clases y propiedades necesarias para representar firmas legales y criptográficas."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb klassid ja omadused, mis on vajalikud õiguslike ja krüptograafiliste allkirjade esitamiseks."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää luokat ja ominaisuudet, joita tarvitaan laillisten ja kryptografisten allekirjoitusten esittämiseen."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les classes et les propriétés requises pour représenter les signatures légales et cryptographiques."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé na haicmí agus na hairíonna is gá chun sínithe dlíthiúla agus cripteagrafacha a léiriú."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira klase i svojstva potrebna za predstavljanje pravnih i kriptografskih potpisa."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a jogi és kriptográfiai aláírások ábrázolásához szükséges osztályokat és tulajdonságokat."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce le classi e le proprietà necessarie per rappresentare le firme legali e crittografiche."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia klases ir savybes, reikalingas teisiniams ir kriptografiniams parašams atvaizduoti."
+    },
+    {
+      "@language": "lv",
+      "@value": "Nosaka klases un rekvizītus, kas nepieciešami juridisko un kriptogrāfisko parakstu attēlošanai."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-klassijiet u l-proprjetajiet meħtieġa għar-rappreżentazzjoni tal-firem legali u kriptografiċi."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de klassen en eigenschappen die vereist zijn voor het weergeven van wettelijke en cryptografische handtekeningen."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje klasy i właściwości wymagane do reprezentowania podpisów prawnych i kryptograficznych."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define as classes e propriedades necessárias para representar assinaturas legais e criptográficas."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește clasele și proprietățile necesare pentru reprezentarea semnăturilor legale și criptografice."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje triedy a vlastnosti potrebné na reprezentáciu právnych a kryptografických podpisov."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa razrede in lastnosti, potrebne za predstavitev pravnih in kriptografskih podpisov."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar de klasser och egenskaper som krävs för att representera juridiska och kryptografiska signaturer."
+    }
+  ],
+  "owl:versionInfo": "v3",
+  "@graph": [
+    {
+      "@id": "dppk-signature:placeOfSignature",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Place of Signature"
+        },
+        {
+          "@language": "bg",
+          "@value": "Място на подписване"
+        },
+        {
+          "@language": "cs",
+          "@value": "Místo podpisu"
+        },
+        {
+          "@language": "da",
+          "@value": "Sted for signatur"
+        },
+        {
+          "@language": "de",
+          "@value": "Ort der Unterzeichnung"
+        },
+        {
+          "@language": "el",
+          "@value": "Τόπος υπογραφής"
+        },
+        {
+          "@language": "es",
+          "@value": "Lugar de la firma"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastamise koht"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoituspaikka"
+        },
+        {
+          "@language": "fr",
+          "@value": "Lieu de signature"
+        },
+        {
+          "@language": "ga",
+          "@value": "Áit Sínithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Mjesto potpisa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírás helye"
+        },
+        {
+          "@language": "it",
+          "@value": "Luogo della firma"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašymo vieta"
+        },
+        {
+          "@language": "lv",
+          "@value": "Parakstīšanas vieta"
+        },
+        {
+          "@language": "mt",
+          "@value": "Post tal-Firma"
+        },
+        {
+          "@language": "nl",
+          "@value": "Plaats van ondertekening"
+        },
+        {
+          "@language": "pl",
+          "@value": "Miejsce podpisu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Local da Assinatura"
+        },
+        {
+          "@language": "ro",
+          "@value": "Locul semnăturii"
+        },
+        {
+          "@language": "sk",
+          "@value": "Miesto podpisu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Kraj podpisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Plats för underskrift"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Place in which the signature took place."
+        },
+        {
+          "@language": "bg",
+          "@value": "Място, на което е положен подписът."
+        },
+        {
+          "@language": "cs",
+          "@value": "Místo, kde k podpisu došlo."
+        },
+        {
+          "@language": "da",
+          "@value": "Stedet, hvor signaturen fandt sted."
+        },
+        {
+          "@language": "de",
+          "@value": "Ort, an dem die Unterzeichnung stattfand."
+        },
+        {
+          "@language": "el",
+          "@value": "Τόπος στον οποίο πραγματοποιήθηκε η υπογραφή."
+        },
+        {
+          "@language": "es",
+          "@value": "Lugar en el que tuvo lugar la firma."
+        },
+        {
+          "@language": "et",
+          "@value": "Koht, kus allkirjastamine toimus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Paikka, jossa allekirjoitus tapahtui."
+        },
+        {
+          "@language": "fr",
+          "@value": "Lieu où la signature a eu lieu."
+        },
+        {
+          "@language": "ga",
+          "@value": "An áit ina ndearnadh an síniú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Mjesto na kojem se potpis dogodio."
+        },
+        {
+          "@language": "hu",
+          "@value": "A hely, ahol az aláírás történt."
+        },
+        {
+          "@language": "it",
+          "@value": "Luogo in cui è avvenuta la firma."
+        },
+        {
+          "@language": "lt",
+          "@value": "Vieta, kurioje buvo pasirašyta."
+        },
+        {
+          "@language": "lv",
+          "@value": "Vieta, kurā notika parakstīšana."
+        },
+        {
+          "@language": "mt",
+          "@value": "Post fejn saret il-firma."
+        },
+        {
+          "@language": "nl",
+          "@value": "Plaats waar de ondertekening plaatsvond."
+        },
+        {
+          "@language": "pl",
+          "@value": "Miejsce, w którym złożono podpis."
+        },
+        {
+          "@language": "pt",
+          "@value": "Local onde a assinatura teve lugar."
+        },
+        {
+          "@language": "ro",
+          "@value": "Locul în care a avut loc semnătura."
+        },
+        {
+          "@language": "sk",
+          "@value": "Miesto, kde k podpisu došlo."
+        },
+        {
+          "@language": "sl",
+          "@value": "Kraj, kjer je bil podpis opravljen."
+        },
+        {
+          "@language": "sv",
+          "@value": "Plats där underskriften ägde rum."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatory",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signatory"
+        },
+        {
+          "@language": "bg",
+          "@value": "Подписало лице"
+        },
+        {
+          "@language": "cs",
+          "@value": "Podepsaná osoba"
+        },
+        {
+          "@language": "da",
+          "@value": "Underskriver"
+        },
+        {
+          "@language": "de",
+          "@value": "Unterzeichner"
+        },
+        {
+          "@language": "el",
+          "@value": "Υπογράφων"
+        },
+        {
+          "@language": "es",
+          "@value": "Firmante"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastaja"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoittaja"
+        },
+        {
+          "@language": "fr",
+          "@value": "Signataire"
+        },
+        {
+          "@language": "ga",
+          "@value": "Sínitheoir"
+        },
+        {
+          "@language": "hr",
+          "@value": "Potpisnik"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláíró"
+        },
+        {
+          "@language": "it",
+          "@value": "Firmatario"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašantis asmuo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Parakstītājs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Firmatarju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Ondertekenaar"
+        },
+        {
+          "@language": "pl",
+          "@value": "Sygnatariusz"
+        },
+        {
+          "@language": "pt",
+          "@value": "Signatário"
+        },
+        {
+          "@language": "ro",
+          "@value": "Semnatar"
+        },
+        {
+          "@language": "sk",
+          "@value": "Podpisujúca osoba"
+        },
+        {
+          "@language": "sl",
+          "@value": "Podpisnik"
+        },
+        {
+          "@language": "sv",
+          "@value": "Undertecknare"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Name of the signatory."
+        },
+        {
+          "@language": "bg",
+          "@value": "Име на подписалото лице."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jméno podepsané osoby."
+        },
+        {
+          "@language": "da",
+          "@value": "Navn på underskriveren."
+        },
+        {
+          "@language": "de",
+          "@value": "Name des Unterzeichners."
+        },
+        {
+          "@language": "el",
+          "@value": "Όνομα του υπογράφοντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Nombre del firmante."
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastaja nimi."
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoittajan nimi."
+        },
+        {
+          "@language": "fr",
+          "@value": "Nom du signataire."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm an tsínitheora."
+        },
+        {
+          "@language": "hr",
+          "@value": "Ime potpisnika."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az aláíró neve."
+        },
+        {
+          "@language": "it",
+          "@value": "Nome del firmatario."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašančio asmens vardas ir pavardė."
+        },
+        {
+          "@language": "lv",
+          "@value": "Parakstītāja vārds."
+        },
+        {
+          "@language": "mt",
+          "@value": "Isem il-firmatarju."
+        },
+        {
+          "@language": "nl",
+          "@value": "Naam van de ondertekenaar."
+        },
+        {
+          "@language": "pl",
+          "@value": "Imię i nazwisko sygnatariusza."
+        },
+        {
+          "@language": "pt",
+          "@value": "Nome do signatário."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele semnatarului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Meno podpisujúcej osoby."
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime podpisnika."
+        },
+        {
+          "@language": "sv",
+          "@value": "Undertecknarens namn."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatoryPosition",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signatory Position"
+        },
+        {
+          "@language": "bg",
+          "@value": "Длъжност на подписалото лице"
+        },
+        {
+          "@language": "cs",
+          "@value": "Pozice podepsané osoby"
+        },
+        {
+          "@language": "da",
+          "@value": "Underskrivers stilling"
+        },
+        {
+          "@language": "de",
+          "@value": "Position des Unterzeichners"
+        },
+        {
+          "@language": "el",
+          "@value": "Θέση υπογράφοντος"
+        },
+        {
+          "@language": "es",
+          "@value": "Cargo del firmante"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastaja ametikoht"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoittajan asema"
+        },
+        {
+          "@language": "fr",
+          "@value": "Fonction du signataire"
+        },
+        {
+          "@language": "ga",
+          "@value": "Seasamh an tSínitheora"
+        },
+        {
+          "@language": "hr",
+          "@value": "Položaj potpisnika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláíró beosztása"
+        },
+        {
+          "@language": "it",
+          "@value": "Posizione del firmatario"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašančiojo pareigos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Parakstītāja amats"
+        },
+        {
+          "@language": "mt",
+          "@value": "Pożizzjoni tal-Firmatarju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Functie van de ondertekenaar"
+        },
+        {
+          "@language": "pl",
+          "@value": "Stanowisko sygnatariusza"
+        },
+        {
+          "@language": "pt",
+          "@value": "Cargo do signatário"
+        },
+        {
+          "@language": "ro",
+          "@value": "Funcția semnatarului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Pozícia podpisujúcej osoby"
+        },
+        {
+          "@language": "sl",
+          "@value": "Položaj podpisnika"
+        },
+        {
+          "@language": "sv",
+          "@value": "Undertecknarens befattning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Position or function of the signatory."
+        },
+        {
+          "@language": "bg",
+          "@value": "Длъжност или функция на подписалото лице."
+        },
+        {
+          "@language": "cs",
+          "@value": "Pozice nebo funkce podepsané osoby."
+        },
+        {
+          "@language": "da",
+          "@value": "Underskriverens stilling eller funktion."
+        },
+        {
+          "@language": "de",
+          "@value": "Position oder Funktion des Unterzeichners."
+        },
+        {
+          "@language": "el",
+          "@value": "Θέση ή λειτουργία του υπογράφοντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Cargo o función del firmante."
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastaja ametikoht või funktsioon."
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoittajan asema tai tehtävä."
+        },
+        {
+          "@language": "fr",
+          "@value": "Fonction ou rôle du signataire."
+        },
+        {
+          "@language": "ga",
+          "@value": "Seasamh nó feidhm an tsínitheora."
+        },
+        {
+          "@language": "hr",
+          "@value": "Položaj ili funkcija potpisnika."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az aláíró beosztása vagy funkciója."
+        },
+        {
+          "@language": "it",
+          "@value": "Posizione o funzione del firmatario."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašančio asmens pareigos arba funkcija."
+        },
+        {
+          "@language": "lv",
+          "@value": "Parakstītāja amats vai funkcija."
+        },
+        {
+          "@language": "mt",
+          "@value": "Pożizzjoni jew funzjoni tal-firmatarju."
+        },
+        {
+          "@language": "nl",
+          "@value": "Functie of rol van de ondertekenaar."
+        },
+        {
+          "@language": "pl",
+          "@value": "Stanowisko lub funkcja sygnatariusza."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cargo ou função do signatário."
+        },
+        {
+          "@language": "ro",
+          "@value": "Funcția sau rolul semnatarului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Pozícia alebo funkcia podpisujúcej osoby."
+        },
+        {
+          "@language": "sl",
+          "@value": "Položaj ali funkcija podpisnika."
+        },
+        {
+          "@language": "sv",
+          "@value": "Undertecknarens befattning eller funktion."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:dateOfSignature",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": "xsd:date",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Date of Signature"
+        },
+        {
+          "@language": "bg",
+          "@value": "Дата на подписване"
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum podpisu"
+        },
+        {
+          "@language": "da",
+          "@value": "Dato for signatur"
+        },
+        {
+          "@language": "de",
+          "@value": "Datum der Unterzeichnung"
+        },
+        {
+          "@language": "el",
+          "@value": "Ημερομηνία υπογραφής"
+        },
+        {
+          "@language": "es",
+          "@value": "Fecha de la firma"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastamise kuupäev"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoituspäivä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Date de signature"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dáta Sínithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum potpisa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírás dátuma"
+        },
+        {
+          "@language": "it",
+          "@value": "Data della firma"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašymo data"
+        },
+        {
+          "@language": "lv",
+          "@value": "Parakstīšanas datums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Data tal-Firma"
+        },
+        {
+          "@language": "nl",
+          "@value": "Datum van ondertekening"
+        },
+        {
+          "@language": "pl",
+          "@value": "Data podpisu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Data da Assinatura"
+        },
+        {
+          "@language": "ro",
+          "@value": "Data semnăturii"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum podpisu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum podpisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Datum för underskrift"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Date of the signature."
+        },
+        {
+          "@language": "bg",
+          "@value": "Дата на полагане на подписа."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum podpisu."
+        },
+        {
+          "@language": "da",
+          "@value": "Datoen for signaturen."
+        },
+        {
+          "@language": "de",
+          "@value": "Datum der Unterzeichnung."
+        },
+        {
+          "@language": "el",
+          "@value": "Ημερομηνία της υπογραφής."
+        },
+        {
+          "@language": "es",
+          "@value": "Fecha de la firma."
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastamise kuupäev."
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoituksen päivämäärä."
+        },
+        {
+          "@language": "fr",
+          "@value": "Date de la signature."
+        },
+        {
+          "@language": "ga",
+          "@value": "Dáta an tsínithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum potpisa."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az aláírás dátuma."
+        },
+        {
+          "@language": "it",
+          "@value": "Data della firma."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašymo data."
+        },
+        {
+          "@language": "lv",
+          "@value": "Parakstīšanas datums."
+        },
+        {
+          "@language": "mt",
+          "@value": "Data tal-firma."
+        },
+        {
+          "@language": "nl",
+          "@value": "Datum van de ondertekening."
+        },
+        {
+          "@language": "pl",
+          "@value": "Data złożenia podpisu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Data da assinatura."
+        },
+        {
+          "@language": "ro",
+          "@value": "Data semnăturii."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum podpisu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum podpisa."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datum för underskriften."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:CryptographicProof",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Cryptographic Proof"
+        },
+        {
+          "@language": "bg",
+          "@value": "Криптографско доказателство"
+        },
+        {
+          "@language": "cs",
+          "@value": "Kryptografický důkaz"
+        },
+        {
+          "@language": "da",
+          "@value": "Kryptografisk bevis"
+        },
+        {
+          "@language": "de",
+          "@value": "Kryptografischer Nachweis"
+        },
+        {
+          "@language": "el",
+          "@value": "Κρυπτογραφική απόδειξη"
+        },
+        {
+          "@language": "es",
+          "@value": "Prueba criptográfica"
+        },
+        {
+          "@language": "et",
+          "@value": "Krüptograafiline tõend"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kryptografinen todiste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Preuve cryptographique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cruthúnas cripteagrafach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Kriptografski dokaz"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kriptográfiai bizonyíték"
+        },
+        {
+          "@language": "it",
+          "@value": "Prova crittografica"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kriptografinis įrodymas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kriptogrāfisks pierādījums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Prova kriptografika"
+        },
+        {
+          "@language": "nl",
+          "@value": "Cryptografisch bewijs"
+        },
+        {
+          "@language": "pl",
+          "@value": "Dowód kryptograficzny"
+        },
+        {
+          "@language": "pt",
+          "@value": "Prova criptográfica"
+        },
+        {
+          "@language": "ro",
+          "@value": "Dovadă criptografică"
+        },
+        {
+          "@language": "sk",
+          "@value": "Kryptografický dôkaz"
+        },
+        {
+          "@language": "sl",
+          "@value": "Kriptografsko dokazilo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kryptografiskt bevis"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A cryptographic digital signature block."
+        },
+        {
+          "@language": "bg",
+          "@value": "Блок с криптографски цифров подпис."
+        },
+        {
+          "@language": "cs",
+          "@value": "Blok kryptografického digitálního podpisu."
+        },
+        {
+          "@language": "da",
+          "@value": "En kryptografisk digital signaturblok."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein kryptografischer digitaler Signaturblock."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένα μπλοκ κρυπτογραφικής ψηφιακής υπογραφής."
+        },
+        {
+          "@language": "es",
+          "@value": "Un bloque de firma digital criptográfica."
+        },
+        {
+          "@language": "et",
+          "@value": "Krüptograafilise digitaalallkirja plokk."
+        },
+        {
+          "@language": "fi",
+          "@value": "Kryptografinen digitaalinen allekirjoituslohko."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un bloc de signature numérique cryptographique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Bloc sínithe digitigh cripteagrafaigh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Blok kriptografskog digitalnog potpisa."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kriptográfiai digitális aláírási blokk."
+        },
+        {
+          "@language": "it",
+          "@value": "Un blocco di firma digitale crittografica."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kriptografinio skaitmeninio parašo blokas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kriptogrāfiskā digitālā paraksta bloks."
+        },
+        {
+          "@language": "mt",
+          "@value": "Blokk ta' firma diġitali kriptografika."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een cryptografisch digitaal handtekeningblok."
+        },
+        {
+          "@language": "pl",
+          "@value": "Blok kryptograficznego podpisu cyfrowego."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um bloco de assinatura digital criptográfica."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un bloc de semnătură digitală criptografică."
+        },
+        {
+          "@language": "sk",
+          "@value": "Blok kryptografického digitálneho podpisu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Blok kriptografskega digitalnega podpisa."
+        },
+        {
+          "@language": "sv",
+          "@value": "Ett kryptografiskt digitalt signaturblock."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:cryptographicProof",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "dppk-signature:CryptographicProof"
+      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Cryptographic Proof Object"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обект за криптографско доказателство"
+        },
+        {
+          "@language": "cs",
+          "@value": "Objekt kryptografického důkazu"
+        },
+        {
+          "@language": "da",
+          "@value": "Kryptografisk bevisobjekt"
+        },
+        {
+          "@language": "de",
+          "@value": "Kryptografisches Nachweisobjekt"
+        },
+        {
+          "@language": "el",
+          "@value": "Αντικείμενο κρυπτογραφικής απόδειξης"
+        },
+        {
+          "@language": "es",
+          "@value": "Objeto de prueba criptográfica"
+        },
+        {
+          "@language": "et",
+          "@value": "Krüptograafilise tõendi objekt"
+        },
+        {
+          "@language": "fi",
+          "@value": "Kryptografinen todisteobjekti"
+        },
+        {
+          "@language": "fr",
+          "@value": "Objet de preuve cryptographique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Réad cruthúnais chripteagrafaigh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Objekt kriptografskog dokaza"
+        },
+        {
+          "@language": "hu",
+          "@value": "Kriptográfiai bizonyíték objektum"
+        },
+        {
+          "@language": "it",
+          "@value": "Oggetto di prova crittografica"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kriptografinio įrodymo objektas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kriptogrāfiska pierādījuma objekts"
+        },
+        {
+          "@language": "mt",
+          "@value": "Oġġett ta' prova kriptografika"
+        },
+        {
+          "@language": "nl",
+          "@value": "Cryptografisch bewijsobject"
+        },
+        {
+          "@language": "pl",
+          "@value": "Obiekt dowodu kryptograficznego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Objeto de prova criptográfica"
+        },
+        {
+          "@language": "ro",
+          "@value": "Obiect de dovadă criptografică"
+        },
+        {
+          "@language": "sk",
+          "@value": "Objekt kryptografického dôkazu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Objekt kriptografskega dokazila"
+        },
+        {
+          "@language": "sv",
+          "@value": "Kryptografiskt bevisobjekt"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Link to the cryptographic digital signature of the document."
+        },
+        {
+          "@language": "bg",
+          "@value": "Връзка към криптографския цифров подпис на документа."
+        },
+        {
+          "@language": "cs",
+          "@value": "Odkaz na kryptografický digitální podpis dokumentu."
+        },
+        {
+          "@language": "da",
+          "@value": "Link til dokumentets kryptografiske digitale signatur."
+        },
+        {
+          "@language": "de",
+          "@value": "Link zur kryptografischen digitalen Signatur des Dokuments."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνδεσμος προς την κρυπτογραφική ψηφιακή υπογραφή του εγγράφου."
+        },
+        {
+          "@language": "es",
+          "@value": "Enlace a la firma digital criptográfica del documento."
+        },
+        {
+          "@language": "et",
+          "@value": "Viide dokumendi krüptograafilisele digitaalallkirjale."
+        },
+        {
+          "@language": "fi",
+          "@value": "Linkki asiakirjan kryptografiseen digitaaliseen allekirjoitukseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Lien vers la signature numérique cryptographique du document."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nasc le síniú digiteach cripteagrafach an doiciméid."
+        },
+        {
+          "@language": "hr",
+          "@value": "Poveznica na kriptografski digitalni potpis dokumenta."
+        },
+        {
+          "@language": "hu",
+          "@value": "Hivatkozás a dokumentum kriptográfiai digitális aláírására."
+        },
+        {
+          "@language": "it",
+          "@value": "Collegamento alla firma digitale crittografica del documento."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į dokumento kriptografinį skaitmeninį parašą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saite uz dokumenta kriptogrāfisko digitālo parakstu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Rabta għall-firma diġitali kriptografika tad-dokument."
+        },
+        {
+          "@language": "nl",
+          "@value": "Link naar de cryptografische digitale handtekening van het document."
+        },
+        {
+          "@language": "pl",
+          "@value": "Link do kryptograficznego podpisu cyfrowego dokumentu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Ligação para a assinatura digital criptográfica do documento."
+        },
+        {
+          "@language": "ro",
+          "@value": "Legătură către semnătura digitală criptografică a documentului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Odkaz na kryptografický digitálny podpis dokumentu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezava do kriptografskega digitalnega podpisa dokumenta."
+        },
+        {
+          "@language": "sv",
+          "@value": "Länk till dokumentets kryptografiska digitala signatur."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatureType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk-signature:CryptographicProof"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signature Type"
+        },
+        {
+          "@language": "bg",
+          "@value": "Тип подпис"
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ podpisu"
+        },
+        {
+          "@language": "da",
+          "@value": "Signaturtype"
+        },
+        {
+          "@language": "de",
+          "@value": "Signaturtyp"
+        },
+        {
+          "@language": "el",
+          "@value": "Τύπος υπογραφής"
+        },
+        {
+          "@language": "es",
+          "@value": "Tipo de firma"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirja tüüp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoitustyyppi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Type de signature"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál sínithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta potpisa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírás típusa"
+        },
+        {
+          "@language": "it",
+          "@value": "Tipo di firma"
+        },
+        {
+          "@language": "lt",
+          "@value": "Parašo tipas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Paraksta tips"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tip ta' firma"
+        },
+        {
+          "@language": "nl",
+          "@value": "Handtekeningtype"
+        },
+        {
+          "@language": "pl",
+          "@value": "Typ podpisu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tipo de assinatura"
+        },
+        {
+          "@language": "ro",
+          "@value": "Tip de semnătură"
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ podpisu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta podpisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Signaturtyp"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Element of the digital signature indicating its type."
+        },
+        {
+          "@language": "bg",
+          "@value": "Елемент от цифровия подпис, указващ неговия тип."
+        },
+        {
+          "@language": "cs",
+          "@value": "Prvek digitálního podpisu označující jeho typ."
+        },
+        {
+          "@language": "da",
+          "@value": "Element i den digitale signatur, der angiver dens type."
+        },
+        {
+          "@language": "de",
+          "@value": "Element der digitalen Signatur, das deren Typ angibt."
+        },
+        {
+          "@language": "el",
+          "@value": "Στοιχείο της ψηφιακής υπογραφής που υποδεικνύει τον τύπο της."
+        },
+        {
+          "@language": "es",
+          "@value": "Elemento de la firma digital que indica su tipo."
+        },
+        {
+          "@language": "et",
+          "@value": "Digitaalallkirja element, mis näitab selle tüüpi."
+        },
+        {
+          "@language": "fi",
+          "@value": "Digitaalisen allekirjoituksen elementti, joka osoittaa sen tyypin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Élément de la signature numérique indiquant son type."
+        },
+        {
+          "@language": "ga",
+          "@value": "Eilimint den síniú digiteach a léiríonn a chineál."
+        },
+        {
+          "@language": "hr",
+          "@value": "Element digitalnog potpisa koji označava njegovu vrstu."
+        },
+        {
+          "@language": "hu",
+          "@value": "A digitális aláírás típust jelző eleme."
+        },
+        {
+          "@language": "it",
+          "@value": "Elemento della firma digitale che ne indica il tipo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Skaitmeninio parašo elementas, nurodantis jo tipą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Digitālā paraksta elements, kas norāda tā tipu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Element tal-firma diġitali li jindika t-tip tagħha."
+        },
+        {
+          "@language": "nl",
+          "@value": "Element van de digitale handtekening dat het type aangeeft."
+        },
+        {
+          "@language": "pl",
+          "@value": "Element podpisu cyfrowego wskazujący jego typ."
+        },
+        {
+          "@language": "pt",
+          "@value": "Elemento da assinatura digital que indica o seu tipo."
+        },
+        {
+          "@language": "ro",
+          "@value": "Element al semnăturii digitale care indică tipul acesteia."
+        },
+        {
+          "@language": "sk",
+          "@value": "Prvok digitálneho podpisu označujúci jeho typ."
+        },
+        {
+          "@language": "sl",
+          "@value": "Element digitalnega podpisa, ki označuje njegovo vrsto."
+        },
+        {
+          "@language": "sv",
+          "@value": "Element i den digitala signaturen som anger dess typ."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatureAlgorithm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk-signature:CryptographicProof"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signature Algorithm"
+        },
+        {
+          "@language": "bg",
+          "@value": "Алгоритъм за подпис"
+        },
+        {
+          "@language": "cs",
+          "@value": "Algoritmus podpisu"
+        },
+        {
+          "@language": "da",
+          "@value": "Signaturalgoritme"
+        },
+        {
+          "@language": "de",
+          "@value": "Signaturalgorithmus"
+        },
+        {
+          "@language": "el",
+          "@value": "Αλγόριθμος υπογραφής"
+        },
+        {
+          "@language": "es",
+          "@value": "Algoritmo de firma"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirja algoritm"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoitusalgoritmi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Algorithme de signature"
+        },
+        {
+          "@language": "ga",
+          "@value": "Algartam sínithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Algoritam potpisa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírási algoritmus"
+        },
+        {
+          "@language": "it",
+          "@value": "Algoritmo di firma"
+        },
+        {
+          "@language": "lt",
+          "@value": "Parašo algoritmas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Paraksta algoritms"
+        },
+        {
+          "@language": "mt",
+          "@value": "Algoritmu tal-firma"
+        },
+        {
+          "@language": "nl",
+          "@value": "Handtekeningalgoritme"
+        },
+        {
+          "@language": "pl",
+          "@value": "Algorytm podpisu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Algoritmo de assinatura"
+        },
+        {
+          "@language": "ro",
+          "@value": "Algoritm de semnătură"
+        },
+        {
+          "@language": "sk",
+          "@value": "Algoritmus podpisu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Algoritem podpisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Signaturalgoritm"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Algorithm used for the digital signature."
+        },
+        {
+          "@language": "bg",
+          "@value": "Алгоритъм, използван за цифровия подпис."
+        },
+        {
+          "@language": "cs",
+          "@value": "Algoritmus použitý pro digitální podpis."
+        },
+        {
+          "@language": "da",
+          "@value": "Algoritme anvendt til den digitale signatur."
+        },
+        {
+          "@language": "de",
+          "@value": "Für die digitale Signatur verwendeter Algorithmus."
+        },
+        {
+          "@language": "el",
+          "@value": "Αλγόριθμος που χρησιμοποιείται για την ψηφιακή υπογραφή."
+        },
+        {
+          "@language": "es",
+          "@value": "Algoritmo utilizado para la firma digital."
+        },
+        {
+          "@language": "et",
+          "@value": "Digitaalallkirja jaoks kasutatav algoritm."
+        },
+        {
+          "@language": "fi",
+          "@value": "Digitaalisessa allekirjoituksessa käytetty algoritmi."
+        },
+        {
+          "@language": "fr",
+          "@value": "Algorithme utilisé pour la signature numérique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Algartam a úsáidtear don síniú digiteach."
+        },
+        {
+          "@language": "hr",
+          "@value": "Algoritam koji se koristi za digitalni potpis."
+        },
+        {
+          "@language": "hu",
+          "@value": "A digitális aláíráshoz használt algoritmus."
+        },
+        {
+          "@language": "it",
+          "@value": "Algoritmo utilizzato per la firma digitale."
+        },
+        {
+          "@language": "lt",
+          "@value": "Skaitmeniniam parašui naudojamas algoritmas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Digitālajam parakstam izmantotais algoritms."
+        },
+        {
+          "@language": "mt",
+          "@value": "Algoritmu użat għall-firma diġitali."
+        },
+        {
+          "@language": "nl",
+          "@value": "Algoritme gebruikt voor de digitale handtekening."
+        },
+        {
+          "@language": "pl",
+          "@value": "Algorytm użyty do podpisu cyfrowego."
+        },
+        {
+          "@language": "pt",
+          "@value": "Algoritmo utilizado para a assinatura digital."
+        },
+        {
+          "@language": "ro",
+          "@value": "Algoritm utilizat pentru semnătura digitală."
+        },
+        {
+          "@language": "sk",
+          "@value": "Algoritmus použitý pre digitálny podpis."
+        },
+        {
+          "@language": "sl",
+          "@value": "Algoritem, uporabljen za digitalni podpis."
+        },
+        {
+          "@language": "sv",
+          "@value": "Algoritm som används för den digitala signaturen."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatureCanonicalization",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk-signature:CryptographicProof"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signature Canonicalization"
+        },
+        {
+          "@language": "bg",
+          "@value": "Канонизация на подписа"
+        },
+        {
+          "@language": "cs",
+          "@value": "Kanonizace podpisu"
+        },
+        {
+          "@language": "da",
+          "@value": "Signaturkanonisering"
+        },
+        {
+          "@language": "de",
+          "@value": "Signaturkanonisierung"
+        },
+        {
+          "@language": "el",
+          "@value": "Κανονικοποίηση υπογραφής"
+        },
+        {
+          "@language": "es",
+          "@value": "Canonicalización de firma"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirja kanooniline kuju"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoituksen kanonisointi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Canonicalisation de signature"
+        },
+        {
+          "@language": "ga",
+          "@value": "Canónú sínithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Kanonizacija potpisa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírás kanonizálása"
+        },
+        {
+          "@language": "it",
+          "@value": "Canonicalizzazione della firma"
+        },
+        {
+          "@language": "lt",
+          "@value": "Parašo kanonizavimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Paraksta kanonizācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kanonizzazzjoni tal-firma"
+        },
+        {
+          "@language": "nl",
+          "@value": "Handtekeningkanonisatie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kanonizacja podpisu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Canonicalização de assinatura"
+        },
+        {
+          "@language": "ro",
+          "@value": "Canonicalizarea semnăturii"
+        },
+        {
+          "@language": "sk",
+          "@value": "Kanonizácia podpisu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Kanonizacija podpisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Signaturkanonisering"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Canonicalization method used prior to signing."
+        },
+        {
+          "@language": "bg",
+          "@value": "Метод за канонизация, използван преди подписване."
+        },
+        {
+          "@language": "cs",
+          "@value": "Metoda kanonizace použitá před podepsáním."
+        },
+        {
+          "@language": "da",
+          "@value": "Kanoniseringsmetode anvendt før signering."
+        },
+        {
+          "@language": "de",
+          "@value": "Vor dem Signieren verwendete Kanonisierungsmethode."
+        },
+        {
+          "@language": "el",
+          "@value": "Μέθοδος κανονικοποίησης που χρησιμοποιείται πριν από την υπογραφή."
+        },
+        {
+          "@language": "es",
+          "@value": "Método de canonicalización utilizado antes de firmar."
+        },
+        {
+          "@language": "et",
+          "@value": "Enne allkirjastamist kasutatud kanooniline meetod."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ennen allekirjoittamista käytetty kanonisointimenetelmä."
+        },
+        {
+          "@language": "fr",
+          "@value": "Méthode de canonicalisation utilisée avant la signature."
+        },
+        {
+          "@language": "ga",
+          "@value": "Modh canónaithe a úsáidtear roimh shíniú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Metoda kanonizacije koja se koristi prije potpisivanja."
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírás előtt használt kanonizációs módszer."
+        },
+        {
+          "@language": "it",
+          "@value": "Metodo di canonicalizzazione utilizzato prima della firma."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kanonizavimo metodas, naudojamas prieš pasirašant."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kanonizācijas metode, ko izmanto pirms parakstīšanas."
+        },
+        {
+          "@language": "mt",
+          "@value": "Metodu ta' kanonizzazzjoni użat qabel l-iffirmar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Kanonisatiemethode gebruikt voorafgaand aan het ondertekenen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Metoda kanonizacji stosowana przed podpisaniem."
+        },
+        {
+          "@language": "pt",
+          "@value": "Método de canonicalização utilizado antes da assinatura."
+        },
+        {
+          "@language": "ro",
+          "@value": "Metodă de canonicalizare utilizată înainte de semnare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Metóda kanonizácie použitá pred podpísaním."
+        },
+        {
+          "@language": "sl",
+          "@value": "Metoda kanonizacije, uporabljena pred podpisom."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kanoniseringsmetod som används före signering."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatureKeyId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk-signature:CryptographicProof"
+      },
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signature Key ID"
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на ключа за подпис"
+        },
+        {
+          "@language": "cs",
+          "@value": "ID klíče podpisu"
+        },
+        {
+          "@language": "da",
+          "@value": "Signaturnøgle-id"
+        },
+        {
+          "@language": "de",
+          "@value": "Signaturschlüssel-ID"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό κλειδιού υπογραφής"
+        },
+        {
+          "@language": "es",
+          "@value": "ID de clave de firma"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjavõtme ID"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoitusavaimen tunnus"
+        },
+        {
+          "@language": "fr",
+          "@value": "ID de clé de signature"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir eochrach sínithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "ID ključa potpisa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírási kulcs azonosítója"
+        },
+        {
+          "@language": "it",
+          "@value": "ID chiave di firma"
+        },
+        {
+          "@language": "lt",
+          "@value": "Parašo rakto ID"
+        },
+        {
+          "@language": "lv",
+          "@value": "Paraksta atslēgas ID"
+        },
+        {
+          "@language": "mt",
+          "@value": "ID taċ-ċavetta tal-firma"
+        },
+        {
+          "@language": "nl",
+          "@value": "Handtekeningsleutel-ID"
+        },
+        {
+          "@language": "pl",
+          "@value": "ID klucza podpisu"
+        },
+        {
+          "@language": "pt",
+          "@value": "ID da chave de assinatura"
+        },
+        {
+          "@language": "ro",
+          "@value": "ID cheie de semnătură"
+        },
+        {
+          "@language": "sk",
+          "@value": "ID kľúča podpisu"
+        },
+        {
+          "@language": "sl",
+          "@value": "ID ključa podpisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Signaturnyckel-ID"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Identifier for the key used to sign."
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор за ключа, използван за подписване."
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor pro klíč použitý k podepsání."
+        },
+        {
+          "@language": "da",
+          "@value": "Identifikator for den nøgle, der bruges til at signere."
+        },
+        {
+          "@language": "de",
+          "@value": "Kennung für den zum Signieren verwendeten Schlüssel."
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό για το κλειδί που χρησιμοποιήθηκε για την υπογραφή."
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador de la clave utilizada para firmar."
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirjastamiseks kasutatud võtme identifikaator."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tunniste avaimelle, jota käytettiin allekirjoittamiseen."
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant de la clé utilisée pour signer."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir don eochair a úsáideadh chun síniú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator za ključ koji se koristi za potpisivanje."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az aláíráshoz használt kulcs azonosítója."
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore della chiave utilizzata per firmare."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pasirašyti naudoto rakto identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Identifikators atslēgai, kas izmantota parakstīšanai."
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur għaċ-ċavetta użata għall-iffirmar."
+        },
+        {
+          "@language": "nl",
+          "@value": "Identificatie voor de sleutel gebruikt voor ondertekening."
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator klucza użytego do podpisania."
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador da chave utilizada para assinar."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificator pentru cheia utilizată pentru semnare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor pre kľúč použitý na podpísanie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator ključa, uporabljenega za podpis."
+        },
+        {
+          "@language": "sv",
+          "@value": "Identifierare för den nyckel som används för att signera."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatureCreated",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {
+        "@id": "dppk-signature:CryptographicProof"
+      },
+      "rdfs:range": "xsd:dateTime",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signature Created"
+        },
+        {
+          "@language": "bg",
+          "@value": "Подписът е създаден"
+        },
+        {
+          "@language": "cs",
+          "@value": "Podpis vytvořen"
+        },
+        {
+          "@language": "da",
+          "@value": "Signatur oprettet"
+        },
+        {
+          "@language": "de",
+          "@value": "Signatur erstellt"
+        },
+        {
+          "@language": "el",
+          "@value": "Δημιουργήθηκε υπογραφή"
+        },
+        {
+          "@language": "es",
+          "@value": "Firma creada"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkiri loodud"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoitus luotu"
+        },
+        {
+          "@language": "fr",
+          "@value": "Signature créée"
+        },
+        {
+          "@language": "ga",
+          "@value": "Síniú cruthaithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Potpis izrađen"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírás létrehozva"
+        },
+        {
+          "@language": "it",
+          "@value": "Firma creata"
+        },
+        {
+          "@language": "lt",
+          "@value": "Parašas sukurtas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Paraksts izveidots"
+        },
+        {
+          "@language": "mt",
+          "@value": "Firma maħluqa"
+        },
+        {
+          "@language": "nl",
+          "@value": "Handtekening aangemaakt"
+        },
+        {
+          "@language": "pl",
+          "@value": "Podpis utworzono"
+        },
+        {
+          "@language": "pt",
+          "@value": "Assinatura criada"
+        },
+        {
+          "@language": "ro",
+          "@value": "Semnătură creată"
+        },
+        {
+          "@language": "sk",
+          "@value": "Podpis vytvorený"
+        },
+        {
+          "@language": "sl",
+          "@value": "Podpis ustvarjen"
+        },
+        {
+          "@language": "sv",
+          "@value": "Signatur skapad"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Timestamp when the signature was created."
+        },
+        {
+          "@language": "bg",
+          "@value": "Времеви печат кога е създаден подписът."
+        },
+        {
+          "@language": "cs",
+          "@value": "Časové razítko, kdy byl podpis vytvořen."
+        },
+        {
+          "@language": "da",
+          "@value": "Tidsstempel for, hvornår signaturen blev oprettet."
+        },
+        {
+          "@language": "de",
+          "@value": "Zeitstempel, wann die Signatur erstellt wurde."
+        },
+        {
+          "@language": "el",
+          "@value": "Χρονική σήμανση για το πότε δημιουργήθηκε η υπογραφή."
+        },
+        {
+          "@language": "es",
+          "@value": "Marca de tiempo de cuándo se creó la firma."
+        },
+        {
+          "@language": "et",
+          "@value": "Ajatempel allkirja loomise aja kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Aikaleima, jolloin allekirjoitus luotiin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Horodatage de la création de la signature."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stampa ama nuair a cruthaíodh an síniú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Vremenska oznaka kada je potpis izrađen."
+        },
+        {
+          "@language": "hu",
+          "@value": "Időbélyeg, amikor az aláírás létrejött."
+        },
+        {
+          "@language": "it",
+          "@value": "Marca temporale in cui è stata creata la firma."
+        },
+        {
+          "@language": "lt",
+          "@value": "Laiko žyma, kada buvo sukurtas parašas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Laika zīmogs, kad paraksts tika izveidots."
+        },
+        {
+          "@language": "mt",
+          "@value": "Timbru tal-ħin ta' meta nħolqot il-firma."
+        },
+        {
+          "@language": "nl",
+          "@value": "Tijdstempel van wanneer de handtekening is aangemaakt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Znacznik czasu utworzenia podpisu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Carimbo de data e hora de quando a assinatura foi criada."
+        },
+        {
+          "@language": "ro",
+          "@value": "Marca temporală când a fost creată semnătura."
+        },
+        {
+          "@language": "sk",
+          "@value": "Časová pečiatka, kedy bol podpis vytvorený."
+        },
+        {
+          "@language": "sl",
+          "@value": "Časovni žig, ko je bil podpis ustvarjen."
+        },
+        {
+          "@language": "sv",
+          "@value": "Tidsstämpel för när signaturen skapades."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-signature:signatureValue",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": "xsd:string",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Signature Value"
+        },
+        {
+          "@language": "bg",
+          "@value": "Стойност на подписа"
+        },
+        {
+          "@language": "cs",
+          "@value": "Hodnota podpisu"
+        },
+        {
+          "@language": "da",
+          "@value": "Signaturværdi"
+        },
+        {
+          "@language": "de",
+          "@value": "Signaturwert"
+        },
+        {
+          "@language": "el",
+          "@value": "Τιμή υπογραφής"
+        },
+        {
+          "@language": "es",
+          "@value": "Valor de la firma"
+        },
+        {
+          "@language": "et",
+          "@value": "Allkirja väärtus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Allekirjoituksen arvo"
+        },
+        {
+          "@language": "fr",
+          "@value": "Valeur de la signature"
+        },
+        {
+          "@language": "ga",
+          "@value": "Luach an tsínithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrijednost potpisa"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aláírás értéke"
+        },
+        {
+          "@language": "it",
+          "@value": "Valore della firma"
+        },
+        {
+          "@language": "lt",
+          "@value": "Parašo reikšmė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Paraksta vērtība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Valur tal-firma"
+        },
+        {
+          "@language": "nl",
+          "@value": "Handtekeningwaarde"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wartość podpisu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Valor da assinatura"
+        },
+        {
+          "@language": "ro",
+          "@value": "Valoarea semnăturii"
+        },
+        {
+          "@language": "sk",
+          "@value": "Hodnota podpisu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrednost podpisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Signaturvärde"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The actual string value of the digital signature."
+        },
+        {
+          "@language": "bg",
+          "@value": "Действителната низова стойност на цифровия подпис."
+        },
+        {
+          "@language": "cs",
+          "@value": "Skutečná řetězcová hodnota digitálního podpisu."
+        },
+        {
+          "@language": "da",
+          "@value": "Den faktiske strengværdi af den digitale signatur."
+        },
+        {
+          "@language": "de",
+          "@value": "Der tatsächliche String-Wert der digitalen Signatur."
+        },
+        {
+          "@language": "el",
+          "@value": "Η πραγματική τιμή συμβολοσειράς της ψηφιακής υπογραφής."
+        },
+        {
+          "@language": "es",
+          "@value": "El valor de cadena real de la firma digital."
+        },
+        {
+          "@language": "et",
+          "@value": "Digitaalallkirja tegelik stringi väärtus."
+        },
+        {
+          "@language": "fi",
+          "@value": "Digitaalisen allekirjoituksen todellinen merkkijonoarvo."
+        },
+        {
+          "@language": "fr",
+          "@value": "La valeur de chaîne réelle de la signature numérique."
+        },
+        {
+          "@language": "ga",
+          "@value": "Luach teaghrán iarbhír an tsínithe digitigh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Stvarna vrijednost niza digitalnog potpisa."
+        },
+        {
+          "@language": "hu",
+          "@value": "A digitális aláírás tényleges karakterlánc-értéke."
+        },
+        {
+          "@language": "it",
+          "@value": "L'effettivo valore stringa della firma digitale."
+        },
+        {
+          "@language": "lt",
+          "@value": "Faktinė skaitmeninio parašo eilutės reikšmė."
+        },
+        {
+          "@language": "lv",
+          "@value": "Digitālā paraksta faktiskā virknes vērtība."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-valur string attwali tal-firma diġitali."
+        },
+        {
+          "@language": "nl",
+          "@value": "De werkelijke stringwaarde van de digitale handtekening."
+        },
+        {
+          "@language": "pl",
+          "@value": "Rzeczywista wartość łańcuchowa podpisu cyfrowego."
+        },
+        {
+          "@language": "pt",
+          "@value": "O valor de string real da assinatura digital."
+        },
+        {
+          "@language": "ro",
+          "@value": "Valoarea șirului real a semnăturii digitale."
+        },
+        {
+          "@language": "sk",
+          "@value": "Skutočná reťazcová hodnota digitálneho podpisu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Dejanska vrednost niza digitalnega podpisa."
+        },
+        {
+          "@language": "sv",
+          "@value": "Det faktiska strängvärdet för den digitala signaturen."
+        }
+      ]
+    }
+  ]
+}

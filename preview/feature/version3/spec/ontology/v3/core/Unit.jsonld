@@ -7913,6 +7913,207 @@
       ]
     },
     {
+      "@id": "dppk-unit:MilligramPerSquareMeter",
+      "@type": "dppk:Unit",
+      "dppk:unitSymbol": "mg/m²",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "bg",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "cs",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "da",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "de",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "el",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "es",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "et",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "fi",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "fr",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "ga",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "hr",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "hu",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "it",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "lt",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "lv",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "mt",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "nl",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "pl",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "pt",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "ro",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "sk",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "sl",
+          "@value": "mg/m²"
+        },
+        {
+          "@language": "sv",
+          "@value": "mg/m²"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Unit of measurement representing milligrams per square meter."
+        },
+        {
+          "@language": "bg",
+          "@value": "Мерна единица, представляваща милиграми на квадратен метър."
+        },
+        {
+          "@language": "cs",
+          "@value": "Měrná jednotka představující miligramy na metr čtvereční."
+        },
+        {
+          "@language": "da",
+          "@value": "Måleenhed, der repræsenterer milligram pr. kvadratmeter."
+        },
+        {
+          "@language": "de",
+          "@value": "Maßeinheit, die Milligramm pro Quadratmeter darstellt."
+        },
+        {
+          "@language": "el",
+          "@value": "Μονάδα μέτρησης που αντιπροσωπεύει χιλιοστόγραμμα ανά τετραγωνικό μέτρο."
+        },
+        {
+          "@language": "es",
+          "@value": "Unidad de medida que representa miligramos por metro cuadrado."
+        },
+        {
+          "@language": "et",
+          "@value": "Mõõtühik, mis tähistab milligramme ruutmeetri kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Mittayksikkö, joka edustaa milligrammoja neliömetriä kohti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Unité de mesure représentant les milligrammes par mètre carré."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aonad tomhais a léiríonn milleagraim in aghaidh an mhéadair chearnaigh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Mjerna jedinica koja predstavlja miligrame po kvadratnom metru."
+        },
+        {
+          "@language": "hu",
+          "@value": "Négyzetméterenkénti milligrammot kifejező mértékegység."
+        },
+        {
+          "@language": "it",
+          "@value": "Unità di misura che rappresenta milligrammi per metro quadrato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Matavimo vienetas, reiškiantis miligramus kvadratiniame metre."
+        },
+        {
+          "@language": "lv",
+          "@value": "Mērvienība, kas apzīmē miligramus uz kvadrātmetru."
+        },
+        {
+          "@language": "mt",
+          "@value": "Unità ta' kejl li tirrappreżenta milligrammi għal kull metru kwadru."
+        },
+        {
+          "@language": "nl",
+          "@value": "Meeteenheid die milligrammen per vierkante meter vertegenwoordigt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Jednostka miary oznaczająca miligramy na metr kwadratowy."
+        },
+        {
+          "@language": "pt",
+          "@value": "Unidade de medida que representa miligramas por metro quadrado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Unitate de măsură care reprezintă miligrame pe metru pătrat."
+        },
+        {
+          "@language": "sk",
+          "@value": "Merná jednotka predstavujúca miligramy na meter štvorcový."
+        },
+        {
+          "@language": "sl",
+          "@value": "Merska enota, ki predstavlja miligrame na kvadratni meter."
+        },
+        {
+          "@language": "sv",
+          "@value": "Måttenhet som representerar milligram per kvadratmeter."
+        }
+      ]
+    },
+    {
       "@id": "dppk-unit:KilogramPerSquareMeterSquareRootHour",
       "@type": "dppk:Unit",
       "dppk:unitSymbol": "kg/(m²·h^0.5)",
@@ -8110,6 +8311,810 @@
         {
           "@language": "sv",
           "@value": "En enhet som används för att mäta vattenabsorptionskoefficienten, uttryckt i kilogram per kvadratmeter per kvadratrot ur en timme."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-unit:JoulePerGram",
+      "@type": "dppk:Unit",
+      "dppk:unitSymbol": "J/g",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "J/g"
+        },
+        {
+          "@language": "bg",
+          "@value": "J/g"
+        },
+        {
+          "@language": "cs",
+          "@value": "J/g"
+        },
+        {
+          "@language": "da",
+          "@value": "J/g"
+        },
+        {
+          "@language": "de",
+          "@value": "J/g"
+        },
+        {
+          "@language": "el",
+          "@value": "J/g"
+        },
+        {
+          "@language": "es",
+          "@value": "J/g"
+        },
+        {
+          "@language": "et",
+          "@value": "J/g"
+        },
+        {
+          "@language": "fi",
+          "@value": "J/g"
+        },
+        {
+          "@language": "fr",
+          "@value": "J/g"
+        },
+        {
+          "@language": "ga",
+          "@value": "J/g"
+        },
+        {
+          "@language": "hr",
+          "@value": "J/g"
+        },
+        {
+          "@language": "hu",
+          "@value": "J/g"
+        },
+        {
+          "@language": "it",
+          "@value": "J/g"
+        },
+        {
+          "@language": "lt",
+          "@value": "J/g"
+        },
+        {
+          "@language": "lv",
+          "@value": "J/g"
+        },
+        {
+          "@language": "mt",
+          "@value": "J/g"
+        },
+        {
+          "@language": "nl",
+          "@value": "J/g"
+        },
+        {
+          "@language": "pl",
+          "@value": "J/g"
+        },
+        {
+          "@language": "pt",
+          "@value": "J/g"
+        },
+        {
+          "@language": "ro",
+          "@value": "J/g"
+        },
+        {
+          "@language": "sk",
+          "@value": "J/g"
+        },
+        {
+          "@language": "sl",
+          "@value": "J/g"
+        },
+        {
+          "@language": "sv",
+          "@value": "J/g"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A unit of specific energy measuring joules per gram."
+        },
+        {
+          "@language": "bg",
+          "@value": "Единица за специфична енергия, измерваща джаули на грам."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jednotka měrné energie měřící jouly na gram."
+        },
+        {
+          "@language": "da",
+          "@value": "En enhed for specifik energi, der måler joule pr. gram."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Einheit der spezifischen Energie, die Joule pro Gramm misst."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια μονάδα ειδικής ενέργειας που μετρά τζάουλ ανά γραμμάριο."
+        },
+        {
+          "@language": "es",
+          "@value": "Una unidad de energía específica que mide julios por gramo."
+        },
+        {
+          "@language": "et",
+          "@value": "Erienergia ühik, mis mõõdab džaoule grammi kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaisenergian yksikkö, joka mittaa jouleja grammaa kohti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une unité d'énergie spécifique mesurant les joules par gramme."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aonad fuinnimh shonraigh a thomhaiseann giúil in aghaidh an ghraim."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinica specifične energije koja mjeri džule po gramu."
+        },
+        {
+          "@language": "hu",
+          "@value": "Fajlagos energia mértékegysége, amely joule per grammot mér."
+        },
+        {
+          "@language": "it",
+          "@value": "Un'unità di energia specifica che misura i joule per grammo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savitosios energijos vienetas, matuojantis džiaulius grame."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpatnējās enerģijas mērvienība, kas mēra džoulus uz gramu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Unità ta' enerġija speċifika li tkejjel joules għal kull gramma."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een eenheid van specifieke energie die joules per gram meet."
+        },
+        {
+          "@language": "pl",
+          "@value": "Jednostka energii właściwej mierzona w dżulach na gram."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma unidade de energia específica que mede joules por grama."
+        },
+        {
+          "@language": "ro",
+          "@value": "O unitate de energie specifică care măsoară jouli pe gram."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jednotka mernej energie merajúca jouly na gram."
+        },
+        {
+          "@language": "sl",
+          "@value": "Enota specifične energije, ki meri džule na gram."
+        },
+        {
+          "@language": "sv",
+          "@value": "En enhet för specifik energi som mäter joule per gram."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-unit:SquareMeterPerGram",
+      "@type": "dppk:Unit",
+      "dppk:unitSymbol": "m²/g",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "bg",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "cs",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "da",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "de",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "el",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "es",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "et",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "fi",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "fr",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "ga",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "hr",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "hu",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "it",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "lt",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "lv",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "mt",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "nl",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "pl",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "pt",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "ro",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "sk",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "sl",
+          "@value": "m²/g"
+        },
+        {
+          "@language": "sv",
+          "@value": "m²/g"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A unit of specific surface area measuring square meters per gram."
+        },
+        {
+          "@language": "bg",
+          "@value": "Единица за специфична повърхност, измерваща квадратни метри на грам."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jednotka měrného povrchu měřící metry čtvereční na gram."
+        },
+        {
+          "@language": "da",
+          "@value": "En enhed for specifikt overfladeareal, der måler kvadratmeter pr. gram."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Einheit der spezifischen Oberfläche, die Quadratmeter pro Gramm misst."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια μονάδα ειδικής επιφάνειας που μετρά τετραγωνικά μέτρα ανά γραμμάριο."
+        },
+        {
+          "@language": "es",
+          "@value": "Una unidad de superficie específica que mide metros cuadrados por gramo."
+        },
+        {
+          "@language": "et",
+          "@value": "Eripindala ühik, mis mõõdab ruutmeetreid grammi kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ominaispinta-alan yksikkö, joka mittaa neliömetrejä grammaa kohti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une unité de surface spécifique mesurant les mètres carrés par gramme."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aonad dromchlair shonraigh a thomhaiseann méadair chearnacha in aghaidh an ghraim."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinica specifične površine koja mjeri kvadratne metre po gramu."
+        },
+        {
+          "@language": "hu",
+          "@value": "Fajlagos felület mértékegysége, amely négyzetméter per grammot mér."
+        },
+        {
+          "@language": "it",
+          "@value": "Un'unità di superficie specifica che misura i metri quadrati per grammo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Savitojo paviršiaus ploto vienetas, matuojantis kvadratinius metrus grame."
+        },
+        {
+          "@language": "lv",
+          "@value": "Īpatnējā virsmas laukuma mērvienība, kas mēra kvadrātmetrus uz gramu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Unità ta' erja tal-wiċċ speċifika li tkejjel metri kwadri għal kull gramma."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een eenheid van specifiek oppervlak die vierkante meters per gram meet."
+        },
+        {
+          "@language": "pl",
+          "@value": "Jednostka powierzchni właściwej mierzona w metrach kwadratowych na gram."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma unidade de área de superfície específica que mede metros quadrados por grama."
+        },
+        {
+          "@language": "ro",
+          "@value": "O unitate de suprafață specifică care măsoară metri pătrați pe gram."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jednotka merného povrchu merajúca metre štvorcové na gram."
+        },
+        {
+          "@language": "sl",
+          "@value": "Enota specifične površine, ki meri kvadratne metre na gram."
+        },
+        {
+          "@language": "sv",
+          "@value": "En enhet för specifik ytarea som mäter kvadratmeter per gram."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-unit:MillimolePerLiter",
+      "@type": "dppk:Unit",
+      "dppk:unitSymbol": "mmol/l",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "bg",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "cs",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "da",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "de",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "el",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "es",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "et",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "fi",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "fr",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "ga",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "hr",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "hu",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "it",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "lt",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "lv",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "mt",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "nl",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "pl",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "pt",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "ro",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "sk",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "sl",
+          "@value": "mmol/l"
+        },
+        {
+          "@language": "sv",
+          "@value": "mmol/l"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A unit of concentration measuring millimoles per liter."
+        },
+        {
+          "@language": "bg",
+          "@value": "Единица за концентрация, измерваща милимолове на литър."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jednotka koncentrace měřící milimoly na litr."
+        },
+        {
+          "@language": "da",
+          "@value": "En koncentrationsenhed, der måler millimol pr. liter."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Konzentrationseinheit, die Millimol pro Liter misst."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια μονάδα συγκέντρωσης που μετρά χιλιοστογραμμομόρια ανά λίτρο."
+        },
+        {
+          "@language": "es",
+          "@value": "Una unidad de concentración que mide milimoles por litro."
+        },
+        {
+          "@language": "et",
+          "@value": "Kontsentratsiooni ühik, mis mõõdab millimoolides liitri kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Pitoisuusyksikkö, joka mittaa millimooleja litraa kohti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une unité de concentration mesurant les millimoles par litre."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aonad tiúchana a thomhaiseann milleamóil in aghaidh an lítir."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinica koncentracije koja mjeri milimole po litri."
+        },
+        {
+          "@language": "hu",
+          "@value": "Koncentráció mértékegysége, amely millimol per litert mér."
+        },
+        {
+          "@language": "it",
+          "@value": "Un'unità di concentrazione che misura millimoli per litro."
+        },
+        {
+          "@language": "lt",
+          "@value": "Koncentracijos vienetas, matuojantis milimolius litre."
+        },
+        {
+          "@language": "lv",
+          "@value": "Koncentrācijas mērvienība, kas mēra milimolus litrā."
+        },
+        {
+          "@language": "mt",
+          "@value": "Unità ta' konċentrazzjoni li tkejjel millimoli għal kull litru."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een concentratie-eenheid die millimol per liter meet."
+        },
+        {
+          "@language": "pl",
+          "@value": "Jednostka stężenia mierzona w milimolach na litr."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma unidade de concentração que mede milimoles por litro."
+        },
+        {
+          "@language": "ro",
+          "@value": "O unitate de concentrație care măsoară milimoli pe litru."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jednotka koncentrácie merajúca milimoly na liter."
+        },
+        {
+          "@language": "sl",
+          "@value": "Enota koncentracije, ki meri milimole na liter."
+        },
+        {
+          "@language": "sv",
+          "@value": "En koncentrationsenhet som mäter millimol per liter."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-unit:GramPer100Gram",
+      "@type": "dppk:Unit",
+      "dppk:unitSymbol": "g/100 g",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "bg",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "cs",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "da",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "de",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "el",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "es",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "et",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "fi",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "fr",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "ga",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "hr",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "hu",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "it",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "lt",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "lv",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "mt",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "nl",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "pl",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "pt",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "ro",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "sk",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "sl",
+          "@value": "g/100 g"
+        },
+        {
+          "@language": "sv",
+          "@value": "g/100 g"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A unit of mass fraction measuring grams per 100 grams."
+        },
+        {
+          "@language": "bg",
+          "@value": "Единица за масова част, измерваща грамове на 100 грама."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jednotka hmotnostního zlomku měřící gramy na 100 gramů."
+        },
+        {
+          "@language": "da",
+          "@value": "En massebrøksenhed, der måler gram pr. 100 gram."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Einheit des Massenanteils, die Gramm pro 100 Gramm misst."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια μονάδα κλάσματος μάζας που μετρά γραμμάρια ανά 100 γραμμάρια."
+        },
+        {
+          "@language": "es",
+          "@value": "Una unidad de fracción de masa que mide gramos por 100 gramos."
+        },
+        {
+          "@language": "et",
+          "@value": "Massiosa ühik, mis mõõdab gramme 100 grammi kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Massa-osuuden yksikkö, joka mittaa grammoja 100 grammaa kohti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une unité de fraction massique mesurant les grammes pour 100 grammes."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aonad codáin mhaise a thomhaiseann graim in aghaidh an 100 gram."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinica masenog udjela koja mjeri grame na 100 grama."
+        },
+        {
+          "@language": "hu",
+          "@value": "Tömegtört mértékegysége, amely gramm per 100 grammot mér."
+        },
+        {
+          "@language": "it",
+          "@value": "Un'unità di frazione di massa che misura grammi per 100 grammi."
+        },
+        {
+          "@language": "lt",
+          "@value": "Masės dalies vienetas, matuojantis gramus 100 gramų."
+        },
+        {
+          "@language": "lv",
+          "@value": "Masas daļas mērvienība, kas mēra gramus uz 100 gramiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Unità ta' frazzjoni tal-massa li tkejjel grammi għal kull 100 gramma."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een eenheid van massafractie die grammen per 100 gram meet."
+        },
+        {
+          "@language": "pl",
+          "@value": "Jednostka ułamka masowego mierzona w gramach na 100 gramów."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma unidade de fração de massa que mede gramas por 100 gramas."
+        },
+        {
+          "@language": "ro",
+          "@value": "O unitate de fracție masică care măsoară grame la 100 de grame."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jednotka hmotnostného zlomku merajúca gramy na 100 gramov."
+        },
+        {
+          "@language": "sl",
+          "@value": "Enota masnega deleža, ki meri grame na 100 gramov."
+        },
+        {
+          "@language": "sv",
+          "@value": "En massbråksenhet som mäter gram per 100 gram."
         }
       ]
     }

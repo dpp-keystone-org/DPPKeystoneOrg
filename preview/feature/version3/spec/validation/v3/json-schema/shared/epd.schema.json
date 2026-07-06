@@ -5,6 +5,18 @@
   "description": "A detailed schema for the EPD data block.",
   "type": "object",
   "properties": {
+    "biogCProduct": {
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "biogCPackaging": {
+      "type": [
+        "string",
+        "number"
+      ]
+    },
     "gwp": {
       "$ref": "#/$defs/indicator"
     },
@@ -45,6 +57,75 @@
       "$ref": "#/$defs/indicator"
     },
     "wdp": {
+      "$ref": "#/$defs/indicator"
+    },
+    "pm": {
+      "$ref": "#/$defs/indicator"
+    },
+    "irp": {
+      "$ref": "#/$defs/indicator"
+    },
+    "etpFw": {
+      "$ref": "#/$defs/indicator"
+    },
+    "htpC": {
+      "$ref": "#/$defs/indicator"
+    },
+    "htpNc": {
+      "$ref": "#/$defs/indicator"
+    },
+    "sqp": {
+      "$ref": "#/$defs/indicator"
+    },
+    "pere": {
+      "$ref": "#/$defs/indicator"
+    },
+    "perm": {
+      "$ref": "#/$defs/indicator"
+    },
+    "pert": {
+      "$ref": "#/$defs/indicator"
+    },
+    "penre": {
+      "$ref": "#/$defs/indicator"
+    },
+    "penrm": {
+      "$ref": "#/$defs/indicator"
+    },
+    "penrt": {
+      "$ref": "#/$defs/indicator"
+    },
+    "sm": {
+      "$ref": "#/$defs/indicator"
+    },
+    "rsf": {
+      "$ref": "#/$defs/indicator"
+    },
+    "nrsf": {
+      "$ref": "#/$defs/indicator"
+    },
+    "fw": {
+      "$ref": "#/$defs/indicator"
+    },
+    "hwd": {
+      "$ref": "#/$defs/indicator"
+    },
+    "nhwd": {
+      "$ref": "#/$defs/indicator"
+    },
+    "rwd": {
+      "$ref": "#/$defs/indicator"
+    },
+    "cru": {
+      "$ref": "#/$defs/indicator"
+    },
+    "mfr": {
+      "$ref": "#/$defs/indicator"
+    },
+    "mer": {
+      "$ref": "#/$defs/indicator"
+    },
+    "ee": {
       "$ref": "#/$defs/indicator"
     }
   },

@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1783267426364';
-import { LanguageManager } from '../lib/language-manager.js?v=1783267426364';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1783367125372';
+import { LanguageManager } from '../lib/language-manager.js?v=1783367125372';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
@@ -130,11 +130,11 @@ function resolveUnitDisplay(unit, ontologyMap) {
         if (ontologyMap.has(shortId)) {
             const unitObj = ontologyMap.get(shortId);
             if (unitObj && unitObj.unitSymbol) {
-                return unitObj.unitSymbol;
+                return unitObj.unitSymbol === 'unitless' ? '' : unitObj.unitSymbol;
             }
         }
     }
-    return unit;
+    return unit === 'unitless' ? '' : unit;
 }
 
 /**

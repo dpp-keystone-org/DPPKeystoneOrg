@@ -24,7 +24,7 @@
           "@id": "dppk-dopc:capillaryAbsorption",
           "@type": "xsd:double"
         },
-        "dangerousSubstances": "dppk-dopc:dangerousSubstances",
+        "dangerousSubstances": "dppk-dopc:dangerousSubstance",
         "shrinkageAndExpansion": "dppk-dopc:shrinkageAndExpansion",
         "slipSkidResistance": {
           "@id": "dppk-dopc:slipSkidResistance",

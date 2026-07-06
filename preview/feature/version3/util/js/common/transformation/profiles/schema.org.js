@@ -133,7 +133,7 @@ function flattenToAdditionalProperties(node, parentName, dictionary) {
                         "name": displayName,
                         "value": valueItem['@value'],
                     };
-                    if (unitText) propertyObj.unitText = unitText;
+                    if (unitText && unitText !== 'unitless') propertyObj.unitText = unitText;
                     properties.push(propertyObj);
              } else if (valueItem && typeof valueItem === 'object') {
                   // For recursion, we always append the path segment to ensure uniqueness 
@@ -877,7 +877,7 @@ function epdToSchemaOrgCertifications(epdData, dictionary, parentNode, termsBase
                 "@type": "PropertyValue",
                 "name": `${definition.label} (${stageKey})`,
                 "value": Number(value),
-                "unitText": definition.unit,
+                ...(definition.unit && definition.unit !== 'unitless' ? { "unitText": definition.unit } : {}),
                 "propertyID": indicatorUri.split('#')[1] + '-' + stageKey
             });
         }

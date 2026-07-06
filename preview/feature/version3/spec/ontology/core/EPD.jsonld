@@ -5,6 +5,7 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk-epd": "https://dpp-keystone.org/spec/v3/terms/epd#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
@@ -221,5 +222,426 @@
       "@id": "https://dpp-keystone.org/spec/ontology/v3/core/EPDLifecycle.jsonld"
     }
   ],
-  "@graph": []
+  "@graph": [
+    {
+      "@id": "dppk-epd:biogCProduct",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Biogenic carbon content in product"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на биогенен въглерод в продукта"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah biogenního uhlíku ve výrobku"
+        },
+        {
+          "@language": "da",
+          "@value": "Biogent kulstofindhold i produktet"
+        },
+        {
+          "@language": "de",
+          "@value": "Biogener Kohlenstoffgehalt im Produkt"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα βιογενούς άνθρακα στο προϊόν"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de carbono biogénico en el producto"
+        },
+        {
+          "@language": "et",
+          "@value": "Biogeense süsiniku sisaldus tootes"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotteen biogeenisen hiilen sisältö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contenu en carbone biogénique du produit"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhar carbóin bithghineach sa táirge"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj biogenog ugljika u proizvodu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Biogén széntartalom a termékben"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di carbonio biogenico nel prodotto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Biogeninės anglies kiekis gaminyje"
+        },
+        {
+          "@language": "lv",
+          "@value": "Biogēnā oglekļa saturs produktā"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' karbonju bijoġeniku fil-prodott"
+        },
+        {
+          "@language": "nl",
+          "@value": "Biogeen koolstofgehalte in het product"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość węgla biogennego w produkcie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de carbono biogénico no produto"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de carbon biogen în produs"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah biogénneho uhlíka vo výrobku"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost biogenega ogljika v proizvodu"
+        },
+        {
+          "@language": "sv",
+          "@value": "Biogent kolinnehåll i produkten"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:domain": {
+        "@id": "dppk:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Biogenic carbon content in product"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на биогенен въглерод в продукта"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah biogenního uhlíku ve výrobku"
+        },
+        {
+          "@language": "da",
+          "@value": "Biogent kulstofindhold i produktet"
+        },
+        {
+          "@language": "de",
+          "@value": "Biogener Kohlenstoffgehalt im Produkt"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα βιογενούς άνθρακα στο προϊόν"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de carbono biogénico en el producto"
+        },
+        {
+          "@language": "et",
+          "@value": "Biogeense süsiniku sisaldus tootes"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotteen biogeenisen hiilen sisältö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contenu en carbone biogénique du produit"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhar carbóin bithghineach sa táirge"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj biogenog ugljika u proizvodu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Biogén széntartalom a termékben"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di carbonio biogenico nel prodotto"
+        },
+        {
+          "@language": "lt",
+          "@value": "Biogeninės anglies kiekis gaminyje"
+        },
+        {
+          "@language": "lv",
+          "@value": "Biogēnā oglekļa saturs produktā"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' karbonju bijoġeniku fil-prodott"
+        },
+        {
+          "@language": "nl",
+          "@value": "Biogeen koolstofgehalte in het product"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość węgla biogennego w produkcie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de carbono biogénico no produto"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de carbon biogen în produs"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah biogénneho uhlíka vo výrobku"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost biogenega ogljika v proizvodu"
+        },
+        {
+          "@language": "sv",
+          "@value": "Biogent kolinnehåll i produkten"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:biogCPackaging",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Biogenic carbon content in accompanying packaging"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на биогенен въглерод в съпътстващата опаковка"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah biogenního uhlíku v doprovodném obalu"
+        },
+        {
+          "@language": "da",
+          "@value": "Biogent kulstofindhold i medfølgende emballage"
+        },
+        {
+          "@language": "de",
+          "@value": "Biogener Kohlenstoffgehalt in der Begleitverpackung"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα βιογενούς άνθρακα στη συνοδευτική συσκευασία"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de carbono biogénico en el embalaje acompañante"
+        },
+        {
+          "@language": "et",
+          "@value": "Biogeense süsiniku sisaldus kaasnevas pakendis"
+        },
+        {
+          "@language": "fi",
+          "@value": "Mukanatulevan pakkauksen biogeenisen hiilen sisältö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contenu en carbone biogénique dans l'emballage d'accompagnement"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhar carbóin bithghineach sa phacáistíocht a ghabhann leis"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj biogenog ugljika u pratećoj ambalaži"
+        },
+        {
+          "@language": "hu",
+          "@value": "Biogén széntartalom a kísérő csomagolásban"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di carbonio biogenico nell'imballaggio di accompagnamento"
+        },
+        {
+          "@language": "lt",
+          "@value": "Biogeninės anglies kiekis lydinčiojoje pakuotėje"
+        },
+        {
+          "@language": "lv",
+          "@value": "Biogēnā oglekļa saturs pavadošajā iepakojumā"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' karbonju bijoġeniku fl-ippakkjar li jakkumpanja"
+        },
+        {
+          "@language": "nl",
+          "@value": "Biogeen koolstofgehalte in de bijbehorende verpakking"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość węgla biogennego w opakowaniu towarzyszącym"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de carbono biogénico na embalagem que o acompanha"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de carbon biogen în ambalajul însoțitor"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah biogénneho uhlíka v sprievodnom obale"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost biogenega ogljika v pripadajoči embalaži"
+        },
+        {
+          "@language": "sv",
+          "@value": "Biogent kolinnehåll i medföljande förpackning"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:domain": {
+        "@id": "dppk:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "xsd:double"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Biogenic carbon content in accompanying packaging"
+        },
+        {
+          "@language": "bg",
+          "@value": "Съдържание на биогенен въглерод в съпътстващата опаковка"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obsah biogenního uhlíku v doprovodném obalu"
+        },
+        {
+          "@language": "da",
+          "@value": "Biogent kulstofindhold i medfølgende emballage"
+        },
+        {
+          "@language": "de",
+          "@value": "Biogener Kohlenstoffgehalt in der Begleitverpackung"
+        },
+        {
+          "@language": "el",
+          "@value": "Περιεκτικότητα βιογενούς άνθρακα στη συνοδευτική συσκευασία"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido de carbono biogénico en el embalaje acompañante"
+        },
+        {
+          "@language": "et",
+          "@value": "Biogeense süsiniku sisaldus kaasnevas pakendis"
+        },
+        {
+          "@language": "fi",
+          "@value": "Mukanatulevan pakkauksen biogeenisen hiilen sisältö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contenu en carbone biogénique dans l'emballage d'accompagnement"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhar carbóin bithghineach sa phacáistíocht a ghabhann leis"
+        },
+        {
+          "@language": "hr",
+          "@value": "Sadržaj biogenog ugljika u pratećoj ambalaži"
+        },
+        {
+          "@language": "hu",
+          "@value": "Biogén széntartalom a kísérő csomagolásban"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto di carbonio biogenico nell'imballaggio di accompagnamento"
+        },
+        {
+          "@language": "lt",
+          "@value": "Biogeninės anglies kiekis lydinčiojoje pakuotėje"
+        },
+        {
+          "@language": "lv",
+          "@value": "Biogēnā oglekļa saturs pavadošajā iepakojumā"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut ta' karbonju bijoġeniku fl-ippakkjar li jakkumpanja"
+        },
+        {
+          "@language": "nl",
+          "@value": "Biogeen koolstofgehalte in de bijbehorende verpakking"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość węgla biogennego w opakowaniu towarzyszącym"
+        },
+        {
+          "@language": "pt",
+          "@value": "Teor de carbono biogénico na embalagem que o acompanha"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținut de carbon biogen în ambalajul însoțitor"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obsah biogénneho uhlíka v sprievodnom obale"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vsebnost biogenega ogljika v pripadajoči embalaži"
+        },
+        {
+          "@language": "sv",
+          "@value": "Biogent kolinnehåll i medföljande förpackning"
+        }
+      ]
+    }
+  ]
 }

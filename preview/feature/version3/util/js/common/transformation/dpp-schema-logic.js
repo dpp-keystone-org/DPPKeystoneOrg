@@ -17,7 +17,7 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1783267426364';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1783367125372';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
@@ -110,7 +110,11 @@ export async function transform(dpp, options, dictionary) {
     // --- Start: Type Inference Logic ---
     const specIdToType = {
         'draft_construction_specification_id': `${termsBase}ConstructionProduct`,
-        // Future sector-specific IDs can be added here
+        [`dpp_EN_197_${version}`]: `${termsBase.replace('#', '/cement#')}CementProduct`,
+        'draft_battery_specification_id': `${termsBase}BatteryProduct`,
+        'draft_electronics_specification_id': `${termsBase}ElectronicDevice`,
+        'draft_textile_espr_specification_id': `${termsBase}TextileProduct`,
+        'draft_iron_and_steel_specification_id': `${termsBase}IronSteelProduct`
     };
     const DPP_BASE_TYPE = `${termsBase}DigitalProductPassport`;
 

@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/cement/dopc.schema.json",
+  "title": "Cement DoPC Schema",
+  "type": "object",
+  "properties": {
+    "declarationCode": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "dateOfIssue": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{4}$"
+    },
+    "placeOfSignature": {
+      "type": "string"
+    },
+    "signatory": {
+      "type": "string"
+    },
+    "signatoryPosition": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    },
+    "uniqueIdentificationCode": {
+      "type": "string"
+    },
+    "batch": {
+      "type": "string"
+    },
+    "productCategory": {
+      "type": "string",
+      "const": "15"
+    },
+    "declaredUses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "preparation of concrete, mortar, grout, and other mixes for construction and for the manufacture of construction products including structural and non-structural products, including white cement",
+          "preparation of mortar for bricklaying, blocklaying, rendering and plastering, including white cement",
+          "preparation of adhesives for other construction products",
+          "soil stabilisation or improvement, road bases and sub-bases, and capping layers"
+        ]
+      }
+    },
+    "manufacturerProductRegistrations": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "reachInformation": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "generalProductInformation": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "manufacturer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "registeredTradeName": {
+          "type": "string"
+        },
+        "postalAddress": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string",
+          "format": "email"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "registeredPlaceOfBusiness": {
+          "type": "string"
+        }
+      }
+    },
+    "notifiedBodyIdentificationNumber": {
+      "type": "string",
+      "pattern": "^NB\\d{4}$"
+    },
+    "certificatesOrValidationReports": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "harmonisedTechnicalSpecification": {
+      "type": "string"
+    },
+    "sustainabilityDataCompliance": {
+      "type": "string",
+      "enum": [
+        "compliant",
+        "non-compliant",
+        "N/A"
+      ]
+    },
+    "productConformityDeclaration": {
+      "type": "string",
+      "enum": [
+        "compliant",
+        "non-compliant",
+        "N/A"
+      ]
+    },
+    "dangerousSubstanceAntimony": {
+      "type": "string"
+    },
+    "dangerousSubstanceArsenic": {
+      "type": "string"
+    },
+    "dangerousSubstanceAsbestos": {
+      "type": "string"
+    },
+    "dangerousSubstanceBarium": {
+      "type": "string"
+    },
+    "dangerousSubstanceBromide": {
+      "type": "string"
+    },
+    "dangerousSubstanceCadmium": {
+      "type": "string"
+    },
+    "dangerousSubstanceChloride": {
+      "type": "string"
+    },
+    "dangerousSubstanceChromiumTotal": {
+      "type": "string"
+    },
+    "dangerousSubstanceCobalt": {
+      "type": "string"
+    },
+    "dangerousSubstanceCopper": {
+      "type": "string"
+    },
+    "dangerousSubstanceCyanide": {
+      "type": "string"
+    },
+    "dangerousSubstanceFluoride": {
+      "type": "string"
+    },
+    "dangerousSubstanceLead": {
+      "type": "string"
+    },
+    "dangerousSubstanceMercury": {
+      "type": "string"
+    },
+    "dangerousSubstanceMolybdenum": {
+      "type": "string"
+    },
+    "dangerousSubstanceNickel": {
+      "type": "string"
+    },
+    "dangerousSubstancePhenols": {
+      "type": "string"
+    },
+    "dangerousSubstanceSelenium": {
+      "type": "string"
+    },
+    "dangerousSubstanceSulfate": {
+      "type": "string"
+    },
+    "dangerousSubstanceTin": {
+      "type": "string"
+    },
+    "dangerousSubstanceVanadium": {
+      "type": "string"
+    },
+    "dangerousSubstanceZinc": {
+      "type": "string"
+    },
+    "proof": {
+      "type": "object",
+      "properties": {
+        "signatureType": {
+          "type": "string"
+        },
+        "signatureAlgorithm": {
+          "type": "string"
+        },
+        "signatureCanonicalization": {
+          "type": "string"
+        },
+        "signatureKeyId": {
+          "type": "string"
+        },
+        "signatureCreated": {
+          "type": "string"
+        },
+        "signatureString": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "signatureType",
+        "signatureAlgorithm",
+        "signatureCanonicalization",
+        "signatureKeyId",
+        "signatureCreated",
+        "signatureString"
+      ]
+    }
+  },
+  "required": [
+    "declarationCode",
+    "version",
+    "dateOfIssue",
+    "placeOfSignature",
+    "signatory",
+    "signatoryPosition",
+    "signature",
+    "uniqueIdentificationCode",
+    "productCategory",
+    "proof"
+  ]
+}

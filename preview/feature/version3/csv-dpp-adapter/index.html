@@ -2,8 +2,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP CSV Adapter</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1783267426364">
-    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1783267426364">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1783367125372">
+    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1783367125372">
 </head>
 <body>
     <div class="container">
@@ -25,6 +25,7 @@
                         <label><input type="checkbox" name="sector" value="electronics"> <span data-i18n-key="electronics">Electronics</span></label>
                         <label><input type="checkbox" name="sector" value="iron-steel"> <span data-i18n-key="iron-amp-steel">Iron &amp; Steel</span></label>
                         <label><input type="checkbox" name="sector" value="textile"> <span data-i18n-key="textile">Textile</span></label>
+                        <label><input type="checkbox" name="sector" value="cement"> <span data-i18n-key="cement">Cement</span></label>
                         <label><input type="checkbox" name="sector" value="packaging"> <span data-i18n-key="packaging-add-on">Packaging (Add-on)</span></label>
                     </div>
                 </div>
@@ -90,7 +91,7 @@
     <!-- Removed manual script tag for papaparse, will import in module -->
     
     <!-- Application Logic -->
-    <script type="module" src="csv-dpp-adapter.js?v=1783267426364"></script>
+    <script type="module" src="csv-dpp-adapter.js?v=1783367125372"></script>
     <script type="module">
         import { LanguageManager } from '../lib/language-manager.js';
         LanguageManager.init('./index.i18n.json');

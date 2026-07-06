@@ -3404,6 +3404,4905 @@
           "@value": "Vattenuttagspotential"
         }
       ]
+    },
+    {
+      "@id": "dppk-epd:pm",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Particulate matter emissions"
+        },
+        {
+          "@language": "bg",
+          "@value": "Емисии на фини прахови частици"
+        },
+        {
+          "@language": "cs",
+          "@value": "Emise částic"
+        },
+        {
+          "@language": "da",
+          "@value": "Partikelemissioner"
+        },
+        {
+          "@language": "de",
+          "@value": "Feinstaubemissionen"
+        },
+        {
+          "@language": "el",
+          "@value": "Εκπομπές αιωρούμενων σωματιδίων"
+        },
+        {
+          "@language": "es",
+          "@value": "Emisiones de material particulado"
+        },
+        {
+          "@language": "et",
+          "@value": "Tahkete osakeste heide"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiukkaspäästöt"
+        },
+        {
+          "@language": "fr",
+          "@value": "Émissions de particules fines"
+        },
+        {
+          "@language": "ga",
+          "@value": "Astuithe ábhar cáithníneach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Emisije lebdećih čestica"
+        },
+        {
+          "@language": "hu",
+          "@value": "Szálló por kibocsátása"
+        },
+        {
+          "@language": "it",
+          "@value": "Emissioni di particolato"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kietųjų dalelių emisijos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Cieto daļiņu emisijas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Emissjonijiet ta' materja partikulata"
+        },
+        {
+          "@language": "nl",
+          "@value": "Fijnstofemissies"
+        },
+        {
+          "@language": "pl",
+          "@value": "Emisje pyłów zawieszonych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Emissões de partículas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Emisii de particule"
+        },
+        {
+          "@language": "sk",
+          "@value": "Emisie tuhých častíc"
+        },
+        {
+          "@language": "sl",
+          "@value": "Emisije trdnih delcev"
+        },
+        {
+          "@language": "sv",
+          "@value": "Partikelemissioner"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:DiseaseIncidence"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Particulate matter emissions"
+        },
+        {
+          "@language": "bg",
+          "@value": "Емисии на фини прахови частици"
+        },
+        {
+          "@language": "cs",
+          "@value": "Emise částic"
+        },
+        {
+          "@language": "da",
+          "@value": "Partikelemissioner"
+        },
+        {
+          "@language": "de",
+          "@value": "Feinstaubemissionen"
+        },
+        {
+          "@language": "el",
+          "@value": "Εκπομπές αιωρούμενων σωματιδίων"
+        },
+        {
+          "@language": "es",
+          "@value": "Emisiones de material particulado"
+        },
+        {
+          "@language": "et",
+          "@value": "Tahkete osakeste heide"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiukkaspäästöt"
+        },
+        {
+          "@language": "fr",
+          "@value": "Émissions de particules fines"
+        },
+        {
+          "@language": "ga",
+          "@value": "Astuithe ábhar cáithníneach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Emisije lebdećih čestica"
+        },
+        {
+          "@language": "hu",
+          "@value": "Szálló por kibocsátása"
+        },
+        {
+          "@language": "it",
+          "@value": "Emissioni di particolato"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kietųjų dalelių emisijos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Cieto daļiņu emisijas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Emissjonijiet ta' materja partikulata"
+        },
+        {
+          "@language": "nl",
+          "@value": "Fijnstofemissies"
+        },
+        {
+          "@language": "pl",
+          "@value": "Emisje pyłów zawieszonych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Emissões de partículas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Emisii de particule"
+        },
+        {
+          "@language": "sk",
+          "@value": "Emisie tuhých častíc"
+        },
+        {
+          "@language": "sl",
+          "@value": "Emisije trdnih delcev"
+        },
+        {
+          "@language": "sv",
+          "@value": "Partikelemissioner"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:irp",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Ionising radiation, human health"
+        },
+        {
+          "@language": "bg",
+          "@value": "Йонизиращо лъчение, човешко здраве"
+        },
+        {
+          "@language": "cs",
+          "@value": "Ionizující záření, lidské zdraví"
+        },
+        {
+          "@language": "da",
+          "@value": "Ioniserende stråling, menneskers sundhed"
+        },
+        {
+          "@language": "de",
+          "@value": "Ionisierende Strahlung, menschliche Gesundheit"
+        },
+        {
+          "@language": "el",
+          "@value": "Ιοντίζουσα ακτινοβολία, ανθρώπινη υγεία"
+        },
+        {
+          "@language": "es",
+          "@value": "Radiación ionizante, salud humana"
+        },
+        {
+          "@language": "et",
+          "@value": "Ioniseeriv kiirgus, inimeste tervis"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ionisoiva säteily, ihmisten terveys"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rayonnement ionisant, santé humaine"
+        },
+        {
+          "@language": "ga",
+          "@value": "Radaíocht ianaíoch, sláinte an duine"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ionizirajuće zračenje, ljudsko zdravlje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ionizáló sugárzás, emberi egészség"
+        },
+        {
+          "@language": "it",
+          "@value": "Radiazioni ionizzanti, salute umana"
+        },
+        {
+          "@language": "lt",
+          "@value": "Jonizuojančioji spinduliuotė, žmonių sveikata"
+        },
+        {
+          "@language": "lv",
+          "@value": "Jonizējošais starojums, cilvēku veselība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Radjazzjoni jonizzanti, saħħa tal-bniedem"
+        },
+        {
+          "@language": "nl",
+          "@value": "Ioniserende straling, menselijke gezondheid"
+        },
+        {
+          "@language": "pl",
+          "@value": "Promieniowanie jonizujące, zdrowie ludzkie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Radiação ionizante, saúde humana"
+        },
+        {
+          "@language": "ro",
+          "@value": "Radiații ionizante, sănătatea umană"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ionizujúce žiarenie, ľudské zdravie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ionizirajoče sevanje, zdravje ljudi"
+        },
+        {
+          "@language": "sv",
+          "@value": "Joniserande strålning, människors hälsa"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:KilobecquerelU235Equivalent"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Ionising radiation, human health"
+        },
+        {
+          "@language": "bg",
+          "@value": "Йонизиращо лъчение, човешко здраве"
+        },
+        {
+          "@language": "cs",
+          "@value": "Ionizující záření, lidské zdraví"
+        },
+        {
+          "@language": "da",
+          "@value": "Ioniserende stråling, menneskers sundhed"
+        },
+        {
+          "@language": "de",
+          "@value": "Ionisierende Strahlung, menschliche Gesundheit"
+        },
+        {
+          "@language": "el",
+          "@value": "Ιοντίζουσα ακτινοβολία, ανθρώπινη υγεία"
+        },
+        {
+          "@language": "es",
+          "@value": "Radiación ionizante, salud humana"
+        },
+        {
+          "@language": "et",
+          "@value": "Ioniseeriv kiirgus, inimeste tervis"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ionisoiva säteily, ihmisten terveys"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rayonnement ionisant, santé humaine"
+        },
+        {
+          "@language": "ga",
+          "@value": "Radaíocht ianaíoch, sláinte an duine"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ionizirajuće zračenje, ljudsko zdravlje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ionizáló sugárzás, emberi egészség"
+        },
+        {
+          "@language": "it",
+          "@value": "Radiazioni ionizzanti, salute umana"
+        },
+        {
+          "@language": "lt",
+          "@value": "Jonizuojančioji spinduliuotė, žmonių sveikata"
+        },
+        {
+          "@language": "lv",
+          "@value": "Jonizējošais starojums, cilvēku veselība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Radjazzjoni jonizzanti, saħħa tal-bniedem"
+        },
+        {
+          "@language": "nl",
+          "@value": "Ioniserende straling, menselijke gezondheid"
+        },
+        {
+          "@language": "pl",
+          "@value": "Promieniowanie jonizujące, zdrowie ludzkie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Radiação ionizante, saúde humana"
+        },
+        {
+          "@language": "ro",
+          "@value": "Radiații ionizante, sănătatea umană"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ionizujúce žiarenie, ľudské zdravie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ionizirajoče sevanje, zdravje ljudi"
+        },
+        {
+          "@language": "sv",
+          "@value": "Joniserande strålning, människors hälsa"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:etpFw",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Ecotoxicity, freshwater"
+        },
+        {
+          "@language": "bg",
+          "@value": "Екотоксичност, сладки води"
+        },
+        {
+          "@language": "cs",
+          "@value": "Ekotoxicita, sladká voda"
+        },
+        {
+          "@language": "da",
+          "@value": "Økotoksicitet, ferskvand"
+        },
+        {
+          "@language": "de",
+          "@value": "Ökotoxizität, Süßwasser"
+        },
+        {
+          "@language": "el",
+          "@value": "Οικοτοξικότητα, γλυκά ύδατα"
+        },
+        {
+          "@language": "es",
+          "@value": "Ecotoxicidad, agua dulce"
+        },
+        {
+          "@language": "et",
+          "@value": "Ökotoksilisus, magevesi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ekotoksisuus, makea vesi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Écotoxicité, eau douce"
+        },
+        {
+          "@language": "ga",
+          "@value": "Éiceathocsaineacht, fionnuisce"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ekotoksičnost, slatka voda"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ökotoxicitás, édesvíz"
+        },
+        {
+          "@language": "it",
+          "@value": "Ecotossicità, acqua dolce"
+        },
+        {
+          "@language": "lt",
+          "@value": "Ekotoksiškumas, gėlas vanduo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekotoksicitāte, saldūdens"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ekotossiċità, ilma ħelu"
+        },
+        {
+          "@language": "nl",
+          "@value": "Ecotoxiciteit, zoetwater"
+        },
+        {
+          "@language": "pl",
+          "@value": "Ekotoksyczność, wody słodkie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Ecotoxicidade, água doce"
+        },
+        {
+          "@language": "ro",
+          "@value": "Ecotoxicitate, apă dulce"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ekotoxicita, sladká voda"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ekotoksičnost, sladka voda"
+        },
+        {
+          "@language": "sv",
+          "@value": "Ekotoxicitet, sötvatten"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:ComparativeToxicUnitForEcosystems"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Ecotoxicity, freshwater"
+        },
+        {
+          "@language": "bg",
+          "@value": "Екотоксичност, сладки води"
+        },
+        {
+          "@language": "cs",
+          "@value": "Ekotoxicita, sladká voda"
+        },
+        {
+          "@language": "da",
+          "@value": "Økotoksicitet, ferskvand"
+        },
+        {
+          "@language": "de",
+          "@value": "Ökotoxizität, Süßwasser"
+        },
+        {
+          "@language": "el",
+          "@value": "Οικοτοξικότητα, γλυκά ύδατα"
+        },
+        {
+          "@language": "es",
+          "@value": "Ecotoxicidad, agua dulce"
+        },
+        {
+          "@language": "et",
+          "@value": "Ökotoksilisus, magevesi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ekotoksisuus, makea vesi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Écotoxicité, eau douce"
+        },
+        {
+          "@language": "ga",
+          "@value": "Éiceathocsaineacht, fionnuisce"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ekotoksičnost, slatka voda"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ökotoxicitás, édesvíz"
+        },
+        {
+          "@language": "it",
+          "@value": "Ecotossicità, acqua dolce"
+        },
+        {
+          "@language": "lt",
+          "@value": "Ekotoksiškumas, gėlas vanduo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ekotoksicitāte, saldūdens"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ekotossiċità, ilma ħelu"
+        },
+        {
+          "@language": "nl",
+          "@value": "Ecotoxiciteit, zoetwater"
+        },
+        {
+          "@language": "pl",
+          "@value": "Ekotoksyczność, wody słodkie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Ecotoxicidade, água doce"
+        },
+        {
+          "@language": "ro",
+          "@value": "Ecotoxicitate, apă dulce"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ekotoxicita, sladká voda"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ekotoksičnost, sladka voda"
+        },
+        {
+          "@language": "sv",
+          "@value": "Ekotoxicitet, sötvatten"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:htpC",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Human toxicity, cancer"
+        },
+        {
+          "@language": "bg",
+          "@value": "Токсичност за човека, рак"
+        },
+        {
+          "@language": "cs",
+          "@value": "Lidská toxicita, rakovina"
+        },
+        {
+          "@language": "da",
+          "@value": "Human toksicitet, kræft"
+        },
+        {
+          "@language": "de",
+          "@value": "Humantoxizität, Krebs"
+        },
+        {
+          "@language": "el",
+          "@value": "Τοξικότητα για τον άνθρωπο, καρκίνος"
+        },
+        {
+          "@language": "es",
+          "@value": "Toxicidad humana, cáncer"
+        },
+        {
+          "@language": "et",
+          "@value": "Inimtoksilisus, vähk"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ihmistoksisuus, syöpä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Toxicité humaine, cancer"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tocsaineacht don duine, ailse"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toksičnost za ljude, rak"
+        },
+        {
+          "@language": "hu",
+          "@value": "Humán toxicitás, rák"
+        },
+        {
+          "@language": "it",
+          "@value": "Tossicità umana, cancro"
+        },
+        {
+          "@language": "lt",
+          "@value": "Toksiškumas žmonėms, vėžys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Toksicitāte cilvēkiem, vēzis"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tossiċità għall-bniedem, kanċer"
+        },
+        {
+          "@language": "nl",
+          "@value": "Humane toxiciteit, kanker"
+        },
+        {
+          "@language": "pl",
+          "@value": "Toksyczność dla ludzi, rak"
+        },
+        {
+          "@language": "pt",
+          "@value": "Toxicidade humana, cancro"
+        },
+        {
+          "@language": "ro",
+          "@value": "Toxicitate umană, cancer"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ľudská toxicita, rakovina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toksičnost za ljudi, rak"
+        },
+        {
+          "@language": "sv",
+          "@value": "Humantoxicitet, cancer"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:ComparativeToxicUnitForHumanToxicity"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Human toxicity, cancer"
+        },
+        {
+          "@language": "bg",
+          "@value": "Токсичност за човека, рак"
+        },
+        {
+          "@language": "cs",
+          "@value": "Lidská toxicita, rakovina"
+        },
+        {
+          "@language": "da",
+          "@value": "Human toksicitet, kræft"
+        },
+        {
+          "@language": "de",
+          "@value": "Humantoxizität, Krebs"
+        },
+        {
+          "@language": "el",
+          "@value": "Τοξικότητα για τον άνθρωπο, καρκίνος"
+        },
+        {
+          "@language": "es",
+          "@value": "Toxicidad humana, cáncer"
+        },
+        {
+          "@language": "et",
+          "@value": "Inimtoksilisus, vähk"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ihmistoksisuus, syöpä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Toxicité humaine, cancer"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tocsaineacht don duine, ailse"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toksičnost za ljude, rak"
+        },
+        {
+          "@language": "hu",
+          "@value": "Humán toxicitás, rák"
+        },
+        {
+          "@language": "it",
+          "@value": "Tossicità umana, cancro"
+        },
+        {
+          "@language": "lt",
+          "@value": "Toksiškumas žmonėms, vėžys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Toksicitāte cilvēkiem, vēzis"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tossiċità għall-bniedem, kanċer"
+        },
+        {
+          "@language": "nl",
+          "@value": "Humane toxiciteit, kanker"
+        },
+        {
+          "@language": "pl",
+          "@value": "Toksyczność dla ludzi, rak"
+        },
+        {
+          "@language": "pt",
+          "@value": "Toxicidade humana, cancro"
+        },
+        {
+          "@language": "ro",
+          "@value": "Toxicitate umană, cancer"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ľudská toxicita, rakovina"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toksičnost za ljudi, rak"
+        },
+        {
+          "@language": "sv",
+          "@value": "Humantoxicitet, cancer"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:htpNc",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Human toxicity, non-cancer"
+        },
+        {
+          "@language": "bg",
+          "@value": "Токсичност за човека, без рак"
+        },
+        {
+          "@language": "cs",
+          "@value": "Lidská toxicita, bez rakoviny"
+        },
+        {
+          "@language": "da",
+          "@value": "Human toksicitet, ikke-kræft"
+        },
+        {
+          "@language": "de",
+          "@value": "Humantoxizität, Nicht-Krebs"
+        },
+        {
+          "@language": "el",
+          "@value": "Τοξικότητα για τον άνθρωπο, μη καρκινικές επιπτώσεις"
+        },
+        {
+          "@language": "es",
+          "@value": "Toxicidad humana, no cáncer"
+        },
+        {
+          "@language": "et",
+          "@value": "Inimtoksilisus, mitte-vähk"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ihmistoksisuus, ei-syöpä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Toxicité humaine, effets non cancérigènes"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tocsaineacht don duine, neamh-ailse"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toksičnost za ljude, osim raka"
+        },
+        {
+          "@language": "hu",
+          "@value": "Humán toxicitás, nem rák"
+        },
+        {
+          "@language": "it",
+          "@value": "Tossicità umana, non cancro"
+        },
+        {
+          "@language": "lt",
+          "@value": "Toksiškumas žmonėms, ne vėžys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Toksicitāte cilvēkiem, bez vēža"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tossiċità għall-bniedem, mhux kanċer"
+        },
+        {
+          "@language": "nl",
+          "@value": "Humane toxiciteit, niet-kanker"
+        },
+        {
+          "@language": "pl",
+          "@value": "Toksyczność dla ludzi, efekty nienowotworowe"
+        },
+        {
+          "@language": "pt",
+          "@value": "Toxicidade humana, não-cancro"
+        },
+        {
+          "@language": "ro",
+          "@value": "Toxicitate umană, efecte non-cancerigene"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ľudská toxicita, bez rakoviny"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toksičnost za ljudi, brez raka"
+        },
+        {
+          "@language": "sv",
+          "@value": "Humantoxicitet, icke-cancer"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:ComparativeToxicUnitForHumanToxicity"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Human toxicity, non-cancer"
+        },
+        {
+          "@language": "bg",
+          "@value": "Токсичност за човека, без рак"
+        },
+        {
+          "@language": "cs",
+          "@value": "Lidská toxicita, bez rakoviny"
+        },
+        {
+          "@language": "da",
+          "@value": "Human toksicitet, ikke-kræft"
+        },
+        {
+          "@language": "de",
+          "@value": "Humantoxizität, Nicht-Krebs"
+        },
+        {
+          "@language": "el",
+          "@value": "Τοξικότητα για τον άνθρωπο, μη καρκινικές επιπτώσεις"
+        },
+        {
+          "@language": "es",
+          "@value": "Toxicidad humana, no cáncer"
+        },
+        {
+          "@language": "et",
+          "@value": "Inimtoksilisus, mitte-vähk"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ihmistoksisuus, ei-syöpä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Toxicité humaine, effets non cancérigènes"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tocsaineacht don duine, neamh-ailse"
+        },
+        {
+          "@language": "hr",
+          "@value": "Toksičnost za ljude, osim raka"
+        },
+        {
+          "@language": "hu",
+          "@value": "Humán toxicitás, nem rák"
+        },
+        {
+          "@language": "it",
+          "@value": "Tossicità umana, non cancro"
+        },
+        {
+          "@language": "lt",
+          "@value": "Toksiškumas žmonėms, ne vėžys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Toksicitāte cilvēkiem, bez vēža"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tossiċità għall-bniedem, mhux kanċer"
+        },
+        {
+          "@language": "nl",
+          "@value": "Humane toxiciteit, niet-kanker"
+        },
+        {
+          "@language": "pl",
+          "@value": "Toksyczność dla ludzi, efekty nienowotworowe"
+        },
+        {
+          "@language": "pt",
+          "@value": "Toxicidade humana, não-cancro"
+        },
+        {
+          "@language": "ro",
+          "@value": "Toxicitate umană, efecte non-cancerigene"
+        },
+        {
+          "@language": "sk",
+          "@value": "Ľudská toxicita, bez rakoviny"
+        },
+        {
+          "@language": "sl",
+          "@value": "Toksičnost za ljudi, brez raka"
+        },
+        {
+          "@language": "sv",
+          "@value": "Humantoxicitet, icke-cancer"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:sqp",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Land use related impacts"
+        },
+        {
+          "@language": "bg",
+          "@value": "Въздействия, свързани с използването на земята"
+        },
+        {
+          "@language": "cs",
+          "@value": "Dopady spojené s využíváním půdy"
+        },
+        {
+          "@language": "da",
+          "@value": "Arealanvendelsesrelaterede påvirkninger"
+        },
+        {
+          "@language": "de",
+          "@value": "Auswirkungen im Zusammenhang mit der Landnutzung"
+        },
+        {
+          "@language": "el",
+          "@value": "Επιπτώσεις σχετικές με τη χρήση γης"
+        },
+        {
+          "@language": "es",
+          "@value": "Impactos relacionados con el uso del suelo"
+        },
+        {
+          "@language": "et",
+          "@value": "Maakasutusega seotud mõjud"
+        },
+        {
+          "@language": "fi",
+          "@value": "Maankäyttöön liittyvät vaikutukset"
+        },
+        {
+          "@language": "fr",
+          "@value": "Impacts liés à l'utilisation des terres"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tionchair a bhaineann le húsáid talún"
+        },
+        {
+          "@language": "hr",
+          "@value": "Utjecaji povezani s uporabom zemljišta"
+        },
+        {
+          "@language": "hu",
+          "@value": "Földhasználattal kapcsolatos hatások"
+        },
+        {
+          "@language": "it",
+          "@value": "Impatti legati all'uso del suolo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Su žemės naudojimu susijęs poveikis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ar zemes izmantošanu saistītā ietekme"
+        },
+        {
+          "@language": "mt",
+          "@value": "Impatti relatati mal-użu tal-art"
+        },
+        {
+          "@language": "nl",
+          "@value": "Effecten gerelateerd aan landgebruik"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wpływ związany z użytkowaniem gruntów"
+        },
+        {
+          "@language": "pt",
+          "@value": "Impactos relacionados com o uso do solo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Impacturi legate de utilizarea terenurilor"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dopady spojené s využívaním pôdy"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vplivi, povezani z rabo tal"
+        },
+        {
+          "@language": "sv",
+          "@value": "Markanvändningsrelaterade effekter"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Unitless"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Land use related impacts"
+        },
+        {
+          "@language": "bg",
+          "@value": "Въздействия, свързани с използването на земята"
+        },
+        {
+          "@language": "cs",
+          "@value": "Dopady spojené s využíváním půdy"
+        },
+        {
+          "@language": "da",
+          "@value": "Arealanvendelsesrelaterede påvirkninger"
+        },
+        {
+          "@language": "de",
+          "@value": "Auswirkungen im Zusammenhang mit der Landnutzung"
+        },
+        {
+          "@language": "el",
+          "@value": "Επιπτώσεις σχετικές με τη χρήση γης"
+        },
+        {
+          "@language": "es",
+          "@value": "Impactos relacionados con el uso del suelo"
+        },
+        {
+          "@language": "et",
+          "@value": "Maakasutusega seotud mõjud"
+        },
+        {
+          "@language": "fi",
+          "@value": "Maankäyttöön liittyvät vaikutukset"
+        },
+        {
+          "@language": "fr",
+          "@value": "Impacts liés à l'utilisation des terres"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tionchair a bhaineann le húsáid talún"
+        },
+        {
+          "@language": "hr",
+          "@value": "Utjecaji povezani s uporabom zemljišta"
+        },
+        {
+          "@language": "hu",
+          "@value": "Földhasználattal kapcsolatos hatások"
+        },
+        {
+          "@language": "it",
+          "@value": "Impatti legati all'uso del suolo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Su žemės naudojimu susijęs poveikis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ar zemes izmantošanu saistītā ietekme"
+        },
+        {
+          "@language": "mt",
+          "@value": "Impatti relatati mal-użu tal-art"
+        },
+        {
+          "@language": "nl",
+          "@value": "Effecten gerelateerd aan landgebruik"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wpływ związany z użytkowaniem gruntów"
+        },
+        {
+          "@language": "pt",
+          "@value": "Impactos relacionados com o uso do solo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Impacturi legate de utilizarea terenurilor"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dopady spojené s využívaním pôdy"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vplivi, povezani z rabo tal"
+        },
+        {
+          "@language": "sv",
+          "@value": "Markanvändningsrelaterade effekter"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:pere",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Use of renewable primary energy excl. raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на възобновяема първична енергия без суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití obnovitelné primární energie bez surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af vedvarende primær energi ekskl. råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von erneuerbarer Primärenergie ohne Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση ανανεώσιμης πρωτογενούς ενέργειας εκτός των πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria renovable excluyendo materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuva primaarenergia kasutamine, v.a toorained"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutuvan primäärienergian käyttö pl. raaka-aineet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire renouvelable à l'exclusion des matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil in-athnuaite seachas amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba obnovljive primarne energije, isključujući sirovine"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megújuló primer energia felhasználása, a nyersanyagok kivételével"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria rinnovabile escluse le materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsinaujinančios pirminės energijos naudojimas, išskyrus žaliavas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Atjaunojamās primārās enerģijas izmantošana, izņemot izejvielas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja rinnovabbli minbarra l-materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van hernieuwbare primaire energie excl. grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie odnawialnej energii pierwotnej, z wyłączeniem surowców"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária renovável, excluindo matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare regenerabile, cu excepția materiilor prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie obnoviteľnej primárnej energie okrem surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba obnovljive primarne energije, razen surovin"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av förnybar primärenergi exkl. råmaterial"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Use of renewable primary energy excl. raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на възобновяема първична енергия без суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití obnovitelné primární energie bez surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af vedvarende primær energi ekskl. råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von erneuerbarer Primärenergie ohne Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση ανανεώσιμης πρωτογενούς ενέργειας εκτός των πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria renovable excluyendo materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuva primaarenergia kasutamine, v.a toorained"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutuvan primäärienergian käyttö pl. raaka-aineet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire renouvelable à l'exclusion des matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil in-athnuaite seachas amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba obnovljive primarne energije, isključujući sirovine"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megújuló primer energia felhasználása, a nyersanyagok kivételével"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria rinnovabile escluse le materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsinaujinančios pirminės energijos naudojimas, išskyrus žaliavas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Atjaunojamās primārās enerģijas izmantošana, izņemot izejvielas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja rinnovabbli minbarra l-materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van hernieuwbare primaire energie excl. grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie odnawialnej energii pierwotnej, z wyłączeniem surowców"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária renovável, excluindo matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare regenerabile, cu excepția materiilor prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie obnoviteľnej primárnej energie okrem surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba obnovljive primarne energije, razen surovin"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av förnybar primärenergi exkl. råmaterial"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:perm",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Use of renewable primary energy used as raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на възобновяема първична енергия като суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití obnovitelné primární energie jako surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af vedvarende primær energi anvendt som råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von erneuerbarer Primärenergie als Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση ανανεώσιμης πρωτογενούς ενέργειας ως πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria renovable como materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuva primaarenergia kasutamine toorainetena"
+        },
+        {
+          "@language": "fi",
+          "@value": "Raaka-aineina käytetyn uusiutuvan primäärienergian käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire renouvelable comme matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil in-athnuaite mar amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba obnovljive primarne energije kao sirovina"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyersanyagként felhasznált megújuló primer energia felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria rinnovabile come materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kaip žaliavų naudojamos atsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kā izejvielu izmantotās atjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja rinnovabbli użata bħala materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van hernieuwbare primaire energie als grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie odnawialnej energii pierwotnej wykorzystywanej jako surowce"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária renovável como matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare regenerabile ca materii prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie obnoviteľnej primárnej energie ako surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba obnovljive primarne energije, uporabljene kot surovine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av förnybar primärenergi som råmaterial"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Use of renewable primary energy used as raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на възобновяема първична енергия като суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití obnovitelné primární energie jako surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af vedvarende primær energi anvendt som råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von erneuerbarer Primärenergie als Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση ανανεώσιμης πρωτογενούς ενέργειας ως πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria renovable como materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuva primaarenergia kasutamine toorainetena"
+        },
+        {
+          "@language": "fi",
+          "@value": "Raaka-aineina käytetyn uusiutuvan primäärienergian käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire renouvelable comme matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil in-athnuaite mar amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba obnovljive primarne energije kao sirovina"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyersanyagként felhasznált megújuló primer energia felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria rinnovabile come materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kaip žaliavų naudojamos atsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kā izejvielu izmantotās atjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja rinnovabbli użata bħala materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van hernieuwbare primaire energie als grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie odnawialnej energii pierwotnej wykorzystywanej jako surowce"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária renovável como matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare regenerabile ca materii prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie obnoviteľnej primárnej energie ako surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba obnovljive primarne energije, uporabljene kot surovine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av förnybar primärenergi som råmaterial"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:pert",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Total use of renewable primary energy"
+        },
+        {
+          "@language": "bg",
+          "@value": "Общо използване на възобновяема първична енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Celkové využití obnovitelné primární energie"
+        },
+        {
+          "@language": "da",
+          "@value": "Samlet brug af vedvarende primær energi"
+        },
+        {
+          "@language": "de",
+          "@value": "Gesamteinsatz erneuerbarer Primärenergie"
+        },
+        {
+          "@language": "el",
+          "@value": "Συνολική χρήση ανανεώσιμης πρωτογενούς ενέργειας"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso total de energía primaria renovable"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuva primaarenergia kogukasutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutuvan primäärienergian kokonaiskäyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation totale d'énergie primaire renouvelable"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid iomlán fuinnimh phríomhúil in-athnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ukupna uporaba obnovljive primarne energije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megújuló primer energia teljes felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso totale di energia primaria rinnovabile"
+        },
+        {
+          "@language": "lt",
+          "@value": "Bendras atsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kopējā atjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu totali ta' enerġija primarja rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Totaal gebruik van hernieuwbare primaire energie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Całkowite zużycie odnawialnej energii pierwotnej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso total de energia primária renovável"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea totală a energiei primare regenerabile"
+        },
+        {
+          "@language": "sk",
+          "@value": "Celkové využitie obnoviteľnej primárnej energie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupna raba obnovljive primarne energije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Total användning av förnybar primärenergi"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Total use of renewable primary energy"
+        },
+        {
+          "@language": "bg",
+          "@value": "Общо използване на възобновяема първична енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Celkové využití obnovitelné primární energie"
+        },
+        {
+          "@language": "da",
+          "@value": "Samlet brug af vedvarende primær energi"
+        },
+        {
+          "@language": "de",
+          "@value": "Gesamteinsatz erneuerbarer Primärenergie"
+        },
+        {
+          "@language": "el",
+          "@value": "Συνολική χρήση ανανεώσιμης πρωτογενούς ενέργειας"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso total de energía primaria renovable"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuva primaarenergia kogukasutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutuvan primäärienergian kokonaiskäyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation totale d'énergie primaire renouvelable"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid iomlán fuinnimh phríomhúil in-athnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ukupna uporaba obnovljive primarne energije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megújuló primer energia teljes felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso totale di energia primaria rinnovabile"
+        },
+        {
+          "@language": "lt",
+          "@value": "Bendras atsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kopējā atjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu totali ta' enerġija primarja rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Totaal gebruik van hernieuwbare primaire energie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Całkowite zużycie odnawialnej energii pierwotnej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso total de energia primária renovável"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea totală a energiei primare regenerabile"
+        },
+        {
+          "@language": "sk",
+          "@value": "Celkové využitie obnoviteľnej primárnej energie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupna raba obnovljive primarne energije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Total användning av förnybar primärenergi"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:penre",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Use of non-renewable primary energy excl. raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на невъзобновяема първична енергия без суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití neobnovitelné primární energie bez surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af ikke-vedvarende primær energi ekskl. råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von nicht erneuerbarer Primärenergie ohne Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση μη ανανεώσιμης πρωτογενούς ενέργειας εκτός των πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria no renovable excluyendo materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatu primaarenergia kasutamine, v.a toorained"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutumattoman primäärienergian käyttö pl. raaka-aineet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire non renouvelable à l'exclusion des matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil neamh-inathnuaite seachas amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba neobnovljive primarne energije, isključujući sirovine"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nem megújuló primer energia felhasználása, a nyersanyagok kivételével"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria non rinnovabile escluse le materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Neatsinaujinančios pirminės energijos naudojimas, išskyrus žaliavas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Neatjaunojamās primārās enerģijas izmantošana, izņemot izejvielas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja mhux rinnovabbli minbarra l-materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van niet-hernieuwbare primaire energie excl. grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie nieodnawialnej energii pierwotnej, z wyłączeniem surowców"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária não renovável, excluindo matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare neregenerabile, cu excepția materiilor prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie neobnoviteľnej primárnej energie okrem surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba neobnovljive primarne energije, razen surovin"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av icke-förnybar primärenergi exkl. råmaterial"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Use of non-renewable primary energy excl. raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на невъзобновяема първична енергия без суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití neobnovitelné primární energie bez surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af ikke-vedvarende primær energi ekskl. råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von nicht erneuerbarer Primärenergie ohne Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση μη ανανεώσιμης πρωτογενούς ενέργειας εκτός των πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria no renovable excluyendo materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatu primaarenergia kasutamine, v.a toorained"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutumattoman primäärienergian käyttö pl. raaka-aineet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire non renouvelable à l'exclusion des matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil neamh-inathnuaite seachas amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba neobnovljive primarne energije, isključujući sirovine"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nem megújuló primer energia felhasználása, a nyersanyagok kivételével"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria non rinnovabile escluse le materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Neatsinaujinančios pirminės energijos naudojimas, išskyrus žaliavas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Neatjaunojamās primārās enerģijas izmantošana, izņemot izejvielas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja mhux rinnovabbli minbarra l-materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van niet-hernieuwbare primaire energie excl. grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie nieodnawialnej energii pierwotnej, z wyłączeniem surowców"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária não renovável, excluindo matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare neregenerabile, cu excepția materiilor prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie neobnoviteľnej primárnej energie okrem surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba neobnovljive primarne energije, razen surovin"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av icke-förnybar primärenergi exkl. råmaterial"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:penrm",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Use of non-renewable primary energy used as raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на невъзобновяема първична енергия като суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití neobnovitelné primární energie jako surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af ikke-vedvarende primær energi anvendt som råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von nicht erneuerbarer Primärenergie als Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση μη ανανεώσιμης πρωτογενούς ενέργειας ως πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria no renovable como materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatu primaarenergia kasutamine toorainetena"
+        },
+        {
+          "@language": "fi",
+          "@value": "Raaka-aineina käytetyn uusiutumattoman primäärienergian käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire non renouvelable comme matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil neamh-inathnuaite mar amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba neobnovljive primarne energije kao sirovina"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyersanyagként felhasznált nem megújuló primer energia felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria non rinnovabile come materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kaip žaliavų naudojamos neatsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kā izejvielu izmantotās neatjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja mhux rinnovabbli użata bħala materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van niet-hernieuwbare primaire energie als grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie nieodnawialnej energii pierwotnej wykorzystywanej jako surowce"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária não renovável como matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare neregenerabile ca materii prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie neobnoviteľnej primárnej energie ako surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba neobnovljive primarne energije, uporabljene kot surovine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av icke-förnybar primärenergi som råmaterial"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Use of non-renewable primary energy used as raw materials"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на невъзобновяема първична енергия като суровини"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití neobnovitelné primární energie jako surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af ikke-vedvarende primær energi anvendt som råmaterialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von nicht erneuerbarer Primärenergie als Rohstoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση μη ανανεώσιμης πρωτογενούς ενέργειας ως πρώτων υλών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de energía primaria no renovable como materias primas"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatu primaarenergia kasutamine toorainetena"
+        },
+        {
+          "@language": "fi",
+          "@value": "Raaka-aineina käytetyn uusiutumattoman primäärienergian käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de l'énergie primaire non renouvelable comme matières premières"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid fuinnimh phríomhúil neamh-inathnuaite mar amhábhair"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba neobnovljive primarne energije kao sirovina"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyersanyagként felhasznált nem megújuló primer energia felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di energia primaria non rinnovabile come materie prime"
+        },
+        {
+          "@language": "lt",
+          "@value": "Kaip žaliavų naudojamos neatsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kā izejvielu izmantotās neatjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' enerġija primarja mhux rinnovabbli użata bħala materja prima"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van niet-hernieuwbare primaire energie als grondstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie nieodnawialnej energii pierwotnej wykorzystywanej jako surowce"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de energia primária não renovável como matérias-primas"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea energiei primare neregenerabile ca materii prime"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie neobnoviteľnej primárnej energie ako surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba neobnovljive primarne energije, uporabljene kot surovine"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av icke-förnybar primärenergi som råmaterial"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:penrt",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Total use of non-renewable primary energy"
+        },
+        {
+          "@language": "bg",
+          "@value": "Общо използване на невъзобновяема първична енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Celkové využití neobnovitelné primární energie"
+        },
+        {
+          "@language": "da",
+          "@value": "Samlet brug af ikke-vedvarende primær energi"
+        },
+        {
+          "@language": "de",
+          "@value": "Gesamteinsatz nicht erneuerbarer Primärenergie"
+        },
+        {
+          "@language": "el",
+          "@value": "Συνολική χρήση μη ανανεώσιμης πρωτογενούς ενέργειας"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso total de energía primaria no renovable"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatu primaarenergia kogukasutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutumattoman primäärienergian kokonaiskäyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation totale d'énergie primaire non renouvelable"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid iomlán fuinnimh phríomhúil neamh-inathnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ukupna uporaba neobnovljive primarne energije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nem megújuló primer energia teljes felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso totale di energia primaria non rinnovabile"
+        },
+        {
+          "@language": "lt",
+          "@value": "Bendras neatsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kopējā neatjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu totali ta' enerġija primarja mhux rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Totaal gebruik van niet-hernieuwbare primaire energie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Całkowite zużycie nieodnawialnej energii pierwotnej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso total de energia primária não renovável"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea totală a energiei primare neregenerabile"
+        },
+        {
+          "@language": "sk",
+          "@value": "Celkové využitie neobnoviteľnej primárnej energie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupna raba neobnovljive primarne energije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Total användning av icke-förnybar primärenergi"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Total use of non-renewable primary energy"
+        },
+        {
+          "@language": "bg",
+          "@value": "Общо използване на невъзобновяема първична енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Celkové využití neobnovitelné primární energie"
+        },
+        {
+          "@language": "da",
+          "@value": "Samlet brug af ikke-vedvarende primær energi"
+        },
+        {
+          "@language": "de",
+          "@value": "Gesamteinsatz nicht erneuerbarer Primärenergie"
+        },
+        {
+          "@language": "el",
+          "@value": "Συνολική χρήση μη ανανεώσιμης πρωτογενούς ενέργειας"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso total de energía primaria no renovable"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatu primaarenergia kogukasutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutumattoman primäärienergian kokonaiskäyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation totale d'énergie primaire non renouvelable"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid iomlán fuinnimh phríomhúil neamh-inathnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ukupna uporaba neobnovljive primarne energije"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nem megújuló primer energia teljes felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso totale di energia primaria non rinnovabile"
+        },
+        {
+          "@language": "lt",
+          "@value": "Bendras neatsinaujinančios pirminės energijos naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Kopējā neatjaunojamās primārās enerģijas izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu totali ta' enerġija primarja mhux rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Totaal gebruik van niet-hernieuwbare primaire energie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Całkowite zużycie nieodnawialnej energii pierwotnej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso total de energia primária não renovável"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea totală a energiei primare neregenerabile"
+        },
+        {
+          "@language": "sk",
+          "@value": "Celkové využitie neobnoviteľnej primárnej energie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Skupna raba neobnovljive primarne energije"
+        },
+        {
+          "@language": "sv",
+          "@value": "Total användning av icke-förnybar primärenergi"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:sm",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Use of secondary material"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на вторични материали"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití druhotných surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af sekundære materialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von Sekundärstoffen"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση δευτερογενών υλικών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de materiales secundarios"
+        },
+        {
+          "@language": "et",
+          "@value": "Teiseste materjalide kasutamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiomateriaalien käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de matériaux secondaires"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid ábhar tánaisteach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba sekundarnih materijala"
+        },
+        {
+          "@language": "hu",
+          "@value": "Másodlagos anyagok felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di materiali secondari"
+        },
+        {
+          "@language": "lt",
+          "@value": "Antrinių medžiagų naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Otrreizējo materiālu izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' materjal sekondarju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van secundaire materialen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie materiałów wtórnych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de materiais secundários"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea materialelor secundare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie druhotných surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba sekundarnih materialov"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av sekundära material"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Use of secondary material"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на вторични материали"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití druhotných surovin"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af sekundære materialer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von Sekundärstoffen"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση δευτερογενών υλικών"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de materiales secundarios"
+        },
+        {
+          "@language": "et",
+          "@value": "Teiseste materjalide kasutamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiomateriaalien käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de matériaux secondaires"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid ábhar tánaisteach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba sekundarnih materijala"
+        },
+        {
+          "@language": "hu",
+          "@value": "Másodlagos anyagok felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di materiali secondari"
+        },
+        {
+          "@language": "lt",
+          "@value": "Antrinių medžiagų naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Otrreizējo materiālu izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' materjal sekondarju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van secundaire materialen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie materiałów wtórnych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de materiais secundários"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea materialelor secundare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie druhotných surovín"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba sekundarnih materialov"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av sekundära material"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:rsf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Use of renewable secondary fuels"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на възобновяеми вторични горива"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití obnovitelných druhotných paliv"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af vedvarende sekundære brændstoffer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von erneuerbaren Sekundärbrennstoffen"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση ανανεώσιμων δευτερογενών καυσίμων"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de combustibles secundarios renovables"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuvate teisese kütuste kasutamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutuvien uusiopolttoaineiden käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de combustibles secondaires renouvelables"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid breoslaí tánaisteacha in-athnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba obnovljivih sekundarnih goriva"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megújuló másodlagos tüzelőanyagok felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di combustibili secondari rinnovabili"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsinaujinančio antrinio kuro naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Atjaunojamo otrreizējo kurināmo izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' fjuwils sekondarji rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van hernieuwbare secundaire brandstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie odnawialnych paliw wtórnych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de combustíveis secundários renováveis"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea combustibililor secundari regenerabili"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie obnoviteľných druhotných palív"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba obnovljivih sekundarnih goriv"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av förnybara sekundära bränslen"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Use of renewable secondary fuels"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на възобновяеми вторични горива"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití obnovitelných druhotných paliv"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af vedvarende sekundære brændstoffer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von erneuerbaren Sekundärbrennstoffen"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση ανανεώσιμων δευτερογενών καυσίμων"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de combustibles secundarios renovables"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastuvate teisese kütuste kasutamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutuvien uusiopolttoaineiden käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de combustibles secondaires renouvelables"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid breoslaí tánaisteacha in-athnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba obnovljivih sekundarnih goriva"
+        },
+        {
+          "@language": "hu",
+          "@value": "Megújuló másodlagos tüzelőanyagok felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di combustibili secondari rinnovabili"
+        },
+        {
+          "@language": "lt",
+          "@value": "Atsinaujinančio antrinio kuro naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Atjaunojamo otrreizējo kurināmo izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' fjuwils sekondarji rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van hernieuwbare secundaire brandstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie odnawialnych paliw wtórnych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de combustíveis secundários renováveis"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea combustibililor secundari regenerabili"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie obnoviteľných druhotných palív"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba obnovljivih sekundarnih goriv"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av förnybara sekundära bränslen"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:nrsf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Use of non-renewable secondary fuels"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на невъзобновяеми вторични горива"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití neobnovitelných druhotných paliv"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af ikke-vedvarende sekundære brændstoffer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von nicht erneuerbaren Sekundärbrennstoffen"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση μη ανανεώσιμων δευτερογενών καυσίμων"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de combustibles secundarios no renovables"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatute teisese kütuste kasutamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutumattomien uusiopolttoaineiden käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de combustibles secondaires non renouvelables"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid breoslaí tánaisteacha neamh-inathnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba neobnovljivih sekundarnih goriva"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nem megújuló másodlagos tüzelőanyagok felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di combustibili secondari non rinnovabili"
+        },
+        {
+          "@language": "lt",
+          "@value": "Neatsinaujinančio antrinio kuro naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Neatjaunojamo otrreizējo kurināmo izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' fjuwils sekondarji mhux rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van niet-hernieuwbare secundaire brandstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie nieodnawialnych paliw wtórnych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de combustíveis secundários não renováveis"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea combustibililor secundari neregenerabili"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie neobnoviteľných druhotných palív"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba neobnovljivih sekundarnih goriv"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av icke-förnybara sekundära bränslen"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Use of non-renewable secondary fuels"
+        },
+        {
+          "@language": "bg",
+          "@value": "Използване на невъзобновяеми вторични горива"
+        },
+        {
+          "@language": "cs",
+          "@value": "Využití neobnovitelných druhotných paliv"
+        },
+        {
+          "@language": "da",
+          "@value": "Brug af ikke-vedvarende sekundære brændstoffer"
+        },
+        {
+          "@language": "de",
+          "@value": "Einsatz von nicht erneuerbaren Sekundärbrennstoffen"
+        },
+        {
+          "@language": "el",
+          "@value": "Χρήση μη ανανεώσιμων δευτερογενών καυσίμων"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso de combustibles secundarios no renovables"
+        },
+        {
+          "@language": "et",
+          "@value": "Taastumatute teisese kütuste kasutamine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Uusiutumattomien uusiopolttoaineiden käyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation de combustibles secondaires non renouvelables"
+        },
+        {
+          "@language": "ga",
+          "@value": "Úsáid breoslaí tánaisteacha neamh-inathnuaite"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uporaba neobnovljivih sekundarnih goriva"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nem megújuló másodlagos tüzelőanyagok felhasználása"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso di combustibili secondari non rinnovabili"
+        },
+        {
+          "@language": "lt",
+          "@value": "Neatsinaujinančio antrinio kuro naudojimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Neatjaunojamo otrreizējo kurināmo izmantošana"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu ta' fjuwils sekondarji mhux rinnovabbli"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gebruik van niet-hernieuwbare secundaire brandstoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie nieodnawialnych paliw wtórnych"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso de combustíveis secundários não renováveis"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea combustibililor secundari neregenerabili"
+        },
+        {
+          "@language": "sk",
+          "@value": "Využitie neobnoviteľných druhotných palív"
+        },
+        {
+          "@language": "sl",
+          "@value": "Raba neobnovljivih sekundarnih goriv"
+        },
+        {
+          "@language": "sv",
+          "@value": "Användning av icke-förnybara sekundära bränslen"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:fw",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Net use of fresh water"
+        },
+        {
+          "@language": "bg",
+          "@value": "Нетно използване на сладка вода"
+        },
+        {
+          "@language": "cs",
+          "@value": "Čisté použití sladké vody"
+        },
+        {
+          "@language": "da",
+          "@value": "Nettoforbrug af ferskvand"
+        },
+        {
+          "@language": "de",
+          "@value": "Nettoeinsatz von Süßwasserressourcen"
+        },
+        {
+          "@language": "el",
+          "@value": "Καθαρή χρήση γλυκού νερού"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso neto de agua dulce"
+        },
+        {
+          "@language": "et",
+          "@value": "Magevee netokasutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Makean veden nettokäyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation nette d'eau douce"
+        },
+        {
+          "@language": "ga",
+          "@value": "Glanúsáid fíoruisce"
+        },
+        {
+          "@language": "hr",
+          "@value": "Neto upotreba slatke vode"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nettó édesvíz-felhasználás"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso netto di acqua dolce"
+        },
+        {
+          "@language": "lt",
+          "@value": "Grynoji gėlo vandens dalis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Saldūdens neto izmantojums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu nett ta' ilma ħelu"
+        },
+        {
+          "@language": "nl",
+          "@value": "Netto gebruik van zoet water"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie netto słodkiej wody"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso líquido de água doce"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea netă a apei dulci"
+        },
+        {
+          "@language": "sk",
+          "@value": "Čisté použitie sladkej vody"
+        },
+        {
+          "@language": "sl",
+          "@value": "Neto uporaba sladke vode"
+        },
+        {
+          "@language": "sv",
+          "@value": "Nettoanvändning av sötvatten"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:CubicMeter"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Net use of fresh water"
+        },
+        {
+          "@language": "bg",
+          "@value": "Нетно използване на сладка вода"
+        },
+        {
+          "@language": "cs",
+          "@value": "Čisté použití sladké vody"
+        },
+        {
+          "@language": "da",
+          "@value": "Nettoforbrug af ferskvand"
+        },
+        {
+          "@language": "de",
+          "@value": "Nettoeinsatz von Süßwasserressourcen"
+        },
+        {
+          "@language": "el",
+          "@value": "Καθαρή χρήση γλυκού νερού"
+        },
+        {
+          "@language": "es",
+          "@value": "Uso neto de agua dulce"
+        },
+        {
+          "@language": "et",
+          "@value": "Magevee netokasutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Makean veden nettokäyttö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Utilisation nette d'eau douce"
+        },
+        {
+          "@language": "ga",
+          "@value": "Glanúsáid fíoruisce"
+        },
+        {
+          "@language": "hr",
+          "@value": "Neto upotreba slatke vode"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nettó édesvíz-felhasználás"
+        },
+        {
+          "@language": "it",
+          "@value": "Uso netto di acqua dolce"
+        },
+        {
+          "@language": "lt",
+          "@value": "Grynoji gėlo vandens dalis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Saldūdens neto izmantojums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Użu nett ta' ilma ħelu"
+        },
+        {
+          "@language": "nl",
+          "@value": "Netto gebruik van zoet water"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zużycie netto słodkiej wody"
+        },
+        {
+          "@language": "pt",
+          "@value": "Uso líquido de água doce"
+        },
+        {
+          "@language": "ro",
+          "@value": "Utilizarea netă a apei dulci"
+        },
+        {
+          "@language": "sk",
+          "@value": "Čisté použitie sladkej vody"
+        },
+        {
+          "@language": "sl",
+          "@value": "Neto uporaba sladke vode"
+        },
+        {
+          "@language": "sv",
+          "@value": "Nettoanvändning av sötvatten"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:hwd",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Hazardous waste disposed"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обезвредени опасни отпадъци"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odstraněný nebezpečný odpad"
+        },
+        {
+          "@language": "da",
+          "@value": "Bortskaffet farligt affald"
+        },
+        {
+          "@language": "de",
+          "@value": "Gefährlicher Abfall zur Deponie"
+        },
+        {
+          "@language": "el",
+          "@value": "Διατιθέμενα επικίνδυνα απόβλητα"
+        },
+        {
+          "@language": "es",
+          "@value": "Residuos peligrosos eliminados"
+        },
+        {
+          "@language": "et",
+          "@value": "Kõrvaldatud ohtlikud jäätmed"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hävitetyt vaaralliset jätteet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déchets dangereux éliminés"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dramhaíl ghuaiseach dhiúscartha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zbrinuti opasni otpad"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ártalmatlanított veszélyes hulladék"
+        },
+        {
+          "@language": "it",
+          "@value": "Rifiuti pericolosi smaltiti"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalintos pavojingosios atliekos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Apglabātie bīstamie atkritumi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Skart perikoluż mormi"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gevaarlijk afval verwijderd"
+        },
+        {
+          "@language": "pl",
+          "@value": "Unieszkodliwione odpady niebezpieczne"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resíduos perigosos eliminados"
+        },
+        {
+          "@language": "ro",
+          "@value": "Deșeuri periculoase eliminate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zneškodnený nebezpečný odpad"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstranjeni nevarni odpadki"
+        },
+        {
+          "@language": "sv",
+          "@value": "Bortskaffat farligt avfall"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Hazardous waste disposed"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обезвредени опасни отпадъци"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odstraněný nebezpečný odpad"
+        },
+        {
+          "@language": "da",
+          "@value": "Bortskaffet farligt affald"
+        },
+        {
+          "@language": "de",
+          "@value": "Gefährlicher Abfall zur Deponie"
+        },
+        {
+          "@language": "el",
+          "@value": "Διατιθέμενα επικίνδυνα απόβλητα"
+        },
+        {
+          "@language": "es",
+          "@value": "Residuos peligrosos eliminados"
+        },
+        {
+          "@language": "et",
+          "@value": "Kõrvaldatud ohtlikud jäätmed"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hävitetyt vaaralliset jätteet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déchets dangereux éliminés"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dramhaíl ghuaiseach dhiúscartha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zbrinuti opasni otpad"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ártalmatlanított veszélyes hulladék"
+        },
+        {
+          "@language": "it",
+          "@value": "Rifiuti pericolosi smaltiti"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalintos pavojingosios atliekos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Apglabātie bīstamie atkritumi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Skart perikoluż mormi"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gevaarlijk afval verwijderd"
+        },
+        {
+          "@language": "pl",
+          "@value": "Unieszkodliwione odpady niebezpieczne"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resíduos perigosos eliminados"
+        },
+        {
+          "@language": "ro",
+          "@value": "Deșeuri periculoase eliminate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zneškodnený nebezpečný odpad"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstranjeni nevarni odpadki"
+        },
+        {
+          "@language": "sv",
+          "@value": "Bortskaffat farligt avfall"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:nhwd",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Non-hazardous waste disposed"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обезвредени неопасни отпадъци"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odstraněný ostatní odpad"
+        },
+        {
+          "@language": "da",
+          "@value": "Bortskaffet ikke-farligt affald"
+        },
+        {
+          "@language": "de",
+          "@value": "Entsorgter nicht gefährlicher Abfall"
+        },
+        {
+          "@language": "el",
+          "@value": "Διατιθέμενα μη επικίνδυνα απόβλητα"
+        },
+        {
+          "@language": "es",
+          "@value": "Residuos no peligrosos eliminados"
+        },
+        {
+          "@language": "et",
+          "@value": "Kõrvaldatud tavajäätmed"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hävitetyt vaarattomat jätteet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déchets non dangereux éliminés"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dramhaíl neamhghuaiseach dhiúscartha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zbrinuti neopasni otpad"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ártalmatlanított nem veszélyes hulladék"
+        },
+        {
+          "@language": "it",
+          "@value": "Rifiuti non pericolosi smaltiti"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalintos nepavojingosios atliekos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Apglabātie nebīstamie atkritumi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Skart mhux perikoluż mormi"
+        },
+        {
+          "@language": "nl",
+          "@value": "Niet-gevaarlijk afval verwijderd"
+        },
+        {
+          "@language": "pl",
+          "@value": "Unieszkodliwione odpady inne niż niebezpieczne"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resíduos não perigosos eliminados"
+        },
+        {
+          "@language": "ro",
+          "@value": "Deșeuri nepericuloase eliminate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zneškodnený ostatný odpad"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstranjeni nenevarni odpadki"
+        },
+        {
+          "@language": "sv",
+          "@value": "Bortskaffat icke-farligt avfall"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Non-hazardous waste disposed"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обезвредени неопасни отпадъци"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odstraněný ostatní odpad"
+        },
+        {
+          "@language": "da",
+          "@value": "Bortskaffet ikke-farligt affald"
+        },
+        {
+          "@language": "de",
+          "@value": "Entsorgter nicht gefährlicher Abfall"
+        },
+        {
+          "@language": "el",
+          "@value": "Διατιθέμενα μη επικίνδυνα απόβλητα"
+        },
+        {
+          "@language": "es",
+          "@value": "Residuos no peligrosos eliminados"
+        },
+        {
+          "@language": "et",
+          "@value": "Kõrvaldatud tavajäätmed"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hävitetyt vaarattomat jätteet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déchets non dangereux éliminés"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dramhaíl neamhghuaiseach dhiúscartha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zbrinuti neopasni otpad"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ártalmatlanított nem veszélyes hulladék"
+        },
+        {
+          "@language": "it",
+          "@value": "Rifiuti non pericolosi smaltiti"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalintos nepavojingosios atliekos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Apglabātie nebīstamie atkritumi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Skart mhux perikoluż mormi"
+        },
+        {
+          "@language": "nl",
+          "@value": "Niet-gevaarlijk afval verwijderd"
+        },
+        {
+          "@language": "pl",
+          "@value": "Unieszkodliwione odpady inne niż niebezpieczne"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resíduos não perigosos eliminados"
+        },
+        {
+          "@language": "ro",
+          "@value": "Deșeuri nepericuloase eliminate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zneškodnený ostatný odpad"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstranjeni nenevarni odpadki"
+        },
+        {
+          "@language": "sv",
+          "@value": "Bortskaffat icke-farligt avfall"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:rwd",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Radioactive waste disposed"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обезвредени радиоактивни отпадъци"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odstraněný radioaktivní odpad"
+        },
+        {
+          "@language": "da",
+          "@value": "Bortskaffet radioaktivt affald"
+        },
+        {
+          "@language": "de",
+          "@value": "Entsorgter radioaktiver Abfall"
+        },
+        {
+          "@language": "el",
+          "@value": "Διατιθέμενα ραδιενεργά απόβλητα"
+        },
+        {
+          "@language": "es",
+          "@value": "Residuos radiactivos eliminados"
+        },
+        {
+          "@language": "et",
+          "@value": "Kõrvaldatud radioaktiivsed jäätmed"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hävitetyt radioaktiiviset jätteet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déchets radioactifs éliminés"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dramhaíl radaighníomhach dhiúscartha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zbrinuti radioaktivni otpad"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ártalmatlanított radioaktív hulladék"
+        },
+        {
+          "@language": "it",
+          "@value": "Rifiuti radioattivi smaltiti"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalintos radioaktyviosios atliekos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Apglabātie radioaktīvie atkritumi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Skart radjuattiv mormi"
+        },
+        {
+          "@language": "nl",
+          "@value": "Radioactief afval verwijderd"
+        },
+        {
+          "@language": "pl",
+          "@value": "Unieszkodliwione odpady promieniotwórcze"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resíduos radioativos eliminados"
+        },
+        {
+          "@language": "ro",
+          "@value": "Deșeuri radioactive eliminate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zneškodnený rádioaktívny odpad"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstranjeni radioaktivni odpadki"
+        },
+        {
+          "@language": "sv",
+          "@value": "Bortskaffat radioaktivt avfall"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Radioactive waste disposed"
+        },
+        {
+          "@language": "bg",
+          "@value": "Обезвредени радиоактивни отпадъци"
+        },
+        {
+          "@language": "cs",
+          "@value": "Odstraněný radioaktivní odpad"
+        },
+        {
+          "@language": "da",
+          "@value": "Bortskaffet radioaktivt affald"
+        },
+        {
+          "@language": "de",
+          "@value": "Entsorgter radioaktiver Abfall"
+        },
+        {
+          "@language": "el",
+          "@value": "Διατιθέμενα ραδιενεργά απόβλητα"
+        },
+        {
+          "@language": "es",
+          "@value": "Residuos radiactivos eliminados"
+        },
+        {
+          "@language": "et",
+          "@value": "Kõrvaldatud radioaktiivsed jäätmed"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hävitetyt radioaktiiviset jätteet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Déchets radioactifs éliminés"
+        },
+        {
+          "@language": "ga",
+          "@value": "Dramhaíl radaighníomhach dhiúscartha"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zbrinuti radioaktivni otpad"
+        },
+        {
+          "@language": "hu",
+          "@value": "Ártalmatlanított radioaktív hulladék"
+        },
+        {
+          "@language": "it",
+          "@value": "Rifiuti radioattivi smaltiti"
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalintos radioaktyviosios atliekos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Apglabātie radioaktīvie atkritumi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Skart radjuattiv mormi"
+        },
+        {
+          "@language": "nl",
+          "@value": "Radioactief afval verwijderd"
+        },
+        {
+          "@language": "pl",
+          "@value": "Unieszkodliwione odpady promieniotwórcze"
+        },
+        {
+          "@language": "pt",
+          "@value": "Resíduos radioativos eliminados"
+        },
+        {
+          "@language": "ro",
+          "@value": "Deșeuri radioactive eliminate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Zneškodnený rádioaktívny odpad"
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstranjeni radioaktivni odpadki"
+        },
+        {
+          "@language": "sv",
+          "@value": "Bortskaffat radioaktivt avfall"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:cru",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Components for re-use"
+        },
+        {
+          "@language": "bg",
+          "@value": "Компоненти за повторна употреба"
+        },
+        {
+          "@language": "cs",
+          "@value": "Komponenty pro opětovné použití"
+        },
+        {
+          "@language": "da",
+          "@value": "Komponenter til genbrug"
+        },
+        {
+          "@language": "de",
+          "@value": "Komponenten für die Wiederverwendung"
+        },
+        {
+          "@language": "el",
+          "@value": "Εξαρτήματα για επαναχρησιμοποίηση"
+        },
+        {
+          "@language": "es",
+          "@value": "Componentes para su reutilización"
+        },
+        {
+          "@language": "et",
+          "@value": "Komponendid korduskasutuseks"
+        },
+        {
+          "@language": "fi",
+          "@value": "Komponentit uudelleenkäyttöön"
+        },
+        {
+          "@language": "fr",
+          "@value": "Composants destinés à la réutilisation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Comhpháirteanna le hathúsáid"
+        },
+        {
+          "@language": "hr",
+          "@value": "Komponente za ponovnu uporabu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Újrahasználatra szánt alkatrészek"
+        },
+        {
+          "@language": "it",
+          "@value": "Componenti per il riutilizzo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Komponentai pakartotiniam naudojimui"
+        },
+        {
+          "@language": "lv",
+          "@value": "Komponenti atkārtotai izmantošanai"
+        },
+        {
+          "@language": "mt",
+          "@value": "Komponenti għall-użu mill-ġdid"
+        },
+        {
+          "@language": "nl",
+          "@value": "Componenten voor hergebruik"
+        },
+        {
+          "@language": "pl",
+          "@value": "Komponenty do ponownego użycia"
+        },
+        {
+          "@language": "pt",
+          "@value": "Componentes para reutilização"
+        },
+        {
+          "@language": "ro",
+          "@value": "Componente pentru reutilizare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Komponenty na opätovné použitie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Komponente za ponovno uporabo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Komponenter för återanvändning"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Components for re-use"
+        },
+        {
+          "@language": "bg",
+          "@value": "Компоненти за повторна употреба"
+        },
+        {
+          "@language": "cs",
+          "@value": "Komponenty pro opětovné použití"
+        },
+        {
+          "@language": "da",
+          "@value": "Komponenter til genbrug"
+        },
+        {
+          "@language": "de",
+          "@value": "Komponenten für die Wiederverwendung"
+        },
+        {
+          "@language": "el",
+          "@value": "Εξαρτήματα για επαναχρησιμοποίηση"
+        },
+        {
+          "@language": "es",
+          "@value": "Componentes para su reutilización"
+        },
+        {
+          "@language": "et",
+          "@value": "Komponendid korduskasutuseks"
+        },
+        {
+          "@language": "fi",
+          "@value": "Komponentit uudelleenkäyttöön"
+        },
+        {
+          "@language": "fr",
+          "@value": "Composants destinés à la réutilisation"
+        },
+        {
+          "@language": "ga",
+          "@value": "Comhpháirteanna le hathúsáid"
+        },
+        {
+          "@language": "hr",
+          "@value": "Komponente za ponovnu uporabu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Újrahasználatra szánt alkatrészek"
+        },
+        {
+          "@language": "it",
+          "@value": "Componenti per il riutilizzo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Komponentai pakartotiniam naudojimui"
+        },
+        {
+          "@language": "lv",
+          "@value": "Komponenti atkārtotai izmantošanai"
+        },
+        {
+          "@language": "mt",
+          "@value": "Komponenti għall-użu mill-ġdid"
+        },
+        {
+          "@language": "nl",
+          "@value": "Componenten voor hergebruik"
+        },
+        {
+          "@language": "pl",
+          "@value": "Komponenty do ponownego użycia"
+        },
+        {
+          "@language": "pt",
+          "@value": "Componentes para reutilização"
+        },
+        {
+          "@language": "ro",
+          "@value": "Componente pentru reutilizare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Komponenty na opätovné použitie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Komponente za ponovno uporabo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Komponenter för återanvändning"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:mfr",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Materials for recycling"
+        },
+        {
+          "@language": "bg",
+          "@value": "Материали за рециклиране"
+        },
+        {
+          "@language": "cs",
+          "@value": "Materiály k recyklaci"
+        },
+        {
+          "@language": "da",
+          "@value": "Materialer til genanvendelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Stoffe für das Recycling"
+        },
+        {
+          "@language": "el",
+          "@value": "Υλικά για ανακύκλωση"
+        },
+        {
+          "@language": "es",
+          "@value": "Materiales para el reciclaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Materjalid ringlussevõtuks"
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalit kierrätykseen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Matériaux destinés au recyclage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhair le hathchúrsáil"
+        },
+        {
+          "@language": "hr",
+          "@value": "Materijali za recikliranje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Újrafeldolgozásra szánt anyagok"
+        },
+        {
+          "@language": "it",
+          "@value": "Materiali per il riciclaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagos perdirbimui"
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiāli pārstrādei"
+        },
+        {
+          "@language": "mt",
+          "@value": "Materjali għar-riċiklaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Materialen voor recycling"
+        },
+        {
+          "@language": "pl",
+          "@value": "Materiały do recyklingu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Materiais para reciclagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Materiale pentru reciclare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Materiály na recykláciu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Materiali za recikliranje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Material för materialåtervinning"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Materials for recycling"
+        },
+        {
+          "@language": "bg",
+          "@value": "Материали за рециклиране"
+        },
+        {
+          "@language": "cs",
+          "@value": "Materiály k recyklaci"
+        },
+        {
+          "@language": "da",
+          "@value": "Materialer til genanvendelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Stoffe für das Recycling"
+        },
+        {
+          "@language": "el",
+          "@value": "Υλικά για ανακύκλωση"
+        },
+        {
+          "@language": "es",
+          "@value": "Materiales para el reciclaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Materjalid ringlussevõtuks"
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalit kierrätykseen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Matériaux destinés au recyclage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhair le hathchúrsáil"
+        },
+        {
+          "@language": "hr",
+          "@value": "Materijali za recikliranje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Újrafeldolgozásra szánt anyagok"
+        },
+        {
+          "@language": "it",
+          "@value": "Materiali per il riciclaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagos perdirbimui"
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiāli pārstrādei"
+        },
+        {
+          "@language": "mt",
+          "@value": "Materjali għar-riċiklaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Materialen voor recycling"
+        },
+        {
+          "@language": "pl",
+          "@value": "Materiały do recyklingu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Materiais para reciclagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Materiale pentru reciclare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Materiály na recykláciu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Materiali za recikliranje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Material för materialåtervinning"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:mer",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Materials for energy recovery"
+        },
+        {
+          "@language": "bg",
+          "@value": "Материали за оползотворяване на енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Materiály pro energetické využití"
+        },
+        {
+          "@language": "da",
+          "@value": "Materialer til energiudnyttelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Stoffe für die Energierückgewinnung"
+        },
+        {
+          "@language": "el",
+          "@value": "Υλικά για ανάκτηση ενέργειας"
+        },
+        {
+          "@language": "es",
+          "@value": "Materiales para la valorización energética"
+        },
+        {
+          "@language": "et",
+          "@value": "Materjalid energia taaskasutamiseks"
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalit energian talteenottoon"
+        },
+        {
+          "@language": "fr",
+          "@value": "Matériaux destinés à la récupération d'énergie"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhair d'aisghabháil fuinnimh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Materijali za energetsku oporabu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Energetikai hasznosításra szánt anyagok"
+        },
+        {
+          "@language": "it",
+          "@value": "Materiali per il recupero energetico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagos energijai gauti"
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiāli enerģijas reģenerācijai"
+        },
+        {
+          "@language": "mt",
+          "@value": "Materjali għall-irkupru tal-enerġija"
+        },
+        {
+          "@language": "nl",
+          "@value": "Materialen voor energieterugwinning"
+        },
+        {
+          "@language": "pl",
+          "@value": "Materiały do odzysku energii"
+        },
+        {
+          "@language": "pt",
+          "@value": "Materiais para valorização energética"
+        },
+        {
+          "@language": "ro",
+          "@value": "Materiale pentru recuperarea energiei"
+        },
+        {
+          "@language": "sk",
+          "@value": "Materiály na energetické zhodnotenie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Materiali za energetsko predelavo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Material för energiåtervinning"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Kilogram"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Materials for energy recovery"
+        },
+        {
+          "@language": "bg",
+          "@value": "Материали за оползотворяване на енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Materiály pro energetické využití"
+        },
+        {
+          "@language": "da",
+          "@value": "Materialer til energiudnyttelse"
+        },
+        {
+          "@language": "de",
+          "@value": "Stoffe für die Energierückgewinnung"
+        },
+        {
+          "@language": "el",
+          "@value": "Υλικά για ανάκτηση ενέργειας"
+        },
+        {
+          "@language": "es",
+          "@value": "Materiales para la valorización energética"
+        },
+        {
+          "@language": "et",
+          "@value": "Materjalid energia taaskasutamiseks"
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalit energian talteenottoon"
+        },
+        {
+          "@language": "fr",
+          "@value": "Matériaux destinés à la récupération d'énergie"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhair d'aisghabháil fuinnimh"
+        },
+        {
+          "@language": "hr",
+          "@value": "Materijali za energetsku oporabu"
+        },
+        {
+          "@language": "hu",
+          "@value": "Energetikai hasznosításra szánt anyagok"
+        },
+        {
+          "@language": "it",
+          "@value": "Materiali per il recupero energetico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagos energijai gauti"
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiāli enerģijas reģenerācijai"
+        },
+        {
+          "@language": "mt",
+          "@value": "Materjali għall-irkupru tal-enerġija"
+        },
+        {
+          "@language": "nl",
+          "@value": "Materialen voor energieterugwinning"
+        },
+        {
+          "@language": "pl",
+          "@value": "Materiały do odzysku energii"
+        },
+        {
+          "@language": "pt",
+          "@value": "Materiais para valorização energética"
+        },
+        {
+          "@language": "ro",
+          "@value": "Materiale pentru recuperarea energiei"
+        },
+        {
+          "@language": "sk",
+          "@value": "Materiály na energetické zhodnotenie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Materiali za energetsko predelavo"
+        },
+        {
+          "@language": "sv",
+          "@value": "Material för energiåtervinning"
+        }
+      ]
+    },
+    {
+      "@id": "dppk-epd:ee",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Exported energy"
+        },
+        {
+          "@language": "bg",
+          "@value": "Изнесена енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Exportovaná energie"
+        },
+        {
+          "@language": "da",
+          "@value": "Eksporteret energi"
+        },
+        {
+          "@language": "de",
+          "@value": "Exportierte Energie"
+        },
+        {
+          "@language": "el",
+          "@value": "Εξαγόμενη ενέργεια"
+        },
+        {
+          "@language": "es",
+          "@value": "Energía exportada"
+        },
+        {
+          "@language": "et",
+          "@value": "Eksporditud energia"
+        },
+        {
+          "@language": "fi",
+          "@value": "Viemäenergia"
+        },
+        {
+          "@language": "fr",
+          "@value": "Énergie exportée"
+        },
+        {
+          "@language": "ga",
+          "@value": "Fuinneamh onnmhairithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Izvezena energija"
+        },
+        {
+          "@language": "hu",
+          "@value": "Exportált energia"
+        },
+        {
+          "@language": "it",
+          "@value": "Energia esportata"
+        },
+        {
+          "@language": "lt",
+          "@value": "Eksportuota energija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Eksportētā enerģija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Enerġija esportata"
+        },
+        {
+          "@language": "nl",
+          "@value": "Geëxporteerde energie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wysłana energia"
+        },
+        {
+          "@language": "pt",
+          "@value": "Energia exportada"
+        },
+        {
+          "@language": "ro",
+          "@value": "Energie exportată"
+        },
+        {
+          "@language": "sk",
+          "@value": "Exportovaná energia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Izvožena energija"
+        },
+        {
+          "@language": "sv",
+          "@value": "Exporterad energi"
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Megajoule"
+      },
+      "dppk:governedBy": "EN 15804:2012+A2:2019",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-epd:indicator"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-epd:EPDBlock"
+      },
+      "rdfs:range": {
+        "@id": "dppk-epd:ImpactValues"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Exported energy"
+        },
+        {
+          "@language": "bg",
+          "@value": "Изнесена енергия"
+        },
+        {
+          "@language": "cs",
+          "@value": "Exportovaná energie"
+        },
+        {
+          "@language": "da",
+          "@value": "Eksporteret energi"
+        },
+        {
+          "@language": "de",
+          "@value": "Exportierte Energie"
+        },
+        {
+          "@language": "el",
+          "@value": "Εξαγόμενη ενέργεια"
+        },
+        {
+          "@language": "es",
+          "@value": "Energía exportada"
+        },
+        {
+          "@language": "et",
+          "@value": "Eksporditud energia"
+        },
+        {
+          "@language": "fi",
+          "@value": "Viemäenergia"
+        },
+        {
+          "@language": "fr",
+          "@value": "Énergie exportée"
+        },
+        {
+          "@language": "ga",
+          "@value": "Fuinneamh onnmhairithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Izvezena energija"
+        },
+        {
+          "@language": "hu",
+          "@value": "Exportált energia"
+        },
+        {
+          "@language": "it",
+          "@value": "Energia esportata"
+        },
+        {
+          "@language": "lt",
+          "@value": "Eksportuota energija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Eksportētā enerģija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Enerġija esportata"
+        },
+        {
+          "@language": "nl",
+          "@value": "Geëxporteerde energie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wysłana energia"
+        },
+        {
+          "@language": "pt",
+          "@value": "Energia exportada"
+        },
+        {
+          "@language": "ro",
+          "@value": "Energie exportată"
+        },
+        {
+          "@language": "sk",
+          "@value": "Exportovaná energia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Izvožena energija"
+        },
+        {
+          "@language": "sv",
+          "@value": "Exporterad energi"
+        }
+      ]
     }
   ]
 }

@@ -5,6 +5,7 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk-epd": "https://dpp-keystone.org/spec/v3/terms/epd#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/"
   },
@@ -417,7 +418,7 @@
       }
     },
     {
-      "@id": "dppk:ImpactValues",
+      "@id": "dppk-epd:ImpactValues",
       "@type": "rdfs:Class",
       "rdfs:label": [
         {

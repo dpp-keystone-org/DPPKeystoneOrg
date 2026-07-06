@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/cement.schema.json",
+  "title": "Cement Product Properties",
+  "description": "Validation schema for cement physical and chemical properties.",
+  "type": "object",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "dpp_EN_197_v3"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "minimumStandardCompressiveStrength28Days": {
+        "type": "number",
+        "description": "Minimum Standard Compressive Strength28days (Unit: Megapascal)"
+      },
+      "maximumStandardCompressiveStrength28Days": {
+        "type": "number",
+        "description": "Maximum Standard Compressive Strength28days (Unit: Megapascal)"
+      },
+      "minimumVeryEarlyCompressiveStrength24Hours": {
+        "type": "number",
+        "description": "Minimum Very Early Compressive Strength24hours (Unit: Megapascal)"
+      },
+      "minimumEarlyCompressiveStrength2Days": {
+        "type": "number",
+        "description": "Minimum Early Compressive Strength2days (Unit: Megapascal)"
+      },
+      "minimumEarlyCompressiveStrength7Days": {
+        "type": "number",
+        "description": "Minimum Early Compressive Strength7days (Unit: Megapascal)"
+      },
+      "minimumLateCompressiveStrength56Days": {
+        "type": "number",
+        "description": "Minimum Late Compressive Strength56days (Unit: Megapascal)"
+      },
+      "minimumLateCompressiveStrength90Days": {
+        "type": "number",
+        "description": "Minimum Late Compressive Strength90days (Unit: Megapascal)"
+      },
+      "initialSettingTime": {
+        "type": "number",
+        "description": "Initial Setting Time (Unit: Minute)"
+      },
+      "lossOnIgnition": {
+        "type": "number",
+        "description": "Loss On Ignition"
+      },
+      "lossOnIgnition1h": {
+        "type": "number",
+        "description": "Loss On Ignition1h"
+      },
+      "soundness": {
+        "type": "number",
+        "description": "Soundness (Unit: Millimeter)"
+      },
+      "heatOfHydration": {
+        "type": "number",
+        "description": "Heat Of Hydration (Unit: JoulePerGram)"
+      },
+      "pozzolanicityHydroxylIonConcentration": {
+        "type": "number",
+        "description": "Pozzolanicity Hydroxyl Ion Concentration (Unit: MillimolePerLiter)"
+      },
+      "pozzolanicityCalciumOxideConcentration": {
+        "type": "number",
+        "description": "Pozzolanicity Calcium Oxide Concentration (Unit: MillimolePerLiter)"
+      },
+      "pozzolanicity7525Mix8Days": {
+        "type": "number",
+        "description": "Pozzolanicity7525mix8days (Unit: MillimolePerLiter)"
+      },
+      "pozzolanicity7525Mix15Days": {
+        "type": "number",
+        "description": "Pozzolanicity7525mix15days (Unit: MillimolePerLiter)"
+      },
+      "insolubleResidueContent": {
+        "type": "number",
+        "description": "Insoluble Residue Content"
+      },
+      "sulfateContent": {
+        "type": "number",
+        "description": "Sulfate Content"
+      },
+      "chlorideContent": {
+        "type": "number",
+        "description": "Chloride Content"
+      },
+      "totalAlkaliContent": {
+        "type": "number",
+        "description": "Total Alkali Content"
+      },
+      "effectiveAlkaliContent": {
+        "type": "number",
+        "description": "Effective Alkali Content"
+      },
+      "alkaliContent": {
+        "type": "number",
+        "description": "Alkali Content"
+      },
+      "tricalciumAluminateContent": {
+        "type": "number",
+        "description": "Tricalcium Aluminate Content"
+      },
+      "tetracalciumAluminoferriteContent": {
+        "type": "number",
+        "description": "Tetracalcium Aluminoferrite Content"
+      },
+      "dicalciumFerriteContent": {
+        "type": "number",
+        "description": "Dicalcium Ferrite Content"
+      },
+      "magnesiumOxideContent": {
+        "type": "number",
+        "description": "Magnesium Oxide Content"
+      },
+      "aluminiumOxideContent": {
+        "type": "number",
+        "description": "Aluminium Oxide Content"
+      },
+      "sulfurAsSulfideIons": {
+        "type": "number",
+        "description": "Sulfur As Sulfide Ions"
+      },
+      "tricalciumSilicateContent": {
+        "type": "number",
+        "description": "Tricalcium Silicate Content"
+      },
+      "calciumOxideContent": {
+        "type": "number",
+        "description": "Calcium Oxide Content"
+      },
+      "freeCalciumOxideContent": {
+        "type": "number",
+        "description": "Free Calcium Oxide Content"
+      },
+      "reactiveCalciumOxideContent": {
+        "type": "number",
+        "description": "Reactive Calcium Oxide Content"
+      },
+      "sulfateResistanceFlatPrismTest": {
+        "type": "number",
+        "description": "Sulfate Resistance Flat Prism Test"
+      },
+      "sulfateResistanceSquarePrismTest": {
+        "type": "number",
+        "description": "Sulfate Resistance Square Prism Test"
+      },
+      "combinedCalciumSilicatesContent": {
+        "type": "number",
+        "description": "Combined Calcium Silicates Content"
+      },
+      "siliconDioxideContent": {
+        "type": "number",
+        "description": "Silicon Dioxide Content"
+      },
+      "reactiveSiliconDioxideContent": {
+        "type": "number",
+        "description": "Reactive Silicon Dioxide Content"
+      },
+      "amorphousSiliconDioxideContent": {
+        "type": "number",
+        "description": "Amorphous Silicon Dioxide Content"
+      },
+      "elementalSiliconContent": {
+        "type": "number",
+        "description": "Elemental Silicon Content"
+      },
+      "ratioCalciumOxideToSiliconDioxide": {
+        "type": "number",
+        "description": "Ratio Calcium Oxide To Silicon Dioxide"
+      },
+      "ratioCalciumOxidePlusMagnesiumOxideToSiliconDioxide": {
+        "type": "number",
+        "description": "Ratio Calcium Oxide Plus Magnesium Oxide To Silicon Dioxide"
+      },
+      "ratioSiliconDioxideToCalciumOxidePlusMagnesiumOxide": {
+        "type": "number",
+        "description": "Ratio Silicon Dioxide To Calcium Oxide Plus Magnesium Oxide"
+      },
+      "combinedCalciumOxideMagnesiumOxideSiliconDioxideContent": {
+        "type": "number",
+        "description": "Combined Calcium Oxide Magnesium Oxide Silicon Dioxide Content"
+      },
+      "glassContent": {
+        "type": "number",
+        "description": "Glass Content"
+      },
+      "carbonateContent": {
+        "type": "number",
+        "description": "Carbonate Content"
+      },
+      "calciumCarbonateContent": {
+        "type": "number",
+        "description": "Calcium Carbonate Content"
+      },
+      "magnesiumCarbonateContent": {
+        "type": "number",
+        "description": "Magnesium Carbonate Content"
+      },
+      "sumCalciumCarbonateAndMagnesiumCarbonate": {
+        "type": "number",
+        "description": "Sum Calcium Carbonate And Magnesium Carbonate"
+      },
+      "specificSurfaceArea": {
+        "type": "number",
+        "description": "Specific Surface Area (Unit: SquareMeterPerGram)"
+      },
+      "compressiveStrength8020Mix28Days": {
+        "type": "number",
+        "description": "Compressive Strength8020mix28days (Unit: Megapascal)"
+      },
+      "ratioCompressiveStrength7525MixTo1000Mix28Days": {
+        "type": "number",
+        "description": "Ratio Compressive Strength7525mix To1000mix28days"
+      },
+      "activityIndex28Days": {
+        "type": "number",
+        "description": "Activity Index28days"
+      },
+      "activityIndex90Days": {
+        "type": "number",
+        "description": "Activity Index90days"
+      },
+      "compressiveStrengthBurntShale28Days": {
+        "type": "number",
+        "description": "Compressive Strength Burnt Shale28days (Unit: Megapascal)"
+      },
+      "totalOrganicCarbonContent": {
+        "type": "number",
+        "description": "Total Organic Carbon Content"
+      },
+      "clayContent": {
+        "type": "number",
+        "description": "Clay Content (Unit: GramPer100Gram)"
+      },
+      "boundWater": {
+        "type": "number",
+        "description": "Bound Water"
+      },
+      "designationCode": {
+        "type": "string",
+        "description": "Designation Code"
+      },
+      "minimumClinkerContent": {
+        "type": "number",
+        "description": "Minimum Clinker Content"
+      },
+      "maximumClinkerContent": {
+        "type": "number",
+        "description": "Maximum Clinker Content"
+      },
+      "minimumBlastFurnaceSlagContent": {
+        "type": "number",
+        "description": "Minimum Blast Furnace Slag Content"
+      },
+      "maximumBlastFurnaceSlagContent": {
+        "type": "number",
+        "description": "Maximum Blast Furnace Slag Content"
+      },
+      "maximumLimestoneContent": {
+        "type": "number",
+        "description": "Maximum Limestone Content"
+      },
+      "maximumRecycledConcreteFinesContent": {
+        "type": "number",
+        "description": "Maximum Recycled Concrete Fines Content"
+      },
+      "maximumChlorideContent": {
+        "type": "number",
+        "description": "Maximum Chloride Content"
+      },
+      "dopc": {
+        "$ref": "cement/dopc.schema.json"
+      },
+      "epd": {
+        "$ref": "../shared/epd.schema.json"
+      }
+    }
+  }
+}
