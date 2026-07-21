@@ -47,10 +47,24 @@ describe('DPP JSON Schema Validation', () => {
 
         // Load all sector schemas dynamically
         const sectorDir = path.join(SCHEMA_DIR, 'sector');
-        const sectorFiles = await fs.promises.readdir(sectorDir);
-        for (const file of sectorFiles) {
-            if (file.endsWith('.schema.json')) {
-                schemaContext.sectorSchemas[file] = await loadSchema(path.join('sector', file));
+        
+        const loadNestedSchemas = async (dirPath, prefix) => {
+            const entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
+            for (const entry of entries) {
+                if (entry.isDirectory()) {
+                    await loadNestedSchemas(path.join(dirPath, entry.name), path.join(prefix, entry.name));
+                } else if (entry.name.endsWith('.schema.json')) {
+                    schemaContext.commonSchemas.push(await loadSchema(path.join(prefix, entry.name)));
+                }
+            }
+        };
+
+        const sectorFiles = await fs.promises.readdir(sectorDir, { withFileTypes: true });
+        for (const entry of sectorFiles) {
+            if (entry.isDirectory()) {
+                await loadNestedSchemas(path.join(sectorDir, entry.name), path.join('sector', entry.name));
+            } else if (entry.name.endsWith('.schema.json')) {
+                schemaContext.sectorSchemas[entry.name] = await loadSchema(path.join('sector', entry.name));
             }
         }
     });

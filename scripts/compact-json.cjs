@@ -41,7 +41,7 @@ function processFile(filePath) {
         // enough to handle JSON that is not "perfectly" formatted.
 
         // Expand Language Arrays, sort them (en first, then alphabetical), and align indentation
-        content = content.replace(/^([ \t]*)"([^"]+)"\s*:\s*\[\s*(\{\s*"@language"[\s\S]*?)\s*\]/gm, (match, indent, key, inner) => {
+        content = content.replace(/^([ \t]*)"([^"]+)"\s*:\s*\[\s*(\{\s*"@language"[\s\S]*?)\n\1\]/gm, (match, indent, key, inner) => {
             // Split inner into individual objects by comma (ensuring we split only between objects)
             let items = inner.split(/(?<=\})\s*,\s*(?=\{)/).map(s => s.trim());
             

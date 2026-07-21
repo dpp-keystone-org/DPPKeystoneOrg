@@ -35,6 +35,9 @@ export async function buildDictionary(ontologyPaths, loader, documentLoader, dic
     if (Object.keys(dictionary).length > 0) return;
 
     const termsBase = `https://dpp-keystone.org/spec/${version}/terms#`;
+    
+    const unitMap = {};
+    const pendingUnits = [];
 
     for (const ontologyPath of ontologyPaths) {
         const ontology = await loader(ontologyPath);
@@ -45,6 +48,13 @@ export async function buildDictionary(ontologyPaths, loader, documentLoader, dic
         nodes.forEach(node => {
             const id = node['@id'];
             if (!id) return;
+
+            // Extract unitSymbol if this is a Unit node
+            const unitSymbolArr = node[`${termsBase}unitSymbol`];
+            if (unitSymbolArr && unitSymbolArr[0] && unitSymbolArr[0]['@value'] !== undefined) {
+                unitMap[id] = unitSymbolArr[0]['@value'];
+            }
+
             const unitArr = node[`${termsBase}unit`];
             const labelArr = node['http://www.w3.org/2000/01/rdf-schema#label'];
 
@@ -54,13 +64,34 @@ export async function buildDictionary(ontologyPaths, loader, documentLoader, dic
                     const en = labelArr.find(l => l['@language'] === 'en');
                     label = en ? en['@value'] : (labelArr[0] ? labelArr[0]['@value'] : id);
                 }
+                let unitStr = unitArr[0]['@value'];
+                let unitId = null;
+                if (unitStr === undefined && unitArr[0]['@id']) {
+                    unitId = unitArr[0]['@id'];
+                    if (unitMap[unitId]) {
+                        unitStr = unitMap[unitId];
+                    } else {
+                        pendingUnits.push({ id, unitId });
+                        // Fallback in case it's not found in unitMap later
+                        const parts = unitId.split('#');
+                        unitStr = parts[parts.length - 1];
+                    }
+                }
+                
                 dictionary[id] = {
-                    unit: unitArr[0]['@value'],
+                    unit: unitStr,
                     label: label
                 };
             }
         });
     }
+
+    // Second pass to resolve units that were parsed before their Unit node was loaded
+    pendingUnits.forEach(({ id, unitId }) => {
+        if (unitMap[unitId] && dictionary[id]) {
+            dictionary[id].unit = unitMap[unitId];
+        }
+    });
 }
 
 /**
@@ -79,7 +110,11 @@ export async function transform(dpp, options, dictionary) {
     // --- Start: Type Inference Logic ---
     const specIdToType = {
         'draft_construction_specification_id': `${termsBase}ConstructionProduct`,
-        // Future sector-specific IDs can be added here
+        [`dpp_EN_197_${version}`]: `${termsBase.replace('#', '/cement#')}CementProduct`,
+        'draft_battery_specification_id': `${termsBase}BatteryProduct`,
+        'draft_electronics_specification_id': `${termsBase}ElectronicDevice`,
+        'draft_textile_espr_specification_id': `${termsBase}TextileProduct`,
+        'draft_iron_and_steel_specification_id': `${termsBase}IronSteelProduct`
     };
     const DPP_BASE_TYPE = `${termsBase}DigitalProductPassport`;
 

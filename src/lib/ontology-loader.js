@@ -21,8 +21,21 @@ function getSingleRdfsValue(property) {
         }
     }
 
-    // Handle single language-tagged object
-    if (property['@value']) return property['@value'];
+    // Handle single language-tagged object or literal
+    if (property['@value'] !== undefined) return property['@value'];
+    
+    // Handle IRI references (e.g. for units)
+    if (property['@id']) {
+        let idStr = property['@id'];
+        if (idStr.includes('#')) {
+            const parts = idStr.split('#');
+            return parts[parts.length - 1];
+        } else if (idStr.includes(':')) {
+            const parts = idStr.split(':');
+            return parts[parts.length - 1];
+        }
+        return idStr;
+    }
 
     return '';
 }
@@ -116,6 +129,7 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                 const label = parseLangTaggedProperty(term['rdfs:label']);
                 const comment = parseLangTaggedProperty(term['rdfs:comment']);
                 const unit = getSingleRdfsValue(term['dppk:unit']);
+                const unitSymbol = getSingleRdfsValue(term['dppk:unitSymbol']);
                 const governedBy = getSingleRdfsValue(term['dppk:governedBy']);
 
                 let source;
@@ -153,8 +167,9 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                 const hasSource = (typeof source === 'string' && source.length > 0) || (typeof source === 'object' && source !== null);
                 const hasDomain = domain && domain.length > 0;
                 const hasOneOf = oneOf && oneOf.length > 0;
+                const hasUnitSymbol = unitSymbol && unitSymbol.length > 0;
 
-                const termHasAnyMetadata = hasLabel || hasComment || hasUnit || hasGov || hasRange || hasSource || hasDomain || hasOneOf;
+                const termHasAnyMetadata = hasLabel || hasComment || hasUnit || hasGov || hasRange || hasSource || hasDomain || hasOneOf || hasUnitSymbol;
 
                 if (termHasAnyMetadata) {
                     ontologyMap.set(key, {
@@ -169,6 +184,7 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                         definedIn: definedIn ?? existing.definedIn,
                         type: rdfType || existing.type,
                         'enum': hasOneOf ? oneOf : (existing.enum || null),
+                        unitSymbol: hasUnitSymbol ? unitSymbol : (existing.unitSymbol || null),
                     });
                 }
             }
@@ -226,6 +242,17 @@ export async function loadOntology(sector) {
 
     try {
         await loadAndParseOntology(initialUrl, ontologyMap, loadedUrls, true);
+
+        // Second pass: resolve unit symbols
+        for (const [key, term] of ontologyMap.entries()) {
+            if (term.unit && typeof term.unit === 'string') {
+                const unitTerm = ontologyMap.get(term.unit);
+                if (unitTerm && unitTerm.unitSymbol) {
+                    term.unit = unitTerm.unitSymbol;
+                }
+            }
+        }
+
         return ontologyMap;
     } catch (error) {
         console.error(`Failed to execute ontology loading for sector: ${sector}`, error);

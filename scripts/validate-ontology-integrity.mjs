@@ -171,9 +171,11 @@ function processContextBlock(ctxBlock, filePath) {
             }
 
             if (id) {
-                // Expand dppk: prefix
-                if (id.startsWith('dppk:')) {
-                    id = id.replace('dppk:', dppkPrefix);
+                // Expand dppk:* prefixes dynamically
+                const parts = id.split(':');
+                if (parts.length === 2 && parts[0].startsWith('dppk')) {
+                    const prefixUrl = ctxBlock[parts[0]] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms${parts[0] === 'dppk' ? '' : '/' + parts[0].replace('dppk-', '')}#`;
+                    id = prefixUrl + parts[1];
                 }
                 // contextMap.set(term, id);
                 if (!contextMap.has(term)) {
@@ -193,6 +195,35 @@ function processContextBlock(ctxBlock, filePath) {
     }
 }
 
+// --- Utilities ---
+
+function getCompactIRI(iri) {
+    if (iri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/`)) {
+        const sub = iri.split('/terms/')[1].split('#')[0];
+        return iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`, `dppk-${sub}:`);
+    } else if (iri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`)) {
+        return iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+    }
+    return iri;
+}
+
+function isDppkTerm(id) {
+    return id.startsWith('dppk:') || id.startsWith('dppk-') || id.startsWith('https://dpp-keystone.org/');
+}
+
+function reportTranslationIssues(reporter, entityIdentifier, transResult, relativePath) {
+    if (!transResult.valid) {
+        transResult.errors.forEach(err => {
+            reporter.report(
+                'Translation Integrity',
+                'FAIL',
+                `[${entityIdentifier}] Translation issue: ${err}`,
+                relativePath
+            );
+        });
+    }
+}
+
 // --- Audits ---
 
 function auditOntologyMetadata(reporter) {
@@ -200,9 +231,21 @@ function auditOntologyMetadata(reporter) {
         const json = JSON.parse(content);
         const relativePath = path.relative(PROJECT_ROOT, filePath);
 
-        let ontologyInfo = (json['@graph'] || []).find(node => node['@type'] === 'owl:Ontology');
-        if (!ontologyInfo && json['@type'] === 'owl:Ontology') {
+        let ontologyInfo = null;
+
+        if (json['@type'] === 'owl:Ontology') {
             ontologyInfo = json;
+        } else {
+            const graphOntologyInfo = (json['@graph'] || []).find(node => node['@type'] === 'owl:Ontology');
+            if (graphOntologyInfo) {
+                reporter.report(
+                    'Ontology Metadata',
+                    'FAIL',
+                    `The 'owl:Ontology' declaration must be at the root of the JSON-LD document, not inside the '@graph' array.`,
+                    relativePath
+                );
+                ontologyInfo = graphOntologyInfo;
+            }
         }
 
         if (!ontologyInfo) {
@@ -243,16 +286,7 @@ function auditOntologyMetadata(reporter) {
         }
 
         const transResult = validateTermTranslations(ontologyInfo, undefined, ['dcterms:title', 'dcterms:description']);
-        if (!transResult.valid) {
-            transResult.errors.forEach(err => {
-                reporter.report(
-                    'Ontology Metadata Translation',
-                    'FAIL',
-                    `Ontology root translation issue: ${err}`,
-                    relativePath
-                );
-            });
-        }
+        reportTranslationIssues(reporter, 'Ontology Root', transResult, relativePath);
 
         if (!ontologyInfo['owl:versionInfo']) {
             reporter.report(
@@ -335,7 +369,7 @@ function auditSchemaMappings(reporter) {
                     const mappings = contextMap.get(propName);
                     mappings.forEach(mapping => {
                         const iri = mapping.iri;
-                        const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+                        const compactIRI = getCompactIRI(iri);
                         
                         if (ontologyGraph.has(iri)) {
                             usedIRIs.add(iri);
@@ -439,7 +473,7 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
         // (i.e., this term uses X, so X is alive)
         for (const [key, value] of Object.entries(term)) {
             // Check the key (predicate) - e.g. "dppk:unit"
-            if (key.startsWith('dppk:') || key.startsWith('https://dpp-keystone.org/')) {
+            if (isDppkTerm(key)) {
                 if (ontologyGraph.has(key) && !aliveIRIs.has(key)) {
                     aliveIRIs.add(key);
                     queue.push(key);
@@ -458,7 +492,7 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
 
                 if (target) {
                     // Check if target is a dppk term
-                    if (target.startsWith('dppk:') || target.startsWith('https://dpp-keystone.org/')) {
+                    if (isDppkTerm(target)) {
                          if (ontologyGraph.has(target) && !aliveIRIs.has(target)) {
                             aliveIRIs.add(target);
                             queue.push(target);
@@ -472,7 +506,7 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
     // 3. Report dead terms
     ontologyGraph.forEach((term, id) => {
         // Skip some common infrastructure terms if needed
-        if (id.startsWith('dppk:')) {
+        if (id.startsWith('dppk:') || id.startsWith('dppk-')) {
             if (!aliveIRIs.has(id)) {
                  const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
                  reporter.report(
@@ -489,19 +523,10 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
 function auditTranslations(reporter) {
     ontologyGraph.forEach((term, id) => {
         // Only validate our own terms
-        if (id.startsWith('dppk:')) {
+        if (id.startsWith('dppk:') || id.startsWith('dppk-')) {
             const result = validateTermTranslations(term);
-            if (!result.valid) {
-                const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
-                result.errors.forEach(err => {
-                    reporter.report(
-                        'Translation Integrity',
-                        'WARN',
-                        `Term '${id}' has translation issue: ${err}`,
-                        relativePath
-                    );
-                });
-            }
+            const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
+            reportTranslationIssues(reporter, id, result, relativePath);
         }
     });
 }
@@ -520,18 +545,18 @@ function extractReferences(termObj, refs = new Set()) {
     for (const [key, value] of Object.entries(termObj)) {
         if (key.startsWith('@') && key !== '@type') continue;
 
-        if (key.startsWith('dppk:') || key.startsWith('https://dpp-keystone.org/')) {
+        if (isDppkTerm(key)) {
             refs.add(key);
         }
 
         const values = Array.isArray(value) ? value : [value];
         values.forEach(item => {
             if (typeof item === 'string') {
-                if (item.startsWith('dppk:') || item.startsWith('https://dpp-keystone.org/')) {
+                if (isDppkTerm(item)) {
                     refs.add(item);
                 }
             } else if (typeof item === 'object' && item !== null) {
-                if (item['@id'] && (item['@id'].startsWith('dppk:') || item['@id'].startsWith('https://dpp-keystone.org/'))) {
+                if (item['@id'] && isDppkTerm(item['@id'])) {
                     refs.add(item['@id']);
                 }
                 extractReferences(item, refs);
@@ -563,8 +588,15 @@ function auditSelfContainedImports(reporter) {
             extractReferences(term, refs);
 
             refs.forEach(ref => {
-                const expanded = ref.startsWith('dppk:') ? ref.replace('dppk:', `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`) : ref;
-                const compact = expanded.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+                let expanded = ref;
+                if (ref.startsWith('dppk-')) {
+                    const sub = ref.split(':')[0].replace('dppk-', '');
+                    expanded = ref.replace(`dppk-${sub}:`, `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`);
+                } else if (ref.startsWith('dppk:')) {
+                    expanded = ref.replace('dppk:', `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`);
+                }
+                
+                const compact = getCompactIRI(expanded);
                 
                 if (ontologyGraph.has(expanded) || ontologyGraph.has(compact)) {
                     if (!allowedTerms.has(expanded) && !allowedTerms.has(compact)) {
@@ -588,7 +620,7 @@ function auditContextMappings(reporter) {
     contextMap.forEach((mappings, term) => {
         mappings.forEach(mapping => {
             const iri = mapping.iri;
-            const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+            const compactIRI = getCompactIRI(iri);
             
             if (!ontologyGraph.has(iri) && !ontologyGraph.has(compactIRI)) {
                 reporter.report(
@@ -630,7 +662,7 @@ async function run() {
         mappings.forEach(mapping => {
             const iri = mapping.iri;
             contextMappedIRIs.add(iri);
-            const compactIRI = iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+            const compactIRI = getCompactIRI(iri);
             contextMappedIRIs.add(compactIRI);
         });
     });

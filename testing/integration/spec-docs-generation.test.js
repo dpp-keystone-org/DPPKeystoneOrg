@@ -8,7 +8,7 @@ import {
 } from '../../scripts/generate-spec-docs.mjs';
 import { join } from 'path';
 import { promises as fs } from 'fs';
-import { setupTestEnvironment } from '../scripts/test-helpers.mjs';
+import { setupTestEnvironment, PROJECT_ROOT } from '../scripts/test-helpers.mjs';
 import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 describe('generate-spec-docs.mjs', () => {
@@ -177,6 +177,28 @@ describe('generate-spec-docs.mjs', () => {
         });
     });
 
+    describe('Nested Subdirectory Support', () => {
+        beforeAll(async () => {
+            await generateSpecDocs({
+                srcDir: FIXTURES_DIR,
+                distDir: TEMP_DIST_DIR
+            });
+        });
+
+        it('should generate class pages for ontologies in nested subdirectories', async () => {
+            const classHtmlPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'mock-cement', 'MockCementProduct.html');
+            const stats = await fs.stat(classHtmlPath).catch(() => null);
+            expect(stats).toBeTruthy();
+            expect(stats.isFile()).toBe(true);
+        });
+
+        it('should correctly cross-link properties from nested ontologies', async () => {
+            const classHtmlPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'mock-cement', 'MockCementProduct.html');
+            const content = await fs.readFile(classHtmlPath, 'utf-8').catch(() => '');
+            expect(content).toContain('mockCementProp');
+        });
+    });
+
     describe('Integration Test', () => {
         it('should generate correct module and global index files', async () => {
             // Run the script with our test directories
@@ -308,6 +330,27 @@ describe('generate-spec-docs.mjs', () => {
             // 'Sub Property' is defined in 'mock-sub.jsonld' but shown on 'MainClass' page.
             // It should be linked back to the mock-sub module index.
             expect(html).toContain('<a href="../mock-sub/index.html#subProperty"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Sub Property&quot;}]">Sub Property</span></a>');
+        });
+
+        it('should successfully generate documentation for the full real project', async () => {
+            // Since tests run after the project is built, we can just verify the generated files directly in dist/spec
+            const outputDir = join(PROJECT_ROOT, 'dist', 'spec');
+
+            // Verify EPD module index exists
+            const epdIndexHtml = join(outputDir, 'ontology', KEYSTONE_VERSION, 'core', 'EPD', 'index.html');
+            await expect(fs.access(epdIndexHtml)).resolves.not.toThrow();
+
+            // Verify DoPC module index exists
+            const dopcIndexHtml = join(outputDir, 'ontology', KEYSTONE_VERSION, 'core', 'DoPC', 'index.html');
+            await expect(fs.access(dopcIndexHtml)).resolves.not.toThrow();
+
+            // Verify Unit module index exists
+            const unitIndexHtml = join(outputDir, 'ontology', KEYSTONE_VERSION, 'core', 'Unit', 'index.html');
+            await expect(fs.access(unitIndexHtml)).resolves.not.toThrow();
+            
+            // Verify an individual unit page exists
+            const kilogramHtml = join(outputDir, 'ontology', KEYSTONE_VERSION, 'core', 'Unit', 'Kilogram.html');
+            await expect(fs.access(kilogramHtml)).resolves.not.toThrow();
         });
     });
 });

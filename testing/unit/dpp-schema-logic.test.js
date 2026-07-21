@@ -18,13 +18,18 @@ const mockOntologyStore = {
     'http://mock/ontology/product': {
         "@context": { 
             "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 
+            "dppk-unit": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/units#`,
             "rdfs": "http://www.w3.org/2000/01/rdf-schema#" 
         },
         "@graph": [
             {
-                "@id": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`,
-                "dppk:unit": [{ "@value": "N" }],
+                "@id": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/dopc#tearStrength`,
+                "dppk:unit": [{ "@id": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/unit#Newton` }],
                 "rdfs:label": [{ "@value": "Tear Strength", "@language": "en" }]
+            },
+            {
+                "@id": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/unit#Newton`,
+                "dppk:unitSymbol": [{ "@value": "N" }]
             }
         ]
     }
@@ -75,8 +80,8 @@ const fullExampleDpp = {
   
   // EPD Data
   "epd": {
-      [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#gwp`]: {
-          [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#a1-a3`]: 5.5
+      [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/epd#gwp`]: {
+          [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/epd#a1-a3`]: 5.5
       }
   },
 
@@ -89,8 +94,8 @@ const fullExampleDpp = {
   ],
   
   // Generic / DOPC
-  "dopc": {
-      [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`]: 50
+  [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#dopc`]: {
+      [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/dopc#tearStrength`]: 50
   }
 };
 
@@ -102,8 +107,8 @@ describe('DPP Schema Logic (Unit)', () => {
         const dictionary = {};
         await buildDictionary(['http://mock/ontology/product'], mockLoader, customDocumentLoader, dictionary, KEYSTONE_VERSION);
 
-        expect(dictionary[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`]).toBeDefined();
-        expect(dictionary[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#tearStrength`].unit).toBe('N');
+        expect(dictionary[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/dopc#tearStrength`]).toBeDefined();
+        expect(dictionary[`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/dopc#tearStrength`].unit).toBe('N');
     });
 
     test('transform returns transformed objects (Basic Smoke Test)', async () => {
@@ -325,7 +330,9 @@ describe('DPP Schema Logic (Unit)', () => {
             "@type": ["DigitalProductPassport", "ConstructionProduct"],
             "digitalProductPassportId": "urn:uuid:const-test",
             "uniqueProductIdentifier": "urn:gtin:const-test",
-            "dopIdentifier": "DOP-1234",
+            [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#dopc`]: {
+                [`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/dopc#declarationCode`]: "DOP-1234"
+            },
             "harmonisedStandardReference": "EN 12345:2020",
             "notifiedBody": {
                 "organizationName": "Safety Corp"
