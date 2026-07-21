@@ -1,0 +1,6113 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "gs1": "https://ref.gs1.org/voc/",
+    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "unece": "https://vocabulary.uncefact.org/",
+    "@base": "https://dpp-keystone.org/spec/v3/terms"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Compliance",
+  "@type": "owl:Ontology",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Core Ontology - Compliance and Regulatory Definitions (v3)"
+    },
+    {
+      "@language": "bg",
+      "@value": "Основна онтология на DPP - Определения за съответствие и регулации (v3)"
+    },
+    {
+      "@language": "cs",
+      "@value": "Základní ontologie DPP - Definice shody a regulací (v3)"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Kerneontologi - Compliance og regulatoriske definitioner (v3)"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Kernontologie - Konformitäts- und regulatorische Definitionen (v3)"
+    },
+    {
+      "@language": "el",
+      "@value": "Βασική οντολογία DPP - Ορισμοί συμμόρφωσης και κανονισμών (v3)"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología central de DPP - Definiciones normativas y de cumplimiento (v3)"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP tuumontoloogia - Vastavuse ja regulatiivsed definitsioonid (v3)"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-ydinontologia - Vaatimustenmukaisuuden ja sääntelyn määritykset (v3)"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de base DPP - Définitions de conformité et de réglementation (v3)"
+    },
+    {
+      "@language": "ga",
+      "@value": "Príomhointeolaíocht DPP - Sainmhínithe Comhlíonta agus Rialála (v3)"
+    },
+    {
+      "@language": "hr",
+      "@value": "Osnovna ontologija DPP-a - Definicije sukladnosti i propisa (v3)"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP alapontológia - Megfelelőségi és szabályozási definíciók (v3)"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia di base DPP - Definizioni di conformità e normative (v3)"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP pagrindinė ontologija - Atitikties ir normatyviniai apibrėžimai (v3)"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP pamata ontoloģija - Atbilstības un normatīvās definīcijas (v3)"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija Ewlenija tad-DPP - Definizzjonijiet ta' Konformità u Regolatorji (v3)"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP Kernontologie - Nalevings- en regelgevende definities (v3)"
+    },
+    {
+      "@language": "pl",
+      "@value": "Główna ontologia DPP - Definicje zgodności i przepisów (v3)"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia Central do DPP - Definições de Conformidade e Regulamentares (v3)"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de bază DPP - Definiții de conformitate și reglementare (v3)"
+    },
+    {
+      "@language": "sk",
+      "@value": "Základná ontológia DPP - Definície zhody a regulácií (v3)"
+    },
+    {
+      "@language": "sl",
+      "@value": "Osnovna ontologija DPP - Definicije skladnosti in predpisov (v3)"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-kärnontologi - Efterlevnad och regulatoriska definitioner (v3)"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines horizontal concepts related to Documents, Certifications, Substances of Concern, Eco-Design, Packaging, and Production Steps."
+    },
+    {
+      "@language": "bg",
+      "@value": "Определя хоризонтални концепции, свързани с документи, сертификации, вещества, пораждащи безпокойство, екодизайн, опаковки и производствени стъпки."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje horizontální koncepty týkající se dokumentů, certifikací, látek vzbuzujících obavy, ekodesignu, obalů a výrobních kroků."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer horisontale koncepter relateret til dokumenter, certificeringer, problematiske stoffer, miljøvenligt design, emballage og produktionstrin."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert horizontale Konzepte in Bezug auf Dokumente, Zertifizierungen, besorgniserregende Stoffe, Ökodesign, Verpackung und Produktionsschritte."
+    },
+    {
+      "@language": "el",
+      "@value": "Καθορίζει οριζόντιες έννοιες που σχετίζονται με έγγραφα, πιστοποιήσεις, ουσίες που προκαλούν ανησυχία, οικολογικό σχεδιασμό, συσκευασία και στάδια παραγωγής."
+    },
+    {
+      "@language": "es",
+      "@value": "Define conceptos horizontales relacionados con Documentos, Certificaciones, Sustancias preocupantes, Ecodiseño, Embalaje y Pasos de producción."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb horisontaalsed kontseptsioonid seoses dokumentide, sertifikaatide, murettekitavate ainete, ökodisaini, pakendite ja tootmissammudega."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittää horisontaalisia käsitteitä, jotka liittyvät asiakirjoihin, sertifiointeihin, huolta aiheuttaviin aineisiin, ekosuunnitteluun, pakkauksiin ja tuotantovaiheisiin."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les concepts horizontaux liés aux documents, certifications, substances préoccupantes, écoconception, emballage et étapes de production."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhíníonn sé coincheapa cothrománacha a bhaineann le Doiciméid, Deimhnithe, Substaintí is Ábhar Imní, Éicidhearthóireacht, Pacáistiú, agus Céimeanna Táirgthe."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira horizontalne koncepte povezane s dokumentima, certifikatima, zabrinjavajućim tvarima, ekološkim dizajnom, ambalažom i proizvodnim koracima."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a dokumentumokhoz, tanúsítványokhoz, aggodalomra okot adó anyagokhoz, környezettudatos tervezéshez, csomagoláshoz és gyártási lépésekhez kapcsolódó horizontális fogalmakat."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce concetti orizzontali relativi a documenti, certificazioni, sostanze problematiche, progettazione ecocompatibile, imballaggio e fasi di produzione."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia horizontalias koncepcijas, susijusias su dokumentais, sertifikatais, susirūpinimą keliančiomis medžiagomis, ekologiniu projektavimu, pakuotėmis ir gamybos etapais."
+    },
+    {
+      "@language": "lv",
+      "@value": "Nosaka horizontālus jēdzienus, kas saistīti ar dokumentiem, sertifikātiem, vielām, kas rada bažas, ekodizainu, iepakojumu un ražošanas posmiem."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi kunċetti orizzontali relatati ma' Dokumenti, Ċertifikazzjonijiet, Sustanzi ta' Tħassib, Ekodisinn, Imballaġġ, u Passi tal-Produzzjoni."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert horizontale concepten met betrekking tot documenten, certificeringen, zorgwekkende stoffen, ecologisch ontwerp, verpakking en productiestappen."
+    },
+    {
+      "@language": "pl",
+      "@value": "Określa poziome pojęcia związane z dokumentami, certyfikatami, substancjami wzbudzającymi obawy, ekoprojektem, opakowaniami i krokami produkcji."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define conceitos horizontais relacionados a Documentos, Certificações, Substâncias que suscitam preocupação, Ecodesign, Embalagem e Etapas de Produção."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește concepte orizontale referitoare la documente, certificări, substanțe care prezintă motive de îngrijorare, proiectare ecologică, ambalaje și etape de producție."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje horizontálne koncepty týkajúce sa dokumentov, certifikácií, látok vzbudzujúcich obavy, ekodizajnu, obalov a výrobných krokov."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa horizontalne koncepte, povezane z dokumenti, certifikati, snovmi, ki vzbujajo skrb, okoljsko primerno zasnovo, embalažo in proizvodnimi koraki."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar horisontella begrepp relaterade till dokument, certifieringar, farliga ämnen, ekodesign, förpackningar och produktionssteg."
+    }
+  ],
+  "owl:versionInfo": "v3",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Product.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Organization.jsonld"
+    },
+    {
+      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/RelatedResource.jsonld"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:Certification",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certification"
+        },
+        {
+          "@language": "bg",
+          "@value": "Сертификация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Certifikace"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificering"
+        },
+        {
+          "@language": "de",
+          "@value": "Zertifizierung"
+        },
+        {
+          "@language": "el",
+          "@value": "Πιστοποίηση"
+        },
+        {
+          "@language": "es",
+          "@value": "Certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifitseerimine"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifiointi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Deimhniú"
+        },
+        {
+          "@language": "hr",
+          "@value": "Certifikacija"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsítás"
+        },
+        {
+          "@language": "it",
+          "@value": "Certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikavimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Certificering"
+        },
+        {
+          "@language": "pl",
+          "@value": "Certyfikacja"
+        },
+        {
+          "@language": "pt",
+          "@value": "Certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Certificare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Certifikácia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Certificiranje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifiering"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A confirmation that the product meets the requirements of a specific standard or regulation (e.g., CE Marking, EPD)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Потвърждение, че продуктът отговаря на изискванията на специфичен стандарт или регламент (напр. CE маркировка, EPD)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Potvrzení, že výrobek splňuje požadavky specifické normy nebo předpisu (např. označení CE, EPD)."
+        },
+        {
+          "@language": "da",
+          "@value": "En bekræftelse på, at produktet opfylder kravene i en specifik standard eller forordning (f.eks. CE-mærkning, EPD)."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Bestätigung, dass das Produkt die Anforderungen einer bestimmten Norm oder Vorschrift erfüllt (z. B. CE-Kennzeichnung, EPD)."
+        },
+        {
+          "@language": "el",
+          "@value": "Επιβεβαίωση ότι το προϊόν πληροί τις απαιτήσεις ενός συγκεκριμένου προτύπου ή κανονισμού (π.χ. σήμανση CE, EPD)."
+        },
+        {
+          "@language": "es",
+          "@value": "Una confirmación de que el producto cumple con los requisitos de un estándar o regulación específica (por ejemplo, marcado CE, EPD)."
+        },
+        {
+          "@language": "et",
+          "@value": "Kinnitus, et toode vastab kindla standardi või määruse nõuetele (nt CE-märgis, EPD)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Vahvistus siitä, että tuote täyttää tietyn standardin tai säännöksen vaatimukset (esim. CE-merkintä, EPD)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une confirmation que le produit répond aux exigences d'une norme ou d'une réglementation spécifique (par exemple, marquage CE, EPD)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Deimhniú go gcomhlíonann an táirge riachtanais caighdeáin nó rialacháin shonraigh (m.sh., Marcáil CE, EPD)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Potvrda da proizvod ispunjava zahtjeve određenog standarda ili propisa (npr. CE oznaka, EPD)."
+        },
+        {
+          "@language": "hu",
+          "@value": "Megerősítés arról, hogy a termék megfelel egy adott szabvány vagy előírás követelményeinek (pl. CE jelölés, EPD)."
+        },
+        {
+          "@language": "it",
+          "@value": "Una conferma che il prodotto soddisfa i requisiti di uno standard o di un regolamento specifico (es. marcatura CE, EPD)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Patvirtinimas, kad gaminys atitinka konkretaus standarto ar reglamento reikalavimus (pvz., CE ženklinimas, EPD)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Apstiprinājums, ka produkts atbilst noteikta standarta vai regulas prasībām (piem., CE marķējums, EPD)."
+        },
+        {
+          "@language": "mt",
+          "@value": "Konferma li l-prodott jissodisfa r-rekwiżiti ta' standard jew regolament speċifiku (eż., Marka CE, EPD)."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een bevestiging dat het product voldoet aan de eisen van een specifieke norm of regelgeving (bijv. CE-markering, EPD)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Potwierdzenie, że produkt spełnia wymagania określonej normy lub przepisu (np. oznakowanie CE, EPD)."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma confirmação de que o produto atende aos requisitos de uma norma ou regulamento específico (por exemplo, marcação CE, EPD)."
+        },
+        {
+          "@language": "ro",
+          "@value": "O confirmare a faptului că produsul îndeplinește cerințele unui anumit standard sau regulament (de ex., Marcajul CE, EPD)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Potvrdenie, že výrobok spĺňa požiadavky špecifickej normy alebo predpisu (napr. označenie CE, EPD)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Potrditev, da izdelek izpolnjuje zahteve določenega standarda ali predpisa (npr. oznaka CE, EPD)."
+        },
+        {
+          "@language": "sv",
+          "@value": "En bekräftelse på att produkten uppfyller kraven i en specifik standard eller förordning (t.ex. CE-märkning, EPD)."
+        }
+      ],
+      "rdfs:subClassOf": {
+        "@id": "dppk:RelatedResource"
+      },
+      "owl:equivalentClass": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        },
+        {
+          "@id": "unece:certificationEvidenceDocument"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:Packaging",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Packaging"
+        },
+        {
+          "@language": "bg",
+          "@value": "Опаковка"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obal"
+        },
+        {
+          "@language": "da",
+          "@value": "Emballage"
+        },
+        {
+          "@language": "de",
+          "@value": "Verpackung"
+        },
+        {
+          "@language": "el",
+          "@value": "Συσκευασία"
+        },
+        {
+          "@language": "es",
+          "@value": "Embalaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Pakend"
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkaus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Emballage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Pacáistiú"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ambalaža"
+        },
+        {
+          "@language": "hu",
+          "@value": "Csomagolás"
+        },
+        {
+          "@language": "it",
+          "@value": "Imballaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Imballaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Verpakking"
+        },
+        {
+          "@language": "pl",
+          "@value": "Opakowanie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Embalagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Ambalaj"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obal"
+        },
+        {
+          "@language": "sl",
+          "@value": "Embalaža"
+        },
+        {
+          "@language": "sv",
+          "@value": "Förpackning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Information about the materials and properties of the product's packaging."
+        },
+        {
+          "@language": "bg",
+          "@value": "Информация за материалите и свойствата на опаковката на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Informace o materiálech a vlastnostech obalu produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Information om materialer og egenskaber ved produktets emballage."
+        },
+        {
+          "@language": "de",
+          "@value": "Informationen über die Materialien und Eigenschaften der Produktverpackung."
+        },
+        {
+          "@language": "el",
+          "@value": "Πληροφορίες σχετικά με τα υλικά και τις ιδιότητες της συσκευασίας του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "Información sobre los materiales y propiedades del embalaje del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Teave toote pakendi materjalide ja omaduste kohta."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tietoja tuotteen pakkauksen materiaaleista ja ominaisuuksista."
+        },
+        {
+          "@language": "fr",
+          "@value": "Informations sur les matériaux et les propriétés de l'emballage du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Faisnéis faoi ábhair agus airíonna phacáistiú an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Informacije o materijalima i svojstvima ambalaže proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "Információ a termék csomagolásának anyagairól és tulajdonságairól."
+        },
+        {
+          "@language": "it",
+          "@value": "Informazioni sui materiali e sulle proprietà dell'imballaggio del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Informacija apie gaminio pakuotės medžiagas ir savybes."
+        },
+        {
+          "@language": "lv",
+          "@value": "Informācija par produkta iepakojuma materiāliem un īpašībām."
+        },
+        {
+          "@language": "mt",
+          "@value": "Informazzjoni dwar il-materjali u l-proprjetajiet tal-imballaġġ tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Informatie over de materialen en eigenschappen van de verpakking van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Informacje o materiałach i właściwościach opakowania produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Informações sobre os materiais e propriedades da embalagem do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Informații despre materialele și proprietățile ambalajului produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Informácie o materiáloch a vlastnostiach obalu produktu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Informacije o materialih in lastnostih embalaže izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Information om material och egenskaper hos produktens förpackning."
+        }
+      ],
+      "owl:equivalentClass": [
+        {
+          "@id": "gs1:PackagingMaterialDetails"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:ProductionStep",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Production Step"
+        },
+        {
+          "@language": "bg",
+          "@value": "Производствена стъпка"
+        },
+        {
+          "@language": "cs",
+          "@value": "Výrobní krok"
+        },
+        {
+          "@language": "da",
+          "@value": "Produktionstrin"
+        },
+        {
+          "@language": "de",
+          "@value": "Produktionsschritt"
+        },
+        {
+          "@language": "el",
+          "@value": "Στάδιο παραγωγής"
+        },
+        {
+          "@language": "es",
+          "@value": "Paso de producción"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootmissamm"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotantovaihe"
+        },
+        {
+          "@language": "fr",
+          "@value": "Étape de production"
+        },
+        {
+          "@language": "ga",
+          "@value": "Céim Táirgthe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Proizvodni korak"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártási lépés"
+        },
+        {
+          "@language": "it",
+          "@value": "Fase di produzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamybos etapas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražošanas posms"
+        },
+        {
+          "@language": "mt",
+          "@value": "Pass tal-Produzzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Productiestap"
+        },
+        {
+          "@language": "pl",
+          "@value": "Krok produkcji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Etapa de produção"
+        },
+        {
+          "@language": "ro",
+          "@value": "Etapă de producție"
+        },
+        {
+          "@language": "sk",
+          "@value": "Výrobný krok"
+        },
+        {
+          "@language": "sl",
+          "@value": "Proizvodni korak"
+        },
+        {
+          "@language": "sv",
+          "@value": "Produktionssteg"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A significant step in the manufacturing or processing chain of the product, including its location."
+        },
+        {
+          "@language": "bg",
+          "@value": "Значителна стъпка в производствената или преработвателната верига на продукта, включително неговото местоположение."
+        },
+        {
+          "@language": "cs",
+          "@value": "Významný krok ve výrobním nebo zpracovatelském řetězci produktu, včetně jeho umístění."
+        },
+        {
+          "@language": "da",
+          "@value": "Et væsentligt trin i produktions- eller forarbejdningskæden for produktet, herunder dets placering."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein wichtiger Schritt in der Herstellungs- oder Verarbeitungskette des Produkts, einschließlich des Standorts."
+        },
+        {
+          "@language": "el",
+          "@value": "Σημαντικό στάδιο στην αλυσίδα κατασκευής ή επεξεργασίας του προϊόντος, συμπεριλαμβανομένης της τοποθεσίας του."
+        },
+        {
+          "@language": "es",
+          "@value": "Un paso significativo en la cadena de fabricación o procesamiento del producto, incluida su ubicación."
+        },
+        {
+          "@language": "et",
+          "@value": "Oluline samm toote tootmis- või töötlemisahelas, sealhulgas selle asukoht."
+        },
+        {
+          "@language": "fi",
+          "@value": "Merkittävä vaihe tuotteen valmistus- tai jalostusketjussa, mukaan lukien sen sijainti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une étape importante dans la chaîne de fabrication ou de transformation du produit, y compris son emplacement."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céim shuntasach i slabhra déantúsaíochta nó próiseála an táirge, lena n-áirítear a shuíomh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Značajan korak u proizvodnom lancu ili lancu obrade proizvoda, uključujući njegovu lokaciju."
+        },
+        {
+          "@language": "hu",
+          "@value": "Jelentős lépés a termék gyártási vagy feldolgozási láncában, beleértve a helyszínét is."
+        },
+        {
+          "@language": "it",
+          "@value": "Una fase significativa nella catena di produzione o trasformazione del prodotto, compresa la sua ubicazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Reikšmingas gaminio gamybos ar perdirbimo grandinės etapas, įskaitant jo vietą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Būtisks posms produkta ražošanas vai apstrādes ķēdē, tostarp tā atrašanās vieta."
+        },
+        {
+          "@language": "mt",
+          "@value": "Pass sinifikanti fil-katina tal-manifattura jew tal-ipproċessar tal-prodott, inkluż il-post tiegħu."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een belangrijke stap in de productie- of verwerkingsketen van het product, inclusief de locatie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Istotny krok w łańcuchu produkcyjnym lub przetwórczym produktu, w tym jego lokalizacja."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma etapa significativa na cadeia de fabricação ou processamento do produto, incluindo sua localização."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un pas semnificativ în lanțul de fabricație sau de procesare a produsului, inclusiv locația acestuia."
+        },
+        {
+          "@language": "sk",
+          "@value": "Významný krok vo výrobnom alebo spracovateľskom reťazci produktu, vrátane jeho umiestnenia."
+        },
+        {
+          "@language": "sl",
+          "@value": "Pomemben korak v proizvodni ali predelovalni verigi izdelka, vključno z njegovo lokacijo."
+        },
+        {
+          "@language": "sv",
+          "@value": "Ett betydande steg i produktens tillverknings- eller bearbetningskedja, inklusive dess plats."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:documents",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Documents"
+        },
+        {
+          "@language": "bg",
+          "@value": "Документи"
+        },
+        {
+          "@language": "cs",
+          "@value": "Dokumenty"
+        },
+        {
+          "@language": "da",
+          "@value": "Dokumenter"
+        },
+        {
+          "@language": "de",
+          "@value": "Dokumente"
+        },
+        {
+          "@language": "el",
+          "@value": "Έγγραφα"
+        },
+        {
+          "@language": "es",
+          "@value": "Documentos"
+        },
+        {
+          "@language": "et",
+          "@value": "Dokumendid"
+        },
+        {
+          "@language": "fi",
+          "@value": "Asiakirjat"
+        },
+        {
+          "@language": "fr",
+          "@value": "Documents"
+        },
+        {
+          "@language": "ga",
+          "@value": "Doiciméid"
+        },
+        {
+          "@language": "hr",
+          "@value": "Dokumenti"
+        },
+        {
+          "@language": "hu",
+          "@value": "Dokumentumok"
+        },
+        {
+          "@language": "it",
+          "@value": "Documenti"
+        },
+        {
+          "@language": "lt",
+          "@value": "Dokumentai"
+        },
+        {
+          "@language": "lv",
+          "@value": "Dokumenti"
+        },
+        {
+          "@language": "mt",
+          "@value": "Dokumenti"
+        },
+        {
+          "@language": "nl",
+          "@value": "Documenten"
+        },
+        {
+          "@language": "pl",
+          "@value": "Dokumenty"
+        },
+        {
+          "@language": "pt",
+          "@value": "Documentos"
+        },
+        {
+          "@language": "ro",
+          "@value": "Documente"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dokumenty"
+        },
+        {
+          "@language": "sl",
+          "@value": "Dokumenti"
+        },
+        {
+          "@language": "sv",
+          "@value": "Dokument"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the product to associated digital documents."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва продукта със свързани цифрови документи."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje produkt s přidruženými digitálními dokumenty."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer produktet til tilknyttede digitale dokumenter."
+        },
+        {
+          "@language": "de",
+          "@value": "Verbindet das Produkt mit zugehörigen digitalen Dokumenten."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το προϊόν με σχετικά ψηφιακά έγγραφα."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el producto con documentos digitales asociados."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob toote seotud digitaalsete dokumentidega."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää tuotteen siihen liittyviin digitaalisiin asiakirjoihin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le produit aux documents numériques associés."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann an táirge le doiciméid dhigiteacha ghaolmhara."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje proizvod s pridruženim digitalnim dokumentima."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kapcsolatot teremt a termék és a hozzá tartozó digitális dokumentumok között."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il prodotto con i documenti digitali associati."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja gaminį su susijusiais skaitmeniniais dokumentais."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista produktu ar saistītiem digitālajiem dokumentiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jorbot il-prodott ma' dokumenti diġitali assoċjati."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het product aan gerelateerde digitale documenten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wiąże produkt z powiązanymi dokumentami cyfrowymi."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o produto a documentos digitais associados."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează produsul cu documente digitale asociate."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája produkt s priradenými digitálnymi dokumentmi."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje izdelek s povezanimi digitalnimi dokumenti."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar produkten till tillhörande digitala dokument."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:referencedFile"
+      }
+    },
+    {
+      "@id": "dppk:certifications",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certifications"
+        },
+        {
+          "@language": "bg",
+          "@value": "Сертификации"
+        },
+        {
+          "@language": "cs",
+          "@value": "Certifikace"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificeringer"
+        },
+        {
+          "@language": "de",
+          "@value": "Zertifizierungen"
+        },
+        {
+          "@language": "el",
+          "@value": "Πιστοποιήσεις"
+        },
+        {
+          "@language": "es",
+          "@value": "Certificaciones"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadid"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifioinnit"
+        },
+        {
+          "@language": "fr",
+          "@value": "Certifications"
+        },
+        {
+          "@language": "ga",
+          "@value": "Deimhnithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Certifikati"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsítványok"
+        },
+        {
+          "@language": "it",
+          "@value": "Certificazioni"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikatai"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikāti"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ċertifikazzjonijiet"
+        },
+        {
+          "@language": "nl",
+          "@value": "Certificeringen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Certyfikaty"
+        },
+        {
+          "@language": "pt",
+          "@value": "Certificações"
+        },
+        {
+          "@language": "ro",
+          "@value": "Certificări"
+        },
+        {
+          "@language": "sk",
+          "@value": "Certifikácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Certifikati"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifieringar"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the product to its certifications."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва продукта с неговите сертификации."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje produkt s jeho certifikacemi."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer produktet til dets certificeringer."
+        },
+        {
+          "@language": "de",
+          "@value": "Verbindet das Produkt mit seinen Zertifizierungen."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το προϊόν με τις πιστοποιήσεις του."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el producto con sus certificaciones."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob toote selle sertifikaatidega."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää tuotteen sen sertifiointeihin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le produit à ses certifications."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann an táirge lena dheimhnithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje proizvod s njegovim certifikatima."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kapcsolatot teremt a termék és tanúsítványai között."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il prodotto con le sue certificazioni."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja gaminį su jo sertifikatais."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista produktu ar tā sertifikātiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jorbot il-prodott maċ-ċertifikazzjonijiet tiegħu."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het product aan de bijbehorende certificeringen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wiąże produkt z jego certyfikatami."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o produto às suas certificações."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează produsul cu certificările sale."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája produkt s jeho certifikáciami."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje izdelek z njegovimi certifikati."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar produkten till dess certifieringar."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Certification"
+      },
+      "owl:equivalentProperty": [
+        {
+          "@id": "schema:hasCertification"
+        },
+        {
+          "@id": "gs1:certification"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:additionalCertification",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Additional Certification"
+        },
+        {
+          "@language": "bg",
+          "@value": "Допълнителна сертификация"
+        },
+        {
+          "@language": "cs",
+          "@value": "Dodatečná certifikace"
+        },
+        {
+          "@language": "da",
+          "@value": "Yderligere certificering"
+        },
+        {
+          "@language": "de",
+          "@value": "Zusätzliche Zertifizierung"
+        },
+        {
+          "@language": "el",
+          "@value": "Πρόσθετη πιστοποίηση"
+        },
+        {
+          "@language": "es",
+          "@value": "Certificación adicional"
+        },
+        {
+          "@language": "et",
+          "@value": "Lisasertifikaat"
+        },
+        {
+          "@language": "fi",
+          "@value": "Lisäsertifiointi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Certification supplémentaire"
+        },
+        {
+          "@language": "ga",
+          "@value": "Deimhniú Breise"
+        },
+        {
+          "@language": "hr",
+          "@value": "Dodatna certifikacija"
+        },
+        {
+          "@language": "hu",
+          "@value": "További tanúsítás"
+        },
+        {
+          "@language": "it",
+          "@value": "Certificazione aggiuntiva"
+        },
+        {
+          "@language": "lt",
+          "@value": "Papildomas sertifikatas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Papildu sertifikācija"
+        },
+        {
+          "@language": "mt",
+          "@value": "Ċertifikazzjoni Addizzjonali"
+        },
+        {
+          "@language": "nl",
+          "@value": "Aanvullende certificering"
+        },
+        {
+          "@language": "pl",
+          "@value": "Dodatkowa certyfikacja"
+        },
+        {
+          "@language": "pt",
+          "@value": "Certificação adicional"
+        },
+        {
+          "@language": "ro",
+          "@value": "Certificare suplimentară"
+        },
+        {
+          "@language": "sk",
+          "@value": "Dodatočná certifikácia"
+        },
+        {
+          "@language": "sl",
+          "@value": "Dodatno certificiranje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Ytterligare certifiering"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the product to any additional voluntary or secondary certifications."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва продукта с всякакви допълнителни доброволни или вторични сертификации."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje produkt s jakýmikoli dalšími dobrovolnými nebo sekundárními certifikacemi."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer produktet til eventuelle yderligere frivillige eller sekundære certificeringer."
+        },
+        {
+          "@language": "de",
+          "@value": "Verbindet das Produkt mit allen zusätzlichen freiwilligen oder sekundären Zertifizierungen."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το προϊόν με τυχόν πρόσθετες εθελοντικές ή δευτερεύουσες πιστοποιήσεις."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el producto con cualquier certificación voluntaria o secundaria adicional."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob toote mis tahes täiendavate vabatahtlike või teiseste sertifikaatidega."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää tuotteen mahdollisiin lisäsertifiointeihin (vapaaehtoisiin tai toissijaisiin)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le produit à toute certification volontaire ou secondaire supplémentaire."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann an táirge le haon deimhnithe deonacha nó tánaisteacha breise."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje proizvod s bilo kojim dodatnim dobrovoljnim ili sekundarnim certifikatima."
+        },
+        {
+          "@language": "hu",
+          "@value": "A terméket bármilyen további önkéntes vagy másodlagos tanúsítványhoz kapcsolja."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il prodotto con eventuali certificazioni volontarie o secondarie aggiuntive."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja gaminį su bet kokiais papildomais savanoriškais ar antriniais sertifikatais."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista produktu ar jebkādiem papildu brīvprātīgiem vai sekundāriem sertifikātiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jorbot il-prodott ma' kwalunkwe ċertifikazzjoni volontarja jew sekondarja addizzjonali."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het product aan eventuele aanvullende vrijwillige of secundaire certificeringen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wiąże produkt z wszelkimi dodatkowymi dobrowolnymi lub drugorzędnymi certyfikatami."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o produto a quaisquer certificações voluntárias ou secundárias adicionais."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează produsul cu orice certificări voluntare sau secundare suplimentare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája produkt s akýmikoľvek ďalšími dobrovoľnými alebo sekundárnymi certifikáciami."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje izdelek z vsemi dodatnimi prostovoljnimi ali sekundarnimi certifikati."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar produkten till eventuella ytterligare frivilliga eller sekundära certifieringar."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dppk:certifications"
+      }
+    },
+    {
+      "@id": "dppk:substancesOfConcern",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Substances of Concern"
+        },
+        {
+          "@language": "bg",
+          "@value": "Вещества, пораждащи безпокойство"
+        },
+        {
+          "@language": "cs",
+          "@value": "Látky vzbuzující obavy"
+        },
+        {
+          "@language": "da",
+          "@value": "Problematiske stoffer"
+        },
+        {
+          "@language": "de",
+          "@value": "Besorgniserregende Stoffe"
+        },
+        {
+          "@language": "el",
+          "@value": "Ουσίες που προκαλούν ανησυχία"
+        },
+        {
+          "@language": "es",
+          "@value": "Sustancias preocupantes"
+        },
+        {
+          "@language": "et",
+          "@value": "Murettekitavad ained"
+        },
+        {
+          "@language": "fi",
+          "@value": "Huolta aiheuttavat aineet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Substances préoccupantes"
+        },
+        {
+          "@language": "ga",
+          "@value": "Substaintí is ábhar imní"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zabrinjavajuće tvari"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aggodalomra okot adó anyagok"
+        },
+        {
+          "@language": "it",
+          "@value": "Sostanze problematiche"
+        },
+        {
+          "@language": "lt",
+          "@value": "Susirūpinimą keliančios medžiagos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Vielas, kas rada bažas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Sustanzi ta' tħassib"
+        },
+        {
+          "@language": "nl",
+          "@value": "Zorgwekkende stoffen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Substancje wzbudzające obawy"
+        },
+        {
+          "@language": "pt",
+          "@value": "Substâncias que suscitam preocupação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Substanțe care prezintă motive de îngrijorare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Látky vzbudzujúce obavy"
+        },
+        {
+          "@language": "sl",
+          "@value": "Snovi, ki vzbujajo skrb"
+        },
+        {
+          "@language": "sv",
+          "@value": "Farliga ämnen"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Relates the product to any substances of concern it contains."
+        },
+        {
+          "@language": "bg",
+          "@value": "Свързва продукта с всички съдържащи се в него вещества, пораждащи безпокойство."
+        },
+        {
+          "@language": "cs",
+          "@value": "Spojuje produkt s jakýmikoli látkami vzbuzujícími obavy, které obsahuje."
+        },
+        {
+          "@language": "da",
+          "@value": "Relaterer produktet til eventuelle problematiske stoffer, det indeholder."
+        },
+        {
+          "@language": "de",
+          "@value": "Verbindet das Produkt mit allen darin enthaltenen besorgniserregenden Stoffen."
+        },
+        {
+          "@language": "el",
+          "@value": "Συνδέει το προϊόν με τυχόν ουσίες που προκαλούν ανησυχία και τις οποίες περιέχει."
+        },
+        {
+          "@language": "es",
+          "@value": "Relaciona el producto con cualquier sustancia preocupante que contenga."
+        },
+        {
+          "@language": "et",
+          "@value": "Seob toote mis tahes murettekitavate ainetega, mida see sisaldab."
+        },
+        {
+          "@language": "fi",
+          "@value": "Yhdistää tuotteen sen sisältämiin huolta aiheuttaviin aineisiin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Relie le produit à toute substance préoccupante qu'il contient."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nascann sé an táirge le haon substaintí is ábhar imní atá ann."
+        },
+        {
+          "@language": "hr",
+          "@value": "Povezuje proizvod sa svim zabrinjavajućim tvarima koje sadrži."
+        },
+        {
+          "@language": "hu",
+          "@value": "Összekapcsolja a terméket a benne található aggodalomra okot adó anyagokkal."
+        },
+        {
+          "@language": "it",
+          "@value": "Mette in relazione il prodotto con eventuali sostanze problematiche che contiene."
+        },
+        {
+          "@language": "lt",
+          "@value": "Susieja gaminį su bet kokiomis jame esančiomis susirūpinimą keliančiomis medžiagomis."
+        },
+        {
+          "@language": "lv",
+          "@value": "Saista produktu ar visām tajā esošajām vielām, kas rada bažas."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jorbot il-prodott ma' kwalunkwe sustanza ta' tħassib li jkun fih."
+        },
+        {
+          "@language": "nl",
+          "@value": "Koppelt het product aan eventuele zorgwekkende stoffen die het bevat."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wiąże produkt ze wszystkimi substancjami wzbudzającymi obawy, które zawiera."
+        },
+        {
+          "@language": "pt",
+          "@value": "Relaciona o produto a quaisquer substâncias que suscitam preocupação que ele contenha."
+        },
+        {
+          "@language": "ro",
+          "@value": "Relaționează produsul cu orice substanțe care prezintă motive de îngrijorare pe care le conține."
+        },
+        {
+          "@language": "sk",
+          "@value": "Spája produkt s akýmikoľvek látkami vzbudzujúcimi obavy, ktoré obsahuje."
+        },
+        {
+          "@language": "sl",
+          "@value": "Povezuje izdelek s katerimi koli snovmi, ki vzbujajo skrb in jih vsebuje."
+        },
+        {
+          "@language": "sv",
+          "@value": "Relaterar produkten till eventuella farliga ämnen den innehåller."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      }
+    },
+    {
+      "@id": "dppk:packaging",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Packaging"
+        },
+        {
+          "@language": "bg",
+          "@value": "Опаковка"
+        },
+        {
+          "@language": "cs",
+          "@value": "Obal"
+        },
+        {
+          "@language": "da",
+          "@value": "Emballage"
+        },
+        {
+          "@language": "de",
+          "@value": "Verpackung"
+        },
+        {
+          "@language": "el",
+          "@value": "Συσκευασία"
+        },
+        {
+          "@language": "es",
+          "@value": "Embalaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Pakend"
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkaus"
+        },
+        {
+          "@language": "fr",
+          "@value": "Emballage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Pacáistiú"
+        },
+        {
+          "@language": "hr",
+          "@value": "Ambalaža"
+        },
+        {
+          "@language": "hu",
+          "@value": "Csomagolás"
+        },
+        {
+          "@language": "it",
+          "@value": "Imballaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Imballaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Verpakking"
+        },
+        {
+          "@language": "pl",
+          "@value": "Opakowanie"
+        },
+        {
+          "@language": "pt",
+          "@value": "Embalagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Ambalaj"
+        },
+        {
+          "@language": "sk",
+          "@value": "Obal"
+        },
+        {
+          "@language": "sl",
+          "@value": "Embalaža"
+        },
+        {
+          "@language": "sv",
+          "@value": "Förpackning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A list of packaging elements associated with the product."
+        },
+        {
+          "@language": "bg",
+          "@value": "Списък на опаковъчните елементи, свързани с продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Seznam prvků obalu spojených s produktem."
+        },
+        {
+          "@language": "da",
+          "@value": "En liste over emballageelementer forbundet med produktet."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Liste der mit dem Produkt verbundenen Verpackungselemente."
+        },
+        {
+          "@language": "el",
+          "@value": "Κατάλογος στοιχείων συσκευασίας που σχετίζονται με το προϊόν."
+        },
+        {
+          "@language": "es",
+          "@value": "Una lista de los elementos de embalaje asociados con el producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Tootega seotud pakendielementide loend."
+        },
+        {
+          "@language": "fi",
+          "@value": "Luettelo tuotteeseen liittyvistä pakkausosista."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une liste des éléments d'emballage associés au produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Liosta d'eilimintí pacáistithe a bhaineann leis an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Popis elemenata ambalaže povezanih s proizvodom."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termékhez kapcsolódó csomagolási elemek listája."
+        },
+        {
+          "@language": "it",
+          "@value": "Un elenco di elementi di imballaggio associati al prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Su gaminiu susijusių pakuotės elementų sąrašas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Ar produktu saistīto iepakojuma elementu saraksts."
+        },
+        {
+          "@language": "mt",
+          "@value": "Lista ta' elementi tal-imballaġġ assoċjati mal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een lijst met verpakkingselementen die aan het product zijn gekoppeld."
+        },
+        {
+          "@language": "pl",
+          "@value": "Lista elementów opakowania powiązanych z produktem."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma lista de elementos de embalagem associados ao produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "O listă a elementelor de ambalaj asociate cu produsul."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zoznam prvkov obalu spojených s produktom."
+        },
+        {
+          "@language": "sl",
+          "@value": "Seznam elementov embalaže, povezanih z izdelkom."
+        },
+        {
+          "@language": "sv",
+          "@value": "En lista över förpackningselement associerade med produkten."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packaging"
+      }
+    },
+    {
+      "@id": "dppk:productionSteps",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Production Steps"
+        },
+        {
+          "@language": "bg",
+          "@value": "Производствени стъпки"
+        },
+        {
+          "@language": "cs",
+          "@value": "Výrobní kroky"
+        },
+        {
+          "@language": "da",
+          "@value": "Produktionstrin"
+        },
+        {
+          "@language": "de",
+          "@value": "Produktionsschritte"
+        },
+        {
+          "@language": "el",
+          "@value": "Στάδια παραγωγής"
+        },
+        {
+          "@language": "es",
+          "@value": "Pasos de producción"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootmissammud"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotantovaiheet"
+        },
+        {
+          "@language": "fr",
+          "@value": "Étapes de production"
+        },
+        {
+          "@language": "ga",
+          "@value": "Céimeanna Táirgthe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Proizvodni koraci"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártási lépések"
+        },
+        {
+          "@language": "it",
+          "@value": "Fasi di produzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamybos etapai"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražošanas posmi"
+        },
+        {
+          "@language": "mt",
+          "@value": "Passi tal-Produzzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Productiestappen"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kroki produkcji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Etapas de produção"
+        },
+        {
+          "@language": "ro",
+          "@value": "Etape de producție"
+        },
+        {
+          "@language": "sk",
+          "@value": "Výrobné kroky"
+        },
+        {
+          "@language": "sl",
+          "@value": "Proizvodni koraki"
+        },
+        {
+          "@language": "sv",
+          "@value": "Produktionssteg"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Product"
+      },
+      "rdfs:range": {
+        "@id": "dppk:ProductionStep"
+      }
+    },
+    {
+      "@id": "dppk:certificationName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certification Name"
+        },
+        {
+          "@language": "bg",
+          "@value": "Име на сертификацията"
+        },
+        {
+          "@language": "cs",
+          "@value": "Název certifikace"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificeringsnavn"
+        },
+        {
+          "@language": "de",
+          "@value": "Name der Zertifizierung"
+        },
+        {
+          "@language": "el",
+          "@value": "Όνομα πιστοποίησης"
+        },
+        {
+          "@language": "es",
+          "@value": "Nombre de la certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi nimi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifioinnin nimi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Nom de la certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm an Deimhnithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Naziv certifikata"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsítvány neve"
+        },
+        {
+          "@language": "it",
+          "@value": "Nome della certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikato pavadinimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikāta nosaukums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Isem taċ-Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Naam certificering"
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa certyfikacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Nome da certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele certificării"
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov certifikácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime certifikata"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifieringens namn"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The name of the certification."
+        },
+        {
+          "@language": "bg",
+          "@value": "Името на сертификацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Název certifikace."
+        },
+        {
+          "@language": "da",
+          "@value": "Navnet på certificeringen."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Name der Zertifizierung."
+        },
+        {
+          "@language": "el",
+          "@value": "Το όνομα της πιστοποίησης."
+        },
+        {
+          "@language": "es",
+          "@value": "El nombre de la certificación."
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi nimi."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifioinnin nimi."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le nom de la certification."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm an deimhnithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Naziv certifikacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A tanúsítvány neve."
+        },
+        {
+          "@language": "it",
+          "@value": "Il nome della certificazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikato pavadinimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācijas nosaukums."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-isem taċ-ċertifikazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De naam van de certificering."
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa certyfikacji."
+        },
+        {
+          "@language": "pt",
+          "@value": "O nome da certificação."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele certificării."
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov certifikácie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime certifikacije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Namnet på certifieringen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:name"
+      }
+    },
+    {
+      "@id": "dppk:certificationId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certification Identifier"
+        },
+        {
+          "@language": "bg",
+          "@value": "Идентификатор на сертификацията"
+        },
+        {
+          "@language": "cs",
+          "@value": "Identifikátor certifikace"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificeringsidentifikator"
+        },
+        {
+          "@language": "de",
+          "@value": "Zertifizierungskennung"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό πιστοποίησης"
+        },
+        {
+          "@language": "es",
+          "@value": "Identificador de la certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi identifikaator"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifioinnin tunniste"
+        },
+        {
+          "@language": "fr",
+          "@value": "Identifiant de la certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir an Deimhnithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Identifikator certifikata"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsítvány azonosítója"
+        },
+        {
+          "@language": "it",
+          "@value": "Identificatore della certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikato identifikatorius"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikāta identifikators"
+        },
+        {
+          "@language": "mt",
+          "@value": "Identifikatur taċ-Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Identificatie certificering"
+        },
+        {
+          "@language": "pl",
+          "@value": "Identyfikator certyfikacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Identificador da certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul certificării"
+        },
+        {
+          "@language": "sk",
+          "@value": "Identifikátor certifikácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "Identifikator certifikata"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifieringsidentifierare"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The unique identifier or number of the certification."
+        },
+        {
+          "@language": "bg",
+          "@value": "Уникалният идентификатор или номер на сертификацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor nebo číslo certifikace."
+        },
+        {
+          "@language": "da",
+          "@value": "Den unikke identifikator eller nummer på certificeringen."
+        },
+        {
+          "@language": "de",
+          "@value": "Die eindeutige Kennung oder Nummer der Zertifizierung."
+        },
+        {
+          "@language": "el",
+          "@value": "Το μοναδικό αναγνωριστικό ή ο αριθμός της πιστοποίησης."
+        },
+        {
+          "@language": "es",
+          "@value": "El identificador o número único de la certificación."
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi kordumatu identifikaator või number."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifioinnin yksilöllinen tunniste tai numero."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'identifiant unique ou le numéro de la certification."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir uathúil nó uimhir an deimhnithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator ili broj certifikacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A tanúsítvány egyedi azonosítója vagy száma."
+        },
+        {
+          "@language": "it",
+          "@value": "L'identificatore o numero univoco della certificazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus sertifikato identifikatorius arba numeris."
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācijas unikālais identifikators vai numurs."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-identifikatur uniku jew in-numru taċ-ċertifikazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De unieke identificatie of het nummer van de certificering."
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator lub numer certyfikacji."
+        },
+        {
+          "@language": "pt",
+          "@value": "O identificador único ou número da certificação."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul unic sau numărul certificării."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor alebo číslo certifikácie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstven identifikator ali številka certifikacije."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den unika identifieraren eller numret på certifieringen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:identifier"
+      }
+    },
+    {
+      "@id": "dppk:certificationUrl",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certification URL"
+        },
+        {
+          "@language": "bg",
+          "@value": "Уеб адрес на сертификацията"
+        },
+        {
+          "@language": "cs",
+          "@value": "URL certifikace"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificerings-URL"
+        },
+        {
+          "@language": "de",
+          "@value": "Zertifizierungs-URL"
+        },
+        {
+          "@language": "el",
+          "@value": "Διεύθυνση URL πιστοποίησης"
+        },
+        {
+          "@language": "es",
+          "@value": "URL de la certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi URL"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifioinnin URL-osoite"
+        },
+        {
+          "@language": "fr",
+          "@value": "URL de la certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "URL an Deimhnithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "URL certifikata"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsítvány URL-címe"
+        },
+        {
+          "@language": "it",
+          "@value": "URL della certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikato URL"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikāta URL"
+        },
+        {
+          "@language": "mt",
+          "@value": "URL taċ-Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "URL van de certificering"
+        },
+        {
+          "@language": "pl",
+          "@value": "Adres URL certyfikacji"
+        },
+        {
+          "@language": "pt",
+          "@value": "URL da certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "URL-ul certificării"
+        },
+        {
+          "@language": "sk",
+          "@value": "URL certifikácie"
+        },
+        {
+          "@language": "sl",
+          "@value": "URL certifikata"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifierings-URL"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "A web link to the certification details or registry."
+        },
+        {
+          "@language": "bg",
+          "@value": "Уеб връзка към данните или регистъра на сертификацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Webový odkaz na podrobnosti o certifikaci nebo registr."
+        },
+        {
+          "@language": "da",
+          "@value": "Et weblink til certificeringsoplysningerne eller registret."
+        },
+        {
+          "@language": "de",
+          "@value": "Ein Weblink zu den Zertifizierungsdetails oder dem Register."
+        },
+        {
+          "@language": "el",
+          "@value": "Ένας σύνδεσμος ιστού για τις λεπτομέρειες ή το μητρώο της πιστοποίησης."
+        },
+        {
+          "@language": "es",
+          "@value": "Un enlace web a los detalles de la certificación o registro."
+        },
+        {
+          "@language": "et",
+          "@value": "Veebilink sertifikaadi üksikasjadele või registrisse."
+        },
+        {
+          "@language": "fi",
+          "@value": "Verkkolinkki sertifiointitietoihin tai rekisteriin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Un lien web vers les détails de la certification ou le registre."
+        },
+        {
+          "@language": "ga",
+          "@value": "Nasc gréasáin le sonraí an deimhnithe nó leis an gclár."
+        },
+        {
+          "@language": "hr",
+          "@value": "Poveznica na detalje o certifikaciji ili registar."
+        },
+        {
+          "@language": "hu",
+          "@value": "Internetes hivatkozás a tanúsítvány részleteire vagy a nyilvántartásra."
+        },
+        {
+          "@language": "it",
+          "@value": "Un collegamento web ai dettagli della certificazione o al registro."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nuoroda į sertifikato informaciją arba registrą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Tīmekļa saite uz sertifikācijas informāciju vai reģistru."
+        },
+        {
+          "@language": "mt",
+          "@value": "Rabta elettronika għad-dettalji jew ir-reġistru taċ-ċertifikazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een weblink naar de certificeringsdetails of het register."
+        },
+        {
+          "@language": "pl",
+          "@value": "Link internetowy do szczegółów certyfikacji lub rejestru."
+        },
+        {
+          "@language": "pt",
+          "@value": "Um link web para os detalhes ou registro da certificação."
+        },
+        {
+          "@language": "ro",
+          "@value": "Un link web către detaliile sau registrul certificării."
+        },
+        {
+          "@language": "sk",
+          "@value": "Webový odkaz na podrobnosti o certifikácii alebo register."
+        },
+        {
+          "@language": "sl",
+          "@value": "Spletna povezava do podrobnosti certifikacije ali registra."
+        },
+        {
+          "@language": "sv",
+          "@value": "En webblänk till certifieringsinformationen eller registret."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "owl:equivalentProperty": {
+        "@id": "schema:url"
+      }
+    },
+    {
+      "@id": "dppk:certificationBodyName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certifying Body Name"
+        },
+        {
+          "@language": "bg",
+          "@value": "Име на сертифициращия орган"
+        },
+        {
+          "@language": "cs",
+          "@value": "Název certifikačního orgánu"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificeringsorganets navn"
+        },
+        {
+          "@language": "de",
+          "@value": "Name der Zertifizierungsstelle"
+        },
+        {
+          "@language": "el",
+          "@value": "Όνομα οργανισμού πιστοποίησης"
+        },
+        {
+          "@language": "es",
+          "@value": "Nombre del organismo de certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifitseerimisasutuse nimi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifiointielimen nimi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Nom de l'organisme de certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm an Chomhlachta Deimhniúcháin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Naziv certifikacijskog tijela"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsító testület neve"
+        },
+        {
+          "@language": "it",
+          "@value": "Nome dell'ente di certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikavimo įstaigos pavadinimas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācijas iestādes nosaukums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Isem tal-Korp taċ-Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Naam certificerende instantie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa jednostki certyfikującej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Nome do organismo de certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele organismului de certificare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov certifikačného orgánu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime certifikacijskega organa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifieringsorganets namn"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The name of the body that issued the certification."
+        },
+        {
+          "@language": "bg",
+          "@value": "Името на органа, издал сертификацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Název orgánu, který certifikaci vydal."
+        },
+        {
+          "@language": "da",
+          "@value": "Navnet på det organ, der udstedte certificeringen."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Name der Stelle, die die Zertifizierung ausgestellt hat."
+        },
+        {
+          "@language": "el",
+          "@value": "Το όνομα του οργανισμού που εξέδωσε την πιστοποίηση."
+        },
+        {
+          "@language": "es",
+          "@value": "El nombre del organismo que emitió la certificación."
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi väljastanud asutuse nimi."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifioinnin myöntäneen elimen nimi."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le nom de l'organisme qui a délivré la certification."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm an chomhlachta a d'eisigh an deimhniú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Naziv tijela koje je izdalo certifikaciju."
+        },
+        {
+          "@language": "hu",
+          "@value": "A tanúsítványt kiállító testület neve."
+        },
+        {
+          "@language": "it",
+          "@value": "Il nome dell'ente che ha rilasciato la certificazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikatą išdavusios įstaigos pavadinimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Iestādes nosaukums, kas izdevusi sertifikāciju."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-isem tal-korp li ħareġ iċ-ċertifikazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De naam van de instantie die de certificering heeft afgegeven."
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa jednostki, która wydała certyfikat."
+        },
+        {
+          "@language": "pt",
+          "@value": "O nome do organismo que emitiu a certificação."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele organismului care a emis certificarea."
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov orgánu, ktorý certifikáciu vydal."
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime organa, ki je izdal certifikacijo."
+        },
+        {
+          "@language": "sv",
+          "@value": "Namnet på det organ som utfärdade certifieringen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:certificationAgency"
+      }
+    },
+    {
+      "@id": "dppk:certificationBodyId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certifying Body ID"
+        },
+        {
+          "@language": "bg",
+          "@value": "ИД на сертифициращия орган"
+        },
+        {
+          "@language": "cs",
+          "@value": "ID certifikačního orgánu"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificeringsorganets ID"
+        },
+        {
+          "@language": "de",
+          "@value": "ID der Zertifizierungsstelle"
+        },
+        {
+          "@language": "el",
+          "@value": "Αναγνωριστικό οργανισμού πιστοποίησης"
+        },
+        {
+          "@language": "es",
+          "@value": "ID del organismo de certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifitseerimisasutuse ID"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifiointielimen tunnus"
+        },
+        {
+          "@language": "fr",
+          "@value": "ID de l'organisme de certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantas an Chomhlachta Deimhniúcháin"
+        },
+        {
+          "@language": "hr",
+          "@value": "ID certifikacijskog tijela"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsító testület azonosítója"
+        },
+        {
+          "@language": "it",
+          "@value": "ID dell'ente di certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikavimo įstaigos ID"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācijas iestādes ID"
+        },
+        {
+          "@language": "mt",
+          "@value": "ID tal-Korp taċ-Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "ID certificerende instantie"
+        },
+        {
+          "@language": "pl",
+          "@value": "ID jednostki certyfikującej"
+        },
+        {
+          "@language": "pt",
+          "@value": "ID do organismo de certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "ID-ul organismului de certificare"
+        },
+        {
+          "@language": "sk",
+          "@value": "ID certifikačného orgánu"
+        },
+        {
+          "@language": "sl",
+          "@value": "ID certifikacijskega organa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifieringsorganets ID"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The unique identifier of the certifying body."
+        },
+        {
+          "@language": "bg",
+          "@value": "Уникалният идентификатор на сертифициращия орган."
+        },
+        {
+          "@language": "cs",
+          "@value": "Jedinečný identifikátor certifikačního orgánu."
+        },
+        {
+          "@language": "da",
+          "@value": "Den unikke identifikator for certificeringsorganet."
+        },
+        {
+          "@language": "de",
+          "@value": "Die eindeutige Kennung der Zertifizierungsstelle."
+        },
+        {
+          "@language": "el",
+          "@value": "Το μοναδικό αναγνωριστικό του οργανισμού πιστοποίησης."
+        },
+        {
+          "@language": "es",
+          "@value": "El identificador único del organismo de certificación."
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifitseerimisasutuse kordumatu identifikaator."
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifiointielimen yksilöllinen tunniste."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'identifiant unique de l'organisme de certification."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aitheantóir uathúil an chomhlachta deimhniúcháin."
+        },
+        {
+          "@language": "hr",
+          "@value": "Jedinstveni identifikator certifikacijskog tijela."
+        },
+        {
+          "@language": "hu",
+          "@value": "A tanúsító testület egyedi azonosítója."
+        },
+        {
+          "@language": "it",
+          "@value": "L'identificatore univoco dell'ente di certificazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Unikalus sertifikavimo įstaigos identifikatorius."
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācijas iestādes unikālais identifikators."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-identifikatur uniku tal-korp taċ-ċertifikazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De unieke identificatie van de certificerende instantie."
+        },
+        {
+          "@language": "pl",
+          "@value": "Unikalny identyfikator jednostki certyfikującej."
+        },
+        {
+          "@language": "pt",
+          "@value": "O identificador único do organismo de certificação."
+        },
+        {
+          "@language": "ro",
+          "@value": "Identificatorul unic al organismului de certificare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Jedinečný identifikátor certifikačného orgánu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Edinstven identifikator certifikacijskega organa."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den unika identifieraren för certifieringsorganet."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "dppk:certificationStartDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Start of Certificate Validity"
+        },
+        {
+          "@language": "bg",
+          "@value": "Начало на валидността на сертификата"
+        },
+        {
+          "@language": "cs",
+          "@value": "Začátek platnosti certifikátu"
+        },
+        {
+          "@language": "da",
+          "@value": "Start på certifikatets gyldighed"
+        },
+        {
+          "@language": "de",
+          "@value": "Beginn der Zertifikatsgültigkeit"
+        },
+        {
+          "@language": "el",
+          "@value": "Έναρξη ισχύος πιστοποιητικού"
+        },
+        {
+          "@language": "es",
+          "@value": "Inicio de la validez del certificado"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi kehtivuse algus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifikaatin voimassaolon alkaminen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Début de validité du certificat"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tús Bailíochta an Deimhnithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Početak valjanosti certifikata"
+        },
+        {
+          "@language": "hu",
+          "@value": "A tanúsítvány érvényességének kezdete"
+        },
+        {
+          "@language": "it",
+          "@value": "Inizio validità del certificato"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikato galiojimo pradžia"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikāta derīguma sākums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Bidu tal-Validità taċ-Ċertifikat"
+        },
+        {
+          "@language": "nl",
+          "@value": "Start geldigheid certificaat"
+        },
+        {
+          "@language": "pl",
+          "@value": "Początek ważności certyfikatu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Início da validade do certificado"
+        },
+        {
+          "@language": "ro",
+          "@value": "Începutul valabilității certificatului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Začiatok platnosti certifikátu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Začetek veljavnosti certifikata"
+        },
+        {
+          "@language": "sv",
+          "@value": "Start för certifikatets giltighet"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The date when the certification became valid."
+        },
+        {
+          "@language": "bg",
+          "@value": "Датата, на която сертификацията е станала валидна."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum, kdy certifikace nabyla platnosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Datoen, hvor certificeringen blev gyldig."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Datum, an dem die Zertifizierung gültig wurde."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ημερομηνία κατά την οποία η πιστοποίηση άρχισε να ισχύει."
+        },
+        {
+          "@language": "es",
+          "@value": "La fecha en la que la certificación entró en vigor."
+        },
+        {
+          "@language": "et",
+          "@value": "Kuupäev, mil sertifikaat kehtima hakkas."
+        },
+        {
+          "@language": "fi",
+          "@value": "Päivämäärä, jolloin sertifiointi tuli voimaan."
+        },
+        {
+          "@language": "fr",
+          "@value": "La date à laquelle la certification est devenue valide."
+        },
+        {
+          "@language": "ga",
+          "@value": "An dáta ar tháinig bailíocht ar an deimhniú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum kada je certifikacija postala valjana."
+        },
+        {
+          "@language": "hu",
+          "@value": "A dátum, amikor a tanúsítvány érvényessé vált."
+        },
+        {
+          "@language": "it",
+          "@value": "La data in cui la certificazione è diventata valida."
+        },
+        {
+          "@language": "lt",
+          "@value": "Data, kada sertifikatas įsigaliojo."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datums, kad sertifikācija stājās spēkā."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-data meta ċ-ċertifikazzjoni saret valida."
+        },
+        {
+          "@language": "nl",
+          "@value": "De datum waarop de certificering geldig werd."
+        },
+        {
+          "@language": "pl",
+          "@value": "Data uzyskania ważności przez certyfikat."
+        },
+        {
+          "@language": "pt",
+          "@value": "A data em que a certificação se tornou válida."
+        },
+        {
+          "@language": "ro",
+          "@value": "Data la care certificarea a devenit valabilă."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum, kedy certifikácia nadobudla platnosť."
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum, ko je certifikacija postala veljavna."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datumet då certifieringen blev giltig."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:certificationStartDate"
+      }
+    },
+    {
+      "@id": "dppk:certificationEndDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "End of Certificate Validity"
+        },
+        {
+          "@language": "bg",
+          "@value": "Край на валидността на сертификата"
+        },
+        {
+          "@language": "cs",
+          "@value": "Konec platnosti certifikátu"
+        },
+        {
+          "@language": "da",
+          "@value": "Udløb af certifikatets gyldighed"
+        },
+        {
+          "@language": "de",
+          "@value": "Ende der Zertifikatsgültigkeit"
+        },
+        {
+          "@language": "el",
+          "@value": "Λήξη ισχύος πιστοποιητικού"
+        },
+        {
+          "@language": "es",
+          "@value": "Fin de la validez del certificado"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifikaadi kehtivuse lõpp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifikaatin voimassaolon päättyminen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Fin de validité du certificat"
+        },
+        {
+          "@language": "ga",
+          "@value": "Deireadh le Bailíocht an Deimhnithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Kraj valjanosti certifikata"
+        },
+        {
+          "@language": "hu",
+          "@value": "A tanúsítvány érvényességének vége"
+        },
+        {
+          "@language": "it",
+          "@value": "Fine validità del certificato"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikato galiojimo pabaiga"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikāta derīguma beigas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tmiem tal-Validità taċ-Ċertifikat"
+        },
+        {
+          "@language": "nl",
+          "@value": "Einde geldigheid certificaat"
+        },
+        {
+          "@language": "pl",
+          "@value": "Koniec ważności certyfikatu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Fim da validade do certificado"
+        },
+        {
+          "@language": "ro",
+          "@value": "Sfârșitul valabilității certificatului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Koniec platnosti certifikátu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Konec veljavnosti certifikata"
+        },
+        {
+          "@language": "sv",
+          "@value": "Slut för certifikatets giltighet"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The date when the certification expires."
+        },
+        {
+          "@language": "bg",
+          "@value": "Датата, на която сертификацията изтича."
+        },
+        {
+          "@language": "cs",
+          "@value": "Datum, kdy certifikaci vyprší platnost."
+        },
+        {
+          "@language": "da",
+          "@value": "Datoen, hvor certificeringen udløber."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Datum, an dem die Zertifizierung abläuft."
+        },
+        {
+          "@language": "el",
+          "@value": "Η ημερομηνία λήξης της πιστοποίησης."
+        },
+        {
+          "@language": "es",
+          "@value": "La fecha en la que expira la certificación."
+        },
+        {
+          "@language": "et",
+          "@value": "Kuupäev, mil sertifikaat aegub."
+        },
+        {
+          "@language": "fi",
+          "@value": "Päivämäärä, jolloin sertifiointi vanhenee."
+        },
+        {
+          "@language": "fr",
+          "@value": "La date d'expiration de la certification."
+        },
+        {
+          "@language": "ga",
+          "@value": "An dáta a théann an deimhniú in éag."
+        },
+        {
+          "@language": "hr",
+          "@value": "Datum isteka certifikacije."
+        },
+        {
+          "@language": "hu",
+          "@value": "A dátum, amikor a tanúsítvány lejár."
+        },
+        {
+          "@language": "it",
+          "@value": "La data in cui la certificazione scade."
+        },
+        {
+          "@language": "lt",
+          "@value": "Data, kada baigiasi sertifikato galiojimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datums, kad sertifikācijai beidzas derīguma termiņš."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-data meta ċ-ċertifikazzjoni tiskadi."
+        },
+        {
+          "@language": "nl",
+          "@value": "De datum waarop de certificering verloopt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Data wygaśnięcia certyfikatu."
+        },
+        {
+          "@language": "pt",
+          "@value": "A data em que a certificação expira."
+        },
+        {
+          "@language": "ro",
+          "@value": "Data la care certificarea expiră."
+        },
+        {
+          "@language": "sk",
+          "@value": "Dátum, kedy certifikácii vyprší platnosť."
+        },
+        {
+          "@language": "sl",
+          "@value": "Datum, ko certifikacija poteče."
+        },
+        {
+          "@language": "sv",
+          "@value": "Datumet då certifieringen löper ut."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      }
+    },
+    {
+      "@id": "dppk:certificationBodyRole",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certifying Body Role"
+        },
+        {
+          "@language": "bg",
+          "@value": "Роля на сертифициращия орган"
+        },
+        {
+          "@language": "cs",
+          "@value": "Role certifikačního orgánu"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificeringsorganets rolle"
+        },
+        {
+          "@language": "de",
+          "@value": "Rolle der Zertifizierungsstelle"
+        },
+        {
+          "@language": "el",
+          "@value": "Ρόλος οργανισμού πιστοποίησης"
+        },
+        {
+          "@language": "es",
+          "@value": "Rol del organismo de certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifitseerimisasutuse roll"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifiointielimen rooli"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rôle de l'organisme de certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról an Chomhlachta Deimhniúcháin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga certifikacijskog tijela"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsító testület szerepe"
+        },
+        {
+          "@language": "it",
+          "@value": "Ruolo dell'ente di certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikavimo įstaigos vaidmuo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācijas iestādes loma"
+        },
+        {
+          "@language": "mt",
+          "@value": "Rwol tal-Korp taċ-Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Rol certificerende instantie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola jednostki certyfikującej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Papel do organismo de certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rolul organismului de certificare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Rola certifikačného orgánu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga certifikacijskega organa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Certifieringsorganets roll"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The role or capacity in which the certifying body issued the certification."
+        },
+        {
+          "@language": "bg",
+          "@value": "Ролята или качеството, в което сертифициращият орган е издал сертификацията."
+        },
+        {
+          "@language": "cs",
+          "@value": "Role nebo postavení, ve kterém certifikační orgán certifikaci vydal."
+        },
+        {
+          "@language": "da",
+          "@value": "Den rolle eller egenskab, som certificeringsorganet udstedte certificeringen i."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Rolle oder Funktion, in der die Zertifizierungsstelle die Zertifizierung ausgestellt hat."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο ρόλος ή η ιδιότητα με την οποία ο οργανισμός πιστοποίησης εξέδωσε την πιστοποίηση."
+        },
+        {
+          "@language": "es",
+          "@value": "El rol o la capacidad en la que el organismo certificador emitió la certificación."
+        },
+        {
+          "@language": "et",
+          "@value": "Roll või pädevus, milles sertifitseerimisasutus sertifikaadi väljastas."
+        },
+        {
+          "@language": "fi",
+          "@value": "Rooli tai ominaisuus, jossa sertifiointielin myönsi sertifioinnin."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le rôle ou la qualité en vertu duquel l'organisme certificateur a délivré la certification."
+        },
+        {
+          "@language": "ga",
+          "@value": "An ról nó an cháilíocht inar eisigh an comhlacht deimhniúcháin an deimhniú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga ili svojstvo u kojem je certifikacijsko tijelo izdalo certifikaciju."
+        },
+        {
+          "@language": "hu",
+          "@value": "A szerepkör vagy minőség, amelyben a tanúsító testület a tanúsítványt kiállította."
+        },
+        {
+          "@language": "it",
+          "@value": "Il ruolo o la veste in cui l'ente certificatore ha rilasciato la certificazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Vaidmuo ar statusas, kuriuo sertifikavimo įstaiga išdavė sertifikatą."
+        },
+        {
+          "@language": "lv",
+          "@value": "Loma vai statusā, kādā sertifikācijas iestāde izdevusi sertifikāciju."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ir-rwol jew il-kapaċità li biha l-korp taċ-ċertifikazzjoni ħareġ iċ-ċertifikazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "De rol of hoedanigheid waarin de certificerende instantie de certificering heeft afgegeven."
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola lub charakter, w jakim jednostka certyfikująca wydała certyfikację."
+        },
+        {
+          "@language": "pt",
+          "@value": "O papel ou a capacidade em que o organismo certificador emitiu a certificação."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rolul sau calitatea în care organismul de certificare a emis certificarea."
+        },
+        {
+          "@language": "sk",
+          "@value": "Rola alebo postavenie, v ktorom certifikačný orgán certifikáciu vydal."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga ali status, v katerem je certifikacijski organ izdal certifikacijo."
+        },
+        {
+          "@language": "sv",
+          "@value": "Den roll eller egenskap i vilken certifieringsorganet utfärdade certifieringen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Certification"
+      },
+      "rdfs:range": {
+        "@id": "dppk:CertificationBodyRoleType"
+      }
+    },
+    {
+      "@id": "dppk:CertificationBodyRoleType",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": {
+        "@id": "rdfs:Resource"
+      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Certification Body Role Type"
+        },
+        {
+          "@language": "bg",
+          "@value": "Тип роля на сертифициращ орган"
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ role certifikačního orgánu"
+        },
+        {
+          "@language": "da",
+          "@value": "Certificeringsorgans rolletype"
+        },
+        {
+          "@language": "de",
+          "@value": "Rollentyp der Zertifizierungsstelle"
+        },
+        {
+          "@language": "el",
+          "@value": "Τύπος ρόλου φορέα πιστοποίησης"
+        },
+        {
+          "@language": "es",
+          "@value": "Tipo de rol de organismo de certificación"
+        },
+        {
+          "@language": "et",
+          "@value": "Sertifitseerimisasutuse rolli tüüp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Sertifiointielimen roolin tyyppi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Type de rôle d'organisme de certification"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál Róil an Chomhlachta Deimhniúcháin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta uloge certifikacijskog tijela"
+        },
+        {
+          "@language": "hu",
+          "@value": "Tanúsító szervezet szerepének típusa"
+        },
+        {
+          "@language": "it",
+          "@value": "Tipo di ruolo di organismo di certificazione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Sertifikavimo įstaigos vaidmens tipas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Sertifikācijas iestādes lomas tips"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tip ta' Rwol ta' Korp ta' Ċertifikazzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Roltype certificeringsinstantie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Typ roli jednostki certyfikującej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tipo de papel de organismo de certificação"
+        },
+        {
+          "@language": "ro",
+          "@value": "Tip de rol de organism de certificare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ roly certifikačného orgánu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta vloge certifikacijskega organa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Rolletyp för certifieringsorgan"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "An enumeration of roles that an organization can assume when issuing a certification."
+        },
+        {
+          "@language": "bg",
+          "@value": "Изброяване на роли, които една организация може да поеме при издаване на сертификат."
+        },
+        {
+          "@language": "cs",
+          "@value": "Výčet rolí, které může organizace převzít při vydávání certifikace."
+        },
+        {
+          "@language": "da",
+          "@value": "En opregning af roller, som en organisation kan påtage sig ved udstedelse af en certificering."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Aufzählung von Rollen, die eine Organisation bei der Ausstellung einer Zertifizierung übernehmen kann."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια απαρίθμηση ρόλων που μπορεί να αναλάβει ένας οργανισμός κατά την έκδοση πιστοποίησης."
+        },
+        {
+          "@language": "es",
+          "@value": "Una enumeración de los roles que una organización puede asumir al emitir una certificación."
+        },
+        {
+          "@language": "et",
+          "@value": "Rollide loetelu, mida organisatsioon võib sertifikaadi väljastamisel omandada."
+        },
+        {
+          "@language": "fi",
+          "@value": "Luettelo rooleista, joita organisaatio voi omaksua sertifiointia myönnettäessä."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une énumération des rôles qu'une organisation peut assumer lors de la délivrance d'une certification."
+        },
+        {
+          "@language": "ga",
+          "@value": "Áireamh ar róil is féidir le heagraíocht a ghlacadh agus deimhniú á eisiúint."
+        },
+        {
+          "@language": "hr",
+          "@value": "Popis uloga koje organizacija može preuzeti prilikom izdavanja certifikata."
+        },
+        {
+          "@language": "hu",
+          "@value": "Azon szerepek felsorolása, amelyeket egy szervezet felvehet tanúsítvány kiadásakor."
+        },
+        {
+          "@language": "it",
+          "@value": "Un'enumerazione dei ruoli che un'organizzazione può assumere quando rilascia una certificazione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Vaidmenų, kuriuos organizacija gali prisiimti išduodama sertifikatą, išvardijimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Lomu uzskaitījums, ko organizācija var uzņemties, izdodot sertifikātu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Enumerazzjoni tar-rwoli li organizzazzjoni tista' tassumi meta toħroġ ċertifikazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een opsomming van rollen die een organisatie op zich kan nemen bij het afgeven van een certificering."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wyliczenie ról, jakie organizacja może pełnić przy wydawaniu certyfikatu."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma enumeração dos papéis que uma organização pode assumir ao emitir uma certificação."
+        },
+        {
+          "@language": "ro",
+          "@value": "O enumerare a rolurilor pe care o organizație le poate asuma la emiterea unei certificări."
+        },
+        {
+          "@language": "sk",
+          "@value": "Výpočet rolí, ktoré môže organizácia prevziať pri vydávaní certifikácie."
+        },
+        {
+          "@language": "sl",
+          "@value": "Naštevanje vlog, ki jih lahko organizacija prevzame pri izdaji certifikata."
+        },
+        {
+          "@language": "sv",
+          "@value": "En uppräkning av roller som en organisation kan anta vid utfärdande av en certifiering."
+        }
+      ],
+      "owl:oneOf": [
+        {
+          "@id": "dppk:EconomicOperatorRole"
+        },
+        {
+          "@id": "dppk:ManufacturerRole"
+        },
+        {
+          "@id": "dppk:ImporterRole"
+        },
+        {
+          "@id": "dppk:NotifiedBodyRole"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:EconomicOperatorRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Economic Operator Role"
+        },
+        {
+          "@language": "bg",
+          "@value": "Роля на икономически оператор"
+        },
+        {
+          "@language": "cs",
+          "@value": "Role hospodářského subjektu"
+        },
+        {
+          "@language": "da",
+          "@value": "Økonomisk aktørs rolle"
+        },
+        {
+          "@language": "de",
+          "@value": "Rolle des Wirtschaftsakteurs"
+        },
+        {
+          "@language": "el",
+          "@value": "Ρόλος οικονομικού φορέα"
+        },
+        {
+          "@language": "es",
+          "@value": "Rol de operador económico"
+        },
+        {
+          "@language": "et",
+          "@value": "Ettevõtja roll"
+        },
+        {
+          "@language": "fi",
+          "@value": "Talouden toimijan rooli"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rôle d'opérateur économique"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról an Oibreora Eacnamaíoch"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga gospodarskog subjekta"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gazdasági szereplő szerepe"
+        },
+        {
+          "@language": "it",
+          "@value": "Ruolo di operatore economico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Ekonominės veiklos vykdytojo vaidmuo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Uzņēmēja loma"
+        },
+        {
+          "@language": "mt",
+          "@value": "Rwol ta' Operatur Ekonomiku"
+        },
+        {
+          "@language": "nl",
+          "@value": "Rol van marktdeelnemer"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola podmiotu gospodarczego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Papel de operador económico"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rol de operator economic"
+        },
+        {
+          "@language": "sk",
+          "@value": "Rola hospodárskeho subjektu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga gospodarskega subjekta"
+        },
+        {
+          "@language": "sv",
+          "@value": "Ekonomisk aktörs roll"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The role of an entity responsible for placing the product on the market, as defined by ESPR."
+        },
+        {
+          "@language": "bg",
+          "@value": "Ролята на субект, отговорен за пускането на продукта на пазара, както е определено от ESPR."
+        },
+        {
+          "@language": "cs",
+          "@value": "Role subjektu odpovědného za uvedení produktu na trh, jak je definováno v ESPR."
+        },
+        {
+          "@language": "da",
+          "@value": "Rollen for en enhed, der er ansvarlig for at bringe produktet i omsætning, som defineret i ESPR."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Rolle einer juristischen Person, die für das Inverkehrbringen des Produkts gemäß der ESPR verantwortlich ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο ρόλος μιας οντότητας που είναι υπεύθυνη για τη διάθεση του προϊόντος στην αγορά, όπως ορίζεται από το ESPR."
+        },
+        {
+          "@language": "es",
+          "@value": "El rol de una entidad responsable de introducir el producto en el mercado, según lo definido por ESPR."
+        },
+        {
+          "@language": "et",
+          "@value": "ESPRi poolt määratletud asutuse roll, kes vastutab toote turule laskmise eest."
+        },
+        {
+          "@language": "fi",
+          "@value": "ESPR:n määrittelemä rooli taholle, joka on vastuussa tuotteen saattamisesta markkinoille."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le rôle d'une entité responsable de la mise sur le marché du produit, tel que défini par l'ESPR."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról aonáin atá freagrach as an táirge a chur ar an margadh, de réir mar a shainmhínítear sa ESPR."
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga subjekta odgovornog za stavljanje proizvoda na tržište, kako je definirano u ESPR-u."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termék forgalomba hozataláért felelős entitás szerepe az ESPR meghatározása szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Il ruolo di un'entità responsabile dell'immissione del prodotto sul mercato, come definito dal regolamento ESPR."
+        },
+        {
+          "@language": "lt",
+          "@value": "Subjekto, atsakingo už gaminio pateikimą į rinką, vaidmuo, kaip apibrėžta ESPR."
+        },
+        {
+          "@language": "lv",
+          "@value": "Subjekta loma, kas ir atbildīgs par produkta laišanu tirgū, kā noteikts ESPR."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ir-rwol ta' entità responsabbli għat-tqegħid tal-prodott fis-suq, kif definit mill-ESPR."
+        },
+        {
+          "@language": "nl",
+          "@value": "De rol van een entiteit die verantwoordelijk is voor het in de handel brengen van het product, zoals gedefinieerd door de ESPR."
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola podmiotu odpowiedzialnego za wprowadzenie produktu do obrotu, zgodnie z definicją w ESPR."
+        },
+        {
+          "@language": "pt",
+          "@value": "O papel de uma entidade responsável pela colocação do produto no mercado, conforme definido pelo ESPR."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rolul unei entități responsabile de introducerea produsului pe piață, conform definiției din ESPR."
+        },
+        {
+          "@language": "sk",
+          "@value": "Rola subjektu zodpovedného za uvedenie produktu na trh, ako je definované v ESPR."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga subjekta, odgovornega za dajanje izdelka na trg, kot je opredeljeno v ESPR."
+        },
+        {
+          "@language": "sv",
+          "@value": "Rollen för en enhet som ansvarar för att släppa ut produkten på marknaden, enligt ESPR:s definition."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:ManufacturerRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Manufacturer Role"
+        },
+        {
+          "@language": "bg",
+          "@value": "Роля на производител"
+        },
+        {
+          "@language": "cs",
+          "@value": "Role výrobce"
+        },
+        {
+          "@language": "da",
+          "@value": "Producentrolle"
+        },
+        {
+          "@language": "de",
+          "@value": "Herstellerrolle"
+        },
+        {
+          "@language": "el",
+          "@value": "Ρόλος κατασκευαστή"
+        },
+        {
+          "@language": "es",
+          "@value": "Rol de fabricante"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootja roll"
+        },
+        {
+          "@language": "fi",
+          "@value": "Valmistajan rooli"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rôle de fabricant"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról an Mhonaróra"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga proizvođača"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártó szerepe"
+        },
+        {
+          "@language": "it",
+          "@value": "Ruolo di fabbricante"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamintojo vaidmuo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražotāja loma"
+        },
+        {
+          "@language": "mt",
+          "@value": "Rwol ta' Manifattur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Fabrikantenrol"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola producenta"
+        },
+        {
+          "@language": "pt",
+          "@value": "Papel de fabricante"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rol de producător"
+        },
+        {
+          "@language": "sk",
+          "@value": "Rola výrobcu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga proizvajalca"
+        },
+        {
+          "@language": "sv",
+          "@value": "Tillverkarroll"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The role of an entity responsible for the production of the finished goods."
+        },
+        {
+          "@language": "bg",
+          "@value": "Ролята на субект, отговорен за производството на готовите стоки."
+        },
+        {
+          "@language": "cs",
+          "@value": "Role subjektu odpovědného za výrobu hotových výrobků."
+        },
+        {
+          "@language": "da",
+          "@value": "Rollen for en enhed, der er ansvarlig for produktionen af ​​de færdige varer."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Rolle eines Unternehmens, das für die Produktion der Fertigwaren verantwortlich ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο ρόλος μιας οντότητας που είναι υπεύθυνη για την παραγωγή των τελικών προϊόντων."
+        },
+        {
+          "@language": "es",
+          "@value": "El papel de una entidad responsable de la producción de los bienes terminados."
+        },
+        {
+          "@language": "et",
+          "@value": "Valmistoodete tootmise eest vastutava üksuse roll."
+        },
+        {
+          "@language": "fi",
+          "@value": "Valmiiden tuotteiden tuotannosta vastaavan tahon rooli."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le rôle d'une entité responsable de la production des produits finis."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról aonáin atá freagrach as táirgeadh na n-earraí críochnaithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga subjekta odgovornog za proizvodnju gotovih proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "A késztermékek gyártásáért felelős jogi személy szerepe."
+        },
+        {
+          "@language": "it",
+          "@value": "Il ruolo di un'entità responsabile della produzione dei prodotti finiti."
+        },
+        {
+          "@language": "lt",
+          "@value": "Subjekto, atsakingo už gatavų prekių gamybą, vaidmuo."
+        },
+        {
+          "@language": "lv",
+          "@value": "Subjekta loma, kas atbildīgs par gatavās produkcijas ražošanu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ir-rwol ta' entità responsabbli għall-produzzjoni tal-prodotti lesti."
+        },
+        {
+          "@language": "nl",
+          "@value": "De rol van een entiteit die verantwoordelijk is voor de productie van de eindproducten."
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola podmiotu odpowiedzialnego za produkcję wyrobów gotowych."
+        },
+        {
+          "@language": "pt",
+          "@value": "O papel de uma entidade responsável pela produção dos produtos acabados."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rolul unei entități responsabile de producția produselor finite."
+        },
+        {
+          "@language": "sk",
+          "@value": "Úloha subjektu zodpovedného za výrobu hotových výrobkov."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga subjekta, odgovornega za proizvodnjo končnih izdelkov."
+        },
+        {
+          "@language": "sv",
+          "@value": "Rollen för en enhet som ansvarar för produktionen av färdiga varor."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:ImporterRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Importer Role"
+        },
+        {
+          "@language": "bg",
+          "@value": "Роля на вносител"
+        },
+        {
+          "@language": "cs",
+          "@value": "Role dovozce"
+        },
+        {
+          "@language": "da",
+          "@value": "Importørrolle"
+        },
+        {
+          "@language": "de",
+          "@value": "Importeurrolle"
+        },
+        {
+          "@language": "el",
+          "@value": "Ρόλος εισαγωγέα"
+        },
+        {
+          "@language": "es",
+          "@value": "Rol de importador"
+        },
+        {
+          "@language": "et",
+          "@value": "Importija roll"
+        },
+        {
+          "@language": "fi",
+          "@value": "Maahantuojan rooli"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rôle d'importateur"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról an Iompórtálaí"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga uvoznika"
+        },
+        {
+          "@language": "hu",
+          "@value": "Importőr szerepe"
+        },
+        {
+          "@language": "it",
+          "@value": "Ruolo di importatore"
+        },
+        {
+          "@language": "lt",
+          "@value": "Importuotojo vaidmuo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Importētāja loma"
+        },
+        {
+          "@language": "mt",
+          "@value": "Rwol ta' Importatur"
+        },
+        {
+          "@language": "nl",
+          "@value": "Importeursrol"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola importera"
+        },
+        {
+          "@language": "pt",
+          "@value": "Papel de importador"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rol de importator"
+        },
+        {
+          "@language": "sk",
+          "@value": "Rola dovozcu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga uvoznika"
+        },
+        {
+          "@language": "sv",
+          "@value": "Importörroll"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The role of an entity responsible for importing the product into the market."
+        },
+        {
+          "@language": "bg",
+          "@value": "Ролята на субект, отговорен за внасянето на продукта на пазара."
+        },
+        {
+          "@language": "cs",
+          "@value": "Role subjektu odpovědného za dovoz produktu na trh."
+        },
+        {
+          "@language": "da",
+          "@value": "Rollen for en enhed, der er ansvarlig for at importere produktet til markedet."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Rolle eines Unternehmens, das für den Import des Produkts in den Markt verantwortlich ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο ρόλος μιας οντότητας που είναι υπεύθυνη για την εισαγωγή του προϊόντος στην αγορά."
+        },
+        {
+          "@language": "es",
+          "@value": "El papel de una entidad responsable de importar el producto al mercado."
+        },
+        {
+          "@language": "et",
+          "@value": "Toote turule importimise eest vastutava üksuse roll."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotteen markkinoille tuonnista vastaavan tahon rooli."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le rôle d'une entité responsable de l'importation du produit sur le marché."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról aonáin atá freagrach as an táirge a iompórtáil isteach sa mhargadh."
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga subjekta odgovornog za uvoz proizvoda na tržište."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termék piacra történő importálásáért felelős szervezet szerepe."
+        },
+        {
+          "@language": "it",
+          "@value": "Il ruolo di un'entità responsabile dell'importazione del prodotto nel mercato."
+        },
+        {
+          "@language": "lt",
+          "@value": "Subjekto, atsakingo už gaminio importą į rinką, vaidmuo."
+        },
+        {
+          "@language": "lv",
+          "@value": "Subjekta loma, kas ir atbildīgs par produkta importēšanu tirgū."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ir-rwol ta' entità responsabbli għall-importazzjoni tal-prodott fis-suq."
+        },
+        {
+          "@language": "nl",
+          "@value": "De rol van een entiteit die verantwoordelijk is voor het importeren van het product op de markt."
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola podmiotu odpowiedzialnego za import produktu na rynek."
+        },
+        {
+          "@language": "pt",
+          "@value": "O papel de uma entidade responsável por importar o produto para o mercado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rolul unei entități responsabile de importul produsului pe piață."
+        },
+        {
+          "@language": "sk",
+          "@value": "Úloha subjektu zodpovedného za dovoz produktu na trh."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga subjekta, odgovornega za uvoz izdelka na trg."
+        },
+        {
+          "@language": "sv",
+          "@value": "Rollen för en enhet som ansvarar för att importera produkten till marknaden."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:NotifiedBodyRole",
+      "@type": "dppk:CertificationBodyRoleType",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Notified Body Role"
+        },
+        {
+          "@language": "bg",
+          "@value": "Роля на нотифициран орган"
+        },
+        {
+          "@language": "cs",
+          "@value": "Role oznámeného subjektu"
+        },
+        {
+          "@language": "da",
+          "@value": "Bemyndiget organs rolle"
+        },
+        {
+          "@language": "de",
+          "@value": "Rolle der benannten Stelle"
+        },
+        {
+          "@language": "el",
+          "@value": "Ρόλος κοινοποιημένου οργανισμού"
+        },
+        {
+          "@language": "es",
+          "@value": "Rol de organismo notificado"
+        },
+        {
+          "@language": "et",
+          "@value": "Teavitatud asutuse roll"
+        },
+        {
+          "@language": "fi",
+          "@value": "Ilmoitetun laitoksen rooli"
+        },
+        {
+          "@language": "fr",
+          "@value": "Rôle d'organisme notifié"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról an Chomhlachta faoi Fhógra"
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga prijavljenog tijela"
+        },
+        {
+          "@language": "hu",
+          "@value": "Bejelentett szervezet szerepe"
+        },
+        {
+          "@language": "it",
+          "@value": "Ruolo di organismo notificato"
+        },
+        {
+          "@language": "lt",
+          "@value": "Notifikuotosios įstaigos vaidmuo"
+        },
+        {
+          "@language": "lv",
+          "@value": "Paziņotās iestādes loma"
+        },
+        {
+          "@language": "mt",
+          "@value": "Rwol tal-Korp Notifikat"
+        },
+        {
+          "@language": "nl",
+          "@value": "Rol van aangemelde instantie"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola jednostki notyfikowanej"
+        },
+        {
+          "@language": "pt",
+          "@value": "Papel de organismo notificado"
+        },
+        {
+          "@language": "ro",
+          "@value": "Rol de organism notificat"
+        },
+        {
+          "@language": "sk",
+          "@value": "Rola notifikovaného orgánu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga priglašenega organa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Anmält organs roll"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The role of an entity that performs conformity assessment activities and is officially designated by a notifying authority."
+        },
+        {
+          "@language": "bg",
+          "@value": "Ролята на субект, който извършва дейности по оценяване на съответствието и е официално определен от нотифициращ орган."
+        },
+        {
+          "@language": "cs",
+          "@value": "Role subjektu, který provádí činnosti posuzování shody a je úředně určen oznamujícím orgánem."
+        },
+        {
+          "@language": "da",
+          "@value": "Rollen for en enhed, der udfører overensstemmelsesvurderingsaktiviteter og er officielt udpeget af en bemyndigende myndighed."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Rolle einer Stelle, die Konformitätsbewertungsaktivitäten durchführt und offiziell von einer benennenden Behörde benannt ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο ρόλος μιας οντότητας που εκτελεί δραστηριότητες αξιολόγησης της συμμόρφωσης και έχει οριστεί επίσημα από μια κοινοποιούσα αρχή."
+        },
+        {
+          "@language": "es",
+          "@value": "El papel de una entidad que realiza actividades de evaluación de la conformidad y está designada oficialmente por una autoridad notificante."
+        },
+        {
+          "@language": "et",
+          "@value": "Vastavushindamistegevust teostava ja teavitava asutuse poolt ametlikult määratud üksuse roll."
+        },
+        {
+          "@language": "fi",
+          "@value": "Vaatimustenmukaisuuden arviointitoimenpiteitä suorittavan ja ilmoittavan viranomaisen virallisesti nimeämän tahon rooli."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le rôle d'une entité qui effectue des activités d'évaluation de la conformité et est officiellement désignée par une autorité notifiante."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ról aonáin a dhéanann gníomhaíochtaí measúnaithe comhréireachta agus atá ainmnithe go hoifigiúil ag údarás fógartha."
+        },
+        {
+          "@language": "hr",
+          "@value": "Uloga subjekta koji obavlja aktivnosti ocjenjivanja sukladnosti i kojeg je službeno imenovalo tijelo za prijavljivanje."
+        },
+        {
+          "@language": "hu",
+          "@value": "A megfelelőségértékelési tevékenységeket végző és a bejelentő hatóság által hivatalosan kijelölt entitás szerepe."
+        },
+        {
+          "@language": "it",
+          "@value": "Il ruolo di un'entità che svolge attività di valutazione della conformità ed è ufficialmente designata da un'autorità di notifica."
+        },
+        {
+          "@language": "lt",
+          "@value": "Subjekto, atliekančio atitikties vertinimo veiklą ir oficialiai paskirto notifikuojančiosios institucijos, vaidmuo."
+        },
+        {
+          "@language": "lv",
+          "@value": "Subjekta loma, kas veic atbilstības novērtēšanas darbības un ko oficiāli izraudzījusies paziņotāja iestāde."
+        },
+        {
+          "@language": "mt",
+          "@value": "Ir-rwol ta' entità li twettaq attivitajiet ta' valutazzjoni tal-konformità u hija ddeżinjata uffiċjalment minn awtorità notifikanti."
+        },
+        {
+          "@language": "nl",
+          "@value": "De rol van een entiteit die conformiteitsbeoordelingsactiviteiten uitvoert en officieel is aangewezen door een aanmeldende autoriteit."
+        },
+        {
+          "@language": "pl",
+          "@value": "Rola podmiotu, który przeprowadza działania z zakresu oceny zgodności i jest oficjalnie wyznaczony przez organ notyfikujący."
+        },
+        {
+          "@language": "pt",
+          "@value": "O papel de uma entidade que realiza atividades de avaliação da conformidade e é oficialmente designada por uma autoridade notificadora."
+        },
+        {
+          "@language": "ro",
+          "@value": "Rolul unei entități care desfășoară activități de evaluare a conformității și este desemnată oficial de o autoritate de notificare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Úloha subjektu, ktorý vykonáva činnosti posudzovania zhody a je oficiálne určený notifikujúcim orgánom."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vloga subjekta, ki izvaja dejavnosti ugotavljanja skladnosti in ga uradno imenuje priglasitveni organ."
+        },
+        {
+          "@language": "sv",
+          "@value": "Rollen för en enhet som utför bedömningar av överensstämmelse och är officiellt utsedd av en anmälande myndighet."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:packagingMaterialType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Packaging Material Type"
+        },
+        {
+          "@language": "bg",
+          "@value": "Вид материал на опаковката"
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ obalového materiálu"
+        },
+        {
+          "@language": "da",
+          "@value": "Emballagematerialetype"
+        },
+        {
+          "@language": "de",
+          "@value": "Art des Verpackungsmaterials"
+        },
+        {
+          "@language": "el",
+          "@value": "Τύπος υλικού συσκευασίας"
+        },
+        {
+          "@language": "es",
+          "@value": "Tipo de material de embalaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Pakkematerjali tüüp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkausmateriaalin tyyppi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Type de matériau d'emballage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál Ábhair Phacáistithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta materijala za pakiranje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Csomagolóanyag típusa"
+        },
+        {
+          "@language": "it",
+          "@value": "Tipo di materiale di imballaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotės medžiagos tipas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojuma materiāla veids"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tip ta' Materjal tal-Imballaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Type verpakkingsmateriaal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rodzaj materiału opakowaniowego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tipo de material de embalagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Tipul materialului de ambalare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ obalového materiálu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta embalažnega materiala"
+        },
+        {
+          "@language": "sv",
+          "@value": "Typ av förpackningsmaterial"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The type of material used for the packaging (e.g., 'Cardboard', 'Plastic')."
+        },
+        {
+          "@language": "bg",
+          "@value": "Видът материал, използван за опаковката (напр. 'Картон', 'Пластмаса')."
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ materiálu použitého pro obal (např. 'Karton', 'Plast')."
+        },
+        {
+          "@language": "da",
+          "@value": "Typen af materiale anvendt til emballagen (f.eks. 'Pap', 'Plastik')."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Art des für die Verpackung verwendeten Materials (z. B. 'Karton', 'Kunststoff')."
+        },
+        {
+          "@language": "el",
+          "@value": "Ο τύπος του υλικού που χρησιμοποιείται για τη συσκευασία (π.χ. 'Χαρτόνι', 'Πλαστικό')."
+        },
+        {
+          "@language": "es",
+          "@value": "El tipo de material utilizado para el embalaje (por ejemplo, 'Cartón', 'Plástico')."
+        },
+        {
+          "@language": "et",
+          "@value": "Pakendis kasutatud materjali tüüp (nt 'Papp', 'Plast')."
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkauksessa käytetyn materiaalin tyyppi (esim. 'Pahvi', 'Muovi')."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le type de matériau utilisé pour l'emballage (par exemple, 'Carton', 'Plastique')."
+        },
+        {
+          "@language": "ga",
+          "@value": "An cineál ábhair a úsáidtear don phacáistiú (m.sh., 'Cairtchlár', 'Plaisteach')."
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta materijala koji se koristi za ambalažu (npr. 'Karton', 'Plastika')."
+        },
+        {
+          "@language": "hu",
+          "@value": "A csomagoláshoz használt anyag típusa (pl. 'Karton', 'Műanyag')."
+        },
+        {
+          "@language": "it",
+          "@value": "Il tipo di materiale utilizzato per l'imballaggio (es. 'Cartone', 'Plastica')."
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotei naudojamos medžiagos tipas (pvz., 'Kartoninė', 'Plastikinė')."
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojumam izmantotā materiāla veids (piem., 'Kartons', 'Plastmasa')."
+        },
+        {
+          "@language": "mt",
+          "@value": "It-tip ta' materjal użat għall-imballaġġ (eż., 'Kartun', 'Plastik')."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het type materiaal dat is gebruikt voor de verpakking (bijv. 'Karton', 'Plastic')."
+        },
+        {
+          "@language": "pl",
+          "@value": "Rodzaj materiału użytego do opakowania (np. 'Karton', 'Plastik')."
+        },
+        {
+          "@language": "pt",
+          "@value": "O tipo de material utilizado para a embalagem (por exemplo, 'Cartão', 'Plástico')."
+        },
+        {
+          "@language": "ro",
+          "@value": "Tipul de material utilizat pentru ambalaj (de ex., 'Carton', 'Plastic')."
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ materiálu použitého pre obal (napr. 'Kartón', 'Plast')."
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta materiala, uporabljenega za embalažo (npr. 'Karton', 'Plastika')."
+        },
+        {
+          "@language": "sv",
+          "@value": "Typen av material som används för förpackningen (t.ex. 'Kartong', 'Plast')."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packagingMaterialType"
+      }
+    },
+    {
+      "@id": "dppk:packagingMaterialCompositionQuantity",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Packaging Material Composition Quantity"
+        },
+        {
+          "@language": "bg",
+          "@value": "Количество на състава на опаковъчния материал"
+        },
+        {
+          "@language": "cs",
+          "@value": "Množství složení obalového materiálu"
+        },
+        {
+          "@language": "da",
+          "@value": "Mængde af emballagematerialesammensætning"
+        },
+        {
+          "@language": "de",
+          "@value": "Menge der Zusammensetzung des Verpackungsmaterials"
+        },
+        {
+          "@language": "el",
+          "@value": "Ποσότητα σύνθεσης υλικού συσκευασίας"
+        },
+        {
+          "@language": "es",
+          "@value": "Cantidad de composición del material de embalaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Pakkematerjali koostise kogus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkausmateriaalin koostumuksen määrä"
+        },
+        {
+          "@language": "fr",
+          "@value": "Quantité de composition du matériau d'emballage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cainníocht Chomhdhéanamh Ábhar Phacáistithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Količina sastava materijala za pakiranje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Csomagolóanyag összetételének mennyisége"
+        },
+        {
+          "@language": "it",
+          "@value": "Quantità di composizione del materiale di imballaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotės medžiagos sudėties kiekis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojuma materiāla sastāva daudzums"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kwantità tal-Kompożizzjoni tal-Materjal tal-Imballaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Hoeveelheid samenstelling verpakkingsmateriaal"
+        },
+        {
+          "@language": "pl",
+          "@value": "Ilość składu materiału opakowaniowego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Quantidade da composição do material de embalagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Cantitatea compoziției materialului de ambalare"
+        },
+        {
+          "@language": "sk",
+          "@value": "Množstvo zloženia obalového materiálu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Količina sestave embalažnega materiala"
+        },
+        {
+          "@language": "sv",
+          "@value": "Mängd av förpackningsmaterialets sammansättning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The percentage of the material in the packaging."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентът на материала в опаковката."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procento materiálu v obalu."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentdelen af materialet i emballagen."
+        },
+        {
+          "@language": "de",
+          "@value": "Der prozentuale Anteil des Materials in der Verpackung."
+        },
+        {
+          "@language": "el",
+          "@value": "Το ποσοστό του υλικού στη συσκευασία."
+        },
+        {
+          "@language": "es",
+          "@value": "El porcentaje del material en el embalaje."
+        },
+        {
+          "@language": "et",
+          "@value": "Materjali protsent pakendis."
+        },
+        {
+          "@language": "fi",
+          "@value": "Materiaalin prosenttiosuus pakkauksessa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le pourcentage du matériau dans l'emballage."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán an ábhair sa phacáistiú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak materijala u ambalaži."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az anyag százalékos aránya a csomagolásban."
+        },
+        {
+          "@language": "it",
+          "@value": "La percentuale del materiale nell'imballaggio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Medžiagos procentinė dalis pakuotėje."
+        },
+        {
+          "@language": "lv",
+          "@value": "Materiāla procentuālais daudzums iepakojumā."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-persentaġġ tal-materjal fl-imballaġġ."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het percentage van het materiaal in de verpakking."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość materiału w opakowaniu."
+        },
+        {
+          "@language": "pt",
+          "@value": "A percentagem do material na embalagem."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentul materialului din ambalaj."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálny podiel materiálu v obale."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek materiala v embalaži."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentandelen av materialet i förpackningen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packagingMaterialCompositionQuantity"
+      },
+      "dppk:unit": {
+        "@id": "dppk-unit:Percent"
+      }
+    },
+    {
+      "@id": "dppk:packagingRecyclingProcessType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Packaging Recycling Process Type"
+        },
+        {
+          "@language": "bg",
+          "@value": "Вид процес на рециклиране на опаковката"
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ procesu recyklace obalu"
+        },
+        {
+          "@language": "da",
+          "@value": "Type af genanvendelsesproces for emballage"
+        },
+        {
+          "@language": "de",
+          "@value": "Art des Verpackungsrecyclingprozesses"
+        },
+        {
+          "@language": "el",
+          "@value": "Τύπος διαδικασίας ανακύκλωσης συσκευασίας"
+        },
+        {
+          "@language": "es",
+          "@value": "Tipo de proceso de reciclaje de embalaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Pakendi ringlussevõtu protsessi tüüp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkauksen kierrätysprosessin tyyppi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Type de processus de recyclage de l'emballage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál Próisis Athchúrsála Pacáistithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta procesa recikliranja ambalaže"
+        },
+        {
+          "@language": "hu",
+          "@value": "Csomagolás újrahasznosítási folyamatának típusa"
+        },
+        {
+          "@language": "it",
+          "@value": "Tipo di processo di riciclaggio dell'imballaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotės perdirbimo proceso tipas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojuma otrreizējās pārstrādes procesa veids"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tip ta' Proċess ta' Riċiklaġġ tal-Imballaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Type verpakkingsrecyclingproces"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rodzaj procesu recyklingu opakowań"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tipo de processo de reciclagem de embalagens"
+        },
+        {
+          "@language": "ro",
+          "@value": "Tipul procesului de reciclare a ambalajului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ procesu recyklácie obalu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta procesa recikliranja embalaže"
+        },
+        {
+          "@language": "sv",
+          "@value": "Typ av återvinningsprocess för förpackning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Indicates if the packaging is RECYCLABLE, REUSABLE, or COMPOSTABLE."
+        },
+        {
+          "@language": "bg",
+          "@value": "Посочва дали опаковката е РЕЦИКЛИРУЕМА, ЗА МНОГОКРАТНА УПОТРЕБА или КОМПОСТИРУЕМА."
+        },
+        {
+          "@language": "cs",
+          "@value": "Označuje, zda je obal RECYKLOVATELNÝ, ZNOVU POUŽITELNÝ nebo KOMPOSTOVATELNÝ."
+        },
+        {
+          "@language": "da",
+          "@value": "Angiver, om emballagen er GENANVENDELIG, GENBRUGELIG eller KOMPOSTERBAR."
+        },
+        {
+          "@language": "de",
+          "@value": "Gibt an, ob die Verpackung RECYCELBAR, WIEDERVERWENDBAR oder KOMPOSTIERBAR ist."
+        },
+        {
+          "@language": "el",
+          "@value": "Υποδεικνύει εάν η συσκευασία είναι ΑΝΑΚΥΚΛΩΣΙΜΗ, ΕΠΑΝΑΧΡΗΣΙΜΟΠΟΙΗΣΙΜΗ ή ΚΟΜΠΟΣΤΟΠΟΙΗΣΙΜΗ."
+        },
+        {
+          "@language": "es",
+          "@value": "Indica si el embalaje es RECICLABLE, REUTILIZABLE o COMPOSTABLE."
+        },
+        {
+          "@language": "et",
+          "@value": "Näitab, kas pakend on RINGLUSSEVÕETAV, KORDUSKASUTATAV või KOMPOSTITAV."
+        },
+        {
+          "@language": "fi",
+          "@value": "Osoittaa, onko pakkaus KIERRÄTETTÄVÄ, UUDELLEENKÄYTETTÄVÄ vai KOMPOSTOITAVA."
+        },
+        {
+          "@language": "fr",
+          "@value": "Indique si l'emballage est RECYCLABLE, RÉUTILISABLE ou COMPOSTABLE."
+        },
+        {
+          "@language": "ga",
+          "@value": "Léiríonn sé an bhfuil an pacáistiú IN-ATHCHÚRSÁILTE, IN-ATHÚSÁIDTE nó INMHÚIRÍNITHE."
+        },
+        {
+          "@language": "hr",
+          "@value": "Označava je li ambalaža RECIKLAŽNA, ZA VIŠEKRATNU UPOTREBU ili KOMPOSTABILNA."
+        },
+        {
+          "@language": "hu",
+          "@value": "Jelzi, hogy a csomagolás ÚJRAHASZNOSÍTHATÓ, ÚJRAFELHASZNÁLHATÓ vagy KOMPOSZTÁLHATÓ-e."
+        },
+        {
+          "@language": "it",
+          "@value": "Indica se l'imballaggio è RICICLABILE, RIUTILIZZABILE o COMPOSTABILE."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nurodo, ar pakuotė yra PERDIRBAMA, DAUGKARTINIO NAUDOJIMO ar KOMPOSTUOJAMA."
+        },
+        {
+          "@language": "lv",
+          "@value": "Norāda, vai iepakojums ir PĀRSTRĀDĀJAMS, ATKĀRTOTI IZMANTOJAMS vai KOMPOSTĒJAMS."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jindika jekk l-imballaġġ huwiex RIĊIKLABBLI, JISTA' JINTUŻA MILL-ĠDID, jew JISTA' JIKKOMPOSTA."
+        },
+        {
+          "@language": "nl",
+          "@value": "Geeft aan of de verpakking RECYCLEBAAR, HERBRUIKBAAR of COMPOSTEERBAAR is."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wskazuje, czy opakowanie nadaje się do RECYKLINGU, PONOWNEGO UŻYCIA lub KOMPOSTOWANIA."
+        },
+        {
+          "@language": "pt",
+          "@value": "Indica se a embalagem é RECICLÁVEL, REUTILIZÁVEL ou COMPOSTÁVEL."
+        },
+        {
+          "@language": "ro",
+          "@value": "Indică dacă ambalajul este RECICLABIL, REUTILIZABIL sau COMPOSTABIL."
+        },
+        {
+          "@language": "sk",
+          "@value": "Označuje, či je obal RECYKLOVATEĽNÝ, ZNOVU POUŽITEĽNÝ alebo KOMPOSTOVATEĽNÝ."
+        },
+        {
+          "@language": "sl",
+          "@value": "Označuje, ali je embalažo mogoče RECIKLIRATI, PONOVNO UPORABITI ali KOMPOSTIRATI."
+        },
+        {
+          "@language": "sv",
+          "@value": "Anger om förpackningen är ÅTERVINNINGSBAR, ÅTERANVÄNDBAR eller KOMPOSTERBAR."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:packagingRecyclingProcessType"
+      }
+    },
+    {
+      "@id": "dppk:packagingRecycledContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Packaging Recycled Content"
+        },
+        {
+          "@language": "bg",
+          "@value": "Рециклирано съдържание на опаковката"
+        },
+        {
+          "@language": "cs",
+          "@value": "Recyklovaný obsah obalu"
+        },
+        {
+          "@language": "da",
+          "@value": "Genanvendt indhold i emballage"
+        },
+        {
+          "@language": "de",
+          "@value": "Recyclinganteil der Verpackung"
+        },
+        {
+          "@language": "el",
+          "@value": "Ανακυκλωμένο περιεχόμενο συσκευασίας"
+        },
+        {
+          "@language": "es",
+          "@value": "Contenido reciclado del embalaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Pakendi ringlussevõetud sisu"
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkauksen kierrätetty sisältö"
+        },
+        {
+          "@language": "fr",
+          "@value": "Contenu recyclé de l'emballage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Ábhar Athchúrsáilte Pacáistithe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Reciklirani sadržaj ambalaže"
+        },
+        {
+          "@language": "hu",
+          "@value": "Csomagolás újrahasznosított tartalma"
+        },
+        {
+          "@language": "it",
+          "@value": "Contenuto riciclato dell'imballaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotės perdirbtas turinys"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojuma otrreizēji pārstrādātais saturs"
+        },
+        {
+          "@language": "mt",
+          "@value": "Kontenut Riċiklat tal-Imballaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gerecyclede inhoud verpakking"
+        },
+        {
+          "@language": "pl",
+          "@value": "Zawartość materiałów z recyklingu w opakowaniu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Conteúdo reciclado da embalagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Conținutul reciclat al ambalajului"
+        },
+        {
+          "@language": "sk",
+          "@value": "Recyklovaný obsah obalu"
+        },
+        {
+          "@language": "sl",
+          "@value": "Reciklirana vsebina embalaže"
+        },
+        {
+          "@language": "sv",
+          "@value": "Förpackningens återvunna innehåll"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The percentage of recycled content in the packaging material."
+        },
+        {
+          "@language": "bg",
+          "@value": "Процентът рециклирано съдържание в опаковъчния материал."
+        },
+        {
+          "@language": "cs",
+          "@value": "Procento recyklovaného obsahu v obalovém materiálu."
+        },
+        {
+          "@language": "da",
+          "@value": "Procentdelen af genanvendt indhold i emballagematerialet."
+        },
+        {
+          "@language": "de",
+          "@value": "Der prozentuale Anteil an recyceltem Inhalt im Verpackungsmaterial."
+        },
+        {
+          "@language": "el",
+          "@value": "Το ποσοστό ανακυκλωμένου περιεχομένου στο υλικό συσκευασίας."
+        },
+        {
+          "@language": "es",
+          "@value": "El porcentaje de contenido reciclado en el material de embalaje."
+        },
+        {
+          "@language": "et",
+          "@value": "Ringlussevõetud sisu protsent pakkematerjalis."
+        },
+        {
+          "@language": "fi",
+          "@value": "Kierrätetyn sisällön prosenttiosuus pakkausmateriaalissa."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le pourcentage de contenu recyclé dans le matériau d'emballage."
+        },
+        {
+          "@language": "ga",
+          "@value": "Céatadán an ábhair athchúrsáilte san ábhar pacáistithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Postotak recikliranog sadržaja u materijalu za pakiranje."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az újrahasznosított tartalom százalékos aránya a csomagolóanyagban."
+        },
+        {
+          "@language": "it",
+          "@value": "La percentuale di contenuto riciclato nel materiale di imballaggio."
+        },
+        {
+          "@language": "lt",
+          "@value": "Perdirbto turinio procentinė dalis pakuotės medžiagoje."
+        },
+        {
+          "@language": "lv",
+          "@value": "Otrreizēji pārstrādātā satura procentuālais daudzums iepakojuma materiālā."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-persentaġġ ta' kontenut riċiklat fil-materjal tal-imballaġġ."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het percentage gerecyclede inhoud in het verpakkingsmateriaal."
+        },
+        {
+          "@language": "pl",
+          "@value": "Procentowa zawartość materiałów z recyklingu w materiale opakowaniowym."
+        },
+        {
+          "@language": "pt",
+          "@value": "A percentagem de conteúdo reciclado no material de embalagem."
+        },
+        {
+          "@language": "ro",
+          "@value": "Procentul de conținut reciclat din materialul de ambalare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Percentuálny podiel recyklovaného obsahu v obalovom materiáli."
+        },
+        {
+          "@language": "sl",
+          "@value": "Odstotek reciklirane vsebine v embalažnem materialu."
+        },
+        {
+          "@language": "sv",
+          "@value": "Procentandelen återvunnet innehåll i förpackningsmaterialet."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      }
+    },
+    {
+      "@id": "dppk:packagingSubstanceOfConcern",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Packaging Substance of Concern Present"
+        },
+        {
+          "@language": "bg",
+          "@value": "Наличие на вещество, пораждащо безпокойство, в опаковката"
+        },
+        {
+          "@language": "cs",
+          "@value": "Přítomnost látky vzbuzující obavy v obalu"
+        },
+        {
+          "@language": "da",
+          "@value": "Problematisk stof til stede i emballage"
+        },
+        {
+          "@language": "de",
+          "@value": "Vorhandensein besorgniserregender Stoffe in der Verpackung"
+        },
+        {
+          "@language": "el",
+          "@value": "Παρουσία ουσίας που προκαλεί ανησυχία στη συσκευασία"
+        },
+        {
+          "@language": "es",
+          "@value": "Presencia de sustancias preocupantes en el embalaje"
+        },
+        {
+          "@language": "et",
+          "@value": "Murettekitava aine esinemine pakendis"
+        },
+        {
+          "@language": "fi",
+          "@value": "Pakkauksessa on huolta aiheuttavia aineita"
+        },
+        {
+          "@language": "fr",
+          "@value": "Présence de substances préoccupantes dans l'emballage"
+        },
+        {
+          "@language": "ga",
+          "@value": "Substaint is Ábhar Imní i Láthair sa Phacáistiú"
+        },
+        {
+          "@language": "hr",
+          "@value": "Prisutnost zabrinjavajuće tvari u ambalaži"
+        },
+        {
+          "@language": "hu",
+          "@value": "Aggodalomra okot adó anyag jelenléte a csomagolásban"
+        },
+        {
+          "@language": "it",
+          "@value": "Presenza di sostanze problematiche nell'imballaggio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Pakuotėje yra susirūpinimą keliančios medžiagos"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iepakojumā ir viela, kas rada bažas"
+        },
+        {
+          "@language": "mt",
+          "@value": "Preżenza ta' Sustanza ta' Tħassib fl-Imballaġġ"
+        },
+        {
+          "@language": "nl",
+          "@value": "Aanwezigheid van zeer zorgwekkende stof in verpakking"
+        },
+        {
+          "@language": "pl",
+          "@value": "Obecność substancji wzbudzającej obawy w opakowaniu"
+        },
+        {
+          "@language": "pt",
+          "@value": "Presença de substância que suscita preocupação na embalagem"
+        },
+        {
+          "@language": "ro",
+          "@value": "Prezența unei substanțe care prezintă motive de îngrijorare în ambalaj"
+        },
+        {
+          "@language": "sk",
+          "@value": "Prítomnosť látky vzbudzujúcej obavy v obale"
+        },
+        {
+          "@language": "sl",
+          "@value": "Prisotnost snovi, ki vzbuja skrb, v embalaži"
+        },
+        {
+          "@language": "sv",
+          "@value": "Förekomst av farligt ämne i förpackning"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Indicates if any substances of concern are present in the packaging."
+        },
+        {
+          "@language": "bg",
+          "@value": "Посочва дали в опаковката има вещества, пораждащи безпокойство."
+        },
+        {
+          "@language": "cs",
+          "@value": "Označuje, zda jsou v obalu přítomny nějaké látky vzbuzující obavy."
+        },
+        {
+          "@language": "da",
+          "@value": "Angiver, om der er problematiske stoffer til stede i emballagen."
+        },
+        {
+          "@language": "de",
+          "@value": "Gibt an, ob in der Verpackung besorgniserregende Stoffe vorhanden sind."
+        },
+        {
+          "@language": "el",
+          "@value": "Υποδεικνύει εάν υπάρχουν ουσίες που προκαλούν ανησυχία στη συσκευασία."
+        },
+        {
+          "@language": "es",
+          "@value": "Indica si hay sustancias preocupantes presentes en el embalaje."
+        },
+        {
+          "@language": "et",
+          "@value": "Näitab, kas pakendis on murettekitavaid aineid."
+        },
+        {
+          "@language": "fi",
+          "@value": "Osoittaa, onko pakkauksessa huolta aiheuttavia aineita."
+        },
+        {
+          "@language": "fr",
+          "@value": "Indique si des substances préoccupantes sont présentes dans l'emballage."
+        },
+        {
+          "@language": "ga",
+          "@value": "Léiríonn sé an bhfuil aon substaintí is ábhar imní i láthair sa phacáistiú."
+        },
+        {
+          "@language": "hr",
+          "@value": "Označava jesu li u ambalaži prisutne zabrinjavajuće tvari."
+        },
+        {
+          "@language": "hu",
+          "@value": "Jelzi, hogy vannak-e aggodalomra okot adó anyagok a csomagolásban."
+        },
+        {
+          "@language": "it",
+          "@value": "Indica se nell'imballaggio sono presenti sostanze problematiche."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nurodo, ar pakuotėje yra susirūpinimą keliančių medžiagų."
+        },
+        {
+          "@language": "lv",
+          "@value": "Norāda, vai iepakojumā ir vielas, kas rada bažas."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jindika jekk hemmx xi sustanzi ta' tħassib fl-imballaġġ."
+        },
+        {
+          "@language": "nl",
+          "@value": "Geeft aan of er zorgwekkende stoffen aanwezig zijn in de verpakking."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wskazuje, czy w opakowaniu obecne są jakiekolwiek substancje wzbudzające obawy."
+        },
+        {
+          "@language": "pt",
+          "@value": "Indica se existem substâncias que suscitam preocupação presentes na embalagem."
+        },
+        {
+          "@language": "ro",
+          "@value": "Indică dacă există substanțe care prezintă motive de îngrijorare în ambalaj."
+        },
+        {
+          "@language": "sk",
+          "@value": "Označuje, či sú v obale prítomné nejaké látky vzbudzujúce obavy."
+        },
+        {
+          "@language": "sl",
+          "@value": "Označuje, ali so v embalaži prisotne snovi, ki vzbujajo skrb."
+        },
+        {
+          "@language": "sv",
+          "@value": "Anger om det finns några farliga ämnen i förpackningen."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:Packaging"
+      }
+    },
+    {
+      "@id": "dppk:productionStepType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Production Step Type"
+        },
+        {
+          "@language": "bg",
+          "@value": "Вид производствена стъпка"
+        },
+        {
+          "@language": "cs",
+          "@value": "Typ výrobního kroku"
+        },
+        {
+          "@language": "da",
+          "@value": "Type produktionstrin"
+        },
+        {
+          "@language": "de",
+          "@value": "Art des Produktionsschritts"
+        },
+        {
+          "@language": "el",
+          "@value": "Τύπος σταδίου παραγωγής"
+        },
+        {
+          "@language": "es",
+          "@value": "Tipo de paso de producción"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootmissammu tüüp"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotantovaiheen tyyppi"
+        },
+        {
+          "@language": "fr",
+          "@value": "Type d'étape de production"
+        },
+        {
+          "@language": "ga",
+          "@value": "Cineál Céime Táirgthe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrsta proizvodnog koraka"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártási lépés típusa"
+        },
+        {
+          "@language": "it",
+          "@value": "Tipo di fase di produzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamybos etapo tipas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražošanas posma veids"
+        },
+        {
+          "@language": "mt",
+          "@value": "Tip ta' Pass tal-Produzzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Type productiestap"
+        },
+        {
+          "@language": "pl",
+          "@value": "Rodzaj kroku produkcji"
+        },
+        {
+          "@language": "pt",
+          "@value": "Tipo de etapa de produção"
+        },
+        {
+          "@language": "ro",
+          "@value": "Tipul etapei de producție"
+        },
+        {
+          "@language": "sk",
+          "@value": "Typ výrobného kroku"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrsta proizvodnega koraka"
+        },
+        {
+          "@language": "sv",
+          "@value": "Typ av produktionssteg"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The name or description of the production step (e.g., Assembly, Weaving, Smelting)."
+        },
+        {
+          "@language": "bg",
+          "@value": "Името или описанието на производствената стъпка (напр. Сглобяване, Тъкане, Топене)."
+        },
+        {
+          "@language": "cs",
+          "@value": "Název nebo popis výrobního kroku (např. Montáž, Tkaní, Tavení)."
+        },
+        {
+          "@language": "da",
+          "@value": "Navnet eller beskrivelsen af produktionstrinnet (f.eks. Montering, Vævning, Smeltning)."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Name oder die Beschreibung des Produktionsschritts (z. B. Montage, Weben, Schmelzen)."
+        },
+        {
+          "@language": "el",
+          "@value": "Το όνομα ή η περιγραφή του σταδίου παραγωγής (π.χ. Συναρμολόγηση, Ύφανση, Τήξη)."
+        },
+        {
+          "@language": "es",
+          "@value": "El nombre o la descripción del paso de producción (por ejemplo, Ensamblaje, Tejido, Fundición)."
+        },
+        {
+          "@language": "et",
+          "@value": "Tootmissammu nimi või kirjeldus (nt Koostamine, Kudumine, Sulatamine)."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotantovaiheen nimi tai kuvaus (esim. Kokoonpano, Kudonta, Sulatus)."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le nom ou la description de l'étape de production (par exemple, Assemblage, Tissage, Fusion)."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ainm nó cur síos na céime táirgthe (m.sh., Cóimeáil, Fíodóireacht, Bruithniú)."
+        },
+        {
+          "@language": "hr",
+          "@value": "Naziv ili opis proizvodnog koraka (npr. Sastavljanje, Tkanje, Taljenje)."
+        },
+        {
+          "@language": "hu",
+          "@value": "A gyártási lépés neve vagy leírása (pl. Összeszerelés, Szövés, Olvasztás)."
+        },
+        {
+          "@language": "it",
+          "@value": "Il nome o la descrizione della fase di produzione (es. Assemblaggio, Tessitura, Fusione)."
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamybos etapo pavadinimas arba aprašymas (pvz., Surinkimas, Audimas, Lydymas)."
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražošanas posma nosaukums vai apraksts (piem., Montāža, Aušana, Kausēšana)."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-isem jew id-deskrizzjoni tal-pass tal-produzzjoni (eż., Assemblaġġ, Insiġ, Tidwib)."
+        },
+        {
+          "@language": "nl",
+          "@value": "De naam of beschrijving van de productiestap (bijv. Assemblage, Weven, Smelten)."
+        },
+        {
+          "@language": "pl",
+          "@value": "Nazwa lub opis kroku produkcji (np. Montaż, Tkanie, Wytapianie)."
+        },
+        {
+          "@language": "pt",
+          "@value": "O nome ou a descrição da etapa de produção (por exemplo, Montagem, Tecelagem, Fundição)."
+        },
+        {
+          "@language": "ro",
+          "@value": "Numele sau descrierea etapei de producție (de ex., Asamblare, Țesut, Topire)."
+        },
+        {
+          "@language": "sk",
+          "@value": "Názov alebo popis výrobného kroku (napr. Montáž, Tkanie, Tavenie)."
+        },
+        {
+          "@language": "sl",
+          "@value": "Ime ali opis proizvodnega koraka (npr. Montaža, Tkanje, Taljenje)."
+        },
+        {
+          "@language": "sv",
+          "@value": "Namnet eller beskrivningen av produktionssteget (t.ex. Montering, Vävning, Smältning)."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ProductionStep"
+      }
+    },
+    {
+      "@id": "dppk:productionLocationCountry",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Production Location Country"
+        },
+        {
+          "@language": "bg",
+          "@value": "Държава на местоположение на производството"
+        },
+        {
+          "@language": "cs",
+          "@value": "Země místa výroby"
+        },
+        {
+          "@language": "da",
+          "@value": "Produktionssted land"
+        },
+        {
+          "@language": "de",
+          "@value": "Produktionsland"
+        },
+        {
+          "@language": "el",
+          "@value": "Χώρα τοποθεσίας παραγωγής"
+        },
+        {
+          "@language": "es",
+          "@value": "País de ubicación de producción"
+        },
+        {
+          "@language": "et",
+          "@value": "Tootmiskoha riik"
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotantopaikan maa"
+        },
+        {
+          "@language": "fr",
+          "@value": "Pays de la production"
+        },
+        {
+          "@language": "ga",
+          "@value": "Tír Suímh Táirgthe"
+        },
+        {
+          "@language": "hr",
+          "@value": "Zemlja mjesta proizvodnje"
+        },
+        {
+          "@language": "hu",
+          "@value": "Gyártás helyszíne (ország)"
+        },
+        {
+          "@language": "it",
+          "@value": "Paese di ubicazione della produzione"
+        },
+        {
+          "@language": "lt",
+          "@value": "Gamybos vietos šalis"
+        },
+        {
+          "@language": "lv",
+          "@value": "Ražošanas vietas valsts"
+        },
+        {
+          "@language": "mt",
+          "@value": "Pajjiż tal-Post tal-Produzzjoni"
+        },
+        {
+          "@language": "nl",
+          "@value": "Productieland"
+        },
+        {
+          "@language": "pl",
+          "@value": "Kraj miejsca produkcji"
+        },
+        {
+          "@language": "pt",
+          "@value": "País do local de produção"
+        },
+        {
+          "@language": "ro",
+          "@value": "Țara locației de producție"
+        },
+        {
+          "@language": "sk",
+          "@value": "Krajina miesta výroby"
+        },
+        {
+          "@language": "sl",
+          "@value": "Država lokacije proizvodnje"
+        },
+        {
+          "@language": "sv",
+          "@value": "Produktionsland"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "The country where the production step took place. Recommended to use ISO 3166-1 alpha-3 codes."
+        },
+        {
+          "@language": "bg",
+          "@value": "Държавата, в която се е състояла производствената стъпка. Препоръчва се използването на ISO 3166-1 alpha-3 кодове."
+        },
+        {
+          "@language": "cs",
+          "@value": "Země, kde proběhl výrobní krok. Doporučuje se použít kódy ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "da",
+          "@value": "Det land, hvor produktionstrinnet fandt sted. Det anbefales at bruge ISO 3166-1 alpha-3-koder."
+        },
+        {
+          "@language": "de",
+          "@value": "Das Land, in dem der Produktionsschritt stattfand. Es wird empfohlen, ISO 3166-1 alpha-3-Codes zu verwenden."
+        },
+        {
+          "@language": "el",
+          "@value": "Η χώρα όπου πραγματοποιήθηκε το στάδιο παραγωγής. Συνιστάται η χρήση κωδικών ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "es",
+          "@value": "El país donde se llevó a cabo el paso de producción. Se recomienda utilizar códigos ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "et",
+          "@value": "Riik, kus tootmissamm aset leidis. Soovitatav on kasutada ISO 3166-1 alpha-3 koode."
+        },
+        {
+          "@language": "fi",
+          "@value": "Maa, jossa tuotantovaihe tapahtui. On suositeltavaa käyttää ISO 3166-1 alpha-3 -koodeja."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le pays où l'étape de production a eu lieu. Il est recommandé d'utiliser les codes ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "ga",
+          "@value": "An tír inar tharla an chéim táirgthe. Moltar cóid ISO 3166-1 alpha-3 a úsáid."
+        },
+        {
+          "@language": "hr",
+          "@value": "Zemlja u kojoj se odvio proizvodni korak. Preporučuje se upotreba ISO 3166-1 alpha-3 kodova."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az az ország, ahol a gyártási lépés zajlott. Javasolt az ISO 3166-1 alpha-3 kódok használata."
+        },
+        {
+          "@language": "it",
+          "@value": "Il paese in cui si è svolta la fase di produzione. Si raccomanda di utilizzare i codici ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "lt",
+          "@value": "Šalis, kurioje vyko gamybos etapas. Rekomenduojama naudoti ISO 3166-1 alpha-3 kodus."
+        },
+        {
+          "@language": "lv",
+          "@value": "Valsts, kurā notika ražošanas posms. Ieteicams izmantot ISO 3166-1 alpha-3 kodus."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-pajjiż fejn seħħ il-pass tal-produzzjoni. Huwa rrakkomandat li jintużaw il-kodiċijiet ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het land waar de productiestap heeft plaatsgevonden. Het wordt aanbevolen om ISO 3166-1 alpha-3 codes te gebruiken."
+        },
+        {
+          "@language": "pl",
+          "@value": "Kraj, w którym odbył się krok produkcji. Zaleca się stosowanie kodów ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "pt",
+          "@value": "O país onde ocorreu a etapa de produção. Recomenda-se o uso de códigos ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "ro",
+          "@value": "Țara în care a avut loc etapa de producție. Se recomandă utilizarea codurilor ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "sk",
+          "@value": "Krajina, kde prebehol výrobný krok. Odporúča sa použiť kódy ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "sl",
+          "@value": "Država, v kateri je potekal proizvodni korak. Priporočljiva je uporaba kod ISO 3166-1 alpha-3."
+        },
+        {
+          "@language": "sv",
+          "@value": "Det land där produktionssteget ägde rum. Det rekommenderas att använda ISO 3166-1 alpha-3-koder."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:ProductionStep"
+      },
+      "owl:equivalentProperty": {
+        "@id": "gs1:countryCode"
+      }
+    }
+  ]
+}
