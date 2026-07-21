@@ -1,16 +1,16 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1783676323651';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1784636012004';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1783676323651';
-import { generateHTML } from '../lib/html-generator.js?v=1783676323651';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1783676323651';
-import { loadHeader } from '../branding/header.js?v=1783676323651';
+import { EXAMPLES } from '../lib/example-registry.js?v=1784636012004';
+import { generateHTML } from '../lib/html-generator.js?v=1784636012004';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1784636012004';
+import { loadHeader } from '../branding/header.js?v=1784636012004';
 loadHeader('dpp-header-container', '..');
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1783676323651';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1783676323651';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1783676323651';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1783676323651';
-import { LanguageManager } from '../lib/language-manager.js?v=1783676323651';
+import { loadOntology } from '../lib/ontology-loader.js?v=1784636012004';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1784636012004';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1784636012004';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1784636012004';
+import { LanguageManager } from '../lib/language-manager.js?v=1784636012004';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
