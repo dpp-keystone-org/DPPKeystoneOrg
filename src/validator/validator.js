@@ -20,7 +20,8 @@ const SECTOR_MAP = {
     'draft_construction_specification_id': 'sector/construction.schema.json',
     'draft_electronics_specification_id': 'sector/electronics.schema.json',
     'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile.schema.json'
+    'draft_textile_espr_specification_id': 'sector/textile.schema.json',
+    [`dpp_EN_197_${KEYSTONE_VERSION}`]: 'sector/cement.schema.json'
 };
 
 // Common schemas that should always be loaded for $ref resolution
@@ -35,7 +36,8 @@ const COMMON_SCHEMAS = [
     'shared/general-product.schema.json',
     'shared/component.schema.json',
     'shared/mtc.schema.json',
-    'shared/certification.schema.json'
+    'shared/certification.schema.json',
+    'sector/cement/dopc.schema.json'
 ];
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
@@ -452,7 +454,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadSchemas() {
     // Helper to fetch JSON
     const fetchJson = async (filename) => {
-        const res = await fetch(SCHEMA_BASE_URL + filename);
+        const bust = '?v=' + Date.now();
+        const res = await fetch(SCHEMA_BASE_URL + filename + bust);
         if (!res.ok) throw new Error(`Failed to fetch ${filename}: ${res.statusText}`);
         return res.json();
     };
