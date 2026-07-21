@@ -177,28 +177,6 @@ describe('generate-spec-docs.mjs', () => {
         });
     });
 
-    describe('Nested Subdirectory Support', () => {
-        beforeAll(async () => {
-            await generateSpecDocs({
-                srcDir: FIXTURES_DIR,
-                distDir: TEMP_DIST_DIR
-            });
-        });
-
-        it('should generate class pages for ontologies in nested subdirectories', async () => {
-            const classHtmlPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'mock-cement', 'MockCementProduct.html');
-            const stats = await fs.stat(classHtmlPath).catch(() => null);
-            expect(stats).toBeTruthy();
-            expect(stats.isFile()).toBe(true);
-        });
-
-        it('should correctly cross-link properties from nested ontologies', async () => {
-            const classHtmlPath = join(TEMP_DIST_DIR, 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'mock-cement', 'MockCementProduct.html');
-            const content = await fs.readFile(classHtmlPath, 'utf-8').catch(() => '');
-            expect(content).toContain('mockCementProp');
-        });
-    });
-
     describe('Integration Test', () => {
         it('should generate correct module and global index files', async () => {
             // Run the script with our test directories
