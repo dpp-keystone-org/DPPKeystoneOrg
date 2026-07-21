@@ -138,6 +138,21 @@ test.describe('DPP Validator', () => {
     // await expect(page.locator('.result-box.error')).toContainText('ratedCapacity'); 
   });
 
+  test('Sector specific validation (Cement)', async ({ page }) => {
+    const cementDpp = {
+      "digitalProductPassportId": "urn:uuid:12345678-1234-1234-1234-123456789012",
+      "dppStatus": "Active",
+      "manufacturer": { "organizationName": "Org" },
+      "contentSpecificationIds": [`dpp_EN_197_${KEYSTONE_VERSION}`],
+      "minimumStandardCompressiveStrength28Days": "not-a-number" // Intentional type error to fail validation
+    };
+
+    await page.locator('#json-input').fill(JSON.stringify(cementDpp));
+    await page.locator('#validate-btn').click();
+
+    await expect(page.locator('.result-box.error')).toContainText('Validation Failed');
+  });
+
   test('XSS Protection in Error Display', async ({ page }) => {
     // Use a property key that contains HTML to test instancePath XSS
     const maliciousDpp = {

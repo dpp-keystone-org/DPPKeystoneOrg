@@ -38,4 +38,12 @@ describe('Context documentation page link generation', () => {
         const expectedHtml = `<li><a href="${expectedLink}"><strong>mockProp</strong></a> - <em><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;A test property for the Mock Product.&quot;}]">A test property for the Mock Product.</span></em></li>`;
         expect(content).toContain(expectedHtml);
     });
+
+    it('should link a Class term to its own page from a nested context', async () => {
+        const indexPath = path.join(TEMP_DIST_SPEC_DIR, 'contexts', KEYSTONE_VERSION, 'cement', 'mock-cement.context', 'index.html');
+        const nestedContent = await fs.readFile(indexPath, 'utf-8').catch(() => '');
+        
+        const expectedLink = `../../../../ontology/${KEYSTONE_VERSION}/sectors/cement/mock-cement/MockCementProduct.html`;
+        expect(nestedContent).toContain(expectedLink);
+    });
 });
