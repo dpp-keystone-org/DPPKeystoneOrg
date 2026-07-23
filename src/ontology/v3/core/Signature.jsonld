@@ -295,7 +295,7 @@
     },
     {
       "@id": "dppk-signature:CryptographicProof",
-      "@type": "owl:Class",
+      "@type": "rdfs:Class",
       "rdfs:label": [
         { "@language": "en", "@value": "Cryptographic Proof" },
         { "@language": "bg", "@value": "Криптографско доказателство" },

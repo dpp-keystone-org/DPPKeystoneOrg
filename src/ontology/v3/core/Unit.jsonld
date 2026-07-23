@@ -68,7 +68,7 @@
   "@graph": [
     {
       "@id": "dppk:Unit",
-      "@type": "owl:Class",
+      "@type": "rdfs:Class",
       "rdfs:label": [
         { "@language": "en", "@value": "Unit" },
         { "@language": "bg", "@value": "Единица" },

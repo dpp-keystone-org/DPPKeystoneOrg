@@ -65,10 +65,7 @@
   "@graph": [
     {
       "@id": "dppk:identifier",
-      "@type": [
-        "owl:DatatypeProperty",
-        "rdf:Property"
-      ],
+      "@type": "owl:DatatypeProperty",
       "rdfs:comment": [
         { "@language": "en", "@value": "A generic identifier for a resource. It is equivalent to schema:identifier." },
         { "@language": "bg", "@value": "Общ идентификатор за ресурс. Той е еквивалентен на schema:identifier." },
