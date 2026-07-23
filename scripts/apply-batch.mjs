@@ -30,7 +30,7 @@ for (let i = 0; i < lines.length; i++) {
             const jsonldUpdated = parts[8];
             
             // Only process if QC has reviewed it and it hasn't been applied yet
-            if ((qcStatus === '[REVIEWED]' || qcStatus === '[CORRECTED]') && jsonldUpdated !== '[DONE]') {
+            if ((qcStatus === '[REVIEWED]' || qcStatus === '[CORRECTED]' || qcStatus === '[ENHANCED]' || qcStatus === '[DIVERSIFIED]') && jsonldUpdated !== '[DONE]') {
                 
                 let mappings = [];
                 if (proposedStr !== 'None' && proposedStr !== '`None`' && proposedStr.trim() !== '') {
@@ -112,6 +112,14 @@ for (const [file, terms] of Object.entries(jsonUpdates)) {
             }
             if (node["owl:equivalentClass"]) {
                 content = applyEdits(content, modify(content, [...pathPrefix, "owl:equivalentClass"], undefined, { formattingOptions: { insertSpaces: true, tabSize: 2 } }));
+            }
+            
+            // Remove existing SKOS mappings so they can be cleanly replaced
+            const skosPredicates = ["skos:exactMatch", "skos:closeMatch", "skos:relatedMatch", "skos:broadMatch", "skos:narrowMatch"];
+            for (const p of skosPredicates) {
+                if (node[p]) {
+                    content = applyEdits(content, modify(content, [...pathPrefix, p], undefined, { formattingOptions: { insertSpaces: true, tabSize: 2 } }));
+                }
             }
             
             // Add new SKOS mappings
