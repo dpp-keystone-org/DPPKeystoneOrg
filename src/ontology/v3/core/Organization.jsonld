@@ -273,9 +273,14 @@
       "rdfs:range": {
         "@id": "dppk:Organization"
       },
-      "skos:closeMatch": {
-        "@id": "schema:Organization"
-      }
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "gs1:Organization"
+        }
+      ]
     },
 
     // --- manufacturer (The Relationship Property) ---
@@ -410,6 +415,9 @@
         },
         "skos:relatedMatch": {
           "@id": "schema:merchant"
+        },
+        "skos:exactMatch": {
+          "@id": "gs1:importer"
         }
     },
 
@@ -470,7 +478,17 @@
           { "@language": "sv", "@value": "Relaterar DPP till den specifika anläggning där produkten (eller ett steg) tillverkades." }
         ],
         "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-        "rdfs:range": { "@id": "dppk:Organization" }
+        "rdfs:range": {
+          "@id": "dppk:Organization"
+        },
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:Place"
+          },
+          {
+            "@id": "gs1:Place"
+          }
+        ]
     },
     // --- repairService (The Relationship Property) ---
     {
@@ -532,9 +550,14 @@
         "rdfs:range": {
           "@id": "dppk:Organization"
         },
-        "skos:relatedMatch": {
-          "@id": "schema:Service"
-        }
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:Service"
+          },
+          {
+            "@id": "gs1:Service"
+          }
+        ]
     },
 
     // ==================================================================
@@ -890,9 +913,14 @@
         "rdfs:range": {
           "@id": "xsd:string"
         },
-        "skos:relatedMatch": {
-          "@id": "schema:identifier"
-        }
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:identifier"
+          },
+          {
+            "@id": "gs1:additionalOrganizationIdentification"
+          }
+        ]
     },
 
     // --- Additional Identifiers (EORI, VAT, etc.) ---
@@ -1574,9 +1602,14 @@
         "rdfs:range": {
           "@id": "xsd:string"
         },
-        "skos:exactMatch": {
-          "@id": "schema:email"
-        }
+        "skos:exactMatch": [
+          {
+            "@id": "schema:email"
+          },
+          {
+            "@id": "gs1:email"
+          }
+        ]
     },
     {
         "@id": "dppk:operatorTelephone",
@@ -1638,9 +1671,14 @@
         "rdfs:range": {
           "@id": "xsd:string"
         },
-        "skos:exactMatch": {
-          "@id": "schema:telephone"
-        }
+        "skos:exactMatch": [
+          {
+            "@id": "schema:telephone"
+          },
+          {
+            "@id": "gs1:telephone"
+          }
+        ]
     },
     {
         "@id": "dppk:website",
@@ -1701,9 +1739,14 @@
         "rdfs:range": {
           "@id": "xsd:anyURI"
         },
-        "skos:exactMatch": {
-          "@id": "schema:url"
-        }
+        "skos:exactMatch": [
+          {
+            "@id": "schema:url"
+          },
+          {
+            "@id": "unece:uri"
+          }
+        ]
     }
   ]
 }

@@ -8,7 +8,8 @@
     "dppk-epd": "https://dpp-keystone.org/spec/{{VERSION}}/terms/epd#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/",
-    "skos": "http://www.w3.org/2004/02/skos/core#"
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/EPDMetadata.jsonld",
   "@type": "owl:Ontology",
@@ -124,9 +125,14 @@
         { "@language": "sl", "@value": "Razred, ki vsebuje vse kategorije vplivov na okolje v kompaktnem slovarskem formatu." },
         { "@language": "sv", "@value": "En klass för att hålla alla miljöpåverkanskategorier i ett kompakt ordboksformat." }
       ],
-      "skos:exactMatch": {
-        "@id": "schema:Certification"
-      }
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk-epd:ImpactValues",
@@ -244,9 +250,14 @@
       "rdfs:range": {
         "@id": "dppk:EPDBlock"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:Certification"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     }
   ]
 }

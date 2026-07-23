@@ -196,6 +196,9 @@
         },
         {
           "@id": "schema:name"
+        },
+        {
+          "@id": "gs1:documentTitle"
         }
       ]
     },
@@ -321,9 +324,14 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "skos:exactMatch": {
-        "@id": "schema:inLanguage"
-      }
+      "skos:exactMatch": [
+        {
+          "@id": "schema:inLanguage"
+        },
+        {
+          "@id": "gs1:fileLanguageCode"
+        }
+      ]
     },
     {
       "@id": "dppk:url",
@@ -447,9 +455,14 @@
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:HowTo"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:consumerUsageInstructions"
+        }
+      ]
     },
     {
       "@id": "dppk:safetyDataSheet",
@@ -507,7 +520,17 @@
         { "@language": "sl", "@value": "Povezava do varnostnega lista (VL) za izdelek." },
         { "@language": "sv", "@value": "En länk till säkerhetsdatabladet (SDB) för produkten." }
       ],
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:DigitalDocument"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:safeUseInstructions",
@@ -567,7 +590,17 @@
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+      "rdfs:subPropertyOf": {
+        "@id": "schema:subjectOf"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:endOfLifeInstructions",
@@ -630,9 +663,14 @@
       "rdfs:subPropertyOf": {
         "@id": "schema:subjectOf"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:HowTo"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:consumerUsageInstructions"
+        }
+      ]
     },
     {
       "@id": "dppk:repairInstructions",
@@ -692,7 +730,17 @@
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+      "rdfs:subPropertyOf": {
+        "@id": "schema:subjectOf"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:careInstructions",
@@ -755,9 +803,14 @@
       "rdfs:subPropertyOf": {
         "@id": "schema:subjectOf"
       },
-      "skos:exactMatch": {
-        "@id": "schema:careInstructions"
-      }
+      "skos:exactMatch": [
+        {
+          "@id": "schema:careInstructions"
+        },
+        {
+          "@id": "gs1:consumerHandlingInstructions"
+        }
+      ]
     }
   ]
 }

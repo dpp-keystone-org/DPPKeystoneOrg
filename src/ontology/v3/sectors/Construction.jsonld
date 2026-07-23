@@ -139,9 +139,14 @@
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
       },
-      "skos:closeMatch": {
-        "@id": "schema:Product"
-      }
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        }
+      ]
     },
     {
       "@id": "dppk:harmonisedStandardReference",
@@ -202,9 +207,14 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:Certification"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:notifiedBody",
@@ -266,7 +276,17 @@
         "rdfs:label": "Notified bodies - Internal Market, Industry, Entrepreneurship and SMEs"
       },
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:Organization" }
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "gs1:Organization"
+        }
+      ]
     },
     {
       "@id": "dppk:technicalAssessmentBody",
@@ -324,7 +344,17 @@
         { "@language": "sv", "@value": "Det tekniska bedömningsorganet som oberoende utvärderar en produkts tekniska egenskaper" }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:Organization" }
+      "rdfs:range": {
+        "@id": "dppk:Organization"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "gs1:Organization"
+        }
+      ]
     },
     {
       "@id": "dppk:validationReports",
@@ -382,7 +412,12 @@
         { "@language": "sv", "@value": "Referens till rapporter som validerar produktens prestanda eller överensstämmelse." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Report"
+      }
     },
     {
       "@id": "dppk:europeanAssessmentDocument",
@@ -443,9 +478,14 @@
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:Certification"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:thermalConductivity",
@@ -503,7 +543,12 @@
         { "@language": "sv", "@value": "Ett materials förmåga att leda värme." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:compressiveStrength",
@@ -561,7 +606,17 @@
         { "@language": "sv", "@value": "Förmågan hos ett material eller en struktur att motstå belastningar som tenderar att minska storleken." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:QuantitativeValue" }
+      "rdfs:range": {
+        "@id": "dppk:QuantitativeValue"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:steelGrade",
@@ -619,7 +674,12 @@
         { "@language": "sv", "@value": "Klassificeringen av stålet baserat på dess sammansättning och fysikaliska egenskaper (t.ex. R260, S355)." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:category"
+      }
     },
     {
       "@id": "dppk:railProfile",
@@ -677,7 +737,17 @@
         { "@language": "sv", "@value": "Den standardiserade tvärsnittsdesignen av en järnvägsräls (t.ex. 46E1)." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     }
   ]
 }

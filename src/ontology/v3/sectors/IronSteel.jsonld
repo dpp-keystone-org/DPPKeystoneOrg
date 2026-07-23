@@ -131,9 +131,14 @@
               { "@language": "sv", "@value": "Datamodell för järn- och stålpasset enligt EU:s ESPR." }
             ],
             "rdfs:term_status": "unstable",
-            "skos:closeMatch": {
-              "@id": "schema:Product"
-            }
+            "skos:closeMatch": [
+              {
+                "@id": "schema:Product"
+              },
+              {
+                "@id": "gs1:Product"
+              }
+            ]
         },
         {
             "@id": "dppk:heatNumber",
@@ -336,9 +341,14 @@
               "@id": "dppk:Public"
             },
             "rdfs:term_status": "unstable",
-            "skos:exactMatch": {
-              "@id": "schema:productionDate"
-            }
+            "skos:exactMatch": [
+              {
+                "@id": "schema:productionDate"
+              },
+              {
+                "@id": "gs1:productionDate"
+              }
+            ]
         },
         {
             "@id": "dppk:castNumber",
@@ -533,9 +543,14 @@
               "@id": "dppk:LegitimateInterest"
             },
             "rdfs:term_status": "unstable",
-            "skos:exactMatch": {
-              "@id": "schema:orderNumber"
-            }
+            "skos:exactMatch": [
+              {
+                "@id": "schema:orderNumber"
+              },
+              {
+                "@id": "gs1:purchaseOrderNumber"
+              }
+            ]
         },
         {
             "@id": "dppk:steelGradeClassification",
@@ -596,7 +611,10 @@
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
             "dppk:visibility": { "@id": "dppk:Public" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:category"
+            }
         },
         {
             "@id": "dppk:steelDesignation",
@@ -657,7 +675,10 @@
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
             "dppk:visibility": { "@id": "dppk:Public" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:category"
+            }
         },
         {
             "@id": "dppk:technologyRoute",
@@ -843,7 +864,15 @@
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:Public" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:PropertyValue"
+              },
+              {
+                "@id": "gs1:AdditionalProductClassificationDetails"
+              }
+            ]
         },
         {
             "@id": "dppk:preConsumerRecycledContent",
@@ -905,9 +934,14 @@
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
             "rdfs:term_status": "unstable",
-            "skos:relatedMatch": {
-              "@id": "schema:material"
-            }
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:material"
+              },
+              {
+                "@id": "gs1:ProductCharacteristic"
+              }
+            ]
         },
         {
             "@id": "dppk:postConsumerRecycledContent",
@@ -969,9 +1003,14 @@
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
             "rdfs:term_status": "unstable",
-            "skos:relatedMatch": {
-              "@id": "schema:material"
-            }
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:material"
+              },
+              {
+                "@id": "gs1:ProductCharacteristic"
+              }
+            ]
         },
         {
             "@id": "dppk:recycledContentConformity",
@@ -1030,7 +1069,15 @@
             ],
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:Certification"
+              },
+              {
+                "@id": "gs1:Certification"
+              }
+            ]
         },
         {
             "@id": "dppk:cbamReportId",
@@ -1090,7 +1137,15 @@
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:identifier"
+              },
+              {
+                "@id": "gs1:additionalTradeItemIdentification"
+              }
+            ]
         },
         {
             "@id": "dppk:reachDocumentation",
@@ -1150,7 +1205,15 @@
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" },
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:DigitalDocument"
+              },
+              {
+                "@id": "gs1:Document"
+              }
+            ]
         }
     ]
 }

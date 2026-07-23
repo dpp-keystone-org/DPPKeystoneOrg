@@ -124,9 +124,14 @@
               { "@language": "sl", "@value": "Strukturirana predstavitev velikosti EU v skladu z EN 13402." },
               { "@language": "sv", "@value": "En strukturerad representation av en EU-storlek enligt EN 13402." }
             ],
-            "skos:closeMatch": {
-              "@id": "schema:SizeSpecification"
-            }
+            "skos:closeMatch": [
+              {
+                "@id": "schema:SizeSpecification"
+              },
+              {
+                "@id": "gs1:SizeDetails"
+              }
+            ]
         },
         {
             "@id": "dppk:euApparelSize",
@@ -187,9 +192,14 @@
             "rdfs:range": {
               "@id": "dppk:EuApparelSizeObject"
             },
-            "skos:closeMatch": {
-              "@id": "schema:size"
-            }
+            "skos:closeMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
+            ]
         },
         {
             "@id": "dppk:sizeDesignation",
@@ -318,9 +328,14 @@
             "rdfs:range": {
               "@id": "xsd:string"
             },
-            "skos:closeMatch": {
-              "@id": "schema:size"
-            }
+            "skos:closeMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
+            ]
         },
         {
             "@id": "dppk:primaryDimension",
@@ -381,9 +396,14 @@
             "rdfs:range": {
               "@id": "dppk:BodyDimensionValue"
             },
-            "skos:closeMatch": {
-              "@id": "schema:size"
-            }
+            "skos:closeMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
+            ]
         },
         {
             "@id": "dppk:primaryDimensionValue",
@@ -444,9 +464,14 @@
             "rdfs:range": {
               "@id": "xsd:string"
             },
-            "skos:closeMatch": {
-              "@id": "schema:size"
-            }
+            "skos:closeMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
+            ]
         },
         {
             "@id": "dppk:secondaryDimensions",
@@ -503,7 +528,17 @@
               { "@language": "sl", "@value": "Dodatne telesne mere, potrebne za natančno prileganje." },
               { "@language": "sv", "@value": "Ytterligare kroppsmått krävs för exakt passform." }
             ],
-            "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" }
+            "rdfs:domain": {
+              "@id": "dppk:EuApparelSizeObject"
+            },
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
+            ]
         },
         {
             "@id": "dppk:dimensionName",
@@ -563,9 +598,14 @@
             "rdfs:range": {
               "@id": "dppk:BodyDimensionValue"
             },
-            "skos:relatedMatch": {
-              "@id": "schema:name"
-            }
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:name"
+              },
+              {
+                "@id": "gs1:characteristicName"
+              }
+            ]
         },
         {
             "@id": "dppk:dimensionValue",
@@ -625,9 +665,14 @@
             "rdfs:range": {
               "@id": "xsd:string"
             },
-            "skos:relatedMatch": {
-              "@id": "schema:value"
-            }
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:value"
+              },
+              {
+                "@id": "gs1:characteristicValue"
+              }
+            ]
         },
         {
             "@id": "dppk:BodyDimensionValue",
@@ -696,6 +741,14 @@
                 { "@id": "dppk:BodyDimFootLength" },
                 { "@id": "dppk:BodyDimArmLength" },
                 { "@id": "dppk:BodyDimInsideLegLength" }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:QuantitativeValue"
+              },
+              {
+                "@id": "gs1:QuantitativeValue"
+              }
             ]
         },
         {
@@ -752,6 +805,14 @@
               { "@language": "sk", "@value": "Meranie obvodu hrudníka." },
               { "@language": "sl", "@value": "Merjenje obsega prsi." },
               { "@language": "sv", "@value": "Mätning av bröstvidd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -808,6 +869,14 @@
               { "@language": "sk", "@value": "Meranie obvodu krku." },
               { "@language": "sl", "@value": "Merjenje obsega vratu." },
               { "@language": "sv", "@value": "Mätning av halsvidd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -864,6 +933,14 @@
               { "@language": "sk", "@value": "Meranie obvodu pása." },
               { "@language": "sl", "@value": "Merjenje obsega pasu." },
               { "@language": "sv", "@value": "Mätning av midjevidd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -920,6 +997,14 @@
               { "@language": "sk", "@value": "Meranie obvodu bokov." },
               { "@language": "sl", "@value": "Merjenje obsega bokov." },
               { "@language": "sv", "@value": "Mätning av höftvidd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -976,6 +1061,14 @@
               { "@language": "sk", "@value": "Meranie telesnej výšky." },
               { "@language": "sl", "@value": "Merjenje telesne višine." },
               { "@language": "sv", "@value": "Mätning av kroppslängd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:height"
+              },
+              {
+                "@id": "gs1:height"
+              }
             ]
         },
         {
@@ -1032,6 +1125,14 @@
               { "@language": "sk", "@value": "Meranie obvodu pŕs." },
               { "@language": "sl", "@value": "Merjenje obsega prsi." },
               { "@language": "sv", "@value": "Mätning av bystvidd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -1088,6 +1189,14 @@
               { "@language": "sk", "@value": "Meranie obvodu pod prsiami." },
               { "@language": "sl", "@value": "Merjenje obsega pod prsmi." },
               { "@language": "sv", "@value": "Mätning av underbystvidd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -1144,6 +1253,14 @@
               { "@language": "sk", "@value": "Meranie dĺžky chodidla." },
               { "@language": "sl", "@value": "Merjenje dolžine stopala." },
               { "@language": "sv", "@value": "Mätning av fotlängd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -1200,6 +1317,14 @@
               { "@language": "sk", "@value": "Meranie dĺžky paže." },
               { "@language": "sl", "@value": "Merjenje dolžine roke." },
               { "@language": "sv", "@value": "Mätning av armlängd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         },
         {
@@ -1256,6 +1381,14 @@
               { "@language": "sk", "@value": "Meranie vnútornej dĺžky nohy." },
               { "@language": "sl", "@value": "Merjenje notranje dolžine noge." },
               { "@language": "sv", "@value": "Mätning av innerbenslängd." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:size"
+              },
+              {
+                "@id": "gs1:sizeCode"
+              }
             ]
         }
     ]

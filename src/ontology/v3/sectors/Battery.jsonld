@@ -7,7 +7,8 @@
     "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/",
-    "skos": "http://www.w3.org/2004/02/skos/core#"
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Battery",
   "@type": "owl:Ontology",
@@ -127,6 +128,14 @@
         { "@language": "sk", "@value": "Dátový model pre pas batérie podľa nariadenia EÚ o batériách." },
         { "@language": "sl", "@value": "Podatkovni model za potni list za baterije v skladu z uredbo EU o baterijah." },
         { "@language": "sv", "@value": "Datamodell för batteripasset enligt EU:s batteriförordning." }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        }
       ]
     },
     
@@ -190,6 +199,14 @@
         { "@language": "sk", "@value": "Kontajner pre parametre výkonu a životnosti batérie." },
         { "@language": "sl", "@value": "Vsebnik za parametre zmogljivosti in trajnosti baterije." },
         { "@language": "sv", "@value": "Behållare för prestanda- och hållbarhetsparametrar för batteriet." }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
       ]
     },
     {
@@ -251,6 +268,14 @@
         { "@language": "sk", "@value": "Informácie o kapacite, energii, stave nabitia a medzných hodnotách napätia batérie." },
         { "@language": "sl", "@value": "Informacije o zmogljivosti, energiji, stanju napolnjenosti in mejnih napetostih baterije." },
         { "@language": "sv", "@value": "Information om batteriets kapacitet, energi, laddningstillstånd och spänningsgränser." }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
       ]
     },
     {
@@ -312,6 +337,14 @@
         { "@language": "sk", "@value": "Informácie o výkonovej schopnosti batérie, poklese výkonu a maximálnom povolenom výkone." },
         { "@language": "sl", "@value": "Informacije o zmogljivosti moči baterije, upadu moči in največji dovoljeni moči." },
         { "@language": "sv", "@value": "Information om batteriets effektkapacitet, effektminskning och maximalt tillåten effekt." }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
       ]
     },
     {
@@ -373,6 +406,14 @@
         { "@language": "sk", "@value": "Informácie o energetickej účinnosti batérie pri spiatočnej ceste a rýchlosti samovybíjania." },
         { "@language": "sl", "@value": "Informacije o energijski učinkovitosti povratnega cikla baterije in stopnjah samopraznjenja." },
         { "@language": "sv", "@value": "Information om batteriets tur-och-retur-energieffektivitet och självurladdningshastigheter." }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
       ]
     },
     {
@@ -434,7 +475,10 @@
         { "@language": "sk", "@value": "Informácie o vnútornom odpore batérie a jeho náraste v priebehu času." },
         { "@language": "sl", "@value": "Informacije o notranji upornosti baterije in njenem povečanju skozi čas." },
         { "@language": "sv", "@value": "Information om batteriets inre resistans och dess ökning över tid." }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:StructuredValue"
+      }
     },
     {
       "@id": "dppk:LifetimeInfo",
@@ -495,7 +539,10 @@
         { "@language": "sk", "@value": "Informácie o očakávanej životnosti batérie v rokoch a cykloch vrátane referenčných testov." },
         { "@language": "sl", "@value": "Informacije o pričakovani življenjski dobi baterije v letih in ciklih, vključno z referenčnimi preskusi." },
         { "@language": "sv", "@value": "Information om batteriets förväntade livslängd i år och cykler, inklusive referenstester." }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:StructuredValue"
+      }
     },
     {
       "@id": "dppk:TemperatureInfo",
@@ -556,7 +603,10 @@
         { "@language": "sk", "@value": "Informácie o teplotných rozsahoch, ktoré batéria vydrží, a o čase strávenom v extrémnych teplotách." },
         { "@language": "sl", "@value": "Informacije o temperaturnih območjih, ki jih baterija lahko prenese, in času, preživetem pri ekstremnih temperaturah." },
         { "@language": "sv", "@value": "Information om de temperaturområden som batteriet tål och den tid som tillbringats i extrema temperaturer." }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:NegativeEventsInfo",
@@ -617,7 +667,10 @@
         { "@language": "sk", "@value": "Informácie o negatívnych udalostiach, ako sú hlboké vybitia, prebitia a nehody." },
         { "@language": "sl", "@value": "Informacije o negativnih dogodkih, kot so globoke izpraznitve, prenapolnjenost in nesreče." },
         { "@language": "sv", "@value": "Information om negativa händelser såsom djupa urladdningar, överladdningar och olyckor." }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     },
 
     // --- Identifiers & Core Data ---
@@ -749,9 +802,14 @@
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:date",
-      "skos:exactMatch": {
-        "@id": "schema:productionDate"
-      }
+      "skos:exactMatch": [
+        {
+          "@id": "schema:productionDate"
+        },
+        {
+          "@id": "gs1:productionDate"
+        }
+      ]
     },
     {
       "@id": "dppk:serviceDate",
@@ -814,7 +872,15 @@
         { "@language": "sv", "@value": "I förekommande fall måste batteripasset innehålla information om datumet då batteriet togs i bruk. Format ÅÅÅÅ-MM-DD (ISO 8601)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:date"
+      "rdfs:range": "xsd:date",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Date"
+        },
+        {
+          "@id": "unece:Date"
+        }
+      ]
     },
     {
       "@id": "dppk:warrantyPeriod",
@@ -878,9 +944,14 @@
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
-      "skos:relatedMatch": {
-        "@id": "schema:durationOfWarranty"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:durationOfWarranty"
+        },
+        {
+          "@id": "gs1:WarrantyPromise"
+        }
+      ]
     },
     {
       "@id": "dppk:batteryCategory",
@@ -943,7 +1014,15 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla batterikategorin. Batterikategorin måste anges på batterietiketten. Kategorier: LMT-batteri, elfordonsbatteri или industribatteri." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:category"
+        },
+        {
+          "@id": "gs1:productCategory"
+        }
+      ]
     },
     {
       "@id": "dppk:batteryMass",
@@ -1004,7 +1083,15 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla batterimassan. Batterimassan måste också anges på batterietiketten." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:weight"
+        },
+        {
+          "@id": "gs1:netWeight"
+        }
+      ]
     },
     {
       "@id": "dppk:batteryStatus",
@@ -1067,7 +1154,15 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla information om batteriets status. Status: original, återanvänt, återanvänt, återtillverkat eller avfall." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
 
     // --- Symbols & Labels ---
@@ -1132,7 +1227,17 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla symbolen för separat insamling. Symbolen bör översättas till text för att säkerställa maskinläsbarhet." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:image"
+        },
+        {
+          "@id": "gs1:image"
+        }
+      ]
     },
     {
       "@id": "dppk:heavyMetalSymbols",
@@ -1195,7 +1300,12 @@
         { "@language": "sv", "@value": "Batterier som innehåller mer än 0,002 % kadmium eller 0,004 % bly måste vara märkta med den kemiska symbolen (Cd eller Pb)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Text"
+      }
     },
     {
       "@id": "dppk:carbonFootprintLabel",
@@ -1258,7 +1368,17 @@
         { "@language": "sv", "@value": "Elfordonsbatterier och laddningsbara industribatterier > 2 kWh samt LMT-batterier ska ha en märkning som anger koldioxidavtryck och prestandaklass." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:extinguishingAgent",
@@ -1321,7 +1441,15 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla det användbara släckmedlet. Informationen bör relatera till deras möjliga tillämpningsområde enligt regleringen i DIN EN 2." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:material"
+        }
+      ]
     },
     {
       "@id": "dppk:labelMeaning",
@@ -1384,7 +1512,15 @@
         { "@language": "sv", "@value": "Information om förebyggande och hantering av förbrukade batterier, inklusive betydelsen av etiketter och symboler." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:description"
+        },
+        {
+          "@id": "gs1:productDescription"
+        }
+      ]
     },
 
     // --- Carbon Footprint (Extras not in EPD) ---
@@ -1449,7 +1585,12 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla testrapportresultaten som kan bevisa överensstämmelse med kraven i batteriförordningen." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Report"
+      }
     },
     {
       "@id": "dppk:carbonFootprintClass",
@@ -1512,7 +1653,15 @@
         { "@language": "sv", "@value": "Batteripasset ska innehålla prestandaklassen för koldioxidavtryck i enlighet med de delegerade akterna och genomförandeakterna." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:carbonFootprintStudy",
@@ -1575,7 +1724,17 @@
         { "@language": "sv", "@value": "Batteripasset ska innehålla en webblänk till den koldioxidavtrycksstudie som medföljer deklarationen om batteriets koldioxidavtryck." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:CreativeWork"
+        },
+        {
+          "@id": "unece:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:carbonFootprintGeneralInfo",
@@ -1638,7 +1797,17 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla allmän information om batteri och tillverkare i förhållande till batteriets koldioxidavtryck." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:carbonFootprintAbsolute",
@@ -1698,7 +1867,15 @@
         { "@language": "sv", "@value": "Batteripasset bör innehålla batteriets koldioxidavtryck i absoluta tal (kg CO2e)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
 
     // --- Supply Chain ---
@@ -1763,7 +1940,12 @@
         { "@language": "sv", "@value": "Batteripasset ska innehålla information om ansvarsfulla inköp enligt rapporten om dess policy för należyta aktsamhet." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:Report"
+      }
     },
     {
       "@id": "dppk:supplyChainAssurances",
@@ -1826,7 +2008,17 @@
         { "@language": "sv", "@value": "Batteripasset bör innehålla information om tredjepartsförsäkringar för leveranskedjan, t.ex. certifieringar." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:supplyChainIndices",
@@ -1950,7 +2142,15 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla information om batterikemin (katod, anod, elektrolyt)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:material"
+        }
+      ]
     },
     {
       "@id": "dppk:criticalRawMaterials",
@@ -2013,7 +2213,10 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla information om de kritiska råvaror som finns i batteriet i en koncentration på mer än 0,1 %." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": {
+        "@id": "schema:material"
+      }
     },
     {
       "@id": "dppk:materialComposition",
@@ -2147,9 +2350,14 @@
       "rdfs:range": {
         "@id": "dppk:Component"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:material"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:material"
+        }
+      ]
     },
     {
       "@id": "dppk:hazardousSubstancesImpact",
@@ -2212,7 +2420,15 @@
         { "@language": "sv", "@value": "Batteripasset ska innehålla information om ämnens, särskilt farliga ämnens, påverkan på miljön och människors hälsa." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
 
     // --- Circularity ---
@@ -2277,7 +2493,12 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla demonteringsinformation, inklusive sprängskisser, demonteringssekvenser och nödvändiga verktyg." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:howTo"
+      }
     },
     {
       "@id": "dppk:partNumbers",
@@ -2343,9 +2564,14 @@
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
       },
-      "skos:closeMatch": {
-        "@id": "schema:mpn"
-      }
+      "skos:closeMatch": [
+        {
+          "@id": "schema:mpn"
+        },
+        {
+          "@id": "gs1:globalModelNumber"
+        }
+      ]
     },
     {
       "@id": "dppk:sparePartsSources",
@@ -2408,7 +2634,17 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla kontaktuppgifter till källor för reservdelar." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     },
     {
       "@id": "dppk:safetyMeasures",
@@ -2471,7 +2707,17 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla säkerhetsåtgärder, som tillhandahålls i bruksanvisningen." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     },
     {
       "@id": "dppk:wastePreventionInfo",
@@ -2534,7 +2780,17 @@
         { "@language": "sv", "@value": "Information om slutanvändarnas roll i avfallsförebyggande, separat insamling och information om insamling och behandling av batterier." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:description"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     },
 
     // --- Recycled Content ---
@@ -2602,9 +2858,14 @@
       "rdfs:range": {
         "@id": "dppk:Component"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:material"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:postConsumerRecycledMaterialComposition",
@@ -2670,9 +2931,14 @@
       "rdfs:range": {
         "@id": "dppk:Component"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:material"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:renewableContent",
@@ -2733,7 +2999,15 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla information om andelen förnybart innehåll." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
 
     // --- Performance (Scoped) ---
@@ -2801,9 +3075,14 @@
       "rdfs:range": {
         "@id": "dppk:BatteryPerformance"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:additionalProperty"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:capacity",
@@ -2866,7 +3145,17 @@
         { "@language": "sv", "@value": "Underavsnitt för kapacitet, energi, laddningstillstånd och spänningsgränser." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": { "@id": "dppk:CapacityInfo" }
+      "rdfs:range": {
+        "@id": "dppk:CapacityInfo"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:power",
@@ -2932,9 +3221,14 @@
       "rdfs:range": {
         "@id": "dppk:PowerInfo"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:additionalProperty"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:efficiency",
@@ -2997,7 +3291,17 @@
         { "@language": "sv", "@value": "Underavsnitt för rundeffektivitet och självurladdning." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": { "@id": "dppk:EfficiencyInfo" }
+      "rdfs:range": {
+        "@id": "dppk:EfficiencyInfo"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:internalResistance",
@@ -3060,7 +3364,17 @@
         { "@language": "sv", "@value": "Underavsnitt för inre motstånd." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": { "@id": "dppk:InternalResistanceInfo" }
+      "rdfs:range": {
+        "@id": "dppk:InternalResistanceInfo"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:lifetime",
@@ -3123,7 +3437,12 @@
         { "@language": "sv", "@value": "Underavsnitt för batteriets livslängd i år och cykler." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": { "@id": "dppk:LifetimeInfo" }
+      "rdfs:range": {
+        "@id": "dppk:LifetimeInfo"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:QuantitativeValue"
+      }
     },
     {
       "@id": "dppk:temperature",
@@ -3186,7 +3505,12 @@
         { "@language": "sv", "@value": "Underavsnitt för temperaturförhållanden och tid i extrema temperaturer." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": { "@id": "dppk:TemperatureInfo" }
+      "rdfs:range": {
+        "@id": "dppk:TemperatureInfo"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:negativeEvents",
@@ -3249,7 +3573,12 @@
         { "@language": "sv", "@value": "Underavsnitt för negativa händelser och olyckor." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": { "@id": "dppk:NegativeEventsInfo" }
+      "rdfs:range": {
+        "@id": "dppk:NegativeEventsInfo"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     },
 
     // --- Capacity Properties ---
@@ -3312,7 +3641,15 @@
         { "@language": "sv", "@value": "Det totala antalet amperetimmar (Ah) som kan tas ut från ett fulladdat batteri under referensförhållanden." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:remainingCapacity",
@@ -3373,7 +3710,15 @@
         { "@language": "sv", "@value": "Motsvarande dataattribut i användning till nominell kapacitet, som information om batteriets hälsotillstånd." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:capacityFade",
@@ -3434,7 +3779,15 @@
         { "@language": "sv", "@value": "Minskningen över tid och vid användning av den mängd laddning som ett batteri kan leverera vid märkspänningen, med avseende på den ursprungliga nominella kapaciteten." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:certifiedUsableEnergy",
@@ -3494,7 +3847,15 @@
         { "@language": "sv", "@value": "Den användbara batterienergin enligt förfarandet i FN:s globala tekniska föreskrift nr 22, fastställd under certifieringen." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:remainingUsableEnergy",
@@ -3554,7 +3915,15 @@
         { "@language": "sv", "@value": "Den användbara batterienergin vid den nuvarande tidpunkten i ett batteris livslängd." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:soce",
@@ -3615,7 +3984,15 @@
         { "@language": "sv", "@value": "Den uppmätta eller inbyggda användbara batterienergiprestandan vid en specifik tidpunkt under dess livslängd, uttryckt i procent av den certifierade användbara batterienergin." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:stateOfCharge",
@@ -3676,7 +4053,10 @@
         { "@language": "sv", "@value": "Den tillgängliga energin eller laddningen i ett batteri uttryckt i procent av den nominella kapaciteten." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:voltageMinimum",
@@ -3737,7 +4117,10 @@
         { "@language": "sv", "@value": "Den nedre spänningsgräns som batteriets säkra drift är klassad för." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:voltageMaximum",
@@ -3798,7 +4181,10 @@
         { "@language": "sv", "@value": "Den övre spänningsgräns för vilken batteriets säkra drift är klassad." }
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:voltageNominal",
@@ -3922,7 +4308,15 @@
         { "@language": "sv", "@value": "Den mängd energi som ett batteri kan leverera under en given tidsperiod under referensförhållanden." }
       ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerRemaining",
@@ -3983,7 +4377,15 @@
         { "@language": "sv", "@value": "Information om återstående effektkapacitet som information om batteriets hälsotillstånd." }
       ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerFade",
@@ -4044,7 +4446,15 @@
         { "@language": "sv", "@value": "Minskningen över tid och vid användning av den mängd effekt som ett batteri kan leverera vid märkspänningen." }
       ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerMaximumPermitted",
@@ -4105,7 +4515,15 @@
         { "@language": "sv", "@value": "Värdet på den maximalt tillåtna effekten som batteriet är klassat för." }
       ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerEnergyRatio",
@@ -4166,7 +4584,15 @@
         { "@language": "sv", "@value": "Ger en indikation på den tillämpliga urladdnings- och laddningshastigheten i termer av nominell kapacitet (C-rate)." }
       ],
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
 
     // --- Efficiency Properties ---
@@ -4229,7 +4655,15 @@
         { "@language": "sv", "@value": "Förhållandet mellan den nettoenergi som levereras av ett batteri under ett urladdningstest och den totala energi som krävs för att återställa det ursprungliga laddningstillståndet." }
       ],
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:roundTripEfficiencyAt50Cycles",
@@ -4290,7 +4724,15 @@
         { "@language": "sv", "@value": "Energieffektivitet för rundresa mätt vid 50 % av cykellivslängden." }
       ],
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:roundTripEfficiencyRemaining",
@@ -4351,7 +4793,15 @@
         { "@language": "sv", "@value": "Den analoga användningen till den ursprungliga energieffektiviteten för rundresor." }
       ],
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:roundTripEfficiencyFade",
@@ -4412,7 +4862,15 @@
         { "@language": "sv", "@value": "Minskningen av energieffektiviteten för rundresan i procent." }
       ],
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:selfDischargeInitial",
@@ -4472,7 +4930,15 @@
         { "@language": "sv", "@value": "Självurladdningshastigheten i ett viloläge för batteriet under referensförhållanden i början av livslängden." }
       ],
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:selfDischargeCurrent",
@@ -4532,7 +4998,15 @@
         { "@language": "sv", "@value": "Förändringen av självurladdningshastigheten i ett viloläge för batteriet." }
       ],
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:selfDischargeEvolution",
@@ -4593,7 +5067,15 @@
         { "@language": "sv", "@value": "Förändringen av självurladdning över tid och användning, beräknad från den initiala och nuvarande självurladdningshastigheten." }
       ],
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
 
     // --- Internal Resistance Properties ---
@@ -4656,7 +5138,15 @@
         { "@language": "sv", "@value": "Motståndet mot strömflödet i en cell eller ett batteri under referensförhållanden." }
       ],
       "rdfs:domain": { "@id": "dppk:InternalResistanceInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:internalResistanceIncrease",
@@ -4717,7 +5207,15 @@
         { "@language": "sv", "@value": "Ökningen av det interna motståndet över tid och vid användning." }
       ],
       "rdfs:domain": { "@id": "dppk:InternalResistanceInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
 
     // --- Lifetime Properties ---
@@ -4844,7 +5342,15 @@
         { "@language": "sv", "@value": "Den förväntade livslängden under de referensförhållanden för vilka de har konstruerats i termer av cykler." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:cycleCountFull",
@@ -4905,7 +5411,15 @@
         { "@language": "sv", "@value": "Värdet för antalet fullständiga laddnings- och urladdningscykler bör vara resultatet av en aggregering av partiella cykler som inträffar i användningsfasen." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:referenceTestCycleLife",
@@ -4968,7 +5482,15 @@
         { "@language": "sv", "@value": "Referenstestet som används för att fastställa den förväntade batterilivslängden i cykler." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:cRateCycleTest",
@@ -5029,7 +5551,15 @@
         { "@language": "sv", "@value": "Tillämpad laddnings- och urladdningshastighet i termer av nominell kapacitet (C-hastighet) för relevant cykellivslängdsreferenstest." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:energyThroughput",
@@ -5090,7 +5620,15 @@
         { "@language": "sv", "@value": "Den totala summan av energigenomströmningen under batteriets livslängd vid en viss tidpunkt under användningen." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:capacityThroughput",
@@ -5151,7 +5689,15 @@
         { "@language": "sv", "@value": "Den totala summan av kapacitetsgenomströmningen under batteriets livslängd vid en viss tidpunkt under användningen." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:exhaustionCapacityThreshold",
@@ -5212,7 +5758,15 @@
         { "@language": "sv", "@value": "Den procentandel av SOCE över vilken batteriet fortfarande anses vara funktionsdugligt." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
 
     // --- Temperature Properties ---
@@ -5275,7 +5829,10 @@
         { "@language": "sv", "@value": "Den nedre gränsen för det omgivande temperaturområde som batteriet tål när det inte används." }
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:temperatureIdleUpper",
@@ -5336,7 +5893,10 @@
         { "@language": "sv", "@value": "Den övre gränsen för det omgivande temperaturområde som batteriet tål när det inte används." }
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeExtremeTempUpper",
@@ -5397,7 +5957,10 @@
         { "@language": "sv", "@value": "Den sammanlagda tiden under vilken temperaturer över den övre gränsen för temperaturområdet är förhärskande." }
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeExtremeTempLower",
@@ -5458,7 +6021,10 @@
         { "@language": "sv", "@value": "Den sammanlagda tiden under vilken temperaturer under den nedre gränsen för temperaturområdet är förhärskande." }
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeChargingTempUpper",
@@ -5519,7 +6085,10 @@
         { "@language": "sv", "@value": "Den sammanlagda tiden under vilken batteriet laddas medan temperaturer över den övre gränsen är vanliga." }
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeChargingTempLower",
@@ -5580,7 +6149,10 @@
         { "@language": "sv", "@value": "Den sammanlagda tiden under vilken batteriet laddas medan temperaturer under den nedre gränsen är vanliga." }
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
 
     // --- Negative Events Properties ---
@@ -5643,7 +6215,10 @@
         { "@language": "sv", "@value": "Antalet tillfällen då spänningen har sjunkit under den nedre driftgränsen." }
       ],
       "rdfs:domain": { "@id": "dppk:NegativeEventsInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     },
     {
       "@id": "dppk:eventsOvercharge",
@@ -5703,7 +6278,10 @@
         { "@language": "sv", "@value": "Antalet tillfällen då spänningen har ökat över den övre driftgränsen." }
       ],
       "rdfs:domain": { "@id": "dppk:NegativeEventsInfo" },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     },
     {
       "@id": "dppk:eventsAccidents",
@@ -5766,7 +6344,10 @@
         { "@language": "sv", "@value": "Information och data som härrör från användning, t.ex. olyckor, baserat på mätning av plötslig positiv eller negativ acceleration." }
       ],
       "rdfs:domain": { "@id": "dppk:NegativeEventsInfo" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     }
   ]
 }

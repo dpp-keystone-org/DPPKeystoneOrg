@@ -8,7 +8,8 @@
     "dppk-dopc": "https://dpp-keystone.org/spec/{{VERSION}}/terms/dopc#",
     "dcterms": "http://purl.org/dc/terms/",
     "schema": "http://schema.org/",
-    "skos": "http://www.w3.org/2004/02/skos/core#"
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/DoPC",
   "@type": "owl:Ontology",
@@ -122,9 +123,14 @@
         { "@language": "sl", "@value": "Podatkovni blok DoPC" },
         { "@language": "sv", "@value": "DoPC-datablock" }
       ],
-      "skos:closeMatch": {
-        "@id": "schema:Certification"
-      }
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:dopc",
@@ -212,9 +218,14 @@
         { "@language": "sl", "@value": "Izjava o lastnostih in skladnosti." },
         { "@language": "sv", "@value": "Prestandadeklarationen och försäkran om överensstämmelse." }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:hasCertification"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:hasCertification"
+        },
+        {
+          "@id": "gs1:certification"
+        }
+      ]
     },
     {
       "@id": "dppk-dopc:declarationCode",

@@ -264,9 +264,14 @@
           { "@language": "sl", "@value": "Pomemben korak v proizvodni ali predelovalni verigi izdelka, vključno z njegovo lokacijo." },
           { "@language": "sv", "@value": "Ett betydande steg i produktens tillverknings- eller bearbetningskedja, inklusive dess plats." }
         ],
-        "skos:relatedMatch": {
-          "@id": "schema:Action"
-        }
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:Action"
+          },
+          {
+            "@id": "gs1:bizStep"
+          }
+        ]
     },
 
     // ==================================================================
@@ -464,7 +469,17 @@
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "dppk:Certification" },
-        "rdfs:subPropertyOf": { "@id": "dppk:certifications" }
+        "rdfs:subPropertyOf": {
+          "@id": "dppk:certifications"
+        },
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:Certification"
+          },
+          {
+            "@id": "gs1:CertificationDetails"
+          }
+        ]
     },
     {
         "@id": "dppk:substancesOfConcern",
@@ -522,7 +537,12 @@
           { "@language": "sv", "@value": "Relaterar produkten till eventuella farliga ämnen den innehåller." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:Component" }
+        "rdfs:range": {
+          "@id": "dppk:Component"
+        },
+        "skos:relatedMatch": {
+          "@id": "schema:material"
+        }
     },
 
     {
@@ -621,9 +641,14 @@
         "rdfs:range": {
           "@id": "dppk:ProductionStep"
         },
-        "skos:relatedMatch": {
-          "@id": "schema:step"
-        }
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:step"
+          },
+          {
+            "@id": "gs1:bizStep"
+          }
+        ]
     },
 
     // ==================================================================
@@ -690,9 +715,14 @@
         "rdfs:range": {
           "@id": "xsd:string"
         },
-        "skos:relatedMatch": {
-          "@id": "schema:name"
-        }
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:name"
+          },
+          {
+            "@id": "gs1:certificationValue"
+          }
+        ]
     },
     {
         "@id": "dppk:certificationId",
@@ -753,9 +783,14 @@
         "rdfs:range": {
           "@id": "xsd:string"
         },
-        "skos:relatedMatch": {
-          "@id": "schema:identifier"
-        }
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:identifier"
+          },
+          {
+            "@id": "gs1:certificationIdentification"
+          }
+        ]
     },
     {
         "@id": "dppk:certificationUrl",
@@ -816,9 +851,14 @@
         "rdfs:range": {
           "@id": "xsd:anyURI"
         },
-        "skos:relatedMatch": {
-          "@id": "schema:url"
-        }
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:url"
+          },
+          {
+            "@id": "gs1:referencedFile"
+          }
+        ]
     },
     {
         "@id": "dppk:certificationBodyName",
@@ -938,7 +978,17 @@
           { "@language": "sv", "@value": "Den unika identifieraren för certifieringsorganet." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:identifier"
+          },
+          {
+            "@id": "gs1:additionalOrganizationIdentification"
+          }
+        ]
     },
     {
         "@id": "dppk:certificationStartDate",
@@ -1062,9 +1112,14 @@
         "rdfs:range": {
           "@id": "xsd:date"
         },
-        "skos:closeMatch": {
-          "@id": "schema:expires"
-        }
+        "skos:closeMatch": [
+          {
+            "@id": "schema:expires"
+          },
+          {
+            "@id": "gs1:certificationEndDate"
+          }
+        ]
     },
     {
         "@id": "dppk:certificationBodyRole",
@@ -1122,7 +1177,17 @@
           { "@language": "sv", "@value": "Den roll eller egenskap i vilken certifieringsorganet utfärdade certifieringen." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": { "@id": "dppk:CertificationBodyRoleType" }
+        "rdfs:range": {
+          "@id": "dppk:CertificationBodyRoleType"
+        },
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:roleName"
+          },
+          {
+            "@id": "gs1:partyRole"
+          }
+        ]
     },
 
     // --- Enumeration for Certification Body Roles ---
@@ -1187,6 +1252,14 @@
             { "@id": "dppk:ManufacturerRole" },
             { "@id": "dppk:ImporterRole" },
             { "@id": "dppk:NotifiedBodyRole" }
+        ],
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:Role"
+          },
+          {
+            "@id": "gs1:PartyRole"
+          }
         ]
     },
     {
@@ -1302,7 +1375,10 @@
           { "@language": "sk", "@value": "Úloha subjektu zodpovedného za výrobu hotových výrobkov." },
           { "@language": "sl", "@value": "Vloga subjekta, odgovornega za proizvodnjo končnih izdelkov." },
           { "@language": "sv", "@value": "Rollen för en enhet som ansvarar för produktionen av färdiga varor." }
-        ]
+        ],
+        "skos:relatedMatch": {
+          "@id": "schema:Role"
+        }
     },
     {
         "@id": "dppk:ImporterRole",
@@ -1417,7 +1493,10 @@
           { "@language": "sk", "@value": "Úloha subjektu, ktorý vykonáva činnosti posudzovania zhody a je oficiálne určený notifikujúcim orgánom." },
           { "@language": "sl", "@value": "Vloga subjekta, ki izvaja dejavnosti ugotavljanja skladnosti in ga uradno imenuje priglasitveni organ." },
           { "@language": "sv", "@value": "Rollen för en enhet som utför bedömningar av överensstämmelse och är officiellt utsedd av en anmälande myndighet." }
-        ]
+        ],
+        "skos:relatedMatch": {
+          "@id": "schema:Role"
+        }
     },
 
 
@@ -1667,7 +1746,17 @@
           { "@language": "sl", "@value": "Odstotek reciklirane vsebine v embalažnem materialu." },
           { "@language": "sv", "@value": "Procentandelen återvunnet innehåll i förpackningsmaterialet." }
         ],
-        "rdfs:domain": { "@id": "dppk:Packaging" }
+        "rdfs:domain": {
+          "@id": "dppk:Packaging"
+        },
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:material"
+          },
+          {
+            "@id": "gs1:PackagingMaterialDetails"
+          }
+        ]
     },
     {
         "@id": "dppk:packagingSubstanceOfConcern",
@@ -1724,7 +1813,17 @@
           { "@language": "sl", "@value": "Označuje, ali so v embalaži prisotne snovi, ki vzbujajo skrb." },
           { "@language": "sv", "@value": "Anger om det finns några farliga ämnen i förpackningen." }
         ],
-        "rdfs:domain": { "@id": "dppk:Packaging" }
+        "rdfs:domain": {
+          "@id": "dppk:Packaging"
+        },
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:material"
+          },
+          {
+            "@id": "gs1:PackagingMaterialDetails"
+          }
+        ]
     },
 
 
@@ -1784,7 +1883,17 @@
           { "@language": "sl", "@value": "Ime ali opis proizvodnega koraka (npr. Montaža, Tkanje, Taljenje)." },
           { "@language": "sv", "@value": "Namnet eller beskrivningen av produktionssteget (t.ex. Montering, Vävning, Smältning)." }
         ],
-        "rdfs:domain": { "@id": "dppk:ProductionStep" }
+        "rdfs:domain": {
+          "@id": "dppk:ProductionStep"
+        },
+        "skos:relatedMatch": [
+          {
+            "@id": "schema:Text"
+          },
+          {
+            "@id": "gs1:description"
+          }
+        ]
     },
     {
         "@id": "dppk:productionLocationCountry",

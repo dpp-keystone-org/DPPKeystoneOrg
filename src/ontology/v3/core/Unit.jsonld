@@ -8,7 +8,9 @@
     "dppk-unit": "https://dpp-keystone.org/spec/{{VERSION}}/terms/unit#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "dcterms": "http://purl.org/dc/terms/",
-    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms/unit"
+    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms/unit",
+    "schema": "https://schema.org/",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Unit",
   "@type": "owl:Ontology",
@@ -120,6 +122,14 @@
         { "@language": "sk", "@value": "Dobre definovaná merná jednotka." },
         { "@language": "sl", "@value": "Dobro opredeljena merska enota." },
         { "@language": "sv", "@value": "En väldefinierad måttenhet." }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:QuantitativeValue"
+        },
+        {
+          "@id": "gs1:QuantitativeValue"
+        }
       ]
     },
     {
@@ -178,7 +188,10 @@
         { "@language": "sk", "@value": "Surová reťazcová reprezentácia alebo symbol jednotky." },
         { "@language": "sl", "@value": "Surova predstavitev niza ali simbol enote." },
         { "@language": "sv", "@value": "Den råa strängrepresentationen eller symbolen för enheten." }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:unitText"
+      }
     },
     {
       "@id": "dppk-unit:Percent",

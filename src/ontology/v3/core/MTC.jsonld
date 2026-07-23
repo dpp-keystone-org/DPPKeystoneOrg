@@ -7,7 +7,8 @@
         "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "dcterms": "http://purl.org/dc/terms/",
         "schema": "http://schema.org/",
-        "skos": "http://www.w3.org/2004/02/skos/core#"
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "gs1": "https://gs1.org/voc/"
     },
     "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/MTC",
     "@type": "owl:Ontology",
@@ -121,9 +122,14 @@
               { "@language": "sl", "@value": "Potrdilo o preskusu materiala (MTC)" },
               { "@language": "sv", "@value": "Materialprovningsintyg (MTC)" }
             ],
-            "skos:closeMatch": {
-              "@id": "schema:Certification"
-            }
+            "skos:closeMatch": [
+              {
+                "@id": "schema:Certification"
+              },
+              {
+                "@id": "gs1:CertificationDetails"
+              }
+            ]
         },
         {
             "@id": "dppk:mtc",
@@ -181,6 +187,14 @@
               { "@language": "sk", "@value": "Odkaz na Certifikát o skúške materiálu spojený s týmto produktom." },
               { "@language": "sl", "@value": "Povezava do potrdila o preskusu materiala, povezanega s tem izdelkom." },
               { "@language": "sv", "@value": "En länk till materialprovningsintyget som är kopplat till denna produkt." }
+            ],
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:certification"
+              },
+              {
+                "@id": "gs1:certification"
+              }
             ]
         },
         {
@@ -238,7 +252,17 @@
               { "@language": "sl", "@value": "Sklic na izvirni digitalni dokument ali datoteko, ki predstavlja to potrdilo." },
               { "@language": "sv", "@value": "En hänvisning till det ursprungliga digitala dokumentet eller filen som representerar detta certifikat." }
             ],
-            "rdfs:range": { "@id": "dppk:RelatedResource" }
+            "rdfs:range": {
+              "@id": "dppk:RelatedResource"
+            },
+            "skos:relatedMatch": [
+              {
+                "@id": "schema:DigitalDocument"
+              },
+              {
+                "@id": "gs1:Document"
+              }
+            ]
         },
         // --- MTC Parameters ---
         {
@@ -301,7 +325,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcWeightTolerance",
@@ -363,7 +390,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcYieldStrength",
@@ -425,7 +455,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcYieldStrengthRatio",
@@ -487,7 +520,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcElongation",
@@ -549,7 +585,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcRelativeRibArea",
@@ -611,7 +650,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcCarbonContent",
@@ -673,7 +715,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcPhosphorusContent",
@@ -735,7 +780,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcSulfurContent",
@@ -797,7 +845,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcCopperContent",
@@ -859,7 +910,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcNitrogenContent",
@@ -921,7 +975,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcCarbonEquivalent",
@@ -983,7 +1040,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcSteelProcess",
@@ -1044,7 +1104,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:string",
             "dppk:visibility": { "@id": "dppk:Public" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcFinishing",
@@ -1105,7 +1168,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:string",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         },
         {
             "@id": "dppk:mtcRadiometricControl",
@@ -1167,7 +1233,10 @@
             "rdfs:domain": { "@id": "dppk:MaterialTestCertificate" },
             "rdfs:range": "xsd:double",
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
-            "rdfs:term_status": "unstable"
+            "rdfs:term_status": "unstable",
+            "skos:relatedMatch": {
+              "@id": "schema:PropertyValue"
+            }
         }
     ]
 }

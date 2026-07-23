@@ -245,9 +245,14 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:identifier"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalProductClassificationValue"
+        }
+      ]
     },
 
     // --- uniqueProductIdentifier (UPI) ---
@@ -416,9 +421,14 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:identifier"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalOrganizationIdentification"
+        }
+      ]
     },
 
     // --- FacilityID ---
@@ -482,9 +492,14 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "skos:relatedMatch": {
-        "@id": "schema:identifier"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalOrganizationIdentification"
+        }
+      ]
     },
 
     // --- Granularity ---
@@ -548,7 +563,10 @@
         { "@id": "dppk:Model" },
         { "@id": "dppk:Batch" },
         { "@id": "dppk:Item" }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:QualitativeValue"
+      }
     },
     {
       "@id": "dppk:Model",
@@ -663,6 +681,14 @@
         { "@language": "sk", "@value": "Označuje, že DPP sa vzťahuje na výrobnú šaržu." },
         { "@language": "sl", "@value": "Pomeni, da DPP velja za proizvodno serijo." },
         { "@language": "sv", "@value": "Indikerar att DPP gäller för ett produktionsparti." }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:ProductGroup"
+        },
+        {
+          "@id": "unece:Batch"
+        }
       ]
     },
     {
@@ -720,9 +746,14 @@
         { "@language": "sl", "@value": "Pomeni, da DPP velja za posamezno serializirano enoto." },
         { "@language": "sv", "@value": "Indikerar att DPP gäller för en individuell serialiserad enhet." }
       ],
-      "skos:exactMatch": {
-        "@id": "schema:IndividualProduct"
-      }
+      "skos:exactMatch": [
+        {
+          "@id": "schema:IndividualProduct"
+        },
+        {
+          "@id": "gs1:Product"
+        }
+      ]
     },
 
     {
@@ -782,7 +813,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "dppk:GranularityValue" }
+      "rdfs:range": {
+        "@id": "dppk:GranularityValue"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Text"
+      }
     },
 
     // --- StatusOfTheDPP ---
@@ -843,7 +879,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:creativeWorkStatus"
+      }
     },
 
     // --- lastUpdate ---
@@ -970,7 +1011,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:version"
+      }
     },
     {
       "@id": "dppk:versionDate",
@@ -1029,7 +1075,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:date" }
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:dateModified"
+      }
     },
     {
       "@id": "dppk:dppSchemaVersion",
@@ -1088,7 +1139,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:version"
+      }
     },
     {
       "@id": "dppk:contentSpecificationIds",
@@ -1147,7 +1203,17 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalProductClassificationValue"
+        }
+      ]
     },
 
     // --- hsCode (Often considered part of the header/identification) ---
@@ -1337,6 +1403,17 @@
         { "@language": "sk", "@value": "Merná jednotka." },
         { "@language": "sl", "@value": "Merska enota." },
         { "@language": "sv", "@value": "Måttenheten." }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:unitCode"
+        },
+        {
+          "@id": "gs1:unitCode"
+        },
+        {
+          "@id": "unece:QuantityTypeCode"
+        }
       ]
     },
     {
