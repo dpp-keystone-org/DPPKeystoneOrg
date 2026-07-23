@@ -40,7 +40,7 @@ Thoroughly test and update the DPP generation code to work with the new Unit ins
 
 Thoroughly test and update the Wizard UI to properly show and interact with the new Units. The frontend must reliably parse, display, and submit the structured `dppk-unit:` enum instances rather than the old raw strings.
 
-## STEP 5: Project-Wide Ripple Effect Audit [PENDING]
+## STEP 5: Project-Wide Ripple Effect Audit [COMPLETED]
 
 Thoroughly search the entire project for any additional areas where the new units will cause possible issues and then fix them. This includes checking documentation, data mocks, API schemas, validation logic, and frontend components for any lingering string-based unit assumptions.
 
