@@ -162,16 +162,10 @@
           { "@language": "sv", "@value": "Direktiv 2012/19/EU (WEEE-direktivet)" }
         ]
       },
-      "rdfs:subClassOf": {
-        "@id": "dppk:Product"
-      },
+      "rdfs:subClassOf": { "@id": "dppk:Product" },
       "skos:closeMatch": [
-        {
-          "@id": "schema:Product"
-        },
-        {
-          "@id": "gs1:Product"
-        }
+        { "@id": "schema:Product" },
+        { "@id": "gs1:Product" }
       ]
     },
     {
@@ -229,16 +223,10 @@
           { "@language": "sl", "@value": "Orodje, ki ga poganja dodaten vir energije in mehanizem, razen izključno ročnega dela." },
           { "@language": "sv", "@value": "Ett verktyg som drivs av en extra kraftkälla och mekanism förutom enbart manuellt arbete." }
         ],
-        "rdfs:subClassOf": {
-          "@id": "dppk:ElectronicDevice"
-        },
+        "rdfs:subClassOf": { "@id": "dppk:ElectronicDevice" },
         "skos:closeMatch": [
-          {
-            "@id": "schema:Product"
-          },
-          {
-            "@id": "gs1:Product"
-          }
+          { "@id": "schema:Product" },
+          { "@id": "gs1:Product" }
         ]
     },
 
@@ -303,12 +291,8 @@
           { "@language": "sv", "@value": "Den elektriska potentialskillnaden, mäts vanligtvis i volt (V)." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "dppk:QuantitativeValue"
-        },
-        "skos:relatedMatch": {
-          "@id": "schema:PropertyValue"
-        }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
 
     // --- Rated Power (Wattage) ---
@@ -368,16 +352,10 @@
           { "@language": "sv", "@value": "Enhetens strömförbrukning under normala driftsförhållanden, mäts vanligtvis i watt (W)." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "dppk:QuantitativeValue"
-        },
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:PropertyValue"
-          },
-          {
-            "@id": "gs1:AdditionalProductClassificationDetails"
-          }
+          { "@id": "schema:PropertyValue" },
+          { "@id": "gs1:AdditionalProductClassificationDetails" }
         ]
     },
     
@@ -438,16 +416,10 @@
           { "@language": "sv", "@value": "Energieffektivitetsklassningen enligt EU:s ramverk för energimärkning (t.ex. A, B, C)." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "xsd:string"
-        },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:exactMatch": [
-          {
-            "@id": "schema:hasEnergyEfficiencyCategory"
-          },
-          {
-            "@id": "gs1:energyEfficiencyClass"
-          }
+          { "@id": "schema:hasEnergyEfficiencyCategory" },
+          { "@id": "gs1:energyEfficiencyClass" }
         ]
     },
 
@@ -512,16 +484,10 @@
           { "@language": "sv", "@value": "Definierar nivåer av tätningseffektivitet mot inträngning från främmande föremål (verktyg, smuts) och fukt (t.ex. IP54)." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "xsd:string"
-        },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:PropertyValue"
-          },
-          {
-            "@id": "gs1:ProductCharacteristic"
-          }
+          { "@id": "schema:PropertyValue" },
+          { "@id": "gs1:ProductCharacteristic" }
         ]
     },
 
@@ -582,16 +548,10 @@
           { "@language": "sv", "@value": "Indikerar om reservdelar finns tillgängliga för produkten." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "xsd:boolean"
-        },
+        "rdfs:range": { "@id": "xsd:boolean" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:Boolean"
-          },
-          {
-            "@id": "gs1:booleanValue"
-          }
+          { "@id": "schema:Boolean" },
+          { "@id": "gs1:booleanValue" }
         ]
     },
 
@@ -652,16 +612,10 @@
           { "@language": "sv", "@value": "Indikerar om en service- eller reparationsmanual är tillgänglig." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "xsd:boolean"
-        },
+        "rdfs:range": { "@id": "xsd:boolean" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:Boolean"
-          },
-          {
-            "@id": "gs1:booleanValue"
-          }
+          { "@id": "schema:Boolean" },
+          { "@id": "gs1:booleanValue" }
         ]
     },
 
@@ -722,16 +676,10 @@
           { "@language": "sv", "@value": "Information om varaktighet och typ av mjukvaru-/firmwareuppdateringar som tillhandahålls av tillverkaren." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "rdf:langString"
-        },
+        "rdfs:range": { "@id": "rdf:langString" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:CreativeWork"
-          },
-          {
-            "@id": "gs1:Document"
-          }
+          { "@id": "schema:CreativeWork" },
+          { "@id": "gs1:Document" }
         ]
     },
 
@@ -798,16 +746,10 @@
           { "@language": "sv", "@value": "Kategorin under direktivet om avfall från elektrisk och elektronisk utrustning (WEEE)." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "xsd:string"
-        },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:category"
-          },
-          {
-            "@id": "gs1:AdditionalProductClassificationDetails"
-          }
+          { "@id": "schema:category" },
+          { "@id": "gs1:AdditionalProductClassificationDetails" }
         ]
     },
 
@@ -868,12 +810,8 @@
           { "@language": "sv", "@value": "Instruktioner för säker demontering av produkten för reparation eller återvinning." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": {
-          "@id": "rdf:langString"
-        },
-        "skos:closeMatch": {
-          "@id": "schema:howTo"
-        }
+        "rdfs:range": { "@id": "rdf:langString" },
+        "skos:closeMatch": { "@id": "schema:howTo" }
     },
 
 
@@ -938,12 +876,8 @@
           { "@language": "sv", "@value": "Rotationskraften som genereras av verktyget, mäts vanligtvis i newtonmeter (Nm)." }
         ],
         "rdfs:domain": { "@id": "dppk:PowerTool" },
-        "rdfs:range": {
-          "@id": "dppk:QuantitativeValue"
-        },
-        "skos:relatedMatch": {
-          "@id": "schema:PropertyValue"
-        }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
         "@id": "dppk:maximumRatedSpeed",
@@ -1001,12 +935,8 @@
           { "@language": "sv", "@value": "Verktygets maximala driftshastighet, mäts vanligtvis i varv per minut (RPM)." }
         ],
         "rdfs:domain": { "@id": "dppk:PowerTool" },
-        "rdfs:range": {
-          "@id": "dppk:QuantitativeValue"
-        },
-        "skos:relatedMatch": {
-          "@id": "schema:QuantitativeValue"
-        }
+        "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+        "skos:relatedMatch": { "@id": "schema:QuantitativeValue" }
     }
   ]
 }

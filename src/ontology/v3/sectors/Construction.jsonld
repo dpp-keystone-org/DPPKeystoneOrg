@@ -136,16 +136,10 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
         "rdfs:label": "Regulation (EU) No 305/2011 (Construction Products Regulation - CPR)"
       },
-      "rdfs:subClassOf": {
-        "@id": "dppk:Product"
-      },
+      "rdfs:subClassOf": { "@id": "dppk:Product" },
       "skos:closeMatch": [
-        {
-          "@id": "schema:Product"
-        },
-        {
-          "@id": "gs1:Product"
-        }
+        { "@id": "schema:Product" },
+        { "@id": "gs1:Product" }
       ]
     },
     {
@@ -204,16 +198,10 @@
         { "@language": "sv", "@value": "En referens (URI eller identifierare) till den tillämpliga harmoniserade europeiska standarden (hEN) som används för att bedöma produkten." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
+      "rdfs:range": { "@id": "xsd:anyURI" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Certification"
-        },
-        {
-          "@id": "gs1:CertificationDetails"
-        }
+        { "@id": "schema:Certification" },
+        { "@id": "gs1:CertificationDetails" }
       ]
     },
     {
@@ -276,16 +264,10 @@
         "rdfs:label": "Notified bodies - Internal Market, Industry, Entrepreneurship and SMEs"
       },
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": {
-        "@id": "dppk:Organization"
-      },
+      "rdfs:range": { "@id": "dppk:Organization" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Organization"
-        },
-        {
-          "@id": "gs1:Organization"
-        }
+        { "@id": "schema:Organization" },
+        { "@id": "gs1:Organization" }
       ]
     },
     {
@@ -344,16 +326,10 @@
         { "@language": "sv", "@value": "Det tekniska bedömningsorganet som oberoende utvärderar en produkts tekniska egenskaper" }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": {
-        "@id": "dppk:Organization"
-      },
+      "rdfs:range": { "@id": "dppk:Organization" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Organization"
-        },
-        {
-          "@id": "gs1:Organization"
-        }
+        { "@id": "schema:Organization" },
+        { "@id": "gs1:Organization" }
       ]
     },
     {
@@ -412,12 +388,8 @@
         { "@language": "sv", "@value": "Referens till rapporter som validerar produktens prestanda eller överensstämmelse." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:Report"
-      }
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "skos:relatedMatch": { "@id": "schema:Report" }
     },
     {
       "@id": "dppk:europeanAssessmentDocument",
@@ -475,16 +447,10 @@
         { "@language": "sv", "@value": "En referens till det europeiska bedömningsdokumentet (EAD) som är relevant för produkten." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Certification"
-        },
-        {
-          "@id": "gs1:CertificationDetails"
-        }
+        { "@id": "schema:Certification" },
+        { "@id": "gs1:CertificationDetails" }
       ]
     },
     {
@@ -543,12 +509,8 @@
         { "@language": "sv", "@value": "Ett materials förmåga att leda värme." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": {
-        "@id": "dppk:QuantitativeValue"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "rdfs:range": { "@id": "dppk:QuantitativeValue" },
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:compressiveStrength",
@@ -606,16 +568,10 @@
         { "@language": "sv", "@value": "Förmågan hos ett material eller en struktur att motstå belastningar som tenderar att minska storleken." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": {
-        "@id": "dppk:QuantitativeValue"
-      },
+      "rdfs:range": { "@id": "dppk:QuantitativeValue" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:value"
-        },
-        {
-          "@id": "gs1:value"
-        }
+        { "@id": "schema:value" },
+        { "@id": "gs1:value" }
       ]
     },
     {
@@ -674,12 +630,8 @@
         { "@language": "sv", "@value": "Klassificeringen av stålet baserat på dess sammansättning och fysikaliska egenskaper (t.ex. R260, S355)." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:category"
-      }
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:relatedMatch": { "@id": "schema:category" }
     },
     {
       "@id": "dppk:railProfile",
@@ -737,16 +689,10 @@
         { "@language": "sv", "@value": "Den standardiserade tvärsnittsdesignen av en järnvägsräls (t.ex. 46E1)." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
+      "rdfs:range": { "@id": "xsd:string" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Text"
-        },
-        {
-          "@id": "gs1:description"
-        }
+        { "@id": "schema:Text" },
+        { "@id": "gs1:description" }
       ]
     }
   ]

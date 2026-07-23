@@ -126,12 +126,8 @@
         { "@language": "sv", "@value": "En klass för att hålla alla miljöpåverkanskategorier i ett kompakt ordboksformat." }
       ],
       "skos:closeMatch": [
-        {
-          "@id": "schema:Certification"
-        },
-        {
-          "@id": "gs1:CertificationDetails"
-        }
+        { "@id": "schema:Certification" },
+        { "@id": "gs1:CertificationDetails" }
       ]
     },
     {
@@ -247,16 +243,10 @@
       ],
       "dppk:governedBy": "EN 15804:2012+A2:2019",
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": {
-        "@id": "dppk:EPDBlock"
-      },
+      "rdfs:range": { "@id": "dppk:EPDBlock" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Certification"
-        },
-        {
-          "@id": "gs1:CertificationDetails"
-        }
+        { "@id": "schema:Certification" },
+        { "@id": "gs1:CertificationDetails" }
       ]
     }
   ]

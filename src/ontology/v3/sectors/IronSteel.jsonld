@@ -132,12 +132,8 @@
             ],
             "rdfs:term_status": "unstable",
             "skos:closeMatch": [
-              {
-                "@id": "schema:Product"
-              },
-              {
-                "@id": "gs1:Product"
-              }
+              { "@id": "schema:Product" },
+              { "@id": "gs1:Product" }
             ]
         },
         {
@@ -198,16 +194,10 @@
             "dppk:governedBy": "EN 10168",
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
-            "dppk:visibility": {
-              "@id": "dppk:Public"
-            },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
-            "skos:closeMatch": {
-              "@id": "gs1:batchLot"
-            },
-            "skos:relatedMatch": {
-              "@id": "schema:sku"
-            }
+            "skos:closeMatch": { "@id": "gs1:batchLot" },
+            "skos:relatedMatch": { "@id": "schema:sku" }
         },
         {
             "@id": "dppk:productNumber",
@@ -267,17 +257,11 @@
             "dppk:governedBy": "EN 10168",
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
-            "dppk:visibility": {
-              "@id": "dppk:Public"
-            },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
             "skos:closeMatch": [
-              {
-                "@id": "schema:productID"
-              },
-              {
-                "@id": "gs1:globalModelNumber"
-              }
+              { "@id": "schema:productID" },
+              { "@id": "gs1:globalModelNumber" }
             ]
         },
         {
@@ -337,17 +321,11 @@
             ],
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:date",
-            "dppk:visibility": {
-              "@id": "dppk:Public"
-            },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
             "skos:exactMatch": [
-              {
-                "@id": "schema:productionDate"
-              },
-              {
-                "@id": "gs1:productionDate"
-              }
+              { "@id": "schema:productionDate" },
+              { "@id": "gs1:productionDate" }
             ]
         },
         {
@@ -408,13 +386,9 @@
             "dppk:governedBy": "EN 10168",
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
-            "dppk:visibility": {
-              "@id": "dppk:Public"
-            },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
-            "skos:relatedMatch": {
-              "@id": "gs1:batchLot"
-            }
+            "skos:relatedMatch": { "@id": "gs1:batchLot" }
         },
         {
             "@id": "dppk:lotNumber",
@@ -474,13 +448,9 @@
             "dppk:governedBy": "EN 10168",
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
-            "dppk:visibility": {
-              "@id": "dppk:Public"
-            },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
-            "skos:exactMatch": {
-              "@id": "gs1:batchLot"
-            }
+            "skos:exactMatch": { "@id": "gs1:batchLot" }
         },
         {
             "@id": "dppk:purchaserOrder",
@@ -539,17 +509,11 @@
             ],
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
-            "dppk:visibility": {
-              "@id": "dppk:LegitimateInterest"
-            },
+            "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
             "rdfs:term_status": "unstable",
             "skos:exactMatch": [
-              {
-                "@id": "schema:orderNumber"
-              },
-              {
-                "@id": "gs1:purchaseOrderNumber"
-              }
+              { "@id": "schema:orderNumber" },
+              { "@id": "gs1:purchaseOrderNumber" }
             ]
         },
         {
@@ -612,9 +576,7 @@
             "rdfs:range": "xsd:string",
             "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
-            "skos:relatedMatch": {
-              "@id": "schema:category"
-            }
+            "skos:relatedMatch": { "@id": "schema:category" }
         },
         {
             "@id": "dppk:steelDesignation",
@@ -676,9 +638,7 @@
             "rdfs:range": "xsd:string",
             "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
-            "skos:relatedMatch": {
-              "@id": "schema:category"
-            }
+            "skos:relatedMatch": { "@id": "schema:category" }
         },
         {
             "@id": "dppk:technologyRoute",
@@ -797,13 +757,9 @@
             ],
             "rdfs:domain": { "@id": "dppk:IronSteelProduct" },
             "rdfs:range": "xsd:string",
-            "dppk:visibility": {
-              "@id": "dppk:Public"
-            },
+            "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
-            "skos:closeMatch": {
-              "@id": "schema:countryOfOrigin"
-            }
+            "skos:closeMatch": { "@id": "schema:countryOfOrigin" }
         },
         {
             "@id": "dppk:recycledContentPercentage",
@@ -866,12 +822,8 @@
             "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:term_status": "unstable",
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:AdditionalProductClassificationDetails"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:AdditionalProductClassificationDetails" }
             ]
         },
         {
@@ -935,12 +887,8 @@
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
             "rdfs:term_status": "unstable",
             "skos:relatedMatch": [
-              {
-                "@id": "schema:material"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:material" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -1004,12 +952,8 @@
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
             "rdfs:term_status": "unstable",
             "skos:relatedMatch": [
-              {
-                "@id": "schema:material"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:material" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -1071,12 +1015,8 @@
             "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
             "rdfs:term_status": "unstable",
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Certification"
-              },
-              {
-                "@id": "gs1:Certification"
-              }
+              { "@id": "schema:Certification" },
+              { "@id": "gs1:Certification" }
             ]
         },
         {
@@ -1139,12 +1079,8 @@
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
             "rdfs:term_status": "unstable",
             "skos:relatedMatch": [
-              {
-                "@id": "schema:identifier"
-              },
-              {
-                "@id": "gs1:additionalTradeItemIdentification"
-              }
+              { "@id": "schema:identifier" },
+              { "@id": "gs1:additionalTradeItemIdentification" }
             ]
         },
         {
@@ -1207,12 +1143,8 @@
             "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
             "rdfs:term_status": "unstable",
             "skos:relatedMatch": [
-              {
-                "@id": "schema:DigitalDocument"
-              },
-              {
-                "@id": "gs1:Document"
-              }
+              { "@id": "schema:DigitalDocument" },
+              { "@id": "gs1:Document" }
             ]
         }
     ]

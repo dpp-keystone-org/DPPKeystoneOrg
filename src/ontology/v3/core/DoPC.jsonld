@@ -124,12 +124,8 @@
         { "@language": "sv", "@value": "DoPC-datablock" }
       ],
       "skos:closeMatch": [
-        {
-          "@id": "schema:Certification"
-        },
-        {
-          "@id": "gs1:CertificationDetails"
-        }
+        { "@id": "schema:Certification" },
+        { "@id": "gs1:CertificationDetails" }
       ]
     },
     {
@@ -219,12 +215,8 @@
         { "@language": "sv", "@value": "Prestandadeklarationen och försäkran om överensstämmelse." }
       ],
       "skos:relatedMatch": [
-        {
-          "@id": "schema:hasCertification"
-        },
-        {
-          "@id": "gs1:certification"
-        }
+        { "@id": "schema:hasCertification" },
+        { "@id": "gs1:certification" }
       ]
     },
     {

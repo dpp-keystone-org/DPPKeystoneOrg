@@ -130,12 +130,8 @@
         { "@language": "sv", "@value": "Datamodell för batteripasset enligt EU:s batteriförordning." }
       ],
       "skos:closeMatch": [
-        {
-          "@id": "schema:Product"
-        },
-        {
-          "@id": "gs1:Product"
-        }
+        { "@id": "schema:Product" },
+        { "@id": "gs1:Product" }
       ]
     },
     
@@ -201,12 +197,8 @@
         { "@language": "sv", "@value": "Behållare för prestanda- och hållbarhetsparametrar för batteriet." }
       ],
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -270,12 +262,8 @@
         { "@language": "sv", "@value": "Information om batteriets kapacitet, energi, laddningstillstånd och spänningsgränser." }
       ],
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -339,12 +327,8 @@
         { "@language": "sv", "@value": "Information om batteriets effektkapacitet, effektminskning och maximalt tillåten effekt." }
       ],
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -408,12 +392,8 @@
         { "@language": "sv", "@value": "Information om batteriets tur-och-retur-energieffektivitet och självurladdningshastigheter." }
       ],
       "skos:closeMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -476,9 +456,7 @@
         { "@language": "sl", "@value": "Informacije o notranji upornosti baterije in njenem povečanju skozi čas." },
         { "@language": "sv", "@value": "Information om batteriets inre resistans och dess ökning över tid." }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:StructuredValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:StructuredValue" }
     },
     {
       "@id": "dppk:LifetimeInfo",
@@ -540,9 +518,7 @@
         { "@language": "sl", "@value": "Informacije o pričakovani življenjski dobi baterije v letih in ciklih, vključno z referenčnimi preskusi." },
         { "@language": "sv", "@value": "Information om batteriets förväntade livslängd i år och cykler, inklusive referenstester." }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:StructuredValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:StructuredValue" }
     },
     {
       "@id": "dppk:TemperatureInfo",
@@ -604,9 +580,7 @@
         { "@language": "sl", "@value": "Informacije o temperaturnih območjih, ki jih baterija lahko prenese, in času, preživetem pri ekstremnih temperaturah." },
         { "@language": "sv", "@value": "Information om de temperaturområden som batteriet tål och den tid som tillbringats i extrema temperaturer." }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:NegativeEventsInfo",
@@ -668,9 +642,7 @@
         { "@language": "sl", "@value": "Informacije o negativnih dogodkih, kot so globoke izpraznitve, prenapolnjenost in nesreče." },
         { "@language": "sv", "@value": "Information om negativa händelser såsom djupa urladdningar, överladdningar och olyckor." }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:Event"
-      }
+      "skos:relatedMatch": { "@id": "schema:Event" }
     },
 
     // --- Identifiers & Core Data ---
@@ -736,9 +708,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
-      "skos:closeMatch": {
-        "@id": "schema:locationCreated"
-      }
+      "skos:closeMatch": { "@id": "schema:locationCreated" }
     },
     {
       "@id": "dppk:manufacturingDate",
@@ -803,12 +773,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:date",
       "skos:exactMatch": [
-        {
-          "@id": "schema:productionDate"
-        },
-        {
-          "@id": "gs1:productionDate"
-        }
+        { "@id": "schema:productionDate" },
+        { "@id": "gs1:productionDate" }
       ]
     },
     {
@@ -874,12 +840,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:date",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Date"
-        },
-        {
-          "@id": "unece:Date"
-        }
+        { "@id": "schema:Date" },
+        { "@id": "unece:Date" }
       ]
     },
     {
@@ -945,12 +907,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:durationOfWarranty"
-        },
-        {
-          "@id": "gs1:WarrantyPromise"
-        }
+        { "@id": "schema:durationOfWarranty" },
+        { "@id": "gs1:WarrantyPromise" }
       ]
     },
     {
@@ -1016,12 +974,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:category"
-        },
-        {
-          "@id": "gs1:productCategory"
-        }
+        { "@id": "schema:category" },
+        { "@id": "gs1:productCategory" }
       ]
     },
     {
@@ -1085,12 +1039,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:weight"
-        },
-        {
-          "@id": "gs1:netWeight"
-        }
+        { "@id": "schema:weight" },
+        { "@id": "gs1:netWeight" }
       ]
     },
     {
@@ -1156,12 +1106,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
 
@@ -1227,16 +1173,10 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla symbolen för separat insamling. Symbolen bör översättas till text för att säkerställa maskinläsbarhet." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:image"
-        },
-        {
-          "@id": "gs1:image"
-        }
+        { "@id": "schema:image" },
+        { "@id": "gs1:image" }
       ]
     },
     {
@@ -1300,12 +1240,8 @@
         { "@language": "sv", "@value": "Batterier som innehåller mer än 0,002 % kadmium eller 0,004 % bly måste vara märkta med den kemiska symbolen (Cd eller Pb)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:Text"
-      }
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "skos:relatedMatch": { "@id": "schema:Text" }
     },
     {
       "@id": "dppk:carbonFootprintLabel",
@@ -1368,16 +1304,10 @@
         { "@language": "sv", "@value": "Elfordonsbatterier och laddningsbara industribatterier > 2 kWh samt LMT-batterier ska ha en märkning som anger koldioxidavtryck och prestandaklass." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -1443,12 +1373,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:material"
-        },
-        {
-          "@id": "gs1:material"
-        }
+        { "@id": "schema:material" },
+        { "@id": "gs1:material" }
       ]
     },
     {
@@ -1514,12 +1440,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:description"
-        },
-        {
-          "@id": "gs1:productDescription"
-        }
+        { "@id": "schema:description" },
+        { "@id": "gs1:productDescription" }
       ]
     },
 
@@ -1585,12 +1507,8 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla testrapportresultaten som kan bevisa överensstämmelse med kraven i batteriförordningen." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:Report"
-      }
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "skos:relatedMatch": { "@id": "schema:Report" }
     },
     {
       "@id": "dppk:carbonFootprintClass",
@@ -1655,12 +1573,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -1724,16 +1638,10 @@
         { "@language": "sv", "@value": "Batteripasset ska innehålla en webblänk till den koldioxidavtrycksstudie som medföljer deklarationen om batteriets koldioxidavtryck." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:CreativeWork"
-        },
-        {
-          "@id": "unece:Document"
-        }
+        { "@id": "schema:CreativeWork" },
+        { "@id": "unece:Document" }
       ]
     },
     {
@@ -1797,16 +1705,10 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla allmän information om batteri och tillverkare i förhållande till batteriets koldioxidavtryck." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -1869,12 +1771,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
 
@@ -1940,12 +1838,8 @@
         { "@language": "sv", "@value": "Batteripasset ska innehålla information om ansvarsfulla inköp enligt rapporten om dess policy för należyta aktsamhet." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
-      "skos:closeMatch": {
-        "@id": "schema:Report"
-      }
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "skos:closeMatch": { "@id": "schema:Report" }
     },
     {
       "@id": "dppk:supplyChainAssurances",
@@ -2008,16 +1902,10 @@
         { "@language": "sv", "@value": "Batteripasset bör innehålla information om tredjepartsförsäkringar för leveranskedjan, t.ex. certifieringar." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:certification"
-        },
-        {
-          "@id": "gs1:CertificationDetails"
-        }
+        { "@id": "schema:certification" },
+        { "@id": "gs1:CertificationDetails" }
       ]
     },
     {
@@ -2144,12 +2032,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:material"
-        },
-        {
-          "@id": "gs1:material"
-        }
+        { "@id": "schema:material" },
+        { "@id": "gs1:material" }
       ]
     },
     {
@@ -2214,9 +2098,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
-      "skos:relatedMatch": {
-        "@id": "schema:material"
-      }
+      "skos:relatedMatch": { "@id": "schema:material" }
     },
     {
       "@id": "dppk:materialComposition",
@@ -2279,12 +2161,8 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla information om batteriets detaljerade sammansättning, inklusive material som används i katoden, anoden och elektrolyten. Återanvänder dppk:Component." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:Component"
-      },
-      "skos:exactMatch": {
-        "@id": "schema:material"
-      }
+      "rdfs:range": { "@id": "dppk:Component" },
+      "skos:exactMatch": { "@id": "schema:material" }
     },
     {
       "@id": "dppk:hazardousSubstances",
@@ -2347,16 +2225,10 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla information om andra farliga ämnen än kvicksilver, kadmium eller bly. Återanvänder dppk:Component." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:Component"
-      },
+      "rdfs:range": { "@id": "dppk:Component" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:material"
-        },
-        {
-          "@id": "gs1:material"
-        }
+        { "@id": "schema:material" },
+        { "@id": "gs1:material" }
       ]
     },
     {
@@ -2422,12 +2294,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
 
@@ -2493,12 +2361,8 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla demonteringsinformation, inklusive sprängskisser, demonteringssekvenser och nödvändiga verktyg." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
-      "skos:closeMatch": {
-        "@id": "schema:howTo"
-      }
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
+      "skos:closeMatch": { "@id": "schema:howTo" }
     },
     {
       "@id": "dppk:partNumbers",
@@ -2561,16 +2425,10 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla artikelnummer för komponenter, tillsammans med kontaktuppgifter till källor för reservdelar." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:closeMatch": [
-        {
-          "@id": "schema:mpn"
-        },
-        {
-          "@id": "gs1:globalModelNumber"
-        }
+        { "@id": "schema:mpn" },
+        { "@id": "gs1:globalModelNumber" }
       ]
     },
     {
@@ -2634,16 +2492,10 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla kontaktuppgifter till källor för reservdelar." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Text"
-        },
-        {
-          "@id": "gs1:description"
-        }
+        { "@id": "schema:Text" },
+        { "@id": "gs1:description" }
       ]
     },
     {
@@ -2707,16 +2559,10 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla säkerhetsåtgärder, som tillhandahålls i bruksanvisningen." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:Text"
-        },
-        {
-          "@id": "gs1:description"
-        }
+        { "@id": "schema:Text" },
+        { "@id": "gs1:description" }
       ]
     },
     {
@@ -2780,16 +2626,10 @@
         { "@language": "sv", "@value": "Information om slutanvändarnas roll i avfallsförebyggande, separat insamling och information om insamling och behandling av batterier." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:description"
-        },
-        {
-          "@id": "gs1:description"
-        }
+        { "@id": "schema:description" },
+        { "@id": "gs1:description" }
       ]
     },
 
@@ -2855,16 +2695,10 @@
         { "@language": "sv", "@value": "De procentuella andelarna av nickel, kobolt, litium och bly som återvunnits från avfall från batteritillverkning (före konsumentledet)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:Component"
-      },
+      "rdfs:range": { "@id": "dppk:Component" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:material"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:material" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -2928,16 +2762,10 @@
         { "@language": "sv", "@value": "De procentuella andelarna av nickel, kobolt, litium och bly som återvunnits från avfall (efter konsumentledet)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:Component"
-      },
+      "rdfs:range": { "@id": "dppk:Component" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:material"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:material" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -3001,12 +2829,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
 
@@ -3072,16 +2896,10 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla information om batteriets prestanda och hållbarhet." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": {
-        "@id": "dppk:BatteryPerformance"
-      },
+      "rdfs:range": { "@id": "dppk:BatteryPerformance" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:additionalProperty"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:additionalProperty" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -3145,16 +2963,10 @@
         { "@language": "sv", "@value": "Underavsnitt för kapacitet, energi, laddningstillstånd och spänningsgränser." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": {
-        "@id": "dppk:CapacityInfo"
-      },
+      "rdfs:range": { "@id": "dppk:CapacityInfo" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -3218,16 +3030,10 @@
         { "@language": "sv", "@value": "Underavsnitt för effektkapacitet, fade och gränser." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": {
-        "@id": "dppk:PowerInfo"
-      },
+      "rdfs:range": { "@id": "dppk:PowerInfo" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:additionalProperty"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:additionalProperty" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -3291,16 +3097,10 @@
         { "@language": "sv", "@value": "Underavsnitt för rundeffektivitet och självurladdning." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": {
-        "@id": "dppk:EfficiencyInfo"
-      },
+      "rdfs:range": { "@id": "dppk:EfficiencyInfo" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:value"
-        },
-        {
-          "@id": "gs1:value"
-        }
+        { "@id": "schema:value" },
+        { "@id": "gs1:value" }
       ]
     },
     {
@@ -3364,16 +3164,10 @@
         { "@language": "sv", "@value": "Underavsnitt för inre motstånd." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": {
-        "@id": "dppk:InternalResistanceInfo"
-      },
+      "rdfs:range": { "@id": "dppk:InternalResistanceInfo" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -3437,12 +3231,8 @@
         { "@language": "sv", "@value": "Underavsnitt för batteriets livslängd i år och cykler." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": {
-        "@id": "dppk:LifetimeInfo"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:QuantitativeValue"
-      }
+      "rdfs:range": { "@id": "dppk:LifetimeInfo" },
+      "skos:relatedMatch": { "@id": "schema:QuantitativeValue" }
     },
     {
       "@id": "dppk:temperature",
@@ -3505,12 +3295,8 @@
         { "@language": "sv", "@value": "Underavsnitt för temperaturförhållanden och tid i extrema temperaturer." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": {
-        "@id": "dppk:TemperatureInfo"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "rdfs:range": { "@id": "dppk:TemperatureInfo" },
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:negativeEvents",
@@ -3573,12 +3359,8 @@
         { "@language": "sv", "@value": "Underavsnitt för negativa händelser och olyckor." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": {
-        "@id": "dppk:NegativeEventsInfo"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:Event"
-      }
+      "rdfs:range": { "@id": "dppk:NegativeEventsInfo" },
+      "skos:relatedMatch": { "@id": "schema:Event" }
     },
 
     // --- Capacity Properties ---
@@ -3643,12 +3425,8 @@
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -3712,12 +3490,8 @@
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -3781,12 +3555,8 @@
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -3849,12 +3619,8 @@
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:value"
-        },
-        {
-          "@id": "gs1:value"
-        }
+        { "@id": "schema:value" },
+        { "@id": "gs1:value" }
       ]
     },
     {
@@ -3917,12 +3683,8 @@
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -3986,12 +3748,8 @@
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -4054,9 +3812,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:voltageMinimum",
@@ -4118,9 +3874,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:voltageMaximum",
@@ -4182,9 +3936,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:voltageNominal",
@@ -4310,12 +4062,8 @@
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:additionalProperty"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:additionalProperty" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -4379,12 +4127,8 @@
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:additionalProperty"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:additionalProperty" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -4448,12 +4192,8 @@
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:additionalProperty"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:additionalProperty" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -4517,12 +4257,8 @@
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:additionalProperty"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:additionalProperty" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -4586,12 +4322,8 @@
       "rdfs:domain": { "@id": "dppk:PowerInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:value"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:value" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
 
@@ -4657,12 +4389,8 @@
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -4726,12 +4454,8 @@
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -4795,12 +4519,8 @@
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -4864,12 +4584,8 @@
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -4932,12 +4648,8 @@
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -5000,12 +4712,8 @@
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -5069,12 +4777,8 @@
       "rdfs:domain": { "@id": "dppk:EfficiencyInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
 
@@ -5140,12 +4844,8 @@
       "rdfs:domain": { "@id": "dppk:InternalResistanceInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -5209,12 +4909,8 @@
       "rdfs:domain": { "@id": "dppk:InternalResistanceInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
 
@@ -5279,9 +4975,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:duration"
-      }
+      "skos:relatedMatch": { "@id": "schema:duration" }
     },
     {
       "@id": "dppk:expectedLifetimeCycles",
@@ -5344,12 +5038,8 @@
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:integer",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -5413,12 +5103,8 @@
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:integer",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:value"
-        },
-        {
-          "@id": "gs1:value"
-        }
+        { "@id": "schema:value" },
+        { "@id": "gs1:value" }
       ]
     },
     {
@@ -5484,12 +5170,8 @@
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:string",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -5553,12 +5235,8 @@
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:value"
-        },
-        {
-          "@id": "gs1:value"
-        }
+        { "@id": "schema:value" },
+        { "@id": "gs1:value" }
       ]
     },
     {
@@ -5622,12 +5300,8 @@
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
     {
@@ -5691,12 +5365,8 @@
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:AdditionalProductClassificationDetails"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
     {
@@ -5760,12 +5430,8 @@
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": [
-        {
-          "@id": "schema:PropertyValue"
-        },
-        {
-          "@id": "gs1:ProductCharacteristic"
-        }
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
       ]
     },
 
@@ -5830,9 +5496,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:temperatureIdleUpper",
@@ -5894,9 +5558,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:timeExtremeTempUpper",
@@ -5958,9 +5620,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:timeExtremeTempLower",
@@ -6022,9 +5682,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:timeChargingTempUpper",
@@ -6086,9 +5744,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
     {
       "@id": "dppk:timeChargingTempLower",
@@ -6150,9 +5806,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:TemperatureInfo" },
       "rdfs:range": "xsd:double",
-      "skos:relatedMatch": {
-        "@id": "schema:PropertyValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
 
     // --- Negative Events Properties ---
@@ -6216,9 +5870,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:NegativeEventsInfo" },
       "rdfs:range": "xsd:integer",
-      "skos:relatedMatch": {
-        "@id": "schema:Event"
-      }
+      "skos:relatedMatch": { "@id": "schema:Event" }
     },
     {
       "@id": "dppk:eventsOvercharge",
@@ -6279,9 +5931,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:NegativeEventsInfo" },
       "rdfs:range": "xsd:integer",
-      "skos:relatedMatch": {
-        "@id": "schema:Event"
-      }
+      "skos:relatedMatch": { "@id": "schema:Event" }
     },
     {
       "@id": "dppk:eventsAccidents",
@@ -6345,9 +5995,7 @@
       ],
       "rdfs:domain": { "@id": "dppk:NegativeEventsInfo" },
       "rdfs:range": "xsd:string",
-      "skos:relatedMatch": {
-        "@id": "schema:Event"
-      }
+      "skos:relatedMatch": { "@id": "schema:Event" }
     }
   ]
 }

@@ -124,12 +124,8 @@
         { "@language": "sv", "@value": "En väldefinierad måttenhet." }
       ],
       "skos:relatedMatch": [
-        {
-          "@id": "schema:QuantitativeValue"
-        },
-        {
-          "@id": "gs1:QuantitativeValue"
-        }
+        { "@id": "schema:QuantitativeValue" },
+        { "@id": "gs1:QuantitativeValue" }
       ]
     },
     {
@@ -189,9 +185,7 @@
         { "@language": "sl", "@value": "Surova predstavitev niza ali simbol enote." },
         { "@language": "sv", "@value": "Den råa strängrepresentationen eller symbolen för enheten." }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:unitText"
-      }
+      "skos:relatedMatch": { "@id": "schema:unitText" }
     },
     {
       "@id": "dppk-unit:Percent",

@@ -123,12 +123,8 @@
         { "@language": "sv", "@value": "En resurs identifierad av en URL, med ytterligare metadata som titel, innehållstyp och språk." }
       ],
       "skos:closeMatch": [
-        {
-          "@id": "schema:DigitalDocument"
-        },
-        {
-          "@id": "gs1:Document"
-        }
+        { "@id": "schema:DigitalDocument" },
+        { "@id": "gs1:Document" }
       ]
     },
     {
@@ -187,19 +183,11 @@
         { "@language": "sv", "@value": "Titeln på den relaterade resursen." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
+      "rdfs:range": { "@id": "xsd:string" },
       "skos:exactMatch": [
-        {
-          "@id": "schema:headline"
-        },
-        {
-          "@id": "schema:name"
-        },
-        {
-          "@id": "gs1:documentTitle"
-        }
+        { "@id": "schema:headline" },
+        { "@id": "schema:name" },
+        { "@id": "gs1:documentTitle" }
       ]
     },
     {
@@ -258,12 +246,8 @@
         { "@language": "sv", "@value": "Mediatypen (MIME-typ) för resursen (t.ex. 'application/pdf', 'image/jpeg')." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "skos:exactMatch": {
-        "@id": "schema:encodingFormat"
-      }
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:exactMatch": { "@id": "schema:encodingFormat" }
     },
     {
       "@id": "dppk:language",
@@ -321,16 +305,10 @@
         { "@language": "sv", "@value": "Språket för resursinnehållet (t.ex. 'en', 'fr')." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
+      "rdfs:range": { "@id": "xsd:string" },
       "skos:exactMatch": [
-        {
-          "@id": "schema:inLanguage"
-        },
-        {
-          "@id": "gs1:fileLanguageCode"
-        }
+        { "@id": "schema:inLanguage" },
+        { "@id": "gs1:fileLanguageCode" }
       ]
     },
     {
@@ -389,12 +367,8 @@
         { "@language": "sv", "@value": "Platsen för resursen." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
-      "skos:exactMatch": {
-        "@id": "schema:url"
-      }
+      "rdfs:range": { "@id": "xsd:anyURI" },
+      "skos:exactMatch": { "@id": "schema:url" }
     },
     {
       "@id": "dppk:instructionsForUse",
@@ -452,16 +426,10 @@
         { "@language": "sv", "@value": "En länk till bruksanvisningen eller användarmanualen för produkten." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:HowTo"
-        },
-        {
-          "@id": "gs1:consumerUsageInstructions"
-        }
+        { "@id": "schema:HowTo" },
+        { "@id": "gs1:consumerUsageInstructions" }
       ]
     },
     {
@@ -520,16 +488,10 @@
         { "@language": "sl", "@value": "Povezava do varnostnega lista (VL) za izdelek." },
         { "@language": "sv", "@value": "En länk till säkerhetsdatabladet (SDB) för produkten." }
       ],
-      "rdfs:range": {
-        "@id": "dppk:RelatedResource"
-      },
+      "rdfs:range": { "@id": "dppk:RelatedResource" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:DigitalDocument"
-        },
-        {
-          "@id": "gs1:Document"
-        }
+        { "@id": "schema:DigitalDocument" },
+        { "@id": "gs1:Document" }
       ]
     },
     {
@@ -590,16 +552,10 @@
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": {
-        "@id": "schema:subjectOf"
-      },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:HowTo"
-        },
-        {
-          "@id": "gs1:Document"
-        }
+        { "@id": "schema:HowTo" },
+        { "@id": "gs1:Document" }
       ]
     },
     {
@@ -660,16 +616,10 @@
       "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": {
-        "@id": "schema:subjectOf"
-      },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:HowTo"
-        },
-        {
-          "@id": "gs1:consumerUsageInstructions"
-        }
+        { "@id": "schema:HowTo" },
+        { "@id": "gs1:consumerUsageInstructions" }
       ]
     },
     {
@@ -730,16 +680,10 @@
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": {
-        "@id": "schema:subjectOf"
-      },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:HowTo"
-        },
-        {
-          "@id": "gs1:Document"
-        }
+        { "@id": "schema:HowTo" },
+        { "@id": "gs1:Document" }
       ]
     },
     {
@@ -800,16 +744,10 @@
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": {
-        "@id": "schema:subjectOf"
-      },
+      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" },
       "skos:exactMatch": [
-        {
-          "@id": "schema:careInstructions"
-        },
-        {
-          "@id": "gs1:consumerHandlingInstructions"
-        }
+        { "@id": "schema:careInstructions" },
+        { "@id": "gs1:consumerHandlingInstructions" }
       ]
     }
   ]

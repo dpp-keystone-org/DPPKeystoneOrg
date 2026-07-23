@@ -125,12 +125,8 @@
               { "@language": "sv", "@value": "En strukturerad representation av en EU-storlek enligt EN 13402." }
             ],
             "skos:closeMatch": [
-              {
-                "@id": "schema:SizeSpecification"
-              },
-              {
-                "@id": "gs1:SizeDetails"
-              }
+              { "@id": "schema:SizeSpecification" },
+              { "@id": "gs1:SizeDetails" }
             ]
         },
         {
@@ -189,16 +185,10 @@
               { "@language": "sv", "@value": "Den strukturerade EU-specifika storleken på produkten baserad på kroppsmått (t.ex. EN 13402)." }
             ],
             "rdfs:domain": { "@id": "dppk:Product" },
-            "rdfs:range": {
-              "@id": "dppk:EuApparelSizeObject"
-            },
+            "rdfs:range": { "@id": "dppk:EuApparelSizeObject" },
             "skos:closeMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -257,16 +247,10 @@
               { "@language": "sv", "@value": "Identifiering av klädstorlek med hjälp av alfanumeriska tecken." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:exactMatch": [
-              {
-                "@id": "gs1:sizeCode"
-              },
-              {
-                "@id": "schema:size"
-              }
+              { "@id": "gs1:sizeCode" },
+              { "@id": "schema:size" }
             ]
         },
         {
@@ -325,16 +309,10 @@
               { "@language": "sv", "@value": "Skillnaden mellan bystvidd och underbystvidd." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:closeMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -393,16 +371,10 @@
               { "@language": "sv", "@value": "Det primära kroppsmåttet (t.ex. bröstvidd)." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": {
-              "@id": "dppk:BodyDimensionValue"
-            },
+            "rdfs:range": { "@id": "dppk:BodyDimensionValue" },
             "skos:closeMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -461,16 +433,10 @@
               { "@language": "sv", "@value": "Intervallet eller värdet för den primära dimensionen." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:closeMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -528,16 +494,10 @@
               { "@language": "sl", "@value": "Dodatne telesne mere, potrebne za natančno prileganje." },
               { "@language": "sv", "@value": "Ytterligare kroppsmått krävs för exakt passform." }
             ],
-            "rdfs:domain": {
-              "@id": "dppk:EuApparelSizeObject"
-            },
+            "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -595,16 +555,10 @@
               { "@language": "sl", "@value": "Ime sekundarne dimenzije (npr. obseg pasu)." },
               { "@language": "sv", "@value": "Namnet på den sekundära dimensionen (t.ex. midjevidd)." }
             ],
-            "rdfs:range": {
-              "@id": "dppk:BodyDimensionValue"
-            },
+            "rdfs:range": { "@id": "dppk:BodyDimensionValue" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:name"
-              },
-              {
-                "@id": "gs1:characteristicName"
-              }
+              { "@id": "schema:name" },
+              { "@id": "gs1:characteristicName" }
             ]
         },
         {
@@ -662,16 +616,10 @@
               { "@language": "sl", "@value": "Vrednost ali razpon sekundarne dimenzije." },
               { "@language": "sv", "@value": "Värdet eller intervallet för den sekundära dimensionen." }
             ],
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:value"
-              },
-              {
-                "@id": "gs1:characteristicValue"
-              }
+              { "@id": "schema:value" },
+              { "@id": "gs1:characteristicValue" }
             ]
         },
         {
@@ -743,12 +691,8 @@
                 { "@id": "dppk:BodyDimInsideLegLength" }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:QuantitativeValue"
-              },
-              {
-                "@id": "gs1:QuantitativeValue"
-              }
+              { "@id": "schema:QuantitativeValue" },
+              { "@id": "gs1:QuantitativeValue" }
             ]
         },
         {
@@ -807,12 +751,8 @@
               { "@language": "sv", "@value": "Mätning av bröstvidd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -871,12 +811,8 @@
               { "@language": "sv", "@value": "Mätning av halsvidd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -935,12 +871,8 @@
               { "@language": "sv", "@value": "Mätning av midjevidd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -999,12 +931,8 @@
               { "@language": "sv", "@value": "Mätning av höftvidd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -1063,12 +991,8 @@
               { "@language": "sv", "@value": "Mätning av kroppslängd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:height"
-              },
-              {
-                "@id": "gs1:height"
-              }
+              { "@id": "schema:height" },
+              { "@id": "gs1:height" }
             ]
         },
         {
@@ -1127,12 +1051,8 @@
               { "@language": "sv", "@value": "Mätning av bystvidd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -1191,12 +1111,8 @@
               { "@language": "sv", "@value": "Mätning av underbystvidd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -1255,12 +1171,8 @@
               { "@language": "sv", "@value": "Mätning av fotlängd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -1319,12 +1231,8 @@
               { "@language": "sv", "@value": "Mätning av armlängd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         },
         {
@@ -1383,12 +1291,8 @@
               { "@language": "sv", "@value": "Mätning av innerbenslängd." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:size"
-              },
-              {
-                "@id": "gs1:sizeCode"
-              }
+              { "@id": "schema:size" },
+              { "@id": "gs1:sizeCode" }
             ]
         }
     ]

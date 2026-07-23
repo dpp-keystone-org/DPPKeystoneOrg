@@ -134,19 +134,11 @@
           { "@language": "sl", "@value": "Potrditev, da izdelek izpolnjuje zahteve določenega standarda ali predpisa (npr. oznaka CE, EPD)." },
           { "@language": "sv", "@value": "En bekräftelse på att produkten uppfyller kraven i en specifik standard eller förordning (t.ex. CE-märkning, EPD)." }
         ],
-        "rdfs:subClassOf": {
-          "@id": "dppk:RelatedResource"
-        },
+        "rdfs:subClassOf": { "@id": "dppk:RelatedResource" },
         "skos:exactMatch": [
-          {
-            "@id": "schema:Certification"
-          },
-          {
-            "@id": "gs1:CertificationDetails"
-          },
-          {
-            "@id": "unece:certificationEvidenceDocument"
-          }
+          { "@id": "schema:Certification" },
+          { "@id": "gs1:CertificationDetails" },
+          { "@id": "unece:certificationEvidenceDocument" }
         ]
     },
 
@@ -205,9 +197,7 @@
           { "@language": "sl", "@value": "Informacije o materialih in lastnostih embalaže izdelka." },
           { "@language": "sv", "@value": "Information om material och egenskaper hos produktens förpackning." }
         ],
-        "skos:exactMatch": {
-          "@id": "gs1:PackagingMaterialDetails"
-        }
+        "skos:exactMatch": { "@id": "gs1:PackagingMaterialDetails" }
     },
     {
         "@id": "dppk:ProductionStep",
@@ -265,12 +255,8 @@
           { "@language": "sv", "@value": "Ett betydande steg i produktens tillverknings- eller bearbetningskedja, inklusive dess plats." }
         ],
         "skos:relatedMatch": [
-          {
-            "@id": "schema:Action"
-          },
-          {
-            "@id": "gs1:bizStep"
-          }
+          { "@id": "schema:Action" },
+          { "@id": "gs1:bizStep" }
         ]
     },
 
@@ -334,15 +320,9 @@
           { "@language": "sv", "@value": "Relaterar produkten till tillhörande digitala dokument." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": {
-          "@id": "dppk:RelatedResource"
-        },
-        "skos:closeMatch": {
-          "@id": "gs1:referencedFile"
-        },
-        "skos:relatedMatch": {
-          "@id": "schema:subjectOf"
-        }
+        "rdfs:range": { "@id": "dppk:RelatedResource" },
+        "skos:closeMatch": { "@id": "gs1:referencedFile" },
+        "skos:relatedMatch": { "@id": "schema:subjectOf" }
     },
     {
         "@id": "dppk:certifications",
@@ -400,16 +380,10 @@
           { "@language": "sv", "@value": "Relaterar produkten till dess certifieringar." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": {
-          "@id": "dppk:Certification"
-        },
+        "rdfs:range": { "@id": "dppk:Certification" },
         "skos:exactMatch": [
-          {
-            "@id": "schema:hasCertification"
-          },
-          {
-            "@id": "gs1:certification"
-          }
+          { "@id": "schema:hasCertification" },
+          { "@id": "gs1:certification" }
         ]
     },
     {
@@ -469,16 +443,10 @@
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "dppk:Certification" },
-        "rdfs:subPropertyOf": {
-          "@id": "dppk:certifications"
-        },
+        "rdfs:subPropertyOf": { "@id": "dppk:certifications" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:Certification"
-          },
-          {
-            "@id": "gs1:CertificationDetails"
-          }
+          { "@id": "schema:Certification" },
+          { "@id": "gs1:CertificationDetails" }
         ]
     },
     {
@@ -537,12 +505,8 @@
           { "@language": "sv", "@value": "Relaterar produkten till eventuella farliga ämnen den innehåller." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": {
-          "@id": "dppk:Component"
-        },
-        "skos:relatedMatch": {
-          "@id": "schema:material"
-        }
+        "rdfs:range": { "@id": "dppk:Component" },
+        "skos:relatedMatch": { "@id": "schema:material" }
     },
 
     {
@@ -601,12 +565,8 @@
           { "@language": "sv", "@value": "En lista över förpackningselement associerade med produkten." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": {
-          "@id": "dppk:Packaging"
-        },
-        "skos:exactMatch": {
-          "@id": "gs1:packaging"
-        }
+        "rdfs:range": { "@id": "dppk:Packaging" },
+        "skos:exactMatch": { "@id": "gs1:packaging" }
     },
     {
         "@id": "dppk:productionSteps",
@@ -638,16 +598,10 @@
           { "@language": "sv", "@value": "Produktionssteg" }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": {
-          "@id": "dppk:ProductionStep"
-        },
+        "rdfs:range": { "@id": "dppk:ProductionStep" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:step"
-          },
-          {
-            "@id": "gs1:bizStep"
-          }
+          { "@id": "schema:step" },
+          { "@id": "gs1:bizStep" }
         ]
     },
 
@@ -712,16 +666,10 @@
           { "@language": "sv", "@value": "Namnet på certifieringen." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": {
-          "@id": "xsd:string"
-        },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:name"
-          },
-          {
-            "@id": "gs1:certificationValue"
-          }
+          { "@id": "schema:name" },
+          { "@id": "gs1:certificationValue" }
         ]
     },
     {
@@ -780,16 +728,10 @@
           { "@language": "sv", "@value": "Den unika identifieraren eller numret på certifieringen." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": {
-          "@id": "xsd:string"
-        },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:identifier"
-          },
-          {
-            "@id": "gs1:certificationIdentification"
-          }
+          { "@id": "schema:identifier" },
+          { "@id": "gs1:certificationIdentification" }
         ]
     },
     {
@@ -848,16 +790,10 @@
           { "@language": "sv", "@value": "En webblänk till certifieringsinformationen eller registret." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": {
-          "@id": "xsd:anyURI"
-        },
+        "rdfs:range": { "@id": "xsd:anyURI" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:url"
-          },
-          {
-            "@id": "gs1:referencedFile"
-          }
+          { "@id": "schema:url" },
+          { "@id": "gs1:referencedFile" }
         ]
     },
     {
@@ -915,12 +851,8 @@
           { "@language": "sl", "@value": "Ime organa, ki je izdal certifikacijo." },
           { "@language": "sv", "@value": "Namnet på det organ som utfärdade certifieringen." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:Certification"
-        },
-        "skos:exactMatch": {
-          "@id": "gs1:certificationAgency"
-        }
+        "rdfs:domain": { "@id": "dppk:Certification" },
+        "skos:exactMatch": { "@id": "gs1:certificationAgency" }
     },
     {
         "@id": "dppk:certificationBodyId",
@@ -978,16 +910,10 @@
           { "@language": "sv", "@value": "Den unika identifieraren för certifieringsorganet." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": {
-          "@id": "xsd:string"
-        },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:identifier"
-          },
-          {
-            "@id": "gs1:additionalOrganizationIdentification"
-          }
+          { "@id": "schema:identifier" },
+          { "@id": "gs1:additionalOrganizationIdentification" }
         ]
     },
     {
@@ -1046,12 +972,8 @@
           { "@language": "sv", "@value": "Datumet då certifieringen blev giltig." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": {
-          "@id": "xsd:date"
-        },
-        "skos:exactMatch": {
-          "@id": "gs1:certificationStartDate"
-        }
+        "rdfs:range": { "@id": "xsd:date" },
+        "skos:exactMatch": { "@id": "gs1:certificationStartDate" }
     },
     {
         "@id": "dppk:certificationEndDate",
@@ -1109,16 +1031,10 @@
           { "@language": "sv", "@value": "Datumet då certifieringen löper ut." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": {
-          "@id": "xsd:date"
-        },
+        "rdfs:range": { "@id": "xsd:date" },
         "skos:closeMatch": [
-          {
-            "@id": "schema:expires"
-          },
-          {
-            "@id": "gs1:certificationEndDate"
-          }
+          { "@id": "schema:expires" },
+          { "@id": "gs1:certificationEndDate" }
         ]
     },
     {
@@ -1177,16 +1093,10 @@
           { "@language": "sv", "@value": "Den roll eller egenskap i vilken certifieringsorganet utfärdade certifieringen." }
         ],
         "rdfs:domain": { "@id": "dppk:Certification" },
-        "rdfs:range": {
-          "@id": "dppk:CertificationBodyRoleType"
-        },
+        "rdfs:range": { "@id": "dppk:CertificationBodyRoleType" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:roleName"
-          },
-          {
-            "@id": "gs1:partyRole"
-          }
+          { "@id": "schema:roleName" },
+          { "@id": "gs1:partyRole" }
         ]
     },
 
@@ -1254,12 +1164,8 @@
             { "@id": "dppk:NotifiedBodyRole" }
         ],
         "skos:relatedMatch": [
-          {
-            "@id": "schema:Role"
-          },
-          {
-            "@id": "gs1:PartyRole"
-          }
+          { "@id": "schema:Role" },
+          { "@id": "gs1:PartyRole" }
         ]
     },
     {
@@ -1317,9 +1223,7 @@
           { "@language": "sl", "@value": "Vloga subjekta, odgovornega za dajanje izdelka na trg, kot je opredeljeno v ESPR." },
           { "@language": "sv", "@value": "Rollen för en enhet som ansvarar för att släppa ut produkten på marknaden, enligt ESPR:s definition." }
         ],
-        "skos:closeMatch": {
-          "@id": "schema:Role"
-        }
+        "skos:closeMatch": { "@id": "schema:Role" }
     },
     {
         "@id": "dppk:ManufacturerRole",
@@ -1376,9 +1280,7 @@
           { "@language": "sl", "@value": "Vloga subjekta, odgovornega za proizvodnjo končnih izdelkov." },
           { "@language": "sv", "@value": "Rollen för en enhet som ansvarar för produktionen av färdiga varor." }
         ],
-        "skos:relatedMatch": {
-          "@id": "schema:Role"
-        }
+        "skos:relatedMatch": { "@id": "schema:Role" }
     },
     {
         "@id": "dppk:ImporterRole",
@@ -1435,9 +1337,7 @@
           { "@language": "sl", "@value": "Vloga subjekta, odgovornega za uvoz izdelka na trg." },
           { "@language": "sv", "@value": "Rollen för en enhet som ansvarar för att importera produkten till marknaden." }
         ],
-        "skos:closeMatch": {
-          "@id": "schema:OrganizationRole"
-        }
+        "skos:closeMatch": { "@id": "schema:OrganizationRole" }
     },
     {
         "@id": "dppk:NotifiedBodyRole",
@@ -1494,9 +1394,7 @@
           { "@language": "sl", "@value": "Vloga subjekta, ki izvaja dejavnosti ugotavljanja skladnosti in ga uradno imenuje priglasitveni organ." },
           { "@language": "sv", "@value": "Rollen för en enhet som utför bedömningar av överensstämmelse och är officiellt utsedd av en anmälande myndighet." }
         ],
-        "skos:relatedMatch": {
-          "@id": "schema:Role"
-        }
+        "skos:relatedMatch": { "@id": "schema:Role" }
     },
 
 
@@ -1556,12 +1454,8 @@
           { "@language": "sl", "@value": "Vrsta materiala, uporabljenega za embalažo (npr. 'Karton', 'Plastika')." },
           { "@language": "sv", "@value": "Typen av material som används för förpackningen (t.ex. 'Kartong', 'Plast')." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:Packaging"
-        },
-        "skos:exactMatch": {
-          "@id": "gs1:packagingMaterialType"
-        }
+        "rdfs:domain": { "@id": "dppk:Packaging" },
+        "skos:exactMatch": { "@id": "gs1:packagingMaterialType" }
     },
     {
         "@id": "dppk:packagingMaterialCompositionQuantity",
@@ -1618,15 +1512,9 @@
           { "@language": "sl", "@value": "Odstotek materiala v embalaži." },
           { "@language": "sv", "@value": "Procentandelen av materialet i förpackningen." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:Packaging"
-        },
-        "dppk:unit": {
-          "@id": "dppk-unit:Percent"
-        },
-        "skos:exactMatch": {
-          "@id": "gs1:packagingMaterialCompositionQuantity"
-        }
+        "rdfs:domain": { "@id": "dppk:Packaging" },
+        "dppk:unit": { "@id": "dppk-unit:Percent" },
+        "skos:exactMatch": { "@id": "gs1:packagingMaterialCompositionQuantity" }
     },
     {
         "@id": "dppk:packagingRecyclingProcessType",
@@ -1683,12 +1571,8 @@
           { "@language": "sl", "@value": "Označuje, ali je embalažo mogoče RECIKLIRATI, PONOVNO UPORABITI ali KOMPOSTIRATI." },
           { "@language": "sv", "@value": "Anger om förpackningen är ÅTERVINNINGSBAR, ÅTERANVÄNDBAR eller KOMPOSTERBAR." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:Packaging"
-        },
-        "skos:exactMatch": {
-          "@id": "gs1:packagingRecyclingProcessType"
-        }
+        "rdfs:domain": { "@id": "dppk:Packaging" },
+        "skos:exactMatch": { "@id": "gs1:packagingRecyclingProcessType" }
     },
     // (TBDs in spreadsheet)
     {
@@ -1746,16 +1630,10 @@
           { "@language": "sl", "@value": "Odstotek reciklirane vsebine v embalažnem materialu." },
           { "@language": "sv", "@value": "Procentandelen återvunnet innehåll i förpackningsmaterialet." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:Packaging"
-        },
+        "rdfs:domain": { "@id": "dppk:Packaging" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:material"
-          },
-          {
-            "@id": "gs1:PackagingMaterialDetails"
-          }
+          { "@id": "schema:material" },
+          { "@id": "gs1:PackagingMaterialDetails" }
         ]
     },
     {
@@ -1813,16 +1691,10 @@
           { "@language": "sl", "@value": "Označuje, ali so v embalaži prisotne snovi, ki vzbujajo skrb." },
           { "@language": "sv", "@value": "Anger om det finns några farliga ämnen i förpackningen." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:Packaging"
-        },
+        "rdfs:domain": { "@id": "dppk:Packaging" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:material"
-          },
-          {
-            "@id": "gs1:PackagingMaterialDetails"
-          }
+          { "@id": "schema:material" },
+          { "@id": "gs1:PackagingMaterialDetails" }
         ]
     },
 
@@ -1883,16 +1755,10 @@
           { "@language": "sl", "@value": "Ime ali opis proizvodnega koraka (npr. Montaža, Tkanje, Taljenje)." },
           { "@language": "sv", "@value": "Namnet eller beskrivningen av produktionssteget (t.ex. Montering, Vävning, Smältning)." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:ProductionStep"
-        },
+        "rdfs:domain": { "@id": "dppk:ProductionStep" },
         "skos:relatedMatch": [
-          {
-            "@id": "schema:Text"
-          },
-          {
-            "@id": "gs1:description"
-          }
+          { "@id": "schema:Text" },
+          { "@id": "gs1:description" }
         ]
     },
     {
@@ -1950,15 +1816,9 @@
           { "@language": "sl", "@value": "Država, v kateri je potekal proizvodni korak. Priporočljiva je uporaba kod ISO 3166-1 alpha-3." },
           { "@language": "sv", "@value": "Det land där produktionssteget ägde rum. Det rekommenderas att använda ISO 3166-1 alpha-3-koder." }
         ],
-        "rdfs:domain": {
-          "@id": "dppk:ProductionStep"
-        },
-        "skos:exactMatch": {
-          "@id": "gs1:countryCode"
-        },
-        "skos:closeMatch": {
-          "@id": "schema:countryOfOrigin"
-        }
+        "rdfs:domain": { "@id": "dppk:ProductionStep" },
+        "skos:exactMatch": { "@id": "gs1:countryCode" },
+        "skos:closeMatch": { "@id": "schema:countryOfOrigin" }
     }
   ]
 }

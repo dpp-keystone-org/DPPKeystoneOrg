@@ -161,16 +161,10 @@
                 { "@id": "schema:Product" },
                 { "@id": "gs1:Clothing" }
             ],
-            "rdfs:seeAlso": {
-              "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles"
-            },
+            "rdfs:seeAlso": { "@id": "https://w3id.org/eudpp/thesauri/product/products/Textiles" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Product"
-              },
-              {
-                "@id": "gs1:Product"
-              }
+              { "@id": "schema:Product" },
+              { "@id": "gs1:Product" }
             ]
         },
         {
@@ -260,16 +254,10 @@
             ],
             "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "dppk:PefcrCategoryValue"
-            },
+            "rdfs:range": { "@id": "dppk:PefcrCategoryValue" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:category"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationDetails"
-              }
+              { "@id": "schema:category" },
+              { "@id": "gs1:additionalProductClassificationDetails" }
             ]
         },
         {
@@ -344,12 +332,8 @@
                 { "@id": "dppk:PefcrBoots" }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -408,12 +392,8 @@
               { "@language": "sv", "@value": "Plagg som täcker överkroppen till armbågen. Typiska produkter som ingår: Linnen, t-shirts, pikétröjor, andra kortärmade skjortor." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -472,12 +452,8 @@
               { "@language": "sv", "@value": "Plagg som täcker överkroppen inklusive hela armen. Typiska produkter som ingår: Långärmade skjortor, blusar, tunikor, baslager." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -536,12 +512,8 @@
               { "@language": "sv", "@value": "Plagg för att hålla överkroppen varm och täckt. Typiska produkter som ingår: Pullovrar, koftor, luvtröjor, tröjor, sweatshirts, stickade och ylletröjor, västar." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -600,12 +572,8 @@
               { "@language": "sv", "@value": "Plagg att ta på sig över en skjorta eller tröja eller för att skydda mot väder och vind. Typiska produkter som ingår: Kavajer, kostymjackor, överrockar, andra lätta jackor, regnjackor, vinterjackor för utomhusbruk, parkas, dunjackor, pälsjackor, utomhusvästar, skinnjackor." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -664,12 +632,8 @@
               { "@language": "sv", "@value": "Plagg som täcker underkroppen, kan skydda mot väder och vind. Typiska produkter: Fritidsbyxor, friluftsbyxor, kostymbyxor, jeans, sportbyxor, capribyxor, shorts." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -728,12 +692,8 @@
               { "@language": "sv", "@value": "Heldräkt som täcker både över- och underkropp, eller endast underkropp, annat än byxor och shorts. Typiska produkter: Kort- och långärmade, axelbandslösa, omlott, långa och korta, heldräkter." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -792,12 +752,8 @@
               { "@language": "sv", "@value": "Åtsittande plagg för att täcka ben och/eller fötter. Typiska produkter: Ogenomskinliga och skira strumpbyxor, nätstrumpor, ankelsockor, knästrumpor, låga sockor." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -856,12 +812,8 @@
               { "@language": "sv", "@value": "Plagg som bärs under kläder, ofta närmast huden på över- eller underkroppen. Typiska produkter: Kalsonger, trosor, bh:ar, figurformande plagg." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -920,12 +872,8 @@
               { "@language": "sv", "@value": "Plagg som bärs för vatten- eller solbaserade aktiviteter. Typiska produkter: Bikinis, baddräkter, tävlingsbadkläder, badbyxor." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -984,12 +932,8 @@
               { "@language": "sv", "@value": "Plagg för huvud, hals, midja eller händer för att skydda mot väder eller fästa kläder. Typiska produkter som ingår: Hattar och mössor (Kepsar, gubbkepsar, ullmössor/beanies, fedorahattar, panamahattar, plommonstop, newsboy-kepsar, baskrar), Halsdukar och slipsar (Varma och lätta halsdukar, tubhalsdukar, snusnesnäsar, huvuddukar, sjalar, flugor), Bälten (Kostymbälten, vardagsbälten, spännbälten, knytbälten, hängslen), Handskar och vantar (torgvantar, modehandskar, utomhussportvantar, tumvantar)." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -1048,12 +992,8 @@
               { "@language": "sv", "@value": "Skor med öppen tå, ger skydd från marken. Används i par. Typiska produkter som ingår: Flip-flops, vardags-/modesandaler, sportsandaler, tofflor." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
 
@@ -1113,12 +1053,8 @@
               { "@language": "sv", "@value": "Stängda skor, ger skydd från marken. De kan skydda mot vatten, väder och/eller tunga föremål. Används i par. Typiska produkter som ingår: Tofflor, tennisskor, mockasiner, espadriller, sneakers, fotbollsskor, atletiska skor, finskor, skyddsskor med stålhätta." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -1177,12 +1113,8 @@
               { "@language": "sv", "@value": "Stövlar som täcker vristen och ger skydd från marken. De kan skydda mot vatten, väder, tunga föremål och/eller vristskador. Används i par. Typiska produkter som ingår: Polymerstövlar, vinterstövlar, vandringskängor, finskor av stöveltyp, skyddsstövlar med stålhätta." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:CategoryCode"
-              },
-              {
-                "@id": "gs1:additionalProductClassificationValue"
-              }
+              { "@id": "schema:CategoryCode" },
+              { "@id": "gs1:additionalProductClassificationValue" }
             ]
         },
         {
@@ -1272,16 +1204,10 @@
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:Certification" },
-            "rdfs:subPropertyOf": {
-              "@id": "schema:hasCertification"
-            },
+            "rdfs:subPropertyOf": { "@id": "schema:hasCertification" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:certification"
-              },
-              {
-                "@id": "gs1:CertificationDetails"
-              }
+              { "@id": "schema:certification" },
+              { "@id": "gs1:CertificationDetails" }
             ]
         },
         {
@@ -1371,16 +1297,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "dppk:RelatedResource"
-            },
+            "rdfs:range": { "@id": "dppk:RelatedResource" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Certification"
-              },
-              {
-                "@id": "gs1:CertificationDetails"
-              }
+              { "@id": "schema:Certification" },
+              { "@id": "gs1:CertificationDetails" }
             ]
         },
         {
@@ -1471,16 +1391,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:AdditionalProductClassificationDetails"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:AdditionalProductClassificationDetails" }
             ]
         },
         {
@@ -1571,16 +1485,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:AdditionalProductClassificationDetails"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:AdditionalProductClassificationDetails" }
             ]
         },
         {
@@ -1671,16 +1579,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:integer"
-            },
+            "rdfs:range": { "@id": "xsd:integer" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:AdditionalProductClassificationDetails"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:AdditionalProductClassificationDetails" }
             ]
         },
         {
@@ -1771,16 +1673,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -1846,16 +1742,10 @@
                 "rdfs:label": "Source: ESPR - Annex I(n), III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -1921,16 +1811,10 @@
                 "rdfs:label": "Source: ESPR - Annex I(n)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:integer"
-            },
+            "rdfs:range": { "@id": "xsd:integer" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -1996,16 +1880,10 @@
                 "rdfs:label": "Source: ESPR - Annex III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:weight"
-              },
-              {
-                "@id": "gs1:netWeight"
-              }
+              { "@id": "schema:weight" },
+              { "@id": "gs1:netWeight" }
             ]
         },
         {
@@ -2070,16 +1948,10 @@
                 "rdfs:label": "Source: ESPR - Annex I(n)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "dppk:RelatedResource"
-            },
+            "rdfs:range": { "@id": "dppk:RelatedResource" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:AdditionalProductClassificationDetails"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:AdditionalProductClassificationDetails" }
             ]
         },
         {
@@ -2145,16 +2017,10 @@
                 "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(a)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Rating"
-              },
-              {
-                "@id": "gs1:Rating"
-              }
+              { "@id": "schema:Rating" },
+              { "@id": "gs1:Rating" }
             ]
         },
         {
@@ -2220,16 +2086,10 @@
                 "rdfs:label": "Source: ESPR - Annex I(d), III(a)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Rating"
-              },
-              {
-                "@id": "gs1:Rating"
-              }
+              { "@id": "schema:Rating" },
+              { "@id": "gs1:Rating" }
             ]
         },
         {
@@ -2295,16 +2155,10 @@
                 "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(a), III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:PropertyValue"
-              },
-              {
-                "@id": "gs1:AdditionalProductClassificationDetails"
-              }
+              { "@id": "schema:PropertyValue" },
+              { "@id": "gs1:AdditionalProductClassificationDetails" }
             ]
         },
         {
@@ -2370,16 +2224,10 @@
                 "rdfs:label": "Source: ESPR - Article 7(2)(b), Annex I(a), III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:value"
-              },
-              {
-                "@id": "gs1:value"
-              }
+              { "@id": "schema:value" },
+              { "@id": "gs1:value" }
             ]
         },
         {
@@ -2508,16 +2356,10 @@
                 "rdfs:label": "Source: ESPR - Annex III (a)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:boolean"
-            },
+            "rdfs:range": { "@id": "xsd:boolean" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:material"
-              },
-              {
-                "@id": "gs1:material"
-              }
+              { "@id": "schema:material" },
+              { "@id": "gs1:material" }
             ]
         },
         {
@@ -2582,16 +2424,10 @@
                 "rdfs:label": "Source: ESPR - Annex III (a)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:boolean"
-            },
+            "rdfs:range": { "@id": "xsd:boolean" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Certification"
-              },
-              {
-                "@id": "gs1:CertificationDetails"
-              }
+              { "@id": "schema:Certification" },
+              { "@id": "gs1:CertificationDetails" }
             ]
         },
         {
@@ -2657,16 +2493,10 @@
                 "rdfs:label": "Source: ESPR - Annex III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:weight"
-              },
-              {
-                "@id": "gs1:netWeight"
-              }
+              { "@id": "schema:weight" },
+              { "@id": "gs1:netWeight" }
             ]
         },
         {
@@ -2732,12 +2562,8 @@
                 "rdfs:label": "Source: ESPR - Annex III (a)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
-            "skos:relatedMatch": {
-              "@id": "schema:PropertyValue"
-            }
+            "rdfs:range": { "@id": "xsd:double" },
+            "skos:relatedMatch": { "@id": "schema:PropertyValue" }
         },
         {
             "@id": "dppk:organicContentMass",
@@ -2802,12 +2628,8 @@
                 "rdfs:label": "Source: ESPR - Annex III (e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
-            "skos:relatedMatch": {
-              "@id": "schema:weight"
-            }
+            "rdfs:range": { "@id": "xsd:double" },
+            "skos:relatedMatch": { "@id": "schema:weight" }
         },
         {
             "@id": "dppk:preConsumerRecycledContentPercentage",
@@ -2872,16 +2694,10 @@
                 "rdfs:label": "Source: ESPR - Annex I(h)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:value"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:value" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -2947,16 +2763,10 @@
                 "rdfs:label": "Source: ESPR - Annex I(h), III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:weight"
-              },
-              {
-                "@id": "gs1:netWeight"
-              }
+              { "@id": "schema:weight" },
+              { "@id": "gs1:netWeight" }
             ]
         },
         {
@@ -3021,16 +2831,10 @@
                 "rdfs:label": "Source: ESPR - Annex I(h)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:material"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:material" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -3121,16 +2925,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:value"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:value" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -3221,16 +3019,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:double"
-            },
+            "rdfs:range": { "@id": "xsd:double" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:weight"
-              },
-              {
-                "@id": "gs1:netWeight"
-              }
+              { "@id": "schema:weight" },
+              { "@id": "gs1:netWeight" }
             ]
         },
         {
@@ -3320,16 +3112,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:material"
-              },
-              {
-                "@id": "gs1:ProductCharacteristic"
-              }
+              { "@id": "schema:material" },
+              { "@id": "gs1:ProductCharacteristic" }
             ]
         },
         {
@@ -3388,12 +3174,8 @@
               { "@language": "sv", "@value": "Ett specifikt steg i produktens tillverkningsprocess." }
             ],
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Action"
-              },
-              {
-                "@id": "gs1:bizStep"
-              }
+              { "@id": "schema:Action" },
+              { "@id": "gs1:bizStep" }
             ]
         },
         {
@@ -3453,16 +3235,10 @@
             ],
             "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "dppk:ProductionStep"
-            },
+            "rdfs:range": { "@id": "dppk:ProductionStep" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:step"
-              },
-              {
-                "@id": "gs1:bizStep"
-              }
+              { "@id": "schema:step" },
+              { "@id": "gs1:bizStep" }
             ]
         },
         {
@@ -3521,16 +3297,10 @@
               { "@language": "sv", "@value": "Typ av utförd aktivitet (t.ex. spinning, vävning, färgning)." }
             ],
             "rdfs:domain": { "@id": "dppk:ProductionStep" },
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:Text"
-              },
-              {
-                "@id": "gs1:description"
-              }
+              { "@id": "schema:Text" },
+              { "@id": "gs1:description" }
             ]
         },
         {
@@ -3589,16 +3359,10 @@
               { "@language": "sv", "@value": "Landskoden (ISO 3166-1 alpha-3) där produktionssteget ägde rum." }
             ],
             "rdfs:domain": { "@id": "dppk:ProductionStep" },
-            "rdfs:range": {
-              "@id": "xsd:string"
-            },
+            "rdfs:range": { "@id": "xsd:string" },
             "skos:exactMatch": [
-              {
-                "@id": "gs1:countryOfOrigin"
-              },
-              {
-                "@id": "schema:countryOfOrigin"
-              }
+              { "@id": "gs1:countryOfOrigin" },
+              { "@id": "schema:countryOfOrigin" }
             ]
         },
         {
@@ -3688,16 +3452,10 @@
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" },
-            "rdfs:subPropertyOf": {
-              "@id": "dppk:careInstructions"
-            },
+            "rdfs:subPropertyOf": { "@id": "dppk:careInstructions" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:HowTo"
-              },
-              {
-                "@id": "gs1:consumerUsageInstructions"
-              }
+              { "@id": "schema:HowTo" },
+              { "@id": "gs1:consumerUsageInstructions" }
             ]
         },
         {
@@ -3787,16 +3545,10 @@
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" },
-            "rdfs:subPropertyOf": {
-              "@id": "dppk:safeUseInstructions"
-            },
+            "rdfs:subPropertyOf": { "@id": "dppk:safeUseInstructions" },
             "skos:relatedMatch": [
-              {
-                "@id": "schema:HowTo"
-              },
-              {
-                "@id": "gs1:consumerSafetyInstructions"
-              }
+              { "@id": "schema:HowTo" },
+              { "@id": "gs1:consumerSafetyInstructions" }
             ]
         },
         {
@@ -3886,12 +3638,8 @@
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" },
-            "rdfs:subPropertyOf": {
-              "@id": "dppk:endOfLifeInstructions"
-            },
-            "skos:relatedMatch": {
-              "@id": "schema:HowTo"
-            }
+            "rdfs:subPropertyOf": { "@id": "dppk:endOfLifeInstructions" },
+            "skos:relatedMatch": { "@id": "schema:HowTo" }
         },
         {
             "@id": "dppk:textileRepairInstructions",
@@ -3980,12 +3728,8 @@
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:RelatedResource" },
-            "rdfs:subPropertyOf": {
-              "@id": "dppk:repairInstructions"
-            },
-            "skos:relatedMatch": {
-              "@id": "schema:HowTo"
-            }
+            "rdfs:subPropertyOf": { "@id": "dppk:repairInstructions" },
+            "skos:relatedMatch": { "@id": "schema:HowTo" }
         },
         {
             "@id": "dppk:fibreComposition",
@@ -4073,16 +3817,10 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": {
-              "@id": "dppk:Component"
-            },
+            "rdfs:range": { "@id": "dppk:Component" },
             "skos:closeMatch": [
-              {
-                "@id": "schema:material"
-              },
-              {
-                "@id": "gs1:material"
-              }
+              { "@id": "schema:material" },
+              { "@id": "gs1:material" }
             ]
         },
         {
@@ -4172,12 +3910,8 @@
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
             "rdfs:range": { "@id": "dppk:Component" },
-            "rdfs:subPropertyOf": {
-              "@id": "dppk:substancesOfConcern"
-            },
-            "skos:relatedMatch": {
-              "@id": "schema:material"
-            }
+            "rdfs:subPropertyOf": { "@id": "dppk:substancesOfConcern" },
+            "skos:relatedMatch": { "@id": "schema:material" }
         }
     ]
 }

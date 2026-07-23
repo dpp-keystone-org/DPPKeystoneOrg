@@ -167,15 +167,9 @@
         { "@id": "unece:Document" }
       ],
       "skos:closeMatch": [
-        {
-          "@id": "schema:Product"
-        },
-        {
-          "@id": "schema:Certification"
-        },
-        {
-          "@id": "unece:Document"
-        }
+        { "@id": "schema:Product" },
+        { "@id": "schema:Certification" },
+        { "@id": "unece:Document" }
       ]
     },
 
@@ -242,16 +236,10 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
+      "rdfs:range": { "@id": "xsd:anyURI" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:identifier"
-        },
-        {
-          "@id": "gs1:additionalProductClassificationValue"
-        }
+        { "@id": "schema:identifier" },
+        { "@id": "gs1:additionalProductClassificationValue" }
       ]
     },
 
@@ -347,16 +335,10 @@
         { "@id": "dppk:DigitalProductPassport" },
         { "@id": "dppk:Product" }
       ],
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
+      "rdfs:range": { "@id": "xsd:anyURI" },
       "skos:exactMatch": [
-        {
-          "@id": "gs1:productID"
-        },
-        {
-          "@id": "schema:productID"
-        }
+        { "@id": "gs1:productID" },
+        { "@id": "schema:productID" }
       ]
     },
 
@@ -418,16 +400,10 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
+      "rdfs:range": { "@id": "xsd:anyURI" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:identifier"
-        },
-        {
-          "@id": "gs1:additionalOrganizationIdentification"
-        }
+        { "@id": "schema:identifier" },
+        { "@id": "gs1:additionalOrganizationIdentification" }
       ]
     },
 
@@ -489,16 +465,10 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
+      "rdfs:range": { "@id": "xsd:anyURI" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:identifier"
-        },
-        {
-          "@id": "gs1:additionalOrganizationIdentification"
-        }
+        { "@id": "schema:identifier" },
+        { "@id": "gs1:additionalOrganizationIdentification" }
       ]
     },
 
@@ -564,9 +534,7 @@
         { "@id": "dppk:Batch" },
         { "@id": "dppk:Item" }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:QualitativeValue"
-      }
+      "skos:relatedMatch": { "@id": "schema:QualitativeValue" }
     },
     {
       "@id": "dppk:Model",
@@ -623,9 +591,7 @@
         { "@language": "sl", "@value": "Pomeni, da DPP velja za vrsto ali model izdelka." },
         { "@language": "sv", "@value": "Indikerar att DPP gäller för en produkttyp eller modell." }
       ],
-      "skos:exactMatch": {
-        "@id": "schema:ProductModel"
-      }
+      "skos:exactMatch": { "@id": "schema:ProductModel" }
     },
     {
       "@id": "dppk:Batch",
@@ -683,12 +649,8 @@
         { "@language": "sv", "@value": "Indikerar att DPP gäller för ett produktionsparti." }
       ],
       "skos:relatedMatch": [
-        {
-          "@id": "schema:ProductGroup"
-        },
-        {
-          "@id": "unece:Batch"
-        }
+        { "@id": "schema:ProductGroup" },
+        { "@id": "unece:Batch" }
       ]
     },
     {
@@ -747,12 +709,8 @@
         { "@language": "sv", "@value": "Indikerar att DPP gäller för en individuell serialiserad enhet." }
       ],
       "skos:exactMatch": [
-        {
-          "@id": "schema:IndividualProduct"
-        },
-        {
-          "@id": "gs1:Product"
-        }
+        { "@id": "schema:IndividualProduct" },
+        { "@id": "gs1:Product" }
       ]
     },
 
@@ -813,12 +771,8 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "dppk:GranularityValue"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:Text"
-      }
+      "rdfs:range": { "@id": "dppk:GranularityValue" },
+      "skos:relatedMatch": { "@id": "schema:Text" }
     },
 
     // --- StatusOfTheDPP ---
@@ -879,12 +833,8 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:creativeWorkStatus"
-      }
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:relatedMatch": { "@id": "schema:creativeWorkStatus" }
     },
 
     // --- lastUpdate ---
@@ -945,12 +895,8 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:dateTime"
-      },
-      "skos:exactMatch": {
-        "@id": "schema:dateModified"
-      }
+      "rdfs:range": { "@id": "xsd:dateTime" },
+      "skos:exactMatch": { "@id": "schema:dateModified" }
     },
 
     // --- Versioning ---
@@ -1011,12 +957,8 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:version"
-      }
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:relatedMatch": { "@id": "schema:version" }
     },
     {
       "@id": "dppk:versionDate",
@@ -1075,12 +1017,8 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:date"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:dateModified"
-      }
+      "rdfs:range": { "@id": "xsd:date" },
+      "skos:relatedMatch": { "@id": "schema:dateModified" }
     },
     {
       "@id": "dppk:dppSchemaVersion",
@@ -1139,12 +1077,8 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "skos:relatedMatch": {
-        "@id": "schema:version"
-      }
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:relatedMatch": { "@id": "schema:version" }
     },
     {
       "@id": "dppk:contentSpecificationIds",
@@ -1203,16 +1137,10 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
+      "rdfs:range": { "@id": "xsd:string" },
       "skos:relatedMatch": [
-        {
-          "@id": "schema:identifier"
-        },
-        {
-          "@id": "gs1:additionalProductClassificationValue"
-        }
+        { "@id": "schema:identifier" },
+        { "@id": "gs1:additionalProductClassificationValue" }
       ]
     },
 
@@ -1274,15 +1202,9 @@
         ],
         "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-        "rdfs:range": {
-          "@id": "xsd:string"
-        },
-        "skos:exactMatch": {
-          "@id": "schema:hscode"
-        },
-        "skos:closeMatch": {
-          "@id": "gs1:customsClassification"
-        }
+        "rdfs:range": { "@id": "xsd:string" },
+        "skos:exactMatch": { "@id": "schema:hscode" },
+        "skos:closeMatch": { "@id": "gs1:customsClassification" }
     },
 
     // ==================================================================
@@ -1344,9 +1266,7 @@
         { "@language": "sl", "@value": "Standard, ki ureja to lastnost." },
         { "@language": "sv", "@value": "Standard som reglerar denna egenskap." }
       ],
-      "skos:relatedMatch": {
-        "@id": "schema:sponsor"
-      }
+      "skos:relatedMatch": { "@id": "schema:sponsor" }
     },
     {
       "@id": "dppk:unit",
@@ -1405,15 +1325,9 @@
         { "@language": "sv", "@value": "Måttenheten." }
       ],
       "skos:relatedMatch": [
-        {
-          "@id": "schema:unitCode"
-        },
-        {
-          "@id": "gs1:unitCode"
-        },
-        {
-          "@id": "unece:QuantityTypeCode"
-        }
+        { "@id": "schema:unitCode" },
+        { "@id": "gs1:unitCode" },
+        { "@id": "unece:QuantityTypeCode" }
       ]
     },
     {

@@ -120,16 +120,10 @@
         { "@language": "sl", "@value": "Identifikator" },
         { "@language": "sv", "@value": "Identifierare" }
       ],
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
+      "rdfs:range": { "@id": "xsd:string" },
       "skos:exactMatch": [
-        {
-          "@id": "schema:identifier"
-        },
-        {
-          "@id": "gs1:additionalProductIdentification"
-        }
+        { "@id": "schema:identifier" },
+        { "@id": "gs1:additionalProductIdentification" }
       ]
     }
   ]
