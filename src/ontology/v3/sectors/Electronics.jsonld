@@ -9,7 +9,8 @@
     "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms"
+    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Electronics",
   "@type": "owl:Ontology",
@@ -161,7 +162,12 @@
           { "@language": "sv", "@value": "Direktiv 2012/19/EU (WEEE-direktivet)" }
         ]
       },
-      "rdfs:subClassOf": { "@id": "dppk:Product" }
+      "rdfs:subClassOf": {
+        "@id": "dppk:Product"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:Product"
+      }
     },
     {
         "@id": "dppk:PowerTool",
@@ -402,7 +408,12 @@
           { "@language": "sv", "@value": "Energieffektivitetsklassningen enligt EU:s ramverk för energimärkning (t.ex. A, B, C)." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": {
+          "@id": "schema:hasEnergyEfficiencyCategory"
+        }
     },
 
     // ==================================================================
@@ -466,7 +477,12 @@
           { "@language": "sv", "@value": "Definierar nivåer av tätningseffektivitet mot inträngning från främmande föremål (verktyg, smuts) och fukt (t.ex. IP54)." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:relatedMatch": {
+          "@id": "schema:PropertyValue"
+        }
     },
 
     // --- Spare Parts Availability ---
@@ -772,7 +788,12 @@
           { "@language": "sv", "@value": "Instruktioner för säker demontering av produkten för reparation eller återvinning." }
         ],
         "rdfs:domain": { "@id": "dppk:ElectronicDevice" },
-        "rdfs:range": { "@id": "rdf:langString" }
+        "rdfs:range": {
+          "@id": "rdf:langString"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:howTo"
+        }
     },
 
 

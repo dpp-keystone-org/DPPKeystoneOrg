@@ -123,7 +123,10 @@
               { "@language": "sk", "@value": "Štruktúrované vyjadrenie veľkosti EÚ podľa EN 13402." },
               { "@language": "sl", "@value": "Strukturirana predstavitev velikosti EU v skladu z EN 13402." },
               { "@language": "sv", "@value": "En strukturerad representation av en EU-storlek enligt EN 13402." }
-            ]
+            ],
+            "skos:closeMatch": {
+              "@id": "schema:SizeSpecification"
+            }
         },
         {
             "@id": "dppk:euApparelSize",
@@ -181,7 +184,12 @@
               { "@language": "sv", "@value": "Den strukturerade EU-specifika storleken på produkten baserad på kroppsmått (t.ex. EN 13402)." }
             ],
             "rdfs:domain": { "@id": "dppk:Product" },
-            "rdfs:range": { "@id": "dppk:EuApparelSizeObject" }
+            "rdfs:range": {
+              "@id": "dppk:EuApparelSizeObject"
+            },
+            "skos:closeMatch": {
+              "@id": "schema:size"
+            }
         },
         {
             "@id": "dppk:sizeDesignation",
@@ -239,8 +247,17 @@
               { "@language": "sv", "@value": "Identifiering av klädstorlek med hjälp av alfanumeriska tecken." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": { "@id": "xsd:string" },
-            "owl:equivalentProperty": { "@id": "gs1:sizeCode" }
+            "rdfs:range": {
+              "@id": "xsd:string"
+            },
+            "skos:exactMatch": [
+              {
+                "@id": "gs1:sizeCode"
+              },
+              {
+                "@id": "schema:size"
+              }
+            ]
         },
         {
             "@id": "dppk:cupSize",
@@ -298,7 +315,12 @@
               { "@language": "sv", "@value": "Skillnaden mellan bystvidd och underbystvidd." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": { "@id": "xsd:string" }
+            "rdfs:range": {
+              "@id": "xsd:string"
+            },
+            "skos:closeMatch": {
+              "@id": "schema:size"
+            }
         },
         {
             "@id": "dppk:primaryDimension",
@@ -356,7 +378,12 @@
               { "@language": "sv", "@value": "Det primära kroppsmåttet (t.ex. bröstvidd)." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": { "@id": "dppk:BodyDimensionValue" }
+            "rdfs:range": {
+              "@id": "dppk:BodyDimensionValue"
+            },
+            "skos:closeMatch": {
+              "@id": "schema:size"
+            }
         },
         {
             "@id": "dppk:primaryDimensionValue",
@@ -414,7 +441,12 @@
               { "@language": "sv", "@value": "Intervallet eller värdet för den primära dimensionen." }
             ],
             "rdfs:domain": { "@id": "dppk:EuApparelSizeObject" },
-            "rdfs:range": { "@id": "xsd:string" }
+            "rdfs:range": {
+              "@id": "xsd:string"
+            },
+            "skos:closeMatch": {
+              "@id": "schema:size"
+            }
         },
         {
             "@id": "dppk:secondaryDimensions",
@@ -528,7 +560,12 @@
               { "@language": "sl", "@value": "Ime sekundarne dimenzije (npr. obseg pasu)." },
               { "@language": "sv", "@value": "Namnet på den sekundära dimensionen (t.ex. midjevidd)." }
             ],
-            "rdfs:range": { "@id": "dppk:BodyDimensionValue" }
+            "rdfs:range": {
+              "@id": "dppk:BodyDimensionValue"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:name"
+            }
         },
         {
             "@id": "dppk:dimensionValue",
@@ -585,7 +622,12 @@
               { "@language": "sl", "@value": "Vrednost ali razpon sekundarne dimenzije." },
               { "@language": "sv", "@value": "Värdet eller intervallet för den sekundära dimensionen." }
             ],
-            "rdfs:range": { "@id": "xsd:string" }
+            "rdfs:range": {
+              "@id": "xsd:string"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:value"
+            }
         },
         {
             "@id": "dppk:BodyDimensionValue",

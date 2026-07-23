@@ -7,7 +7,8 @@
     "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dppk-dopc": "https://dpp-keystone.org/spec/{{VERSION}}/terms/dopc#",
     "dcterms": "http://purl.org/dc/terms/",
-    "schema": "http://schema.org/"
+    "schema": "http://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/DoPC",
   "@type": "owl:Ontology",
@@ -95,7 +96,6 @@
         { "@language": "sl", "@value": "Podatkovni blok za izjavo o lastnostih in skladnosti." },
         { "@language": "sv", "@value": "Datablock för prestandadeklaration och försäkran om överensstämmelse." }
       ],
-      "owl:equivalentClass": { "@id": "schema:Certification" },
       "rdfs:label": [
         { "@language": "en", "@value": "DoPC Data Block" },
         { "@language": "bg", "@value": "DoPC Блок данни" },
@@ -121,7 +121,10 @@
         { "@language": "sk", "@value": "Dátový blok DoPC" },
         { "@language": "sl", "@value": "Podatkovni blok DoPC" },
         { "@language": "sv", "@value": "DoPC-datablock" }
-      ]
+      ],
+      "skos:closeMatch": {
+        "@id": "schema:Certification"
+      }
     },
     {
       "@id": "dppk:dopc",
@@ -208,7 +211,10 @@
         { "@language": "sk", "@value": "Vyhlásenie o parametroch a zhode." },
         { "@language": "sl", "@value": "Izjava o lastnostih in skladnosti." },
         { "@language": "sv", "@value": "Prestandadeklarationen och försäkran om överensstämmelse." }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:hasCertification"
+      }
     },
     {
       "@id": "dppk-dopc:declarationCode",

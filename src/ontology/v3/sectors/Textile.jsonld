@@ -8,7 +8,8 @@
         "gs1": "https://ref.gs1.org/voc/",
         "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "dcterms": "http://purl.org/dc/terms/",
-        "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms"
+        "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms",
+        "skos": "http://www.w3.org/2004/02/skos/core#"
     },
     "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Textile",
     "@type": "owl:Ontology",
@@ -249,7 +250,12 @@
             ],
             "dppk:visibility": { "@id": "dppk:Public" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "dppk:PefcrCategoryValue" }
+            "rdfs:range": {
+              "@id": "dppk:PefcrCategoryValue"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:category"
+            }
         },
         {
             "@id": "dppk:PefcrCategoryValue",
@@ -1228,7 +1234,12 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "dppk:RelatedResource" }
+            "rdfs:range": {
+              "@id": "dppk:RelatedResource"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:Certification"
+            }
         },
         {
             "@id": "dppk:carbonFootprint",
@@ -2299,7 +2310,12 @@
                 "rdfs:label": "Source: ESPR - Annex III (a)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "xsd:boolean" }
+            "rdfs:range": {
+              "@id": "xsd:boolean"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:Certification"
+            }
         },
         {
             "@id": "dppk:weightExcludingTrims",
@@ -2364,7 +2380,12 @@
                 "rdfs:label": "Source: ESPR - Annex III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "xsd:double" }
+            "rdfs:range": {
+              "@id": "xsd:double"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:weight"
+            }
         },
         {
             "@id": "dppk:organicContentPercentage",
@@ -2624,7 +2645,12 @@
                 "rdfs:label": "Source: ESPR - Annex I(h), III(e)"
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "xsd:double" }
+            "rdfs:range": {
+              "@id": "xsd:double"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:weight"
+            }
         },
         {
             "@id": "dppk:preConsumerTypeOfWaste",
@@ -2868,7 +2894,12 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "xsd:double" }
+            "rdfs:range": {
+              "@id": "xsd:double"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:weight"
+            }
         },
         {
             "@id": "dppk:postConsumerTypeOfWaste",
@@ -3013,7 +3044,10 @@
               { "@language": "sk", "@value": "Konkrétny krok vo výrobnom procese výrobku." },
               { "@language": "sl", "@value": "Poseben korak v procesu proizvodnje izdelka." },
               { "@language": "sv", "@value": "Ett specifikt steg i produktens tillverkningsprocess." }
-            ]
+            ],
+            "skos:relatedMatch": {
+              "@id": "schema:Action"
+            }
         },
         {
             "@id": "dppk:productionSteps",
@@ -3072,7 +3106,12 @@
             ],
             "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "dppk:ProductionStep" }
+            "rdfs:range": {
+              "@id": "dppk:ProductionStep"
+            },
+            "skos:relatedMatch": {
+              "@id": "schema:step"
+            }
         },
         {
             "@id": "dppk:productionStepType",
@@ -3188,7 +3227,17 @@
               { "@language": "sv", "@value": "Landskoden (ISO 3166-1 alpha-3) där produktionssteget ägde rum." }
             ],
             "rdfs:domain": { "@id": "dppk:ProductionStep" },
-            "rdfs:range": { "@id": "xsd:string" }
+            "rdfs:range": {
+              "@id": "xsd:string"
+            },
+            "skos:exactMatch": [
+              {
+                "@id": "gs1:countryOfOrigin"
+              },
+              {
+                "@id": "schema:countryOfOrigin"
+              }
+            ]
         },
         {
             "@id": "dppk:textileCareInstructions",
@@ -3632,7 +3681,12 @@
                 ]
             },
             "rdfs:domain": { "@id": "dppk:TextileProduct" },
-            "rdfs:range": { "@id": "dppk:Component" }
+            "rdfs:range": {
+              "@id": "dppk:Component"
+            },
+            "skos:closeMatch": {
+              "@id": "schema:material"
+            }
         },
         {
             "@id": "dppk:textileSubstancesOfConcern",

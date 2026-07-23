@@ -6,7 +6,8 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
         "dcterms": "http://purl.org/dc/terms/",
-        "schema": "http://schema.org/"
+        "schema": "http://schema.org/",
+        "skos": "http://www.w3.org/2004/02/skos/core#"
     },
     "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/MTC",
     "@type": "owl:Ontology",
@@ -94,7 +95,6 @@
               { "@language": "sl", "@value": "Potrdilo, v katerem so podrobno opisani rezultati preskusov, opravljenih na materialu, kot so tisti, opredeljeni v EN 10204." },
               { "@language": "sv", "@value": "Ett intyg som beskriver resultaten av tester som utförts på ett material, såsom de som definieras i EN 10204." }
             ],
-            "owl:equivalentClass": { "@id": "schema:Certification" },
             "rdfs:label": [
               { "@language": "en", "@value": "Material Test Certificate (MTC)" },
               { "@language": "bg", "@value": "Сертификат за изпитване на материали (MTC)" },
@@ -120,7 +120,10 @@
               { "@language": "sk", "@value": "Certifikát o skúške materiálu (MTC)" },
               { "@language": "sl", "@value": "Potrdilo o preskusu materiala (MTC)" },
               { "@language": "sv", "@value": "Materialprovningsintyg (MTC)" }
-            ]
+            ],
+            "skos:closeMatch": {
+              "@id": "schema:Certification"
+            }
         },
         {
             "@id": "dppk:mtc",

@@ -11,7 +11,8 @@
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
     "eudpp": "https://w3id.org/eudpp/",
-    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms"
+    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Product.jsonld",
   "@type": "owl:Ontology",
@@ -136,11 +137,19 @@
           { "@language": "sl", "@value": "Splošni koncept, ki zajema končne izdelke, komponente ali surovine." },
           { "@language": "sv", "@value": "Ett allmänt koncept som täcker färdiga varor, komponenter eller råmaterial." }
         ],
-        "owl:equivalentClass": [
-          { "@id": "schema:Product" },
-          { "@id": "gs1:Product" },
-          { "@id": "unece:TradeProduct" },
-          { "@id": "eudpp:Product" }
+        "skos:exactMatch": [
+          {
+            "@id": "schema:Product"
+          },
+          {
+            "@id": "gs1:Product"
+          },
+          {
+            "@id": "unece:TradeProduct"
+          },
+          {
+            "@id": "eudpp:Product"
+          }
         ]
     },
 
@@ -199,11 +208,13 @@
           { "@language": "sl", "@value": "Strukturirana vrednost, ki predstavlja meritev, vključno s številsko vrednostjo in mersko enoto." },
           { "@language": "sv", "@value": "Ett strukturerat värde som representerar en mätning, inklusive det numeriska värdet och måttenheten." }
         ],
-        "owl:equivalentClass": [
-            { "@id": "schema:QuantitativeValue" },
-            { "@id": "qudt:QuantityValue" },
-            { "@id": "unece:QuantityType" }
-            // Note: GS1 does not have a direct equivalent class; it uses properties directly on the product.
+        "skos:exactMatch": [
+          {
+            "@id": "schema:QuantitativeValue"
+          },
+          {
+            "@id": "unece:QuantityType"
+          }
         ]
     },
 
@@ -264,7 +275,12 @@
           { "@language": "sv", "@value": "Ett bokstavligt värde som representerar en vikt i kilogram. En resonerare kan utöka detta till ett fullständigt dppk:QuantitativeValue." }
         ],
         "rdfs:subClassOf": { "@id": "xsd:double" },
-        "dppk:unit": { "@id": "dppk-unit:Kilogram" }
+        "dppk:unit": {
+          "@id": "dppk-unit:Kilogram"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:QuantitativeValue"
+        }
     },
     {
         "@id": "dppk:MetersLengthLiteral",
@@ -380,10 +396,12 @@
           { "@language": "sl", "@value": "Specifična, izmerljiva ali navedena lastnost izdelka, kot je njegova tehnična zmogljivost glede na standardni preizkus." },
           { "@language": "sv", "@value": "En specifik, mätbar eller deklarerad egenskap hos en produkt, såsom dess tekniska prestanda gentemot ett standardtest." }
         ],
-        "owl:equivalentClass": [
-            { "@id": "gs1:ProductCharacteristic" },
-            { "@id": "schema:PropertyValue" }
-        ]
+        "skos:exactMatch": {
+          "@id": "gs1:ProductCharacteristic"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:PropertyValue"
+        }
     },
 
     {
@@ -441,7 +459,12 @@
           { "@language": "sl", "@value": "Sestavni del, material ali snov, ki je vključena v glavni izdelek." },
           { "@language": "sv", "@value": "En beståndsdel, ett material eller ett ämne som ingår i huvudprodukten." }
         ],
-        "dppk:visibility": { "@id": "dppk:Public" }
+        "dppk:visibility": {
+          "@id": "dppk:Public"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:Product"
+        }
     },
     
     // --- Component Properties ---
@@ -504,7 +527,12 @@
         ],
         "dppk:visibility": { "@id": "dppk:Public" },
         "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "rdf:langString" }
+        "rdfs:range": {
+          "@id": "rdf:langString"
+        },
+        "skos:relatedMatch": {
+          "@id": "schema:name"
+        }
     },
     {
         "@id": "dppk:componentPercentage",
@@ -564,7 +592,12 @@
         "dppk:unit": { "@id": "dppk-unit:Percent" },
         "dppk:visibility": { "@id": "dppk:Public" },
         "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:double" }
+        "rdfs:range": {
+          "@id": "xsd:double"
+        },
+        "skos:relatedMatch": {
+          "@id": "schema:value"
+        }
     },
     {
         "@id": "dppk:componentIdentifier",
@@ -622,7 +655,12 @@
           { "@language": "sv", "@value": "Komponentens unika produktidentifierare." }
         ],
         "schema:domainIncludes": { "@id": "dppk:Component" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:relatedMatch": {
+          "@id": "schema:identifier"
+        }
     },
     {
         "@id": "dppk:componentCasNumber",
@@ -925,10 +963,16 @@
           { "@language": "sv", "@value": "Ett allmänt namn eller titel på en resurs (t.ex. en dokumenttitel). För namnet på en produkt, föredra den mer specifika 'dppk:productName'." }
         ],
         // No domain is specified to allow this property to be used on any resource.
-        "rdfs:range": { "@id": "rdf:langString" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:name" },
-            { "@id": "unece:name" }
+        "rdfs:range": {
+          "@id": "rdf:langString"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:name"
+          },
+          {
+            "@id": "unece:name"
+          }
         ]
     },
 
@@ -989,10 +1033,19 @@
           { "@language": "sv", "@value": "Det vanliga namnet på produkten." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "rdf:langString" }, // Supports multilingual strings
-        "owl:equivalentProperty": [
-            { "@id": "gs1:productName" },
-            { "@id": "unece:name" }
+        "rdfs:range": {
+          "@id": "rdf:langString"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "gs1:productName"
+          },
+          {
+            "@id": "schema:name"
+          },
+          {
+            "@id": "unece:name"
+          }
         ]
     },
 
@@ -1053,11 +1106,19 @@
           { "@language": "sv", "@value": "En detaljerad beskrivning av produkten." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "rdf:langString" }, // Supports multilingual strings
-        "owl:equivalentProperty": [
-            { "@id": "schema:description" },
-            { "@id": "gs1:productDescription" },
-            { "@id": "unece:description" }
+        "rdfs:range": {
+          "@id": "rdf:langString"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:description"
+          },
+          {
+            "@id": "gs1:productDescription"
+          },
+          {
+            "@id": "unece:description"
+          }
         ]
     },
 
@@ -1118,11 +1179,19 @@
           { "@language": "sv", "@value": "GS1-identifieraren för handelsvaran." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:gtin" },
-            { "@id": "gs1:gtin" },
-            { "@id": "unece:gTINId" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:gtin"
+          },
+          {
+            "@id": "gs1:gtin"
+          },
+          {
+            "@id": "unece:gTINId"
+          }
         ]
     },
     
@@ -1183,11 +1252,19 @@
           { "@language": "sv", "@value": "Produktens varumärke." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:brand" },
-            { "@id": "gs1:brandName" },
-            { "@id": "unece:brandName" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:brand"
+          },
+          {
+            "@id": "gs1:brandName"
+          },
+          {
+            "@id": "unece:brandName"
+          }
         ]
     },
 
@@ -1248,10 +1325,16 @@
           { "@language": "sv", "@value": "Modellidentifieraren eller numret på produkten." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:model" },
-            { "@id": "unece:modelId" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:model"
+          },
+          {
+            "@id": "unece:modelId"
+          }
         ]
     },
 
@@ -1312,11 +1395,19 @@
           { "@language": "sv", "@value": "En referens till en bildresurs relaterad till produkten." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:RelatedResource" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:image" },
-            { "@id": "gs1:productImage" },
-            { "@id": "unece:specifiedPicture" }
+        "rdfs:range": {
+          "@id": "dppk:RelatedResource"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:image"
+          },
+          {
+            "@id": "gs1:productImage"
+          },
+          {
+            "@id": "unece:specifiedPicture"
+          }
         ]
     },
 
@@ -1377,11 +1468,19 @@
           { "@language": "sv", "@value": "Produktens färg." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "rdf:langString" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:color" },
-            { "@id": "gs1:colourDescription" },
-            { "@id": "unece:colourDescription" }
+        "rdfs:range": {
+          "@id": "rdf:langString"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:color"
+          },
+          {
+            "@id": "gs1:colourDescription"
+          },
+          {
+            "@id": "unece:colourDescription"
+          }
         ]
     },
 
@@ -1446,7 +1545,12 @@
           { "@language": "sv", "@value": "En beståndsdel eller ett material i produkten." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:Component" }
+        "rdfs:range": {
+          "@id": "dppk:Component"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:hasPart"
+        }
     },
 
     // --- Country of Origin ---
@@ -1506,11 +1610,19 @@
           { "@language": "sv", "@value": "Det land där produkten eller materialet tillverkades eller producerades. Det rekommenderas att använda ISO 3166-1 alpha-3-koder." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:countryOfOrigin" },
-            { "@id": "gs1:countryOfOrigin" },
-            { "@id": "unece:originCountry" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:countryOfOrigin"
+          },
+          {
+            "@id": "gs1:countryOfOrigin"
+          },
+          {
+            "@id": "unece:originCountry"
+          }
         ]
     },
 
@@ -1636,10 +1748,16 @@
           { "@language": "sv", "@value": "Vikten på produkten eller materialet, exklusive förpackning. Det rekommenderas att använda specifika datatyper som dppk:KgWeightLiteral." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:KgWeightLiteral" },
-        "owl:equivalentProperty": [
-            { "@id": "gs1:netWeight" },
-            { "@id": "unece:netWeightMeasure" }
+        "rdfs:range": {
+          "@id": "dppk:KgWeightLiteral"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "gs1:netWeight"
+          },
+          {
+            "@id": "unece:netWeightMeasure"
+          }
         ]
     },
     {
@@ -1698,11 +1816,20 @@
           { "@language": "sv", "@value": "Vikten av produkten eller materialet, inklusive förpackning, uttryckt som ett QuantitativeValue." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:KgWeightLiteral" },
-        "owl:equivalentProperty": [
-            { "@id": "gs1:grossWeight" },
-            { "@id": "unece:grossWeightMeasure" }
-        ]
+        "rdfs:range": {
+          "@id": "dppk:KgWeightLiteral"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "gs1:grossWeight"
+          },
+          {
+            "@id": "unece:grossWeightMeasure"
+          }
+        ],
+        "skos:closeMatch": {
+          "@id": "schema:weight"
+        }
     },
     {
         "@id": "dppk:length",
@@ -1760,10 +1887,12 @@
           { "@language": "sv", "@value": "Längden på produkten eller materialet. Det rekommenderas att använda specifika datatyper som dppk:MetersLengthLiteral." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:length" }
-        ]
+        "rdfs:range": {
+          "@id": "dppk:MetersLengthLiteral"
+        },
+        "skos:exactMatch": {
+          "@id": "schema:length"
+        }
     },
     {
         "@id": "dppk:width",
@@ -1821,9 +1950,16 @@
           { "@language": "sv", "@value": "Bredden på produkten eller materialet. Det rekommenderas att använda specifika datatyper som dppk:MetersLengthLiteral." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:width" }
+        "rdfs:range": {
+          "@id": "dppk:MetersLengthLiteral"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:width"
+          },
+          {
+            "@id": "gs1:width"
+          }
         ]
     },
     {
@@ -1882,9 +2018,19 @@
           { "@language": "sv", "@value": "Höjden på produkten eller materialet. Det rekommenderas att använda specifika datatyper som dppk:MetersLengthLiteral." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:height" }
+        "rdfs:range": {
+          "@id": "dppk:MetersLengthLiteral"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:height"
+          },
+          {
+            "@id": "gs1:height"
+          },
+          {
+            "@id": "unece:heightMeasure"
+          }
         ]
     },
     {
@@ -1943,10 +2089,12 @@
           { "@language": "sv", "@value": "Djupet på produkten eller materialet. Det rekommenderas att använda specifika datatyper som dppk:MetersLengthLiteral." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:MetersLengthLiteral" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:depth" }
-        ]
+        "rdfs:range": {
+          "@id": "dppk:MetersLengthLiteral"
+        },
+        "skos:exactMatch": {
+          "@id": "schema:depth"
+        }
     },
 
     // --- Value (Numeric) ---
@@ -2008,12 +2156,20 @@
         ],
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
         // Allowing various numeric types, standardized on decimal for broad use.
-        "rdfs:range": { "@id": "xsd:double" }, 
-        "owl:equivalentProperty": [
-            { "@id": "schema:value" },
-            { "@id": "gs1:value" },
-            { "@id": "unece:unitQuantity" }
-        ]
+        "rdfs:range": {
+          "@id": "xsd:double"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:value"
+          },
+          {
+            "@id": "gs1:value"
+          }
+        ],
+        "skos:closeMatch": {
+          "@id": "unece:unitQuantity"
+        }
     },
 
     // --- Unit Code (Standardized) ---
@@ -2073,11 +2229,19 @@
           { "@language": "sv", "@value": "Måttenhet, helst med hjälp av UN/CEFACT-koder (t.ex. KGM, MTR, LTR)." }
         ],
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:unitCode" },
-            { "@id": "gs1:unitCode" },
-            { "@id": "unece:QuantityTypeCode" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:unitCode"
+          },
+          {
+            "@id": "gs1:unitCode"
+          },
+          {
+            "@id": "unece:QuantityTypeCode"
+          }
         ]
     },
 
@@ -2138,10 +2302,12 @@
           { "@language": "sv", "@value": "En läsbar representation av enheten (t.ex. kg CO2e, Nm)." }
         ],
         "rdfs:domain": { "@id": "dppk:QuantitativeValue" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "schema:unitText" }
-        ]
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": {
+          "@id": "schema:unitText"
+        }
     },
 
     {
@@ -2200,7 +2366,12 @@
           { "@language": "sv", "@value": "Relaterar en produkt till dess specifika egenskaper eller prestanda." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "dppk:ProductCharacteristic" }
+        "rdfs:range": {
+          "@id": "dppk:ProductCharacteristic"
+        },
+        "skos:relatedMatch": {
+          "@id": "schema:additionalProperty"
+        }
     },
     {
         "@id": "dppk:characteristicName",
@@ -2258,11 +2429,15 @@
           { "@language": "sv", "@value": "Namnet på den egenskap som beskrivs (t.ex. 'Vidhäftningshållfasthet', 'Reaktion vid brandpåverkan')." }
         ],
         "rdfs:domain": { "@id": "dppk:ProductCharacteristic" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "gs1:characteristicName" },
-            { "@id": "schema:name" }
-        ]
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": {
+          "@id": "gs1:characteristicName"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:name"
+        }
     },
     {
         "@id": "dppk:characteristicValue",
@@ -2320,11 +2495,15 @@
           { "@language": "sv", "@value": "Det uppmätta eller deklarerade värdet för egenskapen (t.ex. '≥ 2.0 MPa', 'Klass A1')." }
         ],
         "rdfs:domain": { "@id": "dppk:ProductCharacteristic" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "gs1:characteristicValue" },
-            { "@id": "schema:value" }
-        ]
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": {
+          "@id": "gs1:characteristicValue"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:value"
+        }
     },
     {
         "@id": "dppk:testMethod",
@@ -2382,10 +2561,16 @@
           { "@language": "sv", "@value": "En hänvisning till standarden eller metoden som använts för att fastställa egenskapens värde." }
         ],
         "rdfs:domain": { "@id": "dppk:ProductCharacteristic" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "gs1:measurementMethod" },
-            { "@id": "schema:measurementMethod" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:closeMatch": [
+          {
+            "@id": "gs1:measurementMethod"
+          },
+          {
+            "@id": "schema:measurementMethod"
+          }
         ]
     },
     // Skipping dcterms:source because many sector-specific regulations may mandate this same standard.
@@ -2447,7 +2632,10 @@
         "dppk:visibility": { "@id": "dppk:Public" },
         "dppk:governedBy": "ISO 22059:2020",
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": "xsd:string"
+        "rdfs:range": "xsd:string",
+        "skos:relatedMatch": {
+          "@id": "schema:durationOfWarranty"
+        }
     },
     {
         "@id": "dppk:apparelSize",
@@ -2505,9 +2693,20 @@
           { "@language": "sv", "@value": "Storleken på produkten (t.ex. 'M', 'L', '42'). Gäller främst kläder och textilier." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": { "@id": "gs1:sizeCode" },
-        "skos:closeMatch": { "@id": "schema:size" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:closeMatch": {
+          "@id": "schema:size"
+        },
+        "skos:exactMatch": [
+          {
+            "@id": "schema:size"
+          },
+          {
+            "@id": "gs1:sizeCode"
+          }
+        ]
     },
     {
         "@id": "dppk:apparelSizeSystem",
@@ -2565,7 +2764,12 @@
           { "@language": "sv", "@value": "Det storlekssystem som används för klädstorleken (t.ex. 'EU', 'US', 'UK')." }
         ],
         "rdfs:domain": { "@id": "dppk:Product" },
-        "rdfs:range": { "@id": "xsd:string" }
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": {
+          "@id": "schema:sizeSystem"
+        }
     }
   ]
 }

@@ -10,7 +10,8 @@
     "cencpr": "urn:cen:cpr:",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms"
+    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Construction",
   "@type": "owl:Ontology",
@@ -135,7 +136,12 @@
         "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011R0305",
         "rdfs:label": "Regulation (EU) No 305/2011 (Construction Products Regulation - CPR)"
       },
-      "rdfs:subClassOf": { "@id": "dppk:Product" }
+      "rdfs:subClassOf": {
+        "@id": "dppk:Product"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:Product"
+      }
     },
     {
       "@id": "dppk:harmonisedStandardReference",
@@ -193,7 +199,12 @@
         { "@language": "sv", "@value": "En referens (URI eller identifierare) till den tillämpliga harmoniserade europeiska standarden (hEN) som används för att bedöma produkten." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "xsd:anyURI" }
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Certification"
+      }
     },
     {
       "@id": "dppk:notifiedBody",
@@ -429,7 +440,12 @@
         { "@language": "sv", "@value": "En referens till det europeiska bedömningsdokumentet (EAD) som är relevant för produkten." }
       ],
       "rdfs:domain": { "@id": "dppk:ConstructionProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Certification"
+      }
     },
     {
       "@id": "dppk:thermalConductivity",

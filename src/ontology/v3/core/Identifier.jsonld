@@ -5,7 +5,8 @@
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "schema": "https://schema.org/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Identifier.jsonld",
   "@type": "owl:Ontology",
@@ -118,8 +119,12 @@
         { "@language": "sl", "@value": "Identifikator" },
         { "@language": "sv", "@value": "Identifierare" }
       ],
-      "owl:equivalentProperty": { "@id": "schema:identifier" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:identifier"
+      }
     }
   ]
 }

@@ -21,9 +21,11 @@ Decouple our internal property mappings from strict Semantic Web reasoning logic
 2. **Read the Stripped Ontology:** Read the translation-stripped version of the ontology file(s) assigned to you located in `src/ontology/v3_stripped/`. 
 3. **Evaluate Assigned Terms:** Review ONLY the terms assigned to you in your batch markdown file.
 4. **Determine SKOS Mappings:**
-   - **If an `equivalentProperty` is already listed:** Evaluate the target. Decide if the relationship is best described as `skos:exactMatch`, `skos:closeMatch`, or `skos:relatedMatch`. (Rely on your internal knowledge of GS1/Schema.org, or search the web if needed).
+   - **Actively Search:** You should aggressively attempt to find plausible `skos:relatedMatch`, `skos:closeMatch`, and `skos:exactMatch` connections. 
+   - Ensure you search and consider terms from all three major vocabularies: **GS1.org**, **Schema.org**, AND **UNECE / UNCEFACT**. Do not ignore UNECE!
+   - **If a mapping is already listed in the table:** Evaluate the target. Decide if the relationship is best described as `skos:exactMatch`, `skos:closeMatch`, or `skos:relatedMatch`.
    - **CRITICAL:** Do NOT use `skos:broadMatch` or `skos:narrowMatch`. We explicitly do not want to map hierarchical relationships to external ontologies.
-   - **If the current mapping is `None`:** Briefly consider if a highly obvious GS1 or Schema.org equivalent exists. If it is a Class or Enum instance, it is likely safe to leave as `None` unless an exact standard exists. If no mapping exists, explicitly write `None` in the **Proposed SKOS Mappings** column.
+   - **If the current mapping is `None`:** Do not just skip it! Vigorously explore Schema.org, GS1, and UNECE/UNCEFACT to find a match. Only if it is a highly specialized internal DPP concept with absolutely no plausible equivalent should you mark it as `None`.
 5. **Update the Markdown Table:** Use your built-in file editing tools (e.g., `multi_replace_file_content` or `replace_file_content`) to update the markdown table in your assigned batch file. Do NOT use shell commands or Python scripts to edit the file. 
    - Fill in the **Proposed SKOS Mappings** column (e.g., `skos:exactMatch schema:name`, or `None`).
    - Fill in the **Confidence** column (e.g., `High`, `Medium`, `Low`).

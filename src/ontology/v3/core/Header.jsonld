@@ -9,7 +9,8 @@
     "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms"
+    "@base": "https://dpp-keystone.org/spec/{{VERSION}}/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/Header.jsonld",
   "@type": "owl:Ontology",
@@ -164,6 +165,17 @@
         { "@id": "schema:Product" },
         { "@id": "schema:Certification" },
         { "@id": "unece:Document" }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "unece:Document"
+        }
       ]
     },
 
@@ -230,7 +242,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" }
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:identifier"
+      }
     },
 
     // --- uniqueProductIdentifier (UPI) ---
@@ -325,10 +342,16 @@
         { "@id": "dppk:DigitalProductPassport" },
         { "@id": "dppk:Product" }
       ],
-      "rdfs:range": { "@id": "xsd:anyURI" },
-      "owl:equivalentProperty": [
-        { "@id": "gs1:productID" },
-        { "@id": "schema:productID" }
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "gs1:productID"
+        },
+        {
+          "@id": "schema:productID"
+        }
       ]
     },
 
@@ -390,7 +413,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" }
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:identifier"
+      }
     },
 
     // --- FacilityID ---
@@ -451,7 +479,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:anyURI" }
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:identifier"
+      }
     },
 
     // --- Granularity ---
@@ -571,7 +604,10 @@
         { "@language": "sk", "@value": "Označuje, že DPP sa vzťahuje na typ alebo model výrobku." },
         { "@language": "sl", "@value": "Pomeni, da DPP velja za vrsto ali model izdelka." },
         { "@language": "sv", "@value": "Indikerar att DPP gäller för en produkttyp eller modell." }
-      ]
+      ],
+      "skos:exactMatch": {
+        "@id": "schema:ProductModel"
+      }
     },
     {
       "@id": "dppk:Batch",
@@ -683,7 +719,10 @@
         { "@language": "sk", "@value": "Označuje, že DPP sa vzťahuje na jednotlivú sériovú jednotku." },
         { "@language": "sl", "@value": "Pomeni, da DPP velja za posamezno serializirano enoto." },
         { "@language": "sv", "@value": "Indikerar att DPP gäller för en individuell serialiserad enhet." }
-      ]
+      ],
+      "skos:exactMatch": {
+        "@id": "schema:IndividualProduct"
+      }
     },
 
     {
@@ -865,7 +904,12 @@
       ],
       "dppk:visibility": { "@id": "dppk:LegitimateInterestOrAuthority" },
       "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-      "rdfs:range": { "@id": "xsd:dateTime" }
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:dateModified"
+      }
     },
 
     // --- Versioning ---
@@ -1164,11 +1208,15 @@
         ],
         "dppk:visibility": { "@id": "dppk:Public" },
         "rdfs:domain": { "@id": "dppk:DigitalProductPassport" },
-        "rdfs:range": { "@id": "xsd:string" },
-        "owl:equivalentProperty": [
-            { "@id": "gs1:customsClassification" },
-            { "@id": "schema:hscode" }
-        ]
+        "rdfs:range": {
+          "@id": "xsd:string"
+        },
+        "skos:exactMatch": {
+          "@id": "schema:hscode"
+        },
+        "skos:closeMatch": {
+          "@id": "gs1:customsClassification"
+        }
     },
 
     // ==================================================================
@@ -1229,7 +1277,10 @@
         { "@language": "sk", "@value": "Norma, ktorá riadi túto vlastnosť." },
         { "@language": "sl", "@value": "Standard, ki ureja to lastnost." },
         { "@language": "sv", "@value": "Standard som reglerar denna egenskap." }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:sponsor"
+      }
     },
     {
       "@id": "dppk:unit",

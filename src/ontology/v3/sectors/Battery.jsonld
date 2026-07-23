@@ -6,7 +6,8 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
     "dcterms": "http://purl.org/dc/terms/",
-    "schema": "http://schema.org/"
+    "schema": "http://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Battery",
   "@type": "owl:Ontology",
@@ -681,7 +682,10 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla tillverkningsplatsen (geografisk plats för en batteritillverkningsanläggning). Tillverkningsplatsen måste också anges på batterietiketten." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:closeMatch": {
+        "@id": "schema:locationCreated"
+      }
     },
     {
       "@id": "dppk:manufacturingDate",
@@ -744,7 +748,10 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla tillverkningsdatum (månad och år). Tillverkningsdatumet måste också anges på batterietiketten. Format ÅÅÅÅ-MM-DD (ISO 8601)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:date"
+      "rdfs:range": "xsd:date",
+      "skos:exactMatch": {
+        "@id": "schema:productionDate"
+      }
     },
     {
       "@id": "dppk:serviceDate",
@@ -870,7 +877,10 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla information om den period för vilken den kommersiella garantin gäller." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": {
+        "@id": "schema:durationOfWarranty"
+      }
     },
     {
       "@id": "dppk:batteryCategory",
@@ -2066,7 +2076,12 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla information om batteriets detaljerade sammansättning, inklusive material som används i katoden, anoden och elektrolyten. Återanvänder dppk:Component." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:Component" }
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:material"
+      }
     },
     {
       "@id": "dppk:hazardousSubstances",
@@ -2129,7 +2144,12 @@
         { "@language": "sv", "@value": "Batteripasset måste innehålla information om andra farliga ämnen än kvicksilver, kadmium eller bly. Återanvänder dppk:Component." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:Component" }
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:material"
+      }
     },
     {
       "@id": "dppk:hazardousSubstancesImpact",
@@ -2320,7 +2340,12 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla artikelnummer för komponenter, tillsammans med kontaktuppgifter till källor för reservdelar." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:mpn"
+      }
     },
     {
       "@id": "dppk:sparePartsSources",
@@ -2574,7 +2599,12 @@
         { "@language": "sv", "@value": "De procentuella andelarna av nickel, kobolt, litium och bly som återvunnits från avfall från batteritillverkning (före konsumentledet)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:Component" }
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:material"
+      }
     },
     {
       "@id": "dppk:postConsumerRecycledMaterialComposition",
@@ -2637,7 +2667,12 @@
         { "@language": "sv", "@value": "De procentuella andelarna av nickel, kobolt, litium och bly som återvunnits från avfall (efter konsumentledet)." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:Component" }
+      "rdfs:range": {
+        "@id": "dppk:Component"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:material"
+      }
     },
     {
       "@id": "dppk:renewableContent",
@@ -2763,7 +2798,12 @@
         { "@language": "sv", "@value": "Ett batteripass måste innehålla information om batteriets prestanda och hållbarhet." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
-      "rdfs:range": { "@id": "dppk:BatteryPerformance" }
+      "rdfs:range": {
+        "@id": "dppk:BatteryPerformance"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:additionalProperty"
+      }
     },
     {
       "@id": "dppk:capacity",
@@ -2889,7 +2929,12 @@
         { "@language": "sv", "@value": "Underavsnitt för effektkapacitet, fade och gränser." }
       ],
       "rdfs:domain": { "@id": "dppk:BatteryPerformance" },
-      "rdfs:range": { "@id": "dppk:PowerInfo" }
+      "rdfs:range": {
+        "@id": "dppk:PowerInfo"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:additionalProperty"
+      }
     },
     {
       "@id": "dppk:efficiency",
@@ -4735,7 +4780,10 @@
         { "@language": "sv", "@value": "Den förväntade livslängden under de referensförhållanden för vilka de har konstruerats i kalenderår." }
       ],
       "rdfs:domain": { "@id": "dppk:LifetimeInfo" },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:duration"
+      }
     },
     {
       "@id": "dppk:expectedLifetimeCycles",

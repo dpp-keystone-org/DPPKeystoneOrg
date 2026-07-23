@@ -7,7 +7,8 @@
     "schema": "https://schema.org/",
     "gs1": "https://ref.gs1.org/voc/",
     "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
-    "dcterms": "http://purl.org/dc/terms/"
+    "dcterms": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/core/RelatedResource",
   "@type": "owl:Ontology",
@@ -121,9 +122,13 @@
         { "@language": "sl", "@value": "Vir, ki ga določa URL, z dodatnimi metapodatki, kot so naslov, vrsta vsebine in jezik." },
         { "@language": "sv", "@value": "En resurs identifierad av en URL, med ytterligare metadata som titel, innehållstyp och språk." }
       ],
-      "owl:equivalentClass": [
-        { "@id": "schema:DigitalDocument" },
-        { "@id": "gs1:Document" }
+      "skos:closeMatch": [
+        {
+          "@id": "schema:DigitalDocument"
+        },
+        {
+          "@id": "gs1:Document"
+        }
       ]
     },
     {
@@ -182,7 +187,17 @@
         { "@language": "sv", "@value": "Titeln på den relaterade resursen." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": { "@id": "xsd:string" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:headline"
+        },
+        {
+          "@id": "schema:name"
+        }
+      ]
     },
     {
       "@id": "dppk:contentType",
@@ -240,8 +255,12 @@
         { "@language": "sv", "@value": "Mediatypen (MIME-typ) för resursen (t.ex. 'application/pdf', 'image/jpeg')." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "owl:equivalentProperty": { "@id": "schema:encodingFormat" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:encodingFormat"
+      }
     },
     {
       "@id": "dppk:language",
@@ -299,8 +318,12 @@
         { "@language": "sv", "@value": "Språket för resursinnehållet (t.ex. 'en', 'fr')." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": { "@id": "xsd:string" },
-      "owl:equivalentProperty": { "@id": "schema:inLanguage" }
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:inLanguage"
+      }
     },
     {
       "@id": "dppk:url",
@@ -358,8 +381,12 @@
         { "@language": "sv", "@value": "Platsen för resursen." }
       ],
       "rdfs:domain": { "@id": "dppk:RelatedResource" },
-      "rdfs:range": { "@id": "xsd:anyURI" },
-      "owl:equivalentProperty": { "@id": "schema:url" }
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:url"
+      }
     },
     {
       "@id": "dppk:instructionsForUse",
@@ -417,7 +444,12 @@
         { "@language": "sv", "@value": "En länk till bruksanvisningen eller användarmanualen för produkten." }
       ],
       "rdfs:domain": { "@id": "dppk:Product" },
-      "rdfs:range": { "@id": "dppk:RelatedResource" }
+      "rdfs:range": {
+        "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:HowTo"
+      }
     },
     {
       "@id": "dppk:safetyDataSheet",
@@ -595,7 +627,12 @@
       "dppk:visibility": { "@id": "dppk:LegitimateInterest" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+      "rdfs:subPropertyOf": {
+        "@id": "schema:subjectOf"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:HowTo"
+      }
     },
     {
       "@id": "dppk:repairInstructions",
@@ -715,7 +752,12 @@
       "dppk:visibility": { "@id": "dppk:Public" },
       "rdfs:domain": { "@id": "dppk:Product" },
       "rdfs:range": { "@id": "dppk:RelatedResource" },
-      "rdfs:subPropertyOf": { "@id": "schema:subjectOf" }
+      "rdfs:subPropertyOf": {
+        "@id": "schema:subjectOf"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:careInstructions"
+      }
     }
   ]
 }
