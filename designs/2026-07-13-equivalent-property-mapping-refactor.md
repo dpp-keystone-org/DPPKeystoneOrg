@@ -23,12 +23,40 @@ Decouple our internal property mappings from strict Semantic Web reasoning logic
 4. **Determine SKOS Mappings:**
    - **If an `equivalentProperty` is already listed:** Evaluate the target. Decide if the relationship is best described as `skos:exactMatch`, `skos:closeMatch`, or `skos:relatedMatch`. (Rely on your internal knowledge of GS1/Schema.org, or search the web if needed).
    - **CRITICAL:** Do NOT use `skos:broadMatch` or `skos:narrowMatch`. We explicitly do not want to map hierarchical relationships to external ontologies.
-   - **If the current mapping is `None`:** Briefly consider if a highly obvious GS1 or Schema.org equivalent exists. If it is a Class or Enum instance, it is likely safe to leave as `None` unless an exact standard exists.
+   - **If the current mapping is `None`:** Briefly consider if a highly obvious GS1 or Schema.org equivalent exists. If it is a Class or Enum instance, it is likely safe to leave as `None` unless an exact standard exists. If no mapping exists, explicitly write `None` in the **Proposed SKOS Mappings** column.
 5. **Update the Markdown Table:** Use your built-in file editing tools (e.g., `multi_replace_file_content` or `replace_file_content`) to update the markdown table in your assigned batch file. Do NOT use shell commands or Python scripts to edit the file. 
-   - Fill in the **Proposed SKOS Mappings** column (e.g., `skos:exactMatch schema:name`).
-   - Fill in the **Rationale / Confidence** column with a brief 1-sentence justification.
+   - Fill in the **Proposed SKOS Mappings** column (e.g., `skos:exactMatch schema:name`, or `None`).
+   - Fill in the **Confidence** column (e.g., `High`, `Medium`, `Low`).
+   - Fill in the **Rationale** column with a brief 1-sentence justification.
+   - Leave the **QC Status** and **JSON-LD Updated?** columns strictly as `[PENDING]`.
 
 **Official SKOS Guidance:**
 * **`skos:exactMatch`**: Used to link two concepts, indicating a high degree of confidence that they can be used interchangeably across a wide range of information retrieval applications. (Transitive, sub-property of closeMatch).
 * **`skos:closeMatch`**: Used to link two concepts that are sufficiently similar that they can be used interchangeably in some applications. (Not transitive to avoid compound errors).
 * **`skos:relatedMatch`**: Used to state a loose associative mapping link between two concepts.
+
+
+---
+
+## Step 2: QC / Implementer Agent System Prompt
+
+**Role:** You are the QC Reviewer and JSON-LD Implementer. Another agent (the Proposer) has already evaluated terms and proposed SKOS mappings in a markdown table. Your job is to review their proposals, execute the changes in the actual codebase, and track your progress in the table.
+
+**Context - What the previous agent did:**
+To understand the Proposer`s mindset, here were their exact instructions:
+> 1. Read the stripped ontology to understand the term.
+> 2. Determine SKOS Mappings (`exactMatch`, `closeMatch`, `relatedMatch`). They were explicitly forbidden from using `broadMatch` or `narrowMatch`.
+> 3. If no mapping exists, write `None`.
+> 4. Record their proposal, confidence, and rationale in the markdown table.
+
+**Your Instructions (Step 2):**
+1. **Review the Batch:** Open your assigned markdown batch file (e.g., `designs/mapping-batch-1.md`).
+2. **Evaluate the Proposals:** For each term, review the **Proposed SKOS Mappings**, **Confidence**, and **Rationale**.
+   - If you agree with the mapping, proceed to implement it.
+   - If you disagree (e.g., it is a clear hallucination or an invalid SKOS predicate), you have the authority to overrule them and implement the correct mapping.
+3. **Update the Markdown Table (QC Status):** Use your built-in file editing tools (e.g. `multi_replace_file_content` or `replace_file_content`) to update the markdown table in your batch file. 
+   - Change **QC Status** from `[PENDING]` to `[REVIEWED]` (or `[CORRECTED]` if you overruled them).
+   - If you corrected a mapping, ensure you update the **Proposed SKOS Mappings** column to the correct mapping.
+4. **Execute the JSON-LD Update:** To avoid JSON-LD syntax errors and trailing commas, do NOT manually edit the `.jsonld` files yourself. 
+   - Instead, simply send a message back to the main orchestrator agent (who assigned you the task) stating that your batch is fully reviewed and ready to be implemented.
+   - The orchestrator will then run the automated script (`node scripts/apply-batch.mjs <your-assigned-batch-file>`) to safely inject the JSON-LD updates and mark them as `[DONE]`.
