@@ -226,6 +226,31 @@ function reportTranslationIssues(reporter, entityIdentifier, transResult, relati
 
 // --- Audits ---
 
+function auditInconsistentTypes(reporter) {
+    ontologyGraph.forEach((term, id) => {
+        if (!term['@type']) return;
+        const types = Array.isArray(term['@type']) ? term['@type'] : [term['@type']];
+        const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
+
+        if (types.includes('owl:Class')) {
+            reporter.report(
+                'Inconsistent Type Usage',
+                'FAIL',
+                `Term '${id}' is typed as 'owl:Class' instead of 'rdfs:Class'.`,
+                relativePath
+            );
+        }
+        if (types.includes('rdf:Property')) {
+            reporter.report(
+                'Inconsistent Type Usage',
+                'FAIL',
+                `Term '${id}' is typed as 'rdf:Property'. Use 'owl:ObjectProperty', 'owl:DatatypeProperty', or 'owl:AnnotationProperty' instead.`,
+                relativePath
+            );
+        }
+    });
+}
+
 function auditOntologyMetadata(reporter) {
     ontologyFileContents.forEach((content, filePath) => {
         const json = JSON.parse(content);
@@ -652,6 +677,7 @@ async function run() {
 
     // 3. Run Audits
     console.log('🕵️  Running audits...');
+    auditInconsistentTypes(reporter);
     auditOntologyMetadata(reporter);
     auditNumericUnits(reporter);
     const usedIRIs = auditSchemaMappings(reporter);
