@@ -10,7 +10,8 @@
     "cencpr": "urn:cen:cpr:",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms"
+    "@base": "https://dpp-keystone.org/spec/v3/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Construction",
   "@type": "owl:Ontology",
@@ -437,7 +438,15 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        }
+      ]
     },
     {
       "@id": "dppk:harmonisedStandardReference",
@@ -643,7 +652,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:notifiedBody",
@@ -853,7 +870,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "gs1:Organization"
+        }
+      ]
     },
     {
       "@id": "dppk:technicalAssessmentBody",
@@ -1059,7 +1084,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "gs1:Organization"
+        }
+      ]
     },
     {
       "@id": "dppk:validationReports",
@@ -1265,6 +1298,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Report"
       }
     },
     {
@@ -1471,7 +1507,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:thermalConductivity",
@@ -1677,6 +1721,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
       }
     },
     {
@@ -1883,7 +1930,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:steelGrade",
@@ -2089,6 +2144,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:category"
       }
     },
     {
@@ -2295,7 +2353,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     }
   ]
 }

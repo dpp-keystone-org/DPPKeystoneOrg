@@ -11,7 +11,8 @@
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
     "eudpp": "https://w3id.org/eudpp/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms"
+    "@base": "https://dpp-keystone.org/spec/v3/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Product.jsonld",
   "@type": "owl:Ontology",
@@ -426,7 +427,7 @@
           "@value": "Ett allmänt koncept som täcker färdiga varor, komponenter eller råmaterial."
         }
       ],
-      "owl:equivalentClass": [
+      "skos:exactMatch": [
         {
           "@id": "schema:Product"
         },
@@ -640,12 +641,9 @@
           "@value": "Ett strukturerat värde som representerar en mätning, inklusive det numeriska värdet och måttenheten."
         }
       ],
-      "owl:equivalentClass": [
+      "skos:exactMatch": [
         {
           "@id": "schema:QuantitativeValue"
-        },
-        {
-          "@id": "qudt:QuantityValue"
         },
         {
           "@id": "unece:QuantityType"
@@ -856,7 +854,15 @@
       },
       "dppk:unit": {
         "@id": "dppk-unit:Kilogram"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:QuantitativeValue"
+        },
+        {
+          "@id": "gs1:QuantitativeValue"
+        }
+      ]
     },
     {
       "@id": "dppk:MetersLengthLiteral",
@@ -1062,6 +1068,9 @@
       },
       "dppk:unit": {
         "@id": "dppk-unit:Meter"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:QuantitativeValue"
       }
     },
     {
@@ -1263,14 +1272,12 @@
           "@value": "En specifik, mätbar eller deklarerad egenskap hos en produkt, såsom dess tekniska prestanda gentemot ett standardtest."
         }
       ],
-      "owl:equivalentClass": [
-        {
-          "@id": "gs1:ProductCharacteristic"
-        },
-        {
-          "@id": "schema:PropertyValue"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "gs1:ProductCharacteristic"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:Component",
@@ -1473,7 +1480,15 @@
       ],
       "dppk:visibility": {
         "@id": "dppk:Public"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        }
+      ]
     },
     {
       "@id": "dppk:componentName",
@@ -1682,7 +1697,15 @@
       },
       "rdfs:range": {
         "@id": "rdf:langString"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:name"
+        },
+        {
+          "@id": "gs1:productName"
+        }
+      ]
     },
     {
       "@id": "dppk:componentPercentage",
@@ -1894,7 +1917,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:componentIdentifier",
@@ -2100,7 +2131,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalProductClassificationValue"
+        }
+      ]
     },
     {
       "@id": "dppk:componentCasNumber",
@@ -2312,7 +2351,15 @@
       },
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterestOrAuthority"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalProductClassificationValue"
+        }
+      ]
     },
     {
       "@id": "dppk:componentEcNumber",
@@ -2524,7 +2571,15 @@
       },
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterestOrAuthority"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalProductClassificationValue"
+        }
+      ]
     },
     {
       "@id": "dppk:componentIupacName",
@@ -2736,7 +2791,15 @@
       },
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterestOrAuthority"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:name"
+        },
+        {
+          "@id": "gs1:productName"
+        }
+      ]
     },
     {
       "@id": "dppk:componentLocationInProduct",
@@ -2945,6 +3008,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:location"
       }
     },
     {
@@ -3149,7 +3215,7 @@
       "rdfs:range": {
         "@id": "rdf:langString"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:name"
         },
@@ -3363,9 +3429,12 @@
       "rdfs:range": {
         "@id": "rdf:langString"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "gs1:productName"
+        },
+        {
+          "@id": "schema:name"
         },
         {
           "@id": "unece:name"
@@ -3577,7 +3646,7 @@
       "rdfs:range": {
         "@id": "rdf:langString"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:description"
         },
@@ -3794,7 +3863,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:gtin"
         },
@@ -4011,7 +4080,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:brand"
         },
@@ -4228,7 +4297,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:model"
         },
@@ -4442,7 +4511,7 @@
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:image"
         },
@@ -4659,7 +4728,7 @@
       "rdfs:range": {
         "@id": "rdf:langString"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:color"
         },
@@ -4875,6 +4944,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:Component"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:hasPart"
       }
     },
     {
@@ -5082,7 +5154,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:countryOfOrigin"
         },
@@ -5301,7 +5373,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:double"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:netWeight",
@@ -5508,7 +5588,7 @@
       "rdfs:range": {
         "@id": "dppk:KgWeightLiteral"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "gs1:netWeight"
         },
@@ -5722,14 +5802,17 @@
       "rdfs:range": {
         "@id": "dppk:KgWeightLiteral"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "gs1:grossWeight"
         },
         {
           "@id": "unece:grossWeightMeasure"
         }
-      ]
+      ],
+      "skos:closeMatch": {
+        "@id": "schema:weight"
+      }
     },
     {
       "@id": "dppk:length",
@@ -5936,11 +6019,9 @@
       "rdfs:range": {
         "@id": "dppk:MetersLengthLiteral"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "schema:length"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "schema:length"
+      }
     },
     {
       "@id": "dppk:width",
@@ -6147,9 +6228,12 @@
       "rdfs:range": {
         "@id": "dppk:MetersLengthLiteral"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:width"
+        },
+        {
+          "@id": "gs1:width"
         }
       ]
     },
@@ -6358,9 +6442,15 @@
       "rdfs:range": {
         "@id": "dppk:MetersLengthLiteral"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:height"
+        },
+        {
+          "@id": "gs1:height"
+        },
+        {
+          "@id": "unece:heightMeasure"
         }
       ]
     },
@@ -6569,11 +6659,9 @@
       "rdfs:range": {
         "@id": "dppk:MetersLengthLiteral"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "schema:depth"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "schema:depth"
+      }
     },
     {
       "@id": "dppk:value",
@@ -6783,17 +6871,17 @@
       "rdfs:range": {
         "@id": "xsd:double"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:value"
         },
         {
           "@id": "gs1:value"
-        },
-        {
-          "@id": "unece:unitQuantity"
         }
-      ]
+      ],
+      "skos:closeMatch": {
+        "@id": "unece:unitQuantity"
+      }
     },
     {
       "@id": "dppk:unitCode",
@@ -7000,7 +7088,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:unitCode"
         },
@@ -7217,11 +7305,9 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "schema:unitText"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "schema:unitText"
+      }
     },
     {
       "@id": "dppk:productCharacteristics",
@@ -7427,7 +7513,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:ProductCharacteristic"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:characteristicName",
@@ -7634,14 +7728,12 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "gs1:characteristicName"
-        },
-        {
-          "@id": "schema:name"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "gs1:characteristicName"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:name"
+      }
     },
     {
       "@id": "dppk:characteristicValue",
@@ -7848,14 +7940,12 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "gs1:characteristicValue"
-        },
-        {
-          "@id": "schema:value"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "gs1:characteristicValue"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:value"
+      }
     },
     {
       "@id": "dppk:testMethod",
@@ -8062,7 +8152,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:closeMatch": [
         {
           "@id": "gs1:measurementMethod"
         },
@@ -8277,7 +8367,15 @@
       "rdfs:domain": {
         "@id": "dppk:Product"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:durationOfWarranty"
+        },
+        {
+          "@id": "gs1:WarrantyPromise"
+        }
+      ]
     },
     {
       "@id": "dppk:apparelSize",
@@ -8484,12 +8582,17 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": {
-        "@id": "gs1:sizeCode"
-      },
       "skos:closeMatch": {
         "@id": "schema:size"
-      }
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
+      ]
     },
     {
       "@id": "dppk:apparelSizeSystem",
@@ -8695,7 +8798,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:sizeSystem"
+        },
+        {
+          "@id": "gs1:sizeSystemCode"
+        }
+      ]
     }
   ]
 }

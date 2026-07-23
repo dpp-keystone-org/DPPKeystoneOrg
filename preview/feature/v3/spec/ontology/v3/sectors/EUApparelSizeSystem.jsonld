@@ -413,6 +413,14 @@
           "@language": "sv",
           "@value": "En strukturerad representation av en EU-storlek enligt EN 13402."
         }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:SizeSpecification"
+        },
+        {
+          "@id": "gs1:SizeDetails"
+        }
       ]
     },
     {
@@ -619,7 +627,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:EuApparelSizeObject"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
+      ]
     },
     {
       "@id": "dppk:sizeDesignation",
@@ -826,9 +842,14 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": {
-        "@id": "gs1:sizeCode"
-      }
+      "skos:exactMatch": [
+        {
+          "@id": "gs1:sizeCode"
+        },
+        {
+          "@id": "schema:size"
+        }
+      ]
     },
     {
       "@id": "dppk:cupSize",
@@ -1034,7 +1055,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
+      ]
     },
     {
       "@id": "dppk:primaryDimension",
@@ -1240,7 +1269,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:BodyDimensionValue"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
+      ]
     },
     {
       "@id": "dppk:primaryDimensionValue",
@@ -1446,7 +1483,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
+      ]
     },
     {
       "@id": "dppk:secondaryDimensions",
@@ -1649,7 +1694,15 @@
       ],
       "rdfs:domain": {
         "@id": "dppk:EuApparelSizeObject"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
+      ]
     },
     {
       "@id": "dppk:dimensionName",
@@ -1852,7 +1905,15 @@
       ],
       "rdfs:range": {
         "@id": "dppk:BodyDimensionValue"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:name"
+        },
+        {
+          "@id": "gs1:characteristicName"
+        }
+      ]
     },
     {
       "@id": "dppk:dimensionValue",
@@ -2055,7 +2116,15 @@
       ],
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:characteristicValue"
+        }
+      ]
     },
     {
       "@id": "dppk:BodyDimensionValue",
@@ -2290,6 +2359,14 @@
         {
           "@id": "dppk:BodyDimInsideLegLength"
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:QuantitativeValue"
+        },
+        {
+          "@id": "gs1:QuantitativeValue"
+        }
       ]
     },
     {
@@ -2489,6 +2566,14 @@
         {
           "@language": "sv",
           "@value": "Mätning av bröstvidd."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
         }
       ]
     },
@@ -2690,6 +2775,14 @@
           "@language": "sv",
           "@value": "Mätning av halsvidd."
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
       ]
     },
     {
@@ -2889,6 +2982,14 @@
         {
           "@language": "sv",
           "@value": "Mätning av midjevidd."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
         }
       ]
     },
@@ -3090,6 +3191,14 @@
           "@language": "sv",
           "@value": "Mätning av höftvidd."
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
       ]
     },
     {
@@ -3289,6 +3398,14 @@
         {
           "@language": "sv",
           "@value": "Mätning av kroppslängd."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:height"
+        },
+        {
+          "@id": "gs1:height"
         }
       ]
     },
@@ -3490,6 +3607,14 @@
           "@language": "sv",
           "@value": "Mätning av bystvidd."
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
       ]
     },
     {
@@ -3689,6 +3814,14 @@
         {
           "@language": "sv",
           "@value": "Mätning av underbystvidd."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
         }
       ]
     },
@@ -3890,6 +4023,14 @@
           "@language": "sv",
           "@value": "Mätning av fotlängd."
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
       ]
     },
     {
@@ -4090,6 +4231,14 @@
           "@language": "sv",
           "@value": "Mätning av armlängd."
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
+        }
       ]
     },
     {
@@ -4289,6 +4438,14 @@
         {
           "@language": "sv",
           "@value": "Mätning av innerbenslängd."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:size"
+        },
+        {
+          "@id": "gs1:sizeCode"
         }
       ]
     }

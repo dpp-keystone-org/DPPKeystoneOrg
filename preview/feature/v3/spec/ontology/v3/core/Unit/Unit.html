@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class: Unit</title>
+    <link rel="stylesheet" href="../../../../../branding/css/keystone-style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../../../../../index.html"><img src="../../../../../branding/images/keystone_logo.png" alt="DPP Keystone Logo" style="height: 60px;"></a>
+            <div>
+                <h1><a href="../index.html">Ontology: core</a> / <a href="index.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;DPP Core Ontology - Units (v3)&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;DPP Основна онтология - Единици (v3)&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Základní ontologie DPP - Jednotky (v3)&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;DPP Kerneontologi - Enheder (v3)&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;DPP Kernontologie - Einheiten (v3)&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Βασική Οντολογία DPP - Μονάδες (v3)&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Ontología Central DPP - Unidades (v3)&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;DPP põhiontoloogia - Ühikud (v3)&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;DPP-ydinontologia - Yksiköt (v3)&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Ontologie de Base DPP - Unités (v3)&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Príomhointeolaíocht DPP - Aonaid (v3)&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;DPP Osnovna ontologija - Jedinice (v3)&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;DPP Alapontológia - Mértékegységek (v3)&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Ontologia Principale DPP - Unità (v3)&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;DPP pagrindinė ontologija - Vienetai (v3)&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;DPP pamatontoloģija - Vienības (v3)&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Ontoloġija Ewlenija DPP - Unitajiet (v3)&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;DPP Kernontologie - Eenheden (v3)&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Podstawowa ontologia DPP - Jednostki (v3)&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Ontologia Principal DPP - Unidades (v3)&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Ontologia de bază DPP - Unități (v3)&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Základná ontológia DPP - Jednotky (v3)&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Osnovna ontologija DPP - Enote (v3)&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;DPP Kärnontologi - Enheter (v3)&quot;}]">DPP Core Ontology - Units (v3)</span></a></h1>
+                <h2 style="margin: 0; color: var(--text-light);">Class: <span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Unit&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Единица&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Jednotka&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Enhed&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Einheit&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Μονάδα&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Unidad&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Ühik&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Yksikkö&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Unité&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Aonad&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Jedinica&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Mértékegység&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Unità&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Vienetas&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Vienība&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Unità&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Eenheid&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Jednostka&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Unidade&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Unitate&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Jednotka&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Enota&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Enhet&quot;}]">Unit</span> (dppk:Unit)</h2>
+            </div>
+            <div id="language-widget-wrapper" style="margin-left: auto;"></div>
+        </header>
+        <main>
+            <div class="class-section" id="Unit">
+                <h4>Visual Diagram</h4>
+                <pre class="mermaid">
+                    classDiagram
+  class Unit
+  Unit : +unitSymbol
+
+                </pre>
+
+                <h4><span data-i18n-key="description-column">Description</span></h4>
+                <p><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;A well-defined unit of measurement.&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Добре дефинирана мерна единица.&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Dobře definovaná měrná jednotka.&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;En veldefineret måleenhed.&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Eine wohldefinierte Messeinheit.&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Μια καλά ορισμένη μονάδα μέτρησης.&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Una unidad de medida bien definida.&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Hästi määratletud mõõtühik.&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Hyvin määritelty mittayksikkö.&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Une unité de mesure bien définie.&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Aonad tomhais atá sainmhínithe go maith.&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Dobro definirana mjerna jedinica.&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Jól definiált mértékegység.&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Un&#39;unità di misura ben definita.&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Gerai apibrėžtas matavimo vienetas.&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Labi definēta mērvienība.&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Unità ta&#39; kejl definita tajjeb.&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Een goed gedefinieerde meeteenheid.&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Dobrze zdefiniowana jednostka miary.&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Uma unidade de medida bem definida.&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;O unitate de măsură bine definită.&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Dobre definovaná merná jednotka.&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Dobro opredeljena merska enota.&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;En väldefinierad måttenhet.&quot;}]">A well-defined unit of measurement.</span></p>
+                
+
+                
+                    <h4><span data-i18n-key="properties-header">Properties</span></h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><span data-i18n-key="property-column">Property</span></th>
+                                <th><span data-i18n-key="description-column">Description</span></th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td><a href="index.html#unitSymbol"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Unit Symbol&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Символ на единицата&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Symbol jednotky&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Enhedssymbol&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Einheitensymbol&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Σύμβολο μονάδας&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Símbolo de unidad&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Ühiku sümbol&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Yksikön tunnus&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Symbole d&#39;unité&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Siombail Aonaid&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Simbol jedinice&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Mértékegység jele&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Simbolo dell&#39;unità&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Vieneto simbolis&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Vienības simbols&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Simbolu tal-unità&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Eenheidssymbool&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Symbol jednostki&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Símbolo da unidade&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Simbol unitate&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Symbol jednotky&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Simbol enote&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Enhetssymbol&quot;}]">Unit Symbol</span></a> (dppk:unitSymbol)</td>
+                                    <td><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;The raw string representation or symbol of the unit.&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Необработеното низово представяне или символ на единицата.&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Hrubá řetězcová reprezentace nebo symbol jednotky.&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Den rå strengrepræsentation eller symbol for enheden.&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Die rohe Zeichenfolgendarstellung oder das Symbol der Einheit.&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Η ακατέργαστη αναπαράσταση συμβολοσειράς ή το σύμβολο της μονάδας.&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;La representación de cadena sin procesar o el símbolo de la unidad.&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Ühiku algne stringiesitus või sümbol.&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Yksikön raaka merkkijonoesitys tai tunnus.&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;La représentation brute en chaîne de caractères ou le symbole de l&#39;unité.&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Léiriú teaghrán amh nó siombail an aonaid.&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Sirovi prikaz niza ili simbol jedinice.&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;A mértékegység nyers karakterlánc-reprezentációja vagy jele.&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;La rappresentazione stringa grezza o il simbolo dell&#39;unità.&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Neapdorota eilutės reprezentacija arba vieneto simbolis.&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Vienības neapstrādāta virknes reprezentācija vai simbols.&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Ir-rappreżentazzjoni tal-istring mhux ipproċessata jew is-simbolu tal-unità.&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;De ruwe stringweergave of het symbool van de eenheid.&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Surowa reprezentacja znakowa lub symbol jednostki.&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;A representação em cadeia de caracteres bruta ou o símbolo da unidade.&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Reprezentarea brută sub formă de șir sau simbolul unității.&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Surová reťazcová reprezentácia alebo symbol jednotky.&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Surova predstavitev niza ali simbol enote.&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Den råa strängrepresentationen eller symbolen för enheten.&quot;}]">The raw string representation or symbol of the unit.</span></td>
+                                    <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                
+            </div>
+        </main>
+        <footer>
+            <p><small>Part of the <a href="../../../../../index.html">DPP Keystone</a> project. | <a href="../../../../../impressum.html">Impressum / Legal Notice</a></small></p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import { LanguageManager } from '../../../../../lib/language-manager.js';
+        mermaid.initialize({ startOnLoad: true });
+
+        LanguageManager.init('../../../../../index.i18n.json');
+    </script>
+</body>
+</html>

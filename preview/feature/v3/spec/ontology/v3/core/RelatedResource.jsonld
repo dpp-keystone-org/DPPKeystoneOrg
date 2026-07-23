@@ -7,7 +7,8 @@
     "schema": "https://schema.org/",
     "gs1": "https://ref.gs1.org/voc/",
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
-    "dcterms": "http://purl.org/dc/terms/"
+    "dcterms": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/RelatedResource",
   "@type": "owl:Ontology",
@@ -411,7 +412,7 @@
           "@value": "En resurs identifierad av en URL, med ytterligare metadata som titel, innehållstyp och språk."
         }
       ],
-      "owl:equivalentClass": [
+      "skos:closeMatch": [
         {
           "@id": "schema:DigitalDocument"
         },
@@ -624,7 +625,18 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:headline"
+        },
+        {
+          "@id": "schema:name"
+        },
+        {
+          "@id": "gs1:documentTitle"
+        }
+      ]
     },
     {
       "@id": "dppk:contentType",
@@ -831,7 +843,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "schema:encodingFormat"
       }
     },
@@ -1040,9 +1052,14 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": {
-        "@id": "schema:inLanguage"
-      }
+      "skos:exactMatch": [
+        {
+          "@id": "schema:inLanguage"
+        },
+        {
+          "@id": "gs1:fileLanguageCode"
+        }
+      ]
     },
     {
       "@id": "dppk:url",
@@ -1249,7 +1266,7 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "schema:url"
       }
     },
@@ -1457,7 +1474,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:consumerUsageInstructions"
+        }
+      ]
     },
     {
       "@id": "dppk:safetyDataSheet",
@@ -1663,7 +1688,15 @@
       ],
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:DigitalDocument"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:safeUseInstructions",
@@ -1875,7 +1908,15 @@
       },
       "rdfs:subPropertyOf": {
         "@id": "schema:subjectOf"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:endOfLifeInstructions",
@@ -2087,7 +2128,15 @@
       },
       "rdfs:subPropertyOf": {
         "@id": "schema:subjectOf"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:consumerUsageInstructions"
+        }
+      ]
     },
     {
       "@id": "dppk:repairInstructions",
@@ -2299,7 +2348,15 @@
       },
       "rdfs:subPropertyOf": {
         "@id": "schema:subjectOf"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:HowTo"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:careInstructions",
@@ -2511,7 +2568,15 @@
       },
       "rdfs:subPropertyOf": {
         "@id": "schema:subjectOf"
-      }
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:careInstructions"
+        },
+        {
+          "@id": "gs1:consumerHandlingInstructions"
+        }
+      ]
     }
   ]
 }
