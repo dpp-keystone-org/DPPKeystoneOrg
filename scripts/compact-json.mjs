@@ -1,5 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+/**
+ * @file compact-json.mjs
+ * @description A formatting utility that standardizes the visual layout of JSON/JSON-LD files.
+ * It specifically collapses simple @language, @id, and @type objects onto a single line,
+ * and sorts language arrays (putting 'en' first) to ensure consistent git diffs and improved readability.
+ * By using regex on raw text rather than JSON.parse/stringify, it preserves existing comments.
+ */
+import fs from 'fs';
+import path from 'path';
 
 // Default directories to process if no arguments are provided
 const DEFAULT_PATHS = [
