@@ -4,6 +4,24 @@ This directory contains the integration and validation tests for the DPP Keyston
 
 The primary goal of this suite is to ensure that the example Digital Product Passports (DPPs) conform to their corresponding [SHACL](https://www.w3.org/TR/shacl/) shapes.
 
+## Directory Structure
+
+*   **`fixtures/`**: Contains small, static test data files (e.g., mock JSON-LD payloads, minimal ontology snippets) used by the test suites.
+*   **`scripts/`**: Utility scripts to support testing and debugging. See [`scripts/README.md`](scripts/README.md) for details.
+*   **`unit/`**: Contains genuinely self-contained source code tests.
+*   **`integration/`**: Contains tests that run over artifacts in the generated `dist/` directory *after* the project is built. These tests ensure that the schemas and contexts are correctly assembled, but they do not exercise UI code in a browser.
+    *   **`integration/playwright/`**: Large, end-to-end tests that launch a real browser environment to test the interactive web UI tools (Wizard, Validator).
+
+## Important Rules for AI Agents and Developers
+
+### 1. Re-use Existing Test Files
+Before creating a brand new test file, **always examine the file names of existing test cases** in the `unit/` and `integration/` directories. It is often more appropriate to edit and expand an existing, related test file to cover your new logic rather than cluttering the directory with semi-redundant scripts.
+
+### 2. URL to Local Path Mapping
+During testing, the JSON-LD parser is restricted from fetching contexts from the live internet. 
+If you add any new `.json` or `.jsonld` files (or other test inputs) in the project, they must be remapped from their public URIs to their compiled locations in the `dist/` directory.
+**This mapping is maintained in [`scripts/test-helpers.mjs`](scripts/test-helpers.mjs).** You must update the mapping variables there whenever introducing a new context.
+
 ## Setup
 
 ### Prerequisites
