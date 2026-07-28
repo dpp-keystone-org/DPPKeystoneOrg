@@ -31,3 +31,32 @@ The primary ontology files in `src/ontology/[version]/` contain `rdfs:label` and
 
 **When you need to modify the ontology:**
 You must apply your changes to the raw source files in `src/ontology/[version]/` (not the stripped versions). Ensure that you preserve the existing 24-language translation arrays when adding or modifying terms, or ask the human how to handle translations for new terms.
+
+## Semantic Modeling Rules
+
+When defining or modifying terms in the ontology, strict adherence to these rules is mandatory:
+
+### Core Identity and Metadata
+*   **IRIs Required**: Every term must have a unique `@id` (IRI).
+*   **Sector-Specific Namespaces**: When a term requires a sector-specific schema, it must be assigned a sector-specific namespace in the ontology (e.g., using a prefix like `dppk-sector:` rather than the generic `dppk:`). This ensures domain-specific schema definitions align with distinct semantic identities.
+*   **File Metadata**: Every ontology file must include a `dcterms:title` (translated) and a `dcterms:description`.
+*   **Versioning and Imports**: Every file must declare its version using `owl:versionInfo` (with the `{{VERSION}}` placeholder) and declare its dependencies using `owl:imports`. (Dependencies from W3C namespaces can be included liberally).
+
+### Graph Structure and Types
+*   **Strict Graph**: The ontology describes a strict class-and-membership graph, not a flat list of standalone terms. 
+*   **Class Definitions**: Use `rdfs:Class` for defining classes.
+*   **Property Definitions**: Use `owl:DatatypeProperty` or `owl:ObjectProperty` (do *not* use `rdf:Property`). 
+*   **Data Types**: Every property must explicitly declare a data type using `rdfs:range` (e.g., `xsd:string`, `xsd:double`, or a specific class object).
+*   **Sector Root Classes**: Each product category's sector ontology file must first define a root class (e.g., `dppk:TextileProduct`) that is an `rdfs:subClassOf` `dppk:Product`. All subsequent properties defined in that sector file should generally be fields belonging to that class, linked via `rdfs:domain`.
+
+### Documentation and Translation
+*   **24 Languages**: Every property and class definition must use `rdfs:label` and `rdfs:comment` with translated strings to support all 24 European languages.
+
+### External Mappings and Sources
+*   **SKOS Mappings**: Wherever feasible, map terms to their equivalent or most similar terms in `gs1.org`, `schema.org`, and `unece` vocabularies using `skos:exactMatch`, `skos:closeMatch`, or `skos:relatedMatch`.
+*   **Legislation Source**: Every term should have a `dcterms:source`. This is usually the EU ESPR legislation that dictates the term's inclusion. The source must be an object with an `@id` pointing to the public link (usually EUR-Lex) and a label.
+*   **Governing Standards**: Use the `dppk:governedBy` annotation (as a simple string) to indicate the exact standard (e.g., "DIN DKE SPEC 99100" or "EN 10168") used to derive the value. Do *not* duplicate the paid standard's text or complex rules; just name the standard.
+
+### Units and Enumerations
+*   **Units**: If a term is a measurement, it must declare its units using `dppk:unit`. The standard units are defined in `core/Unit.jsonld` (which can be expanded as necessary). Units should map to the QUDT ontology (`qudt`) using `skos:exactMatch` wherever feasible.
+*   **Enumerations**: If a term has a finite set of controlled values instead of units, define an enumeration (typically utilizing a class with `owl:oneOf` and individual instances).
