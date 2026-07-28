@@ -1,3 +1,10 @@
+/**
+ * @file validate-i18n.mjs
+ * @description Validates that every `data-i18n-key` referenced in HTML/JS source files 
+ * has a corresponding entry in a `.i18n.json` resource file.
+ * 
+ * USE CASE: Run this to ensure you haven't added a new UI element with a missing translation key.
+ */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

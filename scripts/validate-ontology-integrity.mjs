@@ -1,3 +1,19 @@
+/**
+ * @file validate-ontology-integrity.mjs
+ * @description A comprehensive validation suite for the Keystone 3-layer architecture.
+ * It loads the entire ontology, contexts, and schemas into memory and cross-references them.
+ * 
+ * AUDITS PERFORMED:
+ * 1. Checks type consistency (e.g., owl:Class vs rdfs:Class).
+ * 2. Validates ontology metadata (dcterms:title, versionInfo).
+ * 3. Enforces that numeric properties have defined units.
+ * 4. Ensures schemas map to valid contexts, and contexts map to valid ontology terms.
+ * 5. Validates documentation completeness and strict 24-language translation requirements (rdfs:label, rdfs:comment).
+ * 6. Detects dead code (unreachable terms) and missing owl:imports.
+ * 
+ * USE CASE: This is the ultimate gatekeeper script. Run it after making ANY changes to 
+ * ontologies, contexts, or schemas to ensure semantic and structural integrity.
+ */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

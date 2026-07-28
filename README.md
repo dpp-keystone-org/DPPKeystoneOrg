@@ -16,6 +16,7 @@ Understanding the project's goals and processes is key to effective contribution
 *   **[Governance Model](docs/governance.md):** Details the decision-making process for changes and the project's versioning strategy.
 *   **[Contributing Guide](CONTRIBUTING.md):** Provides the "How" for submitting changes and the technical style guides.
 *   **[Validation Strategy](src/validation/README.md):** A deep dive into our dual approach to data validation using JSON Schema and SHACL.
+*   **[Translation Workflow](docs/translation-workflow.md):** The strict AI multi-agent machine-consensus protocol used to translate the project into 24 languages.
 
 ## Project Structure
 
