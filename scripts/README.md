@@ -25,4 +25,7 @@ Detailed documentation for each script is located directly within the scripts th
 ### Diagnostics & Utilities
 *   [`scan-schema-types.mjs`](scan-schema-types.mjs): A helpful debugging utility that scans all compiled JSON Schemas to list every unique `type` and `format` currently in use. Highly useful when expanding the Wizard UI to ensure you've built widgets for all required data types.
 
+### Ontology Utilities
+*   [`strip-ontology-annotations.mjs`](strip-ontology-annotations.mjs): Strips all non-English `rdfs:label` and `rdfs:comment` translations from the source ontology, creating a lightweight `_stripped` copy. **Crucial workflow step for AI agents to save context window space when researching ontologies.**
+
 *(More scripts will be documented here as we analyze them...)*

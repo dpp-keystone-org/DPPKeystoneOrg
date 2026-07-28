@@ -20,4 +20,14 @@ During the automated build process (`scripts/build-and-clean.mjs`), a static `in
 
 ## AI Agent Guidelines
 
-> **TODO:** This section will be expanded with strict rules for agents regarding how to read, modify, and structure ontology files (e.g., utilizing the `_stripped` directories to save context).
+> **CRITICAL RULE FOR AI AGENTS:** DO NOT READ THE RAW `.jsonld` FILES IN THIS DIRECTORY FOR ONTOLOGY EXPLORATION! 
+
+The primary ontology files in `src/ontology/[version]/` contain `rdfs:label` and `rdfs:comment` arrays translated into 24 different languages. Reading these files directly will massively bloat your context window and degrade your reasoning capabilities.
+
+**When you need to examine the ontology:**
+1. Check if the `src/ontology/[version]_stripped/` directory exists.
+2. If not (or if it's stale), ask the human to run `node scripts/strip-ontology-annotations.mjs`.
+3. Read the files from the `_stripped` directory. These files have all non-English translations removed, making them compact and easy for an AI to parse.
+
+**When you need to modify the ontology:**
+You must apply your changes to the raw source files in `src/ontology/[version]/` (not the stripped versions). Ensure that you preserve the existing 24-language translation arrays when adding or modifying terms, or ask the human how to handle translations for new terms.
