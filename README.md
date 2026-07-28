@@ -93,12 +93,10 @@ To maintain healthy context windows and ensure safe, interruptible collaboration
 All AI-assisted engineering must be driven by highly detailed, step-by-step design documents located in the `designs/` directory. 
 **CRITICAL: You must read [designs/README.md](designs/README.md) to understand the strict TODO-list format and naming conventions before generating any code or proposing an implementation plan.**
 
-## Automated Build and Deployment
+## Automated Build and Deployment (CI/CD)
 
-This project uses GitHub Actions to automate the testing and deployment process. When changes are pushed to the `main` branch, the following steps are executed automatically:
+This project uses GitHub Actions to automate testing, deployment, and versioning. **Please read the [.github/README.md](.github/README.md) for full details on how the CI/CD pipelines handle branch previews and legacy versioning.**
 
-1.  **Install Dependencies:** All `npm` dependencies for the root project and the `testing` suite are installed.
-2.  **Build & Test:** The `npm test` command is run, which first builds all production files in the `dist` directory and then runs a full suite of validation tests against the data models.
-3.  **Deploy:** If the tests pass, the contents of the `dist` directory are automatically deployed to the `gh-pages` branch, which serves the live site at [dpp-keystone.org](https://dpp-keystone.org).
-
-This ensures that the production version of the data dictionary is always up-to-date and has passed all validation checks.
+*   **Production (`publish.yml`)**: Pushes to the `main` branch are automatically tested and deployed to the live root site at [dpp-keystone.org](https://dpp-keystone.org).
+*   **Live Previews (`preview.yml`)**: Pushes to feature branches are automatically deployed to isolated subdirectories (`/preview/<branch-name>/`). This provides a live, fully functional test environment for pull requests.
+*   **Historical Versions (`legacy-publish.yml`)**: Specially named legacy branches are deployed to version-specific subdirectories to keep older ontology standards permanently accessible.
