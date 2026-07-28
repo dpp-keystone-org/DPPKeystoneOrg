@@ -33,6 +33,19 @@ It is critical to understand that sub-schemas are **not** created on a one-to-on
 -   **Naming:** Sub-schemas should be named after the sector or domain they cover (e.g., `construction.schema.json`, `battery.schema.json`). These names serve as temporary, internal identifiers.
 -   **Future-Proofing:** Eventually, these temporary schema names may be replaced by official, URN-based identifiers once a formal Delegated Act is passed by the EU.
 
+### Use of Generic vs Sector-Specific Schemas
+
+When building sector-specific schemas (e.g., for Textiles or Iron/Steel), you should conditionally include generic schema definitions for complex objects, but this must be done selectively:
+
+*   **`packaging`** and **`product-characteristics`**: These are generally **not** meant to be used within sector-specific schemas.
+*   **`related-resource`**: Highly recommended for any linked resources (documentation, manuals, etc.).
+*   **`component`**: Highly recommended for materials, substances, and any other component types.
+*   **`organization`**: Highly recommended for any organizational roles beyond those already required in the main DPP header.
+*   **`postal-address`**: Generally only meant to be used *within* an `organization`. Only use it in a different context when absolutely necessary.
+*   **`certification`**: Can be used when the requirement is clearly a simple certification. However, beware that complex certifications (like EPD, DoPC, and MTC) have their own novel data types.
+
+For complex data types (like DoPC), always verify if there is a sector-specific flavor that should be used instead of the generic one. Newer versions of Keystone nest these specific flavors under the sector directory (e.g., a cement-specific DoPC would live in `sector/cement/dopc`).
+
 ### Conditional Application of Sub-Schemas
 
 A sub-schema for a Delegated Act is applied **only if** its unique identifier is present in the DPP payload's `contentSpecificationIds` array.
