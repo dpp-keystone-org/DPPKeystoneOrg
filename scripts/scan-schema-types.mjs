@@ -1,3 +1,12 @@
+/**
+ * @file scan-schema-types.mjs
+ * @description A diagnostic utility that recursively scans all compiled JSON Schemas in the dist/ folder 
+ * and prints out every unique "type" (e.g., string, object) and "format" (e.g., date-time, uri) in use.
+ * 
+ * USE CASE: If you are expanding the frontend Wizard form generator (src/wizard/form-builder.js) 
+ * or the Ajv validation setup, run this script to easily check if there are any new or unsupported 
+ * data types or formats across all sector schemas that you need to implement UI widgets or plugins for.
+ */
 import fs from 'fs';
 import path from 'path';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';

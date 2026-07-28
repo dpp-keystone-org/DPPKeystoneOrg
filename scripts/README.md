@@ -22,4 +22,7 @@ Detailed documentation for each script is located directly within the scripts th
 *   [`generate-spec-docs.mjs`](generate-spec-docs.mjs): **CRITICAL SCRIPT.** The core engine that parses the JSON-LD files and generates the static HTML specification documentation. 
     > **MAINTENANCE RULE:** You MUST update this script and add corresponding tests any time a new convention is introduced, a new external dependency is added, a new type of JSON-LD vocabulary/annotation is used, or if the directory structure changes in any way.
 
+### Diagnostics & Utilities
+*   [`scan-schema-types.mjs`](scan-schema-types.mjs): A helpful debugging utility that scans all compiled JSON Schemas to list every unique `type` and `format` currently in use. Highly useful when expanding the Wizard UI to ensure you've built widgets for all required data types.
+
 *(More scripts will be documented here as we analyze them...)*
