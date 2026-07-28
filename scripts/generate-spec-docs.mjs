@@ -1,3 +1,12 @@
+/**
+ * @file generate-spec-docs.mjs
+ * @description The core engine for generating the HTML specification documentation from the raw JSON-LD ontology and context files.
+ * 
+ * IMPORTANT NOTES FOR SESSIONS MODIFYING THIS SCRIPT:
+ * - This script performs deep graph traversal and custom parsing of JSON-LD structures (e.g., `parseOntologyMetadata`, `parseContextMetadata`).
+ * - It handles multi-language extraction (`getI18nData`) and UI translation wrapping (`renderI18nSpan`).
+ * - Because it transforms complex JSON-LD into static HTML (including Mermaid.js diagrams), it is highly sensitive to changes in the ontology structure, vocabulary usage, or directory layout.
+ */
 import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
 import { join, basename, dirname, resolve, relative } from 'path';
 import { parse as jsoncParse } from 'jsonc-parser';
