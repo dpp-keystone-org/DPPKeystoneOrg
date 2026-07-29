@@ -4,7 +4,8 @@ import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import { 
     loadOntologyDefinition, 
     extractClassRequirements, 
-    synthesizeHappyPathGraph 
+    synthesizeHappyPathGraph,
+    generateMutations
 } from './shacl-fuzzer.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,23 +22,17 @@ const targetClass = 'dppk:Product';
 console.log(`Extracting requirements for: ${targetClass}`);
 
 const requirements = extractClassRequirements(ontology, targetClass);
-console.log('\n--- Extracted Requirements ---');
-if (requirements.length === 0) {
-    console.log('⚠️ No requirements found. Check if the targetClass is correct.');
-} else {
-    requirements.forEach(r => {
-        console.log(`Property: ${r.property} (Range: ${r.range})`);
-        if (r.oneOf) {
-            console.log(`  Enum constraints: ${r.oneOf.join(', ')}`);
-        }
-    });
-}
-
 console.log('\n--- Generating Happy Path Graph ---');
 const graph = synthesizeHappyPathGraph(requirements, `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#Product`);
+console.log(`Happy path graph created with ${graph.size} quads.`);
 
-console.log('\n--- Happy Path Quads ---');
-for (const quad of graph) {
-    const objectString = quad.object.termType === 'Literal' ? `"${quad.object.value}"^^<${quad.object.datatype.value}>` : `<${quad.object.value}>`;
-    console.log(`<${quad.subject.value}> <${quad.predicate.value}> ${objectString}`);
-}
+console.log('\n--- Generating Mutations (Fuzzing) ---');
+const mutations = generateMutations(graph, requirements);
+console.log(`Successfully generated ${mutations.length} fuzzed graphs to test the ${requirements.length} properties.`);
+
+console.log('\n--- Sample Mutations Generated ---');
+const sampleMutations = mutations.slice(0, 4);
+sampleMutations.forEach(m => {
+    console.log(`- Type: [${m.type}] on Property: [${m.property.split('#').pop()}] (Total Quads: ${m.graph.size})`);
+});
+console.log('\nAll mutation graphs are ready to be fed to the SHACL validator in Phase 3!');
