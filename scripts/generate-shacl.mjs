@@ -82,7 +82,10 @@ function generateShacl() {
     let totalShapesGenerated = 0;
 
     for (const file of files) {
+        const relativePath = path.relative(ONTOLOGY_ROOT, file);
+        const relativeDir = path.dirname(relativePath);
         const baseName = path.basename(file, '.jsonld');
+        const uriPath = (relativeDir === '.') ? baseName : `${relativeDir.split(path.sep).join('/')}/${baseName}`;
         const ontology = loadOntologyDefinition(file);
         const graphNodes = ontology['@graph'] || [];
         
@@ -122,7 +125,7 @@ function generateShacl() {
                 "class": { "@type": "@id" },
                 "datatype": { "@type": "@id" }
             },
-            "@id": `https://dpp-keystone.org/spec/validation/auto-generated/shapes/${baseName}`,
+            "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/${uriPath}`,
             "@type": "ShapesGraph",
             "@graph": []
         };
@@ -132,7 +135,7 @@ function generateShacl() {
             if (requirements.length === 0) continue;
 
             const shape = {
-                "@id": `https://dpp-keystone.org/spec/validation/auto-generated/shapes/${baseName}#${cls['@id'].split(':').pop()}Shape`,
+                "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/${uriPath}#${cls['@id'].split(':').pop()}Shape`,
                 "@type": "NodeShape",
                 "targetClass": cls['@id'],
                 "property": []
@@ -175,7 +178,9 @@ function generateShacl() {
         }
 
         if (shapesGraph["@graph"].length > 0) {
-            const outPath = path.join(SHACL_OUT_DIR, `${baseName}-shapes.shacl.jsonld`);
+            const currentOutDir = path.join(SHACL_OUT_DIR, relativeDir);
+            fs.mkdirSync(currentOutDir, { recursive: true });
+            const outPath = path.join(currentOutDir, `${baseName}-shapes.shacl.jsonld`);
             fs.writeFileSync(outPath, JSON.stringify(shapesGraph, null, 2));
             console.log(`Successfully generated ${shapesGraph["@graph"].length} SHACL shapes to ${outPath}`);
             totalShapesGenerated += shapesGraph["@graph"].length;

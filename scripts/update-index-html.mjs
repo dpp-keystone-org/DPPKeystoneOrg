@@ -35,7 +35,12 @@ export async function generateFileList(dirPath, baseHref, options = {}, rootPath
     if (entry.isDirectory() && options.recursive) {
       // If recursive, call self and add the results to the list
       const subList = await generateFileList(fullPath, baseHref, options, rootPath);
-      listItems = listItems.concat(subList);
+      if (options.hierarchical && subList.trim() !== '') {
+          const dirName = entry.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+          listItems.push(`                            <li>${dirName}\n                                <ul>\n${subList}\n                                </ul>\n                            </li>`);
+      } else if (subList.trim() !== '') {
+          listItems.push(subList);
+      }
     } else if (entry.isFile()) {
       // Process files
       let filteredOut = false;
@@ -283,7 +288,7 @@ export async function updateIndexHtml({
 
     // Generate and inject SHACL shapes list
     const shaclPath = path.join(DIST_DIR, 'spec', 'validation', KEYSTONE_VERSION, 'shacl');
-    const shaclList = await generateFileList(shaclPath, `spec/validation/${KEYSTONE_VERSION}/shacl/`, { recursive: false });
+    const shaclList = await generateFileList(shaclPath, `spec/validation/${KEYSTONE_VERSION}/shacl/`, { recursive: true, hierarchical: true });
     indexContent = indexContent.replace(
       /<!-- SHACL_SHAPES_LIST_START -->[\s\S]*<!-- SHACL_SHAPES_LIST_END -->/,
       '<!-- SHACL_SHAPES_LIST_START -->\n' + shaclList + '\n                    <!-- SHACL_SHAPES_LIST_END -->'
