@@ -149,11 +149,14 @@ describe('DPP SHACL Validation', () => {
         const validator = new SHACLValidator(shapesGraph);
         const report = await validator.validate(dataGraph);
 
-        // --- 3. Assert Conformance ---
         if (!report.conforms) {
-            logValidationReport(report, dataGraph);
+            const messages = report.results.map(r => {
+                const msg = r.message.map(m => m.value).join(', ');
+                const path = r.path ? r.path.value : 'unknown path';
+                return `${path}: ${msg}`;
+            }).join('\n');
+            throw new Error(`Validation failed:\n${messages}`);
         }
-
         expect(report.conforms).toBe(true);
     });
 });

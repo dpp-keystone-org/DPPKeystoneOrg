@@ -68,13 +68,18 @@ export function extractClassRequirements(ontologyGraph, targetClass) {
                     oneOf = oneOfArray.map(o => expandURI(o["@id"], context));
                 }
             }
-            
+            let propertyTypes = [];
+            if (node["@type"]) {
+                propertyTypes = Array.isArray(node["@type"]) ? node["@type"] : [node["@type"]];
+            }
+
             requirements.push({
                 property: node["@id"],
                 expandedProperty: expandURI(node["@id"], context),
                 range: range,
                 expandedRange: expandedRange,
-                oneOf: oneOf
+                oneOf: oneOf,
+                propertyTypes: propertyTypes
             });
         }
     }

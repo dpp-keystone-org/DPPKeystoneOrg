@@ -167,13 +167,34 @@ function generateShacl() {
                 
                 // Map range to datatype or class
                 if (req.range) {
+                    const isObjectProperty = req.propertyTypes && req.propertyTypes.includes('owl:ObjectProperty');
+                    
                     if (req.range.startsWith('xsd:') || req.range === 'rdf:langString') {
-                        propRule.datatype = req.range;
+                        if (isObjectProperty || req.range === 'xsd:anyURI') {
+                            propRule.or = {
+                                "@list": [
+                                    { "datatype": req.range },
+                                    { "nodeKind": { "@id": "sh:IRI" } }
+                                ]
+                            };
+                        } else {
+                            propRule.datatype = req.range;
+                        }
                     } else if (req.range.includes('Literal')) {
                         propRule.datatype = "xsd:double";
                     } else {
-                        propRule.class = req.expandedRange || req.range;
-                        propRule.nodeKind = { "@id": "sh:IRI" };
+                        const targetClass = req.expandedRange || req.range;
+                        propRule.or = {
+                            "@list": [
+                                {
+                                    "class": targetClass,
+                                    "nodeKind": { "@id": "sh:BlankNodeOrIRI" }
+                                },
+                                {
+                                    "datatype": targetClass
+                                }
+                            ]
+                        };
                     }
                 }
                 
