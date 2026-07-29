@@ -29,3 +29,7 @@ To ensure a productive, context-efficient, and hands-on collaboration between hu
 5. **Reference Examples:**
    - For an example of a well-structured, complex change, read the first few hundred lines of `2026-06-08-internationalization-COMPLETED.md` or `2026-05-12-textile-espr-update-COMPLETED.md`.
    - **Note to AI Agents:** Try to read only a snippet (a few hundred lines) of these examples to conserve your context window.
+
+6. **Execution Limits (Testing & Building):**
+   - **CRITICAL AI INSTRUCTION:** AI Agents MUST NOT independently run build (`npm run build`), test (`npm test`), or other shell commands. 
+   - Agents should modify the code and then ask the user to run the commands in the terminal.

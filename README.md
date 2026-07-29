@@ -93,6 +93,8 @@ To maintain healthy context windows and ensure safe, interruptible collaboration
 All AI-assisted engineering must be driven by highly detailed, step-by-step design documents located in the `designs/` directory. 
 **CRITICAL: You must read [designs/README.md](designs/README.md) to understand the strict TODO-list format and naming conventions before generating any code or proposing an implementation plan.**
 
+**CRITICAL AI INSTRUCTION:** AI Agents MUST NOT independently run tests (`npm test`), builds (`npm run build`), or other shell commands. Always ask the user to run them in the terminal.
+
 ## Automated Build and Deployment (CI/CD)
 
 This project uses GitHub Actions to automate testing, deployment, and versioning. **Please read the [.github/README.md](.github/README.md) for full details on how the CI/CD pipelines handle branch previews and legacy versioning.**

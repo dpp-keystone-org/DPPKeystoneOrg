@@ -5,6 +5,8 @@ This directory contains all the automation, build, validation, and maintenance s
 ## General Workflow
 
 > **CRITICAL WORKFLOW RULE:** Between any file changes, the only command you need to run to update the build targets is `npm run build` (which invokes `build-and-clean.mjs`). This is automatically run when executing `npm test` to ensure tests always run against the latest code.
+> 
+> **CRITICAL AI INSTRUCTION:** AI Agents MUST NOT independently run `npm run build`, `npm test`, or execute these scripts directly in a shell. Always ask the user to run the appropriate commands in the terminal.
 
 > **STYLE GUIDELINE:** All Node.js scripts in this repository must consistently use ES Modules syntax (`import`/`export`) and the `.mjs` file extension. Avoid CommonJS (`require`) and `.cjs` or `.js` extensions for scripts.
 
