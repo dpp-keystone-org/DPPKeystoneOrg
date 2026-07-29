@@ -27,19 +27,18 @@ function findJsonldFiles(dir, fileList = []) {
 
 const SCHEMA_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'json-schema');
 
-function extractRequiredProperties(dir, requiredSet = new Set()) {
-    if (!fs.existsSync(dir)) return requiredSet;
+function findJsonSchemas(dir, fileList = []) {
+    if (!fs.existsSync(dir)) return fileList;
     const files = fs.readdirSync(dir);
     for (const file of files) {
         const filePath = path.join(dir, file);
         if (fs.statSync(filePath).isDirectory()) {
-            extractRequiredProperties(filePath, requiredSet);
+            findJsonSchemas(filePath, fileList);
         } else if (filePath.endsWith('.json')) {
-            const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-            findRequiredArrays(content, requiredSet);
+            fileList.push(filePath);
         }
     }
-    return requiredSet;
+    return fileList;
 }
 
 function findRequiredArrays(obj, requiredSet) {
@@ -58,47 +57,82 @@ function findRequiredArrays(obj, requiredSet) {
     }
 }
 
+const schemaMapping = {
+    'Battery': ['battery.schema.json'],
+    'Construction': ['construction.schema.json'],
+    'Electronics': ['electronics.schema.json'],
+    'IronSteel': ['iron-steel.schema.json'],
+    'Textile': ['textile.schema.json'],
+    'DoPC': ['dopc.schema.json'],
+    'EPD': ['epd.schema.json'],
+    'Organization': ['organization.schema.json', 'postal-address.schema.json'],
+    'RelatedResource': ['related-resource.schema.json'],
+    'MTC': ['mtc.schema.json'],
+    'Product': ['general-product.schema.json', 'product-characteristic.schema.json', 'packaging.schema.json', 'component.schema.json'],
+    'Header': ['dpp.schema.json'],
+    'Compliance': ['certification.schema.json']
+};
+
 function generateShacl() {
     console.log('Generating SHACL shapes from ontologies...');
     const files = findJsonldFiles(ONTOLOGY_ROOT);
+    const allSchemas = findJsonSchemas(SCHEMA_ROOT);
     
-    // Extract globally required properties from all JSON schemas
-    const requiredProperties = extractRequiredProperties(SCHEMA_ROOT);
-    console.log(`Discovered ${requiredProperties.size} required properties across JSON Schemas.`);
-    
-    const shapesGraph = {
-        "@context": {
-            "sh": "http://www.w3.org/ns/shacl#",
-            "xsd": "http://www.w3.org/2001/XMLSchema#",
-            "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`,
-            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-            "@vocab": "http://www.w3.org/ns/shacl#",
-            "node": { "@type": "@id" },
-            "path": { "@type": "@id" },
-            "targetClass": { "@type": "@id" },
-            "class": { "@type": "@id" },
-            "datatype": { "@type": "@id" }
-        },
-        "@id": "https://dpp-keystone.org/spec/validation/auto-generated/shapes",
-        "@type": "ShapesGraph",
-        "@graph": []
-    };
+    fs.mkdirSync(SHACL_OUT_DIR, { recursive: true });
+    let totalShapesGenerated = 0;
 
     for (const file of files) {
+        const baseName = path.basename(file, '.jsonld');
         const ontology = loadOntologyDefinition(file);
         const graphNodes = ontology['@graph'] || [];
+        
+        // Extract required properties for THIS specific ontology
+        const requiredProperties = new Set();
+        const mappedSchemas = schemaMapping[baseName] || [
+            `${baseName.toLowerCase()}.schema.json`,
+            `${baseName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}.schema.json`
+        ];
+        
+        for (const schemaPath of allSchemas) {
+            if (mappedSchemas.includes(path.basename(schemaPath))) {
+                const content = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
+                findRequiredArrays(content, requiredProperties);
+            }
+        }
+
         
         const classes = graphNodes.filter(n => {
             const types = Array.isArray(n['@type']) ? n['@type'] : [n['@type']];
             return types && (types.includes('rdfs:Class') || types.includes('owl:Class'));
         });
 
+        if (classes.length === 0) continue;
+
+
+        const shapesGraph = {
+            "@context": {
+                "sh": "http://www.w3.org/ns/shacl#",
+                "xsd": "http://www.w3.org/2001/XMLSchema#",
+                "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`,
+                "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                "@vocab": "http://www.w3.org/ns/shacl#",
+                "node": { "@type": "@id" },
+                "path": { "@type": "@id" },
+                "targetClass": { "@type": "@id" },
+                "class": { "@type": "@id" },
+                "datatype": { "@type": "@id" }
+            },
+            "@id": `https://dpp-keystone.org/spec/validation/auto-generated/shapes/${baseName}`,
+            "@type": "ShapesGraph",
+            "@graph": []
+        };
+
         for (const cls of classes) {
             const requirements = extractClassRequirements(ontology, cls['@id']);
             if (requirements.length === 0) continue;
 
             const shape = {
-                "@id": `https://dpp-keystone.org/spec/validation/auto-generated/shapes#${cls['@id'].split(':').pop()}Shape`,
+                "@id": `https://dpp-keystone.org/spec/validation/auto-generated/shapes/${baseName}#${cls['@id'].split(':').pop()}Shape`,
                 "@type": "NodeShape",
                 "targetClass": cls['@id'],
                 "property": []
@@ -139,12 +173,15 @@ function generateShacl() {
             
             shapesGraph["@graph"].push(shape);
         }
-    }
 
-    fs.mkdirSync(SHACL_OUT_DIR, { recursive: true });
-    const outPath = path.join(SHACL_OUT_DIR, 'auto-generated.shacl.jsonld');
-    fs.writeFileSync(outPath, JSON.stringify(shapesGraph, null, 2));
-    console.log(`Successfully generated ${shapesGraph["@graph"].length} SHACL shapes to ${outPath}`);
+        if (shapesGraph["@graph"].length > 0) {
+            const outPath = path.join(SHACL_OUT_DIR, `${baseName}-shapes.shacl.jsonld`);
+            fs.writeFileSync(outPath, JSON.stringify(shapesGraph, null, 2));
+            console.log(`Successfully generated ${shapesGraph["@graph"].length} SHACL shapes to ${outPath}`);
+            totalShapesGenerated += shapesGraph["@graph"].length;
+        }
+    }
+    console.log(`Total generated shapes across all files: ${totalShapesGenerated}`);
 }
 
 generateShacl();
