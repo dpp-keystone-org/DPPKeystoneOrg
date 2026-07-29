@@ -28,11 +28,10 @@
 - [x] Include a cross-referencing feature in the generator to parse all `JSON Schema` files and map any `required` properties directly into `sh:minCount 1` rules in the generated SHACL.
 - [x] Wire `generate-shacl.mjs` into the `scripts/build-and-clean.mjs` pipeline.
 - [x] Update `scripts/update-index-html.mjs` to list the generated SHACL from `dist/` instead of `src/`.
-- [x] *Pending User Action*: Delete obsolete, manually written SHACL files from `src/validation/v3/shacl/`.
+- [x] Modify `generate-shacl.mjs` to split the generated SHACL into separate files per sector ontology.
+- [x] Update test suites (e.g., `dpp-examples.validation.test.js` and `index-html-generation.test.js`) to dynamically load all generated SHACL files.
 
 ## Phase 5: Debugging and Fixing Issues
-- [ ] Run `npm run build && npm test` to verify if the latest fixes to `extractClassRequirements` (string vs object parsing for `rdfs:range`) resolve the fuzzer test failures.
-- [ ] If tests fail, investigate the exact property and mutation that passed validation.
-- [ ] Investigate if `dist/spec/validation/v3/shacl/auto-generated.shacl.jsonld` is being correctly generated and actually contains the expected `sh:datatype` or `sh:in` constraints for the failing property.
-- [ ] Ensure that the test suite is loading `auto-generated.shacl.jsonld` into `rdf-validate-shacl`.
-- [ ] Patch any newly discovered bugs in the `generate-shacl.mjs` generator or `shacl-fuzzer.mjs` engine, rebuild, and retest until all fuzzing gauntlet tests pass cleanly.
+- [x] Verify crawler tests pass and front-page has generated SHACL shapes correctly linked.
+- [ ] Debug the failing **fuzz tests** together with the user to find the root cause and fix it.
+- [ ] Debug the failing **example validation tests**, using lessons learned from fixing the fuzz tests to address sparse output issues.
