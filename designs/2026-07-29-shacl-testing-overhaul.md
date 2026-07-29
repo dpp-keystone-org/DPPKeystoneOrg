@@ -16,13 +16,12 @@
 - [ ] Add mutation logic: **Enum Violation**. For properties with `owl:oneOf`, generate a graph with a value that is explicitly outside the permitted enumeration list.
 - [ ] Implement the assertion wrapper: Run every synthesized and mutated graph through `rdf-validate-shacl`. Assert that the happy path **passes**. Assert that every mutated graph **fails**. If a mutated graph passes, throw an error highlighting the specific property and mutation that the SHACL shape failed to catch.
 
-## Phase 3: Run the Gauntlet (Test Suite Implementation)
+## Phase 3: Run the Gauntlet (Zero-Config Auto-Discovery)
 - [ ] Create directory `testing/unit/shacl-fuzzing/`.
-- [ ] Create `testing/unit/shacl-fuzzing/core-shapes.test.js`. Import the fuzzer engine.
-- [ ] Write a Jest test case that feeds `src/ontology/v3_stripped/core/Product.jsonld` into the fuzzer, targeting the `dppk:Product` class.
-- [ ] Create `testing/unit/shacl-fuzzing/sector-shapes.test.js`.
-- [ ] Write a Jest test case that feeds `src/ontology/v3_stripped/sectors/IronSteel.jsonld` into the fuzzer, targeting `dppk:IronSteelProduct`.
-- [ ] Write a Jest test case that feeds `src/ontology/v3_stripped/sectors/Textile.jsonld` into the fuzzer, targeting `dppk:TextileProduct`.
+- [ ] Create a single dynamic test suite: `testing/unit/shacl-fuzzing/fuzz-all-ontologies.test.js`.
+- [ ] Implement an auto-discovery mechanism in the test file that recursively scans `src/ontology/v3_stripped/` for all `.jsonld` files.
+- [ ] For each file found, dynamically extract every `rdfs:Class`.
+- [ ] Dynamically generate Jest `describe()` blocks for every class discovered, passing them to the fuzzer engine. (This acts as permanent meta-validation: any new ontology file added to the project is automatically and unavoidably fuzz-tested in CI without developers having to write a manual test case).
 
 ## Phase 4: Identify and Patch Validation Gaps
 - [ ] Run the new fuzzer test suite to generate a comprehensive failure report exposing all weaknesses in the current SHACL shapes.
