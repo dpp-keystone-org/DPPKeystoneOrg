@@ -3205,12 +3205,13 @@
     {
       "@id": "dppk:batteryMass",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a); Annex VI Part A (5)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Kilogram"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a); Annex VI Part A (5)"
       },
       "rdfs:label": [
         {
@@ -9063,12 +9064,13 @@
     {
       "@id": "dppk:renewableContent",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1f)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1f)"
       },
       "rdfs:label": [
         {
@@ -11019,12 +11021,13 @@
     {
       "@id": "dppk:ratedCapacity",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1g); Annex IV Part A (1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1g); Annex IV Part A (1)"
       },
       "rdfs:label": [
         {
@@ -11238,12 +11241,13 @@
     {
       "@id": "dppk:remainingCapacity",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part A (1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part A (1)"
       },
       "rdfs:label": [
         {
@@ -11457,12 +11461,13 @@
     {
       "@id": "dppk:capacityFade",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part A (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part A (2)"
       },
       "rdfs:label": [
         {
@@ -12112,12 +12117,13 @@
     {
       "@id": "dppk:soce",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part A (EV)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part A (EV)"
       },
       "rdfs:label": [
         {
@@ -12331,12 +12337,13 @@
     {
       "@id": "dppk:stateOfCharge",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (4d); Article 3 1(27)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Article 3 1(27)"
       },
       "rdfs:label": [
         {
@@ -12545,12 +12552,13 @@
     {
       "@id": "dppk:voltageMinimum",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1h)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Volt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1h)"
       },
       "rdfs:label": [
         {
@@ -12759,12 +12767,13 @@
     {
       "@id": "dppk:voltageMaximum",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1h)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Volt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1h)"
       },
       "rdfs:label": [
         {
@@ -12973,12 +12982,13 @@
     {
       "@id": "dppk:voltageNominal",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1h)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Volt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1h)"
       },
       "rdfs:label": [
         {
@@ -13184,12 +13194,13 @@
     {
       "@id": "dppk:powerOriginal",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1i); Art. 10; Annex IV Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Watt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i); Art. 10; Annex IV Part B (4)"
       },
       "rdfs:label": [
         {
@@ -13403,12 +13414,13 @@
     {
       "@id": "dppk:powerRemaining",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Art. 10; Annex IV (3); Annex VII Part A (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Watt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 10; Annex IV (3); Annex VII Part A (2)"
       },
       "rdfs:label": [
         {
@@ -13622,12 +13634,13 @@
     {
       "@id": "dppk:powerFade",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part A (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part A (4)"
       },
       "rdfs:label": [
         {
@@ -13841,12 +13854,13 @@
     {
       "@id": "dppk:powerMaximumPermitted",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1i)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Watt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i)"
       },
       "rdfs:label": [
         {
@@ -14060,12 +14074,13 @@
     {
       "@id": "dppk:powerEnergyRatio",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part B (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:WattPerWattHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part B (2)"
       },
       "rdfs:label": [
         {
@@ -14279,12 +14294,13 @@
     {
       "@id": "dppk:roundTripEfficiencyInitial",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1n); Art. 10; Annex IV (6)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1n); Art. 10; Annex IV (6)"
       },
       "rdfs:label": [
         {
@@ -14498,12 +14514,13 @@
     {
       "@id": "dppk:roundTripEfficiencyAt50Cycles",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII 1(n); Annex IV (6)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII 1(n); Annex IV (6)"
       },
       "rdfs:label": [
         {
@@ -14717,12 +14734,13 @@
     {
       "@id": "dppk:roundTripEfficiencyRemaining",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Art. 10; Annex VII Part A (3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 10; Annex VII Part A (3)"
       },
       "rdfs:label": [
         {
@@ -14936,12 +14954,13 @@
     {
       "@id": "dppk:roundTripEfficiencyFade",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part A (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part A (4)"
       },
       "rdfs:label": [
         {
@@ -15591,12 +15610,13 @@
     {
       "@id": "dppk:selfDischargeEvolution",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Art. 14: Annex VII Part A (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 14: Annex VII Part A (4)"
       },
       "rdfs:label": [
         {
@@ -15810,12 +15830,13 @@
     {
       "@id": "dppk:internalResistanceInitial",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1o); Art. 10: Annex IV Part A (3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Ohm"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o); Art. 10: Annex IV Part A (3)"
       },
       "rdfs:label": [
         {
@@ -16029,12 +16050,13 @@
     {
       "@id": "dppk:internalResistanceIncrease",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV, Part A(3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV, Part A(3)"
       },
       "rdfs:label": [
         {
@@ -16248,12 +16270,13 @@
     {
       "@id": "dppk:expectedLifetimeYears",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV, Part A(5); Annex XIII (1); Annex XIII (4a)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Year"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV, Part A(5); Annex XIII (1); Annex XIII (4a)"
       },
       "rdfs:label": [
         {
@@ -16462,12 +16485,13 @@
     {
       "@id": "dppk:expectedLifetimeCycles",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV A(5)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Unitless"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV A(5)"
       },
       "rdfs:label": [
         {
@@ -16681,12 +16705,13 @@
     {
       "@id": "dppk:cycleCountFull",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (4d); Art. 14: Annex VII Part B (5)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Unitless"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Art. 14: Annex VII Part B (5)"
       },
       "rdfs:label": [
         {
@@ -17117,12 +17142,13 @@
     {
       "@id": "dppk:cRateCycleTest",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1p)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmperePerAmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1p)"
       },
       "rdfs:label": [
         {
@@ -17336,12 +17362,13 @@
     {
       "@id": "dppk:energyThroughput",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:KilowattHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (2)"
       },
       "rdfs:label": [
         {
@@ -17555,12 +17582,13 @@
     {
       "@id": "dppk:capacityThroughput",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (3)"
       },
       "rdfs:label": [
         {
@@ -17774,12 +17802,13 @@
     {
       "@id": "dppk:exhaustionCapacityThreshold",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1k)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1k)"
       },
       "rdfs:label": [
         {
@@ -17993,12 +18022,13 @@
     {
       "@id": "dppk:temperatureIdleLower",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1l)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:DegreeCelsius"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l)"
       },
       "rdfs:label": [
         {
@@ -18207,12 +18237,13 @@
     {
       "@id": "dppk:temperatureIdleUpper",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1l)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:DegreeCelsius"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l)"
       },
       "rdfs:label": [
         {
@@ -18421,12 +18452,13 @@
     {
       "@id": "dppk:timeExtremeTempUpper",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -18635,12 +18667,13 @@
     {
       "@id": "dppk:timeExtremeTempLower",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -18849,12 +18882,13 @@
     {
       "@id": "dppk:timeChargingTempUpper",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -19063,12 +19097,13 @@
     {
       "@id": "dppk:timeChargingTempLower",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -19277,12 +19312,13 @@
     {
       "@id": "dppk:eventsDeepDischarge",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Unitless"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
