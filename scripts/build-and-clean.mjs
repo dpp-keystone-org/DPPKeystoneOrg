@@ -335,6 +335,9 @@ async function build() {
     // Call the new redirect function
     await createRedirects(BUILD_DIR);
 
+    console.log('Generating auto-generated SHACL shapes...');
+    execSync('node scripts/generate-shacl.mjs', { stdio: 'inherit' });
+
     console.log('Generating ontology documentation...');
     await generateSpecDocs(); // Call the function directly
 

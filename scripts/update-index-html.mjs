@@ -282,7 +282,7 @@ export async function updateIndexHtml({
     );
 
     // Generate and inject SHACL shapes list
-    const shaclPath = path.join(srcDir, 'validation', KEYSTONE_VERSION, 'shacl');
+    const shaclPath = path.join(DIST_DIR, 'spec', 'validation', KEYSTONE_VERSION, 'shacl');
     const shaclList = await generateFileList(shaclPath, `spec/validation/${KEYSTONE_VERSION}/shacl/`, { recursive: false });
     indexContent = indexContent.replace(
       /<!-- SHACL_SHAPES_LIST_START -->[\s\S]*<!-- SHACL_SHAPES_LIST_END -->/,

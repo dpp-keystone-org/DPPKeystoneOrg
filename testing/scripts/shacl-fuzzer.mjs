@@ -52,7 +52,7 @@ export function extractClassRequirements(ontologyGraph, targetClass) {
             let range = null;
             let expandedRange = null;
             if (node["rdfs:range"]) {
-                range = node["rdfs:range"]["@id"];
+                range = typeof node["rdfs:range"] === 'string' ? node["rdfs:range"] : node["rdfs:range"]["@id"];
                 expandedRange = expandURI(range, context);
             }
             
@@ -135,7 +135,11 @@ export function generateMutations(happyPathGraph, classRequirements) {
     for (const req of classRequirements) {
         const propUri = req.expandedProperty || req.property;
         
-        // 1. Missing Property
+        // 1. Missing Property (DISABLED)
+        // Since the ontology does not explicitly define which properties are mandatory, 
+        // the fuzzer cannot assume every property requires a sh:minCount 1 constraint.
+        // We do not want to force the ontology to be overly restrictive.
+        /*
         const missingPropGraph = factory.dataset();
         for (const quad of happyPathGraph) {
             if (quad.predicate.value !== propUri) {
@@ -148,6 +152,7 @@ export function generateMutations(happyPathGraph, classRequirements) {
             property: propUri,
             type: 'MissingProperty'
         });
+        */
 
         // 2. Wrong Datatype
         const wrongTypeGraph = factory.dataset();
