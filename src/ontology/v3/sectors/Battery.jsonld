@@ -134,6 +134,8 @@
         { "@id": "gs1:Product" }
       ]
     },
+    
+    // --- Sub-Classes for Structure ---
     {
       "@id": "dppk:BatteryPerformance",
       "@type": "rdfs:Class",
@@ -642,6 +644,8 @@
       ],
       "skos:relatedMatch": { "@id": "schema:Event" }
     },
+
+    // --- Identifiers & Core Data ---
     {
       "@id": "dppk:manufacturingPlace",
       "@type": "owl:DatatypeProperty",
@@ -1109,6 +1113,8 @@
         { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
+
+    // --- Symbols & Labels ---
     {
       "@id": "dppk:separateCollectionSymbol",
       "@type": "owl:ObjectProperty",
@@ -1441,6 +1447,8 @@
         { "@id": "gs1:productDescription" }
       ]
     },
+
+    // --- Carbon Footprint (Extras not in EPD) ---
     {
       "@id": "dppk:testReports",
       "@type": "owl:ObjectProperty",
@@ -1770,6 +1778,8 @@
         { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
+
+    // --- Supply Chain ---
     {
       "@id": "dppk:dueDiligenceReport",
       "@type": "owl:ObjectProperty",
@@ -1960,6 +1970,8 @@
       "rdfs:domain": { "@id": "dppk:BatteryProduct" },
       "rdfs:range": { "@id": "dppk:RelatedResource" }
     },
+
+    // --- Materials & Composition ---
     {
       "@id": "dppk:batteryChemistry",
       "@type": "owl:DatatypeProperty",
@@ -2289,6 +2301,8 @@
         { "@id": "gs1:ProductCharacteristic" }
       ]
     },
+
+    // --- Circularity ---
     {
       "@id": "dppk:dismantlingInformation",
       "@type": "owl:ObjectProperty",
@@ -2621,6 +2635,8 @@
         { "@id": "gs1:description" }
       ]
     },
+
+    // --- Recycled Content ---
     {
       "@id": "dppk:preConsumerRecycledMaterialComposition",
       "@type": "owl:ObjectProperty",
@@ -2823,6 +2839,8 @@
         { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
+
+    // --- Performance (Scoped) ---
     {
       "@id": "dppk:performance",
       "@type": "owl:ObjectProperty",
@@ -3350,6 +3368,8 @@
       "rdfs:range": { "@id": "dppk:NegativeEventsInfo" },
       "skos:relatedMatch": { "@id": "schema:Event" }
     },
+
+    // --- Capacity Properties ---
     {
       "@id": "dppk:ratedCapacity",
       "@type": "owl:DatatypeProperty",
@@ -4009,6 +4029,8 @@
       "rdfs:domain": { "@id": "dppk:CapacityInfo" },
       "rdfs:range": "xsd:double"
     },
+
+    // --- Power Properties ---
     {
       "@id": "dppk:powerOriginal",
       "@type": "owl:DatatypeProperty",
@@ -4349,6 +4371,8 @@
         { "@id": "gs1:ProductCharacteristic" }
       ]
     },
+
+    // --- Efficiency Properties ---
     {
       "@id": "dppk:roundTripEfficiencyInitial",
       "@type": "owl:DatatypeProperty",
@@ -4817,6 +4841,8 @@
         { "@id": "gs1:AdditionalProductClassificationDetails" }
       ]
     },
+
+    // --- Internal Resistance Properties ---
     {
       "@id": "dppk:internalResistanceInitial",
       "@type": "owl:DatatypeProperty",
@@ -4953,6 +4979,8 @@
         { "@id": "gs1:ProductCharacteristic" }
       ]
     },
+
+    // --- Lifetime Properties ---
     {
       "@id": "dppk:expectedLifetimeYears",
       "@type": "owl:DatatypeProperty",
@@ -5493,6 +5521,8 @@
         { "@id": "gs1:ProductCharacteristic" }
       ]
     },
+
+    // --- Temperature Properties ---
     {
       "@id": "dppk:temperatureIdleLower",
       "@type": "owl:DatatypeProperty",
@@ -5883,6 +5913,8 @@
       "rdfs:range": "xsd:double",
       "skos:relatedMatch": { "@id": "schema:PropertyValue" }
     },
+
+    // --- Negative Events Properties ---
     {
       "@id": "dppk:eventsDeepDischarge",
       "@type": "owl:DatatypeProperty",
