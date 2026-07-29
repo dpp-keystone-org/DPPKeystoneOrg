@@ -145,8 +145,9 @@ function generateShacl() {
             if (requirements.length === 0) continue;
 
             const expandedTargetClass = expandURI(classId, ontology['@context']);
+            const safeClassId = classId.replace(/:/g, '_');
             const shape = {
-                "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/${uriPath}#${classId.split(':').pop()}Shape`,
+                "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/shapes#${safeClassId}Shape`,
                 "@type": "NodeShape",
                 "targetClass": expandedTargetClass,
                 "property": []
@@ -183,15 +184,16 @@ function generateShacl() {
                     } else if (req.range.includes('Literal')) {
                         propRule.datatype = "xsd:double";
                     } else {
-                        const targetClass = req.expandedRange || req.range;
+                        const targetClass = req.expandedRange || expandURI(req.range, ontology['@context']);
+                        const safeTargetId = req.range ? req.range.replace(/:/g, '_') : 'Unknown';
                         propRule.or = {
                             "@list": [
                                 {
-                                    "class": targetClass,
+                                    "node": { "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/shapes#${safeTargetId}Shape` },
                                     "nodeKind": { "@id": "sh:BlankNodeOrIRI" }
                                 },
                                 {
-                                    "datatype": targetClass
+                                    "datatype": req.range
                                 }
                             ]
                         };
