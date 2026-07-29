@@ -33,5 +33,5 @@
 
 ## Phase 5: Debugging and Fixing Issues
 - [x] Verify crawler tests pass and front-page has generated SHACL shapes correctly linked.
-- [ ] Debug the failing **fuzz tests** together with the user to find the root cause and fix it.
+- [x] Debug the failing **fuzz tests** together with the user to find the root cause and fix it.
 - [ ] Debug the failing **example validation tests**, using lessons learned from fixing the fuzz tests to address sparse output issues.

@@ -114,13 +114,19 @@ export function synthesizeHappyPathGraph(classRequirements, expandedTargetClass)
                 valueNode = factory.literal('dummy string', 'en');
             } else if (rangeUri && rangeUri.includes('string')) {
                 valueNode = factory.literal('dummy string');
-            } else if (rangeUri && (rangeUri.includes('double') || rangeUri.includes('float') || rangeUri.includes('decimal') || rangeUri.includes('integer') || rangeUri.includes('Literal'))) {
+            } else if (rangeUri && rangeUri.includes('integer')) {
+                valueNode = factory.literal('1', factory.namedNode('http://www.w3.org/2001/XMLSchema#integer'));
+            } else if (rangeUri && (rangeUri.includes('double') || rangeUri.includes('float') || rangeUri.includes('decimal') || rangeUri.includes('Literal'))) {
                 // Custom datatypes like KgWeightLiteral fall in here if they contain 'Literal'
                 valueNode = factory.literal('1.0', factory.namedNode('http://www.w3.org/2001/XMLSchema#double'));
             } else if (rangeUri && rangeUri.includes('boolean')) {
                 valueNode = factory.literal('true', factory.namedNode('http://www.w3.org/2001/XMLSchema#boolean'));
             } else if (rangeUri && rangeUri.includes('dateTime')) {
                 valueNode = factory.literal('2026-07-29T10:00:00Z', factory.namedNode('http://www.w3.org/2001/XMLSchema#dateTime'));
+            } else if (rangeUri && rangeUri.includes('date')) {
+                valueNode = factory.literal('2026-07-29', factory.namedNode('http://www.w3.org/2001/XMLSchema#date'));
+            } else if (rangeUri && rangeUri.includes('anyURI')) {
+                valueNode = factory.literal('https://example.com', factory.namedNode('http://www.w3.org/2001/XMLSchema#anyURI'));
             } else if (!rangeUri) {
                 // Undefined range, default to string
                 valueNode = factory.literal('undefined range fallback');
@@ -165,32 +171,36 @@ export function generateMutations(happyPathGraph, classRequirements) {
         */
 
         // 2. Wrong Datatype
-        const wrongTypeGraph = factory.dataset();
-        for (const quad of happyPathGraph) {
-            if (quad.predicate.value === propUri) {
-                let wrongValue;
-                if (quad.object.termType === 'Literal') {
-                    if (quad.object.datatype && quad.object.datatype.value.includes('boolean')) {
-                         wrongValue = factory.literal('not a boolean', factory.namedNode('http://www.w3.org/2001/XMLSchema#string'));
-                    } else if (quad.object.datatype && (quad.object.datatype.value.includes('double') || quad.object.datatype.value.includes('float') || quad.object.datatype.value.includes('integer'))) {
-                         wrongValue = factory.literal('not a number', factory.namedNode('http://www.w3.org/2001/XMLSchema#string'));
+        // Only generate this mutation if a range was explicitly defined in the ontology,
+        // otherwise SHACL won't restrict it, and the mutation will falsely pass.
+        if (req.range) {
+            const wrongTypeGraph = factory.dataset();
+            for (const quad of happyPathGraph) {
+                if (quad.predicate.value === propUri) {
+                    let wrongValue;
+                    if (quad.object.termType === 'Literal') {
+                        if (quad.object.datatype && quad.object.datatype.value.includes('boolean')) {
+                             wrongValue = factory.literal('not a boolean', factory.namedNode('http://www.w3.org/2001/XMLSchema#string'));
+                        } else if (quad.object.datatype && (quad.object.datatype.value.includes('double') || quad.object.datatype.value.includes('float') || quad.object.datatype.value.includes('integer'))) {
+                             wrongValue = factory.literal('not a number', factory.namedNode('http://www.w3.org/2001/XMLSchema#string'));
+                        } else {
+                             wrongValue = factory.literal('123', factory.namedNode('http://www.w3.org/2001/XMLSchema#integer'));
+                        }
                     } else {
-                         wrongValue = factory.literal('123', factory.namedNode('http://www.w3.org/2001/XMLSchema#integer'));
+                        wrongValue = factory.literal('wrong type literal instead of URI');
                     }
+                    wrongTypeGraph.add(factory.quad(quad.subject, quad.predicate, wrongValue));
                 } else {
-                    wrongValue = factory.literal('wrong type literal instead of URI');
+                    wrongTypeGraph.add(quad);
                 }
-                wrongTypeGraph.add(factory.quad(quad.subject, quad.predicate, wrongValue));
-            } else {
-                wrongTypeGraph.add(quad);
             }
+            mutations.push({
+                name: `Wrong Datatype`,
+                graph: wrongTypeGraph,
+                property: propUri,
+                type: 'WrongDatatype'
+            });
         }
-        mutations.push({
-            name: `Wrong Datatype`,
-            graph: wrongTypeGraph,
-            property: propUri,
-            type: 'WrongDatatype'
-        });
 
         // 3. Enum Violation
         if (req.oneOf && req.oneOf.length > 0) {
