@@ -5,6 +5,7 @@ import Environment from '@rdfjs/environment';
 import ClownfaceFactory from 'clownface/Factory.js';
 import NamespaceFactory from '@rdfjs/namespace/Factory.js';
 import SHACLValidator from 'rdf-validate-shacl';
+import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 
 const factory = new Environment([DataFactory, DatasetFactory, ClownfaceFactory, NamespaceFactory]);
 
@@ -13,19 +14,22 @@ export function loadOntologyDefinition(ontologyFilePath) {
     return JSON.parse(rawData);
 }
 
-function expandURI(uri, context) {
+export function expandURI(uri, context) {
     if (!uri || typeof uri !== 'string') return uri;
     if (uri.startsWith('http://') || uri.startsWith('https://') || uri.startsWith('urn:')) return uri;
     
     const parts = uri.split(':');
     if (parts.length === 2) {
+        if (parts[0] === 'dppk') {
+            return `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#` + parts[1];
+        }
         let prefixUri = context[parts[0]];
         if (typeof prefixUri === 'object' && prefixUri['@id']) {
             prefixUri = prefixUri['@id'];
         }
         if (prefixUri) {
             let expanded = prefixUri + parts[1];
-            // Replace {{VERSION}} with draft if needed, though usually contexts are static or replaced by build
+            expanded = expanded.replace('{{VERSION}}', KEYSTONE_VERSION);
             return expanded;
         }
     }
@@ -98,6 +102,9 @@ export function synthesizeHappyPathGraph(classRequirements, expandedTargetClass)
         
         if (req.oneOf && req.oneOf.length > 0) {
             valueNode = factory.namedNode(req.oneOf[0]);
+            if (req.expandedRange) {
+                dataGraph.add(factory.quad(valueNode, factory.namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), factory.namedNode(req.expandedRange)));
+            }
         } else {
             // Check based on range
             const rangeUri = req.expandedRange || req.range;
@@ -120,6 +127,9 @@ export function synthesizeHappyPathGraph(classRequirements, expandedTargetClass)
             } else {
                 // Default to a named node (URI) for object properties
                 valueNode = factory.namedNode('http://example.com/dummyURI');
+                if (req.expandedRange) {
+                    dataGraph.add(factory.quad(valueNode, factory.namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), factory.namedNode(req.expandedRange)));
+                }
             }
         }
         

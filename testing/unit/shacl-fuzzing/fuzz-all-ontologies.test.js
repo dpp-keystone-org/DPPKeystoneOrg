@@ -7,7 +7,8 @@ import {
     extractClassRequirements, 
     synthesizeHappyPathGraph,
     generateMutations,
-    runFuzzer
+    runFuzzer,
+    expandURI
 } from '../../scripts/shacl-fuzzer.mjs';
 import { loadRdfFile, combineDatasets } from '../../scripts/shacl-helpers.mjs';
 
@@ -37,11 +38,9 @@ describe('Zero-Config SHACL Meta-Validation Fuzzer', () => {
 
     beforeAll(async () => {
         const shapesDir = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl');
-        const shapeFiles = fs.readdirSync(shapesDir);
+        const shapeFiles = findJsonldFiles(shapesDir);
         const shapeDatasets = await Promise.all(
-            shapeFiles
-                .filter(file => file.endsWith('.shacl.jsonld'))
-                .map(file => loadRdfFile(path.join(shapesDir, file)))
+            shapeFiles.map(file => loadRdfFile(file))
         );
         shaclShapesDataset = combineDatasets(shapeDatasets);
     });
@@ -73,7 +72,9 @@ describe('Zero-Config SHACL Meta-Validation Fuzzer', () => {
                         });
                     } else {
                         it(`successfully validates happy path and fails on ${requirements.length} mutations`, () => {
-                            const happyGraph = synthesizeHappyPathGraph(requirements, cls['@id']);
+                            const context = ontology['@context'] || {};
+                            const expandedTargetClass = expandURI(cls['@id'], context);
+                            const happyGraph = synthesizeHappyPathGraph(requirements, expandedTargetClass);
                             const mutations = generateMutations(happyGraph, requirements);
                             
                             expect(() => runFuzzer(happyGraph, mutations, shaclShapesDataset)).not.toThrow();

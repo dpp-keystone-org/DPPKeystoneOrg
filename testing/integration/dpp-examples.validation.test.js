@@ -116,10 +116,21 @@ describe('DPP SHACL Validation', () => {
 
         // Load all shape files dynamically from the shacl output directory
         const shaclDir = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl');
-        const shaclFiles = await fs.readdir(shaclDir);
-        const shapeFilePaths = shaclFiles
-            .filter(file => file.endsWith('.jsonld'))
-            .map(file => path.join(shaclDir, file));
+        
+        async function getShapeFiles(dir) {
+            const entries = await fs.readdir(dir, { withFileTypes: true });
+            let files = [];
+            for (const entry of entries) {
+                const res = path.join(dir, entry.name);
+                if (entry.isDirectory()) {
+                    files = files.concat(await getShapeFiles(res));
+                } else if (entry.isFile() && res.endsWith('.jsonld')) {
+                    files.push(res);
+                }
+            }
+            return files;
+        }
+        const shapeFilePaths = await getShapeFiles(shaclDir);
             
         const allShapeDatasets = await Promise.all(shapeFilePaths.map(p => loadRdfFile(p)));
         const shapesGraph = combineDatasets(allShapeDatasets);
