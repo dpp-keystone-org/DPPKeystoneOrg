@@ -1,5 +1,5 @@
-import { renderProductPage, detectTableStructure } from '../util/js/common/rendering/dpp-html-renderer.js?v=1785403048052';
-import { KEYSTONE_VERSION } from './keystone-version.js?v=1785403048052';
+import { renderProductPage, detectTableStructure } from '../util/js/common/rendering/dpp-html-renderer.js?v=1785420306675';
+import { KEYSTONE_VERSION } from './keystone-version.js?v=1785420306675';
 
 // Re-export for testing compatibility
 export { detectTableStructure };
@@ -41,7 +41,7 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
   if (includeSchema) {
     try {
       // Dynamically import the adapter
-      const { transformDpp } = await import('../util/js/client/dpp-schema-adapter.js?v=1785403048052');
+      const { transformDpp } = await import('../util/js/client/dpp-schema-adapter.js?v=1785420306675');
 
       // Determine correct ontology path
       let ontologyPath = `../ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
@@ -99,7 +99,7 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
   // 3. Render Page
   let ontologyMap = null;
   try {
-    const { loadOntology } = await import('./ontology-loader.js?v=1785403048052');
+    const { loadOntology } = await import('./ontology-loader.js?v=1785420306675');
     let sector = 'dpp';
     if (dppJson.contentSpecificationIds && dppJson.contentSpecificationIds.length > 0) {
       const specId = dppJson.contentSpecificationIds[0];
