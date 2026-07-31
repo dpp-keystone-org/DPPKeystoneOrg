@@ -197,3 +197,38 @@ export function validateTermTranslations(term, requiredLanguages = EU_LANGUAGES,
         errors
     };
 }
+
+/**
+ * Validates that a raw JSON-LD ontology term does not use generic RDFS properties where OWL properties are required.
+ * @param {object} term The JSON-LD node
+ * @returns {object} { valid: boolean, errors: string[] }
+ */
+export function validateTermStructure(term) {
+    const errors = [];
+    
+    if (!term || typeof term !== 'object') {
+        return { valid: true, errors: [] };
+    }
+
+    const type = term['@type'];
+    if (!type) {
+        return { valid: true, errors: [] };
+    }
+
+    const types = Array.isArray(type) ? type : [type];
+    
+    // Check if any type indicates a property
+    const isProperty = types.some(t => t.includes('Property'));
+    
+    if (isProperty) {
+        const hasValidOwlType = types.some(t => t === 'owl:ObjectProperty' || t === 'owl:DatatypeProperty');
+        if (!hasValidOwlType) {
+            errors.push(`Term '${term['@id'] || 'unknown'}' has an invalid property type ('${types.join(', ')}'). Properties must be defined as 'owl:ObjectProperty' or 'owl:DatatypeProperty'.`);
+        }
+    }
+
+    return {
+        valid: errors.length === 0,
+        errors
+    };
+}

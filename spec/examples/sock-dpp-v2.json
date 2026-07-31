@@ -1,5 +1,5 @@
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v2/dpp-textile.context.jsonld",
+  "@context": "https://dpp-keystone.org/spec/contexts/v3/dpp-textile.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:123e4567-e89b-12d3-a456-426614174001",
   "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/sock-dpp-v2.html",

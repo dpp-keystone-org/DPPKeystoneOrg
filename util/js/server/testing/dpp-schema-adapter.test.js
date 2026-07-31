@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { transformDpp } from '../dpp-schema-adapter.js?v=1783076853991';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1785484113801';
 
 describe('Server Adapter Loader Integration', () => {
     
@@ -10,7 +10,7 @@ describe('Server Adapter Loader Integration', () => {
                 contextUrl: null,
                 document: {
                     "@context": {
-                        "dppk": "https://dpp-keystone.org/spec/v2/terms#",
+                        "dppk": "https://dpp-keystone.org/spec/v3/terms#",
                         "productName": "dppk:productName"
                     }
                 },

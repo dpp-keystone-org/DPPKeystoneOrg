@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1783076853991';
-import { LanguageManager } from '../lib/language-manager.js?v=1783076853991';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1785484113801';
+import { LanguageManager } from '../lib/language-manager.js?v=1785484113801';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
@@ -114,6 +114,27 @@ function createTooltipModal(commentText, governedBy, source) {
     modal.appendChild(closeButton);
     document.body.appendChild(overlay);
     document.body.appendChild(modal);
+}
+
+/**
+ * Resolves the unit symbol from the ontology map if the unit is an IRI reference.
+ * @param {string} unit - The unit ID or raw string.
+ * @param {Map} ontologyMap - The map of ontology terms.
+ * @returns {string} The display string for the unit.
+ */
+function resolveUnitDisplay(unit, ontologyMap) {
+    if (!unit) return '';
+    if (ontologyMap) {
+        // Strip the namespace prefix (e.g., dppk-unit:Kilogram -> Kilogram)
+        const shortId = unit.includes(':') ? unit.split(':')[1] : (unit.includes('#') ? unit.split('#')[1] : unit);
+        if (ontologyMap.has(shortId)) {
+            const unitObj = ontologyMap.get(shortId);
+            if (unitObj && unitObj.unitSymbol) {
+                return unitObj.unitSymbol === 'unitless' ? '' : unitObj.unitSymbol;
+            }
+        }
+    }
+    return unit === 'unitless' ? '' : unit;
 }
 
 /**
@@ -435,7 +456,7 @@ function renderSimpleInputProperty(fragment, { prop, currentPath, isRequired, in
     // --- 3. Unit Cell ---
     const unitCell = document.createElement('div');
     unitCell.className = 'grid-cell unit-cell';
-    unitCell.textContent = unit || '';
+    unitCell.textContent = resolveUnitDisplay(unit, ontologyMap);
     row.appendChild(unitCell);
 
     // --- 4. Ontology Cell (Label) ---
@@ -695,7 +716,7 @@ function renderArrayProperty(fragment, { prop, currentPath, indentationLevel, on
 
     const unitCell = document.createElement('div');
     unitCell.className = 'grid-cell';
-    unitCell.textContent = unit || '';
+    unitCell.textContent = resolveUnitDisplay(unit, ontologyMap);
     row.appendChild(unitCell);
 
     const ontologyCell = document.createElement('div');
@@ -942,7 +963,7 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
 
     const unitCell = document.createElement('div');
     unitCell.className = 'grid-cell';
-    unitCell.textContent = unit || '';
+    unitCell.textContent = resolveUnitDisplay(unit, ontologyMap);
     placeholderRow.appendChild(unitCell);
 
     const ontologyCell = document.createElement('div');
