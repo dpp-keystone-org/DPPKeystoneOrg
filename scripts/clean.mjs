@@ -1,3 +1,8 @@
+/**
+ * @file clean.mjs
+ * @description A simple utility script that forcefully removes the `dist/` build directory.
+ * Usually invoked indirectly as part of broader build or test commands, or via `npm run clean`.
+ */
 import path from 'path';
 import fse from 'fs-extra';
 

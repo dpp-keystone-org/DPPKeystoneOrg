@@ -1,0 +1,198 @@
+{
+  "@context": {
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dopc": {
+      "@id": "dppk:dopc",
+      "@context": {
+        "declarationCode": "dppk-dopc:declarationCode",
+        "dateOfIssue": {
+          "@id": "dppk-dopc:dateOfIssue",
+          "@type": "xsd:date"
+        },
+        // --- 1. Top Level Simple Characteristics ---
+        "tensileStrengthAdhesion": "dppk-dopc:tensileStrengthAdhesion",
+        "modulusOfElasticityInCompression": {
+          "@id": "dppk-dopc:modulusOfElasticityInCompression",
+          "@context": {
+            "method1": {
+              "@id": "dppk-dopc:modulusMethod1",
+              "@type": "xsd:double"
+            }
+          }
+        },
+        "capillaryAbsorption": {
+          "@id": "dppk-dopc:capillaryAbsorption",
+          "@type": "xsd:double"
+        },
+        "dangerousSubstances": "dppk-dopc:dangerousSubstance",
+        "shrinkageAndExpansion": "dppk-dopc:shrinkageAndExpansion",
+        "slipSkidResistance": {
+          "@id": "dppk-dopc:slipSkidResistance",
+          "@context": {
+            "laboratory": {
+              "@id": "dppk-dopc:slipSkidResistanceLab",
+              "@type": "xsd:string"
+            }
+          }
+        },
+        "thermalExpansion": "dppk-dopc:thermalExpansion",
+        "declaredUnit": {
+          "@id": "dppk-dopc:declaredUnit",
+          "@type": "xsd:string"
+        },
+        "functionalUnit": {
+          "@id": "dppk-dopc:functionalUnit",
+          "@type": "xsd:string"
+        },
+        "referenceServiceLife": {
+          "@id": "dppk-dopc:referenceServiceLife",
+          "@type": "xsd:integer"
+        },
+        // --- 2. Scoped Characteristics (The "Magic" Nesting Logic) ---
+        // Chloride Content (Maps '21DegC' -> Specific Chloride URI)
+        "chlorideContent": {
+          "@id": "dppk-dopc:chlorideContent",
+          "@context": {
+            "21DegC": {
+              "@id": "dppk-dopc:chlorideContentAt21DegC",
+              "@type": "xsd:double"
+            }
+          }
+        },
+        // Bond Strength (Maps '28Days' -> Specific Bond Strength URI)
+        "bondStrength": {
+          "@id": "dppk-dopc:bondStrength",
+          "@context": {
+            "28Days": {
+              "@id": "dppk-dopc:bondStrengthAt28Days",
+              "@type": "xsd:double"
+            }
+          }
+        },
+        // Thermal Compatibility
+        "thermalCompatibility": {
+          "@id": "dppk-dopc:thermalCompatibility",
+          "@context": {
+            "wetSurface": {
+              "@id": "dppk-dopc:thermalCompatibilityWet",
+              "@type": "xsd:double"
+            }
+          }
+        },
+        // Carbonation (Same key '21DegC' as Chloride, but maps to a STRING property here)
+        "resistanceToCarbonation": {
+          "@id": "dppk-dopc:resistanceToCarbonation",
+          "@context": {
+            "21DegC": {
+              "@id": "dppk-dopc:carbonationResistanceAt21DegC",
+              "@type": "xsd:string"
+            }
+          }
+        },
+        // Reaction to Fire (Preserves the System info by mapping to specific URIs)
+        "reactionToFire": {
+          "@id": "dppk-dopc:reactionToFire",
+          "@context": {
+            "avcpSystem1": {
+              "@id": "dppk-dopc:reactionToFireSystem1",
+              "@type": "xsd:string"
+            },
+            "avcpSystem2": {
+              "@id": "dppk-dopc:reactionToFireSystem2",
+              "@type": "xsd:string"
+            },
+            "avcpSystem3": {
+              "@id": "dppk-dopc:reactionToFireSystem3",
+              "@type": "xsd:string"
+            },
+            "avcpSystem4": {
+              "@id": "dppk-dopc:reactionToFireSystem4",
+              "@type": "xsd:string"
+            }
+          }
+        },
+        // Elastic Recovery (Deep Nesting)
+        "elasticRecovery": {
+          "@id": "dppk-dopc:elasticRecovery",
+          "@context": {
+            "methodA": {
+              "@id": "dppk-dopc:methodA",
+              "@context": {
+                "25Percent": {
+                  "@id": "dppk-dopc:elasticRecoveryMethodA25",
+                  "@type": "xsd:double"
+                },
+                "60Percent": {
+                  "@id": "dppk-dopc:elasticRecoveryMethodA60",
+                  "@type": "xsd:double"
+                },
+                "100Percent": {
+                  "@id": "dppk-dopc:elasticRecoveryMethodA100",
+                  "@type": "xsd:double"
+                }
+              }
+            },
+            "methodB": {
+              "@id": "dppk-dopc:methodB",
+              "@context": {
+                "25Percent": {
+                  "@id": "dppk-dopc:elasticRecoveryMethodB25",
+                  "@type": "xsd:double"
+                },
+                "60Percent": {
+                  "@id": "dppk-dopc:elasticRecoveryMethodB60",
+                  "@type": "xsd:double"
+                },
+                "100Percent": {
+                  "@id": "dppk-dopc:elasticRecoveryMethodB100",
+                  "@type": "xsd:double"
+                }
+              }
+            }
+          }
+        },
+        // Resistance to Flow
+        "resistanceToFlow": {
+          "@id": "dppk-dopc:resistanceToFlow",
+          "@context": {
+            "procedureA": {
+              "@id": "dppk-dopc:procedureA",
+              "@context": {
+                "5DegC": {
+                  "@id": "dppk-dopc:flowResistanceProcedureA5",
+                  "@type": "xsd:double"
+                },
+                "50DegC": {
+                  "@id": "dppk-dopc:flowResistanceProcedureA50",
+                  "@type": "xsd:double"
+                },
+                "70DegC": {
+                  "@id": "dppk-dopc:flowResistanceProcedureA70",
+                  "@type": "xsd:double"
+                }
+              }
+            },
+            "procedureB": {
+              "@id": "dppk-dopc:procedureB",
+              "@context": {
+                "5DegC": {
+                  "@id": "dppk-dopc:flowResistanceProcedureB5",
+                  "@type": "xsd:double"
+                },
+                "50DegC": {
+                  "@id": "dppk-dopc:flowResistanceProcedureB50",
+                  "@type": "xsd:double"
+                },
+                "70DegC": {
+                  "@id": "dppk-dopc:flowResistanceProcedureB70",
+                  "@type": "xsd:double"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

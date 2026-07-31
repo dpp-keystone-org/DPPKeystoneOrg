@@ -1,3 +1,13 @@
+/**
+ * @file strip-ontology-annotations.mjs
+ * @description A utility to strip non-English translations from the ontology files.
+ * It reads from `src/ontology/[version]` and outputs to `src/ontology/[version]_stripped`.
+ * 
+ * USE CASE: The raw ontology files contain translations in 24 languages for every term, 
+ * which produces massive JSON-LD arrays that overwhelm AI context windows. AI agents 
+ * should run this script and read the `_stripped` versions when they need to understand 
+ * the ontology structure without the i18n noise.
+ */
 import fs from 'fs/promises';
 import path from 'path';
 import stripJsonComments from 'strip-json-comments';

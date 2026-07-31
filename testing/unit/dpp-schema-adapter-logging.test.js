@@ -37,8 +37,8 @@ describe('DPP Adapter Logging', () => {
             text: async () => "",
             json: async () => ({
                 "@graph": [
-                    { "@id": "dppk:gwp", "dppk:unit": "kg CO2 eq" },
-                    { "@id": "dppk:weight", "dppk:unit": "kg" }
+                    { "@id": "dppk:gwp", "dppk:unit": { "@id": "dppk-unit:KilogramCO2Equivalent" } },
+                    { "@id": "dppk:weight", "dppk:unit": { "@id": "dppk-unit:Kilogram" } }
                 ]
             })
         });

@@ -39,12 +39,12 @@ describe('HTML Generator', () => {
                 "@graph": [
                     { 
                         "@id": "dppk:weight", 
-                        "dppk:unit": "kg",
+                        "dppk:unit": { "@id": "dppk-unit:Kilogram" },
                         "rdfs:label": { "@language": "en", "@value": "Weight" }
                     },
                     { 
                         "@id": "dppk:gwp", 
-                        "dppk:unit": "kg CO2 eq",
+                        "dppk:unit": { "@id": "dppk-unit:KilogramCO2Equivalent" },
                         "rdfs:label": { "@language": "en", "@value": "Global Warning Potential" }
                     },
                     { "@id": "dppk:color", "rdfs:label": { "@language": "en", "@value": "Color" } },
@@ -52,7 +52,15 @@ describe('HTML Generator', () => {
                     { "@id": "dppk:dimensions", "rdfs:label": { "@language": "en", "@value": "Dimensions" } },
                     { "@id": "dppk:width", "rdfs:label": { "@language": "en", "@value": "Width" } },
                     { "@id": "dppk:customAttribute", "rdfs:label": { "@language": "en", "@value": "Custom Attribute" } },
-                    { "@id": "dppk:anotherAttribute", "rdfs:label": { "@language": "en", "@value": "Another Attribute" } }
+                    { "@id": "dppk:anotherAttribute", "rdfs:label": { "@language": "en", "@value": "Another Attribute" } },
+                    {
+                        "@id": "dppk-unit:KilogramCO2Equivalent",
+                        "dppk:unitSymbol": { "@value": "kg CO2 eq" }
+                    },
+                    {
+                        "@id": "dppk-unit:Kilogram",
+                        "dppk:unitSymbol": { "@value": "kg" }
+                    }
                 ]
             })
         });

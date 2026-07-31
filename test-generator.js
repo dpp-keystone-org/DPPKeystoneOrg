@@ -4,7 +4,7 @@ import path from 'path';
 globalThis.fetch = async (url) => {
     let filePath = url;
     if (filePath.startsWith('../')) {
-        filePath = path.join(process.cwd(), 'src/validation/v2/json-schema/sector', filePath.substring(3));
+        filePath = path.join(process.cwd(), 'src/validation/v3/json-schema/sector', filePath.substring(3));
     } else if (filePath.startsWith('http')) {
         return { ok: false };
     } else {

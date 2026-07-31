@@ -32,7 +32,7 @@ describe('Advanced Rendering Logic', () => {
                 "@graph": [
                     { 
                         "@id": "dppk:gwp", 
-                        "dppk:unit": "kg CO2 eq",
+                        "dppk:unit": { "@id": "dppk-unit:KilogramCO2Equivalent" },
                         "rdfs:label": { "@language": "en", "@value": "Global Warming Potential" }
                     },
                     { 
@@ -41,7 +41,7 @@ describe('Advanced Rendering Logic', () => {
                     },
                     { 
                         "@id": "dppk:weight", 
-                        "dppk:unit": "kg",
+                        "dppk:unit": { "@id": "dppk-unit:Kilogram" },
                         "rdfs:label": { "@language": "en", "@value": "Weight" }
                     },
                     {
@@ -67,6 +67,14 @@ describe('Advanced Rendering Logic', () => {
                     {
                         "@id": "dppk:value",
                         "rdfs:label": { "@language": "en", "@value": "Value" }
+                    },
+                    {
+                        "@id": "dppk-unit:KilogramCO2Equivalent",
+                        "dppk:unitSymbol": { "@value": "kg CO2 eq" }
+                    },
+                    {
+                        "@id": "dppk-unit:Kilogram",
+                        "dppk:unitSymbol": { "@value": "kg" }
                     }
                 ]
             })
@@ -165,6 +173,34 @@ describe('Advanced Rendering Logic', () => {
             expect(html).toContain('<td>0.1</td>'); // a1
             expect(html).toContain('<td>0.05</td>'); // a2
             expect(html).toContain('<td>-</td>');   // c1 (missing in odp)
+        });
+
+        test('should render mixed scalar fields and matrix objects within the same card', async () => {
+            const dpp = {
+                productName: "Test",
+                environmentalProfile: {
+                    referenceServiceLife: "50 years", // Scalar field
+                    gwp: { a1: 10, c1: 5 },           // Matrix field 1
+                    odp: { a1: 0.1, a2: 0.05 }        // Matrix field 2
+                }
+            };
+
+            const html = await generateHTML(dpp);
+
+            expect(html).toContain('<div class="dpp-card">');
+            expect(html).toContain('<h4>Environmental Profile</h4>');
+            
+            // Check that the scalar field is rendered in a separate content block above the table
+            expect(html).toContain('<div class="dpp-card-content" style="margin-bottom: 1rem;">');
+            expect(html).toContain('<span class="dpp-value">50 years</span>');
+            
+            // Check that the matrix field is still rendered properly as a table
+            expect(html).toContain('<table>');
+            expect(html).toContain('<th>a1</th>');
+            expect(html).toContain('<th>c1</th>');
+            expect(html).toContain('<strong>gwp (kg CO2 eq)</strong>');
+            expect(html).toContain('<td>10</td>');
+            expect(html).toContain('<td>5</td>');
         });
 
         test('should render Array of Objects as a table', async () => {

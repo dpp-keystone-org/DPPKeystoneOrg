@@ -1,3 +1,11 @@
+/**
+ * @file build-and-clean.mjs
+ * @description The primary build orchestrator for the project. Deletes build targets (dist/), 
+ * lints and sanitizes all JSON/JSON-LD files in the src/ tree (removing comments), 
+ * builds the functional code, and deploys everything to the dist/ directory. 
+ * This is the ONLY script that needs to be run between file changes to reflect them in the build.
+ * It is invoked automatically via `npm run build` or `npm test`.
+ */
 import { promises as fs } from 'fs';
 import path from 'path';
 import fse from 'fs-extra'; // For copy and ensureDir
@@ -326,6 +334,9 @@ async function build() {
 
     // Call the new redirect function
     await createRedirects(BUILD_DIR);
+
+    console.log('Generating auto-generated SHACL shapes...');
+    execSync('node scripts/generate-shacl.mjs', { stdio: 'inherit' });
 
     console.log('Generating ontology documentation...');
     await generateSpecDocs(); // Call the function directly

@@ -133,7 +133,7 @@ function flattenToAdditionalProperties(node, parentName, dictionary) {
                         "name": displayName,
                         "value": valueItem['@value'],
                     };
-                    if (unitText) propertyObj.unitText = unitText;
+                    if (unitText && unitText !== 'unitless') propertyObj.unitText = unitText;
                     properties.push(propertyObj);
              } else if (valueItem && typeof valueItem === 'object') {
                   // For recursion, we always append the path segment to ensure uniqueness 
@@ -241,13 +241,31 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode, version) {
         product.manufacturer = toSchemaOrgOrganization(manufacturerNode, termsBase);
     }
 
+    const dopcTermsBase = `https://dpp-keystone.org/spec/${version}/terms/dopc#`;
     const dopcNode = getNode(rootNode, `${termsBase}dopc`);
 
     if (dopcNode) {
+        // 1. DoP Identifier
+        const dopId = getValue(dopcNode, `${dopcTermsBase}declarationCode`);
+        if (dopId) {
+            const dopObj = {
+                "@type": "PropertyValue",
+                "propertyID": "DoP ID",
+                "value": dopId
+            };
+            if (Array.isArray(product.identifier)) {
+                product.identifier.push(dopObj);
+            } else if (product.identifier) {
+                product.identifier = [product.identifier, dopObj];
+            } else {
+                product.identifier = dopObj;
+            }
+        }
+
         let properties = [];
         
         // Check for 'essentialCharacteristics' array (intermediate structure)
-        const characteristics = dopcNode[`${termsBase}essentialCharacteristics`];
+        const characteristics = dopcNode[`${dopcTermsBase}essentialCharacteristics`];
         if (characteristics && Array.isArray(characteristics)) {
              // Handle the "List of Characteristics" style (Intermediate)
              for (const charNode of characteristics) {
@@ -267,7 +285,12 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode, version) {
         }
 
         if (properties.length > 0) {
-            product.additionalProperty = properties;
+            // Filter out declarationCode if flattenToAdditionalProperties included it
+            properties = properties.filter(p => !p.name.match(/declaration\s*code/i));
+            if (properties.length > 0) {
+                if (!product.additionalProperty) product.additionalProperty = [];
+                product.additionalProperty.push(...properties);
+            }
         }
     }
 
@@ -360,24 +383,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode, version) {
 
     // --- Construction Parity Additions (v1.1) ---
 
-    // 1. DoP Identifier
-    const dopId = getValue(rootNode, `${termsBase}dopIdentifier`);
-    if (dopId) {
-        const dopObj = {
-            "@type": "PropertyValue",
-            "propertyID": "DoP ID",
-            "value": dopId
-        };
-        if (Array.isArray(product.identifier)) {
-            product.identifier.push(dopObj);
-        } else if (product.identifier) {
-            product.identifier = [product.identifier, dopObj];
-        } else {
-            product.identifier = dopObj;
-        }
-    }
-
-    // 2. Harmonised Standard Reference
+    // 1. Harmonised Standard Reference
     const hStd = getValue(rootNode, `${termsBase}harmonisedStandardReference`);
     if (hStd) {
         if (!product.additionalProperty) product.additionalProperty = [];
@@ -822,6 +828,7 @@ function dppToSchemaOrgProduct(sourceData, dictionary, rootNode, version) {
     }
     
     // Nest EPD Certifications
+    const epdTermsBase = `https://dpp-keystone.org/spec/${version}/terms/epd#`;
     const epdNode = getNode(rootNode, `${termsBase}epd`);
     if (epdNode) {
         const certifications = epdToSchemaOrgCertifications(epdNode, dictionary, rootNode, termsBase);
@@ -870,7 +877,7 @@ function epdToSchemaOrgCertifications(epdData, dictionary, parentNode, termsBase
                 "@type": "PropertyValue",
                 "name": `${definition.label} (${stageKey})`,
                 "value": Number(value),
-                "unitText": definition.unit,
+                ...(definition.unit && definition.unit !== 'unitless' ? { "unitText": definition.unit } : {}),
                 "propertyID": indicatorUri.split('#')[1] + '-' + stageKey
             });
         }

@@ -83,6 +83,13 @@ When proposing a new term (Property or Class):
     *   An `rdfs:term_status` of `"unstable"` for all new terms. The status will be updated to `"stable"` through the governance process.
 4.  **Specify Property Type:** Define whether it is an `owl:DatatypeProperty` (links to a literal value) or an `owl:ObjectProperty` (links to another resource/object).
 
+### 5. Translation Requirements
+
+Every new ontology term (`rdfs:label`, `rdfs:comment`) and static HTML UI element (`data-i18n-key`) MUST be translated into the project's 24 supported languages. 
+
+*   **Validation:** Your pull request will fail if `scripts/validate-i18n.mjs` or `scripts/validate-ontology-integrity.mjs` detect missing translations.
+*   **AI Assistance:** Due to the complexity and volume of translations, we allow and encourage machine translation, provided it follows our rigorous [Machine-Consensus Translation Workflow](docs/translation-workflow.md).
+
 ## Getting Help
 
 If you have questions about the modeling approach or the contribution process,

@@ -1,4 +1,5 @@
 import path from 'path';
+import { promises as fs } from 'fs';
 import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import SHACLValidator from 'rdf-validate-shacl';
 
@@ -87,40 +88,50 @@ describe('DPP SHACL Validation', () => {
     const testCases = [
        {
            name: 'Electronics DPP - Public (drill-dpp-v1.json)',
-           exampleFile: 'drill-dpp-v1.json',
-           shapeFiles: ['electronics-shapes.shacl.jsonld']
+           exampleFile: 'drill-dpp-v1.json'
        },
        {
            name: 'Electronics DPP - Private (drill-dpp-v1-private.json)',
-           exampleFile: 'drill-dpp-v1-private.json',
-          shapeFiles: ['electronics-shapes.shacl.jsonld']
+           exampleFile: 'drill-dpp-v1-private.json'
        },
         {
             name: 'Battery DPP (battery-dpp-v1.json)',
-            exampleFile: 'battery-dpp-v1.json',
-            shapeFiles: ['battery-shapes.shacl.jsonld']
+            exampleFile: 'battery-dpp-v1.json'
         },
         {
             name: 'Textile DPP (sock-dpp-v2.json)',
-            exampleFile: 'sock-dpp-v2.json',
-            shapeFiles: ['textile-shapes.shacl.jsonld']
+            exampleFile: 'sock-dpp-v2.json'
         },
         {
             name: 'Construction DPP (rail-dpp-v1.json)',
-            exampleFile: 'rail-dpp-v1.json',
-            shapeFiles: ['construction-shapes.shacl.jsonld']
+            exampleFile: 'rail-dpp-v1.json'
         },
     ];
 
     // Use test.each to run the same validation logic for each test case.
-    test.each(testCases)('$name should conform to its SHACL shapes', async ({ exampleFile, shapeFiles }) => {
+    test.each(testCases)('$name should conform to its SHACL shapes', async ({ exampleFile }) => {
         // --- 1. Load Data, Shapes, and Ontologies ---
         const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'spec', 'examples', exampleFile);
         const dataDataset = await loadRdfFile(exampleFilePath);
 
-        // Load all shape files (core + sector-specific)
-        const coreShapesPath = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'core-shapes.shacl.jsonld');
-        const shapeFilePaths = [coreShapesPath, ...shapeFiles.map(file => path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', file))];
+        // Load all shape files dynamically from the shacl output directory
+        const shaclDir = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl');
+        
+        async function getShapeFiles(dir) {
+            const entries = await fs.readdir(dir, { withFileTypes: true });
+            let files = [];
+            for (const entry of entries) {
+                const res = path.join(dir, entry.name);
+                if (entry.isDirectory()) {
+                    files = files.concat(await getShapeFiles(res));
+                } else if (entry.isFile() && res.endsWith('.jsonld')) {
+                    files.push(res);
+                }
+            }
+            return files;
+        }
+        const shapeFilePaths = await getShapeFiles(shaclDir);
+            
         const allShapeDatasets = await Promise.all(shapeFilePaths.map(p => loadRdfFile(p)));
         const shapesGraph = combineDatasets(allShapeDatasets);
 
@@ -138,11 +149,14 @@ describe('DPP SHACL Validation', () => {
         const validator = new SHACLValidator(shapesGraph);
         const report = await validator.validate(dataGraph);
 
-        // --- 3. Assert Conformance ---
         if (!report.conforms) {
-            logValidationReport(report, dataGraph);
+            const messages = report.results.map(r => {
+                const msg = r.message.map(m => m.value).join(', ');
+                const path = r.path ? r.path.value : 'unknown path';
+                return `${path}: ${msg}`;
+            }).join('\n');
+            throw new Error(`Validation failed:\n${messages}`);
         }
-
         expect(report.conforms).toBe(true);
     });
 });

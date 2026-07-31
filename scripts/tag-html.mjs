@@ -1,3 +1,12 @@
+/**
+ * @file tag-html.mjs
+ * @description An automation script for extracting hardcoded English text from static HTML files
+ * into dedicated `index.i18n.json` resource files, injecting `data-i18n-key` attributes back into the DOM.
+ * 
+ * WORKFLOW TIP: When building a new static page or adding large chunks of UI, write standard, 
+ * hardcoded HTML first. Once the layout is visually verified, add the file path to the `filesToProcess` 
+ * array in this script and run it to automatically extract all strings into the localization system.
+ */
 import fs from 'fs';
 import path from 'path';
 import * as cheerio from 'cheerio';

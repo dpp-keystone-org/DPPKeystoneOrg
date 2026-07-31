@@ -22,7 +22,7 @@ async function main() {
     console.log('Starting SHACL validation...');
 
     // --- 1. Dynamically Load All SHACL Shapes ---
-    const shapesDir = path.join(PROJECT_ROOT, 'dist', 'validation', KEYSTONE_VERSION, 'shacl');
+    const shapesDir = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl');
     const shapeFiles = await fs.readdir(shapesDir);
 
     const shapeDatasets = await Promise.all(
@@ -36,7 +36,7 @@ async function main() {
     // --- 2. Load and Prepare Data ---
     const exampleFileName = 'drill-dpp-v1.json';
     console.log(`\nValidating example file: ${exampleFileName}`);
-    const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'examples', exampleFileName);
+    const exampleFilePath = path.join(PROJECT_ROOT, 'dist', 'spec', 'examples', exampleFileName);
     const dataDataset = await loadRdfFile(exampleFilePath, { factory });
 
     // --- 3. Validate ---

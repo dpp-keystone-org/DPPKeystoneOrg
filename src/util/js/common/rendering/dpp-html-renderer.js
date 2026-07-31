@@ -29,43 +29,36 @@ function formatCellValue(val) {
 export function detectTableStructure(obj) {
     if (typeof obj !== 'object' || obj === null) return false;
 
-    const rowKeys = Object.keys(obj);
+    const rowKeys = Object.keys(obj).filter(k => !k.startsWith('@'));
     if (rowKeys.length === 0) return false;
 
     let objectChildCount = 0;
     const allUniqueSubKeys = new Set();
 
-    // Pass 1: Check children type and collect all unique column keys
+    // Pass 1: Check children type and collect all unique column keys for object children
     for (const key of rowKeys) {
         const val = obj[key];
-        // Must be an object, not null, not array, and not empty
         if (typeof val === 'object' && val !== null && !Array.isArray(val) && Object.keys(val).length > 0) {
             objectChildCount++;
             Object.keys(val).forEach(k => allUniqueSubKeys.add(k));
-        } else {
-            // If any child is not a suitable object, it's likely not a matrix
-            return false;
         }
     }
 
-    if (objectChildCount !== rowKeys.length) return false;
-    if (allUniqueSubKeys.size === 0) return false;
+    if (objectChildCount === 0) return false;
 
-    // Pass 2: Check density
-    // Density = (Actual Total Cells) / (Rows * Unique Columns)
+    // Pass 2: Check density only on object children
     let totalActualCells = 0;
     for (const key of rowKeys) {
-        totalActualCells += Object.keys(obj[key]).length;
+        const val = obj[key];
+        if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+            totalActualCells += Object.keys(val).length;
+        }
     }
 
-    const theoreticalCells = rowKeys.length * allUniqueSubKeys.size;
-    const density = totalActualCells / theoreticalCells;
+    const theoreticalCells = objectChildCount * allUniqueSubKeys.size;
+    const density = theoreticalCells === 0 ? 0 : totalActualCells / theoreticalCells;
 
-    // Allow single-row tables if they have multiple columns (e.g. wide data)
-    // But typically matrix implies > 1 row. 
-    // If only 1 row, density is always 1.0 (since unique cols = actual cols).
-    // A 1-row table is usually better as a Card unless it has many columns.
-    if (rowKeys.length < 2 && allUniqueSubKeys.size < 3) return false;
+    if (objectChildCount < 2 && allUniqueSubKeys.size < 3) return false;
 
     return density > 0.5;
 }
@@ -108,7 +101,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
         let displayValue = value;
         if (ontologyMap && ontologyMap.has(key)) {
             const info = ontologyMap.get(key);
-            if (info && info.unit) {
+            if (info && info.unit && info.unit !== 'unitless') {
                 displayValue = `${value} ${info.unit}`;
             }
         }
@@ -118,9 +111,28 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
     if (typeof value === 'object' && !Array.isArray(value)) {
         // Check for Table Structure
         if (detectTableStructure(value)) {
-            // Collect all unique columns, ignoring JSON-LD @ keys
+            // Separate scalar and object children
+            const scalarKeys = [];
+            const objectKeys = [];
+            Object.keys(value).forEach(k => {
+                if (k.startsWith('@')) return;
+                const v = value[k];
+                if (typeof v === 'object' && v !== null && !Array.isArray(v)) {
+                    objectKeys.push(k);
+                } else {
+                    scalarKeys.push(k);
+                }
+            });
+
+            let scalarContent = '';
+            scalarKeys.forEach(k => {
+                scalarContent += renderValue(k, value[k], ontologyMap, language);
+            });
+
+            // Collect all unique columns from object rows
             const allColumns = new Set();
-            Object.values(value).forEach(row => {
+            objectKeys.forEach(rowKey => {
+                const row = value[rowKey];
                 Object.keys(row).forEach(k => {
                     if (!k.startsWith('@')) allColumns.add(k);
                 });
@@ -129,11 +141,12 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
 
             const headers = ['Metric', ...sortedCols].map(h => `<th>${h}</th>`).join('');
 
-            const rows = Object.entries(value).map(([rowKey, rowData]) => {
+            const rows = objectKeys.map(rowKey => {
+                const rowData = value[rowKey];
                 let rowUnit = '';
                 if (ontologyMap && ontologyMap.has(rowKey)) {
                     const info = ontologyMap.get(rowKey);
-                    if (info && info.unit) rowUnit = ` (${info.unit})`;
+                    if (info && info.unit && info.unit !== 'unitless') rowUnit = ` (${info.unit})`;
                 }
                 const cells = sortedCols.map(col => `<td>${formatCellValue(rowData[col])}</td>`).join('');
                 return `<tr><td><strong>${rowKey}${rowUnit}</strong></td>${cells}</tr>`;
@@ -142,6 +155,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
             return `
                 <div class="dpp-card">
                     <h4>${displayLabel}</h4>
+                    ${scalarContent ? `<div class="dpp-card-content" style="margin-bottom: 1rem;">${scalarContent}</div>` : ''}
                     <table>
                         <thead><tr>${headers}</tr></thead>
                         <tbody>${rows}</tbody>
@@ -161,7 +175,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
         let cardUnit = '';
         if (ontologyMap && ontologyMap.has(key)) {
             const info = ontologyMap.get(key);
-            if (info && info.unit) cardUnit = ` <span class="dpp-unit">(${info.unit})</span>`;
+            if (info && info.unit && info.unit !== 'unitless') cardUnit = ` <span class="dpp-unit">(${info.unit})</span>`;
         }
 
         return `
@@ -196,7 +210,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
                 let cellUnit = '';
                 if (ontologyMap && ontologyMap.has(h)) {
                     const info = ontologyMap.get(h);
-                    if (info && info.unit) cellUnit = ` (${info.unit})`;
+                    if (info && info.unit && info.unit !== 'unitless') cellUnit = ` (${info.unit})`;
                 }
                 return `<th>${h}${cellUnit}</th>`;
             }).join('');

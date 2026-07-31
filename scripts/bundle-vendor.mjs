@@ -1,3 +1,10 @@
+/**
+ * @file bundle-vendor.mjs
+ * @description Bundles external Node dependencies (like AJV and PapaParse) using esbuild 
+ * into standalone ESM files placed in `src/lib/vendor/`. This allows our frontend tools 
+ * (like the Wizard and Validator) to use them directly in the browser without a complex 
+ * bundler like Webpack for the whole frontend.
+ */
 import { execSync } from 'child_process';
 import path from 'path';
 import fse from 'fs-extra';
