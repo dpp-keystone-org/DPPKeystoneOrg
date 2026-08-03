@@ -53,7 +53,7 @@ All source files are located in the `src/` directory. **Please make all edits he
 
 *   **Ontology Definitions (`src/ontology/`):** The semantic source of truth. Contains core and sector-specific definitions.
 *   **Context Files (`src/contexts/`):** The implementation vocabularies that map ontology terms to developer-friendly JSON keys.
-*   **Validation Artifacts (`src/validation/`):** Contains the JSON Schema and SHACL shape files for data validation.
+*   **Validation Artifacts (`src/validation/`):** Contains the JSON Schema files for structural validation. (Note: SHACL shape files for semantic validation are automatically generated from the ontology during the build process).
 *   **Examples (`src/examples/`):** Example DPP JSON-LD documents.
 
 ### 2. JSON-LD and Ontology Standards
