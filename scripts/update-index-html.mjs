@@ -130,8 +130,29 @@ async function generateSchemaLists(dirPath, baseHref) {
             
         const link = `<a href="${baseHref}${subDir ? subDir + '/' : ''}${fileName}">${linkText}</a>`;
         const listItem = `                            <li>${link}</li>`;
-        listArray.push(listItem);
+        listArray.push({ sortKey: linkText, html: listItem });
   };
+
+  async function processDirectory(currentPath, baseSubDir, targetList) {
+      try {
+          const entries = await fs.readdir(currentPath, { withFileTypes: true });
+          for (const entry of entries) {
+              if (entry.isFile() && entry.name.endsWith('.json')) {
+                  processFile(baseSubDir, entry.name, targetList);
+              } else if (entry.isDirectory()) {
+                  const nextSubDir = baseSubDir ? `${baseSubDir}/${entry.name}` : entry.name;
+                  const dirName = entry.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                  const subListArray = [];
+                  await processDirectory(path.join(currentPath, entry.name), nextSubDir, subListArray);
+                  if (subListArray.length > 0) {
+                      subListArray.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+                      const nestedHtml = `                            <li>${dirName}\n                                <ul>\n${subListArray.map(item => item.html).join('\n')}\n                                </ul>\n                            </li>`;
+                      targetList.push({ sortKey: dirName, html: nestedHtml });
+                  }
+              }
+          }
+      } catch (e) {}
+  }
 
   try {
       const rootEntries = await fs.readdir(dirPath, { withFileTypes: true });
@@ -142,35 +163,18 @@ async function generateSchemaLists(dirPath, baseHref) {
       }
   } catch (e) {}
 
-  try {
-      const sectorPath = path.join(dirPath, 'sector');
-      const sectorEntries = await fs.readdir(sectorPath, { withFileTypes: true });
-      for (const entry of sectorEntries) {
-          if (entry.isFile() && entry.name.endsWith('.json')) {
-              processFile('sector', entry.name, contentSpecSchemas);
-          }
-      }
-  } catch (e) {}
-
-  try {
-      const sharedPath = path.join(dirPath, 'shared');
-      const sharedEntries = await fs.readdir(sharedPath, { withFileTypes: true });
-      for (const entry of sharedEntries) {
-          if (entry.isFile() && entry.name.endsWith('.json')) {
-              processFile('shared', entry.name, auxSchemas);
-          }
-      }
-  } catch (e) {}
+  await processDirectory(path.join(dirPath, 'sector'), 'sector', contentSpecSchemas);
+  await processDirectory(path.join(dirPath, 'shared'), 'shared', auxSchemas);
 
   // Sort lists alphabetically
-  dppSchemas.sort();
-  contentSpecSchemas.sort();
-  auxSchemas.sort();
+  dppSchemas.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+  contentSpecSchemas.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+  auxSchemas.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 
   return {
-    dppList: dppSchemas.join('\n'),
-    contentSpecList: contentSpecSchemas.join('\n'),
-    auxList: auxSchemas.join('\n')
+    dppList: dppSchemas.map(item => item.html).join('\n'),
+    contentSpecList: contentSpecSchemas.map(item => item.html).join('\n'),
+    auxList: auxSchemas.map(item => item.html).join('\n')
   };
 }
 
