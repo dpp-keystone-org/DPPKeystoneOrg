@@ -72,7 +72,7 @@
   "@graph": [
     {
       "@id": "dppk-cement:CementProduct",
-      "@type": "owl:Class",
+      "@type": "rdfs:Class",
       "rdfs:subClassOf": { "@id": "dppk:Product" },
       "rdfs:label": [
         { "@language": "en", "@value": "Cement Product" },

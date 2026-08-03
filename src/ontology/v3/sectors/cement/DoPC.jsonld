@@ -76,7 +76,7 @@
   "@graph": [
     {
       "@id": "dppk-cement-dopc:CementDoPC",
-      "@type": "owl:Class",
+      "@type": "rdfs:Class",
       "rdfs:subClassOf": { "@id": "dppk:DoPCBlock" },
       "rdfs:label": [
         { "@language": "en", "@value": "Cement Declaration of Performance and Conformity" },
