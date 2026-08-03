@@ -6,6 +6,7 @@ describe('Mermaid Diagram Generator', () => {
     const mockMetadata = [
         {
             name: 'Super.jsonld',
+            dirName: 'Super',
             module: 'core',
             classes: [
                 { id: 'dppk:SuperClass', label: 'Super Class' }
@@ -13,6 +14,7 @@ describe('Mermaid Diagram Generator', () => {
         },
         {
             name: 'Range.jsonld',
+            dirName: 'Range',
             module: 'core',
             classes: [
                 { id: 'dppk:RangeClass', label: 'Range Class' }

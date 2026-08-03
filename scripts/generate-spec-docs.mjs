@@ -345,7 +345,7 @@ function resolveClassUrl(classId, allMetadata, currentHtmlPath, ontologyDir) {
     const definingModuleMeta = allMetadata.find(m => m.classes.some(c => c.id === classId));
     if (definingModuleMeta && currentHtmlPath && ontologyDir) {
         const fragment = getFragment(classId);
-        const targetModuleDirName = basename(definingModuleMeta.name, '.jsonld');
+        const targetModuleDirName = definingModuleMeta.dirName;
         const targetPath = join(ontologyDir, definingModuleMeta.module, targetModuleDirName, `${fragment}.html`);
         return relative(dirname(currentHtmlPath), targetPath).replace(/\\/g, '/');
     }

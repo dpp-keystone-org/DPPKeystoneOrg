@@ -71,16 +71,24 @@ export async function generateFileList(dirPath, baseHref, options = {}, rootPath
           
           // Automatically remove trailing version strings (e.g., " V1", " V2")
           linkText = linkText.replace(/ V\d+$/, '');
+
+          if (relativePath.includes('/')) {
+            const parentDir = path.dirname(relativePath)
+              .replace(/-/g, ' ')
+              .replace(/\b\w/g, l => l.toUpperCase());
+            linkText = `${parentDir} - ${linkText}`;
+          }
         }
 
         if (options.isOntology) {
-          const linkHref = `${baseHref}${fileName}/index.html`;
+          const dirPathName = relativePath.replace(/\.jsonld$/, '');
+          const linkHref = `${baseHref}${dirPathName}/index.html`;
           const content = await fs.readFile(fullPath, 'utf-8');
           const { classes } = parseOntologyMetadata(content);
 
           if (classes.length > 0) {
             const classLinks = classes.map(c => {
-              const classLinkHref = `${baseHref}${fileName}/${getFragment(c.id)}.html`;
+              const classLinkHref = `${baseHref}${dirPathName}/${getFragment(c.id)}.html`;
               return `                                        <li><a href="${classLinkHref}">${renderI18nSpan(c.label)}</a></li>`;
             }).join('\n');
             listItems.push(`                            <li class="expandable"><details><summary><a href="${linkHref}">${linkText}</a></summary><ul>
@@ -253,17 +261,17 @@ export async function updateIndexHtml({
       '<!-- LATEST_CONTEXTS_LIST_START -->\n' + latestContextsList + '\n                            <!-- LATEST_CONTEXTS_LIST_END -->'
     );
 
-    // Generate and inject ontology core list (non-recursive)
+    // Generate and inject ontology core list
     const ontologyCorePath = path.join(srcDir, 'ontology', KEYSTONE_VERSION, 'core');
-    const ontologyCoreList = await generateFileList(ontologyCorePath, `spec/ontology/${KEYSTONE_VERSION}/core/`, { isOntology: true });
+    const ontologyCoreList = await generateFileList(ontologyCorePath, `spec/ontology/${KEYSTONE_VERSION}/core/`, { isOntology: true, recursive: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_CORE_LIST_START -->[\s\S]*<!-- ONTOLOGY_CORE_LIST_END -->/,
       '<!-- ONTOLOGY_CORE_LIST_START -->\n' + ontologyCoreList + '\n                                    <!-- ONTOLOGY_CORE_LIST_END -->'
     );
 
-    // Generate and inject ontology sectors list (non-recursive)
+    // Generate and inject ontology sectors list
     const ontologySectorsPath = path.join(srcDir, 'ontology', KEYSTONE_VERSION, 'sectors');
-    const ontologySectorsList = await generateFileList(ontologySectorsPath, `spec/ontology/${KEYSTONE_VERSION}/sectors/`, { isOntology: true });
+    const ontologySectorsList = await generateFileList(ontologySectorsPath, `spec/ontology/${KEYSTONE_VERSION}/sectors/`, { isOntology: true, recursive: true });
     indexContent = indexContent.replace(
       /<!-- ONTOLOGY_SECTORS_LIST_START -->[\s\S]*<!-- ONTOLOGY_SECTORS_LIST_END -->/,
       '<!-- ONTOLOGY_SECTORS_LIST_START -->\n' + ontologySectorsList + '\n                                    <!-- ONTOLOGY_SECTORS_LIST_END -->'
