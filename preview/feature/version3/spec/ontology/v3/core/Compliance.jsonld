@@ -9,7 +9,8 @@
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms"
+    "@base": "https://dpp-keystone.org/spec/v3/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Compliance",
   "@type": "owl:Ontology",
@@ -424,7 +425,7 @@
       "rdfs:subClassOf": {
         "@id": "dppk:RelatedResource"
       },
-      "owl:equivalentClass": [
+      "skos:exactMatch": [
         {
           "@id": "schema:Certification"
         },
@@ -635,11 +636,9 @@
           "@value": "Information om material och egenskaper hos produktens förpackning."
         }
       ],
-      "owl:equivalentClass": [
-        {
-          "@id": "gs1:PackagingMaterialDetails"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "gs1:PackagingMaterialDetails"
+      }
     },
     {
       "@id": "dppk:ProductionStep",
@@ -838,6 +837,14 @@
         {
           "@language": "sv",
           "@value": "Ett betydande steg i produktens tillverknings- eller bearbetningskedja, inklusive dess plats."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Action"
+        },
+        {
+          "@id": "gs1:bizStep"
         }
       ]
     },
@@ -1046,8 +1053,11 @@
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
       },
-      "owl:equivalentProperty": {
+      "skos:closeMatch": {
         "@id": "gs1:referencedFile"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:subjectOf"
       }
     },
     {
@@ -1255,7 +1265,7 @@
       "rdfs:range": {
         "@id": "dppk:Certification"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:hasCertification"
         },
@@ -1471,7 +1481,15 @@
       },
       "rdfs:subPropertyOf": {
         "@id": "dppk:certifications"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:substancesOfConcern",
@@ -1677,6 +1695,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:Component"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:material"
       }
     },
     {
@@ -1884,7 +1905,7 @@
       "rdfs:range": {
         "@id": "dppk:Packaging"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "gs1:packaging"
       }
     },
@@ -1994,7 +2015,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:ProductionStep"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:step"
+        },
+        {
+          "@id": "gs1:bizStep"
+        }
+      ]
     },
     {
       "@id": "dppk:certificationName",
@@ -2201,9 +2230,14 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": {
-        "@id": "schema:name"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:name"
+        },
+        {
+          "@id": "gs1:certificationValue"
+        }
+      ]
     },
     {
       "@id": "dppk:certificationId",
@@ -2410,9 +2444,14 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": {
-        "@id": "schema:identifier"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:certificationIdentification"
+        }
+      ]
     },
     {
       "@id": "dppk:certificationUrl",
@@ -2619,9 +2658,14 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "owl:equivalentProperty": {
-        "@id": "schema:url"
-      }
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:url"
+        },
+        {
+          "@id": "gs1:referencedFile"
+        }
+      ]
     },
     {
       "@id": "dppk:certificationBodyName",
@@ -2825,7 +2869,7 @@
       "rdfs:domain": {
         "@id": "dppk:Certification"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "gs1:certificationAgency"
       }
     },
@@ -3033,7 +3077,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalOrganizationIdentification"
+        }
+      ]
     },
     {
       "@id": "dppk:certificationStartDate",
@@ -3240,7 +3292,7 @@
       "rdfs:range": {
         "@id": "xsd:date"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "gs1:certificationStartDate"
       }
     },
@@ -3448,7 +3500,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:date"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:expires"
+        },
+        {
+          "@id": "gs1:certificationEndDate"
+        }
+      ]
     },
     {
       "@id": "dppk:certificationBodyRole",
@@ -3654,7 +3714,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:CertificationBodyRoleType"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:roleName"
+        },
+        {
+          "@id": "gs1:partyRole"
+        }
+      ]
     },
     {
       "@id": "dppk:CertificationBodyRoleType",
@@ -3871,6 +3939,14 @@
         {
           "@id": "dppk:NotifiedBodyRole"
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Role"
+        },
+        {
+          "@id": "gs1:PartyRole"
+        }
       ]
     },
     {
@@ -4071,7 +4147,10 @@
           "@language": "sv",
           "@value": "Rollen för en enhet som ansvarar för att släppa ut produkten på marknaden, enligt ESPR:s definition."
         }
-      ]
+      ],
+      "skos:closeMatch": {
+        "@id": "schema:Role"
+      }
     },
     {
       "@id": "dppk:ManufacturerRole",
@@ -4271,7 +4350,10 @@
           "@language": "sv",
           "@value": "Rollen för en enhet som ansvarar för produktionen av färdiga varor."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:Role"
+      }
     },
     {
       "@id": "dppk:ImporterRole",
@@ -4471,7 +4553,10 @@
           "@language": "sv",
           "@value": "Rollen för en enhet som ansvarar för att importera produkten till marknaden."
         }
-      ]
+      ],
+      "skos:closeMatch": {
+        "@id": "schema:OrganizationRole"
+      }
     },
     {
       "@id": "dppk:NotifiedBodyRole",
@@ -4671,7 +4756,10 @@
           "@language": "sv",
           "@value": "Rollen för en enhet som utför bedömningar av överensstämmelse och är officiellt utsedd av en anmälande myndighet."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:Role"
+      }
     },
     {
       "@id": "dppk:packagingMaterialType",
@@ -4875,7 +4963,7 @@
       "rdfs:domain": {
         "@id": "dppk:Packaging"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "gs1:packagingMaterialType"
       }
     },
@@ -5081,11 +5169,11 @@
       "rdfs:domain": {
         "@id": "dppk:Packaging"
       },
-      "owl:equivalentProperty": {
-        "@id": "gs1:packagingMaterialCompositionQuantity"
-      },
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
+      },
+      "skos:exactMatch": {
+        "@id": "gs1:packagingMaterialCompositionQuantity"
       }
     },
     {
@@ -5290,7 +5378,7 @@
       "rdfs:domain": {
         "@id": "dppk:Packaging"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "gs1:packagingRecyclingProcessType"
       }
     },
@@ -5495,7 +5583,15 @@
       ],
       "rdfs:domain": {
         "@id": "dppk:Packaging"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:PackagingMaterialDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:packagingSubstanceOfConcern",
@@ -5698,7 +5794,15 @@
       ],
       "rdfs:domain": {
         "@id": "dppk:Packaging"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:PackagingMaterialDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:productionStepType",
@@ -5901,7 +6005,15 @@
       ],
       "rdfs:domain": {
         "@id": "dppk:ProductionStep"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     },
     {
       "@id": "dppk:productionLocationCountry",
@@ -6105,8 +6217,11 @@
       "rdfs:domain": {
         "@id": "dppk:ProductionStep"
       },
-      "owl:equivalentProperty": {
+      "skos:exactMatch": {
         "@id": "gs1:countryCode"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:countryOfOrigin"
       }
     }
   ]

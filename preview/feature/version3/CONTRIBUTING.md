@@ -53,7 +53,7 @@ All source files are located in the `src/` directory. **Please make all edits he
 
 *   **Ontology Definitions (`src/ontology/`):** The semantic source of truth. Contains core and sector-specific definitions.
 *   **Context Files (`src/contexts/`):** The implementation vocabularies that map ontology terms to developer-friendly JSON keys.
-*   **Validation Artifacts (`src/validation/`):** Contains the JSON Schema and SHACL shape files for data validation.
+*   **Validation Artifacts (`src/validation/`):** Contains the JSON Schema files for structural validation. (Note: SHACL shape files for semantic validation are automatically generated from the ontology during the build process).
 *   **Examples (`src/examples/`):** Example DPP JSON-LD documents.
 
 ### 2. JSON-LD and Ontology Standards
@@ -82,6 +82,13 @@ When proposing a new term (Property or Class):
     *   Appropriate `rdfs:domain` (which Class the property applies to) and `rdfs:range` (the expected value type, e.g., `xsd:string`, `xsd:dateTime`, or another Class).
     *   An `rdfs:term_status` of `"unstable"` for all new terms. The status will be updated to `"stable"` through the governance process.
 4.  **Specify Property Type:** Define whether it is an `owl:DatatypeProperty` (links to a literal value) or an `owl:ObjectProperty` (links to another resource/object).
+
+### 5. Translation Requirements
+
+Every new ontology term (`rdfs:label`, `rdfs:comment`) and static HTML UI element (`data-i18n-key`) MUST be translated into the project's 24 supported languages. 
+
+*   **Validation:** Your pull request will fail if `scripts/validate-i18n.mjs` or `scripts/validate-ontology-integrity.mjs` detect missing translations.
+*   **AI Assistance:** Due to the complexity and volume of translations, we allow and encourage machine translation, provided it follows our rigorous [Machine-Consensus Translation Workflow](docs/translation-workflow.md).
 
 ## Getting Help
 

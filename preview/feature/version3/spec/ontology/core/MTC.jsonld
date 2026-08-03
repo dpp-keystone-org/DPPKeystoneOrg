@@ -6,7 +6,9 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
     "dcterms": "http://purl.org/dc/terms/",
-    "schema": "http://schema.org/"
+    "schema": "http://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/MTC",
   "@type": "owl:Ontology",
@@ -312,9 +314,6 @@
           "@value": "Ett intyg som beskriver resultaten av tester som utförts på ett material, såsom de som definieras i EN 10204."
         }
       ],
-      "owl:equivalentClass": {
-        "@id": "schema:Certification"
-      },
       "rdfs:label": [
         {
           "@language": "en",
@@ -411,6 +410,14 @@
         {
           "@language": "sv",
           "@value": "Materialprovningsintyg (MTC)"
+        }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
         }
       ]
     },
@@ -616,6 +623,14 @@
           "@language": "sv",
           "@value": "En länk till materialprovningsintyget som är kopplat till denna produkt."
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:certification"
+        },
+        {
+          "@id": "gs1:certification"
+        }
       ]
     },
     {
@@ -819,7 +834,15 @@
       ],
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:DigitalDocument"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:mtcNominalSize",
@@ -1031,7 +1054,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcWeightTolerance",
@@ -1243,7 +1269,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcYieldStrength",
@@ -1455,7 +1484,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcYieldStrengthRatio",
@@ -1667,7 +1699,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcElongation",
@@ -1879,7 +1914,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcRelativeRibArea",
@@ -2091,7 +2129,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcCarbonContent",
@@ -2303,7 +2344,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcPhosphorusContent",
@@ -2515,7 +2559,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcSulfurContent",
@@ -2727,7 +2774,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcCopperContent",
@@ -2939,7 +2989,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcNitrogenContent",
@@ -3151,7 +3204,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcCarbonEquivalent",
@@ -3363,7 +3419,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcSteelProcess",
@@ -3572,7 +3631,10 @@
       "dppk:visibility": {
         "@id": "dppk:Public"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcFinishing",
@@ -3781,7 +3843,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:mtcRadiometricControl",
@@ -3993,7 +4058,10 @@
       "dppk:visibility": {
         "@id": "dppk:LegitimateInterest"
       },
-      "rdfs:term_status": "unstable"
+      "rdfs:term_status": "unstable",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     }
   ]
 }

@@ -7,7 +7,9 @@
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
     "dppk-dopc": "https://dpp-keystone.org/spec/v3/terms/dopc#",
     "dcterms": "http://purl.org/dc/terms/",
-    "schema": "http://schema.org/"
+    "schema": "http://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/DoPC",
   "@type": "owl:Ontology",
@@ -313,9 +315,6 @@
           "@value": "Datablock för prestandadeklaration och försäkran om överensstämmelse."
         }
       ],
-      "owl:equivalentClass": {
-        "@id": "schema:Certification"
-      },
       "rdfs:label": [
         {
           "@language": "en",
@@ -412,6 +411,14 @@
         {
           "@language": "sv",
           "@value": "DoPC-datablock"
+        }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
         }
       ]
     },
@@ -717,6 +724,14 @@
         {
           "@language": "sv",
           "@value": "Prestandadeklarationen och försäkran om överensstämmelse."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:hasCertification"
+        },
+        {
+          "@id": "gs1:certification"
         }
       ]
     },

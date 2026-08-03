@@ -9,7 +9,8 @@
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms"
+    "@base": "https://dpp-keystone.org/spec/v3/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Header.jsonld",
   "@type": "owl:Ontology",
@@ -529,6 +530,17 @@
         {
           "@id": "unece:Document"
         }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "schema:Certification"
+        },
+        {
+          "@id": "unece:Document"
+        }
       ]
     },
     {
@@ -738,7 +750,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalProductClassificationValue"
+        }
+      ]
     },
     {
       "@id": "dppk:uniqueProductIdentifier",
@@ -1058,7 +1078,7 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "gs1:productID"
         },
@@ -1274,7 +1294,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalOrganizationIdentification"
+        }
+      ]
     },
     {
       "@id": "dppk:facilityId",
@@ -1483,7 +1511,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:anyURI"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalOrganizationIdentification"
+        }
+      ]
     },
     {
       "@id": "dppk:GranularityValue",
@@ -1697,7 +1733,10 @@
         {
           "@id": "dppk:Item"
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:QualitativeValue"
+      }
     },
     {
       "@id": "dppk:Model",
@@ -1897,7 +1936,10 @@
           "@language": "sv",
           "@value": "Indikerar att DPP gäller för en produkttyp eller modell."
         }
-      ]
+      ],
+      "skos:exactMatch": {
+        "@id": "schema:ProductModel"
+      }
     },
     {
       "@id": "dppk:Batch",
@@ -2096,6 +2138,14 @@
         {
           "@language": "sv",
           "@value": "Indikerar att DPP gäller för ett produktionsparti."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:ProductGroup"
+        },
+        {
+          "@id": "unece:Batch"
         }
       ]
     },
@@ -2297,6 +2347,14 @@
           "@language": "sv",
           "@value": "Indikerar att DPP gäller för en individuell serialiserad enhet."
         }
+      ],
+      "skos:exactMatch": [
+        {
+          "@id": "schema:IndividualProduct"
+        },
+        {
+          "@id": "gs1:Product"
+        }
       ]
     },
     {
@@ -2403,99 +2461,99 @@
       "rdfs:comment": [
         {
           "@language": "en",
-          "@value": "Indicates the level of detail the DPP applies to: 'Model' (product type), 'Batch' (production lot), or 'Item' (individual serialized unit)."
+          "@value": "Describes the level to which the Digital Product Passport (DPP) applies: a Model (product type), a Batch (production lot), or an Item (an individually serialized product)."
         },
         {
           "@language": "bg",
-          "@value": "Показва нивото на детайлност, за което се отнася DPP: „Модел“ (вид продукт), „Партида“ (производствена партида) или „Елемент“ (индивидуална сериализирана единица)."
+          "@value": "Описва нивото, за което се прилага цифровият продуктов паспорт (DPP): „Модел“ (вид продукт), „Партида“ (производствена партида) или „Елемент“ (индивидуално сериализиран продукт)."
         },
         {
           "@language": "cs",
-          "@value": "Označuje úroveň podrobností, na kterou se DPP vztahuje: „Model“ (typ výrobku), „Šarže“ (výrobní šarže) nebo „Položka“ (jednotlivá sériová jednotka)."
+          "@value": "Popisuje úroveň, na kterou se digitální pas výrobku (DPP) vztahuje: „Model“ (typ výrobku), „Šarže“ (výrobní šarže) nebo „Položka“ (jednotlivě serializovaný výrobek)."
         },
         {
           "@language": "da",
-          "@value": "Angiver det detaljeringsniveau, som DPP gælder for: 'Model' (produkttype), 'Batch' (produktionsparti) eller 'Item' (individuel serialiseret enhed)."
+          "@value": "Beskriver det niveau, som det digitale produktpas (DPP) gælder for: 'Model' (produkttype), 'Batch' (produktionsparti) eller 'Item' (et individuelt serialiseret produkt)."
         },
         {
           "@language": "de",
-          "@value": "Gibt den Detaillierungsgrad an, für den der DPP gilt: „Modell“ (Produkttyp), „Charge“ (Produktionslos) oder „Artikel“ (einzelne serialisierte Einheit)."
+          "@value": "Beschreibt die Ebene, für die der digitale Produktpass (DPP) gilt: ein Modell (Produkttyp), eine Charge (Produktionslos) oder ein Artikel (ein einzeln serialisiertes Produkt)."
         },
         {
           "@language": "el",
-          "@value": "Υποδεικνύει το επίπεδο λεπτομέρειας στο οποίο αναφέρεται το DPP: «Μοντέλο» (τύπος προϊόντος), «Παρτίδα» (παρτίδα παραγωγής) ή «Αντικείμενο» (μεμονωμένη σειριοποιημένη μονάδα)."
+          "@value": "Περιγράφει το επίπεδο στο οποίο ισχύει το ψηφιακό διαβατήριο προϊόντος (DPP): «Μοντέλο» (τύπος προϊόντος), «Παρτίδα» (παρτίδα παραγωγής) ή «Αντικείμενο» (μεμονωμένο σειριοποιημένο προϊόν)."
         },
         {
           "@language": "es",
-          "@value": "Indica el nivel de detalle al que se aplica el DPP: 'Modelo' (tipo de producto), 'Lote' (lote de producción) o 'Artículo' (unidad serializada individual)."
+          "@value": "Describe el nivel al que se aplica el Pasaporte Digital de Producto (DPP): un 'Modelo' (tipo de producto), un 'Lote' (lote de producción) o un 'Artículo' (un producto serializado individual)."
         },
         {
           "@language": "et",
-          "@value": "Näitab detailsuse taset, millele DPP kehtib: „Mudel“ (tootetüüp), „Partii“ (tootmispartii) või „Üksus“ (individuaalne seeriastatud üksus)."
+          "@value": "Kirjeldab taset, millele digitaalne tootepass (DPP) kehtib: „Mudel“ (tootetüüp), „Partii“ (tootmispartii) või „Üksus“ (individuaalselt seeriastatud toode)."
         },
         {
           "@language": "fi",
-          "@value": "Osoittaa yksityiskohtaisuuden tason, jota DPP koskee: 'Malli' (tuotetyyppi), 'Erä' (tuotantoerä) tai 'Kohde' (yksittäinen sarjoitettu yksikkö)."
+          "@value": "Kuvaa tasoa, jota digitaalinen tuotepassi (DPP) koskee: 'Malli' (tuotetyyppi), 'Erä' (tuotantoerä) tai 'Kohde' (yksittäinen sarjoitettu tuote)."
         },
         {
           "@language": "fr",
-          "@value": "Indique le niveau de détail auquel s'applique le DPP : « Modèle » (type de produit), « Lot » (lot de production) ou « Article » (unité sérialisée individuelle)."
+          "@value": "Décrit le niveau auquel s'applique le passeport numérique du produit (DPP) : un « Modèle » (type de produit), un « Lot » (lot de production) ou un « Article » (un produit sérialisé individuel)."
         },
         {
           "@language": "ga",
-          "@value": "Léiríonn sé an leibhéal mionsonraí a bhaineann an DPP leis: 'Múnla' (cineál táirge), 'Baisc' (baisc táirgthe), nó 'Mír' (aonad sraitheach aonair)."
+          "@value": "Cuireann sé síos ar an leibhéal a bhaineann an Pas Táirge Digiteach (DPP) leis: 'Múnla' (cineál táirge), 'Baisc' (baisc táirgthe), nó 'Mír' (táirge sraitheach aonair)."
         },
         {
           "@language": "hr",
-          "@value": "Označava razinu detaljnosti na koju se DPP odnosi: 'Model' (vrsta proizvoda), 'Serija' (proizvodna serija) ili 'Stavka' (pojedinačna serijalizirana jedinica)."
+          "@value": "Opisuje razinu na koju se primjenjuje digitalna putovnica proizvoda (DPP): 'Model' (vrsta proizvoda), 'Serija' (proizvodna serija) ili 'Stavka' (pojedinačni serijalizirani proizvod)."
         },
         {
           "@language": "hu",
-          "@value": "Jelzi a részletezettségi szintet, amelyre a DPP vonatkozik: „Modell” (terméktípus), „Tétel” (gyártási tétel) vagy „Tétel” (egyedi szerializált egység)."
+          "@value": "Leírja azt a szintet, amelyre a digitális termékútlevél (DPP) vonatkozik: „Modell” (terméktípus), „Tétel” (gyártási tétel) vagy „Elem” (egyedi szerializált termék)."
         },
         {
           "@language": "it",
-          "@value": "Indica il livello di dettaglio a cui si applica il DPP: 'Modello' (tipo di prodotto), 'Lotto' (lotto di produzione) o 'Articolo' (unità serializzata individuale)."
+          "@value": "Descrive il livello a cui si applica il passaporto digitale del prodotto (DPP): un 'Modello' (tipo di prodotto), un 'Lotto' (lotto di produzione) o un 'Articolo' (un singolo prodotto serializzato)."
         },
         {
           "@language": "lt",
-          "@value": "Nurodo detalumo lygį, kuriam taikomas DPP: „Modelis“ (gaminio tipas), „Partija“ (gamybos partija) arba „Elementas“ (individualus serijinis vienetas)."
+          "@value": "Apibūdina lygį, kuriam taikomas skaitmeninis gaminio pasas (DPP): „Modelis“ (gaminio tipas), „Partija“ (gamybos partija) arba „Elementas“ (individualiai serijinis gaminys)."
         },
         {
           "@language": "lv",
-          "@value": "Norāda detalizācijas līmeni, uz kuru attiecas DPP: “Modelis” (produkta veids), “Partija” (ražošanas partija) vai “Vienība” (atsevišķa serializēta vienība)."
+          "@value": "Apraksta līmeni, uz kuru attiecas digitālā produkta pase (DPP): “Modelis” (produkta veids), “Partija” (ražošanas partija) vai “Vienība” (atsevišķi serializēts produkts)."
         },
         {
           "@language": "mt",
-          "@value": "Jindika l-livell ta' dettall li japplika għalih id-DPP: 'Mudell' (tip ta' prodott), 'Lott' (lott ta' produzzjoni), jew 'Oġġett' (unità serjalizzata individwali)."
+          "@value": "Jiddeskrivi l-livell li għalih japplika l-Passaport Diġitali tal-Prodott (DPP): 'Mudell' (tip ta' prodott), 'Lott' (lott ta' produzzjoni), jew 'Oġġett' (prodott serjalizzat individwali)."
         },
         {
           "@language": "nl",
-          "@value": "Geeft het detailniveau aan waarop het DPP van toepassing is: 'Model' (producttype), 'Batch' (productiepartij) of 'Item' (individuele geserialiseerde eenheid)."
+          "@value": "Beschrijft het niveau waarop het digitaal productpaspoort (DPP) van toepassing is: een 'Model' (producttype), een 'Batch' (productiepartij) of een 'Item' (een individueel geserialiseerd product)."
         },
         {
           "@language": "pl",
-          "@value": "Wskazuje poziom szczegółowości, którego dotyczy DPP: „Model” (typ produktu), „Partia” (partia produkcyjna) lub „Pozycja” (pojedyncza jednostka seryjna)."
+          "@value": "Opisuje poziom, którego dotyczy cyfrowy paszport produktu (DPP): „Model” (typ produktu), „Partia” (partia produkcyjna) lub „Pozycja” (pojedynczy produkt seryjny)."
         },
         {
           "@language": "pt",
-          "@value": "Indica o nível de detalhe a que o DPP se aplica: 'Modelo' (tipo de produto), 'Lote' (lote de produção) ou 'Item' (unidade serializada individual)."
+          "@value": "Descreve o nível a que o Passaporte Digital do Produto (DPP) se aplica: um 'Modelo' (tipo de produto), um 'Lote' (lote de produção) ou um 'Item' (um produto serializado individual)."
         },
         {
           "@language": "ro",
-          "@value": "Indică nivelul de detaliere la care se aplică DPP: „Model” (tip de produs), „Lot” (lot de producție) sau „Articol” (unitate serializată individual)."
+          "@value": "Descrie nivelul la care se aplică pașaportul digital al produsului (DPP): un „Model” (tip de produs), un „Lot” (lot de producție) sau un „Articol” (un produs serializat individual)."
         },
         {
           "@language": "sk",
-          "@value": "Označuje úroveň podrobností, na ktorú sa DPP vzťahuje: „Model“ (typ výrobku), „Šarža“ (výrobná dávka) alebo „Položka“ (jednotlivá sériová jednotka)."
+          "@value": "Opisuje úroveň, na ktorú sa digitálny pas výrobku (DPP) vzťahuje: „Model“ (typ výrobku), „Šarža“ (výrobná dávka) alebo „Položka“ (jednotlivý sériový produkt)."
         },
         {
           "@language": "sl",
-          "@value": "Označuje raven podrobnosti, za katero velja DPP: 'Model' (vrsta izdelka), 'Serija' (proizvodna serija) ali 'Postavka' (posamezna serializirana enota)."
+          "@value": "Opisuje raven, za katero velja digitalni potni list izdelka (DPP): 'Model' (vrsta izdelka), 'Serija' (proizvodna serija) ali 'Postavka' (posamezen serializiran izdelek)."
         },
         {
           "@language": "sv",
-          "@value": "Anger den detaljnivå som DPP gäller för: 'Modell' (produkttyp), 'Batch' (produktionsparti) eller 'Artikel' (individuell serialiserad enhet)."
+          "@value": "Beskriver den nivå som det digitala produktpasset (DPP) gäller för: 'Modell' (produkttyp), 'Batch' (produktionsparti) eller 'Artikel' (en individuellt serialiserad produkt)."
         }
       ],
       "dppk:visibility": {
@@ -2506,6 +2564,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:GranularityValue"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Text"
       }
     },
     {
@@ -2715,6 +2776,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:creativeWorkStatus"
       }
     },
     {
@@ -2924,6 +2988,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:dateTime"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:dateModified"
       }
     },
     {
@@ -3133,6 +3200,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:version"
       }
     },
     {
@@ -3342,6 +3412,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:date"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:dateModified"
       }
     },
     {
@@ -3551,6 +3624,9 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:version"
       }
     },
     {
@@ -3760,7 +3836,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalProductClassificationValue"
+        }
+      ]
     },
     {
       "@id": "dppk:hsCode",
@@ -3970,14 +4054,12 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "gs1:customsClassification"
-        },
-        {
-          "@id": "schema:hscode"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "schema:hscode"
+      },
+      "skos:closeMatch": {
+        "@id": "gs1:customsClassification"
+      }
     },
     {
       "@id": "dppk:governedBy",
@@ -4177,7 +4259,10 @@
           "@language": "sv",
           "@value": "Standard som reglerar denna egenskap."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:sponsor"
+      }
     },
     {
       "@id": "dppk:unit",
@@ -4379,6 +4464,17 @@
         {
           "@language": "sv",
           "@value": "Måttenheten."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:unitCode"
+        },
+        {
+          "@id": "gs1:unitCode"
+        },
+        {
+          "@id": "unece:QuantityTypeCode"
         }
       ]
     },

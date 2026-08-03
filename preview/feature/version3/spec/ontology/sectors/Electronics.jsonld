@@ -9,7 +9,8 @@
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms"
+    "@base": "https://dpp-keystone.org/spec/v3/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Electronics",
   "@type": "owl:Ontology",
@@ -521,7 +522,15 @@
       },
       "rdfs:subClassOf": {
         "@id": "dppk:Product"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        }
+      ]
     },
     {
       "@id": "dppk:PowerTool",
@@ -724,7 +733,15 @@
       ],
       "rdfs:subClassOf": {
         "@id": "dppk:ElectronicDevice"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        }
+      ]
     },
     {
       "@id": "dppk:voltage",
@@ -930,6 +947,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
       }
     },
     {
@@ -1136,7 +1156,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:energyEfficiencyClass",
@@ -1342,7 +1370,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:hasEnergyEfficiencyCategory"
+        },
+        {
+          "@id": "gs1:energyEfficiencyClass"
+        }
+      ]
     },
     {
       "@id": "dppk:ipRating",
@@ -1548,7 +1584,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:sparePartsAvailable",
@@ -1754,7 +1798,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Boolean"
+        },
+        {
+          "@id": "gs1:booleanValue"
+        }
+      ]
     },
     {
       "@id": "dppk:serviceManualAvailable",
@@ -1960,7 +2012,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Boolean"
+        },
+        {
+          "@id": "gs1:booleanValue"
+        }
+      ]
     },
     {
       "@id": "dppk:softwareUpdatePolicy",
@@ -2166,7 +2226,15 @@
       },
       "rdfs:range": {
         "@id": "rdf:langString"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:CreativeWork"
+        },
+        {
+          "@id": "gs1:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:weeeCategory",
@@ -2372,7 +2440,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:category"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:disassemblyInstructions",
@@ -2578,6 +2654,9 @@
       },
       "rdfs:range": {
         "@id": "rdf:langString"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:howTo"
       }
     },
     {
@@ -2784,6 +2863,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
       }
     },
     {
@@ -2990,6 +3072,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:QuantitativeValue"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:QuantitativeValue"
       }
     }
   ]

@@ -8,7 +8,9 @@
     "dppk-unit": "https://dpp-keystone.org/spec/v3/terms/unit#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "dcterms": "http://purl.org/dc/terms/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms/unit"
+    "@base": "https://dpp-keystone.org/spec/v3/terms/unit",
+    "schema": "https://schema.org/",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Unit",
   "@type": "owl:Ontology",
@@ -212,7 +214,7 @@
   "@graph": [
     {
       "@id": "dppk:Unit",
-      "@type": "owl:Class",
+      "@type": "rdfs:Class",
       "rdfs:label": [
         {
           "@language": "en",
@@ -407,6 +409,14 @@
         {
           "@language": "sv",
           "@value": "En väldefinierad måttenhet."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:QuantitativeValue"
+        },
+        {
+          "@id": "gs1:QuantitativeValue"
         }
       ]
     },
@@ -614,7 +624,10 @@
           "@language": "sv",
           "@value": "Den råa strängrepresentationen eller symbolen för enheten."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:unitText"
+      }
     },
     {
       "@id": "dppk-unit:Percent",

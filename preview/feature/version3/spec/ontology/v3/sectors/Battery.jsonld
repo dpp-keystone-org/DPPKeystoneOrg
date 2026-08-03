@@ -6,7 +6,9 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
     "dcterms": "http://purl.org/dc/terms/",
-    "schema": "http://schema.org/"
+    "schema": "http://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "gs1": "https://gs1.org/voc/"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Battery",
   "@type": "owl:Ontology",
@@ -426,6 +428,14 @@
           "@language": "sv",
           "@value": "Datamodell för batteripasset enligt EU:s batteriförordning."
         }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Product"
+        },
+        {
+          "@id": "gs1:Product"
+        }
       ]
     },
     {
@@ -630,6 +640,14 @@
         {
           "@language": "sv",
           "@value": "Behållare för prestanda- och hållbarhetsparametrar för batteriet."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
         }
       ]
     },
@@ -836,6 +854,14 @@
           "@language": "sv",
           "@value": "Information om batteriets kapacitet, energi, laddningstillstånd och spänningsgränser."
         }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
       ]
     },
     {
@@ -1040,6 +1066,14 @@
         {
           "@language": "sv",
           "@value": "Information om batteriets effektkapacitet, effektminskning och maximalt tillåten effekt."
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
         }
       ]
     },
@@ -1246,6 +1280,14 @@
           "@language": "sv",
           "@value": "Information om batteriets tur-och-retur-energieffektivitet och självurladdningshastigheter."
         }
+      ],
+      "skos:closeMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
       ]
     },
     {
@@ -1451,7 +1493,10 @@
           "@language": "sv",
           "@value": "Information om batteriets inre resistans och dess ökning över tid."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:StructuredValue"
+      }
     },
     {
       "@id": "dppk:LifetimeInfo",
@@ -1656,7 +1701,10 @@
           "@language": "sv",
           "@value": "Information om batteriets förväntade livslängd i år och cykler, inklusive referenstester."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:StructuredValue"
+      }
     },
     {
       "@id": "dppk:TemperatureInfo",
@@ -1861,7 +1909,10 @@
           "@language": "sv",
           "@value": "Information om de temperaturområden som batteriet tål och den tid som tillbringats i extrema temperaturer."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:NegativeEventsInfo",
@@ -2066,7 +2117,10 @@
           "@language": "sv",
           "@value": "Information om negativa händelser såsom djupa urladdningar, överladdningar och olyckor."
         }
-      ]
+      ],
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     },
     {
       "@id": "dppk:manufacturingPlace",
@@ -2275,7 +2329,10 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:closeMatch": {
+        "@id": "schema:locationCreated"
+      }
     },
     {
       "@id": "dppk:manufacturingDate",
@@ -2484,7 +2541,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:date"
+      "rdfs:range": "xsd:date",
+      "skos:exactMatch": [
+        {
+          "@id": "schema:productionDate"
+        },
+        {
+          "@id": "gs1:productionDate"
+        }
+      ]
     },
     {
       "@id": "dppk:serviceDate",
@@ -2693,7 +2758,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:date"
+      "rdfs:range": "xsd:date",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Date"
+        },
+        {
+          "@id": "unece:Date"
+        }
+      ]
     },
     {
       "@id": "dppk:warrantyPeriod",
@@ -2902,7 +2975,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:durationOfWarranty"
+        },
+        {
+          "@id": "gs1:WarrantyPromise"
+        }
+      ]
     },
     {
       "@id": "dppk:batteryCategory",
@@ -3111,17 +3192,26 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:category"
+        },
+        {
+          "@id": "gs1:productCategory"
+        }
+      ]
     },
     {
       "@id": "dppk:batteryMass",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1a); Annex VI Part A (5)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Kilogram"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1a); Annex VI Part A (5)"
       },
       "rdfs:label": [
         {
@@ -3322,7 +3412,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:weight"
+        },
+        {
+          "@id": "gs1:netWeight"
+        }
+      ]
     },
     {
       "@id": "dppk:batteryStatus",
@@ -3531,7 +3629,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:separateCollectionSymbol",
@@ -3742,7 +3848,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:image"
+        },
+        {
+          "@id": "gs1:image"
+        }
+      ]
     },
     {
       "@id": "dppk:heavyMetalSymbols",
@@ -3953,6 +4067,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Text"
       }
     },
     {
@@ -4164,7 +4281,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:extinguishingAgent",
@@ -4373,7 +4498,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:material"
+        }
+      ]
     },
     {
       "@id": "dppk:labelMeaning",
@@ -4582,7 +4715,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:description"
+        },
+        {
+          "@id": "gs1:productDescription"
+        }
+      ]
     },
     {
       "@id": "dppk:testReports",
@@ -4793,6 +4934,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Report"
       }
     },
     {
@@ -5002,7 +5146,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:carbonFootprintStudy",
@@ -5213,7 +5365,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:CreativeWork"
+        },
+        {
+          "@id": "unece:Document"
+        }
+      ]
     },
     {
       "@id": "dppk:carbonFootprintGeneralInfo",
@@ -5424,7 +5584,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:carbonFootprintAbsolute",
@@ -5634,7 +5802,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:dueDiligenceReport",
@@ -5845,6 +6021,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:Report"
       }
     },
     {
@@ -6056,7 +6235,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:certification"
+        },
+        {
+          "@id": "gs1:CertificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:supplyChainIndices",
@@ -6474,7 +6661,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:material"
+        }
+      ]
     },
     {
       "@id": "dppk:criticalRawMaterials",
@@ -6683,7 +6878,10 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": {
+        "@id": "schema:material"
+      }
     },
     {
       "@id": "dppk:materialComposition",
@@ -6894,6 +7092,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:Component"
+      },
+      "skos:exactMatch": {
+        "@id": "schema:material"
       }
     },
     {
@@ -7105,7 +7306,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:Component"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:material"
+        }
+      ]
     },
     {
       "@id": "dppk:hazardousSubstancesImpact",
@@ -7314,7 +7523,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:dismantlingInformation",
@@ -7525,6 +7742,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
+      },
+      "skos:closeMatch": {
+        "@id": "schema:howTo"
       }
     },
     {
@@ -7736,7 +7956,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:mpn"
+        },
+        {
+          "@id": "gs1:globalModelNumber"
+        }
+      ]
     },
     {
       "@id": "dppk:sparePartsSources",
@@ -7947,7 +8175,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     },
     {
       "@id": "dppk:safetyMeasures",
@@ -8158,7 +8394,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     },
     {
       "@id": "dppk:wastePreventionInfo",
@@ -8369,7 +8613,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:RelatedResource"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:description"
+        },
+        {
+          "@id": "gs1:description"
+        }
+      ]
     },
     {
       "@id": "dppk:preConsumerRecycledMaterialComposition",
@@ -8580,7 +8832,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:Component"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:postConsumerRecycledMaterialComposition",
@@ -8791,17 +9051,26 @@
       },
       "rdfs:range": {
         "@id": "dppk:Component"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:material"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:renewableContent",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1f)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1f)"
       },
       "rdfs:label": [
         {
@@ -9002,7 +9271,15 @@
       "rdfs:domain": {
         "@id": "dppk:BatteryProduct"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:performance",
@@ -9213,7 +9490,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:BatteryPerformance"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:capacity",
@@ -9424,7 +9709,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:CapacityInfo"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:power",
@@ -9635,7 +9928,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:PowerInfo"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:efficiency",
@@ -9846,7 +10147,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:EfficiencyInfo"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:internalResistance",
@@ -10057,7 +10366,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:InternalResistanceInfo"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:lifetime",
@@ -10268,6 +10585,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:LifetimeInfo"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:QuantitativeValue"
       }
     },
     {
@@ -10479,6 +10799,9 @@
       },
       "rdfs:range": {
         "@id": "dppk:TemperatureInfo"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
       }
     },
     {
@@ -10690,17 +11013,21 @@
       },
       "rdfs:range": {
         "@id": "dppk:NegativeEventsInfo"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
       }
     },
     {
       "@id": "dppk:ratedCapacity",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1g); Annex IV Part A (1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1g); Annex IV Part A (1)"
       },
       "rdfs:label": [
         {
@@ -10901,17 +11228,26 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:remainingCapacity",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part A (1)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part A (1)"
       },
       "rdfs:label": [
         {
@@ -11112,17 +11448,26 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:capacityFade",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part A (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part A (2)"
       },
       "rdfs:label": [
         {
@@ -11323,7 +11668,15 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:certifiedUsableEnergy",
@@ -11533,7 +11886,15 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:remainingUsableEnergy",
@@ -11743,17 +12104,26 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:soce",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part A (EV)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part A (EV)"
       },
       "rdfs:label": [
         {
@@ -11954,17 +12324,26 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:stateOfCharge",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (4d); Article 3 1(27)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Article 3 1(27)"
       },
       "rdfs:label": [
         {
@@ -12165,17 +12544,21 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:voltageMinimum",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1h)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Volt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1h)"
       },
       "rdfs:label": [
         {
@@ -12376,17 +12759,21 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:voltageMaximum",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1h)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Volt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1h)"
       },
       "rdfs:label": [
         {
@@ -12587,17 +12974,21 @@
       "rdfs:domain": {
         "@id": "dppk:CapacityInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:voltageNominal",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1h)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Volt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1h)"
       },
       "rdfs:label": [
         {
@@ -12803,12 +13194,13 @@
     {
       "@id": "dppk:powerOriginal",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1i); Art. 10; Annex IV Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Watt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i); Art. 10; Annex IV Part B (4)"
       },
       "rdfs:label": [
         {
@@ -13009,17 +13401,26 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerRemaining",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Art. 10; Annex IV (3); Annex VII Part A (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Watt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 10; Annex IV (3); Annex VII Part A (2)"
       },
       "rdfs:label": [
         {
@@ -13220,17 +13621,26 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerFade",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part A (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part A (4)"
       },
       "rdfs:label": [
         {
@@ -13431,17 +13841,26 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerMaximumPermitted",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1i)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Watt"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1i)"
       },
       "rdfs:label": [
         {
@@ -13642,17 +14061,26 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:additionalProperty"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:powerEnergyRatio",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part B (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:WattPerWattHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part B (2)"
       },
       "rdfs:label": [
         {
@@ -13853,17 +14281,26 @@
       "rdfs:domain": {
         "@id": "dppk:PowerInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:roundTripEfficiencyInitial",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1n); Art. 10; Annex IV (6)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1n); Art. 10; Annex IV (6)"
       },
       "rdfs:label": [
         {
@@ -14064,17 +14501,26 @@
       "rdfs:domain": {
         "@id": "dppk:EfficiencyInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:roundTripEfficiencyAt50Cycles",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII 1(n); Annex IV (6)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII 1(n); Annex IV (6)"
       },
       "rdfs:label": [
         {
@@ -14275,17 +14721,26 @@
       "rdfs:domain": {
         "@id": "dppk:EfficiencyInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:roundTripEfficiencyRemaining",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Art. 10; Annex VII Part A (3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 10; Annex VII Part A (3)"
       },
       "rdfs:label": [
         {
@@ -14486,17 +14941,26 @@
       "rdfs:domain": {
         "@id": "dppk:EfficiencyInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:roundTripEfficiencyFade",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV Part A (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV Part A (4)"
       },
       "rdfs:label": [
         {
@@ -14697,7 +15161,15 @@
       "rdfs:domain": {
         "@id": "dppk:EfficiencyInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:selfDischargeInitial",
@@ -14907,7 +15379,15 @@
       "rdfs:domain": {
         "@id": "dppk:EfficiencyInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:selfDischargeCurrent",
@@ -15117,17 +15597,26 @@
       "rdfs:domain": {
         "@id": "dppk:EfficiencyInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:selfDischargeEvolution",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Art. 14: Annex VII Part A (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Art. 14: Annex VII Part A (4)"
       },
       "rdfs:label": [
         {
@@ -15328,17 +15817,26 @@
       "rdfs:domain": {
         "@id": "dppk:EfficiencyInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:internalResistanceInitial",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1o); Art. 10: Annex IV Part A (3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Ohm"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o); Art. 10: Annex IV Part A (3)"
       },
       "rdfs:label": [
         {
@@ -15539,17 +16037,26 @@
       "rdfs:domain": {
         "@id": "dppk:InternalResistanceInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:internalResistanceIncrease",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV, Part A(3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV, Part A(3)"
       },
       "rdfs:label": [
         {
@@ -15750,17 +16257,26 @@
       "rdfs:domain": {
         "@id": "dppk:InternalResistanceInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:expectedLifetimeYears",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV, Part A(5); Annex XIII (1); Annex XIII (4a)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Year"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV, Part A(5); Annex XIII (1); Annex XIII (4a)"
       },
       "rdfs:label": [
         {
@@ -15961,17 +16477,21 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:duration"
+      }
     },
     {
       "@id": "dppk:expectedLifetimeCycles",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex IV A(5)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Unitless"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex IV A(5)"
       },
       "rdfs:label": [
         {
@@ -16172,17 +16692,26 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:cycleCountFull",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (4d); Art. 14: Annex VII Part B (5)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Unitless"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (4d); Art. 14: Annex VII Part B (5)"
       },
       "rdfs:label": [
         {
@@ -16383,7 +16912,15 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:referenceTestCycleLife",
@@ -16592,17 +17129,26 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:cRateCycleTest",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1p)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmperePerAmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1p)"
       },
       "rdfs:label": [
         {
@@ -16803,17 +17349,26 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:value"
+        },
+        {
+          "@id": "gs1:value"
+        }
+      ]
     },
     {
       "@id": "dppk:energyThroughput",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (2)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:KilowattHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (2)"
       },
       "rdfs:label": [
         {
@@ -17014,17 +17569,26 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:capacityThroughput",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (3)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:AmpereHour"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (3)"
       },
       "rdfs:label": [
         {
@@ -17225,17 +17789,26 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
     },
     {
       "@id": "dppk:exhaustionCapacityThreshold",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1k)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Percent"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1k)"
       },
       "rdfs:label": [
         {
@@ -17436,17 +18009,26 @@
       "rdfs:domain": {
         "@id": "dppk:LifetimeInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:ProductCharacteristic"
+        }
+      ]
     },
     {
       "@id": "dppk:temperatureIdleLower",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1l)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:DegreeCelsius"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l)"
       },
       "rdfs:label": [
         {
@@ -17647,17 +18229,21 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:temperatureIdleUpper",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex XIII (1l)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:DegreeCelsius"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1l)"
       },
       "rdfs:label": [
         {
@@ -17858,17 +18444,21 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeExtremeTempUpper",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -18069,17 +18659,21 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeExtremeTempLower",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -18280,17 +18874,21 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeChargingTempUpper",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -18491,17 +19089,21 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:timeChargingTempLower",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Minute"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -18702,17 +19304,21 @@
       "rdfs:domain": {
         "@id": "dppk:TemperatureInfo"
       },
-      "rdfs:range": "xsd:double"
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": {
+        "@id": "schema:PropertyValue"
+      }
     },
     {
       "@id": "dppk:eventsDeepDischarge",
       "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "Annex VII Part B (4)",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
       "dppk:unit": {
         "@id": "dppk-unit:Unitless"
       },
       "dcterms:source": {
-        "@id": "https://www.dinmedia.de/en/technical-rule/din-dke-spec-99100/385692321"
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex VII Part B (4)"
       },
       "rdfs:label": [
         {
@@ -18913,7 +19519,10 @@
       "rdfs:domain": {
         "@id": "dppk:NegativeEventsInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     },
     {
       "@id": "dppk:eventsOvercharge",
@@ -19123,7 +19732,10 @@
       "rdfs:domain": {
         "@id": "dppk:NegativeEventsInfo"
       },
-      "rdfs:range": "xsd:integer"
+      "rdfs:range": "xsd:integer",
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     },
     {
       "@id": "dppk:eventsAccidents",
@@ -19332,7 +19944,10 @@
       "rdfs:domain": {
         "@id": "dppk:NegativeEventsInfo"
       },
-      "rdfs:range": "xsd:string"
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": {
+        "@id": "schema:Event"
+      }
     }
   ]
 }

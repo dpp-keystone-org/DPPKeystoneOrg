@@ -1,0 +1,277 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
+  },
+  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/sectors/cement/DoPC",
+  "@type": "ShapesGraph",
+  "@graph": [
+    {
+      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-cement-dopc_CementDoPCShape",
+      "@type": "NodeShape",
+      "targetClass": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#CementDoPC",
+      "property": [
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#manufacturer",
+          "message": "Auto-generated rule for dppk-cement-dopc:manufacturer",
+          "or": {
+            "@list": [
+              {
+                "node": {
+                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_OrganizationShape"
+                },
+                "nodeKind": {
+                  "@id": "sh:BlankNodeOrIRI"
+                }
+              },
+              {
+                "datatype": "dppk:Organization"
+              }
+            ]
+          }
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#postalAddress",
+          "message": "Auto-generated rule for dppk-cement-dopc:postalAddress",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#registeredPlaceOfBusiness",
+          "message": "Auto-generated rule for dppk-cement-dopc:registeredPlaceOfBusiness",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#declarationCode",
+          "message": "Auto-generated rule for dppk-cement-dopc:declarationCode",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#version",
+          "message": "Auto-generated rule for dppk-cement-dopc:version",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#uniqueIdentificationCode",
+          "message": "Auto-generated rule for dppk-cement-dopc:uniqueIdentificationCode",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#harmonisedTechnicalSpecification",
+          "message": "Auto-generated rule for dppk-cement-dopc:harmonisedTechnicalSpecification",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#sustainabilityDataCompliance",
+          "message": "Auto-generated rule for dppk-cement-dopc:sustainabilityDataCompliance",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#productConformityDeclaration",
+          "message": "Auto-generated rule for dppk-cement-dopc:productConformityDeclaration",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#batch",
+          "message": "Auto-generated rule for dppk-cement-dopc:batch",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#productCategory",
+          "message": "Auto-generated rule for dppk-cement-dopc:productCategory",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#declaredUses",
+          "message": "Auto-generated rule for dppk-cement-dopc:declaredUses",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#manufacturerProductRegistrations",
+          "message": "Auto-generated rule for dppk-cement-dopc:manufacturerProductRegistrations",
+          "or": {
+            "@list": [
+              {
+                "datatype": "xsd:anyURI"
+              },
+              {
+                "nodeKind": {
+                  "@id": "sh:IRI"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#reachInformation",
+          "message": "Auto-generated rule for dppk-cement-dopc:reachInformation",
+          "or": {
+            "@list": [
+              {
+                "datatype": "xsd:anyURI"
+              },
+              {
+                "nodeKind": {
+                  "@id": "sh:IRI"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#generalProductInformation",
+          "message": "Auto-generated rule for dppk-cement-dopc:generalProductInformation",
+          "or": {
+            "@list": [
+              {
+                "datatype": "xsd:anyURI"
+              },
+              {
+                "nodeKind": {
+                  "@id": "sh:IRI"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#notifiedBodyIdentificationNumber",
+          "message": "Auto-generated rule for dppk-cement-dopc:notifiedBodyIdentificationNumber",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#certificatesOrValidationReports",
+          "message": "Auto-generated rule for dppk-cement-dopc:certificatesOrValidationReports",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceAntimony",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceAntimony",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceArsenic",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceArsenic",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceAsbestos",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceAsbestos",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceBarium",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceBarium",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceBromide",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceBromide",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceCadmium",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceCadmium",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceChloride",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceChloride",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceChromiumTotal",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceChromiumTotal",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceCobalt",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceCobalt",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceCopper",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceCopper",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceCyanide",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceCyanide",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceFluoride",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceFluoride",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceLead",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceLead",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceMercury",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceMercury",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceMolybdenum",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceMolybdenum",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceNickel",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceNickel",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstancePhenols",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstancePhenols",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceSelenium",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceSelenium",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceSulfate",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceSulfate",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceTin",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceTin",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceVanadium",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceVanadium",
+          "datatype": "xsd:decimal"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#dangerousSubstanceZinc",
+          "message": "Auto-generated rule for dppk-cement-dopc:dangerousSubstanceZinc",
+          "datatype": "xsd:decimal"
+        }
+      ]
+    }
+  ]
+}

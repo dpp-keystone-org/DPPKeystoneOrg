@@ -1,0 +1,360 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
+  },
+  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/sectors/Cement",
+  "@type": "ShapesGraph",
+  "@graph": [
+    {
+      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-cement_CementProductShape",
+      "@type": "NodeShape",
+      "targetClass": "https://dpp-keystone.org/spec/v3/terms/cement#CementProduct",
+      "property": [
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumStandardCompressiveStrength28Days",
+          "message": "Auto-generated rule for dppk-cement:minimumStandardCompressiveStrength28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#maximumStandardCompressiveStrength28Days",
+          "message": "Auto-generated rule for dppk-cement:maximumStandardCompressiveStrength28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumVeryEarlyCompressiveStrength24Hours",
+          "message": "Auto-generated rule for dppk-cement:minimumVeryEarlyCompressiveStrength24Hours",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumEarlyCompressiveStrength2Days",
+          "message": "Auto-generated rule for dppk-cement:minimumEarlyCompressiveStrength2Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumEarlyCompressiveStrength7Days",
+          "message": "Auto-generated rule for dppk-cement:minimumEarlyCompressiveStrength7Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumLateCompressiveStrength56Days",
+          "message": "Auto-generated rule for dppk-cement:minimumLateCompressiveStrength56Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumLateCompressiveStrength90Days",
+          "message": "Auto-generated rule for dppk-cement:minimumLateCompressiveStrength90Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#initialSettingTime",
+          "message": "Auto-generated rule for dppk-cement:initialSettingTime",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#lossOnIgnition",
+          "message": "Auto-generated rule for dppk-cement:lossOnIgnition",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#lossOnIgnition1h",
+          "message": "Auto-generated rule for dppk-cement:lossOnIgnition1h",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#soundness",
+          "message": "Auto-generated rule for dppk-cement:soundness",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#heatOfHydration",
+          "message": "Auto-generated rule for dppk-cement:heatOfHydration",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#pozzolanicityHydroxylIonConcentration",
+          "message": "Auto-generated rule for dppk-cement:pozzolanicityHydroxylIonConcentration",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#pozzolanicityCalciumOxideConcentration",
+          "message": "Auto-generated rule for dppk-cement:pozzolanicityCalciumOxideConcentration",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#pozzolanicity7525Mix8Days",
+          "message": "Auto-generated rule for dppk-cement:pozzolanicity7525Mix8Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#pozzolanicity7525Mix15Days",
+          "message": "Auto-generated rule for dppk-cement:pozzolanicity7525Mix15Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#insolubleResidueContent",
+          "message": "Auto-generated rule for dppk-cement:insolubleResidueContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#sulfateContent",
+          "message": "Auto-generated rule for dppk-cement:sulfateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#chlorideContent",
+          "message": "Auto-generated rule for dppk-cement:chlorideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#totalAlkaliContent",
+          "message": "Auto-generated rule for dppk-cement:totalAlkaliContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#effectiveAlkaliContent",
+          "message": "Auto-generated rule for dppk-cement:effectiveAlkaliContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#alkaliContent",
+          "message": "Auto-generated rule for dppk-cement:alkaliContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#tricalciumAluminateContent",
+          "message": "Auto-generated rule for dppk-cement:tricalciumAluminateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#tetracalciumAluminoferriteContent",
+          "message": "Auto-generated rule for dppk-cement:tetracalciumAluminoferriteContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#dicalciumFerriteContent",
+          "message": "Auto-generated rule for dppk-cement:dicalciumFerriteContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#magnesiumOxideContent",
+          "message": "Auto-generated rule for dppk-cement:magnesiumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#aluminiumOxideContent",
+          "message": "Auto-generated rule for dppk-cement:aluminiumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#sulfurAsSulfideIons",
+          "message": "Auto-generated rule for dppk-cement:sulfurAsSulfideIons",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#tricalciumSilicateContent",
+          "message": "Auto-generated rule for dppk-cement:tricalciumSilicateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#calciumOxideContent",
+          "message": "Auto-generated rule for dppk-cement:calciumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#freeCalciumOxideContent",
+          "message": "Auto-generated rule for dppk-cement:freeCalciumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#reactiveCalciumOxideContent",
+          "message": "Auto-generated rule for dppk-cement:reactiveCalciumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#sulfateResistanceFlatPrismTest",
+          "message": "Auto-generated rule for dppk-cement:sulfateResistanceFlatPrismTest",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#sulfateResistanceSquarePrismTest",
+          "message": "Auto-generated rule for dppk-cement:sulfateResistanceSquarePrismTest",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#combinedCalciumSilicatesContent",
+          "message": "Auto-generated rule for dppk-cement:combinedCalciumSilicatesContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#siliconDioxideContent",
+          "message": "Auto-generated rule for dppk-cement:siliconDioxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#reactiveSiliconDioxideContent",
+          "message": "Auto-generated rule for dppk-cement:reactiveSiliconDioxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#amorphousSiliconDioxideContent",
+          "message": "Auto-generated rule for dppk-cement:amorphousSiliconDioxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#elementalSiliconContent",
+          "message": "Auto-generated rule for dppk-cement:elementalSiliconContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#ratioCalciumOxideToSiliconDioxide",
+          "message": "Auto-generated rule for dppk-cement:ratioCalciumOxideToSiliconDioxide",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#ratioCalciumOxidePlusMagnesiumOxideToSiliconDioxide",
+          "message": "Auto-generated rule for dppk-cement:ratioCalciumOxidePlusMagnesiumOxideToSiliconDioxide",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#ratioSiliconDioxideToCalciumOxidePlusMagnesiumOxide",
+          "message": "Auto-generated rule for dppk-cement:ratioSiliconDioxideToCalciumOxidePlusMagnesiumOxide",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#combinedCalciumOxideMagnesiumOxideSiliconDioxideContent",
+          "message": "Auto-generated rule for dppk-cement:combinedCalciumOxideMagnesiumOxideSiliconDioxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#glassContent",
+          "message": "Auto-generated rule for dppk-cement:glassContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#carbonateContent",
+          "message": "Auto-generated rule for dppk-cement:carbonateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#calciumCarbonateContent",
+          "message": "Auto-generated rule for dppk-cement:calciumCarbonateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#magnesiumCarbonateContent",
+          "message": "Auto-generated rule for dppk-cement:magnesiumCarbonateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#sumCalciumCarbonateAndMagnesiumCarbonate",
+          "message": "Auto-generated rule for dppk-cement:sumCalciumCarbonateAndMagnesiumCarbonate",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#specificSurfaceArea",
+          "message": "Auto-generated rule for dppk-cement:specificSurfaceArea",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#compressiveStrength8020Mix28Days",
+          "message": "Auto-generated rule for dppk-cement:compressiveStrength8020Mix28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#ratioCompressiveStrength7525MixTo1000Mix28Days",
+          "message": "Auto-generated rule for dppk-cement:ratioCompressiveStrength7525MixTo1000Mix28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#activityIndex28Days",
+          "message": "Auto-generated rule for dppk-cement:activityIndex28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#activityIndex90Days",
+          "message": "Auto-generated rule for dppk-cement:activityIndex90Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#compressiveStrengthBurntShale28Days",
+          "message": "Auto-generated rule for dppk-cement:compressiveStrengthBurntShale28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#totalOrganicCarbonContent",
+          "message": "Auto-generated rule for dppk-cement:totalOrganicCarbonContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#clayContent",
+          "message": "Auto-generated rule for dppk-cement:clayContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#boundWater",
+          "message": "Auto-generated rule for dppk-cement:boundWater",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#designationCode",
+          "message": "Auto-generated rule for dppk-cement:designationCode",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumClinkerContent",
+          "message": "Auto-generated rule for dppk-cement:minimumClinkerContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#maximumClinkerContent",
+          "message": "Auto-generated rule for dppk-cement:maximumClinkerContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#minimumBlastFurnaceSlagContent",
+          "message": "Auto-generated rule for dppk-cement:minimumBlastFurnaceSlagContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#maximumBlastFurnaceSlagContent",
+          "message": "Auto-generated rule for dppk-cement:maximumBlastFurnaceSlagContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#maximumLimestoneContent",
+          "message": "Auto-generated rule for dppk-cement:maximumLimestoneContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#maximumRecycledConcreteFinesContent",
+          "message": "Auto-generated rule for dppk-cement:maximumRecycledConcreteFinesContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms/cement#maximumChlorideContent",
+          "message": "Auto-generated rule for dppk-cement:maximumChlorideContent",
+          "datatype": "xsd:double"
+        }
+      ]
+    }
+  ]
+}

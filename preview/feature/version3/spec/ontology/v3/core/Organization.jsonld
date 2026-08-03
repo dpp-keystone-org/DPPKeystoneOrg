@@ -9,7 +9,8 @@
     "dppk": "https://dpp-keystone.org/spec/v3/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms"
+    "@base": "https://dpp-keystone.org/spec/v3/terms",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Organization.jsonld",
   "@type": "owl:Ontology",
@@ -413,7 +414,7 @@
           "@value": "Ett allmänt begrepp för alla organisationer eller juridiska personer som är involverade i produktens livscykel."
         }
       ],
-      "owl:equivalentClass": [
+      "skos:exactMatch": [
         {
           "@id": "schema:Organization"
         },
@@ -624,7 +625,7 @@
           "@value": "Den fysiska postadressen till en organisation eller plats."
         }
       ],
-      "owl:equivalentClass": [
+      "skos:exactMatch": [
         {
           "@id": "schema:PostalAddress"
         },
@@ -840,7 +841,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      }
+      },
+      "skos:closeMatch": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "gs1:Organization"
+        }
+      ]
     },
     {
       "@id": "dppk:manufacturer",
@@ -1047,7 +1056,7 @@
       "rdfs:range": {
         "@id": "dppk:Organization"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:manufacturer"
         },
@@ -1260,6 +1269,12 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
+      },
+      "skos:relatedMatch": {
+        "@id": "schema:merchant"
+      },
+      "skos:exactMatch": {
+        "@id": "gs1:importer"
       }
     },
     {
@@ -1466,7 +1481,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Place"
+        },
+        {
+          "@id": "gs1:Place"
+        }
+      ]
     },
     {
       "@id": "dppk:repairService",
@@ -1672,7 +1695,15 @@
       },
       "rdfs:range": {
         "@id": "dppk:Organization"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "gs1:Service"
+        }
+      ]
     },
     {
       "@id": "dppk:organizationName",
@@ -1882,7 +1913,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:name"
         },
@@ -2102,7 +2133,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "gs1:organizationTradingName"
         },
@@ -2319,7 +2350,7 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "gs1:globalLocationNumber"
         },
@@ -2539,11 +2570,9 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "schema:leiCode"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "schema:leiCode"
+      }
     },
     {
       "@id": "dppk:eori",
@@ -2752,7 +2781,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:identifier"
+        },
+        {
+          "@id": "gs1:additionalOrganizationIdentification"
+        }
+      ]
     },
     {
       "@id": "dppk:additionalOrganizationId",
@@ -2962,11 +2999,9 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "gs1:additionalOrganizationIdentification"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "gs1:additionalOrganizationIdentification"
+      }
     },
     {
       "@id": "dppk:additionalOrganizationIdType",
@@ -3176,11 +3211,9 @@
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "owl:equivalentProperty": [
-        {
-          "@id": "gs1:additionalOrganizationIdentificationType"
-        }
-      ]
+      "skos:exactMatch": {
+        "@id": "gs1:additionalOrganizationIdentificationType"
+      }
     },
     {
       "@id": "dppk:address",
@@ -3390,7 +3423,7 @@
       "rdfs:range": {
         "@id": "dppk:PostalAddress"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:address"
         },
@@ -3607,7 +3640,7 @@
       "rdfs:domain": {
         "@id": "dppk:PostalAddress"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:streetAddress"
         },
@@ -3821,7 +3854,7 @@
       "rdfs:domain": {
         "@id": "dppk:PostalAddress"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:postalCode"
         },
@@ -4035,7 +4068,7 @@
       "rdfs:domain": {
         "@id": "dppk:PostalAddress"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:addressLocality"
         },
@@ -4249,17 +4282,17 @@
       "rdfs:domain": {
         "@id": "dppk:PostalAddress"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:addressCountry"
         },
         {
           "@id": "gs1:addressCountry"
-        },
-        {
-          "@id": "unece:countryName"
         }
-      ]
+      ],
+      "skos:closeMatch": {
+        "@id": "unece:countryName"
+      }
     },
     {
       "@id": "dppk:email",
@@ -4466,7 +4499,7 @@
       "rdfs:domain": {
         "@id": "dppk:Organization"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:email"
         },
@@ -4680,7 +4713,7 @@
       "rdfs:domain": {
         "@id": "dppk:Organization"
       },
-      "owl:equivalentProperty": [
+      "skos:exactMatch": [
         {
           "@id": "schema:telephone"
         },
@@ -4896,7 +4929,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:email"
+        },
+        {
+          "@id": "gs1:email"
+        }
+      ]
     },
     {
       "@id": "dppk:operatorTelephone",
@@ -5105,7 +5146,15 @@
       },
       "rdfs:range": {
         "@id": "xsd:string"
-      }
+      },
+      "skos:exactMatch": [
+        {
+          "@id": "schema:telephone"
+        },
+        {
+          "@id": "gs1:telephone"
+        }
+      ]
     },
     {
       "@id": "dppk:website",
@@ -5312,9 +5361,14 @@
       "rdfs:range": {
         "@id": "xsd:anyURI"
       },
-      "owl:equivalentProperty": {
-        "@id": "schema:url"
-      }
+      "skos:exactMatch": [
+        {
+          "@id": "schema:url"
+        },
+        {
+          "@id": "unece:uri"
+        }
+      ]
     }
   ]
 }
