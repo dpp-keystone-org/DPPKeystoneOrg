@@ -32,8 +32,8 @@ test('should maintain correct error count when removing array items shifts inval
     // 2. Add the battery sector.
     await page.locator('button[data-sector="battery-ev"]').click();
     
-    // Battery has 4 required fields: batteryCategory, batteryChemistry, manufacturingDate, batteryMass.
-    const errorCountAfterSectorAdd = initialCoreErrorCount + 4;
+    // Battery has 31 required fields now.
+    const errorCountAfterSectorAdd = initialCoreErrorCount + 31;
     await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
 
     // 3. Add 3 items to the 'materialComposition' array.
