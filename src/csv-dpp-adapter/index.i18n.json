@@ -155,31 +155,14 @@
     { "@language": "sl", "@value": "Ciljni sektor(ji):" },
     { "@language": "sv", "@value": "Målsektor(er):" }
   ],
-  "battery": [
-    { "@language": "en", "@value": "Battery" },
-    { "@language": "bg", "@value": "Батерия" },
-    { "@language": "cs", "@value": "Baterie" },
-    { "@language": "da", "@value": "Batteri" },
-    { "@language": "de", "@value": "Batterie" },
-    { "@language": "el", "@value": "Μπαταρία" },
-    { "@language": "es", "@value": "Batería" },
-    { "@language": "et", "@value": "Aku" },
-    { "@language": "fi", "@value": "Akku" },
-    { "@language": "fr", "@value": "Batterie" },
-    { "@language": "ga", "@value": "Ceallra" },
-    { "@language": "hr", "@value": "Baterija" },
-    { "@language": "hu", "@value": "Akkumulátor" },
-    { "@language": "it", "@value": "Batteria" },
-    { "@language": "lt", "@value": "Baterija" },
-    { "@language": "lv", "@value": "Akumulators" },
-    { "@language": "mt", "@value": "Batterija" },
-    { "@language": "nl", "@value": "Batterij" },
-    { "@language": "pl", "@value": "Bateria" },
-    { "@language": "pt", "@value": "Bateria" },
-    { "@language": "ro", "@value": "Baterie" },
-    { "@language": "sk", "@value": "Batéria" },
-    { "@language": "sl", "@value": "Baterija" },
-    { "@language": "sv", "@value": "Batteri" }
+  "battery-ev": [
+    { "@language": "en", "@value": "Battery (EV)" }
+  ],
+  "battery-lmv": [
+    { "@language": "en", "@value": "Battery (LMV)" }
+  ],
+  "battery-industrial": [
+    { "@language": "en", "@value": "Battery (Industrial)" }
   ],
   "construction": [
     { "@language": "en", "@value": "Construction" },

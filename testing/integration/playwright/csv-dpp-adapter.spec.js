@@ -14,7 +14,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         await expect(page.locator('#mapping-tbody tr').last()).toBeVisible();
     
         // Select battery sector to ensure all fields are available
-        await page.getByLabel('Battery').check();
+        await page.getByLabel('Battery (EV)').check();
         // Wait for re-render by checking for a battery-specific auto-map
         await expect(page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('materialComposition[0].name');
     

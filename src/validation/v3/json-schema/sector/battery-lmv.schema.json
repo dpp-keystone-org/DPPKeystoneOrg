@@ -1,16 +1,15 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery.schema.json",
-    "title": "DPP for Batteries (Draft)",
-    "description": "DEPRECATED: This generic schema has been replaced by category-specific schemas (battery-ev.schema.json, battery-lmv.schema.json, battery-industrial.schema.json) to comply with the updated EC requirements.",
-    "deprecated": true,
+    "$id": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-lmv.schema.json",
+    "title": "DPP for Batteries - LMV (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the LMV battery sector.",
     "if": {
         "type": "object",
         "properties": {
             "contentSpecificationIds": {
                 "type": "array",
                 "contains": {
-                    "const": "draft_battery_specification_id"
+                    "const": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-lmv.schema.json"
                 }
             }
         },
@@ -54,7 +53,7 @@
                 "$ref": "../shared/related-resource.schema.json"
             },
             "carbonFootprintLabel": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "extinguishingAgent": {
                 "type": "string"
@@ -66,19 +65,19 @@
                 "$ref": "../shared/related-resource.schema.json"
             },
             "carbonFootprintClass": {
-                "type": "string"
+                "not": {}
             },
             "carbonFootprintStudy": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "carbonFootprintGeneralInfo": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "carbonFootprintAbsolute": {
-                "type": "number"
+                "not": {}
             },
             "dueDiligenceReport": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "supplyChainAssurances": {
                 "$ref": "../shared/related-resource.schema.json"
@@ -93,10 +92,7 @@
                 "type": "string"
             },
             "materialComposition": {
-                "type": "array",
-                "items": {
-                    "$ref": "../shared/component.schema.json"
-                }
+                "not": {}
             },
             "hazardousSubstances": {
                 "type": "array",
@@ -159,7 +155,7 @@
                                 "type": "number"
                             },
                             "soce": {
-                                "type": "number"
+                                "not": {}
                             },
                             "stateOfCharge": {
                                 "type": "number"
@@ -173,7 +169,14 @@
                             "voltageNominal": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "rated",
+                            "voltageMin",
+                            "voltageNominal",
+                            "voltageMax",
+                            "remaining"
+                        ]
                     },
                     "power": {
                         "type": "object",
@@ -193,7 +196,11 @@
                             "energyRatio": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "original",
+                            "remaining"
+                        ]
                     },
                     "efficiency": {
                         "type": "object",
@@ -219,7 +226,13 @@
                             "selfDischargeEvolution": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "roundTripInitial",
+                            "roundTripAt50Cycles",
+                            "roundTripRemaining",
+                            "selfDischargeEvolution"
+                        ]
                     },
                     "internalResistance": {
                         "type": "object",
@@ -230,7 +243,10 @@
                             "increase": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "initial"
+                        ]
                     },
                     "lifetime": {
                         "type": "object",
@@ -257,9 +273,14 @@
                                 "type": "number"
                             },
                             "exhaustionThreshold": {
-                                "type": "number"
+                                "not": {}
                             }
-                        }
+                        },
+                        "required": [
+                            "cycles",
+                            "referenceTest",
+                            "cRateTest"
+                        ]
                     },
                     "temperature": {
                         "type": "object",
@@ -282,7 +303,11 @@
                             "timeChargingLower": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "idleLower",
+                            "idleUpper"
+                        ]
                     },
                     "negativeEvents": {
                         "type": "object",
@@ -298,7 +323,15 @@
                             }
                         }
                     }
-                }
+                },
+                "required": [
+                    "capacity",
+                    "power",
+                    "efficiency",
+                    "internalResistance",
+                    "lifetime",
+                    "temperature"
+                ]
             },
             "dopc": {
                 "oneOf": [
@@ -322,10 +355,27 @@
             }
         },
         "required": [
-            "batteryCategory",
-            "batteryChemistry",
+            "manufacturerInfo",
+            "manufacturingPlace",
             "manufacturingDate",
-            "batteryMass"
+            "batteryCategory",
+            "batteryMass",
+            "batteryStatus",
+            "separateCollectionSymbol",
+            "extinguishingAgent",
+            "testReports",
+            "batteryChemistry",
+            "criticalRawMaterials",
+            "hazardousSubstances",
+            "dismantlingInformation",
+            "partNumbers",
+            "sparePartsSources",
+            "safetyMeasures",
+            "wastePreventionInfo",
+            "postConsumerRecycledMaterialComposition",
+            "renewableContent",
+            "dopc",
+            "performance"
         ]
     }
 }

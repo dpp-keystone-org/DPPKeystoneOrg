@@ -84,7 +84,7 @@ test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
   expect(box.width).toBeGreaterThan(800);
 });
 
-const sectors = ['battery', 'construction', 'electronics', 'iron-steel', 'textile'];
+const sectors = ['battery-ev', 'construction', 'electronics', 'iron-steel', 'textile'];
 
 for (const sector of sectors) {
   test(`loads ${sector} sector form`, async ({ page }) => {
@@ -112,7 +112,7 @@ for (const sector of sectors) {
 
     // Add sector-specific assertions to ensure the correct form is loaded
     switch (sector) {
-      case 'battery':
+      case 'battery-ev':
         await expect(page.locator('input[name="batteryCategory"]')).toBeVisible();
 
         // performance and capacity are optional objects, so we need to add them first
@@ -310,8 +310,8 @@ for (const sector of sectors) {
 test('should allow adding and removing sector forms', async ({ page }) => {
       await page.goto('/wizard/index.html');
 
-  const addBatteryBtn = page.locator('button[data-sector="battery"]');
-  const batteryFormContainer = page.locator('#sector-form-battery');
+  const addBatteryBtn = page.locator('button[data-sector="battery-ev"]');
+  const batteryFormContainer = page.locator('#sector-form-battery-ev');
 
   // 1. Add the battery sector form
   await addBatteryBtn.click();
@@ -688,8 +688,8 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
       await page.goto('/wizard/index.html');
 
   // 3. Add Battery and Electronics sectors
-  await page.click('button[data-sector="battery"]');
-  await expect(page.locator('#sector-form-battery')).toBeVisible();
+  await page.click('button[data-sector="battery-ev"]');
+  await expect(page.locator('#sector-form-battery-ev')).toBeVisible();
   await page.click('button[data-sector="electronics"]');
   await expect(page.locator('#sector-form-electronics')).toBeVisible();
   
@@ -699,7 +699,7 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
 
   // 2. Use the helper to fill all required fields
   await fillRequiredFields(page, 'dpp');
-  await fillRequiredFields(page, 'battery');
+  await fillRequiredFields(page, 'battery-ev');
   await fillRequiredFields(page, 'electronics');
 
   // 3. Assert the form is valid and generate DPP.
@@ -719,7 +719,7 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
   
   // 6. Assert that contentSpecificationIds are correctly set
     expect(dpp.contentSpecificationIds).toEqual(expect.arrayContaining([
-      'draft_battery_specification_id',
+      'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json',
       'draft_electronics_specification_id'
     ]));
 });

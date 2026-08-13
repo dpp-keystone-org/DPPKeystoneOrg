@@ -129,31 +129,14 @@
     { "@language": "sl", "@value": "1. Izberite veljavne sektorje" },
     { "@language": "sv", "@value": "1. Välj tillämpliga sektorer" }
   ],
-  "add-battery": [
-    { "@language": "en", "@value": "Add Battery" },
-    { "@language": "bg", "@value": "Добави батерия" },
-    { "@language": "cs", "@value": "Přidat baterii" },
-    { "@language": "da", "@value": "Tilføj batteri" },
-    { "@language": "de", "@value": "Batterie hinzufügen" },
-    { "@language": "el", "@value": "Προσθήκη μπαταρίας" },
-    { "@language": "es", "@value": "Añadir batería" },
-    { "@language": "et", "@value": "Lisa aku" },
-    { "@language": "fi", "@value": "Lisää akku" },
-    { "@language": "fr", "@value": "Ajouter une batterie" },
-    { "@language": "ga", "@value": "Cuir Ceallraí leis" },
-    { "@language": "hr", "@value": "Dodaj bateriju" },
-    { "@language": "hu", "@value": "Akkumulátor hozzáadása" },
-    { "@language": "it", "@value": "Aggiungi batteria" },
-    { "@language": "lt", "@value": "Pridėti bateriją" },
-    { "@language": "lv", "@value": "Pievienot akumulatoru" },
-    { "@language": "mt", "@value": "Żid Batterija" },
-    { "@language": "nl", "@value": "Batterij toevoegen" },
-    { "@language": "pl", "@value": "Dodaj baterię" },
-    { "@language": "pt", "@value": "Adicionar Bateria" },
-    { "@language": "ro", "@value": "Adaugă baterie" },
-    { "@language": "sk", "@value": "Pridať batériu" },
-    { "@language": "sl", "@value": "Dodaj baterijo" },
-    { "@language": "sv", "@value": "Lägg till batteri" }
+  "add-battery-ev": [
+    { "@language": "en", "@value": "Add Battery (EV)" }
+  ],
+  "add-battery-lmv": [
+    { "@language": "en", "@value": "Add Battery (LMV)" }
+  ],
+  "add-battery-industrial": [
+    { "@language": "en", "@value": "Add Battery (Industrial)" }
   ],
   "add-construction": [
     { "@language": "en", "@value": "Add Construction" },
@@ -805,31 +788,14 @@
     { "@language": "sl", "@value": "https://example.com/style.css" },
     { "@language": "sv", "@value": "https://example.com/style.css" }
   ],
-  "remove-battery": [
-    { "@language": "en", "@value": "Remove Battery" },
-    { "@language": "bg", "@value": "Премахни батерия" },
-    { "@language": "cs", "@value": "Odstranit baterii" },
-    { "@language": "da", "@value": "Fjern batteri" },
-    { "@language": "de", "@value": "Batterie entfernen" },
-    { "@language": "el", "@value": "Αφαίρεση μπαταρίας" },
-    { "@language": "es", "@value": "Eliminar batería" },
-    { "@language": "et", "@value": "Eemalda aku" },
-    { "@language": "fi", "@value": "Poista akku" },
-    { "@language": "fr", "@value": "Supprimer la batterie" },
-    { "@language": "ga", "@value": "Bain Ceallraí" },
-    { "@language": "hr", "@value": "Ukloni bateriju" },
-    { "@language": "hu", "@value": "Akkumulátor eltávolítása" },
-    { "@language": "it", "@value": "Rimuovi batteria" },
-    { "@language": "lt", "@value": "Pašalinti bateriją" },
-    { "@language": "lv", "@value": "Noņemt akumulatoru" },
-    { "@language": "mt", "@value": "Neħħi Batterija" },
-    { "@language": "nl", "@value": "Batterij verwijderen" },
-    { "@language": "pl", "@value": "Usuń baterię" },
-    { "@language": "pt", "@value": "Remover Bateria" },
-    { "@language": "ro", "@value": "Elimină bateria" },
-    { "@language": "sk", "@value": "Odstrániť batériu" },
-    { "@language": "sl", "@value": "Odstrani baterijo" },
-    { "@language": "sv", "@value": "Ta bort batteri" }
+  "remove-battery-ev": [
+    { "@language": "en", "@value": "Remove Battery (EV)" }
+  ],
+  "remove-battery-lmv": [
+    { "@language": "en", "@value": "Remove Battery (LMV)" }
+  ],
+  "remove-battery-industrial": [
+    { "@language": "en", "@value": "Remove Battery (Industrial)" }
   ],
   "remove-construction": [
     { "@language": "en", "@value": "Remove Construction" },

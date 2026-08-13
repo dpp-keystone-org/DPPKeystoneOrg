@@ -29,7 +29,7 @@ test.describe('CSV Adapter - oneOf Validation', () => {
     await expect(page.locator('#mapping-tbody tr').last()).toBeVisible();
 
     // 2. Check the sector to trigger schema update and re-render.
-    await page.getByLabel('Battery').check();
+    await page.getByLabel('Battery (EV)').check();
     
     // 3. Wait for re-render by checking for a battery-specific auto-mapping.
     const mat1NameInput = page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('input.dpp-field-input');

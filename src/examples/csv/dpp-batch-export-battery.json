@@ -13,7 +13,7 @@
     "economicOperatorId": "urn:gln:9876543210987",
     "facilityId": "urn:gln:9876543210988",
     "contentSpecificationIds": [
-      "draft_battery_specification_id"
+      "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json"
     ],
     "image": [
       {

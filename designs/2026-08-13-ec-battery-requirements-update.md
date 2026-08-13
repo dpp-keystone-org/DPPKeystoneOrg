@@ -12,13 +12,13 @@ To avoid complex conditional logic within a single JSON schema, we are splitting
     *   `battery-industrial.schema.json`
 *   **Details:**
     *   Use the properties from the original `battery.schema.json` as a base.
-    *   Assign each schema a unique `contentSpecificationId` (e.g., `urn:eu:dpp:battery:ev:v1`).
+    *   Assign each schema a unique `contentSpecificationId` (e.g., `https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-ev.schema.json`).
     *   Map the `required` fields for each schema strictly according to the EC requirements document (`docs/sensitive/battery-ec-requirements.md`).
     *   Explicitly forbid or omit fields marked as "Not to be filled/displayed" for that specific category (e.g., carbon footprint data, or SOCE for non-EV batteries).
 
 ## Step 2: Deprecate the Old Battery Schema
-*   **Task:** Delete `src/validation/v3/json-schema/sector/battery.schema.json`.
-*   **Details:** Ensure no remaining references exist to the generic battery schema in the codebase (e.g., in index generators or build scripts, though they should be dynamic).
+*   **Task:** Mark `src/validation/v3/json-schema/sector/battery.schema.json` as deprecated instead of deleting it.
+*   **Details:** Add `"deprecated": true` to the top level of the JSON Schema and update its `description` to point users to the new category-specific schemas. This ensures the change is fully backward-compatible and won't force a major version bump.
 
 ## Step 3: Update Example Data Payloads
 *   **Task:** Update the existing example DPPs and add new ones to cover all three categories.

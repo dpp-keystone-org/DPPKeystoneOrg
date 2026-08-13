@@ -1,12 +1,8 @@
 {
   "@context": "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-battery.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
-  "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
-  // Note: This example uses a direct HTML link for demonstrative purposes. 
-  // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
-  // content negotiation to return either this JSON payload or an HTML page 
-  // depending on the client's Accept headers.
-  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/battery-dpp-v1.html",
+  "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf7",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/battery-lmv-dpp-v1.html",
   "granularity": "Item",
   "dppSchemaVersion": "v2.0",
   "dppStatus": "Active",
@@ -14,9 +10,9 @@
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
   "contentSpecificationIds": [
-    "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-ev.schema.json"
+    "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-lmv.schema.json"
   ],
-  "productName": "Keystone EV LFP Module Gen2",
+  "productName": "Keystone LMV LFP Module Gen2",
   "image": [
     {
       "resourceTitle": "Front View",
@@ -39,7 +35,7 @@
   "manufacturingDate": "2024-01-15",
   "serviceDate": "2024-02-01",
   "warrantyPeriod": "5 Years",
-  "batteryCategory": "EVBattery",
+  "batteryCategory": "LMVBattery",
   "batteryChemistry": "LFP",
   "batteryMass": 45.5,
   "batteryStatus": "Original",
@@ -84,10 +80,6 @@
     {
       "name": "Lithium Hexafluorophosphate",
       "percentage": 1.5,
-      // Note: This example uses a direct HTML link for demonstrative purposes. 
-      // A real uniqueProductIdentifier must be a resolver URI that uses HTTP 
-      // content negotiation to return either this JSON payload or an HTML page 
-      // depending on the client's Accept headers.
       "uniqueProductIdentifier": "https://echa.europa.eu/substance-information/-/substancefact/100.040.839"
     }
   ],
@@ -110,16 +102,19 @@
       "voltageMax": 54,
       "certifiedUsableEnergy": 4800,
       "stateOfCharge": 98.5,
-      "soce": 99.0
+      "remaining": 95.0
     },
     "power": {
       "original": 2000,
-      "maximumPermitted": 2500
+      "maximumPermitted": 2500,
+      "remaining": 1950.0
     },
     "efficiency": {
       "roundTripInitial": 95.5,
       "roundTripAt50Cycles": 94.0,
-      "selfDischargeInitial": 2.0
+      "selfDischargeInitial": 2.0,
+      "roundTripRemaining": 93.0,
+      "selfDischargeEvolution": 2.5
     },
     "internalResistance": {
       "initial": 15.0
@@ -128,8 +123,7 @@
       "years": 10,
       "cycles": 3000,
       "referenceTest": "IEC 62660-2",
-      "cRateTest": 1.0,
-      "exhaustionThreshold": 80.0
+      "cRateTest": 1.0
     },
     "temperature": {
       "idleLower": -20,
