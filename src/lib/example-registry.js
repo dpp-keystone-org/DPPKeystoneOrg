@@ -6,7 +6,9 @@
  * So path from validator/index.html to examples/file.json is '../examples/file.json'.
  */
 export const EXAMPLES = {
-    'Battery': '../spec/examples/battery-dpp-v1.json',
+    'Battery (EV)': '../spec/examples/battery-dpp-v1.json',
+    'Battery (LMV)': '../spec/examples/battery-lmv-dpp-v1.json',
+    'Battery (Industrial)': '../spec/examples/battery-industrial-dpp-v1.json',
     'Construction Product': '../spec/examples/construction-product-dpp-v1.json',
     'Drill': '../spec/examples/drill-dpp-v1.json',
     'Drill (Private)': '../spec/examples/drill-dpp-v1-private.json',
