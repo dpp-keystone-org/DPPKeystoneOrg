@@ -235,6 +235,8 @@ export async function loadOntology(sector) {
         initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/core/Product.jsonld`;
     } else if (sector === 'packaging') {
         initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/core/Compliance.jsonld`;
+    } else if (sector.startsWith('battery')) {
+        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/sectors/Battery.jsonld`;
     } else {
         const sectorPascalCase = sector.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
         initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/sectors/${sectorPascalCase}.jsonld`;
@@ -278,6 +280,8 @@ export async function loadContext(sector) {
         initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`;
     } else if (sector === 'packaging') {
         initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`;
+    } else if (sector.startsWith('battery')) {
+        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`;
     } else {
         initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-${sector}.context.jsonld`;
     }

@@ -896,9 +896,13 @@ export function generateDPPsFromCsv(csvData, mapping, sector) {
         const contextBase = 'https://dpp-keystone.org/spec/contexts/{{VERSION}}/';
         const contexts = [contextBase + 'dpp-core.context.jsonld'];
         if (Array.isArray(sector)) {
-            sector.forEach(s => contexts.push(`${contextBase}dpp-${s}.context.jsonld`));
+            sector.forEach(s => {
+                const contextSector = s.startsWith('battery') ? 'battery' : s;
+                contexts.push(`${contextBase}dpp-${contextSector}.context.jsonld`);
+            });
         } else {
-            contexts.push(`${contextBase}dpp-${sector}.context.jsonld`);
+            const contextSector = sector.startsWith('battery') ? 'battery' : sector;
+            contexts.push(`${contextBase}dpp-${contextSector}.context.jsonld`);
         }
         dpp['@context'] = contexts;
 
