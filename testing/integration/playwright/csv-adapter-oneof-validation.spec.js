@@ -32,8 +32,8 @@ test.describe('CSV Adapter - oneOf Validation', () => {
     await page.getByLabel('Battery (EV)').check();
     
     // 3. Wait for re-render by checking for a battery-specific auto-mapping.
-    const mat1NameInput = page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('input.dpp-field-input');
-    await expect(mat1NameInput).toHaveValue('materialComposition[0].name');
+    const mat1NameInput = page.locator('tr').filter({ has: page.getByText('Hazardous 1 Name', { exact: true }) }).locator('input.dpp-field-input');
+    await expect(mat1NameInput).toHaveValue('hazardousSubstances[0].name');
 
     // 4. Manually map all required fields to clear validation errors.
     const mappings = {

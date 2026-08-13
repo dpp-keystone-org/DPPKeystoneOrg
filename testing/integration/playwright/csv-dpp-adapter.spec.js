@@ -16,7 +16,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         // Select battery sector to ensure all fields are available
         await page.getByLabel('Battery (EV)').check();
         // Wait for re-render by checking for a battery-specific auto-map
-        await expect(page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('materialComposition[0].name');
+        await expect(page.locator('tr').filter({ has: page.getByText('Hazardous 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('hazardousSubstances[0].name');
     
         // Manually map all required fields that the auto-mapper misses to clear validation errors.
         const mappingsToFix = {
@@ -73,15 +73,15 @@ test.describe('CSV DPP Adapter E2E', () => {
         }
     });
 
-    test('Test 5: Construction Sector Loading', async ({ page }) => {
+    test('Test 5: Battery Sector Loading', async ({ page }) => {
         const consoleMessages = [];
         page.on('console', msg => consoleMessages.push(msg.text()));
 
-        await page.check('input[value="construction"]');
+        await page.check('input[value="battery-ev"]');
         
         await expect(async () => {
              const logs = consoleMessages.join('\n');
-             expect(logs).toContain('Loading schemas for: dpp, general-product, construction');
+             expect(logs).toContain('Loading schemas for: dpp, general-product, battery-ev');
         }).toPass();
     });
 
