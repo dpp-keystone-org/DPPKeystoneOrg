@@ -115,11 +115,14 @@ describe('DPP JSON Schema Validation', () => {
             data.contentSpecificationIds = data.contentSpecificationIds.filter(id => id !== specId);
             
             const result = validateDpp(data, schemaContext);
+            if (!result.valid) {
+                console.log(result.errors);
+            }
             expect(result.valid).toBe(true);
         });
     };
 
-    createBatteryTests('battery-dpp-v1.json', 'https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-ev.schema.json');
-    createBatteryTests('battery-lmv-dpp-v1.json', 'https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-lmv.schema.json');
-    createBatteryTests('battery-industrial-dpp-v1.json', 'https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-industrial.schema.json');
+    createBatteryTests('battery-dpp-v1.json', `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/json-schema/sector/battery-ev.schema.json`);
+    createBatteryTests('battery-lmv-dpp-v1.json', `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/json-schema/sector/battery-lmv.schema.json`);
+    createBatteryTests('battery-industrial-dpp-v1.json', `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/json-schema/sector/battery-industrial.schema.json`);
 });
