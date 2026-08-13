@@ -17,6 +17,9 @@ import { LanguageManager } from '../lib/language-manager.js';
 // NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
 const SECTOR_MAP = {
     'draft_battery_specification_id': 'sector/battery.schema.json',
+    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json': 'sector/battery-ev.schema.json',
+    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-lmv.schema.json': 'sector/battery-lmv.schema.json',
+    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-industrial.schema.json': 'sector/battery-industrial.schema.json',
     'draft_construction_specification_id': 'sector/construction.schema.json',
     'draft_electronics_specification_id': 'sector/electronics.schema.json',
     'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',

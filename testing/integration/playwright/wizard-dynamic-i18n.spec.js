@@ -16,14 +16,14 @@ test.describe('Wizard Dynamic Translation', () => {
         await languageSelector.selectOption('de');
 
         // Verify the static initial button translates
-        const addSectorBtn = page.locator('button[data-sector="battery"]');
-        await expect(addSectorBtn).toHaveText('Batterie hinzufügen');
+        const addSectorBtn = page.locator('button[data-sector="construction"]');
+        await expect(addSectorBtn).toHaveText('Konstruktion hinzufügen');
 
-        // 2. Click "Add Battery" to trigger dynamic UI generation
+        // 2. Click "Add Construction" to trigger dynamic UI generation
         await addSectorBtn.click();
 
-        // 3. Verify that the button itself updated to "Remove Battery" in German
-        await expect(addSectorBtn).toHaveText('Batterie entfernen');
+        // 3. Verify that the button itself updated to "Remove Construction" in German
+        await expect(addSectorBtn).toHaveText('Konstruktion entfernen');
 
         // 4. Verify that "Show Errors" is translated
         const showErrorsBtn = page.locator('#show-errors-btn');
@@ -47,7 +47,7 @@ test.describe('Wizard Dynamic Translation', () => {
         await expect(plainAddBtn).toHaveText('Hinzufügen');
 
         // 8. Verify no English fallback text is visible on these dynamic components
-        await expect(addSectorBtn).not.toHaveText('Remove Battery');
+        await expect(addSectorBtn).not.toHaveText('Remove Construction');
         await expect(addVoluntaryFieldBtn).not.toHaveText('Add Field');
         await expect(plainAddBtn).not.toHaveText('Add');
         await expect(removeBtns.last()).not.toHaveText('Remove');
@@ -113,10 +113,10 @@ test.describe('Wizard Dynamic Translation', () => {
         // Ensure starting in English
         await languageSelector.selectOption('en');
 
-        // 1. Add "Battery" sector
-        const addBatteryBtn = page.locator('button[data-sector="battery"]');
-        await addBatteryBtn.click();
-        await expect(addBatteryBtn).toHaveText('Remove Battery');
+        // 1. Add "Construction" sector
+        const addSectorBtn = page.locator('button[data-sector="construction"]');
+        await addSectorBtn.click();
+        await expect(addSectorBtn).toHaveText('Remove Construction');
 
         // 2. Expand the performance optional object
         const addPerformanceBtn = page.locator('button[data-optional-object="performance"]');
@@ -126,7 +126,7 @@ test.describe('Wizard Dynamic Translation', () => {
         const removePerformanceBtn = page.locator('button[data-remove-optional-object="performance"]');
         await expect(removePerformanceBtn).toHaveText('Remove');
 
-        // 3. Assert initial error count (3 from core + battery errors)
+        // 3. Assert initial error count
         const showErrorsBtn = page.locator('#show-errors-btn');
         await expect(showErrorsBtn).toContainText('Show Errors');
         const initialText = await showErrorsBtn.textContent();
@@ -142,25 +142,24 @@ test.describe('Wizard Dynamic Translation', () => {
         // 6. Assert that the Error count badge translates perfectly but preserves the integer count
         await expect(showErrorsBtn).toContainText(`Fehler anzeigen (${errorCount})`);
 
-        // 7. Click the "Battery" sector button to remove the sector
-        await addBatteryBtn.click();
+        // 7. Click the "Construction" sector button to remove the sector
+        await addSectorBtn.click();
 
         // Wait for the form to disappear
-        const batteryFormContainer = page.locator('#sector-form-battery');
-        await expect(batteryFormContainer).not.toBeAttached();
+        const formContainer = page.locator('#sector-form-construction');
+        await expect(formContainer).not.toBeAttached();
 
-        // 8. Assert the button text instantly reverts to "Batterie hinzufügen"
-        await expect(addBatteryBtn).toHaveText('Batterie hinzufügen');
+        // 8. Assert the button text instantly reverts to "Konstruktion hinzufügen"
+        await expect(addSectorBtn).toHaveText('Konstruktion hinzufügen');
 
-        // 9. Assert the error count has updated because the battery sector (and its errors) were removed
-        // Core errors should be 3
+        // 9. Assert the error count has updated
         await expect(showErrorsBtn).toContainText('Fehler anzeigen (3)');
 
         // 10. Switch the language back to English
         await languageSelector.selectOption('en');
 
         // 11. Assert the sector button correctly swaps back
-        await expect(addBatteryBtn).toHaveText('Add Battery');
+        await expect(addSectorBtn).toHaveText('Add Construction');
         await expect(showErrorsBtn).toContainText('Show Errors (3)');
 
         // 12. Add Textile Sector for array torture test

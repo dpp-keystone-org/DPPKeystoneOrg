@@ -30,7 +30,7 @@ test('should maintain correct error count when removing array items shifts inval
     const initialCoreErrorCount = 3;
 
     // 2. Add the battery sector.
-    await page.locator('button[data-sector="battery"]').click();
+    await page.locator('button[data-sector="battery-ev"]').click();
     
     // Battery has 4 required fields: batteryCategory, batteryChemistry, manufacturingDate, batteryMass.
     const errorCountAfterSectorAdd = initialCoreErrorCount + 4;

@@ -123,7 +123,7 @@ test.describe('DPP Validator', () => {
       "digitalProductPassportId": "urn:uuid:12345678-1234-1234-1234-123456789012",
       "dppStatus": "Active",
       "manufacturer": { "organizationName": "Org" },
-      "contentSpecificationIds": ["draft_battery_specification_id"],
+      "contentSpecificationIds": ["https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json"],
       // Missing battery fields like batteryType, ratedCapacity, etc.
       "batteryType": "Li-ion" // Provide one valid one
     };
@@ -217,7 +217,7 @@ test.describe('DPP Validator', () => {
 
   test('Example Loader populates input', async ({ page }) => {
     // Select 'Battery' from the dropdown
-    await page.locator('#example-selector').selectOption({ label: 'Battery' });
+    await page.locator('#example-selector').selectOption({ label: 'Battery (EV)' });
 
     // Check that textarea is populated (wait for fetch to complete)
     await expect(page.locator('#json-input')).toHaveValue(/digitalProductPassportId/);
