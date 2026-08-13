@@ -17,13 +17,13 @@ test.describe('Wizard Dynamic Translation', () => {
 
         // Verify the static initial button translates
         const addSectorBtn = page.locator('button[data-sector="construction"]');
-        await expect(addSectorBtn).toHaveText('Konstruktion hinzufügen');
+        await expect(addSectorBtn).toHaveText('Bauwesen hinzufügen');
 
         // 2. Click "Add Construction" to trigger dynamic UI generation
         await addSectorBtn.click();
 
         // 3. Verify that the button itself updated to "Remove Construction" in German
-        await expect(addSectorBtn).toHaveText('Konstruktion entfernen');
+        await expect(addSectorBtn).toHaveText('Bauwesen entfernen');
 
         // 4. Verify that "Show Errors" is translated
         const showErrorsBtn = page.locator('#show-errors-btn');
@@ -149,8 +149,8 @@ test.describe('Wizard Dynamic Translation', () => {
         const formContainer = page.locator('#sector-form-construction');
         await expect(formContainer).not.toBeAttached();
 
-        // 8. Assert the button text instantly reverts to "Konstruktion hinzufügen"
-        await expect(addSectorBtn).toHaveText('Konstruktion hinzufügen');
+        // 8. Assert the button text instantly reverts to "Bauwesen hinzufügen"
+        await expect(addSectorBtn).toHaveText('Bauwesen hinzufügen');
 
         // 9. Assert the error count has updated
         await expect(showErrorsBtn).toContainText('Fehler anzeigen (3)');
