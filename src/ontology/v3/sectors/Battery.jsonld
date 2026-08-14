@@ -4979,6 +4979,50 @@
         { "@id": "gs1:ProductCharacteristic" }
       ]
     },
+    {
+      "@id": "dppk:internalResistanceOhmic",
+      "@type": "owl:DatatypeProperty",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dppk:unit": { "@id": "dppk-unit:Ohm" },
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o)"
+      },
+      "rdfs:label": [
+        { "@language": "en", "@value": "Ohmic internal resistance of battery cell and pack" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The ohmic component of the internal resistance of the battery cell and pack." }
+      ],
+      "rdfs:domain": { "@id": "dppk:InternalResistanceInfo" },
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
+      ]
+    },
+    {
+      "@id": "dppk:internalResistanceDynamic",
+      "@type": "owl:DatatypeProperty",
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dppk:unit": { "@id": "dppk-unit:Ohm" },
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1o)"
+      },
+      "rdfs:label": [
+        { "@language": "en", "@value": "Dynamic internal resistance of battery cell and pack" }
+      ],
+      "rdfs:comment": [
+        { "@language": "en", "@value": "The dynamic component of the internal resistance of the battery cell and pack." }
+      ],
+      "rdfs:domain": { "@id": "dppk:InternalResistanceInfo" },
+      "rdfs:range": "xsd:double",
+      "skos:relatedMatch": [
+        { "@id": "schema:PropertyValue" },
+        { "@id": "gs1:ProductCharacteristic" }
+      ]
+    },
 
     // --- Lifetime Properties ---
     {
