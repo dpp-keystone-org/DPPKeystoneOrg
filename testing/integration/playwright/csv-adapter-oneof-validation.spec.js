@@ -43,7 +43,16 @@ test.describe('CSV Adapter - oneOf Validation', () => {
       'Manufacturer Zip': 'manufacturerInfo.address.postalCode',
       'Recycled Pre 1 %': 'preConsumerRecycledMaterialComposition[0].percentage',
       'Recycled Post 1 %': 'postConsumerRecycledMaterialComposition[0].percentage',
-      'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage'
+      'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage',
+      'Separate Collection Symbol': 'separateCollectionSymbol.url',
+      'Extinguishing Agent': 'extinguishingAgent',
+      'Test Reports': 'testReports.url',
+      'Critical Raw Materials': 'criticalRawMaterials',
+      'Dismantling Information': 'dismantlingInformation.url',
+      'Part Numbers': 'partNumbers.url',
+      'Spare Parts Sources': 'sparePartsSources.url',
+      'Safety Measures': 'safetyMeasures.url',
+      'Waste Prevention Info': 'wastePreventionInfo.url'
     };
 
     for (const [csvHeader, schemaPath] of Object.entries(mappings)) {
