@@ -14,7 +14,7 @@ test.describe('CSV DPP Adapter E2E', () => {
         await expect(page.locator('#mapping-tbody tr').last()).toBeVisible();
     
         // Select battery sector to ensure all fields are available
-        await page.getByLabel('Battery (EV)').check();
+        await page.getByLabel('Battery (Industrial)').check();
         // Wait for re-render by checking for a battery-specific auto-map
         await expect(page.locator('tr').filter({ has: page.getByText('Hazardous 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('hazardousSubstances[0].name');
     
@@ -77,11 +77,11 @@ test.describe('CSV DPP Adapter E2E', () => {
         const consoleMessages = [];
         page.on('console', msg => consoleMessages.push(msg.text()));
 
-        await page.check('input[value="battery-ev"]');
+        await page.check('input[value="battery-industrial"]');
         
         await expect(async () => {
              const logs = consoleMessages.join('\n');
-             expect(logs).toContain('Loading schemas for: dpp, general-product, battery-ev');
+             expect(logs).toContain('Loading schemas for: dpp, general-product, battery-industrial');
         }).toPass();
     });
 

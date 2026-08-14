@@ -22,6 +22,48 @@ describe('DPP Generation Logic', () => {
         const keys = Object.keys(result[0]).filter(k => k !== '@context');
         expect(keys).toEqual(['field1']);
     });
+
+    test('should prevent duplicate contexts when multiple battery schemas are loaded', () => {
+        const csvData = [{ 'Header1': 'Value1' }];
+        const mapping = { 'Header1': 'field1' };
+        const sectors = ['battery-ev', 'battery-lmv', 'battery-industrial'];
+
+        const result = generateDPPsFromCsv(csvData, mapping, sectors);
+        
+        expect(result[0]['@context']).toEqual([
+            'https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-core.context.jsonld',
+            'https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-battery.context.jsonld'
+        ]);
+    });
+
+    test('should prevent duplicate contexts when the same sector is passed multiple times', () => {
+        const csvData = [{ 'Header1': 'Value1' }];
+        const mapping = { 'Header1': 'field1' };
+        
+        const result = generateDPPsFromCsv(csvData, mapping, ['textile', 'textile']);
+        
+        expect(result[0]['@context']).toEqual([
+            'https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-core.context.jsonld',
+            'https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-textile.context.jsonld'
+        ]);
+    });
+
+    test('should map single battery sector to generic battery context', () => {
+        const csvData = [{ 'Header1': 'Value1' }];
+        const mapping = { 'Header1': 'field1' };
+        
+        const result = generateDPPsFromCsv(csvData, mapping, 'battery-ev');
+        
+        expect(result[0]['@context']).toEqual([
+            'https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-core.context.jsonld',
+            'https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-battery.context.jsonld'
+        ]);
+    });
+
+    test('should return empty array when sector is undefined', () => {
+        const result = generateDPPsFromCsv([{ 'H1': 'V1' }], { 'H1': 'f1' }, undefined);
+        expect(result).toEqual([]);
+    });
 });
 
 describe('CSV Adapter Logic - analyzeColumnData', () => {
