@@ -1,4 +1,5 @@
 import { setProperty, compactArrays } from './dpp-data-utils.js';
+import { SECTOR_CONTEXT_MAP } from './sector-mappings.js';
 
 /**
  * Map of common industry terms to standard DPP schema fields.
@@ -894,17 +895,15 @@ export function generateDPPsFromCsv(csvData, mapping, sector) {
     return csvData.map(row => {
         const dpp = {};
         const contextBase = 'https://dpp-keystone.org/spec/contexts/{{VERSION}}/';
-        const contexts = [contextBase + 'dpp-core.context.jsonld'];
-        if (Array.isArray(sector)) {
-            sector.forEach(s => {
-                const contextSector = s.startsWith('battery') ? 'battery' : s;
-                contexts.push(`${contextBase}dpp-${contextSector}.context.jsonld`);
-            });
-        } else {
-            const contextSector = sector.startsWith('battery') ? 'battery' : sector;
-            contexts.push(`${contextBase}dpp-${contextSector}.context.jsonld`);
-        }
-        dpp['@context'] = contexts;
+        const contexts = new Set([contextBase + 'dpp-core.context.jsonld']);
+        
+        const sectorList = Array.isArray(sector) ? sector : [sector];
+        sectorList.forEach(s => {
+            const contextFile = SECTOR_CONTEXT_MAP[s] || `dpp-${s}.context.jsonld`;
+            contexts.add(`${contextBase}${contextFile}`);
+        });
+        
+        dpp['@context'] = Array.from(contexts);
 
         for (const [header, targetField] of Object.entries(mapping)) {
             if (!targetField || targetField.trim() === '') continue; // Skip empty mappings

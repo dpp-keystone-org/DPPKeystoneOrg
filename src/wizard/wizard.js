@@ -3,6 +3,7 @@ import { loadHeader } from '../branding/header.js';
 loadHeader('dpp-header-container', '..');
 import { loadSchema } from '../lib/schema-loader.js';
 import { loadOntology, loadContext } from '../lib/ontology-loader.js';
+import { SECTOR_DISPLAY_NAMES } from '../lib/sector-mappings.js';
 import { buildForm, createVoluntaryFieldRow } from './form-builder.js';
 import { generateDpp } from './dpp-generator.js';
 import { generateHTML } from '../lib/html-generator.js';
@@ -463,12 +464,7 @@ export async function initializeWizard() {
             const sectorContainerId = `sector-form-${sector}`;
             const existingContainer = document.getElementById(sectorContainerId);
 
-            const sectorDisplayNames = {
-                'general-product': 'General Product Information',
-                'textile': 'Textile',
-                'iron-steel': 'Iron or Steel'
-            };
-            const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
+            const displayName = SECTOR_DISPLAY_NAMES[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
 
             const schemaType = button.dataset.schemaType || 'sector';
 

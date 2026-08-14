@@ -12,34 +12,7 @@ import { validateContextAwarePayload } from '../util/js/common/validation/contex
 import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
 import { LanguageManager } from '../lib/language-manager.js';
 
-// Configuration: Map Spec IDs to Schema filenames
-// This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
-// NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
-const SECTOR_MAP = {
-    'draft_battery_specification_id': 'sector/battery.schema.json',
-    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json': 'sector/battery-ev.schema.json',
-    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-lmv.schema.json': 'sector/battery-lmv.schema.json',
-    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-industrial.schema.json': 'sector/battery-industrial.schema.json',
-    'draft_construction_specification_id': 'sector/construction.schema.json',
-    'draft_electronics_specification_id': 'sector/electronics.schema.json',
-    'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile.schema.json'
-};
-
-// Common schemas that should always be loaded for $ref resolution
-const COMMON_SCHEMAS = [
-    'shared/dopc.schema.json',
-    'shared/epd.schema.json',
-    'shared/organization.schema.json',
-    'shared/packaging.schema.json',
-    'shared/postal-address.schema.json',
-    'shared/product-characteristic.schema.json',
-    'shared/related-resource.schema.json',
-    'shared/general-product.schema.json',
-    'shared/component.schema.json',
-    'shared/mtc.schema.json',
-    'shared/certification.schema.json'
-];
+import { SPEC_URL_TO_SECTOR_MAP, SECTOR_SCHEMA_MAP, COMMON_SCHEMAS } from '../lib/sector-mappings.js';
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
 const SCHEMA_BASE_URL = `../spec/validation/${KEYSTONE_VERSION}/json-schema/`;
@@ -185,9 +158,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (dppData.contentSpecificationIds && Array.isArray(dppData.contentSpecificationIds)) {
                     for (const id of dppData.contentSpecificationIds) {
-                        const schemaFile = SECTOR_MAP[id];
-                        if (schemaFile) {
-                            const sectorName = schemaFile.replace('sector/', '').replace('.schema.json', '');
+                        const sectorName = SPEC_URL_TO_SECTOR_MAP[id];
+                        if (sectorName) {
                             const sectorOntology = await loadOntology(sectorName);
                             if (sectorOntology) sectorOntology.forEach((v, k) => aggregatedMap.set(k, v));
                         }
@@ -469,9 +441,12 @@ async function loadSchemas() {
 
     // Load Sectors (We load all known mapped sectors so they are ready)
     // In a larger system, we might lazy load, but for this tool, eager loading is fine.
-    const sectorPromises = Object.entries(SECTOR_MAP).map(async ([id, filename]) => {
-        const schema = await fetchJson(filename);
-        schemaContext.sectorSchemas[id] = schema;
+    const sectorPromises = Object.entries(SPEC_URL_TO_SECTOR_MAP).map(async ([id, sectorName]) => {
+        const filename = SECTOR_SCHEMA_MAP[sectorName];
+        if (filename) {
+            const schema = await fetchJson(filename);
+            schemaContext.sectorSchemas[id] = schema;
+        }
     });
     await Promise.all(sectorPromises);
 }
