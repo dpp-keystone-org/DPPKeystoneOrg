@@ -61,18 +61,33 @@ test.describe('CSV Adapter - oneOf Validation', () => {
       'Spare Parts Sources': 'sparePartsSources.url',
       'Safety Measures': 'safetyMeasures.url',
       'Waste Prevention Info': 'wastePreventionInfo.url',
-      'DoC Title': 'dopc.declarationCode',
-      'Renewable Content %': 'renewableContent'
+      'DoC Title': 'dopc.resourceTitle',
+      'Renewable Content %': 'renewableContent',
+      'Internal Resistance': 'performance.internalResistance.initial',
+      'Temp Idle Min (C)': 'performance.temperature.idleLower',
+      'Temp Idle Max (C)': 'performance.temperature.idleUpper'
     };
 
     for (const [csvHeader, schemaPath] of Object.entries(mappings)) {
       const input = page.locator('tr').filter({ has: page.getByText(csvHeader, { exact: true }) }).locator('input.dpp-field-input');
       await input.fill(schemaPath);
+      await input.blur();
     }
 
-    // 5. Assert that the UI is now in a valid state.
-    await expect(page.locator('#show-errors-btn')).toBeHidden();
-    await expect(page.locator('#generate-btn')).toBeVisible();
+    try {
+        await expect(page.locator('#show-errors-btn')).toBeHidden({ timeout: 5000 });
+        await expect(page.locator('#generate-btn')).toBeVisible();
+    } catch (e) {
+        if (await page.locator('#show-errors-btn').isVisible()) {
+            await page.locator('#show-errors-btn').click();
+            const errors = await page.locator('.error-summary-modal ul').innerText();
+            console.log('--- VALIDATION ERRORS IN CSV ---');
+            console.log(errors);
+            console.log('--------------------------------');
+            throw new Error(`Validation errors remained: \n${errors}`);
+        }
+        throw e;
+    }
   };
 
   test('should highlight rows with oneOf conflicts and then remove it', async ({ page }) => {
@@ -85,6 +100,12 @@ test.describe('CSV Adapter - oneOf Validation', () => {
     const docUrlInput = docUrlRow.locator('input.dpp-field-input');
     const dppIdCheckbox = dppIdRow.locator('.review-checkbox');
     const docUrlCheckbox = docUrlRow.locator('.review-checkbox');
+
+    // Clear DoC Title mapping so it doesn't conflict with dopc.declarationCode
+    const docTitleRow = page.locator('tr').filter({ has: page.getByText('DoC Title', { exact: true }) });
+    const docTitleInput = docTitleRow.locator('input.dpp-field-input');
+    await docTitleInput.clear();
+    await docTitleInput.dispatchEvent('input');
 
     // Create conflict and sync with UI by waiting for the checkbox side-effect.
     await dppIdInput.fill('dopc.declarationCode');

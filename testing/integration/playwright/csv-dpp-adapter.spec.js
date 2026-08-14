@@ -44,20 +44,33 @@ test.describe('CSV DPP Adapter E2E', () => {
             'Spare Parts Sources': 'sparePartsSources.url',
             'Safety Measures': 'safetyMeasures.url',
             'Waste Prevention Info': 'wastePreventionInfo.url',
-            'DoC Title': 'dopc.declarationCode',
-            'Renewable Content %': 'renewableContent'
+            'DoC Title': 'dopc.resourceTitle',
+            'Renewable Content %': 'renewableContent',
+            'Internal Resistance': 'performance.internalResistance.initial',
+            'Temp Idle Min (C)': 'performance.temperature.idleLower',
+            'Temp Idle Max (C)': 'performance.temperature.idleUpper'
         };
 
         for (const [csvHeader, schemaPath] of Object.entries(mappingsToFix)) {
             const input = page.locator('tr').filter({ has: page.getByText(csvHeader, { exact: true }) }).locator('input.dpp-field-input');
             await input.fill(schemaPath);
+            await input.blur();
         }
         
-        // Assert that we are in a valid state by polling the UI.
-        await expect(async () => {
-            await expect(page.locator('#show-errors-btn')).toBeHidden();
+        try {
+            await expect(page.locator('#show-errors-btn')).toBeHidden({ timeout: 5000 });
             await expect(page.locator('#generate-btn')).toBeVisible();
-        }).toPass();
+        } catch (e) {
+            if (await page.locator('#show-errors-btn').isVisible()) {
+                await page.locator('#show-errors-btn').click();
+                const errors = await page.locator('.error-summary-modal ul').innerText();
+                console.log('--- VALIDATION ERRORS IN CSV ---');
+                console.log(errors);
+                console.log('--------------------------------');
+                throw new Error(`Validation errors remained: \n${errors}`);
+            }
+            throw e;
+        }
     };
     
     test.beforeEach(async ({ page }) => {
