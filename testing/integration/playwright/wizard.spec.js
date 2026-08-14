@@ -265,6 +265,24 @@ for (const sector of sectors) {
   });
 }
 
+const batterySectors = ['battery-ev', 'battery-lmv', 'battery-industrial'];
+for (const sector of batterySectors) {
+  test(`should not contain the string "[undefined]" on the page for ${sector}`, async ({ page }) => {
+    await page.goto('/wizard/index.html');
+    const addSectorBtn = page.locator(`button[data-sector="${sector}"]`);
+    await addSectorBtn.click();
+
+    // Wait for the form to load
+    const sectorFormContainer = page.locator(`#sector-form-${sector}`);
+    await expect(sectorFormContainer).not.toBeEmpty({ timeout: 10000 });
+    
+    // Give it a moment to render any dynamic labels
+    await page.waitForTimeout(500);
+
+    const bodyText = await page.locator('body').textContent();
+    expect(bodyText).not.toContain('[undefined]');
+  });
+}
 
 for (const sector of sectors) {
   test(`audit ontology labels for ${sector} sector`, async ({ page }) => {
