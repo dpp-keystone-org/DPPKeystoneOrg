@@ -40,7 +40,7 @@ To avoid complex conditional logic within a single JSON schema, we are splitting
     *   The CSV Adapter (`src/csv-dpp-adapter/`) might need its sector mapping templates adjusted.
 
 ## Step 6: Consolidate Sector Mappings
-*   **Task:** [PENDING] Centralize scattered sector string and URL mapping logic into a single `src/lib/sector-mappings.js` file.
+*   **Task:** [DONE] Centralize scattered sector string and URL mapping logic into a single `src/lib/sector-mappings.js` file.
 *   **Details:** 
     *   [DONE] create failing tests for csv adapter
     *   [DONE] fix the bug in csv adapter logic
@@ -49,5 +49,25 @@ To avoid complex conditional logic within a single JSON schema, we are splitting
     *   [DONE] factor sector related mappings from the wizard and its dependencies to sector-mappings.js
     *   [DONE] Ask user to retest wizard unit and integration tests
     *   [DONE] factor sector related mappings from validator tool code and its dependencies to sector-mappings.js
-    *   [PENDING] Ask user to retest validator
-    *   [PENDING] Iterate on any newly broken tests.
+    *   [DONE] Ask user to retest validator
+    *   [DONE] Iterate on any newly broken tests.
+
+## Step 7: Audit mappings for completeness and accuracy
+*   **Task:** [PENDING] Review and fix the mappings table that was implemented for this project based on docs/sensitive/battery-ec-requirements.md
+*   **Details:** 
+    *   [DONE] Compare the schemas for the different battery categories to the EC mappings and ensure that the implementation is truly complete and that all fields required by the EC requirements are required in the schemas.
+    *   [DONE] Fix any mismatches but first discuss what was found with the user and brainstorm if the rest of this Step 7 needs to be updated.
+    *   [DONE] create failing playwright test case every for every single battery category which tests for the string "[undefined]" which should not appear on the page for any category but currently does.
+    *   [PENDING] Update Examples to reflect schema changes.
+    *   [PENDING] Add every single missing term as a subtask exactly below this line for us to either
+    reuse an existing battery ontology field that was already mapped in the legacy schema or to create a
+    new one.
+    *   [DONE] Re-enable `materialComposition` as a required Component array in the EV, LMV, and Industrial schemas.
+    *   [PENDING] Map or create term for ohmicResistance (EC 66)
+    *   [PENDING] Map or create term for internalResistance (dynamic) (EC 55)
+    *   [PENDING] translate newly added fields using the documented translator agent process
+    *   [PENDING] update the context mapping for battery to ensure it covers all schema fields and all new 
+    terms.
+    *   [PENDING] ensure that any new terms are skos mapped to any existing applicable ontologies.
+    *   [PENDING] retest and iterate on any newly broken tests.
+    
