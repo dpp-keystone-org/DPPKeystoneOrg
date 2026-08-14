@@ -1,0 +1,1432 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Visibility",
+  "@type": "owl:Ontology",
+  "owl:versionInfo": "v3",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Visibility Ontology"
+    },
+    {
+      "@language": "bg",
+      "@value": "DPP Онтология за видимост"
+    },
+    {
+      "@language": "cs",
+      "@value": "DPP Ontologie viditelnosti"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Synlighedsontologi"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Sichtbarkeitsontologie"
+    },
+    {
+      "@language": "el",
+      "@value": "Οντολογία Ορατότητας DPP"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología de Visibilidad de DPP"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP nähtavuse ontoloogia"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-näkyvyysontologia"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie de visibilité DPP"
+    },
+    {
+      "@language": "ga",
+      "@value": "Ointeolaíocht Infheictheachta DPP"
+    },
+    {
+      "@language": "hr",
+      "@value": "DPP ontologija vidljivosti"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP láthatósági ontológia"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia della visibilità DPP"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP matomumo ontologija"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP redzamības ontoloģija"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija tal-Viżibbiltà tad-DPP"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP Zichtbaarheidsontologie"
+    },
+    {
+      "@language": "pl",
+      "@value": "Ontologia widoczności DPP"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia de Visibilidade DPP"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologia de vizibilitate DPP"
+    },
+    {
+      "@language": "sk",
+      "@value": "DPP Ontológia viditeľnosti"
+    },
+    {
+      "@language": "sl",
+      "@value": "DPP ontologija vidljivosti"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP-synlighetsontologi"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Defines the allowable visibility tiers (enum) for data properties within a Digital Product Passport to dictate privacy serialization."
+    },
+    {
+      "@language": "bg",
+      "@value": "Определя допустимите нива на видимост (enum) за свойства на данни в рамките на Digital Product Passport, за да диктува сериализацията на поверителността."
+    },
+    {
+      "@language": "cs",
+      "@value": "Definuje povolené úrovně viditelnosti (enum) pro vlastnosti dat v rámci Digital Product Passport, které diktují serializaci soukromí."
+    },
+    {
+      "@language": "da",
+      "@value": "Definerer de tilladte synlighedsniveauer (enum) for dataegenskaber i et Digital Product Passport for at diktere privatlivsserialisering."
+    },
+    {
+      "@language": "de",
+      "@value": "Definiert die zulässigen Sichtbarkeitsebenen (enum) für Dateneigenschaften innerhalb eines Digital Product Passport, um die Privatsphäre-Serialisierung vorzugeben."
+    },
+    {
+      "@language": "el",
+      "@value": "Καθορίζει τα επιτρεπόμενα επίπεδα ορατότητας (enum) για τις ιδιότητες δεδομένων εντός ενός Digital Product Passport προκειμένου να υπαγορεύει τη σειριοποίηση απορρήτου."
+    },
+    {
+      "@language": "es",
+      "@value": "Define los niveles de visibilidad permitidos (enum) para las propiedades de datos dentro de un Digital Product Passport para dictar la serialización de la privacidad."
+    },
+    {
+      "@language": "et",
+      "@value": "Määratleb andmeomaduste lubatud nähtavustasemed (enum) Digital Product Passport'is, et dikteerida privaatsuse serialiseerimist."
+    },
+    {
+      "@language": "fi",
+      "@value": "Määrittelee sallitut näkyvyystasot (enum) dataominaisuuksille Digital Product Passportissa yksityisyyden sarjoittamisen sanelemiseksi."
+    },
+    {
+      "@language": "fr",
+      "@value": "Définit les niveaux de visibilité autorisés (enum) pour les propriétés de données au sein d'un Digital Product Passport afin de dicter la sérialisation de la confidentialité."
+    },
+    {
+      "@language": "ga",
+      "@value": "Sainmhínítear na sraitheanna infheictheachta incheadaithe (enum) do shonraí laistigh de Digital Product Passport chun sraitheáil príobháideachais a threorú."
+    },
+    {
+      "@language": "hr",
+      "@value": "Definira dopuštene razine vidljivosti (enum) za svojstva podataka unutar Digital Product Passport za diktiranje serijalizacije privatnosti."
+    },
+    {
+      "@language": "hu",
+      "@value": "Meghatározza a megengedett láthatósági szinteket (enum) az adatulajdonságokhoz a Digital Product Passport-on belül az adatvédelmi szerializáció meghatározásához."
+    },
+    {
+      "@language": "it",
+      "@value": "Definisce i livelli di visibilità consentiti (enum) per le proprietà dei dati all'interno di un Digital Product Passport per dettare la serializzazione della privacy."
+    },
+    {
+      "@language": "lt",
+      "@value": "Apibrėžia leistinus matomumo lygius (enum) duomenų savybėms Digital Product Passport, kad būtų galima diktuoti privatumo serializavimą."
+    },
+    {
+      "@language": "lv",
+      "@value": "Nosaka pieļaujamos redzamības līmeņus (enum) datu īpašībām Digital Product Passport ietvaros, lai diktētu privātuma serializāciju."
+    },
+    {
+      "@language": "mt",
+      "@value": "Jiddefinixxi l-livelli ta' viżibilità permissibbli (enum) għall-proprjetajiet tad-dejta fi ħdan Digital Product Passport biex jiddetta s-serjalizzazzjoni tal-privatezza."
+    },
+    {
+      "@language": "nl",
+      "@value": "Definieert de toegestane zichtbaarheidsniveaus (enum) voor gegevenseigenschappen binnen een Digital Product Passport om privacy-serialisatie te dicteren."
+    },
+    {
+      "@language": "pl",
+      "@value": "Definiuje dozwolone poziomy widoczności (enum) dla właściwości danych w ramach Digital Product Passport w celu dyktowania serializacji prywatności."
+    },
+    {
+      "@language": "pt",
+      "@value": "Define os níveis de visibilidade permitidos (enum) para propriedades de dados num Digital Product Passport para ditar a serialização de privacidade."
+    },
+    {
+      "@language": "ro",
+      "@value": "Definește nivelurile de vizibilitate permise (enum) pentru proprietățile datelor din cadrul unui Digital Product Passport pentru a dicta serializarea confidențialității."
+    },
+    {
+      "@language": "sk",
+      "@value": "Definuje povolené úrovne viditeľnosti (enum) pre vlastnosti údajov v rámci Digital Product Passport, ktoré diktujú serializáciu súkromia."
+    },
+    {
+      "@language": "sl",
+      "@value": "Določa dovoljene ravni vidljivosti (enum) za lastnosti podatkov v Digital Product Passport, da se narekuje serializacija zasebnosti."
+    },
+    {
+      "@language": "sv",
+      "@value": "Definierar tillåtna synlighetsnivåer (enum) för dataegenskaper inom ett Digital Product Passport för att diktera integritetsserialisering."
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "dppk:VisibilityValue",
+      "@type": "rdfs:Class",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Visibility Value"
+        },
+        {
+          "@language": "bg",
+          "@value": "Стойност на видимост"
+        },
+        {
+          "@language": "cs",
+          "@value": "Hodnota viditelnosti"
+        },
+        {
+          "@language": "da",
+          "@value": "Synlighedsværdi"
+        },
+        {
+          "@language": "de",
+          "@value": "Sichtbarkeitswert"
+        },
+        {
+          "@language": "el",
+          "@value": "Τιμή Ορατότητας"
+        },
+        {
+          "@language": "es",
+          "@value": "Valor de visibilidad"
+        },
+        {
+          "@language": "et",
+          "@value": "Nähtavuse väärtus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Näkyvyysarvo"
+        },
+        {
+          "@language": "fr",
+          "@value": "Valeur de visibilité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Luach Infheictheachta"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vrijednost vidljivosti"
+        },
+        {
+          "@language": "hu",
+          "@value": "Láthatósági érték"
+        },
+        {
+          "@language": "it",
+          "@value": "Valore di visibilità"
+        },
+        {
+          "@language": "lt",
+          "@value": "Matomumo vertė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Redzamības vērtība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Valur tal-Viżibbiltà"
+        },
+        {
+          "@language": "nl",
+          "@value": "Zichtbaarheidswaarde"
+        },
+        {
+          "@language": "pl",
+          "@value": "Wartość widoczności"
+        },
+        {
+          "@language": "pt",
+          "@value": "Valor de Visibilidade"
+        },
+        {
+          "@language": "ro",
+          "@value": "Valoarea vizibilității"
+        },
+        {
+          "@language": "sk",
+          "@value": "Hodnota viditeľnosti"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vrednost vidljivosti"
+        },
+        {
+          "@language": "sv",
+          "@value": "Synlighetsvärde"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "An enumeration of the allowed visibility and access levels for specific DPP data."
+        },
+        {
+          "@language": "bg",
+          "@value": "Изброяване на разрешените нива на видимост и достъп за специфични DPP данни."
+        },
+        {
+          "@language": "cs",
+          "@value": "Výčet povolených úrovní viditelnosti a přístupu pro specifická data DPP."
+        },
+        {
+          "@language": "da",
+          "@value": "En opregning af de tilladte synligheds- og adgangsniveauer for specifikke DPP-data."
+        },
+        {
+          "@language": "de",
+          "@value": "Eine Aufzählung der zulässigen Sichtbarkeits- und Zugriffsebenen für spezifische DPP-Daten."
+        },
+        {
+          "@language": "el",
+          "@value": "Μια απαρίθμηση των επιτρεπόμενων επιπέδων ορατότητας και πρόσβασης για συγκεκριμένα δεδομένα DPP."
+        },
+        {
+          "@language": "es",
+          "@value": "Una enumeración de los niveles de visibilidad y acceso permitidos para datos específicos de DPP."
+        },
+        {
+          "@language": "et",
+          "@value": "Spetsiifiliste DPP-andmete lubatud nähtavuse ja juurdepääsutasemete loetelu."
+        },
+        {
+          "@language": "fi",
+          "@value": "Luettelo sallituista näkyvyys- ja käyttöoikeustasoista tietyille DPP-tiedoille."
+        },
+        {
+          "@language": "fr",
+          "@value": "Une énumération des niveaux de visibilité et d'accès autorisés pour des données DPP spécifiques."
+        },
+        {
+          "@language": "ga",
+          "@value": "Liosta de na leibhéil infheictheachta agus rochtana a cheadaítear do shonraí DPP sainiúla."
+        },
+        {
+          "@language": "hr",
+          "@value": "Popis dopuštenih razina vidljivosti i pristupa za specifične DPP podatke."
+        },
+        {
+          "@language": "hu",
+          "@value": "A specifikus DPP adatok megengedett láthatósági és hozzáférési szintjeinek felsorolása."
+        },
+        {
+          "@language": "it",
+          "@value": "Un'enumerazione dei livelli di visibilità e accesso consentiti per dati DPP specifici."
+        },
+        {
+          "@language": "lt",
+          "@value": "Leistinų konkrečių DPP duomenų matomumo ir prieigos lygių išvardijimas."
+        },
+        {
+          "@language": "lv",
+          "@value": "Atļauto redzamības un piekļuves līmeņu uzskaitījums konkrētiem DPP datiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Enumerazzjoni tal-livelli ta' viżibbiltà u aċċess permessi għal data speċifika tad-DPP."
+        },
+        {
+          "@language": "nl",
+          "@value": "Een opsomming van de toegestane zichtbaarheids- en toegangsniveaus voor specifieke DPP-gegevens."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wyliczenie dozwolonych poziomów widoczności i dostępu dla określonych danych DPP."
+        },
+        {
+          "@language": "pt",
+          "@value": "Uma enumeração dos níveis de visibilidade e acesso permitidos para dados DPP específicos."
+        },
+        {
+          "@language": "ro",
+          "@value": "O enumerare a nivelurilor de vizibilitate și acces permise pentru datele DPP specifice."
+        },
+        {
+          "@language": "sk",
+          "@value": "Výpočet povolených úrovní viditeľnosti a prístupu pre špecifické údaje DPP."
+        },
+        {
+          "@language": "sl",
+          "@value": "Naštevanje dovoljenih ravni vidljivosti in dostopa za posebne podatke DPP."
+        },
+        {
+          "@language": "sv",
+          "@value": "En uppräkning av de tillåtna synlighets- och åtkomstnivåerna för specifika DPP-data."
+        }
+      ],
+      "rdfs:subClassOf": {
+        "@id": "rdfs:Resource"
+      },
+      "owl:oneOf": [
+        {
+          "@id": "dppk:Public"
+        },
+        {
+          "@id": "dppk:LegitimateInterest"
+        },
+        {
+          "@id": "dppk:LegitimateInterestOrAuthority"
+        },
+        {
+          "@id": "dppk:AuthorityOnly"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:Public",
+      "@type": "dppk:VisibilityValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Public"
+        },
+        {
+          "@language": "bg",
+          "@value": "Публично"
+        },
+        {
+          "@language": "cs",
+          "@value": "Veřejné"
+        },
+        {
+          "@language": "da",
+          "@value": "Offentlig"
+        },
+        {
+          "@language": "de",
+          "@value": "Öffentlich"
+        },
+        {
+          "@language": "el",
+          "@value": "Δημόσιο"
+        },
+        {
+          "@language": "es",
+          "@value": "Público"
+        },
+        {
+          "@language": "et",
+          "@value": "Avalik"
+        },
+        {
+          "@language": "fi",
+          "@value": "Julkinen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Public"
+        },
+        {
+          "@language": "ga",
+          "@value": "Poiblí"
+        },
+        {
+          "@language": "hr",
+          "@value": "Javno"
+        },
+        {
+          "@language": "hu",
+          "@value": "Nyilvános"
+        },
+        {
+          "@language": "it",
+          "@value": "Pubblico"
+        },
+        {
+          "@language": "lt",
+          "@value": "Vieša"
+        },
+        {
+          "@language": "lv",
+          "@value": "Publiska"
+        },
+        {
+          "@language": "mt",
+          "@value": "Pubbliku"
+        },
+        {
+          "@language": "nl",
+          "@value": "Publiek"
+        },
+        {
+          "@language": "pl",
+          "@value": "Publiczne"
+        },
+        {
+          "@language": "pt",
+          "@value": "Público"
+        },
+        {
+          "@language": "ro",
+          "@value": "Public"
+        },
+        {
+          "@language": "sk",
+          "@value": "Verejné"
+        },
+        {
+          "@language": "sl",
+          "@value": "Javno"
+        },
+        {
+          "@language": "sv",
+          "@value": "Offentlig"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Data is publicly accessible without restriction."
+        },
+        {
+          "@language": "bg",
+          "@value": "Данните са публично достъпни без ограничения."
+        },
+        {
+          "@language": "cs",
+          "@value": "Data jsou veřejně přístupná bez omezení."
+        },
+        {
+          "@language": "da",
+          "@value": "Data er offentligt tilgængelige uden begrænsninger."
+        },
+        {
+          "@language": "de",
+          "@value": "Daten sind uneingeschränkt öffentlich zugänglich."
+        },
+        {
+          "@language": "el",
+          "@value": "Τα δεδομένα είναι δημόσια προσβάσιμα χωρίς περιορισμούς."
+        },
+        {
+          "@language": "es",
+          "@value": "Los datos son accesibles públicamente sin restricción."
+        },
+        {
+          "@language": "et",
+          "@value": "Andmed on avalikult ja piiranguteta kättesaadavad."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tiedot ovat julkisesti saatavilla ilman rajoituksia."
+        },
+        {
+          "@language": "fr",
+          "@value": "Les données sont publiquement accessibles sans restriction."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tá na sonraí inrochtana don phobal gan srian."
+        },
+        {
+          "@language": "hr",
+          "@value": "Podaci su javno dostupni bez ograničenja."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az adatok korlátozás nélkül nyilvánosan hozzáférhetők."
+        },
+        {
+          "@language": "it",
+          "@value": "I dati sono accessibili pubblicamente senza restrizioni."
+        },
+        {
+          "@language": "lt",
+          "@value": "Duomenys yra viešai prieinami be apribojimų."
+        },
+        {
+          "@language": "lv",
+          "@value": "Dati ir publiski pieejami bez ierobežojumiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Id-data hija aċċessibbli pubblikament mingħajr restrizzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Gegevens zijn openbaar toegankelijk zonder beperking."
+        },
+        {
+          "@language": "pl",
+          "@value": "Dane są publicznie dostępne bez ograniczeń."
+        },
+        {
+          "@language": "pt",
+          "@value": "Os dados são publicamente acessíveis sem restrições."
+        },
+        {
+          "@language": "ro",
+          "@value": "Datele sunt accesibile public fără restricții."
+        },
+        {
+          "@language": "sk",
+          "@value": "Údaje sú verejne prístupné bez obmedzenia."
+        },
+        {
+          "@language": "sl",
+          "@value": "Podatki so javno dostopni brez omejitev."
+        },
+        {
+          "@language": "sv",
+          "@value": "Data är allmänt tillgänglig utan begränsning."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:LegitimateInterest",
+      "@type": "dppk:VisibilityValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Legitimate Interest"
+        },
+        {
+          "@language": "bg",
+          "@value": "Легитимен интерес"
+        },
+        {
+          "@language": "cs",
+          "@value": "Oprávněný zájem"
+        },
+        {
+          "@language": "da",
+          "@value": "Legitim interesse"
+        },
+        {
+          "@language": "de",
+          "@value": "Berechtigtes Interesse"
+        },
+        {
+          "@language": "el",
+          "@value": "Έννομο Συμφέρον"
+        },
+        {
+          "@language": "es",
+          "@value": "Interés legítimo"
+        },
+        {
+          "@language": "et",
+          "@value": "Õigustatud huvi"
+        },
+        {
+          "@language": "fi",
+          "@value": "Oikeutettu etu"
+        },
+        {
+          "@language": "fr",
+          "@value": "Intérêt légitime"
+        },
+        {
+          "@language": "ga",
+          "@value": "Leas Dlisteanach"
+        },
+        {
+          "@language": "hr",
+          "@value": "Legitimni interes"
+        },
+        {
+          "@language": "hu",
+          "@value": "Jogos érdek"
+        },
+        {
+          "@language": "it",
+          "@value": "Interesse legittimo"
+        },
+        {
+          "@language": "lt",
+          "@value": "Teisėtas interesas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Leģitīma interese"
+        },
+        {
+          "@language": "mt",
+          "@value": "Interess Leġittimu"
+        },
+        {
+          "@language": "nl",
+          "@value": "Gerechtvaardigd belang"
+        },
+        {
+          "@language": "pl",
+          "@value": "Uzasadniony interes"
+        },
+        {
+          "@language": "pt",
+          "@value": "Interesse Legítimo"
+        },
+        {
+          "@language": "ro",
+          "@value": "Interes legitim"
+        },
+        {
+          "@language": "sk",
+          "@value": "Oprávnený záujem"
+        },
+        {
+          "@language": "sl",
+          "@value": "Zakonit interes"
+        },
+        {
+          "@language": "sv",
+          "@value": "Berättigat intresse"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Data access is restricted or relies on proven legitimate interest."
+        },
+        {
+          "@language": "bg",
+          "@value": "Достъпът до данни е ограничен или разчита на доказан легитимен интерес."
+        },
+        {
+          "@language": "cs",
+          "@value": "Přístup k datům je omezen nebo závisí na prokázaném oprávněném zájmu."
+        },
+        {
+          "@language": "da",
+          "@value": "Dataadgang er begrænset eller afhænger af bevist legitim interesse."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Datenzugriff ist beschränkt oder beruht auf einem nachgewiesenen berechtigten Interesse."
+        },
+        {
+          "@language": "el",
+          "@value": "Η πρόσβαση στα δεδομένα περιορίζεται ή βασίζεται σε αποδεδειγμένο έννομο συμφέρον."
+        },
+        {
+          "@language": "es",
+          "@value": "El acceso a los datos está restringido o se basa en un interés legítimo comprobado."
+        },
+        {
+          "@language": "et",
+          "@value": "Andmetele juurdepääs on piiratud või tugineb tõestatud õigustatud huvile."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tiedonsaanti on rajoitettu tai perustuu todistettuun oikeutettuun etuun."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'accès aux données est restreint ou repose sur un intérêt légitime avéré."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tá srianta le rochtain ar shonraí nó braitheann sé ar leas dlisteanach cruthaithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Pristup podacima je ograničen ili se oslanja na dokazani legitimni interes."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az adathozzáférés korlátozott, vagy bizonyított jogos érdeken alapul."
+        },
+        {
+          "@language": "it",
+          "@value": "L'accesso ai dati è limitato o si basa su un comprovato interesse legittimo."
+        },
+        {
+          "@language": "lt",
+          "@value": "Prieiga prie duomenų yra apribota arba remiasi įrodytu teisėtu interesu."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datu piekļuve ir ierobežota vai pamatojas uz pierādītu leģitīmu interesi."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-aċċess għad-data huwa ristrett jew jiddependi fuq interess leġittimu ppruvat."
+        },
+        {
+          "@language": "nl",
+          "@value": "De toegang tot gegevens is beperkt of is gebaseerd op een bewezen gerechtvaardigd belang."
+        },
+        {
+          "@language": "pl",
+          "@value": "Dostęp do danych jest ograniczony lub opiera się na udokumentowanym uzasadnionym interesie."
+        },
+        {
+          "@language": "pt",
+          "@value": "O acesso aos dados é restrito ou depende de um interesse legítimo comprovado."
+        },
+        {
+          "@language": "ro",
+          "@value": "Accesul la date este restricționat sau se bazează pe un interes legitim dovedit."
+        },
+        {
+          "@language": "sk",
+          "@value": "Prístup k údajom je obmedzený alebo závisí od preukázaného oprávneného záujmu."
+        },
+        {
+          "@language": "sl",
+          "@value": "Dostop do podatkov je omejen ali pa temelji na dokazanem zakonitem interesu."
+        },
+        {
+          "@language": "sv",
+          "@value": "Dataåtkomsten är begränsad eller baseras på bevisat berättigat intresse."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:LegitimateInterestOrAuthority",
+      "@type": "dppk:VisibilityValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Legitimate Interest / Authority Only"
+        },
+        {
+          "@language": "bg",
+          "@value": "Само легитимен интерес / орган"
+        },
+        {
+          "@language": "cs",
+          "@value": "Pouze oprávněný zájem / orgán"
+        },
+        {
+          "@language": "da",
+          "@value": "Kun legitim interesse / myndighed"
+        },
+        {
+          "@language": "de",
+          "@value": "Nur berechtigtes Interesse / Behörde"
+        },
+        {
+          "@language": "el",
+          "@value": "Μόνο Έννομο Συμφέρον / Αρχή"
+        },
+        {
+          "@language": "es",
+          "@value": "Solo interés legítimo / autoridad"
+        },
+        {
+          "@language": "et",
+          "@value": "Ainult õigustatud huvi / asutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Vain oikeutettu etu / viranomainen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Intérêt légitime / Autorité uniquement"
+        },
+        {
+          "@language": "ga",
+          "@value": "Leas Dlisteanach / Údarás Amháin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Samo legitimni interes / tijelo"
+        },
+        {
+          "@language": "hu",
+          "@value": "Csak jogos érdek / hatóság"
+        },
+        {
+          "@language": "it",
+          "@value": "Solo interesse legittimo / autorità"
+        },
+        {
+          "@language": "lt",
+          "@value": "Tik teisėtas interesas / institucija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Tikai leģitīma interese / iestāde"
+        },
+        {
+          "@language": "mt",
+          "@value": "Interess Leġittimu / Awtorità Biss"
+        },
+        {
+          "@language": "nl",
+          "@value": "Alleen gerechtvaardigd belang / autoriteit"
+        },
+        {
+          "@language": "pl",
+          "@value": "Tylko uzasadniony interes / organ"
+        },
+        {
+          "@language": "pt",
+          "@value": "Apenas Interesse Legítimo / Autoridade"
+        },
+        {
+          "@language": "ro",
+          "@value": "Doar interes legitim / autoritate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Len oprávnený záujem / orgán"
+        },
+        {
+          "@language": "sl",
+          "@value": "Samo zakonit interes / organ"
+        },
+        {
+          "@language": "sv",
+          "@value": "Endast berättigat intresse / myndighet"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Data access is tightly restricted to authorities or highly specialized legitimate interests."
+        },
+        {
+          "@language": "bg",
+          "@value": "Достъпът до данни е строго ограничен до органи или тясно специализирани легитимни интереси."
+        },
+        {
+          "@language": "cs",
+          "@value": "Přístup k datům je přísně omezen na orgány nebo vysoce specializované oprávněné zájmy."
+        },
+        {
+          "@language": "da",
+          "@value": "Dataadgang er stramt begrænset til myndigheder eller højt specialiserede legitime interesser."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Datenzugriff ist streng auf Behörden oder hochspezialisierte berechtigte Interessen beschränkt."
+        },
+        {
+          "@language": "el",
+          "@value": "Η πρόσβαση στα δεδομένα περιορίζεται αυστηρά στις αρχές ή σε εξαιρετικά εξειδικευμένα έννομα συμφέροντα."
+        },
+        {
+          "@language": "es",
+          "@value": "El acceso a los datos está estrictamente restringido a autoridades o intereses legítimos altamente especializados."
+        },
+        {
+          "@language": "et",
+          "@value": "Andmetele juurdepääs on rangelt piiratud asutustele või väga spetsiifilistele õigustatud huvidele."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tiedonsaanti on tiukasti rajoitettu viranomaisille tai erittäin erikoistuneille oikeutetuille eduille."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'accès aux données est strictement limité aux autorités ou à des intérêts légitimes hautement spécialisés."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tá srianta dochta ar rochtain ar shonraí d'údaráis nó leasanna dlisteanacha sár-shainfheidhmithe."
+        },
+        {
+          "@language": "hr",
+          "@value": "Pristup podacima strogo je ograničen na tijela ili visoko specijalizirane legitimne interese."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az adathozzáférés szigorúan a hatóságokra vagy rendkívül speciális jogos érdekekre korlátozódik."
+        },
+        {
+          "@language": "it",
+          "@value": "L'accesso ai dati è strettamente limitato alle autorità o a interessi legittimi altamente specializzati."
+        },
+        {
+          "@language": "lt",
+          "@value": "Prieiga prie duomenų griežtai ribojama institucijoms arba labai specializuotiems teisėtiems interesams."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datu piekļuve ir stingri ierobežota iestādēm vai ļoti specializētām leģitīmām interesēm."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-aċċess għad-data huwa ristrett b'mod strett għal awtoritajiet jew interessi leġittimi speċjalizzati ħafna."
+        },
+        {
+          "@language": "nl",
+          "@value": "Toegang tot gegevens is strikt beperkt tot autoriteiten of zeer gespecialiseerde gerechtvaardigde belangen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Dostęp do danych jest ściśle ograniczony do organów lub wysoce wyspecjalizowanych uzasadnionych interesów."
+        },
+        {
+          "@language": "pt",
+          "@value": "O acesso aos dados é estritamente restrito a autoridades ou interesses legítimos altamente especializados."
+        },
+        {
+          "@language": "ro",
+          "@value": "Accesul la date este strict restricționat la autorități sau la interese legitime extrem de specializate."
+        },
+        {
+          "@language": "sk",
+          "@value": "Prístup k údajom je prísne obmedzený na orgány alebo vysoko špecializované oprávnené záujmy."
+        },
+        {
+          "@language": "sl",
+          "@value": "Dostop do podatkov je strogo omejen na organe ali visoko specializirane zakonite interese."
+        },
+        {
+          "@language": "sv",
+          "@value": "Dataåtkomst är strikt begränsad till myndigheter eller mycket specialiserade berättigade intressen."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:AuthorityOnly",
+      "@type": "dppk:VisibilityValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Authority"
+        },
+        {
+          "@language": "bg",
+          "@value": "Орган"
+        },
+        {
+          "@language": "cs",
+          "@value": "Orgán"
+        },
+        {
+          "@language": "da",
+          "@value": "Myndighed"
+        },
+        {
+          "@language": "de",
+          "@value": "Behörde"
+        },
+        {
+          "@language": "el",
+          "@value": "Αρχή"
+        },
+        {
+          "@language": "es",
+          "@value": "Autoridad"
+        },
+        {
+          "@language": "et",
+          "@value": "Asutus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Viranomainen"
+        },
+        {
+          "@language": "fr",
+          "@value": "Autorité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Údarás"
+        },
+        {
+          "@language": "hr",
+          "@value": "Tijelo"
+        },
+        {
+          "@language": "hu",
+          "@value": "Hatóság"
+        },
+        {
+          "@language": "it",
+          "@value": "Autorità"
+        },
+        {
+          "@language": "lt",
+          "@value": "Institucija"
+        },
+        {
+          "@language": "lv",
+          "@value": "Iestāde"
+        },
+        {
+          "@language": "mt",
+          "@value": "Awtorità"
+        },
+        {
+          "@language": "nl",
+          "@value": "Autoriteit"
+        },
+        {
+          "@language": "pl",
+          "@value": "Organ"
+        },
+        {
+          "@language": "pt",
+          "@value": "Autoridade"
+        },
+        {
+          "@language": "ro",
+          "@value": "Autoritate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Orgán"
+        },
+        {
+          "@language": "sl",
+          "@value": "Organ"
+        },
+        {
+          "@language": "sv",
+          "@value": "Myndighet"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Data access is heavily restricted explicitly to authoritative bodies."
+        },
+        {
+          "@language": "bg",
+          "@value": "Достъпът до данни е силно ограничен изрично до официални органи."
+        },
+        {
+          "@language": "cs",
+          "@value": "Přístup k datům je silně omezen výslovně na autoritativní orgány."
+        },
+        {
+          "@language": "da",
+          "@value": "Dataadgang er stærkt begrænset og udelukkende for autoritative organer."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Datenzugriff ist ausdrücklich und stark auf befugte Behörden beschränkt."
+        },
+        {
+          "@language": "el",
+          "@value": "Η πρόσβαση στα δεδομένα περιορίζεται έντονα ρητά στους αρμόδιους φορείς."
+        },
+        {
+          "@language": "es",
+          "@value": "El acceso a los datos está fuertemente restringido explícitamente a organismos de autoridad."
+        },
+        {
+          "@language": "et",
+          "@value": "Andmetele juurdepääs on tugevalt piiratud ja lubatud ainult ametiasutustele."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tiedonsaanti on voimakkaasti rajoitettu yksinomaan viranomaisille."
+        },
+        {
+          "@language": "fr",
+          "@value": "L'accès aux données est fortement restreint explicitement aux organes faisant autorité."
+        },
+        {
+          "@language": "ga",
+          "@value": "Tá rochtain ar shonraí teoranta go mór go sainráite d'eagraíochtaí údarásacha."
+        },
+        {
+          "@language": "hr",
+          "@value": "Pristup podacima je strogo ograničen izričito na nadležna tijela."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az adathozzáférés erősen és kifejezetten a hatóságokra korlátozódik."
+        },
+        {
+          "@language": "it",
+          "@value": "L'accesso ai dati è fortemente limitato esplicitamente agli organi autoritativi."
+        },
+        {
+          "@language": "lt",
+          "@value": "Prieiga prie duomenų yra labai apribota tik kompetentingoms institucijoms."
+        },
+        {
+          "@language": "lv",
+          "@value": "Datu piekļuve ir stingri ierobežota tikai atbildīgajām iestādēm."
+        },
+        {
+          "@language": "mt",
+          "@value": "L-aċċess għad-data huwa ristrett b'mod qawwi u b'mod espliċitu għal korpi awtorevoli."
+        },
+        {
+          "@language": "nl",
+          "@value": "Toegang tot gegevens is sterk beperkt en expliciet voorbehouden aan bevoegde instanties."
+        },
+        {
+          "@language": "pl",
+          "@value": "Dostęp do danych jest mocno ograniczony i dotyczy wyraźnie uprawnionych organów."
+        },
+        {
+          "@language": "pt",
+          "@value": "O acesso aos dados é fortemente restrito explicitamente a órgãos de autoridade."
+        },
+        {
+          "@language": "ro",
+          "@value": "Accesul la date este puternic restricționat explicit la organismele autorizate."
+        },
+        {
+          "@language": "sk",
+          "@value": "Prístup k údajom je prísne obmedzený výlučne na autoritatívne orgány."
+        },
+        {
+          "@language": "sl",
+          "@value": "Dostop do podatkov je močno omejen in izrecno dovoljen zgolj pristojnim organom."
+        },
+        {
+          "@language": "sv",
+          "@value": "Dataåtkomsten är kraftigt begränsad och exklusiv för auktoritativa organ."
+        }
+      ]
+    },
+    {
+      "@id": "dppk:visibility",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Visibility"
+        },
+        {
+          "@language": "bg",
+          "@value": "Видимост"
+        },
+        {
+          "@language": "cs",
+          "@value": "Viditelnost"
+        },
+        {
+          "@language": "da",
+          "@value": "Synlighed"
+        },
+        {
+          "@language": "de",
+          "@value": "Sichtbarkeit"
+        },
+        {
+          "@language": "el",
+          "@value": "Ορατότητα"
+        },
+        {
+          "@language": "es",
+          "@value": "Visibilidad"
+        },
+        {
+          "@language": "et",
+          "@value": "Nähtavus"
+        },
+        {
+          "@language": "fi",
+          "@value": "Näkyvyys"
+        },
+        {
+          "@language": "fr",
+          "@value": "Visibilité"
+        },
+        {
+          "@language": "ga",
+          "@value": "Infheictheacht"
+        },
+        {
+          "@language": "hr",
+          "@value": "Vidljivost"
+        },
+        {
+          "@language": "hu",
+          "@value": "Láthatóság"
+        },
+        {
+          "@language": "it",
+          "@value": "Visibilità"
+        },
+        {
+          "@language": "lt",
+          "@value": "Matomumas"
+        },
+        {
+          "@language": "lv",
+          "@value": "Redzamība"
+        },
+        {
+          "@language": "mt",
+          "@value": "Viżibbiltà"
+        },
+        {
+          "@language": "nl",
+          "@value": "Zichtbaarheid"
+        },
+        {
+          "@language": "pl",
+          "@value": "Widoczność"
+        },
+        {
+          "@language": "pt",
+          "@value": "Visibilidade"
+        },
+        {
+          "@language": "ro",
+          "@value": "Vizibilitate"
+        },
+        {
+          "@language": "sk",
+          "@value": "Viditeľnosť"
+        },
+        {
+          "@language": "sl",
+          "@value": "Vidljivost"
+        },
+        {
+          "@language": "sv",
+          "@value": "Synlighet"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Indicates the explicit visibility class of a given property."
+        },
+        {
+          "@language": "bg",
+          "@value": "Показва изричния клас на видимост на дадено свойство."
+        },
+        {
+          "@language": "cs",
+          "@value": "Označuje explicitní třídu viditelnosti dané vlastnosti."
+        },
+        {
+          "@language": "da",
+          "@value": "Angiver den eksplicitte synlighedsklasse for en given egenskab."
+        },
+        {
+          "@language": "de",
+          "@value": "Gibt die explizite Sichtbarkeitsklasse einer bestimmten Eigenschaft an."
+        },
+        {
+          "@language": "el",
+          "@value": "Υποδεικνύει τη ρητή κλάση ορατότητας μιας δεδομένης ιδιότητας."
+        },
+        {
+          "@language": "es",
+          "@value": "Indica la clase de visibilidad explícita de una propiedad dada."
+        },
+        {
+          "@language": "et",
+          "@value": "Näitab antud omaduse selgesõnalist nähtavusklassi."
+        },
+        {
+          "@language": "fi",
+          "@value": "Ilmaisee tietyn ominaisuuden eksplisiittisen näkyvyysluokan."
+        },
+        {
+          "@language": "fr",
+          "@value": "Indique la classe de visibilité explicite d'une propriété donnée."
+        },
+        {
+          "@language": "ga",
+          "@value": "Léiríonn sé aicme infheictheachta fhollasach airíona ar leith."
+        },
+        {
+          "@language": "hr",
+          "@value": "Označava eksplicitnu klasu vidljivosti za zadano svojstvo."
+        },
+        {
+          "@language": "hu",
+          "@value": "Egy adott tulajdonság kifejezett láthatósági osztályát jelöli."
+        },
+        {
+          "@language": "it",
+          "@value": "Indica la classe di visibilità esplicita di una data proprietà."
+        },
+        {
+          "@language": "lt",
+          "@value": "Nurodo aiškią konkrečios savybės matomumo klasę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Norāda konkrētas īpašības skaidru redzamības klasi."
+        },
+        {
+          "@language": "mt",
+          "@value": "Jindika l-klassi ta' viżibbiltà espliċita ta' proprjetà partikolari."
+        },
+        {
+          "@language": "nl",
+          "@value": "Geeft de expliciete zichtbaarheidsklasse van een bepaalde eigenschap aan."
+        },
+        {
+          "@language": "pl",
+          "@value": "Wskazuje jawną klasę widoczności danej właściwości."
+        },
+        {
+          "@language": "pt",
+          "@value": "Indica a classe de visibilidade explícita de uma dada propriedade."
+        },
+        {
+          "@language": "ro",
+          "@value": "Indică clasa de vizibilitate explicită a unei anumite proprietăți."
+        },
+        {
+          "@language": "sk",
+          "@value": "Označuje explicitnú triedu viditeľnosti danej vlastnosti."
+        },
+        {
+          "@language": "sl",
+          "@value": "Označuje eksplicitni razred vidljivosti dane lastnosti."
+        },
+        {
+          "@language": "sv",
+          "@value": "Anger den explicita synlighetsklassen för en given egenskap."
+        }
+      ],
+      "rdfs:range": {
+        "@id": "dppk:VisibilityValue"
+      }
+    }
+  ]
+}
