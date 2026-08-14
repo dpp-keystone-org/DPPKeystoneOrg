@@ -1,4 +1,4 @@
-import { analyzeColumnData, isTypeCompatible, generateDPPsFromCsv, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../../src/lib/csv-adapter-logic.js';
+import { analyzeColumnData, isTypeCompatible, generateDPPsFromCsv, validateMappingConstraints, getMissingRequiredFields, validateValue, generateAutoMapping } from '../../src/lib/csv-adapter-logic.js';
 
 describe('DPP Generation Logic', () => {
     test('should ignore empty mappings', () => {
@@ -21,6 +21,30 @@ describe('DPP Generation Logic', () => {
         // Check that keys are limited
         const keys = Object.keys(result[0]).filter(k => k !== '@context');
         expect(keys).toEqual(['field1']);
+    });
+
+    test('should auto-map DPP header fields correctly', () => {
+        const headers = ['DPP ID', 'Schema Version', 'DPP Status', 'Last Update', 'Economic Operator ID', 'Content Spec ID', 'Granularity'];
+        const availableFields = [
+            { path: 'digitalProductPassportId', type: 'string' },
+            { path: 'dppSchemaVersion', type: 'string' },
+            { path: 'dppStatus', type: 'string' },
+            { path: 'lastUpdate', type: 'string' },
+            { path: 'economicOperatorId', type: 'string' },
+            { path: 'contentSpecificationIds', type: 'array' },
+            { path: 'granularity', type: 'string' },
+            { path: 'uniqueProductIdentifier', type: 'string' }
+        ];
+
+        const mapping = generateAutoMapping(headers, availableFields);
+        
+        expect(mapping['DPP ID']).toBe('digitalProductPassportId');
+        expect(mapping['Schema Version']).toBe('dppSchemaVersion');
+        expect(mapping['DPP Status']).toBe('dppStatus');
+        expect(mapping['Last Update']).toBe('lastUpdate');
+        expect(mapping['Economic Operator ID']).toBe('economicOperatorId');
+        expect(mapping['Content Spec ID']).toBe('contentSpecificationIds');
+        expect(mapping['Granularity']).toBe('granularity');
     });
 
     test('should prevent duplicate contexts when multiple battery schemas are loaded', () => {
