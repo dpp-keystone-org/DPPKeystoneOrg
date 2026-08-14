@@ -39,11 +39,19 @@ test.describe('CSV Adapter - oneOf Validation', () => {
     const mappings = {
       'Product ID': 'uniqueProductIdentifier',
       'Mass (kg)': 'batteryMass',
+      'Manufacturer Name': 'manufacturerInfo.name',
+      'Manufacturer Street': 'manufacturerInfo.address.streetAddress',
       'Manufacturer City': 'manufacturerInfo.address.addressLocality',
       'Manufacturer Zip': 'manufacturerInfo.address.postalCode',
+      'Manufacturer Country': 'manufacturerInfo.address.addressCountry',
+      'Category': 'batteryCategory',
+      'Status': 'batteryStatus',
+      'Chemistry': 'batteryChemistry',
       'Recycled Pre 1 %': 'preConsumerRecycledMaterialComposition[0].percentage',
       'Recycled Post 1 %': 'postConsumerRecycledMaterialComposition[0].percentage',
+      'Recycled Post 1 Name': 'postConsumerRecycledMaterialComposition[0].name',
       'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage',
+      'Recycled Post 2 Name': 'postConsumerRecycledMaterialComposition[1].name',
       'Separate Collection Symbol': 'separateCollectionSymbol.url',
       'Extinguishing Agent': 'extinguishingAgent',
       'Test Reports': 'testReports.url',
@@ -52,7 +60,9 @@ test.describe('CSV Adapter - oneOf Validation', () => {
       'Part Numbers': 'partNumbers.url',
       'Spare Parts Sources': 'sparePartsSources.url',
       'Safety Measures': 'safetyMeasures.url',
-      'Waste Prevention Info': 'wastePreventionInfo.url'
+      'Waste Prevention Info': 'wastePreventionInfo.url',
+      'DoC Title': 'dopc.declarationCode',
+      'Renewable Content %': 'renewableContent'
     };
 
     for (const [csvHeader, schemaPath] of Object.entries(mappings)) {

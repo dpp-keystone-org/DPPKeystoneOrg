@@ -32,9 +32,10 @@ test('should maintain correct error count when removing array items shifts inval
     // 2. Add the battery sector.
     await page.locator('button[data-sector="battery-ev"]').click();
     
-    // Battery has many required fields now.
-    await expect(showErrorsBtn).toContainText(/Show Errors \(\d+\)/);
-    // Give it a moment to stabilize the error count rendering
+    // The UI must fetch schemas and re-render, so wait until the error count is NO LONGER 3.
+    await expect(showErrorsBtn).not.toContainText('Show Errors (3)');
+    
+    // Give it a moment to stabilize the error count rendering fully
     await page.waitForTimeout(500);
     const textAfterSector = await showErrorsBtn.textContent();
     const errorCountAfterSectorAdd = parseInt(textAfterSector.match(/\((\d+)\)/)[1], 10);
