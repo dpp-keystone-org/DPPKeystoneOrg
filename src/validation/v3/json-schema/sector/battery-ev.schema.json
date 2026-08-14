@@ -178,7 +178,8 @@
                             "voltageMin",
                             "voltageNominal",
                             "voltageMax",
-                            "soce"
+                            "soce",
+                            "fade"
                         ]
                     },
                     "power": {
@@ -201,7 +202,8 @@
                             }
                         },
                         "required": [
-                            "original"
+                            "original",
+                            "fade"
                         ]
                     },
                     "efficiency": {
@@ -244,14 +246,16 @@
                                 "type": "number"
                             },
                             "ohmic": {
-                                "type": "number"
+                                "not": {}
                             },
                             "dynamic": {
                                 "type": "number"
                             }
                         },
                         "required": [
-                            "initial"
+                            "initial",
+                            "increase",
+                            "dynamic"
                         ]
                     },
                     "lifetime": {

@@ -178,7 +178,8 @@
                             "voltageMin",
                             "voltageNominal",
                             "voltageMax",
-                            "remaining"
+                            "remaining",
+                            "fade"
                         ]
                     },
                     "power": {
@@ -202,7 +203,8 @@
                         },
                         "required": [
                             "original",
-                            "remaining"
+                            "remaining",
+                            "fade"
                         ]
                     },
                     "efficiency": {
@@ -254,7 +256,10 @@
                             }
                         },
                         "required": [
-                            "initial"
+                            "initial",
+                            "increase",
+                            "ohmic",
+                            "dynamic"
                         ]
                     },
                     "lifetime": {
