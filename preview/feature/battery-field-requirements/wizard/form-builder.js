@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1786702081224';
-import { LanguageManager } from '../lib/language-manager.js?v=1786702081224';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1786711121789';
+import { LanguageManager } from '../lib/language-manager.js?v=1786711121789';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
@@ -907,7 +907,7 @@ function generateRows(fragment, properties, ontologyMap, requiredFields = [], pa
         }
 
         // Exclude fields that should not be rendered
-        if (key === 'contentSpecificationIds') {
+        if (key === 'contentSpecificationIds' || prop.not !== undefined) {
             continue;
         }
 

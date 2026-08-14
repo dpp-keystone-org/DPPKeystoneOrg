@@ -76,6 +76,16 @@
     "resourceTitle": "Waste Prevention",
     "url": "https://keystone-batteries.com/waste-prevention"
   },
+  "materialComposition": [
+    {
+      "name": "Lithium",
+      "percentage": 2.5
+    },
+    {
+      "name": "Graphite",
+      "percentage": 15
+    }
+  ],
   "hazardousSubstances": [
     {
       "name": "Lithium Hexafluorophosphate",
@@ -102,11 +112,13 @@
       "voltageMax": 54,
       "certifiedUsableEnergy": 4800,
       "stateOfCharge": 98.5,
-      "soce": 99
+      "soce": 99,
+      "fade": 2.5
     },
     "power": {
       "original": 2000,
-      "maximumPermitted": 2500
+      "maximumPermitted": 2500,
+      "fade": 1
     },
     "efficiency": {
       "roundTripInitial": 95.5,
@@ -114,7 +126,9 @@
       "selfDischargeInitial": 2
     },
     "internalResistance": {
-      "initial": 15
+      "initial": 15,
+      "increase": 0.5,
+      "dynamic": 16.5
     },
     "lifetime": {
       "years": 10,

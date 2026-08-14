@@ -92,7 +92,10 @@
         "type": "string"
       },
       "materialComposition": {
-        "not": {}
+        "type": "array",
+        "items": {
+          "$ref": "../shared/component.schema.json"
+        }
       },
       "hazardousSubstances": {
         "type": "array",
@@ -234,6 +237,12 @@
               },
               "increase": {
                 "type": "number"
+              },
+              "ohmic": {
+                "type": "number"
+              },
+              "dynamic": {
+                "type": "number"
               }
             },
             "required": [
@@ -351,6 +360,7 @@
       "testReports",
       "batteryChemistry",
       "criticalRawMaterials",
+      "materialComposition",
       "hazardousSubstances",
       "dismantlingInformation",
       "partNumbers",

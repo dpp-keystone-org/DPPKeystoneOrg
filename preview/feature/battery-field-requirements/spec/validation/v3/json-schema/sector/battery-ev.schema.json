@@ -92,7 +92,10 @@
         "type": "string"
       },
       "materialComposition": {
-        "not": {}
+        "type": "array",
+        "items": {
+          "$ref": "../shared/component.schema.json"
+        }
       },
       "hazardousSubstances": {
         "type": "array",
@@ -175,7 +178,8 @@
               "voltageMin",
               "voltageNominal",
               "voltageMax",
-              "soce"
+              "soce",
+              "fade"
             ]
           },
           "power": {
@@ -198,7 +202,8 @@
               }
             },
             "required": [
-              "original"
+              "original",
+              "fade"
             ]
           },
           "efficiency": {
@@ -239,10 +244,18 @@
               },
               "increase": {
                 "type": "number"
+              },
+              "ohmic": {
+                "not": {}
+              },
+              "dynamic": {
+                "type": "number"
               }
             },
             "required": [
-              "initial"
+              "initial",
+              "increase",
+              "dynamic"
             ]
           },
           "lifetime": {
@@ -364,6 +377,7 @@
       "testReports",
       "batteryChemistry",
       "criticalRawMaterials",
+      "materialComposition",
       "hazardousSubstances",
       "dismantlingInformation",
       "partNumbers",
