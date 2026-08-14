@@ -112,12 +112,14 @@
       "voltageMax": 54,
       "certifiedUsableEnergy": 4800,
       "stateOfCharge": 98.5,
-      "remaining": 95.0
+      "remaining": 95.0,
+      "fade": 2.5
     },
     "power": {
       "original": 2000,
       "maximumPermitted": 2500,
-      "remaining": 1950.0
+      "remaining": 1950.0,
+      "fade": 1.0
     },
     "efficiency": {
       "roundTripInitial": 95.5,
@@ -127,7 +129,10 @@
       "selfDischargeEvolution": 2.5
     },
     "internalResistance": {
-      "initial": 15.0
+      "initial": 15.0,
+      "increase": 0.5,
+      "ohmic": 1.2,
+      "dynamic": 16.5
     },
     "lifetime": {
       "years": 10,
