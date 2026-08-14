@@ -76,6 +76,7 @@
     // Relationships
     "economicOperator": { "@id": "dppk:economicOperator" },
     "manufacturer": { "@id": "dppk:manufacturer" },
+    "manufacturerInfo": { "@id": "dppk:manufacturer" },
     "importer": { "@id": "dppk:importer" },
     "repairService": { "@id": "dppk:repairService" },
     // We may want to revisit if we need a facility type

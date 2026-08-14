@@ -237,6 +237,12 @@
                             },
                             "increase": {
                                 "type": "number"
+                            },
+                            "ohmic": {
+                                "type": "number"
+                            },
+                            "dynamic": {
+                                "type": "number"
                             }
                         },
                         "required": [

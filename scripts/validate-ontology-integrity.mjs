@@ -437,9 +437,23 @@ function auditSchemaMappings(reporter) {
         }
     }
 
-    const files = fs.readdirSync(SCHEMA_ROOT).filter(f => f.endsWith('.schema.json'));
-    files.forEach(file => {
-        const filePath = path.join(SCHEMA_ROOT, file);
+    function getFiles(dir) {
+        let results = [];
+        const list = fs.readdirSync(dir);
+        list.forEach(file => {
+            file = path.join(dir, file);
+            const stat = fs.statSync(file);
+            if (stat && stat.isDirectory()) {
+                results = results.concat(getFiles(file));
+            } else if (file.endsWith('.schema.json')) {
+                results.push(file);
+            }
+        });
+        return results;
+    }
+
+    const files = getFiles(SCHEMA_ROOT);
+    files.forEach(filePath => {
         const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
         checkSchemaProperties(content, filePath);
     });
