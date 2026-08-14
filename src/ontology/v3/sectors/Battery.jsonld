@@ -13,6 +13,10 @@
   "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Battery",
   "@type": "owl:Ontology",
   "owl:versionInfo": "{{VERSION}}",
+  "dcterms:source": [
+    "Based on 'Guidance Document: Digital Batteries Passport – data points by category' (Version 1.0 - 28 July 2026) by the EUROPEAN COMMISSION Directorate-General for Internal Market, Industry, Entrepreneurship and SMEs.",
+    "This ontology represents GS1's synthesized interpretation of the data attribute requirements outlined by the Battery Pass consortium (Data Attribute Longlist version 1.2) in relation to DIN DKE Spec 99100."
+  ],
   "dcterms:title": [
     { "@language": "en", "@value": "DPP Battery Sector Ontology" },
     { "@language": "bg", "@value": "Онтология на сектора на батериите по DPP" },
