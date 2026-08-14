@@ -63,11 +63,11 @@ To avoid complex conditional logic within a single JSON schema, we are splitting
     reuse an existing battery ontology field that was already mapped in the legacy schema or to create a
     new one.
     *   [DONE] Re-enable `materialComposition` as a required Component array in the EV, LMV, and Industrial schemas.
-    *   [PENDING] Map or create term for ohmicResistance (EC 66)
-    *   [PENDING] Map or create term for internalResistance (dynamic) (EC 55)
-    *   [PENDING] translate newly added fields using the documented translator agent process
-    *   [PENDING] update the context mapping for battery to ensure it covers all schema fields and all new 
+    *   [DONE] Map or create term for ohmicResistance (EC 66)
+    *   [DONE] Map or create term for internalResistance (dynamic) (EC 55)
+    *   [DONE] translate newly added fields using the documented translator agent process
+    *   [DONE] update the context mapping for battery to ensure it covers all schema fields and all new terms
     terms.
-    *   [PENDING] ensure that any new terms are skos mapped to any existing applicable ontologies.
+    *   [DONE] ensure that any new terms are skos mapped to any existing applicable ontologies.
     *   [PENDING] retest and iterate on any newly broken tests.
     
