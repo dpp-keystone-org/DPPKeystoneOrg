@@ -27,6 +27,7 @@
     "build": "node scripts/compact-json.mjs && node scripts/build-and-clean.mjs",
     "test": "npm run clean && npm run build && node scripts/validate-ontology-integrity.mjs && node scripts/validate-i18n.mjs && cd testing && npm test",
     "test:integrity": "npm run build && node scripts/validate-ontology-integrity.mjs",
+    "start:api": "node api/src/server.js",
     "clean": "node scripts/clean.mjs"
   },
   "repository": {

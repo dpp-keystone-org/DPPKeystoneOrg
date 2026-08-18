@@ -32,50 +32,65 @@ const CSS_FILE_PATH = getDir(
 );
 
 // In-Memory Caches
-let cachedSchemaContext = null;
+const cachedSchemaContexts = new Map();
 let cachedCss = null;
 const cachedOntologyMaps = new Map();
 
 /**
  * Safely reads and parses a JSON/JSONC file from disk with {{VERSION}} placeholder replacement.
  * @param {string} filePath 
+ * @param {string} [version=KEYSTONE_VERSION]
  * @returns {Promise<any>}
  */
-export async function readJsonFile(filePath) {
+export async function readJsonFile(filePath, version = KEYSTONE_VERSION) {
     const raw = await fs.readFile(filePath, 'utf-8');
-    const replaced = raw.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+    const replaced = raw.replace(/\{\{VERSION\}\}/g, version);
     let errors = [];
     return jsoncParse(replaced, errors, { allowTrailingComma: true, allowComments: true });
 }
 
 /**
- * Loads the complete schema context for Ajv validation on the server.
+ * Loads the complete schema context for Ajv validation on the server for a specific version.
  * Returns { baseSchema, sectorSchemas, commonSchemas }.
+ * @param {string} [version=KEYSTONE_VERSION]
  */
-export async function getServerSchemaContext() {
-    if (cachedSchemaContext) {
-        return cachedSchemaContext;
+export async function getServerSchemaContext(version = KEYSTONE_VERSION) {
+    if (cachedSchemaContexts.has(version)) {
+        return cachedSchemaContexts.get(version);
     }
 
-    const schemaDir = SCHEMA_BASE_DIR;
+    const schemaDir = getDir(
+        `dist/spec/validation/${version}/json-schema`,
+        `src/validation/${version}/json-schema`
+    );
+
     const baseSchemaPath = path.join(schemaDir, 'dpp.schema.json');
-    const baseSchema = await readJsonFile(baseSchemaPath);
+    let baseSchema;
+    try {
+        baseSchema = await readJsonFile(baseSchemaPath, version);
+    } catch (e) {
+        // Fallback to fetch from live gh-pages if not on local disk
+        const liveUrl = `https://dpp-keystone.org/spec/validation/${version}/json-schema/dpp.schema.json`;
+        const resp = await fetch(liveUrl);
+        if (!resp.ok) throw new Error(`Could not load base schema for version ${version}: ${resp.status}`);
+        baseSchema = await resp.json();
+    }
 
     const commonSchemas = [];
     const sectorSchemas = {};
 
-    // 1. Load shared schemas
+    // 1. Load shared schemas from disk
     const sharedDir = path.join(schemaDir, 'shared');
     if (existsSync(sharedDir)) {
         const sharedFiles = await fs.readdir(sharedDir);
         for (const file of sharedFiles) {
             if (file.endsWith('.schema.json')) {
-                commonSchemas.push(await readJsonFile(path.join(sharedDir, file)));
+                commonSchemas.push(await readJsonFile(path.join(sharedDir, file), version));
             }
         }
     }
 
-    // 2. Recursively load sector schemas
+    // 2. Recursively load sector schemas from disk
     const sectorDir = path.join(schemaDir, 'sector');
     if (existsSync(sectorDir)) {
         const loadSectorEntries = async (dirPath) => {
@@ -85,7 +100,7 @@ export async function getServerSchemaContext() {
                 if (entry.isDirectory()) {
                     await loadSectorEntries(fullPath);
                 } else if (entry.name.endsWith('.schema.json')) {
-                    const schema = await readJsonFile(fullPath);
+                    const schema = await readJsonFile(fullPath, version);
                     sectorSchemas[entry.name] = schema;
                 }
             }
@@ -93,13 +108,14 @@ export async function getServerSchemaContext() {
         await loadSectorEntries(sectorDir);
     }
 
-    cachedSchemaContext = {
+    const context = {
         baseSchema,
         sectorSchemas,
         commonSchemas
     };
 
-    return cachedSchemaContext;
+    cachedSchemaContexts.set(version, context);
+    return context;
 }
 
 /**
@@ -234,27 +250,65 @@ async function loadAndParseOntologyFile(filePath, ontologyMap, loadedPaths) {
 }
 
 /**
- * Returns an aggregated ontology metadata map for a sector (or 'dpp' core).
- * @param {string} sector e.g. 'battery', 'textile', 'dpp'
+ * Returns an aggregated ontology metadata map for a sector (or 'dpp' core) for a specific version.
+ * @param {string} [sector='dpp'] e.g. 'battery', 'textile', 'dpp'
+ * @param {string} [version=KEYSTONE_VERSION]
  * @returns {Promise<Map<string, object>>}
  */
-export async function getServerOntologyMap(sector = 'dpp') {
-    if (cachedOntologyMaps.has(sector)) {
-        return cachedOntologyMaps.get(sector);
+export async function getServerOntologyMap(sector = 'dpp', version = KEYSTONE_VERSION) {
+    const cacheKey = `${version}:${sector}`;
+    if (cachedOntologyMaps.has(cacheKey)) {
+        return cachedOntologyMaps.get(cacheKey);
     }
+
+    const ontologyDir = getDir(
+        `dist/spec/ontology/${version}`,
+        `src/ontology/${version}`
+    );
 
     const ontologyMap = new Map();
     const loadedPaths = new Set();
 
     // Always load core dpp ontology first
-    const corePath = path.join(ONTOLOGY_BASE_DIR, 'dpp-ontology.jsonld');
-    await loadAndParseOntologyFile(corePath, ontologyMap, loadedPaths);
+    const corePath = path.join(ontologyDir, 'dpp-ontology.jsonld');
+    if (existsSync(corePath)) {
+        await loadAndParseOntologyFile(corePath, ontologyMap, loadedPaths);
+    } else {
+        try {
+            const liveUrl = `https://dpp-keystone.org/spec/ontology/${version}/dpp-ontology.jsonld`;
+            const resp = await fetch(liveUrl);
+            if (resp.ok) {
+                const doc = await resp.json();
+                if (doc['@graph']) {
+                    for (const term of doc['@graph']) {
+                        let key = term['@id'];
+                        if (!key) continue;
+                        if (key.includes(':')) key = key.split(':')[1];
+                        const label = parseLangTaggedProperty(term['rdfs:label']);
+                        const comment = parseLangTaggedProperty(term['rdfs:comment']);
+                        const unit = getSingleRdfsValue(term['dppk:unit']);
+                        const unitSymbol = getSingleRdfsValue(term['dppk:unitSymbol']);
+                        const governedBy = getSingleRdfsValue(term['dppk:governedBy']);
+                        let range = term['rdfs:range'];
+                        if (range && range['@id']) range = range['@id'];
+                        else range = getSingleRdfsValue(range);
+                        if (range && typeof range === 'string' && range.includes(':')) {
+                            range = range.split(':')[1];
+                        }
+                        ontologyMap.set(key, { label, comment, unit, governedBy, range, unitSymbol });
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn(`Could not load core ontology for version ${version}:`, e.message);
+        }
+    }
 
     // If a specific sector is requested, load the sector file
     if (sector && sector !== 'dpp') {
         const sectorPascal = sector.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
-        const sectorPath = path.join(ONTOLOGY_BASE_DIR, 'sectors', `${sectorPascal}.jsonld`);
-        if (await fs.stat(sectorPath).catch(() => false)) {
+        const sectorPath = path.join(ontologyDir, 'sectors', `${sectorPascal}.jsonld`);
+        if (existsSync(sectorPath)) {
             await loadAndParseOntologyFile(sectorPath, ontologyMap, loadedPaths);
         }
     }
@@ -269,7 +323,7 @@ export async function getServerOntologyMap(sector = 'dpp') {
         }
     }
 
-    cachedOntologyMaps.set(sector, ontologyMap);
+    cachedOntologyMaps.set(cacheKey, ontologyMap);
     return ontologyMap;
 }
 
@@ -288,18 +342,21 @@ export async function getProductPageCss() {
 }
 
 /**
- * Server-side JSON-LD document loader that intercepts dpp-keystone.org URIs and resolves locally from disk.
+ * Server-side JSON-LD document loader that intercepts dpp-keystone.org URIs and resolves locally from disk or live web.
+ * @param {string} [version=KEYSTONE_VERSION]
  */
-export function createServerDocumentLoader() {
+export function createServerDocumentLoader(version = KEYSTONE_VERSION) {
     return async (url) => {
         const CONTEXT_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
         const ONTOLOGY_PREFIX = 'https://dpp-keystone.org/spec/ontology/';
 
         if (url.startsWith(CONTEXT_PREFIX)) {
-            const rel = url.replace(CONTEXT_PREFIX, '').replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
-            const diskPath = path.join(PROJECT_ROOT, 'src/contexts', rel.includes('/') ? rel : `${KEYSTONE_VERSION}/${rel}`);
+            const rel = url.replace(CONTEXT_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
+            const distPath = path.join(PROJECT_ROOT, 'dist/spec/contexts', rel.includes('/') ? rel : `${version}/${rel}`);
+            const srcPath = path.join(PROJECT_ROOT, 'src/contexts', rel.includes('/') ? rel : `${version}/${rel}`);
+            const diskPath = existsSync(distPath) ? distPath : srcPath;
             try {
-                const doc = await readJsonFile(diskPath);
+                const doc = await readJsonFile(diskPath, version);
                 return { contextUrl: null, documentUrl: url, document: doc };
             } catch (e) {
                 // fall through to network/error
@@ -307,17 +364,19 @@ export function createServerDocumentLoader() {
         }
 
         if (url.startsWith(ONTOLOGY_PREFIX)) {
-            const rel = url.replace(ONTOLOGY_PREFIX, '').replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
-            const diskPath = path.join(PROJECT_ROOT, 'src/ontology', rel.includes('/') ? rel : `${KEYSTONE_VERSION}/${rel}`);
+            const rel = url.replace(ONTOLOGY_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
+            const distPath = path.join(PROJECT_ROOT, 'dist/spec/ontology', rel.includes('/') ? rel : `${version}/${rel}`);
+            const srcPath = path.join(PROJECT_ROOT, 'src/ontology', rel.includes('/') ? rel : `${version}/${rel}`);
+            const diskPath = existsSync(distPath) ? distPath : srcPath;
             try {
-                const doc = await readJsonFile(diskPath);
+                const doc = await readJsonFile(diskPath, version);
                 return { contextUrl: null, documentUrl: url, document: doc };
             } catch (e) {
                 // fall through
             }
         }
 
-        // Fallback fetch for external schemas (like schema.org)
+        // Fallback fetch for external schemas (like schema.org or unbundled legacy versions)
         const response = await fetch(url, { headers: { 'Accept': 'application/ld+json, application/json' } });
         if (!response.ok) throw new Error(`HTTP ${response.status} loading ${url}`);
         return {
