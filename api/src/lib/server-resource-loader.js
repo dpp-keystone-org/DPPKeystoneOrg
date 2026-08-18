@@ -31,34 +31,6 @@ const CSS_FILE_PATH = getDir(
     'src/branding/css/dpp-product-page.css'
 );
 
-// Common schemas that must be loaded for $ref resolution
-const COMMON_SCHEMA_FILES = [
-    'shared/certification.schema.json',
-    'shared/component.schema.json',
-    'shared/dopc.schema.json',
-    'shared/epd.schema.json',
-    'shared/general-product.schema.json',
-    'shared/mtc.schema.json',
-    'shared/organization.schema.json',
-    'shared/packaging.schema.json',
-    'shared/postal-address.schema.json',
-    'shared/product-characteristic.schema.json',
-    'shared/related-resource.schema.json'
-];
-
-const SECTOR_SCHEMA_FILES = {
-    'draft_battery_specification_id': 'sector/battery.schema.json',
-    'battery-product-dpp': 'sector/battery.schema.json',
-    'draft_construction_specification_id': 'sector/construction.schema.json',
-    'construction-product-dpp': 'sector/construction.schema.json',
-    'draft_electronics_specification_id': 'sector/electronics.schema.json',
-    'electronics-product-dpp': 'sector/electronics.schema.json',
-    'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'iron-steel-product-dpp': 'sector/iron-steel.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile.schema.json',
-    'textile-product-dpp': 'sector/textile.schema.json'
-};
-
 // In-Memory Caches
 let cachedSchemaContext = null;
 let cachedCss = null;
@@ -106,15 +78,14 @@ export async function getServerSchemaContext() {
     // 2. Recursively load sector schemas
     const sectorDir = path.join(schemaDir, 'sector');
     if (existsSync(sectorDir)) {
-        const loadSectorEntries = async (dirPath, prefix = 'sector') => {
+        const loadSectorEntries = async (dirPath) => {
             const entries = await fs.readdir(dirPath, { withFileTypes: true });
             for (const entry of entries) {
                 const fullPath = path.join(dirPath, entry.name);
                 if (entry.isDirectory()) {
-                    await loadSectorEntries(fullPath, `${prefix}/${entry.name}`);
+                    await loadSectorEntries(fullPath);
                 } else if (entry.name.endsWith('.schema.json')) {
                     const schema = await readJsonFile(fullPath);
-                    sectorSchemas[`${prefix}/${entry.name}`] = schema;
                     sectorSchemas[entry.name] = schema;
                 }
             }
