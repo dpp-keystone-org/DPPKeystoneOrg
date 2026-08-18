@@ -78,11 +78,12 @@ The API enables external platforms, discovery tools (e.g. Disco), and supply cha
 
 ## Detailed Endpoint Specifications
 
-### 1. `POST /v1/render/html`
+### 1. `POST /render/html` & `POST /{version}/render/html`
 - **Description**: Validates a DPP JSON payload and generates a complete HTML product page if valid.
+  - `/render/html` (Canonical): Uses the latest active Keystone specification release (e.g. `v3`).
+  - `/{version}/render/html` (e.g. `/v3/render/html`, `/v2/render/html`): Pinned to a specific specification release.
 - **Request Headers**:
   - `Content-Type: application/json`
-  - `Accept`: `text/html` (default) or `application/json`
 - **Request Body**:
   ```json
   {
@@ -98,18 +99,10 @@ The API enables external platforms, discovery tools (e.g. Disco), and supply cha
 #### HTTP Status Codes & Responses:
 
 1. **`200 OK` — Validation Passed, HTML Rendered**
-   - **If `Accept: text/html` (or wildcard `*/*`)**:
-     - `Content-Type: text/html; charset=utf-8`
-     - Body: Complete standalone HTML document (`<!DOCTYPE html>...`).
-   - **If `Accept: application/json`**:
-     - `Content-Type: application/json; charset=utf-8`
-     - Body:
-       ```json
-       {
-         "valid": true,
-         "html": "<!DOCTYPE html><html>...</html>"
-       }
-       ```
+   - `Content-Type: text/html; charset=utf-8`
+   - Body: Complete standalone HTML document (`<!DOCTYPE html>...`).
+   - If `options.includeSchema` is `true` (default), the `<script type="application/ld+json">` Schema.org representation is embedded inside the `<head>` of the HTML.
+   - If `options.includeSchema` is `false`, the HTML document is rendered cleanly without embedded Schema.org JSON-LD.
 
 2. **`422 Unprocessable Content` — Schema or Ontology Validation Failed**
    - `Content-Type: application/json; charset=utf-8`

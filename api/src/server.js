@@ -28,20 +28,24 @@ function readJsonBody(req) {
     return new Promise((resolve, reject) => {
         let body = '';
         let receivedBytes = 0;
+        let isTooLarge = false;
 
         req.on('data', chunk => {
+            if (isTooLarge) return;
             receivedBytes += chunk.length;
             if (receivedBytes > MAX_PAYLOAD_BYTES) {
-                const err = new Error('Payload Too Large');
+                isTooLarge = true;
+                const err = new Error('Payload Too Large: Maximum allowed size is 1MB.');
                 err.statusCode = 413;
+                err.code = 'PAYLOAD_TOO_LARGE';
                 reject(err);
-                req.destroy();
                 return;
             }
             body += chunk;
         });
 
         req.on('end', () => {
+            if (isTooLarge) return;
             if (!body.trim()) {
                 resolve({});
                 return;
@@ -58,7 +62,7 @@ function readJsonBody(req) {
         });
 
         req.on('error', err => {
-            reject(err);
+            if (!isTooLarge) reject(err);
         });
     });
 }
@@ -86,7 +90,7 @@ export function createServer() {
         }
 
         try {
-            // 2. Health & Version Probes
+            // 2. Health Probe
             if (pathname === '/health' && method === 'GET') {
                 sendJson(res, 200, {
                     status: 'ok',
@@ -95,17 +99,22 @@ export function createServer() {
                 return;
             }
 
-            if ((pathname === '/v1/version' || pathname === '/version') && method === 'GET') {
+            // 3. Version Probe (GET /version or GET /v3/version, /v1/version, etc.)
+            const versionProbeMatch = pathname.match(/^\/(?:(v\d+)\/)?version$/);
+            if (versionProbeMatch && method === 'GET') {
+                const requestedVersion = versionProbeMatch[1] || KEYSTONE_VERSION;
                 sendJson(res, 200, {
                     status: 'ok',
-                    version: KEYSTONE_VERSION,
+                    version: requestedVersion,
+                    activeVersion: KEYSTONE_VERSION,
                     timestamp: new Date().toISOString()
                 });
                 return;
             }
 
-            // 3. POST /v1/render/html
-            if (pathname === '/v1/render/html') {
+            // 4. Render HTML (POST /render/html or POST /v3/render/html, /v2/render/html, etc.)
+            const renderHtmlMatch = pathname.match(/^\/(?:(v\d+)\/)?render\/html$/);
+            if (renderHtmlMatch) {
                 if (method !== 'POST') {
                     sendJson(res, 405, {
                         error: `Method ${method} Not Allowed`,
@@ -114,6 +123,7 @@ export function createServer() {
                     return;
                 }
 
+                const targetVersion = renderHtmlMatch[1] || KEYSTONE_VERSION;
                 const body = await readJsonBody(req);
 
                 if (!body.dpp || typeof body.dpp !== 'object') {
@@ -124,8 +134,13 @@ export function createServer() {
                     return;
                 }
 
-                // Step A: Validate the DPP payload first
-                const validationResult = await validateDppPayload(body.dpp);
+                const renderOptions = {
+                    version: targetVersion,
+                    ...(body.options || {})
+                };
+
+                // Step A: Validate the DPP payload first for the target version
+                const validationResult = await validateDppPayload(body.dpp, renderOptions);
 
                 if (!validationResult.valid) {
                     sendJson(res, 422, {
@@ -137,26 +152,18 @@ export function createServer() {
                 }
 
                 // Step B: Generate HTML for valid DPP
-                const html = await generateDppHtml(body.dpp, body.options || {});
+                const html = await generateDppHtml(body.dpp, renderOptions);
 
-                // Step C: Content Negotiation
-                const acceptHeader = (req.headers['accept'] || '').toLowerCase();
-                if (acceptHeader.includes('application/json')) {
-                    sendJson(res, 200, {
-                        valid: true,
-                        html: html
-                    });
-                } else {
-                    res.writeHead(200, {
-                        'Content-Type': 'text/html; charset=utf-8',
-                        'Access-Control-Allow-Origin': '*'
-                    });
-                    res.end(html);
-                }
+                // Step C: Send HTML Response
+                res.writeHead(200, {
+                    'Content-Type': 'text/html; charset=utf-8',
+                    'Access-Control-Allow-Origin': '*'
+                });
+                res.end(html);
                 return;
             }
 
-            // 4. Fallthrough: Route Not Found
+            // 5. Fallthrough: Route Not Found
             sendJson(res, 404, {
                 error: `Route '${pathname}' not found.`,
                 code: 'NOT_FOUND'

@@ -3,13 +3,16 @@ import { validateAgainstOntology } from '../../../src/util/js/common/validation/
 import { validateContextAwarePayload } from '../../../src/util/js/common/validation/context-semantic-validator.js';
 import { getServerSchemaContext, getServerOntologyMap, createServerDocumentLoader } from './server-resource-loader.js';
 
+import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
+
 /**
  * Validates a DPP JSON object against both structural JSON Schema and semantic Ontology rules on the server.
  * 
  * @param {object} dppData - The raw DPP JSON payload.
+ * @param {object} [options={}] - Options: { version }.
  * @returns {Promise<{ valid: boolean, errors: Array<object> | null }>}
  */
-export async function validateDppPayload(dppData) {
+export async function validateDppPayload(dppData, options = {}) {
     if (!dppData || typeof dppData !== 'object' || Array.isArray(dppData)) {
         return {
             valid: false,
@@ -20,7 +23,8 @@ export async function validateDppPayload(dppData) {
         };
     }
 
-    const schemaContext = await getServerSchemaContext();
+    const version = options.version || KEYSTONE_VERSION;
+    const schemaContext = await getServerSchemaContext(version);
     const schemaResult = validateDpp(dppData, schemaContext);
     
     let isValid = schemaResult.valid;
@@ -29,7 +33,7 @@ export async function validateDppPayload(dppData) {
     // Ontology validation
     try {
         if (dppData['@context']) {
-            const documentLoader = createServerDocumentLoader();
+            const documentLoader = createServerDocumentLoader(version);
             const contextResult = await validateContextAwarePayload(dppData, documentLoader);
             if (!contextResult.valid) {
                 isValid = false;
@@ -47,7 +51,7 @@ export async function validateDppPayload(dppData) {
                 }
             }
 
-            const ontologyMap = await getServerOntologyMap(sector);
+            const ontologyMap = await getServerOntologyMap(sector, version);
             const ontologyResult = validateAgainstOntology(dppData, ontologyMap);
             if (!ontologyResult.valid) {
                 isValid = false;

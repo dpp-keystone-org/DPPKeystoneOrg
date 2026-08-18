@@ -23,7 +23,7 @@ export async function generateDppHtml(dppJson, options = {}) {
         throw new Error("DPP JSON is required");
     }
 
-    const { customCssUrl, includeSchema = true, language = 'en' } = options;
+    const { customCssUrl, includeSchema = true, language = 'en', version = KEYSTONE_VERSION } = options;
 
     // 1. Get CSS
     const cssContent = await getProductPageCss();
@@ -32,14 +32,14 @@ export async function generateDppHtml(dppJson, options = {}) {
     let jsonLdString = null;
     if (includeSchema) {
         try {
-            const ontologyPath = path.join(PROJECT_ROOT, 'src/ontology', KEYSTONE_VERSION, 'dpp-ontology.jsonld');
-            const documentLoader = createServerDocumentLoader();
+            const ontologyPath = path.join(PROJECT_ROOT, 'src/ontology', version, 'dpp-ontology.jsonld');
+            const documentLoader = createServerDocumentLoader(version);
 
             const transformed = await transformDpp(dppJson, {
                 profile: 'schema.org',
                 ontologyPaths: [ontologyPath],
                 documentLoader: documentLoader,
-                version: KEYSTONE_VERSION
+                version: version
             });
 
             if (transformed) {
@@ -64,7 +64,7 @@ export async function generateDppHtml(dppJson, options = {}) {
 
     let ontologyMap = null;
     try {
-        ontologyMap = await getServerOntologyMap(sector);
+        ontologyMap = await getServerOntologyMap(sector, version);
     } catch (e) {
         console.warn("Could not load ontology for HTML rendering on server:", e.message);
     }

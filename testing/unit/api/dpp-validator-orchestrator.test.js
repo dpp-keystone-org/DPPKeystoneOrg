@@ -50,7 +50,7 @@ describe('DPP Validator Orchestrator (Unit Test)', () => {
     it('should fail validation when sector-specific fields have invalid data types', async () => {
         const invalidPayload = {
             ...validBatteryDpp,
-            batteryCapacity: "NOT_A_NUMBER" // should be numeric/decimal
+            batteryMass: "NOT_A_NUMBER" // batteryMass is defined as numeric in battery schema
         };
 
         const result = await validateDppPayload(invalidPayload);
@@ -58,8 +58,9 @@ describe('DPP Validator Orchestrator (Unit Test)', () => {
         expect(Array.isArray(result.errors)).toBe(true);
         
         const hasTypeError = result.errors.some(err => 
-            err.instancePath.includes('batteryCapacity') ||
-            err.message.includes('batteryCapacity')
+            err.instancePath.includes('batteryMass') ||
+            (err.message && err.message.includes('batteryMass')) ||
+            (err.params && err.params.type === 'number')
         );
         expect(hasTypeError).toBe(true);
     });

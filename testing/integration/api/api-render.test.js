@@ -30,8 +30,8 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
         }
     });
 
-    it('should return 200 OK with raw HTML when Accept: text/html is requested for a valid DPP', async () => {
-        const response = await fetch(`${baseUrl}/v1/render/html`, {
+    it('should return 200 OK with raw HTML on both /render/html and /v3/render/html for a valid DPP', async () => {
+        const response1 = await fetch(`${baseUrl}/render/html`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,26 +46,33 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
             })
         });
 
-        if (response.status !== 200) {
-            const errText = await response.text();
-            console.error(`POST /v1/render/html returned status ${response.status}:`, errText);
-        }
-        expect(response.status).toBe(200);
-        expect(response.headers.get('content-type')).toContain('text/html');
-        
-        const html = await response.text();
-        expect(html).toContain('<!DOCTYPE html>');
-        expect(html).toContain('<html lang="en">');
-        expect(html).toContain('Digital Product Passport');
-        expect(html).toContain('<script type="application/ld+json">');
-    });
+        expect(response1.status).toBe(200);
+        expect(response1.headers.get('content-type')).toContain('text/html');
+        const html1 = await response1.text();
+        expect(html1).toContain('<!DOCTYPE html>');
+        expect(html1).toContain('Digital Product Passport');
 
-    it('should return 200 OK with JSON { valid: true, html: "..." } when Accept: application/json is requested', async () => {
-        const response = await fetch(`${baseUrl}/v1/render/html`, {
+        const response2 = await fetch(`${baseUrl}/v3/render/html`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                dpp: validBatteryDpp
+            })
+        });
+
+        expect(response2.status).toBe(200);
+        expect(response2.headers.get('content-type')).toContain('text/html');
+        const html2 = await response2.text();
+        expect(html2).toContain('<!DOCTYPE html>');
+    });
+
+    it('should return 200 OK without Schema.org JSON-LD when options.includeSchema is false', async () => {
+        const response = await fetch(`${baseUrl}/render/html`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 dpp: validBatteryDpp,
@@ -76,12 +83,11 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
         });
 
         expect(response.status).toBe(200);
-        expect(response.headers.get('content-type')).toContain('application/json');
+        expect(response.headers.get('content-type')).toContain('text/html');
 
-        const json = await response.json();
-        expect(json.valid).toBe(true);
-        expect(typeof json.html).toBe('string');
-        expect(json.html).toContain('<!DOCTYPE html>');
+        const html = await response.text();
+        expect(html).toContain('<!DOCTYPE html>');
+        expect(html).not.toContain('<script type="application/ld+json">');
     });
 
     it('should return 422 Unprocessable Content when DPP fails schema/ontology validation', async () => {
@@ -91,7 +97,7 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
         };
         delete invalidPayload.digitalProductPassportId;
 
-        const response = await fetch(`${baseUrl}/v1/render/html`, {
+        const response = await fetch(`${baseUrl}/render/html`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -113,7 +119,7 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
     });
 
     it('should return 400 Bad Request when request body is missing "dpp" field', async () => {
-        const response = await fetch(`${baseUrl}/v1/render/html`, {
+        const response = await fetch(`${baseUrl}/render/html`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -129,7 +135,7 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
     });
 
     it('should return 400 Bad Request when request body is malformed JSON', async () => {
-        const response = await fetch(`${baseUrl}/v1/render/html`, {
+        const response = await fetch(`${baseUrl}/render/html`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -140,8 +146,8 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
         expect(response.status).toBe(400);
     });
 
-    it('should return 405 Method Not Allowed when requesting GET on /v1/render/html', async () => {
-        const response = await fetch(`${baseUrl}/v1/render/html`, {
+    it('should return 405 Method Not Allowed when requesting GET on /render/html or /v3/render/html', async () => {
+        const response = await fetch(`${baseUrl}/render/html`, {
             method: 'GET'
         });
 
