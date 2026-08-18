@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { generateDppHtml } from '../../../src/lib/html-generator-server.js';
+import { generateDppHtml } from '../../../api/src/lib/html-generator-server.js';
 
 describe('Server-Side DPP HTML Generator (Unit Test)', () => {
     let validBatteryDpp;
