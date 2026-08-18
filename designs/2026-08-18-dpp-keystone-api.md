@@ -1,0 +1,230 @@
+# Design Document: DPP Keystone Stateless API (`api.dpp-keystone.org`)
+
+## Summary
+
+This design introduces a stateless, zero-external-framework Node.js API service for DPP Keystone hosted at `api.dpp-keystone.org` on Google Cloud Run. 
+
+The API enables external platforms, discovery tools (e.g. Disco), and supply chain stakeholders to use Keystone's core capabilities "as-a-service"—specifically HTML product page rendering ("Preview as a service"), structural & semantic validation, and Schema.org JSON-LD transformation—without needing to implement the semantic stack or parse the raw ontologies themselves.
+
+---
+
+## Goals & Non-Goals
+
+### Goals
+1. **HTML Rendering Service**: Provide `POST /v1/render/html` to transform valid DPP JSON payloads into fully formatted, localized HTML product pages (with optional embedded Schema.org JSON-LD and custom CSS).
+## Goals & Non-Goals
+
+### Goals
+1. **HTML Rendering Service with Validation Gate**: Provide `POST /v1/render/html` to accept a DPP JSON payload, perform strict structural & semantic validation, and:
+   - If valid: Return a formatted, localized HTML product page (with optional embedded Schema.org JSON-LD and custom CSS) with `200 OK`.
+   - If invalid: Return a structured validation error report with `422 Unprocessable Content`.
+2. **Code Reuse & Factorization**: Factor the core business logic in `src/util/` so that the identical parsing, validation, and rendering code runs in both the static browser environment (`src/validator`, `src/wizard`) and the Node.js API server.
+3. **Zero External Framework Dependencies**: Use Node.js native `node:http` to ensure zero dependency drift, no framework CVEs/Dependabot alerts, minimal memory footprint (~20MB), and instant cold starts (<150ms).
+4. **Local Test Facility**: Provide complete unit and integration test suites in `testing/` that spin up and test the API endpoints locally without requiring active cloud infrastructure.
+5. **Automated CI/CD Deployment**: Configure a GitHub Actions workflow that runs all tests, builds the container image, and deploys to Google Cloud Run (`dpp-keystone-prod`) with strict cost safeguards.
+
+### Non-Goals (Deferred to Future Iterations)
+- **Standalone `/v1/validate` and `/v1/transform` Endpoints**: Deferred to future iterations; the current focus is delivering the HTML rendering endpoint with integrated validation.
+- **Data Persistence**: The API will remain 100% stateless. No database or user storage is required or included.
+- **Modifying Static Site**: The existing GitHub Pages hosting for `dpp-keystone.org` remains completely unchanged.
+- **External Network Dependency for Ontologies**: The API container bundles schemas, ontologies, and contexts in-memory to prevent hammering GitHub Pages or introducing external network latency during requests.
+
+---
+
+## Architecture Overview
+
+```
+                          +-------------------------------+
+                          |  External Client / Integrator |
+                          +---------------+---------------+
+                                          |
+                                          | HTTPS POST /v1/render/html
+                                          v
+                   +-----------------------------------------------+
+                   |       api.dpp-keystone.org (Cloud Run)        |
+                   |                                               |
+                   |  +-----------------------------------------+  |
+                   |  |      Native Node.js Server (node:http)  |  |
+                   |  |   - CORS handling                       |  |
+                   |  |   - Body parsing (1MB limit)            |  |
+                   |  |   - Router & HTTP Error Envelopes       |  |
+                   |  +--------------------+--------------------+  |
+                   |                       |                       |
+                   |                       v                       |
+                   |  +-----------------------------------------+  |
+                   |  |         Validation Gate Layer           |  |
+                   |  |   1. JSON Schema (Ajv2020)              |  |
+                   |  |   2. Ontology / Semantic Constraints    |  |
+                   |  +--------------------+--------------------+  |
+                   |           |                        |          |
+                   |   (Invalid: 422)            (Valid: 200)      |
+                   |           v                        v          |
+                   |  +----------------+        +---------------+  |
+                   |  | Error Report   |        | HTML Renderer |  |
+                   |  | (JSON)         |        | (HTML / JSON) |  |
+                   |  +----------------+        +---------------+  |
+                   |                                    |          |
+                   |                                    v          |
+                   |  +-----------------------------------------+  |
+                   |  |      In-Memory Bundled Spec Cache       |  |
+                   |  |   - Preloaded JSON Schemas              |  |
+                   |  |   - Preloaded Ontologies & Contexts     |  |
+                   |  |   - Embedded default CSS stylesheet     |  |
+                   |  +-----------------------------------------+  |
+                   +-----------------------------------------------+
+```
+
+---
+
+## Detailed Endpoint Specifications
+
+### 1. `POST /v1/render/html`
+- **Description**: Validates a DPP JSON payload and generates a complete HTML product page if valid.
+- **Request Headers**:
+  - `Content-Type: application/json`
+  - `Accept`: `text/html` (default) or `application/json`
+- **Request Body**:
+  ```json
+  {
+    "dpp": { ... },
+    "options": {
+      "includeSchema": true,
+      "language": "en",
+      "customCssUrl": "https://example.com/styles.css"
+    }
+  }
+  ```
+
+#### HTTP Status Codes & Responses:
+
+1. **`200 OK` — Validation Passed, HTML Rendered**
+   - **If `Accept: text/html` (or wildcard `*/*`)**:
+     - `Content-Type: text/html; charset=utf-8`
+     - Body: Complete standalone HTML document (`<!DOCTYPE html>...`).
+   - **If `Accept: application/json`**:
+     - `Content-Type: application/json; charset=utf-8`
+     - Body:
+       ```json
+       {
+         "valid": true,
+         "html": "<!DOCTYPE html><html>...</html>"
+       }
+       ```
+
+2. **`422 Unprocessable Content` — Schema or Ontology Validation Failed**
+   - `Content-Type: application/json; charset=utf-8`
+   - Body:
+     ```json
+     {
+       "error": "DPP validation failed",
+       "code": "VALIDATION_FAILED",
+       "errors": [
+         {
+           "instancePath": "/batteryCapacity",
+           "schemaPath": "#/properties/batteryCapacity/type",
+           "keyword": "type",
+           "message": "Must be a valid number"
+         }
+       ]
+     }
+     ```
+
+3. **`400 Bad Request` — Malformed Request / Syntax Error**
+   - `Content-Type: application/json; charset=utf-8`
+   - Triggered when:
+     - Request body is not valid JSON.
+     - Root object does not contain a `"dpp"` object.
+     - Payload exceeds body size limit (1MB).
+   - Body:
+     ```json
+     {
+       "error": "Invalid request: Missing 'dpp' payload object.",
+       "code": "INVALID_REQUEST"
+     }
+     ```
+
+4. **`405 Method Not Allowed`**
+   - Triggered when requesting `GET`, `PUT`, `DELETE` on `/v1/render/html`.
+   - `Allow: POST, OPTIONS`
+
+---
+
+### 2. `GET /health` & `GET /v1/version`
+- **Description**: Lightweight health and version probe for Cloud Run and monitoring.
+- **Response (`200 OK`)**:
+  ```json
+  {
+    "status": "ok",
+    "version": "v3",
+    "uptime": 123.45,
+    "timestamp": "2026-08-18T12:00:00Z"
+  }
+  ```
+
+---
+
+## Implementation Plan
+
+### Phase 1: Shared Core & Service Orchestration Layer
+*   [ ] **Step 1.1: Standardize In-Memory Resource Provider**
+    *   Create `src/lib/resource-provider.js` (or server-compatible provider) capable of loading schemas, ontologies, and CSS from local disk/memory in Node.js without calling `window.fetch`.
+*   [ ] **Step 1.2: Unify Validator Service Logic**
+    *   Create a unified validator orchestrator `src/util/js/common/validation/dpp-validator-orchestrator.js` that combines `validateDpp` (schema) and `validateAgainstOntology` / `validateContextAwarePayload` (ontology) into a clean, synchronous/async callable function.
+*   [ ] **Step 1.3: Unify HTML Generator for Browser & Server**
+    *   Refactor `src/lib/html-generator.js` so it accepts a pluggable resource provider or preloaded assets, ensuring 100% code parity between the web validator/wizard and the API.
+
+### Phase 2: Native Node.js Server Implementation (`api/`)
+*   [ ] **Step 2.1: Initialize `api/` Directory Structure**
+    *   Create `api/` directory at project root.
+    *   Create `api/package.json` with `"type": "module"`.
+    *   Define start script (`node src/server.js`).
+*   [ ] **Step 2.2: Implement Native HTTP Request Dispatcher**
+    *   Create `api/src/server.js` using `node:http`.
+    *   Implement standard middleware functions:
+        *   CORS headers (`Access-Control-Allow-Origin: *`, `Access-Control-Allow-Methods`, `Access-Control-Allow-Headers`).
+        *   Safe JSON body parser with `1MB` maximum body size enforcement.
+        *   URL routing and standard HTTP error envelopes (`400`, `404`, `405`, `422`, `500`).
+*   [ ] **Step 2.3: Implement Route Handlers**
+    *   Implement `GET /health` and `GET /v1/version`.
+    *   Implement `POST /v1/render/html` with integrated validation gate handling both `text/html` and `application/json` accept headers.
+
+### Phase 3: Test Facility (Local Automated Testing)
+*   [ ] **Step 3.1: Server Lifecycle Test Helper**
+    *   Create a test helper in `testing/scripts/api-test-helper.mjs` to programmatically start and stop the native API server on an ephemeral port during test runs.
+*   [ ] **Step 3.2: API Unit & Integration Tests**
+    *   Create `testing/unit/api/dpp-validator-orchestrator.test.js`: Verify schema & ontology constraint checks for valid/invalid/malformed payloads.
+    *   Create `testing/unit/api/api-html-generator.test.js`: Verify server-side HTML generation, Schema.org embedding, and language localization.
+    *   Create `testing/integration/api/api-health.test.js`: Verify health endpoint, CORS headers, 404/405 routing, and 1MB payload limits.
+    *   Create `testing/integration/api/api-render.test.js`: 
+        *   Test valid rendering with standard DPP examples (`200 OK`).
+        *   Test content negotiation (`Accept: text/html` vs `Accept: application/json`).
+        *   Test invalid payload validation failure (`422 Unprocessable Content` with error list).
+        *   Test malformed JSON / missing `dpp` key (`400 Bad Request`).
+        *   Test multi-language support (e.g. `de`, `fr`) and custom CSS URLs.
+*   [ ] **Step 3.3: Root `package.json` Test Integration**
+    *   Update root `package.json` test scripts so `npm test` runs both static tests and API tests cleanly.
+
+### Phase 4: Containerization & Docker Setup
+*   [ ] **Step 4.1: Create `Dockerfile`**
+    *   Create a lightweight Node.js Alpine `Dockerfile` optimized for Cloud Run.
+    *   Bundle necessary static schemas, ontologies, and shared utilities.
+    *   Configure non-root user for security.
+*   [ ] **Step 4.2: Create `.dockerignore`**
+    *   Exclude `node_modules`, `dist`, `.git`, `.github`, and local test logs.
+
+### Phase 5: Google Cloud Run & GitHub Actions CI/CD Pipeline
+*   [ ] **Step 5.1: Create Deployment Workflow (`.github/workflows/deploy-api.yml`)**
+    *   Trigger on push to `main` when paths in `api/**`, `src/util/**`, `src/ontology/**`, `src/validation/**` change.
+    *   Step 1: Install dependencies and run complete test suite (`npm test`).
+    *   Step 2: Authenticate to Google Cloud (`dpp-keystone-prod`).
+    *   Step 3: Build Docker image and push to Google Artifact Registry.
+    *   Step 4: Deploy to Cloud Run service `dpp-keystone-api` with cost safeguards:
+        *   `--min-instances=0` (scale to zero)
+        *   `--max-instances=2` (strict cost guardrail)
+        *   `--concurrency=80`
+        *   `--memory=256Mi`
+        *   `--cpu=1`
+        *   `--allow-unauthenticated`
+*   [ ] **Step 5.2: GCP Configuration & Domain Mapping Guide**
+    *   Document manual/cloud console steps for DNS domain mapping (`api.dpp-keystone.org` -> Cloud Run) and IAM Service Account permissions.
+
