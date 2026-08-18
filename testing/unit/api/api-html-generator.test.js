@@ -35,7 +35,8 @@ describe('Server-Side DPP HTML Generator (Unit Test)', () => {
         const html = await generateDppHtml(validBatteryDpp, { includeSchema: true });
         
         expect(html).toContain('<script type="application/ld+json">');
-        expect(html).toContain('"@context": "https://schema.org"');
+        expect(html).toMatch(/"@context":\s*"https?:\/\/schema\.org"/);
+        expect(html).toContain('"@type": "Product"');
     });
 
     it('should not embed Schema.org JSON-LD when includeSchema is false', async () => {
