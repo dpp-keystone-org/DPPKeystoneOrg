@@ -1,6 +1,12 @@
-import { promises as fs } from 'fs';
+import { promises as fs, existsSync } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { parse as jsoncParse } from 'jsonc-parser';
 import { startTestServer } from '../../scripts/api-test-helper.mjs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PROJECT_ROOT = path.resolve(__dirname, '../../../');
 
 describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
     let testServer;
@@ -8,9 +14,11 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
     let validBatteryDpp;
 
     beforeAll(async () => {
-        const examplePath = path.resolve(process.cwd(), 'src/examples/battery-industrial-dpp-v1.json');
+        const distExample = path.join(PROJECT_ROOT, 'dist/spec/examples/battery-dpp-v1.json');
+        const srcExample = path.join(PROJECT_ROOT, 'src/examples/battery-dpp-v1.json');
+        const examplePath = existsSync(distExample) ? distExample : srcExample;
         const content = await fs.readFile(examplePath, 'utf-8');
-        validBatteryDpp = JSON.parse(content);
+        validBatteryDpp = jsoncParse(content, [], { allowComments: true, allowTrailingComma: true });
 
         testServer = await startTestServer();
         baseUrl = testServer.baseUrl;
@@ -38,6 +46,10 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
             })
         });
 
+        if (response.status !== 200) {
+            const errText = await response.text();
+            console.error(`POST /v1/render/html returned status ${response.status}:`, errText);
+        }
         expect(response.status).toBe(200);
         expect(response.headers.get('content-type')).toContain('text/html');
         
