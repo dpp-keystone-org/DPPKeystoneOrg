@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs';
+import { promises as fs, existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse as jsoncParse } from 'jsonc-parser';
@@ -8,10 +8,28 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '../../../');
 
-const SCHEMA_BASE_DIR = path.join(PROJECT_ROOT, 'src/validation', KEYSTONE_VERSION, 'json-schema');
-const ONTOLOGY_BASE_DIR = path.join(PROJECT_ROOT, 'src/ontology', KEYSTONE_VERSION);
-const CONTEXTS_BASE_DIR = path.join(PROJECT_ROOT, 'src/contexts', KEYSTONE_VERSION);
-const CSS_FILE_PATH = path.join(PROJECT_ROOT, 'src/branding/css/dpp-product-page.css');
+function getDir(distRel, srcRel) {
+    const distPath = path.join(PROJECT_ROOT, distRel);
+    if (existsSync(distPath)) return distPath;
+    return path.join(PROJECT_ROOT, srcRel);
+}
+
+const SCHEMA_BASE_DIR = getDir(
+    `dist/spec/validation/${KEYSTONE_VERSION}/json-schema`,
+    `src/validation/${KEYSTONE_VERSION}/json-schema`
+);
+const ONTOLOGY_BASE_DIR = getDir(
+    `dist/spec/ontology/${KEYSTONE_VERSION}`,
+    `src/ontology/${KEYSTONE_VERSION}`
+);
+const CONTEXTS_BASE_DIR = getDir(
+    `dist/spec/contexts/${KEYSTONE_VERSION}`,
+    `src/contexts/${KEYSTONE_VERSION}`
+);
+const CSS_FILE_PATH = getDir(
+    'dist/branding/css/dpp-product-page.css',
+    'src/branding/css/dpp-product-page.css'
+);
 
 // Common schemas that must be loaded for $ref resolution
 const COMMON_SCHEMA_FILES = [
@@ -54,7 +72,8 @@ const cachedOntologyMaps = new Map();
 export async function readJsonFile(filePath) {
     const raw = await fs.readFile(filePath, 'utf-8');
     const replaced = raw.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
-    return jsoncParse(replaced);
+    let errors = [];
+    return jsoncParse(replaced, errors, { allowTrailingComma: true, allowComments: true });
 }
 
 /**
@@ -66,22 +85,41 @@ export async function getServerSchemaContext() {
         return cachedSchemaContext;
     }
 
-    const baseSchemaPath = path.join(SCHEMA_BASE_DIR, 'dpp.schema.json');
+    const schemaDir = SCHEMA_BASE_DIR;
+    const baseSchemaPath = path.join(schemaDir, 'dpp.schema.json');
     const baseSchema = await readJsonFile(baseSchemaPath);
 
-    const commonSchemas = await Promise.all(
-        COMMON_SCHEMA_FILES.map(relPath => readJsonFile(path.join(SCHEMA_BASE_DIR, relPath)))
-    );
-
+    const commonSchemas = [];
     const sectorSchemas = {};
-    for (const [id, relPath] of Object.entries(SECTOR_SCHEMA_FILES)) {
-        const fullPath = path.join(SCHEMA_BASE_DIR, relPath);
-        try {
-            const schema = await readJsonFile(fullPath);
-            sectorSchemas[id] = schema;
-        } catch (e) {
-            console.warn(`Could not load sector schema ${fullPath}:`, e.message);
+
+    // 1. Load shared schemas
+    const sharedDir = path.join(schemaDir, 'shared');
+    if (existsSync(sharedDir)) {
+        const sharedFiles = await fs.readdir(sharedDir);
+        for (const file of sharedFiles) {
+            if (file.endsWith('.schema.json')) {
+                commonSchemas.push(await readJsonFile(path.join(sharedDir, file)));
+            }
         }
+    }
+
+    // 2. Recursively load sector schemas
+    const sectorDir = path.join(schemaDir, 'sector');
+    if (existsSync(sectorDir)) {
+        const loadSectorEntries = async (dirPath, prefix = 'sector') => {
+            const entries = await fs.readdir(dirPath, { withFileTypes: true });
+            for (const entry of entries) {
+                const fullPath = path.join(dirPath, entry.name);
+                if (entry.isDirectory()) {
+                    await loadSectorEntries(fullPath, `${prefix}/${entry.name}`);
+                } else if (entry.name.endsWith('.schema.json')) {
+                    const schema = await readJsonFile(fullPath);
+                    sectorSchemas[`${prefix}/${entry.name}`] = schema;
+                    sectorSchemas[entry.name] = schema;
+                }
+            }
+        };
+        await loadSectorEntries(sectorDir);
     }
 
     cachedSchemaContext = {

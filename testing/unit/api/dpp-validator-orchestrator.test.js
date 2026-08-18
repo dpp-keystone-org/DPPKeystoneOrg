@@ -1,18 +1,29 @@
-import { promises as fs } from 'fs';
+import { promises as fs, existsSync } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { parse as jsoncParse } from 'jsonc-parser';
 import { validateDppPayload } from '../../../api/src/lib/dpp-validator-service.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PROJECT_ROOT = path.resolve(__dirname, '../../../');
 
 describe('DPP Validator Orchestrator (Unit Test)', () => {
     let validBatteryDpp;
 
     beforeAll(async () => {
-        const examplePath = path.resolve(process.cwd(), 'src/examples/battery-industrial-dpp-v1.json');
+        const distExample = path.join(PROJECT_ROOT, 'dist/spec/examples/battery-dpp-v1.json');
+        const srcExample = path.join(PROJECT_ROOT, 'src/examples/battery-dpp-v1.json');
+        const examplePath = existsSync(distExample) ? distExample : srcExample;
         const content = await fs.readFile(examplePath, 'utf-8');
-        validBatteryDpp = JSON.parse(content);
+        validBatteryDpp = jsoncParse(content, [], { allowComments: true, allowTrailingComma: true });
     });
 
     it('should successfully validate a complete, valid battery DPP example', async () => {
         const result = await validateDppPayload(validBatteryDpp);
+        if (!result.valid) {
+            console.error('Validation errors for battery example:', JSON.stringify(result.errors, null, 2));
+        }
         expect(result.valid).toBe(true);
         expect(result.errors).toBeNull();
     });
