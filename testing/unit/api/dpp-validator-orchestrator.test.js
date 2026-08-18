@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { validateDppPayload } from '../../../src/util/js/common/validation/dpp-validator-orchestrator.js';
+import { validateDppPayload } from '../../../api/src/lib/dpp-validator-service.js';
 
 describe('DPP Validator Orchestrator (Unit Test)', () => {
     let validBatteryDpp;

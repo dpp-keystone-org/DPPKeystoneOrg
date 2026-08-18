@@ -165,33 +165,27 @@ The API enables external platforms, discovery tools (e.g. Disco), and supply cha
 
 ## Implementation Plan
 
-### Phase 1: Shared Core & Service Orchestration Layer
-*   [ ] **Step 1.1: Standardize In-Memory Resource Provider**
-    *   Create `src/lib/resource-provider.js` (or server-compatible provider) capable of loading schemas, ontologies, and CSS from local disk/memory in Node.js without calling `window.fetch`.
-*   [ ] **Step 1.2: Unify Validator Service Logic**
-    *   Create a unified validator orchestrator `src/util/js/common/validation/dpp-validator-orchestrator.js` that combines `validateDpp` (schema) and `validateAgainstOntology` / `validateContextAwarePayload` (ontology) into a clean, synchronous/async callable function.
-*   [ ] **Step 1.3: Unify HTML Generator for Browser & Server**
-    *   Refactor `src/lib/html-generator.js` so it accepts a pluggable resource provider or preloaded assets, ensuring 100% code parity between the web validator/wizard and the API.
+### Phase 1: Server Service Layer & Resource Providers (`api/src/lib/`)
+*   [x] **Step 1.1: Standardize In-Memory Resource Provider**
+    *   Create `api/src/lib/server-resource-loader.js` capable of loading schemas, ontologies, and CSS from local disk/memory in Node.js without calling `window.fetch`.
+*   [x] **Step 1.2: Unify Validator Service Logic**
+    *   Create `api/src/lib/dpp-validator-service.js` orchestrating structural schema (`validateDpp`) and semantic ontology (`validateAgainstOntology` / `validateContextAwarePayload`) validation into a clean, single-call function.
+*   [x] **Step 1.3: Unify HTML Generator for Server**
+    *   Create `api/src/lib/html-generator-server.js` using bundled CSS and ontology map without browser `window.fetch`.
 
 ### Phase 2: Native Node.js Server Implementation (`api/`)
-*   [ ] **Step 2.1: Initialize `api/` Directory Structure**
-    *   Create `api/` directory at project root.
-    *   Create `api/package.json` with `"type": "module"`.
-    *   Define start script (`node src/server.js`).
-*   [ ] **Step 2.2: Implement Native HTTP Request Dispatcher**
-    *   Create `api/src/server.js` using `node:http`.
-    *   Implement standard middleware functions:
-        *   CORS headers (`Access-Control-Allow-Origin: *`, `Access-Control-Allow-Methods`, `Access-Control-Allow-Headers`).
-        *   Safe JSON body parser with `1MB` maximum body size enforcement.
-        *   URL routing and standard HTTP error envelopes (`400`, `404`, `405`, `422`, `500`).
-*   [ ] **Step 2.3: Implement Route Handlers**
+*   [x] **Step 2.1: Initialize `api/` Directory Structure**
+    *   Create `api/` directory at project root with `api/package.json` (`"type": "module"`).
+*   [x] **Step 2.2: Implement Native HTTP Request Dispatcher**
+    *   Create `api/src/server.js` using `node:http` with CORS, 1MB body limit, and HTTP error envelopes (`400`, `404`, `405`, `422`, `500`).
+*   [x] **Step 2.3: Implement Route Handlers**
     *   Implement `GET /health` and `GET /v1/version`.
     *   Implement `POST /v1/render/html` with integrated validation gate handling both `text/html` and `application/json` accept headers.
 
 ### Phase 3: Test Facility (Local Automated Testing)
-*   [ ] **Step 3.1: Server Lifecycle Test Helper**
-    *   Create a test helper in `testing/scripts/api-test-helper.mjs` to programmatically start and stop the native API server on an ephemeral port during test runs.
-*   [ ] **Step 3.2: API Unit & Integration Tests**
+*   [x] **Step 3.1: Server Lifecycle Test Helper**
+    *   Create test helper in `testing/scripts/api-test-helper.mjs` to programmatically start and stop the native API server on an ephemeral port during test runs.
+*   [x] **Step 3.2: API Unit & Integration Tests**
     *   Create `testing/unit/api/dpp-validator-orchestrator.test.js`: Verify schema & ontology constraint checks for valid/invalid/malformed payloads.
     *   Create `testing/unit/api/api-html-generator.test.js`: Verify server-side HTML generation, Schema.org embedding, and language localization.
     *   Create `testing/integration/api/api-health.test.js`: Verify health endpoint, CORS headers, 404/405 routing, and 1MB payload limits.
