@@ -192,26 +192,18 @@ The API enables external platforms, discovery tools (e.g. Disco), and supply cha
     *   Update root `package.json` test scripts so `npm test` runs both static tests and API tests cleanly.
 
 ### Phase 4: Containerization & Docker Setup
-*   [ ] **Step 4.1: Create `Dockerfile`**
-    *   Create a lightweight Node.js Alpine `Dockerfile` optimized for Cloud Run.
-    *   Bundle necessary static schemas, ontologies, and shared utilities.
-    *   Configure non-root user for security.
-*   [ ] **Step 4.2: Create `.dockerignore`**
-    *   Exclude `node_modules`, `dist`, `.git`, `.github`, and local test logs.
+*   [x] **Step 4.1: Create `Dockerfile`**
+    *   Multi-stage lightweight Node.js Alpine `Dockerfile` with build & clean spec compilation.
+    *   Configured non-root user `node` for production security.
+*   [x] **Step 4.2: Create `.dockerignore`**
+    *   Excluded `node_modules`, `testing`, `.git`, `.github`, and dev artifacts.
 
 ### Phase 5: Google Cloud Run & GitHub Actions CI/CD Pipeline
-*   [ ] **Step 5.1: Create Deployment Workflow (`.github/workflows/deploy-api.yml`)**
-    *   Trigger on push to `main` when paths in `api/**`, `src/util/**`, `src/ontology/**`, `src/validation/**` change.
-    *   Step 1: Install dependencies and run complete test suite (`npm test`).
-    *   Step 2: Authenticate to Google Cloud (`dpp-keystone-prod`).
-    *   Step 3: Build Docker image and push to Google Artifact Registry.
-    *   Step 4: Deploy to Cloud Run service `dpp-keystone-api` with cost safeguards:
-        *   `--min-instances=0` (scale to zero)
-        *   `--max-instances=2` (strict cost guardrail)
-        *   `--concurrency=80`
-        *   `--memory=256Mi`
-        *   `--cpu=1`
-        *   `--allow-unauthenticated`
+*   [x] **Step 5.1: Create Deployment Workflow (`.github/workflows/deploy-api.yml`)**
+    *   Trigger on push to `main` when paths in `api/**`, `src/**`, etc. change.
+    *   Runs `npm test` before container build.
+    *   Builds and pushes image to Google Artifact Registry.
+    *   Deploys to Cloud Run with strict cost controls (`min-instances=0`, `max-instances=2`, `memory=256Mi`, `cpu=1`).
 *   [ ] **Step 5.2: GCP Configuration & Domain Mapping Guide**
-    *   Document manual/cloud console steps for DNS domain mapping (`api.dpp-keystone.org` -> Cloud Run) and IAM Service Account permissions.
+    *   Document cloud console steps for DNS domain mapping (`api.dpp-keystone.org` -> Cloud Run) and IAM Service Account permissions.
 

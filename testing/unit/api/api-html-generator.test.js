@@ -57,6 +57,10 @@ describe('Server-Side DPP HTML Generator (Unit Test)', () => {
         
         expect(typeof htmlGerman).toBe('string');
         expect(htmlGerman).toContain('<!DOCTYPE html>');
+        // Verify German localized labels resolved from ontology
+        expect(htmlGerman).toContain('Herstellungsort');
+        expect(htmlGerman).toContain('Batteriemasse');
+        expect(htmlGerman).toContain('Batteriestatus');
     });
 
     it('should throw an error when passed an empty or null DPP payload', async () => {

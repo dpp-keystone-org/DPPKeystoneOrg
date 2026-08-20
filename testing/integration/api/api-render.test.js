@@ -154,4 +154,24 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
         expect(response.status).toBe(405);
         expect(response.headers.get('allow')).toContain('POST');
     });
+
+    it('should return localized German HTML when options.language is "de"', async () => {
+        const response = await fetch(`${baseUrl}/render/html`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                dpp: validBatteryDpp,
+                options: {
+                    language: 'de'
+                }
+            })
+        });
+
+        expect(response.status).toBe(200);
+        const html = await response.text();
+        expect(html).toContain('Herstellungsort');
+        expect(html).toContain('Batteriemasse');
+    });
 });
