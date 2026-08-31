@@ -2,6 +2,7 @@ import {
     generateSpecDocs,
     parseOntologyMetadata,
     parseContextMetadata,
+    generateIndividualContextPageHtml,
     buildTermDictionary,
     getI18nData,
     renderI18nSpan
@@ -101,6 +102,63 @@ describe('generate-spec-docs.mjs', () => {
             expect(localTerms[1].term).toBe('mockProp');
             expect(localTerms[1].uri).toBe('https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty');
             expect(localTerms[1].description.text).toBe('A test property for the Mock Product.');
+        });
+
+        it('describes JSON-LD keyword aliases instead of looking them up in the ontology', () => {
+            const content = JSON.stringify({
+                "@context": {
+                    "type": "@type",
+                    "id": "@id",
+                    "mockProp": {
+                        "@id": "https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty"
+                    }
+                }
+            });
+            const mockTermDictionary = {
+                ['https://dpp-keystone.org/spec/{{VERSION}}/terms#mockProperty']: {
+                    description: { text: 'A test property for the Mock Product.' },
+                    module: 'core',
+                    fileName: 'mock-core.jsonld'
+                }
+            };
+
+            const { localTerms } = parseContextMetadata(content, mockTermDictionary);
+
+            const typeTerm = localTerms.find(t => t.term === 'type');
+            expect(typeTerm).toBeDefined();
+            expect(typeTerm.uri).toBe('@type');
+            expect(typeTerm.description.text).toBe('JSON-LD keyword alias for @type');
+            expect(typeTerm.module).toBeUndefined();
+
+            const idTerm = localTerms.find(t => t.term === 'id');
+            expect(idTerm).toBeDefined();
+            expect(idTerm.uri).toBe('@id');
+            expect(idTerm.description.text).toBe('JSON-LD keyword alias for @id');
+            expect(idTerm.module).toBeUndefined();
+
+            const mockProp = localTerms.find(t => t.term === 'mockProp');
+            expect(mockProp).toBeDefined();
+            expect(mockProp.description.text).toBe('A test property for the Mock Product.');
+        });
+
+        it('renders JSON-LD keyword aliases in context documentation HTML', () => {
+            const content = JSON.stringify({
+                "@context": {
+                    "type": "@type",
+                    "id": "@id"
+                }
+            });
+            const { imports, localTerms } = parseContextMetadata(content, {});
+            const html = generateIndividualContextPageHtml(
+                { name: 'dpp-core.context.jsonld', imports, localTerms },
+                `/dist/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context/index.html`,
+                `/dist/spec/ontology/${KEYSTONE_VERSION}`,
+                '/dist/spec',
+                []
+            );
+
+            expect(html).toContain('<strong>type</strong> - <em>JSON-LD keyword alias for @type</em>');
+            expect(html).toContain('<strong>id</strong> - <em>JSON-LD keyword alias for @id</em>');
         });
 
         it('should parse ontology metadata from the top level', async () => {

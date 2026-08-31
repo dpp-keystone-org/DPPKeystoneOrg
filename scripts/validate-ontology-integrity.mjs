@@ -28,7 +28,7 @@ const CONTEXT_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTON
 const SCHEMA_ROOT = path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'json-schema');
 
 // --- Reporter Class ---
-class IntegrityReporter {
+export class IntegrityReporter {
     constructor() {
         this.violations = {};
         this.hasErrors = false;
@@ -73,7 +73,7 @@ class IntegrityReporter {
 }
 
 // --- Ontology Loader (Node.js version) ---
-const ontologyGraph = new Map();
+export const ontologyGraph = new Map();
 const loadedFiles = new Set();
 const ontologyFileContents = new Map();
 const contextMap = new Map(); // term -> expanded IRI
@@ -151,7 +151,16 @@ function loadContexts() {
     });
 }
 
-function processContextBlock(ctxBlock, filePath) {
+export function resetIntegrityState() {
+    ontologyGraph.clear();
+    loadedFiles.clear();
+    ontologyFileContents.clear();
+    contextMap.clear();
+    fileImports.clear();
+    fileDefinedTerms.clear();
+}
+
+export function processContextBlock(ctxBlock, filePath) {
     if (!ctxBlock) return;
 
     // Handle array of contexts
@@ -212,6 +221,10 @@ function processContextBlock(ctxBlock, filePath) {
 }
 
 // --- Utilities ---
+
+function isJsonLdKeyword(value) {
+    return typeof value === 'string' && value.startsWith('@');
+}
 
 function getCompactIRI(iri) {
     if (iri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/`)) {
@@ -410,6 +423,7 @@ function auditSchemaMappings(reporter) {
                     const mappings = contextMap.get(propName);
                     mappings.forEach(mapping => {
                         const iri = mapping.iri;
+                        if (isJsonLdKeyword(iri)) return;
                         const compactIRI = getCompactIRI(iri);
                         
                         if (ontologyGraph.has(iri)) {
@@ -657,10 +671,11 @@ function auditSelfContainedImports(reporter) {
     });
 }
 
-function auditContextMappings(reporter) {
+export function auditContextMappings(reporter) {
     contextMap.forEach((mappings, term) => {
         mappings.forEach(mapping => {
             const iri = mapping.iri;
+            if (isJsonLdKeyword(iri)) return;
             const compactIRI = getCompactIRI(iri);
             
             if (!ontologyGraph.has(iri) && !ontologyGraph.has(compactIRI)) {
@@ -703,6 +718,7 @@ async function run() {
     contextMap.forEach((mappings) => {
         mappings.forEach(mapping => {
             const iri = mapping.iri;
+            if (isJsonLdKeyword(iri)) return;
             contextMappedIRIs.add(iri);
             const compactIRI = getCompactIRI(iri);
             contextMappedIRIs.add(compactIRI);
@@ -719,7 +735,9 @@ async function run() {
     reporter.printSummary();
 }
 
-run().catch(err => {
-    console.error('Fatal Error:', err);
-    process.exit(1);
-});
+if (path.resolve(process.argv[1] || '') === path.resolve(__filename)) {
+    run().catch(err => {
+        console.error('Fatal Error:', err);
+        process.exit(1);
+    });
+}
