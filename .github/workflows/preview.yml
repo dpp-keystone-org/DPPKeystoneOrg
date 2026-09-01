@@ -39,19 +39,20 @@ jobs:
       - name: Run build and validation tests
         run: npm test
         env:
-          PREVIEW_BRANCH: ${{ github.ref_name }}
+          PREVIEW_BRANCH: ${{ github.head_ref || github.ref_name }}
 
       - name: Deploy to GitHub Pages Subdirectory
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           # Deploys to a preview/branch-name folder rather than root
-          destination_dir: preview/${{ github.ref_name }}
+          destination_dir: preview/${{ github.head_ref || github.ref_name }}
           keep_files: true 
 
   cleanup:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     permissions:
       contents: write
