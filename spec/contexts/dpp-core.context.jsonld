@@ -3,6 +3,8 @@
     "https://dpp-keystone.org/spec/contexts/v3/dpp-general-product.context.jsonld",
     "https://dpp-keystone.org/spec/contexts/v3/dpp-packaging.context.jsonld",
     {
+      "type": "@type",
+      "id": "@id",
       "dppk": "https://dpp-keystone.org/spec/v3/terms#",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "gs1": "https://ref.gs1.org/voc/",

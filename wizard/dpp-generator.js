@@ -1,8 +1,8 @@
 // Cache-busting comment to force re-evaluation.
 // src/wizard/dpp-generator.js
 
-import { setProperty } from '../lib/dpp-data-utils.js?v=1785505019884';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1785505019884';
+import { setProperty } from '../lib/dpp-data-utils.js?v=1788257393841';
+import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1788257393841';
 
 /**
  * Recursively scrapes voluntary fields from a container, handling Groups and Types.
