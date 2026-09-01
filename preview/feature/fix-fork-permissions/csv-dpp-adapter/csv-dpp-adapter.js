@@ -1,9 +1,9 @@
-import { loadHeader } from '../branding/header.js?v=1788262362447';
+import { loadHeader } from '../branding/header.js?v=1788262473409';
 loadHeader('dpp-header-container', '..');
-import Papa from '../lib/vendor/papaparse.js?v=1788262362447';
-import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1788262362447';
-import { loadOntology } from '../lib/ontology-loader.js?v=1788262362447';
-import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions, analyzeColumnData, isTypeCompatible, enrichSchemaWithOntology, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../lib/csv-adapter-logic.js?v=1788262362447';
+import Papa from '../lib/vendor/papaparse.js?v=1788262473409';
+import { loadSchema, flattenSchema } from '../lib/schema-loader.js?v=1788262473409';
+import { loadOntology } from '../lib/ontology-loader.js?v=1788262473409';
+import { generateDPPsFromCsv, generateAutoMapping, findUsedIndices, generateIndexedSuggestions, analyzeColumnData, isTypeCompatible, enrichSchemaWithOntology, validateMappingConstraints, getMissingRequiredFields, validateValue } from '../lib/csv-adapter-logic.js?v=1788262473409';
 
 console.log('CSV Adapter Initialized');
 
