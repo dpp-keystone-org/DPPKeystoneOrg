@@ -255,13 +255,17 @@ export function parseContextMetadata(content, termDictionary, prefixMap = {}) {
                 if (isPrefix) continue;
                 if (!uri && !nestedContext) continue;
 
+                const isKeywordAlias = typeof uri === 'string' && uri.startsWith('@');
+
                 let termData = {
                     term: key,
-                    uri: uri ? expandCurie(uri, fullContextMap) : null,
+                    uri: uri && !isKeywordAlias ? expandCurie(uri, fullContextMap) : uri,
                     children: []
                 };
 
-                if (termData.uri) {
+                if (isKeywordAlias) {
+                    termData.description = { text: `JSON-LD keyword alias for ${uri}` };
+                } else if (termData.uri) {
                     const definition = termDictionary[termData.uri] || {};
                     termData.description = definition.description || '';
                     termData.module = definition.module || '';
@@ -522,7 +526,7 @@ function generateIndividualClassPageHtml(c, fileMetadata, allMetadata, currentHt
 </html>`;
 }
 
-function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontologyDir, distDir, allMetadata) {
+export function generateIndividualContextPageHtml(fileMetadata, currentHtmlPath, ontologyDir, distDir, allMetadata) {
     const { name, imports, localTerms } = fileMetadata;
     const relativePathToRoot = relative(dirname(currentHtmlPath), join(distDir, '..')).replace(/\\/g, '/');
     const parentIndexLink = relative(dirname(currentHtmlPath), join(distDir, 'contexts', KEYSTONE_VERSION, 'index.html')).replace(/\\/g, '/');
