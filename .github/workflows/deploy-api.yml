@@ -37,18 +37,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install Root Dependencies
         run: npm ci
 
 
-      - name: Install Playwright Browsers
-        run: cd testing && npx playwright install --with-deps
+      - name: Build and Validate Core Data Models
+        run: npm run test:integrity
 
-      - name: Run Test Suite
-        run: npm test
+      - name: Run API and Logic Tests (Jest)
+        run: cd testing && node --experimental-vm-modules ../node_modules/jest/bin/jest.js
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
