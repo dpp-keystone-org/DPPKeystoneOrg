@@ -1,0 +1,421 @@
+/**
+ * Common HTML Renderer for Digital Product Passports.
+ * Transforms DPP JSON into a visual HTML string.
+ */
+
+/**
+ * Helper to safely format values for table cells
+ */
+function formatCellValue(val) {
+    if (val === undefined || val === null || val === '') return '-';
+    if (typeof val === 'object') {
+        if (Array.isArray(val)) return val.map(formatCellValue).join(', ');
+        // For objects like translated strings {"en": "Value"} or simple key-value pairs
+        const vals = Object.values(val);
+        if (vals.length > 0 && vals.every(v => typeof v === 'string' || typeof v === 'number')) {
+            return vals.join(', ');
+        }
+        return JSON.stringify(val);
+    }
+    return String(val);
+}
+
+/**
+ * Heuristic to detect if an object should be rendered as a matrix table.
+ * Returns true if children are objects sharing significant keys.
+ * @param {Object} obj 
+ * @returns {boolean}
+ */
+export function detectTableStructure(obj) {
+    if (typeof obj !== 'object' || obj === null) return false;
+
+    const rowKeys = Object.keys(obj).filter(k => !k.startsWith('@'));
+    if (rowKeys.length === 0) return false;
+
+    let objectChildCount = 0;
+    const allUniqueSubKeys = new Set();
+
+    // Pass 1: Check children type and collect all unique column keys for object children
+    for (const key of rowKeys) {
+        const val = obj[key];
+        if (typeof val === 'object' && val !== null && !Array.isArray(val) && Object.keys(val).length > 0) {
+            objectChildCount++;
+            Object.keys(val).forEach(k => allUniqueSubKeys.add(k));
+        }
+    }
+
+    if (objectChildCount === 0) return false;
+
+    // Pass 2: Check density only on object children
+    let totalActualCells = 0;
+    for (const key of rowKeys) {
+        const val = obj[key];
+        if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+            totalActualCells += Object.keys(val).length;
+        }
+    }
+
+    const theoreticalCells = objectChildCount * allUniqueSubKeys.size;
+    const density = theoreticalCells === 0 ? 0 : totalActualCells / theoreticalCells;
+
+    if (objectChildCount < 2 && allUniqueSubKeys.size < 3) return false;
+
+    return density > 0.5;
+}
+
+/**
+ * Resolves a human-readable display label for a property key.
+ * Prioritizes localized ontology labels matching the specified language.
+ * @param {string} key Property path or key.
+ * @param {Map} [ontologyMap] Map of ontology definitions.
+ * @param {string} [language] 2-letter language code.
+ * @returns {string}
+ */
+export function getDisplayLabel(key, ontologyMap = null, language = 'en', defaultFallback = null) {
+    if (ontologyMap && ontologyMap.has(key)) {
+        const info = ontologyMap.get(key);
+        if (info && info.label) {
+            if (typeof info.label === 'object') {
+                if (info.label[language]) return info.label[language];
+                if (info.label['en']) return info.label['en'];
+            } else if (typeof info.label === 'string') {
+                return info.label;
+            }
+        }
+    }
+    return defaultFallback !== null ? defaultFallback : key;
+}
+
+/**
+ * Recursive helper to render a single value.
+ * @param {string} key 
+ * @param {any} value 
+ * @returns {string} HTML string
+ */
+function renderValue(key, value, ontologyMap = null, language = 'en') {
+    if (value === null || value === undefined) return '';
+
+    const displayLabel = getDisplayLabel(key, ontologyMap, language);
+
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+        let displayValue = value;
+        if (ontologyMap && ontologyMap.has(key)) {
+            const info = ontologyMap.get(key);
+            if (info && info.unit && info.unit !== 'unitless') {
+                displayValue = `${value} ${info.unit}`;
+            }
+        }
+        return `<div class="dpp-field"><span class="dpp-label">${displayLabel}:</span> <span class="dpp-value">${displayValue}</span></div>`;
+    }
+
+    if (typeof value === 'object' && !Array.isArray(value)) {
+        // Check for Table Structure
+        if (detectTableStructure(value)) {
+            // Separate scalar and object children
+            const scalarKeys = [];
+            const objectKeys = [];
+            Object.keys(value).forEach(k => {
+                if (k.startsWith('@')) return;
+                const v = value[k];
+                if (typeof v === 'object' && v !== null && !Array.isArray(v)) {
+                    objectKeys.push(k);
+                } else {
+                    scalarKeys.push(k);
+                }
+            });
+
+            let scalarContent = '';
+            scalarKeys.forEach(k => {
+                scalarContent += renderValue(k, value[k], ontologyMap, language);
+            });
+
+            // Collect all unique columns from object rows
+            const allColumns = new Set();
+            objectKeys.forEach(rowKey => {
+                const row = value[rowKey];
+                Object.keys(row).forEach(k => {
+                    if (!k.startsWith('@')) allColumns.add(k);
+                });
+            });
+            const sortedCols = Array.from(allColumns).sort();
+
+            const headers = ['Metric', ...sortedCols].map(h => `<th>${h}</th>`).join('');
+
+            const rows = objectKeys.map(rowKey => {
+                const rowData = value[rowKey];
+                let rowUnit = '';
+                if (ontologyMap && ontologyMap.has(rowKey)) {
+                    const info = ontologyMap.get(rowKey);
+                    if (info && info.unit && info.unit !== 'unitless') rowUnit = ` (${info.unit})`;
+                }
+                const cells = sortedCols.map(col => `<td>${formatCellValue(rowData[col])}</td>`).join('');
+                return `<tr><td><strong>${rowKey}${rowUnit}</strong></td>${cells}</tr>`;
+            }).join('');
+
+            return `
+                <div class="dpp-card">
+                    <h4>${displayLabel}</h4>
+                    ${scalarContent ? `<div class="dpp-card-content" style="margin-bottom: 1rem;">${scalarContent}</div>` : ''}
+                    <table>
+                        <thead><tr>${headers}</tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Recursive Standard Object Rendering
+        let childContent = '';
+        Object.keys(value).forEach(k => {
+            if (!k.startsWith('@')) {
+                childContent += renderValue(k, value[k], ontologyMap, language);
+            }
+        });
+
+        let cardUnit = '';
+        if (ontologyMap && ontologyMap.has(key)) {
+            const info = ontologyMap.get(key);
+            if (info && info.unit && info.unit !== 'unitless') cardUnit = ` <span class="dpp-unit">(${info.unit})</span>`;
+        }
+
+        return `
+            <div class="dpp-card">
+                <h4>${displayLabel}${cardUnit}</h4>
+                <div class="dpp-card-content">
+                    ${childContent}
+                </div>
+            </div>
+        `;
+    }
+
+    if (Array.isArray(value)) {
+        if (value.length === 0) return '';
+
+        // Check for Array of Objects (Potential Table)
+        const isArrayOfObjects = value.every(item => typeof item === 'object' && item !== null && !Array.isArray(item));
+
+        if (isArrayOfObjects) {
+            // Collect all keys, ignoring JSON-LD @ keys
+            const allKeys = new Set();
+            value.forEach(item => {
+                Object.keys(item).forEach(k => {
+                    if (!k.startsWith('@')) allKeys.add(k);
+                });
+            });
+            const sortedKeys = Array.from(allKeys).sort();
+
+            // Simple Heuristic: If we have keys, render as table. 
+            // (Could check for schema overlap, but for MVP assuming uniform array if they are objects)
+            const headers = sortedKeys.map(h => {
+                let cellUnit = '';
+                if (ontologyMap && ontologyMap.has(h)) {
+                    const info = ontologyMap.get(h);
+                    if (info && info.unit && info.unit !== 'unitless') cellUnit = ` (${info.unit})`;
+                }
+                return `<th>${h}${cellUnit}</th>`;
+            }).join('');
+
+            const rows = value.map(item => {
+                const cells = sortedKeys.map(key => `<td>${formatCellValue(item[key])}</td>`).join('');
+                return `<tr>${cells}</tr>`;
+            }).join('');
+
+            return `
+                <div class="dpp-card">
+                    <h4>${displayLabel}</h4>
+                    <table>
+                        <thead><tr>${headers}</tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Array of Primitives
+        const listItems = value.map(item => `<li>${item}</li>`).join('');
+        return `
+            <div class="dpp-field dpp-field-list">
+                <span class="dpp-label">${displayLabel}:</span>
+                <span class="dpp-value"><ul>${listItems}</ul></span>
+            </div>
+        `;
+    }
+
+    return `<div class="dpp-field"><span class="dpp-label">${displayLabel}:</span> (Unknown Type)</div>`;
+}
+
+/**
+ * Generates a complete HTML string for the product page.
+ * @param {object} options
+ * @param {object} options.dppData - The raw DPP JSON.
+ * @param {string} [options.css] - The CSS string to embed.
+ * @param {string} [options.jsonLd] - The JSON-LD string to embed (without script tags).
+ * @param {string} [options.customCssUrl] - Optional external CSS URL.
+ * @returns {string} The full HTML document.
+ */
+export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en' }) {
+    if (!dppData) throw new Error("DPP JSON is required");
+
+    const jsonLdScript = jsonLd
+        ? `<script type="application/ld+json">
+${jsonLd}
+</script>`
+        : '';
+
+    const cssContent = css || `
+        body { font-family: sans-serif; padding: 20px; }
+        pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
+    `;
+
+    const productName = dppData.productName || "Untitled Product";
+    const uniqueId = dppData.uniqueProductIdentifier || dppData.id || "N/A";
+
+    // Extract Images
+    let images = [];
+    if (dppData.image && Array.isArray(dppData.image)) {
+        images = dppData.image.filter(img => img.url).map(img => ({
+            url: img.url,
+            title: img.resourceTitle || img.name || productName
+        }));
+    }
+
+    // --- Hero Section Generation ---
+    let heroImageHtml = '';
+    let carouselScript = '';
+
+    if (images.length === 0) {
+        heroImageHtml = '<div class="dpp-hero-placeholder">No Image Available</div>';
+    } else if (images.length === 1) {
+        heroImageHtml = `
+            <div class="dpp-hero-image">
+                <img src="${images[0].url}" alt="${images[0].title}" style="max-width: 100%; height: auto;">
+            </div>`;
+    } else {
+        // Carousel Logic
+        const slidesHtml = images.map((img, index) => `
+            <div class="dpp-carousel-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
+                <img src="${img.url}" alt="${img.title}">
+                <div class="dpp-carousel-caption">${img.title}</div>
+            </div>
+        `).join('');
+
+        const indicatorsHtml = images.map((_, index) => `
+            <span class="dpp-indicator ${index === 0 ? 'active' : ''}" onclick="setSlide(${index})"></span>
+        `).join('');
+
+        heroImageHtml = `
+            <div class="dpp-carousel-container" id="heroCarousel">
+                <div class="dpp-carousel-slides">
+                    ${slidesHtml}
+                </div>
+                <button class="dpp-carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="dpp-carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+                <div class="dpp-carousel-indicators">
+                    ${indicatorsHtml}
+                </div>
+            </div>
+        `;
+
+        carouselScript = `
+          <script>
+              let currentSlide = 0;
+              const totalSlides = ${images.length};
+
+              function showSlide(index) {
+                  if (index >= totalSlides) currentSlide = 0;
+                  else if (index < 0) currentSlide = totalSlides - 1;
+                  else currentSlide = index;
+
+                  const slides = document.querySelectorAll('.dpp-carousel-slide');
+                  slides.forEach(slide => slide.classList.remove('active'));
+                  slides[currentSlide].classList.add('active');
+
+                  const indicators = document.querySelectorAll('.dpp-indicator');
+                  indicators.forEach(ind => ind.classList.remove('active'));
+                  if(indicators[currentSlide]) indicators[currentSlide].classList.add('active');
+              }
+
+              function moveSlide(step) {
+                  showSlide(currentSlide + step);
+              }
+
+              function setSlide(index) {
+                  showSlide(index);
+              }
+          </script>
+        `;
+    }
+
+    // Product Title
+    let productTitle = "Digital Product Passport";
+    const brand = dppData.brand || "";
+    const model = dppData.model || "";
+    if (brand && model) productTitle = `${brand} ${model}`;
+    else if (model) productTitle = model;
+
+    const heroHtml = `
+      <header class="dpp-hero">
+          ${heroImageHtml}
+          <div class="dpp-hero-content">
+              <h1>${productTitle}</h1>
+              <p><strong>ID:</strong> ${uniqueId}</p>
+          </div>
+      </header>
+    `;
+
+    // --- Metadata Section ---
+    const dppStatus = dppData.dppStatus || "Unknown";
+    let lastUpdate = dppData.lastUpdate || "N/A";
+
+    const metadataHtml = `
+      <section class="dpp-metadata">
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('dppStatus', ontologyMap, language, 'Passport Status')}:</span> <span class="dpp-value">${dppStatus}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('lastUpdate', ontologyMap, language, 'Last Updated')}:</span> <span class="dpp-value">${lastUpdate}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('digitalProductPassportId', ontologyMap, language, 'Passport ID')}:</span> <span class="dpp-value">${dppData.digitalProductPassportId || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('dppSchemaVersion', ontologyMap, language, 'Schema Version')}:</span> <span class="dpp-value">${dppData.dppSchemaVersion || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('economicOperatorId', ontologyMap, language, 'Economic Operator ID')}:</span> <span class="dpp-value">${dppData.economicOperatorId || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('granularity', ontologyMap, language, 'Granularity')}:</span> <span class="dpp-value">${dppData.granularity || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('contentSpecificationIds', ontologyMap, language, 'Content Specification IDs')}:</span> <span class="dpp-value">${(dppData.contentSpecificationIds || []).join(', ') || "N/A"}</span></div>
+      </section>
+    `;
+
+    // --- Content Body ---
+    const EXCLUDED_KEYS = new Set([
+        'productName', 'manufacturer', 'uniqueProductIdentifier', 'id', 'images', 'productImage', 'image',
+        'dppStatus', 'lastUpdate', 'digitalProductPassportId', 'dppSchemaVersion', 'economicOperatorId', 'granularity',
+        '@context', '@type', 'contentSpecificationIds'
+    ]);
+
+    let contentHtml = '';
+    Object.keys(dppData).forEach(key => {
+        if (!EXCLUDED_KEYS.has(key)) {
+            contentHtml += renderValue(key, dppData[key], ontologyMap, language);
+        }
+    });
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${productName} - Digital Product Passport</title>
+    ${jsonLdScript}
+    <style>
+        ${cssContent}
+    </style>
+    ${customCssUrl ? `<link rel="stylesheet" href="${customCssUrl}">` : ''}
+</head>
+<body>
+    <div class="dpp-container">
+        ${heroHtml}
+        ${metadataHtml}
+        
+        <section class="dpp-section">
+            <h3>Product Attributes</h3>
+            ${contentHtml}
+        </section>
+    </div>
+    ${carouselScript}
+</body>
+</html>`;
+}
