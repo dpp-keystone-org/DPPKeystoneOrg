@@ -22,6 +22,7 @@ Understanding the project's goals and processes is key to effective contribution
 
 This repository uses a source/build structure to separate development files from production-ready artifacts.
 
+*   `api/`: Stateless Node.js API service for validating and rendering DPP JSON payloads (**[see api/README.md](api/README.md)**).
 *   `designs/`: Contains the mandatory design documents (highly structured TODO lists) for planning and executing features. **See [designs/README.md](designs/README.md) before starting any development.**
 *   `src/`: The core source directory (**[see src/README.md](src/README.md)**). **All edits and contributions should be made here.** These files may contain comments for clarity.
     *   **Core Data Models:**
