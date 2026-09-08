@@ -24,7 +24,7 @@ env:
 
 jobs:
   test-and-deploy:
-    name: Test, Build & Deploy
+    name: Test, Build & Deploy API
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -43,8 +43,6 @@ jobs:
       - name: Install Root Dependencies
         run: npm ci
 
-      - name: Install Testing Dependencies
-        run: cd testing && npm ci
 
       - name: Install Playwright Browsers
         run: cd testing && npx playwright install --with-deps
