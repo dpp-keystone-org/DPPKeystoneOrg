@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1788853271333';
-import { LanguageManager } from '../lib/language-manager.js?v=1788853271333';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1788854243575';
+import { LanguageManager } from '../lib/language-manager.js?v=1788854243575';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
