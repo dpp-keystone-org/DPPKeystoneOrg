@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse as jsoncParse } from 'jsonc-parser';
-import { KEYSTONE_VERSION } from './keystone-version.js?v=1788854243575';
+import { KEYSTONE_VERSION } from './keystone-version.js?v=1788855627837';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
