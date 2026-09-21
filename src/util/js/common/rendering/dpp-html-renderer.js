@@ -4,7 +4,36 @@
  */
 
 /**
- * Helper to safely format values for table cells
+ * Helper to safely escape HTML special characters to prevent XSS injection.
+ * @param {any} str
+ * @returns {string}
+ */
+export function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+/**
+ * Sanitizes URLs for use in HTML attributes (accepts http, https, relative, or data:image).
+ * @param {string} url
+ * @returns {string}
+ */
+export function sanitizeUrl(url) {
+    if (!url || typeof url !== 'string') return '';
+    const trimmed = url.trim();
+    // Disallow dangerous URI schemes (e.g., javascript:, vbscript:, data: other than images)
+    if (/^(?:javascript|vbscript):/i.test(trimmed)) return '';
+    if (/^data:/i.test(trimmed) && !/^data:image\//i.test(trimmed)) return '';
+    return escapeHtml(trimmed);
+}
+
+/**
+ * Helper to safely format and escape values for table cells.
  */
 function formatCellValue(val) {
     if (val === undefined || val === null || val === '') return '-';
@@ -13,11 +42,11 @@ function formatCellValue(val) {
         // For objects like translated strings {"en": "Value"} or simple key-value pairs
         const vals = Object.values(val);
         if (vals.length > 0 && vals.every(v => typeof v === 'string' || typeof v === 'number')) {
-            return vals.join(', ');
+            return vals.map(v => escapeHtml(v)).join(', ');
         }
-        return JSON.stringify(val);
+        return escapeHtml(JSON.stringify(val));
     }
-    return String(val);
+    return escapeHtml(String(val));
 }
 
 /**
@@ -95,14 +124,15 @@ export function getDisplayLabel(key, ontologyMap = null, language = 'en', defaul
 function renderValue(key, value, ontologyMap = null, language = 'en') {
     if (value === null || value === undefined) return '';
 
-    const displayLabel = getDisplayLabel(key, ontologyMap, language);
+    const rawLabel = getDisplayLabel(key, ontologyMap, language);
+    const displayLabel = escapeHtml(rawLabel);
 
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-        let displayValue = value;
+        let displayValue = escapeHtml(value);
         if (ontologyMap && ontologyMap.has(key)) {
             const info = ontologyMap.get(key);
             if (info && info.unit && info.unit !== 'unitless') {
-                displayValue = `${value} ${info.unit}`;
+                displayValue = `${displayValue} ${escapeHtml(info.unit)}`;
             }
         }
         return `<div class="dpp-field"><span class="dpp-label">${displayLabel}:</span> <span class="dpp-value">${displayValue}</span></div>`;
@@ -139,17 +169,17 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
             });
             const sortedCols = Array.from(allColumns).sort();
 
-            const headers = ['Metric', ...sortedCols].map(h => `<th>${h}</th>`).join('');
+            const headers = ['Metric', ...sortedCols].map(h => `<th>${escapeHtml(h)}</th>`).join('');
 
             const rows = objectKeys.map(rowKey => {
                 const rowData = value[rowKey];
                 let rowUnit = '';
                 if (ontologyMap && ontologyMap.has(rowKey)) {
                     const info = ontologyMap.get(rowKey);
-                    if (info && info.unit && info.unit !== 'unitless') rowUnit = ` (${info.unit})`;
+                    if (info && info.unit && info.unit !== 'unitless') rowUnit = ` (${escapeHtml(info.unit)})`;
                 }
                 const cells = sortedCols.map(col => `<td>${formatCellValue(rowData[col])}</td>`).join('');
-                return `<tr><td><strong>${rowKey}${rowUnit}</strong></td>${cells}</tr>`;
+                return `<tr><td><strong>${escapeHtml(rowKey)}${rowUnit}</strong></td>${cells}</tr>`;
             }).join('');
 
             return `
@@ -175,7 +205,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
         let cardUnit = '';
         if (ontologyMap && ontologyMap.has(key)) {
             const info = ontologyMap.get(key);
-            if (info && info.unit && info.unit !== 'unitless') cardUnit = ` <span class="dpp-unit">(${info.unit})</span>`;
+            if (info && info.unit && info.unit !== 'unitless') cardUnit = ` <span class="dpp-unit">(${escapeHtml(info.unit)})</span>`;
         }
 
         return `
@@ -204,15 +234,13 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
             });
             const sortedKeys = Array.from(allKeys).sort();
 
-            // Simple Heuristic: If we have keys, render as table. 
-            // (Could check for schema overlap, but for MVP assuming uniform array if they are objects)
             const headers = sortedKeys.map(h => {
                 let cellUnit = '';
                 if (ontologyMap && ontologyMap.has(h)) {
                     const info = ontologyMap.get(h);
-                    if (info && info.unit && info.unit !== 'unitless') cellUnit = ` (${info.unit})`;
+                    if (info && info.unit && info.unit !== 'unitless') cellUnit = ` (${escapeHtml(info.unit)})`;
                 }
-                return `<th>${h}${cellUnit}</th>`;
+                return `<th>${escapeHtml(h)}${cellUnit}</th>`;
             }).join('');
 
             const rows = value.map(item => {
@@ -232,7 +260,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
         }
 
         // Array of Primitives
-        const listItems = value.map(item => `<li>${item}</li>`).join('');
+        const listItems = value.map(item => `<li>${escapeHtml(item)}</li>`).join('');
         return `
             <div class="dpp-field dpp-field-list">
                 <span class="dpp-label">${displayLabel}:</span>
@@ -250,15 +278,16 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
  * @param {object} options.dppData - The raw DPP JSON.
  * @param {string} [options.css] - The CSS string to embed.
  * @param {string} [options.jsonLd] - The JSON-LD string to embed (without script tags).
- * @param {string} [options.customCssUrl] - Optional external CSS URL.
+ * @param {string} [options.customCssUrl] - Optional external CSS URL (must use https://).
  * @returns {string} The full HTML document.
  */
 export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en' }) {
     if (!dppData) throw new Error("DPP JSON is required");
 
+    // Prevent </script> breakout injection in embedded JSON-LD
     const jsonLdScript = jsonLd
         ? `<script type="application/ld+json">
-${jsonLd}
+${jsonLd.replace(/</g, '\\u003c')}
 </script>`
         : '';
 
@@ -267,16 +296,16 @@ ${jsonLd}
         pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
     `;
 
-    const productName = dppData.productName || "Untitled Product";
-    const uniqueId = dppData.uniqueProductIdentifier || dppData.id || "N/A";
+    const productName = escapeHtml(dppData.productName || "Untitled Product");
+    const uniqueId = escapeHtml(dppData.uniqueProductIdentifier || dppData.id || "N/A");
 
-    // Extract Images
+    // Extract & sanitize Images
     let images = [];
     if (dppData.image && Array.isArray(dppData.image)) {
-        images = dppData.image.filter(img => img.url).map(img => ({
-            url: img.url,
-            title: img.resourceTitle || img.name || productName
-        }));
+        images = dppData.image.filter(img => img && img.url).map(img => ({
+            url: sanitizeUrl(img.url),
+            title: escapeHtml(img.resourceTitle || img.name || dppData.productName || "Product Image")
+        })).filter(img => img.url.length > 0);
     }
 
     // --- Hero Section Generation ---
@@ -352,30 +381,36 @@ ${jsonLd}
     const model = dppData.model || "";
     if (brand && model) productTitle = `${brand} ${model}`;
     else if (model) productTitle = model;
+    const safeProductTitle = escapeHtml(productTitle);
 
     const heroHtml = `
       <header class="dpp-hero">
           ${heroImageHtml}
           <div class="dpp-hero-content">
-              <h1>${productTitle}</h1>
+              <h1>${safeProductTitle}</h1>
               <p><strong>ID:</strong> ${uniqueId}</p>
           </div>
       </header>
     `;
 
     // --- Metadata Section ---
-    const dppStatus = dppData.dppStatus || "Unknown";
-    let lastUpdate = dppData.lastUpdate || "N/A";
+    const dppStatus = escapeHtml(dppData.dppStatus || "Unknown");
+    let lastUpdate = escapeHtml(dppData.lastUpdate || "N/A");
+    const safeDppId = escapeHtml(dppData.digitalProductPassportId || "N/A");
+    const safeSchemaVersion = escapeHtml(dppData.dppSchemaVersion || "N/A");
+    const safeEconomicOperatorId = escapeHtml(dppData.economicOperatorId || "N/A");
+    const safeGranularity = escapeHtml(dppData.granularity || "N/A");
+    const safeContentSpecIds = (dppData.contentSpecificationIds || []).map(id => escapeHtml(id)).join(', ') || "N/A";
 
     const metadataHtml = `
       <section class="dpp-metadata">
-          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('dppStatus', ontologyMap, language, 'Passport Status')}:</span> <span class="dpp-value">${dppStatus}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('lastUpdate', ontologyMap, language, 'Last Updated')}:</span> <span class="dpp-value">${lastUpdate}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('digitalProductPassportId', ontologyMap, language, 'Passport ID')}:</span> <span class="dpp-value">${dppData.digitalProductPassportId || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('dppSchemaVersion', ontologyMap, language, 'Schema Version')}:</span> <span class="dpp-value">${dppData.dppSchemaVersion || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('economicOperatorId', ontologyMap, language, 'Economic Operator ID')}:</span> <span class="dpp-value">${dppData.economicOperatorId || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('granularity', ontologyMap, language, 'Granularity')}:</span> <span class="dpp-value">${dppData.granularity || "N/A"}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${getDisplayLabel('contentSpecificationIds', ontologyMap, language, 'Content Specification IDs')}:</span> <span class="dpp-value">${(dppData.contentSpecificationIds || []).join(', ') || "N/A"}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppStatus', ontologyMap, language, 'Passport Status'))}:</span> <span class="dpp-value">${dppStatus}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('lastUpdate', ontologyMap, language, 'Last Updated'))}:</span> <span class="dpp-value">${lastUpdate}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('digitalProductPassportId', ontologyMap, language, 'Passport ID'))}:</span> <span class="dpp-value">${safeDppId}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppSchemaVersion', ontologyMap, language, 'Schema Version'))}:</span> <span class="dpp-value">${safeSchemaVersion}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('economicOperatorId', ontologyMap, language, 'Economic Operator ID'))}:</span> <span class="dpp-value">${safeEconomicOperatorId}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('granularity', ontologyMap, language, 'Granularity'))}:</span> <span class="dpp-value">${safeGranularity}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('contentSpecificationIds', ontologyMap, language, 'Content Specification IDs'))}:</span> <span class="dpp-value">${safeContentSpecIds}</span></div>
       </section>
     `;
 
@@ -393,6 +428,15 @@ ${jsonLd}
         }
     });
 
+    // Custom CSS URL - accept https:// (or http:// for localhost/127.0.0.1 in local testing)
+    let customCssTag = '';
+    if (customCssUrl && typeof customCssUrl === 'string') {
+        const trimmedCss = customCssUrl.trim();
+        if (/^https:\/\//i.test(trimmedCss) || /^http:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\//i.test(trimmedCss)) {
+            customCssTag = `<link rel="stylesheet" href="${escapeHtml(trimmedCss)}">`;
+        }
+    }
+
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -403,7 +447,7 @@ ${jsonLd}
     <style>
         ${cssContent}
     </style>
-    ${customCssUrl ? `<link rel="stylesheet" href="${customCssUrl}">` : ''}
+    ${customCssTag}
 </head>
 <body>
     <div class="dpp-container">

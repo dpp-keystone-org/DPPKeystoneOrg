@@ -1,4 +1,5 @@
 export const KEYSTONE_VERSION = 'v3';
+export const KNOWN_VERSIONS = Object.freeze(['v1', 'v2', 'v3']);
 export const CANONICAL_SPEC_URL = 'https://dpp-keystone.org/spec/';
 
 /**
@@ -84,4 +85,3 @@ export function getSectorSpecId(schemaName, version = KEYSTONE_VERSION) {
     const cleanName = String(schemaName).replace(/^sector\//, '').replace(/\.schema\.json$/, '');
     return `urn:dpp-keystone:${version}:sector:${cleanName}`;
 }
-
