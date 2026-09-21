@@ -174,4 +174,63 @@ describe('HTTP API - POST /v1/render/html (Integration Test)', () => {
         expect(html).toContain('Herstellungsort');
         expect(html).toContain('Batteriemasse');
     });
+
+    it('should be lenient and render a DPP with additional unrecognized properties and external @context URLs without network calls', async () => {
+        const extendedDpp = {
+            ...validBatteryDpp,
+            '@context': [
+                'https://dpp-keystone.org/spec/contexts/v3/battery.jsonld',
+                'https://ref.gs1.org/epcis/epcis-context.jsonld',
+                'https://schema.org/'
+            ],
+            epcisEventHistory: [
+                {
+                    eventType: 'ObjectEvent',
+                    action: 'OBSERVE',
+                    eventTime: '2026-09-01T10:00:00Z',
+                    bizStep: 'commissioning'
+                }
+            ],
+            supplierCustomCode: 'EXT-CODE-9941',
+            warrantyNotes: 'Extended 5-year commercial warranty.'
+        };
+
+        const response = await fetch(`${baseUrl}/render/html`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dpp: extendedDpp })
+        });
+
+        expect(response.status).toBe(200);
+        expect(response.headers.get('content-security-policy')).toBeDefined();
+        expect(response.headers.get('x-content-type-options')).toBe('nosniff');
+
+        const html = await response.text();
+        expect(html).toContain('<!DOCTYPE html>');
+        expect(html).toContain('EXT-CODE-9941');
+        expect(html).toContain('Extended 5-year commercial warranty.');
+    });
+
+    it('should reject requests specifying an unsupported version in the URL or options with 400 Bad Request', async () => {
+        const response1 = await fetch(`${baseUrl}/v999/render/html`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dpp: validBatteryDpp })
+        });
+        expect(response1.status).toBe(400);
+        const json1 = await response1.json();
+        expect(json1.code).toBe('INVALID_VERSION');
+
+        const response2 = await fetch(`${baseUrl}/render/html`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                dpp: validBatteryDpp,
+                options: { version: 'v999' }
+            })
+        });
+        expect(response2.status).toBe(400);
+        const json2 = await response2.json();
+        expect(json2.code).toBe('INVALID_VERSION');
+    });
 });

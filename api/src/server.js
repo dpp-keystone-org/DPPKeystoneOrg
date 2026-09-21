@@ -1,6 +1,6 @@
 import http from 'node:http';
 import { fileURLToPath } from 'node:url';
-import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, KNOWN_VERSIONS } from '../../src/lib/keystone-version.js';
 import { validateDppPayload } from './lib/dpp-validator-service.js';
 import { generateDppHtml } from './lib/html-generator-server.js';
 
@@ -103,6 +103,13 @@ export function createServer() {
             const versionProbeMatch = pathname.match(/^\/(?:(v\d+)\/)?version$/);
             if (versionProbeMatch && method === 'GET') {
                 const requestedVersion = versionProbeMatch[1] || KEYSTONE_VERSION;
+                if (!KNOWN_VERSIONS.includes(requestedVersion)) {
+                    sendJson(res, 400, {
+                        error: `Invalid or unsupported specification version: '${requestedVersion}'. Allowed versions: ${KNOWN_VERSIONS.join(', ')}.`,
+                        code: 'INVALID_VERSION'
+                    });
+                    return;
+                }
                 sendJson(res, 200, {
                     status: 'ok',
                     version: requestedVersion,
@@ -124,12 +131,28 @@ export function createServer() {
                 }
 
                 const targetVersion = renderHtmlMatch[1] || KEYSTONE_VERSION;
+                if (!KNOWN_VERSIONS.includes(targetVersion)) {
+                    sendJson(res, 400, {
+                        error: `Invalid or unsupported specification version in URL: '${targetVersion}'. Allowed versions: ${KNOWN_VERSIONS.join(', ')}.`,
+                        code: 'INVALID_VERSION'
+                    });
+                    return;
+                }
+
                 const body = await readJsonBody(req);
 
                 if (!body.dpp || typeof body.dpp !== 'object') {
                     sendJson(res, 400, {
                         error: "Invalid request: Missing 'dpp' payload object.",
                         code: 'INVALID_REQUEST'
+                    });
+                    return;
+                }
+
+                if (body.options && body.options.version && !KNOWN_VERSIONS.includes(body.options.version)) {
+                    sendJson(res, 400, {
+                        error: `Invalid or unsupported specification version in options: '${body.options.version}'. Allowed versions: ${KNOWN_VERSIONS.join(', ')}.`,
+                        code: 'INVALID_VERSION'
                     });
                     return;
                 }
@@ -154,10 +177,12 @@ export function createServer() {
                 // Step B: Generate HTML for valid DPP
                 const html = await generateDppHtml(body.dpp, renderOptions);
 
-                // Step C: Send HTML Response
+                // Step C: Send HTML Response with Security Headers
                 res.writeHead(200, {
                     'Content-Type': 'text/html; charset=utf-8',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; script-src 'self' 'unsafe-inline';",
+                    'X-Content-Type-Options': 'nosniff'
                 });
                 res.end(html);
                 return;

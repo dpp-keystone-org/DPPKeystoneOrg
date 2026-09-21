@@ -53,7 +53,8 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          workload_identity_provider: projects/603578230716/locations/global/workloadIdentityPools/github/providers/github-provider
+          service_account: github-actions-deployer@dpp-keystone-prod.iam.gserviceaccount.com
 
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
@@ -78,6 +79,7 @@ jobs:
             --region "${{ env.REGION }}" \
             --platform managed \
             --allow-unauthenticated \
+            --service-account "dpp-keystone-runtime@dpp-keystone-prod.iam.gserviceaccount.com" \
             --min-instances 0 \
             --max-instances 2 \
             --concurrency 80 \

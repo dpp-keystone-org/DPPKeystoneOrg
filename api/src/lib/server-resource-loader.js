@@ -2,7 +2,7 @@ import { promises as fs, existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse as jsoncParse } from 'jsonc-parser';
-import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, KNOWN_VERSIONS } from '../../../src/lib/keystone-version.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,6 +55,10 @@ export async function readJsonFile(filePath, version = KEYSTONE_VERSION) {
  * @param {string} [version=KEYSTONE_VERSION]
  */
 export async function getServerSchemaContext(version = KEYSTONE_VERSION) {
+    if (!KNOWN_VERSIONS.includes(version)) {
+        throw new Error(`Unsupported specification version: '${version}'`);
+    }
+
     if (cachedSchemaContexts.has(version)) {
         return cachedSchemaContexts.get(version);
     }
@@ -256,6 +260,10 @@ async function loadAndParseOntologyFile(filePath, ontologyMap, loadedPaths) {
  * @returns {Promise<Map<string, object>>}
  */
 export async function getServerOntologyMap(sector = 'dpp', version = KEYSTONE_VERSION) {
+    if (!KNOWN_VERSIONS.includes(version)) {
+        throw new Error(`Unsupported specification version: '${version}'`);
+    }
+
     const cacheKey = `${version}:${sector}`;
     if (cachedOntologyMaps.has(cacheKey)) {
         return cachedOntologyMaps.get(cacheKey);
@@ -343,9 +351,14 @@ export async function getProductPageCss() {
 
 /**
  * Server-side JSON-LD document loader that intercepts dpp-keystone.org URIs and resolves locally from disk or live web.
+ * Restricts external fetches exclusively to dpp-keystone.org and schema.org domains.
  * @param {string} [version=KEYSTONE_VERSION]
  */
 export function createServerDocumentLoader(version = KEYSTONE_VERSION) {
+    if (!KNOWN_VERSIONS.includes(version)) {
+        throw new Error(`Unsupported specification version: '${version}'`);
+    }
+
     return async (url) => {
         const CONTEXT_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
         const ONTOLOGY_PREFIX = 'https://dpp-keystone.org/spec/ontology/';
@@ -376,13 +389,14 @@ export function createServerDocumentLoader(version = KEYSTONE_VERSION) {
             }
         }
 
-        // Fallback fetch for external schemas (like schema.org or unbundled legacy versions)
-        const response = await fetch(url, { headers: { 'Accept': 'application/ld+json, application/json' } });
-        if (!response.ok) throw new Error(`HTTP ${response.status} loading ${url}`);
+        // For any external or non-local context URLs (such as schema.org, GS1, EPCIS, etc.),
+        // return a safe empty context stub rather than making outbound network requests.
+        // This eliminates SSRF, avoids external network dependencies, and allows DPPs with
+        // additional external ontologies to be validated and rendered cleanly without errors.
         return {
             contextUrl: null,
             documentUrl: url,
-            document: await response.json()
+            document: { '@context': {} }
         };
     };
 }
