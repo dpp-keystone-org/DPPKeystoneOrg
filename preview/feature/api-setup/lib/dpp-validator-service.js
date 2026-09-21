@@ -1,7 +1,7 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1788856171210';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1788856171210';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1788856171210';
-import { getServerSchemaContext, getServerOntologyMap, createServerDocumentLoader } from './server-resource-loader.js?v=1788856171210';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1789994789663';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1789994789663';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1789994789663';
+import { getServerSchemaContext, getServerOntologyMap, createServerDocumentLoader } from './server-resource-loader.js?v=1789994789663';
 
 /**
  * Validates a DPP JSON object against both structural JSON Schema and semantic Ontology rules on the server.
