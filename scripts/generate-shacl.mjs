@@ -3,6 +3,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
 import { loadOntologyDefinition, extractClassRequirements, expandURI } from '../testing/scripts/shacl-fuzzer.mjs';
+import { getPreviewChunk } from './branch-helper.mjs';
+
+const PREVIEW_CHUNK = getPreviewChunk();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -126,7 +129,7 @@ function generateShacl() {
             "@context": {
                 "sh": "http://www.w3.org/ns/shacl#",
                 "xsd": "http://www.w3.org/2001/XMLSchema#",
-                "dppk": `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`,
+                "dppk": (ontology['@context'] && ontology['@context']['dppk']) || `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/${KEYSTONE_VERSION}/terms#`,
                 "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
                 "@vocab": "http://www.w3.org/ns/shacl#",
                 "node": { "@type": "@id" },
@@ -135,7 +138,7 @@ function generateShacl() {
                 "class": { "@type": "@id" },
                 "datatype": { "@type": "@id" }
             },
-            "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/${uriPath}`,
+            "@id": `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/validation/${KEYSTONE_VERSION}/shacl/${uriPath}`,
             "@type": "ShapesGraph",
             "@graph": []
         };
@@ -147,7 +150,7 @@ function generateShacl() {
             const expandedTargetClass = expandURI(classId, ontology['@context']);
             const safeClassId = classId.replace(/:/g, '_');
             const shape = {
-                "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/shapes#${safeClassId}Shape`,
+                "@id": `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/validation/${KEYSTONE_VERSION}/shacl/shapes#${safeClassId}Shape`,
                 "@type": "NodeShape",
                 "targetClass": expandedTargetClass,
                 "property": []
@@ -189,7 +192,7 @@ function generateShacl() {
                         propRule.or = {
                             "@list": [
                                 {
-                                    "node": { "@id": `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/shapes#${safeTargetId}Shape` },
+                                    "node": { "@id": `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/validation/${KEYSTONE_VERSION}/shacl/shapes#${safeTargetId}Shape` },
                                     "nodeKind": { "@id": "sh:BlankNodeOrIRI" }
                                 },
                                 {
