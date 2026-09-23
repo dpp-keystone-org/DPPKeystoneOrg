@@ -6,10 +6,8 @@ import ClownfaceFactory from 'clownface/Factory.js';
 import NamespaceFactory from '@rdfjs/namespace/Factory.js';
 import SHACLValidator from 'rdf-validate-shacl';
 import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
-import { getPreviewChunk } from '../../scripts/branch-helper.mjs';
 
 const factory = new Environment([DataFactory, DatasetFactory, ClownfaceFactory, NamespaceFactory]);
-const PREVIEW_CHUNK = getPreviewChunk();
 
 export function loadOntologyDefinition(ontologyFilePath) {
     const rawData = fs.readFileSync(ontologyFilePath, 'utf8');
@@ -32,7 +30,7 @@ export function expandURI(uri, context = {}) {
             return expanded;
         }
         if (parts[0] === 'dppk') {
-            return `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/${KEYSTONE_VERSION}/terms#` + parts[1];
+            return `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#` + parts[1];
         }
     }
     return uri;

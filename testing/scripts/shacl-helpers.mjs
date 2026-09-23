@@ -4,6 +4,7 @@ import jsonld from 'jsonld';
 import N3Parser from '@rdfjs/parser-n3';
 import datasetFactory from '@rdfjs/dataset';
 import { CONTEXT_URL_TO_LOCAL_PATH_MAP, PROJECT_ROOT } from './test-helpers.mjs';
+import { normalizeSpecUrl } from '../../src/lib/keystone-version.js';
 
 // Re-export for consumers of this module
 export { PROJECT_ROOT };
@@ -14,8 +15,8 @@ export const localFileDocumentLoader = async (url) => {
 
     let localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
     if (!localPath) {
-        // Strip optional /preview/<branch> chunk to resolve against local mapping (supports slashes in branch)
-        const normalized = url.replace(/https:\/\/dpp-keystone\.org\/preview\/.+?\/spec\//, 'https://dpp-keystone.org/spec/');
+        // Strip optional /preview/<branch> chunk to resolve against local mapping
+        const normalized = normalizeSpecUrl(url);
         localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[normalized];
     }
 
