@@ -97,10 +97,18 @@ export function registerOntologyTerm(term, filePath) {
         term,
         filePath
     });
-    ontologyGraph.set(termId, {
+    const entry = {
         ...term,
         _definedIn: filePath
-    });
+    };
+    ontologyGraph.set(termId, entry);
+    const normalized = normalizeSpecUrl(termId);
+    if (normalized !== termId) {
+        ontologyGraph.set(normalized, entry);
+    }
+    if (normalizedId !== termId && normalizedId !== normalized) {
+        ontologyGraph.set(normalizedId, entry);
+    }
 }
 
 function resolveImportPath(currentFile, importUrl) {
@@ -449,10 +457,13 @@ function auditSchemaMappings(reporter) {
                         if (isJsonLdKeyword(iri)) return;
                         const compactIRI = getCompactIRI(iri);
                         
+                        const normalizedIri = normalizeSpecUrl(iri);
                         if (ontologyGraph.has(iri)) {
                             usedIRIs.add(iri);
                         } else if (ontologyGraph.has(compactIRI)) {
                             usedIRIs.add(compactIRI);
+                        } else if (ontologyGraph.has(normalizedIri)) {
+                            usedIRIs.add(normalizedIri);
                         } else {
                              reporter.report(
                                 'Schema Mapping Integrity',
