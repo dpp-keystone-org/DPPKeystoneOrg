@@ -10,10 +10,10 @@
     "dcterms": "http://purl.org/dc/terms/",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v3/core/RelatedResource",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/RelatedResource",
   "@type": "owl:Ontology",
   "owl:imports": {
-    "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Product.jsonld"
+    "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Product.jsonld"
   },
   "owl:versionInfo": "v3",
   "dcterms:title": [

@@ -11,7 +11,7 @@
     "@base": "https://dpp-keystone.org/spec/v3/terms",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Textile",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Textile",
   "@type": "owl:Ontology",
   "owl:versionInfo": "v3",
   "dcterms:source": "Based on 'Preparatory study on textiles for product policy instruments (3rd milestone)' by the European Commission Joint Research Centre (JRC), 2024. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
@@ -213,10 +213,10 @@
   ],
   "owl:imports": [
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Compliance.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Compliance.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/EUApparelSizeSystem.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/EUApparelSizeSystem.jsonld"
     }
   ],
   "@graph": [

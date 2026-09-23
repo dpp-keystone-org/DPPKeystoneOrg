@@ -10,7 +10,7 @@
     "unece": "https://vocabulary.uncefact.org/",
     "@base": "https://dpp-keystone.org/spec/v3/terms"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v3/dpp-ontology.jsonld",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/dpp-ontology.jsonld",
   "@type": "owl:Ontology",
   "dcterms:title": [
     {
@@ -211,49 +211,49 @@
   "owl:versionInfo": "v3",
   "owl:imports": [
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Header.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Header.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Organization.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Organization.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Product.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Product.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Compliance.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Compliance.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/RelatedResource.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/RelatedResource.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Identifier.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Identifier.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/EPD.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/EPD.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Signature.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Signature.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Battery.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Battery.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Textile.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Textile.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Construction.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Construction.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Electronics.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Electronics.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/IronSteel.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/IronSteel.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Cement.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Cement.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/cement/DoPC.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/cement/DoPC.jsonld"
     }
   ]
 }

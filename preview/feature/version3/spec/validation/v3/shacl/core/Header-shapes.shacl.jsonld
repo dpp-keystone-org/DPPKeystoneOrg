@@ -21,11 +21,11 @@
       "@type": "@id"
     }
   },
-  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/core/Header",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/core/Header",
   "@type": "ShapesGraph",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_DigitalProductPassportShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_DigitalProductPassportShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms#DigitalProductPassport",
       "property": [
@@ -84,7 +84,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_GranularityValueShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_GranularityValueShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"

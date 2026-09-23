@@ -21,11 +21,11 @@
       "@type": "@id"
     }
   },
-  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/sectors/Cement",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/sectors/Cement",
   "@type": "ShapesGraph",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-cement_CementProductShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-cement_CementProductShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms/cement#CementProduct",
       "property": [

@@ -21,11 +21,11 @@
       "@type": "@id"
     }
   },
-  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/core/DoPC",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/core/DoPC",
   "@type": "ShapesGraph",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_DoPCBlockShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_DoPCBlockShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms#DoPCBlock",
       "property": [
@@ -87,7 +87,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-dopc_DangerousSubstanceComponentShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-dopc_DangerousSubstanceComponentShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"

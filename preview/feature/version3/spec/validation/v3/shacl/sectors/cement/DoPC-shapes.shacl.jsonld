@@ -21,11 +21,11 @@
       "@type": "@id"
     }
   },
-  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/sectors/cement/DoPC",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/sectors/cement/DoPC",
   "@type": "ShapesGraph",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-cement-dopc_CementDoPCShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-cement-dopc_CementDoPCShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#CementDoPC",
       "property": [
@@ -36,7 +36,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_OrganizationShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_OrganizationShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"

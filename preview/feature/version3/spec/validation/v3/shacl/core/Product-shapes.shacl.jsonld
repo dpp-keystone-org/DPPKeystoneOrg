@@ -21,11 +21,11 @@
       "@type": "@id"
     }
   },
-  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/core/Product",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/core/Product",
   "@type": "ShapesGraph",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ProductShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ProductShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms#Product",
       "property": [
@@ -61,7 +61,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -85,7 +85,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ComponentShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ComponentShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -144,7 +144,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ProductCharacteristicShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ProductCharacteristicShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_QuantitativeValueShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_QuantitativeValueShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms#QuantitativeValue",
       "property": [
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ProductCharacteristicShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ProductCharacteristicShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms#ProductCharacteristic",
       "property": [

@@ -12,7 +12,7 @@
     "@base": "https://dpp-keystone.org/spec/v3/terms",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Organization.jsonld",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Organization.jsonld",
   "@type": "owl:Ontology",
   "dcterms:title": [
     {
@@ -212,7 +212,7 @@
   ],
   "owl:versionInfo": "v3",
   "owl:imports": {
-    "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Header.jsonld"
+    "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Header.jsonld"
   },
   "@graph": [
     {

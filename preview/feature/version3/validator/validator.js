@@ -1,16 +1,16 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1785753585320';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1790156148678';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1785753585320';
-import { generateHTML } from '../lib/html-generator.js?v=1785753585320';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1785753585320';
-import { loadHeader } from '../branding/header.js?v=1785753585320';
+import { EXAMPLES } from '../lib/example-registry.js?v=1790156148678';
+import { generateHTML } from '../lib/html-generator.js?v=1790156148678';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1790156148678';
+import { loadHeader } from '../branding/header.js?v=1790156148678';
 loadHeader('dpp-header-container', '..');
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1785753585320';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1785753585320';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1785753585320';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1785753585320';
-import { LanguageManager } from '../lib/language-manager.js?v=1785753585320';
+import { loadOntology } from '../lib/ontology-loader.js?v=1790156148678';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1790156148678';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1790156148678';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1790156148678';
+import { LanguageManager } from '../lib/language-manager.js?v=1790156148678';
 
 // Configuration: Map Spec IDs to Schema filenames
 // This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
@@ -156,11 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Branch dynamic Ontology validation to intercept `@context` specifically!
             if (dppData['@context']) {
                 const localContextLoader = async (url) => {
-                    const CONTEXT_PROD_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
-                    let fetchUrl = url;
-                    if (url.startsWith(CONTEXT_PROD_PREFIX)) {
-                        fetchUrl = url.replace(CONTEXT_PROD_PREFIX, '../spec/contexts/');
-                    }
+                    const fetchUrl = specUrlToRelativePath(url, '../spec/');
                     const response = await fetch(fetchUrl);
                     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                     return {
@@ -308,9 +304,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Configure document loader to resolve specific URLs locally
                 const documentLoader = async (url, options) => {
-                    // Intercept spec URLs and redirect to local files if possible
-                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                    // Intercept spec URLs (canonical or preview) and redirect to local files if possible
+                    if (isSpecUrl(url)) {
+                        const relativePath = specUrlToRelativePath(url, '../spec/');
 
                         // Try to fetch locally
                         try {

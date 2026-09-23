@@ -1,8 +1,8 @@
 {
   "@context": [
-    "https://dpp-keystone.org/spec/contexts/v3/dpp-core.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v3/dpp-epd.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v3/dpp-dopc.context.jsonld",
+    "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-epd.context.jsonld",
+    "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-dopc.context.jsonld",
     {
       "dppk": "https://dpp-keystone.org/spec/v3/terms#",
       "dcterms": "http://purl.org/dc/terms/",
@@ -289,5 +289,5 @@
       }
     }
   ],
-  "@id": "https://dpp-keystone.org/spec/contexts/v3/dpp-battery"
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-battery"
 }

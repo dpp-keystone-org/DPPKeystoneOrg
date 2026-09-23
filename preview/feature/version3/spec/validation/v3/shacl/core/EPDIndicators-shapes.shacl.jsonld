@@ -21,11 +21,11 @@
       "@type": "@id"
     }
   },
-  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/core/EPDIndicators",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/core/EPDIndicators",
   "@type": "ShapesGraph",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_EPDBlockShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_EPDBlockShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms#EPDBlock",
       "property": [
@@ -40,7 +40,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -59,7 +59,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -78,7 +78,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -97,7 +97,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -116,7 +116,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -135,7 +135,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -154,7 +154,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -173,7 +173,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -192,7 +192,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -211,7 +211,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -230,7 +230,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -249,7 +249,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -268,7 +268,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -287,7 +287,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_EPDBlockShape",
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_EPDBlockShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms/epd#EPDBlock",
       "property": [
@@ -313,7 +313,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -332,7 +332,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -351,7 +351,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -370,7 +370,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -389,7 +389,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -408,7 +408,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -427,7 +427,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -446,7 +446,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -465,7 +465,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -484,7 +484,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -503,7 +503,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -522,7 +522,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -541,7 +541,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -560,7 +560,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -579,7 +579,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -598,7 +598,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -617,7 +617,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -636,7 +636,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -655,7 +655,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -674,7 +674,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -693,7 +693,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -712,7 +712,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -731,7 +731,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-epd_ImpactValuesShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"

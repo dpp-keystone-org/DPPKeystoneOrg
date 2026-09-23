@@ -13,7 +13,7 @@
     "@base": "https://dpp-keystone.org/spec/v3/terms",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v3/sectors/Construction",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Construction",
   "@type": "owl:Ontology",
   "owl:versionInfo": "v3",
   "dcterms:title": [
@@ -214,22 +214,22 @@
   ],
   "owl:imports": [
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Product.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Product.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Compliance.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Compliance.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Organization.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Organization.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/EPD.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/EPD.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/RelatedResource.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/RelatedResource.jsonld"
     },
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/DoPC.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/DoPC.jsonld"
     }
   ],
   "@graph": [

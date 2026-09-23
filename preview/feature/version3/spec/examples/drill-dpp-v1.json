@@ -1,8 +1,8 @@
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v3/dpp-electronics.context.jsonld",
+  "@context": "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-electronics.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:a9a541e5-d77f-4ae2-ae46-e312f8662456",
-  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/drill-dpp-v1.html",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/preview/feature/version3/spec/examples/html/drill-dpp-v1.html",
   "granularity": "Item",
   "facilityId": "urn:lei:ABCDE123456789012345",
   "dppSchemaVersion": "ENXXX:v1.0",

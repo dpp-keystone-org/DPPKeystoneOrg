@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/cement.schema.json",
+  "$id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/json-schema/sector/cement.schema.json",
   "title": "Cement Product Properties",
   "description": "Validation schema for cement physical and chemical properties.",
   "type": "object",

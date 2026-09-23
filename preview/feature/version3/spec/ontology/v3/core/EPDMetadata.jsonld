@@ -11,11 +11,11 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "gs1": "https://gs1.org/voc/"
   },
-  "@id": "https://dpp-keystone.org/spec/ontology/v3/core/EPDMetadata.jsonld",
+  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/EPDMetadata.jsonld",
   "@type": "owl:Ontology",
   "owl:imports": [
     {
-      "@id": "https://dpp-keystone.org/spec/ontology/v3/core/Product.jsonld"
+      "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/core/Product.jsonld"
     }
   ],
   "dcterms:title": [
