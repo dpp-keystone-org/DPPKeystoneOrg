@@ -61,10 +61,11 @@ At site-build time (`scripts/build-and-clean.mjs`):
 *   [x] **Step 2.3: Adapt UI Context Interceptors**
     *   Update `src/validator/validator.js` and `src/lib/ontology-loader.js` regex to strip optional `/preview/<branch>` when mapping to local relative paths.
 *   [x] **Step 2.4: Adapt SHACL Generators & Fuzzing**
-    *   Update `scripts/generate-shacl.mjs` and `testing/scripts/shacl-fuzzer.mjs` to keep `dppk` vocabulary term IRIs canonical while using `PREVIEW_CHUNK` for generated shapes document IDs.
-*   [x] **Step 2.5: Centralize URL & Path Helpers in `src/lib/keystone-version.js`**
-    *   Unified all URL regexes and transformations into reusable functions (`isSpecUrl`, `normalizeSpecUrl`, `specUrlToRelativePath`, `specUrlToPreviewUrl`, `rewriteSpecFileUrls`).
-    *   Strictly distinguished between physical file URLs (`spec/(contexts|ontology|validation|examples)/`) which require `PREVIEW_CHUNK` for preview deployments, and semantic vocabulary concept IRIs (`spec/v3/terms#...`) which must remain canonical.
+    *   Update `scripts/generate-shacl.mjs` and `testing/scripts/shacl-fuzzer.mjs` to consistently use `PREVIEW_CHUNK` for shapes and `dppk` fallback namespace during preview builds.
+*   [x] **Step 2.5: Centralize URL Helpers & Enable Full Preview Sandboxing**
+    *   Unified all URL regexes and transformations in `src/lib/keystone-version.js` (`isSpecUrl`, `normalizeSpecUrl`, `specUrlToRelativePath`, `specUrlToPreviewUrl`, `rewriteSpecUrls`).
+    *   Rewrites all spec URLs (files and `terms#` namespaces) during preview builds for complete, autonomous dereferencing on GitHub Pages previews.
+    *   Equipped `dpp-schema-logic.js` and `validate-ontology-integrity.mjs` with `normalizeExpanded` / `normalizeSpecUrl` so internal transformation and validation engines seamlessly handle both preview and canonical IRIs.
     *   Added dedicated test suite in `testing/unit/lib/keystone-version.test.js`.
 
 ### Phase 3: Verification

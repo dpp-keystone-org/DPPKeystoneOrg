@@ -51,24 +51,26 @@ export function specUrlToPreviewUrl(url, previewBranch = '') {
 }
 
 /**
- * Rewrites spec file URLs (contexts, ontology, validation, examples) to include
- * the preview chunk if a preview branch/chunk is active, and replaces {{VERSION}}
- * with KEYSTONE_VERSION. Conceptual vocabulary IRIs (e.g. terms# or units#)
- * remain canonical.
+ * Rewrites all spec URLs (contexts, ontology, validation, examples, terms#, etc.)
+ * to include the preview chunk if a preview branch/chunk is active, and replaces
+ * {{VERSION}} with KEYSTONE_VERSION.
  * @param {string} content
  * @param {string} [previewBranchOrChunk='']
  * @returns {string}
  */
-export function rewriteSpecFileUrls(content, previewBranchOrChunk = '') {
+export function rewriteSpecUrls(content, previewBranchOrChunk = '') {
     if (typeof content !== 'string') return content;
     if (previewBranchOrChunk) {
         const chunk = previewBranchOrChunk.startsWith('/preview/')
             ? previewBranchOrChunk
             : `/preview/${previewBranchOrChunk}`;
         content = content.replace(
-            /https:\/\/dpp-keystone\.org\/spec\/(contexts|ontology|validation|examples)\//g,
-            `https://dpp-keystone.org${chunk}/spec/$1/`
+            /https:\/\/dpp-keystone\.org\/spec\//g,
+            `https://dpp-keystone.org${chunk}/spec/`
         );
     }
     return content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
 }
+
+// Backward-compatible alias
+export const rewriteSpecFileUrls = rewriteSpecUrls;

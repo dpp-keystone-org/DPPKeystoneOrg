@@ -6,6 +6,7 @@ import {
     normalizeSpecUrl,
     specUrlToRelativePath,
     specUrlToPreviewUrl,
+    rewriteSpecUrls,
     rewriteSpecFileUrls
 } from '../../../src/lib/keystone-version.js';
 
@@ -90,8 +91,8 @@ describe('keystone-version helpers', () => {
         });
     });
 
-    describe('rewriteSpecFileUrls', () => {
-        it('rewrites file URLs to include preview chunk and expands {{VERSION}}', () => {
+    describe('rewriteSpecUrls', () => {
+        it('rewrites all spec URLs (files and term namespaces) to include preview chunk and expands {{VERSION}}', () => {
             const content = JSON.stringify({
                 "@context": [
                     "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-core.context.jsonld",
@@ -100,25 +101,25 @@ describe('keystone-version helpers', () => {
                     "https://dpp-keystone.org/spec/examples/construction-product-dpp-v1.json"
                 ],
                 "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
-                "dppk-unit": "https://dpp-keystone.org/spec/{{VERSION}}/units#"
+                "dppk-cement-dopc": "https://dpp-keystone.org/spec/{{VERSION}}/terms/cement-dopc#"
             });
 
-            const rewritten = JSON.parse(rewriteSpecFileUrls(content, 'feature/version3'));
+            const rewritten = JSON.parse(rewriteSpecUrls(content, 'feature/version3'));
 
-            // File URLs MUST receive preview chunk
+            // File URLs receive preview chunk
             expect(rewritten["@context"][0]).toBe(`https://dpp-keystone.org/preview/feature/version3/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`);
             expect(rewritten["@context"][1]).toBe(`https://dpp-keystone.org/preview/feature/version3/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`);
             expect(rewritten["@context"][2]).toBe(`https://dpp-keystone.org/preview/feature/version3/spec/validation/${KEYSTONE_VERSION}/json-schema/dpp.schema.json`);
             expect(rewritten["@context"][3]).toBe('https://dpp-keystone.org/preview/feature/version3/spec/examples/construction-product-dpp-v1.json');
 
-            // Semantic vocabulary concept IRIs MUST remain canonical
-            expect(rewritten["dppk"]).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`);
-            expect(rewritten["dppk-unit"]).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/units#`);
+            // Term namespaces also receive preview chunk for complete preview sandboxing
+            expect(rewritten["dppk"]).toBe(`https://dpp-keystone.org/preview/feature/version3/spec/${KEYSTONE_VERSION}/terms#`);
+            expect(rewritten["dppk-cement-dopc"]).toBe(`https://dpp-keystone.org/preview/feature/version3/spec/${KEYSTONE_VERSION}/terms/cement-dopc#`);
         });
 
         it('handles chunk starting with /preview/ prefix', () => {
             const input = '"https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp.jsonld"';
-            const result = rewriteSpecFileUrls(input, '/preview/test-branch');
+            const result = rewriteSpecUrls(input, '/preview/test-branch');
             expect(result).toBe(`"https://dpp-keystone.org/preview/test-branch/spec/contexts/${KEYSTONE_VERSION}/dpp.jsonld"`);
         });
 
@@ -128,7 +129,7 @@ describe('keystone-version helpers', () => {
                 "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#"
             });
 
-            const result = JSON.parse(rewriteSpecFileUrls(content, ''));
+            const result = JSON.parse(rewriteSpecUrls(content, ''));
             expect(result.context).toBe(`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`);
             expect(result.dppk).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`);
         });

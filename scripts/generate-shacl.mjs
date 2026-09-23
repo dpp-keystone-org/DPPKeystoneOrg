@@ -129,7 +129,7 @@ function generateShacl() {
             "@context": {
                 "sh": "http://www.w3.org/ns/shacl#",
                 "xsd": "http://www.w3.org/2001/XMLSchema#",
-                "dppk": (ontology['@context'] && ontology['@context']['dppk']) || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`,
+                "dppk": (ontology['@context'] && ontology['@context']['dppk']) || `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/${KEYSTONE_VERSION}/terms#`,
                 "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
                 "@vocab": "http://www.w3.org/ns/shacl#",
                 "node": { "@type": "@id" },

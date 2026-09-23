@@ -114,10 +114,19 @@ function loadOntologyFile(filePath) {
     const graph = json['@graph'] || [];
     graph.forEach(term => {
         if (term['@id']) {
-            ontologyGraph.set(term['@id'], {
+            const entry = {
                 ...term,
                 _definedIn: filePath // Metadata for reporting
-            });
+            };
+            ontologyGraph.set(term['@id'], entry);
+            const normalized = normalizeSpecUrl(term['@id']);
+            if (normalized !== term['@id']) {
+                ontologyGraph.set(normalized, entry);
+            }
+            const compact = getCompactIRI(term['@id']);
+            if (compact !== term['@id'] && compact !== normalized) {
+                ontologyGraph.set(compact, entry);
+            }
             fileDefinedTerms.get(filePath).add(term['@id']);
         }
     });
@@ -428,10 +437,13 @@ function auditSchemaMappings(reporter) {
                         if (isJsonLdKeyword(iri)) return;
                         const compactIRI = getCompactIRI(iri);
                         
+                        const normalizedIri = normalizeSpecUrl(iri);
                         if (ontologyGraph.has(iri)) {
                             usedIRIs.add(iri);
                         } else if (ontologyGraph.has(compactIRI)) {
                             usedIRIs.add(compactIRI);
+                        } else if (ontologyGraph.has(normalizedIri)) {
+                            usedIRIs.add(normalizedIri);
                         } else {
                              reporter.report(
                                 'Schema Mapping Integrity',
