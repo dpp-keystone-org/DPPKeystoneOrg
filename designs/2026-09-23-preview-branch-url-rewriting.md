@@ -75,3 +75,6 @@ At site-build time (`scripts/build-and-clean.mjs`):
 *   [x] **Step 3.2: Verify Simulated Preview Build & Tests**
     *   Run `npm test` on feature branch (or with explicit `PREVIEW_BRANCH`).
     *   Verify all tests pass and that generated files in `dist/` have self-contained `https://dpp-keystone.org/preview/<branch>/spec/...` URLs.
+*   [x] **Step 3.3: Live Verification Utility (`scripts/verify-live-preview.mjs`)**
+    *   Added `npm run test:live-preview` to validate live deployed website (either preview branch or `main`) over the public internet.
+    *   Exercises pure network HTTP resolution for `@context`, term dereferencing redirects, live JSON-LD expansion, and SHACL shape conformance without local mocks.
