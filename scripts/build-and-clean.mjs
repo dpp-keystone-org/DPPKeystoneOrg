@@ -127,27 +127,61 @@ async function processDirectory(sourceDir, targetDir) {
 async function createRedirects(targetDir) {
     console.log('Generating client-side redirects...');
 
-    const redirectPath = path.join(targetDir, 'spec', KEYSTONE_VERSION, 'terms', 'index.html');
-    // The target URL should be an absolute path that factors in the preview deployment directory
-    const redirectTarget = `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
-    
-    // This HTML file uses a meta refresh tag to immediately redirect the user.
-    const redirectContent = `<!DOCTYPE html>
+    const redirectEntries = [
+        {
+            subpath: ['terms'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`
+        },
+        {
+            subpath: ['terms', 'cement-dopc'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/DoPC.jsonld`
+        },
+        {
+            subpath: ['terms', 'cement'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/sectors/Cement.jsonld`
+        },
+        {
+            subpath: ['terms', 'epd'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/core/EPD.jsonld`
+        },
+        {
+            subpath: ['terms', 'signature'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/core/Signature.jsonld`
+        },
+        {
+            subpath: ['terms', 'unit'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/core/Unit.jsonld`
+        },
+        {
+            subpath: ['terms', 'dopc'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/core/DoPC.jsonld`
+        }
+    ];
+
+    for (const entry of redirectEntries) {
+        const redirectContent = `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>Redirecting...</title>
-  <link rel="canonical" href="${redirectTarget}"/>
-  <meta http-equiv="refresh" content="0; url=${redirectTarget}">
+  <link rel="canonical" href="${entry.target}"/>
+  <meta http-equiv="refresh" content="0; url=${entry.target}">
 </head>
 <body>
   <h1>Redirecting...</h1>
-  <p>If you are not redirected automatically, follow this <a href="${redirectTarget}">link</a>.</p>
+  <p>If you are not redirected automatically, follow this <a href="${entry.target}">link</a>.</p>
 </body>
 </html>`;
 
-    await fse.outputFile(redirectPath, redirectContent);
-    console.log(`Created redirect: /spec/${KEYSTONE_VERSION}/terms/index.html -> ${redirectTarget}`);
+        // 1. Versioned path: dist/spec/v3/terms/.../index.html
+        const versionedPath = path.join(targetDir, 'spec', KEYSTONE_VERSION, ...entry.subpath, 'index.html');
+        await fse.outputFile(versionedPath, redirectContent);
+        console.log(`Created redirect: /spec/${KEYSTONE_VERSION}/${entry.subpath.join('/')}/index.html -> ${entry.target}`);
+
+        // 2. Unversioned shadow path: dist/spec/terms/.../index.html
+        const shadowPath = path.join(targetDir, 'spec', ...entry.subpath, 'index.html');
+        await fse.outputFile(shadowPath, redirectContent);
+    }
 }
 
 async function addCacheBusting(targetDir) {
