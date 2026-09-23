@@ -19,9 +19,11 @@ const PROJECT_ROOT = process.cwd();
 const SOURCE_DIR = path.join(PROJECT_ROOT, 'src');
 const BUILD_DIR = path.join(PROJECT_ROOT, 'dist');
 
+import { getPreviewChunk } from './branch-helper.mjs';
+
 const jsonFileExtensions = ['.json', '.jsonld'];
 
-export const PREVIEW_CHUNK = process.env.PREVIEW_BRANCH ? `/preview/${process.env.PREVIEW_BRANCH}` : '';
+export const PREVIEW_CHUNK = getPreviewChunk();
 
 /**
  * Rewrites spec URLs to include the preview chunk when PREVIEW_BRANCH is set,

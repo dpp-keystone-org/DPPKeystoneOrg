@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
+import { getPreviewBranch } from '../../scripts/branch-helper.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -137,8 +138,9 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
 };
 
 // If running in a preview branch environment, mirror all canonical entries to the preview URLs
-if (process.env.PREVIEW_BRANCH) {
-    const previewPrefix = `https://dpp-keystone.org/preview/${process.env.PREVIEW_BRANCH}/spec/`;
+const previewBranch = getPreviewBranch();
+if (previewBranch) {
+    const previewPrefix = `https://dpp-keystone.org/preview/${previewBranch}/spec/`;
     for (const [canonicalUrl, localPath] of Object.entries({ ...CONTEXT_URL_TO_LOCAL_PATH_MAP })) {
         if (canonicalUrl.startsWith('https://dpp-keystone.org/spec/')) {
             const previewUrl = canonicalUrl.replace('https://dpp-keystone.org/spec/', previewPrefix);

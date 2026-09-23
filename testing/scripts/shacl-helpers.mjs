@@ -14,8 +14,8 @@ export const localFileDocumentLoader = async (url) => {
 
     let localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
     if (!localPath) {
-        // Strip optional /preview/<branch> chunk to resolve against local mapping
-        const normalized = url.replace(/https:\/\/dpp-keystone\.org\/preview\/[^/]+\/spec\//, 'https://dpp-keystone.org/spec/');
+        // Strip optional /preview/<branch> chunk to resolve against local mapping (supports slashes in branch)
+        const normalized = url.replace(/https:\/\/dpp-keystone\.org\/preview\/.+?\/spec\//, 'https://dpp-keystone.org/spec/');
         localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[normalized];
     }
 
