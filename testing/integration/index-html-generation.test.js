@@ -54,6 +54,9 @@ describe('index.html generation', () => {
     expect(indexContent).toContain('Battery Schema</a>'); 
     expect(indexContent).toContain('Related Resource Schema</a>');
     
+    // Subdirectory schema check (will fail until update-index-html.mjs is fixed to scan subdirectories)
+    expect(indexContent).toContain('href="spec/validation/v3/json-schema/sector/cement/dopc.schema.json"');
+    
     // Check SHACL
     expect(indexContent).toContain('Battery Shapes.Shacl</a>');
   });

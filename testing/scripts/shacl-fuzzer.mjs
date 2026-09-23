@@ -121,9 +121,10 @@ export function synthesizeHappyPathGraph(classRequirements, expandedTargetClass)
                 valueNode = factory.literal('dummy string');
             } else if (rangeUri && rangeUri.includes('integer')) {
                 valueNode = factory.literal('1', factory.namedNode('http://www.w3.org/2001/XMLSchema#integer'));
-            } else if (rangeUri && (rangeUri.includes('double') || rangeUri.includes('float') || rangeUri.includes('decimal') || rangeUri.includes('Literal'))) {
-                // Custom datatypes like KgWeightLiteral fall in here if they contain 'Literal'
+            } else if (rangeUri && (rangeUri.includes('double') || rangeUri.includes('float') || rangeUri.includes('Literal'))) {
                 valueNode = factory.literal('1.0', factory.namedNode('http://www.w3.org/2001/XMLSchema#double'));
+            } else if (rangeUri && rangeUri.includes('decimal')) {
+                valueNode = factory.literal('1.0', factory.namedNode('http://www.w3.org/2001/XMLSchema#decimal'));
             } else if (rangeUri && rangeUri.includes('boolean')) {
                 valueNode = factory.literal('true', factory.namedNode('http://www.w3.org/2001/XMLSchema#boolean'));
             } else if (rangeUri && rangeUri.includes('dateTime')) {
@@ -186,7 +187,7 @@ export function generateMutations(happyPathGraph, classRequirements) {
                     if (quad.object.termType === 'Literal') {
                         if (quad.object.datatype && quad.object.datatype.value.includes('boolean')) {
                              wrongValue = factory.literal('not a boolean', factory.namedNode('http://www.w3.org/2001/XMLSchema#string'));
-                        } else if (quad.object.datatype && (quad.object.datatype.value.includes('double') || quad.object.datatype.value.includes('float') || quad.object.datatype.value.includes('integer'))) {
+                        } else if (quad.object.datatype && (quad.object.datatype.value.includes('double') || quad.object.datatype.value.includes('float') || quad.object.datatype.value.includes('integer') || quad.object.datatype.value.includes('decimal') || quad.object.datatype.value.includes('Literal'))) {
                              wrongValue = factory.literal('not a number', factory.namedNode('http://www.w3.org/2001/XMLSchema#string'));
                         } else {
                              wrongValue = factory.literal('123', factory.namedNode('http://www.w3.org/2001/XMLSchema#integer'));

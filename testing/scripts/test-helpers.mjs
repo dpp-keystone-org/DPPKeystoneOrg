@@ -39,6 +39,17 @@ export async function setupTestEnvironment(testDirName) {
         path.join(tempOntologyDir, 'core', 'mock-complex-comment.jsonld')
     );
 
+    // Copy nested mock files
+    await fs.mkdir(path.join(tempOntologyDir, 'sectors', 'cement'), { recursive: true });
+    await fs.copyFile(
+        path.join(FIXTURES_DIR, 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'mock-cement.jsonld'),
+        path.join(tempOntologyDir, 'sectors', 'cement', 'mock-cement.jsonld')
+    );
+    await fs.mkdir(path.join(tempContextsDir, 'cement'), { recursive: true });
+    await fs.copyFile(
+        path.join(FIXTURES_DIR, 'contexts', KEYSTONE_VERSION, 'cement', 'mock-cement.context.jsonld'),
+        path.join(tempContextsDir, 'cement', 'mock-cement.context.jsonld')
+    );
 
     return {
         fixturesDir: FIXTURES_DIR,
@@ -69,7 +80,10 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-dopc.context.jsonld'),
     [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-iron-steel.context.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-iron-steel.context.jsonld'),
-
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-cement.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-cement.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-cement-dopc.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-cement-dopc.context.jsonld'),
 
     // --- Ontology Files ---
     [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`]:
@@ -102,6 +116,10 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'IronSteel.jsonld'),
     [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/EUApparelSizeSystem.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'EUApparelSizeSystem.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/Cement.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'Cement.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/DoPC.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'DoPC.jsonld'),
 
     // --- SHACL Shape Files ---
     [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/core-shapes.shacl.jsonld`]:

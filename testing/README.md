@@ -56,6 +56,7 @@ $ npm test
 Jest will discover and run all `*.test.js` files, reporting the results to the console. The key test suites in the `integration/` directory include:
 - `dpp-examples.schema.test.js`: Validates all DPP examples against the master `dpp.schema.json` to ensure they have the correct structure.
 - `dpp-examples.validation.test.js`: Validates the semantic content of various example DPPs against their corresponding core and sector-specific SHACL shapes.
+- `fuzz-all-ontologies.test.js` (`unit/shacl-fuzzing/`): Automated SHACL Meta-Validation fuzzer that dynamically synthesizes RDF test graphs for every class and property in the ontology to systematically verify shape constraints.
 - `index-html-generation.test.js`: Checks that the main `index.html` file is correctly populated with links to all data models.
 - `simple-expand.test.js`: Ensures that the JSON-LD contexts are correctly wired and that example files can be successfully expanded to a full graph representation.
 - `spec-docs-generation.test.js`: Confirms that the HTML documentation for the ontology and contexts is generated correctly.

@@ -1,0 +1,29 @@
+{
+    "@context": {
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "https://dpp-keystone.org/spec/{{VERSION}}/terms/MockCementOntology",
+            "@type": "owl:Ontology",
+            "dcterms:title": "Mock Cement Ontology",
+            "dcterms:description": "A mock cement ontology for testing purposes."
+        },
+        {
+            "@id": "dppk:MockCementProduct",
+            "@type": "rdfs:Class",
+            "rdfs:label": "Mock Cement Product",
+            "rdfs:comment": "Represents a cement product for testing nested directories."
+        },
+        {
+            "@id": "dppk:mockCementProp",
+            "@type": "owl:ObjectProperty",
+            "rdfs:label": "mockCementProp",
+            "rdfs:comment": "A test property for cement.",
+            "schema:domainIncludes": { "@id": "dppk:MockCementProduct" }
+        }
+    ]
+}

@@ -16,6 +16,7 @@ Detailed documentation for each script is located directly within the scripts th
 *   [`build-and-clean.mjs`](build-and-clean.mjs): The primary build orchestrator. Cleans targets, lints JSON, strips comments, and generates the `dist/` folder.
 *   [`clean.mjs`](clean.mjs): Utility to remove the `dist/` directory.
 *   [`bundle-vendor.mjs`](bundle-vendor.mjs): Bundles Node dependencies (AJV, PapaParse) into browser-compatible ESM modules inside `src/lib/vendor/`.
+*   [`generate-shacl.mjs`](generate-shacl.mjs): Dynamically generates SHACL shape files from RDFS/OWL ontology definitions and outputs them to `dist/spec/validation/`.
 
 ### Formatting and Linting
 *   [`compact-json.mjs`](compact-json.mjs): Standardizes the visual layout of JSON/JSON-LD source files without stripping comments.

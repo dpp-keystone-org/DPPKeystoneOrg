@@ -53,6 +53,31 @@ describe('Ontology Indexer', () => {
         expect(propItem.docUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Battery/index.html#testProp`);
     });
 
+    it('should resolve domain documentation URLs', async () => {
+        const mockMap = new Map();
+        // Define the Domain Class
+        mockMap.set('ConstructionProduct', {
+            label: { en: 'Construction Product' },
+            type: 'rdfs:Class',
+            definedIn: { type: 'sectors', name: 'Construction' }
+        });
+        // Define a Property using that Domain
+        mockMap.set('hasCement', {
+            label: { en: 'Has Cement' },
+            type: 'rdf:Property',
+            definedIn: { type: 'sectors', name: 'Construction' },
+            domain: { '@id': 'dppk:ConstructionProduct' }
+        });
+
+        mockLoadOntology.mockResolvedValue(mockMap);
+
+        const index = await buildIndex();
+        const propItem = index.find(i => i.id === 'hasCement');
+
+        expect(propItem.domain).toBe('dppk:ConstructionProduct');
+        expect(propItem.domainDocUrl).toBe(`../spec/ontology/${KEYSTONE_VERSION}/sectors/Construction/ConstructionProduct.html`);
+    });
+
     it('should handle terms without defined source context', async () => {
         const mockMap = new Map();
         mockMap.set('OrphanTerm', {

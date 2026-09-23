@@ -1,0 +1,88 @@
+{
+  "@context": [
+    "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-core.context.jsonld",
+    {
+      "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
+      "dppk-cement-dopc": "https://dpp-keystone.org/spec/{{VERSION}}/terms/cement-dopc#",
+      "dppk-signature": "https://dpp-keystone.org/spec/{{VERSION}}/terms/signature#",
+      "dopc": {
+        "@id": "dppk-cement-dopc:CementDoPC",
+        "@context": {
+          "declarationCode": "dppk-cement-dopc:declarationCode",
+          "version": "dppk-cement-dopc:version",
+          "dateOfIssue": "dppk-signature:dateOfSignature",
+          "placeOfSignature": "dppk-signature:placeOfSignature",
+          "signatory": "dppk-signature:signatory",
+          "signatoryPosition": "dppk-signature:signatoryPosition",
+          "signature": "dppk-signature:signatureValue",
+          "uniqueIdentificationCode": "dppk-cement-dopc:uniqueIdentificationCode",
+          "batch": "dppk-cement-dopc:batch",
+          "productCategory": "dppk-cement-dopc:productCategory",
+          "declaredUses": "dppk-cement-dopc:declaredUses",
+          "manufacturerProductRegistrations": {
+            "@id": "dppk-cement-dopc:manufacturerProductRegistrations",
+            "@type": "@id"
+          },
+          "reachInformation": {
+            "@id": "dppk-cement-dopc:reachInformation",
+            "@type": "@id"
+          },
+          "generalProductInformation": {
+            "@id": "dppk-cement-dopc:generalProductInformation",
+            "@type": "@id"
+          },
+          "manufacturer": {
+            "@id": "dppk-cement-dopc:manufacturer",
+            "@context": {
+              "name": "dppk:organizationName",
+              "registeredTradeName": "dppk:tradingName",
+              "postalAddress": "dppk-cement-dopc:postalAddress",
+              "telephone": "dppk:telephone",
+              "emailAddress": "dppk:email",
+              "website": "dppk:website",
+              "registeredPlaceOfBusiness": "dppk-cement-dopc:registeredPlaceOfBusiness"
+            }
+          },
+          "notifiedBodyIdentificationNumber": "dppk-cement-dopc:notifiedBodyIdentificationNumber",
+          "certificatesOrValidationReports": "dppk-cement-dopc:certificatesOrValidationReports",
+          "harmonisedTechnicalSpecification": "dppk-cement-dopc:harmonisedTechnicalSpecification",
+          "sustainabilityDataCompliance": "dppk-cement-dopc:sustainabilityDataCompliance",
+          "productConformityDeclaration": "dppk-cement-dopc:productConformityDeclaration",
+          "dangerousSubstanceAntimony": "dppk-cement-dopc:dangerousSubstanceAntimony",
+          "dangerousSubstanceArsenic": "dppk-cement-dopc:dangerousSubstanceArsenic",
+          "dangerousSubstanceAsbestos": "dppk-cement-dopc:dangerousSubstanceAsbestos",
+          "dangerousSubstanceBarium": "dppk-cement-dopc:dangerousSubstanceBarium",
+          "dangerousSubstanceBromide": "dppk-cement-dopc:dangerousSubstanceBromide",
+          "dangerousSubstanceCadmium": "dppk-cement-dopc:dangerousSubstanceCadmium",
+          "dangerousSubstanceChloride": "dppk-cement-dopc:dangerousSubstanceChloride",
+          "dangerousSubstanceChromiumTotal": "dppk-cement-dopc:dangerousSubstanceChromiumTotal",
+          "dangerousSubstanceCobalt": "dppk-cement-dopc:dangerousSubstanceCobalt",
+          "dangerousSubstanceCopper": "dppk-cement-dopc:dangerousSubstanceCopper",
+          "dangerousSubstanceCyanide": "dppk-cement-dopc:dangerousSubstanceCyanide",
+          "dangerousSubstanceFluoride": "dppk-cement-dopc:dangerousSubstanceFluoride",
+          "dangerousSubstanceLead": "dppk-cement-dopc:dangerousSubstanceLead",
+          "dangerousSubstanceMercury": "dppk-cement-dopc:dangerousSubstanceMercury",
+          "dangerousSubstanceMolybdenum": "dppk-cement-dopc:dangerousSubstanceMolybdenum",
+          "dangerousSubstanceNickel": "dppk-cement-dopc:dangerousSubstanceNickel",
+          "dangerousSubstancePhenols": "dppk-cement-dopc:dangerousSubstancePhenols",
+          "dangerousSubstanceSelenium": "dppk-cement-dopc:dangerousSubstanceSelenium",
+          "dangerousSubstanceSulfate": "dppk-cement-dopc:dangerousSubstanceSulfate",
+          "dangerousSubstanceTin": "dppk-cement-dopc:dangerousSubstanceTin",
+          "dangerousSubstanceVanadium": "dppk-cement-dopc:dangerousSubstanceVanadium",
+          "dangerousSubstanceZinc": "dppk-cement-dopc:dangerousSubstanceZinc",
+          "proof": {
+            "@id": "dppk-signature:cryptographicProof",
+            "@context": {
+              "signatureType": "dppk-signature:signatureType",
+              "signatureAlgorithm": "dppk-signature:signatureAlgorithm",
+              "signatureCanonicalization": "dppk-signature:signatureCanonicalization",
+              "signatureKeyId": "dppk-signature:signatureKeyId",
+              "signatureCreated": "dppk-signature:signatureCreated",
+              "signatureString": "dppk-signature:signatureValue"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
