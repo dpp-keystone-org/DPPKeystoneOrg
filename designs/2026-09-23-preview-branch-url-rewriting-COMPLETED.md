@@ -48,6 +48,7 @@ At site-build time (`scripts/build-and-clean.mjs`):
     *   In `processDirectory`, preserve canonical spec URLs in copied `.js` and `.mjs` files in `dist/` (only expanding `{{VERSION}}` to `KEYSTONE_VERSION`) so DPP generators and transformation libraries remain standard-compliant and stable across environments without modifying test assertions.
 *   [x] **Step 1.4: Update Client-Side Redirects**
     *   Ensure `createRedirects` in `scripts/build-and-clean.mjs` consistently aligns with `PREVIEW_CHUNK`.
+    *   Generate client-side HTML redirects for all vocabulary sub-namespaces (`terms/`, `terms/cement-dopc`, `terms/cement`, `terms/epd`, `terms/signature`, `terms/unit`, `terms/dopc`) pointing to their corresponding ontology files with `PREVIEW_CHUNK`, plus unversioned shadows under `spec/terms/...`.
 *   [x] **Step 1.5: Automatic Git Branch Detection (`scripts/branch-helper.mjs`)**
     *   Auto-detect active git branch if `PREVIEW_BRANCH` is undefined (ignoring `main`, `master`, `gh-pages`, `legacy/*`, `HEAD`).
     *   Support explicit override via `PREVIEW_BRANCH` (passing `PREVIEW_BRANCH=""` forces canonical production mode).
