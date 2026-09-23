@@ -136,6 +136,17 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'iron-steel-shapes.shacl.jsonld'),
 };
 
+// If running in a preview branch environment, mirror all canonical entries to the preview URLs
+if (process.env.PREVIEW_BRANCH) {
+    const previewPrefix = `https://dpp-keystone.org/preview/${process.env.PREVIEW_BRANCH}/spec/`;
+    for (const [canonicalUrl, localPath] of Object.entries({ ...CONTEXT_URL_TO_LOCAL_PATH_MAP })) {
+        if (canonicalUrl.startsWith('https://dpp-keystone.org/spec/')) {
+            const previewUrl = canonicalUrl.replace('https://dpp-keystone.org/spec/', previewPrefix);
+            CONTEXT_URL_TO_LOCAL_PATH_MAP[previewUrl] = localPath;
+        }
+    }
+}
+
 export async function fillRequiredFields(page, sector) {
     // Wait for the testing object to be exposed on the window.
     await page.waitForFunction(() => window.testing);

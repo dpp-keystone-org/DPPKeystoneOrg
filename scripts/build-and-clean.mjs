@@ -21,10 +21,25 @@ const BUILD_DIR = path.join(PROJECT_ROOT, 'dist');
 
 const jsonFileExtensions = ['.json', '.jsonld'];
 
+export const PREVIEW_CHUNK = process.env.PREVIEW_BRANCH ? `/preview/${process.env.PREVIEW_BRANCH}` : '';
+
+/**
+ * Rewrites spec URLs to include the preview chunk when PREVIEW_BRANCH is set,
+ * and replaces {{VERSION}} with KEYSTONE_VERSION.
+ * @param {string} content
+ * @returns {string}
+ */
+export function rewriteSpecUrls(content) {
+    if (PREVIEW_CHUNK) {
+        content = content.replace(/https:\/\/dpp-keystone\.org\/spec\//g, `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/`);
+    }
+    return content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+}
+
 async function cleanAndCopyJsonFile(sourcePath, targetPath) {
     try {
         let content = await fs.readFile(sourcePath, 'utf-8');
-        content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+        content = rewriteSpecUrls(content);
         let errors = [];
         const cleanedContent = jsoncParse(content, errors, {
             allowTrailingComma: true,
@@ -62,10 +77,11 @@ async function processDirectory(sourceDir, targetDir) {
             await cleanAndCopyJsonFile(sourcePath, targetPath);
         } else if (entry.name.endsWith('.js') || entry.name.endsWith('.mjs')) {
             let content = await fs.readFile(sourcePath, 'utf-8');
-            content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+            content = rewriteSpecUrls(content);
             await fs.writeFile(targetPath, content, 'utf-8');
         } else if (entry.name.endsWith('.html')) {
             let content = await fs.readFile(sourcePath, 'utf-8');
+            content = rewriteSpecUrls(content);
             const i18nPath = sourcePath.replace(/\.html$/, '.i18n.json');
             
             if (await fse.pathExists(i18nPath)) {
@@ -112,8 +128,7 @@ async function createRedirects(targetDir) {
 
     const redirectPath = path.join(targetDir, 'spec', KEYSTONE_VERSION, 'terms', 'index.html');
     // The target URL should be an absolute path that factors in the preview deployment directory
-    const branchPrefix = process.env.PREVIEW_BRANCH ? `/preview/${process.env.PREVIEW_BRANCH}` : '';
-    const redirectTarget = `${branchPrefix}/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
+    const redirectTarget = `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
     
     // This HTML file uses a meta refresh tag to immediately redirect the user.
     const redirectContent = `<!DOCTYPE html>

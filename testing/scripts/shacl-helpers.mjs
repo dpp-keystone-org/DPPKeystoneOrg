@@ -12,10 +12,15 @@ export const localFileDocumentLoader = async (url) => {
     // --- DIAGNOSTIC LOGGING ---
     // console.log(`[Document Loader] Intercepted request for URL: ${url}`);
 
-    if (url in CONTEXT_URL_TO_LOCAL_PATH_MAP) {
+    let localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
+    if (!localPath) {
+        // Strip optional /preview/<branch> chunk to resolve against local mapping
+        const normalized = url.replace(/https:\/\/dpp-keystone\.org\/preview\/[^/]+\/spec\//, 'https://dpp-keystone.org/spec/');
+        localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[normalized];
+    }
+
+    if (localPath) {
         // console.log(`[Document Loader] SUCCESS: Found local mapping for ${url}`);
-        const localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
-        // console.log(`[Document Loader] Attempting to read local file: ${localPath}`);
         const fileContent = await fs.readFile(localPath, 'utf-8');
         const parsedDocument = JSON.parse(fileContent);
         return { contextUrl: null, documentUrl: url, document: parsedDocument };
