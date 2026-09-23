@@ -21,9 +21,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import jsonld from 'jsonld';
 import SHACLValidator from 'rdf-validate-shacl';
+import { parse as jsoncParse } from 'jsonc-parser';
 import { KEYSTONE_VERSION, rewriteSpecUrls } from '../src/lib/keystone-version.js';
 import { getPreviewBranch } from './branch-helper.mjs';
-import { toRdfDataset } from '../testing/scripts/shacl-helpers.mjs';
+import { toRdfDataset, combineDatasets } from '../testing/scripts/shacl-helpers.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -86,6 +87,54 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 10000) {
     }
 }
 
+/**
+ * Pure network JSON-LD document loader over real public HTTPS.
+ * Overcomes GitHub Pages serving .jsonld as application/octet-stream by parsing JSON directly,
+ * and follows any meta-refresh redirect landing pages if encountered.
+ */
+const networkDocumentLoader = async (url) => {
+    let res = await fetchWithTimeout(url, {
+        headers: {
+            'Accept': 'application/ld+json, application/json;q=0.9, */*;q=0.1'
+        }
+    });
+
+    if (!res.ok) {
+        throw new Error(`HTTP ${res.status} ${res.statusText} loading ${url}`);
+    }
+
+    let text = await res.text();
+
+    // Check if we hit an HTML meta-refresh redirect page
+    if (text.includes('http-equiv="refresh"') || text.includes('http-equiv="REFRESH"')) {
+        const match = text.match(/content="0;\s*url=([^"]+)"/i);
+        if (match) {
+            const redirectTarget = match[1].startsWith('http')
+                ? match[1]
+                : new URL(match[1], url).href;
+            res = await fetchWithTimeout(redirectTarget, {
+                headers: {
+                    'Accept': 'application/ld+json, application/json;q=0.9, */*;q=0.1'
+                }
+            });
+            text = await res.text();
+        }
+    }
+
+    let document;
+    try {
+        document = JSON.parse(text);
+    } catch (e) {
+        throw new Error(`Invalid JSON received from ${url}: ${e.message}`);
+    }
+
+    return {
+        contextUrl: null,
+        documentUrl: url,
+        document
+    };
+};
+
 // =============================================================================
 // Step 1: Live HTTP Resolution of Spec Documents
 // =============================================================================
@@ -94,6 +143,7 @@ console.log('\n🔍 Step 1: Checking Live HTTP Resolution of Core Specification 
 const coreEndpoints = [
     `contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`,
     `contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`,
+    `contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`,
     `contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`,
     `contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`,
     `contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`,
@@ -171,7 +221,7 @@ for (const ns of termNamespaces) {
 // =============================================================================
 // Step 3: End-to-End JSON-LD Expansion Over Live Public Network
 // =============================================================================
-console.log('\n🔍 Step 3: Testing Live JSON-LD Network Expansion (Pure Node HTTP Loader)...');
+console.log('\n🔍 Step 3: Testing Live JSON-LD Network Expansion (Pure Network HTTP Loader)...');
 
 const exampleFiles = [
     'cement-dpp-v3.json',
@@ -182,22 +232,32 @@ const exampleFiles = [
     'iron-steel-dpp-v1.json'
 ];
 
-// Configure pure network document loader (NO local file intercepts)
-const networkDocumentLoader = jsonld.documentLoaders.node();
-
 const expandedExamples = new Map();
 
 for (const exampleFileName of exampleFiles) {
     const localExamplePath = path.join(PROJECT_ROOT, 'src', 'examples', exampleFileName);
-    if (!fs.existsSync(localExamplePath)) {
-        continue;
-    }
+    const liveExampleUrl = `${baseSpecUrl}examples/${exampleFileName}`;
 
     try {
-        const rawContent = fs.readFileSync(localExamplePath, 'utf-8');
-        // Adapt example URLs to target environment
-        const adaptedContent = rewriteSpecUrls(rawContent, previewChunk);
-        const exampleData = JSON.parse(adaptedContent);
+        let exampleData;
+
+        // 1. Try fetching the example directly from the live deployed site
+        const liveRes = await fetchWithTimeout(liveExampleUrl);
+        if (liveRes.ok) {
+            exampleData = await liveRes.json();
+        } else if (fs.existsSync(localExamplePath)) {
+            // 2. Fall back to local file cleaned of JSONC comments
+            const rawContent = fs.readFileSync(localExamplePath, 'utf-8');
+            const adaptedContent = rewriteSpecUrls(rawContent, previewChunk);
+            let errors = [];
+            exampleData = jsoncParse(adaptedContent, errors, { allowTrailingComma: true, allowComments: true });
+            if (errors.length > 0) {
+                throw new Error(`JSONC parse errors: ${errors.map(e => e.error).join(', ')}`);
+            }
+        } else {
+            reportFail(`Example file not found: '${exampleFileName}'`);
+            continue;
+        }
 
         // Perform pure network expansion over real HTTPS
         const expanded = await jsonld.expand(exampleData, {
@@ -223,43 +283,75 @@ console.log('\n🔍 Step 4: Validating Live Expanded DPPs Against Deployed SHACL
 
 const sectorToShapes = [
     {
+        example: 'cement-dpp-v3.json',
+        shapePaths: [
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/Cement-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/cement/DoPC-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/core/Header-shapes.shacl.jsonld`
+        ]
+    },
+    {
         example: 'construction-product-dpp-v1.json',
-        shapesPath: `validation/${KEYSTONE_VERSION}/shacl/construction-shapes.shacl.jsonld`
+        shapePaths: [
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/Construction-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/core/Header-shapes.shacl.jsonld`
+        ]
     },
     {
         example: 'drill-dpp-v1.json',
-        shapesPath: `validation/${KEYSTONE_VERSION}/shacl/electronics-shapes.shacl.jsonld`
+        shapePaths: [
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/Electronics-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/core/Header-shapes.shacl.jsonld`
+        ]
     },
     {
         example: 'sock-dpp-v2.json',
-        shapesPath: `validation/${KEYSTONE_VERSION}/shacl/textile-shapes.shacl.jsonld`
+        shapePaths: [
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/Textile-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/core/Header-shapes.shacl.jsonld`
+        ]
     },
     {
         example: 'iron-steel-dpp-v1.json',
-        shapesPath: `validation/${KEYSTONE_VERSION}/shacl/iron-steel-shapes.shacl.jsonld`
+        shapePaths: [
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/IronSteel-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/core/Header-shapes.shacl.jsonld`
+        ]
+    },
+    {
+        example: 'battery-dpp-v1.json',
+        shapePaths: [
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/Battery-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/core/Header-shapes.shacl.jsonld`
+        ]
     }
 ];
 
-for (const { example, shapesPath } of sectorToShapes) {
+for (const { example, shapePaths } of sectorToShapes) {
     const exampleEntry = expandedExamples.get(example);
     if (!exampleEntry) continue;
 
-    const shapesFullUrl = `${baseSpecUrl}${shapesPath}`;
     try {
-        const shapesRes = await fetchWithTimeout(shapesFullUrl);
-        if (!shapesRes.ok) {
-            reportFail(`Could not fetch live SHACL shape ${shapesPath} (HTTP ${shapesRes.status})`);
-            continue;
+        const shapeDatasets = [];
+        for (const shapeRelPath of shapePaths) {
+            const shapesFullUrl = `${baseSpecUrl}${shapeRelPath}`;
+            const shapesRes = await fetchWithTimeout(shapesFullUrl);
+            if (!shapesRes.ok) {
+                throw new Error(`Could not fetch live SHACL shape ${shapeRelPath} (HTTP ${shapesRes.status})`);
+            }
+
+            const shapesJson = await shapesRes.json();
+            const expandedShapes = await jsonld.expand(shapesJson, {
+                documentLoader: networkDocumentLoader
+            });
+            const shapeDataset = await toRdfDataset(expandedShapes);
+            shapeDatasets.push(shapeDataset);
         }
 
-        const shapesJson = await shapesRes.json();
-        const expandedShapes = await jsonld.expand(shapesJson, {
-            documentLoader: networkDocumentLoader
-        });
-        const shapesDataset = await toRdfDataset(expandedShapes);
+        const combinedShapesDataset = combineDatasets(shapeDatasets);
         const dataDataset = await toRdfDataset(exampleEntry.expanded);
 
-        const validator = new SHACLValidator(shapesDataset);
+        const validator = new SHACLValidator(combinedShapesDataset);
         const report = validator.validate(dataDataset);
 
         if (report.conforms) {
