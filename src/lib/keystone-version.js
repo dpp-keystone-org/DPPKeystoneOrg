@@ -84,4 +84,3 @@ export function getSectorSpecId(schemaName, version = KEYSTONE_VERSION) {
     const cleanName = String(schemaName).replace(/^sector\//, '').replace(/\.schema\.json$/, '');
     return `urn:dpp-keystone:${version}:sector:${cleanName}`;
 }
-

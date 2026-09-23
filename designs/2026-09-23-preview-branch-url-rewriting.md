@@ -44,8 +44,8 @@ At site-build time (`scripts/build-and-clean.mjs`):
     *   In `scripts/build-and-clean.mjs`, define `PREVIEW_CHUNK` and a helper to transform file content.
 *   [x] **Step 1.2: Apply `PREVIEW_CHUNK` to JSON and JSON-LD Files**
     *   Update `cleanAndCopyJsonFile` to apply the `https://dpp-keystone.org/spec/` &rarr; `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/` rewrite.
-*   [x] **Step 1.3: Apply `PREVIEW_CHUNK` to JavaScript Files Copied to `dist/`**
-    *   Update `processDirectory` to apply the rewrite to copied `.js` and `.mjs` files in `dist/`.
+*   [x] **Step 1.3: Preserve Canonical Spec URLs in JavaScript Application Code**
+    *   In `processDirectory`, preserve canonical spec URLs in copied `.js` and `.mjs` files in `dist/` (only expanding `{{VERSION}}` to `KEYSTONE_VERSION`) so DPP generators and transformation libraries remain standard-compliant and stable across environments without modifying test assertions.
 *   [x] **Step 1.4: Update Client-Side Redirects**
     *   Ensure `createRedirects` in `scripts/build-and-clean.mjs` consistently aligns with `PREVIEW_CHUNK`.
 *   [x] **Step 1.5: Automatic Git Branch Detection (`scripts/branch-helper.mjs`)**
@@ -60,12 +60,16 @@ At site-build time (`scripts/build-and-clean.mjs`):
 *   [x] **Step 2.3: Adapt UI Context Interceptors**
     *   Update `src/validator/validator.js` and `src/lib/ontology-loader.js` regex to strip optional `/preview/<branch>` when mapping to local relative paths.
 *   [x] **Step 2.4: Adapt SHACL Generators & Fuzzing**
-    *   Update `scripts/generate-shacl.mjs` and `testing/scripts/shacl-fuzzer.mjs` to utilize `getPreviewChunk()` and respect the active context.
+    *   Update `scripts/generate-shacl.mjs` and `testing/scripts/shacl-fuzzer.mjs` to keep `dppk` vocabulary term IRIs canonical while using `PREVIEW_CHUNK` for generated shapes document IDs.
+*   [x] **Step 2.5: Centralize URL & Path Helpers in `src/lib/keystone-version.js`**
+    *   Unified all URL regexes and transformations into reusable functions (`isSpecUrl`, `normalizeSpecUrl`, `specUrlToRelativePath`, `specUrlToPreviewUrl`, `rewriteSpecFileUrls`).
+    *   Strictly distinguished between physical file URLs (`spec/(contexts|ontology|validation|examples)/`) which require `PREVIEW_CHUNK` for preview deployments, and semantic vocabulary concept IRIs (`spec/v3/terms#...`) which must remain canonical.
+    *   Added dedicated test suite in `testing/unit/lib/keystone-version.test.js`.
 
 ### Phase 3: Verification
-*   [ ] **Step 3.1: Verify Standard Production Build & Tests**
-    *   Run `npm run build` and `npm test` with `PREVIEW_BRANCH` unset.
+*   [x] **Step 3.1: Verify Standard Production Build & Tests**
+    *   Run `npm run build` and `npm test` with `PREVIEW_BRANCH=""`.
     *   Verify all generated files in `dist/` have canonical `https://dpp-keystone.org/spec/...` URLs.
-*   [ ] **Step 3.2: Verify Simulated Preview Build & Tests**
-    *   Run `PREVIEW_BRANCH=feature/version3 npm test`.
-    *   Verify all tests pass and that generated files in `dist/` have self-contained `https://dpp-keystone.org/preview/feature/version3/spec/...` URLs.
+*   [x] **Step 3.2: Verify Simulated Preview Build & Tests**
+    *   Run `npm test` on feature branch (or with explicit `PREVIEW_BRANCH`).
+    *   Verify all tests pass and that generated files in `dist/` have self-contained `https://dpp-keystone.org/preview/<branch>/spec/...` URLs.
