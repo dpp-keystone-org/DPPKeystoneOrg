@@ -21,6 +21,46 @@
   "then": {
     "type": "object",
     "properties": {
+      "cementType": {
+        "type": "string",
+        "enum": [
+          "CEM I",
+          "CEM II/A-S",
+          "CEM II/B-S",
+          "CEM II/A-D",
+          "CEM II/A-P",
+          "CEM II/B-P",
+          "CEM II/A-Q",
+          "CEM II/B-Q",
+          "CEM II/A-Z",
+          "CEM II/B-Z",
+          "CEM II/A-V",
+          "CEM II/B-V",
+          "CEM II/A-W",
+          "CEM II/B-W",
+          "CEM II/A-T",
+          "CEM II/B-T",
+          "CEM II/A-F",
+          "CEM II/B-F",
+          "CEM II/A-L",
+          "CEM II/B-L",
+          "CEM II/A-LL",
+          "CEM II/B-LL",
+          "CEM II/A-M",
+          "CEM II/B-M",
+          "CEM II/C-M",
+          "CEM III/A",
+          "CEM III/B",
+          "CEM III/C",
+          "CEM IV/A",
+          "CEM IV/B",
+          "CEM V/A",
+          "CEM V/B",
+          "CEM VI/A",
+          "CEM VI/B"
+        ],
+        "description": "Standard common cement type according to EN 197-1 Table 220 (Designation Code 1)."
+      },
       "strengthClass": {
         "type": "string",
         "enum": [
@@ -266,7 +306,7 @@
       },
       "designationCode": {
         "type": "string",
-        "description": "Designation Code"
+        "description": "Complete standard designation according to EN 197-1 Clause 6 (e.g. 'CEM I 42.5 R'), comprising cement type, strength class, and any additional performance characteristics."
       },
       "minimumClinkerContent": {
         "type": "number",

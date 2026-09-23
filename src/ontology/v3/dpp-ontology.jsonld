@@ -85,6 +85,7 @@
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Electronics.jsonld" },
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/IronSteel.jsonld" },
     { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Cement.jsonld" },
-    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/cement/DoPC.jsonld" }
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/cement/DoPC.jsonld" },
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/cement/CementType.jsonld" }
   ]
 }
