@@ -2,7 +2,7 @@
   "@context": {
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
     "node": {
@@ -27,25 +27,25 @@
     {
       "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape",
       "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#RelatedResource",
+      "targetClass": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#RelatedResource",
       "property": [
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#resourceTitle",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#resourceTitle",
           "message": "Auto-generated rule for dppk:resourceTitle",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#contentType",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#contentType",
           "message": "Auto-generated rule for dppk:contentType",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#language",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#language",
           "message": "Auto-generated rule for dppk:language",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#url",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#url",
           "message": "Auto-generated rule for dppk:url",
           "or": {
             "@list": [
@@ -65,10 +65,10 @@
     {
       "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ProductShape",
       "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#Product",
+      "targetClass": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#Product",
       "property": [
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#instructionsForUse",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#instructionsForUse",
           "message": "Auto-generated rule for dppk:instructionsForUse",
           "or": {
             "@list": [
@@ -87,7 +87,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#safetyDataSheet",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#safetyDataSheet",
           "message": "Auto-generated rule for dppk:safetyDataSheet",
           "or": {
             "@list": [
@@ -106,7 +106,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#safeUseInstructions",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#safeUseInstructions",
           "message": "Auto-generated rule for dppk:safeUseInstructions",
           "or": {
             "@list": [
@@ -125,7 +125,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#endOfLifeInstructions",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#endOfLifeInstructions",
           "message": "Auto-generated rule for dppk:endOfLifeInstructions",
           "or": {
             "@list": [
@@ -144,7 +144,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#repairInstructions",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#repairInstructions",
           "message": "Auto-generated rule for dppk:repairInstructions",
           "or": {
             "@list": [
@@ -163,7 +163,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#careInstructions",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#careInstructions",
           "message": "Auto-generated rule for dppk:careInstructions",
           "or": {
             "@list": [

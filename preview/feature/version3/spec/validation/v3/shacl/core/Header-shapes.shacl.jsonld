@@ -2,7 +2,7 @@
   "@context": {
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
     "node": {
@@ -27,10 +27,10 @@
     {
       "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_DigitalProductPassportShape",
       "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#DigitalProductPassport",
+      "targetClass": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#DigitalProductPassport",
       "property": [
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#digitalProductPassportId",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#digitalProductPassportId",
           "message": "Auto-generated rule for dppk:digitalProductPassportId",
           "or": {
             "@list": [
@@ -46,7 +46,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#economicOperatorId",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#economicOperatorId",
           "message": "Auto-generated rule for dppk:economicOperatorId",
           "or": {
             "@list": [
@@ -62,7 +62,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#facilityId",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#facilityId",
           "message": "Auto-generated rule for dppk:facilityId",
           "or": {
             "@list": [
@@ -78,7 +78,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#granularity",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#granularity",
           "message": "Auto-generated rule for dppk:granularity",
           "or": {
             "@list": [
@@ -98,49 +98,49 @@
           "in": {
             "@list": [
               {
-                "@id": "https://dpp-keystone.org/spec/v3/terms#Model"
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#Model"
               },
               {
-                "@id": "https://dpp-keystone.org/spec/v3/terms#Batch"
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#Batch"
               },
               {
-                "@id": "https://dpp-keystone.org/spec/v3/terms#Item"
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#Item"
               }
             ]
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#dppStatus",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#dppStatus",
           "message": "Auto-generated rule for dppk:dppStatus",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#lastUpdate",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#lastUpdate",
           "message": "Auto-generated rule for dppk:lastUpdate",
           "datatype": "xsd:dateTime"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#versionNumber",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#versionNumber",
           "message": "Auto-generated rule for dppk:versionNumber",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#versionDate",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#versionDate",
           "message": "Auto-generated rule for dppk:versionDate",
           "datatype": "xsd:date"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#dppSchemaVersion",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#dppSchemaVersion",
           "message": "Auto-generated rule for dppk:dppSchemaVersion",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#contentSpecificationIds",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#contentSpecificationIds",
           "message": "Auto-generated rule for dppk:contentSpecificationIds",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#hsCode",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#hsCode",
           "message": "Auto-generated rule for dppk:hsCode",
           "datatype": "xsd:string"
         }

@@ -2,9 +2,9 @@
   "@context": [
     "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-core.context.jsonld",
     {
-      "dppk": "https://dpp-keystone.org/spec/v3/terms#",
-      "dppk-cement-dopc": "https://dpp-keystone.org/spec/v3/terms/cement-dopc#",
-      "dppk-signature": "https://dpp-keystone.org/spec/v3/terms/signature#",
+      "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
+      "dppk-cement-dopc": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement-dopc#",
+      "dppk-signature": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/signature#",
       "dopc": {
         "@id": "dppk-cement-dopc:CementDoPC",
         "@context": {

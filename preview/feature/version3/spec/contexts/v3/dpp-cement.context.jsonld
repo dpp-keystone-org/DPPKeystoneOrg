@@ -4,7 +4,7 @@
     "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-epd.context.jsonld",
     "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-cement-dopc.context.jsonld",
     {
-      "dppk-cement": "https://dpp-keystone.org/spec/v3/terms/cement#",
+      "dppk-cement": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#",
       "minimumStandardCompressiveStrength28Days": "dppk-cement:minimumStandardCompressiveStrength28Days",
       "maximumStandardCompressiveStrength28Days": "dppk-cement:maximumStandardCompressiveStrength28Days",
       "minimumVeryEarlyCompressiveStrength24Hours": "dppk-cement:minimumVeryEarlyCompressiveStrength24Hours",

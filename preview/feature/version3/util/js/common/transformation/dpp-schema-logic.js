@@ -17,11 +17,35 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790157423571';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790158527830';
+import { normalizeSpecUrl } from '../../../../lib/keystone-version.js?v=1790158527830';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
 };
+
+function normalizeExpanded(obj) {
+    if (!obj || typeof obj !== 'object') return obj;
+    if (Array.isArray(obj)) {
+        return obj.map(normalizeExpanded);
+    }
+    const result = {};
+    for (const [key, value] of Object.entries(obj)) {
+        const normKey = normalizeSpecUrl(key);
+        if (normKey === '@id' || normKey === '@type') {
+            if (typeof value === 'string') {
+                result[normKey] = normalizeSpecUrl(value);
+            } else if (Array.isArray(value)) {
+                result[normKey] = value.map(v => typeof v === 'string' ? normalizeSpecUrl(v) : normalizeExpanded(v));
+            } else {
+                result[normKey] = normalizeExpanded(value);
+            }
+        } else {
+            result[normKey] = normalizeExpanded(value);
+        }
+    }
+    return result;
+}
 
 /**
  * Parses ontology files to build a dictionary of indicator metadata.
@@ -41,7 +65,8 @@ export async function buildDictionary(ontologyPaths, loader, documentLoader, dic
 
     for (const ontologyPath of ontologyPaths) {
         const ontology = await loader(ontologyPath);
-        const expanded = await jsonld.expand(ontology, { documentLoader });
+        const rawExpanded = await jsonld.expand(ontology, { documentLoader });
+        const expanded = normalizeExpanded(rawExpanded);
         
         const nodes = expanded[0]?.['@graph'] || expanded;
 
@@ -144,7 +169,8 @@ export async function transform(dpp, options, dictionary) {
         throw new Error(`Transformation profile "${profileName}" not found.`);
     }
 
-    const expanded = await jsonld.expand(dpp, { documentLoader });
+    const rawExpanded = await jsonld.expand(dpp, { documentLoader });
+    const expanded = normalizeExpanded(rawExpanded);
 
     const rootNode = expanded.find(n => {
         if (!n['@type']) return false;

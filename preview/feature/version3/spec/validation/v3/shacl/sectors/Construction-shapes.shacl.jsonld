@@ -2,7 +2,7 @@
   "@context": {
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
     "node": {
@@ -27,10 +27,10 @@
     {
       "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ConstructionProductShape",
       "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#ConstructionProduct",
+      "targetClass": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#ConstructionProduct",
       "property": [
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#harmonisedStandardReference",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#harmonisedStandardReference",
           "message": "Auto-generated rule for dppk:harmonisedStandardReference",
           "or": {
             "@list": [
@@ -46,7 +46,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#notifiedBody",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#notifiedBody",
           "message": "Auto-generated rule for dppk:notifiedBody",
           "or": {
             "@list": [
@@ -65,7 +65,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#technicalAssessmentBody",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#technicalAssessmentBody",
           "message": "Auto-generated rule for dppk:technicalAssessmentBody",
           "or": {
             "@list": [
@@ -84,7 +84,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#validationReports",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#validationReports",
           "message": "Auto-generated rule for dppk:validationReports",
           "or": {
             "@list": [
@@ -103,7 +103,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#europeanAssessmentDocument",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#europeanAssessmentDocument",
           "message": "Auto-generated rule for dppk:europeanAssessmentDocument",
           "or": {
             "@list": [
@@ -122,7 +122,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#thermalConductivity",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#thermalConductivity",
           "message": "Auto-generated rule for dppk:thermalConductivity",
           "or": {
             "@list": [
@@ -141,7 +141,7 @@
           }
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#compressiveStrength",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#compressiveStrength",
           "message": "Auto-generated rule for dppk:compressiveStrength",
           "or": {
             "@list": [
@@ -164,15 +164,15 @@
     {
       "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_ProductShape",
       "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#Product",
+      "targetClass": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#Product",
       "property": [
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#steelGrade",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#steelGrade",
           "message": "Auto-generated rule for dppk:steelGrade",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#railProfile",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#railProfile",
           "message": "Auto-generated rule for dppk:railProfile",
           "datatype": "xsd:string"
         }

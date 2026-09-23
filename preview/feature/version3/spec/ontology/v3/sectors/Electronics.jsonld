@@ -6,10 +6,10 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "gs1": "https://ref.gs1.org/voc/",
-    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
     "dcterms": "http://purl.org/dc/terms/",
     "unece": "https://vocabulary.uncefact.org/",
-    "@base": "https://dpp-keystone.org/spec/v3/terms",
+    "@base": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Electronics",

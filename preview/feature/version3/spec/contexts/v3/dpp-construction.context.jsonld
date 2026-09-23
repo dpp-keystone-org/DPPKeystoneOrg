@@ -5,7 +5,7 @@
     "https://dpp-keystone.org/preview/feature/version3/spec/contexts/v3/dpp-dopc.context.jsonld",
     {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+      "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
       "cencpr": "urn:cen:cpr:",
       "ConstructionProduct": "dppk:ConstructionProduct",
       "notifiedBody": {

@@ -2,7 +2,7 @@
   "@context": {
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
+    "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "@vocab": "http://www.w3.org/ns/shacl#",
     "node": {
@@ -27,80 +27,80 @@
     {
       "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk_MaterialTestCertificateShape",
       "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#MaterialTestCertificate",
+      "targetClass": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#MaterialTestCertificate",
       "property": [
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcNominalSize",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcNominalSize",
           "message": "Auto-generated rule for dppk:mtcNominalSize",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcWeightTolerance",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcWeightTolerance",
           "message": "Auto-generated rule for dppk:mtcWeightTolerance",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcYieldStrength",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcYieldStrength",
           "message": "Auto-generated rule for dppk:mtcYieldStrength",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcYieldStrengthRatio",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcYieldStrengthRatio",
           "message": "Auto-generated rule for dppk:mtcYieldStrengthRatio",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcElongation",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcElongation",
           "message": "Auto-generated rule for dppk:mtcElongation",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcRelativeRibArea",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcRelativeRibArea",
           "message": "Auto-generated rule for dppk:mtcRelativeRibArea",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcCarbonContent",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcCarbonContent",
           "message": "Auto-generated rule for dppk:mtcCarbonContent",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcPhosphorusContent",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcPhosphorusContent",
           "message": "Auto-generated rule for dppk:mtcPhosphorusContent",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcSulfurContent",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcSulfurContent",
           "message": "Auto-generated rule for dppk:mtcSulfurContent",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcCopperContent",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcCopperContent",
           "message": "Auto-generated rule for dppk:mtcCopperContent",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcNitrogenContent",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcNitrogenContent",
           "message": "Auto-generated rule for dppk:mtcNitrogenContent",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcCarbonEquivalent",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcCarbonEquivalent",
           "message": "Auto-generated rule for dppk:mtcCarbonEquivalent",
           "datatype": "xsd:double"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcSteelProcess",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcSteelProcess",
           "message": "Auto-generated rule for dppk:mtcSteelProcess",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcFinishing",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcFinishing",
           "message": "Auto-generated rule for dppk:mtcFinishing",
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#mtcRadiometricControl",
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#mtcRadiometricControl",
           "message": "Auto-generated rule for dppk:mtcRadiometricControl",
           "datatype": "xsd:double"
         }

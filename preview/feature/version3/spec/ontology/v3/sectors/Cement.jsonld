@@ -4,9 +4,9 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dppk": "https://dpp-keystone.org/spec/v3/terms#",
-    "dppk-unit": "https://dpp-keystone.org/spec/v3/terms/unit#",
-    "dppk-cement": "https://dpp-keystone.org/spec/v3/terms/cement#",
+    "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
+    "dppk-unit": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/unit#",
+    "dppk-cement": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#",
     "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "https://dpp-keystone.org/preview/feature/version3/spec/ontology/v3/sectors/Cement.jsonld",
