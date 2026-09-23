@@ -13,7 +13,7 @@ import { parse as jsoncParse, printParseErrorCode } from 'jsonc-parser';
 import { execSync } from 'child_process';
 import * as cheerio from 'cheerio';
 import { generateSpecDocs } from './generate-spec-docs.mjs';
-import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, rewriteSpecFileUrls } from '../src/lib/keystone-version.js';
 
 const PROJECT_ROOT = process.cwd();
 const SOURCE_DIR = path.join(PROJECT_ROOT, 'src');
@@ -32,10 +32,7 @@ export const PREVIEW_CHUNK = getPreviewChunk();
  * @returns {string}
  */
 export function rewriteSpecUrls(content) {
-    if (PREVIEW_CHUNK) {
-        content = content.replace(/https:\/\/dpp-keystone\.org\/spec\//g, `https://dpp-keystone.org${PREVIEW_CHUNK}/spec/`);
-    }
-    return content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+    return rewriteSpecFileUrls(content, PREVIEW_CHUNK);
 }
 
 async function cleanAndCopyJsonFile(sourcePath, targetPath) {
@@ -79,7 +76,9 @@ async function processDirectory(sourceDir, targetDir) {
             await cleanAndCopyJsonFile(sourcePath, targetPath);
         } else if (entry.name.endsWith('.js') || entry.name.endsWith('.mjs')) {
             let content = await fs.readFile(sourcePath, 'utf-8');
-            content = rewriteSpecUrls(content);
+            // In JS application logic, preserve canonical spec URLs so generators and transforms
+            // remain standard-compliant and stable across environments, while expanding {{VERSION}}.
+            content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
             await fs.writeFile(targetPath, content, 'utf-8');
         } else if (entry.name.endsWith('.html')) {
             let content = await fs.readFile(sourcePath, 'utf-8');

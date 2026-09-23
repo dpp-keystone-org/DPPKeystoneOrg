@@ -8,7 +8,7 @@ import { generateDpp } from './dpp-generator.js';
 import { generateHTML } from '../lib/html-generator.js';
 import { transformDpp } from '../util/js/client/dpp-schema-adapter.js';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js';
 import { LanguageManager } from '../lib/language-manager.js';
 
 // --- Module-level state ---
@@ -697,9 +697,9 @@ export async function initializeWizard() {
 
                 // Configure document loader to resolve specific URLs locally
                 const documentLoader = async (url, options) => {
-                    // Intercept spec URLs and redirect to local files if possible
-                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                    // Intercept spec URLs (canonical or preview) and redirect to local files if possible
+                    if (isSpecUrl(url)) {
+                        const relativePath = specUrlToRelativePath(url, '../spec/');
 
                         // Try to fetch locally
                         try {

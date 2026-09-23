@@ -17,7 +17,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, normalizeSpecUrl } from '../src/lib/keystone-version.js';
 import { validateTermTranslations } from '../src/util/js/common/validation/ontology-validator.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -81,8 +81,7 @@ const fileImports = new Map(); // filePath -> Set of imported filePaths
 const fileDefinedTerms = new Map(); // filePath -> Set of term IDs defined in it
 
 function resolveImportPath(currentFile, importUrl) {
-    // Strip optional preview chunk if present (supports branches with slashes like feature/version3)
-    const normalizedUrl = importUrl.replace(/https:\/\/dpp-keystone\.org\/preview\/.+?\/spec\/ontology\//, 'https://dpp-keystone.org/spec/ontology/');
+    const normalizedUrl = normalizeSpecUrl(importUrl);
     // Handle standard project URLs
     if (normalizedUrl.startsWith('https://dpp-keystone.org/spec/ontology/')) {
         const relativePath = normalizedUrl.replace('https://dpp-keystone.org/spec/ontology/', '');
@@ -229,7 +228,7 @@ function isJsonLdKeyword(value) {
 }
 
 function getCompactIRI(iri) {
-    const normalizedIri = iri.replace(/https:\/\/dpp-keystone\.org\/preview\/.+?\/spec\//, 'https://dpp-keystone.org/spec/');
+    const normalizedIri = normalizeSpecUrl(iri);
     if (normalizedIri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/`)) {
         const sub = normalizedIri.split('/terms/')[1].split('#')[0];
         return normalizedIri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`, `dppk-${sub}:`);

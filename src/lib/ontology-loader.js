@@ -1,4 +1,4 @@
-import { KEYSTONE_VERSION } from './keystone-version.js';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from './keystone-version.js';
 
 /**
  * Robustly extracts a single string value from an RDFS property, preferring English.
@@ -74,10 +74,8 @@ function parseLangTaggedProperty(property) {
  * @returns {string} The rewritten URL or the original if no match.
  */
 export function rewriteUrl(url) {
-    const PROD_PREFIX = 'https://dpp-keystone.org/spec/ontology/';
-    if (url.startsWith(PROD_PREFIX)) {
-        // Map to local relative path from wizard/index.html to ontology/ directory
-        return url.replace(PROD_PREFIX, '../spec/ontology/');
+    if (isSpecUrl(url)) {
+        return specUrlToRelativePath(url, '../spec/');
     }
     return url;
 }
@@ -288,7 +286,7 @@ export async function loadContext(sector) {
 
         try {
             // Rewrite URL for local relative path
-            let fetchUrl = url.replace(/^https:\/\/dpp-keystone\.org(?:\/preview\/.+?)?\/spec\/contexts\//, '../spec/contexts/');
+            let fetchUrl = specUrlToRelativePath(url, '../spec/');
             
             // Handle {{VERSION}} replacement
             fetchUrl = fetchUrl.replace('{{VERSION}}', KEYSTONE_VERSION);

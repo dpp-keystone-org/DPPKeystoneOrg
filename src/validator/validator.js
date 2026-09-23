@@ -9,7 +9,7 @@ import * as jsonld from 'jsonld'; // Import jsonld for the default loader
 import { loadOntology } from '../lib/ontology-loader.js';
 import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js';
 import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js';
 import { LanguageManager } from '../lib/language-manager.js';
 
 // Configuration: Map Spec IDs to Schema filenames
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Branch dynamic Ontology validation to intercept `@context` specifically!
             if (dppData['@context']) {
                 const localContextLoader = async (url) => {
-                    const fetchUrl = url.replace(/^https:\/\/dpp-keystone\.org(?:\/preview\/.+?)?\/spec\/contexts\//, '../spec/contexts/');
+                    const fetchUrl = specUrlToRelativePath(url, '../spec/');
                     const response = await fetch(fetchUrl);
                     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                     return {
@@ -304,9 +304,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Configure document loader to resolve specific URLs locally
                 const documentLoader = async (url, options) => {
-                    // Intercept spec URLs and redirect to local files if possible
-                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                    // Intercept spec URLs (canonical or preview) and redirect to local files if possible
+                    if (isSpecUrl(url)) {
+                        const relativePath = specUrlToRelativePath(url, '../spec/');
 
                         // Try to fetch locally
                         try {
