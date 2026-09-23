@@ -156,11 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Branch dynamic Ontology validation to intercept `@context` specifically!
             if (dppData['@context']) {
                 const localContextLoader = async (url) => {
-                    const CONTEXT_PROD_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
-                    let fetchUrl = url;
-                    if (url.startsWith(CONTEXT_PROD_PREFIX)) {
-                        fetchUrl = url.replace(CONTEXT_PROD_PREFIX, '../spec/contexts/');
-                    }
+                    const fetchUrl = url.replace(/^https:\/\/dpp-keystone\.org(?:\/preview\/[^/]+)?\/spec\/contexts\//, '../spec/contexts/');
                     const response = await fetch(fetchUrl);
                     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                     return {

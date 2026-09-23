@@ -52,9 +52,9 @@ At site-build time (`scripts/build-and-clean.mjs`):
 ### Phase 2: Audit & Adapt Validation, Testing & UI Tools
 *   [x] **Step 2.1: Adapt `testing/scripts/test-helpers.mjs`**
     *   Allow `CONTEXT_URL_TO_LOCAL_PATH_MAP` / document loader to resolve URLs regardless of whether they have a `/preview/<branch>/` prefix.
-*   [ ] **Step 2.2: Adapt `scripts/validate-ontology-integrity.mjs`**
+*   [x] **Step 2.2: Adapt `scripts/validate-ontology-integrity.mjs`**
     *   Ensure IRI and `owl:imports` audit checks tolerate the optional `PREVIEW_CHUNK`.
-*   [ ] **Step 2.3: Adapt UI Context Interceptors**
+*   [x] **Step 2.3: Adapt UI Context Interceptors**
     *   Update `src/validator/validator.js` and `src/lib/ontology-loader.js` regex to strip optional `/preview/<branch>` when mapping to local relative paths.
 
 ### Phase 3: Verification

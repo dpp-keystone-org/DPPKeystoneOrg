@@ -288,10 +288,7 @@ export async function loadContext(sector) {
 
         try {
             // Rewrite URL for local relative path
-            let fetchUrl = url;
-            if (url.startsWith('https://dpp-keystone.org/spec/contexts/')) {
-                fetchUrl = url.replace('https://dpp-keystone.org/spec/contexts/', '../spec/contexts/');
-            }
+            let fetchUrl = url.replace(/^https:\/\/dpp-keystone\.org(?:\/preview\/[^/]+)?\/spec\/contexts\//, '../spec/contexts/');
             
             // Handle {{VERSION}} replacement
             fetchUrl = fetchUrl.replace('{{VERSION}}', KEYSTONE_VERSION);
