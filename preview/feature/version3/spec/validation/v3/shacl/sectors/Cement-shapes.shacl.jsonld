@@ -30,6 +30,75 @@
       "targetClass": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#CementProduct",
       "property": [
         {
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#cementType",
+          "message": "Auto-generated rule for dppk-cement:cementType",
+          "or": {
+            "@list": [
+              {
+                "node": {
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-cement_CementTypeValueShape"
+                },
+                "nodeKind": {
+                  "@id": "sh:BlankNodeOrIRI"
+                }
+              },
+              {
+                "datatype": "dppk-cement:CementTypeValue"
+              }
+            ]
+          }
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#strengthClass",
+          "message": "Auto-generated rule for dppk-cement:strengthClass",
+          "or": {
+            "@list": [
+              {
+                "node": {
+                  "@id": "https://dpp-keystone.org/preview/feature/version3/spec/validation/v3/shacl/shapes#dppk-cement_StrengthClassValueShape"
+                },
+                "nodeKind": {
+                  "@id": "sh:BlankNodeOrIRI"
+                }
+              },
+              {
+                "datatype": "dppk-cement:StrengthClassValue"
+              }
+            ]
+          },
+          "in": {
+            "@list": [
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass32_5_L"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass32_5_N"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass32_5_R"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass42_5_L"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass42_5_N"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass42_5_R"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass52_5_L"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass52_5_N"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#StrengthClass52_5_R"
+              }
+            ]
+          }
+        },
+        {
           "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement#minimumStandardCompressiveStrength28Days",
           "message": "Auto-generated rule for dppk-cement:minimumStandardCompressiveStrength28Days",
           "datatype": "xsd:double"

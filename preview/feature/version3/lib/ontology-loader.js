@@ -1,4 +1,4 @@
-import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from './keystone-version.js?v=1790158691414';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from './keystone-version.js?v=1790171605959';
 
 /**
  * Robustly extracts a single string value from an RDFS property, preferring English.

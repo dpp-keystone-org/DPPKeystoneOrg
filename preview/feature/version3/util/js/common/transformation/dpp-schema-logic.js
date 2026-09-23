@@ -17,8 +17,8 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790158691414';
-import { normalizeSpecUrl } from '../../../../lib/keystone-version.js?v=1790158691414';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790171605959';
+import { normalizeSpecUrl } from '../../../../lib/keystone-version.js?v=1790171605959';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
