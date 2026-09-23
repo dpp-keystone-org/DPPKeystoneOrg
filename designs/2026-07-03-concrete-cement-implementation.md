@@ -41,3 +41,9 @@ Implements the data point requirements from the concrete/cement standards (e.g.,
 *   Plan: Cross-reference the implemented files against the `concrete_cement.md` requirements and fix any broken tests or integration points.
 
 ### Scratchpad
+*   **Strength Class Linked Data Enumeration**:
+    *   Implemented Pattern A for cement strength class designation according to EN 197-1 Table 230:
+        *   `cement.schema.json`: Added `strengthClass` with enum: `["32.5 L", "32.5 N", "32.5 R", "42.5 L", "42.5 N", "42.5 R", "52.5 L", "52.5 N", "52.5 R"]`.
+        *   `Cement.jsonld`: Defined `dppk-cement:StrengthClassValue` (`rdfs:Class`, `owl:oneOf` to the 9 individuals) and the 9 individuals (`dppk-cement:StrengthClass32_5_L` through `52_5_R`) with complete 24 EU language translations for `rdfs:label` and `rdfs:comment`. Updated `dppk-cement:strengthClass` property to `owl:ObjectProperty` with `rdfs:range: dppk-cement:StrengthClassValue`.
+        *   `dpp-cement.context.jsonld`: Set `"strengthClass": { "@id": "dppk-cement:strengthClass", "@type": "@vocab" }`, and mapped all 9 classes (both dot and comma formats) and `StrengthClassValue`.
+        *   `cement-dpp-v3.json`: Set `"strengthClass": "42.5 R"`.
