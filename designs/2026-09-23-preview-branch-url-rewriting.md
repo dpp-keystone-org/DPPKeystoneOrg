@@ -48,14 +48,19 @@ At site-build time (`scripts/build-and-clean.mjs`):
     *   Update `processDirectory` to apply the rewrite to copied `.js` and `.mjs` files in `dist/`.
 *   [x] **Step 1.4: Update Client-Side Redirects**
     *   Ensure `createRedirects` in `scripts/build-and-clean.mjs` consistently aligns with `PREVIEW_CHUNK`.
+*   [x] **Step 1.5: Automatic Git Branch Detection (`scripts/branch-helper.mjs`)**
+    *   Auto-detect active git branch if `PREVIEW_BRANCH` is undefined (ignoring `main`, `master`, `gh-pages`, `legacy/*`, `HEAD`).
+    *   Support explicit override via `PREVIEW_BRANCH` (passing `PREVIEW_BRANCH=""` forces canonical production mode).
 
 ### Phase 2: Audit & Adapt Validation, Testing & UI Tools
 *   [x] **Step 2.1: Adapt `testing/scripts/test-helpers.mjs`**
     *   Allow `CONTEXT_URL_TO_LOCAL_PATH_MAP` / document loader to resolve URLs regardless of whether they have a `/preview/<branch>/` prefix.
 *   [x] **Step 2.2: Adapt `scripts/validate-ontology-integrity.mjs`**
-    *   Ensure IRI and `owl:imports` audit checks tolerate the optional `PREVIEW_CHUNK`.
+    *   Ensure IRI and `owl:imports` audit checks tolerate the optional `PREVIEW_CHUNK` (supporting branch names with slashes like `feature/version3`).
 *   [x] **Step 2.3: Adapt UI Context Interceptors**
     *   Update `src/validator/validator.js` and `src/lib/ontology-loader.js` regex to strip optional `/preview/<branch>` when mapping to local relative paths.
+*   [x] **Step 2.4: Adapt SHACL Generators & Fuzzing**
+    *   Update `scripts/generate-shacl.mjs` and `testing/scripts/shacl-fuzzer.mjs` to utilize `getPreviewChunk()` and respect the active context.
 
 ### Phase 3: Verification
 *   [ ] **Step 3.1: Verify Standard Production Build & Tests**
