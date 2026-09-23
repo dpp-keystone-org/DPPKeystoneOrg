@@ -50,5 +50,8 @@ describe('class-links', () => {
         expect(globalIndexHtml).toContain('<h3><span data-i18n-key="classes-and-concepts">All Classes &amp; Concepts</span></h3>');
         // The link in the global index should also NOT have the prefix
         expect(globalIndexHtml).toContain('<a href="./core/mock-core/MockProduct.html">dppk:MockProduct</a>');
+        
+        // Also check if nested subdirectory class link is correctly formed in the global index
+        expect(globalIndexHtml).toContain('<a href="./sectors/cement/mock-cement/MockCementProduct.html">dppk:MockCementProduct</a>');
     });
 });

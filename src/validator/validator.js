@@ -423,7 +423,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadSchemas() {
     // Helper to fetch JSON
     const fetchJson = async (filename) => {
-        const res = await fetch(SCHEMA_BASE_URL + filename);
+        const bust = '?v=' + Date.now();
+        const res = await fetch(SCHEMA_BASE_URL + filename + bust);
         if (!res.ok) throw new Error(`Failed to fetch ${filename}: ${res.statusText}`);
         return res.json();
     };

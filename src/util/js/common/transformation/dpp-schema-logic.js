@@ -111,6 +111,7 @@ export async function transform(dpp, options, dictionary) {
     // --- Start: Type Inference Logic ---
     const specIdToType = {
         'draft_construction_specification_id': `${termsBase}ConstructionProduct`,
+        [`dpp_EN_197_${version}`]: `${termsBase.replace('#', '/cement#')}CementProduct`,
         'draft_battery_specification_id': `${termsBase}BatteryProduct`,
         [getSectorSpecId('battery-ev', version)]: `${termsBase}BatteryProduct`,
         [getSectorSpecId('battery-lmv', version)]: `${termsBase}BatteryProduct`,

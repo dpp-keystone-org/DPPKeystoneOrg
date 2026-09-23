@@ -1,4 +1,4 @@
-import { getSectorSpecId } from './keystone-version.js';
+import { KEYSTONE_VERSION, getSectorSpecId } from './keystone-version.js';
 
 // Maps internal sector IDs to their UI display names
 export const SECTOR_DISPLAY_NAMES = {
@@ -6,6 +6,7 @@ export const SECTOR_DISPLAY_NAMES = {
     'battery-lmv': 'Battery (LMV)',
     'battery-industrial': 'Battery (Industrial)',
     'construction': 'Construction',
+    'cement': 'Cement',
     'electronics': 'Electronics',
     'iron-steel': 'Iron or Steel',
     'textile': 'Textile',
@@ -19,6 +20,7 @@ export const SECTOR_CONTEXT_MAP = {
     'battery-lmv': 'dpp-battery.context.jsonld',
     'battery-industrial': 'dpp-battery.context.jsonld',
     'construction': 'dpp-construction.context.jsonld',
+    'cement': 'dpp-cement.context.jsonld',
     'electronics': 'dpp-electronics.context.jsonld',
     'iron-steel': 'dpp-iron-steel.context.jsonld',
     'textile': 'dpp-textile.context.jsonld',
@@ -33,6 +35,7 @@ export const SECTOR_ONTOLOGY_MAP = {
     'battery-lmv': 'sectors/Battery.jsonld',
     'battery-industrial': 'sectors/Battery.jsonld',
     'construction': 'sectors/Construction.jsonld',
+    'cement': 'sectors/Cement.jsonld',
     'electronics': 'sectors/Electronics.jsonld',
     'iron-steel': 'sectors/IronSteel.jsonld',
     'textile': 'sectors/Textile.jsonld',
@@ -47,6 +50,7 @@ export const SECTOR_SCHEMA_MAP = {
     'battery-lmv': 'sector/battery-lmv.schema.json',
     'battery-industrial': 'sector/battery-industrial.schema.json',
     'construction': 'sector/construction.schema.json',
+    'cement': 'sector/cement.schema.json',
     'electronics': 'sector/electronics.schema.json',
     'iron-steel': 'sector/iron-steel.schema.json',
     'textile': 'sector/textile.schema.json',
@@ -60,6 +64,7 @@ export const SPEC_URL_TO_SECTOR_MAP = {
     [getSectorSpecId('battery-lmv')]: 'battery-lmv',
     [getSectorSpecId('battery-industrial')]: 'battery-industrial',
     'draft_construction_specification_id': 'construction',
+    [`dpp_EN_197_${KEYSTONE_VERSION}`]: 'cement',
     'draft_electronics_specification_id': 'electronics',
     'draft_iron_and_steel_specification_id': 'iron-steel',
     'draft_textile_espr_specification_id': 'textile'
@@ -77,5 +82,6 @@ export const COMMON_SCHEMAS = [
     'shared/general-product.schema.json',
     'shared/component.schema.json',
     'shared/mtc.schema.json',
-    'shared/certification.schema.json'
+    'shared/certification.schema.json',
+    'sector/cement/dopc.schema.json'
 ];

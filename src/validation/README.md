@@ -94,5 +94,7 @@ This conditional architecture requires a strict, two-part testing strategy for e
 SHACL is an internal tool used exclusively for testing our data model's semantic integrity.
 
 -   **Purpose:** To verify that our JSON-LD contexts and ontology mappings are correct.
+-   **Automated Generation:** SHACL shapes are not manually authored. They are dynamically generated from the RDFS/OWL ontology definitions during `npm run build` by `scripts/generate-shacl.mjs` and output to `dist/spec/validation/[version]/shacl/`.
 -   **Process:** When we expand a DPP example from its compact JSON-LD form into a full RDF graph, SHACL shapes ensure that the resulting graph has the correct structure, relationships, and class types (e.g., ensuring a `dpp:manufacturer` entity correctly expands to a `schema:Organization`).
+-   **Automated Fuzz Testing:** The testing suite uses an automated SHACL fuzzer (`testing/unit/shacl-fuzzing/fuzz-all-ontologies.test.js`) to synthesize RDF graphs and systematically verify every class and property constraint in the ontology.
 -   **Audience:** This is for internal project developers to catch errors in the ontology and context files. It is not intended for end-user DPP validation.

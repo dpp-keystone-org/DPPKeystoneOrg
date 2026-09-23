@@ -1,0 +1,9 @@
+{
+    "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
+        "MockCementProduct": "dppk:MockCementProduct",
+        "mockCementProp": "dppk:mockCementProp"
+    }
+}

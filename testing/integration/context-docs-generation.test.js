@@ -47,4 +47,11 @@ describe('Context documentation page generation', () => {
         // Check for locally defined terms
         expect(content).toContain('<h4>Locally Defined Terms</h4>');
     });
+
+    it('should process nested context files correctly', async () => {
+        const indexPath = path.join(TEMP_DIST_SPEC_DIR, 'contexts', KEYSTONE_VERSION, 'cement', 'mock-cement.context', 'index.html');
+        const stats = await fs.stat(indexPath).catch(() => null);
+        expect(stats).toBeTruthy();
+        expect(stats.isFile()).toBe(true);
+    });
 });

@@ -27,7 +27,7 @@ This repository uses a source/build structure to separate development files from
     *   **Core Data Models:**
         *   `src/ontology/` ([README](src/ontology/README.md)): The semantic source of truth. Contains JSON-LD definitions, OWL/RDFS modeling rules, and AI `_stripped` guidelines.
         *   `src/contexts/` ([README](src/contexts/README.md)): JSON-LD `@context` mapping files bridging ontologies to developer-friendly JSON keys.
-        *   `src/validation/` ([README](src/validation/README.md)): Dual validation strategy using JSON Schemas (structural) and SHACL shapes (semantic).
+        *   `src/validation/` ([README](src/validation/README.md)): Dual validation strategy using JSON Schemas for structural validation and automatically generated SHACL shapes for semantic validation.
         *   `src/examples/` ([README](src/examples/README.md)): Sample fictional DPP JSON-LD files and HTML renderings.
     *   **Web Tools & Applications:**
         *   `src/wizard/` ([README](src/wizard/README.md)): Interactive web-based DPP form generator.

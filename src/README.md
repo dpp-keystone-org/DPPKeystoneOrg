@@ -7,7 +7,7 @@ This directory contains the core source code, ontologies, and utilities for the 
 ### Core Data Models
 *   **[`ontology/`](ontology/)**: The semantic source of truth. Contains the JSON-LD definitions of all DPP classes and properties. *(Detailed documentation pending).*
 *   **[`contexts/`](contexts/)**: Contains the JSON-LD context files mapping ontology terms to developer-friendly JSON keys. *(Detailed documentation pending).*
-*   **[`validation/`](validation/)**: Contains the DPP JSON Schemas and SHACL shapes used to enforce constraints. See its [Validation Strategy README](validation/README.md).
+*   **[`validation/`](validation/)**: Contains the DPP JSON Schemas used for structural validation. (SHACL shapes for semantic validation are automatically generated from the ontology during builds). See its [Validation Strategy README](validation/README.md).
 
 ### Web Utilities & Applications
 *   **[`csv-dpp-adapter/`](csv-dpp-adapter/README.md)**: A utility to map and transform a database schema dump (as CSV) into compliant DPP JSON fields.
