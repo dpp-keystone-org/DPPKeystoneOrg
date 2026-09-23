@@ -130,9 +130,7 @@
     {
       "@id": "dppk-cement:StrengthClassValue",
       "@type": "rdfs:Class",
-      "rdfs:subClassOf": {
-        "@id": "rdfs:Resource"
-      },
+      "rdfs:subClassOf": { "@id": "rdfs:Resource" },
       "rdfs:label": [
         { "@language": "en", "@value": "Strength Class Value" },
         { "@language": "bg", "@value": "Стойност на клас на якост" },
