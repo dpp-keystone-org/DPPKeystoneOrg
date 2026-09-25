@@ -1,0 +1,89 @@
+name: Deploy API to Google Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+      - feature/api-setup
+    paths:
+      - 'api/**'
+      - 'src/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - '.github/workflows/deploy-api.yml'
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: 'dpp-keystone-prod'
+  REGION: 'europe-west1'
+  SERVICE_NAME: 'dpp-keystone-api'
+  ARTIFACT_REPO: 'dpp-keystone-docker'
+
+jobs:
+  test-and-deploy:
+    name: Test, Build & Deploy API
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install Root Dependencies
+        run: npm ci
+
+
+      - name: Build and Validate Core Data Models
+        run: npm run test:integrity
+
+      - name: Run API and Logic Tests (Jest)
+        run: cd testing && node --experimental-vm-modules ../node_modules/jest/bin/jest.js
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/603578230716/locations/global/workloadIdentityPools/github/providers/github-provider
+          service_account: github-actions-deployer@dpp-keystone-prod.iam.gserviceaccount.com
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      - name: Build and Push Docker Container
+        run: |
+          IMAGE_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
+          LATEST_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.SERVICE_NAME }}:latest"
+          
+          docker build -t "$IMAGE_TAG" -t "$LATEST_TAG" .
+          docker push "$IMAGE_TAG"
+          docker push "$LATEST_TAG"
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.SERVICE_NAME }} \
+            --image "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.SERVICE_NAME }}:${{ github.sha }}" \
+            --region "${{ env.REGION }}" \
+            --platform managed \
+            --allow-unauthenticated \
+            --service-account "dpp-keystone-runtime@dpp-keystone-prod.iam.gserviceaccount.com" \
+            --min-instances 0 \
+            --max-instances 2 \
+            --concurrency 80 \
+            --memory 256Mi \
+            --cpu 1 \
+            --port 8080 \
+            --set-env-vars "NODE_ENV=production"

@@ -24,9 +24,14 @@
   ],
   "scripts": {
     "bundle:vendor": "node scripts/bundle-vendor.mjs",
-    "build": "node scripts/compact-json.mjs && node scripts/build-and-clean.mjs",
+    "build": "npm run build:website",
+    "build:website": "node scripts/compact-json.mjs && node scripts/build-and-clean.mjs",
     "test": "npm run clean && npm run build && node scripts/validate-ontology-integrity.mjs && node scripts/validate-i18n.mjs && cd testing && npm test",
     "test:integrity": "npm run build && node scripts/validate-ontology-integrity.mjs",
+    "start:api": "node api/src/server.js",
+    "test:api": "cd testing && node --experimental-vm-modules ../node_modules/jest/bin/jest.js --testPathPattern=api",
+    "docker:build": "docker build -t dpp-keystone-api .",
+    "docker:run": "docker run -p 8080:8080 dpp-keystone-api",
     "clean": "node scripts/clean.mjs"
   },
   "repository": {
