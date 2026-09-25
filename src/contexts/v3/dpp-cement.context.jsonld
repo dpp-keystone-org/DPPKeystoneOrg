@@ -42,8 +42,15 @@
       "CEM IV/B": "dppk-cement:CementTypeCEM_IV_B",
       "CEM V/A": "dppk-cement:CementTypeCEM_V_A",
       "CEM V/B": "dppk-cement:CementTypeCEM_V_B",
-      "CEM VI/A": "dppk-cement:CementTypeCEM_VI_A",
-      "CEM VI/B": "dppk-cement:CementTypeCEM_VI_B",
+      "CEM VI/A (S-P)": "dppk-cement:CementTypeCEM_VI_A_S_P",
+      "CEM VI/A (S-Q)": "dppk-cement:CementTypeCEM_VI_A_S_Q",
+      "CEM VI/A (S-V)": "dppk-cement:CementTypeCEM_VI_A_S_V",
+      "CEM VI/A (S-Z)": "dppk-cement:CementTypeCEM_VI_A_S_Z",
+      "CEM VI/A (S-F)": "dppk-cement:CementTypeCEM_VI_A_S_F",
+      "CEM VI/A (S-L)": "dppk-cement:CementTypeCEM_VI_A_S_L",
+      "CEM VI/A (S-LL)": "dppk-cement:CementTypeCEM_VI_A_S_LL",
+      "CEM VI/B (S-L)": "dppk-cement:CementTypeCEM_VI_B_S_L",
+      "CEM VI/B (S-LL)": "dppk-cement:CementTypeCEM_VI_B_S_LL",
       "strengthClass": {
         "@id": "dppk-cement:strengthClass",
         "@type": "@vocab"
