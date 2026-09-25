@@ -509,10 +509,31 @@
           "@id": "dppk-cement:CementTypeCEM_V_B"
         },
         {
-          "@id": "dppk-cement:CementTypeCEM_VI_A"
+          "@id": "dppk-cement:CementTypeCEM_VI_A_S_F"
         },
         {
-          "@id": "dppk-cement:CementTypeCEM_VI_B"
+          "@id": "dppk-cement:CementTypeCEM_VI_A_S_P"
+        },
+        {
+          "@id": "dppk-cement:CementTypeCEM_VI_A_S_Q"
+        },
+        {
+          "@id": "dppk-cement:CementTypeCEM_VI_A_S_V"
+        },
+        {
+          "@id": "dppk-cement:CementTypeCEM_VI_A_S_Z"
+        },
+        {
+          "@id": "dppk-cement:CementTypeCEM_VI_A_S_L"
+        },
+        {
+          "@id": "dppk-cement:CementTypeCEM_VI_A_S_LL"
+        },
+        {
+          "@id": "dppk-cement:CementTypeCEM_VI_B_S_L"
+        },
+        {
+          "@id": "dppk-cement:CementTypeCEM_VI_B_S_LL"
         }
       ]
     },
@@ -6917,402 +6938,1802 @@
       ]
     },
     {
-      "@id": "dppk-cement:CementTypeCEM_VI_A",
+      "@id": "dppk-cement:CementTypeCEM_VI_A_S_F",
       "@type": "dppk-cement:CementTypeValue",
       "rdfs:label": [
         {
           "@language": "en",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "bg",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "cs",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "da",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "de",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "el",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "es",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "et",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "fi",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "fr",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "ga",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "hr",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "hu",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "it",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "lt",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "lv",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "mt",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "nl",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "pl",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "pt",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "ro",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "sk",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "sl",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         },
         {
           "@language": "sv",
-          "@value": "CEM VI/A"
+          "@value": "CEM VI/A (S-F)"
         }
       ],
       "rdfs:comment": [
         {
           "@language": "en",
-          "@value": "Composite cement (CEM VI/A) according to EN 197-1 Table 220."
+          "@value": "Composite cement (CEM VI/A (S-F)) according to EN 197-1 Table 220."
         },
         {
           "@language": "bg",
-          "@value": "Композитен цимент (CEM VI/A) съгласно EN 197-1 Таблица 220."
+          "@value": "Композитен цимент (CEM VI/A (S-F)) съгласно EN 197-1 Таблица 220."
         },
         {
           "@language": "cs",
-          "@value": "Směsný cement (CEM VI/A) podle EN 197-1 tabulka 220."
+          "@value": "Směsný cement (CEM VI/A (S-F)) podle EN 197-1 tabulka 220."
         },
         {
           "@language": "da",
-          "@value": "Kompositcement (CEM VI/A) i henhold til EN 197-1 tabel 220."
+          "@value": "Kompositcement (CEM VI/A (S-F)) i henhold til EN 197-1 tabel 220."
         },
         {
           "@language": "de",
-          "@value": "Kompositzement (CEM VI/A) gemäß EN 197-1 Tabelle 220."
+          "@value": "Kompositzement (CEM VI/A (S-F)) gemäß EN 197-1 Tabelle 220."
         },
         {
           "@language": "el",
-          "@value": "Σύνθετο τσιμέντο (CEM VI/A) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+          "@value": "Σύνθετο τσιμέντο (CEM VI/A (S-F)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
         },
         {
           "@language": "es",
-          "@value": "Cemento compuesto (CEM VI/A) según EN 197-1 Tabla 220."
+          "@value": "Cemento compuesto (CEM VI/A (S-F)) según EN 197-1 Tabla 220."
         },
         {
           "@language": "et",
-          "@value": "Liittsement (CEM VI/A) vastavalt standardi EN 197-1 tabelile 220."
+          "@value": "Liittsement (CEM VI/A (S-F)) vastavalt standardi EN 197-1 tabelile 220."
         },
         {
           "@language": "fi",
-          "@value": "Seossementti (CEM VI/A) standardin EN 197-1 taulukon 220 mukaisesti."
+          "@value": "Seossementti (CEM VI/A (S-F)) standardin EN 197-1 taulukon 220 mukaisesti."
         },
         {
           "@language": "fr",
-          "@value": "Ciment composé (CEM VI/A) selon l'EN 197-1 Tableau 220."
+          "@value": "Ciment composé (CEM VI/A (S-F)) selon l'EN 197-1 Tableau 220."
         },
         {
           "@language": "ga",
-          "@value": "Stroighin ilchodach (CEM VI/A) de réir EN 197-1 Tábla 220."
+          "@value": "Stroighin ilchodach (CEM VI/A (S-F)) de réir EN 197-1 Tábla 220."
         },
         {
           "@language": "hr",
-          "@value": "Kompozitni cement (CEM VI/A) prema EN 197-1 tablica 220."
+          "@value": "Kompozitni cement (CEM VI/A (S-F)) prema EN 197-1 tablica 220."
         },
         {
           "@language": "hu",
-          "@value": "Kompozitcement (CEM VI/A) az EN 197-1 220. táblázat szerint."
+          "@value": "Kompozitcement (CEM VI/A (S-F)) az EN 197-1 220. táblázat szerint."
         },
         {
           "@language": "it",
-          "@value": "Cemento composito (CEM VI/A) secondo EN 197-1 Tabella 220."
+          "@value": "Cemento composito (CEM VI/A (S-F)) secondo EN 197-1 Tabella 220."
         },
         {
           "@language": "lt",
-          "@value": "Kompozicinis cementas (CEM VI/A) pagal EN 197-1 220 lentelę."
+          "@value": "Kompozicinis cementas (CEM VI/A (S-F)) pagal EN 197-1 220 lentelę."
         },
         {
           "@language": "lv",
-          "@value": "Kompozītais cements (CEM VI/A) saskaņā ar EN 197-1 220. tabulu."
+          "@value": "Kompozītais cements (CEM VI/A (S-F)) saskaņā ar EN 197-1 220. tabulu."
         },
         {
           "@language": "mt",
-          "@value": "Siment kompost (CEM VI/A) skont EN 197-1 Tabella 220."
+          "@value": "Siment kompost (CEM VI/A (S-F)) skont EN 197-1 Tabella 220."
         },
         {
           "@language": "nl",
-          "@value": "Composietcement (CEM VI/A) volgens EN 197-1 Tabel 220."
+          "@value": "Composietcement (CEM VI/A (S-F)) volgens EN 197-1 Tabel 220."
         },
         {
           "@language": "pl",
-          "@value": "Cement wieloskładnikowy (CEM VI/A) wg EN 197-1 Tabela 220."
+          "@value": "Cement wieloskładnikowy (CEM VI/A (S-F)) wg EN 197-1 Tabela 220."
         },
         {
           "@language": "pt",
-          "@value": "Cimento composto (CEM VI/A) de acordo com EN 197-1 Tabela 220."
+          "@value": "Cimento composto (CEM VI/A (S-F)) de acordo com EN 197-1 Tabela 220."
         },
         {
           "@language": "ro",
-          "@value": "Ciment compus (CEM VI/A) conform EN 197-1 Tabelul 220."
+          "@value": "Ciment compus (CEM VI/A (S-F)) conform EN 197-1 Tabelul 220."
         },
         {
           "@language": "sk",
-          "@value": "Zmesový cement (CEM VI/A) podľa EN 197-1 tabuľka 220."
+          "@value": "Zmesový cement (CEM VI/A (S-F)) podľa EN 197-1 tabuľka 220."
         },
         {
           "@language": "sl",
-          "@value": "Sestavljeni cement (CEM VI/A) po EN 197-1 Tabela 220."
+          "@value": "Sestavljeni cement (CEM VI/A (S-F)) po EN 197-1 Tabela 220."
         },
         {
           "@language": "sv",
-          "@value": "Kompositcement (CEM VI/A) enligt EN 197-1 Tabell 220."
+          "@value": "Kompositcement (CEM VI/A (S-F)) enligt EN 197-1 Tabell 220."
         }
       ]
     },
     {
-      "@id": "dppk-cement:CementTypeCEM_VI_B",
+      "@id": "dppk-cement:CementTypeCEM_VI_A_S_P",
       "@type": "dppk-cement:CementTypeValue",
       "rdfs:label": [
         {
           "@language": "en",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "bg",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "cs",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "da",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "de",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "el",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "es",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "et",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "fi",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "fr",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "ga",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "hr",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "hu",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "it",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "lt",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "lv",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "mt",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "nl",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "pl",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "pt",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "ro",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "sk",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "sl",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         },
         {
           "@language": "sv",
-          "@value": "CEM VI/B"
+          "@value": "CEM VI/A (S-P)"
         }
       ],
       "rdfs:comment": [
         {
           "@language": "en",
-          "@value": "Composite cement (CEM VI/B) according to EN 197-1 Table 220."
+          "@value": "Composite cement (CEM VI/A (S-P)) according to EN 197-1 Table 220."
         },
         {
           "@language": "bg",
-          "@value": "Композитен цимент (CEM VI/B) съгласно EN 197-1 Таблица 220."
+          "@value": "Композитен цимент (CEM VI/A (S-P)) съгласно EN 197-1 Таблица 220."
         },
         {
           "@language": "cs",
-          "@value": "Směsný cement (CEM VI/B) podle EN 197-1 tabulka 220."
+          "@value": "Směsný cement (CEM VI/A (S-P)) podle EN 197-1 tabulka 220."
         },
         {
           "@language": "da",
-          "@value": "Kompositcement (CEM VI/B) i henhold til EN 197-1 tabel 220."
+          "@value": "Kompositcement (CEM VI/A (S-P)) i henhold til EN 197-1 tabel 220."
         },
         {
           "@language": "de",
-          "@value": "Kompositzement (CEM VI/B) gemäß EN 197-1 Tabelle 220."
+          "@value": "Kompositzement (CEM VI/A (S-P)) gemäß EN 197-1 Tabelle 220."
         },
         {
           "@language": "el",
-          "@value": "Σύνθετο τσιμέντο (CEM VI/B) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+          "@value": "Σύνθετο τσιμέντο (CEM VI/A (S-P)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
         },
         {
           "@language": "es",
-          "@value": "Cemento compuesto (CEM VI/B) según EN 197-1 Tabla 220."
+          "@value": "Cemento compuesto (CEM VI/A (S-P)) según EN 197-1 Tabla 220."
         },
         {
           "@language": "et",
-          "@value": "Liittsement (CEM VI/B) vastavalt standardi EN 197-1 tabelile 220."
+          "@value": "Liittsement (CEM VI/A (S-P)) vastavalt standardi EN 197-1 tabelile 220."
         },
         {
           "@language": "fi",
-          "@value": "Seossementti (CEM VI/B) standardin EN 197-1 taulukon 220 mukaisesti."
+          "@value": "Seossementti (CEM VI/A (S-P)) standardin EN 197-1 taulukon 220 mukaisesti."
         },
         {
           "@language": "fr",
-          "@value": "Ciment composé (CEM VI/B) selon l'EN 197-1 Tableau 220."
+          "@value": "Ciment composé (CEM VI/A (S-P)) selon l'EN 197-1 Tableau 220."
         },
         {
           "@language": "ga",
-          "@value": "Stroighin ilchodach (CEM VI/B) de réir EN 197-1 Tábla 220."
+          "@value": "Stroighin ilchodach (CEM VI/A (S-P)) de réir EN 197-1 Tábla 220."
         },
         {
           "@language": "hr",
-          "@value": "Kompozitni cement (CEM VI/B) prema EN 197-1 tablica 220."
+          "@value": "Kompozitni cement (CEM VI/A (S-P)) prema EN 197-1 tablica 220."
         },
         {
           "@language": "hu",
-          "@value": "Kompozitcement (CEM VI/B) az EN 197-1 220. táblázat szerint."
+          "@value": "Kompozitcement (CEM VI/A (S-P)) az EN 197-1 220. táblázat szerint."
         },
         {
           "@language": "it",
-          "@value": "Cemento composito (CEM VI/B) secondo EN 197-1 Tabella 220."
+          "@value": "Cemento composito (CEM VI/A (S-P)) secondo EN 197-1 Tabella 220."
         },
         {
           "@language": "lt",
-          "@value": "Kompozicinis cementas (CEM VI/B) pagal EN 197-1 220 lentelę."
+          "@value": "Kompozicinis cementas (CEM VI/A (S-P)) pagal EN 197-1 220 lentelę."
         },
         {
           "@language": "lv",
-          "@value": "Kompozītais cements (CEM VI/B) saskaņā ar EN 197-1 220. tabulu."
+          "@value": "Kompozītais cements (CEM VI/A (S-P)) saskaņā ar EN 197-1 220. tabulu."
         },
         {
           "@language": "mt",
-          "@value": "Siment kompost (CEM VI/B) skont EN 197-1 Tabella 220."
+          "@value": "Siment kompost (CEM VI/A (S-P)) skont EN 197-1 Tabella 220."
         },
         {
           "@language": "nl",
-          "@value": "Composietcement (CEM VI/B) volgens EN 197-1 Tabel 220."
+          "@value": "Composietcement (CEM VI/A (S-P)) volgens EN 197-1 Tabel 220."
         },
         {
           "@language": "pl",
-          "@value": "Cement wieloskładnikowy (CEM VI/B) wg EN 197-1 Tabela 220."
+          "@value": "Cement wieloskładnikowy (CEM VI/A (S-P)) wg EN 197-1 Tabela 220."
         },
         {
           "@language": "pt",
-          "@value": "Cimento composto (CEM VI/B) de acordo com EN 197-1 Tabela 220."
+          "@value": "Cimento composto (CEM VI/A (S-P)) de acordo com EN 197-1 Tabela 220."
         },
         {
           "@language": "ro",
-          "@value": "Ciment compus (CEM VI/B) conform EN 197-1 Tabelul 220."
+          "@value": "Ciment compus (CEM VI/A (S-P)) conform EN 197-1 Tabelul 220."
         },
         {
           "@language": "sk",
-          "@value": "Zmesový cement (CEM VI/B) podľa EN 197-1 tabuľka 220."
+          "@value": "Zmesový cement (CEM VI/A (S-P)) podľa EN 197-1 tabuľka 220."
         },
         {
           "@language": "sl",
-          "@value": "Sestavljeni cement (CEM VI/B) po EN 197-1 Tabela 220."
+          "@value": "Sestavljeni cement (CEM VI/A (S-P)) po EN 197-1 Tabela 220."
         },
         {
           "@language": "sv",
-          "@value": "Kompositcement (CEM VI/B) enligt EN 197-1 Tabell 220."
+          "@value": "Kompositcement (CEM VI/A (S-P)) enligt EN 197-1 Tabell 220."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-cement:CementTypeCEM_VI_A_S_Q",
+      "@type": "dppk-cement:CementTypeValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "bg",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "cs",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "da",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "de",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "el",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "es",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "et",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "fi",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "fr",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "ga",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "hr",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "hu",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "it",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "lt",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "lv",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "mt",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "nl",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "pl",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "pt",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "ro",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "sk",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "sl",
+          "@value": "CEM VI/A (S-Q)"
+        },
+        {
+          "@language": "sv",
+          "@value": "CEM VI/A (S-Q)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Composite cement (CEM VI/A (S-Q)) according to EN 197-1 Table 220."
+        },
+        {
+          "@language": "bg",
+          "@value": "Композитен цимент (CEM VI/A (S-Q)) съгласно EN 197-1 Таблица 220."
+        },
+        {
+          "@language": "cs",
+          "@value": "Směsný cement (CEM VI/A (S-Q)) podle EN 197-1 tabulka 220."
+        },
+        {
+          "@language": "da",
+          "@value": "Kompositcement (CEM VI/A (S-Q)) i henhold til EN 197-1 tabel 220."
+        },
+        {
+          "@language": "de",
+          "@value": "Kompositzement (CEM VI/A (S-Q)) gemäß EN 197-1 Tabelle 220."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνθετο τσιμέντο (CEM VI/A (S-Q)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+        },
+        {
+          "@language": "es",
+          "@value": "Cemento compuesto (CEM VI/A (S-Q)) según EN 197-1 Tabla 220."
+        },
+        {
+          "@language": "et",
+          "@value": "Liittsement (CEM VI/A (S-Q)) vastavalt standardi EN 197-1 tabelile 220."
+        },
+        {
+          "@language": "fi",
+          "@value": "Seossementti (CEM VI/A (S-Q)) standardin EN 197-1 taulukon 220 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Ciment composé (CEM VI/A (S-Q)) selon l'EN 197-1 Tableau 220."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stroighin ilchodach (CEM VI/A (S-Q)) de réir EN 197-1 Tábla 220."
+        },
+        {
+          "@language": "hr",
+          "@value": "Kompozitni cement (CEM VI/A (S-Q)) prema EN 197-1 tablica 220."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kompozitcement (CEM VI/A (S-Q)) az EN 197-1 220. táblázat szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Cemento composito (CEM VI/A (S-Q)) secondo EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kompozicinis cementas (CEM VI/A (S-Q)) pagal EN 197-1 220 lentelę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kompozītais cements (CEM VI/A (S-Q)) saskaņā ar EN 197-1 220. tabulu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Siment kompost (CEM VI/A (S-Q)) skont EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "nl",
+          "@value": "Composietcement (CEM VI/A (S-Q)) volgens EN 197-1 Tabel 220."
+        },
+        {
+          "@language": "pl",
+          "@value": "Cement wieloskładnikowy (CEM VI/A (S-Q)) wg EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cimento composto (CEM VI/A (S-Q)) de acordo com EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ciment compus (CEM VI/A (S-Q)) conform EN 197-1 Tabelul 220."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmesový cement (CEM VI/A (S-Q)) podľa EN 197-1 tabuľka 220."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sestavljeni cement (CEM VI/A (S-Q)) po EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kompositcement (CEM VI/A (S-Q)) enligt EN 197-1 Tabell 220."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-cement:CementTypeCEM_VI_A_S_V",
+      "@type": "dppk-cement:CementTypeValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "bg",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "cs",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "da",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "de",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "el",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "es",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "et",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "fi",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "fr",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "ga",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "hr",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "hu",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "it",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "lt",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "lv",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "mt",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "nl",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "pl",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "pt",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "ro",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "sk",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "sl",
+          "@value": "CEM VI/A (S-V)"
+        },
+        {
+          "@language": "sv",
+          "@value": "CEM VI/A (S-V)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Composite cement (CEM VI/A (S-V)) according to EN 197-1 Table 220."
+        },
+        {
+          "@language": "bg",
+          "@value": "Композитен цимент (CEM VI/A (S-V)) съгласно EN 197-1 Таблица 220."
+        },
+        {
+          "@language": "cs",
+          "@value": "Směsný cement (CEM VI/A (S-V)) podle EN 197-1 tabulka 220."
+        },
+        {
+          "@language": "da",
+          "@value": "Kompositcement (CEM VI/A (S-V)) i henhold til EN 197-1 tabel 220."
+        },
+        {
+          "@language": "de",
+          "@value": "Kompositzement (CEM VI/A (S-V)) gemäß EN 197-1 Tabelle 220."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνθετο τσιμέντο (CEM VI/A (S-V)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+        },
+        {
+          "@language": "es",
+          "@value": "Cemento compuesto (CEM VI/A (S-V)) según EN 197-1 Tabla 220."
+        },
+        {
+          "@language": "et",
+          "@value": "Liittsement (CEM VI/A (S-V)) vastavalt standardi EN 197-1 tabelile 220."
+        },
+        {
+          "@language": "fi",
+          "@value": "Seossementti (CEM VI/A (S-V)) standardin EN 197-1 taulukon 220 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Ciment composé (CEM VI/A (S-V)) selon l'EN 197-1 Tableau 220."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stroighin ilchodach (CEM VI/A (S-V)) de réir EN 197-1 Tábla 220."
+        },
+        {
+          "@language": "hr",
+          "@value": "Kompozitni cement (CEM VI/A (S-V)) prema EN 197-1 tablica 220."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kompozitcement (CEM VI/A (S-V)) az EN 197-1 220. táblázat szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Cemento composito (CEM VI/A (S-V)) secondo EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kompozicinis cementas (CEM VI/A (S-V)) pagal EN 197-1 220 lentelę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kompozītais cements (CEM VI/A (S-V)) saskaņā ar EN 197-1 220. tabulu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Siment kompost (CEM VI/A (S-V)) skont EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "nl",
+          "@value": "Composietcement (CEM VI/A (S-V)) volgens EN 197-1 Tabel 220."
+        },
+        {
+          "@language": "pl",
+          "@value": "Cement wieloskładnikowy (CEM VI/A (S-V)) wg EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cimento composto (CEM VI/A (S-V)) de acordo com EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ciment compus (CEM VI/A (S-V)) conform EN 197-1 Tabelul 220."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmesový cement (CEM VI/A (S-V)) podľa EN 197-1 tabuľka 220."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sestavljeni cement (CEM VI/A (S-V)) po EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kompositcement (CEM VI/A (S-V)) enligt EN 197-1 Tabell 220."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-cement:CementTypeCEM_VI_A_S_Z",
+      "@type": "dppk-cement:CementTypeValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "bg",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "cs",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "da",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "de",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "el",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "es",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "et",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "fi",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "fr",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "ga",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "hr",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "hu",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "it",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "lt",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "lv",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "mt",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "nl",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "pl",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "pt",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "ro",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "sk",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "sl",
+          "@value": "CEM VI/A (S-Z)"
+        },
+        {
+          "@language": "sv",
+          "@value": "CEM VI/A (S-Z)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Composite cement (CEM VI/A (S-Z)) according to EN 197-1 Table 220."
+        },
+        {
+          "@language": "bg",
+          "@value": "Композитен цимент (CEM VI/A (S-Z)) съгласно EN 197-1 Таблица 220."
+        },
+        {
+          "@language": "cs",
+          "@value": "Směsný cement (CEM VI/A (S-Z)) podle EN 197-1 tabulka 220."
+        },
+        {
+          "@language": "da",
+          "@value": "Kompositcement (CEM VI/A (S-Z)) i henhold til EN 197-1 tabel 220."
+        },
+        {
+          "@language": "de",
+          "@value": "Kompositzement (CEM VI/A (S-Z)) gemäß EN 197-1 Tabelle 220."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνθετο τσιμέντο (CEM VI/A (S-Z)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+        },
+        {
+          "@language": "es",
+          "@value": "Cemento compuesto (CEM VI/A (S-Z)) según EN 197-1 Tabla 220."
+        },
+        {
+          "@language": "et",
+          "@value": "Liittsement (CEM VI/A (S-Z)) vastavalt standardi EN 197-1 tabelile 220."
+        },
+        {
+          "@language": "fi",
+          "@value": "Seossementti (CEM VI/A (S-Z)) standardin EN 197-1 taulukon 220 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Ciment composé (CEM VI/A (S-Z)) selon l'EN 197-1 Tableau 220."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stroighin ilchodach (CEM VI/A (S-Z)) de réir EN 197-1 Tábla 220."
+        },
+        {
+          "@language": "hr",
+          "@value": "Kompozitni cement (CEM VI/A (S-Z)) prema EN 197-1 tablica 220."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kompozitcement (CEM VI/A (S-Z)) az EN 197-1 220. táblázat szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Cemento composito (CEM VI/A (S-Z)) secondo EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kompozicinis cementas (CEM VI/A (S-Z)) pagal EN 197-1 220 lentelę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kompozītais cements (CEM VI/A (S-Z)) saskaņā ar EN 197-1 220. tabulu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Siment kompost (CEM VI/A (S-Z)) skont EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "nl",
+          "@value": "Composietcement (CEM VI/A (S-Z)) volgens EN 197-1 Tabel 220."
+        },
+        {
+          "@language": "pl",
+          "@value": "Cement wieloskładnikowy (CEM VI/A (S-Z)) wg EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cimento composto (CEM VI/A (S-Z)) de acordo com EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ciment compus (CEM VI/A (S-Z)) conform EN 197-1 Tabelul 220."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmesový cement (CEM VI/A (S-Z)) podľa EN 197-1 tabuľka 220."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sestavljeni cement (CEM VI/A (S-Z)) po EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kompositcement (CEM VI/A (S-Z)) enligt EN 197-1 Tabell 220."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-cement:CementTypeCEM_VI_A_S_L",
+      "@type": "dppk-cement:CementTypeValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "bg",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "cs",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "da",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "de",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "el",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "es",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "et",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "fi",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "fr",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "ga",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "hr",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "hu",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "it",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "lt",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "lv",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "mt",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "nl",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "pl",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "pt",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "ro",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "sk",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "sl",
+          "@value": "CEM VI/A (S-L)"
+        },
+        {
+          "@language": "sv",
+          "@value": "CEM VI/A (S-L)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Composite cement (CEM VI/A (S-L)) according to EN 197-1 Table 220."
+        },
+        {
+          "@language": "bg",
+          "@value": "Композитен цимент (CEM VI/A (S-L)) съгласно EN 197-1 Таблица 220."
+        },
+        {
+          "@language": "cs",
+          "@value": "Směsný cement (CEM VI/A (S-L)) podle EN 197-1 tabulka 220."
+        },
+        {
+          "@language": "da",
+          "@value": "Kompositcement (CEM VI/A (S-L)) i henhold til EN 197-1 tabel 220."
+        },
+        {
+          "@language": "de",
+          "@value": "Kompositzement (CEM VI/A (S-L)) gemäß EN 197-1 Tabelle 220."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνθετο τσιμέντο (s_ VI/A (S-L)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+        },
+        {
+          "@language": "es",
+          "@value": "Cemento compuesto (CEM VI/A (S-L)) según EN 197-1 Tabla 220."
+        },
+        {
+          "@language": "et",
+          "@value": "Liittsement (CEM VI/A (S-L)) vastavalt standardi EN 197-1 tabelile 220."
+        },
+        {
+          "@language": "fi",
+          "@value": "Seossementti (CEM VI/A (S-L)) standardin EN 197-1 taulukon 220 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Ciment composé (CEM VI/A (S-L)) selon l'EN 197-1 Tableau 220."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stroighin ilchodach (CEM VI/A (S-L)) de réir EN 197-1 Tábla 220."
+        },
+        {
+          "@language": "hr",
+          "@value": "Kompozitni cement (CEM VI/A (S-L)) prema EN 197-1 tablica 220."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kompozitcement (CEM VI/A (S-L)) az EN 197-1 220. táblázat szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Cemento composito (CEM VI/A (S-L)) secondo EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kompozicinis cementas (CEM VI/A (S-L)) pagal EN 197-1 220 lentelę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kompozītais cements (CEM VI/A (S-L)) saskaņā ar EN 197-1 220. tabulu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Siment kompost (CEM VI/A (S-L)) skont EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "nl",
+          "@value": "Composietcement (CEM VI/A (S-L)) volgens EN 197-1 Tabel 220."
+        },
+        {
+          "@language": "pl",
+          "@value": "Cement wieloskładnikowy (CEM VI/A (S-L)) wg EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cimento composto (CEM VI/A (S-L)) de acordo com EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ciment compus (CEM VI/A (S-L)) conform EN 197-1 Tabelul 220."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmesový cement (CEM VI/A (S-L)) podľa EN 197-1 tabuľka 220."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sestavljeni cement (CEM VI/A (S-L)) po EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kompositcement (CEM VI/A (S-L)) enligt EN 197-1 Tabell 220."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-cement:CementTypeCEM_VI_A_S_LL",
+      "@type": "dppk-cement:CementTypeValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "bg",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "cs",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "da",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "de",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "el",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "es",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "et",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "fi",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "fr",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "ga",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "hr",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "hu",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "it",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "lt",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "lv",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "mt",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "nl",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "pl",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "pt",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "ro",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "sk",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "sl",
+          "@value": "CEM VI/A (S-LL)"
+        },
+        {
+          "@language": "sv",
+          "@value": "CEM VI/A (S-LL)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Composite cement (CEM VI/A (S-LL)) according to EN 197-1 Table 220."
+        },
+        {
+          "@language": "bg",
+          "@value": "Композитен цимент (CEM VI/A (S-LL)) съгласно EN 197-1 Таблица 220."
+        },
+        {
+          "@language": "cs",
+          "@value": "Směsný cement (CEM VI/A (S-LL)) podle EN 197-1 tabulka 220."
+        },
+        {
+          "@language": "da",
+          "@value": "Kompositcement (CEM VI/A (S-LL)) i henhold til EN 197-1 tabel 220."
+        },
+        {
+          "@language": "de",
+          "@value": "Kompositzement (CEM VI/A (S-LL)) gemäß EN 197-1 Tabelle 220."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνθετο τσιμέντο (CEM VI/A (S-LL)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+        },
+        {
+          "@language": "es",
+          "@value": "Cemento compuesto (CEM VI/A (S-LL)) según EN 197-1 Tabla 220."
+        },
+        {
+          "@language": "et",
+          "@value": "Liittsement (CEM VI/A (S-LL)) vastavalt standardi EN 197-1 tabelile 220."
+        },
+        {
+          "@language": "fi",
+          "@value": "Seossementti (CEM VI/A (S-LL)) standardin EN 197-1 taulukon 220 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Ciment composé (CEM VI/A (S-LL)) selon l'EN 197-1 Tableau 220."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stroighin ilchodach (CEM VI/A (S-LL)) de réir EN 197-1 Tábla 220."
+        },
+        {
+          "@language": "hr",
+          "@value": "Kompozitni cement (CEM VI/A (S-LL)) prema EN 197-1 tablica 220."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kompozitcement (CEM VI/A (S-LL)) az EN 197-1 220. táblázat szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Cemento composito (CEM VI/A (S-LL)) secondo EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kompozicinis cementas (CEM VI/A (S-LL)) pagal EN 197-1 220 lentelę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kompozītais cements (CEM VI/A (S-LL)) saskaņā ar EN 197-1 220. tabulu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Siment kompost (CEM VI/A (S-LL)) skont EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "nl",
+          "@value": "Composietcement (CEM VI/A (S-LL)) volgens EN 197-1 Tabel 220."
+        },
+        {
+          "@language": "pl",
+          "@value": "Cement wieloskładnikowy (CEM VI/A (S-LL)) wg EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cimento composto (CEM VI/A (S-LL)) de acordo com EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ciment compus (CEM VI/A (S-LL)) conform EN 197-1 Tabelul 220."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmesový cement (CEM VI/A (S-LL)) podľa EN 197-1 tabuľka 220."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sestavljeni cement (CEM VI/A (S-LL)) po EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kompositcement (CEM VI/A (S-LL)) enligt EN 197-1 Tabell 220."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-cement:CementTypeCEM_VI_B_S_L",
+      "@type": "dppk-cement:CementTypeValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "bg",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "cs",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "da",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "de",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "el",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "es",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "et",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "fi",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "fr",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "ga",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "hr",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "hu",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "it",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "lt",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "lv",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "mt",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "nl",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "pl",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "pt",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "ro",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "sk",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "sl",
+          "@value": "CEM VI/B (S-L)"
+        },
+        {
+          "@language": "sv",
+          "@value": "CEM VI/B (S-L)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Composite cement (CEM VI/B (S-L)) according to EN 197-1 Table 220."
+        },
+        {
+          "@language": "bg",
+          "@value": "Композитен цимент (CEM VI/B (S-L)) съгласно EN 197-1 Таблица 220."
+        },
+        {
+          "@language": "cs",
+          "@value": "Směsný cement (CEM VI/B (S-L)) podle EN 197-1 tabulka 220."
+        },
+        {
+          "@language": "da",
+          "@value": "Kompositcement (CEM VI/B (S-L)) i henhold til EN 197-1 tabel 220."
+        },
+        {
+          "@language": "de",
+          "@value": "Kompositzement (CEM VI/B (S-L)) gemäß EN 197-1 Tabelle 220."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνθετο τσιμέντο (CEM VI/B (S-L)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+        },
+        {
+          "@language": "es",
+          "@value": "Cemento compuesto (CEM VI/B (S-L)) según EN 197-1 Tabla 220."
+        },
+        {
+          "@language": "et",
+          "@value": "Liittsement (CEM VI/B (S-L)) vastavalt standardi EN 197-1 tabelile 220."
+        },
+        {
+          "@language": "fi",
+          "@value": "Seossementti (CEM VI/B (S-L)) standardin EN 197-1 taulukon 220 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Ciment composé (CEM VI/B (S-L)) selon l'EN 197-1 Tableau 220."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stroighin ilchodach (CEM VI/B (S-L)) de réir EN 197-1 Tábla 220."
+        },
+        {
+          "@language": "hr",
+          "@value": "Kompozitni cement (CEM VI/B (S-L)) prema EN 197-1 tablica 220."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kompozitcement (CEM VI/B (S-L)) az EN 197-1 220. táblázat szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Cemento composito (CEM VI/B (S-L)) secondo EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kompozicinis cementas (CEM VI/B (S-L)) pagal EN 197-1 220 lentelę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kompozītais cements (CEM VI/B (S-L)) saskaņā ar EN 197-1 220. tabulu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Siment kompost (CEM VI/B (S-L)) skont EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "nl",
+          "@value": "Composietcement (CEM VI/B (S-L)) volgens EN 197-1 Tabel 220."
+        },
+        {
+          "@language": "pl",
+          "@value": "Cement wieloskładnikowy (CEM VI/B (S-L)) wg EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cimento composto (CEM VI/B (S-L)) de acordo com EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ciment compus (CEM VI/B (S-L)) conform EN 197-1 Tabelul 220."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmesový cement (CEM VI/B (S-L)) podľa EN 197-1 tabuľka 220."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sestavljeni cement (CEM VI/B (S-L)) po EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kompositcement (CEM VI/B (S-L)) enligt EN 197-1 Tabell 220."
+        }
+      ]
+    },
+    {
+      "@id": "dppk-cement:CementTypeCEM_VI_B_S_LL",
+      "@type": "dppk-cement:CementTypeValue",
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "bg",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "cs",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "da",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "de",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "el",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "es",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "et",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "fi",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "fr",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "ga",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "hr",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "hu",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "it",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "lt",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "lv",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "mt",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "nl",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "pl",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "pt",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "ro",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "sk",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "sl",
+          "@value": "CEM VI/B (S-LL)"
+        },
+        {
+          "@language": "sv",
+          "@value": "CEM VI/B (S-LL)"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Composite cement (CEM VI/B (S-LL)) according to EN 197-1 Table 220."
+        },
+        {
+          "@language": "bg",
+          "@value": "Композитен цимент (CEM VI/B (S-LL)) съгласно EN 197-1 Таблица 220."
+        },
+        {
+          "@language": "cs",
+          "@value": "Směsný cement (CEM VI/B (S-LL)) podle EN 197-1 tabulka 220."
+        },
+        {
+          "@language": "da",
+          "@value": "Kompositcement (CEM VI/B (S-LL)) i henhold til EN 197-1 tabel 220."
+        },
+        {
+          "@language": "de",
+          "@value": "Kompositzement (CEM VI/B (S-LL)) gemäß EN 197-1 Tabelle 220."
+        },
+        {
+          "@language": "el",
+          "@value": "Σύνθετο τσιμέντο (CEM VI/B (S-LL)) σύμφωνα με το πρότυπο EN 197-1 Πίνακας 220."
+        },
+        {
+          "@language": "es",
+          "@value": "Cemento compuesto (CEM VI/B (S-LL)) según EN 197-1 Tabla 220."
+        },
+        {
+          "@language": "et",
+          "@value": "Liittsement (CEM VI/B (S-LL)) vastavalt standardi EN 197-1 tabelile 220."
+        },
+        {
+          "@language": "fi",
+          "@value": "Seossementti (CEM VI/B (S-LL)) standardin EN 197-1 taulukon 220 mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Ciment composé (CEM VI/B (S-LL)) selon l'EN 197-1 Tableau 220."
+        },
+        {
+          "@language": "ga",
+          "@value": "Stroighin ilchodach (CEM VI/B (S-LL)) de réir EN 197-1 Tábla 220."
+        },
+        {
+          "@language": "hr",
+          "@value": "Kompozitni cement (CEM VI/B (S-LL)) prema EN 197-1 tablica 220."
+        },
+        {
+          "@language": "hu",
+          "@value": "Kompozitcement (CEM VI/B (S-LL)) az EN 197-1 220. táblázat szerint."
+        },
+        {
+          "@language": "it",
+          "@value": "Cemento composito (CEM VI/B (S-LL)) secondo EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "lt",
+          "@value": "Kompozicinis cementas (CEM VI/B (S-LL)) pagal EN 197-1 220 lentelę."
+        },
+        {
+          "@language": "lv",
+          "@value": "Kompozītais cements (CEM VI/B (S-LL)) saskaņā ar EN 197-1 220. tabulu."
+        },
+        {
+          "@language": "mt",
+          "@value": "Siment kompost (CEM VI/B (S-LL)) skont EN 197-1 Tabella 220."
+        },
+        {
+          "@language": "nl",
+          "@value": "Composietcement (CEM VI/B (S-LL)) volgens EN 197-1 Tabel 220."
+        },
+        {
+          "@language": "pl",
+          "@value": "Cement wieloskładnikowy (CEM VI/B (S-LL)) wg EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "pt",
+          "@value": "Cimento composto (CEM VI/B (S-LL)) de acordo com EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "ro",
+          "@value": "Ciment compus (CEM VI/B (S-LL)) conform EN 197-1 Tabelul 220."
+        },
+        {
+          "@language": "sk",
+          "@value": "Zmesový cement (CEM VI/B (S-LL)) podľa EN 197-1 tabuľka 220."
+        },
+        {
+          "@language": "sl",
+          "@value": "Sestavljeni cement (CEM VI/B (S-LL)) po EN 197-1 Tabela 220."
+        },
+        {
+          "@language": "sv",
+          "@value": "Kompositcement (CEM VI/B (S-LL)) enligt EN 197-1 Tabell 220."
         }
       ]
     }
