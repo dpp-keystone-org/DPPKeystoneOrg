@@ -1,18 +1,18 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1790615064842';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1790615072469';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1790615064842';
-import { generateHTML } from '../lib/html-generator.js?v=1790615064842';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1790615064842';
-import { loadHeader } from '../branding/header.js?v=1790615064842';
+import { EXAMPLES } from '../lib/example-registry.js?v=1790615072469';
+import { generateHTML } from '../lib/html-generator.js?v=1790615072469';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1790615072469';
+import { loadHeader } from '../branding/header.js?v=1790615072469';
 loadHeader('dpp-header-container', '..');
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1790615064842';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1790615064842';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1790615064842';
-import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1790615064842';
-import { LanguageManager } from '../lib/language-manager.js?v=1790615064842';
+import { loadOntology } from '../lib/ontology-loader.js?v=1790615072469';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1790615072469';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1790615072469';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1790615072469';
+import { LanguageManager } from '../lib/language-manager.js?v=1790615072469';
 
-import { SPEC_URL_TO_SECTOR_MAP, SECTOR_SCHEMA_MAP, COMMON_SCHEMAS } from '../lib/sector-mappings.js?v=1790615064842';
+import { SPEC_URL_TO_SECTOR_MAP, SECTOR_SCHEMA_MAP, COMMON_SCHEMAS } from '../lib/sector-mappings.js?v=1790615072469';
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
 const SCHEMA_BASE_URL = `../spec/validation/${KEYSTONE_VERSION}/json-schema/`;
