@@ -74,11 +74,34 @@ export class IntegrityReporter {
 
 // --- Ontology Loader (Node.js version) ---
 export const ontologyGraph = new Map();
+export const termDefinitions = new Map(); // normalizedId -> Array<{ term, filePath }>
 const loadedFiles = new Set();
 const ontologyFileContents = new Map();
 const contextMap = new Map(); // term -> expanded IRI
 const fileImports = new Map(); // filePath -> Set of imported filePaths
 const fileDefinedTerms = new Map(); // filePath -> Set of term IDs defined in it
+
+export function isDeprecated(term) {
+    if (!term || typeof term !== 'object') return false;
+    return term['owl:deprecated'] === true || term['owl:deprecated'] === 'true';
+}
+
+export function registerOntologyTerm(term, filePath) {
+    if (!term || !term['@id']) return;
+    const termId = term['@id'];
+    const normalizedId = getCompactIRI(termId);
+    if (!termDefinitions.has(normalizedId)) {
+        termDefinitions.set(normalizedId, []);
+    }
+    termDefinitions.get(normalizedId).push({
+        term,
+        filePath
+    });
+    ontologyGraph.set(termId, {
+        ...term,
+        _definedIn: filePath
+    });
+}
 
 function resolveImportPath(currentFile, importUrl) {
     // Handle standard project URLs
@@ -113,10 +136,7 @@ function loadOntologyFile(filePath) {
     const graph = json['@graph'] || [];
     graph.forEach(term => {
         if (term['@id']) {
-            ontologyGraph.set(term['@id'], {
-                ...term,
-                _definedIn: filePath // Metadata for reporting
-            });
+            registerOntologyTerm(term, filePath);
             fileDefinedTerms.get(filePath).add(term['@id']);
         }
     });
@@ -153,6 +173,7 @@ function loadContexts() {
 
 export function resetIntegrityState() {
     ontologyGraph.clear();
+    termDefinitions.clear();
     loadedFiles.clear();
     ontologyFileContents.clear();
     contextMap.clear();
@@ -562,6 +583,7 @@ function auditDeadCode(reporter, schemaUsedIRIs, contextMappedIRIs) {
     ontologyGraph.forEach((term, id) => {
         // Skip some common infrastructure terms if needed
         if (id.startsWith('dppk:') || id.startsWith('dppk-')) {
+            if (isDeprecated(term)) return;
             if (!aliveIRIs.has(id)) {
                  const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
                  reporter.report(
@@ -671,6 +693,21 @@ function auditSelfContainedImports(reporter) {
     });
 }
 
+export function auditTermCollisions(reporter) {
+    for (const [termId, defs] of termDefinitions.entries()) {
+        const activeDefs = defs.filter(d => !isDeprecated(d.term));
+        if (activeDefs.length > 1) {
+            const files = activeDefs.map(d => path.relative(PROJECT_ROOT, d.filePath)).join(', ');
+            reporter.report(
+                'Ontology Collision Integrity',
+                'FAIL',
+                `Term '${termId}' is defined multiple times across active (non-deprecated) ontology files: ${files}`,
+                activeDefs[0].filePath
+            );
+        }
+    }
+}
+
 export function auditContextMappings(reporter) {
     contextMap.forEach((mappings, term) => {
         mappings.forEach(mapping => {
@@ -708,6 +745,7 @@ async function run() {
 
     // 3. Run Audits
     console.log('🕵️  Running audits...');
+    auditTermCollisions(reporter);
     auditInconsistentTypes(reporter);
     auditOntologyMetadata(reporter);
     auditNumericUnits(reporter);
