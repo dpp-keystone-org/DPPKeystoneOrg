@@ -1,5 +1,5 @@
-import { renderProductPage, detectTableStructure } from '../util/js/common/rendering/dpp-html-renderer.js?v=1786711121789';
-import { KEYSTONE_VERSION } from './keystone-version.js?v=1786711121789';
+import { renderProductPage, detectTableStructure } from '../util/js/common/rendering/dpp-html-renderer.js?v=1790615064842';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from './keystone-version.js?v=1790615064842';
 
 // Re-export for testing compatibility
 export { detectTableStructure };
@@ -41,7 +41,7 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
   if (includeSchema) {
     try {
       // Dynamically import the adapter
-      const { transformDpp } = await import('../util/js/client/dpp-schema-adapter.js?v=1786711121789');
+      const { transformDpp } = await import('../util/js/client/dpp-schema-adapter.js?v=1790615064842');
 
       // Determine correct ontology path
       let ontologyPath = `../ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
@@ -56,14 +56,9 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
 
       // Custom Document Loader
       const localDocumentLoader = async (url) => {
-        if (url.startsWith('https://dpp-keystone.org/spec/')) {
-          let relativePath = url.replace('https://dpp-keystone.org/spec/', '../');
+        if (isSpecUrl(url)) {
           const isDist = ontologyPath.includes('/spec/');
-          if (isDist) {
-            relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
-          } else {
-            relativePath = url.replace('https://dpp-keystone.org/spec/', '../');
-          }
+          const relativePath = specUrlToRelativePath(url, isDist ? '../spec/' : '../');
           try {
             const response = await fetch(relativePath);
             if (!response.ok) throw new Error('404');
@@ -99,7 +94,7 @@ export async function generateHTML(dppJson, optionsOrCssUrl) {
   // 3. Render Page
   let ontologyMap = null;
   try {
-    const { loadOntology } = await import('./ontology-loader.js?v=1786711121789');
+    const { loadOntology } = await import('./ontology-loader.js?v=1790615064842');
     let sector = 'dpp';
     if (dppJson.contentSpecificationIds && dppJson.contentSpecificationIds.length > 0) {
       const specId = dppJson.contentSpecificationIds[0];

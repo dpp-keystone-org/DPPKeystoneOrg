@@ -1,3 +1,5 @@
+import { getSectorSpecId } from './keystone-version.js?v=1790615064842';
+
 // Maps internal sector IDs to their UI display names
 export const SECTOR_DISPLAY_NAMES = {
     'battery-ev': 'Battery (EV)',
@@ -51,12 +53,12 @@ export const SECTOR_SCHEMA_MAP = {
     'packaging': 'sector/packaging.schema.json'
 };
 
-// Maps public Content Specification URLs to internal sector IDs
+// Maps public Content Specification IDs to internal sector IDs
 export const SPEC_URL_TO_SECTOR_MAP = {
     'draft_battery_specification_id': 'battery', // Legacy fallback if needed
-    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json': 'battery-ev',
-    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-lmv.schema.json': 'battery-lmv',
-    'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-industrial.schema.json': 'battery-industrial',
+    [getSectorSpecId('battery-ev')]: 'battery-ev',
+    [getSectorSpecId('battery-lmv')]: 'battery-lmv',
+    [getSectorSpecId('battery-industrial')]: 'battery-industrial',
     'draft_construction_specification_id': 'construction',
     'draft_electronics_specification_id': 'electronics',
     'draft_iron_and_steel_specification_id': 'iron-steel',

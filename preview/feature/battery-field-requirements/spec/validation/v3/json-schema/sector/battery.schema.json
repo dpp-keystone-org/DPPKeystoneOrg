@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery.schema.json",
+  "$id": "https://dpp-keystone.org/preview/feature/battery-field-requirements/spec/validation/v3/json-schema/sector/battery.schema.json",
   "title": "DPP for Batteries (Draft)",
   "description": "DEPRECATED: This generic schema has been replaced by category-specific schemas (battery-ev.schema.json, battery-lmv.schema.json, battery-industrial.schema.json) to comply with the updated EC requirements.",
   "deprecated": true,

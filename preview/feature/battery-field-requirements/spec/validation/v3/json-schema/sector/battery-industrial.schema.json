@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-industrial.schema.json",
+  "$id": "https://dpp-keystone.org/preview/feature/battery-field-requirements/spec/validation/v3/json-schema/sector/battery-industrial.schema.json",
   "title": "DPP for Batteries - INDUSTRIAL (Draft)",
   "description": "A conditional schema that applies if the DPP is for the INDUSTRIAL battery sector.",
   "if": {
@@ -9,7 +9,7 @@
       "contentSpecificationIds": {
         "type": "array",
         "contains": {
-          "const": "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-industrial.schema.json"
+          "const": "urn:dpp-keystone:v3:sector:battery-industrial"
         }
       }
     },

@@ -1,8 +1,8 @@
 {
-  "@context": "https://dpp-keystone.org/spec/contexts/v3/dpp-battery.context.jsonld",
+  "@context": "https://dpp-keystone.org/preview/feature/battery-field-requirements/spec/contexts/v3/dpp-battery.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
   "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
-  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/battery-dpp-v1.html",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/preview/feature/battery-field-requirements/spec/examples/html/battery-dpp-v1.html",
   "granularity": "Item",
   "dppSchemaVersion": "v2.0",
   "dppStatus": "Active",
@@ -10,7 +10,7 @@
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
   "contentSpecificationIds": [
-    "https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json"
+    "urn:dpp-keystone:v3:sector:battery-ev"
   ],
   "productName": "Keystone EV LFP Module Gen2",
   "image": [
