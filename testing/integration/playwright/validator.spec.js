@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, getSectorSpecId } from '../../../src/lib/keystone-version.js';
 
 test.describe('DPP Validator', () => {
   test.beforeEach(async ({ page }) => {
@@ -123,7 +123,7 @@ test.describe('DPP Validator', () => {
       "digitalProductPassportId": "urn:uuid:12345678-1234-1234-1234-123456789012",
       "dppStatus": "Active",
       "manufacturer": { "organizationName": "Org" },
-      "contentSpecificationIds": ["https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json"],
+      "contentSpecificationIds": [getSectorSpecId('battery-ev')],
       // Missing battery fields like batteryType, ratedCapacity, etc.
       "batteryType": "Li-ion" // Provide one valid one
     };

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { CONTEXT_URL_TO_LOCAL_PATH_MAP, fillRequiredFields } from '../../scripts/test-helpers.mjs';
+import { getSectorSpecId } from '../../../src/lib/keystone-version.js';
 import fs from 'fs';
 
 test.beforeEach(async ({ page }) => {
@@ -771,7 +772,7 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
   
   // 6. Assert that contentSpecificationIds are correctly set
     expect(dpp.contentSpecificationIds).toEqual(expect.arrayContaining([
-      'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json',
+      getSectorSpecId('battery-ev'),
       'draft_electronics_specification_id'
     ]));
 });

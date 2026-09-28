@@ -12,7 +12,7 @@ To avoid complex conditional logic within a single JSON schema, we are splitting
     *   `battery-industrial.schema.json`
 *   **Details:**
     *   Use the properties from the original `battery.schema.json` as a base.
-    *   Assign each schema a unique `contentSpecificationId` (e.g., `https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-ev.schema.json`).
+    *   Assign each schema a unique `contentSpecificationId` (e.g., `urn:dpp-keystone:{{VERSION}}:sector:battery-ev`).
     *   Map the `required` fields for each schema strictly according to the EC requirements document (`docs/sensitive/battery-ec-requirements.md`).
     *   Explicitly forbid or omit fields marked as "Not to be filled/displayed" for that specific category (e.g., carbon footprint data, or SOCE for non-EV batteries).
 

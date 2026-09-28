@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, getSectorSpecId } from '../../src/lib/keystone-version.js';
 import { PROJECT_ROOT } from '../scripts/shacl-helpers.mjs';
 import { validateDpp } from '../../src/util/js/common/validation/schema-validator.js';
 
@@ -122,7 +122,7 @@ describe('DPP JSON Schema Validation', () => {
         });
     };
 
-    createBatteryTests('battery-dpp-v1.json', `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/json-schema/sector/battery-ev.schema.json`);
-    createBatteryTests('battery-lmv-dpp-v1.json', `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/json-schema/sector/battery-lmv.schema.json`);
-    createBatteryTests('battery-industrial-dpp-v1.json', `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/json-schema/sector/battery-industrial.schema.json`);
+    createBatteryTests('battery-dpp-v1.json', getSectorSpecId('battery-ev'));
+    createBatteryTests('battery-lmv-dpp-v1.json', getSectorSpecId('battery-lmv'));
+    createBatteryTests('battery-industrial-dpp-v1.json', getSectorSpecId('battery-industrial'));
 });

@@ -10,7 +10,7 @@
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
   "contentSpecificationIds": [
-    "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-lmv.schema.json"
+    "urn:dpp-keystone:{{VERSION}}:sector:battery-lmv"
   ],
   "productName": "Keystone LMV LFP Module Gen2",
   "image": [

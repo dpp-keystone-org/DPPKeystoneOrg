@@ -6,7 +6,8 @@ import {
     normalizeSpecUrl,
     specUrlToRelativePath,
     specUrlToPreviewUrl,
-    rewriteSpecFileUrls
+    rewriteSpecFileUrls,
+    getSectorSpecId
 } from '../../../src/lib/keystone-version.js';
 
 describe('keystone-version helpers', () => {
@@ -133,4 +134,19 @@ describe('keystone-version helpers', () => {
             expect(result.dppk).toBe(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`);
         });
     });
+
+    describe('getSectorSpecId', () => {
+        it('formats a sector name into a Keystone URN with default version', () => {
+            expect(getSectorSpecId('battery-ev')).toBe(`urn:dpp-keystone:${KEYSTONE_VERSION}:sector:battery-ev`);
+        });
+
+        it('strips optional sector/ prefix and .schema.json suffix', () => {
+            expect(getSectorSpecId('sector/battery-lmv.schema.json')).toBe(`urn:dpp-keystone:${KEYSTONE_VERSION}:sector:battery-lmv`);
+        });
+
+        it('accepts an explicit version override', () => {
+            expect(getSectorSpecId('battery-industrial', 'v4')).toBe('urn:dpp-keystone:v4:sector:battery-industrial');
+        });
+    });
 });
+
