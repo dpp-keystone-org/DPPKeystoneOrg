@@ -53,13 +53,13 @@ To avoid complex conditional logic within a single JSON schema, we are splitting
     *   [DONE] Iterate on any newly broken tests.
 
 ## Step 7: Audit mappings for completeness and accuracy
-*   **Task:** [PENDING] Review and fix the mappings table that was implemented for this project based on docs/sensitive/battery-ec-requirements.md
+*   **Task:** [DONE] Review and fix the mappings table that was implemented for this project based on docs/sensitive/battery-ec-requirements.md
 *   **Details:** 
     *   [DONE] Compare the schemas for the different battery categories to the EC mappings and ensure that the implementation is truly complete and that all fields required by the EC requirements are required in the schemas.
     *   [DONE] Fix any mismatches but first discuss what was found with the user and brainstorm if the rest of this Step 7 needs to be updated.
     *   [DONE] create failing playwright test case every for every single battery category which tests for the string "[undefined]" which should not appear on the page for any category but currently does.
     *   [DONE] Update Examples to reflect schema changes.
-    *   [PENDING] Add every single missing term as a subtask exactly below this line for us to either
+    *   [DONE] Add every single missing term as a subtask exactly below this line for us to either
     reuse an existing battery ontology field that was already mapped in the legacy schema or to create a
     new one.
     *   [DONE] Re-enable `materialComposition` as a required Component array in the EV, LMV, and Industrial schemas.
@@ -69,5 +69,4 @@ To avoid complex conditional logic within a single JSON schema, we are splitting
     *   [DONE] update the context mapping for battery to ensure it covers all schema fields and all new terms
     terms.
     *   [DONE] ensure that any new terms are skos mapped to any existing applicable ontologies.
-    *   [PENDING] retest and iterate on any newly broken tests.
-    
+    *   [DONE] retest and iterate on any newly broken tests.
