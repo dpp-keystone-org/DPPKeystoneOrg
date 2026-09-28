@@ -5,7 +5,7 @@
       "dppk": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#",
       "dppk-cement-dopc": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/cement-dopc#",
       "dppk-signature": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms/signature#",
-      "dopc": {
+      "cementDopc": {
         "@id": "dppk-cement-dopc:CementDoPC",
         "@context": {
           "declarationCode": "dppk-cement-dopc:declarationCode",

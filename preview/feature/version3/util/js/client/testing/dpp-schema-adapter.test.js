@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
-import { transformDpp } from '../dpp-schema-adapter.js?v=1790322636527';
-import { KEYSTONE_VERSION } from '../../../../lib/keystone-version.js?v=1790322636527';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1790601531147';
+import { KEYSTONE_VERSION } from '../../../../lib/keystone-version.js?v=1790601531147';
 
 describe('Client Adapter Loader Integration', () => {
     

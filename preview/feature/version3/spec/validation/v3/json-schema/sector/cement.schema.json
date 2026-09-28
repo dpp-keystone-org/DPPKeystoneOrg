@@ -343,7 +343,7 @@
         "type": "number",
         "description": "Maximum Chloride Content"
       },
-      "dopc": {
+      "cementDopc": {
         "$ref": "cement/dopc.schema.json"
       },
       "epd": {
