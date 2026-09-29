@@ -145,6 +145,11 @@
           "datatype": "xsd:integer"
         },
         {
+          "path": "https://dpp-keystone.org/spec/v3/terms#textileCarbonFootprintClass",
+          "message": "Auto-generated rule for dppk:textileCarbonFootprintClass",
+          "datatype": "xsd:integer"
+        },
+        {
           "path": "https://dpp-keystone.org/spec/v3/terms#environmentalFootprint",
           "message": "Auto-generated rule for dppk:environmentalFootprint",
           "datatype": "xsd:double"
@@ -264,25 +269,6 @@
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#productionSteps",
-          "message": "Auto-generated rule for dppk:productionSteps",
-          "or": {
-            "@list": [
-              {
-                "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ProductionStepShape"
-                },
-                "nodeKind": {
-                  "@id": "sh:BlankNodeOrIRI"
-                }
-              },
-              {
-                "datatype": "dppk:ProductionStep"
-              }
-            ]
-          }
-        },
-        {
           "path": "https://dpp-keystone.org/spec/v3/terms#textileCareInstructions",
           "message": "Auto-generated rule for dppk:textileCareInstructions",
           "or": {
@@ -395,23 +381,6 @@
               }
             ]
           }
-        }
-      ]
-    },
-    {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ProductionStepShape",
-      "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#ProductionStep",
-      "property": [
-        {
-          "path": "https://dpp-keystone.org/spec/v3/terms#productionStepType",
-          "message": "Auto-generated rule for dppk:productionStepType",
-          "datatype": "xsd:string"
-        },
-        {
-          "path": "https://dpp-keystone.org/spec/v3/terms#productionLocationCountry",
-          "message": "Auto-generated rule for dppk:productionLocationCountry",
-          "datatype": "xsd:string"
         }
       ]
     }

@@ -170,6 +170,11 @@
           "path": "https://dpp-keystone.org/spec/v3/terms#apparelSizeSystem",
           "message": "Auto-generated rule for dppk:apparelSizeSystem",
           "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms#manufacturingDate",
+          "message": "Auto-generated rule for dppk:manufacturingDate",
+          "datatype": "xsd:date"
         }
       ]
     },

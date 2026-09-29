@@ -40,11 +40,6 @@
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#manufacturingDate",
-          "message": "Auto-generated rule for dppk:manufacturingDate",
-          "datatype": "xsd:date"
-        },
-        {
           "path": "https://dpp-keystone.org/spec/v3/terms#castNumber",
           "message": "Auto-generated rule for dppk:castNumber",
           "datatype": "xsd:string"
@@ -78,11 +73,6 @@
           "path": "https://dpp-keystone.org/spec/v3/terms#meltAndPourCountry",
           "message": "Auto-generated rule for dppk:meltAndPourCountry",
           "datatype": "xsd:string"
-        },
-        {
-          "path": "https://dpp-keystone.org/spec/v3/terms#recycledContentPercentage",
-          "message": "Auto-generated rule for dppk:recycledContentPercentage",
-          "datatype": "xsd:double"
         },
         {
           "path": "https://dpp-keystone.org/spec/v3/terms#preConsumerRecycledContent",

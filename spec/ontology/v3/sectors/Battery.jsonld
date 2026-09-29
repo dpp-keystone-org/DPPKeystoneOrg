@@ -2335,223 +2335,6 @@
       }
     },
     {
-      "@id": "dppk:manufacturingDate",
-      "@type": "owl:DatatypeProperty",
-      "dppk:governedBy": "DIN DKE SPEC 99100",
-      "dcterms:source": {
-        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
-        "rdfs:label": "Source: ESPR - Annex XIII (1a)"
-      },
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "Manufacturing date"
-        },
-        {
-          "@language": "bg",
-          "@value": "Дата на производство"
-        },
-        {
-          "@language": "cs",
-          "@value": "Datum výroby"
-        },
-        {
-          "@language": "da",
-          "@value": "Fremstillingsdato"
-        },
-        {
-          "@language": "de",
-          "@value": "Herstellungsdatum"
-        },
-        {
-          "@language": "el",
-          "@value": "Ημερομηνία κατασκευής"
-        },
-        {
-          "@language": "es",
-          "@value": "Fecha de fabricación"
-        },
-        {
-          "@language": "et",
-          "@value": "Tootmiskuupäev"
-        },
-        {
-          "@language": "fi",
-          "@value": "Valmistuspäivämäärä"
-        },
-        {
-          "@language": "fr",
-          "@value": "Date de fabrication"
-        },
-        {
-          "@language": "ga",
-          "@value": "Dáta monaraithe"
-        },
-        {
-          "@language": "hr",
-          "@value": "Datum proizvodnje"
-        },
-        {
-          "@language": "hu",
-          "@value": "Gyártás dátuma"
-        },
-        {
-          "@language": "it",
-          "@value": "Data di fabbricazione"
-        },
-        {
-          "@language": "lt",
-          "@value": "Pagaminimo data"
-        },
-        {
-          "@language": "lv",
-          "@value": "Ražošanas datums"
-        },
-        {
-          "@language": "mt",
-          "@value": "Data tal-manifattura"
-        },
-        {
-          "@language": "nl",
-          "@value": "Productiedatum"
-        },
-        {
-          "@language": "pl",
-          "@value": "Data produkcji"
-        },
-        {
-          "@language": "pt",
-          "@value": "Data de fabrico"
-        },
-        {
-          "@language": "ro",
-          "@value": "Data fabricației"
-        },
-        {
-          "@language": "sk",
-          "@value": "Dátum výroby"
-        },
-        {
-          "@language": "sl",
-          "@value": "Datum izdelave"
-        },
-        {
-          "@language": "sv",
-          "@value": "Tillverkningsdatum"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "A battery passport must include the date of manufacture (month and year). The manufacturing date must also be provided on the battery label. Format YYYY-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "bg",
-          "@value": "Паспортът на батерията трябва да включва датата на производство (месец и година). Датата на производство трябва да бъде посочена и на етикета на батерията. Формат ГГГГ-ММ-ДД (ISO 8601)."
-        },
-        {
-          "@language": "cs",
-          "@value": "Pasy baterie musí obsahovat datum výroby (měsíc a rok). Datum výroby musí být také uvedeno na štítku baterie. Formát RRRR-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "da",
-          "@value": "Et batteripas skal indeholde fremstillingsdatoen (måned og år). Fremstillingsdatoen skal også være angivet på batterietiketten. Format ÅÅÅÅ-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "de",
-          "@value": "Ein Batteriepass muss das Herstellungsdatum (Monat und Jahr) enthalten. Das Herstellungsdatum muss auch auf dem Batterieetikett angegeben werden. Format JJJJ-MM-TT (ISO 8601)."
-        },
-        {
-          "@language": "el",
-          "@value": "Ένα διαβατήριο μπαταρίας πρέπει να περιλαμβάνει την ημερομηνία κατασκευής (μήνας και έτος). Η ημερομηνία κατασκευής πρέπει επίσης να αναγράφεται στην ετικέτα της μπαταρίας. Μορφή ΕΕΕΕ-ΜΜ-ΗΗ (ISO 8601)."
-        },
-        {
-          "@language": "es",
-          "@value": "El pasaporte de una batería debe incluir la fecha de fabricación (mes y año). La fecha de fabricación también debe figurar en la etiqueta de la batería. Formato AAAA-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "et",
-          "@value": "Aku pass peab sisaldama valmistamise kuupäeva (kuu ja aasta). Valmistamiskuupäev peab olema märgitud ka aku etiketil. Vorming AAAA-KK-PP (ISO 8601)."
-        },
-        {
-          "@language": "fi",
-          "@value": "Akkupassiin on sisällyttävä valmistuspäivämäärä (kuukausi ja vuosi). Valmistuspäivämäärä on ilmoitettava myös akun etiketissä. Muoto VVVV-KK-PP (ISO 8601)."
-        },
-        {
-          "@language": "fr",
-          "@value": "Un passeport de batterie doit inclure la date de fabrication (mois et année). La date de fabrication doit également être indiquée sur l'étiquette de la batterie. Format AAAA-MM-JJ (ISO 8601)."
-        },
-        {
-          "@language": "ga",
-          "@value": "Ní mór dáta monaraithe (mí agus bliain) a bheith ar phas ceallraí. Ní mór an dáta monaraithe a chur ar fáil ar lipéad na ceallraí freisin. Formáid BBBB-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "hr",
-          "@value": "Putovnica baterije mora sadržavati datum proizvodnje (mjesec i godina). Datum proizvodnje također mora biti naveden na naljepnici baterije. Format GGGG-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "hu",
-          "@value": "Az akkumulátor-útlevélnek tartalmaznia kell a gyártás dátumát (hónap és év). A gyártás dátumát az akkumulátor címkéjén is fel kell tüntetni. Formátum ÉÉÉÉ-HH-NN (ISO 8601)."
-        },
-        {
-          "@language": "it",
-          "@value": "Un passaporto della batteria deve includere la data di fabbricazione (mese e anno). La data di fabbricazione deve essere riportata anche sull'etichetta della batteria. Formato AAAA-MM-GG (ISO 8601)."
-        },
-        {
-          "@language": "lt",
-          "@value": "Baterijos pase turi būti nurodyta pagaminimo data (mėnuo ir metai). Pagaminimo data taip pat turi būti nurodyta ant baterijos etiketės. Formatas YYYY-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "lv",
-          "@value": "Baterijas pasē jānorāda izgatavošanas datums (mēnesis un gads). Izgatavošanas datums jānorāda arī uz baterijas etiķetes. Formāts GGGG-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "mt",
-          "@value": "Passaport tal-batterija għandu jinkludi d-data tal-manifattura (xahar u sena). Id-data tal-manifattura għandha tiġi pprovduta wkoll fuq it-tikketta tal-batterija. Format SSSS-XX-JJ (ISO 8601)."
-        },
-        {
-          "@language": "nl",
-          "@value": "Een batterijpaspoort moet de productiedatum (maand en jaar) bevatten. De productiedatum moet ook op het batterijlabel worden vermeld. Formaat JJJJ-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "pl",
-          "@value": "Paszport baterii musi zawierać datę produkcji (miesiąc i rok). Data produkcji musi być również podana na etykiecie baterii. Format RRRR-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "pt",
-          "@value": "Um passaporte de bateria deve incluir a data de fabrico (mês e ano). A data de fabrico também deve ser fornecida na etiqueta da bateria. Formato AAAA-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "ro",
-          "@value": "Un pașaport de baterie trebuie să includă data fabricației (luna și anul). Data fabricației trebuie, de asemenea, să fie furnizată pe eticheta bateriei. Format AAAA-LL-ZZ (ISO 8601)."
-        },
-        {
-          "@language": "sk",
-          "@value": "Cestovný pas batérie musí obsahovať dátum výroby (mesiac a rok). Dátum výroby musí byť uvedený aj na štítku batérie. Formát RRRR-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "sl",
-          "@value": "Potni list za baterijo mora vsebovati datum izdelave (mesec in leto). Datum izdelave mora biti naveden tudi na nalepki baterije. Oblika LLLL-MM-DD (ISO 8601)."
-        },
-        {
-          "@language": "sv",
-          "@value": "Ett batteripass måste innehålla tillverkningsdatum (månad och år). Tillverkningsdatumet måste också anges på batterietiketten. Format ÅÅÅÅ-MM-DD (ISO 8601)."
-        }
-      ],
-      "rdfs:domain": {
-        "@id": "dppk:BatteryProduct"
-      },
-      "rdfs:range": "xsd:date",
-      "skos:exactMatch": [
-        {
-          "@id": "schema:productionDate"
-        },
-        {
-          "@id": "gs1:productionDate"
-        }
-      ]
-    },
-    {
       "@id": "dppk:serviceDate",
       "@type": "owl:DatatypeProperty",
       "dppk:governedBy": "DIN DKE SPEC 99100",
@@ -4941,6 +4724,224 @@
     },
     {
       "@id": "dppk:carbonFootprintClass",
+      "@type": "owl:DatatypeProperty",
+      "owl:deprecated": true,
+      "dppk:governedBy": "DIN DKE SPEC 99100",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": "Source: ESPR - Annex XIII (1c); Art. 7(2)"
+      },
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Carbon footprint performance class"
+        },
+        {
+          "@language": "bg",
+          "@value": "Клас на ефективност по отношение на въглеродния отпечатък"
+        },
+        {
+          "@language": "cs",
+          "@value": "Třída výkonu uhlíkové stopy"
+        },
+        {
+          "@language": "da",
+          "@value": "Ydeevneklasse for CO2-fodaftryk"
+        },
+        {
+          "@language": "de",
+          "@value": "Leistungsklasse für den CO2-Fußabdruck"
+        },
+        {
+          "@language": "el",
+          "@value": "Κατηγορία απόδοσης αποτυπώματος άνθρακα"
+        },
+        {
+          "@language": "es",
+          "@value": "Clase de rendimiento de la huella de carbono"
+        },
+        {
+          "@language": "et",
+          "@value": "Süsinikujalajälje tulemuslikkuse klass"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiilijalanjäljen suorituskykyluokka"
+        },
+        {
+          "@language": "fr",
+          "@value": "Classe de performance de l'empreinte carbone"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicme feidhmíochta lorg carbóin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Klasa učinkovitosti ugljičnog otiska"
+        },
+        {
+          "@language": "hu",
+          "@value": "Szénlábnyom-teljesítményosztály"
+        },
+        {
+          "@language": "it",
+          "@value": "Classe di prestazione dell'impronta di carbonio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Anglies pėdsako efektyvumo klasė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Oglekļa pēdas veiktspējas klase"
+        },
+        {
+          "@language": "mt",
+          "@value": "Klassi tal-prestazzjoni tal-marka tal-karbonju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Prestatieklasse koolstofvoetafdruk"
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasa efektywności śladu węglowego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Classe de desempenho da pegada de carbono"
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasa de performanță a amprentei de carbon"
+        },
+        {
+          "@language": "sk",
+          "@value": "Trieda environmentálnej výkonnosti uhlíkovej stopy"
+        },
+        {
+          "@language": "sl",
+          "@value": "Razred učinkovitosti ogljičnega odtisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Prestandaklass för koldioxidavtryck"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Deprecated: Use dppk:batteryCarbonFootprintClass for battery products. The battery passport must include the carbon footprint performance class in accordance with the delegated and implementing acts."
+        },
+        {
+          "@language": "bg",
+          "@value": "Паспортът на батерията трябва да включва класа на ефективност по отношение на въглеродния отпечатък в съответствие с делегираните актове и актовете за изпълнение."
+        },
+        {
+          "@language": "cs",
+          "@value": "Pasy baterie musí obsahovat třídu výkonnosti uhlíkové stopy v souladu s akty v přenesené pravomoci a prováděcími akty."
+        },
+        {
+          "@language": "da",
+          "@value": "Batteripasset skal indeholde ydeevneklassen for CO2-fodaftryk i overensstemmelse med de delegerede retsakter og gennemførelsesretsakter."
+        },
+        {
+          "@language": "de",
+          "@value": "Der Batteriepass muss die Leistungsklasse für den CO2-Fußabdruck in Übereinstimmung mit den delegierten Rechtsakten und Durchführungsrechtsakten enthalten."
+        },
+        {
+          "@language": "el",
+          "@value": "Το διαβατήριο της μπαταρίας πρέπει να περιλαμβάνει την κατηγορία απόδοσης αποτυπώματος άνθρακα σύμφωνα με τις κατ' εξουσιοδότηση και εκτελεστικές πράξεις."
+        },
+        {
+          "@language": "es",
+          "@value": "El pasaporte de la batería debe incluir la clase de rendimiento de la huella de carbono de conformidad con los actos delegados y de ejecución."
+        },
+        {
+          "@language": "et",
+          "@value": "Aku pass peab sisaldama süsinikujalajälje tulemuslikkuse klassi vastavalt delegeeritud ja rakendusaktidele."
+        },
+        {
+          "@language": "fi",
+          "@value": "Akkupassiin on sisällyttävä hiilijalanjäljen suorituskykyluokka delegoitujen säädösten ja täytäntöönpanosäädösten mukaisesti."
+        },
+        {
+          "@language": "fr",
+          "@value": "Le passeport de la batterie doit inclure la classe de performance de l'empreinte carbone conformément aux actes délégués et d'exécution."
+        },
+        {
+          "@language": "ga",
+          "@value": "Ní mór an aicme feidhmíochta lorg carbóin a bheith ar phas na ceallraí i gcomhréir leis na gníomhartha tarmligthe agus cur chun feidhme."
+        },
+        {
+          "@language": "hr",
+          "@value": "Putovnica baterije mora sadržavati klasu učinkovitosti ugljičnog otiska u skladu s delegiranim i provedbenim aktima."
+        },
+        {
+          "@language": "hu",
+          "@value": "Az akkumulátor-útlevélnek tartalmaznia kell a szénlábnyom-teljesítményosztályt a felhatalmazáson alapuló és a végrehajtási jogi aktusokkal összhangban."
+        },
+        {
+          "@language": "it",
+          "@value": "Il passaporto della batteria deve includere la classe di prestazione dell'impronta di carbonio conformemente agli atti delegati e di esecuzione."
+        },
+        {
+          "@language": "lt",
+          "@value": "Baterijos pase turi būti nurodyta anglies pėdsako efektyvumo klasė pagal deleguotuosius ir įgyvendinimo aktus."
+        },
+        {
+          "@language": "lv",
+          "@value": "Baterijas pasē jāiekļauj oglekļa pēdas veiktspējas klase saskaņā ar deleģētajiem un īstenošanas aktiem."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-passaport tal-batterija għandu jinkludi l-klassi tal-prestazzjoni tal-marka tal-karbonju skont l-atti delegati u ta' implimentazzjoni."
+        },
+        {
+          "@language": "nl",
+          "@value": "Het batterijpaspoort moet de prestatieklasse van de koolstofvoetafdruk bevatten in overeenstemming met de gedelegeerde en uitvoeringshandelingen."
+        },
+        {
+          "@language": "pl",
+          "@value": "Paszport baterii musi zawierać klasę efektywności śladu węglowego zgodnie z aktami delegowanymi i wykonawczymi."
+        },
+        {
+          "@language": "pt",
+          "@value": "O passaporte da bateria deve incluir a classe de desempenho da pegada de carbono, em conformidade com os atos delegados e de execução."
+        },
+        {
+          "@language": "ro",
+          "@value": "Pașaportul bateriei trebuie să includă clasa de performanță a amprentei de carbon în conformitate cu actele delegate și de punere în aplicare."
+        },
+        {
+          "@language": "sk",
+          "@value": "Cestovný pas batérie musí obsahovať triedu environmentálnej výkonnosti uhlíkovej stopy v súlade s delegovanými a vykonávacími aktmi."
+        },
+        {
+          "@language": "sl",
+          "@value": "Potni list za baterijo mora vsebovati razred učinkovitosti ogljičnega odtisa v skladu z delegiranimi in izvedbenimi akti."
+        },
+        {
+          "@language": "sv",
+          "@value": "Batteripasset ska innehålla prestandaklassen för koldioxidavtryck i enlighet med de delegerade akterna och genomförandeakterna."
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "dppk:BatteryProduct"
+      },
+      "rdfs:range": "xsd:string",
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:batteryCarbonFootprintClass",
       "@type": "owl:DatatypeProperty",
       "dppk:governedBy": "DIN DKE SPEC 99100",
       "dcterms:source": {
