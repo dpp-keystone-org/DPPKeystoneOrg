@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { CONTEXT_URL_TO_LOCAL_PATH_MAP, fillRequiredFields } from '../../scripts/test-helpers.mjs';
+import { getSectorSpecId } from '../../../src/lib/keystone-version.js';
 import fs from 'fs';
 
 test.beforeEach(async ({ page }) => {
@@ -84,7 +85,7 @@ test('wizard UI should be themed by keystone-style.css', async ({ page }) => {
   expect(box.width).toBeGreaterThan(800);
 });
 
-const sectors = ['battery', 'construction', 'electronics', 'iron-steel', 'textile'];
+const sectors = ['battery-ev', 'battery-lmv', 'battery-industrial', 'construction', 'electronics', 'iron-steel', 'textile'];
 
 for (const sector of sectors) {
   test(`loads ${sector} sector form`, async ({ page }) => {
@@ -111,42 +112,38 @@ for (const sector of sectors) {
     expect(await gridRows.count()).toBeGreaterThan(0);
 
     // Add sector-specific assertions to ensure the correct form is loaded
-    switch (sector) {
-      case 'battery':
+    if (sector.startsWith('battery')) {
         await expect(page.locator('input[name="batteryCategory"]')).toBeVisible();
-
-        // performance and capacity are optional objects, so we need to add them first
-        await page.locator('button[data-optional-object="performance"]').click();
-        await page.locator('button[data-optional-object="capacity"]').click();
 
         // Assert that the nominalVoltage field does not have '[object]' as its value
         const nominalVoltageInput = page.locator('input[name="performance.capacity.voltageNominal"]');
         await expect(nominalVoltageInput).toBeVisible();
         await expect(nominalVoltageInput).not.toHaveValue('[object]');
 
-        // Test array of objects functionality for 'materialComposition'
-        const addButton = page.locator('button[data-array-name="materialComposition"]');
+        // Test array of objects functionality for 'hazardousSubstances'
+        const addButton = page.locator('button[data-array-name="hazardousSubstances"]');
         await expect(addButton).toBeVisible();
 
         // Add the first item
         await addButton.click();
-        await expect(page.locator('input[name="materialComposition.0.percentage"]')).toBeVisible();
+        await expect(page.locator('input[name="hazardousSubstances.0.name"]')).toBeVisible();
 
         // Add a second item
         await addButton.click();
-        await expect(page.locator('input[name="materialComposition.1.percentage"]')).toBeVisible();
+        await expect(page.locator('input[name="hazardousSubstances.1.name"]')).toBeVisible();
 
         // Remove the first item
-        const controlRow = page.locator('.array-item-control-row[data-array-group="materialComposition.0"]');
+        const controlRow = page.locator('.array-item-control-row[data-array-group="hazardousSubstances.0"]');
         const removeButton = controlRow.locator('button:text-is("Remove")');
         await removeButton.click();
         
         // Assert the first item is gone and the second is re-indexed
-        await expect(page.locator('input[name="materialComposition.0.percentage"]')).toBeVisible();
-        await expect(page.locator('input[name="materialComposition.1.percentage"]')).not.toBeVisible();
-        break;
-      case 'construction':
-        await expect(page.locator('input[name="harmonisedStandardReference"]')).toBeVisible();
+        await expect(page.locator('input[name="hazardousSubstances.0.name"]')).toBeVisible();
+        await expect(page.locator('input[name="hazardousSubstances.1.name"]')).not.toBeVisible();
+    } else {
+      switch (sector) {
+        case 'construction':
+          await expect(page.locator('input[name="harmonisedStandardReference"]')).toBeVisible();
         // Check for a known-good nested field inside an optional object
         await page.locator('button[data-optional-object="notifiedBody"]').click();
         await page.locator('button[data-optional-object="address"]').click();
@@ -265,9 +262,28 @@ for (const sector of sectors) {
         await expect(page.locator('input[name="careInstructions.url"]')).toBeVisible();
         break;
     }
+    }
   });
 }
 
+const batterySectors = ['battery-ev', 'battery-lmv', 'battery-industrial'];
+for (const sector of batterySectors) {
+  test(`should not contain the string "[undefined]" on the page for ${sector}`, async ({ page }) => {
+    await page.goto('/wizard/index.html');
+    const addSectorBtn = page.locator(`button[data-sector="${sector}"]`);
+    await addSectorBtn.click();
+
+    // Wait for the form to load
+    const sectorFormContainer = page.locator(`#sector-form-${sector}`);
+    await expect(sectorFormContainer).not.toBeEmpty({ timeout: 10000 });
+    
+    // Give it a moment to render any dynamic labels
+    await page.waitForTimeout(500);
+
+    const bodyText = await page.locator('body').textContent();
+    expect(bodyText).not.toContain('[undefined]');
+  });
+}
 
 for (const sector of sectors) {
   test(`audit ontology labels for ${sector} sector`, async ({ page }) => {
@@ -307,11 +323,48 @@ for (const sector of sectors) {
   });
 }
 
+test('all three new battery sectors (EV, LMV, Industrial) work correctly in the wizard', async ({ page }) => {
+  await page.goto('/wizard/index.html');
+
+  // Verify EV button and form
+  const evBtn = page.locator('button[data-sector="battery-ev"]');
+  await expect(evBtn).toBeVisible();
+  await expect(evBtn).toHaveText('Add Battery (EV)');
+  await evBtn.click();
+  await expect(page.locator('#sector-form-battery-ev')).toBeVisible();
+  await expect(page.locator('#sector-form-battery-ev')).toContainText('batteryCategory');
+
+  // Verify LMV button and form
+  const lmvBtn = page.locator('button[data-sector="battery-lmv"]');
+  await expect(lmvBtn).toBeVisible();
+  await expect(lmvBtn).toHaveText('Add Battery (LMV)');
+  await lmvBtn.click();
+  await expect(page.locator('#sector-form-battery-lmv')).toBeVisible();
+  await expect(page.locator('#sector-form-battery-lmv')).toContainText('batteryCategory');
+
+  // Verify Industrial button and form
+  const indBtn = page.locator('button[data-sector="battery-industrial"]');
+  await expect(indBtn).toBeVisible();
+  await expect(indBtn).toHaveText('Add Battery (Industrial)');
+  await indBtn.click();
+  await expect(page.locator('#sector-form-battery-industrial')).toBeVisible();
+  await expect(page.locator('#sector-form-battery-industrial')).toContainText('batteryCategory');
+
+  // Remove them
+  await evBtn.click();
+  await lmvBtn.click();
+  await indBtn.click();
+  
+  await expect(page.locator('#sector-form-battery-ev')).not.toBeAttached();
+  await expect(page.locator('#sector-form-battery-lmv')).not.toBeAttached();
+  await expect(page.locator('#sector-form-battery-industrial')).not.toBeAttached();
+});
+
 test('should allow adding and removing sector forms', async ({ page }) => {
       await page.goto('/wizard/index.html');
 
-  const addBatteryBtn = page.locator('button[data-sector="battery"]');
-  const batteryFormContainer = page.locator('#sector-form-battery');
+  const addBatteryBtn = page.locator('button[data-sector="battery-ev"]');
+  const batteryFormContainer = page.locator('#sector-form-battery-ev');
 
   // 1. Add the battery sector form
   await addBatteryBtn.click();
@@ -320,7 +373,7 @@ test('should allow adding and removing sector forms', async ({ page }) => {
   await expect(batteryFormContainer).toBeVisible();
   
   // 3. Assert that the button has transformed into a "Remove" button
-  await expect(addBatteryBtn).toHaveText('Remove Battery');
+  await expect(addBatteryBtn).toHaveText('Remove Battery (EV)');
   await expect(addBatteryBtn).toHaveClass(/remove-btn-active/);
 
   // 4. Click the button again to remove the form
@@ -330,7 +383,7 @@ test('should allow adding and removing sector forms', async ({ page }) => {
   await expect(batteryFormContainer).not.toBeAttached();
 
   // 6. Assert that the button has reverted to an "Add" button
-  await expect(addBatteryBtn).toHaveText('Add Battery');
+  await expect(addBatteryBtn).toHaveText('Add Battery (EV)');
   await expect(addBatteryBtn).not.toHaveClass(/remove-btn-active/);
 });
 
@@ -395,16 +448,16 @@ test('should not duplicate error messages when array items are removed and re-in
 test('should manage multiple sector forms independently', async ({ page }) => {
       await page.goto('/wizard/index.html');
 
-  const addBatteryBtn = page.locator('button[data-sector="battery"]');
+  const addBatteryBtn = page.locator('button[data-sector="battery-ev"]');
   const addConstructionBtn = page.locator('button[data-sector="construction"]');
   
-  const batteryFormContainer = page.locator('#sector-form-battery');
+  const batteryFormContainer = page.locator('#sector-form-battery-ev');
   const constructionFormContainer = page.locator('#sector-form-construction');
 
   // 1. Add Battery sector
   await addBatteryBtn.click();
   await expect(batteryFormContainer).toBeVisible();
-  await expect(addBatteryBtn).toHaveText('Remove Battery');
+  await expect(addBatteryBtn).toHaveText('Remove Battery (EV)');
 
   // 2. Add Construction sector
   await addConstructionBtn.click();
@@ -421,13 +474,13 @@ test('should manage multiple sector forms independently', async ({ page }) => {
   // 5. Assert Battery is gone, but Construction remains
   await expect(batteryFormContainer).not.toBeAttached();
   await expect(constructionFormContainer).toBeVisible();
-  await expect(addBatteryBtn).toHaveText('Add Battery');
+  await expect(addBatteryBtn).toHaveText('Add Battery (EV)');
   await expect(addConstructionBtn).toHaveText('Remove Construction'); // Should still be a remove button
 
   // 6. Re-add Battery sector
   await addBatteryBtn.click();
   await expect(batteryFormContainer).toBeVisible();
-  await expect(addBatteryBtn).toHaveText('Remove Battery');
+  await expect(addBatteryBtn).toHaveText('Remove Battery (EV)');
 
   // 7. Final check: both forms are visible again
   await expect(batteryFormContainer).toBeVisible();
@@ -688,8 +741,8 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
       await page.goto('/wizard/index.html');
 
   // 3. Add Battery and Electronics sectors
-  await page.click('button[data-sector="battery"]');
-  await expect(page.locator('#sector-form-battery')).toBeVisible();
+  await page.click('button[data-sector="battery-ev"]');
+  await expect(page.locator('#sector-form-battery-ev')).toBeVisible();
   await page.click('button[data-sector="electronics"]');
   await expect(page.locator('#sector-form-electronics')).toBeVisible();
   
@@ -699,7 +752,7 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
 
   // 2. Use the helper to fill all required fields
   await fillRequiredFields(page, 'dpp');
-  await fillRequiredFields(page, 'battery');
+  await fillRequiredFields(page, 'battery-ev');
   await fillRequiredFields(page, 'electronics');
 
   // 3. Assert the form is valid and generate DPP.
@@ -719,7 +772,7 @@ test('should generate a DPP containing data from multiple sectors', async ({ pag
   
   // 6. Assert that contentSpecificationIds are correctly set
     expect(dpp.contentSpecificationIds).toEqual(expect.arrayContaining([
-      'draft_battery_specification_id',
+      getSectorSpecId('battery-ev'),
       'draft_electronics_specification_id'
     ]));
 });
@@ -813,38 +866,38 @@ test('should show an error for non-numeric text in a number field', async ({ pag
   await operatorInput.fill('https://example.com/operator/123');
   await operatorInput.blur();
 
-  // 2. Add battery sector to get a number field.
-  await page.locator('button[data-sector="battery"]').click();
+  // 2. Add electronics sector to get a number field.
+  await page.locator('button[data-sector="electronics"]').click();
   
   // Wait for the form to load
-  await expect(page.locator('#sector-form-battery')).toBeVisible();
+  await expect(page.locator('#sector-form-electronics')).toBeVisible();
 
-  // 3. Fill required Battery fields to isolate the number field (batteryMass).
-  const batteryCategoryInput = page.locator('input[name="batteryCategory"]');
-  await batteryCategoryInput.fill('Test Category');
-  await batteryCategoryInput.blur();
+  // 3. Fill required Electronics fields to isolate the number field (torque).
+  const maxSpeedInput = page.locator('input[name="maximumRatedSpeed"]');
+  await maxSpeedInput.fill('1000');
+  await maxSpeedInput.blur();
 
-  const batteryChemistryInput = page.locator('input[name="batteryChemistry"]');
-  await batteryChemistryInput.fill('LFP');
-  await batteryChemistryInput.blur();
+  const ratedPowerInput = page.locator('input[name="ratedPower"]');
+  await ratedPowerInput.fill('500');
+  await ratedPowerInput.blur();
 
-  const manufacturingDateInput = page.locator('input[name="manufacturingDate"]');
-  await manufacturingDateInput.fill('2025-01-01');
-  await manufacturingDateInput.blur();
+  const voltageInput = page.locator('input[name="voltage"]');
+  await voltageInput.fill('220');
+  await voltageInput.blur();
 
-  // batteryMass is required and is a number field.
-  const batteryMassInput = page.locator('input[name="batteryMass"]');
+  // torque is required and is a number field.
+  const torqueInput = page.locator('input[name="torque"]');
   
   // Verify it's required initially
-  await batteryMassInput.focus();
-  await batteryMassInput.blur();
+  await torqueInput.focus();
+  await torqueInput.blur();
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
-  await expect(page.locator('#batteryMass-error')).toHaveText('This field is required');
+  await expect(page.locator('#torque-error')).toHaveText('This field is required');
 
   // 4. Enter invalid number input (simulate typing invalid chars which browser might reject or accept depending on implementation)
   // We use the same technique as before to force text type for testing validation message
   await page.evaluate(() => {
-      const input = document.querySelector('input[name="batteryMass"]');
+      const input = document.querySelector('input[name="torque"]');
       if (input) {
           input.type = 'text';
           input.value = 'invalid number';
@@ -854,11 +907,11 @@ test('should show an error for non-numeric text in a number field', async ({ pag
 
   // 5. Verify specific validation error message
   await expect(showErrorsBtn).toContainText('Show Errors (1)');
-  await expect(page.locator('#batteryMass-error')).toHaveText('Must be a valid number');
+  await expect(page.locator('#torque-error')).toHaveText('Must be a valid number');
 
   // 6. Correct the input
-  await batteryMassInput.fill('100');
-  await batteryMassInput.blur();
+  await torqueInput.fill('100');
+  await torqueInput.blur();
 
   // 7. Verify form is valid
   await expect(showErrorsBtn).toBeHidden();
@@ -1051,20 +1104,22 @@ test.describe('Conditional Validation for Optional Objects', () => {
     const initialCoreErrorCount = 3;
 
     // 2. Add the battery sector.
-    await page.locator('button[data-sector="battery"]').click();
+    await page.locator('button[data-sector="battery-ev"]').click();
     
-    // 3. Wait for form and get new error count (3 from core + 4 from battery).
-    const errorCountAfterSectorAdd = initialCoreErrorCount + 4;
-    await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
+    // 3. Wait for form and get new error count.
+    await expect(showErrorsBtn).not.toContainText('Show Errors (3)');
+    await page.waitForTimeout(500);
+    const textAfterSector = await showErrorsBtn.textContent();
+    const errorCountAfterSectorAdd = parseInt(textAfterSector.match(/\((\d+)\)/)[1], 10);
 
-    // 4. Add an item to the 'materialComposition' array.
-    await page.locator('button[data-array-name="materialComposition"]').click();
+    // 4. Add an item to the 'hazardousSubstances' array.
+    await page.locator('button[data-array-name="hazardousSubstances"]').click();
 
-    // 5. Assert that the error count has increased by 1 (for 'materialComposition.0.name').
+    // 5. Assert that the error count has increased by 1 (for 'hazardousSubstances.0.name').
     await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd + 1})`);
 
     // 6. Now, remove the item and assert the count returns to the previous value.
-    await page.locator('.array-item-control-row[data-array-group="materialComposition.0"] button:text-is("Remove")').click();
+    await page.locator('.array-item-control-row[data-array-group="hazardousSubstances.0"] button:text-is("Remove")').click();
     await expect(showErrorsBtn).toContainText(`Show Errors (${errorCountAfterSectorAdd})`);
   });
 });
@@ -1195,8 +1250,8 @@ test.describe('DPP Wizard - Input Validation', () => {
       
       // 1. Add Battery sector explicitly.
       // We want to verify that collision detection works for active sectors added to the form.
-      await page.click('button[data-sector="battery"]');
-      await expect(page.locator('#sector-form-battery')).toBeVisible();
+      await page.click('button[data-sector="battery-ev"]');
+      await expect(page.locator('#sector-form-battery-ev')).toBeVisible();
 
       // 2. Add custom field
       await page.click('#add-voluntary-field-btn');
@@ -1210,7 +1265,7 @@ test.describe('DPP Wizard - Input Validation', () => {
       // 4. Test Sector collision
       await nameInput.fill('batteryCategory'); // Battery field
       await nameInput.blur();
-      await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Battery');
+      await expect(page.locator('.voluntary-field-row .error-message').first()).toHaveText('Field conflicts with Battery-ev');
   });
 
   test('should re-evaluate voluntary field validation dynamically when sectors are added or removed', async ({ page }) => {
@@ -1227,15 +1282,15 @@ test.describe('DPP Wizard - Input Validation', () => {
       await expect(errorMsg).not.toBeVisible();
 
       // 3. Add Battery sector explicitly and verify error appears
-      await page.click('button[data-sector="battery"]');
-      await expect(page.locator('#sector-form-battery')).toBeVisible();
+      await page.click('button[data-sector="battery-ev"]');
+      await expect(page.locator('#sector-form-battery-ev')).toBeVisible();
       await expect(errorMsg).toBeVisible();
-      await expect(errorMsg).toHaveText('Field conflicts with Battery');
+      await expect(errorMsg).toHaveText('Field conflicts with Battery-ev');
 
       // 4. Remove Battery sector and verify error disappears
       // The button data-sector attribute stays the same, it acts as a toggle
-      await page.click('button[data-sector="battery"]'); 
-      await expect(page.locator('#sector-form-battery')).not.toBeAttached();
+      await page.click('button[data-sector="battery-ev"]'); 
+      await expect(page.locator('#sector-form-battery-ev')).not.toBeAttached();
       await expect(errorMsg).not.toBeVisible();
   });
 

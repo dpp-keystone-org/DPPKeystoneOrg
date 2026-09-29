@@ -1,4 +1,5 @@
-import { KEYSTONE_VERSION } from './keystone-version.js';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from './keystone-version.js';
+import { SECTOR_ONTOLOGY_MAP, SECTOR_CONTEXT_MAP } from './sector-mappings.js';
 
 /**
  * Robustly extracts a single string value from an RDFS property, preferring English.
@@ -74,10 +75,8 @@ function parseLangTaggedProperty(property) {
  * @returns {string} The rewritten URL or the original if no match.
  */
 export function rewriteUrl(url) {
-    const PROD_PREFIX = 'https://dpp-keystone.org/spec/ontology/';
-    if (url.startsWith(PROD_PREFIX)) {
-        // Map to local relative path from wizard/index.html to ontology/ directory
-        return url.replace(PROD_PREFIX, '../spec/ontology/');
+    if (isSpecUrl(url)) {
+        return specUrlToRelativePath(url, '../spec/');
     }
     return url;
 }
@@ -229,12 +228,9 @@ export async function loadOntology(sector) {
     const loadedUrls = new Set();
     let initialUrl;
 
-    if (sector === 'dpp') {
-        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
-    } else if (sector === 'general-product') {
-        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/core/Product.jsonld`;
-    } else if (sector === 'packaging') {
-        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/core/Compliance.jsonld`;
+    const ontologyFile = SECTOR_ONTOLOGY_MAP[sector];
+    if (ontologyFile) {
+        initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/${ontologyFile}`;
     } else {
         const sectorPascalCase = sector.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
         initialUrl = `../spec/ontology/${KEYSTONE_VERSION}/sectors/${sectorPascalCase}.jsonld`;
@@ -271,16 +267,8 @@ export async function loadContext(sector) {
     const contextMap = new Map();
     const loadedUrls = new Set();
     
-    let initialUrl;
-    if (sector === 'dpp') {
-        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-core.context.jsonld`;
-    } else if (sector === 'general-product') {
-        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-general-product.context.jsonld`;
-    } else if (sector === 'packaging') {
-        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-packaging.context.jsonld`;
-    } else {
-        initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/dpp-${sector}.context.jsonld`;
-    }
+    const contextFile = SECTOR_CONTEXT_MAP[sector] || `dpp-${sector}.context.jsonld`;
+    let initialUrl = `../spec/contexts/${KEYSTONE_VERSION}/${contextFile}`;
 
     async function processContext(url) {
         if (loadedUrls.has(url)) return;
@@ -288,10 +276,7 @@ export async function loadContext(sector) {
 
         try {
             // Rewrite URL for local relative path
-            let fetchUrl = url;
-            if (url.startsWith('https://dpp-keystone.org/spec/contexts/')) {
-                fetchUrl = url.replace('https://dpp-keystone.org/spec/contexts/', '../spec/contexts/');
-            }
+            let fetchUrl = specUrlToRelativePath(url, '../spec/');
             
             // Handle {{VERSION}} replacement
             fetchUrl = fetchUrl.replace('{{VERSION}}', KEYSTONE_VERSION);

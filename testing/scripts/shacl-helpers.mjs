@@ -4,6 +4,7 @@ import jsonld from 'jsonld';
 import N3Parser from '@rdfjs/parser-n3';
 import datasetFactory from '@rdfjs/dataset';
 import { CONTEXT_URL_TO_LOCAL_PATH_MAP, PROJECT_ROOT } from './test-helpers.mjs';
+import { normalizeSpecUrl } from '../../src/lib/keystone-version.js';
 
 // Re-export for consumers of this module
 export { PROJECT_ROOT };
@@ -12,10 +13,15 @@ export const localFileDocumentLoader = async (url) => {
     // --- DIAGNOSTIC LOGGING ---
     // console.log(`[Document Loader] Intercepted request for URL: ${url}`);
 
-    if (url in CONTEXT_URL_TO_LOCAL_PATH_MAP) {
+    let localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
+    if (!localPath) {
+        // Strip optional /preview/<branch> chunk to resolve against local mapping
+        const normalized = normalizeSpecUrl(url);
+        localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[normalized];
+    }
+
+    if (localPath) {
         // console.log(`[Document Loader] SUCCESS: Found local mapping for ${url}`);
-        const localPath = CONTEXT_URL_TO_LOCAL_PATH_MAP[url];
-        // console.log(`[Document Loader] Attempting to read local file: ${localPath}`);
         const fileContent = await fs.readFile(localPath, 'utf-8');
         const parsedDocument = JSON.parse(fileContent);
         return { contextUrl: null, documentUrl: url, document: parsedDocument };

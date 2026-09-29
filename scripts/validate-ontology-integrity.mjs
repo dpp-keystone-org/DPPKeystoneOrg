@@ -17,7 +17,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, normalizeSpecUrl } from '../src/lib/keystone-version.js';
 import { validateTermTranslations } from '../src/util/js/common/validation/ontology-validator.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -104,9 +104,10 @@ export function registerOntologyTerm(term, filePath) {
 }
 
 function resolveImportPath(currentFile, importUrl) {
+    const normalizedUrl = normalizeSpecUrl(importUrl);
     // Handle standard project URLs
-    if (importUrl.startsWith('https://dpp-keystone.org/spec/ontology/')) {
-        const relativePath = importUrl.replace('https://dpp-keystone.org/spec/ontology/', '');
+    if (normalizedUrl.startsWith('https://dpp-keystone.org/spec/ontology/')) {
+        const relativePath = normalizedUrl.replace('https://dpp-keystone.org/spec/ontology/', '');
         return path.join(ONTOLOGY_ROOT, relativePath);
     }
     // Handle relative paths (if any exist in the source)
@@ -248,13 +249,14 @@ function isJsonLdKeyword(value) {
 }
 
 function getCompactIRI(iri) {
-    if (iri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/`)) {
-        const sub = iri.split('/terms/')[1].split('#')[0];
-        return iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`, `dppk-${sub}:`);
-    } else if (iri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`)) {
-        return iri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
+    const normalizedIri = normalizeSpecUrl(iri);
+    if (normalizedIri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/`)) {
+        const sub = normalizedIri.split('/terms/')[1].split('#')[0];
+        return normalizedIri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`, `dppk-${sub}:`);
+    } else if (normalizedIri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`)) {
+        return normalizedIri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
     }
-    return iri;
+    return normalizedIri;
 }
 
 function isDppkTerm(id) {
@@ -472,9 +474,23 @@ function auditSchemaMappings(reporter) {
         }
     }
 
-    const files = fs.readdirSync(SCHEMA_ROOT).filter(f => f.endsWith('.schema.json'));
-    files.forEach(file => {
-        const filePath = path.join(SCHEMA_ROOT, file);
+    function getFiles(dir) {
+        let results = [];
+        const list = fs.readdirSync(dir);
+        list.forEach(file => {
+            file = path.join(dir, file);
+            const stat = fs.statSync(file);
+            if (stat && stat.isDirectory()) {
+                results = results.concat(getFiles(file));
+            } else if (file.endsWith('.schema.json')) {
+                results.push(file);
+            }
+        });
+        return results;
+    }
+
+    const files = getFiles(SCHEMA_ROOT);
+    files.forEach(filePath => {
         const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
         checkSchemaProperties(content, filePath);
     });

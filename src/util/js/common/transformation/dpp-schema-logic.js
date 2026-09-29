@@ -1,4 +1,5 @@
 import * as jsonldEngine from 'jsonld';
+import { getSectorSpecId } from '../../../../lib/keystone-version.js';
 
 // Robustly resolve the jsonld library instance across different environments
 let jsonld = jsonldEngine.default || jsonldEngine;
@@ -109,7 +110,11 @@ export async function transform(dpp, options, dictionary) {
 
     // --- Start: Type Inference Logic ---
     const specIdToType = {
-        'draft_construction_specification_id': `${termsBase}ConstructionProduct`,        'draft_battery_specification_id': `${termsBase}BatteryProduct`,
+        'draft_construction_specification_id': `${termsBase}ConstructionProduct`,
+        'draft_battery_specification_id': `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-ev', version)]: `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-lmv', version)]: `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-industrial', version)]: `${termsBase}BatteryProduct`,
         'draft_electronics_specification_id': `${termsBase}ElectronicDevice`,
         'draft_textile_espr_specification_id': `${termsBase}TextileProduct`,
         'draft_iron_and_steel_specification_id': `${termsBase}IronSteelProduct`

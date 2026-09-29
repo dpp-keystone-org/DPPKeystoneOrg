@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, getSectorSpecId } from '../../src/lib/keystone-version.js';
 import { PROJECT_ROOT } from '../scripts/shacl-helpers.mjs';
 import { validateDpp } from '../../src/util/js/common/validation/schema-validator.js';
 
@@ -14,6 +14,8 @@ const testCases = [
     'drill-dpp-v1.json',
     'drill-dpp-v1-private.json',
     'battery-dpp-v1.json',
+    'battery-lmv-dpp-v1.json',
+    'battery-industrial-dpp-v1.json',
     'sock-dpp-v2.json',
     'rail-dpp-v1.json',
     'construction-product-dpp-v1.json',
@@ -87,31 +89,40 @@ describe('DPP JSON Schema Validation', () => {
         expect(result.valid).toBe(true);
     });
 
-    test('battery-dpp-v1.json should be INVALID if batteryCategory is missing', async () => {
-        // Load the example data
-        const exampleFile = 'battery-dpp-v1.json';
-        const exampleFilePath = path.join(EXAMPLES_DIR, exampleFile);
-        const exampleContent = await fs.promises.readFile(exampleFilePath, 'utf-8');
-        const data = JSON.parse(exampleContent);
+    const createBatteryTests = (exampleFile, specId) => {
+        test(`${exampleFile} should activate and be INVALID if batteryCategory is missing`, async () => {
+            const exampleFilePath = path.join(EXAMPLES_DIR, exampleFile);
+            const data = JSON.parse(await fs.promises.readFile(exampleFilePath, 'utf-8'));
 
-        // --- Intentionally invalidate the data ---
-        delete data.batteryCategory;
-        // -----------------------------------------
+            delete data.batteryCategory;
+            const result = validateDpp(data, schemaContext);
+            expect(result.valid).toBe(false);
+            expect(result.errors).toEqual(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        keyword: 'required',
+                        params: { missingProperty: 'batteryCategory' },
+                    }),
+                ])
+            );
+        });
 
-        // Validate
-        const result = validateDpp(data, schemaContext);
+        test(`${exampleFile} should inactivate and be VALID if batteryCategory is missing but specId is removed`, async () => {
+            const exampleFilePath = path.join(EXAMPLES_DIR, exampleFile);
+            const data = JSON.parse(await fs.promises.readFile(exampleFilePath, 'utf-8'));
 
-        // This test should fail validation
-        expect(result.valid).toBe(false);
+            delete data.batteryCategory;
+            data.contentSpecificationIds = data.contentSpecificationIds.filter(id => id !== specId);
+            
+            const result = validateDpp(data, schemaContext);
+            if (!result.valid) {
+                console.log(result.errors);
+            }
+            expect(result.valid).toBe(true);
+        });
+    };
 
-        // Check for the specific error
-        expect(result.errors).toEqual(
-            expect.arrayContaining([
-                expect.objectContaining({
-                    keyword: 'required',
-                    params: { missingProperty: 'batteryCategory' },
-                }),
-            ])
-        );
-    });
+    createBatteryTests('battery-dpp-v1.json', getSectorSpecId('battery-ev'));
+    createBatteryTests('battery-lmv-dpp-v1.json', getSectorSpecId('battery-lmv'));
+    createBatteryTests('battery-industrial-dpp-v1.json', getSectorSpecId('battery-industrial'));
 });

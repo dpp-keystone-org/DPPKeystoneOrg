@@ -907,7 +907,7 @@ function generateRows(fragment, properties, ontologyMap, requiredFields = [], pa
         }
 
         // Exclude fields that should not be rendered
-        if (key === 'contentSpecificationIds') {
+        if (key === 'contentSpecificationIds' || prop.not !== undefined) {
             continue;
         }
 

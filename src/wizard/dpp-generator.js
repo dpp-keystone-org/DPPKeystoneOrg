@@ -94,7 +94,10 @@ export function generateDpp(sectors, coreFormContainer, formContainer, voluntary
     const baseUrl = `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/`;
 
     if (sectors && sectors.length > 0) {
-        contexts = sectors.map(sector => `${baseUrl}dpp-${sector}.context.jsonld`);
+        contexts = sectors.map(sector => {
+            const contextSector = sector.startsWith('battery') ? 'battery' : sector;
+            return `${baseUrl}dpp-${contextSector}.context.jsonld`;
+        });
     } else {
         contexts.push(`${baseUrl}dpp-core.context.jsonld`);
     }

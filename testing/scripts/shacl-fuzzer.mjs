@@ -14,23 +14,23 @@ export function loadOntologyDefinition(ontologyFilePath) {
     return JSON.parse(rawData);
 }
 
-export function expandURI(uri, context) {
+export function expandURI(uri, context = {}) {
     if (!uri || typeof uri !== 'string') return uri;
     if (uri.startsWith('http://') || uri.startsWith('https://') || uri.startsWith('urn:')) return uri;
     
     const parts = uri.split(':');
     if (parts.length === 2) {
-        if (parts[0] === 'dppk') {
-            return `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#` + parts[1];
-        }
-        let prefixUri = context[parts[0]];
-        if (typeof prefixUri === 'object' && prefixUri['@id']) {
+        let prefixUri = context ? context[parts[0]] : null;
+        if (typeof prefixUri === 'object' && prefixUri && prefixUri['@id']) {
             prefixUri = prefixUri['@id'];
         }
         if (prefixUri) {
             let expanded = prefixUri + parts[1];
             expanded = expanded.replace('{{VERSION}}', KEYSTONE_VERSION);
             return expanded;
+        }
+        if (parts[0] === 'dppk') {
+            return `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#` + parts[1];
         }
     }
     return uri;

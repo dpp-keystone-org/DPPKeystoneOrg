@@ -1,7 +1,8 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, specUrlToPreviewUrl } from '../../src/lib/keystone-version.js';
+import { getPreviewBranch } from '../../scripts/branch-helper.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -117,6 +118,17 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
     [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/iron-steel-shapes.shacl.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'validation', KEYSTONE_VERSION, 'shacl', 'iron-steel-shapes.shacl.jsonld'),
 };
+
+// If running in a preview branch environment, mirror all canonical entries to the preview URLs
+const previewBranch = getPreviewBranch();
+if (previewBranch) {
+    for (const [canonicalUrl, localPath] of Object.entries({ ...CONTEXT_URL_TO_LOCAL_PATH_MAP })) {
+        const previewUrl = specUrlToPreviewUrl(canonicalUrl, previewBranch);
+        if (previewUrl !== canonicalUrl) {
+            CONTEXT_URL_TO_LOCAL_PATH_MAP[previewUrl] = localPath;
+        }
+    }
+}
 
 export async function fillRequiredFields(page, sector) {
     // Wait for the testing object to be exposed on the window.

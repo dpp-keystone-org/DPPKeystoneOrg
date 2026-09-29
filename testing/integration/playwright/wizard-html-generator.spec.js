@@ -11,17 +11,17 @@ test.describe('Wizard HTML Generator Integration', () => {
    */
   async function populateBatteryData(page) {
     // 1. Select Battery Sector
-    await page.click('button[data-sector="battery"]');
+    await page.click('button[data-sector="battery-ev"]');
     
     // Wait for the form to be rendered
-    await expect(page.locator('#sector-form-battery')).toBeVisible();
+    await expect(page.locator('#sector-form-battery-ev')).toBeVisible();
     await expect(page.locator('input[name="batteryCategory"]')).toBeVisible();
 
     // 2. Fill core fields (using test helper logic concept)
     await fillRequiredFields(page, 'dpp');
 
     // 3. Fill Battery specific mandatory fields
-    await fillRequiredFields(page, 'battery');
+    await fillRequiredFields(page, 'battery-ev');
   }
   
   /**

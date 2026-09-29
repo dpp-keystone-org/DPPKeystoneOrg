@@ -13,18 +13,32 @@ import { parse as jsoncParse, printParseErrorCode } from 'jsonc-parser';
 import { execSync } from 'child_process';
 import * as cheerio from 'cheerio';
 import { generateSpecDocs } from './generate-spec-docs.mjs';
-import { KEYSTONE_VERSION } from '../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, rewriteSpecFileUrls } from '../src/lib/keystone-version.js';
 
 const PROJECT_ROOT = process.cwd();
 const SOURCE_DIR = path.join(PROJECT_ROOT, 'src');
 const BUILD_DIR = path.join(PROJECT_ROOT, 'dist');
 
+import { getPreviewChunk } from './branch-helper.mjs';
+
 const jsonFileExtensions = ['.json', '.jsonld'];
+
+export const PREVIEW_CHUNK = getPreviewChunk();
+
+/**
+ * Rewrites spec URLs to include the preview chunk when PREVIEW_BRANCH is set,
+ * and replaces {{VERSION}} with KEYSTONE_VERSION.
+ * @param {string} content
+ * @returns {string}
+ */
+export function rewriteSpecUrls(content) {
+    return rewriteSpecFileUrls(content, PREVIEW_CHUNK);
+}
 
 async function cleanAndCopyJsonFile(sourcePath, targetPath) {
     try {
         let content = await fs.readFile(sourcePath, 'utf-8');
-        content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+        content = rewriteSpecUrls(content);
         let errors = [];
         const cleanedContent = jsoncParse(content, errors, {
             allowTrailingComma: true,
@@ -62,10 +76,13 @@ async function processDirectory(sourceDir, targetDir) {
             await cleanAndCopyJsonFile(sourcePath, targetPath);
         } else if (entry.name.endsWith('.js') || entry.name.endsWith('.mjs')) {
             let content = await fs.readFile(sourcePath, 'utf-8');
+            // In JS application logic, preserve canonical spec URLs so generators and transforms
+            // remain standard-compliant and stable across environments, while expanding {{VERSION}}.
             content = content.replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
             await fs.writeFile(targetPath, content, 'utf-8');
         } else if (entry.name.endsWith('.html')) {
             let content = await fs.readFile(sourcePath, 'utf-8');
+            content = rewriteSpecUrls(content);
             const i18nPath = sourcePath.replace(/\.html$/, '.i18n.json');
             
             if (await fse.pathExists(i18nPath)) {
@@ -112,8 +129,7 @@ async function createRedirects(targetDir) {
 
     const redirectPath = path.join(targetDir, 'spec', KEYSTONE_VERSION, 'terms', 'index.html');
     // The target URL should be an absolute path that factors in the preview deployment directory
-    const branchPrefix = process.env.PREVIEW_BRANCH ? `/preview/${process.env.PREVIEW_BRANCH}` : '';
-    const redirectTarget = `${branchPrefix}/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
+    const redirectTarget = `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`;
     
     // This HTML file uses a meta refresh tag to immediately redirect the user.
     const redirectContent = `<!DOCTYPE html>

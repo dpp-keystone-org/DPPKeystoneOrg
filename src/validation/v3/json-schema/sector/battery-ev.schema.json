@@ -1,16 +1,15 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery.schema.json",
-    "title": "DPP for Batteries (Draft)",
-    "description": "DEPRECATED: This generic schema has been replaced by category-specific schemas (battery-ev.schema.json, battery-lmv.schema.json, battery-industrial.schema.json) to comply with the updated EC requirements.",
-    "deprecated": true,
+    "$id": "https://dpp-keystone.org/spec/validation/{{VERSION}}/json-schema/sector/battery-ev.schema.json",
+    "title": "DPP for Batteries - EV (Draft)",
+    "description": "A conditional schema that applies if the DPP is for the EV battery sector.",
     "if": {
         "type": "object",
         "properties": {
             "contentSpecificationIds": {
                 "type": "array",
                 "contains": {
-                    "const": "draft_battery_specification_id"
+                    "const": "urn:dpp-keystone:{{VERSION}}:sector:battery-ev"
                 }
             }
         },
@@ -54,7 +53,7 @@
                 "$ref": "../shared/related-resource.schema.json"
             },
             "carbonFootprintLabel": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "extinguishingAgent": {
                 "type": "string"
@@ -66,19 +65,19 @@
                 "$ref": "../shared/related-resource.schema.json"
             },
             "batteryCarbonFootprintClass": {
-                "type": "string"
+                "not": {}
             },
             "carbonFootprintStudy": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "carbonFootprintGeneralInfo": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "carbonFootprintAbsolute": {
-                "type": "number"
+                "not": {}
             },
             "dueDiligenceReport": {
-                "$ref": "../shared/related-resource.schema.json"
+                "not": {}
             },
             "supplyChainAssurances": {
                 "$ref": "../shared/related-resource.schema.json"
@@ -147,7 +146,7 @@
                                 "type": "number"
                             },
                             "remaining": {
-                                "type": "number"
+                                "not": {}
                             },
                             "fade": {
                                 "type": "number"
@@ -173,7 +172,15 @@
                             "voltageNominal": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "rated",
+                            "voltageMin",
+                            "voltageNominal",
+                            "voltageMax",
+                            "soce",
+                            "fade"
+                        ]
                     },
                     "power": {
                         "type": "object",
@@ -182,7 +189,7 @@
                                 "type": "number"
                             },
                             "remaining": {
-                                "type": "number"
+                                "not": {}
                             },
                             "fade": {
                                 "type": "number"
@@ -193,7 +200,11 @@
                             "energyRatio": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "original",
+                            "fade"
+                        ]
                     },
                     "efficiency": {
                         "type": "object",
@@ -205,7 +216,7 @@
                                 "type": "number"
                             },
                             "roundTripRemaining": {
-                                "type": "number"
+                                "not": {}
                             },
                             "roundTripFade": {
                                 "type": "number"
@@ -217,9 +228,13 @@
                                 "type": "number"
                             },
                             "selfDischargeEvolution": {
-                                "type": "number"
+                                "not": {}
                             }
-                        }
+                        },
+                        "required": [
+                            "roundTripInitial",
+                            "roundTripAt50Cycles"
+                        ]
                     },
                     "internalResistance": {
                         "type": "object",
@@ -231,12 +246,17 @@
                                 "type": "number"
                             },
                             "ohmic": {
-                                "type": "number"
+                                "not": {}
                             },
                             "dynamic": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "initial",
+                            "increase",
+                            "dynamic"
+                        ]
                     },
                     "lifetime": {
                         "type": "object",
@@ -265,7 +285,13 @@
                             "exhaustionThreshold": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "cycles",
+                            "referenceTest",
+                            "exhaustionThreshold",
+                            "cRateTest"
+                        ]
                     },
                     "temperature": {
                         "type": "object",
@@ -288,7 +314,11 @@
                             "timeChargingLower": {
                                 "type": "number"
                             }
-                        }
+                        },
+                        "required": [
+                            "idleLower",
+                            "idleUpper"
+                        ]
                     },
                     "negativeEvents": {
                         "type": "object",
@@ -304,7 +334,15 @@
                             }
                         }
                     }
-                }
+                },
+                "required": [
+                    "capacity",
+                    "power",
+                    "efficiency",
+                    "internalResistance",
+                    "lifetime",
+                    "temperature"
+                ]
             },
             "dopc": {
                 "oneOf": [
@@ -328,10 +366,28 @@
             }
         },
         "required": [
-            "batteryCategory",
-            "batteryChemistry",
+            "manufacturerInfo",
+            "manufacturingPlace",
             "manufacturingDate",
-            "batteryMass"
+            "batteryCategory",
+            "batteryMass",
+            "batteryStatus",
+            "separateCollectionSymbol",
+            "extinguishingAgent",
+            "testReports",
+            "batteryChemistry",
+            "criticalRawMaterials",
+            "materialComposition",
+            "hazardousSubstances",
+            "dismantlingInformation",
+            "partNumbers",
+            "sparePartsSources",
+            "safetyMeasures",
+            "wastePreventionInfo",
+            "postConsumerRecycledMaterialComposition",
+            "renewableContent",
+            "dopc",
+            "performance"
         ]
     }
 }

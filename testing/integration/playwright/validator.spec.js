@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, getSectorSpecId } from '../../../src/lib/keystone-version.js';
 
 test.describe('DPP Validator', () => {
   test.beforeEach(async ({ page }) => {
@@ -123,7 +123,7 @@ test.describe('DPP Validator', () => {
       "digitalProductPassportId": "urn:uuid:12345678-1234-1234-1234-123456789012",
       "dppStatus": "Active",
       "manufacturer": { "organizationName": "Org" },
-      "contentSpecificationIds": ["draft_battery_specification_id"],
+      "contentSpecificationIds": [getSectorSpecId('battery-ev')],
       // Missing battery fields like batteryType, ratedCapacity, etc.
       "batteryType": "Li-ion" // Provide one valid one
     };
@@ -217,7 +217,7 @@ test.describe('DPP Validator', () => {
 
   test('Example Loader populates input', async ({ page }) => {
     // Select 'Battery' from the dropdown
-    await page.locator('#example-selector').selectOption({ label: 'Battery' });
+    await page.locator('#example-selector').selectOption({ label: 'Battery (EV)' });
 
     // Check that textarea is populated (wait for fetch to complete)
     await expect(page.locator('#json-input')).toHaveValue(/digitalProductPassportId/);

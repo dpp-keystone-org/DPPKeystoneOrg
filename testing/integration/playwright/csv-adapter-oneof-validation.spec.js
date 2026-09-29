@@ -29,31 +29,65 @@ test.describe('CSV Adapter - oneOf Validation', () => {
     await expect(page.locator('#mapping-tbody tr').last()).toBeVisible();
 
     // 2. Check the sector to trigger schema update and re-render.
-    await page.getByLabel('Battery').check();
+    await page.getByLabel('Battery (Industrial)').check();
     
     // 3. Wait for re-render by checking for a battery-specific auto-mapping.
-    const mat1NameInput = page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('input.dpp-field-input');
-    await expect(mat1NameInput).toHaveValue('materialComposition[0].name');
+    const mat1NameInput = page.locator('tr').filter({ has: page.getByText('Hazardous 1 Name', { exact: true }) }).locator('input.dpp-field-input');
+    await expect(mat1NameInput).toHaveValue('hazardousSubstances[0].name');
 
     // 4. Manually map all required fields to clear validation errors.
     const mappings = {
       'Product ID': 'uniqueProductIdentifier',
       'Mass (kg)': 'batteryMass',
+      'Manufacturer Name': 'manufacturerInfo.name',
+      'Manufacturer Street': 'manufacturerInfo.address.streetAddress',
       'Manufacturer City': 'manufacturerInfo.address.addressLocality',
       'Manufacturer Zip': 'manufacturerInfo.address.postalCode',
+      'Manufacturer Country': 'manufacturerInfo.address.addressCountry',
+      'Category': 'batteryCategory',
+      'Status': 'batteryStatus',
+      'Chemistry': 'batteryChemistry',
       'Recycled Pre 1 %': 'preConsumerRecycledMaterialComposition[0].percentage',
       'Recycled Post 1 %': 'postConsumerRecycledMaterialComposition[0].percentage',
-      'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage'
+      'Recycled Post 1 Name': 'postConsumerRecycledMaterialComposition[0].name',
+      'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage',
+      'Recycled Post 2 Name': 'postConsumerRecycledMaterialComposition[1].name',
+      'Separate Collection Symbol': 'separateCollectionSymbol.url',
+      'Extinguishing Agent': 'extinguishingAgent',
+      'Test Reports': 'testReports.url',
+      'Critical Raw Materials': 'criticalRawMaterials',
+      'Dismantling Information': 'dismantlingInformation.url',
+      'Part Numbers': 'partNumbers.url',
+      'Spare Parts Sources': 'sparePartsSources.url',
+      'Safety Measures': 'safetyMeasures.url',
+      'Waste Prevention Info': 'wastePreventionInfo.url',
+      'DoC Title': 'dopc.resourceTitle',
+      'Renewable Content %': 'renewableContent',
+      'Internal Resistance': 'performance.internalResistance.initial',
+      'Temp Idle Min (C)': 'performance.temperature.idleLower',
+      'Temp Idle Max (C)': 'performance.temperature.idleUpper'
     };
 
     for (const [csvHeader, schemaPath] of Object.entries(mappings)) {
       const input = page.locator('tr').filter({ has: page.getByText(csvHeader, { exact: true }) }).locator('input.dpp-field-input');
       await input.fill(schemaPath);
+      await input.blur();
     }
 
-    // 5. Assert that the UI is now in a valid state.
-    await expect(page.locator('#show-errors-btn')).toBeHidden();
-    await expect(page.locator('#generate-btn')).toBeVisible();
+    try {
+        await expect(page.locator('#show-errors-btn')).toBeHidden({ timeout: 5000 });
+        await expect(page.locator('#generate-btn')).toBeVisible();
+    } catch (e) {
+        if (await page.locator('#show-errors-btn').isVisible()) {
+            await page.locator('#show-errors-btn').click();
+            const errors = await page.locator('.error-summary-modal ul').innerText();
+            console.log('--- VALIDATION ERRORS IN CSV ---');
+            console.log(errors);
+            console.log('--------------------------------');
+            throw new Error(`Validation errors remained: \n${errors}`);
+        }
+        throw e;
+    }
   };
 
   test('should highlight rows with oneOf conflicts and then remove it', async ({ page }) => {
@@ -66,6 +100,12 @@ test.describe('CSV Adapter - oneOf Validation', () => {
     const docUrlInput = docUrlRow.locator('input.dpp-field-input');
     const dppIdCheckbox = dppIdRow.locator('.review-checkbox');
     const docUrlCheckbox = docUrlRow.locator('.review-checkbox');
+
+    // Clear DoC Title mapping so it doesn't conflict with dopc.declarationCode
+    const docTitleRow = page.locator('tr').filter({ has: page.getByText('DoC Title', { exact: true }) });
+    const docTitleInput = docTitleRow.locator('input.dpp-field-input');
+    await docTitleInput.clear();
+    await docTitleInput.dispatchEvent('input');
 
     // Create conflict and sync with UI by waiting for the checkbox side-effect.
     await dppIdInput.fill('dopc.declarationCode');

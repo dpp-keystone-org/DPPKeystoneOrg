@@ -14,31 +14,63 @@ test.describe('CSV DPP Adapter E2E', () => {
         await expect(page.locator('#mapping-tbody tr').last()).toBeVisible();
     
         // Select battery sector to ensure all fields are available
-        await page.getByLabel('Battery').check();
+        await page.getByLabel('Battery (Industrial)').check();
         // Wait for re-render by checking for a battery-specific auto-map
-        await expect(page.locator('tr').filter({ has: page.getByText('Material 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('materialComposition[0].name');
+        await expect(page.locator('tr').filter({ has: page.getByText('Hazardous 1 Name', { exact: true }) }).locator('.dpp-field-input')).toHaveValue('hazardousSubstances[0].name');
     
         // Manually map all required fields that the auto-mapper misses to clear validation errors.
         const mappingsToFix = {
             'Product ID': 'uniqueProductIdentifier',
             'Mass (kg)': 'batteryMass',
+            'Manufacturer Name': 'manufacturerInfo.name',
+            'Manufacturer Street': 'manufacturerInfo.address.streetAddress',
             'Manufacturer City': 'manufacturerInfo.address.addressLocality',
             'Manufacturer Zip': 'manufacturerInfo.address.postalCode',
+            'Manufacturer Country': 'manufacturerInfo.address.addressCountry',
+            'Category': 'batteryCategory',
+            'Status': 'batteryStatus',
+            'Chemistry': 'batteryChemistry',
             'Recycled Pre 1 %': 'preConsumerRecycledMaterialComposition[0].percentage',
             'Recycled Post 1 %': 'postConsumerRecycledMaterialComposition[0].percentage',
-            'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage'
+            'Recycled Post 1 Name': 'postConsumerRecycledMaterialComposition[0].name',
+            'Recycled Post 2 %': 'postConsumerRecycledMaterialComposition[1].percentage',
+            'Recycled Post 2 Name': 'postConsumerRecycledMaterialComposition[1].name',
+            'Separate Collection Symbol': 'separateCollectionSymbol.url',
+            'Extinguishing Agent': 'extinguishingAgent',
+            'Test Reports': 'testReports.url',
+            'Critical Raw Materials': 'criticalRawMaterials',
+            'Dismantling Information': 'dismantlingInformation.url',
+            'Part Numbers': 'partNumbers.url',
+            'Spare Parts Sources': 'sparePartsSources.url',
+            'Safety Measures': 'safetyMeasures.url',
+            'Waste Prevention Info': 'wastePreventionInfo.url',
+            'DoC Title': 'dopc.resourceTitle',
+            'Renewable Content %': 'renewableContent',
+            'Internal Resistance': 'performance.internalResistance.initial',
+            'Temp Idle Min (C)': 'performance.temperature.idleLower',
+            'Temp Idle Max (C)': 'performance.temperature.idleUpper'
         };
 
         for (const [csvHeader, schemaPath] of Object.entries(mappingsToFix)) {
             const input = page.locator('tr').filter({ has: page.getByText(csvHeader, { exact: true }) }).locator('input.dpp-field-input');
             await input.fill(schemaPath);
+            await input.blur();
         }
         
-        // Assert that we are in a valid state by polling the UI.
-        await expect(async () => {
-            await expect(page.locator('#show-errors-btn')).toBeHidden();
+        try {
+            await expect(page.locator('#show-errors-btn')).toBeHidden({ timeout: 5000 });
             await expect(page.locator('#generate-btn')).toBeVisible();
-        }).toPass();
+        } catch (e) {
+            if (await page.locator('#show-errors-btn').isVisible()) {
+                await page.locator('#show-errors-btn').click();
+                const errors = await page.locator('.error-summary-modal ul').innerText();
+                console.log('--- VALIDATION ERRORS IN CSV ---');
+                console.log(errors);
+                console.log('--------------------------------');
+                throw new Error(`Validation errors remained: \n${errors}`);
+            }
+            throw e;
+        }
     };
     
     test.beforeEach(async ({ page }) => {
@@ -73,15 +105,15 @@ test.describe('CSV DPP Adapter E2E', () => {
         }
     });
 
-    test('Test 5: Construction Sector Loading', async ({ page }) => {
+    test('Test 5: Battery Sector Loading', async ({ page }) => {
         const consoleMessages = [];
         page.on('console', msg => consoleMessages.push(msg.text()));
 
-        await page.check('input[value="construction"]');
+        await page.check('input[value="battery-industrial"]');
         
         await expect(async () => {
              const logs = consoleMessages.join('\n');
-             expect(logs).toContain('Loading schemas for: dpp, general-product, construction');
+             expect(logs).toContain('Loading schemas for: dpp, general-product, battery-industrial');
         }).toPass();
     });
 
