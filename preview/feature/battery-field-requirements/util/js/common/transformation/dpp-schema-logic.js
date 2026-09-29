@@ -1,5 +1,5 @@
 import * as jsonldEngine from 'jsonld';
-import { getSectorSpecId } from '../../../../lib/keystone-version.js?v=1790662930199';
+import { getSectorSpecId } from '../../../../lib/keystone-version.js?v=1790662935516';
 
 // Robustly resolve the jsonld library instance across different environments
 let jsonld = jsonldEngine.default || jsonldEngine;
@@ -18,7 +18,7 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790662930199';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790662935516';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
