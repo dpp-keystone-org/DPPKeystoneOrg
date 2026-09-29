@@ -1,6 +1,6 @@
-import { loadHeader } from '../branding/header.js?v=1790615617992';
-import { buildIndex } from '../lib/ontology-indexer.js?v=1790615617992';
-import { LanguageManager } from '../lib/language-manager.js?v=1790615617992';
+import { loadHeader } from '../branding/header.js?v=1790662930199';
+import { buildIndex } from '../lib/ontology-indexer.js?v=1790662930199';
+import { LanguageManager } from '../lib/language-manager.js?v=1790662930199';
 
 loadHeader('dpp-header-container', '..');
 

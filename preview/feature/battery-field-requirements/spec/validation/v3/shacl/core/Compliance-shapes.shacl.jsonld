@@ -145,11 +145,13 @@
       "property": [
         {
           "path": "https://dpp-keystone.org/spec/v3/terms#productionStepType",
-          "message": "Auto-generated rule for dppk:productionStepType"
+          "message": "Auto-generated rule for dppk:productionStepType",
+          "datatype": "xsd:string"
         },
         {
           "path": "https://dpp-keystone.org/spec/v3/terms#productionLocationCountry",
-          "message": "Auto-generated rule for dppk:productionLocationCountry"
+          "message": "Auto-generated rule for dppk:productionLocationCountry",
+          "datatype": "xsd:string"
         }
       ]
     },

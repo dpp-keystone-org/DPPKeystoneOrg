@@ -5103,6 +5103,329 @@
     {
       "@id": "dppk:carbonFootprintClass",
       "@type": "owl:DatatypeProperty",
+      "owl:deprecated": true,
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Carbon Footprint Class"
+        },
+        {
+          "@language": "bg",
+          "@value": "Клас на въглеродния отпечатък"
+        },
+        {
+          "@language": "cs",
+          "@value": "Třída uhlíkové stopy"
+        },
+        {
+          "@language": "da",
+          "@value": "CO2-aftryksklasse"
+        },
+        {
+          "@language": "de",
+          "@value": "Klasse des CO2-Fußabdrucks"
+        },
+        {
+          "@language": "el",
+          "@value": "Κατηγορία αποτυπώματος άνθρακα"
+        },
+        {
+          "@language": "es",
+          "@value": "Clase de huella de carbono"
+        },
+        {
+          "@language": "et",
+          "@value": "Süsinikujalajälje klass"
+        },
+        {
+          "@language": "fi",
+          "@value": "Hiilijalanjälkiluokka"
+        },
+        {
+          "@language": "fr",
+          "@value": "Classe d'empreinte carbone"
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicme Lorg Carbóin"
+        },
+        {
+          "@language": "hr",
+          "@value": "Razred ugljičnog otiska"
+        },
+        {
+          "@language": "hu",
+          "@value": "Karbonlábnyom-osztály"
+        },
+        {
+          "@language": "it",
+          "@value": "Classe di impronta di carbonio"
+        },
+        {
+          "@language": "lt",
+          "@value": "Anglies pėdsako klasė"
+        },
+        {
+          "@language": "lv",
+          "@value": "Oglekļa pēdas klase"
+        },
+        {
+          "@language": "mt",
+          "@value": "Klassi tal-Marka tal-Karbonju"
+        },
+        {
+          "@language": "nl",
+          "@value": "Klasse koolstofvoetafdruk"
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasa śladu węglowego"
+        },
+        {
+          "@language": "pt",
+          "@value": "Classe da pegada de carbono"
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasa amprentei de carbon"
+        },
+        {
+          "@language": "sk",
+          "@value": "Trieda uhlíkovej stopy"
+        },
+        {
+          "@language": "sl",
+          "@value": "Razred ogljičnega odtisa"
+        },
+        {
+          "@language": "sv",
+          "@value": "Koldioxidavtrycksklass"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Deprecated: Use dppk:textileCarbonFootprintClass for textile products. The performance class of the product's carbon footprint."
+        },
+        {
+          "@language": "bg",
+          "@value": "Класът на ефективност на въглеродния отпечатък на продукта."
+        },
+        {
+          "@language": "cs",
+          "@value": "Třída výkonnosti uhlíkové stopy produktu."
+        },
+        {
+          "@language": "da",
+          "@value": "Præstationsklassen for produktets CO2-aftryk."
+        },
+        {
+          "@language": "de",
+          "@value": "Die Leistungsklasse des CO2-Fußabdrucks des Produkts."
+        },
+        {
+          "@language": "el",
+          "@value": "Η κατηγορία επιδόσεων του αποτυπώματος άνθρακα του προϊόντος."
+        },
+        {
+          "@language": "es",
+          "@value": "La clase de rendimiento de la huella de carbono del producto."
+        },
+        {
+          "@language": "et",
+          "@value": "Toote süsinikujalajälje toimivusklass."
+        },
+        {
+          "@language": "fi",
+          "@value": "Tuotteen hiilijalanjäljen suorituskykyluokka."
+        },
+        {
+          "@language": "fr",
+          "@value": "La classe de performance de l'empreinte carbone du produit."
+        },
+        {
+          "@language": "ga",
+          "@value": "Aicme feidhmíochta lorg carbóin an táirge."
+        },
+        {
+          "@language": "hr",
+          "@value": "Razred učinkovitosti ugljičnog otiska proizvoda."
+        },
+        {
+          "@language": "hu",
+          "@value": "A termék karbonlábnyomának teljesítményosztálya."
+        },
+        {
+          "@language": "it",
+          "@value": "La classe di prestazione dell'impronta di carbonio del prodotto."
+        },
+        {
+          "@language": "lt",
+          "@value": "Produkto anglies pėdsako veiksmingumo klasė."
+        },
+        {
+          "@language": "lv",
+          "@value": "Produkta oglekļa pēdas snieguma klase."
+        },
+        {
+          "@language": "mt",
+          "@value": "Il-klassi tal-prestazzjoni tal-marka tal-karbonju tal-prodott."
+        },
+        {
+          "@language": "nl",
+          "@value": "De prestatieklasse van de koolstofvoetafdruk van het product."
+        },
+        {
+          "@language": "pl",
+          "@value": "Klasa wydajności śladu węglowego produktu."
+        },
+        {
+          "@language": "pt",
+          "@value": "A classe de desempenho da pegada de carbono do produto."
+        },
+        {
+          "@language": "ro",
+          "@value": "Clasa de performanță a amprentei de carbon a produsului."
+        },
+        {
+          "@language": "sk",
+          "@value": "Trieda výkonnosti uhlíkovej stopy výrobku."
+        },
+        {
+          "@language": "sl",
+          "@value": "Razred uspešnosti ogljičnega odtisa izdelka."
+        },
+        {
+          "@language": "sv",
+          "@value": "Prestandaklassen för produktens koldioxidavtryck."
+        }
+      ],
+      "dppk:unit": {
+        "@id": "dppk-unit:Unitless"
+      },
+      "dppk:visibility": {
+        "@id": "dppk:Public"
+      },
+      "dppk:governedBy": "PEFCR climate change impact category",
+      "dcterms:source": {
+        "@id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52022PC0142",
+        "rdfs:label": [
+          {
+            "@language": "en",
+            "@value": "Source: ESPR - Annex I(n)"
+          },
+          {
+            "@language": "bg",
+            "@value": "Източник: ESPR - Приложение I(н)"
+          },
+          {
+            "@language": "cs",
+            "@value": "Zdroj: ESPR - Příloha I písm. n)"
+          },
+          {
+            "@language": "da",
+            "@value": "Kilde: ESPR - Bilag I, litra n)"
+          },
+          {
+            "@language": "de",
+            "@value": "Quelle: ESPR - Anhang I Buchstabe n"
+          },
+          {
+            "@language": "el",
+            "@value": "Πηγή: ESPR - Παράρτημα Ι(ν)"
+          },
+          {
+            "@language": "es",
+            "@value": "Fuente: ESPR - Anexo I, letra n)"
+          },
+          {
+            "@language": "et",
+            "@value": "Allikas: ESPR - I lisa punkt n"
+          },
+          {
+            "@language": "fi",
+            "@value": "Lähde: ESPR - Liitteen I n kohta"
+          },
+          {
+            "@language": "fr",
+            "@value": "Source : ESPR - Annexe I(n)"
+          },
+          {
+            "@language": "ga",
+            "@value": "Foinse: ESPR - Iarscríbhinn I(n)"
+          },
+          {
+            "@language": "hr",
+            "@value": "Izvor: ESPR - Prilog I.(n)"
+          },
+          {
+            "@language": "hu",
+            "@value": "Forrás: ESPR - I. melléklet n) pont"
+          },
+          {
+            "@language": "it",
+            "@value": "Fonte: ESPR - Allegato I(n)"
+          },
+          {
+            "@language": "lt",
+            "@value": "Šaltinis: ESPR - I priedo n punktas"
+          },
+          {
+            "@language": "lv",
+            "@value": "Avots: ESPR - I pielikums n) punkts"
+          },
+          {
+            "@language": "mt",
+            "@value": "Sors: ESPR - Anness I(n)"
+          },
+          {
+            "@language": "nl",
+            "@value": "Bron: ESPR - Bijlage I(n)"
+          },
+          {
+            "@language": "pl",
+            "@value": "Źródło: ESPR - Załącznik I lit. n)"
+          },
+          {
+            "@language": "pt",
+            "@value": "Fonte: ESPR - Anexo I(n)"
+          },
+          {
+            "@language": "ro",
+            "@value": "Sursă: ESPR - Anexa I litera (n)"
+          },
+          {
+            "@language": "sk",
+            "@value": "Zdroj: ESPR - Príloha I písm. n)"
+          },
+          {
+            "@language": "sl",
+            "@value": "Vir: ESPR - Priloga I(n)"
+          },
+          {
+            "@language": "sv",
+            "@value": "Källa: ESPR - Bilaga I n"
+          }
+        ]
+      },
+      "rdfs:domain": {
+        "@id": "dppk:TextileProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "skos:relatedMatch": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "gs1:AdditionalProductClassificationDetails"
+        }
+      ]
+    },
+    {
+      "@id": "dppk:textileCarbonFootprintClass",
+      "@type": "owl:DatatypeProperty",
       "rdfs:label": [
         {
           "@language": "en",
@@ -10496,859 +10819,6 @@
         },
         {
           "@id": "gs1:ProductCharacteristic"
-        }
-      ]
-    },
-    {
-      "@id": "dppk:ProductionStep",
-      "@type": "rdfs:Class",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "Production Step"
-        },
-        {
-          "@language": "bg",
-          "@value": "Производствена стъпка"
-        },
-        {
-          "@language": "cs",
-          "@value": "Výrobní krok"
-        },
-        {
-          "@language": "da",
-          "@value": "Produktionstrin"
-        },
-        {
-          "@language": "de",
-          "@value": "Produktionsschritt"
-        },
-        {
-          "@language": "el",
-          "@value": "Βήμα παραγωγής"
-        },
-        {
-          "@language": "es",
-          "@value": "Etapa de producción"
-        },
-        {
-          "@language": "et",
-          "@value": "Tootmisetapp"
-        },
-        {
-          "@language": "fi",
-          "@value": "Tuotantovaihe"
-        },
-        {
-          "@language": "fr",
-          "@value": "Étape de production"
-        },
-        {
-          "@language": "ga",
-          "@value": "Céim Táirgthe"
-        },
-        {
-          "@language": "hr",
-          "@value": "Proizvodni korak"
-        },
-        {
-          "@language": "hu",
-          "@value": "Gyártási lépés"
-        },
-        {
-          "@language": "it",
-          "@value": "Fase di produzione"
-        },
-        {
-          "@language": "lt",
-          "@value": "Gamybos etapas"
-        },
-        {
-          "@language": "lv",
-          "@value": "Ražošanas posms"
-        },
-        {
-          "@language": "mt",
-          "@value": "Pass tal-Produzzjoni"
-        },
-        {
-          "@language": "nl",
-          "@value": "Productiestap"
-        },
-        {
-          "@language": "pl",
-          "@value": "Etap produkcji"
-        },
-        {
-          "@language": "pt",
-          "@value": "Etapa de produção"
-        },
-        {
-          "@language": "ro",
-          "@value": "Etapa de producție"
-        },
-        {
-          "@language": "sk",
-          "@value": "Výrobný krok"
-        },
-        {
-          "@language": "sl",
-          "@value": "Korak proizvodnje"
-        },
-        {
-          "@language": "sv",
-          "@value": "Produktionssteg"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "A specific step in the manufacturing process of the product."
-        },
-        {
-          "@language": "bg",
-          "@value": "Специфична стъпка в производствения процес на продукта."
-        },
-        {
-          "@language": "cs",
-          "@value": "Konkrétní krok ve výrobním procesu produktu."
-        },
-        {
-          "@language": "da",
-          "@value": "Et specifikt trin i fremstillingsprocessen for produktet."
-        },
-        {
-          "@language": "de",
-          "@value": "Ein spezifischer Schritt im Herstellungsprozess des Produkts."
-        },
-        {
-          "@language": "el",
-          "@value": "Ένα συγκεκριμένο βήμα στη διαδικασία κατασκευής του προϊόντος."
-        },
-        {
-          "@language": "es",
-          "@value": "Un paso específico en el proceso de fabricación del producto."
-        },
-        {
-          "@language": "et",
-          "@value": "Konkreetne etapp toote tootmisprotsessis."
-        },
-        {
-          "@language": "fi",
-          "@value": "Tuotteen valmistusprosessin tietty vaihe."
-        },
-        {
-          "@language": "fr",
-          "@value": "Une étape spécifique dans le processus de fabrication du produit."
-        },
-        {
-          "@language": "ga",
-          "@value": "Céim shonrach i bpróiseas monaraíochta an táirge."
-        },
-        {
-          "@language": "hr",
-          "@value": "Određeni korak u proizvodnom procesu proizvoda."
-        },
-        {
-          "@language": "hu",
-          "@value": "A termék gyártási folyamatának egy meghatározott lépése."
-        },
-        {
-          "@language": "it",
-          "@value": "Una fase specifica nel processo di fabbricazione del prodotto."
-        },
-        {
-          "@language": "lt",
-          "@value": "Konkretus gaminio gamybos proceso etapas."
-        },
-        {
-          "@language": "lv",
-          "@value": "Konkrēts posms produkta ražošanas procesā."
-        },
-        {
-          "@language": "mt",
-          "@value": "Pass speċifiku fil-proċess tal-manifattura tal-prodott."
-        },
-        {
-          "@language": "nl",
-          "@value": "Een specifieke stap in het fabricageproces van het product."
-        },
-        {
-          "@language": "pl",
-          "@value": "Konkretny krok w procesie produkcji wyrobu."
-        },
-        {
-          "@language": "pt",
-          "@value": "Um passo específico no processo de fabrico do produto."
-        },
-        {
-          "@language": "ro",
-          "@value": "Un pas specific în procesul de fabricație al produsului."
-        },
-        {
-          "@language": "sk",
-          "@value": "Konkrétny krok vo výrobnom procese výrobku."
-        },
-        {
-          "@language": "sl",
-          "@value": "Poseben korak v procesu proizvodnje izdelka."
-        },
-        {
-          "@language": "sv",
-          "@value": "Ett specifikt steg i produktens tillverkningsprocess."
-        }
-      ],
-      "skos:relatedMatch": [
-        {
-          "@id": "schema:Action"
-        },
-        {
-          "@id": "gs1:bizStep"
-        }
-      ]
-    },
-    {
-      "@id": "dppk:productionSteps",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "Production Steps"
-        },
-        {
-          "@language": "bg",
-          "@value": "Производствени стъпки"
-        },
-        {
-          "@language": "cs",
-          "@value": "Výrobní kroky"
-        },
-        {
-          "@language": "da",
-          "@value": "Produktionstrin"
-        },
-        {
-          "@language": "de",
-          "@value": "Produktionsschritte"
-        },
-        {
-          "@language": "el",
-          "@value": "Βήματα παραγωγής"
-        },
-        {
-          "@language": "es",
-          "@value": "Etapas de producción"
-        },
-        {
-          "@language": "et",
-          "@value": "Tootmisetapid"
-        },
-        {
-          "@language": "fi",
-          "@value": "Tuotantovaiheet"
-        },
-        {
-          "@language": "fr",
-          "@value": "Étapes de production"
-        },
-        {
-          "@language": "ga",
-          "@value": "Céimeanna Táirgthe"
-        },
-        {
-          "@language": "hr",
-          "@value": "Proizvodni koraci"
-        },
-        {
-          "@language": "hu",
-          "@value": "Gyártási lépések"
-        },
-        {
-          "@language": "it",
-          "@value": "Fasi di produzione"
-        },
-        {
-          "@language": "lt",
-          "@value": "Gamybos etapai"
-        },
-        {
-          "@language": "lv",
-          "@value": "Ražošanas posmi"
-        },
-        {
-          "@language": "mt",
-          "@value": "Passi tal-Produzzjoni"
-        },
-        {
-          "@language": "nl",
-          "@value": "Productiestappen"
-        },
-        {
-          "@language": "pl",
-          "@value": "Etapy produkcji"
-        },
-        {
-          "@language": "pt",
-          "@value": "Etapas de produção"
-        },
-        {
-          "@language": "ro",
-          "@value": "Etape de producție"
-        },
-        {
-          "@language": "sk",
-          "@value": "Výrobné kroky"
-        },
-        {
-          "@language": "sl",
-          "@value": "Koraki proizvodnje"
-        },
-        {
-          "@language": "sv",
-          "@value": "Produktionssteg"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "The sequence of major production steps that occurred for this product."
-        },
-        {
-          "@language": "bg",
-          "@value": "Последователността на основните производствени стъпки, които са се състояли за този продукт."
-        },
-        {
-          "@language": "cs",
-          "@value": "Posloupnost hlavních výrobních kroků, ke kterým došlo u tohoto produktu."
-        },
-        {
-          "@language": "da",
-          "@value": "Rækkefølgen af de vigtigste produktionstrin, der har fundet sted for dette produkt."
-        },
-        {
-          "@language": "de",
-          "@value": "Die Abfolge der wichtigsten Produktionsschritte, die für dieses Produkt durchgeführt wurden."
-        },
-        {
-          "@language": "el",
-          "@value": "Η ακολουθία των κύριων βημάτων παραγωγής που έλαβαν χώρα για αυτό το προϊόν."
-        },
-        {
-          "@language": "es",
-          "@value": "La secuencia de las principales etapas de producción que se llevaron a cabo para este producto."
-        },
-        {
-          "@language": "et",
-          "@value": "Selle toote puhul toimunud peamiste tootmisetappide järjestus."
-        },
-        {
-          "@language": "fi",
-          "@value": "Tälle tuotteelle tehtyjen pääasiallisten tuotantovaiheiden järjestys."
-        },
-        {
-          "@language": "fr",
-          "@value": "La séquence des principales étapes de production qui ont eu lieu pour ce produit."
-        },
-        {
-          "@language": "ga",
-          "@value": "Seicheamh na bpríomhchéimeanna táirgthe a tharla don táirge seo."
-        },
-        {
-          "@language": "hr",
-          "@value": "Slijed glavnih proizvodnih koraka koji su se odvili za ovaj proizvod."
-        },
-        {
-          "@language": "hu",
-          "@value": "A termék esetében végbement főbb gyártási lépések sorrendje."
-        },
-        {
-          "@language": "it",
-          "@value": "La sequenza delle principali fasi di produzione avvenute per questo prodotto."
-        },
-        {
-          "@language": "lt",
-          "@value": "Šiam gaminiui atliktų pagrindinių gamybos etapų seka."
-        },
-        {
-          "@language": "lv",
-          "@value": "Šī produkta galveno ražošanas posmu secība."
-        },
-        {
-          "@language": "mt",
-          "@value": "Is-sekwenza tal-passi ewlenin tal-produzzjoni li seħħew għal dan il-prodott."
-        },
-        {
-          "@language": "nl",
-          "@value": "De volgorde van de belangrijkste productiestappen die hebben plaatsgevonden voor dit product."
-        },
-        {
-          "@language": "pl",
-          "@value": "Sekwencja głównych etapów produkcji, które miały miejsce w przypadku tego produktu."
-        },
-        {
-          "@language": "pt",
-          "@value": "A sequência de etapas de produção principais que ocorreram para este produto."
-        },
-        {
-          "@language": "ro",
-          "@value": "Secvența pașilor majori de producție care au avut loc pentru acest produs."
-        },
-        {
-          "@language": "sk",
-          "@value": "Postupnosť hlavných výrobných krokov, ku ktorým došlo v prípade tohto výrobku."
-        },
-        {
-          "@language": "sl",
-          "@value": "Zaporedje glavnih proizvodnih korakov, ki so se zgodili za ta izdelek."
-        },
-        {
-          "@language": "sv",
-          "@value": "Sekvensen av de viktigaste produktionsstegen som inträffade för denna produkt."
-        }
-      ],
-      "dppk:visibility": {
-        "@id": "dppk:AuthorityOnly"
-      },
-      "rdfs:domain": {
-        "@id": "dppk:TextileProduct"
-      },
-      "rdfs:range": {
-        "@id": "dppk:ProductionStep"
-      },
-      "skos:relatedMatch": [
-        {
-          "@id": "schema:step"
-        },
-        {
-          "@id": "gs1:bizStep"
-        }
-      ]
-    },
-    {
-      "@id": "dppk:productionStepType",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "Production Step Type"
-        },
-        {
-          "@language": "bg",
-          "@value": "Вид производствена стъпка"
-        },
-        {
-          "@language": "cs",
-          "@value": "Typ výrobního kroku"
-        },
-        {
-          "@language": "da",
-          "@value": "Type produktionstrin"
-        },
-        {
-          "@language": "de",
-          "@value": "Art des Produktionsschritts"
-        },
-        {
-          "@language": "el",
-          "@value": "Τύπος βήματος παραγωγής"
-        },
-        {
-          "@language": "es",
-          "@value": "Tipo de etapa de producción"
-        },
-        {
-          "@language": "et",
-          "@value": "Tootmisetapi tüüp"
-        },
-        {
-          "@language": "fi",
-          "@value": "Tuotantovaiheen tyyppi"
-        },
-        {
-          "@language": "fr",
-          "@value": "Type d'étape de production"
-        },
-        {
-          "@language": "ga",
-          "@value": "Cineál Céime Táirgthe"
-        },
-        {
-          "@language": "hr",
-          "@value": "Vrsta proizvodnog koraka"
-        },
-        {
-          "@language": "hu",
-          "@value": "Gyártási lépés típusa"
-        },
-        {
-          "@language": "it",
-          "@value": "Tipo di fase di produzione"
-        },
-        {
-          "@language": "lt",
-          "@value": "Gamybos etapo tipas"
-        },
-        {
-          "@language": "lv",
-          "@value": "Ražošanas posma veids"
-        },
-        {
-          "@language": "mt",
-          "@value": "Tip ta' Pass tal-Produzzjoni"
-        },
-        {
-          "@language": "nl",
-          "@value": "Type productiestap"
-        },
-        {
-          "@language": "pl",
-          "@value": "Rodzaj etapu produkcji"
-        },
-        {
-          "@language": "pt",
-          "@value": "Tipo de etapa de produção"
-        },
-        {
-          "@language": "ro",
-          "@value": "Tip de etapă de producție"
-        },
-        {
-          "@language": "sk",
-          "@value": "Typ výrobného kroku"
-        },
-        {
-          "@language": "sl",
-          "@value": "Vrsta koraka proizvodnje"
-        },
-        {
-          "@language": "sv",
-          "@value": "Typ av produktionssteg"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "The type of activity performed (e.g., Spinning, Weaving, Dyeing)."
-        },
-        {
-          "@language": "bg",
-          "@value": "Видът на извършената дейност (напр. предене, тъкане, боядисване)."
-        },
-        {
-          "@language": "cs",
-          "@value": "Typ prováděné činnosti (např. předení, tkaní, barvení)."
-        },
-        {
-          "@language": "da",
-          "@value": "Den type aktivitet, der udføres (f.eks. spinding, vævning, farvning)."
-        },
-        {
-          "@language": "de",
-          "@value": "Die Art der durchgeführten Tätigkeit (z. B. Spinnen, Weben, Färben)."
-        },
-        {
-          "@language": "el",
-          "@value": "Το είδος της δραστηριότητας που εκτελείται (π.χ. κλώσιμο, ύφανση, βαφή)."
-        },
-        {
-          "@language": "es",
-          "@value": "El tipo de actividad realizada (por ejemplo, hilado, tejido, teñido)."
-        },
-        {
-          "@language": "et",
-          "@value": "Tehtud tegevuse liik (nt ketramine, kudumine, värvimine)."
-        },
-        {
-          "@language": "fi",
-          "@value": "Suoritetun toiminnan tyyppi (esim. kehräys, kudonta, värjäys)."
-        },
-        {
-          "@language": "fr",
-          "@value": "Le type d'activité réalisée (par ex., filage, tissage, teinture)."
-        },
-        {
-          "@language": "ga",
-          "@value": "An cineál gníomhaíochta a dhéantar (m.sh., Sníomh, Fíodóireacht, Ruaimniú)."
-        },
-        {
-          "@language": "hr",
-          "@value": "Vrsta obavljene aktivnosti (npr. predenje, tkanje, bojenje)."
-        },
-        {
-          "@language": "hu",
-          "@value": "A végzett tevékenység típusa (pl. fonás, szövés, festés)."
-        },
-        {
-          "@language": "it",
-          "@value": "Il tipo di attività svolta (ad es. filatura, tessitura, tintura)."
-        },
-        {
-          "@language": "lt",
-          "@value": "Atliktos veiklos tipas (pvz., verpimas, audimas, dažymas)."
-        },
-        {
-          "@language": "lv",
-          "@value": "Veiktās darbības veids (piemēram, vērpšana, aušana, krāsošana)."
-        },
-        {
-          "@language": "mt",
-          "@value": "It-tip ta' attività mwettqa (eż., Għażil, Insiġ, Żebgħa)."
-        },
-        {
-          "@language": "nl",
-          "@value": "Het type activiteit dat is uitgevoerd (bijv. spinnen, weven, verven)."
-        },
-        {
-          "@language": "pl",
-          "@value": "Rodzaj wykonywanej działalności (np. przędzenie, tkanie, farbowanie)."
-        },
-        {
-          "@language": "pt",
-          "@value": "O tipo de atividade realizada (por exemplo, fiação, tecelagem, tingimento)."
-        },
-        {
-          "@language": "ro",
-          "@value": "Tipul de activitate desfășurată (de ex., filare, țesere, vopsire)."
-        },
-        {
-          "@language": "sk",
-          "@value": "Typ vykonávanej činnosti (napr. pradenie, tkanie, farbenie)."
-        },
-        {
-          "@language": "sl",
-          "@value": "Vrsta izvedene dejavnosti (npr. predenje, tkanje, barvanje)."
-        },
-        {
-          "@language": "sv",
-          "@value": "Typ av utförd aktivitet (t.ex. spinning, vävning, färgning)."
-        }
-      ],
-      "rdfs:domain": {
-        "@id": "dppk:ProductionStep"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "skos:relatedMatch": [
-        {
-          "@id": "schema:Text"
-        },
-        {
-          "@id": "gs1:description"
-        }
-      ]
-    },
-    {
-      "@id": "dppk:productionLocationCountry",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": [
-        {
-          "@language": "en",
-          "@value": "Production Location Country"
-        },
-        {
-          "@language": "bg",
-          "@value": "Държава на производственото местоположение"
-        },
-        {
-          "@language": "cs",
-          "@value": "Země místa výroby"
-        },
-        {
-          "@language": "da",
-          "@value": "Produktionsland"
-        },
-        {
-          "@language": "de",
-          "@value": "Land des Produktionsstandorts"
-        },
-        {
-          "@language": "el",
-          "@value": "Χώρα τοποθεσίας παραγωγής"
-        },
-        {
-          "@language": "es",
-          "@value": "País del lugar de producción"
-        },
-        {
-          "@language": "et",
-          "@value": "Tootmiskoha riik"
-        },
-        {
-          "@language": "fi",
-          "@value": "Tuotantopaikan maa"
-        },
-        {
-          "@language": "fr",
-          "@value": "Pays du lieu de production"
-        },
-        {
-          "@language": "ga",
-          "@value": "Tír an tSuímh Táirgthe"
-        },
-        {
-          "@language": "hr",
-          "@value": "Zemlja lokacije proizvodnje"
-        },
-        {
-          "@language": "hu",
-          "@value": "Gyártás helyszínének országa"
-        },
-        {
-          "@language": "it",
-          "@value": "Paese del luogo di produzione"
-        },
-        {
-          "@language": "lt",
-          "@value": "Gamybos vietos šalis"
-        },
-        {
-          "@language": "lv",
-          "@value": "Ražošanas vietas valsts"
-        },
-        {
-          "@language": "mt",
-          "@value": "Pajjiż tal-Post tal-Produzzjoni"
-        },
-        {
-          "@language": "nl",
-          "@value": "Land van productielocatie"
-        },
-        {
-          "@language": "pl",
-          "@value": "Kraj miejsca produkcji"
-        },
-        {
-          "@language": "pt",
-          "@value": "País do local de produção"
-        },
-        {
-          "@language": "ro",
-          "@value": "Țara locației de producție"
-        },
-        {
-          "@language": "sk",
-          "@value": "Krajina miesta výroby"
-        },
-        {
-          "@language": "sl",
-          "@value": "Država lokacije proizvodnje"
-        },
-        {
-          "@language": "sv",
-          "@value": "Produktionsplatsens land"
-        }
-      ],
-      "rdfs:comment": [
-        {
-          "@language": "en",
-          "@value": "The country code (ISO 3166-1 alpha-3) where the production step took place."
-        },
-        {
-          "@language": "bg",
-          "@value": "Кодът на държавата (ISO 3166-1 алфа-3), в която се е състояла производствената стъпка."
-        },
-        {
-          "@language": "cs",
-          "@value": "Kód země (ISO 3166-1 alfa-3), kde výrobní krok proběhl."
-        },
-        {
-          "@language": "da",
-          "@value": "Landekoden (ISO 3166-1 alfa-3) for det sted, hvor produktionstrinnet fandt sted."
-        },
-        {
-          "@language": "de",
-          "@value": "Der Ländercode (ISO 3166-1 alpha-3), in dem der Produktionsschritt stattfand."
-        },
-        {
-          "@language": "el",
-          "@value": "Ο κωδικός χώρας (ISO 3166-1 alpha-3) όπου πραγματοποιήθηκε το βήμα παραγωγής."
-        },
-        {
-          "@language": "es",
-          "@value": "El código de país (ISO 3166-1 alfa-3) donde se llevó a cabo la etapa de producción."
-        },
-        {
-          "@language": "et",
-          "@value": "Riigikood (ISO 3166-1 alpha-3), kus tootmisetapp toimus."
-        },
-        {
-          "@language": "fi",
-          "@value": "Maakoodi (ISO 3166-1 alpha-3), jossa tuotantovaihe tapahtui."
-        },
-        {
-          "@language": "fr",
-          "@value": "Le code pays (ISO 3166-1 alpha-3) où l'étape de production a eu lieu."
-        },
-        {
-          "@language": "ga",
-          "@value": "An cód tíre (ISO 3166-1 alpha-3) inar tharla an chéim tháirgthe."
-        },
-        {
-          "@language": "hr",
-          "@value": "Oznaka zemlje (ISO 3166-1 alfa-3) u kojoj se odvio proizvodni korak."
-        },
-        {
-          "@language": "hu",
-          "@value": "Annak az országnak a kódja (ISO 3166-1 alpha-3), ahol a gyártási lépés zajlott."
-        },
-        {
-          "@language": "it",
-          "@value": "Il codice del paese (ISO 3166-1 alpha-3) in cui si è svolta la fase di produzione."
-        },
-        {
-          "@language": "lt",
-          "@value": "Šalies, kurioje vyko gamybos etapas, kodas (ISO 3166-1 alfa-3)."
-        },
-        {
-          "@language": "lv",
-          "@value": "Valsts kods (ISO 3166-1 alfa-3), kurā norisinājās ražošanas posms."
-        },
-        {
-          "@language": "mt",
-          "@value": "Il-kodiċi tal-pajjiż (ISO 3166-1 alpha-3) fejn seħħ il-pass tal-produzzjoni."
-        },
-        {
-          "@language": "nl",
-          "@value": "De landcode (ISO 3166-1 alpha-3) waar de productiestap heeft plaatsgevonden."
-        },
-        {
-          "@language": "pl",
-          "@value": "Kod kraju (ISO 3166-1 alfa-3), w którym miał miejsce etap produkcji."
-        },
-        {
-          "@language": "pt",
-          "@value": "O código do país (ISO 3166-1 alfa-3) onde a etapa de produção ocorreu."
-        },
-        {
-          "@language": "ro",
-          "@value": "Codul țării (ISO 3166-1 alfa-3) unde a avut loc etapa de producție."
-        },
-        {
-          "@language": "sk",
-          "@value": "Kód krajiny (ISO 3166-1 alfa-3), v ktorej sa uskutočnil výrobný krok."
-        },
-        {
-          "@language": "sl",
-          "@value": "Koda države (ISO 3166-1 alpha-3), kjer se je zgodil korak proizvodnje."
-        },
-        {
-          "@language": "sv",
-          "@value": "Landskoden (ISO 3166-1 alpha-3) där produktionssteget ägde rum."
-        }
-      ],
-      "rdfs:domain": {
-        "@id": "dppk:ProductionStep"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "skos:exactMatch": [
-        {
-          "@id": "gs1:countryOfOrigin"
-        },
-        {
-          "@id": "schema:countryOfOrigin"
         }
       ]
     },

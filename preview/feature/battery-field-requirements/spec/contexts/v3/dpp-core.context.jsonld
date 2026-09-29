@@ -138,6 +138,10 @@
         "@id": "dppk:recycledContentPercentage",
         "@type": "xsd:double"
       },
+      "manufacturingDate": {
+        "@id": "dppk:manufacturingDate",
+        "@type": "xsd:date"
+      },
       "productCharacteristics": {
         "@id": "dppk:productCharacteristics",
         "@container": "@set"

@@ -65,7 +65,7 @@
       "testReports": {
         "$ref": "../shared/related-resource.schema.json"
       },
-      "carbonFootprintClass": {
+      "batteryCarbonFootprintClass": {
         "type": "string"
       },
       "carbonFootprintStudy": {
