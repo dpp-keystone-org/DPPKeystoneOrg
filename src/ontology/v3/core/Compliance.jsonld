@@ -597,6 +597,33 @@
           { "@language": "sl", "@value": "Proizvodni koraki" },
           { "@language": "sv", "@value": "Produktionssteg" }
         ],
+        "rdfs:comment": [
+          { "@language": "en", "@value": "The sequence of major production steps that occurred for this product." },
+          { "@language": "bg", "@value": "Последователността на основните производствени стъпки, които са се състояли за този продукт." },
+          { "@language": "cs", "@value": "Posloupnost hlavních výrobních kroků, ke kterým došlo u tohoto produktu." },
+          { "@language": "da", "@value": "Rækkefølgen af de vigtigste produktionstrin, der har fundet sted for dette produkt." },
+          { "@language": "de", "@value": "Die Abfolge der wichtigsten Produktionsschritte, die für dieses Produkt durchgeführt wurden." },
+          { "@language": "el", "@value": "Η ακολουθία των κύριων βημάτων παραγωγής που έλαβαν χώρα για αυτό το προϊόν." },
+          { "@language": "es", "@value": "La secuencia de las principales etapas de producción que se llevaron a cabo para este producto." },
+          { "@language": "et", "@value": "Selle toote puhul toimunud peamiste tootmisetappide järjestus." },
+          { "@language": "fi", "@value": "Tälle tuotteelle tehtyjen pääasiallisten tuotantovaiheiden järjestys." },
+          { "@language": "fr", "@value": "La séquence des principales étapes de production qui ont eu lieu pour ce produit." },
+          { "@language": "ga", "@value": "Seicheamh na bpríomhchéimeanna táirgthe a tharla don táirge seo." },
+          { "@language": "hr", "@value": "Slijed glavnih proizvodnih koraka koji su se odvili za ovaj proizvod." },
+          { "@language": "hu", "@value": "A termék esetében végbement főbb gyártási lépések sorrendje." },
+          { "@language": "it", "@value": "La sequenza delle principali fasi di produzione avvenute per questo prodotto." },
+          { "@language": "lt", "@value": "Šiam gaminiui atliktų pagrindinių gamybos etapų seka." },
+          { "@language": "lv", "@value": "Šī produkta galveno ražošanas posmu secība." },
+          { "@language": "mt", "@value": "Is-sekwenza tal-passi ewlenin tal-produzzjoni li seħħew għal dan il-prodott." },
+          { "@language": "nl", "@value": "De volgorde van de belangrijkste productiestappen die hebben plaatsgevonden voor dit product." },
+          { "@language": "pl", "@value": "Sekwencja głównych etapów produkcji, które miały miejsce w przypadku tego produktu." },
+          { "@language": "pt", "@value": "A sequência de etapas de produção principais que ocorreram para este produto." },
+          { "@language": "ro", "@value": "Secvența pașilor majori de producție care au avut loc pentru acest produs." },
+          { "@language": "sk", "@value": "Postupnosť hlavných výrobných krokov, ku ktorým došlo v prípade tohto výrobku." },
+          { "@language": "sl", "@value": "Zaporedje glavnih proizvodnih korakov, ki so se zgodili za ta izdelek." },
+          { "@language": "sv", "@value": "Sekvensen av de viktigaste produktionsstegen som inträffade för denna produkt." }
+        ],
+        "dppk:visibility": { "@id": "dppk:AuthorityOnly" },
         "rdfs:domain": { "@id": "dppk:Product" },
         "rdfs:range": { "@id": "dppk:ProductionStep" },
         "skos:relatedMatch": [
@@ -1756,6 +1783,7 @@
           { "@language": "sv", "@value": "Namnet eller beskrivningen av produktionssteget (t.ex. Montering, Vävning, Smältning)." }
         ],
         "rdfs:domain": { "@id": "dppk:ProductionStep" },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:relatedMatch": [
           { "@id": "schema:Text" },
           { "@id": "gs1:description" }
@@ -1817,6 +1845,7 @@
           { "@language": "sv", "@value": "Det land där produktionssteget ägde rum. Det rekommenderas att använda ISO 3166-1 alpha-3-koder." }
         ],
         "rdfs:domain": { "@id": "dppk:ProductionStep" },
+        "rdfs:range": { "@id": "xsd:string" },
         "skos:exactMatch": { "@id": "gs1:countryCode" },
         "skos:closeMatch": { "@id": "schema:countryOfOrigin" }
     }

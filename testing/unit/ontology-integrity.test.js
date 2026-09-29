@@ -1,8 +1,10 @@
 import {
     auditContextMappings,
+    auditTermCollisions,
     IntegrityReporter,
     ontologyGraph,
     processContextBlock,
+    registerOntologyTerm,
     resetIntegrityState
 } from '../../scripts/validate-ontology-integrity.mjs';
 
@@ -74,3 +76,56 @@ describe('ontology integrity: context mapping to JSON-LD keywords', () => {
         expect(reporter.violations['Context Mapping Integrity']).toBeUndefined();
     });
 });
+
+describe('ontology integrity: collision detection', () => {
+    beforeEach(() => {
+        resetIntegrityState();
+    });
+
+    it('fails when two non-deprecated terms share the exact same IRI across files', () => {
+        registerOntologyTerm({ '@id': 'dppk:carbonFootprintClass' }, 'src/ontology/v3/sectors/Battery.jsonld');
+        registerOntologyTerm({ '@id': 'dppk:carbonFootprintClass' }, 'src/ontology/v3/sectors/Textile.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditTermCollisions(reporter);
+
+        expect(reporter.hasErrors).toBe(true);
+        const failures = reporter.violations['Ontology Collision Integrity'];
+        expect(failures).toHaveLength(1);
+        expect(failures[0].message).toContain("Term 'dppk:carbonFootprintClass' is defined multiple times");
+    });
+
+    it('passes when terms share the same local name but have different namespaces', () => {
+        registerOntologyTerm({ '@id': 'dppk:compressiveStrength' }, 'src/ontology/v3/core/Product.jsonld');
+        registerOntologyTerm({ '@id': 'dppk-cement:compressiveStrength' }, 'src/ontology/v3/sectors/Cement.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditTermCollisions(reporter);
+
+        expect(reporter.hasErrors).toBe(false);
+        expect(reporter.violations['Ontology Collision Integrity']).toBeUndefined();
+    });
+
+    it('ignores collisions when duplicate terms are marked owl:deprecated', () => {
+        registerOntologyTerm({ '@id': 'dppk:carbonFootprintClass', 'owl:deprecated': true }, 'src/ontology/v3/sectors/Battery.jsonld');
+        registerOntologyTerm({ '@id': 'dppk:carbonFootprintClass', 'owl:deprecated': true }, 'src/ontology/v3/sectors/Textile.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditTermCollisions(reporter);
+
+        expect(reporter.hasErrors).toBe(false);
+        expect(reporter.violations['Ontology Collision Integrity']).toBeUndefined();
+    });
+
+    it('ignores collisions when one duplicate term is active and one is marked owl:deprecated', () => {
+        registerOntologyTerm({ '@id': 'dppk:legacyTerm', 'owl:deprecated': true }, 'src/ontology/v3/core/Legacy.jsonld');
+        registerOntologyTerm({ '@id': 'dppk:legacyTerm' }, 'src/ontology/v3/core/Current.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditTermCollisions(reporter);
+
+        expect(reporter.hasErrors).toBe(false);
+        expect(reporter.violations['Ontology Collision Integrity']).toBeUndefined();
+    });
+});
+
