@@ -1,42 +1,18 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1790662164523';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1791271597429';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1790662164523';
-import { generateHTML } from '../lib/html-generator.js?v=1790662164523';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1790662164523';
-import { loadHeader } from '../branding/header.js?v=1790662164523';
+import { EXAMPLES } from '../lib/example-registry.js?v=1791271597429';
+import { generateHTML } from '../lib/html-generator.js?v=1791271597429';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1791271597429';
+import { loadHeader } from '../branding/header.js?v=1791271597429';
 loadHeader('dpp-header-container', '..');
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1790662164523';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1790662164523';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1790662164523';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1790662164523';
-import { LanguageManager } from '../lib/language-manager.js?v=1790662164523';
+import { loadOntology } from '../lib/ontology-loader.js?v=1791271597429';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1791271597429';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1791271597429';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1791271597429';
+import { LanguageManager } from '../lib/language-manager.js?v=1791271597429';
 
-// Configuration: Map Spec IDs to Schema filenames
-// This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
-// NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
-const SECTOR_MAP = {
-    'draft_battery_specification_id': 'sector/battery.schema.json',
-    'draft_construction_specification_id': 'sector/construction.schema.json',
-    'draft_electronics_specification_id': 'sector/electronics.schema.json',
-    'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile.schema.json'
-};
-
-// Common schemas that should always be loaded for $ref resolution
-const COMMON_SCHEMAS = [
-    'shared/dopc.schema.json',
-    'shared/epd.schema.json',
-    'shared/organization.schema.json',
-    'shared/packaging.schema.json',
-    'shared/postal-address.schema.json',
-    'shared/product-characteristic.schema.json',
-    'shared/related-resource.schema.json',
-    'shared/general-product.schema.json',
-    'shared/component.schema.json',
-    'shared/mtc.schema.json',
-    'shared/certification.schema.json'
-];
+import { SPEC_URL_TO_SECTOR_MAP, SECTOR_SCHEMA_MAP, COMMON_SCHEMAS } from '../lib/sector-mappings.js?v=1791271597429';
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
 const SCHEMA_BASE_URL = `../spec/validation/${KEYSTONE_VERSION}/json-schema/`;
@@ -154,11 +130,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Branch dynamic Ontology validation to intercept `@context` specifically!
             if (dppData['@context']) {
                 const localContextLoader = async (url) => {
-                    const CONTEXT_PROD_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
-                    let fetchUrl = url;
-                    if (url.startsWith(CONTEXT_PROD_PREFIX)) {
-                        fetchUrl = url.replace(CONTEXT_PROD_PREFIX, '../spec/contexts/');
-                    }
+                    const fetchUrl = specUrlToRelativePath(url, '../spec/');
                     const response = await fetch(fetchUrl);
                     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                     return {
@@ -182,9 +154,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (dppData.contentSpecificationIds && Array.isArray(dppData.contentSpecificationIds)) {
                     for (const id of dppData.contentSpecificationIds) {
-                        const schemaFile = SECTOR_MAP[id];
-                        if (schemaFile) {
-                            const sectorName = schemaFile.replace('sector/', '').replace('.schema.json', '');
+                        const sectorName = SPEC_URL_TO_SECTOR_MAP[id];
+                        if (sectorName) {
                             const sectorOntology = await loadOntology(sectorName);
                             if (sectorOntology) sectorOntology.forEach((v, k) => aggregatedMap.set(k, v));
                         }
@@ -306,9 +277,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Configure document loader to resolve specific URLs locally
                 const documentLoader = async (url, options) => {
-                    // Intercept spec URLs and redirect to local files if possible
-                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                    // Intercept spec URLs (canonical or preview) and redirect to local files if possible
+                    if (isSpecUrl(url)) {
+                        const relativePath = specUrlToRelativePath(url, '../spec/');
 
                         // Try to fetch locally
                         try {
@@ -466,9 +437,12 @@ async function loadSchemas() {
 
     // Load Sectors (We load all known mapped sectors so they are ready)
     // In a larger system, we might lazy load, but for this tool, eager loading is fine.
-    const sectorPromises = Object.entries(SECTOR_MAP).map(async ([id, filename]) => {
-        const schema = await fetchJson(filename);
-        schemaContext.sectorSchemas[id] = schema;
+    const sectorPromises = Object.entries(SPEC_URL_TO_SECTOR_MAP).map(async ([id, sectorName]) => {
+        const filename = SECTOR_SCHEMA_MAP[sectorName];
+        if (filename) {
+            const schema = await fetchJson(filename);
+            schemaContext.sectorSchemas[id] = schema;
+        }
     });
     await Promise.all(sectorPromises);
 }

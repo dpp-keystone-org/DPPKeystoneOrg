@@ -229,7 +229,15 @@
                 "@id": "dppk:internalResistanceInitial",
                 "@type": "xsd:double"
               },
-              "increase": "dppk:internalResistanceIncrease"
+              "increase": "dppk:internalResistanceIncrease",
+              "ohmic": {
+                "@id": "dppk:internalResistanceOhmic",
+                "@type": "xsd:double"
+              },
+              "dynamic": {
+                "@id": "dppk:internalResistanceDynamic",
+                "@type": "xsd:double"
+              }
             }
           },
           "lifetime": {

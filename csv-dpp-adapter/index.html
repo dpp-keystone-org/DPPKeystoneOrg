@@ -2,8 +2,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP CSV Adapter</title>
-    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1790662164523">
-    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1790662164523">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css?v=1791271597429">
+    <link rel="stylesheet" href="csv-dpp-adapter.css?v=1791271597429">
 </head>
 <body>
     <div class="container">
@@ -20,7 +20,9 @@
                 <div style="margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem;"><strong data-i18n-key="target-sector-s">Target Sector(s):</strong></label>
                     <div id="sector-select" class="checkbox-group">
-                        <label><input type="checkbox" name="sector" value="battery"> <span data-i18n-key="battery">Battery</span></label>
+                        <label><input type="checkbox" name="sector" value="battery-ev"> <span data-i18n-key="battery-ev">Battery (EV)</span></label>
+                        <label><input type="checkbox" name="sector" value="battery-lmv"> <span data-i18n-key="battery-lmv">Battery (LMV)</span></label>
+                        <label><input type="checkbox" name="sector" value="battery-industrial"> <span data-i18n-key="battery-industrial">Battery (Industrial)</span></label>
                         <label><input type="checkbox" name="sector" value="construction"> <span data-i18n-key="construction">Construction</span></label>
                         <label><input type="checkbox" name="sector" value="electronics"> <span data-i18n-key="electronics">Electronics</span></label>
                         <label><input type="checkbox" name="sector" value="iron-steel"> <span data-i18n-key="iron-amp-steel">Iron &amp; Steel</span></label>
@@ -90,7 +92,7 @@
     <!-- Removed manual script tag for papaparse, will import in module -->
     
     <!-- Application Logic -->
-    <script type="module" src="csv-dpp-adapter.js?v=1790662164523"></script>
+    <script type="module" src="csv-dpp-adapter.js?v=1791271597429"></script>
     <script type="module">
         import { LanguageManager } from '../lib/language-manager.js';
         LanguageManager.init('./index.i18n.json');

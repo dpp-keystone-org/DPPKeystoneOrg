@@ -1,15 +1,16 @@
 // src/wizard/wizard.js
-import { loadHeader } from '../branding/header.js?v=1790662164523';
+import { loadHeader } from '../branding/header.js?v=1791271597429';
 loadHeader('dpp-header-container', '..');
-import { loadSchema } from '../lib/schema-loader.js?v=1790662164523';
-import { loadOntology, loadContext } from '../lib/ontology-loader.js?v=1790662164523';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1790662164523';
-import { generateDpp } from './dpp-generator.js?v=1790662164523';
-import { generateHTML } from '../lib/html-generator.js?v=1790662164523';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1790662164523';
+import { loadSchema } from '../lib/schema-loader.js?v=1791271597429';
+import { loadOntology, loadContext } from '../lib/ontology-loader.js?v=1791271597429';
+import { SECTOR_DISPLAY_NAMES } from '../lib/sector-mappings.js?v=1791271597429';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1791271597429';
+import { generateDpp } from './dpp-generator.js?v=1791271597429';
+import { generateHTML } from '../lib/html-generator.js?v=1791271597429';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1791271597429';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1790662164523';
-import { LanguageManager } from '../lib/language-manager.js?v=1790662164523';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1791271597429';
+import { LanguageManager } from '../lib/language-manager.js?v=1791271597429';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();
@@ -463,12 +464,7 @@ export async function initializeWizard() {
             const sectorContainerId = `sector-form-${sector}`;
             const existingContainer = document.getElementById(sectorContainerId);
 
-            const sectorDisplayNames = {
-                'general-product': 'General Product Information',
-                'textile': 'Textile',
-                'iron-steel': 'Iron or Steel'
-            };
-            const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
+            const displayName = SECTOR_DISPLAY_NAMES[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
 
             const schemaType = button.dataset.schemaType || 'sector';
 
@@ -697,9 +693,9 @@ export async function initializeWizard() {
 
                 // Configure document loader to resolve specific URLs locally
                 const documentLoader = async (url, options) => {
-                    // Intercept spec URLs and redirect to local files if possible
-                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
+                    // Intercept spec URLs (canonical or preview) and redirect to local files if possible
+                    if (isSpecUrl(url)) {
+                        const relativePath = specUrlToRelativePath(url, '../spec/');
 
                         // Try to fetch locally
                         try {

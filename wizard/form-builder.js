@@ -1,6 +1,6 @@
 // src/wizard/form-builder.js
-import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1790662164523';
-import { LanguageManager } from '../lib/language-manager.js?v=1790662164523';
+import { isURI, isCountryCode, isNumber, isInteger, validateText, validateKey } from './validator.js?v=1791271597429';
+import { LanguageManager } from '../lib/language-manager.js?v=1791271597429';
 
 function triggerLocalization() {
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: LanguageManager.getPreferredLanguage() } }));
@@ -907,7 +907,7 @@ function generateRows(fragment, properties, ontologyMap, requiredFields = [], pa
         }
 
         // Exclude fields that should not be rendered
-        if (key === 'contentSpecificationIds') {
+        if (key === 'contentSpecificationIds' || prop.not !== undefined) {
             continue;
         }
 
@@ -1040,9 +1040,19 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
         headerValueCell.appendChild(removeButton);
 
         // Generate and add the child fields.
-        // Check if schemaToUse has properties or needs further resolution (oneOf selected schemas are usually objects with properties)
+        // Check if schemaToUse has properties or is a primitive/simple schema (e.g. { type: "string" } in a oneOf)
         if (schemaToUse && schemaToUse.properties) {
              generateRows(newFieldsFragment, schemaToUse.properties, ontologyMap, schemaToUse.required || [], dynamicPath, indentationLevel + 1, lang);
+        } else if (schemaToUse && (schemaToUse.type || schemaToUse.enum)) {
+             renderSimpleInputProperty(newFieldsFragment, {
+                 key,
+                 prop: schemaToUse,
+                 currentPath: dynamicPath,
+                 isRequired: false,
+                 indentationLevel: indentationLevel + 1,
+                 ontologyMap,
+                 lang
+             });
         } else {
              // Fallback or error handling if the selected schema doesn't have properties (e.g. empty object)
              console.warn(`[FormBuilder] Expanded schema for ${key} has no properties.`);
@@ -1087,10 +1097,21 @@ function createOptionalObjectPlaceholderRow(key, prop, currentPath, indentationL
              prop.oneOf.forEach((opt, idx) => {
                  const option = document.createElement('option');
                  option.value = idx;
-                 option.text = opt.title || `Option ${idx + 1}`;
                  if (opt.title) {
-                     const key = 'custom-type-' + opt.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                     option.setAttribute('data-i18n-key', key);
+                     option.text = opt.title;
+                     const i18nKey = 'custom-type-' + opt.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                     option.setAttribute('data-i18n-key', i18nKey);
+                 } else if (opt.type === 'string') {
+                     option.text = 'Text';
+                     option.setAttribute('data-i18n-key', 'type-text');
+                 } else if (opt.type === 'number' || opt.type === 'integer') {
+                     option.text = 'Number';
+                     option.setAttribute('data-i18n-key', 'type-number');
+                 } else if (opt.type === 'boolean') {
+                     option.text = 'True/False';
+                     option.setAttribute('data-i18n-key', 'type-boolean');
+                 } else {
+                     option.text = `Option ${idx + 1}`;
                  }
                  select.appendChild(option);
              });

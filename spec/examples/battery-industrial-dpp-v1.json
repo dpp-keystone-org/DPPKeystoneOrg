@@ -1,8 +1,8 @@
 {
   "@context": "https://dpp-keystone.org/spec/contexts/v3/dpp-battery.context.jsonld",
   "@type": "dppk:DigitalProductPassport",
-  "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
-  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/battery-dpp-v1.html",
+  "digitalProductPassportId": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf8",
+  "uniqueProductIdentifier": "https://dpp-keystone.org/spec/examples/html/battery-industrial-dpp-v1.html",
   "granularity": "Item",
   "dppSchemaVersion": "v2.0",
   "dppStatus": "Active",
@@ -10,9 +10,9 @@
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
   "contentSpecificationIds": [
-    "urn:dpp-keystone:v3:sector:battery-ev"
+    "urn:dpp-keystone:v3:sector:battery-industrial"
   ],
-  "productName": "Keystone EV LFP Module Gen2",
+  "productName": "Keystone Industrial LFP Module Gen2",
   "image": [
     {
       "resourceTitle": "Front View",
@@ -35,7 +35,7 @@
   "manufacturingDate": "2024-01-15",
   "serviceDate": "2024-02-01",
   "warrantyPeriod": "5 Years",
-  "batteryCategory": "EVBattery",
+  "batteryCategory": "IndustrialBattery",
   "batteryChemistry": "LFP",
   "batteryMass": 45.5,
   "batteryStatus": "Original",
@@ -111,31 +111,18 @@
       "voltageMin": 40,
       "voltageMax": 54,
       "certifiedUsableEnergy": 4800,
-      "stateOfCharge": 98.5,
-      "soce": 99,
-      "fade": 2.5
+      "stateOfCharge": 98.5
     },
     "power": {
       "original": 2000,
-      "maximumPermitted": 2500,
-      "fade": 1
+      "maximumPermitted": 2500
     },
     "efficiency": {
       "roundTripInitial": 95.5,
-      "roundTripAt50Cycles": 94,
       "selfDischargeInitial": 2
     },
     "internalResistance": {
-      "initial": 15,
-      "increase": 0.5,
-      "dynamic": 16.5
-    },
-    "lifetime": {
-      "years": 10,
-      "cycles": 3000,
-      "referenceTest": "IEC 62660-2",
-      "cRateTest": 1,
-      "exhaustionThreshold": 80
+      "initial": 15
     },
     "temperature": {
       "idleLower": -20,
