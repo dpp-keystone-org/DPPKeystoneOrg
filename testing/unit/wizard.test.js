@@ -1271,6 +1271,194 @@ describe('DPP Wizard - Form Builder - Optional Object Edge Cases', () => {
     });
 });
 
+describe('DPP Wizard - Form Builder - oneOf Handling', () => {
+    const epdAndDopcOneOfSchema = {
+        "type": "object",
+        "properties": {
+            "epd": {
+                "oneOf": [
+                    {
+                        "title": "DPP EPD (Environmental Product Declaration) Data Block",
+                        "type": "object",
+                        "properties": {
+                            "gwp": { "type": "number" }
+                        }
+                    },
+                    {
+                        "title": "Related Resource",
+                        "type": "object",
+                        "required": ["url"],
+                        "properties": {
+                            "resourceTitle": { "type": "string" },
+                            "url": { "type": "string", "format": "uri-reference" }
+                        }
+                    }
+                ]
+            },
+            "dopc": {
+                "oneOf": [
+                    {
+                        "title": "DPP DoPC (Declaration of Performance) Data Block",
+                        "type": "object",
+                        "properties": {
+                            "declarationCode": { "type": "string" }
+                        }
+                    },
+                    {
+                        "title": "Related Resource",
+                        "type": "object",
+                        "required": ["url"],
+                        "properties": {
+                            "resourceTitle": { "type": "string" },
+                            "url": { "type": "string", "format": "uri-reference" }
+                        }
+                    }
+                ]
+            }
+        }
+    };
+
+    it('should allow selecting either the specific subschema or Related Resource for epd and dopc oneOf fields', () => {
+        document.body.innerHTML = `
+            <div id="core-form-container"></div>
+            <div id="form-container"></div>
+            <div id="voluntary-fields-wrapper"></div>
+        `;
+        const coreFormContainer = document.getElementById('core-form-container');
+        const formContainer = document.getElementById('form-container');
+        const voluntaryFieldsWrapper = document.getElementById('voluntary-fields-wrapper');
+
+        formContainer.appendChild(buildForm(epdAndDopcOneOfSchema));
+
+        // --- 1. Test EPD: Select EPD Data Block ---
+        const addEpdBtn = formContainer.querySelector('button[data-optional-object="epd"]');
+        expect(addEpdBtn).not.toBeNull();
+        addEpdBtn.click();
+
+        const epdSelect = formContainer.querySelector('select.type-selector[data-pending-optional-object="epd"]');
+        expect(epdSelect).not.toBeNull();
+        const epdOptions = Array.from(epdSelect.options).map(o => o.text);
+        expect(epdOptions).toEqual([
+            'Select Type...',
+            'DPP EPD (Environmental Product Declaration) Data Block',
+            'Related Resource'
+        ]);
+
+        epdSelect.value = '0';
+        epdSelect.dispatchEvent(new Event('change', { bubbles: true }));
+
+        const epdGwpInput = formContainer.querySelector('input[name="epd.gwp"]');
+        expect(epdGwpInput).not.toBeNull();
+        expect(epdGwpInput.type).toBe('number');
+        expect(formContainer.querySelector('input[name="epd.url"]')).toBeNull();
+
+        epdGwpInput.value = '42.5';
+
+        // --- 2. Test DoPC: Select Related Resource, then Remove and switch to DoPC Data Block ---
+        const addDopcBtn = formContainer.querySelector('button[data-optional-object="dopc"]');
+        expect(addDopcBtn).not.toBeNull();
+        addDopcBtn.click();
+
+        let dopcSelect = formContainer.querySelector('select.type-selector[data-pending-optional-object="dopc"]');
+        expect(dopcSelect).not.toBeNull();
+        dopcSelect.value = '1';
+        dopcSelect.dispatchEvent(new Event('change', { bubbles: true }));
+
+        expect(formContainer.querySelector('input[name="dopc.url"]')).not.toBeNull();
+        expect(formContainer.querySelector('input[name="dopc.resourceTitle"]')).not.toBeNull();
+        expect(formContainer.querySelector('input[name="dopc.declarationCode"]')).toBeNull();
+
+        // Remove DoPC Related Resource and switch to DoPC Data Block
+        const removeDopcBtn = formContainer.querySelector('button[data-remove-optional-object="dopc"]');
+        expect(removeDopcBtn).not.toBeNull();
+        removeDopcBtn.click();
+
+        expect(formContainer.querySelector('input[name="dopc.url"]')).toBeNull();
+        formContainer.querySelector('button[data-optional-object="dopc"]').click();
+        dopcSelect = formContainer.querySelector('select.type-selector[data-pending-optional-object="dopc"]');
+        dopcSelect.value = '0';
+        dopcSelect.dispatchEvent(new Event('change', { bubbles: true }));
+
+        const dopcCodeInput = formContainer.querySelector('input[name="dopc.declarationCode"]');
+        expect(dopcCodeInput).not.toBeNull();
+        expect(dopcCodeInput.type).toBe('text');
+        dopcCodeInput.value = 'DoPC-2026-001';
+
+        const dpp = generateDpp(['iron-steel'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        expect(dpp.epd).toEqual({ gwp: 42.5 });
+        expect(dpp.dopc).toEqual({ declarationCode: 'DoPC-2026-001' });
+    });
+
+    it('should render a data entry field with the correct type when a primitive string option is selected in a oneOf', () => {
+        const textileInstructionOneOfSchema = {
+            "type": "object",
+            "properties": {
+                "careInstructions": {
+                    "oneOf": [
+                        {
+                            "title": "Related Resource",
+                            "type": "object",
+                            "required": ["url"],
+                            "properties": {
+                                "resourceTitle": { "type": "string" },
+                                "url": { "type": "string", "format": "uri-reference" }
+                            }
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        };
+
+        document.body.innerHTML = `
+            <div id="core-form-container"></div>
+            <div id="form-container"></div>
+            <div id="voluntary-fields-wrapper"></div>
+        `;
+        const coreFormContainer = document.getElementById('core-form-container');
+        const formContainer = document.getElementById('form-container');
+        const voluntaryFieldsWrapper = document.getElementById('voluntary-fields-wrapper');
+
+        formContainer.appendChild(buildForm(textileInstructionOneOfSchema));
+
+        // 1. Click Add on careInstructions
+        const addBtn = formContainer.querySelector('button[data-optional-object="careInstructions"]');
+        expect(addBtn).not.toBeNull();
+        addBtn.click();
+
+        // 2. Verify dropdown options label the primitive string option as "Text" (not "Option 2")
+        const select = formContainer.querySelector('select.type-selector[data-pending-optional-object="careInstructions"]');
+        expect(select).not.toBeNull();
+        const options = Array.from(select.options);
+        expect(options.map(o => o.text)).toEqual(['Select Type...', 'Related Resource', 'Text']);
+        expect(options[2].getAttribute('data-i18n-key')).toBe('type-text');
+
+        // 3. Select the primitive string option
+        select.value = '1';
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+
+        // 4. Verify a text input is rendered for careInstructions and Remove button is present
+        const removeBtn = formContainer.querySelector('button[data-remove-optional-object="careInstructions"]');
+        expect(removeBtn).not.toBeNull();
+
+        const stringInput = formContainer.querySelector('input[name="careInstructions"]');
+        expect(stringInput).not.toBeNull();
+        expect(stringInput.type).toBe('text');
+
+        // 5. Populate the string input and verify generateDpp output
+        stringInput.value = 'Machine wash cold, line dry';
+        const dpp = generateDpp(['textile'], coreFormContainer, formContainer, voluntaryFieldsWrapper);
+        expect(dpp.careInstructions).toBe('Machine wash cold, line dry');
+
+        // 6. Click Remove and verify the input is removed and Add button returns
+        removeBtn.click();
+        expect(formContainer.querySelector('input[name="careInstructions"]')).toBeNull();
+        expect(formContainer.querySelector('button[data-optional-object="careInstructions"]')).not.toBeNull();
+    });
+});
+
 describe('DPP Wizard - Custom Fields', () => {
     it('should create a custom field row with a Type selector', () => {
         const row = createVoluntaryFieldRow();

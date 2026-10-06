@@ -221,6 +221,29 @@ for (const sector of sectors) {
       case 'iron-steel':
         await expect(page.locator('input[name="heatNumber"]')).toBeVisible();
         await expect(page.locator('input[name="productNumber"]')).toBeVisible();
+
+        // Test epd oneOf: both Related Resource and EPD Data Block options
+        await page.locator('button[data-optional-object="epd"]').click();
+        await page.locator('select.type-selector[data-pending-optional-object="epd"]').selectOption({ label: 'Related Resource' });
+        await expect(page.locator('input[name="epd.url"]')).toBeVisible();
+        await page.locator('button[data-remove-optional-object="epd"]').click();
+        await expect(page.locator('input[name="epd.url"]')).not.toBeVisible();
+
+        await page.locator('button[data-optional-object="epd"]').click();
+        await page.locator('select.type-selector[data-pending-optional-object="epd"]').selectOption({ label: 'DPP EPD (Environmental Product Declaration) Data Block' });
+        await page.locator('button[data-optional-object="gwp"]').click();
+        await expect(page.locator('input[name="epd.gwp.a1"]')).toBeVisible();
+
+        // Test dopc oneOf: both DoPC Data Block and Related Resource options
+        await page.locator('button[data-optional-object="dopc"]').click();
+        await page.locator('select.type-selector[data-pending-optional-object="dopc"]').selectOption({ label: 'Declaration of Performance and Conformity' });
+        await expect(page.locator('input[name="dopc.declarationCode"]')).toBeVisible();
+        await page.locator('button[data-remove-optional-object="dopc"]').click();
+        await expect(page.locator('input[name="dopc.declarationCode"]')).not.toBeVisible();
+
+        await page.locator('button[data-optional-object="dopc"]').click();
+        await page.locator('select.type-selector[data-pending-optional-object="dopc"]').selectOption({ label: 'Related Resource' });
+        await expect(page.locator('input[name="dopc.url"]')).toBeVisible();
         break;
       case 'textile':
         // For array fields, the form builder creates an "Add" button
@@ -256,10 +279,23 @@ for (const sector of sectors) {
         await addCareInstBtn.click();
         
         // Select the Related Resource type from the dropdown
-        await page.locator('.type-selector').selectOption({ label: 'Related Resource' });
+        await page.locator('select.type-selector[data-pending-optional-object="careInstructions"]').selectOption({ label: 'Related Resource' });
         
         await expect(page.locator('input[name="careInstructions.resourceTitle"]')).toBeVisible();
         await expect(page.locator('input[name="careInstructions.url"]')).toBeVisible();
+
+        // Remove Related Resource and select the primitive Text option instead
+        await page.locator('button[data-remove-optional-object="careInstructions"]').click();
+        await expect(page.locator('input[name="careInstructions.url"]')).not.toBeVisible();
+
+        await page.locator('button[data-optional-object="careInstructions"]').click();
+        await page.locator('select.type-selector[data-pending-optional-object="careInstructions"]').selectOption({ label: 'Text' });
+
+        const careInstTextInput = page.locator('input[name="careInstructions"]');
+        await expect(careInstTextInput).toBeVisible();
+        await expect(careInstTextInput).toHaveAttribute('type', 'text');
+        await careInstTextInput.fill('Machine wash at 30°C');
+        await expect(careInstTextInput).toHaveValue('Machine wash at 30°C');
         break;
     }
     }
