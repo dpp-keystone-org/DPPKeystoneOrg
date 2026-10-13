@@ -32,7 +32,14 @@ describe('index.html generation', () => {
     expect(indexContent).toMatch(auxSchemasRegex);
     expect(indexContent).toMatch(shaclShapesRegex);
 
-    // Verify new structure
+    // Verify new structure and updated regulatory banner strings
+    expect(indexContent).toContain('<meta name="description" content="Centralized, harmonized JSON-LD vocabulary, validation schemas, and open-source toolkit for EU Digital Product Passports (DPP), updated in line with upcoming regulations.">');
+    expect(indexContent).toContain('<meta property="og:description" content="Centralized, harmonized JSON-LD vocabulary, validation schemas, and open-source toolkit for EU Digital Product Passports (DPP), updated in line with upcoming regulations.">');
+    expect(indexContent).toMatch(/<h2[^>]*data-i18n-key="evolving-standard-updated-in"[^>]*>Evolving Standard – Updated in Line with Upcoming Regulations<\/h2>/);
+    expect(indexContent).toMatch(/<p[^>]*data-i18n-key="the-dpp-standardization-process-is"[^>]*>The EU Digital Product Passport \(DPP\) standardization process is ongoing\. This project will be updated in line with upcoming regulations and delegated acts\.<\/p>/);
+    expect(indexContent).toMatch(/<h3[^>]*data-i18n-key="reference-examples"[^>]*>Reference Examples<\/h3>/);
+    expect(indexContent).not.toMatch(/Proof of Concept/i);
+
     expect(indexContent).toMatch(/<h2[^>]*>DPP Toolkit<\/h2>/);
     expect(indexContent).toMatch(/<a[^>]*href="wizard\/"[^>]*>🚀 DPP Wizard<\/a>/);
     expect(indexContent).toMatch(/<a[^>]*href="validator\/"[^>]*>✅ DPP Validator<\/a>/);
