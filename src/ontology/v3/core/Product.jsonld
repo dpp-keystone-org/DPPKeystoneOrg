@@ -452,7 +452,7 @@
     
     // --- Component Properties ---
     // Note: The 'name' for a component is handled by the generic 'dppk:name' property.
-    // The 'uniqueProductIdentifier' is defined in the core Identifier ontology.
+    // The 'uniqueProductIdentifier' is defined in the core Header ontology.
     {
         "@id": "dppk:componentName",
         "@type": "owl:DatatypeProperty",
