@@ -204,8 +204,8 @@
         "@id": "dppk:carbonFootprintBenchmarkPercentage",
         "@type": "xsd:double"
       },
-      "carbonFootprintClass": {
-        "@id": "dppk:carbonFootprintClass",
+      "textileCarbonFootprintClass": {
+        "@id": "dppk:textileCarbonFootprintClass",
         "@type": "xsd:integer"
       },
       "environmentalFootprint": {

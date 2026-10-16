@@ -1,4 +1,5 @@
 import * as jsonldEngine from 'jsonld';
+import { getSectorSpecId } from '../../../../lib/keystone-version.js?v=1792147732972';
 
 // Robustly resolve the jsonld library instance across different environments
 let jsonld = jsonldEngine.default || jsonldEngine;
@@ -17,8 +18,8 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790601531147';
-import { normalizeSpecUrl } from '../../../../lib/keystone-version.js?v=1790601531147';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1792147732972';
+import { normalizeSpecUrl } from '../../../../lib/keystone-version.js?v=1792147732972';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
@@ -137,6 +138,9 @@ export async function transform(dpp, options, dictionary) {
         'draft_construction_specification_id': `${termsBase}ConstructionProduct`,
         [`dpp_EN_197_${version}`]: `${termsBase.replace('#', '/cement#')}CementProduct`,
         'draft_battery_specification_id': `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-ev', version)]: `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-lmv', version)]: `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-industrial', version)]: `${termsBase}BatteryProduct`,
         'draft_electronics_specification_id': `${termsBase}ElectronicDevice`,
         'draft_textile_espr_specification_id': `${termsBase}TextileProduct`,
         'draft_iron_and_steel_specification_id': `${termsBase}IronSteelProduct`

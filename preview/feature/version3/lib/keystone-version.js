@@ -74,3 +74,15 @@ export function rewriteSpecUrls(content, previewBranchOrChunk = '') {
 
 // Backward-compatible alias
 export const rewriteSpecFileUrls = rewriteSpecUrls;
+
+/**
+ * Generates a canonical Keystone URN for a sector content specification.
+ * Format: `urn:dpp-keystone:{version}:sector:{schemaName}`
+ * @param {string} schemaName - Sector schema name (with or without `sector/` prefix or `.schema.json` suffix)
+ * @param {string} [version=KEYSTONE_VERSION]
+ * @returns {string}
+ */
+export function getSectorSpecId(schemaName, version = KEYSTONE_VERSION) {
+    const cleanName = String(schemaName).replace(/^sector\//, '').replace(/\.schema\.json$/, '');
+    return `urn:dpp-keystone:${version}:sector:${cleanName}`;
+}

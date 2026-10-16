@@ -1,15 +1,16 @@
 // src/wizard/wizard.js
-import { loadHeader } from '../branding/header.js?v=1790601531147';
+import { loadHeader } from '../branding/header.js?v=1792147732972';
 loadHeader('dpp-header-container', '..');
-import { loadSchema } from '../lib/schema-loader.js?v=1790601531147';
-import { loadOntology, loadContext } from '../lib/ontology-loader.js?v=1790601531147';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1790601531147';
-import { generateDpp } from './dpp-generator.js?v=1790601531147';
-import { generateHTML } from '../lib/html-generator.js?v=1790601531147';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1790601531147';
+import { loadSchema } from '../lib/schema-loader.js?v=1792147732972';
+import { loadOntology, loadContext } from '../lib/ontology-loader.js?v=1792147732972';
+import { SECTOR_DISPLAY_NAMES } from '../lib/sector-mappings.js?v=1792147732972';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1792147732972';
+import { generateDpp } from './dpp-generator.js?v=1792147732972';
+import { generateHTML } from '../lib/html-generator.js?v=1792147732972';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1792147732972';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1790601531147';
-import { LanguageManager } from '../lib/language-manager.js?v=1790601531147';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1792147732972';
+import { LanguageManager } from '../lib/language-manager.js?v=1792147732972';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();
@@ -463,12 +464,7 @@ export async function initializeWizard() {
             const sectorContainerId = `sector-form-${sector}`;
             const existingContainer = document.getElementById(sectorContainerId);
 
-            const sectorDisplayNames = {
-                'general-product': 'General Product Information',
-                'textile': 'Textile',
-                'iron-steel': 'Iron or Steel'
-            };
-            const displayName = sectorDisplayNames[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
+            const displayName = SECTOR_DISPLAY_NAMES[sector] || (sector.charAt(0).toUpperCase() + sector.slice(1));
 
             const schemaType = button.dataset.schemaType || 'sector';
 

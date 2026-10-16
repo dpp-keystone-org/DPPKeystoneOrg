@@ -88,6 +88,9 @@
       "manufacturer": {
         "@id": "dppk:manufacturer"
       },
+      "manufacturerInfo": {
+        "@id": "dppk:manufacturer"
+      },
       "importer": {
         "@id": "dppk:importer"
       },
@@ -134,6 +137,10 @@
       "recycledContentPercentage": {
         "@id": "dppk:recycledContentPercentage",
         "@type": "xsd:double"
+      },
+      "manufacturingDate": {
+        "@id": "dppk:manufacturingDate",
+        "@type": "xsd:date"
       },
       "productCharacteristics": {
         "@id": "dppk:productCharacteristics",

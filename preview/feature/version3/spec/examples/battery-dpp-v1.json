@@ -10,9 +10,9 @@
   "economicOperatorId": "urn:gln:9876543210987",
   "facilityId": "urn:gln:9876543210988",
   "contentSpecificationIds": [
-    "draft_battery_specification_id"
+    "urn:dpp-keystone:v3:sector:battery-ev"
   ],
-  "productName": "Keystone Industrial LFP Module Gen2",
+  "productName": "Keystone EV LFP Module Gen2",
   "image": [
     {
       "resourceTitle": "Front View",
@@ -35,34 +35,55 @@
   "manufacturingDate": "2024-01-15",
   "serviceDate": "2024-02-01",
   "warrantyPeriod": "5 Years",
-  "batteryCategory": "IndustrialBattery",
+  "batteryCategory": "EVBattery",
   "batteryChemistry": "LFP",
   "batteryMass": 45.5,
   "batteryStatus": "Original",
+  "separateCollectionSymbol": {
+    "contentType": "RelatedResource",
+    "resourceTitle": "Separate Collection",
+    "url": "https://keystone-batteries.com/symbols/separate-collection.png"
+  },
+  "extinguishingAgent": "Water",
+  "testReports": {
+    "contentType": "RelatedResource",
+    "resourceTitle": "Test Reports",
+    "url": "https://keystone-batteries.com/docs/test-reports-lfp-gen2.pdf"
+  },
+  "criticalRawMaterials": "Lithium, Graphite",
+  "dismantlingInformation": {
+    "contentType": "RelatedResource",
+    "resourceTitle": "Dismantling Guide",
+    "url": "https://keystone-batteries.com/docs/dismantling-lfp-gen2.pdf"
+  },
+  "partNumbers": {
+    "contentType": "RelatedResource",
+    "resourceTitle": "Part Numbers",
+    "url": "https://keystone-batteries.com/docs/parts-lfp-gen2.pdf"
+  },
+  "sparePartsSources": {
+    "contentType": "RelatedResource",
+    "resourceTitle": "Spare Parts",
+    "url": "https://keystone-batteries.com/parts"
+  },
+  "safetyMeasures": {
+    "contentType": "RelatedResource",
+    "resourceTitle": "Safety Data Sheet",
+    "url": "https://keystone-batteries.com/docs/safety-lfp-gen2.pdf"
+  },
+  "wastePreventionInfo": {
+    "contentType": "RelatedResource",
+    "resourceTitle": "Waste Prevention",
+    "url": "https://keystone-batteries.com/waste-prevention"
+  },
   "materialComposition": [
     {
-      "name": "Lithium Iron Phosphate (LFP)",
-      "percentage": 32
+      "name": "Lithium",
+      "percentage": 2.5
     },
     {
       "name": "Graphite",
-      "percentage": 22
-    },
-    {
-      "name": "Aluminum",
-      "percentage": 18
-    },
-    {
-      "name": "Copper",
-      "percentage": 12
-    },
-    {
-      "name": "Electrolyte (LiPF6 in Carbonates)",
-      "percentage": 14
-    },
-    {
-      "name": "Separator (PP/PE)",
-      "percentage": 2
+      "percentage": 15
     }
   ],
   "hazardousSubstances": [
@@ -70,13 +91,6 @@
       "name": "Lithium Hexafluorophosphate",
       "percentage": 1.5,
       "uniqueProductIdentifier": "https://echa.europa.eu/substance-information/-/substancefact/100.040.839"
-    }
-  ],
-  "hazardousSubstancesImpact": "Toxic if swallowed; Causes severe skin burns.",
-  "preConsumerRecycledMaterialComposition": [
-    {
-      "name": "Copper",
-      "percentage": 5
     }
   ],
   "postConsumerRecycledMaterialComposition": [
@@ -97,29 +111,37 @@
       "voltageMin": 40,
       "voltageMax": 54,
       "certifiedUsableEnergy": 4800,
-      "stateOfCharge": 98.5
+      "stateOfCharge": 98.5,
+      "soce": 99,
+      "fade": 2.5
     },
     "power": {
       "original": 2000,
-      "maximumPermitted": 2500
+      "maximumPermitted": 2500,
+      "fade": 1
     },
     "efficiency": {
       "roundTripInitial": 95.5,
+      "roundTripAt50Cycles": 94,
       "selfDischargeInitial": 2
+    },
+    "internalResistance": {
+      "initial": 15,
+      "increase": 0.5,
+      "dynamic": 16.5
     },
     "lifetime": {
       "years": 10,
       "cycles": 3000,
-      "cycleCountFull": 5,
-      "capacityThroughput": 500
+      "referenceTest": "IEC 62660-2",
+      "cRateTest": 1,
+      "exhaustionThreshold": 80
     },
     "temperature": {
       "idleLower": -20,
       "idleUpper": 60
     }
   },
-  "carbonFootprintAbsolute": 120,
-  "carbonFootprintClass": "A",
   "dopc": {
     "contentType": "RelatedResource",
     "resourceTitle": "EU Declaration of Conformity",

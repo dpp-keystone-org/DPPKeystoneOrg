@@ -35,11 +35,6 @@
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#manufacturingDate",
-          "message": "Auto-generated rule for dppk:manufacturingDate",
-          "datatype": "xsd:date"
-        },
-        {
           "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#serviceDate",
           "message": "Auto-generated rule for dppk:serviceDate",
           "datatype": "xsd:date"
@@ -153,6 +148,11 @@
         {
           "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#carbonFootprintClass",
           "message": "Auto-generated rule for dppk:carbonFootprintClass",
+          "datatype": "xsd:string"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#batteryCarbonFootprintClass",
+          "message": "Auto-generated rule for dppk:batteryCarbonFootprintClass",
           "datatype": "xsd:string"
         },
         {
@@ -751,6 +751,16 @@
         {
           "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#internalResistanceIncrease",
           "message": "Auto-generated rule for dppk:internalResistanceIncrease",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#internalResistanceOhmic",
+          "message": "Auto-generated rule for dppk:internalResistanceOhmic",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/version3/spec/v3/terms#internalResistanceDynamic",
+          "message": "Auto-generated rule for dppk:internalResistanceDynamic",
           "datatype": "xsd:double"
         }
       ]
