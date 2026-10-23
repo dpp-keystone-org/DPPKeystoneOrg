@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import DataFactory from '@rdfjs/data-model/Factory.js';
 import DatasetFactory from '@rdfjs/dataset/Factory.js';
 import Environment from '@rdfjs/environment';
@@ -13,7 +14,34 @@ const PREVIEW_CHUNK = getPreviewChunk();
 
 export function loadOntologyDefinition(ontologyFilePath) {
     const rawData = fs.readFileSync(ontologyFilePath, 'utf8');
-    return JSON.parse(rawData);
+    const parsed = JSON.parse(rawData);
+    const importedNodes = [];
+    const marker = path.join('ontology', KEYSTONE_VERSION);
+    const markerIdx = ontologyFilePath.indexOf(marker);
+    if (markerIdx !== -1 && parsed['owl:imports']) {
+        const ontologyRoot = ontologyFilePath.slice(0, markerIdx + marker.length);
+        const imports = Array.isArray(parsed['owl:imports']) ? parsed['owl:imports'] : [parsed['owl:imports']];
+        for (const imp of imports) {
+            const impUri = typeof imp === 'string' ? imp : (imp && imp['@id']);
+            if (!impUri) continue;
+            const match = impUri.match(/\/ontology\/[^/]+\/(.+)$/);
+            if (match) {
+                const importedPath = path.join(ontologyRoot, match[1]);
+                if (fs.existsSync(importedPath) && importedPath !== ontologyFilePath) {
+                    try {
+                        const impData = JSON.parse(fs.readFileSync(importedPath, 'utf8'));
+                        if (Array.isArray(impData['@graph'])) {
+                            importedNodes.push(...impData['@graph']);
+                        }
+                    } catch {
+                        // Ignore import parse errors in helper
+                    }
+                }
+            }
+        }
+    }
+    Object.defineProperty(parsed, '_importedNodes', { value: importedNodes, enumerable: false });
+    return parsed;
 }
 
 export function expandURI(uri, context = {}) {
@@ -40,6 +68,7 @@ export function expandURI(uri, context = {}) {
 
 export function extractClassRequirements(ontologyGraph, targetClass) {
     const graphNodes = ontologyGraph["@graph"] || (Array.isArray(ontologyGraph) ? ontologyGraph : [ontologyGraph]);
+    const lookupNodes = ontologyGraph._importedNodes ? [...graphNodes, ...ontologyGraph._importedNodes] : graphNodes;
     const context = ontologyGraph["@context"] || {};
     
     const requirements = [];
@@ -57,8 +86,22 @@ export function extractClassRequirements(ontologyGraph, targetClass) {
         if (hasDomain) {
             let range = null;
             let expandedRange = null;
-            if (node["rdfs:range"]) {
-                range = typeof node["rdfs:range"] === 'string' ? node["rdfs:range"] : node["rdfs:range"]["@id"];
+            let effectiveRangeNode = node["rdfs:range"];
+            if (!effectiveRangeNode && node["rdfs:subPropertyOf"]) {
+                const subProps = Array.isArray(node["rdfs:subPropertyOf"]) ? node["rdfs:subPropertyOf"] : [node["rdfs:subPropertyOf"]];
+                for (const sp of subProps) {
+                    const parentId = typeof sp === 'string' ? sp : (sp && sp["@id"]);
+                    if (parentId) {
+                        const parentNode = lookupNodes.find(n => n["@id"] === parentId || expandURI(n["@id"], context) === expandURI(parentId, context));
+                        if (parentNode && parentNode["rdfs:range"]) {
+                            effectiveRangeNode = parentNode["rdfs:range"];
+                            break;
+                        }
+                    }
+                }
+            }
+            if (effectiveRangeNode) {
+                range = typeof effectiveRangeNode === 'string' ? effectiveRangeNode : effectiveRangeNode["@id"];
                 expandedRange = expandURI(range, context);
             }
             

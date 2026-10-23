@@ -96,10 +96,36 @@ export function parseOntologyMetadata(content) {
     const title = getI18nData(ontologyInfo?.['dcterms:title'], 'No title found');
     const description = getI18nData(ontologyInfo?.['dcterms:description'], 'No description found.');
 
+    const resolveFromSubProperty = (node, fieldName, visited = new Set()) => {
+        if (!node || typeof node !== 'object') return undefined;
+        if (node[fieldName] !== undefined) return node[fieldName];
+        if (node['@id']) {
+            if (visited.has(node['@id'])) return undefined;
+            visited.add(node['@id']);
+        }
+        const subPropRaw = node['rdfs:subPropertyOf'];
+        if (!subPropRaw) return undefined;
+        const subProps = Array.isArray(subPropRaw) ? subPropRaw : [subPropRaw];
+        for (const sp of subProps) {
+            const parentId = typeof sp === 'string' ? sp : (sp && sp['@id']);
+            if (parentId) {
+                const parentNode = graph.find(n => n['@id'] === parentId);
+                if (parentNode) {
+                    const val = resolveFromSubProperty(parentNode, fieldName, visited);
+                    if (val !== undefined) return val;
+                }
+            }
+        }
+        return undefined;
+    };
+
     const properties = graph
         .filter(p => p['@type'] && (p['@type'].includes('owl:ObjectProperty') || p['@type'].includes('owl:DatatypeProperty')))
         .map(p => {
-            const label = getI18nData(p['rdfs:label'], p['@id']);
+            const effectiveLabel = resolveFromSubProperty(p, 'rdfs:label');
+            const effectiveComment = resolveFromSubProperty(p, 'rdfs:comment');
+            const effectiveRange = resolveFromSubProperty(p, 'rdfs:range');
+            const label = getI18nData(effectiveLabel, p['@id']);
 
             const annotations = {};
             const annotationKeys = ['dppk:governedBy', 'owl:equivalentProperty', 'rdfs:subPropertyOf'];
@@ -125,9 +151,9 @@ export function parseOntologyMetadata(content) {
             return {
                 id: p['@id'],
                 label: label,
-                comment: getI18nData(p['rdfs:comment'], ''),
+                comment: getI18nData(effectiveComment, ''),
                 domains: [...new Set(domains)], // Ensure uniqueness
-                range: p['rdfs:range'] ? (p['rdfs:range']['@id'] || p['rdfs:range']) : '',
+                range: effectiveRange ? (effectiveRange['@id'] || effectiveRange) : '',
                 annotations: annotations
             };
         });
@@ -848,6 +874,8 @@ const expandCurie = (curie, context) => {
 export async function buildTermDictionary(sourceOntologyDir = join(process.cwd(), 'src', 'ontology', KEYSTONE_VERSION)) {
     const termMap = {};
     const sourceOntologyDirs = ['core', 'sectors'];
+    const parsedFiles = [];
+    const allNodesById = new Map();
 
     for (const dirSuffix of sourceOntologyDirs) {
         const fullPath = join(sourceOntologyDir, dirSuffix);
@@ -859,18 +887,11 @@ export async function buildTermDictionary(sourceOntologyDir = join(process.cwd()
                 const data = jsoncParse(content);
                 const context = data['@context'] || {};
                 const graph = data['@graph'] || [];
-                
+                parsedFiles.push({ dirSuffix, fullPath, file, context, graph });
                 for (const node of graph) {
-                    if (node['@id'] && node['rdfs:comment']) {
-                        const expandedId = expandCurie(node['@id'], context);
-                        termMap[expandedId] = {
-                            description: getI18nData(node['rdfs:comment'], ''),
-                            module: dirSuffix,
-                            fileName: relative(fullPath, file).replace(/\\/g, '/'),
-                            type: node['@type'],
-                            domain: node['rdfs:domain'],
-                        };
-                    }
+                    if (!node['@id']) continue;
+                    allNodesById.set(node['@id'], node);
+                    allNodesById.set(expandCurie(node['@id'], context), node);
                 }
             }
         } catch (error) {
@@ -881,6 +902,34 @@ export async function buildTermDictionary(sourceOntologyDir = join(process.cwd()
                 continue;
             }
             throw error;
+        }
+    }
+
+    for (const { dirSuffix, fullPath, file, context, graph } of parsedFiles) {
+        for (const node of graph) {
+            if (!node['@id']) continue;
+            let commentVal = node['rdfs:comment'];
+            if (!commentVal && node['rdfs:subPropertyOf']) {
+                const subProps = Array.isArray(node['rdfs:subPropertyOf']) ? node['rdfs:subPropertyOf'] : [node['rdfs:subPropertyOf']];
+                for (const sp of subProps) {
+                    const parentId = typeof sp === 'string' ? sp : (sp && sp['@id']);
+                    const parentNode = parentId && (allNodesById.get(parentId) || allNodesById.get(expandCurie(parentId, context)));
+                    if (parentNode && parentNode['rdfs:comment']) {
+                        commentVal = parentNode['rdfs:comment'];
+                        break;
+                    }
+                }
+            }
+            if (commentVal) {
+                const expandedId = expandCurie(node['@id'], context);
+                termMap[expandedId] = {
+                    description: getI18nData(commentVal, ''),
+                    module: dirSuffix,
+                    fileName: relative(fullPath, file).replace(/\\/g, '/'),
+                    type: node['@type'],
+                    domain: node['rdfs:domain'],
+                };
+            }
         }
     }
     return termMap;
@@ -968,6 +1017,36 @@ export async function generateSpecDocs({
             };
             allMetadata.push(metadata);
         }));
+    }
+
+    // Phase 1.5: Inherit property metadata across modules via rdfs:subPropertyOf
+    const allPropsById = new Map();
+    for (const metadata of allMetadata) {
+        for (const prop of metadata.properties) {
+            allPropsById.set(prop.id, prop);
+        }
+    }
+    for (const metadata of allMetadata) {
+        for (const prop of metadata.properties) {
+            const subPropAnn = prop.annotations['rdfs:subPropertyOf'];
+            if (!subPropAnn) continue;
+            const subProps = Array.isArray(subPropAnn) ? subPropAnn : [subPropAnn];
+            for (const sp of subProps) {
+                const parentId = typeof sp === 'string' ? sp : (sp && sp['@id']);
+                const parentProp = parentId && allPropsById.get(parentId);
+                if (parentProp) {
+                    if ((!prop.label || !prop.label.raw || prop.label.text === prop.id) && parentProp.label) {
+                        prop.label = parentProp.label;
+                    }
+                    if ((!prop.comment || !prop.comment.text) && parentProp.comment) {
+                        prop.comment = parentProp.comment;
+                    }
+                    if (!prop.range && parentProp.range) {
+                        prop.range = parentProp.range;
+                    }
+                }
+            }
+        }
     }
 
     // Phase 2: Cross-link properties to their domain classes across modules

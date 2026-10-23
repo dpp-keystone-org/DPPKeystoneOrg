@@ -116,14 +116,17 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
         // Process the graph of the current ontology
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
-                let key = term['@id'];
-                if (!key) continue;
+                const rawKey = term['@id'];
+                if (!rawKey) continue;
 
+                let key = rawKey;
                 if (key.includes(':')) {
                     key = key.split(':')[1];
                 }
 
-                const existing = ontologyMap.get(key) || {};
+                const subPropertyOf = getSingleRdfsValue(term['rdfs:subPropertyOf']);
+                const targetKey = (subPropertyOf && ontologyMap.has(key)) ? rawKey : key;
+                const existing = ontologyMap.get(targetKey) || {};
 
                 const label = parseLangTaggedProperty(term['rdfs:label']);
                 const comment = parseLangTaggedProperty(term['rdfs:comment']);
@@ -167,11 +170,12 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                 const hasDomain = domain && domain.length > 0;
                 const hasOneOf = oneOf && oneOf.length > 0;
                 const hasUnitSymbol = unitSymbol && unitSymbol.length > 0;
+                const hasSubPropertyOf = subPropertyOf && subPropertyOf.length > 0;
 
-                const termHasAnyMetadata = hasLabel || hasComment || hasUnit || hasGov || hasRange || hasSource || hasDomain || hasOneOf || hasUnitSymbol;
+                const termHasAnyMetadata = hasLabel || hasComment || hasUnit || hasGov || hasRange || hasSource || hasDomain || hasOneOf || hasUnitSymbol || hasSubPropertyOf;
 
                 if (termHasAnyMetadata) {
-                    ontologyMap.set(key, {
+                    const entryData = {
                         ...existing,
                         label: hasLabel ? label : (existing.label || {}),
                         comment: hasComment ? comment : (existing.comment || {}),
@@ -184,7 +188,12 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                         type: rdfType || existing.type,
                         'enum': hasOneOf ? oneOf : (existing.enum || null),
                         unitSymbol: hasUnitSymbol ? unitSymbol : (existing.unitSymbol || null),
-                    });
+                        ...(hasSubPropertyOf ? { subPropertyOf } : {})
+                    };
+                    ontologyMap.set(targetKey, entryData);
+                    if (rawKey !== targetKey) {
+                        ontologyMap.set(rawKey, entryData);
+                    }
                 }
             }
         }
@@ -238,6 +247,23 @@ export async function loadOntology(sector) {
 
     try {
         await loadAndParseOntology(initialUrl, ontologyMap, loadedUrls, true);
+
+        // Pass 1.5: resolve rdfs:subPropertyOf inheritance
+        for (const [, term] of ontologyMap.entries()) {
+            if (term.subPropertyOf) {
+                const parentTerm = ontologyMap.get(term.subPropertyOf);
+                if (parentTerm) {
+                    if (!term.label || Object.keys(term.label).length === 0) term.label = parentTerm.label || {};
+                    if (!term.comment || Object.keys(term.comment).length === 0) term.comment = parentTerm.comment || {};
+                    if (!term.unit) term.unit = parentTerm.unit || '';
+                    if (!term.governedBy) term.governedBy = parentTerm.governedBy || '';
+                    if (!term.range) term.range = parentTerm.range || '';
+                    if (!term.source) term.source = parentTerm.source || null;
+                    if (!term.enum) term.enum = parentTerm.enum || null;
+                    if (!term.unitSymbol) term.unitSymbol = parentTerm.unitSymbol || null;
+                }
+            }
+        }
 
         // Second pass: resolve unit symbols
         for (const [key, term] of ontologyMap.entries()) {

@@ -1,5 +1,7 @@
 import {
     auditContextMappings,
+    auditDocumentation,
+    auditNumericUnits,
     auditTermCollisions,
     IntegrityReporter,
     ontologyGraph,
@@ -126,6 +128,52 @@ describe('ontology integrity: collision detection', () => {
 
         expect(reporter.hasErrors).toBe(false);
         expect(reporter.violations['Ontology Collision Integrity']).toBeUndefined();
+    });
+});
+
+describe('ontology integrity: rdfs:subPropertyOf inheritance', () => {
+    beforeEach(() => {
+        resetIntegrityState();
+    });
+
+    it('inherits label, comment, range, and unit from parent property via rdfs:subPropertyOf', () => {
+        registerOntologyTerm({
+            '@id': 'dppk-cement:calciumOxideContent',
+            '@type': 'owl:DatatypeProperty',
+            'rdfs:range': 'xsd:double',
+            'dppk:unit': { '@id': 'dppk-unit:Unitless' },
+            'rdfs:label': [{ '@language': 'en', '@value': 'Calcium Oxide Content' }],
+            'rdfs:comment': [{ '@language': 'en', '@value': 'Base property comment.' }]
+        }, 'src/ontology/v3/sectors/Cement.jsonld');
+
+        registerOntologyTerm({
+            '@id': 'dppk-cement-portlandcementclinker:calciumOxideContent',
+            '@type': 'owl:DatatypeProperty',
+            'rdfs:subPropertyOf': { '@id': 'dppk-cement:calciumOxideContent' },
+            'dppk:governedBy': 'prEN 197-1:2026, Clause 4.3.1.1'
+        }, 'src/ontology/v3/sectors/Cement.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditDocumentation(reporter);
+        auditNumericUnits(reporter);
+
+        expect(reporter.hasErrors).toBe(false);
+        expect(reporter.violations['Documentation Completeness']).toBeUndefined();
+        expect(reporter.violations['Numeric Unit Check']).toBeUndefined();
+    });
+
+    it('fails when rdfs:subPropertyOf references a non-existent parent term', () => {
+        registerOntologyTerm({
+            '@id': 'dppk-cement-portlandcementclinker:calciumOxideContent',
+            '@type': 'owl:DatatypeProperty',
+            'rdfs:subPropertyOf': { '@id': 'dppk-cement:nonExistentTopic' }
+        }, 'src/ontology/v3/sectors/Cement.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditDocumentation(reporter);
+
+        expect(reporter.hasErrors).toBe(true);
+        expect(reporter.violations['SubProperty Integrity']).toBeDefined();
     });
 });
 

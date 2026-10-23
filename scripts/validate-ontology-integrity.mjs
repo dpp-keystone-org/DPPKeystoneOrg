@@ -190,12 +190,22 @@ export function resetIntegrityState() {
     fileDefinedTerms.clear();
 }
 
-export function processContextBlock(ctxBlock, filePath) {
+export function processContextBlock(ctxBlock, filePath, inheritedPrefixes = {}) {
     if (!ctxBlock) return;
 
     // Handle array of contexts
     if (Array.isArray(ctxBlock)) {
-        ctxBlock.forEach(part => processContextBlock(part, filePath));
+        const mergedPrefixes = { ...inheritedPrefixes };
+        ctxBlock.forEach(part => {
+            if (part && typeof part === 'object' && !Array.isArray(part)) {
+                for (const [k, v] of Object.entries(part)) {
+                    if (typeof v === 'string' && (v.startsWith('http://') || v.startsWith('https://') || v.startsWith('urn:'))) {
+                        mergedPrefixes[k] = v;
+                    }
+                }
+            }
+            processContextBlock(part, filePath, mergedPrefixes);
+        });
         return;
     }
 
@@ -207,7 +217,12 @@ export function processContextBlock(ctxBlock, filePath) {
 
     // Handle object
     if (typeof ctxBlock === 'object') {
-        const dppkPrefix = ctxBlock['dppk'] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`;
+        const activePrefixes = { ...inheritedPrefixes };
+        for (const [k, v] of Object.entries(ctxBlock)) {
+            if (typeof v === 'string' && (v.startsWith('http://') || v.startsWith('https://') || v.startsWith('urn:'))) {
+                activePrefixes[k] = v;
+            }
+        }
 
         for (const [term, mapping] of Object.entries(ctxBlock)) {
             // Skip keywords
@@ -229,7 +244,7 @@ export function processContextBlock(ctxBlock, filePath) {
                 // Expand dppk:* prefixes dynamically
                 const parts = id.split(':');
                 if (parts.length === 2 && parts[0].startsWith('dppk')) {
-                    const prefixUrl = ctxBlock[parts[0]] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms${parts[0] === 'dppk' ? '' : '/' + parts[0].replace('dppk-', '')}#`;
+                    const prefixUrl = activePrefixes[parts[0]] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms${parts[0] === 'dppk' ? '' : '/' + parts[0].replace('dppk-', '')}#`;
                     id = prefixUrl + parts[1];
                 }
                 // contextMap.set(term, id);
@@ -244,7 +259,7 @@ export function processContextBlock(ctxBlock, filePath) {
 
             // Recurse into scoped context if present
             if (nestedContext) {
-                processContextBlock(nestedContext, filePath);
+                processContextBlock(nestedContext, filePath, activePrefixes);
             }
         }
     }
@@ -256,11 +271,12 @@ function isJsonLdKeyword(value) {
     return typeof value === 'string' && value.startsWith('@');
 }
 
-function getCompactIRI(iri) {
+export function getCompactIRI(iri) {
     const normalizedIri = normalizeSpecUrl(iri);
     if (normalizedIri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/`)) {
         const sub = normalizedIri.split('/terms/')[1].split('#')[0];
-        return normalizedIri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`, `dppk-${sub}:`);
+        const prefixName = sub.replace(/\//g, '-');
+        return normalizedIri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`, `dppk-${prefixName}:`);
     } else if (normalizedIri.startsWith(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`)) {
         return normalizedIri.replace(`https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`, 'dppk:');
     }
@@ -269,6 +285,42 @@ function getCompactIRI(iri) {
 
 function isDppkTerm(id) {
     return id.startsWith('dppk:') || id.startsWith('dppk-') || id.startsWith('https://dpp-keystone.org/');
+}
+
+function lookupOntologyTerm(id) {
+    if (!id || typeof id !== 'string') return null;
+    if (ontologyGraph.has(id)) return ontologyGraph.get(id);
+    const compact = getCompactIRI(id);
+    if (ontologyGraph.has(compact)) return ontologyGraph.get(compact);
+    const normalized = normalizeSpecUrl(id);
+    if (ontologyGraph.has(normalized)) return ontologyGraph.get(normalized);
+    return null;
+}
+
+export function resolveInheritedValue(term, fieldName, visited = new Set()) {
+    if (!term || typeof term !== 'object') return undefined;
+    if (term[fieldName] !== undefined) return term[fieldName];
+
+    const termId = term['@id'];
+    if (termId) {
+        if (visited.has(termId)) return undefined;
+        visited.add(termId);
+    }
+
+    const subPropRaw = term['rdfs:subPropertyOf'];
+    if (!subPropRaw) return undefined;
+
+    const subProps = Array.isArray(subPropRaw) ? subPropRaw : [subPropRaw];
+    for (const sp of subProps) {
+        const parentId = typeof sp === 'string' ? sp : (sp && sp['@id']);
+        const parentTerm = lookupOntologyTerm(parentId);
+        if (parentTerm) {
+            const inherited = resolveInheritedValue(parentTerm, fieldName, visited);
+            if (inherited !== undefined) return inherited;
+        }
+    }
+
+    return undefined;
 }
 
 function reportTranslationIssues(reporter, entityIdentifier, transResult, relativePath) {
@@ -384,7 +436,7 @@ function auditOntologyMetadata(reporter) {
     });
 }
 
-function auditNumericUnits(reporter) {
+export function auditNumericUnits(reporter) {
     const numericRanges = [
         'xsd:decimal', 
         'xsd:float', 
@@ -397,17 +449,17 @@ function auditNumericUnits(reporter) {
     ];
 
     ontologyGraph.forEach((term, id) => {
-        // Resolve range (handle object or string form)
-        let range = term['rdfs:range'];
+        // Resolve range (handle object or string form, inheriting from rdfs:subPropertyOf if needed)
+        let range = resolveInheritedValue(term, 'rdfs:range');
         if (range && typeof range === 'object' && range['@id']) {
             range = range['@id'];
         }
 
         // Check if it's a numeric property
         if (range && numericRanges.includes(range)) {
-            // Check for unit
-            const unit = term['dppk:unit'];
-            const unitInherited = term['dppk:unitInherited'];
+            // Check for unit (direct or inherited via rdfs:subPropertyOf)
+            const unit = resolveInheritedValue(term, 'dppk:unit');
+            const unitInherited = resolveInheritedValue(term, 'dppk:unitInherited');
 
             if (unit === 'unitless') {
                 return; // Explicitly no unit
@@ -509,18 +561,35 @@ function auditSchemaMappings(reporter) {
     return usedIRIs;
 }
 
-function auditDocumentation(reporter) {
+export function auditDocumentation(reporter) {
     ontologyGraph.forEach((term, id) => {
         const relativePath = path.relative(PROJECT_ROOT, term._definedIn);
 
-        // Check Label
+        // Verify rdfs:subPropertyOf targets exist when referencing dppk terms
+        if (term['rdfs:subPropertyOf']) {
+            const subProps = Array.isArray(term['rdfs:subPropertyOf']) ? term['rdfs:subPropertyOf'] : [term['rdfs:subPropertyOf']];
+            subProps.forEach(sp => {
+                const parentId = typeof sp === 'string' ? sp : (sp && sp['@id']);
+                if (parentId && isDppkTerm(parentId) && !lookupOntologyTerm(parentId)) {
+                    reporter.report(
+                        'SubProperty Integrity',
+                        'FAIL',
+                        `Term '${id}' declares rdfs:subPropertyOf '${parentId}', which is NOT defined in the Ontology.`,
+                        relativePath
+                    );
+                }
+            });
+        }
+
+        // Check Label (direct or inherited via rdfs:subPropertyOf)
+        const effectiveLabel = resolveInheritedValue(term, 'rdfs:label');
         let hasLabel = false;
-        if (term['rdfs:label']) {
-            if (typeof term['rdfs:label'] === 'string') hasLabel = true;
-            else if (Array.isArray(term['rdfs:label'])) {
+        if (effectiveLabel) {
+            if (typeof effectiveLabel === 'string') hasLabel = true;
+            else if (Array.isArray(effectiveLabel)) {
                 // Check for English label
-                if (term['rdfs:label'].some(l => l['@language'] === 'en')) hasLabel = true;
-            } else if (term['rdfs:label']['@value']) {
+                if (effectiveLabel.some(l => l['@language'] === 'en')) hasLabel = true;
+            } else if (effectiveLabel['@value']) {
                  hasLabel = true; // Simplified check
             }
         }
@@ -534,8 +603,9 @@ function auditDocumentation(reporter) {
             );
         }
 
-        // Check Comment
-        if (!term['rdfs:comment']) {
+        // Check Comment (direct or inherited via rdfs:subPropertyOf)
+        const effectiveComment = resolveInheritedValue(term, 'rdfs:comment');
+        if (!effectiveComment) {
             reporter.report(
                 'Documentation Completeness',
                 'FAIL',
@@ -674,6 +744,7 @@ function auditSelfContainedImports(reporter) {
     ontologyFileContents.forEach((content, filePath) => {
         const json = JSON.parse(content);
         const relativePath = path.relative(PROJECT_ROOT, filePath);
+        const fileCtx = json['@context'] || {};
         
         const allowedFiles = getTransitiveImports(filePath, new Set());
         
@@ -693,7 +764,10 @@ function auditSelfContainedImports(reporter) {
 
             refs.forEach(ref => {
                 let expanded = ref;
-                if (ref.startsWith('dppk-')) {
+                const refParts = ref.split(':');
+                if (refParts.length === 2 && typeof fileCtx[refParts[0]] === 'string') {
+                    expanded = fileCtx[refParts[0]] + refParts[1];
+                } else if (ref.startsWith('dppk-')) {
                     const sub = ref.split(':')[0].replace('dppk-', '');
                     expanded = ref.replace(`dppk-${sub}:`, `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms/${sub}#`);
                 } else if (ref.startsWith('dppk:')) {
