@@ -1,0 +1,175 @@
+{
+  "@context": {
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "@vocab": "http://www.w3.org/ns/shacl#",
+    "node": {
+      "@type": "@id"
+    },
+    "path": {
+      "@type": "@id"
+    },
+    "targetClass": {
+      "@type": "@id"
+    },
+    "class": {
+      "@type": "@id"
+    },
+    "datatype": {
+      "@type": "@id"
+    }
+  },
+  "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/validation/v3/shacl/sectors/cement/CommonCement",
+  "@type": "ShapesGraph",
+  "@graph": [
+    {
+      "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/validation/v3/shacl/shapes#dppk-cement_CommonCementShape",
+      "@type": "NodeShape",
+      "targetClass": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CommonCement",
+      "property": [
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#minimumStandardCompressiveStrength28Days",
+          "message": "Auto-generated rule for dppk-cement-commoncement:minimumStandardCompressiveStrength28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#maximumStandardCompressiveStrength28Days",
+          "message": "Auto-generated rule for dppk-cement-commoncement:maximumStandardCompressiveStrength28Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#minimumVeryEarlyCompressiveStrength24Hours",
+          "message": "Auto-generated rule for dppk-cement-commoncement:minimumVeryEarlyCompressiveStrength24Hours",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#minimumEarlyCompressiveStrength2Days",
+          "message": "Auto-generated rule for dppk-cement-commoncement:minimumEarlyCompressiveStrength2Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#minimumEarlyCompressiveStrength7Days",
+          "message": "Auto-generated rule for dppk-cement-commoncement:minimumEarlyCompressiveStrength7Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#minimumLateCompressiveStrength56Days",
+          "message": "Auto-generated rule for dppk-cement-commoncement:minimumLateCompressiveStrength56Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#minimumLateCompressiveStrength90Days",
+          "message": "Auto-generated rule for dppk-cement-commoncement:minimumLateCompressiveStrength90Days",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#initialSettingTime",
+          "message": "Auto-generated rule for dppk-cement-commoncement:initialSettingTime",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#lossOnIgnition",
+          "message": "Auto-generated rule for dppk-cement-commoncement:lossOnIgnition",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#soundness",
+          "message": "Auto-generated rule for dppk-cement-commoncement:soundness",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#heatOfHydration",
+          "message": "Auto-generated rule for dppk-cement-commoncement:heatOfHydration",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#pozzolanicityHydroxylIonConcentration",
+          "message": "Auto-generated rule for dppk-cement-commoncement:pozzolanicityHydroxylIonConcentration",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#pozzolanicityCalciumOxideConcentration",
+          "message": "Auto-generated rule for dppk-cement-commoncement:pozzolanicityCalciumOxideConcentration",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#insolubleResidueContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:insolubleResidueContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#sulfateContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:sulfateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#chlorideContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:chlorideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#totalAlkaliContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:totalAlkaliContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#effectiveAlkaliContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:effectiveAlkaliContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#tricalciumAluminateContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:tricalciumAluminateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#tetracalciumAluminoferriteContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:tetracalciumAluminoferriteContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#dicalciumFerriteContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:dicalciumFerriteContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#magnesiumOxideContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:magnesiumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#aluminiumOxideContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:aluminiumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#sulfurAsSulfideIons",
+          "message": "Auto-generated rule for dppk-cement-commoncement:sulfurAsSulfideIons",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#tricalciumSilicateContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:tricalciumSilicateContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#calciumOxideContent",
+          "message": "Auto-generated rule for dppk-cement-commoncement:calciumOxideContent",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#sulfateResistanceFlatPrismTest",
+          "message": "Auto-generated rule for dppk-cement-commoncement:sulfateResistanceFlatPrismTest",
+          "datatype": "xsd:double"
+        },
+        {
+          "path": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#sulfateResistanceSquarePrismTest",
+          "message": "Auto-generated rule for dppk-cement-commoncement:sulfateResistanceSquarePrismTest",
+          "datatype": "xsd:double"
+        }
+      ]
+    }
+  ]
+}

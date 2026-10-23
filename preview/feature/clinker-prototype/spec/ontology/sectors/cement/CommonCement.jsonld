@@ -1,0 +1,527 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms#",
+    "dppk-cement": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#",
+    "dppk-cement-commoncement": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement/commoncement#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/ontology/v3/sectors/cement/CommonCement.jsonld",
+  "owl:versionInfo": "v3",
+  "owl:imports": [
+    {
+      "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/ontology/v3/sectors/Cement.jsonld"
+    }
+  ],
+  "@type": "owl:Ontology",
+  "dcterms:title": [
+    {
+      "@language": "en",
+      "@value": "DPP Sector Ontology - Common Cement (Table ZA.1.1.1)"
+    },
+    {
+      "@language": "bg",
+      "@value": "DPP секторна онтология - Обикновен цимент (Таблица ZA.1.1.1)"
+    },
+    {
+      "@language": "cs",
+      "@value": "Oborová ontologie DPP - Běžný cement (Tabulka ZA.1.1.1)"
+    },
+    {
+      "@language": "da",
+      "@value": "DPP Sektorontologi - Almindelig cement (Tabel ZA.1.1.1)"
+    },
+    {
+      "@language": "de",
+      "@value": "DPP-Sektor-Ontologie - Normalzement (Tabelle ZA.1.1.1)"
+    },
+    {
+      "@language": "el",
+      "@value": "Τομεακή οντολογία DPP - Κοινό τσιμέντο (Πίνακας ZA.1.1.1)"
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología sectorial DPP - Cemento común (Tabla ZA.1.1.1)"
+    },
+    {
+      "@language": "et",
+      "@value": "DPP sektori ontoloogia - Tavaline tsement (Tabel ZA.1.1.1)"
+    },
+    {
+      "@language": "fi",
+      "@value": "DPP-alaontologia - Yleissementti (Taulukko ZA.1.1.1)"
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie sectorielle DPP - Ciment courant (Tableau ZA.1.1.1)"
+    },
+    {
+      "@language": "ga",
+      "@value": "Ointeolaíocht Earnála DPP - Gnáth-Stroighin (Tábla ZA.1.1.1)"
+    },
+    {
+      "@language": "hr",
+      "@value": "DPP sektorska ontologija - Obični cement (Tablica ZA.1.1.1)"
+    },
+    {
+      "@language": "hu",
+      "@value": "DPP szektor ontológia - Közönséges cement (ZA.1.1.1. táblázat)"
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia settoriale DPP - Cemento comune (Tabella ZA.1.1.1)"
+    },
+    {
+      "@language": "lt",
+      "@value": "DPP sektoriaus ontologija - Įprastinis cementas (ZA.1.1.1 lentelė)"
+    },
+    {
+      "@language": "lv",
+      "@value": "DPP nozares ontoloģija - Parastais cements (ZA.1.1.1. tabula)"
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija tas-Settur DPP - Siment komuni (Tabella ZA.1.1.1)"
+    },
+    {
+      "@language": "nl",
+      "@value": "DPP-sectorontologie - Gewoon cement (Tabel ZA.1.1.1)"
+    },
+    {
+      "@language": "pl",
+      "@value": "Ontologia sektorowa DPP - Cement powszechnego użytku (Tabela ZA.1.1.1)"
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia Setorial DPP - Cimento comum (Quadro ZA.1.1.1)"
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologie sectorială DPP - Ciment obișnuit (Tabelul ZA.1.1.1)"
+    },
+    {
+      "@language": "sk",
+      "@value": "Sektorová ontológia DPP - Bežný cement (Tabuľka ZA.1.1.1)"
+    },
+    {
+      "@language": "sl",
+      "@value": "DPP sektorska ontologija - Običajni cement (Preglednica ZA.1.1.1)"
+    },
+    {
+      "@language": "sv",
+      "@value": "DPP Sektorontologi - Vanligt cement (Tabell ZA.1.1.1)"
+    }
+  ],
+  "dcterms:description": [
+    {
+      "@language": "en",
+      "@value": "Ontology defining specialized performance characteristic properties for common cement according to prEN 197-1:2026 Clause 4.2 and Table ZA.1.1.1."
+    },
+    {
+      "@language": "bg",
+      "@value": "Онтология, дефинираща специализирани свойства за експлоатационни характеристики на обикновен цимент съгласно prEN 197-1:2026 точка 4.2 и таблица ZA.1.1.1."
+    },
+    {
+      "@language": "cs",
+      "@value": "Ontologie definující specializované vlastnosti funkčních charakteristik pro běžný cement podle prEN 197-1:2026 čl. 4.2 a tabulky ZA.1.1.1."
+    },
+    {
+      "@language": "da",
+      "@value": "Ontologi, der definerer specialiserede ydeevneegenskaber for almindelig cement i henhold til prEN 197-1:2026 punkt 4.2 og tabel ZA.1.1.1."
+    },
+    {
+      "@language": "de",
+      "@value": "Ontologie zur Definition spezialisierter Leistungsmerkmale für Normalzement gemäß prEN 197-1:2026 Abschnitt 4.2 und Tabelle ZA.1.1.1."
+    },
+    {
+      "@language": "el",
+      "@value": "Οντολογία που ορίζει εξειδικευμένες ιδιότητες χαρακτηριστικών απόδοσης για κοινό τσιμέντο σύμφωνα με το prEN 197-1:2026 παράγραφος 4.2 και Πίνακα ZA.1.1.1."
+    },
+    {
+      "@language": "es",
+      "@value": "Ontología que define propiedades especializadas de características de prestación para el cemento común según prEN 197-1:2026 cláusula 4.2 y tabla ZA.1.1.1."
+    },
+    {
+      "@language": "et",
+      "@value": "Ontoloogia, mis määratleb tavalise tsemendi spetsialiseeritud toimivusomadused vastavalt standardi prEN 197-1:2026 punktile 4.2 ja tabelile ZA.1.1.1."
+    },
+    {
+      "@language": "fi",
+      "@value": "Ontologia, joka määrittelee yleissementin erikoistuneet suoritustaso-ominaisuudet standardin prEN 197-1:2026 kohdan 4.2 ja taulukon ZA.1.1.1 mukaisesti."
+    },
+    {
+      "@language": "fr",
+      "@value": "Ontologie définissant les propriétés spécialisées des caractéristiques de performance du ciment courant selon prEN 197-1:2026 article 4.2 et tableau ZA.1.1.1."
+    },
+    {
+      "@language": "ga",
+      "@value": "Ointeolaíocht a shainíonn airíonna saintréithe feidhmíochta speisialaithe le haghaidh gnáth-stroighne de réir prEN 197-1:2026 Alt 4.2 agus Tábla ZA.1.1.1."
+    },
+    {
+      "@language": "hr",
+      "@value": "Ontologija koja definira specijalizirana svojstva učinkovitosti za obični cement prema prEN 197-1:2026 točki 4.2 i tablici ZA.1.1.1."
+    },
+    {
+      "@language": "hu",
+      "@value": "A közönséges cement speciális teljesítményjellemzőit meghatározó ontológia a prEN 197-1:2026 4.2. szakasza és a ZA.1.1.1. táblázat szerint."
+    },
+    {
+      "@language": "it",
+      "@value": "Ontologia che definisce proprietà specializzate delle caratteristiche di prestazione per il cemento comune secondo prEN 197-1:2026 punto 4.2 e tabella ZA.1.1.1."
+    },
+    {
+      "@language": "lt",
+      "@value": "Ontologija, apibrėžianti specializuotas įprastinio cemento eksploatacinių charakteristikų savybes pagal prEN 197-1:2026 4.2 punktą ir ZA.1.1.1 lentelę."
+    },
+    {
+      "@language": "lv",
+      "@value": "Ontoloģija, kas definē specializētus parastā cementa ekspluatācijas raksturlielumu rekvizītus saskaņā ar prEN 197-1:2026 4.2. punktu un ZA.1.1.1. tabulu."
+    },
+    {
+      "@language": "mt",
+      "@value": "Ontoloġija li tiddefinixxi proprjetajiet speċjalizzati tal-karatteristiċi tal-prestazzjoni għas-siment komuni skont prEN 197-1:2026 Klawżola 4.2 u Tabella ZA.1.1.1."
+    },
+    {
+      "@language": "nl",
+      "@value": "Ontologie die gespecialiseerde eigenschappen van prestatiekenmerken voor gewoon cement definieert volgens prEN 197-1:2026 paragraaf 4.2 en tabel ZA.1.1.1."
+    },
+    {
+      "@language": "pl",
+      "@value": "Ontologia definiująca wyspecjalizowane właściwości cech użytkowych cementu powszechnego użytku zgodnie z prEN 197-1:2026 rozdział 4.2 i tabelą ZA.1.1.1."
+    },
+    {
+      "@language": "pt",
+      "@value": "Ontologia que define propriedades especializadas de características de desempenho para o cimento comum de acordo com a prEN 197-1:2026 secção 4.2 e quadro ZA.1.1.1."
+    },
+    {
+      "@language": "ro",
+      "@value": "Ontologie care definește proprietăți specializate ale caracteristicilor de performanță pentru cimentul obișnuit conform prEN 197-1:2026 articolul 4.2 și tabelul ZA.1.1.1."
+    },
+    {
+      "@language": "sk",
+      "@value": "Ontológia definujúca špecializované vlastnosti parametrov pre bežný cement podľa prEN 197-1:2026 čl. 4.2 a tabuľky ZA.1.1.1."
+    },
+    {
+      "@language": "sl",
+      "@value": "Ontologija, ki opredeljuje specializirane lastnosti učinkovitosti za običajni cement v skladu s prEN 197-1:2026 točko 4.2 in preglednico ZA.1.1.1."
+    },
+    {
+      "@language": "sv",
+      "@value": "Ontologi som definierar specialiserade prestandaegenskaper för vanligt cement enligt prEN 197-1:2026 avsnitt 4.2 och tabell ZA.1.1.1."
+    }
+  ],
+  "dcterms:conformsTo": "prEN 197-1:2026",
+  "@graph": [
+    {
+      "@id": "dppk-cement-commoncement:minimumStandardCompressiveStrength28Days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:minimumStandardCompressiveStrength28Days"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-1:2026"
+    },
+    {
+      "@id": "dppk-cement-commoncement:maximumStandardCompressiveStrength28Days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:maximumStandardCompressiveStrength28Days"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-1:2026"
+    },
+    {
+      "@id": "dppk-cement-commoncement:minimumVeryEarlyCompressiveStrength24Hours",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:minimumVeryEarlyCompressiveStrength24Hours"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-1:2026"
+    },
+    {
+      "@id": "dppk-cement-commoncement:minimumEarlyCompressiveStrength2Days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:minimumEarlyCompressiveStrength2Days"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-1:2026"
+    },
+    {
+      "@id": "dppk-cement-commoncement:minimumEarlyCompressiveStrength7Days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:minimumEarlyCompressiveStrength7Days"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-1:2026"
+    },
+    {
+      "@id": "dppk-cement-commoncement:minimumLateCompressiveStrength56Days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:minimumLateCompressiveStrength56Days"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-1:2026"
+    },
+    {
+      "@id": "dppk-cement-commoncement:minimumLateCompressiveStrength90Days",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:minimumLateCompressiveStrength90Days"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-1:2026"
+    },
+    {
+      "@id": "dppk-cement-commoncement:initialSettingTime",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:initialSettingTime"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-3:2016, Clause 6"
+    },
+    {
+      "@id": "dppk-cement-commoncement:lossOnIgnition",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:lossOnIgnition"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.4.1"
+    },
+    {
+      "@id": "dppk-cement-commoncement:soundness",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:soundness"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-3:2016, Clause 7"
+    },
+    {
+      "@id": "dppk-cement-commoncement:heatOfHydration",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:heatOfHydration"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-9:2010"
+    },
+    {
+      "@id": "dppk-cement-commoncement:pozzolanicityHydroxylIonConcentration",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:pozzolanicityHydroxylIonConcentration"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-5:2011"
+    },
+    {
+      "@id": "dppk-cement-commoncement:pozzolanicityCalciumOxideConcentration",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:pozzolanicityCalciumOxideConcentration"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-5:2011"
+    },
+    {
+      "@id": "dppk-cement-commoncement:insolubleResidueContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:insolubleResidueContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.4"
+    },
+    {
+      "@id": "dppk-cement-commoncement:sulfateContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:sulfateContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.4"
+    },
+    {
+      "@id": "dppk-cement-commoncement:chlorideContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:chlorideContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-commoncement:totalAlkaliContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:totalAlkaliContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-commoncement:effectiveAlkaliContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:effectiveAlkaliContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-13:2027"
+    },
+    {
+      "@id": "dppk-cement-commoncement:tricalciumAluminateContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:tricalciumAluminateContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-14:2027"
+    },
+    {
+      "@id": "dppk-cement-commoncement:tetracalciumAluminoferriteContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:tetracalciumAluminoferriteContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-14:2027"
+    },
+    {
+      "@id": "dppk-cement-commoncement:dicalciumFerriteContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:dicalciumFerriteContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-14:2027"
+    },
+    {
+      "@id": "dppk-cement-commoncement:magnesiumOxideContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:magnesiumOxideContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-commoncement:aluminiumOxideContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:aluminiumOxideContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-commoncement:sulfurAsSulfideIons",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:sulfurAsSulfideIons"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.4"
+    },
+    {
+      "@id": "dppk-cement-commoncement:tricalciumSilicateContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:tricalciumSilicateContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-14:2027"
+    },
+    {
+      "@id": "dppk-cement-commoncement:calciumOxideContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:calciumOxideContent"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-commoncement:sulfateResistanceFlatPrismTest",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:sulfateResistanceFlatPrismTest"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-15:2027"
+    },
+    {
+      "@id": "dppk-cement-commoncement:sulfateResistanceSquarePrismTest",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": {
+        "@id": "dppk-cement:sulfateResistanceSquarePrismTest"
+      },
+      "rdfs:domain": {
+        "@id": "dppk-cement:CommonCement"
+      },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.2, Table ZA.1.1.1; EN 196-16:2027"
+    }
+  ]
+}
