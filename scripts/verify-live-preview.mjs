@@ -151,6 +151,7 @@ const coreEndpoints = [
     `contexts/${KEYSTONE_VERSION}/dpp-cement.context.jsonld`,
     `contexts/${KEYSTONE_VERSION}/dpp-cement-dopc.context.jsonld`,
     `contexts/${KEYSTONE_VERSION}/dpp-iron-steel.context.jsonld`,
+    `contexts/${KEYSTONE_VERSION}/dpp-mtc.context.jsonld`,
     `contexts/${KEYSTONE_VERSION}/dpp-epd.context.jsonld`,
     `ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`,
     `validation/${KEYSTONE_VERSION}/json-schema/dpp.schema.json`

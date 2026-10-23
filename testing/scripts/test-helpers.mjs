@@ -81,6 +81,8 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-dopc.context.jsonld'),
     [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-iron-steel.context.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-iron-steel.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-mtc.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-mtc.context.jsonld'),
     [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-cement.context.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-cement.context.jsonld'),
     [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-cement-dopc.context.jsonld`]:
@@ -102,8 +104,24 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'RelatedResource.jsonld'),
     [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/EPD.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'EPD.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/EPDIndicators.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'EPDIndicators.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/EPDLifecycle.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'EPDLifecycle.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/EPDMetadata.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'EPDMetadata.jsonld'),
     [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/DoPC.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'DoPC.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/MTC.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'MTC.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Signature.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Signature.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Unit.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Unit.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Visibility.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Visibility.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/core/Identifier.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'core', 'Identifier.jsonld'),
     // Sectors
     [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/Battery.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'Battery.jsonld'),
