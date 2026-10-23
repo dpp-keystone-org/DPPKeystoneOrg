@@ -106,6 +106,14 @@ describe('DPP SHACL Validation', () => {
             name: 'Construction DPP (rail-dpp-v1.json)',
             exampleFile: 'rail-dpp-v1.json'
         },
+        {
+            name: 'Iron & Steel DPP (iron-steel-dpp-v1.json)',
+            exampleFile: 'iron-steel-dpp-v1.json'
+        },
+        {
+            name: 'Cement DPP (cement-dpp-v3.json)',
+            exampleFile: 'cement-dpp-v3.json'
+        },
     ];
 
     // Use test.each to run the same validation logic for each test case.

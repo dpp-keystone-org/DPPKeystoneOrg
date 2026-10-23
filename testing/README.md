@@ -72,3 +72,13 @@ $ node scripts/run-shacl-validation.mjs
 ```
 
 The script will output the validation status to the console. If the data does not conform, it will print a detailed report of the validation failures.
+
+### 3. Live Website / Preview Branch Verification
+
+Once a branch is deployed to GitHub Pages (either `main` or `/preview/<branch-name>/`), you can run the live network verification script from the project root to test real HTTPS resolution, term namespace redirects, pure network JSON-LD expansion, and SHACL validation against the deployed site:
+
+```sh
+$ npm run test:live-preview
+# Or target a specific branch explicitly:
+$ node scripts/verify-live-preview.mjs feature/my-branch
+```

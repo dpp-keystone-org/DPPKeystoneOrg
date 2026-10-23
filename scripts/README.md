@@ -13,6 +13,7 @@ This directory contains all the automation, build, validation, and maintenance s
 Detailed documentation for each script is located directly within the scripts themselves as header comments. Use the following index to determine which script is relevant to your current task, and then read the script file for implementation details.
 
 ### Build and Deployment
+*   [`branch-helper.mjs`](branch-helper.mjs): Resolves the active Git/CI preview branch name (`PREVIEW_BRANCH`) and computes the `/preview/<branch>` URL prefix chunk used across build and validation scripts.
 *   [`build-and-clean.mjs`](build-and-clean.mjs): The primary build orchestrator. Cleans targets, lints JSON, strips comments, and generates the `dist/` folder.
 *   [`clean.mjs`](clean.mjs): Utility to remove the `dist/` directory.
 *   [`bundle-vendor.mjs`](bundle-vendor.mjs): Bundles Node dependencies (AJV, PapaParse) into browser-compatible ESM modules inside `src/lib/vendor/`.
@@ -36,5 +37,5 @@ Detailed documentation for each script is located directly within the scripts th
 ### Validation & Integrity
 *   [`validate-i18n.mjs`](validate-i18n.mjs): Ensures every `data-i18n-key` referenced in HTML or JS has a corresponding entry in the translation resource files.
 *   [`validate-ontology-integrity.mjs`](validate-ontology-integrity.mjs): The ultimate gatekeeper script. Loads the entire 3-layer architecture (Ontologies, Contexts, Schemas) and audits it for type consistency, correct cross-referencing, metadata completeness, and strict 24-language translation enforcement.
+*   [`verify-live-preview.mjs`](verify-live-preview.mjs): Manually-invoked live integration test script (`npm run test:live-preview`) that targets the deployed website (`main` or `/preview/<branch>`) over real public HTTPS. Verifies live HTTP 200 resolution of core spec endpoints, meta-refresh vocabulary term namespace redirects, pure network JSON-LD expansion of example DPPs, and live SHACL validation against deployed shapes.
 
-*(More scripts will be documented here as we analyze them...)*

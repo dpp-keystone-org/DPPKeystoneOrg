@@ -179,6 +179,8 @@ const termNamespaces = [
     { subpath: `terms/`, desc: 'Core dppk: terms root' },
     { subpath: `terms/cement-dopc/`, desc: 'dppk-cement-dopc: terms' },
     { subpath: `terms/cement/`, desc: 'dppk-cement: terms' },
+    { subpath: `terms/cement/commoncement/`, desc: 'dppk-cement-commoncement: terms' },
+    { subpath: `terms/cement/portlandcementclinker/`, desc: 'dppk-cement-portlandcementclinker: terms' },
     { subpath: `terms/epd/`, desc: 'dppk-epd: terms' },
     { subpath: `terms/signature/`, desc: 'dppk-signature: terms' },
     { subpath: `terms/unit/`, desc: 'dppk-unit: terms' },
@@ -287,6 +289,8 @@ const sectorToShapes = [
         shapePaths: [
             `validation/${KEYSTONE_VERSION}/shacl/sectors/Cement-shapes.shacl.jsonld`,
             `validation/${KEYSTONE_VERSION}/shacl/sectors/cement/DoPC-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/cement/CommonCement-shapes.shacl.jsonld`,
+            `validation/${KEYSTONE_VERSION}/shacl/sectors/cement/PortlandCementClinker-shapes.shacl.jsonld`,
             `validation/${KEYSTONE_VERSION}/shacl/core/Header-shapes.shacl.jsonld`
         ]
     },

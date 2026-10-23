@@ -107,7 +107,7 @@ export function extractClassRequirements(ontologyGraph, targetClass) {
             
             let oneOf = null;
             if (range) {
-                const rangeNode = graphNodes.find(n => (n["@id"] === range || expandURI(n["@id"], context) === expandedRange));
+                const rangeNode = lookupNodes.find(n => (n["@id"] === range || expandURI(n["@id"], context) === expandedRange));
                 if (rangeNode && rangeNode["owl:oneOf"]) {
                     let oneOfArray = Array.isArray(rangeNode["owl:oneOf"]) ? rangeNode["owl:oneOf"] : [rangeNode["owl:oneOf"]];
                     oneOf = oneOfArray.map(o => expandURI(o["@id"], context));

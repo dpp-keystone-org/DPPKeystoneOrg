@@ -119,8 +119,14 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'EUApparelSizeSystem.jsonld'),
     [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/Cement.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'Cement.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/CementType.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'CementType.jsonld'),
     [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/DoPC.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'DoPC.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/CommonCement.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'CommonCement.jsonld'),
+    [`https://dpp-keystone.org/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/PortlandCementClinker.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'ontology', KEYSTONE_VERSION, 'sectors', 'cement', 'PortlandCementClinker.jsonld'),
 
     // --- SHACL Shape Files ---
     [`https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/shacl/core-shapes.shacl.jsonld`]:

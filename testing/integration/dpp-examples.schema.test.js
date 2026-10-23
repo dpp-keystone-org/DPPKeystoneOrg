@@ -19,6 +19,8 @@ const testCases = [
     'sock-dpp-v2.json',
     'rail-dpp-v1.json',
     'construction-product-dpp-v1.json',
+    'iron-steel-dpp-v1.json',
+    'cement-dpp-v3.json',
 ];
 
 describe('DPP JSON Schema Validation', () => {
