@@ -5,6 +5,10 @@
     "https://dpp-keystone.org/spec/contexts/{{VERSION}}/dpp-cement-dopc.context.jsonld",
     {
       "dppk-cement": "https://dpp-keystone.org/spec/{{VERSION}}/terms/cement#",
+      "dppk-cement-commoncement": "https://dpp-keystone.org/spec/{{VERSION}}/terms/cement/commoncement#",
+      "dppk-cement-portlandcementclinker": "https://dpp-keystone.org/spec/{{VERSION}}/terms/cement/portlandcementclinker#",
+      "CommonCement": "dppk-cement:CommonCement",
+      "PortlandCementClinker": "dppk-cement:PortlandCementClinker",
       "cementType": {
         "@id": "dppk-cement:cementType",
         "@type": "@vocab"
@@ -74,6 +78,52 @@
       "52,5 L": "dppk-cement:StrengthClass52_5_L",
       "52,5 N": "dppk-cement:StrengthClass52_5_N",
       "52,5 R": "dppk-cement:StrengthClass52_5_R",
+      "commonCement": {
+        "@id": "dppk-cement:commonCement",
+        "@context": {
+          "minimumStandardCompressiveStrength28Days": "dppk-cement-commoncement:minimumStandardCompressiveStrength28Days",
+          "maximumStandardCompressiveStrength28Days": "dppk-cement-commoncement:maximumStandardCompressiveStrength28Days",
+          "minimumVeryEarlyCompressiveStrength24Hours": "dppk-cement-commoncement:minimumVeryEarlyCompressiveStrength24Hours",
+          "minimumEarlyCompressiveStrength2Days": "dppk-cement-commoncement:minimumEarlyCompressiveStrength2Days",
+          "minimumEarlyCompressiveStrength7Days": "dppk-cement-commoncement:minimumEarlyCompressiveStrength7Days",
+          "minimumLateCompressiveStrength56Days": "dppk-cement-commoncement:minimumLateCompressiveStrength56Days",
+          "minimumLateCompressiveStrength90Days": "dppk-cement-commoncement:minimumLateCompressiveStrength90Days",
+          "initialSettingTime": "dppk-cement-commoncement:initialSettingTime",
+          "lossOnIgnition": "dppk-cement-commoncement:lossOnIgnition",
+          "soundness": "dppk-cement-commoncement:soundness",
+          "heatOfHydration": "dppk-cement-commoncement:heatOfHydration",
+          "pozzolanicityHydroxylIonConcentration": "dppk-cement-commoncement:pozzolanicityHydroxylIonConcentration",
+          "pozzolanicityCalciumOxideConcentration": "dppk-cement-commoncement:pozzolanicityCalciumOxideConcentration",
+          "insolubleResidueContent": "dppk-cement-commoncement:insolubleResidueContent",
+          "sulfateContent": "dppk-cement-commoncement:sulfateContent",
+          "chlorideContent": "dppk-cement-commoncement:chlorideContent",
+          "totalAlkaliContent": "dppk-cement-commoncement:totalAlkaliContent",
+          "effectiveAlkaliContent": "dppk-cement-commoncement:effectiveAlkaliContent",
+          "tricalciumAluminateContent": "dppk-cement-commoncement:tricalciumAluminateContent",
+          "tetracalciumAluminoferriteContent": "dppk-cement-commoncement:tetracalciumAluminoferriteContent",
+          "dicalciumFerriteContent": "dppk-cement-commoncement:dicalciumFerriteContent",
+          "magnesiumOxideContent": "dppk-cement-commoncement:magnesiumOxideContent",
+          "aluminiumOxideContent": "dppk-cement-commoncement:aluminiumOxideContent",
+          "sulfurAsSulfideIons": "dppk-cement-commoncement:sulfurAsSulfideIons",
+          "tricalciumSilicateContent": "dppk-cement-commoncement:tricalciumSilicateContent",
+          "calciumOxideContent": "dppk-cement-commoncement:calciumOxideContent",
+          "sulfateResistanceFlatPrismTest": "dppk-cement-commoncement:sulfateResistanceFlatPrismTest",
+          "sulfateResistanceSquarePrismTest": "dppk-cement-commoncement:sulfateResistanceSquarePrismTest"
+        }
+      },
+      "portlandCementClinker": {
+        "@id": "dppk-cement:portlandCementClinker",
+        "@context": {
+          "combinedCalciumSilicatesContent": "dppk-cement-portlandcementclinker:combinedCalciumSilicatesContent",
+          "calciumOxideContent": "dppk-cement-portlandcementclinker:calciumOxideContent",
+          "siliconDioxideContent": "dppk-cement-portlandcementclinker:siliconDioxideContent",
+          "magnesiumOxideContent": "dppk-cement-portlandcementclinker:magnesiumOxideContent",
+          "ratioCalciumOxideToSiliconDioxide": "dppk-cement-portlandcementclinker:ratioCalciumOxideToSiliconDioxide",
+          "totalAlkaliContent": "dppk-cement-portlandcementclinker:totalAlkaliContent",
+          "tricalciumAluminateContent": "dppk-cement-portlandcementclinker:tricalciumAluminateContent",
+          "tetracalciumAluminoferriteContent": "dppk-cement-portlandcementclinker:tetracalciumAluminoferriteContent"
+        }
+      },
       "minimumStandardCompressiveStrength28Days": "dppk-cement:minimumStandardCompressiveStrength28Days",
       "maximumStandardCompressiveStrength28Days": "dppk-cement:maximumStandardCompressiveStrength28Days",
       "minimumVeryEarlyCompressiveStrength24Hours": "dppk-cement:minimumVeryEarlyCompressiveStrength24Hours",

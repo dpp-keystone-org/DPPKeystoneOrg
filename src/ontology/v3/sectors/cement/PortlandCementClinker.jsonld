@@ -1,0 +1,129 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dppk": "https://dpp-keystone.org/spec/{{VERSION}}/terms#",
+    "dppk-cement": "https://dpp-keystone.org/spec/{{VERSION}}/terms/cement#",
+    "dppk-cement-portlandcementclinker": "https://dpp-keystone.org/spec/{{VERSION}}/terms/cement/portlandcementclinker#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/cement/PortlandCementClinker.jsonld",
+  "owl:versionInfo": "{{VERSION}}",
+  "owl:imports": [
+    { "@id": "https://dpp-keystone.org/spec/ontology/{{VERSION}}/sectors/Cement.jsonld" }
+  ],
+  "@type": "owl:Ontology",
+  "dcterms:title": [
+    { "@language": "en", "@value": "DPP Sector Ontology - Portland Cement Clinker (Table ZA.1.1.2)" },
+    { "@language": "bg", "@value": "DPP секторна онтология - Портландциментов клинкер (Таблица ZA.1.1.2)" },
+    { "@language": "cs", "@value": "Oborová ontologie DPP - Slínek pro portlandský cement (Tabulka ZA.1.1.2)" },
+    { "@language": "da", "@value": "DPP Sektorontologi - Portlandcementklinker (Tabel ZA.1.1.2)" },
+    { "@language": "de", "@value": "DPP-Sektor-Ontologie - Portlandzementklinker (Tabelle ZA.1.1.2)" },
+    { "@language": "el", "@value": "Τομεακή οντολογία DPP - Κλίνκερ τσιμέντου Πόρτλαντ (Πίνακας ZA.1.1.2)" },
+    { "@language": "es", "@value": "Ontología sectorial DPP - Clínker de cemento Portland (Tabla ZA.1.1.2)" },
+    { "@language": "et", "@value": "DPP sektori ontoloogia - Portlandtsemendi klinker (Tabel ZA.1.1.2)" },
+    { "@language": "fi", "@value": "DPP-alaontologia - Portlandsementtiklinkkeri (Taulukko ZA.1.1.2)" },
+    { "@language": "fr", "@value": "Ontologie sectorielle DPP - Clinker Portland (Tableau ZA.1.1.2)" },
+    { "@language": "ga", "@value": "Ointeolaíocht Earnála DPP - Clincer Stroighne Portland (Tábla ZA.1.1.2)" },
+    { "@language": "hr", "@value": "DPP sektorska ontologija - Portland cementni klinker (Tablica ZA.1.1.2)" },
+    { "@language": "hu", "@value": "DPP szektor ontológia - Portlandcement klinker (ZA.1.1.2. táblázat)" },
+    { "@language": "it", "@value": "Ontologia settoriale DPP - Clinker di cemento Portland (Tabella ZA.1.1.2)" },
+    { "@language": "lt", "@value": "DPP sektoriaus ontologija - Portlandcemenčio klinkeris (ZA.1.1.2 lentelė)" },
+    { "@language": "lv", "@value": "DPP nozares ontoloģija - Portlandcementa klinkers (ZA.1.1.2. tabula)" },
+    { "@language": "mt", "@value": "Ontoloġija tas-Settur DPP - Klinker tas-siment Portland (Tabella ZA.1.1.2)" },
+    { "@language": "nl", "@value": "DPP-sectorontologie - Portlandcementklinker (Tabel ZA.1.1.2)" },
+    { "@language": "pl", "@value": "Ontologia sektorowa DPP - Klinkier portlandzki (Tabela ZA.1.1.2)" },
+    { "@language": "pt", "@value": "Ontologia Setorial DPP - Clínquer de cimento Portland (Quadro ZA.1.1.2)" },
+    { "@language": "ro", "@value": "Ontologie sectorială DPP - Clincher de ciment Portland (Tabelul ZA.1.1.2)" },
+    { "@language": "sk", "@value": "Sektorová ontológia DPP - Slínok pre portlandský cement (Tabuľka ZA.1.1.2)" },
+    { "@language": "sl", "@value": "DPP sektorska ontologija - Portlandski cementni klinker (Preglednica ZA.1.1.2)" },
+    { "@language": "sv", "@value": "DPP Sektorontologi - Portlandcementklinker (Tabell ZA.1.1.2)" }
+  ],
+  "dcterms:description": [
+    { "@language": "en", "@value": "Ontology defining specialized performance characteristic properties for Portland cement clinker (K) according to prEN 197-1:2026 Clause 4.3.1.1 and Table ZA.1.1.2." },
+    { "@language": "bg", "@value": "Онтология, дефинираща специализирани свойства за експлоатационни характеристики на портландциментов клинкер (K) съгласно prEN 197-1:2026 точка 4.3.1.1 и таблица ZA.1.1.2." },
+    { "@language": "cs", "@value": "Ontologie definující specializované vlastnosti funkčních charakteristik pro slínek pro portlandský cement (K) podle prEN 197-1:2026 čl. 4.3.1.1 a tabulky ZA.1.1.2." },
+    { "@language": "da", "@value": "Ontologi, der definerer specialiserede ydeevneegenskaber for portlandcementklinker (K) i henhold til prEN 197-1:2026 punkt 4.3.1.1 og tabel ZA.1.1.2." },
+    { "@language": "de", "@value": "Ontologie zur Definition spezialisierter Leistungsmerkmale für Portlandzementklinker (K) gemäß prEN 197-1:2026 Abschnitt 4.3.1.1 und Tabelle ZA.1.1.2." },
+    { "@language": "el", "@value": "Οντολογία που ορίζει εξειδικευμένες ιδιότητες χαρακτηριστικών απόδοσης για κλίνκερ τσιμέντου Πόρτλαντ (K) σύμφωνα με το prEN 197-1:2026 παράγραφος 4.3.1.1 και Πίνακα ZA.1.1.2." },
+    { "@language": "es", "@value": "Ontología que define propiedades especializadas de características de prestación para el clínker de cemento Portland (K) según prEN 197-1:2026 cláusula 4.3.1.1 y tabla ZA.1.1.2." },
+    { "@language": "et", "@value": "Ontoloogia, mis määratleb portlandtsemendi klinkri (K) spetsialiseeritud toimivusomadused vastavalt standardi prEN 197-1:2026 punktile 4.3.1.1 ja tabelile ZA.1.1.2." },
+    { "@language": "fi", "@value": "Ontologia, joka määrittelee portlandsementtiklinkkerin (K) erikoistuneet suoritustaso-ominaisuudet standardin prEN 197-1:2026 kohdan 4.3.1.1 ja taulukon ZA.1.1.2 mukaisesti." },
+    { "@language": "fr", "@value": "Ontologie définissant les propriétés spécialisées des caractéristiques de performance du clinker Portland (K) selon prEN 197-1:2026 article 4.3.1.1 et tableau ZA.1.1.2." },
+    { "@language": "ga", "@value": "Ointeolaíocht a shainíonn airíonna saintréithe feidhmíochta speisialaithe le haghaidh clincir stroighne Portland (K) de réir prEN 197-1:2026 Alt 4.3.1.1 agus Tábla ZA.1.1.2." },
+    { "@language": "hr", "@value": "Ontologija koja definira specijalizirana svojstva učinkovitosti za portland cementni klinker (K) prema prEN 197-1:2026 točki 4.3.1.1 i tablici ZA.1.1.2." },
+    { "@language": "hu", "@value": "A portlandcement klinker (K) speciális teljesítményjellemzőit meghatározó ontológia a prEN 197-1:2026 4.3.1.1. szakasza és a ZA.1.1.2. táblázat szerint." },
+    { "@language": "it", "@value": "Ontologia che definisce proprietà specializzate delle caratteristiche di prestazione per il clinker di cemento Portland (K) secondo prEN 197-1:2026 punto 4.3.1.1 e tabella ZA.1.1.2." },
+    { "@language": "lt", "@value": "Ontologija, apibrėžianti specializuotas portlandcemenčio klinkerio (K) eksploatacinių charakteristikų savybes pagal prEN 197-1:2026 4.3.1.1 punktą ir ZA.1.1.2 lentelę." },
+    { "@language": "lv", "@value": "Ontoloģija, kas definē specializētus portlandcementa klinkera (K) ekspluatācijas raksturlielumu rekvizītus saskaņā ar prEN 197-1:2026 4.3.1.1. punktu un ZA.1.1.2. tabulu." },
+    { "@language": "mt", "@value": "Ontoloġija li tiddefinixxi proprjetajiet speċjalizzati tal-karatteristiċi tal-prestazzjoni għall-klinker tas-siment Portland (K) skont prEN 197-1:2026 Klawżola 4.3.1.1 u Tabella ZA.1.1.2." },
+    { "@language": "nl", "@value": "Ontologie die gespecialiseerde eigenschappen van prestatiekenmerken voor portlandcementklinker (K) definieert volgens prEN 197-1:2026 paragraaf 4.3.1.1 en tabel ZA.1.1.2." },
+    { "@language": "pl", "@value": "Ontologia definiująca wyspecjalizowane właściwości cech użytkowych klinkieru portlandzkiego (K) zgodnie z prEN 197-1:2026 rozdział 4.3.1.1 i tabelą ZA.1.1.2." },
+    { "@language": "pt", "@value": "Ontologia que define propriedades especializadas de características de desempenho para o clínquer de cimento Portland (K) de acordo com a prEN 197-1:2026 secção 4.3.1.1 e quadro ZA.1.1.2." },
+    { "@language": "ro", "@value": "Ontologie care definește proprietăți specializate ale caracteristicilor de performanță pentru clincherul de ciment Portland (K) conform prEN 197-1:2026 articolul 4.3.1.1 și tabelul ZA.1.1.2." },
+    { "@language": "sk", "@value": "Ontológia definujúca špecializované vlastnosti parametrov pre slínok pre portlandský cement (K) podľa prEN 197-1:2026 čl. 4.3.1.1 a tabuľky ZA.1.1.2." },
+    { "@language": "sl", "@value": "Ontologija, ki opredeljuje specializirane lastnosti učinkovitosti za portlandski cementni klinker (K) v skladu s prEN 197-1:2026 točko 4.3.1.1 in preglednico ZA.1.1.2." },
+    { "@language": "sv", "@value": "Ontologi som definierar specialiserade prestandaegenskaper för portlandcementklinker (K) enligt prEN 197-1:2026 avsnitt 4.3.1.1 och tabell ZA.1.1.2." }
+  ],
+  "dcterms:conformsTo": "prEN 197-1:2026",
+  "@graph": [
+    {
+      "@id": "dppk-cement-portlandcementclinker:combinedCalciumSilicatesContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:combinedCalciumSilicatesContent" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-14:2027"
+    },
+    {
+      "@id": "dppk-cement-portlandcementclinker:calciumOxideContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:calciumOxideContent" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-portlandcementclinker:siliconDioxideContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:siliconDioxideContent" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-portlandcementclinker:magnesiumOxideContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:magnesiumOxideContent" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-portlandcementclinker:ratioCalciumOxideToSiliconDioxide",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:ratioCalciumOxideToSiliconDioxide" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-portlandcementclinker:totalAlkaliContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:totalAlkaliContent" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-2:2026, Clause 4.5"
+    },
+    {
+      "@id": "dppk-cement-portlandcementclinker:tricalciumAluminateContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:tricalciumAluminateContent" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-14:2027"
+    },
+    {
+      "@id": "dppk-cement-portlandcementclinker:tetracalciumAluminoferriteContent",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:subPropertyOf": { "@id": "dppk-cement:tetracalciumAluminoferriteContent" },
+      "rdfs:domain": { "@id": "dppk-cement:PortlandCementClinker" },
+      "dppk:governedBy": "prEN 197-1:2026, Clause 4.3.1.1, Table ZA.1.1.2; EN 196-14:2027"
+    }
+  ]
+}
