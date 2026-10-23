@@ -116,17 +116,15 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
         // Process the graph of the current ontology
         if (ontology['@graph']) {
             for (const term of ontology['@graph']) {
-                const rawKey = term['@id'];
-                if (!rawKey) continue;
+                let key = term['@id'];
+                if (!key) continue;
 
-                let key = rawKey;
                 if (key.includes(':')) {
                     key = key.split(':')[1];
                 }
 
                 const subPropertyOf = getSingleRdfsValue(term['rdfs:subPropertyOf']);
-                const targetKey = (subPropertyOf && ontologyMap.has(key)) ? rawKey : key;
-                const existing = ontologyMap.get(targetKey) || {};
+                const existing = ontologyMap.get(key) || {};
 
                 const label = parseLangTaggedProperty(term['rdfs:label']);
                 const comment = parseLangTaggedProperty(term['rdfs:comment']);
@@ -175,7 +173,7 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                 const termHasAnyMetadata = hasLabel || hasComment || hasUnit || hasGov || hasRange || hasSource || hasDomain || hasOneOf || hasUnitSymbol || hasSubPropertyOf;
 
                 if (termHasAnyMetadata) {
-                    const entryData = {
+                    ontologyMap.set(key, {
                         ...existing,
                         label: hasLabel ? label : (existing.label || {}),
                         comment: hasComment ? comment : (existing.comment || {}),
@@ -189,11 +187,7 @@ async function loadAndParseOntology(url, ontologyMap, loadedUrls, isInitialCall 
                         'enum': hasOneOf ? oneOf : (existing.enum || null),
                         unitSymbol: hasUnitSymbol ? unitSymbol : (existing.unitSymbol || null),
                         ...(hasSubPropertyOf ? { subPropertyOf } : {})
-                    };
-                    ontologyMap.set(targetKey, entryData);
-                    if (rawKey !== targetKey) {
-                        ontologyMap.set(rawKey, entryData);
-                    }
+                    });
                 }
             }
         }

@@ -41,10 +41,13 @@ We separate a data point's **identity**, **meaning**, and **value**:
     *   **[COMPLETED] Task 2.4.2:** Update `src/validation/v3/json-schema/sector/cement.schema.json` to add the nested `commonCement` (28 properties) and `portlandCementClinker` (8 properties) object schemas.
     *   **[COMPLETED] Task 2.4.3:** Update `src/examples/cement-dpp-v3.json` to nest the Table ZA.1.1.1 and Table ZA.1.1.2 properties under `commonCement` and `portlandCementClinker`.
 
-### [PENDING] Step 3: Diagnose and Fix Broken Build / Test Cases
-*   Plan: Investigate and resolve any failing unit or integration tests resulting from the new multi-file `rdfs:subPropertyOf` substance architecture (e.g., `generate-spec-docs.mjs`, SHACL generation/validation, or ontology integrity checks).
-*   **[PENDING] Step 3.1: Review Test Failure Output**
-    *   Inspect the failing test output from `npm test` with the developer and break down targeted fixes into sub-steps.
+### [IN PROGRESS] Step 3: Diagnose and Fix Broken Build / Test Cases
+*   Plan: Investigate and resolve any failing unit or integration tests resulting from the new multi-file `rdfs:subPropertyOf` substance architecture.
+*   **[COMPLETED] Step 3.1: Review Test Failure Output & Fix `src/lib/ontology-loader.js`**
+    *   **[COMPLETED] Task 3.1.1:** Diagnose `testing/unit/lib/ontology-loader.test.js` (`expect(ontologyMap.size).toBe(2)` receiving `4`): `loadAndParseOntology` in `src/lib/ontology-loader.js` was inserting both `targetKey` (`TestProperty`) and `rawKey` (`dpp:TestProperty`) into `ontologyMap` whenever `rawKey !== targetKey`. Remove the duplicate `rawKey` insertion and key `ontologyMap` solely by local property name `key`.
+    *   **[COMPLETED] Task 3.1.2:** Diagnose `testing/integration/crawler.test.js` (8.758s failure): `testing/scripts/crawler.mjs` performs live `HEAD` requests with an 8000ms timeout against external `dcterms:source` URLs in ontologies, and any transient external timeout logs to `stderr`, causing `crawler.test.js` to fail on `!!stderr`. Verify all internal generated HTML/JSON/JSON-LD links and CSS/image references for `CommonCement` and `PortlandCementClinker` are valid.
+*   **[PENDING] Step 3.2: Re-run Test Suite to Verify All Tests Pass**
+    *   Re-run `npm test` to confirm `testing/unit/lib/ontology-loader.test.js` and `testing/integration/crawler.test.js` pass after rebuilding `dist/`.
 
 ### [PENDING] Step 4: Review Prototype & Roll Out Remaining Substance Tables (`ZA.1.1.3` – `ZA.1.1.12`)
 *   Plan: Review the prototype for Tables ZA.1.1.1 and ZA.1.1.2 with the developer and, once aligned, decide on extending the pattern to the remaining 10 constituent tables (`Table ZA.1.1.3` through `Table ZA.1.1.12`).
