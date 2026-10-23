@@ -46,6 +46,133 @@
                 "datatype": "dppk-cement:CementTypeValue"
               }
             ]
+          },
+          "in": {
+            "@list": [
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_I"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_S"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_S"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_D"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_P"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_P"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_Q"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_Q"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_Z"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_Z"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_V"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_V"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_W"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_W"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_T"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_T"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_F"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_F"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_L"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_L"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_LL"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_LL"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_A_M"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_B_M"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_II_C_M"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_III_A"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_III_B"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_III_C"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_IV_A"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_IV_B"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_V_A"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_V_B"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_A_S_F"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_A_S_P"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_A_S_Q"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_A_S_V"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_A_S_Z"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_A_S_L"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_A_S_LL"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_B_S_L"
+              },
+              {
+                "@id": "https://dpp-keystone.org/preview/feature/clinker-prototype/spec/v3/terms/cement#CementTypeCEM_VI_B_S_LL"
+              }
+            ]
           }
         },
         {

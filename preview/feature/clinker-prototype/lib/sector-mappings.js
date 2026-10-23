@@ -1,4 +1,4 @@
-import { KEYSTONE_VERSION, getSectorSpecId } from './keystone-version.js?v=1792764658411';
+import { KEYSTONE_VERSION, getSectorSpecId } from './keystone-version.js?v=1792766994630';
 
 // Maps internal sector IDs to their UI display names
 export const SECTOR_DISPLAY_NAMES = {
