@@ -141,6 +141,14 @@ async function createRedirects(targetDir) {
             target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/sectors/Cement.jsonld`
         },
         {
+            subpath: ['terms', 'cement', 'commoncement'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/CommonCement.jsonld`
+        },
+        {
+            subpath: ['terms', 'cement', 'portlandcementclinker'],
+            target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/sectors/cement/PortlandCementClinker.jsonld`
+        },
+        {
             subpath: ['terms', 'epd'],
             target: `${PREVIEW_CHUNK}/spec/ontology/${KEYSTONE_VERSION}/core/EPD.jsonld`
         },
