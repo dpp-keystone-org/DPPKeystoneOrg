@@ -1,0 +1,289 @@
+openapi: 3.1.0
+info:
+  title: DPP Registry Service API
+  version: 1.0.0
+  license:
+    name: European Union Public Licence v. 1.2
+    identifier: EUPL-1.2
+  description: >-
+    Public REST contract for DPP registration submissions and Registry product-classification
+    reference data. Registry accepts JSON-only submissions containing between 1 and 100 items
+    for a single product group. Each item contains a uniqueProductIdentifier and may include
+    optional common or product-specific fields defined by the selected request variant.
+    Accepted submissions are processed asynchronously and tracked through Activity Dashboard
+    using the returned taskId. Acceptance for processing does not mean that any submitted DPP
+    has been registered.
+servers:
+  - url: https://registry.acc.product-passport.ec.europa.eu
+    description: ACC
+  - url: https://registry.product-passport.ec.europa.eu
+    description: PROD
+security:
+  - bearerAuth: []
+tags:
+  - name: Registry reference data
+  - name: DPP registration
+paths:
+  /api/v1/dpp/product-groups:
+    get:
+      tags:
+        - Registry reference data
+      summary: List available product groups
+      operationId: listProductGroups
+      responses:
+        '200':
+          description: Available product groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductGroup'
+  /api/v1/dpp/submission:
+    post:
+      tags:
+        - DPP registration
+      summary: Submit a DPP registration request
+      description: >
+        Accepts a JSON-only DPP registration submission containing between 1 and 100 items
+        for one productGroup. Each item contains its own uniqueProductIdentifier and may
+        include optional batchIdentifier, modelIdentifier, or product-specific fields defined
+        by the selected request variant. An accepted request returns 202 Accepted and a taskId
+        for Activity Dashboard tracking. Acceptance for processing does not confirm that any
+        submitted DPP has been registered. File upload is not part of this public API.
+      operationId: submitDppRegistrationRequest
+      parameters:
+        - $ref: '#/components/parameters/CorrelationId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DPPRegistrationSubmissionRequest'
+            example:
+              productGroup: BATTERIES
+              productSubGroup: EV
+              submissionItems:
+                - uniqueProductIdentifier: https://example.com/dpp/battery/0001
+                  granularity: item
+                  batchIdentifier: xxx-000
+                  modelIdentifier: yyy-111
+      responses:
+        '202':
+          description: Accepted for asynchronous processing. The response identifies the task used to track processing and does not confirm successful DPP registration.
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/AcceptedAsyncOperation'
+        '400':
+          description: The request body or request parameters are invalid.
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/ApiErrorMessage'
+        '403':
+          description: Forbidden — organisation is not verified or caller lacks required permission
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/ApiErrorMessage'
+        '409':
+          description: Duplicate or conflicting request
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/ApiErrorMessage'
+        '422':
+          description: Unprocessable — semantic validation unavailable or data logically invalid
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/ApiErrorMessage'
+        '413':
+          description: Payload too large — request body exceeds the maximum allowed size
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/ApiErrorMessage'
+        '429':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/TooManyRequests'
+        '500':
+          description: Technical error — system could not process the request
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/ApiErrorMessage'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    CorrelationId:
+      name: X-Correlation-Id
+      in: header
+      required: false
+      description: >-
+        Optional correlation identifier for end-to-end tracing and support diagnostics.
+        If omitted, Registry generates and propagates one.
+      schema:
+        type: string
+        maxLength: 128
+        examples:
+          - corr_01J1REG
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Required deduplication key for write operations that must be replay-safe.
+      schema:
+        type: string
+        maxLength: 128
+        examples:
+          - idem_save_002
+  schemas:
+    ProductGroup:
+      type: object
+      required:
+        - code
+        - label
+        - productSubGroups
+      properties:
+        code:
+          type: string
+          examples:
+            - BATTERIES
+        label:
+          type: string
+        productSubGroups:
+          type: array
+          description: Valid product sub-groups for the product group.
+          items:
+            $ref: '#/components/schemas/ProductSubGroup'
+    ProductSubGroup:
+      type: object
+      required:
+        - code
+        - label
+      properties:
+        code:
+          type: string
+          examples:
+            - EV
+        label:
+          type: string
+    DPPRegistrationSubmissionRequest:
+      description: >-
+        JSON-only DPP registration submission discriminated by the mandatory productGroup.
+        productSubGroup is optional in the common base; each product-group variant may require it.
+        submissionItems contains between 1 and 100 items, each with its own uniqueProductIdentifier,
+        required granularity, and any optional common or product-specific fields defined by the
+        selected variant. For each item, batchIdentifier and modelIdentifier are conditional on the
+        selected granularity.
+      oneOf:
+        - $ref: '#/components/schemas/BatteriesSubmissionRequest'
+      discriminator:
+        propertyName: productGroup
+        mapping:
+          BATTERIES: '#/components/schemas/BatteriesSubmissionRequest'
+      examples:
+        - productGroup: BATTERIES
+          productSubGroup: EV
+          submissionItems:
+            - uniqueProductIdentifier: https://example.com/dpp/battery/0001
+              granularity: item
+              batchIdentifier: xxx-000
+              modelIdentifier: yyy-111
+        - productGroup: BATTERIES
+          productSubGroup: LMT
+          submissionItems:
+            - uniqueProductIdentifier: https://example.com/dpp/battery/0002
+              granularity: batch
+
+    BaseDPPRegistrationSubmissionRequest:
+      type: object
+      required:
+        - productGroup
+        - submissionItems
+      description: >-
+        Common base of all registration request variants. Variants constrain productGroup
+        and narrow the type of submissionItems.
+      properties:
+        productGroup:
+          type: string
+          description: Product group code selected from the product groups catalogue.
+        productSubGroup:
+          type: string
+          description: >-
+            Product sub-group valid for the selected product group. Optional unless the
+            selected product-group variant requires it.
+        submissionItems:
+          type: array
+          description: Items included in the registration submission. Registry accepts between 1 and 100 items.
+          items:
+            $ref: '#/components/schemas/SubmissionItem'
+
+    # ---------------------------------------------------------------- BATTERIES
+
+    BatteriesSubmissionRequest:
+      title: BatteriesSubmissionRequest
+      description: >-
+        Registration request for the BATTERIES product group. productSubGroup is mandatory
+        for this group and carries no sub-group specific structure.
+      allOf:
+        - $ref: '#/components/schemas/BaseDPPRegistrationSubmissionRequest'
+        - type: object
+          required:
+            - productSubGroup
+          properties:
+            submissionItems:
+              type: array
+              items:
+                $ref: '#/components/schemas/BatteriesSubmissionItem'
+    BatteriesSubmissionItem:
+      description: >-
+        BATTERIES-specific extension of the common submission item. No additional
+        BATTERIES-specific fields are defined in this version.
+      allOf:
+        - $ref: '#/components/schemas/SubmissionItem'
+        - type: object
+          properties: {}
+    # ------------------------------------------------------------------ COMMON
+
+    SubmissionItem:
+      type: object
+      required:
+        - uniqueProductIdentifier
+        - granularity
+      description: A single item to register within a DPP submission.
+      properties:
+        uniqueProductIdentifier:
+          $ref: '#/components/schemas/UniqueProductIdentifier'
+        granularity:
+          type: string
+          description: Granularity level for this submitted DPP (item, batch, or model).
+          enum:
+            - item
+            - batch
+            - model
+        batchIdentifier:
+          type: string
+          description: Optional batch identifier.
+          examples:
+            - xxx-000
+        modelIdentifier:
+          type: string
+          description: Optional model identifier.
+          examples:
+            - yyy-111
+
+    UniqueProductIdentifier:
+      type: string
+      format: uri
+      minLength: 8
+      maxLength: 2000
+      description: HTTPS URL identifying the DPP candidate. Registry resolves and
+        validates it through the controlled HTTPS retrieval policy.
