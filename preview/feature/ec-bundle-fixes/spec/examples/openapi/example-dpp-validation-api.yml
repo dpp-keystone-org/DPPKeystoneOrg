@@ -1,0 +1,558 @@
+openapi: 3.1.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+
+info:
+  title: DPP Layered Validation Service API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    identifier: Apache-2.0
+  summary: >-
+    Reference OpenAPI 3.1 specification illustrating how a single DPP validation endpoint layers
+    the cross-sector DPP Core schema together with decoupled, conditionally self-activating EU
+    Delegated Act and federated sector schemas.
+  description: |
+    ## Architectural Overview
+
+    Under ESPR (Regulation (EU) 2024/1781) and EN 18223, the central EU DPP Registry indexes
+    product and passport identifiers (`uniqueProductIdentifier`, `digitalProductPassportId`), while
+    full Digital Product Passports are hosted decentrally and validated on demand by Market
+    Surveillance Authorities (MSAs), Customs interfaces, Notified Bodies, Economic Operators, and
+    DPP Service Providers.
+
+    Because every sector schema and access-tier slice is **decoupled** and **conditionally
+    self-activating** based on `contentSpecificationIds`, a validation service does **not** need
+    product-specific endpoints (such as `/validate/batteries` or `/validate/textiles`). Instead, a
+    single endpoint composes all recognized schemas via `allOf`:
+
+    1. **Always-Active Core Envelope (`core.schema.json`)**: Enforces cross-sector ESPR / EN 18223
+       header invariants (`digitalProductPassportId`, `uniqueProductIdentifier`, `granularity`,
+       `dppStatus`, `lastUpdate`, and `@context` OR `contentSpecificationIds`).
+    2. **Conditionally Activated EU Delegated Act Schemas**: Each product-group and subgroup
+       access-tier schema (`pub`, `res1`, `res2`, `res3`) uses JSON Schema `if`/`then` (mirrored by
+       SHACL Core `sh:or` / `sh:not`) to enforce its constraints **only when** its unique
+       `contentSpecificationId` URI is present in `contentSpecificationIds`.
+    3. **Conditionally Activated Other ESPR Sector & Federated Schemas**: Additional ESPR product
+       groups and federated specifications (e.g., Textiles, Iron & Steel, Construction, Electronics)
+       sit in the exact same `allOf` list and activate only when their specification ID is declared
+       in `contentSpecificationIds`.
+
+    ### Guarding Against Omitted Mandatory Specifications During Inspections
+    Self-activation validates every specification a payload *claims* in `contentSpecificationIds`.
+    During a regulatory audit (for example, an MSA inspecting an Electric Vehicle Battery up to
+    `RES2` authority), the caller can pass `requireSpecificationId` query parameters to assert that
+    the submitted DPP **must** also include—and therefore activate and satisfy—specific
+    delegated-act and access-tier specification URIs.
+
+servers:
+  - url: http://localhost:3000
+    description: Local reference validation server (`node src/examples/openapi/serve-validation-api.mjs`)
+  - url: https://validator.product-passport.example.eu
+    description: Example hosted DPP Validation Service
+
+tags:
+  - name: Validation
+    description: Multi-sector layered JSON Schema (Draft 2020-12) and JSON-LD 1.1 / SHACL validation.
+  - name: Discovery
+    description: Inspect which content specifications and semantic bundles this validator recognizes.
+
+paths:
+  /v1/dpps/validate:
+    post:
+      tags:
+        - Validation
+      operationId: validateDigitalProductPassport
+      summary: Validate a Digital Product Passport against Core and all recognized layered schemas
+      description: >-
+        Validates a JSON or JSON-LD Digital Product Passport payload against the cross-sector DPP
+        Core schema plus all recognized EU Delegated Act and federated sector schemas composed in
+        `LayeredDigitalProductPassport`. Optionally enforces that expected regulatory
+        `contentSpecificationIds` are declared (`requireSpecificationId`) and executes paired RDF
+        SHACL graph validation (`shacl=true`).
+      parameters:
+        - $ref: '#/components/parameters/RequireSpecificationIdParam'
+        - $ref: '#/components/parameters/ShaclValidationParam'
+      requestBody:
+        required: true
+        description: Full Digital Product Passport JSON-LD (or JSON) document, or a restricted access-tier slice.
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/LayeredDigitalProductPassport'
+            examples:
+              evBatteryPublicDpp:
+                summary: EV Battery public item-level DPP activating EC Core + EC Battery (pub) + EC EVB (pub)
+                value:
+                  '@context':
+                    - https://dpp-keystone.org/spec/contexts/v3/dpp-battery.context.jsonld
+                    - https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld
+                    - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld
+                  id: https://www.example.org/dpp/evb-001
+                  type: DigitalProductPassport
+                  digitalProductPassportId: https://www.example.org/dpp/evb-001
+                  uniqueProductIdentifier: https://www.example.org/evb-001
+                  granularity: item
+                  dppStatus: validStatus
+                  lastUpdate: '2025-08-22T03:12:00Z'
+                  contentSpecificationIds:
+                    - https://repository.product-passport.ec.europa.eu/core/1.0.0
+                    - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub
+                    - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
+                  registrantIdentity: urn:uuid:3f1c7a52-8d4e-4b1a-9c2e-5a6b7d8e9f01
+                  manufacturerIdentification:
+                    manufacturerName: Iberia Battery Systems S.L.
+                    manufacturerTradeName: IberiaCell
+                    manufacturerTrademark: IberiaCell(R)
+                  manufacturerPostalAddress: Calle de Alcalá 100, 28009 Madrid, Spain
+                  manufacturerContactDetails:
+                    manufacturerWebsite: https://www.example.com
+                    manufacturerEmail: info@example.com
+                  batteryCategory: electricVehicleBattery
+                  batteryIdentification:
+                    modelIdentifier: IC-120-NMC
+                    batchNumber: BATCH-2026-03-A
+                    serialNumber: SN-EVB-2026-00001
+                  manufacturingPlace:
+                    manufacturingCity: Zaragoza
+                    manufacturingRegion: Aragón
+                    manufacturingCountry: ESP
+                  manufacturingDate: '2026-03'
+                  serviceDate: '2026-04-15'
+                  batteryWeight: 450.5
+                  batteryCapacity: 120
+                  batteryChemistry:
+                    - lithiumIonNMC
+                  hazardousSubstances:
+                    - Lithium hexafluorophosphate (LiPF6)
+                  extinguishingAgent:
+                    en: Large quantities of water; dry chemical powder (Class D) for small fires
+                    de-DE: Große Mengen Wasser; Metallbrandpulver (Klasse D) für Entstehungsbrände
+                  criticalRawMaterials:
+                    - cobalt
+                    - lithium
+                    - graphite
+                    - nickelBatteryGrade
+                  renewableContentShare: 15.2
+                  minimalVoltage: 300
+                  nominalVoltage: 400
+                  nominalVoltageMinTemp: -20
+                  nominalVoltageMaxTemp: 45
+                  maximumVoltage: 450
+                  originalPowerCapability: 150000
+                  powerLimit: 180000
+                  powerLimitMinTemp: -10
+                  powerLimitMaxTemp: 40
+                  notInUseTemperatureRange:
+                    lowerBound: -20
+                    upperBound: 50
+                    notInUseTemperatureRangeTest:
+                      en: IEC 62660-2 storage test
+                      de-DE: IEC 62660-2 Lagertest
+                  commercialWarrantyPeriod: 96
+                  internalCellResistance: 0.0012
+                  internalPackResistance: 0.045
+                  cycleLifeDischargeCRate: 1.0
+                  separateCollectionSymbol: true
+                  chemicalSymbol:
+                    - noneSymbol
+                  euDeclarationOfConformity:
+                    resourceTitle: EU declaration of conformity file
+                    contentType: application/pdf
+                    url: https://example.com/docs/eu-doc-0001.pdf
+                    language: en-GB
+                  wasteBatteryPreventionManagementInfo:
+                    endUserRoleInWastePrevention:
+                      en: End users should avoid mechanical damage and follow the usage instructions.
+                      de-DE: Endnutzer sollten mechanische Beschädigungen vermeiden und die Gebrauchsanweisung beachten.
+                    endUserRoleInSeparateCollection:
+                      en-IE: End users must not dispose of batteries as unsorted municipal waste.
+                    separateCollectionPoints:
+                      en-IE: https://example.com/collection-points
+                    takeBackCollectionPoints:
+                      en-IE: Return to any authorised dealer free of charge.
+                    preparationForReuseFacilities:
+                      en-IE: 'Authorised facility: Iberia Reuse Centre, Zaragoza.'
+                    preparationForRepurposingFacilities:
+                      en-IE: 'Authorised facility: Iberia Second-Life Hub, Valencia.'
+                    wasteBatteryTreatmentFacilities:
+                      en-IE: 'Authorised recycling plant: Recycla Ibérica, Bilbao.'
+                    wasteBatterySafetyInstructions:
+                      en-IE: Store damaged batteries in a dry, ventilated, non-flammable container.
+                    batteryLabelSymbolMeaning:
+                      en-IE: The crossed-out wheelie bin symbol indicates separate collection is required.
+                    batterySubstancesImpact:
+                      en-IE: Improper disposal may release electrolyte and heavy metals into soil and water.
+                  expectedLifetimeCycles: 1500
+                  cycleLifeReferenceTest:
+                    en: ISO 12405-4 cycle life test
+                    de-DE: ISO 12405-4 Zykluslebensdauertest
+                  capacityExhaustionThreshold: 80
+                  initialRoundTripEnergyEfficiency: 94.5
+                  roundTripEfficiencyAtHalfCycleLife: 91.0
+                  cycleLifeChargeCRate: 0.5
+              esprTextileBatchDpp:
+                summary: Non-battery DPP (Textile) hitting the exact same endpoint — all 16 battery schemas stay inactive
+                value:
+                  '@context':
+                    - https://dpp-keystone.org/spec/contexts/v3/dpp-textile.context.jsonld
+                    - https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld
+                  id: https://example.com/dpp/sock-lot-042
+                  type: DigitalProductPassport
+                  digitalProductPassportId: https://example.com/dpp/sock-lot-042
+                  uniqueProductIdentifier: https://id.gs1.org/01/09506000134352/10/LOT-042
+                  granularity: batch
+                  dppStatus: validStatus
+                  lastUpdate: '2026-06-01T08:30:00Z'
+                  contentSpecificationIds:
+                    - https://repository.product-passport.ec.europa.eu/core/1.0.0
+                    - draft_textile_espr_specification_id
+                  productName:
+                    en: Everyday Comfort Crew Socks ESPR Edition (3-Pack)
+                  pefcrCategory: Leggings, stockings, tights and socks
+                  fibreComposition:
+                    - name: Cotton
+                      percentage: 85
+                    - name: Polyamide
+                      percentage: 13
+                    - name: Elastane
+                      percentage: 2
+                  color: Black
+                  animalOriginNonTextile: false
+                  euApparelSize:
+                    sizeDesignation: EU 42-45
+                    primaryDimension: Foot length
+                    primaryDimensionValue: 26.5-28.5 cm
+                  productionSteps:
+                    - step: Spinning
+                      countryCode: TUR
+                    - step: Knitting
+                      countryCode: PRT
+                  robustnessScore: 8.5
+                  recyclabilityScore: 7
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LayeredDigitalProductPassport'
+      responses:
+        '200':
+          description: Passport payload conforms to DPP Core, all activated content specifications, and any required inspection specifications.
+          headers:
+            X-Correlation-Id:
+              $ref: '#/components/headers/CorrelationId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationReport'
+              examples:
+                validEvbReport:
+                  summary: Conforming EV Battery passport report
+                  value:
+                    conforms: true
+                    digitalProductPassportId: https://www.example.org/dpp/evb-001
+                    uniqueProductIdentifier: https://www.example.org/evb-001
+                    activatedSpecifications:
+                      - https://repository.product-passport.ec.europa.eu/core/1.0.0
+                      - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub
+                      - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
+                    unrecognizedSpecifications: []
+                    shaclValidated: true
+                    findings: []
+        '422':
+          description: >-
+            Validation failed — the payload violated DPP Core, one or more activated sector/tier
+            schemas or SHACL shapes, or omitted a `requireSpecificationId` mandated by the caller.
+          headers:
+            X-Correlation-Id:
+              $ref: '#/components/headers/CorrelationId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationReport'
+              examples:
+                missingParentSpecAndInvalidField:
+                  summary: Non-conforming DPP report with structured JSON Schema & SHACL findings
+                  value:
+                    conforms: false
+                    digitalProductPassportId: https://www.example.org/dpp/evb-001
+                    uniqueProductIdentifier: https://www.example.org/evb-001
+                    activatedSpecifications:
+                      - https://repository.product-passport.ec.europa.eu/core/1.0.0
+                      - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
+                    unrecognizedSpecifications: []
+                    shaclValidated: true
+                    findings:
+                      - stage: JSON_SCHEMA
+                        specificationId: https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
+                        schemaId: https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/schemas/pub-evb.schema.json
+                        code: SEM-MSG-009
+                        path: /contentSpecificationIds
+                        message: >-
+                          Subgroup specification .../subgroup/evb/1.0.0/pub requires parent battery
+                          specification .../product/batteries/1.0.0/pub in contentSpecificationIds.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /v1/specifications:
+    get:
+      tags:
+        - Discovery
+      operationId: listRecognizedSpecifications
+      summary: List all content specifications layered by this validation endpoint
+      description: >-
+        Returns the registry of `contentSpecificationId` URIs/URNs recognized by this validation
+        service, together with their mapped JSON Schema Draft 2020-12 `$id`, SHACL shapes graph URI,
+        and JSON-LD 1.1 context URI. Adding support for a new ESPR product group (e.g., Textiles,
+        Iron & Steel, Tyres) only requires registering its conditional schema and SHACL graph here.
+      responses:
+        '200':
+          description: Recognized specification registry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecognizedSpecificationList'
+
+components:
+  parameters:
+    RequireSpecificationIdParam:
+      name: requireSpecificationId
+      in: query
+      required: false
+      style: form
+      explode: true
+      description: >-
+        Optional repeatable list of `contentSpecificationId` URIs that the submitted DPP MUST
+        declare in `contentSpecificationIds` (and therefore activate and satisfy). Used by Market
+        Surveillance Authorities and Notified Bodies to ensure an operator cannot bypass restricted
+        or subgroup rules (such as `.../batteries/1.0.0/res1` and `.../batteries/1.0.0/res2`) by
+        omitting their IDs from the payload.
+      schema:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      examples:
+        msaEvbInspectionUpToRes2:
+          summary: MSA audit of an EV Battery requiring public + RES1 + RES2 tiers
+          value:
+            - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub
+            - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res1
+            - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res2
+            - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
+            - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res1
+            - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res2
+
+    ShaclValidationParam:
+      name: shacl
+      in: query
+      required: false
+      description: >-
+        When `true` (default), expands the payload as JSON-LD 1.1 and validates the resulting RDF
+        dataset against the merged SHACL shapes graph (including `unknown#` unmapped-term checks
+        and BCP 47 language-tag checks) in addition to Draft 2020-12 JSON Schema validation.
+      schema:
+        type: boolean
+        default: true
+
+  headers:
+    CorrelationId:
+      description: Correlation identifier for inspection audit logs and diagnostics.
+      schema:
+        type: string
+        maxLength: 128
+
+  responses:
+    BadRequest:
+      description: Malformed JSON syntax, unsupported media type, or unreadable request body.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+  schemas:
+    LayeredDigitalProductPassport:
+      title: Multi-Sector Layered Digital Product Passport
+      description: >-
+        Composes the cross-sector DPP Core schema with all recognized EU Delegated Act and
+        federated sector schemas via `allOf`. Because every non-core schema is wrapped in a
+        conditional `if` check on `contentSpecificationIds`, inactive sector, subgroup, and
+        access-tier schemas evaluate to `true` with zero cross-sector interference.
+      type: object
+      allOf:
+        # -----------------------------------------------------------------------
+        # 1. Cross-Sector DPP Core Envelope (Always Enforced)
+        # -----------------------------------------------------------------------
+        - $ref: 'https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/core.schema.json'
+
+        # -----------------------------------------------------------------------
+        # 2. EU Battery Regulation (EU) 2023/1542 — Base Battery Tiers (Conditional)
+        #    Activates on: https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/{pub,res1,res2,res3}
+        # -----------------------------------------------------------------------
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/schemas/pub-batteries.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/schemas/res1-batteries.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/schemas/res2-batteries.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/schemas/res3-batteries.schema.json'
+
+        # -----------------------------------------------------------------------
+        # 3. EU Battery Subgroups — EVB, Industrial (IND), and LMT Tiers (Conditional)
+        #    Activates on: https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/{evb,ind,lmt}/1.0.0/{pub,res1,res2,res3}
+        # -----------------------------------------------------------------------
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/schemas/pub-evb.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/schemas/res1-evb.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/schemas/res2-evb.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/schemas/res3-evb.schema.json'
+
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/schemas/pub-ind.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/schemas/res1-ind.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/schemas/res2-ind.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/schemas/res3-ind.schema.json'
+
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/schemas/pub-lmt.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/schemas/res1-lmt.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/schemas/res2-lmt.schema.json'
+        - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/schemas/res3-lmt.schema.json'
+
+        # -----------------------------------------------------------------------
+        # 4. Additional ESPR Product Groups & Federated Sector Schemas (Conditional)
+        #    Activates only when their respective contentSpecificationId is claimed
+        # -----------------------------------------------------------------------
+        - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/textile.schema.json'
+        - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/iron-steel.schema.json'
+        - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/construction.schema.json'
+        - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/electronics.schema.json'
+
+    ValidationReport:
+      type: object
+      required:
+        - conforms
+        - activatedSpecifications
+        - unrecognizedSpecifications
+        - shaclValidated
+        - findings
+      properties:
+        conforms:
+          type: boolean
+          description: True if and only if zero validation findings were produced.
+        digitalProductPassportId:
+          type: string
+          description: Extracted `digitalProductPassportId` from the evaluated passport, if present.
+        uniqueProductIdentifier:
+          type: string
+          description: Extracted `uniqueProductIdentifier` from the evaluated passport, if present.
+        activatedSpecifications:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+          description: Recognized specification URIs/URNs whose conditional schemas/shapes were activated and evaluated.
+        unrecognizedSpecifications:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+          description: >-
+            Federated `contentSpecificationIds` present in the payload that are not registered in
+            this validator's local schema catalog (permitted under open-world federation unless
+            strictly disallowed by caller policy).
+        shaclValidated:
+          type: boolean
+          description: Whether JSON-LD 1.1 RDF expansion and merged SHACL graph validation were executed.
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationFinding'
+
+    ValidationFinding:
+      type: object
+      required:
+        - stage
+        - message
+      properties:
+        stage:
+          type: string
+          enum:
+            - REQUIRED_SPECIFICATION_POLICY
+            - JSON_SCHEMA
+            - JSON_LD_EXPANSION
+            - SHACL
+          description: Validation pipeline stage that produced the finding.
+        specificationId:
+          type: string
+          description: The `contentSpecificationId` whose schema, shape, or inspection policy triggered this finding.
+        schemaId:
+          type: string
+          format: uri
+          description: Identifier (`$id` or shape IRI) of the violated JSON Schema or SHACL shape.
+        code:
+          type: string
+          description: Standardized semantic error code (e.g., `SEM-MSG-009`, `SEM-BAT-MSG-021`, `SEM-COM-MSG-013`).
+        path:
+          type: string
+          description: JSON Pointer (e.g., `/batteryWeight`) or RDF property IRI identifying the failing value.
+        message:
+          type: string
+          description: Human-readable diagnostic message.
+
+    RecognizedSpecificationList:
+      type: object
+      required:
+        - specifications
+      properties:
+        specifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecognizedSpecification'
+
+    RecognizedSpecification:
+      type: object
+      required:
+        - contentSpecificationId
+        - jsonSchemaId
+      properties:
+        contentSpecificationId:
+          type: string
+          description: Exact URI/URN matched in `contentSpecificationIds` to activate this specification.
+        title:
+          type: string
+        authority:
+          type: string
+          examples:
+            - European Commission
+            - DPP Keystone
+        accessTier:
+          type: string
+          enum:
+            - core
+            - pub
+            - res1
+            - res2
+            - res3
+        parentSpecificationId:
+          type: string
+          description: Parent specification URI required when this specification is claimed (e.g., subgroup -> base battery tier).
+        jsonSchemaId:
+          type: string
+          format: uri
+          description: Draft 2020-12 JSON Schema `$id` layered into `LayeredDigitalProductPassport`.
+        shaclShapesUri:
+          type: string
+          format: uri
+          description: Paired SHACL shapes graph URI merged into the validator's RDF shapes dataset.
+        jsonLdContextUri:
+          type: string
+          format: uri
+          description: Recommended JSON-LD 1.1 `@context` URI for terms governed by this specification.
+
+    ApiError:
+      type: object
+      required:
+        - status
+        - code
+        - message
+      properties:
+        status:
+          type: integer
+          format: int32
+        code:
+          type: string
+        message:
+          type: string
