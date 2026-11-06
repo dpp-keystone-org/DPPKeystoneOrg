@@ -5,39 +5,135 @@
   "description": "JSON Schema for the core properties of the compact Digital Product Passport representation.",
   "type": "object",
   "properties": {
+    "@context": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object"
+        },
+        {
+          "type": "array",
+          "minItems": 1
+        }
+      ]
+    },
+    "@id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "@type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
     "digitalProductPassportId": {
       "type": "string",
-      "message": { "type": "SEM-MSG-001" }
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-001"
     },
     "uniqueProductIdentifier": {
       "type": "string",
-      "message": { "type": "SEM-MSG-002" }
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-002"
     },
     "granularity": {
       "type": "string",
-      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level#.",
-      "pattern": "^https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level#[a-zA-Z]+$",
-      "message": { "type": "SEM-MSG-003" }
+      "enum": [
+        "model",
+        "batch",
+        "item"
+      ],
+      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level# | Validation error code: SEM-MSG-003"
     },
     "dppStatus": {
       "type": "string",
-      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status#.",
-      "pattern": "^https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status#[a-zA-Z]+$",
-      "message": { "type": "SEM-MSG-005" }
+      "enum": [
+        "validStatus",
+        "invalidStatus"
+      ],
+      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status# | Validation error code: SEM-MSG-005"
     },
     "lastUpdate": {
       "type": "string",
       "format": "date-time",
-      "message": { "type": "SEM-MSG-006" }
+      "$comment": "Validation error code: SEM-MSG-006"
     },
     "contentSpecificationIds": {
       "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
       "items": {
         "type": "string",
-        "pattern": "^https://repository\\.product-passport\\.ec\\.europa\\.eu/(core|product/[a-z0-9-]+(/subgroup/[a-z0-9-]+)?)/\\d+\\.\\d+\\.\\d+$"
+        "minLength": 1
       },
+      "$comment": "Validation error code: SEM-MSG-009"
+    },
+    "additionalProductIdentifiers": {
+      "type": "array",
+      "minItems": 0,
       "uniqueItems": true,
-      "message": { "type": "SEM-MSG-009" }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "$comment": "Validation error code: SEM-MSG-010"
+    },
+    "dppSchemaVersion": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-011"
+    },
+    "economicOperatorId": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-012"
+    },
+    "facilityId": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-013"
+    },
+    "productName": {
+      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
+      "$comment": "Validation error code: SEM-MSG-014"
+    },
+    "productLabel": {
+      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/relatedResourceOrArray",
+      "$comment": "Validation error code: SEM-MSG-015"
     }
   },
   "required": [
@@ -45,7 +141,41 @@
     "uniqueProductIdentifier",
     "granularity",
     "dppStatus",
-    "lastUpdate",
-    "contentSpecificationIds"
+    "lastUpdate"
+  ],
+  "anyOf": [
+    {
+      "properties": {
+        "@context": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object"
+            },
+            {
+              "type": "array",
+              "minItems": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "@context"
+      ]
+    },
+    {
+      "properties": {
+        "contentSpecificationIds": {
+          "type": "array",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "contentSpecificationIds"
+      ]
+    }
   ]
 }

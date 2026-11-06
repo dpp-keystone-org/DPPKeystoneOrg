@@ -1,17 +1,23 @@
 {
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/evb-001",
+    "type": "DigitalProductPassport",
     "contentSpecificationIds": [
-        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0",
-        "https://repository.product-passport.ec.europa.eu/core/1.0.0",
-        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0"
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res1",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res1"
     ],
     "detailedComposition": {
-        "en-IE": "Cathode: LiFePO4; Anode: graphite; Electrolyte: LiPF6 in organic carbonates; Housing: aluminium"
+        "en": "Cathode: LiNi0.8Mn0.1Co0.1O2 (NMC811); Anode: graphite; Electrolyte: LiPF6 in organic carbonates; Housing: aluminium",
+        "de-DE": "Kathode: LiNi0.8Mn0.1Co0.1O2 (NMC811); Anode: Graphit; Elektrolyt: LiPF6 in organischen Carbonaten; Gehäuse: Aluminium"
     },
     "sparePartReplacementDetails": {
         "resourceTitle": "Spare part replacements",
         "contentType": "application/pdf",
         "url": "https://example.com/docs/spare-parts-0001",
-        "language": "en-GB"
+        "language": "en"
     },
     "dismantlingInformation": {
         "resourceTitle": "Dismantling document",

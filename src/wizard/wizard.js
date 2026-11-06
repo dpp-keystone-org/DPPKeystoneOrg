@@ -251,6 +251,15 @@ export async function initializeWizard() {
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
     const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
     const schemaBtn = document.getElementById('schema-btn');
+    const ecBatteryBtn = document.getElementById('ec-battery-btn');
+
+    function hasActiveBatterySector() {
+        return Boolean(
+            document.getElementById('sector-form-battery-ev') ||
+            document.getElementById('sector-form-battery-lmv') ||
+            document.getElementById('sector-form-battery-industrial')
+        );
+    }
 
     /**
      * Toggles the visibility of the 'Generate' and 'Show Errors' buttons
@@ -264,6 +273,7 @@ export async function initializeWizard() {
         if (previewSchemaBtn) previewSchemaBtn.hidden = hasErrors;
         if (previewNoSchemaBtn) previewNoSchemaBtn.hidden = hasErrors;
         if (schemaBtn) schemaBtn.hidden = hasErrors;
+        if (ecBatteryBtn) ecBatteryBtn.hidden = hasErrors || !hasActiveBatterySector();
 
         showErrorsBtn.hidden = !hasErrors;
         errorCountBadge.textContent = invalidFields.size;
@@ -356,23 +366,6 @@ export async function initializeWizard() {
         }
         updateButtonState();
     });
-
-    /**
-     * Toggles the visibility of the 'Generate' and 'Show Errors' buttons
-     * based on the current validation state.
-     */
-    function updateButtonState() {
-        if (!generateBtn || !showErrorsBtn) return;
-        const hasErrors = invalidFields.size > 0;
-
-        generateBtn.hidden = hasErrors;
-        if (previewSchemaBtn) previewSchemaBtn.hidden = hasErrors;
-        if (previewNoSchemaBtn) previewNoSchemaBtn.hidden = hasErrors;
-        if (schemaBtn) schemaBtn.hidden = hasErrors;
-
-        showErrorsBtn.hidden = !hasErrors;
-        errorCountBadge.textContent = invalidFields.size;
-    }
 
     showErrorsBtn.addEventListener('click', () => {
         // Remove any existing modal first
@@ -519,6 +512,7 @@ export async function initializeWizard() {
                     console.error(`Failed to build form for sector ${sector}:`, error);
                 }
             }
+            updateButtonState();
             saveSession();
 
             // Re-evaluate all voluntary fields now that the active sectors have changed.
@@ -682,38 +676,38 @@ export async function initializeWizard() {
         previewNoSchemaBtn.addEventListener('click', () => handleHtmlPreview(false, previewNoSchemaBtn));
     }
 
+    const createLocalSpecDocumentLoader = () => async (url) => {
+        // Intercept spec URLs (canonical or preview) and redirect to local files if possible
+        if (isSpecUrl(url)) {
+            const relativePath = specUrlToRelativePath(url, '../spec/');
+
+            // Try to fetch locally
+            try {
+                const res = await fetch(relativePath);
+                if (res.ok) {
+                    const document = await res.json();
+                    return {
+                        contextUrl: null,
+                        document,
+                        documentUrl: url
+                    };
+                }
+            } catch (e) {
+                console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
+            }
+        }
+        return (jsonld.documentLoaders ? jsonld.documentLoaders.xhr() : (u) => fetch(u).then(r => r.json()).then(d => ({ document: d, documentUrl: u })))(url);
+    };
+
     if (schemaBtn) {
         schemaBtn.addEventListener('click', async () => {
+            const originalText = schemaBtn.textContent;
             try {
-                const originalText = schemaBtn.textContent;
                 schemaBtn.disabled = true;
                 schemaBtn.textContent = 'Transforming...';
 
                 const dppData = getDppData();
-
-                // Configure document loader to resolve specific URLs locally
-                const documentLoader = async (url, options) => {
-                    // Intercept spec URLs (canonical or preview) and redirect to local files if possible
-                    if (isSpecUrl(url)) {
-                        const relativePath = specUrlToRelativePath(url, '../spec/');
-
-                        // Try to fetch locally
-                        try {
-                            const res = await fetch(relativePath);
-                            if (res.ok) {
-                                const document = await res.json();
-                                return {
-                                    contextUrl: null,
-                                    document,
-                                    documentUrl: url
-                                };
-                            }
-                        } catch (e) {
-                            console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
-                        }
-                    }
-                    return (jsonld.documentLoaders ? jsonld.documentLoaders.xhr() : (u) => fetch(u).then(r => r.json()).then(d => ({ document: d, documentUrl: u })))(url);
-                };
+                const documentLoader = createLocalSpecDocumentLoader();
 
                 const options = {
                     profile: 'schema.org',
@@ -734,7 +728,45 @@ export async function initializeWizard() {
                 alert('Failed to generate Schema.org JSON-LD: ' + e.message);
             } finally {
                 schemaBtn.disabled = false;
-                schemaBtn.textContent = 'Preview Schema.org';
+                schemaBtn.textContent = originalText || 'Preview Schema.org';
+            }
+        });
+    }
+
+    if (ecBatteryBtn) {
+        ecBatteryBtn.addEventListener('click', async () => {
+            const originalText = ecBatteryBtn.textContent;
+            try {
+                ecBatteryBtn.disabled = true;
+                ecBatteryBtn.textContent = 'Transforming...';
+
+                const dppData = getDppData();
+                const documentLoader = createLocalSpecDocumentLoader();
+
+                const options = {
+                    profile: 'ec-battery',
+                    ontologyPaths: [`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`],
+                    documentLoader,
+                    version: KEYSTONE_VERSION
+                };
+
+                const transformed = await transformDpp(dppData, options);
+                const outputPayload = Array.isArray(transformed) && transformed.length === 1 ? transformed[0] : transformed;
+                const jsonStr = JSON.stringify(outputPayload, null, 2);
+
+                if (jsonOutput) {
+                    jsonOutput.textContent = jsonStr;
+                }
+
+                const blob = new Blob([jsonStr], { type: 'application/ld+json' });
+                const url = URL.createObjectURL(blob);
+                window.open(url, '_blank');
+            } catch (e) {
+                console.error(e);
+                alert('Failed to export EC Battery DPP: ' + e.message);
+            } finally {
+                ecBatteryBtn.disabled = false;
+                ecBatteryBtn.textContent = originalText || 'Export EC Battery DPP';
             }
         });
     }

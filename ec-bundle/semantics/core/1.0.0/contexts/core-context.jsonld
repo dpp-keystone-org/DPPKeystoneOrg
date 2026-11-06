@@ -1,22 +1,14 @@
 {
   "@context": {
-    "@protected": true,
+    "@version": 1.1,
     "@vocab": "https://repository.product-passport.ec.europa.eu/unknown#",
-    "unk": "https://repository.product-passport.ec.europa.eu/unknown#",
     "dpp": "https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#",
-    "dppgra": "https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level#",
-    "dppins": "https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "@base": "https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#",
-    "digitalProductPassportId": {
-      "@id": "dpp:digitalProductPassportId",
-      "@type": "xsd:string"
-    },
-    "uniqueProductIdentifier": {
-      "@id": "dpp:uniqueProductIdentifier",
-      "@type": "xsd:string"
-    },
+    "id": "@id",
+    "type": "@type",
+    "DigitalProductPassport": "dpp:DigitalProductPassport",
+    "digitalProductPassportId": "dpp:digitalProductPassportId",
+    "uniqueProductIdentifier": "dpp:uniqueProductIdentifier",
     "granularity": {
       "@id": "dpp:granularity",
       "@context": {
@@ -37,8 +29,31 @@
     },
     "contentSpecificationIds": {
       "@id": "dpp:contentSpecificationIds",
-      "@type": "xsd:string"
+      "@container": "@set"
+    },
+    "additionalProductIdentifiers": {
+      "@id": "dpp:additionalProductIdentifiers",
+      "@container": "@set"
+    },
+    "dppSchemaVersion": "dpp:dppSchemaVersion",
+    "economicOperatorId": "dpp:economicOperatorId",
+    "facilityId": "dpp:facilityId",
+    "productName": {
+      "@id": "dpp:productName",
+      "@container": "@language"
+    },
+    "productLabel": {
+      "@id": "dpp:productLabel",
+      "@container": "@set",
+      "@context": {
+        "resourceTitle": "dpp:resourceTitle",
+        "contentType": "dpp:contentType",
+        "url": {
+          "@id": "dpp:url",
+          "@type": "xsd:anyURI"
+        },
+        "language": "dpp:language"
+      }
     }
-  },
-  "@type": "dpp:DigitalProductPassport"
+  }
 }

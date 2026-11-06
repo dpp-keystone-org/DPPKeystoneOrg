@@ -131,7 +131,7 @@ dppcomerr:SEM-COM-MSG-012 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/common-error-code>;
-  skos:definition "All Strings with language datatype must follow the format: two (2) characters language code as in ISO 639:2023 and two (2) characters country code as in EN ISO 3166-1:2020."@en .
+  skos:definition "All language tags and Strings with language datatype must follow valid BCP 47 format (two- or three-letter ISO 639 language code, optionally followed by script or ISO 3166 region subtags, e.g. 'en' or 'en-GB')."@en .
 
 dppcomerr:SEM-COM-MSG-013 a skos:Concept;
   skos:notation "SEM-COM-MSG-013";

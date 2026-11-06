@@ -1,8 +1,13 @@
 {
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/evb-001",
+    "type": "DigitalProductPassport",
     "contentSpecificationIds": [
-        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0",
-        "https://repository.product-passport.ec.europa.eu/core/1.0.0",
-        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0"
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res2",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res2"
     ],
     "complianceTestReportResults": {
         "resourceTitle": "Compliance test report result",

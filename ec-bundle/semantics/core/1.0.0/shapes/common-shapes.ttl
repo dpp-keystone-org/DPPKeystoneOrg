@@ -1,8 +1,19 @@
+# SPDX-License-Identifier: EUPL-1.2
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dpp-shapes: <https://repository.product-passport.ec.europa.eu/core/shapes/> .
 @prefix dppcom: <https://repository.product-passport.ec.europa.eu/core/vocabs/common-vocabulary#> .
 @prefix dpp: <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#> .
+@prefix dppobs: <https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic#> .
+@prefix dppunit: <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#> .
+
+dpp-shapes:numeric-value-shape
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:datatype xsd:double ]
+        [ sh:datatype xsd:decimal ]
+        [ sh:datatype xsd:integer ]
+    ) .
 
 dpp-shapes:unit-range-shape
     a sh:NodeShape ;
@@ -11,7 +22,7 @@ dpp-shapes:unit-range-shape
         dpp-shapes:value-shape
         dpp-shapes:value-range-shape
         [
-            sh:path dppcom:valueRange;
+            sh:path dppcom:valueRange ;
             sh:minCount 1 ;
         ]
     ) .
@@ -22,6 +33,7 @@ dpp-shapes:value-range-shape
     sh:property [
         sh:path dppcom:valueRange ;
         sh:maxCount 1 ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
         sh:and (
             dpp-shapes:observed-characteristic-shape
             dpp-shapes:lower-bound-shape
@@ -36,37 +48,71 @@ dpp-shapes:unit-shape
     sh:path dppcom:unit ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    sh:message "SEM-COM-MSG-010" ;
-    sh:nodeKind sh:IRI .
+    sh:nodeKind sh:IRI ;
+    sh:in (
+        dppunit:kilogram
+        dppunit:gram
+        dppunit:ampereHour
+        dppunit:milliampereHour
+        dppunit:percent
+        dppunit:volt
+        dppunit:degreeCelsius
+        dppunit:watt
+        dppunit:ohm
+        dppunit:reciprocalHour
+        dppunit:hour
+        dppunit:month
+        dppunit:percentPerYear
+        dppunit:wattHour
+        dppunit:kilowattHour
+    ) ;
+    sh:message "SEM-COM-MSG-010" .
 
 dpp-shapes:value-shape
+    a sh:PropertyShape ;
     sh:path dppcom:value ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    sh:message "SEM-COM-MSG-009";
-    sh:datatype xsd:double .
+    sh:or (
+        [ sh:datatype xsd:double ]
+        [ sh:datatype xsd:decimal ]
+        [ sh:datatype xsd:integer ]
+    ) ;
+    sh:message "SEM-COM-MSG-009" .
 
 dpp-shapes:observed-characteristic-shape
     a sh:PropertyShape ;
     sh:path dppcom:observedCharacteristic ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    sh:message "SEM-COM-MSG-001";
-    sh:nodeKind sh:IRI .
+    sh:nodeKind sh:IRI ;
+    sh:in ( dppobs:temperature ) ;
+    sh:message "SEM-COM-MSG-001" .
 
 dpp-shapes:lower-bound-shape
+    a sh:PropertyShape ;
     sh:path dppcom:lowerBound ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    sh:message "SEM-COM-MSG-005";
-    sh:datatype xsd:double .
+    sh:or (
+        [ sh:datatype xsd:double ]
+        [ sh:datatype xsd:decimal ]
+        [ sh:datatype xsd:integer ]
+    ) ;
+    sh:lessThanOrEquals dppcom:upperBound ;
+    sh:message "SEM-COM-MSG-005" .
 
 dpp-shapes:upper-bound-shape
+    a sh:PropertyShape ;
     sh:path dppcom:upperBound ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    sh:message "SEM-COM-MSG-006";
-   sh:datatype xsd:double .
+    sh:or (
+        [ sh:datatype xsd:double ]
+        [ sh:datatype xsd:decimal ]
+        [ sh:datatype xsd:integer ]
+    ) ;
+    sh:message "SEM-COM-MSG-006" .
 
 dpp-shapes:unknown-properties-shape
     a sh:NodeShape ;
@@ -84,7 +130,7 @@ dpp-shapes:unknown-properties-shape
             }
         """ ;
     ] .
-    
+
 dpp-shapes:histogram-shape
     a sh:NodeShape ;
 
@@ -92,37 +138,117 @@ dpp-shapes:histogram-shape
         sh:path dppcom:binRangeUnit ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "SEM-COM-MSG-002";
         sh:nodeKind sh:IRI ;
+        sh:in (
+            dppunit:kilogram
+            dppunit:gram
+            dppunit:ampereHour
+            dppunit:milliampereHour
+            dppunit:percent
+            dppunit:volt
+            dppunit:degreeCelsius
+            dppunit:watt
+            dppunit:ohm
+            dppunit:reciprocalHour
+            dppunit:hour
+            dppunit:month
+            dppunit:percentPerYear
+            dppunit:wattHour
+            dppunit:kilowattHour
+        ) ;
+        sh:message "SEM-COM-MSG-002" ;
     ] ;
 
     sh:property [
         sh:path dppcom:binValueUnit ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "SEM-COM-MSG-003";
         sh:nodeKind sh:IRI ;
+        sh:in (
+            dppunit:kilogram
+            dppunit:gram
+            dppunit:ampereHour
+            dppunit:milliampereHour
+            dppunit:percent
+            dppunit:volt
+            dppunit:degreeCelsius
+            dppunit:watt
+            dppunit:ohm
+            dppunit:reciprocalHour
+            dppunit:hour
+            dppunit:month
+            dppunit:percentPerYear
+            dppunit:wattHour
+            dppunit:kilowattHour
+        ) ;
+        sh:message "SEM-COM-MSG-003" ;
     ] ;
 
     sh:property [
         sh:path dppcom:bin ;
         sh:minCount 1 ;
-        sh:message "SEM-COM-MSG-004";
+        sh:nodeKind sh:BlankNodeOrIRI ;
         sh:node dpp-shapes:histogram-bin-shape ;
+        sh:message "SEM-COM-MSG-004" ;
     ] .
 
 dpp-shapes:histogram-bin-shape
     a sh:NodeShape ;
+    sh:property dpp-shapes:lower-bound-shape ;
+    sh:property dpp-shapes:upper-bound-shape ;
+    sh:property [
+        sh:path dppcom:binValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minInclusive 0 ;
+        sh:message "SEM-COM-MSG-007" ;
+    ] .
 
-    sh:and (
-        dpp-shapes:lower-bound-shape
-        dpp-shapes:upper-bound-shape
+dpp-shapes:resource-shapes
+    a sh:NodeShape ;
+    sh:property dpp-shapes:resource-content-type-shape ;
+    sh:property dpp-shapes:resource-url-shape ;
+    sh:property dpp-shapes:resource-title-shape ;
+    sh:property dpp-shapes:resource-language-shape .
 
-        [
-            sh:path dppcom:binValue ;
-            sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:message "SEM-COM-MSG-007";
-            sh:datatype xsd:double ;
-        ]
-    ) .
+dpp-shapes:resource-content-type-shape
+    a sh:PropertyShape ;
+    sh:path dpp:contentType ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:minLength 1 ;
+    sh:message "contentType must be a non-empty String and must occur only 1 time." .
+
+dpp-shapes:resource-url-shape
+    a sh:PropertyShape ;
+    sh:path dpp:url ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:anyURI ;
+    sh:pattern "^[A-Za-z][A-Za-z0-9+.-]*:.+" ;
+    sh:message "url must be a valid URI and must occur only 1 time." .
+
+dpp-shapes:resource-title-shape
+    a sh:PropertyShape ;
+    sh:path dpp:resourceTitle ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:minLength 1 ;
+    sh:message "resourceTitle must be a non-empty String and must not occur more than 1 time." .
+
+dpp-shapes:resource-language-shape
+    a sh:PropertyShape ;
+    sh:path dpp:language ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:minLength 1 ;
+    sh:pattern "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$" ;
+    sh:message "SEM-COM-MSG-012" .

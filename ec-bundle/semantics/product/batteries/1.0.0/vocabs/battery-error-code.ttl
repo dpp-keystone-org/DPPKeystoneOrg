@@ -38,7 +38,9 @@
     baterr:SEM-BAT-MSG-072, baterr:SEM-BAT-MSG-073, baterr:SEM-BAT-MSG-074, baterr:SEM-BAT-MSG-075,
     baterr:SEM-BAT-MSG-076, baterr:SEM-BAT-MSG-077, baterr:SEM-BAT-MSG-078, baterr:SEM-BAT-MSG-080,
     baterr:SEM-BAT-MSG-081, baterr:SEM-BAT-MSG-082, baterr:SEM-BAT-MSG-083, baterr:SEM-BAT-MSG-084,
-    baterr:SEM-BAT-MSG-085, baterr:SEM-BAT-MSG-086, baterr:SEM-BAT-MSG-087, baterr:SEM-BAT-MSG-088;
+    baterr:SEM-BAT-MSG-085, baterr:SEM-BAT-MSG-086, baterr:SEM-BAT-MSG-087, baterr:SEM-BAT-MSG-088,
+    baterr:SEM-BAT-MSG-092, baterr:SEM-BAT-MSG-093, baterr:SEM-BAT-MSG-094, baterr:SEM-BAT-MSG-095,
+    baterr:SEM-BAT-MSG-096, baterr:SEM-BAT-MSG-097, baterr:SEM-BAT-MSG-098, baterr:SEM-BAT-MSG-099;
   dct:creator "European Commission";
   dct:license <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12> .
 
@@ -121,7 +123,7 @@ baterr:SEM-BAT-MSG-008 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "manufacturerEmail must be a URL and it is an optional field. It must not occur more than 1 time."@en .
+  skos:definition "manufacturerEmail must be a String representing a valid email address and it is an optional field. It must not occur more than 1 time."@en .
 
 baterr:SEM-BAT-MSG-009 a skos:Concept;
   skos:notation "SEM-BAT-MSG-009";
@@ -130,7 +132,7 @@ baterr:SEM-BAT-MSG-009 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "batteryCategory must be a List of codes: battery-category and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "batteryCategory must be a code of battery-category and it is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-010 a skos:Concept;
   skos:notation "SEM-BAT-MSG-010";
@@ -238,7 +240,7 @@ baterr:SEM-BAT-MSG-021 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "batteryWeight must be a Decimal and Unit (kilogram or gram), and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "batteryWeight must be a Number (Double, in kilograms) and it is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-022 a skos:Concept;
   skos:notation "SEM-BAT-MSG-022";
@@ -247,7 +249,7 @@ baterr:SEM-BAT-MSG-022 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "batteryCapacity must be a Decimal and Unit (ampere hour or milliampere hour) and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "batteryCapacity must be a Number (Double, in ampere-hours) and it is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-023 a skos:Concept;
   skos:notation "SEM-BAT-MSG-023";
@@ -265,7 +267,7 @@ baterr:SEM-BAT-MSG-024 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "hazardousSubstances must be a String. It is a mandatory field and it could occur more than one time."@en .
+  skos:definition "hazardousSubstances must be a list of Strings (0..* entries allowed, e.g. empty list when no hazardous substances other than mercury, cadmium or lead are present)."@en .
 
 baterr:SEM-BAT-MSG-025 a skos:Concept;
   skos:notation "SEM-BAT-MSG-025";
@@ -274,7 +276,7 @@ baterr:SEM-BAT-MSG-025 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "extinguishingAgent must be a multilingual String. It is a mandatory field and it could occur more than one time."@en .
+  skos:definition "extinguishingAgent must be a multilingual String with at least 1 language entry (1..*). It is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-026 a skos:Concept;
   skos:notation "SEM-BAT-MSG-026";
@@ -283,7 +285,7 @@ baterr:SEM-BAT-MSG-026 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "criticalRawMaterials must be a List of codes: critical-raw-material. It is a mandatory field and it could occur more than one time."@en .
+  skos:definition "criticalRawMaterials must be a List of codes: critical-raw-material (0..* entries allowed, e.g. empty list when none exceed 0.1% w/w)."@en .
 
 baterr:SEM-BAT-MSG-090 a skos:Concept;
   skos:notation "SEM-BAT-MSG-090";
@@ -292,7 +294,7 @@ baterr:SEM-BAT-MSG-090 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "renewableContentShare must be a Decimal and Unit (percent). It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "renewableContentShare must be a Number (Double, percentage). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-091 a skos:Concept;
   skos:notation "SEM-BAT-MSG-091";
@@ -301,7 +303,7 @@ baterr:SEM-BAT-MSG-091 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "minimalVoltage must be a Decimal and Unit (volt), and an optional Value Range with Unit (celsius) and Observed Characteristic (Temperature). It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "minimalVoltage must be a Number (Double, in volts). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-027 a skos:Concept;
   skos:notation "SEM-BAT-MSG-027";
@@ -310,7 +312,7 @@ baterr:SEM-BAT-MSG-027 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "nominalVoltage must be a Decimal and Unit (volt), and an optional Value Range with Unit (celsius) and Observed Characteristic (Temperature). It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "nominalVoltage must be a Number (Double, in volts). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-028 a skos:Concept;
   skos:notation "SEM-BAT-MSG-028";
@@ -319,7 +321,7 @@ baterr:SEM-BAT-MSG-028 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "maximumVoltage must be a Decimal and Unit (volt), and an optional Value Range with Unit (celsius) and Observed Characteristic (Temperature). It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "maximumVoltage must be a Number (Double, in volts). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-029 a skos:Concept;
   skos:notation "SEM-BAT-MSG-029";
@@ -328,7 +330,7 @@ baterr:SEM-BAT-MSG-029 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "originalPowerCapability must be a Decimal and Unit (watt). It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "originalPowerCapability must be a Number (Double, in watts). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-030 a skos:Concept;
   skos:notation "SEM-BAT-MSG-030";
@@ -337,7 +339,7 @@ baterr:SEM-BAT-MSG-030 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "powerLimit must be a Decimal and Unit (watt), and an optional Value Range with Unit (celsius) and Observed Characteristic (Temperature). It is a mandatory field, and it could occur more than 1 time."@en .
+  skos:definition "powerLimit must be a Number (Double, in watts). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-031 a skos:Concept;
   skos:notation "SEM-BAT-MSG-031";
@@ -355,7 +357,7 @@ baterr:SEM-BAT-MSG-032 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "cycleLifeReferenceTest must be a multilingual String. It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "cycleLifeReferenceTest must be a multilingual String with at least 1 language entry (1..*). It is mandatory in EVB and LMT subgroups and optional in IND subgroup."@en .
 
 baterr:SEM-BAT-MSG-033 a skos:Concept;
   skos:notation "SEM-BAT-MSG-033";
@@ -364,7 +366,7 @@ baterr:SEM-BAT-MSG-033 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "capacityExhaustionThreshold must be a Decimal and Unit (percent). It is a mandatory field, it must occur only 1 time (only EVB subgroup), and must not exist in LMT and IND subgroups."@en .
+  skos:definition "capacityExhaustionThreshold must be a Number (Double, percentage). It is a mandatory field, it must occur only 1 time (only EVB subgroup), and must not exist in LMT and IND subgroups."@en .
 
 baterr:SEM-BAT-MSG-034 a skos:Concept;
   skos:notation "SEM-BAT-MSG-034";
@@ -373,7 +375,7 @@ baterr:SEM-BAT-MSG-034 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "notInUseTemperatureRange must contain a Value Range with Unit (celsius) and Observed Characteristic (Temperature). Is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "notInUseTemperatureRange must contain lowerBound (Double, degrees Celsius), upperBound (Double, degrees Celsius, lowerBound <= upperBound), and notInUseTemperatureRangeTest. It is a mandatory field and must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-035 a skos:Concept;
   skos:notation "SEM-BAT-MSG-035";
@@ -382,7 +384,7 @@ baterr:SEM-BAT-MSG-035 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "notInUseTemperatureRangeTest must be a multilingual String. It is a mandatory field. it must occur only 1 time."@en .
+  skos:definition "notInUseTemperatureRangeTest must be a multilingual String with at least 1 language entry (1..*). It is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-036 a skos:Concept;
   skos:notation "SEM-BAT-MSG-036";
@@ -391,7 +393,7 @@ baterr:SEM-BAT-MSG-036 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "commercialWarrantyPeriod must be a Integer. It is an optional field. It must occur only 1 time."@en .
+  skos:definition "commercialWarrantyPeriod must be a non-negative Integer (in months). It is an optional field and must not occur more than 1 time."@en .
 
 baterr:SEM-BAT-MSG-037 a skos:Concept;
   skos:notation "SEM-BAT-MSG-037";
@@ -400,7 +402,7 @@ baterr:SEM-BAT-MSG-037 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "initialRoundTripEnergyEfficiency must be a Decimal and Unit (percent). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "initialRoundTripEnergyEfficiency must be a Number (Double, percentage). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-038 a skos:Concept;
   skos:notation "SEM-BAT-MSG-038";
@@ -409,7 +411,7 @@ baterr:SEM-BAT-MSG-038 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "roundTripEfficiencyAtHalfCycleLife must be a Decimal and Unit (percent). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "roundTripEfficiencyAtHalfCycleLife must be a Number (Double, percentage). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-039 a skos:Concept;
   skos:notation "SEM-BAT-MSG-039";
@@ -418,7 +420,7 @@ baterr:SEM-BAT-MSG-039 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "internalCellResistance must be a Decimal and Unit (ohm). It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "internalCellResistance must be a Number (Double, in ohms). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-040 a skos:Concept;
   skos:notation "SEM-BAT-MSG-040";
@@ -427,7 +429,7 @@ baterr:SEM-BAT-MSG-040 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "internalPackResistance must be a Decimal and Unit (ohm). It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "internalPackResistance must be a Number (Double, in ohms). It is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-041 a skos:Concept;
   skos:notation "SEM-BAT-MSG-041";
@@ -436,7 +438,7 @@ baterr:SEM-BAT-MSG-041 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "cycleLifeChargeCRate must be a Decimal and Unit (reciprocal hour). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "cycleLifeChargeCRate must be a Number (Double, in reciprocal hours). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-042 a skos:Concept;
   skos:notation "SEM-BAT-MSG-042";
@@ -445,7 +447,7 @@ baterr:SEM-BAT-MSG-042 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "cycleLifeDischargeCRate must be a Decimal and Unit (per hour). It is an optional field. It must occur only 1 time."@en .
+  skos:definition "cycleLifeDischargeCRate must be a Number (Double, in reciprocal hours). It is an optional field and must not occur more than 1 time."@en .
 
 baterr:SEM-BAT-MSG-043 a skos:Concept;
   skos:notation "SEM-BAT-MSG-043";
@@ -472,7 +474,7 @@ baterr:SEM-BAT-MSG-045 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "euDeclarationOfConformity must be a RelatedResource. It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "euDeclarationOfConformity must be one or more RelatedResource entries (1..*). It is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-046 a skos:Concept;
   skos:notation "SEM-BAT-MSG-046";
@@ -490,7 +492,7 @@ baterr:SEM-BAT-MSG-047 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "endUserRoleInWastePrevention must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "endUserRoleInWastePrevention must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-048 a skos:Concept;
   skos:notation "SEM-BAT-MSG-048";
@@ -499,7 +501,7 @@ baterr:SEM-BAT-MSG-048 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "endUserRoleInSeparateCollection must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "endUserRoleInSeparateCollection must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-049 a skos:Concept;
   skos:notation "SEM-BAT-MSG-049";
@@ -508,7 +510,7 @@ baterr:SEM-BAT-MSG-049 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "separateCollectionPoints must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "separateCollectionPoints must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-050 a skos:Concept;
   skos:notation "SEM-BAT-MSG-050";
@@ -517,7 +519,7 @@ baterr:SEM-BAT-MSG-050 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "takeBackCollectionPoints must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "takeBackCollectionPoints must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-052 a skos:Concept;
   skos:notation "SEM-BAT-MSG-052";
@@ -526,7 +528,7 @@ baterr:SEM-BAT-MSG-052 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "preparationForReuseFacilities must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "preparationForReuseFacilities must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-053 a skos:Concept;
   skos:notation "SEM-BAT-MSG-053";
@@ -535,7 +537,7 @@ baterr:SEM-BAT-MSG-053 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "preparationForRepurposingFacilities must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "preparationForRepurposingFacilities must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-054 a skos:Concept;
   skos:notation "SEM-BAT-MSG-054";
@@ -544,7 +546,7 @@ baterr:SEM-BAT-MSG-054 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "wasteBatteryTreatmentFacilities must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "wasteBatteryTreatmentFacilities must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-055 a skos:Concept;
   skos:notation "SEM-BAT-MSG-055";
@@ -553,7 +555,7 @@ baterr:SEM-BAT-MSG-055 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "wasteBatterySafetyInstructions must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "wasteBatterySafetyInstructions must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-057 a skos:Concept;
   skos:notation "SEM-BAT-MSG-057";
@@ -562,7 +564,7 @@ baterr:SEM-BAT-MSG-057 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "batteryLabelSymbolMeaning must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "batteryLabelSymbolMeaning must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-058 a skos:Concept;
   skos:notation "SEM-BAT-MSG-058";
@@ -571,7 +573,7 @@ baterr:SEM-BAT-MSG-058 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "batterySubstancesImpact must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "batterySubstancesImpact must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-059 a skos:Concept;
   skos:notation "SEM-BAT-MSG-059";
@@ -580,7 +582,7 @@ baterr:SEM-BAT-MSG-059 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "detailedComposition must be a multilingual String and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "detailedComposition must be a multilingual String with at least 1 language entry (1..*) and it is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-060 a skos:Concept;
   skos:notation "SEM-BAT-MSG-060";
@@ -589,7 +591,7 @@ baterr:SEM-BAT-MSG-060 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "sparePartReplacementDetails must be a RelatedResource. It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "sparePartReplacementDetails must be one or more RelatedResource entries (1..*). It is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-061 a skos:Concept;
   skos:notation "SEM-BAT-MSG-061";
@@ -598,7 +600,7 @@ baterr:SEM-BAT-MSG-061 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "dismantlingInformation must be a RelatedResource. It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "dismantlingInformation must be one or more RelatedResource entries (1..*). It is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-062 a skos:Concept;
   skos:notation "SEM-BAT-MSG-062";
@@ -607,7 +609,7 @@ baterr:SEM-BAT-MSG-062 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "safetyMeasures must be a RelatedResource. It is a mandatory field. It must occur only one time."@en .
+  skos:definition "safetyMeasures must be one or more RelatedResource entries (1..*). It is a mandatory field."@en .
   
 baterr:SEM-BAT-MSG-063 a skos:Concept;
   skos:notation "SEM-BAT-MSG-063";
@@ -616,7 +618,7 @@ baterr:SEM-BAT-MSG-063 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "complianceTestReportResults must be a RelatedResource. It is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "complianceTestReportResults must be one or more RelatedResource entries (1..*). It is a mandatory field."@en .
 
 baterr:SEM-BAT-MSG-064 a skos:Concept;
   skos:notation "SEM-BAT-MSG-064";
@@ -625,7 +627,7 @@ baterr:SEM-BAT-MSG-064 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "ratedCapacity must be a Decimal and Unit (ampere hour or milliampere hour). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "ratedCapacity must be a Number (Double, in ampere-hours). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-065 a skos:Concept;
   skos:notation "SEM-BAT-MSG-065";
@@ -634,7 +636,7 @@ baterr:SEM-BAT-MSG-065 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "capacityFade must be a Decimal and Unit (percent). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "capacityFade must be a Number (Double, percentage). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-066 a skos:Concept;
   skos:notation "SEM-BAT-MSG-066";
@@ -643,7 +645,7 @@ baterr:SEM-BAT-MSG-066 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "powerCapability must be a Decimal and Unit (watt). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "powerCapability must be a Number (Double, in watts). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-067 a skos:Concept;
   skos:notation "SEM-BAT-MSG-067";
@@ -652,7 +654,7 @@ baterr:SEM-BAT-MSG-067 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "powerFade must be a Decimal and Unit (percent). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "powerFade must be a Number (Double, percentage). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-068 a skos:Concept;
   skos:notation "SEM-BAT-MSG-068";
@@ -661,7 +663,7 @@ baterr:SEM-BAT-MSG-068 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "internalResistance must be a Decimal and Unit (ohm). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "internalResistance must be a Number (Double, in ohms). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-069 a skos:Concept;
   skos:notation "SEM-BAT-MSG-069";
@@ -670,7 +672,7 @@ baterr:SEM-BAT-MSG-069 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "internalResistanceIncrease must be a Decimal and Unit (percent). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "internalResistanceIncrease must be a Number (Double, percentage). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-070 a skos:Concept;
   skos:notation "SEM-BAT-MSG-070";
@@ -679,7 +681,7 @@ baterr:SEM-BAT-MSG-070 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "roundTripEnergyEfficiency must be a Decimal and Unit (percent). It is an optional field. It must occur only 1 time."@en .
+  skos:definition "roundTripEnergyEfficiency must be a Number (Double, percentage). It is an optional field and must not occur more than 1 time."@en .
 
 baterr:SEM-BAT-MSG-071 a skos:Concept;
   skos:notation "SEM-BAT-MSG-071";
@@ -688,7 +690,7 @@ baterr:SEM-BAT-MSG-071 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "roundTripEnergyEfficiencyFade must be a Decimal and Unit (percent). It is an optional field. It must occur only 1 time."@en .
+  skos:definition "roundTripEnergyEfficiencyFade must be a Number (Double, percentage). It is an optional field and must not occur more than 1 time."@en .
 
 baterr:SEM-BAT-MSG-072 a skos:Concept;
   skos:notation "SEM-BAT-MSG-072";
@@ -697,7 +699,7 @@ baterr:SEM-BAT-MSG-072 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "expectedLifetimeCyclesRest must be a Integer. It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "expectedLifetimeCyclesRest must be a non-negative Integer (>= 0). It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-073 a skos:Concept;
   skos:notation "SEM-BAT-MSG-073";
@@ -706,7 +708,7 @@ baterr:SEM-BAT-MSG-073 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "expectedLifetimeYears must be a Integer. It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur only 1 time."@en .
+  skos:definition "expectedLifetimeYears must be a positive Integer. It is a mandatory field, it must occur only 1 time (only EVB and LMT subgroups). It is an optional field (IND subgroup), it must occur at most 1 time."@en .
 
 baterr:SEM-BAT-MSG-074 a skos:Concept;
   skos:notation "SEM-BAT-MSG-074";
@@ -715,7 +717,7 @@ baterr:SEM-BAT-MSG-074 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "stateOfCertifiedEnergy must be a Decimal and Unit (percent). It is mandatory, it must occur only 1 time (only EVB subgroup), and must not exist in LMT and IND subgroups."@en .
+  skos:definition "stateOfCertifiedEnergy must be a Number (Double, percentage). It is mandatory, it must occur only 1 time (only EVB subgroup), and must not exist in LMT and IND subgroups."@en .
 
 baterr:SEM-BAT-MSG-075 a skos:Concept;
   skos:notation "SEM-BAT-MSG-075";
@@ -724,7 +726,7 @@ baterr:SEM-BAT-MSG-075 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "remainingCapacity must be a Decimal and Unit (ampere hour or milliampere hour). It is a mandatory field -it must occur only 1 time- (only LMT subgroup), an optional field -it must occur only 1 time- (only IND subgroup), and must not exist in EVB subgroup."@en .
+  skos:definition "remainingCapacity must be a Number (Double, in ampere-hours). It is a mandatory field occurring only 1 time (only LMT subgroup), an optional field occurring at most 1 time (only IND subgroup), and must not exist in EVB subgroup."@en .
 
 baterr:SEM-BAT-MSG-076 a skos:Concept;
   skos:notation "SEM-BAT-MSG-076";
@@ -733,7 +735,7 @@ baterr:SEM-BAT-MSG-076 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "remainingPowerCapability must be a Decimal and Unit (watt). It is a mandatory field -it must occur only 1 time- (only LMT subgroup), an optional field -it must occur only 1 time- (only IND subgroup), and must not exist in EVB subgroup."@en .
+  skos:definition "remainingPowerCapability must be a Number (Double, in watts). It is a mandatory field occurring only 1 time (only LMT subgroup), an optional field occurring at most 1 time (only IND subgroup), and must not exist in EVB subgroup."@en .
 
 baterr:SEM-BAT-MSG-077 a skos:Concept;
   skos:notation "SEM-BAT-MSG-077";
@@ -742,7 +744,7 @@ baterr:SEM-BAT-MSG-077 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "remainingRoundTripEfficiency must be a Decimal and Unit (percent). It is a mandatory field -it must occur only 1 time- (only LMT subgroup), an optional field -it must occur only 1 time-(only IND subgroup), and must not exist in EVB subgroup."@en .
+  skos:definition "remainingRoundTripEfficiency must be a Number (Double, percentage). It is a mandatory field occurring only 1 time (only LMT subgroup), an optional field occurring at most 1 time (only IND subgroup), and must not exist in EVB subgroup."@en .
 
 baterr:SEM-BAT-MSG-078 a skos:Concept;
   skos:notation "SEM-BAT-MSG-078";
@@ -751,7 +753,7 @@ baterr:SEM-BAT-MSG-078 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "selfDischargingRateSet must be a selfDischargingRate and recordedTime. It is a mandatory field -it must occur only 1 time- (only LMT subgroup), an optional field -it must occur only 1 time- (only IND subgroup), and must not exist in EVB subgroup."@en .
+  skos:definition "selfDischargingRateSet entries must each contain selfDischargingRate and recordedTime. It is mandatory (1..*) in LMT subgroup, optional (0..*) in IND subgroup, and must not exist in EVB subgroup."@en .
 
 baterr:SEM-BAT-MSG-080 a skos:Concept;
   skos:notation "SEM-BAT-MSG-080";
@@ -760,7 +762,7 @@ baterr:SEM-BAT-MSG-080 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "selfDischargingRate must be a Decimal and Unit (percent). It is a mandatory field and it could occur more than 1 time."@en .
+  skos:definition "selfDischargingRate must be a Number (Double, in percent per year) and is mandatory within each selfDischargingRateSet entry."@en .
 
 baterr:SEM-BAT-MSG-081 a skos:Concept;
   skos:notation "SEM-BAT-MSG-081";
@@ -769,7 +771,7 @@ baterr:SEM-BAT-MSG-081 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "ohmicResistance must be a Decimal and Unit (ohm). It is a mandatory field -it must occur only 1 time- (only LMT subgroup), an optional field -it must occur only 1 time- (only IND subgroup), and must not exist in EVB subgroup."@en .
+  skos:definition "ohmicResistance must be a Number (Double, in ohms). It is a mandatory field occurring only 1 time (only LMT subgroup), an optional field occurring at most 1 time (only IND subgroup), and must not exist in EVB subgroup."@en .
 
 baterr:SEM-BAT-MSG-082 a skos:Concept;
   skos:notation "SEM-BAT-MSG-082";
@@ -778,7 +780,7 @@ baterr:SEM-BAT-MSG-082 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "batteryStatus must be a List of codes: battery-status and it is a mandatory field. It must occur only 1 time."@en .
+  skos:definition "batteryStatus must be a code of battery-status and it is a mandatory field. It must occur only 1 time."@en .
 
 baterr:SEM-BAT-MSG-083 a skos:Concept;
   skos:notation "SEM-BAT-MSG-083";
@@ -787,7 +789,7 @@ baterr:SEM-BAT-MSG-083 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "numberOfChargingCycles must be an Integer. It is an optional field and it could occur more than 1 time."@en .
+  skos:definition "numberOfChargingCycles must be a non-negative Integer (>= 0). It is an optional field and must not occur more than 1 time (0..1)."@en .
 
 baterr:SEM-BAT-MSG-084 a skos:Concept;
   skos:notation "SEM-BAT-MSG-084";
@@ -796,7 +798,7 @@ baterr:SEM-BAT-MSG-084 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "numberOfDischargingCycles must be an Integer. It is an optional field and it could occur more than 1 time."@en .
+  skos:definition "numberOfDischargingCycles must be a non-negative Integer (>= 0). It is an optional field and must not occur more than 1 time (0..1)."@en .
 
 baterr:SEM-BAT-MSG-085 a skos:Concept;
   skos:notation "SEM-BAT-MSG-085";
@@ -805,7 +807,7 @@ baterr:SEM-BAT-MSG-085 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
-  skos:definition "negativeEvents must be an multilingual String. It is an optional field and it could occur more than 1 time."@en .
+  skos:definition "negativeEvents must be a multilingual String (0..* language entries). It is an optional field."@en .
 
 baterr:SEM-BAT-MSG-086 a skos:Concept;
   skos:notation "SEM-BAT-MSG-086";
@@ -833,3 +835,76 @@ baterr:SEM-BAT-MSG-088 a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
   skos:definition "stateOfChargeHistogram must contain binValueUnit, binRangeUnit and bin. It is an optional element and it could occur more than 1 time."@en .
+
+baterr:SEM-BAT-MSG-092 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-092";
+  skos:prefLabel "SEM-BAT-MSG-092"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "minimalVoltageMinTemp must be a Number (Double, in degrees Celsius), must not exceed minimalVoltageMaxTemp, and must be paired with minimalVoltageMaxTemp when present. It is an optional field (0..1)."@en .
+
+baterr:SEM-BAT-MSG-093 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-093";
+  skos:prefLabel "SEM-BAT-MSG-093"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "minimalVoltageMaxTemp must be a Number (Double, in degrees Celsius), must be greater than or equal to minimalVoltageMinTemp, and must be paired with minimalVoltageMinTemp when present. It is an optional field (0..1)."@en .
+
+baterr:SEM-BAT-MSG-094 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-094";
+  skos:prefLabel "SEM-BAT-MSG-094"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "nominalVoltageMinTemp must be a Number (Double, in degrees Celsius), must not exceed nominalVoltageMaxTemp, and must be paired with nominalVoltageMaxTemp when present. It is an optional field (0..1)."@en .
+
+baterr:SEM-BAT-MSG-095 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-095";
+  skos:prefLabel "SEM-BAT-MSG-095"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "nominalVoltageMaxTemp must be a Number (Double, in degrees Celsius), must be greater than or equal to nominalVoltageMinTemp, and must be paired with nominalVoltageMinTemp when present. It is an optional field (0..1)."@en .
+
+baterr:SEM-BAT-MSG-096 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-096";
+  skos:prefLabel "SEM-BAT-MSG-096"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "maximumVoltageMinTemp must be a Number (Double, in degrees Celsius), must not exceed maximumVoltageMaxTemp, and must be paired with maximumVoltageMaxTemp when present. It is an optional field (0..1)."@en .
+
+baterr:SEM-BAT-MSG-097 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-097";
+  skos:prefLabel "SEM-BAT-MSG-097"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "maximumVoltageMaxTemp must be a Number (Double, in degrees Celsius), must be greater than or equal to maximumVoltageMinTemp, and must be paired with maximumVoltageMinTemp when present. It is an optional field (0..1)."@en .
+
+baterr:SEM-BAT-MSG-098 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-098";
+  skos:prefLabel "SEM-BAT-MSG-098"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "powerLimitMinTemp must be a Number (Double, in degrees Celsius), must not exceed powerLimitMaxTemp, and must be paired with powerLimitMaxTemp when present. It is an optional field (0..1)."@en .
+
+baterr:SEM-BAT-MSG-099 a skos:Concept;
+  skos:notation "SEM-BAT-MSG-099";
+  skos:prefLabel "SEM-BAT-MSG-099"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-error-code>;
+  skos:definition "powerLimitMaxTemp must be a Number (Double, in degrees Celsius), must be greater than or equal to powerLimitMinTemp, and must be paired with powerLimitMinTemp when present. It is an optional field (0..1)."@en .
+

@@ -1,0 +1,22 @@
+{
+  "name": "ec-dpp-bundle-parity-tests",
+  "version": "1.0.1",
+  "private": true,
+  "description": "Standalone SHACL, JSON Schema Draft 2020-12, JSON-LD 1.1, and OpenAPI 3.1 parity verification suite for the updated EC Battery DPP bundle.",
+  "type": "module",
+  "scripts": {
+    "test": "node verify-ec-bundle-parity.mjs"
+  },
+  "devDependencies": {
+    "@rdfjs/data-model": "^2.1.2",
+    "@rdfjs/dataset": "^2.0.2",
+    "@rdfjs/environment": "^1.0.0",
+    "@rdfjs/namespace": "^2.0.1",
+    "@rdfjs/parser-n3": "^2.1.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "clownface": "^2.0.3",
+    "jsonld": "^9.0.0",
+    "rdf-validate-shacl": "^0.5.10"
+  }
+}

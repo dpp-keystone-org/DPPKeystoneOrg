@@ -1,29 +1,34 @@
+# SPDX-License-Identifier: EUPL-1.2
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dpp-vocabs: <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#> .
-@prefix bat-vocabs: <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary#> .
-@prefix core-shapes: <https://repository.product-passport.ec.europa.eu/core/shapes/> .
+@prefix dpp: <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#> .
+@prefix bat: <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary#> .
+@prefix dpp-shapes: <https://repository.product-passport.ec.europa.eu/core/shapes/> .
 @prefix bat-shapes: <https://repository.product-passport.ec.europa.eu/product/batteries/shapes/> .
 
 bat-shapes:battery-restricted2-shape
     a sh:NodeShape ;
-    sh:targetClass dpp-vocabs:DigitalProductPassport ;
+    sh:targetClass dpp:DigitalProductPassport ;
+    sh:or (
+        [
+            sh:not [
+                sh:property [
+                    sh:path dpp:contentSpecificationIds ;
+                    sh:hasValue "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res2"
+                ]
+            ]
+        ]
+        bat-shapes:battery-restricted2-constraints
+    ) ;
+    sh:message "SEM-BAT-MSG-063" .
+
+bat-shapes:battery-restricted2-constraints
+    a sh:NodeShape ;
 
     sh:property [
-        sh:path dpp-vocabs:contentSpecificationIds ;
-        sh:qualifiedMinCount 1 ;
-        sh:qualifiedMaxCount 1 ;
-        sh:qualifiedValueShape [
-            sh:datatype xsd:string ;
-            sh:pattern "^https://repository\\.product-passport\\.ec\\.europa\\.eu/product/batteries/\\d+\\.\\d+\\.\\d+$"
-        ] ;
-        sh:message "SEM-MSG-009"
-    ] ;
-
-    sh:property [
-        sh:path bat-vocabs:complianceTestReportResults ;
+        sh:path bat:complianceTestReportResults ;
         sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:node core-shapes:resource-shapes ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:node dpp-shapes:resource-shapes ;
         sh:message "SEM-BAT-MSG-063"
     ] .

@@ -173,7 +173,8 @@ components:
         size:
           type: integer
           format: int32
-          minimum: 0
+          minimum: 1
+          maximum: 100
           description: Requested page size.
           examples:
             - 25
@@ -213,9 +214,7 @@ components:
           examples:
             - DPP_REGISTRATION
         correlationId:
-          type:
-            - string
-            - 'null'
+          type: string
           description: Effective correlation identifier for tracing and support.
           examples:
             - corr_01J1REG

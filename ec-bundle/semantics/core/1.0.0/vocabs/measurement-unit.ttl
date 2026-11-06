@@ -28,8 +28,12 @@
         dppunit:degreeCelsius ,
         dppunit:watt ,
         dppunit:ohm ,
-        dppunit:reciprocalHour,
-        dppunit:hour .
+        dppunit:reciprocalHour ,
+        dppunit:hour ,
+        dppunit:month ,
+        dppunit:percentPerYear ,
+        dppunit:wattHour ,
+        dppunit:kilowattHour .
 		
 dppunit:kilogram
     a skos:Concept ;
@@ -136,6 +140,54 @@ dppunit:hour
     skos:notation "hour" ;
     skos:prefLabel "Hour"@en ;
     skos:altLabel "h" ;
+    skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    euvoc:status concept-status:CURRENT ;
+    dct:created "2026-10-30"^^xsd:date .
+
+dppunit:month
+    a skos:Concept ;
+    skos:notation "month" ;
+    skos:prefLabel "month"@en ;
+    skos:altLabel "mo" ;
+    skos:definition "Unit of time equal to one twelfth of a calendar year."@en ;
+    skos:exactMatch <http://qudt.org/vocab/unit/MO> ;
+    skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    euvoc:status concept-status:CURRENT ;
+    dct:created "2026-10-30"^^xsd:date .
+
+dppunit:percentPerYear
+    a skos:Concept ;
+    skos:notation "percentPerYear" ;
+    skos:prefLabel "percent per year"@en ;
+    skos:altLabel "%/year" ;
+    skos:definition "Rate of change expressed as a percentage per calendar year (%/year)."@en ;
+    skos:exactMatch <http://qudt.org/vocab/unit/PERCENT-PER-YR> ;
+    skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    euvoc:status concept-status:CURRENT ;
+    dct:created "2026-10-30"^^xsd:date .
+
+dppunit:wattHour
+    a skos:Concept ;
+    skos:notation "wattHour" ;
+    skos:prefLabel "watt-hour"@en ;
+    skos:altLabel "Wh" ;
+    skos:definition "Unit of energy equal to one watt of power expended for one hour (Wh)."@en ;
+    skos:exactMatch <http://qudt.org/vocab/unit/W-HR> ;
+    skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
+    euvoc:status concept-status:CURRENT ;
+    dct:created "2026-10-30"^^xsd:date .
+
+dppunit:kilowattHour
+    a skos:Concept ;
+    skos:notation "kilowattHour" ;
+    skos:prefLabel "kilowatt-hour"@en ;
+    skos:altLabel "kWh" ;
+    skos:definition "Unit of energy equal to one thousand watt-hours (kWh)."@en ;
+    skos:exactMatch <http://qudt.org/vocab/unit/KiloW-HR> ;
     skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
     skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit> ;
     euvoc:status concept-status:CURRENT ;

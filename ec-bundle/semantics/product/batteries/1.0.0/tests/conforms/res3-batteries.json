@@ -1,28 +1,29 @@
 {
-    "contentSpecificationIds": [
-        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0",
-        "https://repository.product-passport.ec.europa.eu/core/1.0.0"
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
     ],
-    "roundTripEnergyEfficiency": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#percent",
-        "value": 95
-    },
-    "roundTripEnergyEfficiencyFade": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#percent",
-        "value": 1.1
-    },
-    "batteryStatus": "https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-status#original",
-    "numberOfChargingCycles": [42],
-    "numberOfDischargingCycles": [41],
+    "id": "https://www.example.org/dpp/1234545",
+    "type": "DigitalProductPassport",
+    "granularity": "item",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3"
+    ],
+    "roundTripEnergyEfficiency": 93.8,
+    "roundTripEnergyEfficiencyFade": 1.1,
+    "batteryStatus": "original",
+    "numberOfChargingCycles": 42,
+    "numberOfDischargingCycles": 41,
     "negativeEvents": {
-        "en-IE": "None recorded"
+        "en": "None recorded",
+        "de-DE": "Keine Ereignisse erfasst"
     },
-    "environmentalConditionHistogramSet":{
-        "environmentalConditionHistogram":[
+    "environmentalConditionHistogramSet": {
+        "environmentalConditionHistogram": [
             {
-                "observedCharacteristic": "https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic#temperature",
-                "binRangeUnit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#degreeCelsius",
-                "binValueUnit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#hour",
+                "observedCharacteristic": "temperature",
+                "binRangeUnit": "degreeCelsius",
+                "binValueUnit": "hour",
                 "bin": [
                     {
                         "lowerBound": -10,
@@ -43,25 +44,27 @@
             }
         ]
     },
-    "stateOfChargeHistogram":[{
-        "binRangeUnit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#percent",
-        "binValueUnit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#hour",
-        "bin": [
-            {
-                "lowerBound": -10,
-                "upperBound": 0,
-                "binValue": 5
-            },
-            {
-                "lowerBound": 0,
-                "upperBound": 25,
-                "binValue": 400
-            },
-            {
-                "lowerBound": 25,
-                "upperBound": 45,
-                "binValue": 120
-            }
-        ]
-    }]
+    "stateOfChargeHistogram": [
+        {
+            "binRangeUnit": "percent",
+            "binValueUnit": "hour",
+            "bin": [
+                {
+                    "lowerBound": 0,
+                    "upperBound": 20,
+                    "binValue": 35
+                },
+                {
+                    "lowerBound": 20,
+                    "upperBound": 80,
+                    "binValue": 410
+                },
+                {
+                    "lowerBound": 80,
+                    "upperBound": 100,
+                    "binValue": 80
+                }
+            ]
+        }
+    ]
 }

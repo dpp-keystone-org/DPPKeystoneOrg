@@ -10,6 +10,8 @@
 @prefix bat: <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary#> .
 @prefix dpptype: <https://repository.product-passport.ec.europa.eu/core/vocabs/information-type#> .
 @prefix battype: <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-information-type#> .
+@prefix dppcom: <https://repository.product-passport.ec.europa.eu/core/vocabs/common-vocabulary#> .
+@prefix dppunit: <https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#> .
 
 <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>
   a owl:Ontology, skos:ConceptScheme;
@@ -27,8 +29,11 @@
     bat:manufacturerContactDetails, bat:batteryCategory, bat:batteryIdentification, bat:manufacturingPlace,
     bat:manufacturingDate, bat:batteryWeight, bat:batteryCapacity, bat:batteryChemistry,
     bat:hazardousSubstances, bat:extinguishingAgent, bat:criticalRawMaterials, bat:renewableContentShare,
-    bat:minimalVoltage, bat:nominalVoltage, bat:maximumVoltage, bat:originalPowerCapability,
-    bat:powerLimit, bat:expectedLifetimeCycles, bat:cycleLifeReferenceTest, bat:capacityExhaustionThreshold,
+    bat:minimalVoltage, bat:minimalVoltageMinTemp, bat:minimalVoltageMaxTemp,
+    bat:nominalVoltage, bat:nominalVoltageMinTemp, bat:nominalVoltageMaxTemp,
+    bat:maximumVoltage, bat:maximumVoltageMinTemp, bat:maximumVoltageMaxTemp,
+    bat:originalPowerCapability, bat:powerLimit, bat:powerLimitMinTemp, bat:powerLimitMaxTemp,
+    bat:expectedLifetimeCycles, bat:cycleLifeReferenceTest, bat:capacityExhaustionThreshold,
     bat:notInUseTemperatureRange, bat:commercialWarrantyPeriod, bat:initialRoundTripEnergyEfficiency,
     bat:roundTripEfficiencyAtHalfCycleLife, bat:internalCellResistance, bat:internalPackResistance,
     bat:cycleLifeChargeCRate, bat:cycleLifeDischargeCRate, bat:separateCollectionSymbol,
@@ -39,7 +44,8 @@
     bat:roundTripEnergyEfficiency, bat:roundTripEnergyEfficiencyFade, bat:expectedLifetimeCyclesRest,
     bat:expectedLifetimeYears, bat:stateOfCertifiedEnergy, bat:remainingCapacity, bat:remainingPowerCapability,
     bat:remainingRoundTripEfficiency, bat:selfDischargingRateSet, bat:ohmicResistance,
-    bat:batteryStatus, bat:numberOfChargingCycles .
+    bat:batteryStatus, bat:numberOfChargingCycles, bat:numberOfDischargingCycles,
+    bat:negativeEvents, bat:environmentalConditionHistogramSet, bat:stateOfChargeHistogram .
 
 bat:registrantIdentity a skos:Concept;
   skos:notation "registrantIdentity";
@@ -303,6 +309,7 @@ bat:batteryWeight a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex VI Part A 5. Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
   skos:definition "The weight [unit kg]"@en;
+  dppcom:unit dppunit:kilogram;
   dct:accessRights dpptype:publicType .
 
 bat:batteryCapacity a skos:Concept;
@@ -315,6 +322,7 @@ bat:batteryCapacity a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex VI Part A 6. Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
   skos:definition "The capacity [unit Ah]"@en;
+  dppcom:unit dppunit:ampereHour;
   dct:accessRights dpptype:publicType .
 
 bat:batteryChemistry a skos:Concept;
@@ -375,6 +383,7 @@ bat:renewableContentShare a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (f). Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
   skos:definition "The share of renewable content [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:publicType .
 
 bat:minimalVoltage a skos:Concept;
@@ -386,7 +395,34 @@ bat:minimalVoltage a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
-  skos:definition "Minimal voltage, with temperature range when relevant [unit V, optional unit °C]"@en;
+  skos:definition "Minimal voltage [unit V]"@en;
+  dppcom:unit dppunit:volt;
+  dct:accessRights dpptype:publicType .
+
+bat:minimalVoltageMinTemp a skos:Concept;
+  skos:notation "minimalVoltageMinTemp";
+  skos:prefLabel "Minimal voltage minimum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Minimum temperature of the applicable temperature range for minimal voltage [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
+  dct:accessRights dpptype:publicType .
+
+bat:minimalVoltageMaxTemp a skos:Concept;
+  skos:notation "minimalVoltageMaxTemp";
+  skos:prefLabel "Minimal voltage maximum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Maximum temperature of the applicable temperature range for minimal voltage [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
   dct:accessRights dpptype:publicType .
 
 bat:nominalVoltage a skos:Concept;
@@ -398,7 +434,34 @@ bat:nominalVoltage a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
-  skos:definition "Nominal voltage, with temperature range when relevant [unit V, optional unit °C]"@en;
+  skos:definition "Nominal voltage [unit V]"@en;
+  dppcom:unit dppunit:volt;
+  dct:accessRights dpptype:publicType .
+
+bat:nominalVoltageMinTemp a skos:Concept;
+  skos:notation "nominalVoltageMinTemp";
+  skos:prefLabel "Nominal voltage minimum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Minimum temperature of the applicable temperature range for nominal voltage [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
+  dct:accessRights dpptype:publicType .
+
+bat:nominalVoltageMaxTemp a skos:Concept;
+  skos:notation "nominalVoltageMaxTemp";
+  skos:prefLabel "Nominal voltage maximum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Maximum temperature of the applicable temperature range for nominal voltage [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
   dct:accessRights dpptype:publicType .
 
 bat:maximumVoltage a skos:Concept;
@@ -410,7 +473,34 @@ bat:maximumVoltage a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
-  skos:definition "Maximum voltage, with temperature range when relevant [unit V, optional unit °C]"@en;
+  skos:definition "Maximum voltage [unit V]"@en;
+  dppcom:unit dppunit:volt;
+  dct:accessRights dpptype:publicType .
+
+bat:maximumVoltageMinTemp a skos:Concept;
+  skos:notation "maximumVoltageMinTemp";
+  skos:prefLabel "Maximum voltage minimum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Minimum temperature of the applicable temperature range for maximum voltage [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
+  dct:accessRights dpptype:publicType .
+
+bat:maximumVoltageMaxTemp a skos:Concept;
+  skos:notation "maximumVoltageMaxTemp";
+  skos:prefLabel "Maximum voltage maximum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (h). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Maximum temperature of the applicable temperature range for maximum voltage [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
   dct:accessRights dpptype:publicType .
 
 bat:originalPowerCapability a skos:Concept;
@@ -423,6 +513,7 @@ bat:originalPowerCapability a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (i) - as defined in Annex IV (3) for “power” of the batteries in scope of the Annex. Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
   skos:definition "Original power capability [unit W]"@en;
+  dppcom:unit dppunit:watt;
   dct:accessRights dpptype:publicType .
 
 bat:powerLimit a skos:Concept;
@@ -434,7 +525,34 @@ bat:powerLimit a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (i) - as defined in Annex IV (3) for “power” of the batteries in scope of the Annex. Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
-  skos:definition "Power limits, with temperature range when relevant [unit W, optionally min_T °C … max_T °C]"@en;
+  skos:definition "Power limit [unit W]"@en;
+  dppcom:unit dppunit:watt;
+  dct:accessRights dpptype:publicType .
+
+bat:powerLimitMinTemp a skos:Concept;
+  skos:notation "powerLimitMinTemp";
+  skos:prefLabel "Power limit minimum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (i). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Minimum temperature of the applicable temperature range for power limit [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
+  dct:accessRights dpptype:publicType .
+
+bat:powerLimitMaxTemp a skos:Concept;
+  skos:notation "powerLimitMaxTemp";
+  skos:prefLabel "Power limit maximum applicable temperature"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
+  skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (i). Public. EV: Optional (when temperature range is relevant), LMT: Optional (when temperature range is relevant), Industrial: Optional (when temperature range is relevant)."@en;
+  skos:definition "Maximum temperature of the applicable temperature range for power limit [unit °C]"@en;
+  dppcom:unit dppunit:degreeCelsius;
   dct:accessRights dpptype:publicType .
 
 bat:expectedLifetimeCycles a skos:Concept;
@@ -471,6 +589,7 @@ bat:capacityExhaustionThreshold a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (k). Public. EV: Mandatory, LMT: Not to be filled/displayed, Industrial: Not to be filled/displayed."@en;
   skos:definition "Capacity threshold for exhaustion [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:publicType .
 
 bat:notInUseTemperatureRange a skos:Concept;
@@ -483,6 +602,7 @@ bat:notInUseTemperatureRange a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (l). Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
   skos:definition "Temperature range the battery can withstand when not in use (reference test) [min_T °C … max_T °C + free text]"@en;
+  dppcom:unit dppunit:degreeCelsius;
   dct:accessRights dpptype:publicType .
 
 bat:notInUseTemperatureRangeTest a skos:Concept;
@@ -507,6 +627,7 @@ bat:commercialWarrantyPeriod a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (m). Public. EV: If applicable (if commercial warranty envisaged), LMT: If applicable (if commercial warranty envisaged), Industrial: If applicable (if commercial warranty envisaged)."@en;
   skos:definition "Period for which the commercial warranty for the calendar life applies [months]"@en;
+  dppcom:unit dppunit:month;
   dct:accessRights dpptype:publicType .
 
 bat:initialRoundTripEnergyEfficiency a skos:Concept;
@@ -519,6 +640,7 @@ bat:initialRoundTripEnergyEfficiency a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (n). Public. EV: Mandatory, LMT: Mandatory, Industrial: Only applicable for some industrial batteries."@en;
   skos:definition "Initial round trip energy efficiency [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:publicType .
 
 bat:roundTripEfficiencyAtHalfCycleLife a skos:Concept;
@@ -531,6 +653,7 @@ bat:roundTripEfficiencyAtHalfCycleLife a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (n) - as defined in Annex II 2 (e) for life cycle for the calculation of carbon footprint. Public. EV: Mandatory, LMT: Mandatory, Industrial: Only applicable for some industrial batteries."@en;
   skos:definition "Round trip energy efficiency at 50 % of cycle-life [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:publicType .
 
 bat:internalCellResistance a skos:Concept;
@@ -543,6 +666,7 @@ bat:internalCellResistance a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (o). Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
   skos:definition "Internal battery cell resistance [unit Ω]"@en;
+  dppcom:unit dppunit:ohm;
   dct:accessRights dpptype:publicType .
 
 bat:internalPackResistance a skos:Concept;
@@ -555,6 +679,7 @@ bat:internalPackResistance a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (o). Public. EV: Mandatory, LMT: Mandatory, Industrial: Mandatory."@en;
   skos:definition "Internal battery pack resistance [unit Ω]"@en;
+  dppcom:unit dppunit:ohm;
   dct:accessRights dpptype:publicType .
 
 bat:cycleLifeChargeCRate a skos:Concept;
@@ -566,7 +691,8 @@ bat:cycleLifeChargeCRate a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (p). Public. EV: Mandatory, LMT: Mandatory, Industrial: Only applicable for some industrial batteries."@en;
-  skos:definition "Charge C-rate of relevant cycle-life test [number]"@en;
+  skos:definition "Charge C-rate of relevant cycle-life test [unit h-1]"@en;
+  dppcom:unit dppunit:reciprocalHour;
   dct:accessRights dpptype:publicType .
 
 bat:cycleLifeDischargeCRate a skos:Concept;
@@ -578,7 +704,8 @@ bat:cycleLifeDischargeCRate a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 1 (p). Public. EV: Optional, LMT: Optional, Industrial: Optional."@en;
-  skos:definition "Discharge C-rate of relevant cycle-life test [number]"@en;
+  skos:definition "Discharge C-rate of relevant cycle-life test [unit h-1]"@en;
+  dppcom:unit dppunit:reciprocalHour;
   dct:accessRights dpptype:publicType .
 
 bat:separateCollectionSymbol a skos:Concept;
@@ -825,7 +952,8 @@ bat:ratedCapacity a skos:Concept;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a) - as defined in Annex IV (1) for the batteries in the scope of the Annex. Restricted: Only to persons with legitimate interest (individual battery). EV: Same as data point 11 (capacity), LMT: Same as data point 11 (capacity), Industrial: Same as data point 11 (capacity); only for rechargeable batteries.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
-  skos:definition "Rated capacity (Ah)"@en;
+  skos:definition "Rated capacity [unit Ah]"@en;
+  dppcom:unit dppunit:ampereHour;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:capacityFade a skos:Concept;
@@ -838,6 +966,7 @@ bat:capacityFade a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a) - as defined in Annex III B (1) and Annex IV (2) for the batteries in the scope of the Annex. Restricted: Only to persons with legitimate interest (individual battery). EV: Mandatory, LMT: Mandatory, Industrial: Only for rechargeable batteries.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
   skos:definition "Capacity fade [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:powerCapability a skos:Concept;
@@ -850,6 +979,7 @@ bat:powerCapability a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a) - as defined in Annex IV (3) for the batteries in the scope of the Annex. Restricted: Only to persons with legitimate interest (individual battery). EV: Mandatory, LMT: Mandatory, Industrial: Only for rechargeable batteries.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
   skos:definition "Power [unit W]"@en;
+  dppcom:unit dppunit:watt;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:powerFade a skos:Concept;
@@ -862,6 +992,7 @@ bat:powerFade a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a) - as defined in Annex IV (4) for the batteries in the scope of the Annex. Restricted: Only to persons with legitimate interest (individual battery). EV: Mandatory, LMT: Mandatory, Industrial: Only for rechargeable batteries.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
   skos:definition "Power fade [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:internalResistance a skos:Concept;
@@ -874,6 +1005,7 @@ bat:internalResistance a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a) - as defined in Annex IV (5) for the batteries in the scope of the Annex. Restricted: Only to persons with legitimate interest (individual battery). EV: Mandatory, LMT: Mandatory, Industrial: Only for rechargeable batteries.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
   skos:definition "Internal resistance [unit Ω]"@en;
+  dppcom:unit dppunit:ohm;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:internalResistanceIncrease a skos:Concept;
@@ -886,6 +1018,7 @@ bat:internalResistanceIncrease a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a). Restricted: Only to persons with legitimate interest (individual battery). EV: Mandatory, LMT: Mandatory, Industrial: Only for rechargeable batteries.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
   skos:definition "Internal resistance increase [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:roundTripEnergyEfficiency a skos:Concept;
@@ -898,6 +1031,7 @@ bat:roundTripEnergyEfficiency a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a) - as defined in Annex IV (6) for the batteries in the scope of the Annex. Restricted: Only to persons with legitimate interest (individual battery). EV: If applicable, LMT: If applicable, Industrial: Only for rechargeable batteries, if applicable.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
   skos:definition "Where applicable, energy round trip efficiency [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:roundTripEnergyEfficiencyFade a skos:Concept;
@@ -910,6 +1044,7 @@ bat:roundTripEnergyEfficiencyFade a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (a). Restricted: Only to persons with legitimate interest (individual battery). EV: If applicable, LMT: If applicable, Industrial: Only for rechargeable batteries, if applicable.The dynamic dimension of this item is to reflect that the parameters may need to be updated where there is a status change of the battery."@en;
   skos:definition "Where applicable, energy round trip efficiency fade [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:expectedLifetimeCyclesRest a skos:Concept;
@@ -946,6 +1081,7 @@ bat:stateOfCertifiedEnergy a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (b). Restricted: Only to persons with legitimate interest (individual battery). EV: Mandatory, LMT: Not to be filled/displayed, Industrial: Not to be filled/displayed."@en;
   skos:definition "Information on the state of health of the battery pursuant to Article 14: state of certified energy (SOCE) [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:remainingCapacity a skos:Concept;
@@ -958,6 +1094,7 @@ bat:remainingCapacity a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (b). Restricted: Only to persons with legitimate interest (individual battery). EV: Not to be filled/displayed, LMT: Mandatory, Industrial: Only for stationary battery energy storage systems and if they have a battery management system."@en;
   skos:definition "Information on the state of health of the battery pursuant to Article 14: remaining capacity [unit Ah]"@en;
+  dppcom:unit dppunit:ampereHour;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:remainingPowerCapability a skos:Concept;
@@ -970,6 +1107,7 @@ bat:remainingPowerCapability a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (b). Restricted: Only to persons with legitimate interest (individual battery). EV: Not to be filled/displayed, LMT: Mandatory, Industrial: Only for stationary battery energy storage systems and if they have a battery management system."@en;
   skos:definition "Information on the state of health of the battery pursuant to Article 14: where possible, the remaining power capability [unit W]"@en;
+  dppcom:unit dppunit:watt;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:remainingRoundTripEfficiency a skos:Concept;
@@ -982,6 +1120,7 @@ bat:remainingRoundTripEfficiency a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (b). Restricted: Only to persons with legitimate interest (individual battery). EV: Not to be filled/displayed, LMT: Mandatory, Industrial: Only for stationary battery energy storage systems and if they have a battery management system."@en;
   skos:definition "Information on the state of health of the battery pursuant to Article 14: where possible, the remaining round-trip efficiency [%]"@en;
+  dppcom:unit dppunit:percent;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:selfDischargingRateSet a skos:Concept;
@@ -1004,7 +1143,8 @@ bat:selfDischargingRate a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (b). Restricted: Only to persons with legitimate interest (individual battery). EV: Not to be filled/displayed, LMT: Mandatory, Industrial: Only for stationary battery energy storage systems and if they have a battery management system."@en;
-  skos:definition "Information on the state of health of the battery pursuant to Article 14: where possible, the evolution of self-discharging rates [timestamp, decrease % per year]"@en;
+  skos:definition "Information on the state of health of the battery pursuant to Article 14: where possible, the self-discharging rate [%/year]"@en;
+  dppcom:unit dppunit:percentPerYear;
   skos:broader bat:selfDischargingRateSet;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
@@ -1018,6 +1158,7 @@ bat:ohmicResistance a skos:Concept;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (b). Restricted: Only to persons with legitimate interest (individual battery). EV: Not to be filled/displayed, LMT: Mandatory, Industrial: Only for stationary battery energy storage systems and if they have a battery management system."@en;
   skos:definition "Information on the state of health of the battery pursuant to Article 14: where possible, the ohmic resistance [unit Ω]"@en;
+  dppcom:unit dppunit:ohm;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
 
 bat:batteryStatus a skos:Concept;
@@ -1043,21 +1184,6 @@ bat:numberOfChargingCycles a skos:Concept;
   skos:scopeNote "Regulation (EU) 2023/1542 - Annex XIII 4 (d) . Restricted: Only to persons with legitimate interest (individual battery). EV: Applicable as soon as the battery starts to be used, LMT: Applicable as soon as the battery starts to be used, Industrial: Applicable as soon as the battery starts to be used."@en;
   skos:definition "The number of charging cycles [number]"@en;
   dct:accessRights dpptype:restrictedType, battype:batteryRestrictedType3 .
-
-<https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary>
-  a owl:Ontology, skos:ConceptScheme;
-  owl:versionIRI <https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary/1.0.0>;
-  skos:notation "battery-vocabulary";
-  skos:prefLabel "Battery Digital Product Passport Vocabulary"@en;
-  dct:title "Battery Digital Product Passport Vocabulary"@en;
-  skos:definition "Vocabulary of concepts used to support the battery digital product passport data model. Regulation (EU) 2023/1542."@en;
-  dct:source <http://data.europa.eu/eli/reg/2023/1542/2026-08-13>;
-  dct:created "2026-10-30"^^xsd:date;
-  owl:versionInfo "1.0.0";
-  skos:hasTopConcept bat:numberOfDischargingCycles, bat:negativeEvents, bat:environmentalConditionHistogramSet,
-    bat:stateOfChargeHistogram;
-  dct:license <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12>;
-  dct:creator "European Commission", "GROW-DIGITAL-PRODUCT-PASSPORT@ec.europa.eu" .
 
 bat:numberOfDischargingCycles a skos:Concept;
   skos:notation "numberOfDischargingCycles";

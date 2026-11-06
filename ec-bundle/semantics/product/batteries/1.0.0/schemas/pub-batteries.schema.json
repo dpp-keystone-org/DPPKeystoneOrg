@@ -3,16 +3,28 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Battery Product - Public view",
   "description": "JSON Schema for the public properties of the Battery Product representation.",
-  "allOf": [
-    { "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/core.schema.json" }
-  ],
-  "properties": {
+  "type": "object",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
     "registrantIdentity": {
       "type": "string",
       "minLength": 1,
-      "message": {
-        "type": "SEM-BAT-MSG-089"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-089"
     },
     "manufacturerIdentification": {
       "type": "object",
@@ -20,41 +32,51 @@
         "manufacturerName": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-002"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-002"
         },
         "manufacturerTradeName": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-003"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-003"
         },
         "manufacturerTrademark": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-004"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-004"
         }
       },
       "anyOf": [
-        { "required": [ "manufacturerName" ] },
-        { "required": [ "manufacturerTradeName" ] },
-        { "required": [ "manufacturerTrademark" ] }
+        {
+          "properties": {
+            "manufacturerName": true
+          },
+          "required": [
+            "manufacturerName"
+          ]
+        },
+        {
+          "properties": {
+            "manufacturerTradeName": true
+          },
+          "required": [
+            "manufacturerTradeName"
+          ]
+        },
+        {
+          "properties": {
+            "manufacturerTrademark": true
+          },
+          "required": [
+            "manufacturerTrademark"
+          ]
+        }
       ],
-      "message": {
-        "type": "SEM-BAT-MSG-001"
-      },
-      "additionalProperties": false
+      "$comment": "Validation error code: SEM-BAT-MSG-001"
     },
     "manufacturerPostalAddress": {
       "type": "string",
       "minLength": 1,
-      "message": {
-        "type": "SEM-BAT-MSG-005"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-005"
     },
     "manufacturerContactDetails": {
       "type": "object",
@@ -63,35 +85,43 @@
           "type": "string",
           "format": "uri",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-007"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-007"
         },
         "manufacturerEmail": {
           "type": "string",
-          "format": "uri",
+          "format": "email",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-008"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-008"
         }
       },
       "anyOf": [
-        { "required": [ "manufacturerWebsite" ] },
-        { "required": [ "manufacturerEmail" ] }
+        {
+          "properties": {
+            "manufacturerWebsite": true
+          },
+          "required": [
+            "manufacturerWebsite"
+          ]
+        },
+        {
+          "properties": {
+            "manufacturerEmail": true
+          },
+          "required": [
+            "manufacturerEmail"
+          ]
+        }
       ],
-      "additionalProperties": false,
-      "message": {
-        "type": "SEM-BAT-MSG-006"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-006"
     },
     "batteryCategory": {
       "type": "string",
-      "pattern": "^https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-category#[a-zA-Z]+$",
-      "minLength": 1,
-      "message": {
-        "type": "SEM-BAT-MSG-009"
-      }
+      "enum": [
+        "electricVehicleBattery",
+        "lightMeansOfTransportBattery",
+        "industrialBattery"
+      ],
+      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-category# | Validation error code: SEM-BAT-MSG-009"
     },
     "batteryIdentification": {
       "type": "object",
@@ -99,53 +129,74 @@
         "modelIdentifier": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-011"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-011"
         },
         "batchNumber": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-012"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-012"
         },
         "serialNumber": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-013"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-013"
         },
         "productNumber": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-014"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-014"
         },
         "otherIdentificationElement": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-015"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-015"
         }
       },
       "anyOf": [
-        { "required": [ "modelIdentifier", "batchNumber" ] },
-        { "required": [ "serialNumber" ] },
-        { "required": [ "productNumber" ] },
-        { "required": [ "otherIdentificationElement" ]  }
+        {
+          "properties": {
+            "modelIdentifier": true,
+            "batchNumber": true
+          },
+          "required": [
+            "modelIdentifier",
+            "batchNumber"
+          ]
+        },
+        {
+          "properties": {
+            "serialNumber": true
+          },
+          "required": [
+            "serialNumber"
+          ]
+        },
+        {
+          "properties": {
+            "productNumber": true
+          },
+          "required": [
+            "productNumber"
+          ]
+        },
+        {
+          "properties": {
+            "otherIdentificationElement": true
+          },
+          "required": [
+            "otherIdentificationElement"
+          ]
+        }
       ],
       "dependentRequired": {
-        "modelIdentifier": [ "batchNumber" ],
-        "batchNumber": [ "modelIdentifier" ]
+        "modelIdentifier": [
+          "batchNumber"
+        ],
+        "batchNumber": [
+          "modelIdentifier"
+        ]
       },
-      "additionalProperties": false,
-      "message": {
-        "type": "SEM-BAT-MSG-010"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-010"
     },
     "manufacturingPlace": {
       "type": "object",
@@ -153,273 +204,298 @@
         "manufacturingCity": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-017"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-017"
         },
         "manufacturingRegion": {
           "type": "string",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-018"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-018"
         },
         "manufacturingCountry": {
           "type": "string",
           "pattern": "^[A-Z]{3}$",
           "minLength": 1,
-          "message": {
-            "type": "SEM-BAT-MSG-019"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-019"
         }
       },
-      "required": [ "manufacturingCountry" ],
-      "anyOf": [
-        { "required": [ "manufacturingCity" ] },
-        { "required": [ "manufacturingRegion" ] }
+      "required": [
+        "manufacturingCountry"
       ],
-      "message": {
-        "type": "SEM-BAT-MSG-016"
-      },
-      "additionalProperties": false
+      "anyOf": [
+        {
+          "properties": {
+            "manufacturingCity": true
+          },
+          "required": [
+            "manufacturingCity"
+          ]
+        },
+        {
+          "properties": {
+            "manufacturingRegion": true
+          },
+          "required": [
+            "manufacturingRegion"
+          ]
+        }
+      ],
+      "$comment": "Validation error code: SEM-BAT-MSG-016"
     },
     "manufacturingDate": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}$",
       "minLength": 1,
-      "message": {
-        "type": "SEM-BAT-MSG-020"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-020"
     },
     "batteryWeight": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValue",
-      "message": {
-        "type": "SEM-BAT-MSG-021"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-021"
     },
     "batteryCapacity": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValue",
-      "message": {
-        "type": "SEM-BAT-MSG-022"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-022"
     },
     "batteryChemistry": {
       "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
       "items": {
         "type": "string",
-        "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemistry#.",
-        "pattern": "^https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemistry#[a-zA-Z]+$"
+        "enum": [
+          "leadAcid",
+          "nickelCadmium",
+          "nickelMetalHydride",
+          "lithiumIonNMC",
+          "lithiumIonLFP",
+          "lithiumIonLMO",
+          "lithiumIonLCO",
+          "lithiumIonNCA",
+          "lithiumMetal",
+          "sodiumIon"
+        ],
+        "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemistry#"
       },
-      "uniqueItems": true,
-      "message": {
-        "type": "SEM-BAT-MSG-023"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-023"
     },
     "hazardousSubstances": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
       "uniqueItems": true,
-      "message": {
-        "type": "SEM-BAT-MSG-024"
-      }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "$comment": "Validation error code: SEM-BAT-MSG-024"
     },
     "extinguishingAgent": {
       "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-      "message": {
-        "type": "SEM-BAT-MSG-025"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-025"
     },
     "criticalRawMaterials": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "string",
-        "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/critical-raw-material#.",
-        "pattern": "^https://repository.product-passport.ec.europa.eu/core/vocabs/critical-raw-material#[a-zA-Z]+$"
+        "enum": [
+          "antimony",
+          "arsenic",
+          "bauxiteAluminaAluminium",
+          "baryte",
+          "beryllium",
+          "bismuth",
+          "boron",
+          "cobalt",
+          "cokingCoal",
+          "copper",
+          "feldspar",
+          "fluorspar",
+          "gallium",
+          "germanium",
+          "hafnium",
+          "helium",
+          "heavyRareEarthElements",
+          "lightRareEarthElements",
+          "lithium",
+          "magnesium",
+          "manganese",
+          "graphite",
+          "nickelBatteryGrade",
+          "niobium",
+          "phosphateRock",
+          "phosphorus",
+          "platinumGroupMetals",
+          "scandium",
+          "siliconMetal",
+          "strontium",
+          "tantalum",
+          "titaniumMetal",
+          "tungsten",
+          "vanadium"
+        ],
+        "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/critical-raw-material#"
       },
-      "uniqueItems": true,
-      "message": {
-        "type": "SEM-BAT-MSG-026"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-026"
     },
     "renewableContentShare": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValue",
-      "message": {
-        "type": "SEM-BAT-MSG-090"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-090"
     },
     "minimalVoltage": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValueWithRange",
-      "required": ["valueRange"],
-      "message": {
-        "type": "SEM-BAT-MSG-091"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-091"
+    },
+    "minimalVoltageMinTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-092"
+    },
+    "minimalVoltageMaxTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-093"
     },
     "nominalVoltage": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValueWithRange",
-      "required": ["valueRange"],
-      "message": {
-        "type": "SEM-BAT-MSG-027"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-027"
+    },
+    "nominalVoltageMinTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-094"
+    },
+    "nominalVoltageMaxTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-095"
     },
     "maximumVoltage": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValueWithRange",
-      "required": ["valueRange"],
-      "message": {
-        "type": "SEM-BAT-MSG-028"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-028"
+    },
+    "maximumVoltageMinTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-096"
+    },
+    "maximumVoltageMaxTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-097"
     },
     "originalPowerCapability": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValue",
-      "message": {
-        "type": "SEM-BAT-MSG-029"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-029"
     },
     "powerLimit": {
-      "type": "array",
-      "items": {
-        "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValueWithRange"
-      },
-      "uniqueItems": true,
-      "message": {
-        "type": "SEM-BAT-MSG-030"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-030"
+    },
+    "powerLimitMinTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-098"
+    },
+    "powerLimitMaxTemp": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-099"
     },
     "notInUseTemperatureRange": {
       "type": "object",
       "properties": {
+        "lowerBound": {
+          "type": "number",
+          "$comment": "Validation error code: SEM-COM-MSG-005"
+        },
+        "upperBound": {
+          "type": "number",
+          "$comment": "Validation error code: SEM-COM-MSG-006"
+        },
         "notInUseTemperatureRangeTest": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-035"
-          }
-        },
-        "valueRange": {
-          "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/valueRange"
+          "$comment": "Validation error code: SEM-BAT-MSG-035"
         }
       },
       "required": [
-        "notInUseTemperatureRangeTest",
-        "valueRange"
+        "lowerBound",
+        "upperBound",
+        "notInUseTemperatureRangeTest"
       ],
-      "additionalProperties": false,
-      "message": {
-        "type": "SEM-BAT-MSG-034"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-034"
     },
     "commercialWarrantyPeriod": {
       "type": "integer",
       "minimum": 0,
-      "message": {
-        "type": "SEM-BAT-MSG-036"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-036"
     },
     "internalCellResistance": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValue",
-      "message": {
-        "type": "SEM-BAT-MSG-039"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-039"
     },
     "internalPackResistance": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValue",
-      "message": {
-        "type": "SEM-BAT-MSG-040"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-040"
     },
     "cycleLifeDischargeCRate": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/unitValue",
-      "message": {
-        "type": "SEM-BAT-MSG-042"
-      }
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-042"
     },
     "separateCollectionSymbol": {
       "type": "boolean",
       "const": true,
-      "message": {
-        "type": "SEM-BAT-MSG-043"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-043"
     },
     "chemicalSymbol": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "string",
-        "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemical-symbol#.",
-        "pattern": "^https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemical-symbol#[a-zA-Z]+$"
+        "enum": [
+          "cadmiumSymbol",
+          "leadSymbol",
+          "noneSymbol"
+        ],
+        "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemical-symbol#"
       },
-      "uniqueItems": true,
-      "message": {
-        "type": "SEM-BAT-MSG-044"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-044"
     },
     "euDeclarationOfConformity": {
-      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/relatedResource",
-      "message": {
-        "type": "SEM-BAT-MSG-045"
-      }
+      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/relatedResourceOrArray",
+      "$comment": "Validation error code: SEM-BAT-MSG-045"
     },
     "wasteBatteryPreventionManagementInfo": {
       "type": "object",
       "properties": {
         "endUserRoleInWastePrevention": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-047"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-047"
         },
         "endUserRoleInSeparateCollection": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-048"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-048"
         },
         "separateCollectionPoints": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-049"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-049"
         },
         "takeBackCollectionPoints": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-050"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-050"
         },
         "preparationForReuseFacilities": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-052"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-052"
         },
         "preparationForRepurposingFacilities": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-053"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-053"
         },
         "wasteBatteryTreatmentFacilities": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-054"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-054"
         },
         "wasteBatterySafetyInstructions": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-055"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-055"
         },
         "batteryLabelSymbolMeaning": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-057"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-057"
         },
         "batterySubstancesImpact": {
           "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
-          "message": {
-            "type": "SEM-BAT-MSG-058"
-          }
+          "$comment": "Validation error code: SEM-BAT-MSG-058"
         }
       },
       "required": [
@@ -434,11 +510,34 @@
         "batteryLabelSymbolMeaning",
         "batterySubstancesImpact"
       ],
-      "additionalProperties": false,
-      "message": {
-        "type": "SEM-BAT-MSG-046"
-      }
+      "$comment": "Validation error code: SEM-BAT-MSG-046"
     }
+  },
+  "dependentRequired": {
+    "minimalVoltageMinTemp": [
+      "minimalVoltageMaxTemp"
+    ],
+    "minimalVoltageMaxTemp": [
+      "minimalVoltageMinTemp"
+    ],
+    "nominalVoltageMinTemp": [
+      "nominalVoltageMaxTemp"
+    ],
+    "nominalVoltageMaxTemp": [
+      "nominalVoltageMinTemp"
+    ],
+    "maximumVoltageMinTemp": [
+      "maximumVoltageMaxTemp"
+    ],
+    "maximumVoltageMaxTemp": [
+      "maximumVoltageMinTemp"
+    ],
+    "powerLimitMinTemp": [
+      "powerLimitMaxTemp"
+    ],
+    "powerLimitMaxTemp": [
+      "powerLimitMinTemp"
+    ]
   },
   "required": [
     "registrantIdentity",
@@ -451,9 +550,7 @@
     "batteryWeight",
     "batteryCapacity",
     "batteryChemistry",
-    "hazardousSubstances",
     "extinguishingAgent",
-    "criticalRawMaterials",
     "renewableContentShare",
     "minimalVoltage",
     "nominalVoltage",
@@ -467,4 +564,5 @@
     "euDeclarationOfConformity",
     "wasteBatteryPreventionManagementInfo"
   ]
+  }
 }

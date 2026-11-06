@@ -19,7 +19,9 @@
   dct:created "2026-10-30"^^xsd:date;
   owl:versionInfo "1.0.0";
   skos:hasTopConcept dpperr:SEM-MSG-001, dpperr:SEM-MSG-002, dpperr:SEM-MSG-003,
-    dpperr:SEM-MSG-005, dpperr:SEM-MSG-006, dpperr:SEM-MSG-009;
+    dpperr:SEM-MSG-005, dpperr:SEM-MSG-006, dpperr:SEM-MSG-009, dpperr:SEM-MSG-010,
+    dpperr:SEM-MSG-011, dpperr:SEM-MSG-012, dpperr:SEM-MSG-013, dpperr:SEM-MSG-014,
+    dpperr:SEM-MSG-015;
   dct:creator "European Commission";
   dct:license <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12> .
 
@@ -48,7 +50,7 @@ dpperr:SEM-MSG-003 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
-  skos:definition "granularity must be a code of granularity-level (only item for batteries) and must occur at least 1 time and must not occur more than 1 time."@en .
+  skos:definition "granularity must be a code of granularity-level and must occur at least 1 time and must not occur more than 1 time."@en .
 
 dpperr:SEM-MSG-005 a skos:Concept;
   skos:notation "SEM-MSG-005";
@@ -57,7 +59,7 @@ dpperr:SEM-MSG-005 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
-  skos:definition "dppStatus must be a List of codes: instance-status and must occur at least 1 time and must not occur more than 1 time."@en .
+  skos:definition "dppStatus must be a code of instance-status and must occur at least 1 time and must not occur more than 1 time."@en .
 
 dpperr:SEM-MSG-006 a skos:Concept;
   skos:notation "SEM-MSG-006";
@@ -75,4 +77,59 @@ dpperr:SEM-MSG-009 a skos:Concept;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
-  skos:definition "contentSpecificationIds must be a list of content specification IRIs and must include exactly one IRI for each applicable content specification (core, product group and, if applicable, subgroup)."@en .
+  skos:definition "contentSpecificationIds must be a list of non-empty content specification identifier Strings. It is optional when @context is provided; otherwise at least 1 identifier must be supplied."@en .
+
+dpperr:SEM-MSG-010 a skos:Concept;
+  skos:notation "SEM-MSG-010";
+  skos:prefLabel "SEM-MSG-010"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  skos:definition "additionalProductIdentifiers must be a list of non-empty Strings. It is an optional field."@en .
+
+dpperr:SEM-MSG-011 a skos:Concept;
+  skos:notation "SEM-MSG-011";
+  skos:prefLabel "SEM-MSG-011"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  skos:definition "dppSchemaVersion must be a String. It is an optional field and must not occur more than 1 time."@en .
+
+dpperr:SEM-MSG-012 a skos:Concept;
+  skos:notation "SEM-MSG-012";
+  skos:prefLabel "SEM-MSG-012"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  skos:definition "economicOperatorId must be a String. It is an optional field and must not occur more than 1 time."@en .
+
+dpperr:SEM-MSG-013 a skos:Concept;
+  skos:notation "SEM-MSG-013";
+  skos:prefLabel "SEM-MSG-013"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  skos:definition "facilityId must be a String. It is an optional field and must not occur more than 1 time."@en .
+
+dpperr:SEM-MSG-014 a skos:Concept;
+  skos:notation "SEM-MSG-014";
+  skos:prefLabel "SEM-MSG-014"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  skos:definition "productName must be a multilingual String. It is an optional field and may contain one or more language entries."@en .
+
+dpperr:SEM-MSG-015 a skos:Concept;
+  skos:notation "SEM-MSG-015";
+  skos:prefLabel "SEM-MSG-015"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-error-code>;
+  skos:definition "productLabel must be a RelatedResource. It is an optional field and could occur more than 1 time."@en .
+

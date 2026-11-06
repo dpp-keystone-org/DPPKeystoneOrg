@@ -22,7 +22,8 @@
   owl:versionInfo "1.0.0";
   skos:hasTopConcept dpp:digitalProductPassportId, dpp:uniqueProductIdentifier, dpp:granularity, dpp:dppStatus, dpp:lastUpdate,
     dpp:contentSpecificationIds, dpp:resourceTitle, dpp:contentType, dpp:url, dpp:language,
-    dpp:DigitalProductPassport;
+    dpp:DigitalProductPassport, dpp:additionalProductIdentifiers, dpp:dppSchemaVersion,
+    dpp:economicOperatorId, dpp:facilityId, dpp:productName, dpp:productLabel;
   dct:creator "European Commission";
   dct:license <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12> .
 
@@ -75,9 +76,9 @@ dpp:lastUpdate a skos:Concept;
   skos:prefLabel "lastUpdate"@en;
   skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
   dct:source <http://data.europa.eu/eli/reg_impl/2026/1778/oj>;
-  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;  euvoc:status concept-status:CURRENT;
-  dct:created "2026-10-30"^^xsd:date;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
   euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
   skos:definition "Date and time at which a digital product passport was most recently modified or updated."@en .
 
@@ -85,7 +86,8 @@ dpp:contentSpecificationIds a skos:Concept;
   skos:notation "contentSpecificationIds";
   skos:prefLabel "contentSpecificationIds"@en;
   skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
-  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;  euvoc:status concept-status:CURRENT;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
   skos:definition "Identifiers of content specifications, schemas or data models that govern the structure of the digital product passport content."@en .
@@ -94,7 +96,7 @@ dpp:resourceTitle a skos:Concept;
   skos:notation "resourceTitle";
   skos:prefLabel "resourceTitle"@en;
   skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
-  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;  euvoc:status concept-status:CURRENT;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
@@ -104,7 +106,7 @@ dpp:contentType a skos:Concept;
   skos:notation "contentType";
   skos:prefLabel "contentType"@en;
   skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
-  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;  euvoc:status concept-status:CURRENT;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
@@ -114,7 +116,7 @@ dpp:url a skos:Concept;
   skos:notation "url";
   skos:prefLabel "url"@en;
   skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
-  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;  euvoc:status concept-status:CURRENT;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
@@ -124,7 +126,7 @@ dpp:language a skos:Concept;
   skos:notation "language";
   skos:prefLabel "language"@en;
   skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
-  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;  euvoc:status concept-status:CURRENT;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
   euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
@@ -134,9 +136,70 @@ dpp:DigitalProductPassport a skos:Concept;
   skos:notation "DigitalProductPassport";
   skos:prefLabel "DigitalProductPassport"@en;
   skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
-  euvoc:status concept-status:CURRENT;
   dct:source <http://data.europa.eu/eli/reg/2024/1781/2024-06-28>;
-  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;  euvoc:status concept-status:CURRENT;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
   dct:created "2026-10-30"^^xsd:date;
   skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
   skos:definition "A set of data specific to a product that includes the information specified in the applicable delegated act adopted pursuant to Article 4 and that is accessible via electronic means through a data carrier in accordance with Chapter III - Regulation (EU) 2024/1781;"@en .
+
+dpp:additionalProductIdentifiers a skos:Concept;
+  skos:notation "additionalProductIdentifiers";
+  skos:prefLabel "additionalProductIdentifiers"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  skos:definition "Additional product identifiers (such as secondary GTINs or variant identifiers) associated with this digital product passport."@en .
+
+dpp:dppSchemaVersion a skos:Concept;
+  skos:notation "dppSchemaVersion";
+  skos:prefLabel "dppSchemaVersion"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  skos:definition "Version identifier of the digital product passport core schema specification."@en .
+
+dpp:economicOperatorId a skos:Concept;
+  skos:notation "economicOperatorId";
+  skos:prefLabel "economicOperatorId"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  skos:definition "Unique identifier of the economic operator responsible for placing the product on the market or registering the digital product passport."@en .
+
+dpp:facilityId a skos:Concept;
+  skos:notation "facilityId";
+  skos:prefLabel "facilityId"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  skos:definition "Unique identifier of the facility or production site associated with the product."@en .
+
+dpp:productName a skos:Concept;
+  skos:notation "productName";
+  skos:prefLabel "productName"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  skos:definition "Human-readable commercial or descriptive name of the product."@en .
+
+dpp:productLabel a skos:Concept;
+  skos:notation "productLabel";
+  skos:prefLabel "productLabel"@en;
+  skos:inScheme <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  dct:references <https://standards.cencenelec.eu/ords/f%3Fp%3DCEN:110:::::FSP_PROJECT%2CFSP_ORG_ID:80714%2C3342699%26cs%3D12990D18E0F87D7768D50B938A2F4A4D5>;
+  euvoc:status concept-status:CURRENT;
+  dct:created "2026-10-30"^^xsd:date;
+  skos:topConceptOf <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary>;
+  skos:definition "Digital resource representing a label, mark, or symbol associated with the product."@en .
+

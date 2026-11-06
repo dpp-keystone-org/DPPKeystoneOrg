@@ -151,7 +151,7 @@ paths:
                     message: DPP submission contains non-compliant items
                 specificTaskData:
                   productGroup: BATTERIES
-                  productSubGroup: EV
+                  productSubGroup: evb
                   submissionRequestId: reg_01J1REG001
                   processingInfo:
                     submittedItems: 50
@@ -210,11 +210,12 @@ paths:
                       message: Item passed validation
                     outcomeDetails: []
                     specificTaskItemData:
-                      uniqueProductIdentifier: https://example.com/dpp/battery/0001
+                      uniqueProductIdentifier: https://example.com/id/01/09506000134352/21/SN0001
+                      digitalProductPassportId: https://example.com/dpp/battery/0001
                       productGroup: BATTERIES
-                      productSubGroup: EV
+                      productSubGroup: evb
                       submissionRequestId: reg_01J1REG001
-                      granularityLevel: item
+                      granularity: item
                       batchIdentifier: xxx-000
                       modelIdentifier: yyy-111
                   - taskId: task_01J1REG001
@@ -229,9 +230,9 @@ paths:
                     specificTaskItemData:
                       uniqueProductIdentifier: https://example.com/dpp/battery/0002
                       productGroup: BATTERIES
-                      productSubGroup: EV
+                      productSubGroup: evb
                       submissionRequestId: reg_01J1REG001
-                      granularityLevel: item
+                      granularity: item
                 page: 0
                 size: 25
                 totalElements: 2
@@ -328,7 +329,9 @@ components:
           format: date-time
           description: Timestamp at which the task was created.
         completedAt:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
           description: Timestamp at which the terminal outcome was written. Null if still in progress.
 
@@ -359,7 +362,8 @@ components:
     ActivityTaskDetail:
       description: >-
         Full task detail, discriminated by the top-level taskType. Every variant extends
-        the same base (BaseActivityTaskDetail) and only changes the type of specificTaskData.
+        the same base (BaseActivityTaskDetail), constrains taskType, and only changes the
+        type of specificTaskData.
       oneOf:
         - $ref: '#/components/schemas/DppRegistrationTaskDetail'
         - $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationTaskDetail'
@@ -389,6 +393,9 @@ components:
         - $ref: '#/components/schemas/BaseActivityTaskDetail'
         - type: object
           properties:
+            taskType:
+              type: string
+              const: DPP_REGISTRATION
             specificTaskData:
               $ref: '#/components/schemas/DppRegistrationOutcomeData'
 
@@ -399,6 +406,9 @@ components:
         - $ref: '#/components/schemas/BaseActivityTaskDetail'
         - type: object
           properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_DECLARATION_GENERATION
             specificTaskData:
               $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationOutcomeData'
 
@@ -409,6 +419,9 @@ components:
         - $ref: '#/components/schemas/BaseActivityTaskDetail'
         - type: object
           properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_SUBMISSION
             specificTaskData:
               $ref: '#/components/schemas/OrganisationVerificationSubmissionOutcomeData'
 
@@ -427,8 +440,8 @@ components:
     TaskProcessedItem:
       description: >-
         Per-item processing evidence for a task, discriminated by the top-level taskType.
-        Each variant extends the common item envelope and defines its own specificTaskItemData
-        containing task-specific business identifiers and result details.
+        Each variant extends the common item envelope, constrains taskType, and defines its
+        own specificTaskItemData containing task-specific business identifiers and result details.
       oneOf:
         - $ref: '#/components/schemas/DppRegistrationTaskProcessedItem'
         - $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationTaskProcessedItem'
@@ -474,6 +487,9 @@ components:
         - $ref: '#/components/schemas/BaseTaskProcessedItem'
         - type: object
           properties:
+            taskType:
+              type: string
+              const: DPP_REGISTRATION
             specificTaskItemData:
               $ref: '#/components/schemas/DppRegistrationItemOutcomeData'
 
@@ -484,6 +500,9 @@ components:
         - $ref: '#/components/schemas/BaseTaskProcessedItem'
         - type: object
           properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_DECLARATION_GENERATION
             specificTaskItemData:
               $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationItemOutcomeData'
 
@@ -494,6 +513,9 @@ components:
         - $ref: '#/components/schemas/BaseTaskProcessedItem'
         - type: object
           properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_SUBMISSION
             specificTaskItemData:
               $ref: '#/components/schemas/OrganisationVerificationSubmissionItemOutcomeData'
 
@@ -502,28 +524,46 @@ components:
       description: Per-item outcome data for DPP_REGISTRATION items.
       required:
         - productGroup
-        - productSubGroup
         - submissionRequestId
-        - granularityLevel
+        - granularity
       properties:
         uniqueProductIdentifier:
           type: string
+          format: uri
           description: Unique product identifier of the submitted item.
+        digitalProductPassportId:
+          type:
+            - string
+            - 'null'
+          format: uri
+          description: >-
+            Dereferenceable HTTPS URL of the Digital Product Passport payload when provided
+            separately from uniqueProductIdentifier.
         uniqueRegistryIdentifier:
           type: string
           description: Registry-assigned identifier for the DPP. Present only when the complete registration submission succeeds.
         productGroup:
           type: string
           description: Product group of the submitted item.
+          examples:
+            - BATTERIES
         productSubGroup:
-          type: string
-          description: Product sub-group of the submitted item.
+          type:
+            - string
+            - 'null'
+          description: Product sub-group of the submitted item, when the product group defines sub-groups.
+          examples:
+            - evb
         submissionRequestId:
           type: string
           description: Identifier of the DPP submission request.
-        granularityLevel:
+        granularity:
           type: string
           description: Granularity level determined for the submitted item.
+          enum:
+            - item
+            - batch
+            - model
         batchIdentifier:
           type: string
           description: Batch identifier, when the item is registered at batch granularity.
@@ -555,9 +595,15 @@ components:
         productGroup:
           type: string
           description: Product group of the registration submission.
+          examples:
+            - BATTERIES
         productSubGroup:
-          type: string
-          description: Product sub-group of the registration submission.
+          type:
+            - string
+            - 'null'
+          description: Product sub-group of the registration submission, when the product group defines sub-groups.
+          examples:
+            - evb
         submissionRequestId:
           type: string
           description: Identifier of the DPP registration submission.

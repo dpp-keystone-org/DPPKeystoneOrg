@@ -1,13 +1,19 @@
 {
-    "digitalProductPassportId": "https://www.example.org/dpp/1234545",
-    "uniqueProductIdentifier": "https://www.example.org/1234545",
-    "granularity": "https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level#item",
-    "dppStatus": "https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status#validStatus",
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/evb-001",
+    "type": "DigitalProductPassport",
+    "digitalProductPassportId": "https://www.example.org/dpp/evb-001",
+    "uniqueProductIdentifier": "https://www.example.org/evb-001",
+    "granularity": "item",
+    "dppStatus": "validStatus",
     "lastUpdate": "2025-08-22T03:12:00Z",
     "contentSpecificationIds": [
-        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0",
         "https://repository.product-passport.ec.europa.eu/core/1.0.0",
-        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0"
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub"
     ],
     "registrantIdentity": "urn:uuid:3f1c7a52-8d4e-4b1a-9c2e-5a6b7d8e9f01",
     "manufacturerIdentification": {
@@ -18,12 +24,13 @@
     "manufacturerPostalAddress": "Calle de Alcalá 100, 28009 Madrid, Spain",
     "manufacturerContactDetails": {
         "manufacturerWebsite": "https://www.example.com",
-        "manufacturerEmail": "mailto:info@example.com"
+        "manufacturerEmail": "info@example.com"
     },
-    "batteryCategory": "https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-category#electricVehicleBattery",
+    "batteryCategory": "electricVehicleBattery",
     "batteryIdentification": {
-        "modelIdentifier": "IC-75-LFP",
-        "batchNumber": "BATCH-2026-03-A"
+        "modelIdentifier": "IC-120-NMC",
+        "batchNumber": "BATCH-2026-03-A",
+        "serialNumber": "SN-EVB-2026-00001"
     },
     "manufacturingPlace": {
         "manufacturingCity": "Zaragoza",
@@ -31,90 +38,50 @@
         "manufacturingCountry": "ESP"
     },
     "manufacturingDate": "2026-03",
-    "batteryWeight": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#kilogram",
-        "value": 385.5
-    },
-    "batteryCapacity": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#ampereHour",
-        "value": 75
-    },
+    "batteryWeight": 450.5,
+    "batteryCapacity": 120,
     "batteryChemistry": [
-        "https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemistry#lithiumIonLCO"
+        "lithiumIonNMC"
     ],
-    "hazardousSubstances": ["Lithium"],
+    "hazardousSubstances": [
+        "Lithium hexafluorophosphate (LiPF6)"
+    ],
     "extinguishingAgent": {
-        "en-IE": "Large quantities of water; dry chemical powder (Class D) for small fires"
+        "en": "Large quantities of water; dry chemical powder (Class D) for small fires",
+        "de-DE": "Große Mengen Wasser; Metallbrandpulver (Klasse D) für Entstehungsbrände"
     },
     "criticalRawMaterials": [
-        "https://repository.product-passport.ec.europa.eu/core/vocabs/critical-raw-material#lithium"
+        "cobalt",
+        "lithium",
+        "graphite",
+        "nickelBatteryGrade"
     ],
-    "renewableContentShare": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#percent",
-        "value": 12.5
-    },
-    "minimalVoltage": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#volt",
-        "value": 10,
-        "valueRange": {
-            "observedCharacteristic": "https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic#temperature",
-            "lowerBound": 10,
-            "upperBound": 10,
-            "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#degreeCelsius"
-        }
-    },
-    "nominalVoltage": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#volt",
-        "value": 10,
-        "valueRange": {
-            "observedCharacteristic": "https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic#temperature",
-            "lowerBound": 10,
-            "upperBound": 10,
-            "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#degreeCelsius"
-        }
-    },
-    "maximumVoltage": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#volt",
-        "value": 10,
-        "valueRange": {
-            "observedCharacteristic": "https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic#temperature",
-            "lowerBound": 10,
-            "upperBound": 10,
-            "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#degreeCelsius"
-        }
-    },
-    "originalPowerCapability": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#watt",
-        "value": 150
-    },
-    "powerLimit": [
-        {
-            "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#watt",
-            "value": 150
-        }
-    ],
+    "renewableContentShare": 15.2,
+    "minimalVoltage": 300,
+    "nominalVoltage": 400,
+    "nominalVoltageMinTemp": -20,
+    "nominalVoltageMaxTemp": 45,
+    "maximumVoltage": 450,
+    "originalPowerCapability": 150000,
+    "powerLimit": 180000,
+    "powerLimitMinTemp": -10,
+    "powerLimitMaxTemp": 40,
     "notInUseTemperatureRange": {
+        "lowerBound": -20,
+        "upperBound": 50,
         "notInUseTemperatureRangeTest": {
-            "en-IE": "IEC 62660-1, storage between -20 C and 45 C"
-        },
-        "valueRange": {
-            "observedCharacteristic": "https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic#temperature",
-            "lowerBound": 10,
-            "upperBound": 10,
-            "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#degreeCelsius"
+            "en": "IEC 62660-2 storage test",
+            "de-DE": "IEC 62660-2 Lagertest"
         }
     },
-    "commercialWarrantyPeriod": 24,
-    "internalCellResistance": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#ohm",
-        "value": 0.9
-    },
-    "internalPackResistance": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#ohm",
-        "value": 45
-    },
+    "commercialWarrantyPeriod": 96,
+    "internalCellResistance": 0.0012,
+    "internalPackResistance": 0.045,
+    "cycleLifeDischargeCRate": 1.0,
     "separateCollectionSymbol": true,
-    "chemicalSymbol": ["https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-chemical-symbol#cadmiumSymbol"],
+    "chemicalSymbol": [
+        "noneSymbol"
+    ],
     "euDeclarationOfConformity": {
         "resourceTitle": "EU declaration of conformity file",
         "contentType": "application/pdf",
@@ -123,7 +90,8 @@
     },
     "wasteBatteryPreventionManagementInfo": {
         "endUserRoleInWastePrevention": {
-            "en-IE": "End users should avoid mechanical damage and follow the usage instructions."
+            "en": "End users should avoid mechanical damage and follow the usage instructions.",
+            "de-DE": "Endnutzer sollten mechanische Beschädigungen vermeiden und die Gebrauchsanweisung beachten."
         },
         "endUserRoleInSeparateCollection": {
             "en-IE": "End users must not dispose of batteries as unsorted municipal waste."
@@ -153,24 +121,13 @@
             "en-IE": "Improper disposal may release electrolyte and heavy metals into soil and water."
         }
     },
-    "expectedLifetimeCycles": 3,
+    "expectedLifetimeCycles": 1500,
     "cycleLifeReferenceTest": {
-        "en-IE": "Test sample"
+        "en": "ISO 12405-4 cycle life test",
+        "de-DE": "ISO 12405-4 Zykluslebensdauertest"
     },
-    "capacityExhaustionThreshold": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#percent",
-        "value": 45
-    },
-    "initialRoundTripEnergyEfficiency": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#percent",
-        "value": 45
-    },
-    "roundTripEfficiencyAtHalfCycleLife": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#percent",
-        "value": 45
-    },
-    "cycleLifeChargeCRate": {
-        "unit": "https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit#reciprocalHour",
-        "value": 45
-    }
+    "capacityExhaustionThreshold": 80,
+    "initialRoundTripEnergyEfficiency": 94.5,
+    "roundTripEfficiencyAtHalfCycleLife": 91.0,
+    "cycleLifeChargeCRate": 0.5
 }

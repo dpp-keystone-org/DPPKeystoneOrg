@@ -182,12 +182,12 @@ export function resetIntegrityState() {
     fileDefinedTerms.clear();
 }
 
-export function processContextBlock(ctxBlock, filePath) {
+export function processContextBlock(ctxBlock, filePath, inheritedPrefixes = {}) {
     if (!ctxBlock) return;
 
     // Handle array of contexts
     if (Array.isArray(ctxBlock)) {
-        ctxBlock.forEach(part => processContextBlock(part, filePath));
+        ctxBlock.forEach(part => processContextBlock(part, filePath, inheritedPrefixes));
         return;
     }
 
@@ -199,32 +199,43 @@ export function processContextBlock(ctxBlock, filePath) {
 
     // Handle object
     if (typeof ctxBlock === 'object') {
-        const dppkPrefix = ctxBlock['dppk'] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`;
+        const activePrefixes = { ...inheritedPrefixes };
+        for (const [term, mapping] of Object.entries(ctxBlock)) {
+            if (term.startsWith('@')) continue;
+            if (typeof mapping === 'string' && (mapping.startsWith('http://') || mapping.startsWith('https://') || mapping.startsWith('urn:'))) {
+                if (mapping.endsWith('/') || mapping.endsWith('#') || mapping.endsWith(':')) {
+                    activePrefixes[term] = mapping;
+                }
+            }
+        }
 
         for (const [term, mapping] of Object.entries(ctxBlock)) {
             // Skip keywords
             if (term.startsWith('@')) continue;
-            // Skip prefix definitions (values starting with http/urn)
-            if (typeof mapping === 'string' && (mapping.startsWith('http://') || mapping.startsWith('https://') || mapping.startsWith('urn:'))) continue;
+            // Skip prefix definitions (values starting with http/urn that define namespaces)
+            if (typeof mapping === 'string' && (mapping.startsWith('http://') || mapping.startsWith('https://') || mapping.startsWith('urn:')) && (mapping.endsWith('/') || mapping.endsWith('#') || mapping.endsWith(':'))) continue;
 
             let id = null;
             let nestedContext = null;
 
             if (typeof mapping === 'string') {
                 id = mapping;
-            } else if (typeof mapping === 'object') {
+            } else if (typeof mapping === 'object' && mapping !== null) {
                 id = mapping['@id'];
                 nestedContext = mapping['@context'];
             }
 
             if (id) {
-                // Expand dppk:* prefixes dynamically
+                // Expand CURIE prefixes dynamically (supporting both dppk* and declared external bridge prefixes)
                 const parts = id.split(':');
-                if (parts.length === 2 && parts[0].startsWith('dppk')) {
-                    const prefixUrl = ctxBlock[parts[0]] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms${parts[0] === 'dppk' ? '' : '/' + parts[0].replace('dppk-', '')}#`;
-                    id = prefixUrl + parts[1];
+                if (parts.length === 2 && !id.startsWith('http://') && !id.startsWith('https://') && !id.startsWith('urn:')) {
+                    if (parts[0].startsWith('dppk')) {
+                        const prefixUrl = activePrefixes[parts[0]] || `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms${parts[0] === 'dppk' ? '' : '/' + parts[0].replace('dppk-', '')}#`;
+                        id = prefixUrl + parts[1];
+                    } else if (activePrefixes[parts[0]]) {
+                        id = activePrefixes[parts[0]] + parts[1];
+                    }
                 }
-                // contextMap.set(term, id);
                 if (!contextMap.has(term)) {
                     contextMap.set(term, []);
                 }
@@ -236,7 +247,7 @@ export function processContextBlock(ctxBlock, filePath) {
 
             // Recurse into scoped context if present
             if (nestedContext) {
-                processContextBlock(nestedContext, filePath);
+                processContextBlock(nestedContext, filePath, activePrefixes);
             }
         }
     }
@@ -447,6 +458,7 @@ function auditSchemaMappings(reporter) {
                     mappings.forEach(mapping => {
                         const iri = mapping.iri;
                         if (isJsonLdKeyword(iri)) return;
+                        if (isExternalVocabularyIRI(iri)) return;
                         const compactIRI = getCompactIRI(iri);
                         
                         if (ontologyGraph.has(iri)) {
@@ -724,11 +736,17 @@ export function auditTermCollisions(reporter) {
     }
 }
 
+function isExternalVocabularyIRI(iri) {
+    if (isDppkTerm(iri)) return false;
+    return iri.startsWith('http://') || iri.startsWith('https://') || iri.startsWith('urn:');
+}
+
 export function auditContextMappings(reporter) {
     contextMap.forEach((mappings, term) => {
         mappings.forEach(mapping => {
             const iri = mapping.iri;
             if (isJsonLdKeyword(iri)) return;
+            if (isExternalVocabularyIRI(iri)) return;
             const compactIRI = getCompactIRI(iri);
             
             if (!ontologyGraph.has(iri) && !ontologyGraph.has(compactIRI)) {
