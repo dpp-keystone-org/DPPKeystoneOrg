@@ -16,6 +16,7 @@ import NamespaceFactory from '@rdfjs/namespace/Factory.js';
 
 import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
 import { transform } from '../../dist/util/js/common/transformation/dpp-schema-logic.js';
+import { createValidationEngine, validateOpenApi31Suite } from '../../src/examples/openapi/serve-validation-api.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -412,5 +413,81 @@ describe('EC Battery Interoperability Deliverables (Goals 2, 3, 4 & 5)', () => {
         const shaclRes = await validateShaclEndToEnd(ecDpp, allLayeredShapes);
         expect(shaclRes.errors).toEqual([]);
         expect(shaclRes.valid).toBe(true);
+    });
+
+    testIfEcBundle('Goal 6: All 4 OpenAPI 3.1 YAML contracts compile in Ajv 2020-12, validate all inline examples, and power the layered validation engine', async () => {
+        // Collect all EC + Keystone v3 JSON Schemas for OpenAPI $ref resolution
+        const ecSchemaFiles = await walkFiles(EC_SEMANTICS_ROOT, '.schema.json');
+        const externalSchemas = [];
+        for (const f of ecSchemaFiles) {
+            externalSchemas.push(JSON.parse(await fs.readFile(f, 'utf-8')));
+        }
+        const keystoneSchemaFiles = await walkFiles(
+            path.join(PROJECT_ROOT, `src/validation/${KEYSTONE_VERSION}/json-schema`),
+            '.schema.json'
+        );
+        for (const f of keystoneSchemaFiles) {
+            const raw = (await fs.readFile(f, 'utf-8')).replace(/\{\{VERSION\}\}/g, KEYSTONE_VERSION);
+            externalSchemas.push(jsoncParse(raw));
+        }
+
+        const oasResult = await validateOpenApi31Suite(
+            [
+                {
+                    label: 'openapi-dpp-common-public.yml',
+                    filePath: path.join(PROJECT_ROOT, 'ec-bundle/openapi/openapi-dpp-common-public.yml'),
+                    docUri: 'https://openapi.local/ec-bundle/openapi-dpp-common-public.yml'
+                },
+                {
+                    label: 'openapi-dpp-registry-public.yml',
+                    filePath: path.join(PROJECT_ROOT, 'ec-bundle/openapi/openapi-dpp-registry-public.yml'),
+                    docUri: 'https://openapi.local/ec-bundle/openapi-dpp-registry-public.yml'
+                },
+                {
+                    label: 'openapi-dpp-dashboard-public.yml',
+                    filePath: path.join(PROJECT_ROOT, 'ec-bundle/openapi/openapi-dpp-dashboard-public.yml'),
+                    docUri: 'https://openapi.local/ec-bundle/openapi-dpp-dashboard-public.yml'
+                },
+                {
+                    label: 'example-dpp-validation-api.yml',
+                    filePath: path.join(PROJECT_ROOT, 'src/examples/openapi/example-dpp-validation-api.yml'),
+                    docUri: 'https://openapi.local/examples/example-dpp-validation-api.yml'
+                }
+            ],
+            externalSchemas
+        );
+
+        expect(oasResult.errors).toEqual([]);
+        expect(oasResult.compiledSchemas).toBeGreaterThanOrEqual(40);
+        expect(oasResult.validatedExamples).toBeGreaterThanOrEqual(30);
+
+        // Exercise the live validation engine against EV Battery, Textile, Aligned EVB, and MSA audit policy
+        const engine = await createValidationEngine();
+        const reqExamples =
+            engine.validationApiDoc.paths['/v1/dpps/validate'].post.requestBody.content['application/ld+json'].examples;
+
+        const evbRes = await engine.validatePayload(reqExamples.evBatteryPublicDpp.value, { shacl: true });
+        expect(evbRes.statusCode).toBe(200);
+        expect(evbRes.report.conforms).toBe(true);
+        expect(evbRes.report.shaclValidated).toBe(true);
+
+        const textileRes = await engine.validatePayload(reqExamples.esprTextileBatchDpp.value, { shacl: true });
+        expect(textileRes.statusCode).toBe(200);
+        expect(textileRes.report.conforms).toBe(true);
+        expect(textileRes.report.shaclValidated).toBe(true);
+
+        const alignedExample = await readKeystoneJson('src/examples/battery-dpp-ec-aligned-v1.json');
+        const alignedRes = await engine.validatePayload(alignedExample, { shacl: true });
+        expect(alignedRes.statusCode).toBe(200);
+        expect(alignedRes.report.conforms).toBe(true);
+        expect(alignedRes.report.unrecognizedSpecifications).toContain(`urn:dpp-keystone:${KEYSTONE_VERSION}:sector:battery-ev`);
+
+        const msaAuditRes = await engine.validatePayload(reqExamples.evBatteryPublicDpp.value, {
+            requiredSpecs: ['https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res2'],
+            shacl: true
+        });
+        expect(msaAuditRes.statusCode).toBe(422);
+        expect(msaAuditRes.report.conforms).toBe(false);
+        expect(msaAuditRes.report.findings.some((f) => f.stage === 'REQUIRED_SPECIFICATION_POLICY')).toBe(true);
     });
 });

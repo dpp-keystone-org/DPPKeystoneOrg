@@ -1,6 +1,6 @@
 # Reference OpenAPI 3.1 Specification: Layered DPP Validation API
 
-[`market-surveillance-validation-api.yml`](./market-surveillance-validation-api.yml) is a reference **OpenAPI 3.1** contract designed for **Market Surveillance Authorities (MSAs)**, **Customs systems**, **Notified Bodies**, and **DPP Service Providers**.
+[`example-dpp-validation-api.yml`](./example-dpp-validation-api.yml) is a reference **OpenAPI 3.1** contract illustrating how **Market Surveillance Authorities (MSAs)**, **Customs interfaces**, **Notified Bodies**, and **DPP Service Providers** can expose a single multi-sector DPP validation endpoint by layering decoupled conditional schemas.
 
 ## Why This Exists
 
@@ -13,3 +13,15 @@ To support cross-sector products, restricted access tiers (`pub`, `res1`, `res2`
    - If **absent**, the schema evaluates to `true` (stays inactive) with zero interference on other sectors or subgroups.
    - If **present**, the schema enforces its data points (and subgroup schemas also require their parent base-product tier ID).
 3. **Inspection Policy Enforcement (`requireSpecificationId` query parameter)** — Allows an MSA inspector or Notified Body to assert which regulatory specification IDs *must* be declared and satisfied for a given inspection context (preventing an operator from omitting `res1` or `res2` specification IDs to skip restricted-tier checks).
+
+## Running the Interactive OpenAPI Explorer & Live Validator
+
+[`serve-validation-api.mjs`](./serve-validation-api.mjs) launches a local **Swagger UI** explorer across all 4 OpenAPI 3.1 contracts (`example-dpp-validation-api.yml`, `openapi-dpp-registry-public.yml`, `openapi-dpp-dashboard-public.yml`, and `openapi-dpp-common-public.yml`) backed by live **Ajv Draft 2020-12** + **JSON-LD 1.1 / SHACL** validation:
+
+```bash
+# Start interactive Swagger UI + live POST /v1/dpps/validate on http://localhost:3000
+node src/examples/openapi/serve-validation-api.mjs
+
+# Or run the built-in headless HTTP self-test
+node src/examples/openapi/serve-validation-api.mjs --self-test
+```

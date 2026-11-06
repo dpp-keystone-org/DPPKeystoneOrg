@@ -10,7 +10,7 @@ All edits preserve the original directory hierarchy (`core/1.0.0`, `product/batt
 
 ## Running the Automated Parity & Conformance Test Suite
 
-Every file in `semantics/` and `openapi/` is verified by [`verify-ec-bundle-parity.mjs`](./verify-ec-bundle-parity.mjs), which tests:
+Every file in `semantics/` and `openapi/` is verified by [`verify-semantic-integrity.mjs`](./verify-semantic-integrity.mjs), which tests:
 1. **Syntax & Strict Compilation**:
    - Parses all **35 Turtle (`.ttl`)** files (18 SHACL shape graphs + 17 SKOS vocabularies).
    - Validates all **5 JSON-LD 1.1 context (`.jsonld`)** files (verifying removal of `@protected`, `@base`, chained `@import`, and stray top-level `@type`).
@@ -29,7 +29,7 @@ Dependencies are already hoisted to the root `node_modules/` workspace, so no ad
 
 ```bash
 # From the repository root:
-node ec-bundle/verify-ec-bundle-parity.mjs
+node ec-bundle/verify-semantic-integrity.mjs
 
 # Or from inside ec-bundle/:
 npm test

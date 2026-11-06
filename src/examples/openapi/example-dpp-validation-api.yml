@@ -2,27 +2,28 @@ openapi: 3.1.0
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 
 info:
-  title: DPP Layered Validation Service API (Market Surveillance Reference Example)
+  title: DPP Layered Validation Service API
   version: 1.0.0
   license:
     name: Apache 2.0
     identifier: Apache-2.0
   summary: >-
-    Reference OpenAPI 3.1 specification illustrating how Market Surveillance Authorities (MSAs),
-    Notified Bodies, Customs interfaces, and DPP Service Providers validate multi-sector Digital
-    Product Passports by layering decoupled conditional schemas.
+    Reference OpenAPI 3.1 specification illustrating how a single DPP validation endpoint layers
+    the cross-sector DPP Core schema together with decoupled, conditionally self-activating EU
+    Delegated Act and federated sector schemas.
   description: |
     ## Architectural Overview
 
-    Under ESPR (Regulation (EU) 2024/1781) and EN 18223, the central EU DPP Registry only indexes
-    product and passport identifiers — full DPP payloads are hosted decentrally by Economic
-    Operators or DPP Service Providers and inspected on demand by Market Surveillance Authorities
-    (MSAs), Customs systems, Notified Bodies, and downstream value-chain actors.
+    Under ESPR (Regulation (EU) 2024/1781) and EN 18223, the central EU DPP Registry indexes
+    product and passport identifiers (`uniqueProductIdentifier`, `digitalProductPassportId`), while
+    full Digital Product Passports are hosted decentrally and validated on demand by Market
+    Surveillance Authorities (MSAs), Customs interfaces, Notified Bodies, Economic Operators, and
+    DPP Service Providers.
 
     Because every sector schema and access-tier slice is **decoupled** and **conditionally
-    self-activating** based on `contentSpecificationIds`, a validation endpoint does **not** need
-    per-sector endpoints (such as `/validate/batteries` or `/validate/textiles`). Instead, a single
-    endpoint composes all recognized schemas via `allOf`:
+    self-activating** based on `contentSpecificationIds`, a validation service does **not** need
+    product-specific endpoints (such as `/validate/batteries` or `/validate/textiles`). Instead, a
+    single endpoint composes all recognized schemas via `allOf`:
 
     1. **Always-Active Core Envelope (`core.schema.json`)**: Enforces cross-sector ESPR / EN 18223
        header invariants (`digitalProductPassportId`, `uniqueProductIdentifier`, `granularity`,
@@ -31,20 +32,23 @@ info:
        access-tier schema (`pub`, `res1`, `res2`, `res3`) uses JSON Schema `if`/`then` (mirrored by
        SHACL Core `sh:or` / `sh:not`) to enforce its constraints **only when** its unique
        `contentSpecificationId` URI is present in `contentSpecificationIds`.
-    3. **Conditionally Activated Federated & Industry Schemas**: Federated specifications (such as
-       DPP Keystone, GS1, Catena-X, or CIRPASS profiles) sit in the exact same `allOf` list and
-       activate only when their URN/URI is declared in `contentSpecificationIds`.
+    3. **Conditionally Activated Other ESPR Sector & Federated Schemas**: Additional ESPR product
+       groups and federated specifications (e.g., Textiles, Iron & Steel, Construction, Electronics)
+       sit in the exact same `allOf` list and activate only when their specification ID is declared
+       in `contentSpecificationIds`.
 
-    ### Guarding Against Omitted Mandatory Specifications During MSA Inspections
+    ### Guarding Against Omitted Mandatory Specifications During Inspections
     Self-activation validates every specification a payload *claims* in `contentSpecificationIds`.
-    During a regulatory inspection (for example, an MSA inspecting an Electric Vehicle Battery
-    under `RES2` authority), the caller can pass `requireSpecificationId` query parameters to
-    assert that the submitted DPP **must** also include—and therefore activate and satisfy—specific
+    During a regulatory audit (for example, an MSA inspecting an Electric Vehicle Battery up to
+    `RES2` authority), the caller can pass `requireSpecificationId` query parameters to assert that
+    the submitted DPP **must** also include—and therefore activate and satisfy—specific
     delegated-act and access-tier specification URIs.
 
 servers:
-  - url: https://validator.market-surveillance.example.eu
-    description: Example Market Surveillance DPP Validation Service
+  - url: http://localhost:3000
+    description: Local reference validation server (`node src/examples/openapi/serve-validation-api.mjs`)
+  - url: https://validator.product-passport.example.eu
+    description: Example hosted DPP Validation Service
 
 tags:
   - name: Validation
@@ -76,28 +80,117 @@ paths:
             schema:
               $ref: '#/components/schemas/LayeredDigitalProductPassport'
             examples:
-              evBatteryFullItemDpp:
-                summary: EV Battery item-level DPP claiming EC Core + EC EVB (pub/res1/res2/res3) + Keystone EV extension
+              evBatteryPublicDpp:
+                summary: EV Battery public item-level DPP activating EC Core + EC Battery (pub) + EC EVB (pub)
                 value:
                   '@context':
                     - https://dpp-keystone.org/spec/contexts/v3/dpp-battery.context.jsonld
                     - https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld
                     - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld
-                  id: https://dpp-keystone.org/dpp/evb-gen2-001
-                  type:
-                    - DigitalProductPassport
-                    - BatteryProduct
-                  digitalProductPassportId: https://dpp-keystone.org/dpp/evb-gen2-001
-                  uniqueProductIdentifier: https://id.gs1.org/01/09521234567893/21/SN-EVB-2026-00001
+                  id: https://www.example.org/dpp/evb-001
+                  type: DigitalProductPassport
+                  digitalProductPassportId: https://www.example.org/dpp/evb-001
+                  uniqueProductIdentifier: https://www.example.org/evb-001
                   granularity: item
                   dppStatus: validStatus
-                  lastUpdate: '2026-05-21T10:00:00Z'
+                  lastUpdate: '2025-08-22T03:12:00Z'
                   contentSpecificationIds:
                     - https://repository.product-passport.ec.europa.eu/core/1.0.0
                     - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub
                     - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
-                    - urn:dpp-keystone:v3:sector:battery-ev
-              federatedTextileDpp:
+                  registrantIdentity: urn:uuid:3f1c7a52-8d4e-4b1a-9c2e-5a6b7d8e9f01
+                  manufacturerIdentification:
+                    manufacturerName: Iberia Battery Systems S.L.
+                    manufacturerTradeName: IberiaCell
+                    manufacturerTrademark: IberiaCell(R)
+                  manufacturerPostalAddress: Calle de Alcalá 100, 28009 Madrid, Spain
+                  manufacturerContactDetails:
+                    manufacturerWebsite: https://www.example.com
+                    manufacturerEmail: info@example.com
+                  batteryCategory: electricVehicleBattery
+                  batteryIdentification:
+                    modelIdentifier: IC-120-NMC
+                    batchNumber: BATCH-2026-03-A
+                    serialNumber: SN-EVB-2026-00001
+                  manufacturingPlace:
+                    manufacturingCity: Zaragoza
+                    manufacturingRegion: Aragón
+                    manufacturingCountry: ESP
+                  manufacturingDate: '2026-03'
+                  serviceDate: '2026-04-15'
+                  batteryWeight: 450.5
+                  batteryCapacity: 120
+                  batteryChemistry:
+                    - lithiumIonNMC
+                  hazardousSubstances:
+                    - Lithium hexafluorophosphate (LiPF6)
+                  extinguishingAgent:
+                    en: Large quantities of water; dry chemical powder (Class D) for small fires
+                    de-DE: Große Mengen Wasser; Metallbrandpulver (Klasse D) für Entstehungsbrände
+                  criticalRawMaterials:
+                    - cobalt
+                    - lithium
+                    - graphite
+                    - nickelBatteryGrade
+                  renewableContentShare: 15.2
+                  minimalVoltage: 300
+                  nominalVoltage: 400
+                  nominalVoltageMinTemp: -20
+                  nominalVoltageMaxTemp: 45
+                  maximumVoltage: 450
+                  originalPowerCapability: 150000
+                  powerLimit: 180000
+                  powerLimitMinTemp: -10
+                  powerLimitMaxTemp: 40
+                  notInUseTemperatureRange:
+                    lowerBound: -20
+                    upperBound: 50
+                    notInUseTemperatureRangeTest:
+                      en: IEC 62660-2 storage test
+                      de-DE: IEC 62660-2 Lagertest
+                  commercialWarrantyPeriod: 96
+                  internalCellResistance: 0.0012
+                  internalPackResistance: 0.045
+                  cycleLifeDischargeCRate: 1.0
+                  separateCollectionSymbol: true
+                  chemicalSymbol:
+                    - noneSymbol
+                  euDeclarationOfConformity:
+                    resourceTitle: EU declaration of conformity file
+                    contentType: application/pdf
+                    url: https://example.com/docs/eu-doc-0001.pdf
+                    language: en-GB
+                  wasteBatteryPreventionManagementInfo:
+                    endUserRoleInWastePrevention:
+                      en: End users should avoid mechanical damage and follow the usage instructions.
+                      de-DE: Endnutzer sollten mechanische Beschädigungen vermeiden und die Gebrauchsanweisung beachten.
+                    endUserRoleInSeparateCollection:
+                      en-IE: End users must not dispose of batteries as unsorted municipal waste.
+                    separateCollectionPoints:
+                      en-IE: https://example.com/collection-points
+                    takeBackCollectionPoints:
+                      en-IE: Return to any authorised dealer free of charge.
+                    preparationForReuseFacilities:
+                      en-IE: 'Authorised facility: Iberia Reuse Centre, Zaragoza.'
+                    preparationForRepurposingFacilities:
+                      en-IE: 'Authorised facility: Iberia Second-Life Hub, Valencia.'
+                    wasteBatteryTreatmentFacilities:
+                      en-IE: 'Authorised recycling plant: Recycla Ibérica, Bilbao.'
+                    wasteBatterySafetyInstructions:
+                      en-IE: Store damaged batteries in a dry, ventilated, non-flammable container.
+                    batteryLabelSymbolMeaning:
+                      en-IE: The crossed-out wheelie bin symbol indicates separate collection is required.
+                    batterySubstancesImpact:
+                      en-IE: Improper disposal may release electrolyte and heavy metals into soil and water.
+                  expectedLifetimeCycles: 1500
+                  cycleLifeReferenceTest:
+                    en: ISO 12405-4 cycle life test
+                    de-DE: ISO 12405-4 Zykluslebensdauertest
+                  capacityExhaustionThreshold: 80
+                  initialRoundTripEnergyEfficiency: 94.5
+                  roundTripEfficiencyAtHalfCycleLife: 91.0
+                  cycleLifeChargeCRate: 0.5
+              esprTextileBatchDpp:
                 summary: Non-battery DPP (Textile) hitting the exact same endpoint — all 16 battery schemas stay inactive
                 value:
                   '@context':
@@ -111,7 +204,31 @@ paths:
                   dppStatus: validStatus
                   lastUpdate: '2026-06-01T08:30:00Z'
                   contentSpecificationIds:
-                    - urn:dpp-keystone:v3:sector:textile
+                    - https://repository.product-passport.ec.europa.eu/core/1.0.0
+                    - draft_textile_espr_specification_id
+                  productName:
+                    en: Everyday Comfort Crew Socks ESPR Edition (3-Pack)
+                  pefcrCategory: Leggings, stockings, tights and socks
+                  fibreComposition:
+                    - name: Cotton
+                      percentage: 85
+                    - name: Polyamide
+                      percentage: 13
+                    - name: Elastane
+                      percentage: 2
+                  color: Black
+                  animalOriginNonTextile: false
+                  euApparelSize:
+                    sizeDesignation: EU 42-45
+                    primaryDimension: Foot length
+                    primaryDimensionValue: 26.5-28.5 cm
+                  productionSteps:
+                    - step: Spinning
+                      countryCode: TUR
+                    - step: Knitting
+                      countryCode: PRT
+                  robustnessScore: 8.5
+                  recyclabilityScore: 7
           application/json:
             schema:
               $ref: '#/components/schemas/LayeredDigitalProductPassport'
@@ -130,13 +247,12 @@ paths:
                   summary: Conforming EV Battery passport report
                   value:
                     conforms: true
-                    digitalProductPassportId: https://dpp-keystone.org/dpp/evb-gen2-001
-                    uniqueProductIdentifier: https://id.gs1.org/01/09521234567893/21/SN-EVB-2026-00001
+                    digitalProductPassportId: https://www.example.org/dpp/evb-001
+                    uniqueProductIdentifier: https://www.example.org/evb-001
                     activatedSpecifications:
                       - https://repository.product-passport.ec.europa.eu/core/1.0.0
                       - https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub
                       - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
-                      - urn:dpp-keystone:v3:sector:battery-ev
                     unrecognizedSpecifications: []
                     shaclValidated: true
                     findings: []
@@ -156,8 +272,8 @@ paths:
                   summary: Non-conforming DPP report with structured JSON Schema & SHACL findings
                   value:
                     conforms: false
-                    digitalProductPassportId: https://dpp-keystone.org/dpp/evb-gen2-001
-                    uniqueProductIdentifier: https://id.gs1.org/01/09521234567893/21/SN-EVB-2026-00001
+                    digitalProductPassportId: https://www.example.org/dpp/evb-001
+                    uniqueProductIdentifier: https://www.example.org/evb-001
                     activatedSpecifications:
                       - https://repository.product-passport.ec.europa.eu/core/1.0.0
                       - https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub
@@ -296,12 +412,9 @@ components:
         - $ref: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/schemas/res3-lmt.schema.json'
 
         # -----------------------------------------------------------------------
-        # 4. Federated Sector & Value-Chain Extensions (Conditional)
-        #    Activates on: urn:dpp-keystone:v3:sector:{battery-ev,battery-industrial,battery-lmv,textile,iron-steel,construction,electronics}
+        # 4. Additional ESPR Product Groups & Federated Sector Schemas (Conditional)
+        #    Activates only when their respective contentSpecificationId is claimed
         # -----------------------------------------------------------------------
-        - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-ev.schema.json'
-        - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-industrial.schema.json'
-        - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/battery-lmv.schema.json'
         - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/textile.schema.json'
         - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/iron-steel.schema.json'
         - $ref: 'https://dpp-keystone.org/spec/validation/v3/json-schema/sector/construction.schema.json'

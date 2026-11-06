@@ -3,6 +3,7 @@ import path from 'path';
 import { Readable } from 'stream';
 import { fileURLToPath } from 'url';
 
+import yaml from 'js-yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import jsonld from 'jsonld';
@@ -1013,6 +1014,36 @@ async function main() {
         pass('openapi-dpp-common-public.yml PageMetadata.size specifies minimum: 1, maximum: 100.');
     }
 
+    const oasResult = await validateOpenApi31Suite(
+        [
+            {
+                label: 'openapi-dpp-common-public.yml',
+                filePath: path.join(OPENAPI_ROOT, 'openapi-dpp-common-public.yml'),
+                docUri: 'https://openapi.local/ec-bundle/openapi-dpp-common-public.yml'
+            },
+            {
+                label: 'openapi-dpp-registry-public.yml',
+                filePath: path.join(OPENAPI_ROOT, 'openapi-dpp-registry-public.yml'),
+                docUri: 'https://openapi.local/ec-bundle/openapi-dpp-registry-public.yml'
+            },
+            {
+                label: 'openapi-dpp-dashboard-public.yml',
+                filePath: path.join(OPENAPI_ROOT, 'openapi-dpp-dashboard-public.yml'),
+                docUri: 'https://openapi.local/ec-bundle/openapi-dpp-dashboard-public.yml'
+            }
+        ],
+        [...schemasByRel.values()]
+    );
+    if (oasResult.errors.length > 0) {
+        for (const err of oasResult.errors) {
+            fail(`OpenAPI 3.1 validation error: ${err}`);
+        }
+    } else {
+        pass(
+            `Parsed all 3 OpenAPI 3.1 YAML contracts, resolved ${oasResult.resolvedRefs} $refs, compiled ${oasResult.compiledSchemas} schemas in Ajv 2020-12, and validated ${oasResult.validatedExamples} inline examples.`
+        );
+    }
+
     console.log('\n====================================================================');
     if (totalFailures === 0) {
         console.log(' 🎉 ALL EC BUNDLE CHECKS & SHACL <> JSON SCHEMA PARITY TESTS PASSED!');
@@ -1024,9 +1055,313 @@ async function main() {
     }
 }
 
+function qualifySchemaRefs(node, docUri) {
+    if (!node || typeof node !== 'object') return node;
+    if (Array.isArray(node)) return node.map((item) => qualifySchemaRefs(item, docUri));
+    const out = {};
+    for (const [k, v] of Object.entries(node)) {
+        if (k === '$ref' && typeof v === 'string' && !/^https?:\/\//.test(v)) {
+            out[k] = new URL(v, docUri).href;
+        } else {
+            out[k] = qualifySchemaRefs(v, docUri);
+        }
+    }
+    return out;
+}
+
+function resolveJsonPointer(rootObj, pointer) {
+    const clean = pointer.startsWith('#') ? pointer.slice(1) : pointer;
+    if (!clean || clean === '/') return rootObj;
+    const parts = clean
+        .split('/')
+        .slice(1)
+        .map((seg) => seg.replace(/~1/g, '/').replace(/~0/g, '~'));
+    let cur = rootObj;
+    for (const part of parts) {
+        if (cur === null || cur === undefined || typeof cur !== 'object' || !(part in cur)) {
+            return undefined;
+        }
+        cur = cur[part];
+    }
+    return cur;
+}
+
+/**
+ * Parses OpenAPI 3.1 YAML files, verifies structural rules and cross-file/external $refs,
+ * compiles every component and inline schema in Ajv Draft 2020-12, and validates all inline
+ * OpenAPI and JSON Schema examples against their compiled schemas.
+ */
+export async function validateOpenApi31Suite(specEntries, externalSchemas = []) {
+    const errors = [];
+    let resolvedRefs = 0;
+    let compiledSchemas = 0;
+    let validatedExamples = 0;
+
+    const docsByUri = new Map();
+    const parsedEntries = [];
+
+    for (const entry of specEntries) {
+        let doc;
+        try {
+            const raw = await fs.readFile(entry.filePath, 'utf-8');
+            doc = yaml.load(raw);
+        } catch (err) {
+            errors.push(`${entry.label}: YAML parse failed: ${err.message}`);
+            continue;
+        }
+        if (!doc || typeof doc !== 'object') {
+            errors.push(`${entry.label}: Root YAML document must be an object`);
+            continue;
+        }
+        if (!/^3\.1\.\d+$/.test(String(doc.openapi || ''))) {
+            errors.push(`${entry.label}: Expected openapi 3.1.x, got "${doc.openapi}"`);
+        }
+        if (typeof doc.info?.title !== 'string' || !doc.info.title.trim()) {
+            errors.push(`${entry.label}: Missing info.title`);
+        }
+        if (typeof doc.info?.version !== 'string' || !doc.info.version.trim()) {
+            errors.push(`${entry.label}: Missing info.version`);
+        }
+        if (!doc.paths && !doc.components) {
+            errors.push(`${entry.label}: Must define at least paths or components`);
+        }
+        docsByUri.set(entry.docUri, doc);
+        parsedEntries.push({ ...entry, doc });
+    }
+
+    const oasAjv = new Ajv2020({ strict: true, allowUnionTypes: true, allErrors: true });
+    addFormats(oasAjv);
+    oasAjv.addKeyword('components');
+    oasAjv.addKeyword('discriminator');
+
+    for (const extSchema of externalSchemas) {
+        if (extSchema?.$id && !oasAjv.getSchema(extSchema.$id)) {
+            oasAjv.addSchema(extSchema);
+        }
+    }
+
+    for (const { label, docUri, doc } of parsedEntries) {
+        try {
+            oasAjv.addSchema({
+                $id: docUri,
+                components: {
+                    schemas: qualifySchemaRefs(doc.components?.schemas || {}, docUri)
+                }
+            });
+        } catch (err) {
+            errors.push(`${label}: Failed to register components.schemas in Ajv: ${err.message}`);
+        }
+    }
+
+    const resolveOasNode = (node, docUri, contextLabel) => {
+        let cur = node;
+        let curUri = docUri;
+        let depth = 0;
+        while (cur && typeof cur === 'object' && typeof cur.$ref === 'string') {
+            if (++depth > 16) {
+                errors.push(`${contextLabel}: Circular $ref "${cur.$ref}"`);
+                return { node: null, docUri: curUri };
+            }
+            const fullHref = new URL(cur.$ref, curUri).href;
+            const [baseUri, hash = ''] = fullHref.split('#');
+            if (!docsByUri.has(baseUri)) {
+                errors.push(`${contextLabel}: Unresolvable OpenAPI $ref "${cur.$ref}"`);
+                return { node: null, docUri: curUri };
+            }
+            cur = resolveJsonPointer(docsByUri.get(baseUri), hash ? `#${hash}` : '');
+            curUri = baseUri;
+            if (cur === undefined) {
+                errors.push(`${contextLabel}: Broken JSON pointer in $ref "${fullHref}"`);
+                return { node: null, docUri: curUri };
+            }
+        }
+        return { node: cur, docUri: curUri };
+    };
+
+    const verifyRefsRecursive = (node, docUri, label, trail = '') => {
+        if (!node || typeof node !== 'object') return;
+        if (Array.isArray(node)) {
+            node.forEach((item, idx) => verifyRefsRecursive(item, docUri, label, `${trail}[${idx}]`));
+            return;
+        }
+        if (typeof node.$ref === 'string') {
+            resolvedRefs++;
+            const fullHref = new URL(node.$ref, docUri).href;
+            const [baseUri, hash = ''] = fullHref.split('#');
+            if (docsByUri.has(baseUri)) {
+                if (resolveJsonPointer(docsByUri.get(baseUri), hash ? `#${hash}` : '') === undefined) {
+                    errors.push(`${label}${trail}: Broken $ref "${node.$ref}"`);
+                }
+            } else if (!oasAjv.getSchema(fullHref)) {
+                errors.push(`${label}${trail}: Unresolved external schema $ref "${node.$ref}"`);
+            }
+        }
+        if (node.discriminator && typeof node.discriminator === 'object' && !Array.isArray(node.discriminator)) {
+            if (typeof node.discriminator.propertyName !== 'string' || !node.discriminator.propertyName) {
+                errors.push(`${label}${trail}.discriminator: Missing propertyName`);
+            }
+            for (const [discVal, targetRef] of Object.entries(node.discriminator.mapping || {})) {
+                resolvedRefs++;
+                const fullHref = new URL(targetRef, docUri).href;
+                const [baseUri, hash = ''] = fullHref.split('#');
+                if (docsByUri.has(baseUri)) {
+                    if (resolveJsonPointer(docsByUri.get(baseUri), hash ? `#${hash}` : '') === undefined) {
+                        errors.push(`${label}${trail}.discriminator.mapping.${discVal}: Broken target "${targetRef}"`);
+                    }
+                } else if (!oasAjv.getSchema(fullHref)) {
+                    errors.push(`${label}${trail}.discriminator.mapping.${discVal}: Unresolved target "${targetRef}"`);
+                }
+            }
+        }
+        for (const [k, v] of Object.entries(node)) {
+            if (k !== '$ref') verifyRefsRecursive(v, docUri, label, `${trail}.${k}`);
+        }
+    };
+
+    const checkExampleValue = (validateFn, val, exLabel) => {
+        validatedExamples++;
+        const ok = validateFn(structuredClone(val));
+        if (!ok) {
+            const msg = (validateFn.errors || []).map((e) => `${e.instancePath || '/'} ${e.message}`).join('; ');
+            errors.push(`${exLabel}: Example failed schema validation: ${msg}`);
+        }
+    };
+
+    const compileAndCheckLeaf = (leafObj, leafDocUri, leafLabel) => {
+        if (!leafObj?.schema) return;
+        const qualified = qualifySchemaRefs(leafObj.schema, leafDocUri);
+        const { $id: _ignoredId, ...anonSchema } = qualified;
+        let validateFn;
+        try {
+            validateFn = oasAjv.compile(anonSchema);
+            compiledSchemas++;
+        } catch (err) {
+            errors.push(`${leafLabel}: Schema compilation failed: ${err.message}`);
+            return;
+        }
+        if (Array.isArray(leafObj.schema.examples)) {
+            leafObj.schema.examples.forEach((ex, i) => checkExampleValue(validateFn, ex, `${leafLabel}.schema.examples[${i}]`));
+        }
+        if (leafObj.example !== undefined) {
+            checkExampleValue(validateFn, leafObj.example, `${leafLabel}.example`);
+        }
+        if (leafObj.examples && typeof leafObj.examples === 'object' && !Array.isArray(leafObj.examples)) {
+            for (const [exName, rawEx] of Object.entries(leafObj.examples)) {
+                const { node: exObj } = resolveOasNode(rawEx, leafDocUri, `${leafLabel}.examples.${exName}`);
+                if (exObj && Object.prototype.hasOwnProperty.call(exObj, 'value')) {
+                    checkExampleValue(validateFn, exObj.value, `${leafLabel}.examples.${exName}`);
+                }
+            }
+        }
+    };
+
+    const HTTP_METHODS = ['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace'];
+
+    for (const { label, docUri, doc } of parsedEntries) {
+        verifyRefsRecursive(doc, docUri, label);
+
+        // 1. Compile every components.schemas.* and validate schema-level & property-level examples
+        for (const [schemaName, schemaObj] of Object.entries(doc.components?.schemas || {})) {
+            const schemaLabel = `${label}#/components/schemas/${schemaName}`;
+            let validateFn;
+            try {
+                validateFn = oasAjv.getSchema(`${docUri}#/components/schemas/${schemaName}`);
+                if (!validateFn) throw new Error('Schema not found after registration');
+                compiledSchemas++;
+            } catch (err) {
+                errors.push(`${schemaLabel}: Compilation failed: ${err.message}`);
+                continue;
+            }
+            if (Array.isArray(schemaObj?.examples)) {
+                schemaObj.examples.forEach((ex, i) => checkExampleValue(validateFn, ex, `${schemaLabel}.examples[${i}]`));
+            }
+            for (const [propName, propSchema] of Object.entries(schemaObj?.properties || {})) {
+                if (Array.isArray(propSchema?.examples)) {
+                    compileAndCheckLeaf({ schema: propSchema }, docUri, `${schemaLabel}.properties.${propName}`);
+                }
+            }
+        }
+
+        // 2. Compile components.parameters, components.headers, components.responses
+        for (const [pName, pObj] of Object.entries(doc.components?.parameters || {})) {
+            const { node, docUri: u } = resolveOasNode(pObj, docUri, `${label}#/components/parameters/${pName}`);
+            if (node) compileAndCheckLeaf(node, u, `${label}#/components/parameters/${pName}`);
+        }
+        for (const [hName, hObj] of Object.entries(doc.components?.headers || {})) {
+            const { node, docUri: u } = resolveOasNode(hObj, docUri, `${label}#/components/headers/${hName}`);
+            if (node) compileAndCheckLeaf(node, u, `${label}#/components/headers/${hName}`);
+        }
+        for (const [rName, rObj] of Object.entries(doc.components?.responses || {})) {
+            const { node, docUri: u } = resolveOasNode(rObj, docUri, `${label}#/components/responses/${rName}`);
+            for (const [mt, mtObj] of Object.entries(node?.content || {})) {
+                compileAndCheckLeaf(mtObj, u, `${label}#/components/responses/${rName}.content[${mt}]`);
+            }
+        }
+
+        // 3. Validate paths, operations, parameters, requestBodies, and responses
+        const seenOperationIds = new Set();
+        for (const [routePath, pathItem] of Object.entries(doc.paths || {})) {
+            const templateParams = [...routePath.matchAll(/\{([^}]+)\}/g)].map((m) => m[1]);
+            const pathLevelParams = (pathItem?.parameters || [])
+                .map((p, i) => resolveOasNode(p, docUri, `${label}.paths[${routePath}].parameters[${i}]`).node)
+                .filter(Boolean);
+
+            for (const method of HTTP_METHODS) {
+                const op = pathItem?.[method];
+                if (!op) continue;
+                const opLabel = `${label} ${method.toUpperCase()} ${routePath}`;
+
+                if (op.operationId) {
+                    if (seenOperationIds.has(op.operationId)) {
+                        errors.push(`${opLabel}: Duplicate operationId "${op.operationId}"`);
+                    }
+                    seenOperationIds.add(op.operationId);
+                }
+
+                const opParams = [];
+                for (const [i, rawParam] of (op.parameters || []).entries()) {
+                    const { node: pNode, docUri: pUri } = resolveOasNode(rawParam, docUri, `${opLabel}.parameters[${i}]`);
+                    if (pNode) {
+                        opParams.push(pNode);
+                        compileAndCheckLeaf(pNode, pUri, `${opLabel}.parameters[${pNode.name || i}]`);
+                    }
+                }
+
+                const combinedParams = [...pathLevelParams, ...opParams];
+                for (const tplParam of templateParams) {
+                    const found = combinedParams.find((p) => p.in === 'path' && p.name === tplParam && p.required === true);
+                    if (!found) {
+                        errors.push(`${opLabel}: Missing required path parameter definition for "{${tplParam}}"`);
+                    }
+                }
+
+                if (op.requestBody) {
+                    const { node: rbNode, docUri: rbUri } = resolveOasNode(op.requestBody, docUri, `${opLabel}.requestBody`);
+                    for (const [mt, mtObj] of Object.entries(rbNode?.content || {})) {
+                        compileAndCheckLeaf(mtObj, rbUri, `${opLabel}.requestBody.content[${mt}]`);
+                    }
+                }
+
+                for (const [statusCode, rawResp] of Object.entries(op.responses || {})) {
+                    const { node: respNode, docUri: respUri } = resolveOasNode(rawResp, docUri, `${opLabel}.responses[${statusCode}]`);
+                    for (const [mt, mtObj] of Object.entries(respNode?.content || {})) {
+                        compileAndCheckLeaf(mtObj, respUri, `${opLabel}.responses[${statusCode}].content[${mt}]`);
+                    }
+                    for (const [hName, rawHeader] of Object.entries(respNode?.headers || {})) {
+                        const { node: hNode, docUri: hUri } = resolveOasNode(rawHeader, respUri, `${opLabel}.responses[${statusCode}].headers[${hName}]`);
+                        if (hNode) compileAndCheckLeaf(hNode, hUri, `${opLabel}.responses[${statusCode}].headers[${hName}]`);
+                    }
+                }
+            }
+        }
+    }
+
+    return { errors, resolvedRefs, compiledSchemas, validatedExamples };
+}
+
 if (path.resolve(process.argv[1] || '') === path.resolve(__filename)) {
     main().catch((err) => {
-        console.error('Fatal error in verify-ec-bundle-parity.mjs:', err);
+        console.error('Fatal error in verify-semantic-integrity.mjs:', err);
         process.exit(1);
     });
 }
