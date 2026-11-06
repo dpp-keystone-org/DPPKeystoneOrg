@@ -1,0 +1,54 @@
+:root {
+  --primary-color: #bb86fc;
+  --secondary-color: #03dac6;
+  --background-light: #121212;
+  --text-dark: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --border-color: #333;
+}
+
+body {
+  background-color: #000;
+  color: var(--text-dark);
+}
+
+.dpp-container {
+  background: #1e1e1e;
+  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+header.dpp-hero {
+  background: #1e1e1e;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dpp-metadata {
+  background: #333;
+  color: #fff;
+}
+
+.dpp-card {
+  background: #2c2c2c;
+  border-color: var(--border-color);
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+  border-bottom-color: #555;
+}
+
+tr:nth-child(even) {
+  background-color: #252525;
+}
+
+tr:hover {
+  background-color: #333;
+}
+
+/* Override input/select styles if any */
+input, select {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
