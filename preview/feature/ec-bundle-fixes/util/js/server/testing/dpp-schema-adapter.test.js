@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { transformDpp } from '../dpp-schema-adapter.js?v=1793972249964';
+import { transformDpp } from '../dpp-schema-adapter.js?v=1793977743676';
 
 describe('Server Adapter Loader Integration', () => {
     
