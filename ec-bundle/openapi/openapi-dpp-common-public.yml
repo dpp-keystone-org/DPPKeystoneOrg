@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: DPP Common OpenAPI Components
+  version: 1.0.0
+  license:
+    name: European Union Public Licence v. 1.2
+    identifier: EUPL-1.2
+
+  description: Shared reusable OpenAPI components for DPP service contracts.
+
+components:
+  responses:
+    BadRequest:
+      description: Bad request — the request payload or parameters failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    Unauthorized:
+      description: Authentication is required or the supplied credentials are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    Forbidden:
+      description: Caller is authenticated but not authorised to perform the operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    Conflict:
+      description: The operation conflicts with the current resource state or an idempotency rule.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    UnprocessableEntity:
+      description: Semantic validation failed — the request is syntactically valid but violates business rules.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    InternalServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    PayloadTooLarge:
+      description: Request body exceeds the maximum allowed size. This limit is enforced at the backend application level.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+    TooManyRequests:
+      description: >-
+        Rate limit exceeded. The client has sent too many requests in a given time period.
+        The Retry-After header indicates when the client may retry.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrorMessage'
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      required: false
+      description: Zero-based page index.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+        default: 0
+    SizeParam:
+      name: size
+      in: query
+      required: false
+      description: Page size (max 100).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+        default: 25
+
+  headers:
+    RetryAfter:
+      description: Number of seconds to wait before retrying the request after rate limit is exceeded.
+      schema:
+        type: integer
+        format: int32
+        examples:
+          - 60
+    CorrelationId:
+      description: Effective correlation identifier for end-to-end tracing and support diagnostics.
+      schema:
+        type: string
+        maxLength: 128
+        examples:
+          - corr_01J1REG
+    Location:
+      description: Canonical URI of the created resource or accepted task.
+      schema:
+        type: string
+        format: uri-reference
+
+  schemas:
+    ApiErrorMessage:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          examples:
+            - Unauthorized
+        code:
+          type: string
+          description: Optional high-level machine-readable error code.
+          examples:
+            - CONFLICT
+        subCode:
+          type: string
+          description: Optional domain-specific machine-readable code providing a more precise error classification.
+          examples:
+            - CONFLICT_ASYNC_OPERATION_IN_PROGRESS
+        status:
+          type: integer
+          format: int32
+          description: HTTP status code
+          examples:
+            - 401
+        correlationId:
+          type: string
+          description: Optional correlation id for support/logs.
+          examples:
+            - corr_01J1REG
+        timestamp:
+          type: string
+          format: date-time
+          description: Optional error generation time (UTC).
+          examples:
+            - '2026-04-13T09:00:00Z'
+
+    PageMetadata:
+      type: object
+      description: >-
+        Shared pagination metadata. Concrete paginated envelopes compose this schema
+        with `allOf` and add a required `content` array of their item type.
+      required:
+        - page
+        - size
+        - totalElements
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+          description: Zero-based page index of the current page.
+          examples:
+            - 0
+        size:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          description: Requested page size.
+          examples:
+            - 25
+        totalElements:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Total number of elements matching the query.
+          examples:
+            - 1
+
+    AcceptedAsyncOperation:
+      type: object
+      required:
+        - taskId
+        - submittedAt
+        - taskType
+        - correlationId
+      description: >-
+        Acknowledgement returned when an asynchronous operation is accepted and a task has been opened.
+        Shared by all DPP services. The task state itself is tracked via the Dashboard service.
+      properties:
+        taskId:
+          type: string
+          description: Task identifier. Tasks are tracked via the Dashboard service for centralised task management.
+          examples:
+            - task_01J1REG001
+        submittedAt:
+          type: string
+          format: date-time
+          description: Timestamp at which the task-bearing request was accepted.
+          examples:
+            - '2026-04-20T08:28:44Z'
+        taskType:
+          type: string
+          description: Task type created by this operation.
+          examples:
+            - DPP_REGISTRATION
+        correlationId:
+          type: string
+          description: Effective correlation identifier for tracing and support.
+          examples:
+            - corr_01J1REG
+        estimatedPeriodCompletionTime:
+          type:
+            - string
+            - 'null'
+          format: duration
+          description: Optional estimated time period until completion, expressed as an ISO 8601 duration.
+          examples:
+            - PT10S
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of the latest task update.
+          examples:
+            - '2026-04-20T08:28:44Z'
+      examples:
+        - taskId: task_01J1REG001
+          taskType: DPP_REGISTRATION
+          correlationId: corr_01J1REG
+          submittedAt: '2026-04-20T08:28:44Z'
+          updatedAt: '2026-04-20T08:28:44Z'
+          estimatedPeriodCompletionTime: PT10S

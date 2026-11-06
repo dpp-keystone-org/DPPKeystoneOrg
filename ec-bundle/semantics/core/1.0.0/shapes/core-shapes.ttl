@@ -1,0 +1,179 @@
+# SPDX-License-Identifier: EUPL-1.2
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpp-shapes: <https://repository.product-passport.ec.europa.eu/core/shapes/> .
+@prefix dpp: <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#> .
+@prefix dppgra: <https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level#> .
+@prefix dppins: <https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status#> .
+
+dpp-shapes:core-shapes
+    a sh:NodeShape ;
+    sh:targetClass dpp:DigitalProductPassport ;
+
+    sh:property [
+        sh:path dpp:digitalProductPassportId ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-001"
+    ] ;
+
+    sh:property [
+        sh:path dpp:uniqueProductIdentifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-002"
+    ] ;
+
+    sh:property [
+        sh:path dpp:granularity ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( dppgra:model dppgra:batch dppgra:item ) ;
+        sh:message "SEM-MSG-003"
+    ] ;
+
+    sh:property [
+        sh:path dpp:dppStatus ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( dppins:validStatus dppins:invalidStatus ) ;
+        sh:message "SEM-MSG-005"
+    ] ;
+
+    sh:property [
+        sh:path dpp:lastUpdate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:pattern "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$" ;
+        sh:message "SEM-MSG-006"
+    ] ;
+
+    sh:property [
+        sh:path dpp:contentSpecificationIds ;
+        sh:minCount 0 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-009"
+    ] ;
+
+    sh:property [
+        sh:path dpp:additionalProductIdentifiers ;
+        sh:minCount 0 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-010"
+    ] ;
+
+    sh:property [
+        sh:path dpp:dppSchemaVersion ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-011"
+    ] ;
+
+    sh:property [
+        sh:path dpp:economicOperatorId ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-012"
+    ] ;
+
+    sh:property [
+        sh:path dpp:facilityId ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-013"
+    ] ;
+
+    sh:property [
+        sh:path dpp:productName ;
+        sh:minCount 0 ;
+        sh:datatype rdf:langString ;
+        sh:minLength 1 ;
+        sh:message "SEM-MSG-014"
+    ] ;
+
+    sh:property [
+        sh:path dpp:productName ;
+        sh:message "SEM-COM-MSG-012" ;
+        sh:sparql [
+            a sh:SPARQLConstraint ;
+            sh:select """
+                PREFIX dpp: <https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#>
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+                SELECT $this (?value AS ?path)
+                WHERE {
+                    $this dpp:productName ?value .
+                    BIND(lang(?value) AS ?langTag)
+                    FILTER(!regex(?langTag, "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$"))
+                }
+            """ ;
+        ] ;
+    ] ;
+
+    sh:property [
+        sh:path dpp:productLabel ;
+        sh:minCount 0 ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:node dpp-shapes:resource-shapes ;
+        sh:message "SEM-MSG-015"
+    ] .
+
+dpp-shapes:resource-shapes
+    a sh:NodeShape ;
+    sh:property dpp-shapes:resource-content-type-shape ;
+    sh:property dpp-shapes:resource-url-shape ;
+    sh:property dpp-shapes:resource-title-shape ;
+    sh:property dpp-shapes:resource-language-shape .
+
+dpp-shapes:resource-content-type-shape
+    a sh:PropertyShape ;
+    sh:path dpp:contentType ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:minLength 1 ;
+    sh:message "contentType must be a non-empty String and must occur only 1 time." .
+
+dpp-shapes:resource-url-shape
+    a sh:PropertyShape ;
+    sh:path dpp:url ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:anyURI ;
+    sh:pattern "^[A-Za-z][A-Za-z0-9+.-]*:.+" ;
+    sh:message "url must be a valid URI and must occur only 1 time." .
+
+dpp-shapes:resource-title-shape
+    a sh:PropertyShape ;
+    sh:path dpp:resourceTitle ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:minLength 1 ;
+    sh:message "resourceTitle must be a non-empty String and must not occur more than 1 time." .
+
+dpp-shapes:resource-language-shape
+    a sh:PropertyShape ;
+    sh:path dpp:language ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:minLength 1 ;
+    sh:pattern "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$" ;
+    sh:message "SEM-COM-MSG-012" .

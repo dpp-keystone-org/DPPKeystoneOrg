@@ -1,0 +1,34 @@
+{
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/lmt-001",
+    "type": "DigitalProductPassport",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res1",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/res1"
+    ],
+    "detailedComposition": {
+        "en": "Cathode: LiNi0.6Mn0.2Co0.2O2 (NMC622); Anode: graphite; Electrolyte: LiPF6 in organic carbonates; Housing: ABS/PC",
+        "de-DE": "Kathode: LiNi0.6Mn0.2Co0.2O2 (NMC622); Anode: Graphit; Elektrolyt: LiPF6 in organischen Carbonaten; Gehäuse: ABS/PC"
+    },
+    "sparePartReplacementDetails": {
+        "resourceTitle": "Spare part replacements",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/spare-parts-lmt-0001",
+        "language": "en"
+    },
+    "dismantlingInformation": {
+        "resourceTitle": "Dismantling document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/dismantling-lmt-0001",
+        "language": "en-GB"
+    },
+    "safetyMeasures": {
+        "resourceTitle": "Safety measures document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/safety-lmt-0001",
+        "language": "en-GB"
+    }
+}

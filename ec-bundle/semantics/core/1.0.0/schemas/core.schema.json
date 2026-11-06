@@ -1,0 +1,181 @@
+{
+  "$id": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/core.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Digital Product Passport",
+  "description": "JSON Schema for the core properties of the compact Digital Product Passport representation.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object"
+        },
+        {
+          "type": "array",
+          "minItems": 1
+        }
+      ]
+    },
+    "@id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "@type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "digitalProductPassportId": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-001"
+    },
+    "uniqueProductIdentifier": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-002"
+    },
+    "granularity": {
+      "type": "string",
+      "enum": [
+        "model",
+        "batch",
+        "item"
+      ],
+      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level# | Validation error code: SEM-MSG-003"
+    },
+    "dppStatus": {
+      "type": "string",
+      "enum": [
+        "validStatus",
+        "invalidStatus"
+      ],
+      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status# | Validation error code: SEM-MSG-005"
+    },
+    "lastUpdate": {
+      "type": "string",
+      "format": "date-time",
+      "$comment": "Validation error code: SEM-MSG-006"
+    },
+    "contentSpecificationIds": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "$comment": "Validation error code: SEM-MSG-009"
+    },
+    "additionalProductIdentifiers": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "$comment": "Validation error code: SEM-MSG-010"
+    },
+    "dppSchemaVersion": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-011"
+    },
+    "economicOperatorId": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-012"
+    },
+    "facilityId": {
+      "type": "string",
+      "minLength": 1,
+      "$comment": "Validation error code: SEM-MSG-013"
+    },
+    "productName": {
+      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
+      "$comment": "Validation error code: SEM-MSG-014"
+    },
+    "productLabel": {
+      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/relatedResourceOrArray",
+      "$comment": "Validation error code: SEM-MSG-015"
+    }
+  },
+  "required": [
+    "digitalProductPassportId",
+    "uniqueProductIdentifier",
+    "granularity",
+    "dppStatus",
+    "lastUpdate"
+  ],
+  "anyOf": [
+    {
+      "properties": {
+        "@context": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object"
+            },
+            {
+              "type": "array",
+              "minItems": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "@context"
+      ]
+    },
+    {
+      "properties": {
+        "contentSpecificationIds": {
+          "type": "array",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "contentSpecificationIds"
+      ]
+    }
+  ]
+}

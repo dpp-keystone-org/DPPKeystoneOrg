@@ -19,9 +19,11 @@ if (typeof jsonld.expand !== 'function') {
 }
 
 import { profile as schemaOrgProfile } from './profiles/schema.org.js';
+import { profile as ecBatteryProfile } from './profiles/ec-battery.js';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
+    'ec-battery': ecBatteryProfile,
 };
 
 /**

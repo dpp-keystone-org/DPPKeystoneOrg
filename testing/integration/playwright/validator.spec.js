@@ -321,4 +321,65 @@ test.describe('DPP Validator', () => {
     await newPage.close();
   });
 
+  test('Export EC Battery DPP transforms loaded or pasted Battery DPP into EC JSON-LD', async ({ page, context }) => {
+    await page.locator('#example-selector').selectOption({ label: 'Battery (EV)' });
+    await expect(page.locator('#json-input')).toHaveValue(/digitalProductPassportId/);
+
+    const pagePromise = context.waitForEvent('page');
+    await page.locator('#ec-battery-btn').click();
+
+    const newPage = await pagePromise;
+    await newPage.waitForLoadState();
+
+    const content = await newPage.locator('body').textContent() || '';
+    const exported = JSON.parse(content);
+
+    expect(exported['@context']).toContain('https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld');
+    expect(exported.type).toContain('BatteryProduct');
+    expect(exported.batteryCategory).toBe('electricVehicleBattery');
+    expect(exported.contentSpecificationIds).toContain('https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub');
+    expect(exported.contentSpecificationIds).toContain('https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub');
+    expect(exported.wasteBatteryPreventionManagementInfo).toBeDefined();
+
+    await newPage.close();
+
+    // Also verify pasting a plain JSON Battery DPP without @context works seamlessly
+    const pastedPlainBattery = {
+      digitalProductPassportId: 'urn:uuid:87654321-4321-4321-4321-210987654321',
+      uniqueProductIdentifier: 'https://example.com/batteries/lmt-01',
+      granularity: 'Model',
+      dppStatus: 'Active',
+      lastUpdate: '2026-01-15T00:00:00Z',
+      economicOperatorId: 'urn:gln:1234567890128',
+      batteryCategory: 'LMVBattery',
+      batteryMass: 4.5,
+      manufacturer: {
+        organizationName: 'Pasted Battery Co',
+        address: { streetAddress: 'Main St 1', addressLocality: 'Vienna', addressCountry: 'AT' }
+      }
+    };
+    await page.locator('#json-input').fill(JSON.stringify(pastedPlainBattery));
+
+    const plainPagePromise = context.waitForEvent('page');
+    await page.locator('#ec-battery-btn').click();
+    const plainPage = await plainPagePromise;
+    await plainPage.waitForLoadState();
+
+    const plainExported = JSON.parse(await plainPage.locator('body').textContent() || '{}');
+    expect(plainExported.batteryCategory).toBe('lightMeansOfTransportBattery');
+    expect(plainExported.manufacturerIdentification.manufacturerName).toBe('Pasted Battery Co');
+    expect(plainExported.contentSpecificationIds).toContain('https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/pub');
+
+    await plainPage.close();
+  });
+
+  test('Export EC Battery DPP shows error when input is not a Battery DPP', async ({ page }) => {
+    await page.locator('#example-selector').selectOption({ label: 'Textile (Sock)' });
+    await expect(page.locator('#json-input')).toHaveValue(/digitalProductPassportId/);
+
+    await page.locator('#ec-battery-btn').click();
+    await expect(page.locator('.result-box.error')).toContainText('EC Battery export requires a Battery DPP');
+  });
+
 });
+

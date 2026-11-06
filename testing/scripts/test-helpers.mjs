@@ -70,6 +70,18 @@ export const CONTEXT_URL_TO_LOCAL_PATH_MAP = {
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-dopc.context.jsonld'),
     [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-iron-steel.context.jsonld`]:
         path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-iron-steel.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-mtc.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-mtc.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-ec-to-keystone.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-ec-to-keystone.context.jsonld'),
+    [`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-keystone-to-ec.context.jsonld`]:
+        path.join(PROJECT_ROOT, 'dist', 'spec', 'contexts', KEYSTONE_VERSION, 'dpp-keystone-to-ec.context.jsonld'),
+
+    // --- Fixed EC Bundle Contexts (local branch development) ---
+    'https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld':
+        path.join(PROJECT_ROOT, 'ec-bundle', 'semantics', 'core', '1.0.0', 'contexts', 'core-context.jsonld'),
+    'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld':
+        path.join(PROJECT_ROOT, 'ec-bundle', 'semantics', 'product', 'batteries', '1.0.0', 'contexts', 'batteries-context.jsonld'),
 
 
     // --- Ontology Files ---

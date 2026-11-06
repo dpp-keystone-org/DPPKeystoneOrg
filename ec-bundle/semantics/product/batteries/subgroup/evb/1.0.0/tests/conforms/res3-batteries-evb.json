@@ -1,0 +1,80 @@
+{
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/evb-001",
+    "type": "DigitalProductPassport",
+    "granularity": "item",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res3"
+    ],
+    "roundTripEnergyEfficiency": 93.8,
+    "roundTripEnergyEfficiencyFade": 1.1,
+    "batteryStatus": "original",
+    "numberOfChargingCycles": 42,
+    "numberOfDischargingCycles": 41,
+    "negativeEvents": {
+        "en": "None recorded",
+        "de-DE": "Keine Ereignisse erfasst"
+    },
+    "environmentalConditionHistogramSet": {
+        "environmentalConditionHistogram": [
+            {
+                "observedCharacteristic": "temperature",
+                "binRangeUnit": "degreeCelsius",
+                "binValueUnit": "hour",
+                "bin": [
+                    {
+                        "lowerBound": -10,
+                        "upperBound": 0,
+                        "binValue": 5
+                    },
+                    {
+                        "lowerBound": 0,
+                        "upperBound": 25,
+                        "binValue": 400
+                    },
+                    {
+                        "lowerBound": 25,
+                        "upperBound": 45,
+                        "binValue": 120
+                    }
+                ]
+            }
+        ]
+    },
+    "stateOfChargeHistogram": [
+        {
+            "binRangeUnit": "percent",
+            "binValueUnit": "hour",
+            "bin": [
+                {
+                    "lowerBound": 0,
+                    "upperBound": 20,
+                    "binValue": 35
+                },
+                {
+                    "lowerBound": 20,
+                    "upperBound": 80,
+                    "binValue": 410
+                },
+                {
+                    "lowerBound": 80,
+                    "upperBound": 100,
+                    "binValue": 80
+                }
+            ]
+        }
+    ],
+    "ratedCapacity": 120,
+    "capacityFade": 3.2,
+    "powerCapability": 145000,
+    "powerFade": 2.5,
+    "internalResistance": 0.048,
+    "internalResistanceIncrease": 6.7,
+    "expectedLifetimeCyclesRest": 1458,
+    "expectedLifetimeYears": 10,
+    "stateOfCertifiedEnergy": 96.5
+}

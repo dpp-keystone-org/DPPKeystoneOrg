@@ -1,0 +1,34 @@
+{
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/ind-001",
+    "type": "DigitalProductPassport",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res1",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/res1"
+    ],
+    "detailedComposition": {
+        "en": "Cathode: LiFePO4 (LFP); Anode: graphite; Electrolyte: LiPF6 in organic carbonates; Housing: painted steel",
+        "de-DE": "Kathode: LiFePO4 (LFP); Anode: Graphit; Elektrolyt: LiPF6 in organischen Carbonaten; Gehäuse: lackierter Stahl"
+    },
+    "sparePartReplacementDetails": {
+        "resourceTitle": "Spare part replacements",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/spare-parts-ind-0001",
+        "language": "en"
+    },
+    "dismantlingInformation": {
+        "resourceTitle": "Dismantling document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/dismantling-ind-0001",
+        "language": "en-GB"
+    },
+    "safetyMeasures": {
+        "resourceTitle": "Safety measures document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/safety-ind-0001",
+        "language": "en-GB"
+    }
+}

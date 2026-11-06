@@ -75,6 +75,45 @@ describe('ontology integrity: context mapping to JSON-LD keywords', () => {
         expect(reporter.hasErrors).toBe(false);
         expect(reporter.violations['Context Mapping Integrity']).toBeUndefined();
     });
+
+    it('passes when a bridge context maps terms to declared external vocabulary prefixes or @nest', () => {
+        processContextBlock({
+            bat: 'https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary#',
+            dpp: 'https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#',
+            performance: '@nest',
+            batteryWeight: 'bat:batteryWeight',
+            manufacturerIdentification: {
+                '@id': 'bat:manufacturerIdentification',
+                '@context': {
+                    manufacturerName: 'bat:manufacturerName'
+                }
+            }
+        }, 'src/contexts/v3/dpp-keystone-to-ec.context.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditContextMappings(reporter);
+
+        expect(reporter.hasErrors).toBe(false);
+        expect(reporter.violations['Context Mapping Integrity']).toBeUndefined();
+    });
+
+    it('still fails when a context maps a term to an undeclared prefix or nonexistent dppk IRI', () => {
+        processContextBlock({
+            bat: 'https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary#',
+            validExternal: 'bat:batteryWeight',
+            undeclaredExternal: 'undeclaredPrefix:someTerm',
+            badKeystoneTerm: 'dppk:nonExistentBridgeTerm'
+        }, 'src/contexts/v3/dpp-ec-to-keystone.context.jsonld');
+
+        const reporter = new IntegrityReporter();
+        auditContextMappings(reporter);
+
+        expect(reporter.hasErrors).toBe(true);
+        const failures = reporter.violations['Context Mapping Integrity'];
+        expect(failures).toHaveLength(2);
+        expect(failures.map(f => f.message).join('\n')).toContain("'undeclaredExternal'");
+        expect(failures.map(f => f.message).join('\n')).toContain("'badKeystoneTerm'");
+    });
 });
 
 describe('ontology integrity: collision detection', () => {

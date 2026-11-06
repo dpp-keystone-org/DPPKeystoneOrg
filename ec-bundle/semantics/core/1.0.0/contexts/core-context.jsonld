@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://repository.product-passport.ec.europa.eu/unknown#",
+    "dpp": "https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "id": "@id",
+    "type": "@type",
+    "DigitalProductPassport": "dpp:DigitalProductPassport",
+    "digitalProductPassportId": "dpp:digitalProductPassportId",
+    "uniqueProductIdentifier": "dpp:uniqueProductIdentifier",
+    "granularity": {
+      "@id": "dpp:granularity",
+      "@context": {
+        "@vocab": "https://repository.product-passport.ec.europa.eu/core/vocabs/granularity-level#"
+      },
+      "@type": "@vocab"
+    },
+    "dppStatus": {
+      "@id": "dpp:dppStatus",
+      "@context": {
+        "@vocab": "https://repository.product-passport.ec.europa.eu/core/vocabs/instance-status#"
+      },
+      "@type": "@vocab"
+    },
+    "lastUpdate": {
+      "@id": "dpp:lastUpdate",
+      "@type": "xsd:dateTime"
+    },
+    "contentSpecificationIds": {
+      "@id": "dpp:contentSpecificationIds",
+      "@container": "@set"
+    },
+    "additionalProductIdentifiers": {
+      "@id": "dpp:additionalProductIdentifiers",
+      "@container": "@set"
+    },
+    "dppSchemaVersion": "dpp:dppSchemaVersion",
+    "economicOperatorId": "dpp:economicOperatorId",
+    "facilityId": "dpp:facilityId",
+    "productName": {
+      "@id": "dpp:productName",
+      "@container": "@language"
+    },
+    "productLabel": {
+      "@id": "dpp:productLabel",
+      "@container": "@set",
+      "@context": {
+        "resourceTitle": "dpp:resourceTitle",
+        "contentType": "dpp:contentType",
+        "url": {
+          "@id": "dpp:url",
+          "@type": "xsd:anyURI"
+        },
+        "language": "dpp:language"
+      }
+    }
+  }
+}

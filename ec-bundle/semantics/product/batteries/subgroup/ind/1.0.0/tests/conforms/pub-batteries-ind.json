@@ -1,0 +1,131 @@
+{
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/ind-001",
+    "type": "DigitalProductPassport",
+    "digitalProductPassportId": "https://www.example.org/dpp/ind-001",
+    "uniqueProductIdentifier": "https://www.example.org/ind-batch-001",
+    "granularity": "batch",
+    "dppStatus": "validStatus",
+    "lastUpdate": "2025-08-22T03:12:00Z",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/pub"
+    ],
+    "registrantIdentity": "urn:uuid:3f1c7a52-8d4e-4b1a-9c2e-5a6b7d8e9f01",
+    "manufacturerIdentification": {
+        "manufacturerName": "Iberia Battery Systems S.L.",
+        "manufacturerTradeName": "IberiaGrid",
+        "manufacturerTrademark": "IberiaGrid(R)"
+    },
+    "manufacturerPostalAddress": "Calle de Alcalá 100, 28009 Madrid, Spain",
+    "manufacturerContactDetails": {
+        "manufacturerWebsite": "https://www.example.com",
+        "manufacturerEmail": "info@example.com"
+    },
+    "batteryCategory": "industrialBattery",
+    "batteryIdentification": {
+        "modelIdentifier": "IG-280-LFP",
+        "batchNumber": "BATCH-2026-03-IND"
+    },
+    "manufacturingPlace": {
+        "manufacturingCity": "Zaragoza",
+        "manufacturingRegion": "Aragón",
+        "manufacturingCountry": "ESP"
+    },
+    "manufacturingDate": "2026-03",
+    "batteryWeight": 1250.0,
+    "batteryCapacity": 280,
+    "batteryChemistry": [
+        "lithiumIonLFP"
+    ],
+    "hazardousSubstances": [
+        "Lithium hexafluorophosphate (LiPF6)"
+    ],
+    "extinguishingAgent": {
+        "en": "Large quantities of water; dry chemical powder (Class D) for small fires",
+        "de-DE": "Große Mengen Wasser; Metallbrandpulver (Klasse D) für Entstehungsbrände"
+    },
+    "criticalRawMaterials": [
+        "lithium",
+        "graphite",
+        "phosphateRock",
+        "copper"
+    ],
+    "renewableContentShare": 18.5,
+    "minimalVoltage": 640,
+    "nominalVoltage": 768,
+    "nominalVoltageMinTemp": -10,
+    "nominalVoltageMaxTemp": 50,
+    "maximumVoltage": 864,
+    "originalPowerCapability": 100000,
+    "powerLimit": 120000,
+    "powerLimitMinTemp": 0,
+    "powerLimitMaxTemp": 45,
+    "notInUseTemperatureRange": {
+        "lowerBound": -20,
+        "upperBound": 50,
+        "notInUseTemperatureRangeTest": {
+            "en": "IEC 62660-2 storage test",
+            "de-DE": "IEC 62660-2 Lagertest"
+        }
+    },
+    "commercialWarrantyPeriod": 120,
+    "internalCellResistance": 0.0005,
+    "internalPackResistance": 0.025,
+    "cycleLifeDischargeCRate": 0.5,
+    "separateCollectionSymbol": true,
+    "chemicalSymbol": [
+        "noneSymbol"
+    ],
+    "euDeclarationOfConformity": {
+        "resourceTitle": "EU declaration of conformity file",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/eu-doc-ind-0001.pdf",
+        "language": "en-GB"
+    },
+    "wasteBatteryPreventionManagementInfo": {
+        "endUserRoleInWastePrevention": {
+            "en": "End users should avoid mechanical damage and follow the usage instructions.",
+            "de-DE": "Endnutzer sollten mechanische Beschädigungen vermeiden und die Gebrauchsanweisung beachten."
+        },
+        "endUserRoleInSeparateCollection": {
+            "en-IE": "End users must not dispose of batteries as unsorted municipal waste."
+        },
+        "separateCollectionPoints": {
+            "en-IE": "https://example.com/collection-points"
+        },
+        "takeBackCollectionPoints": {
+            "en-IE": "Return to any authorised dealer free of charge."
+        },
+        "preparationForReuseFacilities": {
+            "en-IE": "Authorised facility: Iberia Reuse Centre, Zaragoza."
+        },
+        "preparationForRepurposingFacilities": {
+            "en-IE": "Authorised facility: Iberia Second-Life Hub, Valencia."
+        },
+        "wasteBatteryTreatmentFacilities": {
+            "en-IE": "Authorised recycling plant: Recycla Ibérica, Bilbao."
+        },
+        "wasteBatterySafetyInstructions": {
+            "en-IE": "Store damaged batteries in a dry, ventilated, non-flammable container."
+        },
+        "batteryLabelSymbolMeaning": {
+            "en-IE": "The crossed-out wheelie bin symbol indicates separate collection is required."
+        },
+        "batterySubstancesImpact": {
+            "en-IE": "Improper disposal may release electrolyte and heavy metals into soil and water."
+        }
+    },
+    "expectedLifetimeCycles": 6000,
+    "cycleLifeReferenceTest": {
+        "en": "IEC 62620 industrial cycle life test",
+        "de-DE": "IEC 62620 Zykluslebensdauertest"
+    },
+    "initialRoundTripEnergyEfficiency": 95.0,
+    "roundTripEfficiencyAtHalfCycleLife": 92.5,
+    "cycleLifeChargeCRate": 0.5
+}

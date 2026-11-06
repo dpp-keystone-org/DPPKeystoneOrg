@@ -1,0 +1,128 @@
+{
+  "$id": "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/schemas/res3-lmt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Light Means of Transport Batteries (LMT) Product subgroup - Restricted: Only to persons with legitimate interest (individual battery) (RES3)",
+  "description": "JSON Schema for the restricted (RES3) properties of the Light Means of Transport Batteries (LMT) Subgroup representation.",
+  "type": "object",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/res3"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contains": {
+          "const": "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3"
+        },
+        "$comment": "Validation error code: SEM-MSG-009"
+      },
+      "ratedCapacity": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-064"
+      },
+      "capacityFade": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-065"
+      },
+      "powerCapability": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-066"
+      },
+      "powerFade": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-067"
+      },
+      "internalResistance": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-068"
+      },
+      "internalResistanceIncrease": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-069"
+      },
+      "expectedLifetimeCyclesRest": {
+        "type": "integer",
+        "minimum": 0,
+        "$comment": "Validation error code: SEM-BAT-MSG-072"
+      },
+      "expectedLifetimeYears": {
+        "type": "integer",
+        "minimum": 1,
+        "$comment": "Validation error code: SEM-BAT-MSG-073"
+      },
+      "stateOfCertifiedEnergy": false,
+      "remainingCapacity": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-075"
+      },
+      "remainingPowerCapability": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-076"
+      },
+      "remainingRoundTripEfficiency": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-077"
+      },
+      "selfDischargingRateSet": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "properties": {
+            "selfDischargingRate": {
+              "type": "number",
+              "$comment": "Validation error code: SEM-BAT-MSG-080"
+            },
+            "recordedTime": {
+              "type": "string",
+              "format": "date-time",
+              "$comment": "Validation error code: SEM-COM-MSG-011"
+            }
+          },
+          "required": [
+            "selfDischargingRate",
+            "recordedTime"
+          ]
+        },
+        "$comment": "Validation error code: SEM-BAT-MSG-078"
+      },
+      "ohmicResistance": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-081"
+      }
+    },
+    "required": [
+      "contentSpecificationIds",
+      "ratedCapacity",
+      "capacityFade",
+      "powerCapability",
+      "powerFade",
+      "internalResistance",
+      "internalResistanceIncrease",
+      "expectedLifetimeCyclesRest",
+      "expectedLifetimeYears",
+      "remainingCapacity",
+      "remainingPowerCapability",
+      "remainingRoundTripEfficiency",
+      "selfDischargingRateSet",
+      "ohmicResistance"
+    ]
+  }
+}

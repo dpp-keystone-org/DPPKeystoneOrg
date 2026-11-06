@@ -1,0 +1,234 @@
+{
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/evb-001",
+    "type": "DigitalProductPassport",
+    "digitalProductPassportId": "https://www.example.org/dpp/evb-001",
+    "uniqueProductIdentifier": "https://www.example.org/evb-001",
+    "granularity": "item",
+    "dppStatus": "validStatus",
+    "lastUpdate": "2025-08-22T03:12:00Z",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res1",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res2",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res1",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res2",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res3"
+    ],
+    "registrantIdentity": "urn:uuid:3f1c7a52-8d4e-4b1a-9c2e-5a6b7d8e9f01",
+    "manufacturerIdentification": {
+        "manufacturerName": "Iberia Battery Systems S.L.",
+        "manufacturerTradeName": "IberiaCell",
+        "manufacturerTrademark": "IberiaCell(R)"
+    },
+    "manufacturerPostalAddress": "Calle de Alcalá 100, 28009 Madrid, Spain",
+    "manufacturerContactDetails": {
+        "manufacturerWebsite": "https://www.example.com",
+        "manufacturerEmail": "info@example.com"
+    },
+    "batteryCategory": "electricVehicleBattery",
+    "batteryIdentification": {
+        "modelIdentifier": "IC-120-NMC",
+        "batchNumber": "BATCH-2026-03-A",
+        "serialNumber": "SN-EVB-2026-00001"
+    },
+    "manufacturingPlace": {
+        "manufacturingCity": "Zaragoza",
+        "manufacturingRegion": "Aragón",
+        "manufacturingCountry": "ESP"
+    },
+    "manufacturingDate": "2026-03",
+    "batteryWeight": 450.5,
+    "batteryCapacity": 120,
+    "batteryChemistry": [
+        "lithiumIonNMC"
+    ],
+    "hazardousSubstances": [
+        "Lithium hexafluorophosphate (LiPF6)"
+    ],
+    "extinguishingAgent": {
+        "en": "Large quantities of water; dry chemical powder (Class D) for small fires",
+        "de-DE": "Große Mengen Wasser; Metallbrandpulver (Klasse D) für Entstehungsbrände"
+    },
+    "criticalRawMaterials": [
+        "cobalt",
+        "lithium",
+        "graphite",
+        "nickelBatteryGrade"
+    ],
+    "renewableContentShare": 15.2,
+    "minimalVoltage": 300,
+    "nominalVoltage": 400,
+    "nominalVoltageMinTemp": -20,
+    "nominalVoltageMaxTemp": 45,
+    "maximumVoltage": 450,
+    "originalPowerCapability": 150000,
+    "powerLimit": 180000,
+    "powerLimitMinTemp": -10,
+    "powerLimitMaxTemp": 40,
+    "notInUseTemperatureRange": {
+        "lowerBound": -20,
+        "upperBound": 50,
+        "notInUseTemperatureRangeTest": {
+            "en": "IEC 62660-2 storage test",
+            "de-DE": "IEC 62660-2 Lagertest"
+        }
+    },
+    "commercialWarrantyPeriod": 96,
+    "internalCellResistance": 0.0012,
+    "internalPackResistance": 0.045,
+    "cycleLifeDischargeCRate": 1.0,
+    "separateCollectionSymbol": true,
+    "chemicalSymbol": [
+        "noneSymbol"
+    ],
+    "euDeclarationOfConformity": {
+        "resourceTitle": "EU declaration of conformity file",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/eu-doc-0001.pdf",
+        "language": "en-GB"
+    },
+    "wasteBatteryPreventionManagementInfo": {
+        "endUserRoleInWastePrevention": {
+            "en": "End users should avoid mechanical damage and follow the usage instructions.",
+            "de-DE": "Endnutzer sollten mechanische Beschädigungen vermeiden und die Gebrauchsanweisung beachten."
+        },
+        "endUserRoleInSeparateCollection": {
+            "en-IE": "End users must not dispose of batteries as unsorted municipal waste."
+        },
+        "separateCollectionPoints": {
+            "en-IE": "https://example.com/collection-points"
+        },
+        "takeBackCollectionPoints": {
+            "en-IE": "Return to any authorised dealer free of charge."
+        },
+        "preparationForReuseFacilities": {
+            "en-IE": "Authorised facility: Iberia Reuse Centre, Zaragoza."
+        },
+        "preparationForRepurposingFacilities": {
+            "en-IE": "Authorised facility: Iberia Second-Life Hub, Valencia."
+        },
+        "wasteBatteryTreatmentFacilities": {
+            "en-IE": "Authorised recycling plant: Recycla Ibérica, Bilbao."
+        },
+        "wasteBatterySafetyInstructions": {
+            "en-IE": "Store damaged batteries in a dry, ventilated, non-flammable container."
+        },
+        "batteryLabelSymbolMeaning": {
+            "en-IE": "The crossed-out wheelie bin symbol indicates separate collection is required."
+        },
+        "batterySubstancesImpact": {
+            "en-IE": "Improper disposal may release electrolyte and heavy metals into soil and water."
+        }
+    },
+    "expectedLifetimeCycles": 1500,
+    "cycleLifeReferenceTest": {
+        "en": "ISO 12405-4 cycle life test",
+        "de-DE": "ISO 12405-4 Zykluslebensdauertest"
+    },
+    "capacityExhaustionThreshold": 80,
+    "initialRoundTripEnergyEfficiency": 94.5,
+    "roundTripEfficiencyAtHalfCycleLife": 91.0,
+    "cycleLifeChargeCRate": 0.5,
+    "detailedComposition": {
+        "en": "Cathode: LiNi0.8Mn0.1Co0.1O2 (NMC811); Anode: graphite; Electrolyte: LiPF6 in organic carbonates; Housing: aluminium",
+        "de-DE": "Kathode: LiNi0.8Mn0.1Co0.1O2 (NMC811); Anode: Graphit; Elektrolyt: LiPF6 in organischen Carbonaten; Gehäuse: Aluminium"
+    },
+    "sparePartReplacementDetails": {
+        "resourceTitle": "Spare part replacements",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/spare-parts-0001",
+        "language": "en"
+    },
+    "dismantlingInformation": {
+        "resourceTitle": "Dismantling document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/dismantling-0001",
+        "language": "en-GB"
+    },
+    "safetyMeasures": {
+        "resourceTitle": "Safety measures document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/safety-0001",
+        "language": "en-GB"
+    },
+    "complianceTestReportResults": {
+        "resourceTitle": "Compliance test report result",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/test-report-0001",
+        "language": "en-GB"
+    },
+    "roundTripEnergyEfficiency": 93.8,
+    "roundTripEnergyEfficiencyFade": 1.1,
+    "batteryStatus": "original",
+    "numberOfChargingCycles": 42,
+    "numberOfDischargingCycles": 41,
+    "negativeEvents": {
+        "en": "None recorded",
+        "de-DE": "Keine Ereignisse erfasst"
+    },
+    "environmentalConditionHistogramSet": {
+        "environmentalConditionHistogram": [
+            {
+                "observedCharacteristic": "temperature",
+                "binRangeUnit": "degreeCelsius",
+                "binValueUnit": "hour",
+                "bin": [
+                    {
+                        "lowerBound": -10,
+                        "upperBound": 0,
+                        "binValue": 5
+                    },
+                    {
+                        "lowerBound": 0,
+                        "upperBound": 25,
+                        "binValue": 400
+                    },
+                    {
+                        "lowerBound": 25,
+                        "upperBound": 45,
+                        "binValue": 120
+                    }
+                ]
+            }
+        ]
+    },
+    "stateOfChargeHistogram": [
+        {
+            "binRangeUnit": "percent",
+            "binValueUnit": "hour",
+            "bin": [
+                {
+                    "lowerBound": 0,
+                    "upperBound": 20,
+                    "binValue": 35
+                },
+                {
+                    "lowerBound": 20,
+                    "upperBound": 80,
+                    "binValue": 410
+                },
+                {
+                    "lowerBound": 80,
+                    "upperBound": 100,
+                    "binValue": 80
+                }
+            ]
+        }
+    ],
+    "ratedCapacity": 120,
+    "capacityFade": 3.2,
+    "powerCapability": 145000,
+    "powerFade": 2.5,
+    "internalResistance": 0.048,
+    "internalResistanceIncrease": 6.7,
+    "expectedLifetimeCyclesRest": 1458,
+    "expectedLifetimeYears": 10,
+    "stateOfCertifiedEnergy": 96.5
+}

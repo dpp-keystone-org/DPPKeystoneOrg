@@ -1,0 +1,112 @@
+{
+  "$id": "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/schemas/res3-batteries.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Battery Product - Restricted: Only to persons with legitimate interest (individual battery) (RES3)",
+  "description": "JSON Schema for the Restricted (RES3) properties of the Battery Product representation.",
+  "type": "object",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "granularity": {
+        "type": "string",
+        "const": "item",
+        "$comment": "Validation error code: SEM-MSG-003"
+      },
+    "roundTripEnergyEfficiency": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-070"
+    },
+    "roundTripEnergyEfficiencyFade": {
+      "type": "number",
+      "$comment": "Validation error code: SEM-BAT-MSG-071"
+    },
+    "batteryStatus": {
+      "type": "string",
+      "enum": [
+        "original",
+        "reused",
+        "repurposed",
+        "remanufactured",
+        "waste"
+      ],
+      "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-status# | Validation error code: SEM-BAT-MSG-082"
+    },
+    "numberOfChargingCycles": {
+      "type": "integer",
+      "minimum": 0,
+      "$comment": "Validation error code: SEM-BAT-MSG-083"
+    },
+    "numberOfDischargingCycles": {
+      "type": "integer",
+      "minimum": 0,
+      "$comment": "Validation error code: SEM-BAT-MSG-084"
+    },
+    "negativeEvents": {
+      "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
+      "$comment": "Validation error code: SEM-BAT-MSG-085"
+    },
+    "environmentalConditionHistogramSet": {
+      "type": "object",
+      "properties": {
+        "environmentalConditionHistogram": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/histogram"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "observedCharacteristic": {
+                    "type": "string",
+                    "enum": [
+                      "temperature"
+                    ],
+                    "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic# | Validation error code: SEM-COM-MSG-001"
+                  }
+                },
+                "required": [
+                  "observedCharacteristic"
+                ]
+              }
+            ]
+          },
+          "$comment": "Validation error code: SEM-BAT-MSG-087"
+        }
+      },
+      "required": [
+        "environmentalConditionHistogram"
+      ],
+      "$comment": "Validation error code: SEM-BAT-MSG-086"
+    },
+    "stateOfChargeHistogram": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/histogram"
+      },
+      "$comment": "Validation error code: SEM-BAT-MSG-088"
+    }
+  },
+  "required": [
+    "batteryStatus"
+  ]
+  }
+}

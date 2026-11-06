@@ -86,4 +86,72 @@ describe('DPP Validator - Localized HTML Preview Integration', () => {
             expect.objectContaining({ language: 'de' })
         );
     });
+
+    it('should export pasted Battery DPP via transformDpp with ec-battery profile and inject battery @context if omitted', async () => {
+        const mockTransformDpp = jest.fn().mockResolvedValue([
+            {
+                '@context': [
+                    'https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld',
+                    'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld'
+                ],
+                id: 'urn:uuid:bat-1',
+                type: ['DigitalProductPassport', 'BatteryProduct'],
+                batteryCategory: 'electricVehicleBattery'
+            }
+        ]);
+
+        jest.unstable_mockModule('../dist/util/js/client/dpp-schema-adapter.js', () => ({
+            transformDpp: mockTransformDpp
+        }));
+
+        jest.unstable_mockModule('../dist/util/js/common/validation/schema-validator.js', () => ({
+            validateDpp: jest.fn().mockResolvedValue({ valid: true, errors: [] })
+        }));
+
+        await import('../../dist/validator/validator.js');
+        document.dispatchEvent(new Event('DOMContentLoaded'));
+
+        const ecBtn = await waitFor(() => {
+            const b = document.getElementById('ec-battery-btn');
+            return (b && !b.disabled) ? b : null;
+        });
+
+        expect(ecBtn).not.toBeNull();
+        window.open = jest.fn();
+
+        // 1. Non-battery payload should show error and NOT call transformDpp
+        document.getElementById('json-input').value = JSON.stringify({
+            digitalProductPassportId: 'urn:uuid:sock-1',
+            contentSpecificationIds: ['draft_textile_espr_specification_id']
+        });
+        ecBtn.click();
+
+        const resultBox = document.getElementById('validation-result');
+        expect(resultBox.hidden).toBe(false);
+        expect(resultBox.textContent).toContain('Battery DPP');
+        expect(mockTransformDpp).not.toHaveBeenCalled();
+
+        // 2. Plain JSON battery payload without @context should inject dpp-battery.context.jsonld and transform
+        document.getElementById('json-input').value = JSON.stringify({
+            digitalProductPassportId: 'urn:uuid:bat-1',
+            batteryCategory: 'EVBattery',
+            batteryMass: 320
+        });
+        ecBtn.click();
+
+        await waitFor(() => mockTransformDpp.mock.calls.length > 0);
+
+        expect(mockTransformDpp).toHaveBeenCalledWith(
+            expect.objectContaining({
+                digitalProductPassportId: 'urn:uuid:bat-1',
+                batteryCategory: 'EVBattery',
+                '@context': expect.stringContaining('dpp-battery.context.jsonld')
+            }),
+            expect.objectContaining({
+                profile: 'ec-battery'
+            })
+        );
+        expect(window.open).toHaveBeenCalledWith('blob:mock-url', '_blank');
+    });
 });
+

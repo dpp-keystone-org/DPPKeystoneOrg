@@ -1,0 +1,93 @@
+{
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/ind-001",
+    "type": "DigitalProductPassport",
+    "granularity": "item",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/res3"
+    ],
+    "roundTripEnergyEfficiency": 94.2,
+    "roundTripEnergyEfficiencyFade": 0.8,
+    "batteryStatus": "original",
+    "numberOfChargingCycles": 42,
+    "numberOfDischargingCycles": 41,
+    "negativeEvents": {
+        "en": "None recorded",
+        "de-DE": "Keine Ereignisse erfasst"
+    },
+    "environmentalConditionHistogramSet": {
+        "environmentalConditionHistogram": [
+            {
+                "observedCharacteristic": "temperature",
+                "binRangeUnit": "degreeCelsius",
+                "binValueUnit": "hour",
+                "bin": [
+                    {
+                        "lowerBound": -10,
+                        "upperBound": 0,
+                        "binValue": 5
+                    },
+                    {
+                        "lowerBound": 0,
+                        "upperBound": 25,
+                        "binValue": 400
+                    },
+                    {
+                        "lowerBound": 25,
+                        "upperBound": 45,
+                        "binValue": 120
+                    }
+                ]
+            }
+        ]
+    },
+    "stateOfChargeHistogram": [
+        {
+            "binRangeUnit": "percent",
+            "binValueUnit": "hour",
+            "bin": [
+                {
+                    "lowerBound": 0,
+                    "upperBound": 20,
+                    "binValue": 35
+                },
+                {
+                    "lowerBound": 20,
+                    "upperBound": 80,
+                    "binValue": 410
+                },
+                {
+                    "lowerBound": 80,
+                    "upperBound": 100,
+                    "binValue": 80
+                }
+            ]
+        }
+    ],
+    "ratedCapacity": 280,
+    "capacityFade": 1.8,
+    "powerCapability": 98000,
+    "powerFade": 2.0,
+    "internalResistance": 0.027,
+    "internalResistanceIncrease": 8.0,
+    "expectedLifetimeCyclesRest": 5958,
+    "expectedLifetimeYears": 15,
+    "remainingCapacity": 275,
+    "remainingPowerCapability": 98000,
+    "remainingRoundTripEfficiency": 94.2,
+    "selfDischargingRateSet": [
+        {
+            "selfDischargingRate": 2.1,
+            "recordedTime": "2026-06-01T10:00:00Z"
+        },
+        {
+            "selfDischargingRate": 2.4,
+            "recordedTime": "2026-10-01T10:00:00Z"
+        }
+    ],
+    "ohmicResistance": 0.028
+}

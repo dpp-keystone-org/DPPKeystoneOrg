@@ -1,0 +1,691 @@
+openapi: 3.1.0
+info:
+  title: DPP Activity Dashboard Service API
+  version: 1.0.0
+  license:
+    name: European Union Public Licence v. 1.2
+    identifier: EUPL-1.2
+  description: |
+    REST contract for the Activity Dashboard standalone service. Provides cross-domain
+    task visibility across DPP registration, organisation verification, declaration
+    generation, and verification submission. All queries are scoped to the Organisation
+    associated with the authenticated principal.
+
+    Supported task types:
+    - DPP_REGISTRATION — single or multiple-item DPP registration processing
+    - ORGANISATION_VERIFICATION_DECLARATION_GENERATION — declaration PDF generation
+    - ORGANISATION_VERIFICATION_SUBMISSION — declaration submission to EU Sign
+
+    Task status values:
+    - PENDING — queued, waiting to be processed
+    - PROCESSING — actively being processed
+    - COMPLETED — processing finished
+    - ERROR — processing failed
+servers:
+  - url: https://registry.acc.product-passport.ec.europa.eu
+    description: ACC
+  - url: https://registry.product-passport.ec.europa.eu
+    description: PROD
+security:
+  - bearerAuth: []
+tags:
+  - name: Activity dashboard
+    description: Cross-domain task list, detail, and per-item operations
+
+paths:
+  /api/v1/tasks:
+    get:
+      tags:
+        - Activity dashboard
+      summary: List tasks for the activity dashboard
+      description: >-
+        Lists tasks across all domains (DPP registration, organisation verification,
+        declaration generation, etc.) scoped to the Organisation associated with the
+        authenticated principal. Results are paginated and filterable by status, task type,
+        and submission date range. Each row is a summary representation of the task detail.
+        The terminal `outcome` payload is included only when `extended=true`.
+      operationId: listTasks
+      parameters:
+        - name: status
+          in: query
+          description: Filter by task status.
+          schema:
+            $ref: '#/components/schemas/TaskStatus'
+        - name: taskType
+          in: query
+          description: Filter by task type.
+          schema:
+            type: string
+            enum:
+              - DPP_REGISTRATION
+              - ORGANISATION_VERIFICATION_DECLARATION_GENERATION
+              - ORGANISATION_VERIFICATION_SUBMISSION
+        - $ref: './openapi-dpp-common-public.yml#/components/parameters/PageParam'
+        - $ref: './openapi-dpp-common-public.yml#/components/parameters/SizeParam'
+        - name: sort
+          in: query
+          description: >-
+            Sort field and direction, e.g. 'submittedAt,desc' or 'status,asc'.
+            Default is 'submittedAt,desc'. Allowed fields: submittedAt, status,
+            completedAt, taskType.
+          schema:
+            type: string
+        - name: submittedFrom
+          in: query
+          description: Lower bound (inclusive) for submittedAt filter (ISO-8601 date-time).
+          schema:
+            type: string
+            format: date-time
+        - name: submittedTo
+          in: query
+          description: Upper bound (inclusive) for submittedAt filter (ISO-8601 date-time).
+          schema:
+            type: string
+            format: date-time
+        - name: extended
+          in: query
+          description: >-
+            When true, each row includes the terminal `outcome` payload when available.
+            Defaults to false, in which case `outcome` is omitted.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Paginated list of dashboard tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageActivityDashboardRow'
+        '400':
+          description: Invalid query parameters
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/ApiErrorMessage'
+        '401':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Forbidden'
+        '429':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/TooManyRequests'
+
+  /api/v1/tasks/{taskId}:
+    get:
+      tags:
+        - Activity dashboard
+      summary: Get task detail
+      description: >-
+        Returns the task detail envelope for the given task. It extends the list row
+        with the task-type-specific specificTaskData and carries the business outcome and
+        task-level message in outcome. Access is scoped to the Organisation associated with
+        the authenticated principal.
+      operationId: getTask
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          description: Unique task identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Task detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityTaskDetail'
+              example:
+                taskId: task_01J1REG001
+                taskType: DPP_REGISTRATION
+                correlationId: corr_01J1REG
+                status: COMPLETED
+                actor: john.doe@example.com
+                organisationId: org_01H8XGP
+                submittedAt: '2026-10-05T11:11:21.718Z'
+                completedAt: '2026-10-05T11:12:03.004Z'
+                outcome:
+                  outcomeResult: FAILED
+                  outcomeMessage:
+                    code: REJECTED
+                    message: DPP submission contains non-compliant items
+                specificTaskData:
+                  productGroup: BATTERIES
+                  productSubGroup: evb
+                  submissionRequestId: reg_01J1REG001
+                  processingInfo:
+                    submittedItems: 50
+                    compliantItems: 49
+                    nonCompliantItems: 1
+        '401':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Forbidden'
+        '404':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/NotFound'
+        '429':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/TooManyRequests'
+
+  /api/v1/tasks/{taskId}/items:
+    get:
+      tags:
+        - Activity dashboard
+      summary: Per-item processing evidence for a task
+      description: >-
+        Paginated per-item processing evidence for the given task. `application/json` (default)
+        returns a page envelope. `text/csv` returns the same requested page rendered as CSV,
+        with one row per processed item. Both content types honour `page` and `size`. Access is
+        scoped to the Organisation associated with the authenticated principal.
+      operationId: listTaskItems
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          description: Unique task identifier.
+          schema:
+            type: string
+        - $ref: './openapi-dpp-common-public.yml#/components/parameters/PageParam'
+        - $ref: './openapi-dpp-common-public.yml#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: Paginated per-item processing evidence
+          headers:
+            Content-Disposition:
+              description: Attachment header with suggested filename (text/csv only).
+              schema:
+                type: string
+                examples:
+                  - 'attachment; filename="task-task_01J1REG001-items.csv"'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageTaskProcessedItem'
+              example:
+                content:
+                  - taskId: task_01J1REG001
+                    taskItemIndex: 0
+                    taskType: DPP_REGISTRATION
+                    outcomeMessage:
+                      code: ITEM_COMPLIANT
+                      message: Item passed validation
+                    outcomeDetails: []
+                    specificTaskItemData:
+                      uniqueProductIdentifier: https://example.com/id/01/09506000134352/21/SN0001
+                      digitalProductPassportId: https://example.com/dpp/battery/0001
+                      productGroup: BATTERIES
+                      productSubGroup: evb
+                      submissionRequestId: reg_01J1REG001
+                      granularity: item
+                      batchIdentifier: xxx-000
+                      modelIdentifier: yyy-111
+                  - taskId: task_01J1REG001
+                    taskItemIndex: 1
+                    taskType: DPP_REGISTRATION
+                    outcomeMessage:
+                      code: ITEM_NON_COMPLIANT
+                      message: UPI not resolvable
+                    outcomeDetails:
+                      - code: UPI_NOT_RESOLVABLE
+                        message: The uniqueProductIdentifier could not be resolved over HTTPS
+                    specificTaskItemData:
+                      uniqueProductIdentifier: https://example.com/dpp/battery/0002
+                      productGroup: BATTERIES
+                      productSubGroup: evb
+                      submissionRequestId: reg_01J1REG001
+                      granularity: item
+                page: 0
+                size: 25
+                totalElements: 2
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Forbidden'
+        '404':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/NotFound'
+        '429':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/TooManyRequests'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    CorrelationId:
+      name: X-Correlation-Id
+      in: header
+      required: false
+      description: >-
+        Correlation identifier for distributed tracing. Generated by the backend
+        if not supplied by the caller.
+      schema:
+        type: string
+        maxLength: 128
+        examples:
+          - corr_01J1DASH
+
+  schemas:
+    TaskStatus:
+      type: string
+      description: >-
+        Task lifecycle state.
+        PENDING — queued, waiting to be processed.
+        PROCESSING — actively being processed.
+        COMPLETED — processing finished.
+        ERROR — processing failed.
+      enum:
+        - PENDING
+        - PROCESSING
+        - COMPLETED
+        - ERROR
+
+    PageActivityDashboardRow:
+      allOf:
+        - $ref: './openapi-dpp-common-public.yml#/components/schemas/PageMetadata'
+        - type: object
+          required:
+            - content
+          properties:
+            content:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActivityDashboardRow'
+
+    TaskSummary:
+      type: object
+      description: >-
+        Core task fields shared by the task list row and the task detail.
+      required:
+        - taskId
+        - taskType
+        - status
+        - submittedAt
+      properties:
+        taskId:
+          type: string
+          description: Unique task identifier. Primary key for the detail endpoint.
+        taskType:
+          type: string
+          description: Task type.
+        correlationId:
+          type: string
+          description: Cross-service correlation identifier.
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+        actor:
+          type: string
+          description: Person or entity who requested the action related to the task.
+        organisationId:
+          type: string
+          description: Owning organisation identifier.
+        submittedAt:
+          type: string
+          format: date-time
+          description: Timestamp at which the task was created.
+        completedAt:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: Timestamp at which the terminal outcome was written. Null if still in progress.
+
+    ActivityDashboardRow:
+      description: >-
+        Summary representation of the task detail returned by the task list. Carries
+        the core task fields. The terminal `outcome` payload is only included when the
+        request is made with the `extended=true` query parameter.
+      allOf:
+        - $ref: '#/components/schemas/TaskSummary'
+        - type: object
+          properties:
+            outcome:
+              allOf:
+                - $ref: '#/components/schemas/TaskOutcome'
+              description: >-
+                Terminal outcome payload. Only present when the list is requested with
+                `extended=true`; omitted otherwise.
+      examples:
+        - taskId: task_01J1REG001
+          taskType: DPP_REGISTRATION
+          correlationId: corr_01J1REG
+          status: PENDING
+          actor: john.doe@example.com
+          organisationId: org_01H8XGP
+          submittedAt: '2026-10-05T11:11:21.718Z'
+
+    ActivityTaskDetail:
+      description: >-
+        Full task detail, discriminated by the top-level taskType. Every variant extends
+        the same base (BaseActivityTaskDetail), constrains taskType, and only changes the
+        type of specificTaskData.
+      oneOf:
+        - $ref: '#/components/schemas/DppRegistrationTaskDetail'
+        - $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationTaskDetail'
+        - $ref: '#/components/schemas/OrganisationVerificationSubmissionTaskDetail'
+      discriminator:
+        propertyName: taskType
+        mapping:
+          DPP_REGISTRATION: '#/components/schemas/DppRegistrationTaskDetail'
+          ORGANISATION_VERIFICATION_DECLARATION_GENERATION: '#/components/schemas/OrganisationVerificationDeclarationGenerationTaskDetail'
+          ORGANISATION_VERIFICATION_SUBMISSION: '#/components/schemas/OrganisationVerificationSubmissionTaskDetail'
+
+    BaseActivityTaskDetail:
+      description: >-
+        Common base of the task detail variants: the shared task summary plus the
+        business outcome. Variants constrain taskType and add their own specificTaskData.
+      allOf:
+        - $ref: '#/components/schemas/TaskSummary'
+        - type: object
+          properties:
+            outcome:
+              $ref: '#/components/schemas/TaskOutcome'
+
+    DppRegistrationTaskDetail:
+      title: DppRegistrationTaskDetail
+      description: Task detail for DPP_REGISTRATION tasks.
+      allOf:
+        - $ref: '#/components/schemas/BaseActivityTaskDetail'
+        - type: object
+          properties:
+            taskType:
+              type: string
+              const: DPP_REGISTRATION
+            specificTaskData:
+              $ref: '#/components/schemas/DppRegistrationOutcomeData'
+
+    OrganisationVerificationDeclarationGenerationTaskDetail:
+      title: OrganisationVerificationDeclarationGenerationTaskDetail
+      description: Task detail for ORGANISATION_VERIFICATION_DECLARATION_GENERATION tasks.
+      allOf:
+        - $ref: '#/components/schemas/BaseActivityTaskDetail'
+        - type: object
+          properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_DECLARATION_GENERATION
+            specificTaskData:
+              $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationOutcomeData'
+
+    OrganisationVerificationSubmissionTaskDetail:
+      title: OrganisationVerificationSubmissionTaskDetail
+      description: Task detail for ORGANISATION_VERIFICATION_SUBMISSION tasks.
+      allOf:
+        - $ref: '#/components/schemas/BaseActivityTaskDetail'
+        - type: object
+          properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_SUBMISSION
+            specificTaskData:
+              $ref: '#/components/schemas/OrganisationVerificationSubmissionOutcomeData'
+
+    PageTaskProcessedItem:
+      allOf:
+        - $ref: './openapi-dpp-common-public.yml#/components/schemas/PageMetadata'
+        - type: object
+          required:
+            - content
+          properties:
+            content:
+              type: array
+              items:
+                $ref: '#/components/schemas/TaskProcessedItem'
+
+    TaskProcessedItem:
+      description: >-
+        Per-item processing evidence for a task, discriminated by the top-level taskType.
+        Each variant extends the common item envelope, constrains taskType, and defines its
+        own specificTaskItemData containing task-specific business identifiers and result details.
+      oneOf:
+        - $ref: '#/components/schemas/DppRegistrationTaskProcessedItem'
+        - $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationTaskProcessedItem'
+        - $ref: '#/components/schemas/OrganisationVerificationSubmissionTaskProcessedItem'
+      discriminator:
+        propertyName: taskType
+        mapping:
+          DPP_REGISTRATION: '#/components/schemas/DppRegistrationTaskProcessedItem'
+          ORGANISATION_VERIFICATION_DECLARATION_GENERATION: '#/components/schemas/OrganisationVerificationDeclarationGenerationTaskProcessedItem'
+          ORGANISATION_VERIFICATION_SUBMISSION: '#/components/schemas/OrganisationVerificationSubmissionTaskProcessedItem'
+
+    BaseTaskProcessedItem:
+      type: object
+      description: >-
+        Common core of the per-item processing evidence, identical across task types.
+        Variants constrain taskType and add their own specificTaskItemData.
+      required:
+        - taskId
+        - taskItemIndex
+        - taskType
+        - outcomeMessage
+      properties:
+        taskId:
+          type: string
+          description: Identifier of the task this item belongs to.
+        taskItemIndex:
+          type: integer
+          description: Zero-based index of the item within the task.
+        taskType:
+          type: string
+        outcomeMessage:
+          $ref: '#/components/schemas/TaskMessage'
+        outcomeDetails:
+          type: array
+          description: Granular per-item messages. Empty when none.
+          items:
+            $ref: '#/components/schemas/TaskMessage'
+
+    DppRegistrationTaskProcessedItem:
+      title: DppRegistrationTaskProcessedItem
+      description: Processed item for DPP_REGISTRATION tasks.
+      allOf:
+        - $ref: '#/components/schemas/BaseTaskProcessedItem'
+        - type: object
+          properties:
+            taskType:
+              type: string
+              const: DPP_REGISTRATION
+            specificTaskItemData:
+              $ref: '#/components/schemas/DppRegistrationItemOutcomeData'
+
+    OrganisationVerificationDeclarationGenerationTaskProcessedItem:
+      title: OrganisationVerificationDeclarationGenerationTaskProcessedItem
+      description: Processed item for ORGANISATION_VERIFICATION_DECLARATION_GENERATION tasks.
+      allOf:
+        - $ref: '#/components/schemas/BaseTaskProcessedItem'
+        - type: object
+          properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_DECLARATION_GENERATION
+            specificTaskItemData:
+              $ref: '#/components/schemas/OrganisationVerificationDeclarationGenerationItemOutcomeData'
+
+    OrganisationVerificationSubmissionTaskProcessedItem:
+      title: OrganisationVerificationSubmissionTaskProcessedItem
+      description: Processed item for ORGANISATION_VERIFICATION_SUBMISSION tasks.
+      allOf:
+        - $ref: '#/components/schemas/BaseTaskProcessedItem'
+        - type: object
+          properties:
+            taskType:
+              type: string
+              const: ORGANISATION_VERIFICATION_SUBMISSION
+            specificTaskItemData:
+              $ref: '#/components/schemas/OrganisationVerificationSubmissionItemOutcomeData'
+
+    DppRegistrationItemOutcomeData:
+      type: object
+      description: Per-item outcome data for DPP_REGISTRATION items.
+      required:
+        - productGroup
+        - submissionRequestId
+        - granularity
+      properties:
+        uniqueProductIdentifier:
+          type: string
+          format: uri
+          description: Unique product identifier of the submitted item.
+        digitalProductPassportId:
+          type:
+            - string
+            - 'null'
+          format: uri
+          description: >-
+            Dereferenceable HTTPS URL of the Digital Product Passport payload when provided
+            separately from uniqueProductIdentifier.
+        uniqueRegistryIdentifier:
+          type: string
+          description: Registry-assigned identifier for the DPP. Present only when the complete registration submission succeeds.
+        productGroup:
+          type: string
+          description: Product group of the submitted item.
+          examples:
+            - BATTERIES
+        productSubGroup:
+          type:
+            - string
+            - 'null'
+          description: Product sub-group of the submitted item, when the product group defines sub-groups.
+          examples:
+            - evb
+        submissionRequestId:
+          type: string
+          description: Identifier of the DPP submission request.
+        granularity:
+          type: string
+          description: Granularity level determined for the submitted item.
+          enum:
+            - item
+            - batch
+            - model
+        batchIdentifier:
+          type: string
+          description: Batch identifier, when the item is registered at batch granularity.
+        modelIdentifier:
+          type: string
+          description: Model identifier, when the item is registered at model granularity.
+
+    OrganisationVerificationDeclarationGenerationItemOutcomeData:
+      type: object
+      description: Per-item outcome data for ORGANISATION_VERIFICATION_DECLARATION_GENERATION items.
+      properties:
+        enrolmentApplicationId:
+          type: string
+          description: Identifier of the enrolment application the item belongs to.
+
+    OrganisationVerificationSubmissionItemOutcomeData:
+      type: object
+      description: Per-item outcome data for ORGANISATION_VERIFICATION_SUBMISSION items.
+      properties:
+        enrolmentApplicationId:
+          type: string
+          description: Identifier of the enrolment application the item belongs to.
+
+
+    DppRegistrationOutcomeData:
+      type: object
+      description: Aggregate outcome data for a DPP_REGISTRATION task.
+      properties:
+        productGroup:
+          type: string
+          description: Product group of the registration submission.
+          examples:
+            - BATTERIES
+        productSubGroup:
+          type:
+            - string
+            - 'null'
+          description: Product sub-group of the registration submission, when the product group defines sub-groups.
+          examples:
+            - evb
+        submissionRequestId:
+          type: string
+          description: Identifier of the DPP registration submission.
+        processingInfo:
+          type: object
+          description: >-
+            Aggregate compliance counters for the submitted items. These counters do not
+            represent partial registration. If nonCompliantItems is greater than zero, none
+            of the submitted DPPs are registered.
+          properties:
+            submittedItems:
+              type: integer
+              description: Total number of items included in the submission.
+            compliantItems:
+              type: integer
+              description: Number of submitted items that individually passed validation.
+            nonCompliantItems:
+              type: integer
+              description: Number of submitted items that did not pass validation.
+
+    OrganisationVerificationDeclarationGenerationOutcomeData:
+      type: object
+      description: Outcome data for ORGANISATION_VERIFICATION_DECLARATION_GENERATION tasks.
+      properties:
+        enrolmentApplicationId:
+          type: string
+          description: Identifier of the enrolment application the declaration belongs to.
+
+    OrganisationVerificationSubmissionOutcomeData:
+      type: object
+      description: Outcome data for ORGANISATION_VERIFICATION_SUBMISSION tasks.
+      properties:
+        enrolmentApplicationId:
+          type: string
+          description: Identifier of the enrolment application the submission belongs to.
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the seal validity period.
+          examples:
+            - '2026-04-20T08:55:00Z'
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the seal validity period.
+          examples:
+            - '2027-04-20T08:55:00Z'
+        signedBy:
+          type: string
+          description: >-
+            Name of the signer. For legal persons this is the organisation legal name;
+            for natural persons this is the first name and last name concatenated.
+
+    TaskOutcome:
+      type: object
+      description: >-
+        Terminal business outcome written once the task has finished processing:
+        the result plus a single task-level message.
+      properties:
+        outcomeResult:
+          $ref: '#/components/schemas/TaskOutcomeResult'
+        outcomeMessage:
+          $ref: '#/components/schemas/TaskMessage'
+
+    TaskOutcomeResult:
+      type: string
+      description: >-
+        Business outcome of a completed task (only present when status is COMPLETED).
+        SUCCEEDED — positive business result.
+        FAILED — negative business result, such as a rejected verification or a registration submission containing one or more non-compliant items.
+      enum:
+        - SUCCEEDED
+        - FAILED
+
+    TaskMessage:
+      type: object
+      description: >-
+        Stable machine-readable business code together with a human-readable display message.
+      properties:
+        code:
+          type: string
+          description: Stable business/error code identifying the condition.
+        message:
+          type: string
+          description: Human-readable text describing the code.

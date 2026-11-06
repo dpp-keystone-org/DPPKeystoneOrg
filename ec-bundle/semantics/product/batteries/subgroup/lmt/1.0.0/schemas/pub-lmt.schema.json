@@ -1,0 +1,72 @@
+{
+  "$id": "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/schemas/pub-lmt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Light Means of Transport Batteries (LMT) Product subgroup - Public view",
+  "description": "JSON Schema for the public properties of the Light Means of Transport Batteries (LMT) Subgroup representation.",
+  "type": "object",
+  "if": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "contains": {
+          "const": "https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0/pub"
+        }
+      }
+    },
+    "required": [
+      "contentSpecificationIds"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "contentSpecificationIds": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contains": {
+          "const": "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub"
+        },
+        "$comment": "Validation error code: SEM-MSG-009"
+      },
+      "batteryCategory": {
+        "const": "lightMeansOfTransportBattery",
+        "$comment": "Validation error code: SEM-BAT-MSG-009"
+      },
+      "expectedLifetimeCycles": {
+        "type": "integer",
+        "minimum": 1,
+        "$comment": "Validation error code: SEM-BAT-MSG-031"
+      },
+      "cycleLifeReferenceTest": {
+        "$ref": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json#/$defs/multiLanguage",
+        "$comment": "Validation error code: SEM-BAT-MSG-032"
+      },
+      "capacityExhaustionThreshold": false,
+      "initialRoundTripEnergyEfficiency": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-037"
+      },
+      "roundTripEfficiencyAtHalfCycleLife": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-038"
+      },
+      "cycleLifeChargeCRate": {
+        "type": "number",
+        "$comment": "Validation error code: SEM-BAT-MSG-041"
+      }
+    },
+    "required": [
+      "contentSpecificationIds",
+      "expectedLifetimeCycles",
+      "cycleLifeReferenceTest",
+      "initialRoundTripEnergyEfficiency",
+      "roundTripEfficiencyAtHalfCycleLife",
+      "cycleLifeChargeCRate"
+    ]
+  }
+}

@@ -1,0 +1,265 @@
+openapi: 3.1.0
+info:
+  title: DPP Registry Service API
+  version: 1.0.0
+  license:
+    name: European Union Public Licence v. 1.2
+    identifier: EUPL-1.2
+  description: >-
+    Public REST contract for DPP registration submissions and Registry product-classification
+    reference data. Registry accepts JSON-only submissions containing between 1 and 100 items
+    for a single product group. Each item contains a uniqueProductIdentifier, required
+    granularity, and may include an optional digitalProductPassportId, batchIdentifier, or
+    modelIdentifier. Accepted submissions are processed asynchronously and tracked through
+    Activity Dashboard using the returned taskId. Acceptance for processing does not mean that
+    any submitted DPP has been registered.
+servers:
+  - url: https://registry.acc.product-passport.ec.europa.eu
+    description: ACC
+  - url: https://registry.product-passport.ec.europa.eu
+    description: PROD
+security:
+  - bearerAuth: []
+tags:
+  - name: Registry reference data
+  - name: DPP registration
+paths:
+  /api/v1/dpp/product-groups:
+    get:
+      tags:
+        - Registry reference data
+      summary: List available product groups
+      operationId: listProductGroups
+      parameters:
+        - $ref: '#/components/parameters/CorrelationId'
+      responses:
+        '200':
+          description: Available product groups
+          headers:
+            X-Correlation-Id:
+              $ref: './openapi-dpp-common-public.yml#/components/headers/CorrelationId'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductGroup'
+        '401':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Forbidden'
+        '429':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/TooManyRequests'
+        '500':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/InternalServerError'
+  /api/v1/dpp/submission:
+    post:
+      tags:
+        - DPP registration
+      summary: Submit a DPP registration request
+      description: >
+        Accepts a JSON-only DPP registration submission containing between 1 and 100 items
+        for one productGroup. Each item contains its own uniqueProductIdentifier, required
+        granularity, and may include an optional digitalProductPassportId, batchIdentifier,
+        or modelIdentifier. An accepted request returns 202 Accepted and a taskId for Activity
+        Dashboard tracking. Acceptance for processing does not confirm that any submitted DPP
+        has been registered. File upload is not part of this public API.
+      operationId: submitDppRegistrationRequest
+      parameters:
+        - $ref: '#/components/parameters/CorrelationId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DPPRegistrationSubmissionRequest'
+            example:
+              productGroup: BATTERIES
+              productSubGroup: evb
+              submissionItems:
+                - uniqueProductIdentifier: https://example.com/id/01/09506000134352/21/SN0001
+                  digitalProductPassportId: https://example.com/dpp/battery/0001
+                  granularity: item
+                  batchIdentifier: xxx-000
+                  modelIdentifier: yyy-111
+      responses:
+        '202':
+          description: Accepted for asynchronous processing. The response identifies the task used to track processing and does not confirm successful DPP registration.
+          headers:
+            X-Correlation-Id:
+              $ref: './openapi-dpp-common-public.yml#/components/headers/CorrelationId'
+            Location:
+              $ref: './openapi-dpp-common-public.yml#/components/headers/Location'
+          content:
+            application/json:
+              schema:
+                $ref: './openapi-dpp-common-public.yml#/components/schemas/AcceptedAsyncOperation'
+        '400':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Forbidden'
+        '409':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/Conflict'
+        '413':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/PayloadTooLarge'
+        '422':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/TooManyRequests'
+        '500':
+          $ref: './openapi-dpp-common-public.yml#/components/responses/InternalServerError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    CorrelationId:
+      name: X-Correlation-Id
+      in: header
+      required: false
+      description: >-
+        Optional correlation identifier for end-to-end tracing and support diagnostics.
+        If omitted, Registry generates and propagates one.
+      schema:
+        type: string
+        maxLength: 128
+        examples:
+          - corr_01J1REG
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Required deduplication key for write operations that must be replay-safe.
+      schema:
+        type: string
+        maxLength: 128
+        examples:
+          - idem_save_002
+  schemas:
+    ProductGroup:
+      type: object
+      required:
+        - code
+        - label
+        - productSubGroups
+      properties:
+        code:
+          type: string
+          examples:
+            - BATTERIES
+        label:
+          type: string
+        productSubGroups:
+          type: array
+          description: Valid product sub-groups for the product group.
+          items:
+            $ref: '#/components/schemas/ProductSubGroup'
+    ProductSubGroup:
+      type: object
+      required:
+        - code
+        - label
+      properties:
+        code:
+          type: string
+          examples:
+            - evb
+        label:
+          type: string
+    DPPRegistrationSubmissionRequest:
+      type: object
+      required:
+        - productGroup
+        - submissionItems
+      description: >-
+        Sector-agnostic JSON-only DPP registration submission. productSubGroup is required when
+        the selected productGroup defines sub-groups in the product groups catalogue.
+        submissionItems contains between 1 and 100 items, each with its own
+        uniqueProductIdentifier, required granularity, and optional digitalProductPassportId,
+        batchIdentifier, or modelIdentifier.
+      properties:
+        productGroup:
+          type: string
+          description: Product group code selected from the product groups catalogue.
+        productSubGroup:
+          type: string
+          description: >-
+            Product sub-group code valid for the selected product group, when the product group
+            defines sub-groups.
+        submissionItems:
+          type: array
+          minItems: 1
+          maxItems: 100
+          description: Items included in the registration submission. Registry accepts between 1 and 100 items.
+          items:
+            $ref: '#/components/schemas/SubmissionItem'
+      examples:
+        - productGroup: BATTERIES
+          productSubGroup: evb
+          submissionItems:
+            - uniqueProductIdentifier: https://example.com/id/01/09506000134352/21/SN0001
+              digitalProductPassportId: https://example.com/dpp/battery/0001
+              granularity: item
+              batchIdentifier: xxx-000
+              modelIdentifier: yyy-111
+        - productGroup: BATTERIES
+          productSubGroup: lmt
+          submissionItems:
+            - uniqueProductIdentifier: https://example.com/dpp/battery/0002
+              granularity: batch
+              batchIdentifier: xxx-002
+
+    SubmissionItem:
+      type: object
+      required:
+        - uniqueProductIdentifier
+        - granularity
+      description: A single item to register within a DPP submission.
+      properties:
+        uniqueProductIdentifier:
+          $ref: '#/components/schemas/UniqueProductIdentifier'
+        digitalProductPassportId:
+          $ref: '#/components/schemas/DigitalProductPassportId'
+        granularity:
+          type: string
+          description: Granularity level for this submitted DPP (item, batch, or model).
+          enum:
+            - item
+            - batch
+            - model
+        batchIdentifier:
+          type: string
+          description: Optional batch identifier.
+          examples:
+            - xxx-000
+        modelIdentifier:
+          type: string
+          description: Optional model identifier.
+          examples:
+            - yyy-111
+
+    UniqueProductIdentifier:
+      type: string
+      format: uri
+      minLength: 8
+      maxLength: 2000
+      description: >-
+        Unique Product Identifier (URI) per EN 18223 identifying the product, batch, or model.
+        Also serves as the default HTTPS retrieval URL for the Digital Product Passport payload
+        when digitalProductPassportId is omitted.
+
+    DigitalProductPassportId:
+      type: string
+      format: uri
+      minLength: 8
+      maxLength: 2000
+      description: >-
+        Optional dereferenceable HTTPS URL of the Digital Product Passport payload when distinct
+        from uniqueProductIdentifier, enabling multiple Unique Product Identifiers to reference
+        a shared DPP instance.

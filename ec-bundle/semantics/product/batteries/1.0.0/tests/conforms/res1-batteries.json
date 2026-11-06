@@ -1,0 +1,33 @@
+{
+    "@context": [
+        "https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld",
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld"
+    ],
+    "id": "https://www.example.org/dpp/1234545",
+    "type": "DigitalProductPassport",
+    "contentSpecificationIds": [
+        "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res1"
+    ],
+    "detailedComposition": {
+        "en": "Cathode: LiNi0.8Mn0.1Co0.1O2 (NMC811); Anode: graphite; Electrolyte: LiPF6 in organic carbonates; Housing: aluminium",
+        "de-DE": "Kathode: LiNi0.8Mn0.1Co0.1O2 (NMC811); Anode: Graphit; Elektrolyt: LiPF6 in organischen Carbonaten; Gehäuse: Aluminium"
+    },
+    "sparePartReplacementDetails": {
+        "resourceTitle": "Spare part replacements",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/spare-parts-0001",
+        "language": "en"
+    },
+    "dismantlingInformation": {
+        "resourceTitle": "Dismantling document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/dismantling-0001",
+        "language": "en-GB"
+    },
+    "safetyMeasures": {
+        "resourceTitle": "Safety measures document",
+        "contentType": "application/pdf",
+        "url": "https://example.com/docs/safety-0001",
+        "language": "en-GB"
+    }
+}

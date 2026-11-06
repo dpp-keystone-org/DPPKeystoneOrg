@@ -1,0 +1,260 @@
+{
+  "$id": "https://repository.product-passport.ec.europa.eu/core/1.0.0/schemas/common.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Digital Product Passport",
+  "description": "JSON Schema for the common properties of the compact Digital Product Passport representation.",
+  "type": "object",
+  "$defs": {
+    "multiLanguage": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      },
+      "$comment": "Validation error code: SEM-COM-MSG-012"
+    },
+    "relatedResource": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "resourceTitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+        }
+      },
+      "required": [
+        "contentType",
+        "url"
+      ]
+    },
+    "relatedResourceOrArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/relatedResource"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/relatedResource"
+          }
+        }
+      ]
+    },
+    "unitValue": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "type": "string",
+          "enum": [
+            "kilogram",
+            "gram",
+            "ampereHour",
+            "milliampereHour",
+            "percent",
+            "volt",
+            "degreeCelsius",
+            "watt",
+            "ohm",
+            "reciprocalHour",
+            "hour",
+            "month",
+            "percentPerYear",
+            "wattHour",
+            "kilowattHour"
+          ],
+          "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit# | Validation error code: SEM-COM-MSG-010"
+        },
+        "value": {
+          "type": "number",
+          "$comment": "Validation error code: SEM-COM-MSG-009"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "unitValueWithRange": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "type": "string",
+          "enum": [
+            "kilogram",
+            "gram",
+            "ampereHour",
+            "milliampereHour",
+            "percent",
+            "volt",
+            "degreeCelsius",
+            "watt",
+            "ohm",
+            "reciprocalHour",
+            "hour",
+            "month",
+            "percentPerYear",
+            "wattHour",
+            "kilowattHour"
+          ],
+          "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit# | Validation error code: SEM-COM-MSG-010"
+        },
+        "value": {
+          "type": "number",
+          "$comment": "Validation error code: SEM-COM-MSG-009"
+        },
+        "valueRange": {
+          "$ref": "#/$defs/valueRange",
+          "$comment": "Validation error code: SEM-COM-MSG-008"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "valueRange": {
+      "type": "object",
+      "properties": {
+        "observedCharacteristic": {
+          "type": "string",
+          "enum": [
+            "temperature"
+          ],
+          "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/observed-characteristic# | Validation error code: SEM-COM-MSG-001"
+        },
+        "lowerBound": {
+          "type": "number",
+          "$comment": "Validation error code: SEM-COM-MSG-005"
+        },
+        "upperBound": {
+          "type": "number",
+          "$comment": "Validation error code: SEM-COM-MSG-006"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "kilogram",
+            "gram",
+            "ampereHour",
+            "milliampereHour",
+            "percent",
+            "volt",
+            "degreeCelsius",
+            "watt",
+            "ohm",
+            "reciprocalHour",
+            "hour",
+            "month",
+            "percentPerYear",
+            "wattHour",
+            "kilowattHour"
+          ],
+          "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit# | Validation error code: SEM-COM-MSG-010"
+        }
+      },
+      "required": [
+        "observedCharacteristic",
+        "lowerBound",
+        "upperBound",
+        "unit"
+      ]
+    },
+    "histogram": {
+      "type": "object",
+      "properties": {
+        "binRangeUnit": {
+          "type": "string",
+          "enum": [
+            "kilogram",
+            "gram",
+            "ampereHour",
+            "milliampereHour",
+            "percent",
+            "volt",
+            "degreeCelsius",
+            "watt",
+            "ohm",
+            "reciprocalHour",
+            "hour",
+            "month",
+            "percentPerYear",
+            "wattHour",
+            "kilowattHour"
+          ],
+          "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit# | Validation error code: SEM-COM-MSG-002"
+        },
+        "binValueUnit": {
+          "type": "string",
+          "enum": [
+            "kilogram",
+            "gram",
+            "ampereHour",
+            "milliampereHour",
+            "percent",
+            "volt",
+            "degreeCelsius",
+            "watt",
+            "ohm",
+            "reciprocalHour",
+            "hour",
+            "month",
+            "percentPerYear",
+            "wattHour",
+            "kilowattHour"
+          ],
+          "$comment": "Controlled vocabulary: https://repository.product-passport.ec.europa.eu/core/vocabs/measurement-unit# | Validation error code: SEM-COM-MSG-003"
+        },
+        "bin": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "lowerBound": {
+                "type": "number",
+                "$comment": "Validation error code: SEM-COM-MSG-005"
+              },
+              "upperBound": {
+                "type": "number",
+                "$comment": "Validation error code: SEM-COM-MSG-006"
+              },
+              "binValue": {
+                "type": "number",
+                "minimum": 0,
+                "$comment": "Validation error code: SEM-COM-MSG-007"
+              }
+            },
+            "required": [
+              "lowerBound",
+              "upperBound",
+              "binValue"
+            ]
+          },
+          "$comment": "Validation error code: SEM-COM-MSG-004"
+        }
+      },
+      "required": [
+        "binRangeUnit",
+        "binValueUnit",
+        "bin"
+      ]
+    }
+  }
+}
