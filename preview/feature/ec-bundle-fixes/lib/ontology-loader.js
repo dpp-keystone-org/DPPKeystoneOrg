@@ -1,5 +1,5 @@
-import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from './keystone-version.js?v=1793968643419';
-import { SECTOR_ONTOLOGY_MAP, SECTOR_CONTEXT_MAP } from './sector-mappings.js?v=1793968643419';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from './keystone-version.js?v=1793972249964';
+import { SECTOR_ONTOLOGY_MAP, SECTOR_CONTEXT_MAP } from './sector-mappings.js?v=1793972249964';
 
 /**
  * Robustly extracts a single string value from an RDFS property, preferring English.
