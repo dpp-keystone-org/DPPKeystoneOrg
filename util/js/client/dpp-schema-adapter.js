@@ -1,4 +1,4 @@
-import { transform, buildDictionary } from '../common/transformation/dpp-schema-logic.js?v=1791895318907';
+import { transform, buildDictionary } from '../common/transformation/dpp-schema-logic.js?v=1794068202640';
 
 // Using a global dictionary with memoization to avoid re-building on every call
 const dictionary = {};
@@ -23,9 +23,9 @@ async function loader(path) {
  * @returns {Promise<Array>} A promise that resolves to an array of transformed objects.
  */
 export async function transformDpp(productDoc, options) {
-    const { ontologyPaths, documentLoader } = options;
+    const { ontologyPaths, documentLoader, version } = options;
     console.log("DPP Adapter Debug: Building dictionary with paths:", ontologyPaths);
-    await buildDictionary(ontologyPaths, loader, documentLoader, dictionary);
+    await buildDictionary(ontologyPaths, loader, documentLoader, dictionary, version);
     console.log("DPP Adapter Debug: Dictionary built. Transforming...");
     
     return transform(productDoc, options, dictionary);
