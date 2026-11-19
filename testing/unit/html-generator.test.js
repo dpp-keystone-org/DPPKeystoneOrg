@@ -3,6 +3,7 @@
  */
 import { jest } from '@jest/globals';
 import { KEYSTONE_VERSION } from '../../src/lib/keystone-version.js';
+import { clearOntologyCache } from '../../src/lib/ontology-loader.js';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -28,6 +29,7 @@ describe('HTML Generator', () => {
 
     beforeEach(() => {
         fetch.mockClear();
+        clearOntologyCache();
         transformDppMock.mockClear();
         // Default mock implementation for transformDpp (return null/undefined to skip LD generation by default)
         transformDppMock.mockResolvedValue(null);

@@ -3,7 +3,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadOntology } from '../../../dist/lib/ontology-loader.js';
+import { loadOntology, clearOntologyCache } from '../../../dist/lib/ontology-loader.js';
 import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 
 // Mock the global fetch function
@@ -12,6 +12,7 @@ global.fetch = jest.fn();
 describe('DPP Wizard - Ontology Loader', () => {
     beforeEach(() => {
         fetch.mockClear();
+        clearOntologyCache();
     });
 
     it('should fetch, parse, and map an ontology file', async () => {
@@ -370,5 +371,28 @@ describe('DPP Wizard - Ontology Loader', () => {
         expect(someClassInfo.enum).toBeDefined();
         expect(Array.isArray(someClassInfo.enum)).toBe(true);
         expect(someClassInfo.enum).toEqual(['OptionA', 'OptionB']);
+    });
+
+    test('should cache fetched JSON-LD files and resolved ontology maps across sectors', async () => {
+        const mockBatteryOntology = {
+            '@graph': [
+                {
+                    '@id': 'dppk:hazardousSubstances',
+                    'rdfs:label': [{ '@language': 'en', '@value': 'Hazardous substances' }]
+                }
+            ]
+        };
+
+        fetch.mockResolvedValueOnce({
+            ok: true,
+            json: async () => mockBatteryOntology
+        });
+
+        const evMap = await loadOntology('battery-ev');
+        const indMap = await loadOntology('battery-industrial');
+
+        expect(fetch).toHaveBeenCalledTimes(1);
+        expect(indMap).toBe(evMap);
+        expect(indMap.get('hazardousSubstances').label.en).toBe('Hazardous substances');
     });
 });
