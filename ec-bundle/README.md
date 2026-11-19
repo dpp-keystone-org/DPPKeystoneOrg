@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains an in-place corrected version of the European Commission (EC) v1.0.0 Digital Product Passport (DPP) semantic asset package (`semantics/`) and OpenAPI 3.1 service specifications (`openapi/`) for batteries.
+This directory contains an in-place corrected version of the European Commission (EC) v1.0.0 Digital Product Passport (DPP) semantic asset package (`semantics/` see https://single-market-economy.ec.europa.eu/document/download/5fad8a3a-9c18-486d-be02-01eb540e91e8_en?filename=DPP%20Registry%20%E2%80%93%20Semantic%20Data%20Artifacts.zip) and OpenAPI 3.1 service specifications (`openapi/`) for batteries. 
 
 All edits preserve the original directory hierarchy (`core/1.0.0`, `product/batteries/1.0.0`, `product/batteries/subgroup/{evb,ind,lmt}/1.0.0`, and `openapi/`) so reviewers can inspect a minimal, direct `git diff` against the published v1.0.0 bundle.
 
