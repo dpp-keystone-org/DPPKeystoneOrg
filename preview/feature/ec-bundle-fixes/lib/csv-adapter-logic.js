@@ -1,5 +1,5 @@
-import { setProperty, compactArrays } from './dpp-data-utils.js?v=1795083516599';
-import { SECTOR_CONTEXT_MAP } from './sector-mappings.js?v=1795083516599';
+import { setProperty, compactArrays } from './dpp-data-utils.js?v=1795084514435';
+import { SECTOR_CONTEXT_MAP } from './sector-mappings.js?v=1795084514435';
 
 /**
  * Map of common industry terms to standard DPP schema fields.
