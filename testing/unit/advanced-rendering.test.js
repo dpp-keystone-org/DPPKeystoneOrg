@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 import { jest } from '@jest/globals';
+import { clearOntologyCache } from '../../src/lib/ontology-loader.js';
 
 // Mock fetch globally
 global.fetch = jest.fn();
@@ -24,6 +25,7 @@ describe('Advanced Rendering Logic', () => {
 
     beforeEach(() => {
         fetch.mockClear();
+        clearOntologyCache();
         // Default mock for CSS and Ontology fetches
         fetch.mockResolvedValue({
             ok: true,

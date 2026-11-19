@@ -3,13 +3,14 @@
  */
 
 import { jest } from '@jest/globals';
-import { loadOntology } from '../../../dist/lib/ontology-loader.js';
+import { loadOntology, clearOntologyCache } from '../../../dist/lib/ontology-loader.js';
 
 global.fetch = jest.fn();
 
 describe('Ontology Loader - Enhanced Metadata', () => {
     beforeEach(() => {
         fetch.mockClear();
+        clearOntologyCache();
     });
 
     it('should extract definedIn and type metadata', async () => {

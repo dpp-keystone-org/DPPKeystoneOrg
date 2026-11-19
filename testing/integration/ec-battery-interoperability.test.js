@@ -489,5 +489,221 @@ describe('EC Battery Interoperability Deliverables (Goals 2, 3, 4 & 5)', () => {
         expect(msaAuditRes.statusCode).toBe(422);
         expect(msaAuditRes.report.conforms).toBe(false);
         expect(msaAuditRes.report.findings.some((f) => f.stage === 'REQUIRED_SPECIFICATION_POLICY')).toBe(true);
+
+        // 1. Empty `{}` payload AND bare Core-header-only (`core.json`) DPPs are rejected with IMPLIED_SPECIFICATION
+        const emptyObjRes = await engine.validatePayload({}, { shacl: true });
+        expect(emptyObjRes.statusCode).toBe(422);
+        expect(emptyObjRes.report.findings).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ stage: 'IMPLIED_SPECIFICATION', code: 'SEM-MSG-009' })
+            ])
+        );
+
+        const bareCoreDpp = JSON.parse(
+            await fs.readFile(path.join(EC_SEMANTICS_ROOT, 'core/1.0.0/tests/conforms/core.json'), 'utf-8')
+        );
+        const bareCoreRes = await engine.validatePayload(bareCoreDpp, { shacl: true });
+        expect(bareCoreRes.statusCode).toBe(422);
+        expect(bareCoreRes.report.findings).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ stage: 'IMPLIED_SPECIFICATION', code: 'SEM-MSG-009' })
+            ])
+        );
+
+        // 2. Collaborator catch: Battery passport with `batteryCategory` omitting battery URIs from `contentSpecificationIds`
+        //    (even when a decoy non-battery specification URI is present)
+        const omittedBatterySpecDpp = structuredClone(reqExamples.evBatteryPublicDpp.value);
+        omittedBatterySpecDpp.contentSpecificationIds = [
+            'https://repository.product-passport.ec.europa.eu/core/1.0.0',
+            'urn:example:sector:other:1.0'
+        ];
+        const omittedSpecRes = await engine.validatePayload(omittedBatterySpecDpp, { shacl: true });
+        expect(omittedSpecRes.statusCode).toBe(422);
+        expect(omittedSpecRes.report.findings).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    stage: 'IMPLIED_SPECIFICATION',
+                    specificationId: 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub',
+                    code: 'SEM-MSG-009'
+                }),
+                expect.objectContaining({
+                    stage: 'IMPLIED_SPECIFICATION',
+                    specificationId: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub',
+                    code: 'SEM-MSG-009'
+                })
+            ])
+        );
+
+        // 3. Subgroup evasion / wrong subgroup claim: `batteryCategory: "electricVehicleBattery"` claiming `ind` instead of `evb`
+        const wrongSubgroupDpp = structuredClone(reqExamples.evBatteryPublicDpp.value);
+        wrongSubgroupDpp.contentSpecificationIds = [
+            'https://repository.product-passport.ec.europa.eu/core/1.0.0',
+            'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub',
+            'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/ind/1.0.0/pub'
+        ];
+        const wrongSubgroupRes = await engine.validatePayload(wrongSubgroupDpp, { shacl: true });
+        expect(wrongSubgroupRes.statusCode).toBe(422);
+        expect(wrongSubgroupRes.report.findings).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    stage: 'IMPLIED_SPECIFICATION',
+                    specificationId: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub',
+                    code: 'SEM-MSG-009'
+                })
+            ])
+        );
+
+        // 4. Root product `@type` / sector-property implied specifications (ConstructionProduct & Textile ESPR)
+        const untaggedConstructionDpp = {
+            ...structuredClone(bareCoreDpp),
+            '@context': [
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-construction.context.jsonld`,
+                'https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld'
+            ],
+            type: ['DigitalProductPassport', 'ConstructionProduct'],
+            contentSpecificationIds: [
+                'https://repository.product-passport.ec.europa.eu/core/1.0.0',
+                'urn:example:sector:decoy:1.0'
+            ]
+        };
+        const untaggedConstructionRes = await engine.validatePayload(untaggedConstructionDpp, { shacl: true });
+        expect(untaggedConstructionRes.statusCode).toBe(422);
+        expect(untaggedConstructionRes.report.findings).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    stage: 'IMPLIED_SPECIFICATION',
+                    specificationId: 'draft_construction_specification_id',
+                    code: 'SEM-MSG-009'
+                })
+            ])
+        );
+
+        const untaggedTextileDpp = structuredClone(reqExamples.esprTextileBatchDpp.value);
+        untaggedTextileDpp.contentSpecificationIds = [
+            'https://repository.product-passport.ec.europa.eu/core/1.0.0',
+            'urn:example:sector:decoy:1.0'
+        ];
+        const untaggedTextileRes = await engine.validatePayload(untaggedTextileDpp, { shacl: true });
+        expect(untaggedTextileRes.statusCode).toBe(422);
+        expect(untaggedTextileRes.report.findings).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    stage: 'IMPLIED_SPECIFICATION',
+                    specificationId: 'draft_textile_espr_specification_id',
+                    code: 'SEM-MSG-009'
+                })
+            ])
+        );
+
+        // 5. Partial dynamic telemetry catch: `numberOfChargingCycles` present without `/res3` specification IDs
+        const undeclaredDynamicDpp = structuredClone(reqExamples.evBatteryPublicDpp.value);
+        undeclaredDynamicDpp.numberOfChargingCycles = 42;
+        const undeclaredDynamicRes = await engine.validatePayload(undeclaredDynamicDpp, { shacl: true });
+        expect(undeclaredDynamicRes.statusCode).toBe(422);
+        expect(undeclaredDynamicRes.report.findings).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    stage: 'IMPLIED_SPECIFICATION',
+                    specificationId: 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3',
+                    code: 'SEM-MSG-009'
+                }),
+                expect.objectContaining({
+                    stage: 'IMPLIED_SPECIFICATION',
+                    specificationId: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res3',
+                    code: 'SEM-MSG-009'
+                })
+            ])
+        );
+
+        // 6. Standalone restricted BMS `res3` slice (`res3-batteries-evb.json`) + subgroup-only property guard
+        const res3Slice = JSON.parse(
+            await fs.readFile(
+                path.join(EC_SEMANTICS_ROOT, 'product/batteries/subgroup/evb/1.0.0/tests/conforms/res3-batteries-evb.json'),
+                'utf-8'
+            )
+        );
+        const res3SliceOk = await engine.validatePayload(res3Slice, { shacl: true });
+        expect(res3SliceOk.statusCode).toBe(200);
+        expect(res3SliceOk.report.conforms).toBe(true);
+
+        const res3MissingSubgroup = structuredClone(res3Slice);
+        res3MissingSubgroup.contentSpecificationIds = [
+            'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3'
+        ];
+        const res3MissingSubRes = await engine.validatePayload(res3MissingSubgroup, { shacl: true });
+        expect(res3MissingSubRes.statusCode).toBe(422);
+        expect(res3MissingSubRes.report.findings.some((f) => f.stage === 'IMPLIED_SPECIFICATION' && f.code === 'SEM-MSG-009')).toBe(true);
+
+        // 7. BMS / carrier reader policy via generic `requireSpecificationId` (`requiredSpecs`)
+        const bmsRequiredSpecs = [
+            'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3',
+            'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res3'
+        ];
+        const bmsRejectPubOnly = await engine.validatePayload(reqExamples.evBatteryPublicDpp.value, {
+            requiredSpecs: bmsRequiredSpecs,
+            shacl: true
+        });
+        expect(bmsRejectPubOnly.statusCode).toBe(422);
+        expect(
+            bmsRejectPubOnly.report.findings.some(
+                (f) =>
+                    f.stage === 'REQUIRED_SPECIFICATION_POLICY' &&
+                    f.specificationId === 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/res3'
+            )
+        ).toBe(true);
+
+        const bmsAcceptFullAligned = await engine.validatePayload(alignedExample, {
+            requiredSpecs: bmsRequiredSpecs,
+            shacl: true
+        });
+        expect(bmsAcceptFullAligned.statusCode).toBe(200);
+        expect(bmsAcceptFullAligned.report.conforms).toBe(true);
+
+        // 8. Multi-category passport (Textile + EV Battery declaring all applicable specs) passes cleanly
+        const multiCategoryDpp = {
+            ...structuredClone(reqExamples.esprTextileBatchDpp.value),
+            ...structuredClone(reqExamples.evBatteryPublicDpp.value),
+            '@context': [
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`,
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`,
+                'https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld',
+                'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld'
+            ],
+            contentSpecificationIds: [
+                'https://repository.product-passport.ec.europa.eu/core/1.0.0',
+                'draft_textile_espr_specification_id',
+                'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub',
+                'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub'
+            ]
+        };
+        const multiCatRes = await engine.validatePayload(multiCategoryDpp, { shacl: true });
+        expect(multiCatRes.statusCode).toBe(200);
+        expect(multiCatRes.report.conforms).toBe(true);
+
+        // 9. Sub-component non-interference: nested component node with `bat:batteryCategory` does NOT force parent passport to be a battery DPP
+        const parentWithNestedBatteryComponent = {
+            ...structuredClone(reqExamples.esprTextileBatchDpp.value),
+            '@context': [
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-textile.context.jsonld`,
+                'https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld',
+                {
+                    hasEmbeddedComponent: `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#hasEmbeddedComponent`,
+                    subBatteryCategory: {
+                        '@id': 'https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary#batteryCategory',
+                        '@type': '@vocab',
+                        '@context': {
+                            '@vocab': 'https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-category#'
+                        }
+                    }
+                }
+            ],
+            hasEmbeddedComponent: {
+                '@id': 'https://example.com/components/beacon-cell-1',
+                subBatteryCategory: 'industrialBattery'
+            }
+        };
+        const subCompRes = await engine.validatePayload(parentWithNestedBatteryComponent, { shacl: true });
+        expect(subCompRes.statusCode).toBe(200);
+        expect(subCompRes.report.conforms).toBe(true);
     });
 });

@@ -1,0 +1,167 @@
+{
+  "digitalProductPassportId": "https://example.com/dpp/battery-ind-2026-0001",
+  "uniqueProductIdentifier": "https://example.com/products/battery-ind-2026-0001",
+  "granularity": "item",
+  "dppStatus": "validStatus",
+  "lastUpdate": "2026-03-15T10:30:00Z",
+  "contentSpecificationIds": [
+    "https://repository.product-passport.ec.europa.eu/core/1.0.0",
+    "https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0"
+  ],
+  "registrantIdentity": "urn:uuid:3f1c7a52-8d4e-4b1a-9c2e-5a6b7d8e9f01",
+  "manufacturerIdentification": {
+    "manufacturerName": "Iberia Battery Systems S.L.",
+    "manufacturerTradeName": "IberiaCell",
+    "manufacturerTrademark": "IberiaCell(R)"
+  },
+  "manufacturerPostalAddress": "Calle de Alcalá 100, 28009 Madrid, Spain",
+  "manufacturerContactDetails": {
+    "manufacturerWebsite": "https://www.example.com",
+    "manufacturerEmail": "mailto:info@example.com"
+  },
+  "batteryCategory": "industrialBattery",
+  "batteryIdentification": {
+    "modelIdentifier": "IC-IND-100-LFP",
+    "batchNumber": "BATCH-2026-03-A",
+    "serialNumber": "SN-2026-IND-0001"
+  },
+  "manufacturingPlace": {
+    "manufacturingCity": "Zaragoza",
+    "manufacturingRegion": "Aragón",
+    "manufacturingCountry": "ESP"
+  },
+  "manufacturingDate": "2026-03",
+  "batteryWeight": {
+    "unit": "kilogram",
+    "value": 142.5
+  },
+  "batteryCapacity": {
+    "unit": "ampereHour",
+    "value": 100
+  },
+  "batteryChemistry": [
+    "lithiumIonLFP"
+  ],
+  "hazardousSubstances": [
+    "Lithium hexafluorophosphate"
+  ],
+  "extinguishingAgent": {
+    "en-IE": "Large quantities of water; dry chemical powder (Class D) for small fires."
+  },
+  "criticalRawMaterials": [
+    "lithium",
+    "phosphorus"
+  ],
+  "renewableContentShare": {
+    "unit": "percent",
+    "value": 14.0
+  },
+  "minimalVoltage": {
+    "unit": "volt",
+    "value": 44.8,
+    "valueRange": {
+      "observedCharacteristic": "temperature",
+      "lowerBound": -20,
+      "upperBound": 55,
+      "unit": "degreeCelsius"
+    }
+  },
+  "nominalVoltage": {
+    "unit": "volt",
+    "value": 51.2,
+    "valueRange": {
+      "observedCharacteristic": "temperature",
+      "lowerBound": -20,
+      "upperBound": 55,
+      "unit": "degreeCelsius"
+    }
+  },
+  "maximumVoltage": {
+    "unit": "volt",
+    "value": 58.4,
+    "valueRange": {
+      "observedCharacteristic": "temperature",
+      "lowerBound": -20,
+      "upperBound": 55,
+      "unit": "degreeCelsius"
+    }
+  },
+  "originalPowerCapability": {
+    "unit": "watt",
+    "value": 5120
+  },
+  "powerLimit": [
+    {
+      "unit": "watt",
+      "value": 7680,
+      "valueRange": {
+        "observedCharacteristic": "temperature",
+        "lowerBound": 0,
+        "upperBound": 45,
+        "unit": "degreeCelsius"
+      }
+    }
+  ],
+  "notInUseTemperatureRange": {
+    "notInUseTemperatureRangeTest": {
+      "en-IE": "IEC 62619 storage qualification between -20 C and 45 C."
+    },
+    "valueRange": {
+      "observedCharacteristic": "temperature",
+      "lowerBound": -20,
+      "upperBound": 45,
+      "unit": "degreeCelsius"
+    }
+  },
+  "commercialWarrantyPeriod": 60,
+  "internalCellResistance": {
+    "unit": "ohm",
+    "value": 0.0008
+  },
+  "internalPackResistance": {
+    "unit": "ohm",
+    "value": 0.032
+  },
+  "separateCollectionSymbol": true,
+  "chemicalSymbol": [
+    "noneSymbol"
+  ],
+  "euDeclarationOfConformity": {
+    "resourceTitle": "EU Declaration of Conformity",
+    "contentType": "application/pdf",
+    "url": "https://example.com/docs/eu-doc-ind-2026-0001.pdf",
+    "language": "en-IE"
+  },
+  "wasteBatteryPreventionManagementInfo": {
+    "endUserRoleInWastePrevention": {
+      "en-IE": "End users should avoid deep discharge, overheating, and mechanical damage."
+    },
+    "endUserRoleInSeparateCollection": {
+      "en-IE": "End users must not dispose of industrial batteries in municipal waste streams."
+    },
+    "separateCollectionPoints": {
+      "en-IE": "https://example.com/collection-points"
+    },
+    "takeBackCollectionPoints": {
+      "en-IE": "Authorised manufacturer take-back network; free return upon request."
+    },
+    "preparationForReuseFacilities": {
+      "en-IE": "Authorised facility: Iberia Reuse Centre, Zaragoza."
+    },
+    "preparationForRepurposingFacilities": {
+      "en-IE": "Authorised facility: Iberia Second-Life Hub, Valencia."
+    },
+    "wasteBatteryTreatmentFacilities": {
+      "en-IE": "Authorised recycling plant: Recycla Ibérica, Bilbao."
+    },
+    "wasteBatterySafetyInstructions": {
+      "en-IE": "Insulate terminals and store damaged packs in a ventilated, non-flammable container."
+    },
+    "batteryLabelSymbolMeaning": {
+      "en-IE": "The crossed-out wheeled bin symbol indicates mandatory separate collection."
+    },
+    "batterySubstancesImpact": {
+      "en-IE": "Improper disposal may release electrolyte and fluorinated compounds into soil and water."
+    }
+  }
+}
