@@ -103,6 +103,31 @@
                 </div>
             </section>
 
+            <section id="ec-battery-adaptation">
+                <h2 data-i18n-key="ec-battery-section-title"></h2>
+                <div class="spec-section">
+                    <p data-i18n-key="ec-battery-section-intro"></p>
+                    <ul>
+                        <li><a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg/tree/main/ec-bundle" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-patched"></a></li>
+                        <li><a href="https://repository.product-passport.ec.europa.eu/" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-original"></a></li>
+                    </ul>
+                    <p><em data-i18n-key="ec-battery-convergence-note"></em></p>
+
+                    <h3 data-i18n-key="ec-battery-api-heading"></h3>
+                    <p data-i18n-key="ec-battery-api-intro"></p>
+
+                    <p><strong data-i18n-key="ec-battery-api-validate-desc"></strong></p>
+                    <pre><code>curl -X POST https://api.dpp-keystone.org/validate \
+  -H "Content-Type: application/json" \
+  -d '{"dpp": { ... }, "options": {"target": "patched", "mode": "strict"}}'</code></pre>
+
+                    <p><strong data-i18n-key="ec-battery-api-adapt-desc"></strong></p>
+                    <pre><code>curl -X POST https://api.dpp-keystone.org/adapt \
+  -H "Content-Type: application/json" \
+  -d '{"dpp": { ... }, "options": {"target": "patched", "validate": true, "mode": "strict"}}'</code></pre>
+                </div>
+            </section>
+
             <section>
                 <h2 data-i18n-key="version-specifications-the-standard"></h2>
                 <p data-i18n-key="the-canonical-data-models-vocabulary"></p>

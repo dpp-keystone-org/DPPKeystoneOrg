@@ -2,7 +2,7 @@ import { promises as fs, existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse as jsoncParse } from 'jsonc-parser';
-import { KEYSTONE_VERSION, KNOWN_VERSIONS } from '../../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, KNOWN_VERSIONS, normalizeSpecUrl } from '../../../src/lib/keystone-version.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -362,9 +362,10 @@ export function createServerDocumentLoader(version = KEYSTONE_VERSION) {
     return async (url) => {
         const CONTEXT_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
         const ONTOLOGY_PREFIX = 'https://dpp-keystone.org/spec/ontology/';
+        const normalizedUrl = normalizeSpecUrl(url);
 
-        if (url.startsWith(CONTEXT_PREFIX)) {
-            const rel = url.replace(CONTEXT_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
+        if (normalizedUrl.startsWith(CONTEXT_PREFIX)) {
+            const rel = normalizedUrl.replace(CONTEXT_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
             const distPath = path.join(PROJECT_ROOT, 'dist/spec/contexts', rel.includes('/') ? rel : `${version}/${rel}`);
             const srcPath = path.join(PROJECT_ROOT, 'src/contexts', rel.includes('/') ? rel : `${version}/${rel}`);
             const diskPath = existsSync(distPath) ? distPath : srcPath;
@@ -376,8 +377,8 @@ export function createServerDocumentLoader(version = KEYSTONE_VERSION) {
             }
         }
 
-        if (url.startsWith(ONTOLOGY_PREFIX)) {
-            const rel = url.replace(ONTOLOGY_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
+        if (normalizedUrl.startsWith(ONTOLOGY_PREFIX)) {
+            const rel = normalizedUrl.replace(ONTOLOGY_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
             const distPath = path.join(PROJECT_ROOT, 'dist/spec/ontology', rel.includes('/') ? rel : `${version}/${rel}`);
             const srcPath = path.join(PROJECT_ROOT, 'src/ontology', rel.includes('/') ? rel : `${version}/${rel}`);
             const diskPath = existsSync(distPath) ? distPath : srcPath;

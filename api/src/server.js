@@ -3,6 +3,8 @@ import { fileURLToPath } from 'node:url';
 import { KEYSTONE_VERSION, KNOWN_VERSIONS } from '../../src/lib/keystone-version.js';
 import { validateDppPayload } from './lib/dpp-validator-service.js';
 import { generateDppHtml } from './lib/html-generator-server.js';
+import { validateEcDppPayload, getEcEngineMetadata } from './lib/ec-validator-service.js';
+import { adaptKeystoneToEcBattery } from './lib/ec-battery-adapter-service.js';
 
 const MAX_PAYLOAD_BYTES = 1024 * 1024; // 1MB payload limit
 
@@ -119,7 +121,111 @@ export function createServer() {
                 return;
             }
 
-            // 4. Render HTML (POST /render/html or POST /v3/render/html, /v2/render/html, etc.)
+            // 4. EC Specifications Discovery (GET /specifications or GET /v1/specifications)
+            if ((pathname === '/specifications' || pathname === '/v1/specifications') && method === 'GET') {
+                const target = url.searchParams.get('target') || 'patched';
+                if (!['patched', 'raw'].includes(target)) {
+                    sendJson(res, 400, {
+                        error: `Invalid target '${target}'. Allowed values: 'patched', 'raw'.`,
+                        code: 'INVALID_TARGET'
+                    });
+                    return;
+                }
+                const metadata = await getEcEngineMetadata(target);
+                sendJson(res, 200, metadata);
+                return;
+            }
+
+            // 5. EC Battery Validation (POST /validate or POST /v1/validate)
+            if (pathname === '/validate' || pathname === '/v1/validate') {
+                if (method !== 'POST') {
+                    sendJson(res, 405, {
+                        error: `Method ${method} Not Allowed`,
+                        code: 'METHOD_NOT_ALLOWED'
+                    }, { 'Allow': 'POST, OPTIONS' });
+                    return;
+                }
+
+                const body = await readJsonBody(req);
+                const isWrapped = body && typeof body === 'object' && !Array.isArray(body) && body.dpp && typeof body.dpp === 'object';
+                const dppPayload = isWrapped ? body.dpp : body;
+                const bodyOptions = (isWrapped && body.options && typeof body.options === 'object') ? body.options : {};
+
+                if (!dppPayload || typeof dppPayload !== 'object' || Array.isArray(dppPayload) || Object.keys(dppPayload).length === 0) {
+                    sendJson(res, 400, {
+                        error: "Invalid request: Provide a DPP JSON object (either directly or wrapped in { 'dpp': { ... }, 'options': { ... } }).",
+                        code: 'INVALID_REQUEST'
+                    });
+                    return;
+                }
+
+                const target = bodyOptions.target || url.searchParams.get('target') || 'patched';
+                const mode = bodyOptions.mode || url.searchParams.get('mode') || 'strict';
+                const subgroup = bodyOptions.subgroup || url.searchParams.get('subgroup') || undefined;
+                const tiersParam = url.searchParams.get('tiers');
+                const tiers = bodyOptions.tiers || (tiersParam ? tiersParam.split(',').map(s => s.trim()).filter(Boolean) : undefined);
+                const requiredSpecs = bodyOptions.requiredSpecs || url.searchParams.getAll('requireSpecificationId');
+
+                const result = await validateEcDppPayload(dppPayload, {
+                    target,
+                    mode,
+                    subgroup,
+                    tiers,
+                    requiredSpecs
+                });
+
+                sendJson(res, result.valid ? 200 : 422, result);
+                return;
+            }
+
+            // 6. Keystone -> EC Battery Adaptation (POST /adapt or POST /v1/adapt)
+            if (pathname === '/adapt' || pathname === '/v1/adapt') {
+                if (method !== 'POST') {
+                    sendJson(res, 405, {
+                        error: `Method ${method} Not Allowed`,
+                        code: 'METHOD_NOT_ALLOWED'
+                    }, { 'Allow': 'POST, OPTIONS' });
+                    return;
+                }
+
+                const body = await readJsonBody(req);
+                const isWrapped = body && typeof body === 'object' && !Array.isArray(body) && body.dpp && typeof body.dpp === 'object';
+                const dppPayload = isWrapped ? body.dpp : body;
+                const bodyOptions = (isWrapped && body.options && typeof body.options === 'object') ? body.options : {};
+
+                if (!dppPayload || typeof dppPayload !== 'object' || Array.isArray(dppPayload) || Object.keys(dppPayload).length === 0) {
+                    sendJson(res, 400, {
+                        error: "Invalid request: Provide a Keystone Battery DPP JSON object (either directly or wrapped in { 'dpp': { ... }, 'options': { ... } }).",
+                        code: 'INVALID_REQUEST'
+                    });
+                    return;
+                }
+
+                const target = bodyOptions.target || url.searchParams.get('target') || 'patched';
+                const subgroup = bodyOptions.subgroup || url.searchParams.get('subgroup') || undefined;
+                const sourceVersion = bodyOptions.sourceVersion || url.searchParams.get('sourceVersion') || undefined;
+                const shouldValidate = bodyOptions.validate === true || url.searchParams.get('validate') === 'true';
+                const validationMode = bodyOptions.mode || url.searchParams.get('mode') || 'strict';
+
+                const adaptedResult = await adaptKeystoneToEcBattery(dppPayload, {
+                    target,
+                    subgroup,
+                    sourceVersion
+                });
+
+                if (shouldValidate) {
+                    adaptedResult.validation = await validateEcDppPayload(adaptedResult.adaptedDpp, {
+                        target,
+                        mode: validationMode,
+                        subgroup: adaptedResult.subgroup
+                    });
+                }
+
+                sendJson(res, 200, adaptedResult);
+                return;
+            }
+
+            // 7. Render HTML (POST /render/html or POST /v3/render/html, /v2/render/html, etc.)
             const renderHtmlMatch = pathname.match(/^\/(?:(v\d+)\/)?render\/html$/);
             if (renderHtmlMatch) {
                 if (method !== 'POST') {
