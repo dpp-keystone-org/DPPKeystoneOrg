@@ -153,5 +153,70 @@ describe('DPP Validator - Localized HTML Preview Integration', () => {
         );
         expect(window.open).toHaveBeenCalledWith('blob:mock-url', '_blank');
     });
+
+    it('should preserve voluntary and untransformed attributes when exporting EC Battery DPP from Validator', async () => {
+        const originalFetch = global.fetch;
+        const originalBlob = global.Blob;
+        let capturedExportJson = null;
+
+        // Serve local dist/spec/ files to the real transformDpp engine
+        global.fetch = jest.fn(async (url) => {
+            const urlStr = String(url);
+            const specMatch = urlStr.match(/\/spec\/(.+)$/);
+            if (specMatch) {
+                const diskPath = path.resolve(__dirname, '../../dist/spec', specMatch[1]);
+                const content = await fs.readFile(diskPath, 'utf-8');
+                return { ok: true, json: async () => JSON.parse(content) };
+            }
+            return { ok: true, json: async () => ({}) };
+        });
+
+        // Capture JSON written to Blob on export
+        global.Blob = class MockBlob {
+            constructor(parts, opts) {
+                if (opts?.type === 'application/ld+json' && typeof parts[0] === 'string') {
+                    capturedExportJson = JSON.parse(parts[0]);
+                }
+            }
+        };
+
+        try {
+            jest.unstable_mockModule('../dist/util/js/common/validation/schema-validator.js', () => ({
+                validateDpp: jest.fn().mockResolvedValue({ valid: true, errors: [] })
+            }));
+
+            await import('../../dist/validator/validator.js');
+            document.dispatchEvent(new Event('DOMContentLoaded'));
+
+            const ecBtn = await waitFor(() => {
+                const b = document.getElementById('ec-battery-btn');
+                return (b && !b.disabled) ? b : null;
+            });
+
+            window.open = jest.fn();
+
+            const exampleRaw = await loadFile('dist/spec/examples/battery-dpp-v1.json');
+            const batteryDpp = JSON.parse(exampleRaw);
+            batteryDpp['@context'] = [
+                batteryDpp['@context'],
+                { ex: 'https://example.org/voc#', customWarrantyCode: 'ex:customWarrantyCode' }
+            ];
+            batteryDpp.hsCode = '85076000';
+            batteryDpp.customWarrantyCode = 'EXT-5Y-EU';
+            batteryDpp.voluntaryNotes = { recyclingPartner: 'GreenCycle GmbH' };
+
+            document.getElementById('json-input').value = JSON.stringify(batteryDpp);
+            ecBtn.click();
+
+            await waitFor(() => capturedExportJson !== null);
+
+            expect(capturedExportJson.hsCode).toBe('85076000');
+            expect(capturedExportJson.customWarrantyCode).toBe('EXT-5Y-EU');
+            expect(capturedExportJson.voluntaryNotes).toEqual({ recyclingPartner: 'GreenCycle GmbH' });
+        } finally {
+            global.fetch = originalFetch;
+            global.Blob = originalBlob;
+        }
+    });
 });
 

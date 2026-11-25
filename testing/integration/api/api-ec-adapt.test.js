@@ -147,4 +147,71 @@ describe('HTTP API - Keystone to EC Battery Adaptation (POST /adapt)', () => {
         const badBody = await badResp.json();
         expect(badBody.code).toBe('INVALID_TARGET');
     });
+
+    it('preserves voluntary and untransformed attributes when adapting to patched EC Battery DPP', async () => {
+        const keystoneDpp = await loadKeystoneExample('battery-dpp-v1.json');
+        keystoneDpp['@context'] = [
+            keystoneDpp['@context'],
+            {
+                ex: 'https://example.org/voc#',
+                customWarrantyCode: 'ex:customWarrantyCode'
+            }
+        ];
+        keystoneDpp.hsCode = '85076000';
+        keystoneDpp.customWarrantyCode = 'EXT-5Y-EU';
+        keystoneDpp.voluntaryNotes = { recyclingPartner: 'GreenCycle GmbH' };
+
+        const resp = await fetch(`${baseUrl}/adapt`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                dpp: keystoneDpp,
+                options: {
+                    target: 'patched',
+                    validate: true,
+                    mode: 'schema'
+                }
+            })
+        });
+
+        const body = await resp.json();
+        expect(resp.status).toBe(200);
+        expect(body.validation.valid).toBe(true);
+        expect(body.adaptedDpp.hsCode).toBe('85076000');
+        expect(body.adaptedDpp.customWarrantyCode).toBe('EXT-5Y-EU');
+        expect(body.adaptedDpp.voluntaryNotes).toEqual({ recyclingPartner: 'GreenCycle GmbH' });
+    });
+
+    it('preserves context-mapped voluntary attributes and passes strict SHACL validation on patched EC Battery DPP', async () => {
+        const keystoneDpp = await loadKeystoneExample('battery-dpp-v1.json');
+        keystoneDpp['@context'] = [
+            keystoneDpp['@context'],
+            {
+                ex: 'https://example.org/voc#',
+                customWarrantyCode: 'ex:customWarrantyCode'
+            }
+        ];
+        keystoneDpp.hsCode = '85076000';
+        keystoneDpp.customWarrantyCode = 'EXT-5Y-EU';
+
+        const resp = await fetch(`${baseUrl}/adapt`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                dpp: keystoneDpp,
+                options: {
+                    target: 'patched',
+                    validate: true,
+                    mode: 'strict'
+                }
+            })
+        });
+
+        const body = await resp.json();
+        expect(resp.status).toBe(200);
+        expect(body.adaptedDpp.hsCode).toBe('85076000');
+        expect(body.adaptedDpp.customWarrantyCode).toBe('EXT-5Y-EU');
+        expect(body.validation.valid).toBe(true);
+        expect(body.validation.findings).toEqual([]);
+    });
 });
