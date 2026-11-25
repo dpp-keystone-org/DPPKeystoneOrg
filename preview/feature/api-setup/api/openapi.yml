@@ -1,0 +1,587 @@
+openapi: 3.1.0
+info:
+  title: DPP Keystone Validation & EC Battery Adaptation API
+  version: 1.0.0
+  description: |
+    Stateless HTTP API for validating Digital Product Passports (DPPs) against both the
+    **patched** DPP Keystone EC Battery bundle (`ec-bundle/`) and the **unmodified** official
+    European Commission v1.0.0 Battery bundle (`ec-bundle-raw/`), and adapting Keystone Battery
+    DPPs into either EC format.
+
+    All `POST` endpoints enforce a **1 MiB** maximum request payload size (`413 Payload Too Large`)
+    and accept **either** a raw DPP JSON body with query parameters (ideal for `curl --data-binary @file.json`)
+    **or** a JSON envelope `{ "dpp": { ... }, "options": { ... } }`.
+  license:
+    name: CC0 1.0 Universal
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+servers:
+  - url: https://dpp-keystone-api-naamukjlba-ew.a.run.app
+    description: Cloud Run Sandbox (Live)
+  - url: https://api.dpp-keystone.org
+    description: Production Custom Domain (Pending DNS Mapping)
+
+tags:
+  - name: EC Battery Adaptation
+    description: Adapt Keystone Battery DPPs to patched or raw EC v1.0.0 Battery DPP format.
+  - name: EC Battery Validation
+    description: Validate EC Battery DPPs via JSON Schema Draft 2020-12 and/or SHACL Core.
+  - name: Discovery & Health
+    description: Service health, specification discovery, and OpenAPI contract retrieval.
+  - name: HTML Rendering
+    description: Render Keystone DPPs as standalone localized HTML product pages.
+
+paths:
+  /adapt:
+    post:
+      tags:
+        - EC Battery Adaptation
+      summary: Adapt a Keystone Battery DPP to EC Battery format
+      description: |
+        Transforms a DPP Keystone Battery payload (EV, LMT, or Industrial; v3 or legacy Keystone versions)
+        into an EC v1.0.0 Battery DPP targeting either the **patched** (`ec-bundle/`) or **raw**
+        (`ec-bundle-raw/`) EC semantic bundle.
+
+        When `target=patched`, any additional `@context` entries and untransformed voluntary attributes
+        present on the input DPP are preserved in the output.
+      parameters:
+        - $ref: '#/components/parameters/TargetParam'
+        - $ref: '#/components/parameters/SubgroupParam'
+        - name: sourceVersion
+          in: query
+          required: false
+          description: Optional Keystone source version override (e.g. `v3`, `v2`, `v1`). Auto-detected from `@context` or `contentSpecificationIds` when omitted.
+          schema:
+            type: string
+            enum: [v1, v2, v3]
+        - name: validate
+          in: query
+          required: false
+          description: If `true`, validates the adapted DPP against the selected `target` bundle and includes a `validation` report in the response.
+          schema:
+            type: boolean
+            default: false
+        - $ref: '#/components/parameters/ModeParam'
+      requestBody:
+        required: true
+        description: Either a raw Keystone Battery DPP JSON object or a wrapped `{ dpp, options }` envelope.
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/AdaptEnvelope'
+                - $ref: '#/components/schemas/DppPayload'
+            examples:
+              rawKeystoneDpp:
+                summary: Raw Keystone EV Battery DPP (with query params)
+                value:
+                  '@context': https://dpp-keystone.org/spec/contexts/v3/dpp-battery.context.jsonld
+                  '@type': dppk:DigitalProductPassport
+                  digitalProductPassportId: urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+                  uniqueProductIdentifier: https://example.com/gtin/01234567890123
+                  granularity: Item
+                  dppSchemaVersion: v2.0
+                  dppStatus: Active
+                  lastUpdate: '2024-05-21T10:00:00Z'
+                  economicOperatorId: urn:gln:9876543210987
+                  contentSpecificationIds:
+                    - urn:dpp-keystone:v3:sector:battery-ev
+                  batteryCategory: EVBattery
+                  batteryChemistry: LFP
+                  batteryMass: 45.5
+                  manufacturingDate: '2024-01-15'
+                  manufacturingPlace: Berlin, Germany
+                  extinguishingAgent: Water
+                  hsCode: '85076000'
+      responses:
+        '200':
+          description: Adaptation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdaptResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+
+  /validate:
+    post:
+      tags:
+        - EC Battery Validation
+      summary: Validate an EC Battery DPP payload
+      description: |
+        Validates a DPP JSON / JSON-LD payload against either the **patched** (`ec-bundle/`) or
+        **raw** (`ec-bundle-raw/`) EC v1.0.0 Battery semantic bundle using JSON Schema Draft 2020-12
+        (`mode=schema`), JSON-LD 1.1 + SHACL Core (`mode=shacl`), or both (`mode=strict`, default).
+      parameters:
+        - $ref: '#/components/parameters/TargetParam'
+        - $ref: '#/components/parameters/ModeParam'
+        - $ref: '#/components/parameters/SubgroupParam'
+        - name: tiers
+          in: query
+          required: false
+          description: Comma-separated access tiers to evaluate when `target=raw` (e.g. `pub,res1,res2,res3`). Auto-detected when omitted.
+          schema:
+            type: string
+            example: pub,res1
+        - name: requireSpecificationId
+          in: query
+          required: false
+          description: Repeatable policy check requiring specific `contentSpecificationIds` URIs to be declared on the DPP.
+          schema:
+            type: array
+            items:
+              type: string
+              format: uri
+      requestBody:
+        required: true
+        description: Either a raw EC Battery DPP JSON object or a wrapped `{ dpp, options }` envelope.
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/ValidateEnvelope'
+                - $ref: '#/components/schemas/DppPayload'
+      responses:
+        '200':
+          description: "Validation passed (`valid: true`)."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationReport'
+        '422':
+          description: "Validation failed (`valid: false`, structured findings attached)."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationReport'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+
+  /specifications:
+    get:
+      tags:
+        - Discovery & Health
+      summary: List recognized EC semantic specifications
+      description: Returns loaded JSON Schema, SHACL shape, and JSON-LD context counts plus all recognized specifications for the chosen `target` bundle.
+      parameters:
+        - $ref: '#/components/parameters/TargetParam'
+      responses:
+        '200':
+          description: Loaded specification metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpecificationsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /render/html:
+    post:
+      tags:
+        - HTML Rendering
+      summary: Render a Keystone DPP as standalone HTML
+      description: Validates a Keystone DPP payload and returns a localized standalone HTML product page (optionally embedding Schema.org JSON-LD).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [dpp]
+              properties:
+                dpp:
+                  $ref: '#/components/schemas/DppPayload'
+                options:
+                  type: object
+                  properties:
+                    includeSchema:
+                      type: boolean
+                      default: true
+                    language:
+                      type: string
+                      default: en
+                    customCssUrl:
+                      type: string
+                      format: uri
+                    version:
+                      type: string
+                      enum: [v1, v2, v3]
+      responses:
+        '200':
+          description: Standalone HTML product page.
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          description: Keystone DPP validation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+
+  /health:
+    get:
+      tags:
+        - Discovery & Health
+      summary: Service health probe
+      responses:
+        '200':
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, timestamp]
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  /version:
+    get:
+      tags:
+        - Discovery & Health
+      summary: Active Keystone specification version
+      responses:
+        '200':
+          description: Active specification version metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, version, activeVersion, timestamp]
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  version:
+                    type: string
+                  activeVersion:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  /openapi.yml:
+    get:
+      tags:
+        - Discovery & Health
+      summary: Download this OpenAPI 3.1 specification (YAML)
+      responses:
+        '200':
+          description: OpenAPI 3.1 YAML document.
+          content:
+            application/yaml:
+              schema:
+                type: string
+
+components:
+  parameters:
+    TargetParam:
+      name: target
+      in: query
+      required: false
+      description: Target EC bundle (`patched` = DPP Keystone fixed `ec-bundle/`, `raw` = unmodified official EC v1.0.0 `ec-bundle-raw/`).
+      schema:
+        type: string
+        enum: [patched, raw]
+        default: patched
+    ModeParam:
+      name: mode
+      in: query
+      required: false
+      description: Validation depth (`strict` = JSON Schema + SHACL Core, `schema` = JSON Schema only, `shacl` = JSON-LD + SHACL Core only).
+      schema:
+        type: string
+        enum: [strict, schema, shacl]
+        default: strict
+    SubgroupParam:
+      name: subgroup
+      in: query
+      required: false
+      description: Optional battery subgroup override (`evb` = Electric Vehicle, `ind` = Industrial, `lmt` = Light Means of Transport). Auto-detected when omitted.
+      schema:
+        type: string
+        enum: [evb, ind, lmt]
+
+  schemas:
+    DppPayload:
+      type: object
+      description: |
+        A Digital Product Passport JSON / JSON-LD object. Because this API supports multiple
+        input/output profiles (Keystone v1–v3, patched EC v1.0.0, raw EC v1.0.0, EV/LMT/Industrial
+        subgroups, public & restricted tiers `pub`/`res1`/`res2`/`res3`, plus voluntary federated
+        attributes), the full sector-specific rules are enforced dynamically rather than inlined here.
+
+        **Canonical Schemas:**
+        - **DPP Keystone v3 Core & Battery Schemas:** [dpp.schema.json](../spec/validation/v3/json-schema/dpp.schema.json) · [battery-ev](../spec/validation/v3/json-schema/sector/battery-ev.schema.json) · [battery-lmv](../spec/validation/v3/json-schema/sector/battery-lmv.schema.json) · [battery-industrial](../spec/validation/v3/json-schema/sector/battery-industrial.schema.json)
+        - **Patched EC Battery Bundle (`target=patched`):** [ec-bundle/semantics on GitHub](https://github.com/dpp-keystone-org/DPPKeystoneOrg/tree/main/ec-bundle/semantics)
+        - **Official EC DPP Resources (`target=raw`):** [European Commission DPP Documentation](https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en)
+        - Call `GET /specifications` to inspect every active schema and `contentSpecificationId` loaded by the server.
+      properties:
+        '@context':
+          description: "JSON-LD context URL, inline context object, or array of contexts."
+          oneOf:
+            - type: string
+            - type: object
+            - type: array
+          example: "https://dpp-keystone.org/spec/contexts/v3/dpp-battery.context.jsonld"
+        digitalProductPassportId:
+          type: string
+          description: "Globally unique identifier (URI/URN) of this Digital Product Passport."
+          example: "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+        uniqueProductIdentifier:
+          type: string
+          description: "Globally unique product identifier (e.g. GS1 Digital Link URI)."
+          example: "https://example.com/gtin/01234567890123"
+        granularity:
+          type: string
+          description: "DPP granularity level (`Item`/`Batch`/`Model` in Keystone; `item`/`batch`/`model` in patched EC; full URI in raw EC)."
+          example: "Item"
+        dppStatus:
+          type: string
+          description: "Lifecycle status (`Active` in Keystone; `validStatus`/`invalidStatus` in patched EC; full URI in raw EC)."
+          example: "Active"
+        lastUpdate:
+          type: string
+          format: date-time
+          description: "ISO 8601 UTC timestamp of the last DPP update."
+          example: "2024-05-21T10:00:00Z"
+        contentSpecificationIds:
+          type: array
+          description: "List of sector/tier specification URIs or Keystone URNs declaring which schemas apply."
+          items:
+            type: string
+          example:
+            - "urn:dpp-keystone:v3:sector:battery-ev"
+        economicOperatorId:
+          type: string
+          description: "Identifier (URI/URN, e.g. GLN or LEI) of the responsible economic operator."
+          example: "urn:gln:9876543210987"
+        facilityId:
+          type: string
+          description: "Identifier of the manufacturing facility."
+          example: "urn:gln:9876543210988"
+        productName:
+          description: "Human-readable product name (string in Keystone; BCP 47 language map in EC)."
+          oneOf:
+            - type: string
+            - type: object
+          example: "Keystone EV LFP Module Gen2"
+      additionalProperties: true
+
+    ValidateEnvelope:
+      type: object
+      required: [dpp]
+      properties:
+        dpp:
+          $ref: '#/components/schemas/DppPayload'
+        options:
+          type: object
+          properties:
+            target:
+              type: string
+              enum: [patched, raw]
+              default: patched
+            mode:
+              type: string
+              enum: [strict, schema, shacl]
+              default: strict
+            subgroup:
+              type: string
+              enum: [evb, ind, lmt]
+            tiers:
+              type: array
+              items:
+                type: string
+                enum: [pub, res1, res2, res3]
+            requiredSpecs:
+              type: array
+              items:
+                type: string
+                format: uri
+
+    AdaptEnvelope:
+      type: object
+      required: [dpp]
+      properties:
+        dpp:
+          $ref: '#/components/schemas/DppPayload'
+        options:
+          type: object
+          properties:
+            target:
+              type: string
+              enum: [patched, raw]
+              default: patched
+            subgroup:
+              type: string
+              enum: [evb, ind, lmt]
+            sourceVersion:
+              type: string
+              enum: [v1, v2, v3]
+            validate:
+              type: boolean
+              default: false
+            mode:
+              type: string
+              enum: [strict, schema, shacl]
+              default: strict
+
+    ValidationFinding:
+      type: object
+      required: [stage, path, message]
+      properties:
+        stage:
+          type: string
+          enum: [INPUT, REQUIRED_SPECIFICATION_POLICY, JSON_SCHEMA, SHACL]
+        specificationId:
+          type: string
+        schemaId:
+          type: string
+        code:
+          type: string
+        path:
+          type: string
+        message:
+          type: string
+
+    ValidationReport:
+      type: object
+      required:
+        - valid
+        - target
+        - mode
+        - activatedSpecifications
+        - unrecognizedSpecifications
+        - schemaExecuted
+        - shaclExecuted
+        - findings
+        - warnings
+      properties:
+        valid:
+          type: boolean
+        target:
+          type: string
+          enum: [patched, raw]
+        mode:
+          type: string
+          enum: [strict, schema, shacl]
+        activatedSpecifications:
+          type: array
+          items:
+            type: string
+        unrecognizedSpecifications:
+          type: array
+          items:
+            type: string
+        schemaExecuted:
+          type: boolean
+        shaclExecuted:
+          type: boolean
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationFinding'
+        warnings:
+          type: array
+          items:
+            type: string
+
+    AdaptResponse:
+      type: object
+      required: [target, sourceVersion, subgroup, adaptedDpp, warnings, droppedFields]
+      properties:
+        target:
+          type: string
+          enum: [patched, raw]
+        sourceVersion:
+          type: string
+        subgroup:
+          type: string
+          enum: [evb, ind, lmt]
+        adaptedDpp:
+          $ref: '#/components/schemas/DppPayload'
+        warnings:
+          type: array
+          items:
+            type: string
+        droppedFields:
+          type: array
+          items:
+            type: string
+        validation:
+          $ref: '#/components/schemas/ValidationReport'
+
+    SpecificationsResponse:
+      type: object
+      required: [target, schemaCount, shapeCount, contextCount, recognizedSpecs]
+      properties:
+        target:
+          type: string
+          enum: [patched, raw]
+        schemaCount:
+          type: integer
+        shapeCount:
+          type: integer
+        contextCount:
+          type: integer
+        recognizedSpecs:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+
+    ErrorEnvelope:
+      type: object
+      required: [error, code]
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+
+  responses:
+    BadRequest:
+      description: Malformed JSON, missing DPP payload, or invalid query/option parameter.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    MethodNotAllowed:
+      description: HTTP method not allowed for this route.
+      headers:
+        Allow:
+          schema:
+            type: string
+          example: POST, OPTIONS
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    PayloadTooLarge:
+      description: Request body exceeds the 1 MiB maximum size limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'

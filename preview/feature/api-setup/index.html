@@ -119,6 +119,7 @@
                     <ul>
                         <li><a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg/tree/main/ec-bundle" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-patched">Patched EC Battery Resource Code (DPP Keystone ec-bundle on GitHub)</a></li>
                         <li><a href="https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-original">Original European Commission DPP Semantic Repository</a></li>
+                        <li><a href="api/" data-i18n-key="ec-battery-link-api-docs">Interactive API Reference &amp; OpenAPI 3.1 Specification</a></li>
                     </ul>
                     <p><em data-i18n-key="ec-battery-convergence-note">Note: Once the reported issues are resolved in the official European Commission release, the patched and original versions are expected to converge and address many of the issues that we addressed.</em></p>
 
@@ -126,14 +127,14 @@
                     <p data-i18n-key="ec-battery-api-intro">Both endpoints accept a target flag ("patched" or "raw") and a validation mode ("strict" for JSON Schema + SHACL, "schema", or "shacl"):</p>
 
                     <p><strong data-i18n-key="ec-battery-api-validate-desc">Validate an EC Battery DPP (patched or raw):</strong></p>
-                    <pre><code>curl -X POST https://api.dpp-keystone.org/validate \
+                    <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/validate?target=patched&amp;mode=strict" \
   -H "Content-Type: application/json" \
-  -d '{"dpp": { ... }, "options": {"target": "patched", "mode": "strict"}}'</code></pre>
+  --data-binary @path/to/ec-battery-dpp.json</code></pre>
 
                     <p><strong data-i18n-key="ec-battery-api-adapt-desc">Adapt a Keystone Battery DPP to the EC Battery format (patched or raw):</strong></p>
-                    <pre><code>curl -X POST https://api.dpp-keystone.org/adapt \
+                    <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/adapt?target=patched&amp;validate=true&amp;mode=strict" \
   -H "Content-Type: application/json" \
-  -d '{"dpp": { ... }, "options": {"target": "patched", "validate": true, "mode": "strict"}}'</code></pre>
+  --data-binary @path/to/keystone-battery-dpp.json</code></pre>
                 </div>
             </section>
 

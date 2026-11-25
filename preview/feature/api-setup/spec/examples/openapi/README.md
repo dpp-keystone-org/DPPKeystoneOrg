@@ -12,7 +12,8 @@ To support cross-sector products, restricted access tiers (`pub`, `res1`, `res2`
 2. **Sector, Subgroup, & Access-Tier Schemas (`if` / `then` & SHACL `sh:or`)** — Layered together via `allOf` inside `#/components/schemas/LayeredDigitalProductPassport`. Each schema checks whether its unique `contentSpecificationId` is present in `contentSpecificationIds`:
    - If **absent**, the schema evaluates to `true` (stays inactive) with zero interference on other sectors or subgroups.
    - If **present**, the schema enforces its data points (and subgroup schemas also require their parent base-product tier ID).
-3. **Inspection Policy Enforcement (`requireSpecificationId` query parameter)** — Allows an MSA inspector or Notified Body to assert which regulatory specification IDs *must* be declared and satisfied for a given inspection context (preventing an operator from omitting `res1` or `res2` specification IDs to skip restricted-tier checks).
+3. **Inspection Policy Enforcement (`requireSpecificationId` query parameter)** — Allows an MSA inspector, Notified Body, or BMS reader to assert which regulatory specification IDs *must* be declared and satisfied for a given inspection context (preventing an operator from omitting `res1`, `res2`, or `res3` specification IDs to skip restricted-tier checks).
+4. **Implied & Non-Empty Sector Specification Guard (Server Logic)** — [`serve-validation-api.mjs`](./serve-validation-api.mjs) rejects bare Core-only ("empty") DPPs that declare no product-sector `contentSpecificationId`, and verifies after JSON-LD expansion that root product types and sector predicates declare their corresponding `contentSpecificationIds`.
 
 ## Running the Interactive OpenAPI Explorer & Live Validator
 
