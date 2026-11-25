@@ -83,6 +83,46 @@
         #swagger-ui ul {
             margin-left: 0;
         }
+        /* Prevent global keystone-style.css `button` rule from overriding Swagger UI structural & OpenAPI 3.1 JSON Schema toggle buttons */
+        #swagger-ui section.models button,
+        #swagger-ui .json-schema-2020-12 button,
+        #swagger-ui button.model-box-control,
+        #swagger-ui button.models-control,
+        #swagger-ui button.opblock-summary-control,
+        #swagger-ui button.expand-operation,
+        #swagger-ui button.tablinks,
+        #swagger-ui button.opblock-control-arrow,
+        #swagger-ui button.arrow {
+            background-color: transparent !important;
+            color: var(--text-dark) !important;
+            padding: 2px 6px !important;
+            border: none !important;
+            border-radius: 3px !important;
+            box-shadow: none !important;
+            font-size: inherit;
+            width: auto;
+            height: auto;
+        }
+        #swagger-ui section.models button:hover,
+        #swagger-ui .json-schema-2020-12 button:hover,
+        #swagger-ui button.model-box-control:hover,
+        #swagger-ui button.models-control:hover,
+        #swagger-ui button.opblock-summary-control:hover {
+            filter: none;
+            background-color: rgba(13, 110, 253, 0.08) !important;
+            color: var(--keystone-blue) !important;
+        }
+        #swagger-ui .json-schema-2020-12-expand-deep-button {
+            border: 1px solid var(--border-color) !important;
+            margin-left: 8px;
+            font-size: 0.8em !important;
+        }
+        #swagger-ui .models .model-box-control .model-title {
+            color: var(--text-dark);
+        }
+        #swagger-ui .models h4 span {
+            color: var(--text-dark);
+        }
     </style>
 </head>
 <body>
@@ -125,7 +165,7 @@
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             window.ui = SwaggerUIBundle({
-                url: './openapi.yml',
+                url: `./openapi.yml?v=${Date.now()}`,
                 dom_id: '#swagger-ui',
                 deepLinking: true,
                 tryItOutEnabled: true,

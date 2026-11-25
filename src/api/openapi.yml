@@ -322,7 +322,67 @@ components:
   schemas:
     DppPayload:
       type: object
-      description: A Digital Product Passport JSON / JSON-LD object.
+      description: |
+        A Digital Product Passport JSON / JSON-LD object. Because this API supports multiple
+        input/output profiles (Keystone v1–v3, patched EC v1.0.0, raw EC v1.0.0, EV/LMT/Industrial
+        subgroups, public & restricted tiers `pub`/`res1`/`res2`/`res3`, plus voluntary federated
+        attributes), the full sector-specific rules are enforced dynamically rather than inlined here.
+
+        **Canonical Schemas:**
+        - **DPP Keystone v3 Core & Battery Schemas:** [dpp.schema.json](../spec/validation/v3/json-schema/dpp.schema.json) · [battery-ev](../spec/validation/v3/json-schema/sector/battery-ev.schema.json) · [battery-lmv](../spec/validation/v3/json-schema/sector/battery-lmv.schema.json) · [battery-industrial](../spec/validation/v3/json-schema/sector/battery-industrial.schema.json)
+        - **Patched EC Battery Bundle (`target=patched`):** [ec-bundle/semantics on GitHub](https://github.com/dpp-keystone-org/DPPKeystoneOrg/tree/main/ec-bundle/semantics)
+        - **Official EC DPP Resources (`target=raw`):** [European Commission DPP Documentation](https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en)
+        - Call `GET /specifications` to inspect every active schema and `contentSpecificationId` loaded by the server.
+      properties:
+        '@context':
+          description: "JSON-LD context URL, inline context object, or array of contexts."
+          oneOf:
+            - type: string
+            - type: object
+            - type: array
+          example: "https://dpp-keystone.org/spec/contexts/v3/dpp-battery.context.jsonld"
+        digitalProductPassportId:
+          type: string
+          description: "Globally unique identifier (URI/URN) of this Digital Product Passport."
+          example: "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+        uniqueProductIdentifier:
+          type: string
+          description: "Globally unique product identifier (e.g. GS1 Digital Link URI)."
+          example: "https://example.com/gtin/01234567890123"
+        granularity:
+          type: string
+          description: "DPP granularity level (`Item`/`Batch`/`Model` in Keystone; `item`/`batch`/`model` in patched EC; full URI in raw EC)."
+          example: "Item"
+        dppStatus:
+          type: string
+          description: "Lifecycle status (`Active` in Keystone; `validStatus`/`invalidStatus` in patched EC; full URI in raw EC)."
+          example: "Active"
+        lastUpdate:
+          type: string
+          format: date-time
+          description: "ISO 8601 UTC timestamp of the last DPP update."
+          example: "2024-05-21T10:00:00Z"
+        contentSpecificationIds:
+          type: array
+          description: "List of sector/tier specification URIs or Keystone URNs declaring which schemas apply."
+          items:
+            type: string
+          example:
+            - "urn:dpp-keystone:v3:sector:battery-ev"
+        economicOperatorId:
+          type: string
+          description: "Identifier (URI/URN, e.g. GLN or LEI) of the responsible economic operator."
+          example: "urn:gln:9876543210987"
+        facilityId:
+          type: string
+          description: "Identifier of the manufacturing facility."
+          example: "urn:gln:9876543210988"
+        productName:
+          description: "Human-readable product name (string in Keystone; BCP 47 language map in EC)."
+          oneOf:
+            - type: string
+            - type: object
+          example: "Keystone EV LFP Module Gen2"
       additionalProperties: true
 
     ValidateEnvelope:
