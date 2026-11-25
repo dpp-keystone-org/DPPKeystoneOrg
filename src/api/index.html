@@ -16,7 +16,16 @@
             margin-bottom: 24px;
         }
         .api-intro-card pre {
+            background-color: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 14px;
             overflow-x: auto;
+        }
+        .api-intro-card pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-dark);
         }
         #swagger-ui {
             background: var(--white);
@@ -26,6 +35,53 @@
         }
         #swagger-ui .topbar {
             display: none;
+        }
+        /* Match DPP Keystone blue/slate palette instead of default Swagger mint green */
+        #swagger-ui .opblock.opblock-post {
+            border-color: var(--keystone-blue);
+            background: rgba(13, 110, 253, 0.05);
+        }
+        #swagger-ui .opblock.opblock-post .opblock-summary-method {
+            background: var(--keystone-blue);
+        }
+        #swagger-ui .opblock.opblock-post .opblock-summary {
+            border-color: rgba(13, 110, 253, 0.25);
+        }
+        #swagger-ui .opblock.opblock-get {
+            border-color: #495057;
+            background: rgba(73, 80, 87, 0.04);
+        }
+        #swagger-ui .opblock.opblock-get .opblock-summary-method {
+            background: #495057;
+        }
+        #swagger-ui .opblock.opblock-get .opblock-summary {
+            border-color: rgba(73, 80, 87, 0.2);
+        }
+        #swagger-ui .btn.execute {
+            background-color: var(--keystone-blue);
+            border-color: var(--keystone-blue);
+        }
+        /* Prevent global keystone-style.css `code { background-color: #e9ecef }` from washing out dark Swagger code blocks */
+        #swagger-ui pre code,
+        #swagger-ui pre.microlight code,
+        #swagger-ui .highlight-code code {
+            background-color: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            color: inherit;
+        }
+        #swagger-ui pre.microlight {
+            background-color: #1e293b !important;
+            color: #f8fafc !important;
+            padding: 14px !important;
+            border-radius: 6px !important;
+        }
+        #swagger-ui .microlight span {
+            background-color: transparent !important;
+        }
+        /* Fix keystone-style.css `ul` margin inside Swagger tabs/controls */
+        #swagger-ui ul {
+            margin-left: 0;
         }
     </style>
 </head>
@@ -72,6 +128,11 @@
                 url: './openapi.yml',
                 dom_id: '#swagger-ui',
                 deepLinking: true,
+                tryItOutEnabled: true,
+                syntaxHighlight: {
+                    activate: true,
+                    theme: 'monokai'
+                },
                 presets: [SwaggerUIBundle.presets.apis],
                 layout: 'BaseLayout'
             });
