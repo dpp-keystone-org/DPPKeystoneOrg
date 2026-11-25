@@ -471,7 +471,6 @@ components:
           type: string
           enum:
             - REQUIRED_SPECIFICATION_POLICY
-            - IMPLIED_SPECIFICATION
             - JSON_SCHEMA
             - JSON_LD_EXPANSION
             - SHACL
