@@ -84,8 +84,8 @@ jobs:
             --service-account "dpp-keystone-runtime@dpp-keystone-prod.iam.gserviceaccount.com" \
             --min-instances 0 \
             --max-instances 2 \
-            --concurrency 80 \
-            --memory 256Mi \
+            --concurrency 20 \
+            --memory 512Mi \
             --cpu 1 \
             --port 8080 \
-            --set-env-vars "NODE_ENV=production"
+            --set-env-vars "NODE_ENV=production,NODE_OPTIONS=--max-old-space-size=384"

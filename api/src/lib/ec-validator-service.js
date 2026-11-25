@@ -317,6 +317,7 @@ async function getRawEngine() {
         recognizedSpecs,
         documentLoader,
         shapesByBasename,
+        shaclValidatorCache: new Map(),
         schemaCount: schemaFiles.length,
         shapeCount: shapeFiles.length,
         contextCount: Object.keys(contextMap).filter((u) => u.includes('ec.europa.eu') && !u.includes('/releases/')).length
@@ -660,35 +661,44 @@ export async function validateEcDppPayload(payload, options = {}) {
                     }
                 }
 
-                // Merge only the raw SHACL shape files matching active tiers + subgroup
-                const shapeNames = ['core-shapes.ttl'];
-                for (const tier of activeTiers) {
-                    if (engine.shapesByBasename.has(`${tier}-batteries-shapes.ttl`)) {
-                        shapeNames.push(`${tier}-batteries-shapes.ttl`);
+                // Cache merged raw SHACLValidator per (subgroup, activeTiers) combination
+                const cacheKey = `${subgroup || 'none'}:${activeTiers.join(',')}`;
+                let cachedShacl = engine.shaclValidatorCache.get(cacheKey);
+                if (!cachedShacl) {
+                    const shapeNames = ['core-shapes.ttl'];
+                    for (const tier of activeTiers) {
+                        if (engine.shapesByBasename.has(`${tier}-batteries-shapes.ttl`)) {
+                            shapeNames.push(`${tier}-batteries-shapes.ttl`);
+                        }
+                        if (subgroup && engine.shapesByBasename.has(`${tier}-${subgroup}-shapes.ttl`)) {
+                            shapeNames.push(`${tier}-${subgroup}-shapes.ttl`);
+                        }
                     }
-                    if (subgroup && engine.shapesByBasename.has(`${tier}-${subgroup}-shapes.ttl`)) {
-                        shapeNames.push(`${tier}-${subgroup}-shapes.ttl`);
+
+                    const mergedShapes = factory.dataset();
+                    let totalSkippedSparql = 0;
+                    for (const sName of shapeNames) {
+                        const entry = engine.shapesByBasename.get(sName);
+                        if (!entry) continue;
+                        totalSkippedSparql += entry.skippedSparql;
+                        for (const quad of entry.dataset) {
+                            mergedShapes.add(quad);
+                        }
                     }
+                    cachedShacl = {
+                        validator: new SHACLValidator(mergedShapes, { factory }),
+                        totalSkippedSparql
+                    };
+                    engine.shaclValidatorCache.set(cacheKey, cachedShacl);
                 }
 
-                const mergedShapes = factory.dataset();
-                let totalSkippedSparql = 0;
-                for (const sName of shapeNames) {
-                    const entry = engine.shapesByBasename.get(sName);
-                    if (!entry) continue;
-                    totalSkippedSparql += entry.skippedSparql;
-                    for (const quad of entry.dataset) {
-                        mergedShapes.add(quad);
-                    }
-                }
-                if (totalSkippedSparql > 0) {
+                if (cachedShacl.totalSkippedSparql > 0) {
                     warnings.push(
-                        `Skipped ${totalSkippedSparql} non-portable sh:sparql constraint(s) in raw EC v1.0.0 SHACL shapes (not executable by SHACL Core engines).`
+                        `Skipped ${cachedShacl.totalSkippedSparql} non-portable sh:sparql constraint(s) in raw EC v1.0.0 SHACL shapes (not executable by SHACL Core engines).`
                     );
                 }
 
-                const shaclValidator = new SHACLValidator(mergedShapes, { factory });
-                const report = await shaclValidator.validate(dataDataset);
+                const report = await cachedShacl.validator.validate(dataDataset);
                 if (!report.conforms) {
                     for (const r of report.results) {
                         findings.push({
