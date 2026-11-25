@@ -1,10 +1,16 @@
 import http from 'node:http';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { KEYSTONE_VERSION, KNOWN_VERSIONS } from '../../src/lib/keystone-version.js';
 import { validateDppPayload } from './lib/dpp-validator-service.js';
 import { generateDppHtml } from './lib/html-generator-server.js';
 import { validateEcDppPayload, getEcEngineMetadata } from './lib/ec-validator-service.js';
 import { adaptKeystoneToEcBattery } from './lib/ec-battery-adapter-service.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const OPENAPI_SPEC_PATH = path.resolve(__dirname, '../../src/api/openapi.yml');
 
 const MAX_PAYLOAD_BYTES = 1024 * 1024; // 1MB payload limit
 
@@ -121,7 +127,20 @@ export function createServer() {
                 return;
             }
 
-            // 4. EC Specifications Discovery (GET /specifications or GET /v1/specifications)
+            // 4. OpenAPI 3.1 Specification (GET /openapi.yml)
+            if (pathname === '/openapi.yml' && method === 'GET') {
+                const yamlContent = await fs.readFile(OPENAPI_SPEC_PATH, 'utf-8');
+                res.writeHead(200, {
+                    'Content-Type': 'application/yaml; charset=utf-8',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Accept, Authorization'
+                });
+                res.end(yamlContent);
+                return;
+            }
+
+            // 5. EC Specifications Discovery (GET /specifications or GET /v1/specifications)
             if ((pathname === '/specifications' || pathname === '/v1/specifications') && method === 'GET') {
                 const target = url.searchParams.get('target') || 'patched';
                 if (!['patched', 'raw'].includes(target)) {

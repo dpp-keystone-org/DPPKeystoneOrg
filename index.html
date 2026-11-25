@@ -110,6 +110,7 @@
                     <ul>
                         <li><a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg/tree/main/ec-bundle" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-patched"></a></li>
                         <li><a href="https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-original"></a></li>
+                        <li><a href="api/" data-i18n-key="ec-battery-link-api-docs"></a></li>
                     </ul>
                     <p><em data-i18n-key="ec-battery-convergence-note"></em></p>
 
@@ -117,14 +118,14 @@
                     <p data-i18n-key="ec-battery-api-intro"></p>
 
                     <p><strong data-i18n-key="ec-battery-api-validate-desc"></strong></p>
-                    <pre><code>curl -X POST https://api.dpp-keystone.org/validate \
+                    <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/validate?target=patched&amp;mode=strict" \
   -H "Content-Type: application/json" \
-  -d '{"dpp": { ... }, "options": {"target": "patched", "mode": "strict"}}'</code></pre>
+  --data-binary @path/to/ec-battery-dpp.json</code></pre>
 
                     <p><strong data-i18n-key="ec-battery-api-adapt-desc"></strong></p>
-                    <pre><code>curl -X POST https://api.dpp-keystone.org/adapt \
+                    <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/adapt?target=patched&amp;validate=true&amp;mode=strict" \
   -H "Content-Type: application/json" \
-  -d '{"dpp": { ... }, "options": {"target": "patched", "validate": true, "mode": "strict"}}'</code></pre>
+  --data-binary @path/to/keystone-battery-dpp.json</code></pre>
                 </div>
             </section>
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Keystone API Documentation (OpenAPI 3.1)</title>
+    <meta name="description" content="Interactive OpenAPI 3.1 reference documentation for the DPP Keystone EC Battery Validation & Adaptation API.">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+    <style>
+        .api-intro-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .api-intro-card pre {
+            overflow-x: auto;
+        }
+        #swagger-ui {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        #swagger-ui .topbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="dpp-header-container"></div>
+
+        <main>
+            <section class="api-intro-card">
+                <h2>DPP Keystone Validation &amp; EC Battery Adaptation API</h2>
+                <p>
+                    Interactive OpenAPI 3.1 reference for validating Digital Product Passports against both the
+                    <strong>patched</strong> EC Battery bundle (<code>target=patched</code>) and the
+                    <strong>unmodified</strong> official EC v1.0.0 bundle (<code>target=raw</code>), and adapting
+                    Keystone Battery DPPs into either format.
+                </p>
+                <p>
+                    <a href="./openapi.yml" download="dpp-keystone-api-openapi.yml"><strong>Download OpenAPI 3.1 Specification (openapi.yml)</strong></a>
+                    &nbsp;|&nbsp;
+                    <a href="https://dpp-keystone-api-naamukjlba-ew.a.run.app/openapi.yml" target="_blank" rel="noopener noreferrer">Live Spec Endpoint</a>
+                </p>
+                <h3>Quick Start (File-Based <code>curl</code>)</h3>
+                <p>Replace <code>path/to/battery-dpp.json</code> at the end of either command with your local JSON file:</p>
+                <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/adapt?target=patched&amp;validate=true&amp;mode=strict" \
+  -H "Content-Type: application/json" \
+  --data-binary @path/to/battery-dpp.json</code></pre>
+                <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/validate?target=patched&amp;mode=strict" \
+  -H "Content-Type: application/json" \
+  --data-binary @path/to/ec-battery-dpp.json</code></pre>
+            </section>
+
+            <div id="swagger-ui"></div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../branding/header.js';
+        loadHeader('dpp-header-container', '..');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            window.ui = SwaggerUIBundle({
+                url: './openapi.yml',
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [SwaggerUIBundle.presets.apis],
+                layout: 'BaseLayout'
+            });
+        });
+    </script>
+</body>
+</html>

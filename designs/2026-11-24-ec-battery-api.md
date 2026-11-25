@@ -73,18 +73,16 @@ Repurposes the fledgling DPP Keystone API (`api.dpp-keystone.org`) to address Gi
 * **[COMPLETED] Step 5.3: Memory Profiling & Cloud Run Sizing**
   * Added `scripts/measure-api-memory.mjs`, cached raw `SHACLValidator` per `(subgroup, tiers)` in `api/src/lib/ec-validator-service.js` (cutting peak RSS from 558.7 MiB to 321.0 MiB with flat heap), and updated `.github/workflows/deploy-api.yml` (`--memory 512Mi`, `--concurrency 20`, `NODE_OPTIONS=--max-old-space-size=384`).
 
-### [ ] Feature 6: Formal OpenAPI 3.1 Spec, API Docs Sub-Page, & Live Cloud Run URL
+### [IN PROGRESS] Feature 6: Formal OpenAPI 3.1 Spec, API Docs Sub-Page, & Live Cloud Run URL
 * **Goal:** Provide formal, machine-readable OpenAPI 3.1 documentation and an interactive API docs sub-page (`api/`) using the live Cloud Run sandbox URL (`https://dpp-keystone-api-naamukjlba-ew.a.run.app`), and simplify `index.html` `curl` examples to read DPP files via `--data-binary @<file>`.
-* **[ ] Step 6.1: Update `index.html` `curl` Examples & Live URL**
-  * Switch base URL in `index.html` from `https://api.dpp-keystone.org` to `https://dpp-keystone-api-naamukjlba-ew.a.run.app` (until custom DNS mapping is live).
-  * Update `curl` examples to use query parameters + `--data-binary @battery-dpp.json` so users can call the API directly with example files.
-  * Add a link to the new API documentation sub-page (`api/`).
-* **[ ] Step 6.2: Author OpenAPI 3.1 Contract (`src/api/openapi.yml`) & Serve at `GET /openapi.yml`**
-  * Formally document `/validate`, `/adapt`, `/specifications`, `/render/html`, `/health`, and `/version` with full request/response JSON Schemas, query parameters, HTTP status codes (`200`, `400`, `405`, `413`, `422`), and realistic examples.
-  * Serve `GET /openapi.yml` directly from `api/src/server.js` (with CORS) so clients and Swagger UI can consume it from either the static site or the API server.
-* **[ ] Step 6.3: Create Interactive API Documentation Sub-Page (`src/api/index.html`)**
-  * Build a clean Keystone-branded sub-page (`src/api/index.html`) rendering `openapi.yml` via Swagger UI (allowing live "Try it out" requests against `https://dpp-keystone-api-naamukjlba-ew.a.run.app`), plus quick-start file-based `curl` and JS `fetch` examples.
-  * Ensure `scripts/build-and-clean.mjs` copies `src/api/` into `dist/api/` cleanly (and translate any new UI keys via the 24-language consensus workflow if needed).
+* **[COMPLETED] Step 6.1: Update `index.html` `curl` Examples & Live URL**
+  * Updated `index.html` to use `https://dpp-keystone-api-naamukjlba-ew.a.run.app`, query params + `--data-binary @path/to/...json` as the last argument, and added a link to `api/` (`ec-battery-link-api-docs`, translated to 24 languages with Auditor Pass 1 `PERFECT`).
+* **[COMPLETED] Step 6.2: Author OpenAPI 3.1 Contract (`src/api/openapi.yml`) & Serve at `GET /openapi.yml`**
+  * Authored `src/api/openapi.yml` documenting `/adapt`, `/validate`, `/specifications`, `/render/html`, `/health`, `/version`, and `/openapi.yml` with request headers, query params, request/response schemas, status codes (`200`, `400`, `405`, `413`, `422`), and examples.
+  * Wired `GET /openapi.yml` in `api/src/server.js`.
+* **[COMPLETED] Step 6.3: Create Interactive API Documentation Sub-Page (`src/api/index.html`)**
+  * Created Keystone-branded `src/api/index.html` rendering `./openapi.yml` with Swagger UI (`swagger-ui-dist@5`), download/live spec links, and file-based `curl` quick-start.
+  * Updated `scripts/build-and-clean.mjs` to copy `src/api/` → `dist/api/`.
 * **[ ] Step 6.4: Tests & Verification**
-  * Add integration tests verifying `src/api/openapi.yml` is valid OpenAPI 3.1 (via `validateOpenApi31Suite` or YAML/schema checks) and `GET /openapi.yml` returns `200 OK`.
-  * Verify `npm test` passes and rename design doc with `-COMPLETED`.
+  * Added `GET /openapi.yml` integration test in `testing/integration/api/api-ec-validate.test.js`.
+  * User to run `npm test`, verify `dist/api/index.html` in the preview, and rename this design doc with `-COMPLETED`.

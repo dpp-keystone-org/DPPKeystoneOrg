@@ -64,7 +64,7 @@ async function processDirectory(sourceDir, targetDir) {
     const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
     for (const entry of entries) {
-        if (entry.name === 'desktop.ini' || entry.name === 'branding' || entry.name.includes('stripped') || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator' || entry.name === 'explorer' || entry.name === 'csv-dpp-adapter'))) {
+        if (entry.name === 'desktop.ini' || entry.name === 'branding' || entry.name.includes('stripped') || (sourceDir === SOURCE_DIR && (entry.name === 'index.html' || entry.name === 'util' || entry.name === 'lib' || entry.name === 'wizard' || entry.name === 'validator' || entry.name === 'explorer' || entry.name === 'csv-dpp-adapter' || entry.name === 'api'))) {
             continue;
         }
         const sourcePath = path.join(sourceDir, entry.name);
@@ -323,6 +323,13 @@ async function build() {
     if (await fse.pathExists(path.join(SOURCE_DIR, 'csv-dpp-adapter'))) {
         await processDirectory(path.join(SOURCE_DIR, 'csv-dpp-adapter'), csvAdapterDir);
         console.log(`Copied csv-dpp-adapter to dist/csv-dpp-adapter`);
+    }
+
+    // Process 'api' docs into its own root-level directory in dist
+    const apiDocsDir = path.join(BUILD_DIR, 'api');
+    if (await fse.pathExists(path.join(SOURCE_DIR, 'api'))) {
+        await processDirectory(path.join(SOURCE_DIR, 'api'), apiDocsDir);
+        console.log(`Copied api docs to dist/api`);
     }
 
     // Copy root-level static assets

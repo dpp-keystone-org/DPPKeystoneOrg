@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse as jsoncParse } from 'jsonc-parser';
+import yaml from 'js-yaml';
 
 import { startTestServer } from '../../scripts/api-test-helper.mjs';
 import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
@@ -58,6 +59,17 @@ describe('HTTP API - EC Battery Validation & Drift Detection (POST /validate)', 
             expect(resp.status).toBe(400);
             const body = await resp.json();
             expect(body.code).toBe('INVALID_TARGET');
+        });
+
+        it('GET /openapi.yml should return a valid, parseable OpenAPI 3.1 specification', async () => {
+            const resp = await fetch(`${baseUrl}/openapi.yml`);
+            expect(resp.status).toBe(200);
+            expect(resp.headers.get('content-type')).toContain('application/yaml');
+            const text = await resp.text();
+            const parsed = yaml.load(text);
+            expect(parsed.openapi).toBe('3.1.0');
+            expect(parsed.paths['/validate']).toBeDefined();
+            expect(parsed.paths['/adapt']).toBeDefined();
         });
     });
 
