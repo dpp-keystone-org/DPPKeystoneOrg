@@ -1,42 +1,18 @@
-import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1790324901873';
+import { validateDpp } from '../util/js/common/validation/schema-validator.js?v=1795604067615';
 import stripJsonComments from 'strip-json-comments';
-import { EXAMPLES } from '../lib/example-registry.js?v=1790324901873';
-import { generateHTML } from '../lib/html-generator.js?v=1790324901873';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1790324901873';
-import { loadHeader } from '../branding/header.js?v=1790324901873';
+import { EXAMPLES } from '../lib/example-registry.js?v=1795604067615';
+import { generateHTML } from '../lib/html-generator.js?v=1795604067615';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1795604067615';
+import { loadHeader } from '../branding/header.js?v=1795604067615';
 loadHeader('dpp-header-container', '..');
 import * as jsonld from 'jsonld'; // Import jsonld for the default loader
-import { loadOntology } from '../lib/ontology-loader.js?v=1790324901873';
-import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1790324901873';
-import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1790324901873';
-import { KEYSTONE_VERSION } from '../lib/keystone-version.js?v=1790324901873';
-import { LanguageManager } from '../lib/language-manager.js?v=1790324901873';
+import { loadOntology } from '../lib/ontology-loader.js?v=1795604067615';
+import { validateAgainstOntology } from '../util/js/common/validation/ontology-validator.js?v=1795604067615';
+import { validateContextAwarePayload } from '../util/js/common/validation/context-semantic-validator.js?v=1795604067615';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1795604067615';
+import { LanguageManager } from '../lib/language-manager.js?v=1795604067615';
 
-// Configuration: Map Spec IDs to Schema filenames
-// This assumes the schemas are available at ../spec/validation/${KEYSTONE_VERSION}/json-schema/
-// NOTE: This must match the IDs used in the "contentSpecificationIds" of the DPP JSON.
-const SECTOR_MAP = {
-    'draft_battery_specification_id': 'sector/battery.schema.json',
-    'draft_construction_specification_id': 'sector/construction.schema.json',
-    'draft_electronics_specification_id': 'sector/electronics.schema.json',
-    'draft_iron_and_steel_specification_id': 'sector/iron-steel.schema.json',
-    'draft_textile_espr_specification_id': 'sector/textile.schema.json'
-};
-
-// Common schemas that should always be loaded for $ref resolution
-const COMMON_SCHEMAS = [
-    'shared/dopc.schema.json',
-    'shared/epd.schema.json',
-    'shared/organization.schema.json',
-    'shared/packaging.schema.json',
-    'shared/postal-address.schema.json',
-    'shared/product-characteristic.schema.json',
-    'shared/related-resource.schema.json',
-    'shared/general-product.schema.json',
-    'shared/component.schema.json',
-    'shared/mtc.schema.json',
-    'shared/certification.schema.json'
-];
+import { SPEC_URL_TO_SECTOR_MAP, SECTOR_SCHEMA_MAP, COMMON_SCHEMAS } from '../lib/sector-mappings.js?v=1795604067615';
 
 const BASE_SCHEMA_FILE = 'dpp.schema.json';
 const SCHEMA_BASE_URL = `../spec/validation/${KEYSTONE_VERSION}/json-schema/`;
@@ -53,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const previewSchemaBtn = document.getElementById('preview-schema-btn');
     const previewNoSchemaBtn = document.getElementById('preview-no-schema-btn');
     const schemaBtn = document.getElementById('schema-btn');
+    const ecBatteryBtn = document.getElementById('ec-battery-btn');
     const cssUrlInput = document.getElementById('css-url');
     const jsonInput = document.getElementById('json-input');
     const resultBox = document.getElementById('validation-result');
@@ -72,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (previewSchemaBtn) previewSchemaBtn.disabled = false;
         if (previewNoSchemaBtn) previewNoSchemaBtn.disabled = false;
         if (schemaBtn) schemaBtn.disabled = false;
+        if (ecBatteryBtn) ecBatteryBtn.disabled = false;
     } catch (error) {
         console.error('Failed to load schemas:', error);
         showError(LanguageManager.t('error-load-schema', 'System Error: Failed to load validation schemas. Check console for details.'));
@@ -154,11 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Branch dynamic Ontology validation to intercept `@context` specifically!
             if (dppData['@context']) {
                 const localContextLoader = async (url) => {
-                    const CONTEXT_PROD_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
-                    let fetchUrl = url;
-                    if (url.startsWith(CONTEXT_PROD_PREFIX)) {
-                        fetchUrl = url.replace(CONTEXT_PROD_PREFIX, '../spec/contexts/');
-                    }
+                    const fetchUrl = specUrlToRelativePath(url, '../spec/');
                     const response = await fetch(fetchUrl);
                     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                     return {
@@ -182,9 +156,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (dppData.contentSpecificationIds && Array.isArray(dppData.contentSpecificationIds)) {
                     for (const id of dppData.contentSpecificationIds) {
-                        const schemaFile = SECTOR_MAP[id];
-                        if (schemaFile) {
-                            const sectorName = schemaFile.replace('sector/', '').replace('.schema.json', '');
+                        const sectorName = SPEC_URL_TO_SECTOR_MAP[id];
+                        if (sectorName) {
                             const sectorOntology = await loadOntology(sectorName);
                             if (sectorOntology) sectorOntology.forEach((v, k) => aggregatedMap.set(k, v));
                         }
@@ -281,6 +254,68 @@ document.addEventListener('DOMContentLoaded', async () => {
         previewNoSchemaBtn.addEventListener('click', () => handleHtmlPreview(false, previewNoSchemaBtn));
     }
 
+    const createLocalSpecDocumentLoader = () => async (url) => {
+        // Intercept spec URLs (canonical or preview) and redirect to local files if possible
+        if (isSpecUrl(url)) {
+            const relativePath = specUrlToRelativePath(url, '../spec/');
+
+            // Try to fetch locally
+            try {
+                const res = await fetch(relativePath);
+                if (res.ok) {
+                    const document = await res.json();
+                    return {
+                        contextUrl: null,
+                        document,
+                        documentUrl: url
+                    };
+                }
+            } catch (e) {
+                console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
+            }
+        }
+
+        // Fallback to standard jsonld loader (which uses fetch/node)
+        // Note: jsonld in browser environment usually uses XHR/fetch
+        // We can use the default or a simple fetch wrapper.
+        // Accessing the global jsonld object or the imported one.
+        return (jsonld.documentLoaders ? jsonld.documentLoaders.xhr() : (u) => fetch(u).then(r => r.json()).then(d => ({ document: d, documentUrl: u })))(url);
+    };
+
+    const BATTERY_SIGNAL_KEYS = [
+        'batteryCategory',
+        'batteryChemistry',
+        'batteryMass',
+        'batteryWeight',
+        'batteryCapacity',
+        'ratedCapacity',
+        'batteryStatus',
+        'batteryIdentification',
+        'performanceAndDurability'
+    ];
+
+    function isBatteryDpp(dppData) {
+        if (!dppData || typeof dppData !== 'object' || Array.isArray(dppData)) {
+            return false;
+        }
+        const specIds = Array.isArray(dppData.contentSpecificationIds) ? dppData.contentSpecificationIds : [];
+        if (specIds.some(id => typeof id === 'string' && /batter(?:y|ies)/i.test(id))) {
+            return true;
+        }
+        const ctxList = Array.isArray(dppData['@context']) ? dppData['@context'] : [dppData['@context']];
+        if (ctxList.some(c => typeof c === 'string' && /batter(?:y|ies)/i.test(c))) {
+            return true;
+        }
+        const typeList = [
+            ...(Array.isArray(dppData['@type']) ? dppData['@type'] : [dppData['@type']]),
+            ...(Array.isArray(dppData.type) ? dppData.type : [dppData.type])
+        ];
+        if (typeList.some(t => typeof t === 'string' && /battery/i.test(t))) {
+            return true;
+        }
+        return BATTERY_SIGNAL_KEYS.some(key => dppData[key] !== undefined);
+    }
+
     // 5. Setup Schema.org Event Listener
     if (schemaBtn) {
         schemaBtn.addEventListener('click', async () => {
@@ -288,9 +323,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             resultBox.hidden = true;
 
             if (!inputStr) {
-                showError('Please paste a JSON object to transform.');
+                showError(LanguageManager.t('error-no-json', 'Please paste a JSON object to transform.'));
                 return;
             }
+
+            const originalText = schemaBtn.textContent;
 
             try {
                 let dppData;
@@ -304,34 +341,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 schemaBtn.disabled = true;
                 schemaBtn.textContent = 'Transforming...';
 
-                // Configure document loader to resolve specific URLs locally
-                const documentLoader = async (url, options) => {
-                    // Intercept spec URLs and redirect to local files if possible
-                    if (url.startsWith('https://dpp-keystone.org/spec/')) {
-                        const relativePath = url.replace('https://dpp-keystone.org/spec/', '../spec/');
-
-                        // Try to fetch locally
-                        try {
-                            const res = await fetch(relativePath);
-                            if (res.ok) {
-                                const document = await res.json();
-                                return {
-                                    contextUrl: null,
-                                    document,
-                                    documentUrl: url
-                                };
-                            }
-                        } catch (e) {
-                            console.warn(`Failed to fetch local spec for ${url}, falling back to network/default.`);
-                        }
-                    }
-
-                    // Fallback to standard jsonld loader (which uses fetch/node)
-                    // Note: jsonld in browser environment usually uses XHR/fetch
-                    // We can use the default or a simple fetch wrapper.
-                    // Accessing the global jsonld object or the imported one.
-                    return (jsonld.documentLoaders ? jsonld.documentLoaders.xhr() : (u) => fetch(u).then(r => r.json()).then(d => ({ document: d, documentUrl: u })))(url);
-                };
+                const documentLoader = createLocalSpecDocumentLoader();
 
                 const options = {
                     profile: 'schema.org',
@@ -356,7 +366,103 @@ document.addEventListener('DOMContentLoaded', async () => {
                 showError('Failed to generate Schema.org JSON-LD: ' + e.message);
             } finally {
                 schemaBtn.disabled = false;
-                schemaBtn.textContent = 'Preview Schema.org';
+                schemaBtn.textContent = originalText || LanguageManager.t('preview-schema-org', 'Preview Schema.org');
+            }
+        });
+    }
+
+    // 6. Setup EC Battery DPP Export Event Listener
+    if (ecBatteryBtn) {
+        ecBatteryBtn.addEventListener('click', async () => {
+            const inputStr = jsonInput.value.trim();
+            resultBox.hidden = true;
+
+            if (!inputStr) {
+                showError(LanguageManager.t('error-no-json', 'Please paste a JSON object to validate.'));
+                return;
+            }
+
+            let dppData;
+            try {
+                dppData = JSON.parse(inputStr);
+            } catch (e) {
+                try {
+                    const stripped = stripJsonComments(inputStr);
+                    dppData = JSON.parse(stripped);
+                } catch (jsoncError) {
+                    showError(`${LanguageManager.t('error-invalid-json', 'Invalid JSON format:')} ${e.message}`);
+                    return;
+                }
+            }
+
+            if (!isBatteryDpp(dppData)) {
+                showError(LanguageManager.t('error-not-battery-dpp', 'EC Battery export requires a Battery DPP (EV, LMT, or Industrial).'));
+                return;
+            }
+
+            const originalText = ecBatteryBtn.textContent;
+
+            try {
+                ecBatteryBtn.disabled = true;
+                ecBatteryBtn.textContent = 'Transforming...';
+
+                let outputPayload;
+
+                // Idempotent fast-path if the pasted JSON is already an EC Battery DPP without Keystone source fields
+                if (
+                    dppData.manufacturerIdentification &&
+                    dppData.batteryWeight !== undefined &&
+                    dppData.wasteBatteryPreventionManagementInfo
+                ) {
+                    outputPayload = dppData;
+                } else {
+                    const dppForTransform = JSON.parse(JSON.stringify(dppData));
+                    const keystoneBatteryContext = `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`;
+
+                    if (!dppForTransform['@context']) {
+                        dppForTransform['@context'] = keystoneBatteryContext;
+                    } else {
+                        const rawContexts = Array.isArray(dppForTransform['@context'])
+                            ? dppForTransform['@context']
+                            : [dppForTransform['@context']];
+                        const filteredContexts = rawContexts.filter(
+                            c => !(typeof c === 'string' && c.startsWith('https://repository.product-passport.ec.europa.eu/'))
+                        );
+                        const hasKeystoneBatteryCtx = filteredContexts.some(
+                            c => typeof c === 'string' && c.includes('dpp-battery.context.jsonld')
+                        );
+                        if (!hasKeystoneBatteryCtx) {
+                            filteredContexts.push(keystoneBatteryContext);
+                        }
+                        dppForTransform['@context'] = filteredContexts.length === 1 ? filteredContexts[0] : filteredContexts;
+                    }
+
+                    if (!dppForTransform.digitalProductPassportId && dppForTransform.id) {
+                        dppForTransform.digitalProductPassportId = dppForTransform.id;
+                    }
+
+                    const documentLoader = createLocalSpecDocumentLoader();
+                    const options = {
+                        profile: 'ec-battery',
+                        ontologyPaths: [`../spec/ontology/${KEYSTONE_VERSION}/dpp-ontology.jsonld`],
+                        documentLoader,
+                        version: KEYSTONE_VERSION
+                    };
+
+                    const transformed = await transformDpp(dppForTransform, options);
+                    outputPayload = Array.isArray(transformed) && transformed.length === 1 ? transformed[0] : transformed;
+                }
+
+                const jsonStr = JSON.stringify(outputPayload, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/ld+json' });
+                const url = URL.createObjectURL(blob);
+                window.open(url, '_blank');
+            } catch (e) {
+                console.error(e);
+                showError('Failed to export EC Battery DPP: ' + e.message);
+            } finally {
+                ecBatteryBtn.disabled = false;
+                ecBatteryBtn.textContent = originalText || LanguageManager.t('export-ec-battery-dpp', 'Export EC Battery DPP');
             }
         });
     }
@@ -466,9 +572,12 @@ async function loadSchemas() {
 
     // Load Sectors (We load all known mapped sectors so they are ready)
     // In a larger system, we might lazy load, but for this tool, eager loading is fine.
-    const sectorPromises = Object.entries(SECTOR_MAP).map(async ([id, filename]) => {
-        const schema = await fetchJson(filename);
-        schemaContext.sectorSchemas[id] = schema;
+    const sectorPromises = Object.entries(SPEC_URL_TO_SECTOR_MAP).map(async ([id, sectorName]) => {
+        const filename = SECTOR_SCHEMA_MAP[sectorName];
+        if (filename) {
+            const schema = await fetchJson(filename);
+            schemaContext.sectorSchemas[id] = schema;
+        }
     });
     await Promise.all(sectorPromises);
 }

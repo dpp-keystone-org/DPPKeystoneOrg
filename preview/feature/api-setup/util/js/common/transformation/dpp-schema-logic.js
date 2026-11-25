@@ -1,4 +1,5 @@
 import * as jsonldEngine from 'jsonld';
+import { getSectorSpecId } from '../../../../lib/keystone-version.js?v=1795604067615';
 
 // Robustly resolve the jsonld library instance across different environments
 let jsonld = jsonldEngine.default || jsonldEngine;
@@ -17,10 +18,12 @@ if (typeof jsonld.expand !== 'function') {
     }
 }
 
-import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1790324901873';
+import { profile as schemaOrgProfile } from './profiles/schema.org.js?v=1795604067615';
+import { profile as ecBatteryProfile } from './profiles/ec-battery.js?v=1795604067615';
 
 const profiles = {
     'schema.org': schemaOrgProfile,
+    'ec-battery': ecBatteryProfile,
 };
 
 /**
@@ -109,7 +112,11 @@ export async function transform(dpp, options, dictionary) {
 
     // --- Start: Type Inference Logic ---
     const specIdToType = {
-        'draft_construction_specification_id': `${termsBase}ConstructionProduct`,        'draft_battery_specification_id': `${termsBase}BatteryProduct`,
+        'draft_construction_specification_id': `${termsBase}ConstructionProduct`,
+        'draft_battery_specification_id': `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-ev', version)]: `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-lmv', version)]: `${termsBase}BatteryProduct`,
+        [getSectorSpecId('battery-industrial', version)]: `${termsBase}BatteryProduct`,
         'draft_electronics_specification_id': `${termsBase}ElectronicDevice`,
         'draft_textile_espr_specification_id': `${termsBase}TextileProduct`,
         'draft_iron_and_steel_specification_id': `${termsBase}IronSteelProduct`
@@ -158,7 +165,7 @@ export async function transform(dpp, options, dictionary) {
         const sourceUri = transformation.source.startsWith('http') ? transformation.source : `${termsBase}${transformation.source}`;
         const sourceData = rootNode[sourceUri]?.[0];
         if (sourceData) {
-            const transformedData = transformation.transformer(sourceData, dictionary, rootNode, version);
+            const transformedData = transformation.transformer(sourceData, dictionary, rootNode, version, dpp);
             results = results.concat(transformedData);
         }
     }

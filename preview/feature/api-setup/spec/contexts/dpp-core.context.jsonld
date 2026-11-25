@@ -1,7 +1,7 @@
 {
   "@context": [
-    "https://dpp-keystone.org/spec/contexts/v3/dpp-general-product.context.jsonld",
-    "https://dpp-keystone.org/spec/contexts/v3/dpp-packaging.context.jsonld",
+    "https://dpp-keystone.org/preview/feature/api-setup/spec/contexts/v3/dpp-general-product.context.jsonld",
+    "https://dpp-keystone.org/preview/feature/api-setup/spec/contexts/v3/dpp-packaging.context.jsonld",
     {
       "type": "@type",
       "id": "@id",
@@ -88,6 +88,9 @@
       "manufacturer": {
         "@id": "dppk:manufacturer"
       },
+      "manufacturerInfo": {
+        "@id": "dppk:manufacturer"
+      },
       "importer": {
         "@id": "dppk:importer"
       },
@@ -134,6 +137,10 @@
       "recycledContentPercentage": {
         "@id": "dppk:recycledContentPercentage",
         "@type": "xsd:double"
+      },
+      "manufacturingDate": {
+        "@id": "dppk:manufacturingDate",
+        "@type": "xsd:date"
       },
       "productCharacteristics": {
         "@id": "dppk:productCharacteristics",

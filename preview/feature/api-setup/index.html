@@ -2,6 +2,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPP Keystone (Harmonizing Data Dictionary)</title>
+    <meta name="description" content="Centralized, harmonized JSON-LD vocabulary, validation schemas, and open-source toolkit for EU Digital Product Passports (DPP), updated in line with upcoming regulations.">
+    <meta property="og:title" content="DPP Keystone – Harmonizing Data for the Digital Product Passport">
+    <meta property="og:description" content="Centralized, harmonized JSON-LD vocabulary, validation schemas, and open-source toolkit for EU Digital Product Passports (DPP), updated in line with upcoming regulations.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="branding/css/keystone-style.css">
     <style>
         /* Inline styles for the new layout until moved to CSS */
@@ -59,9 +63,8 @@
         <div id="dpp-header-container"></div>
 
         <div class="warning-banner">
-            <h2 data-i18n-key="proof-of-concept-not-for">Proof of Concept - Not for Production Use</h2>
-            <p data-i18n-key="the-dpp-standardization-process-is">The DPP standardization process is ongoing. Utilities on this website are for demonstration and
-                proof-of-concept purposes only.</p>
+            <h2 data-i18n-key="evolving-standard-updated-in">Evolving Standard – Updated in Line with Upcoming Regulations</h2>
+            <p data-i18n-key="the-dpp-standardization-process-is">The EU Digital Product Passport (DPP) standardization process is ongoing. This project will be updated in line with upcoming regulations and delegated acts.</p>
         </div>
 
         <main>
@@ -106,6 +109,31 @@
                         <p data-i18n-key="javascript-utilities-and-reference-implementations">JavaScript utilities and reference implementations for schema validation, HTML generation,
                             and ontology indexing. Includes adapter examples for converting between formats.</p>
                     </div>
+                </div>
+            </section>
+
+            <section id="ec-battery-adaptation">
+                <h2 data-i18n-key="ec-battery-section-title">EC Battery DPP Adaptation &amp; Validation API</h2>
+                <div class="spec-section">
+                    <p data-i18n-key="ec-battery-section-intro">DPP Keystone maintains a patched version of the European Commission's v1.0.0 Battery DPP semantic resources (fixing W3C JSON-LD 1.1, JSON Schema Draft 2020-12, SHACL, and OpenAPI issues) alongside an API that validates and adapts Keystone Battery DPPs to both the patched and unmodified EC formats.</p>
+                    <ul>
+                        <li><a href="https://github.com/dpp-keystone-org/DPPKeystoneOrg/tree/main/ec-bundle" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-patched">Patched EC Battery Resource Code (DPP Keystone ec-bundle on GitHub)</a></li>
+                        <li><a href="https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en" target="_blank" rel="noopener noreferrer" data-i18n-key="ec-battery-link-original">Original European Commission DPP Semantic Repository</a></li>
+                    </ul>
+                    <p><em data-i18n-key="ec-battery-convergence-note">Note: Once the reported issues are resolved in the official European Commission release, the patched and original versions are expected to converge and address many of the issues that we addressed.</em></p>
+
+                    <h3 data-i18n-key="ec-battery-api-heading">Using the Validation &amp; Adaptation API</h3>
+                    <p data-i18n-key="ec-battery-api-intro">Both endpoints accept a target flag ("patched" or "raw") and a validation mode ("strict" for JSON Schema + SHACL, "schema", or "shacl"):</p>
+
+                    <p><strong data-i18n-key="ec-battery-api-validate-desc">Validate an EC Battery DPP (patched or raw):</strong></p>
+                    <pre><code>curl -X POST https://api.dpp-keystone.org/validate \
+  -H "Content-Type: application/json" \
+  -d '{"dpp": { ... }, "options": {"target": "patched", "mode": "strict"}}'</code></pre>
+
+                    <p><strong data-i18n-key="ec-battery-api-adapt-desc">Adapt a Keystone Battery DPP to the EC Battery format (patched or raw):</strong></p>
+                    <pre><code>curl -X POST https://api.dpp-keystone.org/adapt \
+  -H "Content-Type: application/json" \
+  -d '{"dpp": { ... }, "options": {"target": "patched", "validate": true, "mode": "strict"}}'</code></pre>
                 </div>
             </section>
 
@@ -289,7 +317,6 @@
                                         <li><a href="spec/ontology/v3/sectors/Textile/PefcrOpenToedShoes.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Open-toed shoes&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Обувки с отворени пръсти&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Boty s otevřenou špičkou&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Sko med åben tå&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Offene Schuhe&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Παπούτσια ανοιχτά μπροστά&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Zapatos con punta abierta&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Lahtise ninaga kingad&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Avokärkiset kengät&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Chaussures à bout ouvert&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Bróga oscailte le ladhar&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Cipele s otvorenim prstima&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Nyitott orrú cipők&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Scarpe spuntate&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Batai atvirais pirštais&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Kurpes ar vaļēju purngalu&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Żraben miftuħin&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Schoenen met open neus&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Buty z odkrytymi palcami&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Sapatos abertos à frente&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Încălțăminte decupată la vârf&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Topánky s otvorenou špičkou&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Čevlji z odprtimi prsti&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Skor med öppen tå&quot;}]">Open-toed shoes</span></a></li>
                                         <li><a href="spec/ontology/v3/sectors/Textile/PefcrClosedToedShoes.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Closed-toed shoes&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Обувки със затворени пръсти&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Boty s uzavřenou špičkou&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Lukkede sko&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Geschlossene Schuhe&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Κλειστά παπούτσια&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Zapatos cerrados&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Kinnise ninaga kingad&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Umpikärkiset kengät&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Chaussures fermées&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Bróga dúnta&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Zatvorene cipele&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Zárt cipők&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Scarpe chiuse&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Uždari batai&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Slēgtas kurpes&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Żraben magħluqa&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Gesloten schoenen&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Buty z zakrytymi palcami&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Sapatos fechados&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Încălțăminte închisă&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Topánky s uzavretou špičkou&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Zaprti čevlji&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Stängda skor&quot;}]">Closed-toed shoes</span></a></li>
                                         <li><a href="spec/ontology/v3/sectors/Textile/PefcrBoots.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Boots&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Ботуши&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Kozačky/boty&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Støvler&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Stiefel&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Μπότες&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Botas&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Saapad&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Saappaat&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Bottes&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Buataisí&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Čizme&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Csizmák&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Stivali&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Batai (auliniai)&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Zābaki&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Stvali&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Laarzen&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Buty/Kozaki&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Botas&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Cizme&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Čižmy/topánky&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Škornji&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Stövlar&quot;}]">Boots</span></a></li>
-                                        <li><a href="spec/ontology/v3/sectors/Textile/ProductionStep.html"><span class="i18n-text" data-i18n="[{&quot;@language&quot;:&quot;en&quot;,&quot;@value&quot;:&quot;Production Step&quot;},{&quot;@language&quot;:&quot;bg&quot;,&quot;@value&quot;:&quot;Производствена стъпка&quot;},{&quot;@language&quot;:&quot;cs&quot;,&quot;@value&quot;:&quot;Výrobní krok&quot;},{&quot;@language&quot;:&quot;da&quot;,&quot;@value&quot;:&quot;Produktionstrin&quot;},{&quot;@language&quot;:&quot;de&quot;,&quot;@value&quot;:&quot;Produktionsschritt&quot;},{&quot;@language&quot;:&quot;el&quot;,&quot;@value&quot;:&quot;Βήμα παραγωγής&quot;},{&quot;@language&quot;:&quot;es&quot;,&quot;@value&quot;:&quot;Etapa de producción&quot;},{&quot;@language&quot;:&quot;et&quot;,&quot;@value&quot;:&quot;Tootmisetapp&quot;},{&quot;@language&quot;:&quot;fi&quot;,&quot;@value&quot;:&quot;Tuotantovaihe&quot;},{&quot;@language&quot;:&quot;fr&quot;,&quot;@value&quot;:&quot;Étape de production&quot;},{&quot;@language&quot;:&quot;ga&quot;,&quot;@value&quot;:&quot;Céim Táirgthe&quot;},{&quot;@language&quot;:&quot;hr&quot;,&quot;@value&quot;:&quot;Proizvodni korak&quot;},{&quot;@language&quot;:&quot;hu&quot;,&quot;@value&quot;:&quot;Gyártási lépés&quot;},{&quot;@language&quot;:&quot;it&quot;,&quot;@value&quot;:&quot;Fase di produzione&quot;},{&quot;@language&quot;:&quot;lt&quot;,&quot;@value&quot;:&quot;Gamybos etapas&quot;},{&quot;@language&quot;:&quot;lv&quot;,&quot;@value&quot;:&quot;Ražošanas posms&quot;},{&quot;@language&quot;:&quot;mt&quot;,&quot;@value&quot;:&quot;Pass tal-Produzzjoni&quot;},{&quot;@language&quot;:&quot;nl&quot;,&quot;@value&quot;:&quot;Productiestap&quot;},{&quot;@language&quot;:&quot;pl&quot;,&quot;@value&quot;:&quot;Etap produkcji&quot;},{&quot;@language&quot;:&quot;pt&quot;,&quot;@value&quot;:&quot;Etapa de produção&quot;},{&quot;@language&quot;:&quot;ro&quot;,&quot;@value&quot;:&quot;Etapa de producție&quot;},{&quot;@language&quot;:&quot;sk&quot;,&quot;@value&quot;:&quot;Výrobný krok&quot;},{&quot;@language&quot;:&quot;sl&quot;,&quot;@value&quot;:&quot;Korak proizvodnje&quot;},{&quot;@language&quot;:&quot;sv&quot;,&quot;@value&quot;:&quot;Produktionssteg&quot;}]">Production Step</span></a></li>
                                     </ul></details></li>
                                     <!-- ONTOLOGY_SECTORS_LIST_END -->
                                     </ul>
@@ -309,10 +336,12 @@
                             <li><a href="spec/contexts/dpp-construction.context.jsonld">Dpp Construction Context</a></li>
                             <li><a href="spec/contexts/dpp-core.context.jsonld">Dpp Core Context</a></li>
                             <li><a href="spec/contexts/dpp-dopc.context.jsonld">Dpp Dopc Context</a></li>
+                            <li><a href="spec/contexts/dpp-ec-to-keystone.context.jsonld">Dpp Ec To Keystone Context</a></li>
                             <li><a href="spec/contexts/dpp-electronics.context.jsonld">Dpp Electronics Context</a></li>
                             <li><a href="spec/contexts/dpp-epd.context.jsonld">Dpp Epd Context</a></li>
                             <li><a href="spec/contexts/dpp-general-product.context.jsonld">Dpp General Product Context</a></li>
                             <li><a href="spec/contexts/dpp-iron-steel.context.jsonld">Dpp Iron Steel Context</a></li>
+                            <li><a href="spec/contexts/dpp-keystone-to-ec.context.jsonld">Dpp Keystone To Ec Context</a></li>
                             <li><a href="spec/contexts/dpp-mtc.context.jsonld">Dpp Mtc Context</a></li>
                             <li><a href="spec/contexts/dpp-packaging.context.jsonld">Dpp Packaging Context</a></li>
                             <li><a href="spec/contexts/dpp-textile.context.jsonld">Dpp Textile Context</a></li>
@@ -326,10 +355,12 @@
                             <li><a href="spec/contexts/v3/dpp-construction.context/index.html">Dpp Construction Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-core.context/index.html">Dpp Core Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-dopc.context/index.html">Dpp Dopc Context</a></li>
+                            <li><a href="spec/contexts/v3/dpp-ec-to-keystone.context/index.html">Dpp Ec To Keystone Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-electronics.context/index.html">Dpp Electronics Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-epd.context/index.html">Dpp Epd Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-general-product.context/index.html">Dpp General Product Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-iron-steel.context/index.html">Dpp Iron Steel Context</a></li>
+                            <li><a href="spec/contexts/v3/dpp-keystone-to-ec.context/index.html">Dpp Keystone To Ec Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-mtc.context/index.html">Dpp Mtc Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-packaging.context/index.html">Dpp Packaging Context</a></li>
                             <li><a href="spec/contexts/v3/dpp-textile.context/index.html">Dpp Textile Context</a></li>
@@ -355,6 +386,9 @@
                         <li><strong data-i18n-key="content-specification-schemas">Content Specification Schemas</strong>
                             <ul>
                                 <!-- CONTENT_SPEC_SCHEMAS_LIST_START -->
+                            <li><a href="spec/validation/v3/json-schema/sector/battery-ev.schema.json">Battery Ev Schema</a></li>
+                            <li><a href="spec/validation/v3/json-schema/sector/battery-industrial.schema.json">Battery Industrial Schema</a></li>
+                            <li><a href="spec/validation/v3/json-schema/sector/battery-lmv.schema.json">Battery Lmv Schema</a></li>
                             <li><a href="spec/validation/v3/json-schema/sector/battery.schema.json">Battery Schema</a></li>
                             <li><a href="spec/validation/v3/json-schema/sector/construction.schema.json">Construction Schema</a></li>
                             <li><a href="spec/validation/v3/json-schema/sector/electronics.schema.json">Electronics Schema</a></li>
@@ -421,11 +455,14 @@
                 <h2 data-i18n-key="other-implementation-resources">Other Implementation Resources</h2>
                 <p data-i18n-key="examples-and-guides-to-help">Examples and guides to help you implement the DPP.</p>
 
-                <h3 data-i18n-key="examples-proof-of-concept">Examples (Proof of Concept)</h3>
+                <h3 data-i18n-key="reference-examples">Reference Examples</h3>
                 <p data-i18n-key="illustrative-json-ld-examples-for">Illustrative JSON-LD examples for various products.</p>
                 <ul>
                     <!-- EXAMPLES_LIST_START -->
+                            <li><a href="spec/examples/battery-dpp-ec-aligned-v1.json">Battery Dpp Ec Aligned</a></li>
                             <li><a href="spec/examples/battery-dpp-v1.json">Battery Dpp</a></li>
+                            <li><a href="spec/examples/battery-industrial-dpp-v1.json">Battery Industrial Dpp</a></li>
+                            <li><a href="spec/examples/battery-lmv-dpp-v1.json">Battery Lmv Dpp</a></li>
                             <li><a href="spec/examples/construction-product-dpp-v1.json">Construction Product Dpp</a></li>
                             <li><a href="spec/examples/drill-dpp-v1-private.json">Drill Dpp V1 Private</a></li>
                             <li><a href="spec/examples/drill-dpp-v1.json">Drill Dpp</a></li>

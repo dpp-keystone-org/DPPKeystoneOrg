@@ -1,6 +1,6 @@
 {
   "@context": [
-    "https://dpp-keystone.org/spec/contexts/v3/dpp-core.context.jsonld",
+    "https://dpp-keystone.org/preview/feature/api-setup/spec/contexts/v3/dpp-core.context.jsonld",
     {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "pefcrCategory": {
@@ -204,8 +204,8 @@
         "@id": "dppk:carbonFootprintBenchmarkPercentage",
         "@type": "xsd:double"
       },
-      "carbonFootprintClass": {
-        "@id": "dppk:carbonFootprintClass",
+      "textileCarbonFootprintClass": {
+        "@id": "dppk:textileCarbonFootprintClass",
         "@type": "xsd:integer"
       },
       "environmentalFootprint": {

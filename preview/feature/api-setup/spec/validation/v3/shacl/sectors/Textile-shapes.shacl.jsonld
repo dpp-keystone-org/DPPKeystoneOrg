@@ -21,11 +21,11 @@
       "@type": "@id"
     }
   },
-  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/sectors/Textile",
+  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/sectors/Textile",
   "@type": "ShapesGraph",
   "@graph": [
     {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_TextileProductShape",
+      "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_TextileProductShape",
       "@type": "NodeShape",
       "targetClass": "https://dpp-keystone.org/spec/v3/terms#TextileProduct",
       "property": [
@@ -36,7 +36,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_PefcrCategoryValueShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_PefcrCategoryValueShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -98,7 +98,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_CertificationShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_CertificationShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -117,7 +117,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -142,6 +142,11 @@
         {
           "path": "https://dpp-keystone.org/spec/v3/terms#carbonFootprintClass",
           "message": "Auto-generated rule for dppk:carbonFootprintClass",
+          "datatype": "xsd:integer"
+        },
+        {
+          "path": "https://dpp-keystone.org/spec/v3/terms#textileCarbonFootprintClass",
+          "message": "Auto-generated rule for dppk:textileCarbonFootprintClass",
           "datatype": "xsd:integer"
         },
         {
@@ -171,7 +176,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -264,32 +269,13 @@
           "datatype": "xsd:string"
         },
         {
-          "path": "https://dpp-keystone.org/spec/v3/terms#productionSteps",
-          "message": "Auto-generated rule for dppk:productionSteps",
-          "or": {
-            "@list": [
-              {
-                "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ProductionStepShape"
-                },
-                "nodeKind": {
-                  "@id": "sh:BlankNodeOrIRI"
-                }
-              },
-              {
-                "datatype": "dppk:ProductionStep"
-              }
-            ]
-          }
-        },
-        {
           "path": "https://dpp-keystone.org/spec/v3/terms#textileCareInstructions",
           "message": "Auto-generated rule for dppk:textileCareInstructions",
           "or": {
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -308,7 +294,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -327,7 +313,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -346,7 +332,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_RelatedResourceShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -365,7 +351,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ComponentShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_ComponentShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -384,7 +370,7 @@
             "@list": [
               {
                 "node": {
-                  "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ComponentShape"
+                  "@id": "https://dpp-keystone.org/preview/feature/api-setup/spec/validation/v3/shacl/shapes#dppk_ComponentShape"
                 },
                 "nodeKind": {
                   "@id": "sh:BlankNodeOrIRI"
@@ -395,23 +381,6 @@
               }
             ]
           }
-        }
-      ]
-    },
-    {
-      "@id": "https://dpp-keystone.org/spec/validation/v3/shacl/shapes#dppk_ProductionStepShape",
-      "@type": "NodeShape",
-      "targetClass": "https://dpp-keystone.org/spec/v3/terms#ProductionStep",
-      "property": [
-        {
-          "path": "https://dpp-keystone.org/spec/v3/terms#productionStepType",
-          "message": "Auto-generated rule for dppk:productionStepType",
-          "datatype": "xsd:string"
-        },
-        {
-          "path": "https://dpp-keystone.org/spec/v3/terms#productionLocationCountry",
-          "message": "Auto-generated rule for dppk:productionLocationCountry",
-          "datatype": "xsd:string"
         }
       ]
     }
