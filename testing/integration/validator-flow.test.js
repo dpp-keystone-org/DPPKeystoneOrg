@@ -33,15 +33,22 @@ const waitFor = (callback) => {
 
 describe('DPP Validator - Localized HTML Preview Integration', () => {
     let validatorHtml;
+    let realTransformDpp;
 
     beforeAll(async () => {
         validatorHtml = await loadFile('dist/validator/index.html');
+        const realAdapter = await import('../../dist/util/js/client/dpp-schema-adapter.js');
+        realTransformDpp = realAdapter.transformDpp;
     });
 
     beforeEach(() => {
         document.body.innerHTML = validatorHtml;
         jest.resetModules();
         localStorage.clear();
+        // Reset dpp-schema-adapter to the real implementation so mocked tests never leak into subsequent tests
+        jest.unstable_mockModule('../dist/util/js/client/dpp-schema-adapter.js', () => ({
+            transformDpp: (...args) => realTransformDpp(...args)
+        }));
     });
 
     it('should pass selected language from Validator UI to generateHTML', async () => {
