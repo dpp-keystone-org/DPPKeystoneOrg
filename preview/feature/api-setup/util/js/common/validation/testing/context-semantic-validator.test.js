@@ -1,5 +1,5 @@
-import { validateContextAwarePayload } from '../context-semantic-validator.js?v=1795604067615';
-import { KEYSTONE_VERSION } from '../../../../../lib/keystone-version.js?v=1795604067615';
+import { validateContextAwarePayload } from '../context-semantic-validator.js?v=1795604846831';
+import { KEYSTONE_VERSION } from '../../../../../lib/keystone-version.js?v=1795604846831';
 
 describe('Context Semantic Validator (JSON-LD Native Isolations)', () => {
 
