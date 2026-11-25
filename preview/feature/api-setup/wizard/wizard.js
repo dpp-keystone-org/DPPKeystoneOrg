@@ -1,16 +1,16 @@
 // src/wizard/wizard.js
-import { loadHeader } from '../branding/header.js?v=1795604846831';
+import { loadHeader } from '../branding/header.js?v=1795604861704';
 loadHeader('dpp-header-container', '..');
-import { loadSchema } from '../lib/schema-loader.js?v=1795604846831';
-import { loadOntology, loadContext } from '../lib/ontology-loader.js?v=1795604846831';
-import { SECTOR_DISPLAY_NAMES } from '../lib/sector-mappings.js?v=1795604846831';
-import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1795604846831';
-import { generateDpp } from './dpp-generator.js?v=1795604846831';
-import { generateHTML } from '../lib/html-generator.js?v=1795604846831';
-import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1795604846831';
+import { loadSchema } from '../lib/schema-loader.js?v=1795604861704';
+import { loadOntology, loadContext } from '../lib/ontology-loader.js?v=1795604861704';
+import { SECTOR_DISPLAY_NAMES } from '../lib/sector-mappings.js?v=1795604861704';
+import { buildForm, createVoluntaryFieldRow } from './form-builder.js?v=1795604861704';
+import { generateDpp } from './dpp-generator.js?v=1795604861704';
+import { generateHTML } from '../lib/html-generator.js?v=1795604861704';
+import { transformDpp } from '../util/js/client/dpp-schema-adapter.js?v=1795604861704';
 import * as jsonld from 'jsonld';
-import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1795604846831';
-import { LanguageManager } from '../lib/language-manager.js?v=1795604846831';
+import { KEYSTONE_VERSION, isSpecUrl, specUrlToRelativePath } from '../lib/keystone-version.js?v=1795604861704';
+import { LanguageManager } from '../lib/language-manager.js?v=1795604861704';
 
 // --- Module-level state ---
 let currentLanguage = LanguageManager.getPreferredLanguage();

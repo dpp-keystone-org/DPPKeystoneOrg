@@ -1,9 +1,9 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { renderProductPage, detectTableStructure } from '../util/js/common/rendering/dpp-html-renderer.js?v=1795604846831';
-import { transformDpp } from '../util/js/server/dpp-schema-adapter.js?v=1795604846831';
-import { getProductPageCss, getServerOntologyMap, createServerDocumentLoader } from './server-resource-loader.js?v=1795604846831';
-import { KEYSTONE_VERSION } from './keystone-version.js?v=1795604846831';
+import { renderProductPage, detectTableStructure } from '../util/js/common/rendering/dpp-html-renderer.js?v=1795604861704';
+import { transformDpp } from '../util/js/server/dpp-schema-adapter.js?v=1795604861704';
+import { getProductPageCss, getServerOntologyMap, createServerDocumentLoader } from './server-resource-loader.js?v=1795604861704';
+import { KEYSTONE_VERSION } from './keystone-version.js?v=1795604861704';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
