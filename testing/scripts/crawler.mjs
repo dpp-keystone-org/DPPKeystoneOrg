@@ -94,10 +94,10 @@ async function checkExternalLink(url) {
         clearTimeout(timeoutId);
 
         if (!response.ok) {
-            // Treat 403 and 503 as "soft" failures that don't break the build for external links,
-            // as many corporate sites (like DIN) block GitHub Actions IPs or bot user-agents.
-            if (response.status === 403 || response.status === 503) {
-                 console.log(`\nWarning: External URL ${url} returned ${response.status}. It is likely blocking automated requests. Treating as valid for CI purposes.`);
+            // Treat 403, 503, and 429 as "soft" failures that don't break the build for external links,
+            // as many corporate and institutional sites (like DIN or the EU Commission) block GitHub Actions IPs or rate-limit requests.
+            if (response.status === 403 || response.status === 503 || response.status === 429) {
+                 console.log(`\nWarning: External URL ${url} returned ${response.status}. It is likely rate-limiting or blocking automated requests. Treating as valid for CI purposes.`);
                  stats.external.good++;
             } else {
                  brokenExternalLinks.push({ url, status: response.status });

@@ -165,7 +165,7 @@ export async function transform(dpp, options, dictionary) {
         const sourceUri = transformation.source.startsWith('http') ? transformation.source : `${termsBase}${transformation.source}`;
         const sourceData = rootNode[sourceUri]?.[0];
         if (sourceData) {
-            const transformedData = transformation.transformer(sourceData, dictionary, rootNode, version);
+            const transformedData = transformation.transformer(sourceData, dictionary, rootNode, version, dpp);
             results = results.concat(transformedData);
         }
     }

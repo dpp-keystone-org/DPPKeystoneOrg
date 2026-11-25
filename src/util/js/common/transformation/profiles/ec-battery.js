@@ -3,6 +3,18 @@ const EC_BATTERIES_SPEC_BASE = 'https://repository.product-passport.ec.europa.eu
 const EC_CORE_CONTEXT = 'https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld';
 const EC_BATTERIES_CONTEXT = 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld';
 
+const TRANSFORMED_SOURCE_KEYS = new Set([
+    '@context', '@id', '@type', 'id', 'type',
+    'manufacturerInfo', 'manufacturer',
+    'batteryMass', 'netWeight',
+    'warrantyPeriod', 'renewableContent',
+    'performance', 'dopc', 'testReports',
+    'partNumbers', 'sparePartsSources',
+    'wastePreventionInfo', 'labelMeaning', 'hazardousSubstancesImpact',
+    'heavyMetalSymbols', 'countryOfOrigin',
+    'model', 'batchNumber', 'serialNumber', 'gtin', 'sku'
+]);
+
 const SUBGROUP_SPEC_BASES = {
     evb: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0',
     lmt: 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/lmt/1.0.0',
@@ -391,7 +403,7 @@ function extractComponentObjects(nodes, termsBase) {
  * Transforms an expanded Keystone Battery DPP node into an EC-compliant Battery DPP JSON-LD payload
  * while preserving Keystone federated extensions via context composition.
  */
-export function dppToEcBattery(sourceData, dictionary, rootNode, version = 'v3') {
+export function dppToEcBattery(sourceData, dictionary, rootNode, version = 'v3', rawDpp = null) {
     const termsBase = `https://dpp-keystone.org/spec/${version}/terms#`;
     const { subgroup, batteryCategory } = detectSubgroup(rootNode, termsBase);
 
@@ -876,6 +888,33 @@ export function dppToEcBattery(sourceData, dictionary, rootNode, version = 'v3')
 
     const postRecycled = extractComponentObjects(rootNode[`${termsBase}postConsumerRecycledMaterialComposition`], termsBase);
     if (postRecycled) ecPayload.postConsumerRecycledMaterialComposition = postRecycled;
+
+    // Preserve any additional @context entries and untransformed / voluntary attributes from rawDpp
+    if (rawDpp && typeof rawDpp === 'object' && !Array.isArray(rawDpp)) {
+        if (rawDpp['@context']) {
+            const rawContexts = Array.isArray(rawDpp['@context']) ? rawDpp['@context'] : [rawDpp['@context']];
+            for (const ctx of rawContexts) {
+                if (typeof ctx === 'string') {
+                    const alreadyIncluded = ecPayload['@context'].includes(ctx)
+                        || ctx.includes('dpp-battery.context.jsonld')
+                        || ctx === EC_CORE_CONTEXT
+                        || ctx === EC_BATTERIES_CONTEXT;
+                    if (!alreadyIncluded) {
+                        ecPayload['@context'].push(ctx);
+                    }
+                } else if (ctx && typeof ctx === 'object') {
+                    ecPayload['@context'].push(JSON.parse(JSON.stringify(ctx)));
+                }
+            }
+        }
+
+        for (const [key, value] of Object.entries(rawDpp)) {
+            if (value === undefined) continue;
+            if (TRANSFORMED_SOURCE_KEYS.has(key)) continue;
+            if (Object.prototype.hasOwnProperty.call(ecPayload, key)) continue;
+            ecPayload[key] = JSON.parse(JSON.stringify(value));
+        }
+    }
 
     return [ecPayload];
 }

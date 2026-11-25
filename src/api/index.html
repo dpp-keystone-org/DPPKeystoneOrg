@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPP Keystone API Documentation (OpenAPI 3.1)</title>
+    <meta name="description" content="Interactive OpenAPI 3.1 reference documentation for the DPP Keystone EC Battery Validation & Adaptation API.">
+    <link rel="stylesheet" href="../branding/css/keystone-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+    <style>
+        .api-intro-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .api-intro-card pre {
+            background-color: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 14px;
+            overflow-x: auto;
+        }
+        .api-intro-card pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-dark);
+        }
+        #swagger-ui {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        #swagger-ui .topbar {
+            display: none;
+        }
+        /* Match DPP Keystone blue/slate palette instead of default Swagger mint green */
+        #swagger-ui .opblock.opblock-post {
+            border-color: var(--keystone-blue);
+            background: rgba(13, 110, 253, 0.05);
+        }
+        #swagger-ui .opblock.opblock-post .opblock-summary-method {
+            background: var(--keystone-blue);
+        }
+        #swagger-ui .opblock.opblock-post .opblock-summary {
+            border-color: rgba(13, 110, 253, 0.25);
+        }
+        #swagger-ui .opblock.opblock-get {
+            border-color: #495057;
+            background: rgba(73, 80, 87, 0.04);
+        }
+        #swagger-ui .opblock.opblock-get .opblock-summary-method {
+            background: #495057;
+        }
+        #swagger-ui .opblock.opblock-get .opblock-summary {
+            border-color: rgba(73, 80, 87, 0.2);
+        }
+        #swagger-ui .btn.execute {
+            background-color: var(--keystone-blue);
+            border-color: var(--keystone-blue);
+        }
+        /* Prevent global keystone-style.css `code { background-color: #e9ecef }` from washing out dark Swagger code blocks */
+        #swagger-ui pre code,
+        #swagger-ui pre.microlight code,
+        #swagger-ui .highlight-code code {
+            background-color: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            color: inherit;
+        }
+        #swagger-ui pre.microlight {
+            background-color: #1e293b !important;
+            color: #f8fafc !important;
+            padding: 14px !important;
+            border-radius: 6px !important;
+        }
+        #swagger-ui .microlight span {
+            background-color: transparent !important;
+        }
+        /* Fix keystone-style.css `ul` margin inside Swagger tabs/controls */
+        #swagger-ui ul {
+            margin-left: 0;
+        }
+        /* Prevent global keystone-style.css `button` rule from overriding Swagger UI structural & OpenAPI 3.1 JSON Schema toggle buttons */
+        #swagger-ui section.models button,
+        #swagger-ui .json-schema-2020-12 button,
+        #swagger-ui button.model-box-control,
+        #swagger-ui button.models-control,
+        #swagger-ui button.opblock-summary-control,
+        #swagger-ui button.expand-operation,
+        #swagger-ui button.tablinks,
+        #swagger-ui button.opblock-control-arrow,
+        #swagger-ui button.arrow {
+            background-color: transparent !important;
+            color: var(--text-dark) !important;
+            padding: 2px 6px !important;
+            border: none !important;
+            border-radius: 3px !important;
+            box-shadow: none !important;
+            font-size: inherit;
+            width: auto;
+            height: auto;
+        }
+        #swagger-ui section.models button:hover,
+        #swagger-ui .json-schema-2020-12 button:hover,
+        #swagger-ui button.model-box-control:hover,
+        #swagger-ui button.models-control:hover,
+        #swagger-ui button.opblock-summary-control:hover {
+            filter: none;
+            background-color: rgba(13, 110, 253, 0.08) !important;
+            color: var(--keystone-blue) !important;
+        }
+        #swagger-ui .json-schema-2020-12-expand-deep-button {
+            border: 1px solid var(--border-color) !important;
+            margin-left: 8px;
+            font-size: 0.8em !important;
+        }
+        #swagger-ui .models .model-box-control .model-title {
+            color: var(--text-dark);
+        }
+        #swagger-ui .models h4 span {
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="dpp-header-container"></div>
+
+        <main>
+            <section class="api-intro-card">
+                <h2>DPP Keystone Validation &amp; EC Battery Adaptation API</h2>
+                <p>
+                    Interactive OpenAPI 3.1 reference for validating Digital Product Passports against both the
+                    <strong>patched</strong> EC Battery bundle (<code>target=patched</code>) and the
+                    <strong>unmodified</strong> official EC v1.0.0 bundle (<code>target=raw</code>), and adapting
+                    Keystone Battery DPPs into either format.
+                </p>
+                <p>
+                    <a href="./openapi.yml" download="dpp-keystone-api-openapi.yml"><strong>Download OpenAPI 3.1 Specification (openapi.yml)</strong></a>
+                    &nbsp;|&nbsp;
+                    <a href="https://dpp-keystone-api-naamukjlba-ew.a.run.app/openapi.yml" target="_blank" rel="noopener noreferrer">Live Spec Endpoint</a>
+                </p>
+                <h3>Quick Start (File-Based <code>curl</code>)</h3>
+                <p>Replace <code>path/to/battery-dpp.json</code> at the end of either command with your local JSON file:</p>
+                <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/adapt?target=patched&amp;validate=true&amp;mode=strict" \
+  -H "Content-Type: application/json" \
+  --data-binary @path/to/battery-dpp.json</code></pre>
+                <pre><code>curl -X POST "https://dpp-keystone-api-naamukjlba-ew.a.run.app/validate?target=patched&amp;mode=strict" \
+  -H "Content-Type: application/json" \
+  --data-binary @path/to/ec-battery-dpp.json</code></pre>
+            </section>
+
+            <div id="swagger-ui"></div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../branding/header.js';
+        loadHeader('dpp-header-container', '..');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            window.ui = SwaggerUIBundle({
+                url: `./openapi.yml?v=${Date.now()}`,
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                tryItOutEnabled: true,
+                syntaxHighlight: {
+                    activate: true,
+                    theme: 'monokai'
+                },
+                presets: [SwaggerUIBundle.presets.apis],
+                layout: 'BaseLayout'
+            });
+        });
+    </script>
+</body>
+</html>

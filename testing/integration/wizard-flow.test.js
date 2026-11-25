@@ -699,4 +699,89 @@ describe('DPP Wizard - Full Integration Flow', () => {
         expect(errorLink.textContent).toBe('undefinedPrefix:test');
         expect(errorLink.textContent).not.toMatch(/custom-key-/);
     });
+
+    it('should preserve voluntary fields when exporting EC Battery DPP from Wizard', async () => {
+        const originalFetch = global.fetch;
+
+        // Serve real dist/spec/ files to transformDpp when clicking Export EC Battery DPP
+        global.fetch = jest.fn(async (url) => {
+            const urlStr = String(url);
+            const specMatch = urlStr.match(/\/spec\/(.+)$/);
+            if (specMatch) {
+                const diskPath = path.resolve(__dirname, '../../dist/spec', specMatch[1]);
+                const content = await fs.readFile(diskPath, 'utf-8');
+                return { ok: true, json: async () => JSON.parse(content) };
+            }
+            return { ok: true, json: async () => ({}) };
+        });
+
+        try {
+            const mockBatterySchema = {
+                $id: `https://dpp-keystone.org/spec/validation/${KEYSTONE_VERSION}/json-schema/sector/battery-ev.schema.json`,
+                title: 'Battery EV',
+                type: 'object',
+                properties: {
+                    batteryCategory: { type: 'string' },
+                    batteryMass: { type: 'number' },
+                    batteryChemistry: { type: 'string' }
+                }
+            };
+
+            jest.unstable_mockModule('../dist/lib/schema-loader.js', () => ({
+                loadSchema: jest.fn(async (sector) => {
+                    if (sector === 'dpp') return dppSchema;
+                    if (sector === 'battery-ev') return mockBatterySchema;
+                    return { type: 'object', properties: {} };
+                })
+            }));
+            jest.unstable_mockModule('../dist/lib/ontology-loader.js', () => ({
+                loadOntology: jest.fn().mockResolvedValue(new Map()),
+                loadContext: jest.fn().mockResolvedValue(new Map())
+            }));
+
+            const { initializeWizard } = await import('../../dist/wizard/wizard.js');
+            await initializeWizard();
+
+            // Fill core fields
+            const dppIdInput = await waitFor(() => document.querySelector('#core-form-container input[name="digitalProductPassportId"]'));
+            dppIdInput.value = 'urn:uuid:f5c3b1e0-4d4a-45c1-8b02-8378336a13a4';
+            document.querySelector('#core-form-container input[name="uniqueProductIdentifier"]').value = 'https://example.com/gtin/1234567890123';
+            document.querySelector('#core-form-container select[name="granularity"]').value = 'Item';
+            const hsCodeInput = document.querySelector('#core-form-container input[name="hsCode"]');
+            if (hsCodeInput) hsCodeInput.value = '85076000';
+
+            // Add battery-ev sector
+            const addBatteryBtn = document.querySelector('button[data-sector="battery-ev"]');
+            expect(addBatteryBtn).not.toBeNull();
+            addBatteryBtn.click();
+
+            const batCatInput = await waitFor(() => document.querySelector('#sector-form-battery-ev input[name="batteryCategory"]'));
+            batCatInput.value = 'EVBattery';
+            document.querySelector('#sector-form-battery-ev input[name="batteryMass"]').value = '45.5';
+            document.querySelector('#sector-form-battery-ev input[name="batteryChemistry"]').value = 'LFP';
+
+            // Add a custom voluntary field via Wizard UI
+            document.getElementById('add-voluntary-field-btn').click();
+            const voluntaryWrapper = document.getElementById('voluntary-fields-wrapper');
+            const row = await waitFor(() => voluntaryWrapper.lastElementChild);
+            row.querySelector('.voluntary-name').value = 'voluntaryOriginNote';
+            row.querySelector('.voluntary-value').value = 'Assembled in Berlin';
+
+            window.open = jest.fn();
+            const ecBtn = document.getElementById('ec-battery-btn');
+            expect(ecBtn).not.toBeNull();
+            ecBtn.click();
+
+            const jsonOutput = document.getElementById('json-output');
+            await waitFor(() => jsonOutput.textContent && jsonOutput.textContent.includes('electricVehicleBattery'));
+
+            const exported = JSON.parse(jsonOutput.textContent);
+            expect(exported.voluntaryOriginNote).toBe('Assembled in Berlin');
+            if (hsCodeInput) {
+                expect(exported.hsCode).toBe('85076000');
+            }
+        } finally {
+            global.fetch = originalFetch;
+        }
+    }, 30000);
 });
