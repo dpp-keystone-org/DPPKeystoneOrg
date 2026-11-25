@@ -47,36 +47,9 @@ const VERSION_PLACEHOLDER_RE = new RegExp('\\{\\{VERSION\\}\\}', 'g');
 const RDF_TYPE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
 const RDF_LANG_STRING = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#langString';
 const SH_SPARQL = 'http://www.w3.org/ns/shacl#sparql';
-const EC_CORE_SPEC_ID = 'https://repository.product-passport.ec.europa.eu/core/1.0.0';
 const EC_DPP_CLASS = 'https://repository.product-passport.ec.europa.eu/core/vocabs/core-vocabulary#DigitalProductPassport';
 const EC_UNKNOWN_NS = 'https://repository.product-passport.ec.europa.eu/unknown#';
-const EC_BATTERY_VOCAB_NS = 'https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-vocabulary#';
-const EC_BATTERY_CATEGORY_PREDICATE = `${EC_BATTERY_VOCAB_NS}batteryCategory`;
-const EC_BATTERY_CATEGORY_NS = 'https://repository.product-passport.ec.europa.eu/product/batteries/vocabs/battery-category#';
-const KEYSTONE_TERMS_NS = `https://dpp-keystone.org/spec/${KEYSTONE_VERSION}/terms#`;
-const KEYSTONE_DPP_CLASS = `${KEYSTONE_TERMS_NS}DigitalProductPassport`;
-const KEYSTONE_BATTERY_PRODUCT_CLASS = `${KEYSTONE_TERMS_NS}BatteryProduct`;
-const KEYSTONE_BATTERY_CATEGORY_PREDICATE = `${KEYSTONE_TERMS_NS}batteryCategory`;
-const KEYSTONE_TYPE_TO_SPEC = new Map([
-    [`${KEYSTONE_TERMS_NS}ConstructionProduct`, 'draft_construction_specification_id'],
-    [`${KEYSTONE_TERMS_NS}IronSteelProduct`, 'draft_iron_and_steel_specification_id'],
-    [`${KEYSTONE_TERMS_NS}ElectronicDevice`, 'draft_electronics_specification_id'],
-    [`${KEYSTONE_TERMS_NS}PowerTool`, 'draft_electronics_specification_id']
-]);
-const KEYSTONE_PROP_TO_SPEC = new Map([
-    [`${KEYSTONE_TERMS_NS}pefcrCategory`, 'draft_textile_espr_specification_id'],
-    [`${KEYSTONE_TERMS_NS}fibreComposition`, 'draft_textile_espr_specification_id']
-]);
 const BCP47_REGEX = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$/;
-
-const CATEGORY_TO_SUBGROUP = {
-    [`${EC_BATTERY_CATEGORY_NS}electricVehicleBattery`]: 'evb',
-    [`${EC_BATTERY_CATEGORY_NS}lightMeansOfTransportBattery`]: 'lmt',
-    [`${EC_BATTERY_CATEGORY_NS}industrialBattery`]: 'ind',
-    electricVehicleBattery: 'evb',
-    lightMeansOfTransportBattery: 'lmt',
-    industrialBattery: 'ind'
-};
 
 const factory = new Environment([
     DataFactory,
@@ -426,10 +399,8 @@ export async function createValidationEngine() {
 
     const recognizedSpecs = [];
     const specById = new Map();
-    const baseBatteryPropsByTier = new Map();
-    const subgroupBatteryPropsByTier = new Map();
 
-    // 1. Register all EC JSON Schemas & index battery root properties by access tier
+    // 1. Register all EC JSON Schemas
     const ecSchemaFiles = await walkFiles(EC_SEMANTICS_ROOT, '.schema.json');
     for (const file of ecSchemaFiles) {
         const parsed = JSON.parse(await fs.readFile(file, 'utf-8'));
@@ -438,7 +409,7 @@ export async function createValidationEngine() {
         if (file.endsWith('common.schema.json')) continue;
         if (file.endsWith('core.schema.json')) {
             const entry = {
-                contentSpecificationId: EC_CORE_SPEC_ID,
+                contentSpecificationId: 'https://repository.product-passport.ec.europa.eu/core/1.0.0',
                 title: parsed.title || 'EU DPP Core Envelope',
                 authority: 'European Commission',
                 accessTier: 'core',
@@ -467,41 +438,6 @@ export async function createValidationEngine() {
             };
             recognizedSpecs.push(entry);
             specById.set(triggerId, entry);
-
-            if (tierMatch) {
-                const tier = tierMatch[1];
-                const isSubgroup = triggerId.includes('/subgroup/');
-                const targetMap = isSubgroup ? subgroupBatteryPropsByTier : baseBatteryPropsByTier;
-                if (!targetMap.has(tier)) targetMap.set(tier, new Set());
-                for (const [propName, propSchema] of Object.entries(parsed.then?.properties || {})) {
-                    if (propName === 'contentSpecificationIds' || propSchema === false) continue;
-                    if (isSubgroup && propName === 'batteryCategory') continue;
-                    targetMap.get(tier).add(propName);
-                }
-            }
-        }
-    }
-
-    const ecBatteryPropToTier = new Map();
-    for (const [tier, propSet] of baseBatteryPropsByTier.entries()) {
-        for (const propName of propSet) {
-            ecBatteryPropToTier.set(`${EC_BATTERY_VOCAB_NS}${propName}`, {
-                propName,
-                tier,
-                subgroupOnly: false
-            });
-        }
-    }
-    for (const [tier, propSet] of subgroupBatteryPropsByTier.entries()) {
-        for (const propName of propSet) {
-            const iri = `${EC_BATTERY_VOCAB_NS}${propName}`;
-            if (!ecBatteryPropToTier.has(iri)) {
-                ecBatteryPropToTier.set(iri, {
-                    propName,
-                    tier,
-                    subgroupOnly: true
-                });
-            }
         }
     }
 
@@ -576,25 +512,19 @@ export async function createValidationEngine() {
         };
     }
 
-    // 5. Merge all 18 EC SHACL Core shapes graphs (plus a slice graph omitting core-shapes.ttl for standalone res1/res2/res3 slices)
+    // 5. Merge all 18 EC SHACL Core shapes graphs
     const ttlFiles = await walkFiles(EC_SEMANTICS_ROOT, '.ttl');
     const shapeFiles = ttlFiles.filter((f) => f.includes(`${path.sep}shapes${path.sep}`));
     const mergedShaclShapes = factory.dataset();
-    const sliceShaclShapes = factory.dataset();
     for (const shapeFile of shapeFiles) {
-        const isCoreShape = path.basename(shapeFile) === 'core-shapes.ttl';
         const ds = await parseTurtleFile(shapeFile);
         for (const quad of ds) {
             if (quad.predicate.value !== SH_SPARQL) {
                 mergedShaclShapes.add(quad);
-                if (!isCoreShape) {
-                    sliceShaclShapes.add(quad);
-                }
             }
         }
     }
     const shaclValidator = new SHACLValidator(mergedShaclShapes, { factory });
-    const sliceShaclValidator = new SHACLValidator(sliceShaclShapes, { factory });
 
     /**
      * Evaluates a DPP payload and returns { statusCode, report }.
@@ -611,32 +541,15 @@ export async function createValidationEngine() {
         const claimedSpecs = Array.isArray(payload.contentSpecificationIds)
             ? payload.contentSpecificationIds.filter((s) => typeof s === 'string')
             : [];
-        const nonCoreSpecs = claimedSpecs.filter((id) => id !== EC_CORE_SPEC_ID);
 
-        // Standalone restricted-tier slice payloads (res1/res2/res3) legitimately omit the public Core header
-        const isRestrictedSliceCandidate =
-            nonCoreSpecs.length > 0 &&
-            !claimedSpecs.includes(EC_CORE_SPEC_ID) &&
-            nonCoreSpecs.every((id) => ['res1', 'res2', 'res3'].includes(specById.get(id)?.accessTier));
-
-        const activatedSpecifications = isRestrictedSliceCandidate
-            ? claimedSpecs.filter((id) => specById.has(id))
-            : [EC_CORE_SPEC_ID, ...claimedSpecs.filter((id) => id !== EC_CORE_SPEC_ID && specById.has(id))];
+        const activatedSpecifications = [
+            'https://repository.product-passport.ec.europa.eu/core/1.0.0',
+            ...claimedSpecs.filter((id) => id !== 'https://repository.product-passport.ec.europa.eu/core/1.0.0' && specById.has(id))
+        ];
         const unrecognizedSpecifications = claimedSpecs.filter((id) => !specById.has(id));
 
-        // 1a. Reject empty / Core-header-only DPPs that omit any product-sector contentSpecificationId
-        if (nonCoreSpecs.length === 0) {
-            findings.push({
-                stage: 'IMPLIED_SPECIFICATION',
-                code: 'SEM-MSG-009',
-                path: '/contentSpecificationIds',
-                message:
-                    'A Digital Product Passport must declare at least one product-sector contentSpecificationId in addition to the Core envelope.'
-            });
-        }
-
-        // 1b. Explicit inspection / audit specification policy (requireSpecificationId)
-        for (const reqSpec of [...new Set(requiredSpecs)]) {
+        // 1. Inspection policy check (requireSpecificationId)
+        for (const reqSpec of requiredSpecs) {
             if (!claimedSpecs.includes(reqSpec)) {
                 findings.push({
                     stage: 'REQUIRED_SPECIFICATION_POLICY',
@@ -669,8 +582,8 @@ export async function createValidationEngine() {
             }
         }
 
-        // Also run the composite OpenAPI LayeredDigitalProductPassport validator for full DPPs
-        if (!isRestrictedSliceCandidate && findings.filter((f) => f.stage === 'JSON_SCHEMA').length === 0) {
+        // Also run the composite OpenAPI LayeredDigitalProductPassport validator as a safety net
+        if (findings.filter((f) => f.stage === 'JSON_SCHEMA').length === 0) {
             const compositeOk = validateLayeredSchema(structuredClone(payload));
             if (!compositeOk && validateLayeredSchema.errors) {
                 for (const err of validateLayeredSchema.errors) {
@@ -684,39 +597,12 @@ export async function createValidationEngine() {
             }
         }
 
-        // 3. JSON-LD 1.1 Expansion + Root Implied-Specification Guard + Merged SHACL Validation
+        // 3. Paired JSON-LD 1.1 + merged SHACL validation
         let shaclExecuted = false;
-        const isPureEcCompactWithoutContext =
-            payload['@context'] === undefined &&
-            claimedSpecs.length > 0 &&
-            claimedSpecs.every((id) => id.startsWith('https://repository.product-passport.ec.europa.eu/'));
-
-        if (payload['@context'] !== undefined || isPureEcCompactWithoutContext) {
+        if (shacl && payload['@context'] !== undefined) {
+            shaclExecuted = true;
             try {
-                const docToExpand = structuredClone(payload);
-                if (isPureEcCompactWithoutContext) {
-                    const synthesizedContexts = [
-                        'https://repository.product-passport.ec.europa.eu/core/1.0.0/contexts/core-context.jsonld'
-                    ];
-                    if (activatedSpecifications.some((id) => id.startsWith('https://repository.product-passport.ec.europa.eu/product/batteries/'))) {
-                        synthesizedContexts.push(
-                            'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/contexts/batteries-context.jsonld'
-                        );
-                    }
-                    for (const sub of ['evb', 'ind', 'lmt']) {
-                        if (activatedSpecifications.some((id) => id.includes(`/subgroup/${sub}/`))) {
-                            synthesizedContexts.push(
-                                `https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/${sub}/1.0.0/contexts/${sub}-context.jsonld`
-                            );
-                        }
-                    }
-                    docToExpand['@context'] = synthesizedContexts;
-                    if (docToExpand.type === undefined && docToExpand['@type'] === undefined) {
-                        docToExpand.type = 'DigitalProductPassport';
-                    }
-                }
-
-                const expanded = await jsonld.expand(docToExpand, {
+                const expanded = await jsonld.expand(structuredClone(payload), {
                     documentLoader,
                     processingMode: 'json-ld-1.1'
                 });
@@ -731,196 +617,52 @@ export async function createValidationEngine() {
                 });
 
                 let hasEcDppNode = false;
-                const rootPassportSubjects = new Set();
-                const explicitRootId = typeof (payload.id || payload['@id']) === 'string' ? payload.id || payload['@id'] : null;
-
                 for (const quad of dataDataset) {
                     if (quad.predicate.value === RDF_TYPE && quad.object.value === EC_DPP_CLASS) {
                         hasEcDppNode = true;
-                        rootPassportSubjects.add(quad.subject.value);
-                    } else if (quad.predicate.value === RDF_TYPE && quad.object.value === KEYSTONE_DPP_CLASS) {
-                        rootPassportSubjects.add(quad.subject.value);
                     }
-                }
-
-                if (rootPassportSubjects.size === 0 && explicitRootId) {
-                    rootPassportSubjects.add(explicitRootId);
+                    if (quad.predicate.value.startsWith(EC_UNKNOWN_NS)) {
+                        findings.push({
+                            stage: 'SHACL',
+                            code: 'SEM-COM-MSG-013',
+                            path: quad.predicate.value,
+                            message: `Unknown unmapped JSON-LD predicate: ${quad.predicate.value}`
+                        });
+                    }
+                    if (quad.object.termType === 'Literal' && quad.object.datatype?.value === RDF_LANG_STRING) {
+                        if (!BCP47_REGEX.test(quad.object.language || '')) {
+                            findings.push({
+                                stage: 'SHACL',
+                                code: 'SEM-COM-MSG-012',
+                                path: quad.predicate.value,
+                                message: `Invalid BCP 47 language tag "${quad.object.language}".`
+                            });
+                        }
+                    }
                 }
 
                 const usesEcSpec = claimedSpecs.some((id) => id.startsWith('https://repository.product-passport.ec.europa.eu/'));
-
-                // 3a. Root Implied-Specification Guard on the root passport node(s) ONLY
-                //     (ignores nested sub-component nodes and permits multi-category arrays)
-                const impliedKeystoneSpecs = new Map();
-                const impliedBaseTiers = new Map();
-                const impliedSubgroupTiers = new Map();
-                let detectedSubgroup = null;
-                let detectedCategoryLabel = null;
-                let hasKeystoneBatteryMarker = false;
-
-                for (const quad of dataDataset) {
-                    if (!rootPassportSubjects.has(quad.subject.value)) continue;
-
-                    if (quad.predicate.value === RDF_TYPE && KEYSTONE_TYPE_TO_SPEC.has(quad.object.value)) {
-                        const targetSpec = KEYSTONE_TYPE_TO_SPEC.get(quad.object.value);
-                        if (!impliedKeystoneSpecs.has(targetSpec)) {
-                            impliedKeystoneSpecs.set(targetSpec, `@type ${quad.object.value.split('#').pop()}`);
-                        }
-                    }
-                    if (KEYSTONE_PROP_TO_SPEC.has(quad.predicate.value)) {
-                        const targetSpec = KEYSTONE_PROP_TO_SPEC.get(quad.predicate.value);
-                        if (!impliedKeystoneSpecs.has(targetSpec)) {
-                            impliedKeystoneSpecs.set(targetSpec, `dppk:${quad.predicate.value.split('#').pop()}`);
-                        }
-                    }
-
-                    if (
-                        (quad.predicate.value === RDF_TYPE && quad.object.value === KEYSTONE_BATTERY_PRODUCT_CLASS) ||
-                        quad.predicate.value === KEYSTONE_BATTERY_CATEGORY_PREDICATE
-                    ) {
-                        hasKeystoneBatteryMarker = true;
-                    }
-
-                    if (quad.predicate.value === EC_BATTERY_CATEGORY_PREDICATE) {
-                        const sub = CATEGORY_TO_SUBGROUP[quad.object.value];
-                        if (sub) {
-                            detectedSubgroup = sub;
-                            detectedCategoryLabel = quad.object.value.split('#').pop();
-                        }
-                    }
-
-                    const propMeta = ecBatteryPropToTier.get(quad.predicate.value);
-                    if (propMeta) {
-                        if (!impliedBaseTiers.has(propMeta.tier)) {
-                            impliedBaseTiers.set(propMeta.tier, `bat:${propMeta.propName}`);
-                        }
-                        if (propMeta.subgroupOnly && !impliedSubgroupTiers.has(propMeta.tier)) {
-                            impliedSubgroupTiers.set(propMeta.tier, `bat:${propMeta.propName}`);
-                        }
-                    }
+                if (usesEcSpec && !hasEcDppNode) {
+                    findings.push({
+                        stage: 'SHACL',
+                        code: 'SEM-CORE-TYPE-MISSING',
+                        path: '/type',
+                        message: 'No rdf:type dpp:DigitalProductPassport node produced after JSON-LD expansion.'
+                    });
                 }
 
-                for (const [expectedSpec, triggerTerm] of impliedKeystoneSpecs.entries()) {
-                    if (!claimedSpecs.includes(expectedSpec)) {
-                        findings.push({
-                            stage: 'IMPLIED_SPECIFICATION',
-                            specificationId: expectedSpec,
-                            code: 'SEM-MSG-009',
-                            path: '/contentSpecificationIds',
-                            message: `Root passport node declares ${triggerTerm}, so contentSpecificationIds must include "${expectedSpec}".`
-                        });
-                    }
-                }
-
-                const hasKeystoneBatterySpecClaimed = claimedSpecs.some(
-                    (id) =>
-                        (id.startsWith('urn:dpp-keystone:') && id.includes(':sector:battery')) ||
-                        id === 'draft_battery_specification_id'
-                );
-                if (hasKeystoneBatteryMarker && !hasKeystoneBatterySpecClaimed && !impliedBaseTiers.has('pub')) {
-                    impliedBaseTiers.set('pub', 'dppk:BatteryProduct / dppk:batteryCategory');
-                }
-
-                for (const [tier, triggerTerm] of impliedBaseTiers.entries()) {
-                    const expectedBaseSpec = `https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/${tier}`;
-                    if (!claimedSpecs.includes(expectedBaseSpec)) {
-                        findings.push({
-                            stage: 'IMPLIED_SPECIFICATION',
-                            specificationId: expectedBaseSpec,
-                            code: 'SEM-MSG-009',
-                            path: '/contentSpecificationIds',
-                            message: `Root passport node contains Battery ${tier.toUpperCase()} markers/properties (e.g. ${triggerTerm}), so contentSpecificationIds must include "${expectedBaseSpec}".`
-                        });
-                    }
-                }
-
-                // For `pub` and `res3` (the two tiers with subgroup-specific regulatory constraints),
-                // `bat:batteryCategory` on the root passport deterministically requires the matching subgroup spec ID.
-                if (detectedSubgroup) {
-                    for (const tier of ['pub', 'res3']) {
-                        const baseSpec = `https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/${tier}`;
-                        if (claimedSpecs.includes(baseSpec) || impliedBaseTiers.has(tier)) {
-                            const expectedSubSpec = `https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/${detectedSubgroup}/1.0.0/${tier}`;
-                            if (!claimedSpecs.includes(expectedSubSpec)) {
-                                findings.push({
-                                    stage: 'IMPLIED_SPECIFICATION',
-                                    specificationId: expectedSubSpec,
-                                    code: 'SEM-MSG-009',
-                                    path: '/contentSpecificationIds',
-                                    message: `Root passport node declares bat:batteryCategory = ${detectedCategoryLabel}, so contentSpecificationIds must include "${expectedSubSpec}" for active ${tier.toUpperCase()} data.`
-                                });
-                            }
-                        }
-                    }
-                } else {
-                    // Standalone restricted slice without `bat:batteryCategory`, but containing subgroup-only properties
-                    for (const [tier, triggerTerm] of impliedSubgroupTiers.entries()) {
-                        const hasAnySubgroupForTier = ['evb', 'ind', 'lmt'].some((sub) =>
-                            claimedSpecs.includes(
-                                `https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/${sub}/1.0.0/${tier}`
-                            )
-                        );
-                        if (!hasAnySubgroupForTier) {
-                            findings.push({
-                                stage: 'IMPLIED_SPECIFICATION',
-                                code: 'SEM-MSG-009',
-                                path: '/contentSpecificationIds',
-                                message: `Root passport node contains subgroup-specific ${tier.toUpperCase()} property (${triggerTerm}), so contentSpecificationIds must include the applicable subgroup specification (.../subgroup/{evb|lmt|ind}/1.0.0/${tier}).`
-                            });
-                        }
-                    }
-                }
-
-                // 3b. Merged SHACL Core validation
-                if (shacl) {
-                    shaclExecuted = true;
-                    for (const quad of dataDataset) {
-                        if (quad.predicate.value.startsWith(EC_UNKNOWN_NS)) {
-                            findings.push({
-                                stage: 'SHACL',
-                                code: 'SEM-COM-MSG-013',
-                                path: quad.predicate.value,
-                                message: `Unknown unmapped JSON-LD predicate: ${quad.predicate.value}`
-                            });
-                        }
-                        if (quad.object.termType === 'Literal' && quad.object.datatype?.value === RDF_LANG_STRING) {
-                            if (!BCP47_REGEX.test(quad.object.language || '')) {
-                                findings.push({
-                                    stage: 'SHACL',
-                                    code: 'SEM-COM-MSG-012',
-                                    path: quad.predicate.value,
-                                    message: `Invalid BCP 47 language tag "${quad.object.language}".`
-                                });
-                            }
-                        }
-                    }
-
-                    if (usesEcSpec && !hasEcDppNode) {
+                const shaclReport = await shaclValidator.validate(dataDataset);
+                if (!shaclReport.conforms) {
+                    for (const res of shaclReport.results) {
+                        const msg = res.message?.map((m) => m.value).join('; ') || 'SHACL constraint violation';
+                        const codeMatch = msg.match(/^(SEM-[A-Z0-9-]+)/);
                         findings.push({
                             stage: 'SHACL',
-                            code: 'SEM-CORE-TYPE-MISSING',
-                            path: '/type',
-                            message: 'No rdf:type dpp:DigitalProductPassport node produced after JSON-LD expansion.'
+                            ...(res.sourceShape?.value ? { schemaId: res.sourceShape.value } : {}),
+                            ...(codeMatch ? { code: codeMatch[1] } : {}),
+                            ...(res.path?.value ? { path: res.path.value } : {}),
+                            message: msg
                         });
-                    }
-
-                    const activeShaclValidator =
-                        isRestrictedSliceCandidate && !impliedBaseTiers.has('pub')
-                            ? sliceShaclValidator
-                            : shaclValidator;
-                    const shaclReport = await activeShaclValidator.validate(dataDataset);
-                    if (!shaclReport.conforms) {
-                        for (const res of shaclReport.results) {
-                            const msg = res.message?.map((m) => m.value).join('; ') || 'SHACL constraint violation';
-                            const codeMatch = msg.match(/^(SEM-[A-Z0-9-]+)/);
-                            findings.push({
-                                stage: 'SHACL',
-                                ...(res.sourceShape?.value ? { schemaId: res.sourceShape.value } : {}),
-                                ...(codeMatch ? { code: codeMatch[1] } : {}),
-                                ...(res.path?.value ? { path: res.path.value } : {}),
-                                message: msg
-                            });
-                        }
                     }
                 }
             } catch (err) {
@@ -1074,10 +816,7 @@ export async function startServer(port = Number(process.env.PORT || 3000)) {
             const shaclParam = reqUrl.searchParams.get('shacl');
             const shacl = shaclParam === null ? true : shaclParam !== 'false';
 
-            const result = await engine.validatePayload(parsedBody, {
-                requiredSpecs,
-                shacl
-            });
+            const result = await engine.validatePayload(parsedBody, { requiredSpecs, shacl });
             res.writeHead(result.statusCode, { 'Content-Type': 'application/json; charset=utf-8' });
             res.end(JSON.stringify(result.report || result.error, null, 2));
             return;
@@ -1110,88 +849,7 @@ async function runSelfTest() {
             console.log(`  ✅ Live HTTP POST /v1/dpps/validate passed for example "${name}" (activated: ${report.activatedSpecifications.length} specs)`);
         }
 
-        // 1. Bare Core-header-only ("empty") DPP with zero product-sector specifications is rejected
-        const bareCorePath = path.join(EC_SEMANTICS_ROOT, 'core/1.0.0/tests/conforms/core.json');
-        const bareCoreDpp = JSON.parse(await fs.readFile(bareCorePath, 'utf-8'));
-        const bareCoreResp = await fetch(`http://127.0.0.1:${port}/v1/dpps/validate?shacl=true`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/ld+json' },
-            body: JSON.stringify(bareCoreDpp)
-        });
-        const bareCoreReport = await bareCoreResp.json();
-        if (
-            bareCoreResp.status !== 422 ||
-            !bareCoreReport.findings.some((f) => f.stage === 'IMPLIED_SPECIFICATION' && f.code === 'SEM-MSG-009')
-        ) {
-            throw new Error(`Self-test expected IMPLIED_SPECIFICATION 422 on bare Core-only DPP, got ${bareCoreResp.status}`);
-        }
-        console.log('  ✅ Live HTTP POST /v1/dpps/validate rejected bare Core-only empty DPP lacking any sector contentSpecificationId (HTTP 422)');
-
-        // 2. Collaborator catch: EV Battery passport with `batteryCategory` omitting battery lines from `contentSpecificationIds`
-        const omittedBatterySpecDpp = structuredClone(examples.evBatteryPublicDpp.value);
-        omittedBatterySpecDpp.contentSpecificationIds = [EC_CORE_SPEC_ID, 'urn:example:sector:other:1.0'];
-        const omittedResp = await fetch(`http://127.0.0.1:${port}/v1/dpps/validate?shacl=true`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/ld+json' },
-            body: JSON.stringify(omittedBatterySpecDpp)
-        });
-        const omittedReport = await omittedResp.json();
-        if (
-            omittedResp.status !== 422 ||
-            !omittedReport.findings.some(
-                (f) =>
-                    f.stage === 'IMPLIED_SPECIFICATION' &&
-                    f.specificationId === 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/pub'
-            ) ||
-            !omittedReport.findings.some(
-                (f) =>
-                    f.stage === 'IMPLIED_SPECIFICATION' &&
-                    f.specificationId === 'https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/evb/1.0.0/pub'
-            )
-        ) {
-            throw new Error(`Self-test expected IMPLIED_SPECIFICATION 422 on omitted battery spec ID, got ${omittedResp.status}: ${JSON.stringify(omittedReport)}`);
-        }
-        console.log('  ✅ Live HTTP POST /v1/dpps/validate rejected battery passport missing battery contentSpecificationIds (IMPLIED_SPECIFICATION 422)');
-
-        // 3. Partial dynamic data catch: `numberOfChargingCycles` present without `/res3` specification IDs
-        const partialDynamicDpp = structuredClone(examples.evBatteryPublicDpp.value);
-        partialDynamicDpp.numberOfChargingCycles = 42;
-        const partialDynResp = await fetch(`http://127.0.0.1:${port}/v1/dpps/validate?shacl=true`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/ld+json' },
-            body: JSON.stringify(partialDynamicDpp)
-        });
-        const partialDynReport = await partialDynResp.json();
-        if (
-            partialDynResp.status !== 422 ||
-            !partialDynReport.findings.some(
-                (f) =>
-                    f.stage === 'IMPLIED_SPECIFICATION' &&
-                    f.specificationId === 'https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res3'
-            )
-        ) {
-            throw new Error(`Self-test expected IMPLIED_SPECIFICATION 422 on undeclared RES3 dynamic field, got ${partialDynResp.status}`);
-        }
-        console.log('  ✅ Live HTTP POST /v1/dpps/validate rejected undeclared RES3 dynamic telemetry without /res3 spec ID (IMPLIED_SPECIFICATION 422)');
-
-        // 4. Standalone restricted BMS slice (`res3-batteries-evb.json`) validates cleanly
-        const res3SlicePath = path.join(
-            EC_SEMANTICS_ROOT,
-            'product/batteries/subgroup/evb/1.0.0/tests/conforms/res3-batteries-evb.json'
-        );
-        const res3Slice = JSON.parse(await fs.readFile(res3SlicePath, 'utf-8'));
-        const res3SliceResp = await fetch(`http://127.0.0.1:${port}/v1/dpps/validate?shacl=true`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/ld+json' },
-            body: JSON.stringify(res3Slice)
-        });
-        const res3SliceReport = await res3SliceResp.json();
-        if (res3SliceResp.status !== 200 || !res3SliceReport.conforms) {
-            throw new Error(`Self-test expected HTTP 200 on standalone RES3 slice, got ${res3SliceResp.status}: ${JSON.stringify(res3SliceReport)}`);
-        }
-        console.log('  ✅ Live HTTP POST /v1/dpps/validate accepted standalone EVB RES3 dynamic slice (HTTP 200)');
-
-        // 5. Verify explicit requireSpecificationId audit rejection when RES2 is mandated but omitted
+        // Verify requireSpecificationId audit rejection when RES2 is mandated but omitted
         const auditResp = await fetch(
             `http://127.0.0.1:${port}/v1/dpps/validate?requireSpecificationId=${encodeURIComponent('https://repository.product-passport.ec.europa.eu/product/batteries/1.0.0/res2')}`,
             {
