@@ -10,6 +10,7 @@ on:
       - 'src/**'
       - 'ec-bundle/**'
       - 'ec-bundle-raw/**'
+      - 'testing/**'
       - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'

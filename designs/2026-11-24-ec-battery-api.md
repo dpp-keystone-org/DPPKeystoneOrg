@@ -57,11 +57,34 @@ Repurposes the fledgling DPP Keystone API (`api.dpp-keystone.org`) to address Gi
 * **[COMPLETED] Step 3.3: Adapter Integration Tests**
   * Added `testing/integration/api/api-ec-adapt.test.js` adapting all 3 Keystone battery examples (`battery-ev`, `battery-lmv`, `battery-industrial`) plus legacy Keystone `v1` to both `patched` and `raw` and validating each output against its target bundle.
 
-### [IN PROGRESS] Feature 4: Public Information on Keystone Main Page (Issue #56)
+### [COMPLETED] Feature 4: Public Information on Keystone Main Page (Issue #56)
 * **[COMPLETED] Step 4.1: Update `index.html` & `index.i18n.json` (English)**
-  * Added `#ec-battery-adaptation` section to `index.html` with links to patched `ec-bundle` code, original EC repository, convergence note, and `curl` examples for `/validate` and `/adapt`.
+  * Added `#ec-battery-adaptation` section to `index.html` with links to patched `ec-bundle` code, original EC resources (`https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en`), convergence note, and `curl` examples for `/validate` and `/adapt`.
 * **[COMPLETED] Step 4.2: 24-Language Machine-Consensus Translation**
-  * Translated all 9 new keys in `index.i18n.json` across all 24 EU languages via Translation Worker + Auditor Pass 1 (fixed `de` and `da`) + Auditor Pass 2 (`PERFECT`).
-* **[ ] Step 4.3: End-to-End Verification (User Terminal)**
-  * User to run `npm install` (to update `package-lock.json` for promoted RDF/SHACL deps), `npm run test:api`, and `npm test`.
-  * Once green, rename this design doc with `-COMPLETED`.
+  * Translated all 9 new keys in `index.i18n.json` across all 24 EU languages via Translation Worker + Auditor consensus loops (`PERFECT`), including the revised `ec-battery-convergence-note` wording.
+* **[COMPLETED] Step 4.3: End-to-End Verification**
+  * Updated `package-lock.json`, fixed preview-branch `@context` normalization in `api/src/lib/server-resource-loader.js`, and verified `npm run test:api` and `npm test`.
+
+### [COMPLETED] Feature 5: Voluntary Attribute Preservation & Cloud Run Memory Tuning
+* **[COMPLETED] Step 5.1: TDD Tests Across All 3 Adapter Utilities**
+  * Added voluntary/untransformed attribute preservation tests in `testing/integration/api/api-ec-adapt.test.js`, `testing/integration/validator-flow.test.js` (with order-independent `beforeEach` reset), and `testing/integration/wizard-flow.test.js`.
+* **[COMPLETED] Step 5.2: Preserve Extra `@context` & Untransformed Voluntary Attributes**
+  * Updated `src/util/js/common/transformation/dpp-schema-logic.js` and `src/util/js/common/transformation/profiles/ec-battery.js` to forward `rawDpp` and preserve extra `@context` entries and untransformed top-level fields.
+* **[COMPLETED] Step 5.3: Memory Profiling & Cloud Run Sizing**
+  * Added `scripts/measure-api-memory.mjs`, cached raw `SHACLValidator` per `(subgroup, tiers)` in `api/src/lib/ec-validator-service.js` (cutting peak RSS from 558.7 MiB to 321.0 MiB with flat heap), and updated `.github/workflows/deploy-api.yml` (`--memory 512Mi`, `--concurrency 20`, `NODE_OPTIONS=--max-old-space-size=384`).
+
+### [ ] Feature 6: Formal OpenAPI 3.1 Spec, API Docs Sub-Page, & Live Cloud Run URL
+* **Goal:** Provide formal, machine-readable OpenAPI 3.1 documentation and an interactive API docs sub-page (`api/`) using the live Cloud Run sandbox URL (`https://dpp-keystone-api-naamukjlba-ew.a.run.app`), and simplify `index.html` `curl` examples to read DPP files via `--data-binary @<file>`.
+* **[ ] Step 6.1: Update `index.html` `curl` Examples & Live URL**
+  * Switch base URL in `index.html` from `https://api.dpp-keystone.org` to `https://dpp-keystone-api-naamukjlba-ew.a.run.app` (until custom DNS mapping is live).
+  * Update `curl` examples to use query parameters + `--data-binary @battery-dpp.json` so users can call the API directly with example files.
+  * Add a link to the new API documentation sub-page (`api/`).
+* **[ ] Step 6.2: Author OpenAPI 3.1 Contract (`src/api/openapi.yml`) & Serve at `GET /openapi.yml`**
+  * Formally document `/validate`, `/adapt`, `/specifications`, `/render/html`, `/health`, and `/version` with full request/response JSON Schemas, query parameters, HTTP status codes (`200`, `400`, `405`, `413`, `422`), and realistic examples.
+  * Serve `GET /openapi.yml` directly from `api/src/server.js` (with CORS) so clients and Swagger UI can consume it from either the static site or the API server.
+* **[ ] Step 6.3: Create Interactive API Documentation Sub-Page (`src/api/index.html`)**
+  * Build a clean Keystone-branded sub-page (`src/api/index.html`) rendering `openapi.yml` via Swagger UI (allowing live "Try it out" requests against `https://dpp-keystone-api-naamukjlba-ew.a.run.app`), plus quick-start file-based `curl` and JS `fetch` examples.
+  * Ensure `scripts/build-and-clean.mjs` copies `src/api/` into `dist/api/` cleanly (and translate any new UI keys via the 24-language consensus workflow if needed).
+* **[ ] Step 6.4: Tests & Verification**
+  * Add integration tests verifying `src/api/openapi.yml` is valid OpenAPI 3.1 (via `validateOpenApi31Suite` or YAML/schema checks) and `GET /openapi.yml` returns `200 OK`.
+  * Verify `npm test` passes and rename design doc with `-COMPLETED`.
