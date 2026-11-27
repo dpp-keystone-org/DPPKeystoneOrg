@@ -969,6 +969,18 @@ describe('HTTP API - Security Hardening Suite', () => {
                 }
             }
             expect(missingInLock).toEqual([]);
+
+            // Ensure package-lock.json never records corporate-internal mirror URLs (e.g. airlock-proxy.uplink.goog)
+            // that would break `npm ci` in external GitHub Actions / Docker builds (ignoring local workspace path links)
+            const internalMirrorPackages = Object.entries(lockJson.packages || {})
+                .filter(
+                    ([, meta]) =>
+                        typeof meta?.resolved === 'string' &&
+                        /^https?:\/\//i.test(meta.resolved) &&
+                        !meta.resolved.startsWith('https://registry.npmjs.org/')
+                )
+                .map(([pkgPath, meta]) => `${pkgPath}: ${meta.resolved}`);
+            expect(internalMirrorPackages).toEqual([]);
         });
 
         it('ensures runtime & vendored dependencies have zero moderate/high/critical npm advisories and are not >90 days outdated', async () => {

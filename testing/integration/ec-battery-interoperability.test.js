@@ -163,7 +163,9 @@ async function validateShaclEndToEnd(doc, shapeDatasets) {
             }
         }
     }
-    const validator = new SHACLValidator(shaclCoreShapes, { factory });
+    const validator = new SHACLValidator(shaclCoreShapes, {
+        importGraph: async () => factory.dataset()
+    });
     const report = await validator.validate(dataDataset);
     if (!report.conforms) {
         for (const r of report.results) {
