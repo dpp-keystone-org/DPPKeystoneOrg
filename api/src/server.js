@@ -15,6 +15,9 @@ const OPENAPI_SPEC_PATH = path.resolve(__dirname, '../../src/api/openapi.yml');
 const MAX_PAYLOAD_BYTES = 1024 * 1024; // 1MB payload limit
 const MAX_JSON_DEPTH = 32;
 const MAX_JSON_ENTRIES = 15_000;
+const KEEP_ALIVE_TIMEOUT_MS = 5_000;
+const HEADERS_TIMEOUT_MS = 10_000;
+const REQUEST_TIMEOUT_MS = 15_000;
 
 /**
  * Iteratively enforces maximum nesting depth and total container entry count
@@ -86,30 +89,79 @@ function sendJson(res, statusCode, data, extraHeaders = {}) {
 }
 
 /**
- * Helper to read and parse the JSON request body with a size guard.
+ * Checks whether a Content-Type header represents JSON or a structured +json media type
+ * (e.g. `application/json`, `application/json; charset=utf-8`, `application/ld+json`).
+ */
+function isJsonMediaType(contentTypeHeader) {
+    if (!contentTypeHeader || typeof contentTypeHeader !== 'string') {
+        return false;
+    }
+    const mediaType = contentTypeHeader.split(';')[0].trim().toLowerCase();
+    return mediaType === 'application/json' || (mediaType.startsWith('application/') && mediaType.endsWith('+json'));
+}
+
+/**
+ * Helper to read and parse the JSON request body with media-type, size, and structural guards.
  */
 function readJsonBody(req) {
     return new Promise((resolve, reject) => {
-        let body = '';
-        let receivedBytes = 0;
-        let isTooLarge = false;
+        if (!isJsonMediaType(req.headers['content-type'])) {
+            const err = new Error("Unsupported Media Type: Content-Type must be 'application/json' or 'application/ld+json'.");
+            err.statusCode = 415;
+            err.code = 'UNSUPPORTED_MEDIA_TYPE';
+            reject(err);
+            return;
+        }
 
-        req.on('data', chunk => {
-            if (isTooLarge) return;
-            receivedBytes += chunk.length;
-            if (receivedBytes > MAX_PAYLOAD_BYTES) {
-                isTooLarge = true;
-                const err = new Error('Payload Too Large: Maximum allowed size is 1MB.');
-                err.statusCode = 413;
-                err.code = 'PAYLOAD_TOO_LARGE';
+        const contentLengthHeader = req.headers['content-length'];
+        if (contentLengthHeader !== undefined) {
+            const declaredLength = Number(contentLengthHeader);
+            if (!Number.isFinite(declaredLength) || declaredLength < 0) {
+                const err = new Error('Invalid Content-Length header.');
+                err.statusCode = 400;
+                err.code = 'INVALID_CONTENT_LENGTH';
                 reject(err);
                 return;
             }
-            body += chunk;
-        });
+            if (declaredLength > MAX_PAYLOAD_BYTES) {
+                req.pause();
+                const err = new Error('Payload Too Large: Maximum allowed size is 1MB.');
+                err.statusCode = 413;
+                err.code = 'PAYLOAD_TOO_LARGE';
+                err.closeConnection = true;
+                reject(err);
+                return;
+            }
+        }
+
+        const chunks = [];
+        let receivedBytes = 0;
+        let aborted = false;
+
+        const onData = (chunk) => {
+            if (aborted) return;
+            const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+            receivedBytes += buf.length;
+            if (receivedBytes > MAX_PAYLOAD_BYTES) {
+                aborted = true;
+                req.removeListener('data', onData);
+                req.pause();
+                chunks.length = 0;
+                const err = new Error('Payload Too Large: Maximum allowed size is 1MB.');
+                err.statusCode = 413;
+                err.code = 'PAYLOAD_TOO_LARGE';
+                err.closeConnection = true;
+                reject(err);
+                return;
+            }
+            chunks.push(buf);
+        };
+
+        req.on('data', onData);
 
         req.on('end', () => {
-            if (isTooLarge) return;
+            if (aborted) return;
+            const body = Buffer.concat(chunks).toString('utf-8');
             if (!body.trim()) {
                 resolve({});
                 return;
@@ -130,8 +182,11 @@ function readJsonBody(req) {
             }
         });
 
-        req.on('error', err => {
-            if (!isTooLarge) reject(err);
+        req.on('error', (err) => {
+            if (!aborted) {
+                aborted = true;
+                reject(err);
+            }
         });
     });
 }
@@ -141,7 +196,7 @@ function readJsonBody(req) {
  * @returns {http.Server}
  */
 export function createServer() {
-    return http.createServer(async (req, res) => {
+    const server = http.createServer(async (req, res) => {
         const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
         const pathname = url.pathname;
         const method = req.method.toUpperCase();
@@ -382,12 +437,29 @@ export function createServer() {
 
         } catch (err) {
             const statusCode = err.statusCode || 500;
+            const extraHeaders = err.closeConnection ? { 'Connection': 'close' } : {};
+            if (err.closeConnection) {
+                res.once('finish', () => {
+                    const timer = setTimeout(() => {
+                        if (req.socket && !req.socket.destroyed) {
+                            req.socket.destroy();
+                        }
+                    }, 50);
+                    timer.unref();
+                });
+            }
             sendJson(res, statusCode, {
                 error: err.message || 'Internal Server Error',
                 code: err.code || 'INTERNAL_ERROR'
-            });
+            }, extraHeaders);
         }
     });
+
+    server.keepAliveTimeout = KEEP_ALIVE_TIMEOUT_MS;
+    server.headersTimeout = HEADERS_TIMEOUT_MS;
+    server.requestTimeout = REQUEST_TIMEOUT_MS;
+
+    return server;
 }
 
 // Start server if executed directly via CLI

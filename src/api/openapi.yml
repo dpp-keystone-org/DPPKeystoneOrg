@@ -105,6 +105,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '413':
           $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
 
   /validate:
     post:
@@ -163,6 +165,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '413':
           $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
 
   /specifications:
     get:
@@ -230,6 +234,8 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
         '413':
           $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
 
   /health:
     get:
@@ -581,6 +587,12 @@ components:
             $ref: '#/components/schemas/ErrorEnvelope'
     PayloadTooLarge:
       description: Request exceeds server size or structural complexity limits (1 MiB raw body, max nesting depth 32, max 15,000 JSON entries, or max 20,000 expanded RDF quads).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    UnsupportedMediaType:
+      description: Request `Content-Type` header is missing or is not `application/json` / `application/ld+json`.
       content:
         application/json:
           schema:

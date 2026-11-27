@@ -95,7 +95,7 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 4: HTTP Transport Hardening (`413` Socket Teardown, Slowloris Timeouts & `415` Media Type)
+### [COMPLETED] Feature 4: HTTP Transport Hardening (`413` Socket Teardown, Slowloris Timeouts & `415` Media Type)
 * **Severity:** Medium–High (Connection & Bandwidth Exhaustion, especially outside Cloud Run)
 * **Affected Files:**
   * `api/src/server.js` (`readJsonBody`, `createServer`, `POST` route handlers)
@@ -118,8 +118,8 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
     * Mid-stream >1 MiB chunked upload rejection (`413 PAYLOAD_TOO_LARGE` + `Connection: close` + server-initiated socket teardown).
     * Multi-byte UTF-8 codepoint split across separate TCP chunks decoded intact without `U+FFFD` corruption.
     * `415 UNSUPPORTED_MEDIA_TYPE` on `text/plain`, `application/x-www-form-urlencoded`, and missing `Content-Type`, while `application/json; charset=utf-8` and `application/ld+json` succeed.
-  * [ ] **Step 4.2 (Implementation):** Implement transport hardening & `415` check in `api/src/server.js` and document `415` in `src/api/openapi.yml`.
-  * [ ] **Step 4.3 (Verification):** Run `npm run build && npm run test:api` to verify all Feature 4 tests pass.
+  * [x] **Step 4.2 (Implementation):** Implement transport hardening & `415` check in `api/src/server.js` and document `415` in `src/api/openapi.yml`.
+  * [x] **Step 4.3 (Verification):** Rebuilt (`npm run build`) and verified all `npm run test:api` suites pass.
 
 ---
 
