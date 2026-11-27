@@ -177,7 +177,7 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 7: `500` Error Observability, Host-Prefix Scrubbing & Optional Strict Masking
+### [COMPLETED] Feature 7: `500` Error Observability, Host-Prefix Scrubbing & Optional Strict Masking
 * **Severity:** Low–Medium (Operational Observability & Optional Compliance Masking)
 * **Affected Files:**
   * `api/src/server.js` (top-level `catch (err)`)
@@ -194,7 +194,7 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
     * By default, an unexpected `500` error logs the full error to `console.error`, preserves the diagnostic message for remote debugging, and scrubs `PROJECT_ROOT` to `<app>`.
     * When `HIDE_INTERNAL_ERRORS=true`, `500` responses return generic `'Internal Server Error'` (while still logging to `console.error`), and `4xx` errors still return their full actionable client messages.
   * [x] **Step 7.3 (Implementation):** Implement `500` logging, `PROJECT_ROOT` scrubbing, and `HIDE_INTERNAL_ERRORS` toggle in `api/src/server.js` and `ec-validator-service.js`.
-  * [ ] **Step 7.4 (Verification):** Run `npm run test:api`.
+  * [x] **Step 7.4 (Verification):** Verified all `npm run test:api` suites pass.
 
 ---
 
