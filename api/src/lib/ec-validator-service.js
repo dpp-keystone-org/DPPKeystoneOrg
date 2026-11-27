@@ -641,7 +641,7 @@ export async function validateEcDppPayload(payload, options = {}) {
                         stage: 'SHACL',
                         code: 'JSONLD_SHACL_ERROR',
                         path: '/',
-                        message: err.message
+                        message: String(err?.message || 'SHACL evaluation error').split(PROJECT_ROOT).join('<app>')
                     });
                 }
             }
@@ -792,7 +792,7 @@ export async function validateEcDppPayload(payload, options = {}) {
                     stage: 'SHACL',
                     code: 'JSONLD_SHACL_ERROR',
                     path: '/',
-                    message: err.message
+                    message: String(err?.message || 'SHACL evaluation error').split(PROJECT_ROOT).join('<app>')
                 });
             }
         }

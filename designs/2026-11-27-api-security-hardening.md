@@ -177,22 +177,23 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 7: Sanitize `500` Error Responses & Structured Server Logging
-* **Severity:** Low–Medium (Information Disclosure)
+### [ ] Feature 7: `500` Error Observability, Host-Prefix Scrubbing & Optional Strict Masking
+* **Severity:** Low–Medium (Operational Observability & Optional Compliance Masking)
 * **Affected Files:**
   * `api/src/server.js` (top-level `catch (err)`)
   * `api/src/lib/ec-validator-service.js` (SHACL `catch` blocks)
 * **Detailed Problem & Exploitability:**
-  In `server.js`, the top-level `catch (err)` block returns `error: err.message` verbatim to the HTTP client even when `statusCode === 500`. Unexpected filesystem, N3Parser, or library exceptions can disclose internal container paths (`/app/ec-bundle/...`) or Node internals.
-* **Options to Discuss:**
-  * Return `err.message` only when `statusCode >= 400 && statusCode < 500` (client errors explicitly tagged with `err.statusCode`); for `>= 500`, log the full error server-side (`console.error`) and return `{ error: 'Internal Server Error', code: 'INTERNAL_ERROR' }`.
-  * Scrub local filesystem paths if `ec-validator-service.js` catches an unexpected non-HTTP expansion/parser error.
+  In `server.js`, the top-level `catch (err)` block currently never calls `console.error(err)` (leaving zero stack trace in container `stderr` logs on `500` crashes) and echoes raw `PROJECT_ROOT` host directory prefixes if an internal filesystem error occurs. Conversely, unconditionally hiding `500` error messages would prevent Keystone maintainers from remotely diagnosing reproducible issues on a partner-hosted deployment (such as GS1's cloud, where `stderr` logs live in GS1's private logging console).
+* **Agreed Decision:**
+  * **Always log `>= 500` errors via `console.error`:** Ensures Cloud Run / GS1 container logs capture full stack traces.
+  * **Preserve remote debuggability by default while scrubbing `PROJECT_ROOT`:** Keep `err.message` visible in `500` responses by default, replacing any occurrences of `PROJECT_ROOT` with `<app>` so host mount prefixes are never echoed (apply the same `PROJECT_ROOT` -> `<app>` scrub in `ec-validator-service.js` SHACL `catch` blocks).
+  * **Optional `HIDE_INTERNAL_ERRORS=true` toggle:** When `process.env.HIDE_INTERNAL_ERRORS === 'true'` (or `createServer({ hideInternalErrors: true })`), mask `>= 500` responses as generic `{ error: 'Internal Server Error', code: 'INTERNAL_ERROR' }` in case an enterprise AppSec / DAST scanner ever requires strict CWE-209 masking, while keeping `4xx` messages unchanged.
 * **TODOs:**
-  * [ ] **Step 7.1 (Design Alignment):** Confirm client-visible vs. server-logged error policy.
-  * [ ] **Step 7.2 (TDD Error-Masking Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
-    * When an internal dependency throws an untagged `Error('ENOENT: no such file /app/secret/internal.json')`, the API logs the full error via `console.error` (`jest.spyOn`) while returning `500` with `{ error: 'Internal Server Error', code: 'INTERNAL_ERROR' }` and zero path leakage in the HTTP body.
-    * Explicit `4xx` errors (`400`, `413`, `415`, `422`) still preserve their actionable client-facing `error` messages and `code`s.
-  * [ ] **Step 7.3 (Implementation):** Implement `500` masking + server logging in `api/src/server.js` and path scrubbing in `ec-validator-service.js`.
+  * [x] **Step 7.1 (Design Alignment):** Confirmed `console.error` logging + default `PROJECT_ROOT` -> `<app>` scrubbing + opt-in `HIDE_INTERNAL_ERRORS=true` masking.
+  * [x] **Step 7.2 (TDD Error Logging & Scrubbing Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+    * By default, an unexpected `500` error logs the full error to `console.error`, preserves the diagnostic message for remote debugging, and scrubs `PROJECT_ROOT` to `<app>`.
+    * When `HIDE_INTERNAL_ERRORS=true`, `500` responses return generic `'Internal Server Error'` (while still logging to `console.error`), and `4xx` errors still return their full actionable client messages.
+  * [x] **Step 7.3 (Implementation):** Implement `500` logging, `PROJECT_ROOT` scrubbing, and `HIDE_INTERNAL_ERRORS` toggle in `api/src/server.js` and `ec-validator-service.js`.
   * [ ] **Step 7.4 (Verification):** Run `npm run test:api`.
 
 ---

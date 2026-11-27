@@ -872,4 +872,66 @@ describe('HTTP API - Security Hardening Suite', () => {
             expect(deHtml).toContain('<html lang="de">');
         });
     });
+
+    describe('Feature 7: 500 Error Logging, Host-Prefix Scrubbing & Optional HIDE_INTERNAL_ERRORS Toggle', () => {
+        const originalHideEnv = process.env.HIDE_INTERNAL_ERRORS;
+
+        afterEach(() => {
+            if (originalHideEnv === undefined) {
+                delete process.env.HIDE_INTERNAL_ERRORS;
+            } else {
+                process.env.HIDE_INTERNAL_ERRORS = originalHideEnv;
+            }
+            jest.restoreAllMocks();
+        });
+
+        it('logs 500 errors to console.error and scrubs PROJECT_ROOT to <app> while preserving diagnostic detail by default', async () => {
+            delete process.env.HIDE_INTERNAL_ERRORS;
+            const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+            const simulatedPath = path.join(PROJECT_ROOT, 'src/api/openapi.yml');
+            jest.spyOn(fs, 'readFile').mockRejectedValueOnce(
+                new Error(`ENOENT: no such file or directory, open '${simulatedPath}'`)
+            );
+
+            const resp = await fetch(`${baseUrl}/openapi.yml`);
+            const body = await resp.json();
+
+            expect(resp.status).toBe(500);
+            expect(body.code).toBe('INTERNAL_ERROR');
+            expect(errorSpy).toHaveBeenCalled();
+            // Diagnostic error type/filename remain visible for remote debugging, with host PROJECT_ROOT scrubbed
+            expect(body.error).toContain('ENOENT');
+            expect(body.error).toContain('<app>/src/api/openapi.yml');
+            expect(body.error).not.toContain(PROJECT_ROOT);
+        });
+
+        it('masks 500 error messages as generic Internal Server Error when HIDE_INTERNAL_ERRORS=true while keeping 4xx messages intact', async () => {
+            process.env.HIDE_INTERNAL_ERRORS = 'true';
+            const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+            const simulatedPath = path.join(PROJECT_ROOT, 'src/api/openapi.yml');
+            jest.spyOn(fs, 'readFile').mockRejectedValueOnce(
+                new Error(`ENOENT: no such file or directory, open '${simulatedPath}'`)
+            );
+
+            const resp500 = await fetch(`${baseUrl}/openapi.yml`);
+            const body500 = await resp500.json();
+            expect(resp500.status).toBe(500);
+            expect(body500).toEqual({
+                error: 'Internal Server Error',
+                code: 'INTERNAL_ERROR'
+            });
+            expect(errorSpy).toHaveBeenCalled();
+
+            // 4xx client errors must remain descriptive even when HIDE_INTERNAL_ERRORS=true
+            const resp400 = await fetch(`${baseUrl}/adapt`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: '{ broken json'
+            });
+            const body400 = await resp400.json();
+            expect(resp400.status).toBe(400);
+            expect(body400.code).toBe('INVALID_JSON');
+            expect(body400.error).toContain('Malformed JSON body');
+        });
+    });
 });

@@ -11,7 +11,8 @@ import { adaptKeystoneToEcBattery } from './lib/ec-battery-adapter-service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const OPENAPI_SPEC_PATH = path.resolve(__dirname, '../../src/api/openapi.yml');
+const PROJECT_ROOT = path.resolve(__dirname, '../../');
+const OPENAPI_SPEC_PATH = path.join(PROJECT_ROOT, 'src/api/openapi.yml');
 
 const MAX_PAYLOAD_BYTES = 1024 * 1024; // 1MB payload limit
 const MAX_JSON_DEPTH = 32;
@@ -26,6 +27,13 @@ function stripDangerousJsonKeys(key, value) {
         return undefined;
     }
     return value;
+}
+
+function scrubHostPaths(message) {
+    if (!message || typeof message !== 'string') {
+        return 'Internal Server Error';
+    }
+    return message.split(PROJECT_ROOT).join('<app>');
 }
 
 /**
@@ -202,9 +210,10 @@ function readJsonBody(req) {
 
 /**
  * Creates and returns the configured native HTTP server.
+ * @param {object} [serverOptions={}]
  * @returns {http.Server}
  */
-export function createServer() {
+export function createServer(serverOptions = {}) {
     const server = http.createServer(async (req, res) => {
         const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
         const pathname = url.pathname;
@@ -452,9 +461,14 @@ export function createServer() {
             });
 
         } catch (err) {
-            const statusCode = err.statusCode || 500;
-            const extraHeaders = err.closeConnection ? { 'Connection': 'close' } : {};
-            if (err.closeConnection) {
+            const statusCode = (err && err.statusCode) || 500;
+            const isServerError = statusCode >= 500;
+            if (isServerError) {
+                console.error('[DPP Keystone API] Internal server error:', err);
+            }
+
+            const extraHeaders = err && err.closeConnection ? { 'Connection': 'close' } : {};
+            if (err && err.closeConnection) {
                 res.once('finish', () => {
                     const timer = setTimeout(() => {
                         if (req.socket && !req.socket.destroyed) {
@@ -464,9 +478,15 @@ export function createServer() {
                     timer.unref();
                 });
             }
+
+            const hideInternal = serverOptions.hideInternalErrors === true || process.env.HIDE_INTERNAL_ERRORS === 'true';
+            const clientMessage = isServerError
+                ? (hideInternal ? 'Internal Server Error' : scrubHostPaths(err && err.message))
+                : scrubHostPaths((err && err.message) || 'Bad Request');
+
             sendJson(res, statusCode, {
-                error: err.message || 'Internal Server Error',
-                code: err.code || 'INTERNAL_ERROR'
+                error: clientMessage,
+                code: (err && err.code) || 'INTERNAL_ERROR'
             }, extraHeaders);
         }
     });
