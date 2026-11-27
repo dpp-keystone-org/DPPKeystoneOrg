@@ -1076,4 +1076,31 @@ describe('HTTP API - Security Hardening Suite', () => {
             }
         }, 20000);
     });
+
+    describe('Feature 10: Container (Dockerfile / .dockerignore) & CI/CD (deploy-api.yml) Hardening', () => {
+        it('enforces reproducible lockfile install without lifecycle scripts, non-root USER, and HEALTHCHECK in Dockerfile', async () => {
+            const dockerfile = await fs.readFile(path.join(PROJECT_ROOT, 'Dockerfile'), 'utf-8');
+
+            expect(dockerfile).not.toMatch(/RUN\s+npm\s+install\b/);
+            expect(dockerfile).toMatch(/RUN\s+npm\s+ci\s+--omit=dev\s+--ignore-scripts\s+--workspaces=false\b/);
+            expect(dockerfile).toMatch(/^USER\s+node\b/m);
+            expect(dockerfile).toMatch(/^HEALTHCHECK\b/m);
+        });
+
+        it('excludes build output, dev scripts, browser vendor bundles, and tests in .dockerignore and restricts auto-deploy to main', async () => {
+            const dockerignoreRaw = await fs.readFile(path.join(PROJECT_ROOT, '.dockerignore'), 'utf-8');
+            const ignoredEntries = dockerignoreRaw
+                .split(/\r?\n/)
+                .map((line) => line.trim())
+                .filter((line) => line && !line.startsWith('#'));
+
+            for (const requiredEntry of ['node_modules', 'dist', 'testing', 'scripts', 'src/lib/vendor', 'designs', 'docs', '.git', 'index.html', 'index.i18n.json']) {
+                expect(ignoredEntries).toContain(requiredEntry);
+            }
+
+            const deployWorkflow = await fs.readFile(path.join(PROJECT_ROOT, '.github/workflows/deploy-api.yml'), 'utf-8');
+            expect(deployWorkflow).not.toContain('feature/api-setup');
+            expect(deployWorkflow).toContain('workflow_dispatch:');
+        });
+    });
 });

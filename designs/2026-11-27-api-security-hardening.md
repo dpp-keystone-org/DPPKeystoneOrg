@@ -254,16 +254,19 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
   * `.dockerignore`
   * `.github/workflows/deploy-api.yml`
 * **Detailed Problem & Exploitability:**
-  1. **`npm install` in `Dockerfile`:** `RUN npm install --omit=dev` can resolve newer semver-compatible transitive packages than `package-lock.json` and executes `postinstall` scripts (`npm ci --omit=dev --ignore-scripts` enforces exact lockfile reproducibility and disables install scripts).
-  2. **Container Hardening (`HEALTHCHECK` & Read-Only Root FS):** Enterprise scanners in GS1/cloud environments expect non-root `USER`, `HEALTHCHECK`, and compatibility with `--read-only` root filesystems.
-  3. **Excess Build Context (`.dockerignore`):** Currently copies `scripts/`, `index.html`, `index.i18n.json`, `ec-bundle/verify-semantic-integrity.mjs`, and `ec-bundle*/**/tests/` into the production image unnecessarily.
-  4. **Branch Trigger in `deploy-api.yml`:** Currently deploys pushes on `feature/api-setup` to `dpp-keystone-prod` and uses mutable `@v4`/`@v2` tags on GitHub Actions.
-* **Options to Discuss:**
-  * Switch `Dockerfile` to `npm ci --omit=dev --ignore-scripts` + `HEALTHCHECK`, trim `.dockerignore`, and decide when to remove `feature/api-setup` from `deploy-api.yml` + pin Action SHAs (plus whether to keep/document or remove `scripts/measure-api-memory.mjs`).
+  1. **`npm install` in `Dockerfile`:** `RUN npm install --omit=dev` can resolve newer semver-compatible transitive packages than `package-lock.json` and executes `postinstall` scripts (`npm ci --omit=dev --ignore-scripts --workspaces=false` enforces exact lockfile reproducibility, disables install scripts, and avoids looking for the excluded `testing` workspace).
+  2. **Container Hardening (`HEALTHCHECK` & Read-Only Root FS):** Enterprise scanners expect non-root `USER`, `HEALTHCHECK`, and compatibility with `--read-only` root filesystems.
+  3. **Excess Build Context (`.dockerignore`):** Exclude `dist`, `scripts`, `src/lib/vendor`, `index.html`, and `index.i18n.json` from the Docker build context.
+  4. **Branch Trigger in `deploy-api.yml`:** Remove `- feature/api-setup` right before merging to `main` (or keep `workflow_dispatch` for manual deploys so pushes to feature branches don't auto-deploy to `dpp-keystone-prod`).
+* **Agreed Decision:**
+  * Switch `Dockerfile` to `npm ci --omit=dev --ignore-scripts --workspaces=false`, keep `USER node`, and add a native Node `fetch` `HEALTHCHECK` against `/health`.
+  * Trim `.dockerignore` (`dist`, `scripts`, `src/lib/vendor`, `index.html`, `index.i18n.json`).
+  * Restrict `deploy-api.yml` `push.branches` to `main` (while keeping `workflow_dispatch` so manual runs from GitHub UI still work anytime).
 * **TODOs:**
-  * [ ] **Step 10.1 (Design Alignment):** Confirm `Dockerfile`, `.dockerignore`, `deploy-api.yml`, and `measure-api-memory.mjs` choices.
-  * [ ] **Step 10.2 (TDD Container Hygiene Tests):** Add static configuration tests in `api-security-hardening.test.js` asserting:
-    * `Dockerfile` uses `npm ci --omit=dev --ignore-scripts` (never `npm install`), sets a non-root `USER`, and defines a `HEALTHCHECK`.
-    * `.dockerignore` excludes `testing`, `scripts`, `designs`, `docs`, `.git`, and root website-only files (`index.html`, `index.i18n.json`). *(Note: live `docker build` / `docker run --read-only` verification is executed via Docker CLI rather than inside Jest.)*
-  * [ ] **Step 10.3 (Implementation):** Update `Dockerfile`, `.dockerignore`, and `.github/workflows/deploy-api.yml`.
-  * [ ] **Step 10.4 (Verification):** Run `npm run test:api` (and optional `npm run docker:build` / full `npm test`).
+  * [x] **Step 10.1 (Design Alignment):** Confirmed `Dockerfile` `npm ci --omit=dev --ignore-scripts --workspaces=false` + `HEALTHCHECK`, `.dockerignore` cleanup, and `deploy-api.yml` branch trigger cleanup.
+  * [x] **Step 10.2 (TDD Container & Workflow Hygiene Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+    * `Dockerfile` uses `npm ci --omit=dev --ignore-scripts --workspaces=false` (never `npm install`), sets non-root `USER node`, and defines a `HEALTHCHECK`.
+    * `.dockerignore` excludes `dist`, `testing`, `scripts`, `src/lib/vendor`, `designs`, `docs`, `.git`, `index.html`, and `index.i18n.json`.
+    * `deploy-api.yml` only auto-deploys on `push` to `main` (plus manual `workflow_dispatch`).
+  * [x] **Step 10.3 (Implementation):** Update `Dockerfile`, `.dockerignore`, and `.github/workflows/deploy-api.yml`.
+  * [ ] **Step 10.4 (Verification):** Run `npm run test:api` (and optional `npm run docker:build`).
