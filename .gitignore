@@ -77,3 +77,6 @@ aether-soul
 # Temporarily stripped jsonld files
 *_stripped.jsonld
 *stripped/
+
+# Generated Swagger UI vendor bundle (built automatically via bundle:vendor)
+src/lib/vendor/swagger-ui/

@@ -34,6 +34,16 @@ try {
     console.log('  Bundling papaparse.js...');
     execSync('npx esbuild node_modules/papaparse/papaparse.min.js --bundle --format=esm --outfile=src/lib/vendor/papaparse.js', { stdio: 'inherit' });
 
+    // Copy Swagger UI standalone assets for /api/ OpenAPI docs page
+    const swaggerSrcDir = path.join(PROJECT_ROOT, 'node_modules', 'swagger-ui-dist');
+    if (fse.pathExistsSync(swaggerSrcDir)) {
+        console.log('  Copying swagger-ui-dist assets...');
+        const swaggerOutDir = path.join(VENDOR_DIR, 'swagger-ui');
+        fse.ensureDirSync(swaggerOutDir);
+        fse.copyFileSync(path.join(swaggerSrcDir, 'swagger-ui.css'), path.join(swaggerOutDir, 'swagger-ui.css'));
+        fse.copyFileSync(path.join(swaggerSrcDir, 'swagger-ui-bundle.js'), path.join(swaggerOutDir, 'swagger-ui-bundle.js'));
+    }
+
     console.log('Vendor bundling completed successfully.');
 } catch (error) {
     console.error('Vendor bundling failed:', error);

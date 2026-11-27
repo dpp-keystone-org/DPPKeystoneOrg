@@ -198,21 +198,30 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 8: Supply-Chain Hardening for `/api/` Swagger UI Documentation Page
+### [COMPLETED] Feature 8: Supply-Chain Hardening for `/api/` Swagger UI Documentation Page
 * **Severity:** Medium (Third-Party CDN Script Trust)
 * **Affected Files:**
-  * `src/api/index.html` (lines 9, 164)
-  * `scripts/bundle-vendor.mjs` / `scripts/build-and-clean.mjs` (if vendoring locally)
+  * `package.json` & `testing/package.json` (`swagger-ui-dist` added, `papaparse` & `rdf-validate-shacl` updated, `package-lock.json` synced)
+  * `scripts/bundle-vendor.mjs` (copy `swagger-ui.css` & `swagger-ui-bundle.js` into `src/lib/vendor/swagger-ui/`)
+  * `.gitignore` (ignore generated `src/lib/vendor/swagger-ui/` to prevent 1.5 MB git bloat & branch rebase conflicts)
+  * `src/api/index.html` (load local `../lib/vendor/swagger-ui/` assets + explicit `queryConfigEnabled: false`)
+  * `testing/integration/api/api-docs-generation.test.js` & `testing/integration/api/api-security-hardening.test.js`
 * **Detailed Problem & Exploitability:**
-  `src/api/index.html` currently loads `https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css` and `swagger-ui-bundle.js` using a floating `@5` major version tag and **without Subresource Integrity (`integrity="sha384-..."`)**. If `cdn.jsdelivr.net` were compromised or a malicious `5.x` patch version were published to npm, arbitrary JS would execute in the `dpp-keystone.org` (or GS1 documentation) origin. In addition, enterprise CSPs often block third-party CDN scripts.
-* **Options to Discuss:**
-  * **Option A (Pin Exact Version + SRI Hash):** Pin exact `swagger-ui-dist@x.y.z` URLs with `integrity="sha384-..." crossorigin="anonymous"`. Zero repo size increase; browser refuses to execute modified assets.
-  * **Option B (Self-Host / Vendor Locally):** Add `swagger-ui-dist` to `devDependencies` and copy `swagger-ui.css` + `swagger-ui-bundle.js` into local vendor assets during build (~1.5 MB `dist/` increase, 100% offline & `'self'` CSP compliant).
+  `src/api/index.html` currently loads `https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css` and `swagger-ui-bundle.js` using a floating `@5` major version tag and **without Subresource Integrity (`integrity="sha384-..."`)**. If `cdn.jsdelivr.net` were compromised or a malicious `5.x` patch version were published to npm, arbitrary JS would execute in the `dpp-keystone.org` origin.
+* **Agreed Decision (Option B — Version-Pinned & Bundled Locally via `bundle-vendor.mjs`):**
+  * **Consistent with project vendoring (`ajv`, `papaparse`, etc.):** Add `swagger-ui-dist` to `devDependencies` and copy `swagger-ui.css` + `swagger-ui-bundle.js` into `src/lib/vendor/swagger-ui/` during `npm run bundle:vendor` (invoked automatically by `npm run build`).
+  * **Mitigating the pinned-dependency & branch-rebase trade-offs:**
+    1. **Automated Dependency Health & Advisory Integration Test (`api-security-hardening.test.js`):** Scoped strictly to root runtime `dependencies` + vendored UI packages (`swagger-ui-dist`), excluding `testing/` frameworks (`jest`, `@playwright/test`, `jsdom`):
+       * **Offline lockfile sync check:** Asserts root `package.json` and `package-lock.json` `packages[""]` entries match and are installed in `node_modules/`.
+       * **0-day security advisory check:** Queries `POST https://registry.npmjs.org/-/npm/v1/security/advisories/bulk` and fails immediately on any `moderate`/`high`/`critical` advisory.
+       * **90-day staleness guard:** Queries `registry.npmjs.org` metadata (`dist-tags.latest` + `time`) and fails if any monitored package has missed a stable update published more than `90` days ago (`MAX_STALE_DEPENDENCY_DAYS`, skipping gracefully with a warning only when completely offline).
+    2. Locking `queryConfigEnabled: false` in `src/api/index.html` ensures Swagger UI only ever parses our own `./openapi.yml` (neutralizing `?url=` external-spec XSS vectors).
+    3. Adding `src/lib/vendor/swagger-ui/` to `.gitignore` keeps 1.5 MB of minified vendor files out of git and prevents giant single-line vendor merge conflicts when rebasing long-lived sector preview branches.
 * **TODOs:**
-  * [ ] **Step 8.1 (Design Alignment):** Choose Option A (Pinned CDN + SRI) vs. Option B (Self-Hosted Vendor Assets).
-  * [ ] **Step 8.2 (TDD Supply-Chain Tests):** Add failing assertions in `testing/integration/api/api-docs-generation.test.js` verifying `dist/api/index.html` contains zero unpinned CDN `@5/` URLs and either carries valid `sha384-` SRI + `crossorigin="anonymous"` attributes (Option A) or loads exclusively from local relative vendor paths with zero external CDN `<script>`/`<link>` tags (Option B).
-  * [ ] **Step 8.3 (Implementation):** Update `src/api/index.html` (and build scripts if Option B).
-  * [ ] **Step 8.4 (Verification):** Run `npm run build && npm run test:api` (plus Playwright `api-docs.spec.js`).
+  * [x] **Step 8.1 (Design Alignment):** Confirmed Option B (local vendor bundle via `bundle-vendor.mjs`, `.gitignore`d, `queryConfigEnabled: false`) + non-test Dependency Freshness & Security Advisory integration test.
+  * [x] **Step 8.2 (TDD Supply-Chain & Dependency Freshness Tests):** Added failing assertions in `testing/integration/api/api-docs-generation.test.js` (self-hosted Swagger UI assets, no CDN URLs, `queryConfigEnabled: false`) and `testing/integration/api/api-security-hardening.test.js` (lockfile sync + 0-day npm advisory check + 90-day behind-`latest` staleness check for root runtime + vendored packages).
+  * [x] **Step 8.3 (Implementation):** Install `swagger-ui-dist` in `devDependencies` (syncing `package-lock.json` and bumping `papaparse` & `rdf-validate-shacl`), and update `scripts/bundle-vendor.mjs`, `.gitignore`, and `src/api/index.html`.
+  * [x] **Step 8.4 (Verification):** Rebuilt (`npm run build`) and verified all `npm run test:api` suites pass.
 
 ---
 

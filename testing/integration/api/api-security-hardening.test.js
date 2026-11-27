@@ -934,4 +934,134 @@ describe('HTTP API - Security Hardening Suite', () => {
             expect(body400.error).toContain('Malformed JSON body');
         });
     });
+
+    describe('Feature 8: Non-Test Runtime & Vendored Dependency Health Guard', () => {
+        function parseStableSemver(ver) {
+            const m = String(ver || '').trim().match(/^(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?(?:\+[0-9A-Za-z.-]+)?$/);
+            if (!m || m[4]) return null; // Ignore pre-releases
+            return { major: Number(m[1]), minor: Number(m[2]), patch: Number(m[3]) };
+        }
+
+        function compareSemver(a, b) {
+            if (a.major !== b.major) return a.major - b.major;
+            if (a.minor !== b.minor) return a.minor - b.minor;
+            return a.patch - b.patch;
+        }
+
+        it('keeps root package.json and package-lock.json synchronized with swagger-ui-dist vendored', async () => {
+            const pkgJson = JSON.parse(await fs.readFile(path.join(PROJECT_ROOT, 'package.json'), 'utf-8'));
+            const lockJson = JSON.parse(await fs.readFile(path.join(PROJECT_ROOT, 'package-lock.json'), 'utf-8'));
+            const rootLockEntry = lockJson.packages?.[''] || {};
+
+            // swagger-ui-dist must be pinned via devDependencies for local vendoring
+            expect(pkgJson.devDependencies?.['swagger-ui-dist']).toBeDefined();
+
+            // Every root dependency & devDependency in package.json must be synced into package-lock.json
+            const missingInLock = [];
+            for (const dep of Object.keys(pkgJson.dependencies || {})) {
+                if (!rootLockEntry.dependencies?.[dep]) {
+                    missingInLock.push(`dependencies.${dep}`);
+                }
+            }
+            for (const devDep of Object.keys(pkgJson.devDependencies || {})) {
+                if (!rootLockEntry.devDependencies?.[devDep]) {
+                    missingInLock.push(`devDependencies.${devDep}`);
+                }
+            }
+            expect(missingInLock).toEqual([]);
+        });
+
+        it('ensures runtime & vendored dependencies have zero moderate/high/critical npm advisories and are not >90 days outdated', async () => {
+            const maxStaleDays = Number(process.env.MAX_STALE_DEPENDENCY_DAYS || 90);
+            const pkgJson = JSON.parse(await fs.readFile(path.join(PROJECT_ROOT, 'package.json'), 'utf-8'));
+
+            // Monitor all production/API runtime dependencies plus vendored browser UI packages (excluding test frameworks)
+            const monitoredNames = [
+                ...Object.keys(pkgJson.dependencies || {}),
+                ...(pkgJson.devDependencies?.['swagger-ui-dist'] ? ['swagger-ui-dist'] : [])
+            ];
+
+            const installedVersions = {};
+            for (const name of monitoredNames) {
+                const depPkgPath = path.join(PROJECT_ROOT, 'node_modules', name, 'package.json');
+                const depPkg = JSON.parse(await fs.readFile(depPkgPath, 'utf-8'));
+                installedVersions[name] = depPkg.version;
+            }
+
+            // 1. 0-day check against npm's official bulk security advisory endpoint
+            let advisoryResp;
+            try {
+                advisoryResp = await fetch('https://registry.npmjs.org/-/npm/v1/security/advisories/bulk', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(Object.fromEntries(Object.entries(installedVersions).map(([k, v]) => [k, [v]]))),
+                    signal: AbortSignal.timeout(8000)
+                });
+            } catch (netErr) {
+                console.warn(`[Dependency Health Guard] Skipping live npm registry check (offline/unreachable: ${netErr.message}).`);
+                return;
+            }
+
+            if (advisoryResp.ok) {
+                const advisoriesByPkg = await advisoryResp.json();
+                const blockingAdvisories = [];
+                for (const [pkgName, list] of Object.entries(advisoriesByPkg || {})) {
+                    for (const adv of list || []) {
+                        if (['moderate', 'high', 'critical'].includes(String(adv.severity).toLowerCase())) {
+                            blockingAdvisories.push(
+                                `${pkgName}@${installedVersions[pkgName]} [${adv.severity}]: ${adv.title} (${adv.url || adv.id})`
+                            );
+                        }
+                    }
+                }
+                expect(blockingAdvisories).toEqual([]);
+            }
+
+            // 2. 90-day staleness check against registry.npmjs.org dist-tags & publish timestamps
+            const stalePackages = [];
+            await Promise.all(
+                Object.entries(installedVersions).map(async ([pkgName, currentVer]) => {
+                    const currentParsed = parseStableSemver(currentVer);
+                    if (!currentParsed) return;
+
+                    const metaResp = await fetch(`https://registry.npmjs.org/${pkgName}`, {
+                        headers: { Accept: 'application/json' },
+                        signal: AbortSignal.timeout(8000)
+                    });
+                    if (!metaResp.ok) return;
+
+                    const meta = await metaResp.json();
+                    const latestVer = meta?.['dist-tags']?.latest;
+                    const latestParsed = parseStableSemver(latestVer);
+                    if (!latestParsed || compareSemver(latestParsed, currentParsed) <= 0) {
+                        return; // Up to date!
+                    }
+
+                    // Measure age from the earliest missed stable version <= latest so rapid patch churn never resets the clock
+                    const missedStable = Object.keys(meta.versions || {})
+                        .map((v) => ({ raw: v, parsed: parseStableSemver(v) }))
+                        .filter((x) => x.parsed && compareSemver(x.parsed, currentParsed) > 0 && compareSemver(x.parsed, latestParsed) <= 0)
+                        .sort((a, b) => compareSemver(a.parsed, b.parsed));
+
+                    const firstMissedVer = missedStable[0]?.raw || latestVer;
+                    const publishedIso = meta.time?.[firstMissedVer] || meta.time?.[latestVer];
+                    if (!publishedIso) return;
+
+                    const daysBehind = Math.floor((Date.now() - Date.parse(publishedIso)) / (1000 * 60 * 60 * 24));
+                    if (daysBehind > maxStaleDays) {
+                        stalePackages.push(
+                            `${pkgName}: installed ${currentVer} -> latest ${latestVer} (missed ${firstMissedVer} published ${daysBehind} days ago)`
+                        );
+                    }
+                })
+            );
+
+            if (stalePackages.length > 0) {
+                throw new Error(
+                    `Outdated runtime/vendored dependencies (> ${maxStaleDays} days behind):\n  - ` +
+                    stalePackages.sort().join('\n  - ')
+                );
+            }
+        }, 20000);
+    });
 });

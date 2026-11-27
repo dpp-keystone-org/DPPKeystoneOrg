@@ -6,7 +6,7 @@
     <title>DPP Keystone API Documentation (OpenAPI 3.1)</title>
     <meta name="description" content="Interactive OpenAPI 3.1 reference documentation for the DPP Keystone EC Battery Validation & Adaptation API.">
     <link rel="stylesheet" href="../branding/css/keystone-style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+    <link rel="stylesheet" href="../lib/vendor/swagger-ui/swagger-ui.css">
     <style>
         .api-intro-card {
             background: var(--white);
@@ -161,13 +161,14 @@
         import { loadHeader } from '../branding/header.js';
         loadHeader('dpp-header-container', '..');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script src="../lib/vendor/swagger-ui/swagger-ui-bundle.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             window.ui = SwaggerUIBundle({
                 url: `./openapi.yml?v=${Date.now()}`,
                 dom_id: '#swagger-ui',
                 deepLinking: true,
+                queryConfigEnabled: false,
                 tryItOutEnabled: true,
                 syntaxHighlight: {
                     activate: true,

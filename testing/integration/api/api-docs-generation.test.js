@@ -50,6 +50,19 @@ describe('API Documentation & OpenAPI 3.1 Build Artifacts', () => {
         expect(html).toContain('#swagger-ui .json-schema-2020-12 button');
     });
 
+    it('should self-host vendored Swagger UI assets without third-party CDN dependencies and disable queryConfigEnabled', async () => {
+        const html = await fs.readFile(distApiIndexPath, 'utf-8');
+        const distSwaggerCss = path.join(PROJECT_ROOT, 'dist/lib/vendor/swagger-ui/swagger-ui.css');
+        const distSwaggerJs = path.join(PROJECT_ROOT, 'dist/lib/vendor/swagger-ui/swagger-ui-bundle.js');
+
+        expect(html).not.toContain('cdn.jsdelivr.net');
+        expect(html).toContain('../lib/vendor/swagger-ui/swagger-ui.css');
+        expect(html).toContain('../lib/vendor/swagger-ui/swagger-ui-bundle.js');
+        expect(html).toContain('queryConfigEnabled: false');
+        expect(existsSync(distSwaggerCss)).toBe(true);
+        expect(existsSync(distSwaggerJs)).toBe(true);
+    });
+
     it('should link to api/ and include file-based curl examples on the main dist/index.html', async () => {
         const html = await fs.readFile(distRootIndexPath, 'utf-8');
 
