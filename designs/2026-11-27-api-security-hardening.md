@@ -123,30 +123,33 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 5: HTML Renderer (`/render/html`) Sanitization & CSP Hardening
+### [COMPLETED] Feature 5: HTML Renderer (`/render/html`) Sanitization & CSP Hardening
 * **Severity:** Medium (Downstream Stored XSS / UI Redressing if Integrators Host Rendered HTML)
 * **Affected Files:**
-  * `src/util/js/common/rendering/dpp-html-renderer.js` (lines 26–33, 348–375, 431–450)
-  * `api/src/server.js` (lines 306–312)
+  * `src/util/js/common/rendering/dpp-html-renderer.js` (`sanitizeUrl`, `renderProductPage`, carousel script)
+  * `api/src/lib/html-generator-server.js` (drop `customCssUrl` forwarding, support `cspNonce`)
+  * `api/src/server.js` (`/render/html` CSP header + cryptographic nonce)
+  * `src/api/openapi.yml` (remove `customCssUrl` from `/render/html` request schema)
+  * `testing/unit/html-generator.test.js` & `testing/unit/api/api-html-generator.test.js`
 * **Detailed Problem & Exploitability:**
   Although `/render/html` is de-emphasized for service providers building custom UIs, it remains active on the API and in the browser tools (`Validator`, `Wizard`):
   1. **`data:image/svg+xml` in `sanitizeUrl()`:** Currently allows any `data:image/*` URI. SVG data URIs can contain executable `<script>` payloads—inert inside `<img>`, but executed if a user opens the image in a new tab or if `sanitizeUrl()` is ever reused on an `<a href>` or `<object>`.
-  2. **Arbitrary External CSS (`options.customCssUrl`):** Allows injecting any `https://` stylesheet (and `http://localhost` / `http://127.0.0.1`, enabling local-port probing from a viewer's browser). External CSS enables full UI redressing/phishing and CSS attribute/text side-channel exfiltration if `options` comes from an untrusted caller.
+  2. **External Stylesheet Injection (`options.customCssUrl`):** On the HTTP API, injecting caller-supplied `<link rel="stylesheet" href="...">` URLs outside the server's bundled stylesheet enables full UI redressing/phishing, local-port probing (`http://localhost`), and CSS side-channel exfiltration—and forces CSP `style-src` to allow `https:`.
   3. **Permissive CSP & Raw `<style>` Interpolation:** `server.js` emits `script-src 'self' 'unsafe-inline'` on every response (solely for the multi-image carousel `onclick` handlers) and omits `frame-ancestors 'none'`, `base-uri 'none'`, and `object-src 'none'`. Also, `renderProductPage` interpolates `${css}` inside `<style>` without escaping `</style>`.
-* **Options to Discuss:**
-  * Restrict `data:` URIs in `sanitizeUrl()` to base64 raster formats only: `/^data:image\/(?:png|jpeg|jpg|gif|webp);base64,[a-z0-9+/=\s]+$/i`.
-  * Decide fate of `customCssUrl` on the API (`http://localhost` allowance vs. HTTPS-only vs. disabling external CSS on the server).
-  * Tighten CSP (`object-src 'none'; base-uri 'none'; frame-ancestors 'none'`, and replace inline `onclick` attributes with a nonce-protected or `script-src 'none'` single-image / event-listener carousel).
-  * Escape `</style` in `${cssContent}` inside `renderProductPage` as defense-in-depth.
+* **Agreed Decision:**
+  * **Raster-only `data:image/` URIs:** Restrict `data:` URIs in `sanitizeUrl()` to base64 raster formats only (`/^data:image\/(?:png|jpeg|jpg|gif|webp);base64,[a-z0-9+/=\s]+$/i`), rejecting `data:image/svg+xml`.
+  * **Remove `customCssUrl` from the HTTP API (keep in static Browser UI):** Stop accepting/forwarding `customCssUrl` in `api/src/lib/html-generator-server.js` and remove it from `src/api/openapi.yml` (keeping `customCssUrl` intact in client-side `src/lib/html-generator.js` where users only style their own local browser tab). Lock server CSP `style-src` down to `'unsafe-inline'` only (no `https:` external stylesheets).
+  * **Escape `</style` in `renderProductPage()`:** Replace `</style` (case-insensitive) inside `${cssContent}` with `<\/style`.
+  * **Strict Nonce/Script-Free CSP on `/render/html`:** Replace inline `onclick="moveSlide(...)"` / `onclick="setSlide(...)"` attributes with `addEventListener` bindings inside the carousel `<script>` block, accept an optional `cspNonce` in `renderProductPage()`, and emit `default-src 'none'; style-src 'unsafe-inline'; img-src data: https:; object-src 'none'; base-uri 'none'; frame-ancestors 'none';` plus `script-src 'none'` (when `images.length <= 1`) or `script-src 'nonce-<random>'` (when `images.length > 1`).
 * **TODOs:**
-  * [ ] **Step 5.1 (Design Alignment):** Decide policy on SVG `data:` URIs, `customCssUrl`, and CSP nonces/directives.
-  * [ ] **Step 5.2 (TDD Sanitization & CSP Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+  * [x] **Step 5.1 (Design Alignment):** Confirmed raster-only `data:image/`, dropping `customCssUrl` on the HTTP API (keeping client UI as-is), `</style>` escaping, and strict CSP without `'unsafe-inline'` in `script-src`.
+  * [x] **Step 5.2 (TDD Sanitization & CSP Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
     * `sanitizeUrl()` blocks `data:image/svg+xml` (both base64 and utf8) while preserving valid base64 `png`/`jpeg`/`gif`/`webp` data URIs.
     * `renderProductPage()` neutralizes `</style><script>` breakout sequences inside `css`.
-    * `customCssUrl` enforces the agreed policy (e.g. blocks `http://127.0.0.1` / `javascript:` / untrusted URLs).
-    * `POST /render/html` emits hardened CSP headers (`object-src 'none'`, `base-uri 'none'`, `frame-ancestors 'none'`, no `'unsafe-inline'` in `script-src`) while multi-image carousels remain functional.
-  * [ ] **Step 5.3 (Implementation):** Implement renderer & CSP hardening in `dpp-html-renderer.js` and `api/src/server.js`.
-  * [ ] **Step 5.4 (Verification):** Rebuild (`npm run build`) and run `npm run test:api`.
+    * `POST /render/html` ignores `options.customCssUrl` (emitting zero `<link rel="stylesheet">` tags even for `https://` or `http://127.0.0.1` URLs) and omits `https:` from CSP `style-src`.
+    * `POST /render/html` emits hardened CSP headers (`object-src 'none'`, `base-uri 'none'`, `frame-ancestors 'none'`, `script-src 'none'` for 0–1 images, and `script-src 'nonce-...'` matching `<script nonce="...">` with zero `onclick=` attributes for multi-image carousels).
+  * [x] **Step 5.3 (Implementation):** Implement renderer & CSP hardening in `dpp-html-renderer.js`, `html-generator-server.js`, `api/src/server.js`, `src/api/openapi.yml`, and update `testing/unit/html-generator.test.js` + `testing/unit/api/api-html-generator.test.js`.
+  * [x] **Step 5.4 (Verification):** Rebuilt (`npm run build`) and verified all `npm run test:api` suites pass.
 
 ---
 

@@ -15,7 +15,7 @@ export { detectTableStructure };
  * Generates a standalone HTML product page from a DPP JSON object on the server.
  * 
  * @param {Object} dppJson - The Digital Product Passport data.
- * @param {Object} [options] - Options: { customCssUrl, includeSchema, language }.
+ * @param {Object} [options] - Options: { includeSchema, language, version, cspNonce }.
  * @returns {Promise<string>} The complete HTML document string.
  */
 export async function generateDppHtml(dppJson, options = {}) {
@@ -23,7 +23,7 @@ export async function generateDppHtml(dppJson, options = {}) {
         throw new Error("DPP JSON is required");
     }
 
-    const { customCssUrl, includeSchema = true, language = 'en', version = KEYSTONE_VERSION } = options;
+    const { includeSchema = true, language = 'en', version = KEYSTONE_VERSION, cspNonce = null } = options;
 
     // 1. Get CSS
     const cssContent = await getProductPageCss();
@@ -69,13 +69,13 @@ export async function generateDppHtml(dppJson, options = {}) {
         console.warn("Could not load ontology for HTML rendering on server:", e.message);
     }
 
-    // 4. Render final HTML
+    // 4. Render final HTML (external customCssUrl is intentionally disabled on the server API)
     return renderProductPage({
         dppData: dppJson,
         css: cssContent,
         jsonLd: jsonLdString,
-        customCssUrl: customCssUrl,
         ontologyMap: ontologyMap,
-        language: language
+        language: language,
+        cspNonce: cspNonce
     });
 }

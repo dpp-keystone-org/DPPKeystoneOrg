@@ -45,11 +45,12 @@ describe('Server-Side DPP HTML Generator (Unit Test)', () => {
         expect(html).not.toContain('<script type="application/ld+json">');
     });
 
-    it('should inject custom stylesheet link when customCssUrl option is provided', async () => {
+    it('should ignore customCssUrl on the server-side HTML generator to prevent external stylesheet injection', async () => {
         const customCssUrl = 'https://example.com/custom-branding.css';
         const html = await generateDppHtml(validBatteryDpp, { customCssUrl });
-        
-        expect(html).toContain(`<link rel="stylesheet" href="${customCssUrl}">`);
+
+        expect(html).not.toContain('<link rel="stylesheet"');
+        expect(html).not.toContain(customCssUrl);
     });
 
     it('should localize metadata and labels when a supported language code is requested', async () => {

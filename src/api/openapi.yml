@@ -211,9 +211,6 @@ paths:
                     language:
                       type: string
                       default: en
-                    customCssUrl:
-                      type: string
-                      format: uri
                     version:
                       type: string
                       enum: [v1, v2, v3]

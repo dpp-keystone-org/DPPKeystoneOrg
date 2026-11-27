@@ -213,8 +213,10 @@ describe('HTML Generator', () => {
         const html = await generateHTML(mockDpp);
 
         expect(html).toContain('dpp-carousel-container');
-        expect(html).toContain('onclick="moveSlide(1)"'); // Next button
-        expect(html).toContain('onclick="moveSlide(-1)"'); // Prev button
+        expect(html).toContain('class="dpp-carousel-btn next"');
+        expect(html).toContain('class="dpp-carousel-btn prev"');
+        expect(html).not.toContain('onclick=');
+        expect(html).toContain('addEventListener');
         expect(html).toContain('img1.png');
         expect(html).toContain('img2.png');
         expect(html).toContain('function moveSlide'); // JS injected

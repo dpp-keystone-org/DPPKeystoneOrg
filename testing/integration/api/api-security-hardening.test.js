@@ -11,7 +11,7 @@ import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 import { validateDpp } from '../../../src/util/js/common/validation/schema-validator.js';
 import { validateAgainstOntology } from '../../../src/util/js/common/validation/ontology-validator.js';
 import { validateContextAwarePayload } from '../../../src/util/js/common/validation/context-semantic-validator.js';
-import { renderProductPage } from '../../../src/util/js/common/rendering/dpp-html-renderer.js';
+import { renderProductPage, sanitizeUrl } from '../../../src/util/js/common/rendering/dpp-html-renderer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -677,6 +677,95 @@ describe('HTTP API - Security Hardening Suite', () => {
                 });
                 expect(okResp.status).toBe(200);
             }
+        });
+    });
+
+    describe('Feature 5: HTML Renderer (/render/html) Sanitization & CSP Hardening', () => {
+        it('restricts data: image URLs in sanitizeUrl() to base64 raster formats and blocks SVG data URIs', () => {
+            // SVG data URIs (both utf8 and base64) can carry executable <script> payloads
+            expect(sanitizeUrl('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"/>')).toBe('');
+            expect(sanitizeUrl('data:image/svg+xml;base64,PHN2ZyBvbmxvYWQ9ImFsZXJ0KDEpIj48L3N2Zz4=')).toBe('');
+            expect(sanitizeUrl('javascript:alert(1)')).toBe('');
+
+            // Raster base64 data URIs and standard HTTPS URLs remain allowed
+            const tinyPng = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
+            const tinyWebp = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+            expect(sanitizeUrl(tinyPng)).toBe(tinyPng);
+            expect(sanitizeUrl(tinyWebp)).toBe(tinyWebp);
+            expect(sanitizeUrl('https://example.com/product.jpg')).toBe('https://example.com/product.jpg');
+        });
+
+        it('neutralizes </style> breakout sequences inside css passed to renderProductPage()', () => {
+            const html = renderProductPage({
+                dppData: { productName: 'Style Escape Test', id: 'urn:uuid:1' },
+                css: 'body { color: black; } </style><script>window.__xss = 1;</script><style>'
+            });
+
+            expect(html).not.toContain('</style><script>');
+        });
+
+        it('does NOT render external <link rel="stylesheet"> tags from options.customCssUrl on POST /render/html', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+
+            for (const attemptedCss of ['https://evil.example.com/redress.css', 'http://127.0.0.1:9222/probe.css']) {
+                const resp = await fetch(`${baseUrl}/render/html`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        dpp,
+                        options: {
+                            includeSchema: false,
+                            customCssUrl: attemptedCss
+                        }
+                    })
+                });
+
+                expect(resp.status).toBe(200);
+                const html = await resp.text();
+                expect(html).not.toContain('<link rel="stylesheet"');
+                expect(html).not.toContain(attemptedCss);
+            }
+        });
+
+        it('emits strict CSP without script-src unsafe-inline (script-src none for 0-1 images, nonce for multi-image carousel without inline onclick)', async () => {
+            // 1. Single/no-image DPP -> script-src 'none' (JSON-LD data block still allowed)
+            const singleDpp = await loadKeystoneExample('battery-dpp-v1.json');
+            const singleResp = await fetch(`${baseUrl}/render/html`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dpp: singleDpp, options: { includeSchema: true } })
+            });
+            expect(singleResp.status).toBe(200);
+            const singleCsp = singleResp.headers.get('content-security-policy') || '';
+            expect(singleCsp).toContain("object-src 'none'");
+            expect(singleCsp).toContain("base-uri 'none'");
+            expect(singleCsp).toContain("frame-ancestors 'none'");
+            expect(singleCsp).toContain("script-src 'none'");
+            expect(singleCsp).not.toContain("script-src 'self' 'unsafe-inline'");
+            expect(singleCsp).not.toMatch(/style-src[^;]*https:/);
+
+            // 2. Multi-image DPP -> per-response cryptographic nonce on carousel <script>, zero inline onclick attributes
+            const multiDpp = await loadKeystoneExample('battery-dpp-v1.json');
+            multiDpp.image = [
+                { url: 'https://example.com/view-1.png', resourceTitle: 'Front View' },
+                { url: 'https://example.com/view-2.png', resourceTitle: 'Side View' }
+            ];
+            const multiResp = await fetch(`${baseUrl}/render/html`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dpp: multiDpp, options: { includeSchema: false } })
+            });
+            expect(multiResp.status).toBe(200);
+            const multiCsp = multiResp.headers.get('content-security-policy') || '';
+            const multiHtml = await multiResp.text();
+
+            const nonceMatch = multiCsp.match(/script-src 'nonce-([A-Za-z0-9+/=_-]+)'/);
+            expect(nonceMatch).not.toBeNull();
+            const nonce = nonceMatch[1];
+            expect(multiCsp).not.toContain("script-src 'self' 'unsafe-inline'");
+            expect(multiHtml).toContain(`<script nonce="${nonce}">`);
+            expect(multiHtml).not.toContain('onclick=');
+            expect(multiHtml).toContain('dpp-carousel-container');
         });
     });
 });

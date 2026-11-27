@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import http from 'node:http';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -415,14 +416,21 @@ export function createServer() {
                     return;
                 }
 
-                // Step B: Generate HTML for valid DPP
-                const html = await generateDppHtml(body.dpp, renderOptions);
+                // Step B: Generate HTML for valid DPP (with per-response CSP nonce for multi-image carousels)
+                const cspNonce = crypto.randomBytes(16).toString('base64');
+                const html = await generateDppHtml(body.dpp, {
+                    ...renderOptions,
+                    cspNonce
+                });
+                const scriptDirective = html.includes(`<script nonce="${cspNonce}">`)
+                    ? `script-src 'nonce-${cspNonce}'`
+                    : "script-src 'none'";
 
-                // Step C: Send HTML Response with Security Headers
+                // Step C: Send HTML Response with Hardened Security Headers
                 res.writeHead(200, {
                     'Content-Type': 'text/html; charset=utf-8',
                     'Access-Control-Allow-Origin': '*',
-                    'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; script-src 'self' 'unsafe-inline';",
+                    'Content-Security-Policy': `default-src 'none'; style-src 'unsafe-inline'; img-src data: https:; ${scriptDirective}; object-src 'none'; base-uri 'none'; frame-ancestors 'none';`,
                     'X-Content-Type-Options': 'nosniff'
                 });
                 res.end(html);

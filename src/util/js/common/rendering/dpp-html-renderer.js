@@ -18,17 +18,21 @@ export function escapeHtml(str) {
         .replace(/'/g, '&#39;');
 }
 
+const RASTER_DATA_IMAGE_RE = /^data:image\/(?:png|jpeg|jpg|gif|webp);base64,[a-z0-9+/=\s]+$/i;
+
 /**
- * Sanitizes URLs for use in HTML attributes (accepts http, https, relative, or data:image).
+ * Sanitizes URLs for use in HTML attributes (accepts http, https, relative, or base64 raster data:image).
+ * Blocks dangerous URI schemes (javascript:, vbscript:) and executable SVG data: URIs.
  * @param {string} url
  * @returns {string}
  */
 export function sanitizeUrl(url) {
     if (!url || typeof url !== 'string') return '';
     const trimmed = url.trim();
-    // Disallow dangerous URI schemes (e.g., javascript:, vbscript:, data: other than images)
     if (/^(?:javascript|vbscript):/i.test(trimmed)) return '';
-    if (/^data:/i.test(trimmed) && !/^data:image\//i.test(trimmed)) return '';
+    if (/^data:/i.test(trimmed)) {
+        return RASTER_DATA_IMAGE_RE.test(trimmed) ? escapeHtml(trimmed) : '';
+    }
     return escapeHtml(trimmed);
 }
 
@@ -316,7 +320,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en', depth = 0)
  * @param {string} [options.customCssUrl] - Optional external CSS URL (must use https://).
  * @returns {string} The full HTML document.
  */
-export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en' }) {
+export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en', cspNonce = null }) {
     if (!dppData) throw new Error("DPP JSON is required");
     assertMaxNestingDepth(dppData, MAX_TRAVERSAL_DEPTH);
 
@@ -327,10 +331,12 @@ ${jsonLd.replace(/</g, '\\u003c')}
 </script>`
         : '';
 
-    const cssContent = css || `
+    const rawCssContent = css || `
         body { font-family: sans-serif; padding: 20px; }
         pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
     `;
+    // Prevent </style> breakout injection inside embedded stylesheet
+    const cssContent = String(rawCssContent).replace(/<\/style/gi, '<\\/style');
 
     const productName = escapeHtml(dppData.productName || "Untitled Product");
     const uniqueId = escapeHtml(dppData.uniqueProductIdentifier || dppData.id || "N/A");
@@ -365,7 +371,7 @@ ${jsonLd.replace(/</g, '\\u003c')}
         `).join('');
 
         const indicatorsHtml = images.map((_, index) => `
-            <span class="dpp-indicator ${index === 0 ? 'active' : ''}" onclick="setSlide(${index})"></span>
+            <span class="dpp-indicator ${index === 0 ? 'active' : ''}" data-slide-index="${index}"></span>
         `).join('');
 
         heroImageHtml = `
@@ -373,40 +379,57 @@ ${jsonLd.replace(/</g, '\\u003c')}
                 <div class="dpp-carousel-slides">
                     ${slidesHtml}
                 </div>
-                <button class="dpp-carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-                <button class="dpp-carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+                <button class="dpp-carousel-btn prev" type="button">&#10094;</button>
+                <button class="dpp-carousel-btn next" type="button">&#10095;</button>
                 <div class="dpp-carousel-indicators">
                     ${indicatorsHtml}
                 </div>
             </div>
         `;
 
+        const nonceAttr = cspNonce && typeof cspNonce === 'string'
+            ? ` nonce="${escapeHtml(cspNonce)}"`
+            : '';
+
         carouselScript = `
-          <script>
-              let currentSlide = 0;
-              const totalSlides = ${images.length};
+          <script${nonceAttr}>
+              (function() {
+                  let currentSlide = 0;
+                  const totalSlides = ${images.length};
 
-              function showSlide(index) {
-                  if (index >= totalSlides) currentSlide = 0;
-                  else if (index < 0) currentSlide = totalSlides - 1;
-                  else currentSlide = index;
+                  function showSlide(index) {
+                      if (index >= totalSlides) currentSlide = 0;
+                      else if (index < 0) currentSlide = totalSlides - 1;
+                      else currentSlide = index;
 
-                  const slides = document.querySelectorAll('.dpp-carousel-slide');
-                  slides.forEach(slide => slide.classList.remove('active'));
-                  slides[currentSlide].classList.add('active');
+                      const slides = document.querySelectorAll('.dpp-carousel-slide');
+                      slides.forEach(slide => slide.classList.remove('active'));
+                      if (slides[currentSlide]) slides[currentSlide].classList.add('active');
 
-                  const indicators = document.querySelectorAll('.dpp-indicator');
-                  indicators.forEach(ind => ind.classList.remove('active'));
-                  if(indicators[currentSlide]) indicators[currentSlide].classList.add('active');
-              }
+                      const indicators = document.querySelectorAll('.dpp-indicator');
+                      indicators.forEach(ind => ind.classList.remove('active'));
+                      if (indicators[currentSlide]) indicators[currentSlide].classList.add('active');
+                  }
 
-              function moveSlide(step) {
-                  showSlide(currentSlide + step);
-              }
+                  function moveSlide(step) {
+                      showSlide(currentSlide + step);
+                  }
 
-              function setSlide(index) {
-                  showSlide(index);
-              }
+                  function setSlide(index) {
+                      showSlide(index);
+                  }
+
+                  const prevBtn = document.querySelector('#heroCarousel .dpp-carousel-btn.prev');
+                  const nextBtn = document.querySelector('#heroCarousel .dpp-carousel-btn.next');
+                  if (prevBtn) prevBtn.addEventListener('click', () => moveSlide(-1));
+                  if (nextBtn) nextBtn.addEventListener('click', () => moveSlide(1));
+                  document.querySelectorAll('#heroCarousel .dpp-indicator').forEach(ind => {
+                      ind.addEventListener('click', () => {
+                          const idx = Number(ind.getAttribute('data-slide-index'));
+                          if (!Number.isNaN(idx)) setSlide(idx);
+                      });
+                  });
+              })();
           </script>
         `;
     }
