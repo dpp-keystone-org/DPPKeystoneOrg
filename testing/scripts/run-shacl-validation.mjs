@@ -40,7 +40,9 @@ async function main() {
     const dataDataset = await loadRdfFile(exampleFilePath, { factory });
 
     // --- 3. Validate ---
-    const validator = new SHACLValidator(allShapes, { factory });
+    const validator = new SHACLValidator(allShapes, {
+        importGraph: async () => factory.dataset()
+    });
     const report = await validator.validate(dataDataset);
 
     // --- 4. Report Results ---

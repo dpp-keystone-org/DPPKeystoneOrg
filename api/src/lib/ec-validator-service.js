@@ -231,7 +231,9 @@ async function getPatchedEngine() {
             }
         }
     }
-    const shaclValidator = new SHACLValidator(mergedShaclShapes, { factory });
+    const shaclValidator = new SHACLValidator(mergedShaclShapes, {
+        importGraph: async () => factory.dataset()
+    });
 
     const engine = {
         target: 'patched',
@@ -762,7 +764,9 @@ export async function validateEcDppPayload(payload, options = {}) {
                         }
                     }
                     cachedShacl = {
-                        validator: new SHACLValidator(mergedShapes, { factory }),
+                        validator: new SHACLValidator(mergedShapes, {
+                            importGraph: async () => factory.dataset()
+                        }),
                         totalSkippedSparql
                     };
                     engine.shaclValidatorCache.set(cacheKey, cachedShacl);

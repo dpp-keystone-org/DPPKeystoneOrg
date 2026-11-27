@@ -230,20 +230,22 @@ export function generateMutations(happyPathGraph, classRequirements) {
     return mutations;
 }
 
-export function runFuzzer(happyPathGraph, mutations, shaclShapesDataset) {
-    const validator = new SHACLValidator(shaclShapesDataset, { factory });
-    
-    const happyReport = validator.validate(happyPathGraph);
+export async function runFuzzer(happyPathGraph, mutations, shaclShapesDataset) {
+    const validator = new SHACLValidator(shaclShapesDataset, {
+        importGraph: async () => factory.dataset()
+    });
+
+    const happyReport = await validator.validate(happyPathGraph);
     if (!happyReport.conforms) {
         throw new Error(`Happy path failed validation! Report: ${happyReport.results.map(r => r.message.map(m => m.value).join(', ')).join('; ')}`);
     }
-    
+
     for (const mutation of mutations) {
-        const mutationReport = validator.validate(mutation.graph);
+        const mutationReport = await validator.validate(mutation.graph);
         if (mutationReport.conforms) {
             throw new Error(`Fuzzer found a hole! Mutation "${mutation.name}" on property "${mutation.property}" passed validation when it should have failed.`);
         }
     }
-    
+
     return true;
 }
