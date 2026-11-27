@@ -35,6 +35,7 @@ const CSS_FILE_PATH = getDir(
 const cachedSchemaContexts = new Map();
 let cachedCss = null;
 const cachedOntologyMaps = new Map();
+const cachedContextAllowlists = new Map();
 
 /**
  * Safely reads and parses a JSON/JSONC file from disk with {{VERSION}} placeholder replacement.
@@ -63,22 +64,19 @@ export async function getServerSchemaContext(version = KEYSTONE_VERSION) {
         return cachedSchemaContexts.get(version);
     }
 
-    const schemaDir = getDir(
+    let schemaDir = getDir(
         `dist/spec/validation/${version}/json-schema`,
         `src/validation/${version}/json-schema`
     );
+    if (!existsSync(schemaDir)) {
+        schemaDir = getDir(
+            `dist/spec/validation/${KEYSTONE_VERSION}/json-schema`,
+            `src/validation/${KEYSTONE_VERSION}/json-schema`
+        );
+    }
 
     const baseSchemaPath = path.join(schemaDir, 'dpp.schema.json');
-    let baseSchema;
-    try {
-        baseSchema = await readJsonFile(baseSchemaPath, version);
-    } catch (e) {
-        // Fallback to fetch from live gh-pages if not on local disk
-        const liveUrl = `https://dpp-keystone.org/spec/validation/${version}/json-schema/dpp.schema.json`;
-        const resp = await fetch(liveUrl);
-        if (!resp.ok) throw new Error(`Could not load base schema for version ${version}: ${resp.status}`);
-        baseSchema = await resp.json();
-    }
+    const baseSchema = await readJsonFile(baseSchemaPath, version);
 
     const commonSchemas = [];
     const sectorSchemas = {};
@@ -269,47 +267,24 @@ export async function getServerOntologyMap(sector = 'dpp', version = KEYSTONE_VE
         return cachedOntologyMaps.get(cacheKey);
     }
 
-    const ontologyDir = getDir(
+    let ontologyDir = getDir(
         `dist/spec/ontology/${version}`,
         `src/ontology/${version}`
     );
+    if (!existsSync(ontologyDir)) {
+        ontologyDir = getDir(
+            `dist/spec/ontology/${KEYSTONE_VERSION}`,
+            `src/ontology/${KEYSTONE_VERSION}`
+        );
+    }
 
     const ontologyMap = new Map();
     const loadedPaths = new Set();
 
-    // Always load core dpp ontology first
+    // Always load core dpp ontology from local disk (100% offline, no outbound network fallback)
     const corePath = path.join(ontologyDir, 'dpp-ontology.jsonld');
     if (existsSync(corePath)) {
         await loadAndParseOntologyFile(corePath, ontologyMap, loadedPaths);
-    } else {
-        try {
-            const liveUrl = `https://dpp-keystone.org/spec/ontology/${version}/dpp-ontology.jsonld`;
-            const resp = await fetch(liveUrl);
-            if (resp.ok) {
-                const doc = await resp.json();
-                if (doc['@graph']) {
-                    for (const term of doc['@graph']) {
-                        let key = term['@id'];
-                        if (!key) continue;
-                        if (key.includes(':')) key = key.split(':')[1];
-                        const label = parseLangTaggedProperty(term['rdfs:label']);
-                        const comment = parseLangTaggedProperty(term['rdfs:comment']);
-                        const unit = getSingleRdfsValue(term['dppk:unit']);
-                        const unitSymbol = getSingleRdfsValue(term['dppk:unitSymbol']);
-                        const governedBy = getSingleRdfsValue(term['dppk:governedBy']);
-                        let range = term['rdfs:range'];
-                        if (range && range['@id']) range = range['@id'];
-                        else range = getSingleRdfsValue(range);
-                        if (range && typeof range === 'string' && range.includes(':')) {
-                            range = range.split(':')[1];
-                        }
-                        ontologyMap.set(key, { label, comment, unit, governedBy, range, unitSymbol });
-                    }
-                }
-            }
-        } catch (e) {
-            console.warn(`Could not load core ontology for version ${version}:`, e.message);
-        }
     }
 
     // If a specific sector is requested, load the sector file
@@ -350,8 +325,49 @@ export async function getProductPageCss() {
 }
 
 /**
- * Server-side JSON-LD document loader that intercepts dpp-keystone.org URIs and resolves locally from disk or live web.
- * Restricts external fetches exclusively to dpp-keystone.org and schema.org domains.
+ * Builds and caches an immutable in-memory allowlist Map<canonicalUrl, parsedContextDoc>
+ * containing ONLY known `.jsonld` / `.json` context files for the target version.
+ * Untrusted request URLs never touch `fs` or `path.join`, eliminating path traversal by construction.
+ */
+async function getContextAllowlistMap(version = KEYSTONE_VERSION) {
+    if (cachedContextAllowlists.has(version)) {
+        return cachedContextAllowlists.get(version);
+    }
+
+    const effectiveVersion = (
+        existsSync(path.join(PROJECT_ROOT, `dist/spec/contexts/${version}`)) ||
+        existsSync(path.join(PROJECT_ROOT, `src/contexts/${version}`))
+    ) ? version : KEYSTONE_VERSION;
+
+    const contextDir = getDir(
+        `dist/spec/contexts/${effectiveVersion}`,
+        `src/contexts/${effectiveVersion}`
+    );
+
+    const allowlist = new Map();
+    if (existsSync(contextDir)) {
+        const entries = await fs.readdir(contextDir, { withFileTypes: true });
+        for (const entry of entries) {
+            if (!entry.isFile()) continue;
+            if (!entry.name.endsWith('.jsonld') && !entry.name.endsWith('.json')) continue;
+            const fullPath = path.join(contextDir, entry.name);
+            const parsedDoc = await readJsonFile(fullPath, effectiveVersion);
+
+            // Register versioned URL(s) and version-less "latest" shadow URL
+            allowlist.set(`https://dpp-keystone.org/spec/contexts/${version}/${entry.name}`, parsedDoc);
+            allowlist.set(`https://dpp-keystone.org/spec/contexts/${effectiveVersion}/${entry.name}`, parsedDoc);
+            allowlist.set(`https://dpp-keystone.org/spec/contexts/${entry.name}`, parsedDoc);
+        }
+    }
+
+    cachedContextAllowlists.set(version, allowlist);
+    return allowlist;
+}
+
+/**
+ * Server-side JSON-LD document loader backed strictly by an in-memory allowlist of known
+ * Keystone `.context.jsonld` files (no filesystem path construction from user URLs, no ontology
+ * dereferencing via `@context`, and zero outbound network requests).
  * @param {string} [version=KEYSTONE_VERSION]
  */
 export function createServerDocumentLoader(version = KEYSTONE_VERSION) {
@@ -360,40 +376,20 @@ export function createServerDocumentLoader(version = KEYSTONE_VERSION) {
     }
 
     return async (url) => {
-        const CONTEXT_PREFIX = 'https://dpp-keystone.org/spec/contexts/';
-        const ONTOLOGY_PREFIX = 'https://dpp-keystone.org/spec/ontology/';
-        const normalizedUrl = normalizeSpecUrl(url);
-
-        if (normalizedUrl.startsWith(CONTEXT_PREFIX)) {
-            const rel = normalizedUrl.replace(CONTEXT_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
-            const distPath = path.join(PROJECT_ROOT, 'dist/spec/contexts', rel.includes('/') ? rel : `${version}/${rel}`);
-            const srcPath = path.join(PROJECT_ROOT, 'src/contexts', rel.includes('/') ? rel : `${version}/${rel}`);
-            const diskPath = existsSync(distPath) ? distPath : srcPath;
-            try {
-                const doc = await readJsonFile(diskPath, version);
-                return { contextUrl: null, documentUrl: url, document: doc };
-            } catch (e) {
-                // fall through to network/error
+        if (typeof url === 'string') {
+            const allowlist = await getContextAllowlistMap(version);
+            const normalizedUrl = normalizeSpecUrl(url).replace(/\{\{VERSION\}\}/g, version);
+            if (allowlist.has(normalizedUrl)) {
+                return {
+                    contextUrl: null,
+                    documentUrl: url,
+                    document: structuredClone(allowlist.get(normalizedUrl))
+                };
             }
         }
 
-        if (normalizedUrl.startsWith(ONTOLOGY_PREFIX)) {
-            const rel = normalizedUrl.replace(ONTOLOGY_PREFIX, '').replace(/\{\{VERSION\}\}/g, version);
-            const distPath = path.join(PROJECT_ROOT, 'dist/spec/ontology', rel.includes('/') ? rel : `${version}/${rel}`);
-            const srcPath = path.join(PROJECT_ROOT, 'src/ontology', rel.includes('/') ? rel : `${version}/${rel}`);
-            const diskPath = existsSync(distPath) ? distPath : srcPath;
-            try {
-                const doc = await readJsonFile(diskPath, version);
-                return { contextUrl: null, documentUrl: url, document: doc };
-            } catch (e) {
-                // fall through
-            }
-        }
-
-        // For any external or non-local context URLs (such as schema.org, GS1, EPCIS, etc.),
-        // return a safe empty context stub rather than making outbound network requests.
-        // This eliminates SSRF, avoids external network dependencies, and allows DPPs with
-        // additional external ontologies to be validated and rendered cleanly without errors.
+        // For any external, ontology, or unrecognized URLs, return a safe empty context stub
+        // rather than touching disk or making outbound network requests.
         return {
             contextUrl: null,
             documentUrl: url,

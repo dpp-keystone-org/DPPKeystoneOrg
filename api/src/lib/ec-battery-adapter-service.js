@@ -49,27 +49,36 @@ const RAW_UNIT_FIELDS = {
     cycleLifeDischargeCRate: 'reciprocalHour'
 };
 
-const FEDERATED_EXTENSION_KEYS = [
-    'image',
-    'serviceDate',
-    'batteryCarbonFootprintClass',
-    'carbonFootprintAbsolute',
-    'carbonFootprintStudy',
-    'carbonFootprintGeneralInfo',
-    'carbonFootprintLabel',
-    'dueDiligenceReport',
-    'supplyChainAssurances',
-    'supplyChainIndices',
-    'materialComposition',
-    'preConsumerRecycledMaterialComposition',
-    'postConsumerRecycledMaterialComposition',
-    'dppSchemaVersion',
-    'economicOperatorId',
-    'facilityId',
-    'productName',
-    'productLabel',
-    'additionalProductIdentifiers'
-];
+const ALLOWED_RAW_EC_ROOT_KEYS = new Set([
+    '@context', '@id', '@type',
+    'digitalProductPassportId', 'uniqueProductIdentifier', 'granularity',
+    'dppStatus', 'lastUpdate', 'contentSpecificationIds',
+    'registrantIdentity', 'manufacturerIdentification', 'manufacturerPostalAddress',
+    'manufacturerContactDetails', 'batteryCategory', 'batteryIdentification',
+    'manufacturingPlace', 'manufacturingDate', 'batteryWeight', 'batteryCapacity',
+    'batteryChemistry', 'hazardousSubstances', 'extinguishingAgent',
+    'criticalRawMaterials', 'renewableContentShare',
+    'minimalVoltage', 'minimalVoltageMinTemp', 'minimalVoltageMaxTemp',
+    'nominalVoltage', 'nominalVoltageMinTemp', 'nominalVoltageMaxTemp',
+    'maximumVoltage', 'maximumVoltageMinTemp', 'maximumVoltageMaxTemp',
+    'originalPowerCapability', 'powerLimit', 'powerLimitMinTemp', 'powerLimitMaxTemp',
+    'notInUseTemperatureRange', 'commercialWarrantyPeriod',
+    'internalCellResistance', 'internalPackResistance', 'cycleLifeDischargeCRate',
+    'separateCollectionSymbol', 'chemicalSymbol', 'euDeclarationOfConformity',
+    'wasteBatteryPreventionManagementInfo',
+    'expectedLifetimeCycles', 'cycleLifeReferenceTest', 'capacityExhaustionThreshold',
+    'initialRoundTripEnergyEfficiency', 'roundTripEfficiencyAtHalfCycleLife', 'cycleLifeChargeCRate',
+    'detailedComposition', 'sparePartReplacementDetails', 'dismantlingInformation', 'safetyMeasures',
+    'complianceTestReportResults',
+    'roundTripEnergyEfficiency', 'roundTripEnergyEfficiencyFade', 'batteryStatus',
+    'numberOfChargingCycles', 'numberOfDischargingCycles', 'negativeEvents',
+    'environmentalConditionHistogramSet', 'stateOfChargeHistogram',
+    'ratedCapacity', 'capacityFade', 'powerCapability', 'powerFade',
+    'internalResistance', 'internalResistanceIncrease', 'expectedLifetimeCyclesRest',
+    'expectedLifetimeYears', 'stateOfCertifiedEnergy', 'remainingCapacity',
+    'remainingPowerCapability', 'remainingRoundTripEfficiency', 'selfDischargingRateSet',
+    'ohmicResistance'
+]);
 
 const RELATED_RESOURCE_KEYS = [
     'euDeclarationOfConformity',
@@ -168,16 +177,17 @@ export function convertPatchedEcToRawEc(patchedPayload, options = {}) {
         `https://repository.product-passport.ec.europa.eu/product/batteries/subgroup/${subgroup}/1.0.0`
     ];
 
-    // 3. Drop Keystone federated extension properties not supported by raw EC contexts/schemas
-    for (const key of FEDERATED_EXTENSION_KEYS) {
-        if (raw[key] !== undefined) {
+    // 3. Drop all non-EC properties (Keystone federated extensions & custom voluntary attributes)
+    // because unmodified EC v1.0.0 uses `@protected: true` and `@vocab: unknown#` in SHACL.
+    for (const key of Object.keys(raw)) {
+        if (!ALLOWED_RAW_EC_ROOT_KEYS.has(key)) {
             delete raw[key];
             droppedFields.push(key);
         }
     }
     if (droppedFields.length > 0) {
         warnings.push(
-            `Dropped ${droppedFields.length} Keystone/EN 18223 extension field(s) not recognized by unmodified EC v1.0.0: ${droppedFields.join(', ')}.`
+            `Dropped ${droppedFields.length} non-EC/voluntary field(s) not recognized by unmodified EC v1.0.0: ${droppedFields.join(', ')}.`
         );
     }
 

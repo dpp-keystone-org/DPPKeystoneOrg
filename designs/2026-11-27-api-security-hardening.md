@@ -11,7 +11,7 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ## Implementation & Review Plan
 
-### [ ] Feature 1: Eliminate Local Path Traversal & Outbound Network Fallbacks in `server-resource-loader.js`
+### [COMPLETED] Feature 1: Eliminate Local Path Traversal & Outbound Network Fallbacks in `server-resource-loader.js`
 * **Severity:** High (Path Traversal) / Low–Medium (Air-Gapped Egress Hang)
 * **Affected Files:**
   * `api/src/lib/server-resource-loader.js` (lines 76–81, 285–313, 362–391)
@@ -33,11 +33,11 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
     * External `@context` URLs (e.g. `https://ref.gs1.org/epcis/epcis-context.jsonld`) on `/adapt` and `/validate` with both prefixed/inline-mapped attributes (`mode=strict` passes) and unprefixed short keys (`adaptedDpp` preserved, `mode=schema` passes, `mode=strict` flags `SEM-COM-MSG-013` cleanly with offline warning).
     * Version-less (`/spec/contexts/dpp-battery.context.jsonld`) and `/preview/<branch>/` Keystone context URLs on `/adapt`.
     * `target=raw` stripping all non-EC voluntary/custom root attributes into `droppedFields` and passing `mode=strict` validation.
-  * [ ] **Step 1.2 (Implementation):**
-    * Refactor `createServerDocumentLoader` in `api/src/lib/server-resource-loader.js` to use an immutable in-memory `Map` of `.context.jsonld` files only, and remove outbound `fetch()` fallbacks in `getServerSchemaContext` and `getServerOntologyMap`.
-    * Update `documentLoader` in `api/src/lib/ec-validator-service.js` to stub unknown external `@context` URLs with `{ '@context': {} }` and record an explanatory warning instead of throwing `Unmapped remote JSON-LD context URL`.
-    * Update `convertPatchedEcToRawEc` in `api/src/lib/ec-battery-adapter-service.js` to allowlist valid EC Battery root keys (derived from the EC schemas or explicit set) and strip all non-EC root keys into `droppedFields`.
-  * [ ] **Step 1.3 (Verification):** Ask user to run Jest API tests to confirm all Step 1.0 & Step 1.1 tests pass.
+  * [x] **Step 1.2 (Implementation):**
+    * Refactored `createServerDocumentLoader` in `api/src/lib/server-resource-loader.js` to use an immutable in-memory `Map` of `.context.jsonld` files only, and removed outbound `fetch()` fallbacks in `getServerSchemaContext` and `getServerOntologyMap`.
+    * Updated `documentLoader` in `api/src/lib/ec-validator-service.js` to stub unknown external `@context` URLs with `{ '@context': {} }` and record an explanatory warning instead of throwing `Unmapped remote JSON-LD context URL` (plus included `common-shapes.ttl` in raw SHACL shape merges).
+    * Updated `convertPatchedEcToRawEc` in `api/src/lib/ec-battery-adapter-service.js` to allowlist valid EC Battery root keys (`ALLOWED_RAW_EC_ROOT_KEYS`) and strip all non-EC root keys into `droppedFields`.
+  * [x] **Step 1.3 (Verification):** Verified all Feature 1 security & edge-case tests pass.
 
 ---
 

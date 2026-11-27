@@ -15,7 +15,7 @@ import DataFactory from '@rdfjs/data-model/Factory.js';
 import ClownfaceFactory from 'clownface/Factory.js';
 import NamespaceFactory from '@rdfjs/namespace/Factory.js';
 
-import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
+import { KEYSTONE_VERSION, normalizeSpecUrl } from '../../../src/lib/keystone-version.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -99,8 +99,9 @@ async function addKeystoneContexts(contextMap) {
     if (!existsSync(keystoneContextDir)) return;
     for (const entry of await fs.readdir(keystoneContextDir)) {
         if (entry.endsWith('.context.jsonld')) {
-            contextMap[`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/${entry}`] =
-                path.join(keystoneContextDir, entry);
+            const diskPath = path.join(keystoneContextDir, entry);
+            contextMap[`https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/${entry}`] = diskPath;
+            contextMap[`https://dpp-keystone.org/spec/contexts/${entry}`] = diskPath;
         }
     }
 }
@@ -194,18 +195,28 @@ async function getPatchedEngine() {
 
     const contextMap = buildContextMap(EC_PATCHED_SEMANTICS_ROOT);
     await addKeystoneContexts(contextMap);
-
-    async function documentLoader(url) {
-        const normalized = url.replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
-        const localPath = contextMap[normalized];
-        if (!localPath || !existsSync(localPath)) {
-            throw new Error(`Unmapped remote JSON-LD context URL: ${url}`);
+    const parsedContexts = new Map();
+    for (const [ctxUrl, localPath] of Object.entries(contextMap)) {
+        if (existsSync(localPath)) {
+            const content = (await fs.readFile(localPath, 'utf-8')).replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
+            parsedContexts.set(ctxUrl, jsoncParse(content));
         }
-        const content = (await fs.readFile(localPath, 'utf-8')).replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
+    }
+
+    async function documentLoader(url, stubbedUrls = null) {
+        const normalized = normalizeSpecUrl(String(url)).replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
+        if (parsedContexts.has(normalized)) {
+            return {
+                contextUrl: null,
+                documentUrl: url,
+                document: structuredClone(parsedContexts.get(normalized))
+            };
+        }
+        if (stubbedUrls) stubbedUrls.add(url);
         return {
             contextUrl: null,
-            documentUrl: normalized,
-            document: jsoncParse(content)
+            documentUrl: url,
+            document: { '@context': {} }
         };
     }
 
@@ -229,6 +240,7 @@ async function getPatchedEngine() {
         specById,
         documentLoader,
         shaclValidator,
+        knownContextUrls: new Set(parsedContexts.keys()),
         schemaCount: schemaFiles.length,
         shapeCount: shapeFiles.length,
         contextCount: Object.keys(contextMap).filter((u) => u.includes('ec.europa.eu') && !u.includes('/releases/')).length
@@ -270,26 +282,32 @@ async function getRawEngine() {
 
     const contextMap = buildContextMap(EC_RAW_SEMANTICS_ROOT);
     await addKeystoneContexts(contextMap);
-
-    async function documentLoader(url) {
-        const normalized = url.replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
-        const localPath = contextMap[normalized];
-        if (!localPath || !existsSync(localPath)) {
-            throw new Error(`Unmapped remote JSON-LD context URL: ${url}`);
-        }
-        if (normalized.includes('ec.europa.eu')) {
+    const parsedRawContexts = new Map();
+    for (const [ctxUrl, localPath] of Object.entries(contextMap)) {
+        if (!existsSync(localPath)) continue;
+        if (ctxUrl.includes('ec.europa.eu')) {
             const flattenedCtx = await loadFlattenedRawContext(localPath);
+            parsedRawContexts.set(ctxUrl, { '@context': flattenedCtx });
+        } else {
+            const content = (await fs.readFile(localPath, 'utf-8')).replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
+            parsedRawContexts.set(ctxUrl, jsoncParse(content));
+        }
+    }
+
+    async function documentLoader(url, stubbedUrls = null) {
+        const normalized = normalizeSpecUrl(String(url)).replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
+        if (parsedRawContexts.has(normalized)) {
             return {
                 contextUrl: null,
-                documentUrl: normalized,
-                document: { '@context': flattenedCtx }
+                documentUrl: url,
+                document: structuredClone(parsedRawContexts.get(normalized))
             };
         }
-        const content = (await fs.readFile(localPath, 'utf-8')).replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
+        if (stubbedUrls) stubbedUrls.add(url);
         return {
             contextUrl: null,
-            documentUrl: normalized,
-            document: jsoncParse(content)
+            documentUrl: url,
+            document: { '@context': {} }
         };
     }
 
@@ -318,6 +336,7 @@ async function getRawEngine() {
         documentLoader,
         shapesByBasename,
         shaclValidatorCache: new Map(),
+        knownContextUrls: new Set(parsedRawContexts.keys()),
         schemaCount: schemaFiles.length,
         shapeCount: shapeFiles.length,
         contextCount: Object.keys(contextMap).filter((u) => u.includes('ec.europa.eu') && !u.includes('/releases/')).length
@@ -372,11 +391,29 @@ function detectRawTiers(payload, options) {
     return tiers;
 }
 
-async function expandToRdfDataset(payload, documentLoader) {
+async function expandToRdfDataset(payload, engine, warnings) {
+    const stubbedUrls = new Set();
+    const ctxEntries = Array.isArray(payload['@context']) ? payload['@context'] : [payload['@context']];
+    for (const entry of ctxEntries) {
+        if (typeof entry === 'string') {
+            const normalized = normalizeSpecUrl(entry).replace(VERSION_PLACEHOLDER_RE, KEYSTONE_VERSION);
+            if (!engine.knownContextUrls.has(normalized)) {
+                stubbedUrls.add(entry);
+            }
+        }
+    }
+
     const expanded = await jsonld.expand(structuredClone(payload), {
-        documentLoader,
+        documentLoader: (url) => engine.documentLoader(url, stubbedUrls),
         processingMode: 'json-ld-1.1'
     });
+
+    for (const stubUrl of stubbedUrls) {
+        warnings.push(
+            `External or unrecognized @context URL "${stubUrl}" was not fetched offline; stubbed as empty context.`
+        );
+    }
+
     const nquads = await jsonld.toRDF(expanded, { format: 'application/n-quads' });
     const parser = new N3Parser({ factory });
     const stream = parser.import(Readable.from([nquads]));
@@ -514,7 +551,7 @@ export async function validateEcDppPayload(payload, options = {}) {
             } else {
                 shaclExecuted = true;
                 try {
-                    const dataDataset = await expandToRdfDataset(payload, engine.documentLoader);
+                    const dataDataset = await expandToRdfDataset(payload, engine, warnings);
                     let hasEcDppNode = false;
                     for (const quad of dataDataset) {
                         if (quad.predicate.value === RDF_TYPE && quad.object.value === EC_DPP_CLASS) {
@@ -639,7 +676,7 @@ export async function validateEcDppPayload(payload, options = {}) {
             );
 
             try {
-                const dataDataset = await expandToRdfDataset(payload, engine.documentLoader);
+                const dataDataset = await expandToRdfDataset(payload, engine, warnings);
                 for (const quad of dataDataset) {
                     if (quad.predicate.value.startsWith(EC_UNKNOWN_NS)) {
                         findings.push({
@@ -665,7 +702,7 @@ export async function validateEcDppPayload(payload, options = {}) {
                 const cacheKey = `${subgroup || 'none'}:${activeTiers.join(',')}`;
                 let cachedShacl = engine.shaclValidatorCache.get(cacheKey);
                 if (!cachedShacl) {
-                    const shapeNames = ['core-shapes.ttl'];
+                    const shapeNames = ['common-shapes.ttl', 'core-shapes.ttl'];
                     for (const tier of activeTiers) {
                         if (engine.shapesByBasename.has(`${tier}-batteries-shapes.ttl`)) {
                             shapeNames.push(`${tier}-batteries-shapes.ttl`);
