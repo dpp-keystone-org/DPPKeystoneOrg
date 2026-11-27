@@ -45,15 +45,17 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 * **Severity:** Medium–High (Asymmetric CPU DoS)
 * **Affected Files:**
   * `src/util/js/common/validation/schema-validator.js` (lines 14–64)
-  * `api/src/lib/dpp-validator-service.js` (lines 26–29)
+  * `testing/integration/api/api-security-hardening.test.js` (lines 223–306)
 * **Detailed Problem & Exploitability:**
   `ec-validator-service.js` compiles its Ajv2020 schemas once per process and caches the compiled validator functions. By contrast, `validateDpp()` in `src/util/js/common/validation/schema-validator.js` (invoked on every `POST /render/html` request) instantiates a brand-new `new Ajv2020(...)`, registers all shared schemas, and runs `ajv.compile(compositeSchema)` across ~15+ Draft 2020-12 schemas synchronously on **every single HTTP request**. Schema compilation is orders of magnitude slower than validation and runs synchronously on the main Node.js event loop, allowing a low-bandwidth stream of `/render/html` requests to saturate a 1-vCPU container and starve `/validate` and `/adapt`.
-* **Options to Discuss:**
-  * **Option A (`WeakMap` Cache Inside `schema-validator.js` — Recommended):** Cache the compiled `validate` function in a `WeakMap` keyed on `schemaContext` inside `schema-validator.js` (since `server-resource-loader.js` already caches and returns the exact same `schemaContext` object per version, and browser callers also reuse `schemaContext`!). Zero API signature changes, benefits both server and browser.
-  * **Option B (Server-Only Cache in `dpp-validator-service.js`):** Pre-compile and cache per `version` in `api/src/lib/dpp-validator-service.js` without touching `src/util/`.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 2.1: Decide between `WeakMap` in `schema-validator.js` vs. server-only caching.
-  * [ ] Step 2.2: Implement validator caching and verify all existing schema tests pass.
+* **Agreed Decision (Option A — `WeakMap` Cache Inside `schema-validator.js`):**
+  * **Why `schema-validator.js` over `dpp-validator-service.js`:** `schema-validator.js` is the shared/isomorphic module in `src/util/` used by the Node.js API server (`api/src/lib/dpp-validator-service.js`), the client-side Browser Validator Web App (`src/validator/validator.js`), and Jest schema suites. Caching inside `schema-validator.js` keeps all Ajv configuration and compilation localized in one file while giving one-time compilation to every caller automatically (without breaking `src/util/`'s decoupling from `version` strings or filesystem loaders).
+  * **Cache Invalidation & Error Isolation:** Key a module-level `WeakMap` on `schemaContext` alongside a lightweight structural reference check over `baseSchema`, `sectorSchemas` entries, and `commonSchemas` items so in-place mutations to `schemaContext` (such as `validator.js` populating `schemaContext` fields or dynamic test fixtures) safely trigger recompilation. Return `structuredClone(validate.errors)` on validation failure so callers cannot mutate shared Ajv state and subsequent `validate()` calls cannot clobber previously returned error arrays.
+  * **Testing Strategy:** Rather than flaky wall-clock latency assertions, spy deterministically on `Ajv2020.prototype.compile` in `api-security-hardening.test.js` across both direct `validateDpp()` calls and live `POST /render/html` HTTP requests.
+* **TODOs:**
+  * [x] **Step 2.1 (TDD Spy Tests):** Added deterministic `Ajv2020.prototype.compile` spy tests in `testing/integration/api/api-security-hardening.test.js` covering single compilation per `schemaContext`, error-array isolation across valid/invalid calls, cache invalidation on in-place `schemaContext` mutation, and zero recompilation across repeated `POST /render/html` requests.
+  * [x] **Step 2.2 (Implementation):** Implement `WeakMap` validator caching + inner schema reference check + `structuredClone(validate.errors)` (with JSON fallback for older `jsdom` environments) in `src/util/js/common/validation/schema-validator.js`.
+  * [ ] **Step 2.3 (Verification):** Rebuild (`npm run build` so `dist/util/` stays in sync) and run `npm run test:api` to verify all Feature 1 & Feature 2 tests pass.
 
 ---
 

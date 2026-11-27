@@ -1,10 +1,13 @@
+import { jest } from '@jest/globals';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse as jsoncParse } from 'jsonc-parser';
+import Ajv2020 from 'ajv/dist/2020.js';
 
 import { startTestServer } from '../../scripts/api-test-helper.mjs';
 import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
+import { validateDpp } from '../../../src/util/js/common/validation/schema-validator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -214,6 +217,91 @@ describe('HTTP API - Security Hardening Suite', () => {
             expect(strictBody.validation.valid).toBe(false);
             expect(strictBody.validation.findings.some((f) => f.code === 'SEM-COM-MSG-013')).toBe(true);
             expect(strictBody.validation.findings.some((f) => f.code === 'JSONLD_SHACL_ERROR')).toBe(false);
+        });
+    });
+
+    describe('Feature 2: Ajv Validator Caching on Keystone Validation (/render/html CPU DoS Prevention)', () => {
+        afterEach(() => {
+            jest.restoreAllMocks();
+        });
+
+        it('compiles Ajv schemas only once per schemaContext across repeated validateDpp calls and isolates returned error arrays', () => {
+            const compileSpy = jest.spyOn(Ajv2020.prototype, 'compile');
+
+            const schemaContext = {
+                baseSchema: {
+                    type: 'object',
+                    properties: {
+                        digitalProductPassportId: { type: 'string' },
+                        count: { type: 'integer' }
+                    },
+                    required: ['digitalProductPassportId']
+                },
+                sectorSchemas: {
+                    testSector: {
+                        type: 'object',
+                        properties: { sectorField: { type: 'string' } }
+                    }
+                },
+                commonSchemas: []
+            };
+
+            // 1. Invalid call #1 (missing digitalProductPassportId)
+            const invalidRes1 = validateDpp({ count: 1 }, schemaContext);
+            expect(invalidRes1.valid).toBe(false);
+            expect(invalidRes1.errors.length).toBeGreaterThan(0);
+            const snapshotErrors1 = structuredClone(invalidRes1.errors);
+
+            // 2. Valid calls #2, #3, #4
+            expect(validateDpp({ digitalProductPassportId: 'urn:uuid:1', count: 5 }, schemaContext).valid).toBe(true);
+            expect(validateDpp({ digitalProductPassportId: 'urn:uuid:2' }, schemaContext).valid).toBe(true);
+            expect(validateDpp({ digitalProductPassportId: 'urn:uuid:3', sectorField: 'ok' }, schemaContext).valid).toBe(true);
+
+            // 3. Invalid call #5 (wrong type on count)
+            const invalidRes2 = validateDpp({ digitalProductPassportId: 'urn:uuid:4', count: 'not-an-int' }, schemaContext);
+            expect(invalidRes2.valid).toBe(false);
+
+            // Must have compiled only ONCE across all 5 calls!
+            expect(compileSpy).toHaveBeenCalledTimes(1);
+
+            // Previously returned errors array must NOT have been mutated or wiped by later calls
+            expect(invalidRes1.errors).toEqual(snapshotErrors1);
+
+            // 4. Mutating schemaContext in-place must safely invalidate cache and recompile
+            schemaContext.sectorSchemas.addedSector = {
+                type: 'object',
+                required: ['mandatoryNewField'],
+                properties: { mandatoryNewField: { type: 'string' } }
+            };
+            const afterMutationRes = validateDpp({ digitalProductPassportId: 'urn:uuid:5' }, schemaContext);
+            expect(afterMutationRes.valid).toBe(false);
+            expect(compileSpy).toHaveBeenCalledTimes(2);
+        });
+
+        it('reuses cached Ajv compilation across repeated POST /render/html requests', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+
+            // Warm up once so serverSchemaContext is loaded
+            const warmResp = await fetch(`${baseUrl}/render/html`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dpp, options: { includeSchema: false } })
+            });
+            expect(warmResp.status).toBe(200);
+
+            const compileSpy = jest.spyOn(Ajv2020.prototype, 'compile');
+
+            // Subsequent /render/html requests must trigger ZERO new Ajv schema compilations
+            for (let i = 0; i < 3; i++) {
+                const resp = await fetch(`${baseUrl}/render/html`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ dpp, options: { includeSchema: false } })
+                });
+                expect(resp.status).toBe(200);
+            }
+
+            expect(compileSpy).toHaveBeenCalledTimes(0);
         });
     });
 });
