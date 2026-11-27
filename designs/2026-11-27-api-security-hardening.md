@@ -22,12 +22,12 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
   2. **Silent Outbound Network Fallbacks (`getServerSchemaContext` lines 76–81 & `getServerOntologyMap` lines 285–313):**
      If a local schema or ontology file is missing on disk, the loader falls back to `fetch('https://dpp-keystone.org/...')`. In a locked-down GS1 enterprise VPC with restricted outbound egress, any missing-file edge case will hang requests until the OS TCP connection timeout (~30–120s) instead of failing fast and deterministically.
 * **Options to Discuss:**
-  * **Option A (Strict Containment + Zero Egress — Recommended):** Canonicalize paths with `path.resolve(baseDir, rel)` and strictly verify `resolved.startsWith(baseDir + path.sep)` (rejecting `..`, backslashes, and null bytes), returning the safe empty stub `{ '@context': {} }` or throwing a `400`/`422` validation error on traversal attempts; and remove the live `fetch('https://dpp-keystone.org/...')` fallbacks so server execution is 100% offline.
-  * **Option B (Explicit Filename Allowlist):** Pre-scan `src/contexts/` and `src/ontology/` at startup into an in-memory `Map<url, diskPath>` (identical to `ec-validator-service.js`), never constructing filesystem paths from request input at runtime.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 1.1: Agree on Option A vs. Option B and traversal failure behavior (stub vs. explicit error).
-  * [ ] Step 1.2: Implement path containment / allowlist and remove outbound `fetch()` fallbacks in `server-resource-loader.js`.
-  * [ ] Step 1.3: Add unit/integration regression tests attempting `..` traversal in `@context`.
+  * **Option A (Input Validation / Path Containment + Zero Egress):** Canonicalize paths with `path.resolve(baseDir, rel)` and strictly verify `resolved.startsWith(baseDir + path.sep)` (rejecting `..`, backslashes, and null bytes), and remove the live `fetch('https://dpp-keystone.org/...')` fallbacks. Low startup memory, still hits disk unless paired with a cache, and relies on path-sanitization logic being airtight across OSes.
+  * **Option B (Startup Allowlist `Map` + Immutable In-Memory Context Cache + Zero Egress):** Pre-index valid files under `contexts/` and `ontology/` into a fixed `Map<canonicalUrl, diskPath>` (never passing request input into `path.join` at all) and cache deeply frozen parsed context JSON in memory (~150 KB total for all contexts; lazy-cache ontology files on demand so cold-start heap stays tiny). Eliminates path traversal by construction and speeds up every `/adapt` and `/render/html` call.
+* **TODOs:**
+  * [x] **Step 1.0 (Pre-Step TDD Proof):** Create `testing/fixtures/outside-context-fixture.json` and `testing/integration/api/api-security-hardening.test.js` proving that `../../testing/fixtures/outside-context-fixture.json` currently injects out-of-directory `@context` mappings into `POST /adapt` output and `../../package.json` acts as a file-existence oracle (confirm test fails before fixing).
+  * [ ] **Step 1.1:** Choose Option A vs. Option B and confirm failure behavior for unknown `dpp-keystone.org` context URLs.
+  * [ ] **Step 1.2:** Implement fix and remove outbound `fetch()` fallbacks in `server-resource-loader.js`, then verify Step 1.0 tests turn green.
 
 ---
 
