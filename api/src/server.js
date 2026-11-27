@@ -19,6 +19,14 @@ const MAX_JSON_ENTRIES = 15_000;
 const KEEP_ALIVE_TIMEOUT_MS = 5_000;
 const HEADERS_TIMEOUT_MS = 10_000;
 const REQUEST_TIMEOUT_MS = 15_000;
+const DANGEROUS_PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
+function stripDangerousJsonKeys(key, value) {
+    if (DANGEROUS_PROTO_KEYS.has(key)) {
+        return undefined;
+    }
+    return value;
+}
 
 /**
  * Iteratively enforces maximum nesting depth and total container entry count
@@ -168,7 +176,7 @@ function readJsonBody(req) {
                 return;
             }
             try {
-                const parsed = JSON.parse(body);
+                const parsed = JSON.parse(body, stripDangerousJsonKeys);
                 assertJsonComplexity(parsed);
                 resolve(parsed);
             } catch (e) {

@@ -11,7 +11,8 @@ import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 import { validateDpp } from '../../../src/util/js/common/validation/schema-validator.js';
 import { validateAgainstOntology } from '../../../src/util/js/common/validation/ontology-validator.js';
 import { validateContextAwarePayload } from '../../../src/util/js/common/validation/context-semantic-validator.js';
-import { renderProductPage, sanitizeUrl } from '../../../src/util/js/common/rendering/dpp-html-renderer.js';
+import { renderProductPage, sanitizeUrl, getDisplayLabel } from '../../../src/util/js/common/rendering/dpp-html-renderer.js';
+import { adaptKeystoneToEcBattery } from '../../../api/src/lib/ec-battery-adapter-service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -766,6 +767,109 @@ describe('HTTP API - Security Hardening Suite', () => {
             expect(multiHtml).toContain(`<script nonce="${nonce}">`);
             expect(multiHtml).not.toContain('onclick=');
             expect(multiHtml).toContain('dpp-carousel-container');
+        });
+    });
+
+    describe('Feature 6: Prototype-Key Sanitization (__proto__, constructor, prototype) & language Validation', () => {
+        it('strips __proto__, constructor, and prototype keys at the HTTP JSON boundary across /adapt, /validate, and /render/html', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            const baseDppJson = JSON.stringify(dpp);
+            // Craft a raw JSON body containing literal "__proto__", "constructor", and "prototype" keys
+            const rawMaliciousBody =
+                `{"dpp": ${baseDppJson.slice(0, -1)}, ` +
+                `"__proto__": {"pollutedMarker": "PROTO_POLLUTED"}, ` +
+                `"constructor": {"prototype": {"pollutedCtor": true}}, ` +
+                `"prototype": {"pollutedProtoProp": true}}, ` +
+                `"options": {"target": "patched", "includeSchema": false}}`;
+
+            const [adaptResp, renderResp, validateResp] = await Promise.all([
+                fetch(`${baseUrl}/adapt`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: rawMaliciousBody
+                }),
+                fetch(`${baseUrl}/render/html`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: rawMaliciousBody
+                }),
+                fetch(`${baseUrl}/validate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: rawMaliciousBody
+                })
+            ]);
+
+            expect(adaptResp.status).toBe(200);
+            expect(renderResp.status).toBe(200);
+            expect([200, 422]).toContain(validateResp.status);
+
+            const adaptRawText = await adaptResp.text();
+            const adaptBody = JSON.parse(adaptRawText);
+            expect(Object.hasOwn(adaptBody.adaptedDpp, 'constructor')).toBe(false);
+            expect(Object.hasOwn(adaptBody.adaptedDpp, 'prototype')).toBe(false);
+            expect(adaptRawText).not.toContain('pollutedMarker');
+            expect(adaptRawText).not.toContain('pollutedCtor');
+
+            const renderHtml = await renderResp.text();
+            expect(renderHtml).not.toContain('pollutedMarker');
+            expect(renderHtml).not.toContain('pollutedCtor');
+            expect(({}).pollutedMarker).toBeUndefined();
+        });
+
+        it('guards shared ec-battery transformation against prototype mutation when called directly on JSON.parse output', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            const rawJsonWithProto =
+                `${JSON.stringify(dpp).slice(0, -1)}, ` +
+                `"__proto__": {"injectedViaProto": "POLLUTED"}, ` +
+                `"constructor": {"badCtor": 1}, ` +
+                `"prototype": {"badProto": 2}}`;
+            const parsedInput = JSON.parse(rawJsonWithProto);
+
+            const result = await adaptKeystoneToEcBattery(parsedInput, { target: 'patched' });
+            expect(Object.getPrototypeOf(result.adaptedDpp)).toBe(Object.prototype);
+            expect(result.adaptedDpp.injectedViaProto).toBeUndefined();
+            expect(Object.hasOwn(result.adaptedDpp, 'constructor')).toBe(false);
+            expect(Object.hasOwn(result.adaptedDpp, 'prototype')).toBe(false);
+        });
+
+        it('prevents Object.prototype method leakage (e.g. toString / constructor) via options.language in HTML rendering', async () => {
+            const ontologyMap = new Map([
+                ['dppStatus', { label: { en: 'Passport Status', de: 'Pass-Status' } }]
+            ]);
+
+            // Direct helper calls
+            expect(getDisplayLabel('dppStatus', ontologyMap, 'toString')).toBe('Passport Status');
+            expect(getDisplayLabel('dppStatus', ontologyMap, 'constructor')).toBe('Passport Status');
+            expect(getDisplayLabel('dppStatus', ontologyMap, 'de')).toBe('Pass-Status');
+
+            // End-to-end POST /render/html calls
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            const badLangResp = await fetch(`${baseUrl}/render/html`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    dpp,
+                    options: { language: 'toString', includeSchema: false }
+                })
+            });
+            expect(badLangResp.status).toBe(200);
+            const badLangHtml = await badLangResp.text();
+            expect(badLangHtml).not.toContain('function toString');
+            expect(badLangHtml).not.toContain('[native code]');
+            expect(badLangHtml).toContain('<html lang="en">');
+
+            const deResp = await fetch(`${baseUrl}/render/html`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    dpp,
+                    options: { language: 'de', includeSchema: false }
+                })
+            });
+            expect(deResp.status).toBe(200);
+            const deHtml = await deResp.text();
+            expect(deHtml).toContain('<html lang="de">');
         });
     });
 });

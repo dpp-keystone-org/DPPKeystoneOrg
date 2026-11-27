@@ -128,6 +128,18 @@ export function detectTableStructure(obj) {
     return density > 0.5;
 }
 
+const SAFE_BCP47_LANG_RE = /^[a-zA-Z]{2,3}(?:-[a-zA-Z0-9]{2,8})*$/;
+const DANGEROUS_PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
+function normalizeLanguageTag(language) {
+    if (typeof language !== 'string') return 'en';
+    const trimmed = language.trim();
+    if (!trimmed || DANGEROUS_PROTO_KEYS.has(trimmed) || !SAFE_BCP47_LANG_RE.test(trimmed)) {
+        return 'en';
+    }
+    return trimmed;
+}
+
 /**
  * Resolves a human-readable display label for a property key.
  * Prioritizes localized ontology labels matching the specified language.
@@ -137,12 +149,25 @@ export function detectTableStructure(obj) {
  * @returns {string}
  */
 export function getDisplayLabel(key, ontologyMap = null, language = 'en', defaultFallback = null) {
+    const safeLang = normalizeLanguageTag(language);
     if (ontologyMap && ontologyMap.has(key)) {
         const info = ontologyMap.get(key);
         if (info && info.label) {
             if (typeof info.label === 'object') {
-                if (info.label[language]) return info.label[language];
-                if (info.label['en']) return info.label['en'];
+                if (
+                    Object.prototype.hasOwnProperty.call(info.label, safeLang) &&
+                    typeof info.label[safeLang] === 'string' &&
+                    info.label[safeLang]
+                ) {
+                    return info.label[safeLang];
+                }
+                if (
+                    Object.prototype.hasOwnProperty.call(info.label, 'en') &&
+                    typeof info.label.en === 'string' &&
+                    info.label.en
+                ) {
+                    return info.label.en;
+                }
             } else if (typeof info.label === 'string') {
                 return info.label;
             }
@@ -323,6 +348,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en', depth = 0)
 export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en', cspNonce = null }) {
     if (!dppData) throw new Error("DPP JSON is required");
     assertMaxNestingDepth(dppData, MAX_TRAVERSAL_DEPTH);
+    const safeLanguage = normalizeLanguageTag(language);
 
     // Prevent </script> breakout injection in embedded JSON-LD
     const jsonLdScript = jsonLd
@@ -463,13 +489,13 @@ ${jsonLd.replace(/</g, '\\u003c')}
 
     const metadataHtml = `
       <section class="dpp-metadata">
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppStatus', ontologyMap, language, 'Passport Status'))}:</span> <span class="dpp-value">${dppStatus}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('lastUpdate', ontologyMap, language, 'Last Updated'))}:</span> <span class="dpp-value">${lastUpdate}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('digitalProductPassportId', ontologyMap, language, 'Passport ID'))}:</span> <span class="dpp-value">${safeDppId}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppSchemaVersion', ontologyMap, language, 'Schema Version'))}:</span> <span class="dpp-value">${safeSchemaVersion}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('economicOperatorId', ontologyMap, language, 'Economic Operator ID'))}:</span> <span class="dpp-value">${safeEconomicOperatorId}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('granularity', ontologyMap, language, 'Granularity'))}:</span> <span class="dpp-value">${safeGranularity}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('contentSpecificationIds', ontologyMap, language, 'Content Specification IDs'))}:</span> <span class="dpp-value">${safeContentSpecIds}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppStatus', ontologyMap, safeLanguage, 'Passport Status'))}:</span> <span class="dpp-value">${dppStatus}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('lastUpdate', ontologyMap, safeLanguage, 'Last Updated'))}:</span> <span class="dpp-value">${lastUpdate}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('digitalProductPassportId', ontologyMap, safeLanguage, 'Passport ID'))}:</span> <span class="dpp-value">${safeDppId}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppSchemaVersion', ontologyMap, safeLanguage, 'Schema Version'))}:</span> <span class="dpp-value">${safeSchemaVersion}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('economicOperatorId', ontologyMap, safeLanguage, 'Economic Operator ID'))}:</span> <span class="dpp-value">${safeEconomicOperatorId}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('granularity', ontologyMap, safeLanguage, 'Granularity'))}:</span> <span class="dpp-value">${safeGranularity}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('contentSpecificationIds', ontologyMap, safeLanguage, 'Content Specification IDs'))}:</span> <span class="dpp-value">${safeContentSpecIds}</span></div>
       </section>
     `;
 
@@ -477,13 +503,13 @@ ${jsonLd.replace(/</g, '\\u003c')}
     const EXCLUDED_KEYS = new Set([
         'productName', 'manufacturer', 'uniqueProductIdentifier', 'id', 'images', 'productImage', 'image',
         'dppStatus', 'lastUpdate', 'digitalProductPassportId', 'dppSchemaVersion', 'economicOperatorId', 'granularity',
-        '@context', '@type', 'contentSpecificationIds'
+        '@context', '@type', 'contentSpecificationIds', '__proto__', 'constructor', 'prototype'
     ]);
 
     let contentHtml = '';
     Object.keys(dppData).forEach(key => {
         if (!EXCLUDED_KEYS.has(key)) {
-            contentHtml += renderValue(key, dppData[key], ontologyMap, language);
+            contentHtml += renderValue(key, dppData[key], ontologyMap, safeLanguage);
         }
     });
 
@@ -497,7 +523,7 @@ ${jsonLd.replace(/</g, '\\u003c')}
     }
 
     return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${escapeHtml(safeLanguage)}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

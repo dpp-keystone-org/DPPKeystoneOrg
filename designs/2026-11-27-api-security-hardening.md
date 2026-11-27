@@ -153,25 +153,27 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 6: Prototype-Key Sanitization (`__proto__`, `constructor`, `prototype`) & `language` Validation
+### [COMPLETED] Feature 6: Prototype-Key Sanitization (`__proto__`, `constructor`, `prototype`) & `language` Validation
 * **Severity:** Low–Medium (Per-Request Prototype Mutation / Unexpected 500s / UI Glitch)
 * **Affected Files:**
-  * `api/src/server.js` (`readJsonBody`)
-  * `src/util/js/common/transformation/profiles/ec-battery.js` (lines 178–194, 912–917)
-  * `src/util/js/common/rendering/dpp-html-renderer.js` (lines 103–116)
+  * `api/src/server.js` (`readJsonBody` `JSON.parse` reviver)
+  * `src/util/js/common/transformation/profiles/ec-battery.js` (`toMultiLang` & voluntary attribute copy loop)
+  * `src/util/js/common/rendering/dpp-html-renderer.js` (`getDisplayLabel` & `renderProductPage` `language` validation)
 * **Detailed Problem & Exploitability:**
   * `JSON.parse('{"__proto__": {"x": 1}}')` creates an own enumerable `"__proto__"` property on the parsed object. When `ec-battery.js` copies voluntary keys via `ecPayload[key] = ...`, or when `toMultiLang` assigns `map[lang] = ...`, assigning `"__proto__"` mutates the target object's prototype chain (or corrupts behavior if set to a primitive/non-plain object).
   * In `dpp-html-renderer.js`, `info.label[language]` accesses prototype properties on plain label maps—so passing `options.language = "toString"` or `"constructor"` renders `"function toString() { [native code] }"` as every field label.
-* **Options to Discuss:**
-  * Strip `"__proto__"`, `"constructor"`, and `"prototype"` keys via a `JSON.parse` reviver (or iterative cleaner) in `readJsonBody`, **and** guard `ec-battery.js` and `dpp-html-renderer.js` (`Object.hasOwn(info.label, language)` + BCP 47 validation on `language`) so browser tools (`Validator`, `Wizard`) are equally protected.
+* **Agreed Decision:**
+  * Strip own `"__proto__"`, `"constructor"`, and `"prototype"` keys via a `JSON.parse` reviver in `readJsonBody` (`api/src/server.js`).
+  * Guard `toMultiLang()` and the voluntary root-attribute copy loop in `src/util/js/common/transformation/profiles/ec-battery.js` against `"__proto__"`, `"constructor"`, and `"prototype"` so client-side Browser Validator/Wizard callers are protected too.
+  * Validate `language` against BCP 47 (`/^[a-zA-Z]{2,3}(?:-[a-zA-Z0-9]{2,8})*$/`, falling back to `'en'`), use `Object.hasOwn(info.label, safeLang)` in `getDisplayLabel()`, and emit `<html lang="${safeLang}">` in `dpp-html-renderer.js`.
 * **TODOs:**
-  * [ ] **Step 6.1 (Design Alignment):** Confirm boundary reviver + shared utility guards.
-  * [ ] **Step 6.2 (TDD Prototype & Language Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+  * [x] **Step 6.1 (Design Alignment):** Confirmed boundary `JSON.parse` reviver + shared `ec-battery.js` / `dpp-html-renderer.js` guards.
+  * [x] **Step 6.2 (TDD Prototype & Language Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
     * Raw JSON strings containing `"__proto__"`, `"constructor"`, and `"prototype"` keys sent to `/validate`, `/adapt`, and `/render/html` strip dangerous keys cleanly without mutating object prototypes or `Object.prototype`.
-    * Direct calls to `renderProductPage` / `getDisplayLabel` with `language = "toString"` or `"constructor"` fall back cleanly to `'en'` / key name instead of rendering `Function.prototype.toString` source text.
-    * Direct calls to EC Battery transformation with own `"__proto__"` properties (via `JSON.parse`) do not mutate `adaptedDpp`'s prototype chain.
-  * [ ] **Step 6.3 (Implementation):** Implement reviver in `api/src/server.js` and prototype/`Object.hasOwn`/BCP 47 guards in `ec-battery.js` and `dpp-html-renderer.js`.
-  * [ ] **Step 6.4 (Verification):** Rebuild (`npm run build`) and run `npm run test:api`.
+    * Direct calls to `adaptKeystoneToEcBattery` (bypassing `readJsonBody`, simulating direct/browser `JSON.parse` input) with own `"__proto__"`, `"constructor"`, and `"prototype"` keys do not mutate `adaptedDpp`'s prototype chain or copy dangerous keys.
+    * `POST /render/html` and `getDisplayLabel()` with `language = "toString"` or `"constructor"` fall back cleanly to `'en'` instead of rendering `Function.prototype.toString` (`[native code]`), while valid BCP 47 tags (e.g. `'de'`) emit `<html lang="de">`.
+  * [x] **Step 6.3 (Implementation):** Implement reviver in `api/src/server.js` and prototype/`Object.hasOwn`/BCP 47 guards in `ec-battery.js` and `dpp-html-renderer.js`.
+  * [x] **Step 6.4 (Verification):** Rebuilt (`npm run build`) and verified all `npm run test:api` suites pass.
 
 ---
 

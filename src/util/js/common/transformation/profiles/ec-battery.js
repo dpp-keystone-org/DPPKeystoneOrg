@@ -175,6 +175,12 @@ function parseWarrantyMonths(raw) {
     return undefined;
 }
 
+const DANGEROUS_PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
+function safeCloneJson(val) {
+    return JSON.parse(JSON.stringify(val), (key, value) => (DANGEROUS_PROTO_KEYS.has(key) ? undefined : value));
+}
+
 function toMultiLang(node, property, fallbackEn) {
     const entries = node?.[property];
     const map = {};
@@ -182,7 +188,8 @@ function toMultiLang(node, property, fallbackEn) {
         for (const entry of entries) {
             const val = entry?.['@value'];
             if (val !== undefined && val !== null && String(val).trim() !== '') {
-                const lang = entry['@language'] || 'en';
+                const rawLang = String(entry['@language'] || 'en').trim();
+                const lang = DANGEROUS_PROTO_KEYS.has(rawLang) ? 'en' : rawLang;
                 map[lang] = String(val).trim();
             }
         }
@@ -903,16 +910,17 @@ export function dppToEcBattery(sourceData, dictionary, rootNode, version = 'v3',
                         ecPayload['@context'].push(ctx);
                     }
                 } else if (ctx && typeof ctx === 'object') {
-                    ecPayload['@context'].push(JSON.parse(JSON.stringify(ctx)));
+                    ecPayload['@context'].push(safeCloneJson(ctx));
                 }
             }
         }
 
         for (const [key, value] of Object.entries(rawDpp)) {
             if (value === undefined) continue;
+            if (DANGEROUS_PROTO_KEYS.has(key)) continue;
             if (TRANSFORMED_SOURCE_KEYS.has(key)) continue;
             if (Object.prototype.hasOwnProperty.call(ecPayload, key)) continue;
-            ecPayload[key] = JSON.parse(JSON.stringify(value));
+            ecPayload[key] = safeCloneJson(value);
         }
     }
 
