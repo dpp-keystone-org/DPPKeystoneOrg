@@ -59,14 +59,14 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 3: Input Structural Limits & JSON-LD / RDF Expansion Caps (Stack & Graph-Bomb DoS)
+### [COMPLETED] Feature 3: Input Structural Limits & JSON-LD / RDF Expansion Caps (Stack & Graph-Bomb DoS)
 * **Severity:** Medium–High (Event-Loop Blocking & Call-Stack Crash)
 * **Affected Files:**
   * `api/src/server.js` (`readJsonBody`)
   * `api/src/lib/ec-validator-service.js` (`expandToRdfDataset` & `validateEcDppPayload`)
-  * `src/util/js/common/validation/ontology-validator.js` (lines 62–71)
-  * `src/util/js/common/validation/context-semantic-validator.js` (lines 42–80)
-  * `src/util/js/common/rendering/dpp-html-renderer.js` (lines 124–273)
+  * `src/util/js/common/validation/ontology-validator.js` (lines 50–78)
+  * `src/util/js/common/validation/context-semantic-validator.js` (lines 38–120)
+  * `src/util/js/common/rendering/dpp-html-renderer.js` (lines 35–82, 156–322)
   * `src/api/openapi.yml` (line 583 — `PayloadTooLarge` response description)
 * **Detailed Problem & Exploitability:**
   Even with a 1 MiB raw byte cap, two structural DoS vectors exist:
@@ -91,28 +91,35 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
     * JSON-LD `@container: "@list"` amplification (<15,000 JSON entries -> >20,000 RDF quads) rejected with `413 PAYLOAD_TOO_COMPLEX` on `/validate` and `/adapt?validate=true`.
     * Direct library calls (`validateAgainstOntology`, `validateContextAwarePayload`, `renderProductPage`) on a 2,500-deep object handle recursion limits gracefully without throwing V8 `RangeError`.
   * [x] **Step 3.2 (Implementation):** Implement iterative JSON guard in `api/src/server.js`, RDF quad/N-Quads cap + `statusCode` rethrow in `api/src/lib/ec-validator-service.js`, `MAX_TRAVERSAL_DEPTH = 64` guards in `src/util/`, and `PayloadTooLarge` description update in `src/api/openapi.yml`.
-  * [ ] **Step 3.3 (Verification):** Rebuild (`npm run build`) and run `npm run test:api` to verify all Feature 3 tests pass.
+  * [x] **Step 3.3 (Verification):** Rebuilt (`npm run build`) and verified all `npm run test:api` suites pass.
 
 ---
 
-### [ ] Feature 4: HTTP Transport Hardening (`413` Socket Teardown & Slowloris Timeouts)
+### [ ] Feature 4: HTTP Transport Hardening (`413` Socket Teardown, Slowloris Timeouts & `415` Media Type)
 * **Severity:** Medium–High (Connection & Bandwidth Exhaustion, especially outside Cloud Run)
 * **Affected Files:**
-  * `api/src/server.js` (lines 35–85, 333–339)
+  * `api/src/server.js` (`readJsonBody`, `createServer`, `POST` route handlers)
+  * `src/api/openapi.yml` (`UnsupportedMediaType` `415` response documentation)
 * **Detailed Problem & Exploitability:**
-  1. **Unclosed Socket on `413 Payload Too Large` (`readJsonBody`, lines 41–53):**
-     When `receivedBytes > MAX_PAYLOAD_BYTES`, `readJsonBody` sets `isTooLarge = true` and rejects the promise so the route handler writes a `413` response—**but never calls `req.destroy()` or sets `Connection: close`**. An attacker streaming a multi-gigabyte body over keep-alive or slow chunks can continue pushing data into OS/Node socket buffers after the rejection, or desynchronize HTTP pipelining on the connection because the remaining request body was never drained.
-  2. **Missing Server Timeouts (`createServer`, line 83):**
-     Node's default `headersTimeout` (60s) and `requestTimeout` (300s / 5 minutes!) are very permissive. While Google Cloud Run's front-end proxy buffers requests, **deploying this container in GS1's cloud (e.g., behind an AWS NLB/ALB or Kubernetes Ingress)** exposes Node directly to Slowloris / slow-body connection exhaustion if timeouts aren't explicitly tightened.
-  3. **`Content-Type` Enforcement:**
-     `POST` endpoints currently parse any body as JSON regardless of `Content-Type` (e.g., `text/plain` sent via HTML `<form>` or simple cross-origin `fetch` without CORS preflight!). Requiring `Content-Type: application/json` (or `application/ld+json`) forces browsers to send a CORS `OPTIONS` preflight before cross-origin `POST`s.
-* **Options to Discuss:**
-  * Send `Connection: close` on `413` and destroy `req.socket` once the `413` response flushes (`res.on('finish', () => req.destroy())`), plus check `Content-Length` header upfront before reading chunks!
-  * Configure `server.headersTimeout = 10_000`, `server.requestTimeout = 15_000`, and `server.keepAliveTimeout = 5_000`.
-  * Decide whether to strictly enforce `Content-Type: application/json` / `application/ld+json` (`415 Unsupported Media Type`) on `POST` routes.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 4.1: Agree on timeout values, upfront `Content-Length` check + socket teardown, and `Content-Type` check.
-  * [ ] Step 4.2: Implement in `api/src/server.js` and add integration tests (`413`, `415`).
+  1. **Unclosed Socket & Missing `Content-Length` Pre-Check on `413` (`readJsonBody`):**
+     `readJsonBody` does not pre-check `Content-Length` before buffering chunks, and when `receivedBytes > MAX_PAYLOAD_BYTES`, it rejects the promise without pausing `req`, setting `Connection: close`, or destroying the unread socket after the `413` response flushes. An attacker streaming a multi-gigabyte body over keep-alive or slow chunks can continue pushing data into OS/Node socket buffers or desynchronize HTTP pipelining. Additionally, `body += chunk` decodes `Buffer` chunks individually, corrupting multi-byte UTF-8 characters (`€`, `ä`, emoji) split across TCP packet boundaries.
+  2. **Missing Server Timeouts (`createServer`):**
+     Node's default `headersTimeout` (60s) and `requestTimeout` (300s / 5 minutes) expose the container to Slowloris / slow-body socket exhaustion when deployed outside Cloud Run (e.g., behind an AWS NLB or Kubernetes Ingress in GS1's cloud).
+  3. **`Content-Type` Enforcement (`415 Unsupported Media Type`):**
+     `POST` endpoints currently parse any body regardless of `Content-Type` (including `text/plain` and `application/x-www-form-urlencoded`, which browsers send cross-origin without a CORS `OPTIONS` preflight).
+* **Agreed Decision:**
+  * Pre-check `Content-Length > MAX_PAYLOAD_BYTES` upfront before reading chunks; accumulate `Buffer` chunks via `Buffer.concat(chunks).toString('utf-8')`; on any `PAYLOAD_TOO_LARGE` rejection (`err.closeConnection = true`), pause `req`, send `Connection: close`, and destroy `req.socket` right after `res.on('finish')` (via a short `.unref()` grace timer so clients cleanly read the `413` body before TCP teardown).
+  * Configure `server.keepAliveTimeout = 5_000`, `server.headersTimeout = 10_000`, and `server.requestTimeout = 15_000` on `createServer()`.
+  * Enforce `Content-Type` matching `application/json` or `application/*+json` (e.g. `application/ld+json`, ignoring `; charset=...`) on `POST` routes, returning `415` (`code: 'UNSUPPORTED_MEDIA_TYPE'`).
+* **TODOs:**
+  * [x] **Step 4.1 (TDD Transport & Media-Type Tests):** Add failing tests in `testing/integration/api/api-security-hardening.test.js` covering:
+    * `createServer()` timeout properties (`keepAliveTimeout = 5000`, `headersTimeout = 10000`, `requestTimeout = 15000`).
+    * Upfront `Content-Length > 1 MiB` rejection (`413 PAYLOAD_TOO_LARGE` + `Connection: close`) without waiting for body upload.
+    * Mid-stream >1 MiB chunked upload rejection (`413 PAYLOAD_TOO_LARGE` + `Connection: close` + server-initiated socket teardown).
+    * Multi-byte UTF-8 codepoint split across separate TCP chunks decoded intact without `U+FFFD` corruption.
+    * `415 UNSUPPORTED_MEDIA_TYPE` on `text/plain`, `application/x-www-form-urlencoded`, and missing `Content-Type`, while `application/json; charset=utf-8` and `application/ld+json` succeed.
+  * [ ] **Step 4.2 (Implementation):** Implement transport hardening & `415` check in `api/src/server.js` and document `415` in `src/api/openapi.yml`.
+  * [ ] **Step 4.3 (Verification):** Run `npm run build && npm run test:api` to verify all Feature 4 tests pass.
 
 ---
 
@@ -123,17 +130,23 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
   * `api/src/server.js` (lines 306–312)
 * **Detailed Problem & Exploitability:**
   Although `/render/html` is de-emphasized for service providers building custom UIs, it remains active on the API and in the browser tools (`Validator`, `Wizard`):
-  1. **`data:image/svg+xml` in `sanitizeUrl()` (line 31):** Currently allows any `data:image/*` URI. SVG data URIs can contain executable `<script>` payloads—inert inside `<img>`, but executed if a user opens the image in a new tab or if `sanitizeUrl()` is ever reused on an `<a href>` or `<object>`.
-  2. **Arbitrary External CSS (`options.customCssUrl`, lines 432–438):** Allows injecting any `https://` stylesheet (and `http://localhost` / `http://127.0.0.1`, enabling local-port probing from a viewer's browser). External CSS enables full UI redressing/phishing and CSS attribute/text side-channel exfiltration if `options` comes from an untrusted caller.
-  3. **Permissive CSP on `/render/html` (`server.js` line 309):** Currently emits `script-src 'self' 'unsafe-inline'` on every response (solely to support the inline `onclick="moveSlide(...)"` carousel when `images.length > 1`) and omits `frame-ancestors 'none'`, `base-uri 'none'`, and `object-src 'none'`. Also, `renderProductPage` interpolates `${css}` inside `<style>` without escaping `</style>`.
+  1. **`data:image/svg+xml` in `sanitizeUrl()`:** Currently allows any `data:image/*` URI. SVG data URIs can contain executable `<script>` payloads—inert inside `<img>`, but executed if a user opens the image in a new tab or if `sanitizeUrl()` is ever reused on an `<a href>` or `<object>`.
+  2. **Arbitrary External CSS (`options.customCssUrl`):** Allows injecting any `https://` stylesheet (and `http://localhost` / `http://127.0.0.1`, enabling local-port probing from a viewer's browser). External CSS enables full UI redressing/phishing and CSS attribute/text side-channel exfiltration if `options` comes from an untrusted caller.
+  3. **Permissive CSP & Raw `<style>` Interpolation:** `server.js` emits `script-src 'self' 'unsafe-inline'` on every response (solely for the multi-image carousel `onclick` handlers) and omits `frame-ancestors 'none'`, `base-uri 'none'`, and `object-src 'none'`. Also, `renderProductPage` interpolates `${css}` inside `<style>` without escaping `</style>`.
 * **Options to Discuss:**
-  * Restrict `data:` URIs in `sanitizeUrl()` to raster formats only: `/^data:image\/(?:png|jpeg|jpg|gif|webp);base64,[a-z0-9+/=\s]+$/i`.
-  * Decide fate of `customCssUrl` on the API (`http://localhost` allowance in prod vs. HTTPS-only vs. deprecating/disabling external CSS on the server).
-  * Tighten CSP (`object-src 'none'; base-uri 'none'; frame-ancestors 'none'`, and use a per-render CSP cryptographic nonce—or only allow script execution when the multi-image carousel is present without inline `onclick` attributes!).
-  * Strip/escape `</style` in `${cssContent}` inside `renderProductPage` as defense-in-depth.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 5.1: Decide policy on SVG `data:` URIs, `customCssUrl`, and CSP nonces/directives.
-  * [ ] Step 5.2: Implement renderer & CSP hardening and add unit/integration tests.
+  * Restrict `data:` URIs in `sanitizeUrl()` to base64 raster formats only: `/^data:image\/(?:png|jpeg|jpg|gif|webp);base64,[a-z0-9+/=\s]+$/i`.
+  * Decide fate of `customCssUrl` on the API (`http://localhost` allowance vs. HTTPS-only vs. disabling external CSS on the server).
+  * Tighten CSP (`object-src 'none'; base-uri 'none'; frame-ancestors 'none'`, and replace inline `onclick` attributes with a nonce-protected or `script-src 'none'` single-image / event-listener carousel).
+  * Escape `</style` in `${cssContent}` inside `renderProductPage` as defense-in-depth.
+* **TODOs:**
+  * [ ] **Step 5.1 (Design Alignment):** Decide policy on SVG `data:` URIs, `customCssUrl`, and CSP nonces/directives.
+  * [ ] **Step 5.2 (TDD Sanitization & CSP Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+    * `sanitizeUrl()` blocks `data:image/svg+xml` (both base64 and utf8) while preserving valid base64 `png`/`jpeg`/`gif`/`webp` data URIs.
+    * `renderProductPage()` neutralizes `</style><script>` breakout sequences inside `css`.
+    * `customCssUrl` enforces the agreed policy (e.g. blocks `http://127.0.0.1` / `javascript:` / untrusted URLs).
+    * `POST /render/html` emits hardened CSP headers (`object-src 'none'`, `base-uri 'none'`, `frame-ancestors 'none'`, no `'unsafe-inline'` in `script-src`) while multi-image carousels remain functional.
+  * [ ] **Step 5.3 (Implementation):** Implement renderer & CSP hardening in `dpp-html-renderer.js` and `api/src/server.js`.
+  * [ ] **Step 5.4 (Verification):** Rebuild (`npm run build`) and run `npm run test:api`.
 
 ---
 
@@ -144,29 +157,38 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
   * `src/util/js/common/transformation/profiles/ec-battery.js` (lines 178–194, 912–917)
   * `src/util/js/common/rendering/dpp-html-renderer.js` (lines 103–116)
 * **Detailed Problem & Exploitability:**
-  * `JSON.parse('{"__proto__": {"x": 1}}')` creates an own enumerable `"__proto__"` property on the parsed object. When `ec-battery.js` copies voluntary keys via `ecPayload[key] = ...` (line 916), or when `toMultiLang` assigns `map[lang] = ...` (line 186), assigning `"__proto__"` mutates the target object's prototype chain (or throws / corrupts serialization if set to a primitive/non-plain object). While this does **not** pollute global `Object.prototype` across requests, it can break per-request validation or cause `500` errors.
-  * Similarly, in `dpp-html-renderer.js` line 108, `info.label[language]` checks prototype properties on plain label maps—so passing `options.language = "toString"` or `"constructor"` renders `"function toString() { [native code] }"` as every field label.
+  * `JSON.parse('{"__proto__": {"x": 1}}')` creates an own enumerable `"__proto__"` property on the parsed object. When `ec-battery.js` copies voluntary keys via `ecPayload[key] = ...`, or when `toMultiLang` assigns `map[lang] = ...`, assigning `"__proto__"` mutates the target object's prototype chain (or corrupts behavior if set to a primitive/non-plain object).
+  * In `dpp-html-renderer.js`, `info.label[language]` accesses prototype properties on plain label maps—so passing `options.language = "toString"` or `"constructor"` renders `"function toString() { [native code] }"` as every field label.
 * **Options to Discuss:**
-  * Pass a `JSON.parse` reviver in `readJsonBody` (or recursive sanitizer) that drops `"__proto__"`, `"constructor"`, and `"prototype"` keys at the API boundary, **and** guard `ec-battery.js` and `dpp-html-renderer.js` (`Object.hasOwn(info.label, language)` + BCP 47 regex validation on `language`) so browser tools (`Validator`, `Wizard`) are equally protected.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 6.1: Confirm boundary reviver + shared utility guards.
-  * [ ] Step 6.2: Implement guards and add unit/integration tests with `__proto__` / `constructor` payloads.
+  * Strip `"__proto__"`, `"constructor"`, and `"prototype"` keys via a `JSON.parse` reviver (or iterative cleaner) in `readJsonBody`, **and** guard `ec-battery.js` and `dpp-html-renderer.js` (`Object.hasOwn(info.label, language)` + BCP 47 validation on `language`) so browser tools (`Validator`, `Wizard`) are equally protected.
+* **TODOs:**
+  * [ ] **Step 6.1 (Design Alignment):** Confirm boundary reviver + shared utility guards.
+  * [ ] **Step 6.2 (TDD Prototype & Language Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+    * Raw JSON strings containing `"__proto__"`, `"constructor"`, and `"prototype"` keys sent to `/validate`, `/adapt`, and `/render/html` strip dangerous keys cleanly without mutating object prototypes or `Object.prototype`.
+    * Direct calls to `renderProductPage` / `getDisplayLabel` with `language = "toString"` or `"constructor"` fall back cleanly to `'en'` / key name instead of rendering `Function.prototype.toString` source text.
+    * Direct calls to EC Battery transformation with own `"__proto__"` properties (via `JSON.parse`) do not mutate `adaptedDpp`'s prototype chain.
+  * [ ] **Step 6.3 (Implementation):** Implement reviver in `api/src/server.js` and prototype/`Object.hasOwn`/BCP 47 guards in `ec-battery.js` and `dpp-html-renderer.js`.
+  * [ ] **Step 6.4 (Verification):** Rebuild (`npm run build`) and run `npm run test:api`.
 
 ---
 
 ### [ ] Feature 7: Sanitize `500` Error Responses & Structured Server Logging
 * **Severity:** Low–Medium (Information Disclosure)
 * **Affected Files:**
-  * `api/src/server.js` (lines 322–328)
-  * `api/src/lib/ec-validator-service.js` (lines 466–471, 569–575)
+  * `api/src/server.js` (top-level `catch (err)`)
+  * `api/src/lib/ec-validator-service.js` (SHACL `catch` blocks)
 * **Detailed Problem & Exploitability:**
-  In `server.js` line 325, the top-level `catch (err)` block returns `error: err.message` verbatim to the HTTP client even when `statusCode === 500`. Unexpected filesystem, N3Parser, or library exceptions can disclose internal container paths (`/app/ec-bundle/...`) or Node internals.
+  In `server.js`, the top-level `catch (err)` block returns `error: err.message` verbatim to the HTTP client even when `statusCode === 500`. Unexpected filesystem, N3Parser, or library exceptions can disclose internal container paths (`/app/ec-bundle/...`) or Node internals.
 * **Options to Discuss:**
-  * Only return `err.message` when `statusCode >= 400 && statusCode < 500` (client errors explicitly tagged with `err.statusCode`); for `500`, log the full error server-side (`console.error`) and return `{ error: 'Internal Server Error', code: 'INTERNAL_ERROR' }`.
-  * Sanitize any filesystem paths if `ec-validator-service.js` catches an unexpected expansion/parser error.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 7.1: Confirm client-visible vs. server-logged error policy.
-  * [ ] Step 7.2: Update error handling in `server.js` and `ec-validator-service.js` + test.
+  * Return `err.message` only when `statusCode >= 400 && statusCode < 500` (client errors explicitly tagged with `err.statusCode`); for `>= 500`, log the full error server-side (`console.error`) and return `{ error: 'Internal Server Error', code: 'INTERNAL_ERROR' }`.
+  * Scrub local filesystem paths if `ec-validator-service.js` catches an unexpected non-HTTP expansion/parser error.
+* **TODOs:**
+  * [ ] **Step 7.1 (Design Alignment):** Confirm client-visible vs. server-logged error policy.
+  * [ ] **Step 7.2 (TDD Error-Masking Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+    * When an internal dependency throws an untagged `Error('ENOENT: no such file /app/secret/internal.json')`, the API logs the full error via `console.error` (`jest.spyOn`) while returning `500` with `{ error: 'Internal Server Error', code: 'INTERNAL_ERROR' }` and zero path leakage in the HTTP body.
+    * Explicit `4xx` errors (`400`, `413`, `415`, `422`) still preserve their actionable client-facing `error` messages and `code`s.
+  * [ ] **Step 7.3 (Implementation):** Implement `500` masking + server logging in `api/src/server.js` and path scrubbing in `ec-validator-service.js`.
+  * [ ] **Step 7.4 (Verification):** Run `npm run test:api`.
 
 ---
 
@@ -174,15 +196,17 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 * **Severity:** Medium (Third-Party CDN Script Trust)
 * **Affected Files:**
   * `src/api/index.html` (lines 9, 164)
-  * `scripts/bundle-vendor.mjs` (if vendoring locally)
+  * `scripts/bundle-vendor.mjs` / `scripts/build-and-clean.mjs` (if vendoring locally)
 * **Detailed Problem & Exploitability:**
-  `src/api/index.html` currently loads `https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css` and `swagger-ui-bundle.js` using a floating `@5` major version tag and **without Subresource Integrity (`integrity="sha384-..."`)**. If `cdn.jsdelivr.net` were compromised or a malicious `5.x` patch version were published to npm, arbitrary JS would execute in the `dpp-keystone.org` (or GS1 documentation) origin. In addition, many enterprise security policies (potentially including GS1's) block third-party CDN scripts via strict CSP.
+  `src/api/index.html` currently loads `https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css` and `swagger-ui-bundle.js` using a floating `@5` major version tag and **without Subresource Integrity (`integrity="sha384-..."`)**. If `cdn.jsdelivr.net` were compromised or a malicious `5.x` patch version were published to npm, arbitrary JS would execute in the `dpp-keystone.org` (or GS1 documentation) origin. In addition, enterprise CSPs often block third-party CDN scripts.
 * **Options to Discuss:**
-  * **Option A (Pin Exact Version + SRI Hash):** Pin e.g. `swagger-ui-dist@5.18.2` with `integrity="sha384-..." crossorigin="anonymous"`. Zero repo size increase; browser refuses to execute if a single byte changes on the CDN.
-  * **Option B (Self-Host / Vendor Locally):** Add `swagger-ui-dist` to `devDependencies` and copy `swagger-ui.css` + `swagger-ui-bundle.js` into `src/lib/vendor/swagger-ui/` during `bundle:vendor` (or `build`). Increases `dist/` size by ~1.5 MB, but makes `/api/` 100% self-contained, offline-capable, and compliant with strict `'self'` CSPs.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 8.1: Choose Option A (Pinned CDN + SRI) vs. Option B (Self-Hosted Vendor Assets).
-  * [ ] Step 8.2: Implement and verify with `api-docs.spec.js`.
+  * **Option A (Pin Exact Version + SRI Hash):** Pin exact `swagger-ui-dist@x.y.z` URLs with `integrity="sha384-..." crossorigin="anonymous"`. Zero repo size increase; browser refuses to execute modified assets.
+  * **Option B (Self-Host / Vendor Locally):** Add `swagger-ui-dist` to `devDependencies` and copy `swagger-ui.css` + `swagger-ui-bundle.js` into local vendor assets during build (~1.5 MB `dist/` increase, 100% offline & `'self'` CSP compliant).
+* **TODOs:**
+  * [ ] **Step 8.1 (Design Alignment):** Choose Option A (Pinned CDN + SRI) vs. Option B (Self-Hosted Vendor Assets).
+  * [ ] **Step 8.2 (TDD Supply-Chain Tests):** Add failing assertions in `testing/integration/api/api-docs-generation.test.js` verifying `dist/api/index.html` contains zero unpinned CDN `@5/` URLs and either carries valid `sha384-` SRI + `crossorigin="anonymous"` attributes (Option A) or loads exclusively from local relative vendor paths with zero external CDN `<script>`/`<link>` tags (Option B).
+  * [ ] **Step 8.3 (Implementation):** Update `src/api/index.html` (and build scripts if Option B).
+  * [ ] **Step 8.4 (Verification):** Run `npm run build && npm run test:api` (plus Playwright `api-docs.spec.js`).
 
 ---
 
@@ -190,16 +214,21 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 * **Severity:** Medium (Service Availability / Quota Exhaustion)
 * **Affected Files:**
   * `api/src/server.js`
-  * `.github/workflows/deploy-api.yml` (and GS1 deployment runbook / documentation)
+  * `api/README.md` (GS1 cloud deployment & security guide)
 * **Detailed Problem & Exploitability:**
-  The API is currently public (`--allow-unauthenticated`, `Access-Control-Allow-Origin: *`) with `--max-instances 2` and `--concurrency 20`. While `max-instances=2` prevents runaway cloud bills, ~40 simultaneous SHACL validation requests from a single abusive client will saturate all available capacity and cause `429`/`503` errors for legitimate callers.
+  The API is currently public (`--allow-unauthenticated`, `Access-Control-Allow-Origin: *`) with `--max-instances 2` and `--concurrency 20`. ~40 simultaneous SHACL validation requests from one abusive IP can saturate capacity for legitimate callers, and GS1 deployments may require locked-down CORS origins.
 * **Options to Discuss:**
-  * **Lightweight In-Process Per-IP Token-Bucket Rate Limiter (Optional Defense-in-Depth):** Add a configurable, bounded-memory per-IP rate limiter in `server.js` (e.g., `RATE_LIMIT_RPM=120`, respecting `X-Forwarded-For` only when `TRUST_PROXY=true`), returning `429 Too Many Requests` with `Retry-After` before running expensive Ajv/JSON-LD/SHACL work!
-  * **Configurable CORS Origin (`ALLOWED_ORIGINS` env var):** Default to `*` for public `dpp-keystone.org` sandbox, while allowing GS1's deployment to set `ALLOWED_ORIGINS=https://...` via environment variable without code changes.
-  * **Cloud-Layer Guidance for GS1:** Document recommended WAF / API Gateway / Cloud Armor per-IP rate limiting, TLS termination, and optional API-key / IAM authentication in an operations/deployment README (`api/README.md`).
-* **TODOs (to expand once agreed):**
-  * [ ] Step 9.1: Decide on in-process rate limiter, `ALLOWED_ORIGINS` env config, and `api/README.md` GS1 deployment guide.
-  * [ ] Step 9.2: Implement agreed controls and add tests.
+  * **Configurable In-Process Per-IP Token-Bucket Rate Limiter:** Bounded-memory per-IP limiter in `createServer()` (configured via `RATE_LIMIT_RPM` env var or `createServer({ rateLimitRpm, trustProxy })` options; respects `X-Forwarded-For` **only** when `TRUST_PROXY=true`), returning `429 Too Many Requests` (`code: 'RATE_LIMITED'`) + `Retry-After` header before running expensive validation.
+  * **Configurable CORS Origin (`ALLOWED_ORIGINS` env var / option):** Default to `*` for the public `dpp-keystone.org` sandbox, while allowing GS1's deployment to set `ALLOWED_ORIGINS=https://...` without code changes.
+  * **GS1 Cloud Operations Guide (`api/README.md`):** Document recommended WAF / API Gateway per-IP rate limiting, TLS termination, container flags, and environment variables.
+* **TODOs:**
+  * [ ] **Step 9.1 (Design Alignment):** Confirm rate-limiter defaults, `TRUST_PROXY` behavior, `ALLOWED_ORIGINS` config, and `api/README.md`.
+  * [ ] **Step 9.2 (TDD Rate-Limit & CORS Tests):** Add failing tests in `api-security-hardening.test.js` using isolated `createServer({ ... })` instances asserting:
+    * Exceeding `rateLimitRpm` returns `429` (`code: 'RATE_LIMITED'`) with `Retry-After` header.
+    * Spoofed `X-Forwarded-For` headers cannot bypass per-IP rate limits when `trustProxy: false`, and distinct forwarded client IPs are tracked accurately when `trustProxy: true`.
+    * `allowedOrigins: ['https://gs1.example.org']` reflects `Access-Control-Allow-Origin: https://gs1.example.org` + `Vary: Origin` for allowed origins and withholds CORS access for unlisted origins, while default `*` behavior remains intact when unset.
+  * [ ] **Step 9.3 (Implementation):** Implement rate limiter & `ALLOWED_ORIGINS` in `api/src/server.js`, update `openapi.yml` (`429`), and create/update `api/README.md`.
+  * [ ] **Step 9.4 (Verification):** Run `npm run test:api`.
 
 ---
 
@@ -210,13 +239,16 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
   * `.dockerignore`
   * `.github/workflows/deploy-api.yml`
 * **Detailed Problem & Exploitability:**
-  1. **`npm install` in `Dockerfile` (line 9):** `RUN npm install --omit=dev` can resolve newer semver-compatible transitive packages than those locked in `package-lock.json` and runs package `postinstall` scripts. Using `RUN npm ci --omit=dev --ignore-scripts` guarantees byte-for-byte lockfile reproducibility and blocks malicious install scripts.
-  2. **Mutable Base Image & Writable Filesystem:** `FROM node:24-alpine` is unpinned, and container security best practice (often required by enterprise scanners in GS1/cloud environments) includes a `HEALTHCHECK` instruction and compatibility with read-only root filesystems (`--read-only`).
-  3. **Excess Files in Container Image (`.dockerignore`):** Currently copies `scripts/`, `index.html`, `index.i18n.json`, `ec-bundle/verify-semantic-integrity.mjs`, and `ec-bundle*/**/tests/` into the production container unnecessarily.
-  4. **Branch Trigger in `deploy-api.yml` (lines 6–7):** Currently allows pushes to `feature/api-setup` to deploy directly to `dpp-keystone-prod`, and uses mutable tag references (`@v4`, `@v2`) on third-party GitHub Actions.
+  1. **`npm install` in `Dockerfile`:** `RUN npm install --omit=dev` can resolve newer semver-compatible transitive packages than `package-lock.json` and executes `postinstall` scripts (`npm ci --omit=dev --ignore-scripts` enforces exact lockfile reproducibility and disables install scripts).
+  2. **Container Hardening (`HEALTHCHECK` & Read-Only Root FS):** Enterprise scanners in GS1/cloud environments expect non-root `USER`, `HEALTHCHECK`, and compatibility with `--read-only` root filesystems.
+  3. **Excess Build Context (`.dockerignore`):** Currently copies `scripts/`, `index.html`, `index.i18n.json`, `ec-bundle/verify-semantic-integrity.mjs`, and `ec-bundle*/**/tests/` into the production image unnecessarily.
+  4. **Branch Trigger in `deploy-api.yml`:** Currently deploys pushes on `feature/api-setup` to `dpp-keystone-prod` and uses mutable `@v4`/`@v2` tags on GitHub Actions.
 * **Options to Discuss:**
-  * Switch `Dockerfile` to `npm ci --omit=dev --ignore-scripts`, verify the server writes zero temp files to disk (so `--read-only` works out of the box), and trim `.dockerignore`.
-  * Decide when to remove `feature/api-setup` from `deploy-api.yml` (e.g., as the final step right before merging the PR to `main`) and whether to pin GitHub Action commit SHAs.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 10.1: Confirm `Dockerfile`, `.dockerignore`, and `deploy-api.yml` hardening items.
-  * [ ] Step 10.2: Apply container & workflow updates and verify local Docker build / tests.
+  * Switch `Dockerfile` to `npm ci --omit=dev --ignore-scripts` + `HEALTHCHECK`, trim `.dockerignore`, and decide when to remove `feature/api-setup` from `deploy-api.yml` + pin Action SHAs (plus whether to keep/document or remove `scripts/measure-api-memory.mjs`).
+* **TODOs:**
+  * [ ] **Step 10.1 (Design Alignment):** Confirm `Dockerfile`, `.dockerignore`, `deploy-api.yml`, and `measure-api-memory.mjs` choices.
+  * [ ] **Step 10.2 (TDD Container Hygiene Tests):** Add static configuration tests in `api-security-hardening.test.js` asserting:
+    * `Dockerfile` uses `npm ci --omit=dev --ignore-scripts` (never `npm install`), sets a non-root `USER`, and defines a `HEALTHCHECK`.
+    * `.dockerignore` excludes `testing`, `scripts`, `designs`, `docs`, `.git`, and root website-only files (`index.html`, `index.i18n.json`). *(Note: live `docker build` / `docker run --read-only` verification is executed via Docker CLI rather than inside Jest.)*
+  * [ ] **Step 10.3 (Implementation):** Update `Dockerfile`, `.dockerignore`, and `.github/workflows/deploy-api.yml`.
+  * [ ] **Step 10.4 (Verification):** Run `npm run test:api` (and optional `npm run docker:build` / full `npm test`).

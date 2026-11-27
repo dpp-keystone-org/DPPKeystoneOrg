@@ -1,5 +1,6 @@
 import { jest } from '@jest/globals';
 import { promises as fs } from 'fs';
+import http from 'node:http';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse as jsoncParse } from 'jsonc-parser';
@@ -456,6 +457,226 @@ describe('HTTP API - Security Hardening Suite', () => {
             expect(thrownError).not.toBeNull();
             expect(thrownError).not.toBeInstanceOf(RangeError);
             expect(thrownError.message).toMatch(/Maximum nesting depth/i);
+        });
+    });
+
+    describe('Feature 4: HTTP Transport Hardening (413 Socket Teardown, Slowloris Timeouts & 415 Media Type)', () => {
+        it('configures explicit Slowloris and keep-alive timeouts on createServer()', () => {
+            expect(testServer.server.keepAliveTimeout).toBe(5_000);
+            expect(testServer.server.headersTimeout).toBe(10_000);
+            expect(testServer.server.requestTimeout).toBe(15_000);
+        });
+
+        it('rejects oversized Content-Length headers immediately with 413 PAYLOAD_TOO_LARGE and Connection: close without waiting for body chunks', async () => {
+            const targetUrl = new URL(`${baseUrl}/adapt`);
+
+            const result = await new Promise((resolve, reject) => {
+                const req = http.request(
+                    {
+                        hostname: targetUrl.hostname,
+                        port: targetUrl.port,
+                        path: targetUrl.pathname,
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Content-Length': String(5 * 1024 * 1024) // Declare 5 MiB upfront
+                        }
+                    },
+                    (res) => {
+                        let raw = '';
+                        res.setEncoding('utf-8');
+                        res.on('data', (chunk) => {
+                            raw += chunk;
+                        });
+                        res.on('end', () => {
+                            req.destroy();
+                            resolve({
+                                statusCode: res.statusCode,
+                                headers: res.headers,
+                                body: raw ? JSON.parse(raw) : {}
+                            });
+                        });
+                    }
+                );
+
+                req.setTimeout(400, () => {
+                    req.destroy(new Error('Server waited for body upload instead of pre-checking Content-Length'));
+                });
+                req.on('error', (err) => {
+                    // Ignore ECONNRESET after we already received the 413 response
+                    reject(err);
+                });
+
+                // Write only 7 bytes so an unpatched server without a Content-Length pre-check stalls until timeout
+                req.write('{"dpp":');
+            });
+
+            expect(result.statusCode).toBe(413);
+            expect(result.body.code).toBe('PAYLOAD_TOO_LARGE');
+            expect(result.headers.connection).toBe('close');
+        });
+
+        it('aborts mid-stream chunked uploads exceeding 1 MiB with 413 PAYLOAD_TOO_LARGE, Connection: close, and server-side socket teardown', async () => {
+            const targetUrl = new URL(`${baseUrl}/validate`);
+            const chunk = Buffer.alloc(128 * 1024, 'a'); // 128 KiB chunk
+
+            let activeReq = null;
+            try {
+                const result = await new Promise((resolve, reject) => {
+                    const req = http.request(
+                        {
+                            hostname: targetUrl.hostname,
+                            port: targetUrl.port,
+                            path: targetUrl.pathname,
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Transfer-Encoding': 'chunked'
+                            }
+                        },
+                        (res) => {
+                            let raw = '';
+                            res.setEncoding('utf-8');
+                            res.on('data', (c) => {
+                                raw += c;
+                            });
+                            res.on('end', () => {
+                                // Wait up to 250ms to verify the server actively destroys the unread socket
+                                const socket = req.socket;
+                                if (!socket || socket.destroyed) {
+                                    resolve({
+                                        statusCode: res.statusCode,
+                                        headers: res.headers,
+                                        body: raw ? JSON.parse(raw) : {},
+                                        socketClosedByServer: true
+                                    });
+                                    return;
+                                }
+                                const timer = setTimeout(() => {
+                                    resolve({
+                                        statusCode: res.statusCode,
+                                        headers: res.headers,
+                                        body: raw ? JSON.parse(raw) : {},
+                                        socketClosedByServer: socket.destroyed
+                                    });
+                                }, 250);
+                                socket.once('close', () => {
+                                    clearTimeout(timer);
+                                    resolve({
+                                        statusCode: res.statusCode,
+                                        headers: res.headers,
+                                        body: raw ? JSON.parse(raw) : {},
+                                        socketClosedByServer: true
+                                    });
+                                });
+                            });
+                        }
+                    );
+                    activeReq = req;
+                    req.on('error', (err) => {
+                        if (err.code !== 'ECONNRESET' && err.code !== 'EPIPE') {
+                            reject(err);
+                        }
+                    });
+
+                    // Write 9 * 128 KiB = 1,152 KiB (> 1 MiB) WITHOUT calling req.end()
+                    req.write('{"dpp":"');
+                    for (let i = 0; i < 9; i++) {
+                        req.write(chunk);
+                    }
+                });
+
+                expect(result.statusCode).toBe(413);
+                expect(result.body.code).toBe('PAYLOAD_TOO_LARGE');
+                expect(result.headers.connection).toBe('close');
+                expect(result.socketClosedByServer).toBe(true);
+            } finally {
+                if (activeReq && !activeReq.destroyed) {
+                    activeReq.destroy();
+                }
+            }
+        });
+
+        it('preserves multi-byte UTF-8 characters when split mid-codepoint across separate TCP chunks', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            const utf8Marker = 'Price: €100 — Größer — 🚀';
+            dpp.voluntaryUtf8Note = utf8Marker;
+
+            const fullBuf = Buffer.from(JSON.stringify({ dpp, options: { target: 'patched' } }), 'utf-8');
+            // Locate the 3-byte UTF-8 sequence for '€' (0xE2 0x82 0xAC) and split right after 0xE2!
+            const euroStart = fullBuf.indexOf(Buffer.from([0xe2, 0x82, 0xac]));
+            expect(euroStart).toBeGreaterThan(0);
+
+            const part1 = fullBuf.subarray(0, euroStart + 1);
+            const part2 = fullBuf.subarray(euroStart + 1);
+            const targetUrl = new URL(`${baseUrl}/adapt`);
+
+            const response = await new Promise((resolve, reject) => {
+                const req = http.request(
+                    {
+                        hostname: targetUrl.hostname,
+                        port: targetUrl.port,
+                        path: targetUrl.pathname,
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8',
+                            'Transfer-Encoding': 'chunked'
+                        }
+                    },
+                    (res) => {
+                        let raw = '';
+                        res.setEncoding('utf-8');
+                        res.on('data', (c) => {
+                            raw += c;
+                        });
+                        res.on('end', () => {
+                            resolve({ statusCode: res.statusCode, body: JSON.parse(raw) });
+                        });
+                    }
+                );
+                req.on('error', reject);
+                req.write(part1);
+                setTimeout(() => {
+                    req.end(part2);
+                }, 20);
+            });
+
+            expect(response.statusCode).toBe(200);
+            expect(response.body.adaptedDpp.voluntaryUtf8Note).toBe(utf8Marker);
+        });
+
+        it('enforces 415 UNSUPPORTED_MEDIA_TYPE on POST endpoints while accepting application/json and application/ld+json', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            const payloadStr = JSON.stringify({ dpp, options: { target: 'patched' } });
+
+            // 1. Rejects text/plain and application/x-www-form-urlencoded across all POST routes
+            for (const endpoint of ['/validate', '/adapt', '/render/html']) {
+                const textPlainResp = await fetch(`${baseUrl}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: payloadStr
+                });
+                const textPlainBody = await textPlainResp.json();
+                expect(textPlainResp.status).toBe(415);
+                expect(textPlainBody.code).toBe('UNSUPPORTED_MEDIA_TYPE');
+
+                const formResp = await fetch(`${baseUrl}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: payloadStr
+                });
+                expect(formResp.status).toBe(415);
+            }
+
+            // 2. Accepts both application/json; charset=utf-8 and application/ld+json
+            for (const validMime of ['application/json; charset=utf-8', 'application/ld+json']) {
+                const okResp = await fetch(`${baseUrl}/adapt`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': validMime },
+                    body: payloadStr
+                });
+                expect(okResp.status).toBe(200);
+            }
         });
     });
 });
