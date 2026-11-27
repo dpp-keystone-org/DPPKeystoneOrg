@@ -247,7 +247,7 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 10: Container (`Dockerfile` / `.dockerignore`) & CI/CD (`deploy-api.yml`) Hardening
+### [COMPLETED] Feature 10: Container (`Dockerfile` / `.dockerignore`) & CI/CD (`deploy-api.yml`) Hardening
 * **Severity:** Low–Medium (Supply-Chain Reproducibility & Deployment Governance)
 * **Affected Files:**
   * `Dockerfile`
@@ -269,4 +269,4 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
     * `.dockerignore` excludes `dist`, `testing`, `scripts`, `src/lib/vendor`, `designs`, `docs`, `.git`, `index.html`, and `index.i18n.json`.
     * `deploy-api.yml` only auto-deploys on `push` to `main` (plus manual `workflow_dispatch`).
   * [x] **Step 10.3 (Implementation):** Update `Dockerfile`, `.dockerignore`, and `.github/workflows/deploy-api.yml`.
-  * [ ] **Step 10.4 (Verification):** Run `npm run test:api` (and optional `npm run docker:build`).
+  * [x] **Step 10.4 (Verification):** Verified all `npm run test:api` suites pass.
