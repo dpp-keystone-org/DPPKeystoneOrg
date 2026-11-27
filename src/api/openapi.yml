@@ -580,7 +580,7 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorEnvelope'
     PayloadTooLarge:
-      description: Request body exceeds the 1 MiB maximum size limit.
+      description: Request exceeds server size or structural complexity limits (1 MiB raw body, max nesting depth 32, max 15,000 JSON entries, or max 20,000 expanded RDF quads).
       content:
         application/json:
           schema:

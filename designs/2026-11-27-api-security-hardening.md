@@ -41,10 +41,10 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 2: Cache Compiled Ajv Validators on Keystone Validation (`/render/html` CPU DoS)
+### [COMPLETED] Feature 2: Cache Compiled Ajv Validators on Keystone Validation (`/render/html` CPU DoS)
 * **Severity:** Medium–High (Asymmetric CPU DoS)
 * **Affected Files:**
-  * `src/util/js/common/validation/schema-validator.js` (lines 14–64)
+  * `src/util/js/common/validation/schema-validator.js` (lines 1–125)
   * `testing/integration/api/api-security-hardening.test.js` (lines 223–306)
 * **Detailed Problem & Exploitability:**
   `ec-validator-service.js` compiles its Ajv2020 schemas once per process and caches the compiled validator functions. By contrast, `validateDpp()` in `src/util/js/common/validation/schema-validator.js` (invoked on every `POST /render/html` request) instantiates a brand-new `new Ajv2020(...)`, registers all shared schemas, and runs `ajv.compile(compositeSchema)` across ~15+ Draft 2020-12 schemas synchronously on **every single HTTP request**. Schema compilation is orders of magnitude slower than validation and runs synchronously on the main Node.js event loop, allowing a low-bandwidth stream of `/render/html` requests to saturate a 1-vCPU container and starve `/validate` and `/adapt`.
@@ -55,7 +55,7 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 * **TODOs:**
   * [x] **Step 2.1 (TDD Spy Tests):** Added deterministic `Ajv2020.prototype.compile` spy tests in `testing/integration/api/api-security-hardening.test.js` covering single compilation per `schemaContext`, error-array isolation across valid/invalid calls, cache invalidation on in-place `schemaContext` mutation, and zero recompilation across repeated `POST /render/html` requests.
   * [x] **Step 2.2 (Implementation):** Implement `WeakMap` validator caching + inner schema reference check + `structuredClone(validate.errors)` (with JSON fallback for older `jsdom` environments) in `src/util/js/common/validation/schema-validator.js`.
-  * [ ] **Step 2.3 (Verification):** Rebuild (`npm run build` so `dist/util/` stays in sync) and run `npm run test:api` to verify all Feature 1 & Feature 2 tests pass.
+  * [x] **Step 2.3 (Verification):** Rebuilt (`npm run build`) and verified all `npm run test:api` suites pass.
 
 ---
 
@@ -63,22 +63,35 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 * **Severity:** Medium–High (Event-Loop Blocking & Call-Stack Crash)
 * **Affected Files:**
   * `api/src/server.js` (`readJsonBody`)
-  * `api/src/lib/ec-validator-service.js` (`expandToRdfDataset`)
+  * `api/src/lib/ec-validator-service.js` (`expandToRdfDataset` & `validateEcDppPayload`)
   * `src/util/js/common/validation/ontology-validator.js` (lines 62–71)
-  * `src/util/js/common/validation/context-semantic-validator.js` (lines 60–80)
+  * `src/util/js/common/validation/context-semantic-validator.js` (lines 42–80)
   * `src/util/js/common/rendering/dpp-html-renderer.js` (lines 124–273)
+  * `src/api/openapi.yml` (line 583 — `PayloadTooLarge` response description)
 * **Detailed Problem & Exploitability:**
   Even with a 1 MiB raw byte cap, two structural DoS vectors exist:
-  1. **Deep Nesting Stack Overflow:** Recursive walkers in `ontology-validator.js`, `context-semantic-validator.js`, and `dpp-html-renderer.js` have no maximum recursion depth. A ~40 KB payload of nested arrays/objects (`{"a":{"a":...}}` 12,000 levels deep) parses cleanly in `JSON.parse` and then throws `RangeError: Maximum call stack size exceeded`.
-  2. **JSON-LD 1.1 Inline `@context` / RDF Quad Amplification:** Callers can embed inline `@context` objects on `/validate` and `/adapt`. Crafted term definitions or dense cross-referenced graphs can cause `jsonld.expand()` + `jsonld.toRDF()` + `SHACLValidator.validate()` to expand a <1 MiB JSON document into hundreds of thousands of RDF quads, blocking the single-threaded event loop for seconds and spiking heap usage.
-* **Options to Discuss:**
-  * **Structural Guard on Parsed JSON:** Enforce a fast iterative structural check in `server.js` right after `JSON.parse`: e.g., max nesting depth `32` (valid DPPs rarely exceed depth `8`), max total object keys / array items `15,000` -> reject with `400 Bad Request` (`PAYLOAD_TOO_COMPLEX`).
-  * **RDF Expansion Guard:** Cap the N-Quads string length / quad count produced by `jsonld.toRDF()` (e.g., max `25,000` quads or `2 MiB` N-Quads) before feeding `N3Parser` and `SHACLValidator`.
-  * **Inline `@context` Policy:** Keep inline `@context` support (needed for custom voluntary attributes in Feature 5 of the previous design doc), but optionally block `@import` inside user-supplied inline `@context` objects or cap inline `@context` size.
-* **TODOs (to expand once agreed):**
-  * [ ] Step 3.1: Agree on max JSON depth, max node/key count, and max RDF quad count thresholds.
-  * [ ] Step 3.2: Implement structural complexity guard and RDF quad cap.
-  * [ ] Step 3.3: Add unit/integration tests for deeply nested JSON and oversized graph rejections.
+  1. **Deep Nesting Stack Overflow & Ultra-Dense JSON:** Recursive walkers in `ontology-validator.js`, `context-semantic-validator.js`, and `dpp-html-renderer.js` have no maximum recursion depth. A ~40 KB payload of nested arrays/objects (`{"a":{"a":...}}` 12,000 levels deep) parses cleanly in `JSON.parse` and then throws `RangeError: Maximum call stack size exceeded`. Likewise, a <800 KB array of `[0,0,...]` creates hundreds of thousands of AST entries.
+  2. **JSON-LD 1.1 Inline `@context` / RDF Quad Amplification:** Callers can embed inline `@context` objects on `/validate` and `/adapt` (e.g., `"@container": "@list"` or dense multi-typed graphs). Crafted definitions can amplify a modest JSON document (<15,000 JSON entries) into tens of thousands of RDF quads in `jsonld.expand()` + `jsonld.toRDF()`, blocking the single-threaded event loop inside `N3Parser` and `SHACLValidator.validate()`.
+* **Agreed Decision (`413 Content Too Large` + `code: 'PAYLOAD_TOO_COMPLEX'`):**
+  * **Why `413` over `400`:** Per RFC 9110 §15.5.14, `413 Content Too Large` signifies a syntactically valid payload that exceeds the size or complexity bounds the server is willing to process (`code: 'PAYLOAD_TOO_LARGE'` for the 1 MiB raw byte stream cap vs. `code: 'PAYLOAD_TOO_COMPLEX'` for structural depth, AST entry count, or RDF quad expansion bounds). Note: unlike mid-stream `PAYLOAD_TOO_LARGE` (where Feature 4 will close/destroy the unread socket), post-parse `PAYLOAD_TOO_COMPLEX` responses have already consumed the request body cleanly and return a normal `413` response.
+  * **Iterative JSON Complexity Guard (`readJsonBody` in `api/src/server.js`):** Immediately after `JSON.parse()`, run a non-recursive (explicit stack) check enforcing:
+    * `MAX_JSON_DEPTH = 32` (real Keystone & EC DPPs—even wrapped in `{ dpp, options }`—are depth 5–10).
+    * `MAX_JSON_ENTRIES = 15_000` total object keys + array elements across the parsed body.
+    * Exceeding either throws `statusCode = 413`, `code = 'PAYLOAD_TOO_COMPLEX'`.
+  * **RDF Expansion Cap (`expandToRdfDataset` in `api/src/lib/ec-validator-service.js`):**
+    * Cap `nquads.length <= 2 * 1024 * 1024` (2 MiB N-Quads string) and streamed `quadCount <= 20_000` quads before `SHACLValidator.validate()` runs.
+    * Throw `statusCode = 413`, `code = 'PAYLOAD_TOO_COMPLEX'` and rethrow `err.statusCode` errors inside `validateEcDppPayload()`'s SHACL `catch` blocks so both `/validate` and `/adapt?validate=true` return HTTP `413` consistently.
+  * **Defense-in-Depth in `src/util/` Recursive Walkers (`MAX_TRAVERSAL_DEPTH = 64`):**
+    * Add a `depth` guard (`64`) in `validateAgainstOntology()`, `validateContextAwarePayload()` (returning `{ valid: false, errors: [{ keyword: 'maxDepth', ... }] }`), and `renderProductPage()` / `renderValue()` (throwing a deterministic error instead of hitting V8 `RangeError: Maximum call stack size exceeded` when invoked directly outside the HTTP server).
+* **TODOs:**
+  * [x] **Step 3.1 (TDD Complexity & Amplification Tests):** Add deterministic tests in `testing/integration/api/api-security-hardening.test.js` covering:
+    * `depth > 32` rejected with `413 PAYLOAD_TOO_COMPLEX` across `/validate`, `/adapt`, and `/render/html`.
+    * `entries > 15,000` (<100 KB raw JSON) rejected with `413 PAYLOAD_TOO_COMPLEX` across `/validate`, `/adapt`, and `/render/html`.
+    * Moderate nesting (`depth = 20`) still passes cleanly (`200`).
+    * JSON-LD `@container: "@list"` amplification (<15,000 JSON entries -> >20,000 RDF quads) rejected with `413 PAYLOAD_TOO_COMPLEX` on `/validate` and `/adapt?validate=true`.
+    * Direct library calls (`validateAgainstOntology`, `validateContextAwarePayload`, `renderProductPage`) on a 2,500-deep object handle recursion limits gracefully without throwing V8 `RangeError`.
+  * [x] **Step 3.2 (Implementation):** Implement iterative JSON guard in `api/src/server.js`, RDF quad/N-Quads cap + `statusCode` rethrow in `api/src/lib/ec-validator-service.js`, `MAX_TRAVERSAL_DEPTH = 64` guards in `src/util/`, and `PayloadTooLarge` description update in `src/api/openapi.yml`.
+  * [ ] **Step 3.3 (Verification):** Rebuild (`npm run build`) and run `npm run test:api` to verify all Feature 3 tests pass.
 
 ---
 

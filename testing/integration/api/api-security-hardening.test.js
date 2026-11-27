@@ -8,6 +8,9 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import { startTestServer } from '../../scripts/api-test-helper.mjs';
 import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 import { validateDpp } from '../../../src/util/js/common/validation/schema-validator.js';
+import { validateAgainstOntology } from '../../../src/util/js/common/validation/ontology-validator.js';
+import { validateContextAwarePayload } from '../../../src/util/js/common/validation/context-semantic-validator.js';
+import { renderProductPage } from '../../../src/util/js/common/rendering/dpp-html-renderer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -302,6 +305,157 @@ describe('HTTP API - Security Hardening Suite', () => {
             }
 
             expect(compileSpy).toHaveBeenCalledTimes(0);
+        });
+    });
+
+    describe('Feature 3: Input Structural Limits & JSON-LD / RDF Expansion Caps (413 PAYLOAD_TOO_COMPLEX)', () => {
+        function buildNestedObject(depth, leafValue = 'leaf') {
+            const root = {};
+            let cursor = root;
+            for (let i = 0; i < depth; i++) {
+                cursor.nested = {};
+                cursor = cursor.nested;
+            }
+            cursor.value = leafValue;
+            return root;
+        }
+
+        it('rejects deeply nested JSON (> 32 levels) with 413 PAYLOAD_TOO_COMPLEX across /validate, /adapt, and /render/html', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            dpp.deepExtension = buildNestedObject(40);
+
+            const endpoints = ['/validate', '/adapt', '/render/html'];
+            for (const endpoint of endpoints) {
+                const resp = await fetch(`${baseUrl}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ dpp })
+                });
+                const body = await resp.json();
+                expect(resp.status).toBe(413);
+                expect(body.code).toBe('PAYLOAD_TOO_COMPLEX');
+            }
+        });
+
+        it('rejects ultra-dense JSON (> 15,000 container entries, well under 1 MiB) with 413 PAYLOAD_TOO_COMPLEX across /validate, /adapt, and /render/html', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            dpp.denseArray = Array.from({ length: 16_000 }, (_, i) => i);
+
+            const serialized = JSON.stringify({ dpp });
+            expect(Buffer.byteLength(serialized, 'utf-8')).toBeLessThan(200 * 1024);
+
+            const endpoints = ['/validate', '/adapt', '/render/html'];
+            for (const endpoint of endpoints) {
+                const resp = await fetch(`${baseUrl}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: serialized
+                });
+                const body = await resp.json();
+                expect(resp.status).toBe(413);
+                expect(body.code).toBe('PAYLOAD_TOO_COMPLEX');
+            }
+        });
+
+        it('allows moderately nested voluntary extensions (e.g. depth 18) within structural bounds', async () => {
+            const dpp = await loadKeystoneExample('battery-dpp-v1.json');
+            dpp.moderateExtension = buildNestedObject(18);
+
+            const [adaptResp, renderResp] = await Promise.all([
+                fetch(`${baseUrl}/adapt`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ dpp, options: { target: 'patched' } })
+                }),
+                fetch(`${baseUrl}/render/html`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ dpp, options: { includeSchema: false } })
+                })
+            ]);
+
+            expect(adaptResp.status).toBe(200);
+            expect(renderResp.status).toBe(200);
+        });
+
+        it('rejects JSON-LD RDF quad amplification (> 20,000 RDF quads from < 15,000 JSON entries) with 413 PAYLOAD_TOO_COMPLEX on /validate and /adapt', async () => {
+            // An 11,000-element JSON-LD @list stays well below 15,000 JSON entries (~11.2k entries, ~65 KB),
+            // but expands into >22,000 RDF quads (rdf:first + rdf:rest per list node).
+            const listAmplifierContext = {
+                ex: 'https://example.org/ns#',
+                orderedChain: { '@id': 'ex:orderedChain', '@container': '@list' }
+            };
+            const listItems = Array.from({ length: 11_000 }, (_, i) => i);
+
+            // 1. POST /validate on a valid patched EVB DPP with @list quad amplification
+            const evbFixturePath = path.join(
+                PROJECT_ROOT,
+                'ec-bundle/semantics/product/batteries/subgroup/evb/1.0.0/tests/conforms/pub-batteries-evb.json'
+            );
+            const evbDpp = JSON.parse(await fs.readFile(evbFixturePath, 'utf-8'));
+            const existingEvbCtx = Array.isArray(evbDpp['@context']) ? evbDpp['@context'] : [evbDpp['@context']];
+            evbDpp['@context'] = [...existingEvbCtx, listAmplifierContext];
+            evbDpp.orderedChain = listItems;
+
+            const validateResp = await fetch(`${baseUrl}/validate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dpp: evbDpp, options: { target: 'patched', mode: 'strict' } })
+            });
+            const validateBody = await validateResp.json();
+            expect(validateResp.status).toBe(413);
+            expect(validateBody.code).toBe('PAYLOAD_TOO_COMPLEX');
+
+            // 2. POST /adapt?validate=true on a Keystone Battery DPP with @list quad amplification
+            const keystoneDpp = await loadKeystoneExample('battery-dpp-v1.json');
+            keystoneDpp['@context'] = [
+                `https://dpp-keystone.org/spec/contexts/${KEYSTONE_VERSION}/dpp-battery.context.jsonld`,
+                listAmplifierContext
+            ];
+            keystoneDpp.orderedChain = listItems;
+
+            const adaptResp = await fetch(`${baseUrl}/adapt`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    dpp: keystoneDpp,
+                    options: { target: 'patched', validate: true, mode: 'strict' }
+                })
+            });
+            const adaptBody = await adaptResp.json();
+            expect(adaptResp.status).toBe(413);
+            expect(adaptBody.code).toBe('PAYLOAD_TOO_COMPLEX');
+        });
+
+        it('guards shared src/util recursive walkers against V8 call-stack overflow when invoked directly on deeply nested objects', async () => {
+            const stackBomb = {
+                '@context': { ex: 'https://example.org/ns#' },
+                digitalProductPassportId: 'urn:uuid:stack-test',
+                deep: buildNestedObject(12_000)
+            };
+            const dummyOntologyMap = new Map([['value', { range: 'string' }]]);
+            const stubLoader = async (url) => ({ contextUrl: null, documentUrl: url, document: { '@context': {} } });
+
+            // 1. validateAgainstOntology returns { valid: false } with maxDepth error (no RangeError)
+            const ontoResult = validateAgainstOntology(stackBomb, dummyOntologyMap);
+            expect(ontoResult.valid).toBe(false);
+            expect(ontoResult.errors.some((e) => e.keyword === 'maxDepth')).toBe(true);
+
+            // 2. validateContextAwarePayload returns { valid: false } with maxDepth error (no RangeError)
+            const ctxResult = await validateContextAwarePayload(stackBomb, stubLoader);
+            expect(ctxResult.valid).toBe(false);
+            expect(ctxResult.errors.some((e) => e.keyword === 'maxDepth')).toBe(true);
+
+            // 3. renderProductPage throws a deterministic nesting-depth error rather than V8 RangeError
+            let thrownError = null;
+            try {
+                renderProductPage({ dppData: stackBomb });
+            } catch (err) {
+                thrownError = err;
+            }
+            expect(thrownError).not.toBeNull();
+            expect(thrownError).not.toBeInstanceOf(RangeError);
+            expect(thrownError.message).toMatch(/Maximum nesting depth/i);
         });
     });
 });

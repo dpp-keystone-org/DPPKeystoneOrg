@@ -32,13 +32,45 @@ export function sanitizeUrl(url) {
     return escapeHtml(trimmed);
 }
 
+const MAX_TRAVERSAL_DEPTH = 64;
+
+function assertMaxNestingDepth(root, maxDepth = MAX_TRAVERSAL_DEPTH) {
+    if (!root || typeof root !== 'object') return;
+    const stack = [{ node: root, depth: 0 }];
+    while (stack.length > 0) {
+        const { node, depth } = stack.pop();
+        if (depth > maxDepth) {
+            throw new Error(`Maximum nesting depth (${maxDepth}) exceeded`);
+        }
+        if (Array.isArray(node)) {
+            for (let i = 0; i < node.length; i++) {
+                const item = node[i];
+                if (item && typeof item === 'object') {
+                    stack.push({ node: item, depth: depth + 1 });
+                }
+            }
+        } else {
+            const values = Object.values(node);
+            for (let i = 0; i < values.length; i++) {
+                const val = values[i];
+                if (val && typeof val === 'object') {
+                    stack.push({ node: val, depth: depth + 1 });
+                }
+            }
+        }
+    }
+}
+
 /**
  * Helper to safely format and escape values for table cells.
  */
-function formatCellValue(val) {
+function formatCellValue(val, depth = 0) {
+    if (depth > MAX_TRAVERSAL_DEPTH) {
+        throw new Error(`Maximum nesting depth (${MAX_TRAVERSAL_DEPTH}) exceeded`);
+    }
     if (val === undefined || val === null || val === '') return '-';
     if (typeof val === 'object') {
-        if (Array.isArray(val)) return val.map(formatCellValue).join(', ');
+        if (Array.isArray(val)) return val.map((item) => formatCellValue(item, depth + 1)).join(', ');
         // For objects like translated strings {"en": "Value"} or simple key-value pairs
         const vals = Object.values(val);
         if (vals.length > 0 && vals.every(v => typeof v === 'string' || typeof v === 'number')) {
@@ -121,7 +153,10 @@ export function getDisplayLabel(key, ontologyMap = null, language = 'en', defaul
  * @param {any} value 
  * @returns {string} HTML string
  */
-function renderValue(key, value, ontologyMap = null, language = 'en') {
+function renderValue(key, value, ontologyMap = null, language = 'en', depth = 0) {
+    if (depth > MAX_TRAVERSAL_DEPTH) {
+        throw new Error(`Maximum nesting depth (${MAX_TRAVERSAL_DEPTH}) exceeded`);
+    }
     if (value === null || value === undefined) return '';
 
     const rawLabel = getDisplayLabel(key, ontologyMap, language);
@@ -156,7 +191,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
 
             let scalarContent = '';
             scalarKeys.forEach(k => {
-                scalarContent += renderValue(k, value[k], ontologyMap, language);
+                scalarContent += renderValue(k, value[k], ontologyMap, language, depth + 1);
             });
 
             // Collect all unique columns from object rows
@@ -198,7 +233,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
         let childContent = '';
         Object.keys(value).forEach(k => {
             if (!k.startsWith('@')) {
-                childContent += renderValue(k, value[k], ontologyMap, language);
+                childContent += renderValue(k, value[k], ontologyMap, language, depth + 1);
             }
         });
 
@@ -283,6 +318,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
  */
 export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en' }) {
     if (!dppData) throw new Error("DPP JSON is required");
+    assertMaxNestingDepth(dppData, MAX_TRAVERSAL_DEPTH);
 
     // Prevent </script> breakout injection in embedded JSON-LD
     const jsonLdScript = jsonLd

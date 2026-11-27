@@ -391,6 +391,9 @@ function detectRawTiers(payload, options) {
     return tiers;
 }
 
+const MAX_NQUADS_CHARS = 2 * 1024 * 1024; // 2 MiB N-Quads string cap
+const MAX_RDF_QUADS = 20_000;
+
 async function expandToRdfDataset(payload, engine, warnings) {
     const stubbedUrls = new Set();
     const ctxEntries = Array.isArray(payload['@context']) ? payload['@context'] : [payload['@context']];
@@ -415,13 +418,46 @@ async function expandToRdfDataset(payload, engine, warnings) {
     }
 
     const nquads = await jsonld.toRDF(expanded, { format: 'application/n-quads' });
+    if (nquads.length > MAX_NQUADS_CHARS) {
+        throw Object.assign(
+            new Error(`Payload Too Complex: Expanded RDF graph exceeds maximum serialized size of ${MAX_NQUADS_CHARS} bytes.`),
+            { statusCode: 413, code: 'PAYLOAD_TOO_COMPLEX' }
+        );
+    }
+
     const parser = new N3Parser({ factory });
     const stream = parser.import(Readable.from([nquads]));
     const dataDataset = factory.dataset();
+    let quadCount = 0;
     await new Promise((resolve, reject) => {
-        stream.on('data', (quad) => dataDataset.add(quad));
-        stream.on('end', resolve);
-        stream.on('error', reject);
+        let settled = false;
+        stream.on('data', (quad) => {
+            if (settled) return;
+            quadCount++;
+            if (quadCount > MAX_RDF_QUADS) {
+                settled = true;
+                const err = Object.assign(
+                    new Error(`Payload Too Complex: Expanded RDF graph exceeds maximum limit of ${MAX_RDF_QUADS} quads.`),
+                    { statusCode: 413, code: 'PAYLOAD_TOO_COMPLEX' }
+                );
+                stream.destroy();
+                reject(err);
+                return;
+            }
+            dataDataset.add(quad);
+        });
+        stream.on('end', () => {
+            if (!settled) {
+                settled = true;
+                resolve();
+            }
+        });
+        stream.on('error', (err) => {
+            if (!settled) {
+                settled = true;
+                reject(err);
+            }
+        });
     });
     return dataDataset;
 }
@@ -598,6 +634,9 @@ export async function validateEcDppPayload(payload, options = {}) {
                         }
                     }
                 } catch (err) {
+                    if (err && err.statusCode) {
+                        throw err;
+                    }
                     findings.push({
                         stage: 'SHACL',
                         code: 'JSONLD_SHACL_ERROR',
@@ -746,6 +785,9 @@ export async function validateEcDppPayload(payload, options = {}) {
                     }
                 }
             } catch (err) {
+                if (err && err.statusCode) {
+                    throw err;
+                }
                 findings.push({
                     stage: 'SHACL',
                     code: 'JSONLD_SHACL_ERROR',

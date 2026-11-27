@@ -47,6 +47,8 @@ function hasControlCharacters(value) {
 
 export { isDate, isDateTime, isDecimal, isInteger, isCountryCode, isURI, hasControlCharacters };
 
+const MAX_TRAVERSAL_DEPTH = 64;
+
 /**
  * Validates a structured JSON object directly against data configurations mapped by an Ontology.
  * @param {object} dppData The payload to inspect
@@ -59,14 +61,24 @@ export function validateAgainstOntology(dppData, ontologyMap) {
         return { valid: true, errors: [] };
     }
 
-    function traverse(obj, path, parentKey) {
+    function traverse(obj, path, parentKey, depth = 0) {
+        if (depth > MAX_TRAVERSAL_DEPTH) {
+            errors.push({
+                instancePath: path || '/',
+                schemaPath: '',
+                keyword: 'maxDepth',
+                params: { limit: MAX_TRAVERSAL_DEPTH },
+                message: `Maximum nesting depth (${MAX_TRAVERSAL_DEPTH}) exceeded`
+            });
+            return;
+        }
         if (Array.isArray(obj)) {
             obj.forEach((item, index) => {
-                traverse(item, `${path}[${index}]`, parentKey);
+                traverse(item, `${path}[${index}]`, parentKey, depth + 1);
             });
         } else if (obj !== null && typeof obj === 'object') {
             for (const [key, val] of Object.entries(obj)) {
-                traverse(val, path ? `${path}/${key}` : `/${key}`, key);
+                traverse(val, path ? `${path}/${key}` : `/${key}`, key, depth + 1);
             }
         } else {
             // It's a primitive leaf. Check if parentKey is in the ontology Map.

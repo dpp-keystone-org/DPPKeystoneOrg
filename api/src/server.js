@@ -13,6 +13,62 @@ const __dirname = path.dirname(__filename);
 const OPENAPI_SPEC_PATH = path.resolve(__dirname, '../../src/api/openapi.yml');
 
 const MAX_PAYLOAD_BYTES = 1024 * 1024; // 1MB payload limit
+const MAX_JSON_DEPTH = 32;
+const MAX_JSON_ENTRIES = 15_000;
+
+/**
+ * Iteratively enforces maximum nesting depth and total container entry count
+ * (object keys + array items) on a parsed JSON payload without recursion.
+ */
+function assertJsonComplexity(root) {
+    if (root === null || typeof root !== 'object') {
+        return;
+    }
+
+    let totalEntries = 0;
+    const stack = [{ node: root, depth: 1 }];
+
+    while (stack.length > 0) {
+        const { node, depth } = stack.pop();
+        if (depth > MAX_JSON_DEPTH) {
+            const err = new Error(`Payload Too Complex: JSON nesting depth exceeds maximum limit of ${MAX_JSON_DEPTH}.`);
+            err.statusCode = 413;
+            err.code = 'PAYLOAD_TOO_COMPLEX';
+            throw err;
+        }
+
+        if (Array.isArray(node)) {
+            totalEntries += node.length;
+            if (totalEntries > MAX_JSON_ENTRIES) {
+                const err = new Error(`Payload Too Complex: JSON container entries exceed maximum limit of ${MAX_JSON_ENTRIES}.`);
+                err.statusCode = 413;
+                err.code = 'PAYLOAD_TOO_COMPLEX';
+                throw err;
+            }
+            for (let i = 0; i < node.length; i++) {
+                const item = node[i];
+                if (item !== null && typeof item === 'object') {
+                    stack.push({ node: item, depth: depth + 1 });
+                }
+            }
+        } else {
+            const keys = Object.keys(node);
+            totalEntries += keys.length;
+            if (totalEntries > MAX_JSON_ENTRIES) {
+                const err = new Error(`Payload Too Complex: JSON container entries exceed maximum limit of ${MAX_JSON_ENTRIES}.`);
+                err.statusCode = 413;
+                err.code = 'PAYLOAD_TOO_COMPLEX';
+                throw err;
+            }
+            for (let i = 0; i < keys.length; i++) {
+                const val = node[keys[i]];
+                if (val !== null && typeof val === 'object') {
+                    stack.push({ node: val, depth: depth + 1 });
+                }
+            }
+        }
+    }
+}
 
 /**
  * Helper to write a JSON response with CORS headers.
@@ -60,8 +116,13 @@ function readJsonBody(req) {
             }
             try {
                 const parsed = JSON.parse(body);
+                assertJsonComplexity(parsed);
                 resolve(parsed);
             } catch (e) {
+                if (e && e.statusCode) {
+                    reject(e);
+                    return;
+                }
                 const err = new Error('Malformed JSON body: ' + e.message);
                 err.statusCode = 400;
                 err.code = 'INVALID_JSON';
