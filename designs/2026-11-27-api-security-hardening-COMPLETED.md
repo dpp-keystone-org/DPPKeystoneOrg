@@ -267,7 +267,7 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 * **Agreed Decision:**
   * Switch `Dockerfile` to `npm ci --omit=dev --ignore-scripts --workspaces=false`, keep `USER node`, and add a native Node `fetch` `HEALTHCHECK` against `/health`.
   * Trim `.dockerignore` (`dist`, `scripts`, `src/lib/vendor`, `index.html`, `index.i18n.json`).
-  * Restrict `deploy-api.yml` `push.branches` to `main` (while keeping `workflow_dispatch` so manual runs from GitHub UI still work anytime).
+  * Keep `feature/api-setup` alongside `main` in `deploy-api.yml` while `deploy-api.yml` is not yet on `main` (so pre-merge Cloud Run preview testing runs automatically; remove `feature/api-setup` once `deploy-api.yml` is on `main` and `workflow_dispatch` is available).
 * **TODOs:**
   * [x] **Step 10.1 (Design Alignment):** Confirmed `Dockerfile` `npm ci --omit=dev --ignore-scripts --workspaces=false` + `HEALTHCHECK`, `.dockerignore` cleanup, and `deploy-api.yml` branch trigger cleanup.
   * [x] **Step 10.2 (TDD Container & Workflow Hygiene Tests):** Add failing tests in `api-security-hardening.test.js` asserting:

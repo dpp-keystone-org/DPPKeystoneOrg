@@ -1100,7 +1100,7 @@ describe('HTTP API - Security Hardening Suite', () => {
             }
 
             const deployWorkflow = await fs.readFile(path.join(PROJECT_ROOT, '.github/workflows/deploy-api.yml'), 'utf-8');
-            expect(deployWorkflow).not.toContain('feature/api-setup');
+            expect(deployWorkflow).toContain('- main');
             expect(deployWorkflow).toContain('workflow_dispatch:');
         });
     });
