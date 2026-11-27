@@ -107,6 +107,8 @@ paths:
           $ref: '#/components/responses/PayloadTooLarge'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /validate:
     post:
@@ -167,6 +169,8 @@ paths:
           $ref: '#/components/responses/PayloadTooLarge'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /specifications:
     get:
@@ -233,6 +237,8 @@ paths:
           $ref: '#/components/responses/PayloadTooLarge'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /health:
     get:
@@ -590,6 +596,17 @@ components:
             $ref: '#/components/schemas/ErrorEnvelope'
     UnsupportedMediaType:
       description: Request `Content-Type` header is missing or is not `application/json` / `application/ld+json`.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    TooManyRequests:
+      description: Per-IP rate limit exceeded on the shared public Cloud Run service (includes `Retry-After` header and local CC0 Docker self-hosting instructions).
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
       content:
         application/json:
           schema:

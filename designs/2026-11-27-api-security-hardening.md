@@ -225,25 +225,31 @@ Unlike typical implementation-only design docs in `designs/`, each Feature below
 
 ---
 
-### [ ] Feature 9: Rate Limiting, CORS & Ingress Controls for Public / GS1 Cloud Deployment
-* **Severity:** Medium (Service Availability / Quota Exhaustion)
+### [COMPLETED] Feature 9: Rate Limiting (with Self-Hosting Guidance), Configurable CORS & Operations Docs
+* **Severity:** Medium (Shared-Instance Fairness & Bulk-Supplier Onboarding)
 * **Affected Files:**
-  * `api/src/server.js`
-  * `api/README.md` (GS1 cloud deployment & security guide)
+  * `api/src/server.js` (bounded token-bucket limiter + rightmost `X-Forwarded-For` parsing + `ALLOWED_ORIGINS`)
+  * `.github/workflows/deploy-api.yml` (`RATE_LIMIT_RPM=600,TRUST_PROXY=true` on Cloud Run)
+  * `src/api/openapi.yml` (`429 TooManyRequests` response documentation)
+  * `api/README.md` & `.github/README.md`
 * **Detailed Problem & Exploitability:**
-  The API is currently public (`--allow-unauthenticated`, `Access-Control-Allow-Origin: *`) with `--max-instances 2` and `--concurrency 20`. ~40 simultaneous SHACL validation requests from one abusive IP can saturate capacity for legitimate callers, and GS1 deployments may require locked-down CORS origins.
-* **Options to Discuss:**
-  * **Configurable In-Process Per-IP Token-Bucket Rate Limiter:** Bounded-memory per-IP limiter in `createServer()` (configured via `RATE_LIMIT_RPM` env var or `createServer({ rateLimitRpm, trustProxy })` options; respects `X-Forwarded-For` **only** when `TRUST_PROXY=true`), returning `429 Too Many Requests` (`code: 'RATE_LIMITED'`) + `Retry-After` header before running expensive validation.
-  * **Configurable CORS Origin (`ALLOWED_ORIGINS` env var / option):** Default to `*` for the public `dpp-keystone.org` sandbox, while allowing GS1's deployment to set `ALLOWED_ORIGINS=https://...` without code changes.
-  * **GS1 Cloud Operations Guide (`api/README.md`):** Document recommended WAF / API Gateway per-IP rate limiting, TLS termination, container flags, and environment variables.
+  The shared public Cloud Run service runs `--max-instances 2` and `--concurrency 20`. While large suppliers legitimately need to adapt/validate thousands of battery passes, an unthrottled parallel bulk script against the shared public URL can starve other concurrent users—whereas locally running the CC0 Docker container gives bulk suppliers dedicated unlimited throughput.
+* **Agreed Decision:**
+  * **Unlimited by default locally (`RATE_LIMIT_RPM = 0`), `600` RPM per IP on Cloud Run (`deploy-api.yml`):**
+    * Bounded-memory per-IP token-bucket limiter (`MAX_TRACKED_IPS = 5_000` with LRU/stale eviction; `GET /health` exempt).
+    * When `TRUST_PROXY=true` (set in `deploy-api.yml`), extracts the **rightmost** IP from `X-Forwarded-For` (appended by Google Cloud Run's edge proxy so client-injected leftmost `X-Forwarded-For` values cannot spoof IPs); when `false`, uses `req.socket.remoteAddress`.
+    * Returns `429 Too Many Requests` (`code: 'RATE_LIMITED'`, `Retry-After` header, `retryAfterSeconds`, `selfHostDocs`) with copy-pasteable `git clone ... && npm run docker:build && npm run docker:run` instructions so bulk suppliers can immediately run unlimited locally!
+  * **Configurable CORS (`ALLOWED_ORIGINS`):** Defaults to `*` for open CC0 access; supports comma-separated `ALLOWED_ORIGINS` env var / `serverOptions.allowedOrigins` (`Access-Control-Allow-Origin: <origin>` + `Vary: Origin`).
+  * **Comprehensive `api/README.md` & `.github/README.md` Refresh:** Overhaul `api/README.md` for contributor/AI-session onboarding and document `deploy-api.yml` in `.github/README.md`.
 * **TODOs:**
-  * [ ] **Step 9.1 (Design Alignment):** Confirm rate-limiter defaults, `TRUST_PROXY` behavior, `ALLOWED_ORIGINS` config, and `api/README.md`.
-  * [ ] **Step 9.2 (TDD Rate-Limit & CORS Tests):** Add failing tests in `api-security-hardening.test.js` using isolated `createServer({ ... })` instances asserting:
-    * Exceeding `rateLimitRpm` returns `429` (`code: 'RATE_LIMITED'`) with `Retry-After` header.
-    * Spoofed `X-Forwarded-For` headers cannot bypass per-IP rate limits when `trustProxy: false`, and distinct forwarded client IPs are tracked accurately when `trustProxy: true`.
-    * `allowedOrigins: ['https://gs1.example.org']` reflects `Access-Control-Allow-Origin: https://gs1.example.org` + `Vary: Origin` for allowed origins and withholds CORS access for unlisted origins, while default `*` behavior remains intact when unset.
-  * [ ] **Step 9.3 (Implementation):** Implement rate limiter & `ALLOWED_ORIGINS` in `api/src/server.js`, update `openapi.yml` (`429`), and create/update `api/README.md`.
-  * [ ] **Step 9.4 (Verification):** Run `npm run test:api`.
+  * [x] **Step 9.1 (Design Alignment):** Confirmed `RATE_LIMIT_RPM=0` local default + `RATE_LIMIT_RPM=600,TRUST_PROXY=true` on Cloud Run with local Docker instructions in the `429` error message, rightmost `X-Forwarded-For` parsing, optional `ALLOWED_ORIGINS`, and `api/README.md` overhaul.
+  * [x] **Step 9.2 (TDD Rate-Limit & CORS Tests):** Add failing tests in `api-security-hardening.test.js` asserting:
+    * Exceeding `rateLimitRpm` returns `429` (`code: 'RATE_LIMITED'`) with `Retry-After`, local Docker self-hosting instructions in `error`, and `GET /health` exemption.
+    * Spoofed `X-Forwarded-For` headers cannot bypass per-IP rate limits under either `trustProxy: false` or Cloud Run's rightmost-IP `trustProxy: true` mode, while distinct real client IPs get independent buckets.
+    * `allowedOrigins` reflects matching origins with `Vary: Origin` and withholds CORS headers for unlisted origins, while default `*` remains intact.
+    * `deploy-api.yml` configures `RATE_LIMIT_RPM=600` and `TRUST_PROXY=true`.
+  * [x] **Step 9.3 (Implementation):** Implement rate limiter & `ALLOWED_ORIGINS` in `api/src/server.js`, add `RATE_LIMIT_RPM=600,TRUST_PROXY=true` in `deploy-api.yml`, document `429` in `src/api/openapi.yml`, and add env vars / `deploy-api.yml` notes to `api/README.md` & `.github/README.md`.
+  * [x] **Step 9.4 (Verification):** Rebuilt (`npm run build`) and verified all `npm run test:api` suites pass.
 
 ---
 

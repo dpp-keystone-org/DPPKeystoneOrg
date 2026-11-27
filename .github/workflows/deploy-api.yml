@@ -88,4 +88,4 @@ jobs:
             --memory 512Mi \
             --cpu 1 \
             --port 8080 \
-            --set-env-vars "NODE_ENV=production,NODE_OPTIONS=--max-old-space-size=384"
+            --set-env-vars "NODE_ENV=production,NODE_OPTIONS=--max-old-space-size=384,RATE_LIMIT_RPM=600,TRUST_PROXY=true"

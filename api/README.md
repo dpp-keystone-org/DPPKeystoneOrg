@@ -128,6 +128,9 @@ npm test
 | Variable | Default | Description |
 | :--- | :--- | :--- |
 | `PORT` | `8080` | TCP port `api/src/server.js` listens on. |
+| `RATE_LIMIT_RPM` | `0` (unlimited) | Per-IP token-bucket rate limit in requests/minute (`0` disables rate limiting for unlimited local Docker/CLI batch throughput; set to `600` on the shared Cloud Run instance, returning `429` with `Retry-After` and local Docker instructions when exceeded; `GET /health` is exempt). |
+| `TRUST_PROXY` | `false` | When `'true'` (Cloud Run), resolves client IP from the **rightmost** `X-Forwarded-For` entry appended by Google's load balancer; when `'false'`, uses `req.socket.remoteAddress`. |
+| `ALLOWED_ORIGINS` | `*` | Optional comma-separated allowlist of CORS origins (reflecting `Access-Control-Allow-Origin` + `Vary: Origin`). Defaults to `*` for open CC0 browser access. |
 | `HIDE_INTERNAL_ERRORS` | `false` | When `'true'`, masks `>= 500` responses as `"Internal Server Error"` instead of returning `<app>`-scrubbed diagnostic messages. |
 
 ---

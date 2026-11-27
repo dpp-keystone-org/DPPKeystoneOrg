@@ -7,6 +7,7 @@ import { parse as jsoncParse } from 'jsonc-parser';
 import Ajv2020 from 'ajv/dist/2020.js';
 
 import { startTestServer } from '../../scripts/api-test-helper.mjs';
+import { createServer } from '../../../api/src/server.js';
 import { KEYSTONE_VERSION } from '../../../src/lib/keystone-version.js';
 import { validateDpp } from '../../../src/util/js/common/validation/schema-validator.js';
 import { validateAgainstOntology } from '../../../src/util/js/common/validation/ontology-validator.js';
@@ -1101,6 +1102,109 @@ describe('HTTP API - Security Hardening Suite', () => {
             const deployWorkflow = await fs.readFile(path.join(PROJECT_ROOT, '.github/workflows/deploy-api.yml'), 'utf-8');
             expect(deployWorkflow).not.toContain('feature/api-setup');
             expect(deployWorkflow).toContain('workflow_dispatch:');
+        });
+    });
+
+    describe('Feature 9: Per-IP Rate Limiting (with Local Docker Guidance) & Configurable CORS', () => {
+        async function withCustomServer(serverOptions, fn) {
+            const srv = createServer(serverOptions);
+            await new Promise((resolve) => srv.listen(0, '127.0.0.1', resolve));
+            const addr = srv.address();
+            const customBaseUrl = `http://127.0.0.1:${addr.port}`;
+            try {
+                await fn(customBaseUrl);
+            } finally {
+                await new Promise((resolve) => srv.close(() => resolve()));
+            }
+        }
+
+        it('returns 429 RATE_LIMITED with Retry-After and local Docker instructions when exceeding rateLimitRpm while exempting /health', async () => {
+            await withCustomServer({ rateLimitRpm: 3, trustProxy: false }, async (customUrl) => {
+                for (let i = 0; i < 3; i++) {
+                    const okResp = await fetch(`${customUrl}/version`);
+                    expect(okResp.status).toBe(200);
+                }
+
+                const limitedResp = await fetch(`${customUrl}/version`);
+                const body = await limitedResp.json();
+                expect(limitedResp.status).toBe(429);
+                expect(Number(limitedResp.headers.get('retry-after'))).toBeGreaterThanOrEqual(1);
+                expect(body.code).toBe('RATE_LIMITED');
+                expect(body.error).toContain('npm run docker:build && npm run docker:run');
+                expect(body.selfHostDocs).toContain('https://github.com/dpp-keystone-org/DPPKeystoneOrg');
+
+                // Health probe must remain exempt even when client IP bucket is exhausted
+                const healthResp = await fetch(`${customUrl}/health`);
+                expect(healthResp.status).toBe(200);
+            });
+        });
+
+        it('prevents X-Forwarded-For spoofing under both trustProxy: false and Cloud Run rightmost-IP trustProxy: true', async () => {
+            // 1. trustProxy: false ignores X-Forwarded-For completely
+            await withCustomServer({ rateLimitRpm: 2, trustProxy: false }, async (customUrl) => {
+                expect((await fetch(`${customUrl}/version`, { headers: { 'X-Forwarded-For': '1.1.1.1' } })).status).toBe(200);
+                expect((await fetch(`${customUrl}/version`, { headers: { 'X-Forwarded-For': '2.2.2.2' } })).status).toBe(200);
+                const third = await fetch(`${customUrl}/version`, { headers: { 'X-Forwarded-For': '3.3.3.3' } });
+                expect(third.status).toBe(429);
+            });
+
+            // 2. trustProxy: true uses the rightmost (Cloud Run proxy-appended) IP, defeating leftmost spoofing
+            await withCustomServer({ rateLimitRpm: 2, trustProxy: true }, async (customUrl) => {
+                expect(
+                    (await fetch(`${customUrl}/version`, { headers: { 'X-Forwarded-For': '9.9.9.1, 203.0.113.50' } })).status
+                ).toBe(200);
+                expect(
+                    (await fetch(`${customUrl}/version`, { headers: { 'X-Forwarded-For': '9.9.9.2, 203.0.113.50' } })).status
+                ).toBe(200);
+                const spoofedThird = await fetch(`${customUrl}/version`, {
+                    headers: { 'X-Forwarded-For': '9.9.9.3, 203.0.113.50' }
+                });
+                expect(spoofedThird.status).toBe(429);
+
+                // A distinct real client IP gets its own independent bucket
+                const otherClient = await fetch(`${customUrl}/version`, {
+                    headers: { 'X-Forwarded-For': '198.51.100.77' }
+                });
+                expect(otherClient.status).toBe(200);
+            });
+        });
+
+        it('supports configurable allowedOrigins CORS while preserving wildcard * by default', async () => {
+            // Default server uses wildcard *
+            const defaultResp = await fetch(`${baseUrl}/version`, {
+                headers: { Origin: 'https://any-supplier.example.com' }
+            });
+            expect(defaultResp.headers.get('access-control-allow-origin')).toBe('*');
+
+            // Custom allowedOrigins restricts CORS reflection and sets Vary: Origin
+            await withCustomServer(
+                { allowedOrigins: ['https://dpp-keystone.org', 'https://www.gs1.org'] },
+                async (customUrl) => {
+                    const allowedResp = await fetch(`${customUrl}/version`, {
+                        headers: { Origin: 'https://www.gs1.org' }
+                    });
+                    expect(allowedResp.status).toBe(200);
+                    expect(allowedResp.headers.get('access-control-allow-origin')).toBe('https://www.gs1.org');
+                    expect(allowedResp.headers.get('vary')).toContain('Origin');
+
+                    const blockedResp = await fetch(`${customUrl}/version`, {
+                        headers: { Origin: 'https://evil.example.com' }
+                    });
+                    expect(blockedResp.headers.get('access-control-allow-origin')).toBeNull();
+
+                    const blockedPreflight = await fetch(`${customUrl}/adapt`, {
+                        method: 'OPTIONS',
+                        headers: { Origin: 'https://evil.example.com' }
+                    });
+                    expect(blockedPreflight.headers.get('access-control-allow-origin')).toBeNull();
+                }
+            );
+        });
+
+        it('configures RATE_LIMIT_RPM=600 and TRUST_PROXY=true in deploy-api.yml for the shared Cloud Run instance', async () => {
+            const deployWorkflow = await fs.readFile(path.join(PROJECT_ROOT, '.github/workflows/deploy-api.yml'), 'utf-8');
+            expect(deployWorkflow).toContain('RATE_LIMIT_RPM=600');
+            expect(deployWorkflow).toContain('TRUST_PROXY=true');
         });
     });
 });
