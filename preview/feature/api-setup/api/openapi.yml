@@ -105,6 +105,10 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '413':
           $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /validate:
     post:
@@ -163,6 +167,10 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '413':
           $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /specifications:
     get:
@@ -207,9 +215,6 @@ paths:
                     language:
                       type: string
                       default: en
-                    customCssUrl:
-                      type: string
-                      format: uri
                     version:
                       type: string
                       enum: [v1, v2, v3]
@@ -230,6 +235,10 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
         '413':
           $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /health:
     get:
@@ -580,7 +589,24 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorEnvelope'
     PayloadTooLarge:
-      description: Request body exceeds the 1 MiB maximum size limit.
+      description: Request exceeds server size or structural complexity limits (1 MiB raw body, max nesting depth 32, max 15,000 JSON entries, or max 20,000 expanded RDF quads).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    UnsupportedMediaType:
+      description: Request `Content-Type` header is missing or is not `application/json` / `application/ld+json`.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    TooManyRequests:
+      description: Per-IP rate limit exceeded on the shared public Cloud Run service (includes `Retry-After` header and local CC0 Docker self-hosting instructions).
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
       content:
         application/json:
           schema:

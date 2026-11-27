@@ -1,5 +1,5 @@
 import * as jsonldEngine from 'jsonld';
-import { isDate, isDateTime, isDecimal, isInteger, isCountryCode, isURI, hasControlCharacters } from './ontology-validator.js?v=1795610503072';
+import { isDate, isDateTime, isDecimal, isInteger, isCountryCode, isURI, hasControlCharacters } from './ontology-validator.js?v=1795792032115';
 
 // Robustly resolve the jsonld library instance across different environments
 let _jsonld = jsonldEngine.default || jsonldEngine;
@@ -35,12 +35,51 @@ async function customDocumentLoader(url) {
     }
 }
 
+const MAX_TRAVERSAL_DEPTH = 64;
+
+function hasExcessiveDepth(root, maxDepth = MAX_TRAVERSAL_DEPTH) {
+    if (!root || typeof root !== 'object') return false;
+    const stack = [{ node: root, depth: 0 }];
+    while (stack.length > 0) {
+        const { node, depth } = stack.pop();
+        if (depth > maxDepth) return true;
+        if (Array.isArray(node)) {
+            for (let i = 0; i < node.length; i++) {
+                const item = node[i];
+                if (item && typeof item === 'object') {
+                    stack.push({ node: item, depth: depth + 1 });
+                }
+            }
+        } else {
+            const values = Object.values(node);
+            for (let i = 0; i < values.length; i++) {
+                const val = values[i];
+                if (val && typeof val === 'object') {
+                    stack.push({ node: val, depth: depth + 1 });
+                }
+            }
+        }
+    }
+    return false;
+}
+
 /**
  * Computes implicit typing restrictions entirely extracted natively from the `@context` coercions 
  * dynamically bound during a native semantic expansion (e.g., {"@type": "xsd:date"}).
  */
 export async function validateContextAwarePayload(dppData, customLoaderForTestingOverrides = null) {
     const errors = [];
+
+    if (hasExcessiveDepth(dppData, MAX_TRAVERSAL_DEPTH)) {
+        errors.push({
+            instancePath: '/',
+            schemaPath: '',
+            keyword: 'maxDepth',
+            params: { limit: MAX_TRAVERSAL_DEPTH },
+            message: `Maximum nesting depth (${MAX_TRAVERSAL_DEPTH}) exceeded`
+        });
+        return { valid: false, errors };
+    }
 
     let expandedData;
     try {
@@ -57,11 +96,21 @@ export async function validateContextAwarePayload(dppData, customLoaderForTestin
         return { valid: false, errors };
     }
 
-    function traverse(obj, path, currentIri) {
+    function traverse(obj, path, currentIri, depth = 0) {
+        if (depth > MAX_TRAVERSAL_DEPTH) {
+            errors.push({
+                instancePath: path || '/',
+                schemaPath: '',
+                keyword: 'maxDepth',
+                params: { limit: MAX_TRAVERSAL_DEPTH },
+                message: `Maximum nesting depth (${MAX_TRAVERSAL_DEPTH}) exceeded`
+            });
+            return;
+        }
         if (Array.isArray(obj)) {
             obj.forEach((item, index) => {
                 const arrayPath = obj.length === 1 ? path : `${path}[${index}]`;
-                traverse(item, arrayPath, currentIri);
+                traverse(item, arrayPath, currentIri, depth + 1);
             });
         } else if (obj !== null && typeof obj === 'object') {
             if (obj['@value'] !== undefined) {
@@ -73,7 +122,7 @@ export async function validateContextAwarePayload(dppData, customLoaderForTestin
                 for (const [key, val] of Object.entries(obj)) {
                     if (key.startsWith('@')) continue;
                     const shortKey = key.split(/#|\//).pop();
-                    traverse(val, path ? `${path}/${shortKey}` : `/${shortKey}`, key);
+                    traverse(val, path ? `${path}/${shortKey}` : `/${shortKey}`, key, depth + 1);
                 }
             }
         }

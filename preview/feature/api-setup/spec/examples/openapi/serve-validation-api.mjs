@@ -524,7 +524,9 @@ export async function createValidationEngine() {
             }
         }
     }
-    const shaclValidator = new SHACLValidator(mergedShaclShapes, { factory });
+    const shaclValidator = new SHACLValidator(mergedShaclShapes, {
+        importGraph: async () => factory.dataset()
+    });
 
     /**
      * Evaluates a DPP payload and returns { statusCode, report }.

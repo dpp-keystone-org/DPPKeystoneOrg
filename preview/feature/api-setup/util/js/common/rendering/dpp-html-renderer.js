@@ -18,27 +18,63 @@ export function escapeHtml(str) {
         .replace(/'/g, '&#39;');
 }
 
+const RASTER_DATA_IMAGE_RE = /^data:image\/(?:png|jpeg|jpg|gif|webp);base64,[a-z0-9+/=\s]+$/i;
+
 /**
- * Sanitizes URLs for use in HTML attributes (accepts http, https, relative, or data:image).
+ * Sanitizes URLs for use in HTML attributes (accepts http, https, relative, or base64 raster data:image).
+ * Blocks dangerous URI schemes (javascript:, vbscript:) and executable SVG data: URIs.
  * @param {string} url
  * @returns {string}
  */
 export function sanitizeUrl(url) {
     if (!url || typeof url !== 'string') return '';
     const trimmed = url.trim();
-    // Disallow dangerous URI schemes (e.g., javascript:, vbscript:, data: other than images)
     if (/^(?:javascript|vbscript):/i.test(trimmed)) return '';
-    if (/^data:/i.test(trimmed) && !/^data:image\//i.test(trimmed)) return '';
+    if (/^data:/i.test(trimmed)) {
+        return RASTER_DATA_IMAGE_RE.test(trimmed) ? escapeHtml(trimmed) : '';
+    }
     return escapeHtml(trimmed);
+}
+
+const MAX_TRAVERSAL_DEPTH = 64;
+
+function assertMaxNestingDepth(root, maxDepth = MAX_TRAVERSAL_DEPTH) {
+    if (!root || typeof root !== 'object') return;
+    const stack = [{ node: root, depth: 0 }];
+    while (stack.length > 0) {
+        const { node, depth } = stack.pop();
+        if (depth > maxDepth) {
+            throw new Error(`Maximum nesting depth (${maxDepth}) exceeded`);
+        }
+        if (Array.isArray(node)) {
+            for (let i = 0; i < node.length; i++) {
+                const item = node[i];
+                if (item && typeof item === 'object') {
+                    stack.push({ node: item, depth: depth + 1 });
+                }
+            }
+        } else {
+            const values = Object.values(node);
+            for (let i = 0; i < values.length; i++) {
+                const val = values[i];
+                if (val && typeof val === 'object') {
+                    stack.push({ node: val, depth: depth + 1 });
+                }
+            }
+        }
+    }
 }
 
 /**
  * Helper to safely format and escape values for table cells.
  */
-function formatCellValue(val) {
+function formatCellValue(val, depth = 0) {
+    if (depth > MAX_TRAVERSAL_DEPTH) {
+        throw new Error(`Maximum nesting depth (${MAX_TRAVERSAL_DEPTH}) exceeded`);
+    }
     if (val === undefined || val === null || val === '') return '-';
     if (typeof val === 'object') {
-        if (Array.isArray(val)) return val.map(formatCellValue).join(', ');
+        if (Array.isArray(val)) return val.map((item) => formatCellValue(item, depth + 1)).join(', ');
         // For objects like translated strings {"en": "Value"} or simple key-value pairs
         const vals = Object.values(val);
         if (vals.length > 0 && vals.every(v => typeof v === 'string' || typeof v === 'number')) {
@@ -92,6 +128,18 @@ export function detectTableStructure(obj) {
     return density > 0.5;
 }
 
+const SAFE_BCP47_LANG_RE = /^[a-zA-Z]{2,3}(?:-[a-zA-Z0-9]{2,8})*$/;
+const DANGEROUS_PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
+function normalizeLanguageTag(language) {
+    if (typeof language !== 'string') return 'en';
+    const trimmed = language.trim();
+    if (!trimmed || DANGEROUS_PROTO_KEYS.has(trimmed) || !SAFE_BCP47_LANG_RE.test(trimmed)) {
+        return 'en';
+    }
+    return trimmed;
+}
+
 /**
  * Resolves a human-readable display label for a property key.
  * Prioritizes localized ontology labels matching the specified language.
@@ -101,12 +149,25 @@ export function detectTableStructure(obj) {
  * @returns {string}
  */
 export function getDisplayLabel(key, ontologyMap = null, language = 'en', defaultFallback = null) {
+    const safeLang = normalizeLanguageTag(language);
     if (ontologyMap && ontologyMap.has(key)) {
         const info = ontologyMap.get(key);
         if (info && info.label) {
             if (typeof info.label === 'object') {
-                if (info.label[language]) return info.label[language];
-                if (info.label['en']) return info.label['en'];
+                if (
+                    Object.prototype.hasOwnProperty.call(info.label, safeLang) &&
+                    typeof info.label[safeLang] === 'string' &&
+                    info.label[safeLang]
+                ) {
+                    return info.label[safeLang];
+                }
+                if (
+                    Object.prototype.hasOwnProperty.call(info.label, 'en') &&
+                    typeof info.label.en === 'string' &&
+                    info.label.en
+                ) {
+                    return info.label.en;
+                }
             } else if (typeof info.label === 'string') {
                 return info.label;
             }
@@ -121,7 +182,10 @@ export function getDisplayLabel(key, ontologyMap = null, language = 'en', defaul
  * @param {any} value 
  * @returns {string} HTML string
  */
-function renderValue(key, value, ontologyMap = null, language = 'en') {
+function renderValue(key, value, ontologyMap = null, language = 'en', depth = 0) {
+    if (depth > MAX_TRAVERSAL_DEPTH) {
+        throw new Error(`Maximum nesting depth (${MAX_TRAVERSAL_DEPTH}) exceeded`);
+    }
     if (value === null || value === undefined) return '';
 
     const rawLabel = getDisplayLabel(key, ontologyMap, language);
@@ -156,7 +220,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
 
             let scalarContent = '';
             scalarKeys.forEach(k => {
-                scalarContent += renderValue(k, value[k], ontologyMap, language);
+                scalarContent += renderValue(k, value[k], ontologyMap, language, depth + 1);
             });
 
             // Collect all unique columns from object rows
@@ -198,7 +262,7 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
         let childContent = '';
         Object.keys(value).forEach(k => {
             if (!k.startsWith('@')) {
-                childContent += renderValue(k, value[k], ontologyMap, language);
+                childContent += renderValue(k, value[k], ontologyMap, language, depth + 1);
             }
         });
 
@@ -281,8 +345,10 @@ function renderValue(key, value, ontologyMap = null, language = 'en') {
  * @param {string} [options.customCssUrl] - Optional external CSS URL (must use https://).
  * @returns {string} The full HTML document.
  */
-export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en' }) {
+export function renderProductPage({ dppData, css, jsonLd, customCssUrl, ontologyMap, language = 'en', cspNonce = null }) {
     if (!dppData) throw new Error("DPP JSON is required");
+    assertMaxNestingDepth(dppData, MAX_TRAVERSAL_DEPTH);
+    const safeLanguage = normalizeLanguageTag(language);
 
     // Prevent </script> breakout injection in embedded JSON-LD
     const jsonLdScript = jsonLd
@@ -291,10 +357,12 @@ ${jsonLd.replace(/</g, '\\u003c')}
 </script>`
         : '';
 
-    const cssContent = css || `
+    const rawCssContent = css || `
         body { font-family: sans-serif; padding: 20px; }
         pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
     `;
+    // Prevent </style> breakout injection inside embedded stylesheet
+    const cssContent = String(rawCssContent).replace(/<\/style/gi, '<\\/style');
 
     const productName = escapeHtml(dppData.productName || "Untitled Product");
     const uniqueId = escapeHtml(dppData.uniqueProductIdentifier || dppData.id || "N/A");
@@ -329,7 +397,7 @@ ${jsonLd.replace(/</g, '\\u003c')}
         `).join('');
 
         const indicatorsHtml = images.map((_, index) => `
-            <span class="dpp-indicator ${index === 0 ? 'active' : ''}" onclick="setSlide(${index})"></span>
+            <span class="dpp-indicator ${index === 0 ? 'active' : ''}" data-slide-index="${index}"></span>
         `).join('');
 
         heroImageHtml = `
@@ -337,40 +405,57 @@ ${jsonLd.replace(/</g, '\\u003c')}
                 <div class="dpp-carousel-slides">
                     ${slidesHtml}
                 </div>
-                <button class="dpp-carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-                <button class="dpp-carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+                <button class="dpp-carousel-btn prev" type="button">&#10094;</button>
+                <button class="dpp-carousel-btn next" type="button">&#10095;</button>
                 <div class="dpp-carousel-indicators">
                     ${indicatorsHtml}
                 </div>
             </div>
         `;
 
+        const nonceAttr = cspNonce && typeof cspNonce === 'string'
+            ? ` nonce="${escapeHtml(cspNonce)}"`
+            : '';
+
         carouselScript = `
-          <script>
-              let currentSlide = 0;
-              const totalSlides = ${images.length};
+          <script${nonceAttr}>
+              (function() {
+                  let currentSlide = 0;
+                  const totalSlides = ${images.length};
 
-              function showSlide(index) {
-                  if (index >= totalSlides) currentSlide = 0;
-                  else if (index < 0) currentSlide = totalSlides - 1;
-                  else currentSlide = index;
+                  function showSlide(index) {
+                      if (index >= totalSlides) currentSlide = 0;
+                      else if (index < 0) currentSlide = totalSlides - 1;
+                      else currentSlide = index;
 
-                  const slides = document.querySelectorAll('.dpp-carousel-slide');
-                  slides.forEach(slide => slide.classList.remove('active'));
-                  slides[currentSlide].classList.add('active');
+                      const slides = document.querySelectorAll('.dpp-carousel-slide');
+                      slides.forEach(slide => slide.classList.remove('active'));
+                      if (slides[currentSlide]) slides[currentSlide].classList.add('active');
 
-                  const indicators = document.querySelectorAll('.dpp-indicator');
-                  indicators.forEach(ind => ind.classList.remove('active'));
-                  if(indicators[currentSlide]) indicators[currentSlide].classList.add('active');
-              }
+                      const indicators = document.querySelectorAll('.dpp-indicator');
+                      indicators.forEach(ind => ind.classList.remove('active'));
+                      if (indicators[currentSlide]) indicators[currentSlide].classList.add('active');
+                  }
 
-              function moveSlide(step) {
-                  showSlide(currentSlide + step);
-              }
+                  function moveSlide(step) {
+                      showSlide(currentSlide + step);
+                  }
 
-              function setSlide(index) {
-                  showSlide(index);
-              }
+                  function setSlide(index) {
+                      showSlide(index);
+                  }
+
+                  const prevBtn = document.querySelector('#heroCarousel .dpp-carousel-btn.prev');
+                  const nextBtn = document.querySelector('#heroCarousel .dpp-carousel-btn.next');
+                  if (prevBtn) prevBtn.addEventListener('click', () => moveSlide(-1));
+                  if (nextBtn) nextBtn.addEventListener('click', () => moveSlide(1));
+                  document.querySelectorAll('#heroCarousel .dpp-indicator').forEach(ind => {
+                      ind.addEventListener('click', () => {
+                          const idx = Number(ind.getAttribute('data-slide-index'));
+                          if (!Number.isNaN(idx)) setSlide(idx);
+                      });
+                  });
+              })();
           </script>
         `;
     }
@@ -404,13 +489,13 @@ ${jsonLd.replace(/</g, '\\u003c')}
 
     const metadataHtml = `
       <section class="dpp-metadata">
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppStatus', ontologyMap, language, 'Passport Status'))}:</span> <span class="dpp-value">${dppStatus}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('lastUpdate', ontologyMap, language, 'Last Updated'))}:</span> <span class="dpp-value">${lastUpdate}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('digitalProductPassportId', ontologyMap, language, 'Passport ID'))}:</span> <span class="dpp-value">${safeDppId}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppSchemaVersion', ontologyMap, language, 'Schema Version'))}:</span> <span class="dpp-value">${safeSchemaVersion}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('economicOperatorId', ontologyMap, language, 'Economic Operator ID'))}:</span> <span class="dpp-value">${safeEconomicOperatorId}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('granularity', ontologyMap, language, 'Granularity'))}:</span> <span class="dpp-value">${safeGranularity}</span></div>
-          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('contentSpecificationIds', ontologyMap, language, 'Content Specification IDs'))}:</span> <span class="dpp-value">${safeContentSpecIds}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppStatus', ontologyMap, safeLanguage, 'Passport Status'))}:</span> <span class="dpp-value">${dppStatus}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('lastUpdate', ontologyMap, safeLanguage, 'Last Updated'))}:</span> <span class="dpp-value">${lastUpdate}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('digitalProductPassportId', ontologyMap, safeLanguage, 'Passport ID'))}:</span> <span class="dpp-value">${safeDppId}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('dppSchemaVersion', ontologyMap, safeLanguage, 'Schema Version'))}:</span> <span class="dpp-value">${safeSchemaVersion}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('economicOperatorId', ontologyMap, safeLanguage, 'Economic Operator ID'))}:</span> <span class="dpp-value">${safeEconomicOperatorId}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('granularity', ontologyMap, safeLanguage, 'Granularity'))}:</span> <span class="dpp-value">${safeGranularity}</span></div>
+          <div class="dpp-field"><span class="dpp-label">${escapeHtml(getDisplayLabel('contentSpecificationIds', ontologyMap, safeLanguage, 'Content Specification IDs'))}:</span> <span class="dpp-value">${safeContentSpecIds}</span></div>
       </section>
     `;
 
@@ -418,13 +503,13 @@ ${jsonLd.replace(/</g, '\\u003c')}
     const EXCLUDED_KEYS = new Set([
         'productName', 'manufacturer', 'uniqueProductIdentifier', 'id', 'images', 'productImage', 'image',
         'dppStatus', 'lastUpdate', 'digitalProductPassportId', 'dppSchemaVersion', 'economicOperatorId', 'granularity',
-        '@context', '@type', 'contentSpecificationIds'
+        '@context', '@type', 'contentSpecificationIds', '__proto__', 'constructor', 'prototype'
     ]);
 
     let contentHtml = '';
     Object.keys(dppData).forEach(key => {
         if (!EXCLUDED_KEYS.has(key)) {
-            contentHtml += renderValue(key, dppData[key], ontologyMap, language);
+            contentHtml += renderValue(key, dppData[key], ontologyMap, safeLanguage);
         }
     });
 
@@ -438,7 +523,7 @@ ${jsonLd.replace(/</g, '\\u003c')}
     }
 
     return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${escapeHtml(safeLanguage)}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
