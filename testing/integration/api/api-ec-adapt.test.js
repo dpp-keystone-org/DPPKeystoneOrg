@@ -214,4 +214,38 @@ describe('HTTP API - Keystone to EC Battery Adaptation (POST /adapt)', () => {
         expect(body.validation.valid).toBe(true);
         expect(body.validation.findings).toEqual([]);
     });
+
+    it('strips all non-EC voluntary/custom attributes into droppedFields when adapting to target: raw so raw strict validation passes', async () => {
+        const keystoneDpp = await loadKeystoneExample('battery-dpp-v1.json');
+        keystoneDpp['@context'] = [
+            keystoneDpp['@context'],
+            'https://ref.gs1.org/epcis/epcis-context.jsonld',
+            { ex: 'https://example.org/voc#', customWarrantyCode: 'ex:customWarrantyCode' }
+        ];
+        keystoneDpp.hsCode = '85076000';
+        keystoneDpp.customWarrantyCode = 'EXT-5Y-EU';
+        keystoneDpp.voluntaryNotes = { recyclingPartner: 'GreenCycle GmbH' };
+
+        const resp = await fetch(`${baseUrl}/adapt`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                dpp: keystoneDpp,
+                options: {
+                    target: 'raw',
+                    validate: true,
+                    mode: 'strict'
+                }
+            })
+        });
+
+        const body = await resp.json();
+        expect(resp.status).toBe(200);
+        expect(body.adaptedDpp.hsCode).toBeUndefined();
+        expect(body.adaptedDpp.customWarrantyCode).toBeUndefined();
+        expect(body.adaptedDpp.voluntaryNotes).toBeUndefined();
+        expect(body.droppedFields).toEqual(expect.arrayContaining(['hsCode', 'customWarrantyCode', 'voluntaryNotes']));
+        expect(body.validation.valid).toBe(true);
+        expect(body.validation.findings).toEqual([]);
+    });
 });
